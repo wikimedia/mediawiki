@@ -908,7 +908,6 @@ $wgUploadDialog = [
  *  - class       : The file backend class to use
  *  - wikiId      : A unique string that identifies the wiki (container prefix)
  *  - lockManager : The name of a lock manager (see $wgLockManagers) [optional]
- *  - fileJournal : File journal configuration for FileJournal::__construct() [optional]
  *
  * See FileBackend::__construct() for more details.
  * Additional parameters are specific to the file backend class used.

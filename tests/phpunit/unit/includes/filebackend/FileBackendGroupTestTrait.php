@@ -250,7 +250,6 @@ trait FileBackendGroupTestTrait {
 			'class' => FSFileBackend::class,
 			'lockManager' =>
 				$this->lmgFactory->getLockManagerGroup( self::getWikiID() )->get( 'fsLockManager' ),
-			'fileJournal' => new NullFileJournal,
 		], $config );
 
 		// For config values that are objects, check object identity.
@@ -315,27 +314,6 @@ trait FileBackendGroupTestTrait {
 			],
 			'fileMode' => [ 0644, 'fileMode', 'fileMode' ],
 		];
-	}
-
-	/**
-	 * @covers ::config
-	 */
-	public function testConfig_fileJournal() {
-		$mockJournal = $this->createMock( FileJournal::class );
-		$mockJournal->expects( $this->never() )->method( $this->anything() );
-
-		$obj = $this->newObj( [ 'FileBackends' => [ [
-			'name' => 'name',
-			'class' => '',
-			'lockManager' => 'fsLockManager',
-			'fileJournal' => [ 'factory' =>
-				static function () use ( $mockJournal ) {
-					return $mockJournal;
-				}
-			],
-		] ] ] );
-
-		$this->assertSame( $mockJournal, $obj->config( 'name' )['fileJournal'] );
 	}
 
 	/**

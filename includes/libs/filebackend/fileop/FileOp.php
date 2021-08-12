@@ -204,46 +204,6 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Get the file journal entries for this file operation
-	 *
-	 * @param array $oPredicates Pre-op info about files (format of FileOp::newPredicates)
-	 * @param array $nPredicates Post-op info about files (format of FileOp::newPredicates)
-	 * @return array
-	 */
-	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
-		if ( $this->cancelled ) {
-			return []; // this is a no-op
-		}
-		$nullEntries = [];
-		$updateEntries = [];
-		$deleteEntries = [];
-		foreach ( $this->storagePathsReadOrChanged() as $path ) {
-			$nullEntries[] = [ // assertion for recovery
-				'op' => 'null',
-				'path' => $path,
-				'newSha1' => $this->fileSha1( $path, $oPredicates )
-			];
-		}
-		foreach ( $this->storagePathsChanged() as $path ) {
-			if ( $nPredicates[self::ASSUMED_SHA1][$path] === false ) { // deleted
-				$deleteEntries[] = [
-					'op' => 'delete',
-					'path' => $path,
-					'newSha1' => ''
-				];
-			} else { // created/updated
-				$updateEntries[] = [
-					'op' => $this->fileExists( $path, $oPredicates ) ? 'update' : 'create',
-					'path' => $path,
-					'newSha1' => $nPredicates[self::ASSUMED_SHA1][$path]
-				];
-			}
-		}
-
-		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
-	}
-
-	/**
 	 * Check preconditions of the operation without writing anything.
 	 * This must update $predicates for each path that the op can change
 	 * except when a failing StatusValue object is returned.

@@ -77,12 +77,6 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				$useConfig['shardViaHashLevels'] = [ // test sharding
 					'unittest-cont1' => [ 'levels' => 1, 'base' => 16, 'repeat' => 1 ]
 				];
-				if ( isset( $useConfig['fileJournal'] ) ) {
-					$useConfig['fileJournal'] = ObjectFactory::getObjectFromSpec(
-						[ 'backend' => $name ] + $useConfig['fileJournal'],
-						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ]
-					);
-				}
 				$useConfig['lockManager'] = $lockManagerGroup->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );

@@ -454,7 +454,6 @@ class ParserTestRunner {
 			}
 			$useConfig['name'] = 'local-backend'; // swap name
 			unset( $useConfig['lockManager'] );
-			unset( $useConfig['fileJournal'] );
 			$class = $useConfig['class'];
 			$backend = new $class( $useConfig );
 		} else {

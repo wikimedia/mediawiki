@@ -1305,7 +1305,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $ok ) {
 			// Actually attempt the operation batch...
 			$opts = $this->setConcurrencyFlags( $opts );
-			$subStatus = FileOpBatch::attempt( $fileOps, $opts, $this->fileJournal );
+			$subStatus = FileOpBatch::attempt( $fileOps, $opts );
 		} else {
 			// If we could not even stat some files, then bail out
 			$subStatus = $this->newStatus( 'backend-fail-internal', $this->name );

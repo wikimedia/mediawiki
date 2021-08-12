@@ -1860,8 +1860,6 @@
 	"backend-fail-usable": "Could not read or write file \"$1\" due to insufficient permissions or missing directories/containers.",
 	"backend-fail-stat": "Could not read the status of file \"$1\".",
 	"backend-fail-hash": "Could not determine the cryptographic hash of file \"$1\".",
-	"filejournal-fail-dbconnect": "Could not connect to the journal database for storage backend \"$1\".",
-	"filejournal-fail-dbquery": "Could not update the journal database for storage backend \"$1\".",
 	"lockmanager-notlocked": "Could not unlock \"$1\"; it is not locked.",
 	"lockmanager-fail-closelock": "Could not close lock file for \"$1\".",
 	"lockmanager-fail-deletelock": "Could not delete lock file for \"$1\".",

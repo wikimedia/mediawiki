@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+
 /**
  * Helper class for representing batch file operations.
  * Do not use this class from places outside FileBackend.
@@ -41,7 +43,6 @@ class FileOpBatch {
 	 * $opts is an array of options, including:
 	 *   - force        : Errors that would normally cause a rollback do not.
 	 *                    The remaining operations are still attempted if any fail.
-	 *   - nonJournaled : Don't log this operation batch in the file journal.
 	 *   - concurrency  : Try to do this many operations in parallel when possible.
 	 *
 	 * The resulting StatusValue will be "OK" unless:
@@ -50,10 +51,9 @@ class FileOpBatch {
 	 *
 	 * @param FileOp[] $performOps List of FileOp operations
 	 * @param array $opts Batch operation options
-	 * @param FileJournal $journal Journal to log operations to
 	 * @return StatusValue
 	 */
-	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
+	public static function attempt( array $performOps, array $opts ) {
 		$status = StatusValue::newGood();
 
 		$n = count( $performOps );
@@ -63,12 +63,10 @@ class FileOpBatch {
 			return $status;
 		}
 
-		$batchId = $journal->getTimestampedUUID();
+		$batchId = self::getTimestampedUUID();
 		$ignoreErrors = !empty( $opts['force'] );
-		$journaled = empty( $opts['nonJournaled'] );
 		$maxConcurrency = $opts['concurrency'] ?? 1;
 
-		$entries = []; // file journal entry list
 		$predicates = FileOp::newPredicates(); // account for previous ops in prechecks
 		$curBatch = []; // concurrent FileOp sub-batch accumulation
 		$curBatchDeps = FileOp::newDependencies(); // paths used in FileOp sub-batch
@@ -96,12 +94,8 @@ class FileOpBatch {
 			$oldPredicates = $predicates;
 			$subStatus = $fileOp->precheck( $predicates ); // updates $predicates
 			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				if ( $journaled ) { // journal log entries
-					$entries = array_merge( $entries,
-						$fileOp->getJournalEntries( $oldPredicates, $predicates ) );
-				}
-			} else { // operation failed?
+			if ( !$subStatus->isOK() ) {
+				// operation failed?
 				$status->success[$index] = false;
 				++$status->failCount;
 				if ( !$ignoreErrors ) {
@@ -112,16 +106,6 @@ class FileOpBatch {
 		// Push the last sub-batch
 		if ( count( $curBatch ) ) {
 			$pPerformOps[] = $curBatch;
-		}
-
-		// Log the operations in the file journal...
-		if ( count( $entries ) ) {
-			$subStatus = $journal->logChangeBatch( $entries, $batchId );
-			if ( !$subStatus->isOK() ) {
-				$status->merge( $subStatus );
-
-				return $status; // abort
-			}
 		}
 
 		if ( $ignoreErrors ) { // treat precheck() fatals as mere warnings
@@ -199,5 +183,16 @@ class FileOpBatch {
 				}
 			}
 		}
+	}
+
+	private static function getTimestampedUUID() {
+		// TODO: This is a leftover from FileJournal that is probably no longer needed.
+		$s = '';
+		for ( $i = 0; $i < 5; $i++ ) {
+			$s .= mt_rand( 0, 2147483647 );
+		}
+		$s = Wikimedia\base_convert( sha1( $s ), 16, 36, 31 );
+		$timestamp = ConvertibleTimestamp::convert( TS_MW, time() );
+		return substr( Wikimedia\base_convert( $timestamp, 10, 36, 9 ) . $s, 0, 31 );
 	}
 }
