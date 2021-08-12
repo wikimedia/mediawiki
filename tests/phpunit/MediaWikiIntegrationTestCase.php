@@ -2280,6 +2280,21 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Skip the test if the specified extension is not loaded.
+	 *
+	 * @note Core tests should not depend on extensions, so this is mostly
+	 * useful when testing extensions that optionally depend on other extensions.
+	 *
+	 * @param string $extensionName
+	 * @since 1.37
+	 */
+	protected function markTestSkippedIfExtensionNotLoaded( string $extensionName ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( $extensionName ) ) {
+			$this->markTestSkipped( "Extension $extensionName is required for this test" );
+		}
+	}
+
+	/**
 	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
 	 * @param string $buffer
 	 * @return string
