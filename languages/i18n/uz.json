@@ -1143,6 +1143,7 @@
 	"listusers-noresult": "Foydalanuvchilar topilmadi.",
 	"listusers-blocked": "(chetlashtirilgan)",
 	"activeusers": "Faol foydalanuvchilar roʻyxati",
+	"activeusers-count": "$1 ta {{PLURAL:$1|amal}} oxirgi {{PLURAL:$3|kun|$3 kun}}da",
 	"activeusers-from": "Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:",
 	"activeusers-noresult": "Foydalanuvchilar topilmadi.",
 	"listgrouprights": "Foydalanuvchilar guruhlari roʻyxati",

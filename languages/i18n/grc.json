@@ -289,6 +289,7 @@
 	"nospecialpagetext": "<strong>Ἡ αἰτηθεῖσα εἰδικὴ δέλτος ἄκυρός ἐστιν.</strong>\n\nΔιαλογή τις ἐγκύρων εἰδικῶν δέλτων εὕρηται εἰς [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Σφάλμα",
 	"databaseerror": "Σφάλμα βάσεως δεδομένων",
+	"databaseerror-error": "Σφάλμα: $1",
 	"laggedreplicamode": "Προσοχή: Ἡ δέλτος ἐνδέχεται οὐ περιέχειν προσφάτους μεταβολάς.",
 	"readonly": "Βάσις δεδομένων ἀποκεκλεισμένη",
 	"enterlockreason": "Λέγε διὰ τὶ τὸ ἀποκλῄειν τε καὶ ὅτε τοῦτο ἀρθήσεται",
