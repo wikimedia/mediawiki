@@ -117,6 +117,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\UserOptionsManager::loadUserOptions
 	 */
 	public function testUserLoadOptionsHook() {
+		$this->filterDeprecated( '/UserLoadOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserLoadOptions',
@@ -288,6 +289,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 */
 	public function testLoadOptionsHookReflectsInOriginalOptions() {
 		$this->filterDeprecated( '/UserSaveOptions/' );
+		$this->filterDeprecated( '/UserLoadOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$manager = $this->getManager();
 		$this->setTemporaryHook(
@@ -318,6 +320,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
 	 */
 	public function testInfiniteRecursionOnUserLoadOptionsHook() {
+		$this->filterDeprecated( '/UserLoadOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$manager = $this->getManager();
 		$recursionCounter = 0;
