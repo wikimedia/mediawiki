@@ -40,14 +40,14 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$localKey = $cache->makeKey( 'first', 'second', 'third' );
 		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );
 
-		$this->assertStringMatchesFormat(
-			'%Sfirst%Ssecond%Sthird%S',
+		$this->assertSame(
+			'local:first:second:third',
 			$localKey,
 			'Local key interpolates parameters'
 		);
 
-		$this->assertStringMatchesFormat(
-			'global%Sfirst%Ssecond%Sthird%S',
+		$this->assertSame(
+			'global:first:second:third',
 			$globalKey,
 			'Global key interpolates parameters and contains global prefix'
 		);
@@ -61,6 +61,13 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertNotEquals(
 			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc:', 'de' ] ),
 			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc', ':de' ] )
+		);
+
+		$keyEmptyCollection = $cache->makeKey( '', 'second', 'third' );
+		$this->assertSame(
+			'local::second:third',
+			$keyEmptyCollection,
+			'Local key interpolates empty parameters'
 		);
 	}
 
