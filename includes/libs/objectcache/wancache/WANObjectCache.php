@@ -1522,7 +1522,7 @@ class WANObjectCache implements
 		// Nested callback process cache use is not lag-safe with regard to HOLDOFF_TTL since
 		// process cached values are more lagged than persistent ones as they are not purged.
 		if ( $pCache && $this->callbackDepth == 0 ) {
-			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), $pcTTL, false );
+			$cached = $pCache->get( $key, $pcTTL, false );
 			if ( $cached !== false ) {
 				$this->logger->debug( "getWithSetCallback($key): process cache hit" );
 				return $cached;
@@ -1547,7 +1547,7 @@ class WANObjectCache implements
 
 		// Update the process cache if enabled
 		if ( $pCache && $value !== false ) {
-			$pCache->set( $this->getProcessCacheKey( $key, $version ), $value );
+			$pCache->set( $key, $value );
 		}
 
 		return $value;
@@ -3051,15 +3051,6 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param int $version
-	 * @return string
-	 */
-	private function getProcessCacheKey( $key, $version ) {
-		return $key . ' ' . (int)$version;
-	}
-
-	/**
 	 * @param ArrayIterator $keys
 	 * @param array $opts
 	 * @return string[] Map of (ID => cache key)
@@ -3072,7 +3063,7 @@ class WANObjectCache implements
 			$version = $opts['version'] ?? null;
 			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
 			foreach ( $keys as $key => $id ) {
-				if ( !$pCache->has( $this->getProcessCacheKey( $key, $version ), $pcTTL ) ) {
+				if ( !$pCache->has( $key, $pcTTL ) ) {
 					$keysMissing[$id] = $key;
 				}
 			}
