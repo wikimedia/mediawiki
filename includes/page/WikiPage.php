@@ -1719,7 +1719,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * returned matches that caller's expectations, allowing an existing instance to be re-used
 	 * if the given parameters match that instance's internal state according to
 	 * DerivedPageDataUpdater::isReusableFor(), and creating a new instance of the parameters do not
-	 * match the existign one.
+	 * match the existing one.
 	 *
 	 * If neither $forRevision nor $forUpdate is given, a new DerivedPageDataUpdater is always
 	 * created, replacing any DerivedPageDataUpdater currently cached.
