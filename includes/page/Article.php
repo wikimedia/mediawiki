@@ -1795,7 +1795,11 @@ class Article implements Page {
 	}
 
 	/**
-	 * Perform a deletion and output success or failure messages
+	 * Perform a deletion and output success or failure messages.
+	 *
+	 * @deprecated since 1.37 Use WikiPage::doDeleteArticleReal if you only need to delete the article. If you also need
+	 * things to happen with OutputPage, you may want to check the hooks in DeleteAction instead.
+	 *
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param bool $immediate false allows deleting over time via the job queue
