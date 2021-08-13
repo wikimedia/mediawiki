@@ -426,7 +426,7 @@ abstract class Action implements MessageLocalizer {
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
 		$lang = MediaWikiServices::getInstance()->getContentLanguage();
-		$target = $lang->lc( self::getActionName( $this->getContext() ) . '-helppage' );
+		$target = $lang->lc( $this->getName() . '-helppage' );
 		$msg = $this->msg( $target );
 
 		if ( !$msg->isDisabled() ) {
