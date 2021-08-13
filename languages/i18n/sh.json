@@ -297,7 +297,7 @@
 	"sort-descending": "Poredaj opadajuće",
 	"sort-ascending": "Poredaj rastuće",
 	"nstab-main": "Stranica",
-	"nstab-user": "Stranica korisnika",
+	"nstab-user": "{{GENDER:$1|Korisnička stranica}}",
 	"nstab-media": "Mediji",
 	"nstab-special": "Posebna stranica",
 	"nstab-project": "Stranica projekta",
