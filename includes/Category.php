@@ -49,8 +49,13 @@ class Category {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	private function __construct() {
-		$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$services = MediaWikiServices::getInstance();
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->readOnlyMode = $services->getReadOnlyMode();
 	}
 
 	/**
@@ -321,7 +326,7 @@ class Category {
 	 * @return bool True on success, false on failure
 	 */
 	public function refreshCounts() {
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
