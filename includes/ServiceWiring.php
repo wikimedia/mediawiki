@@ -1259,7 +1259,8 @@ return [
 		return new RepoGroup(
 			$config->get( 'LocalFileRepo' ),
 			$config->get( 'ForeignFileRepos' ),
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getMimeAnalyzer()
 		);
 	},
 
