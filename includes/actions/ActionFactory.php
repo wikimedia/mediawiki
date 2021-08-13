@@ -145,6 +145,7 @@ class ActionFactory {
 		'raw' => [
 			'class' => RawAction::class,
 			'services' => [
+				'HookContainer',
 				'Parser',
 				'PermissionManager',
 				'RevisionLookup',
