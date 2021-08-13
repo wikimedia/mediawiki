@@ -1032,34 +1032,6 @@ EOT
 	}
 
 	/**
-	 * Delete the file, or an earlier version of it
-	 * @deprecated since 1.37 Use DeleteAction instead.
-	 */
-	public function delete() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$file = $this->getFile();
-		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
-			// Standard article deletion
-			parent::delete();
-			return;
-		}
-		'@phan-var LocalFile $file';
-
-		$context = $this->getContext();
-		$services = MediaWikiServices::getInstance();
-		$deleter = new FileDeleteForm(
-			$file,
-			$context,
-			$services->getReadOnlyMode(),
-			$services->getRepoGroup(),
-			$services->getWatchlistManager(),
-			$this->linkRenderer,
-			$services->getUserOptionsLookup()
-		);
-		$deleter->execute();
-	}
-
-	/**
 	 * Display an error with a wikitext description
 	 *
 	 * @param string $description
