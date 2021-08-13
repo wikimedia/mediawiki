@@ -1518,8 +1518,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MintyDocs
 	branch = master
 	ignore = dirty
-[submodule "extensions/MagicNumberedHeadings!"]
-	path = extensions/MagicNumberedHeadings!
+[submodule "extensions/MagicNumberedHeadings"]
+	path = extensions/MagicNumberedHeadings
 	url = https://github.com/wikimedia/mediawiki-extensions-MagicNumberedHeadings
 	branch = REL1_36
 	ignore = dirty
