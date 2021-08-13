@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\User\UserFactory;
 
 /**
  * @ingroup Actions
@@ -33,18 +34,24 @@ class CreditsAction extends FormlessAction {
 	/** @var LinkRenderer */
 	private $linkRenderer;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
 	 * @param LinkRenderer $linkRenderer
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		Page $page,
 		IContextSource $context,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $page, $context );
 		$this->linkRenderer = $linkRenderer;
+		$this->userFactory = $userFactory;
 	}
 
 	public function getName() {
@@ -101,7 +108,7 @@ class CreditsAction extends FormlessAction {
 	 */
 	private function getAuthor() {
 		$page = $this->getWikiPage();
-		$user = User::newFromName( $page->getUserText(), false );
+		$user = $this->userFactory->newFromName( $page->getUserText(), UserFactory::RIGOR_NONE );
 
 		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {

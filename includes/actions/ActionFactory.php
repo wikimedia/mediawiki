@@ -88,6 +88,7 @@ class ActionFactory {
 			'class' => CreditsAction::class,
 			'services' => [
 				'LinkRenderer',
+				'UserFactory',
 			],
 		],
 		'editchangetags' => [
