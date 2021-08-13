@@ -1783,8 +1783,10 @@ class Article implements Page {
 
 	/**
 	 * UI entry point for page deletion
+	 * @deprecated since 1.37 Use DeleteAction instead.
 	 */
 	public function delete() {
+		wfDeprecated( __METHOD__, '1.37' );
 		# This code desperately needs to be totally rewritten
 
 		$title = $this->getTitle();
@@ -1915,8 +1917,10 @@ class Article implements Page {
 	 * Output deletion confirmation dialog
 	 * @todo Move to another file?
 	 * @param string $reason Prefilled reason
+	 * @deprecated since 1.37 Use DeleteAction instead.
 	 */
 	public function confirmDelete( $reason ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		wfDebug( "Article::confirmDelete" );
 
 		$title = $this->getTitle();
