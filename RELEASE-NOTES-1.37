@@ -399,10 +399,6 @@ because of Phabricator reports.
   the body tag and must be provided by skins.
 * The SkinTemplateOutputPageBeforeExec hook, deprecated since 1.35, was removed.
 * Article::getContentObject, deprecated since 1.32, was removed.
-* Article::delete(), Article::confirmDelete() and ImagePage::delete() were
-  removed. The logic responsible for building the form is being moved to
-  DeleteAction, while the actual deletion logic will be moved to a separate
-  service.
 * …
 
 === Deprecations in 1.37 ===
