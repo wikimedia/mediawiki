@@ -28,7 +28,8 @@ class ApiUploadTest extends ApiUploadTestCase {
 				] )
 			],
 			[],
-			null
+			$this->getServiceContainer()->getMainWANObjectCache(),
+			$this->createMock( MimeAnalyzer::class )
 		) );
 		$this->resetServices();
 

@@ -55,6 +55,9 @@ class RepoGroup {
 	/** Maximum number of cache items */
 	private const MAX_CACHE_SIZE = 500;
 
+	/** @var MimeAnalyzer */
+	private $mimeAnalyzer;
+
 	/**
 	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * Use MediaWikiServices::getRepoGroup instead
@@ -103,12 +106,19 @@ class RepoGroup {
 	 *   giving the class name. The entire array is passed to the repository
 	 *   constructor as the first parameter.
 	 * @param WANObjectCache $wanCache
+	 * @param MimeAnalyzer $mimeAnalyzer
 	 */
-	public function __construct( $localInfo, $foreignInfo, $wanCache ) {
+	public function __construct(
+		$localInfo,
+		$foreignInfo,
+		WANObjectCache $wanCache,
+		MimeAnalyzer $mimeAnalyzer
+	) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
 		$this->cache = new MapCacheLRU( self::MAX_CACHE_SIZE );
 		$this->wanCache = $wanCache;
+		$this->mimeAnalyzer = $mimeAnalyzer;
 	}
 
 	/**
@@ -478,7 +488,7 @@ class RepoGroup {
 
 			return $repo->getFileProps( $fileName );
 		} else {
-			$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+			$mwProps = new MWFileProps( $this->mimeAnalyzer );
 
 			return $mwProps->getPropsFromPath( $fileName, true );
 		}

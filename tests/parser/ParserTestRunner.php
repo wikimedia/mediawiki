@@ -467,6 +467,7 @@ class ParserTestRunner {
 			] );
 		}
 
+		$services = MediaWikiServices::getInstance();
 		return new RepoGroup(
 			[
 				'class' => MockLocalRepo::class,
@@ -477,7 +478,8 @@ class ParserTestRunner {
 				'backend' => $backend
 			],
 			[],
-			MediaWikiServices::getInstance()->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getMimeAnalyzer()
 		);
 	}
 
