@@ -6,6 +6,170 @@
 	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' );
 
 	/**
+	 * Parse preview response
+	 *
+	 * @ignore
+	 * @param {Object} response Response data
+	 */
+	function parsePreviewRequest( response ) {
+		var newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
+
+		$editform = $( '#editform' );
+		$wikiPreview = $( '#wikiPreview' );
+
+		if ( response.parse.jsconfigvars ) {
+			mw.config.set( response.parse.jsconfigvars );
+		}
+		if ( response.parse.modules ) {
+			mw.loader.load( response.parse.modules.concat(
+				response.parse.modulestyles
+			) );
+		}
+
+		newList = [];
+		// eslint-disable-next-line no-jquery/no-each-util
+		$.each( response.parse.indicators, function ( name, indicator ) {
+			newList.push(
+				$( '<div>' )
+					.addClass( 'mw-indicator' )
+					.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
+					.html( indicator )
+					.get( 0 ),
+				// Add a whitespace between the <div>s because
+				// they get displayed with display: inline-block
+				document.createTextNode( '\n' )
+			);
+		} );
+		$( '.mw-indicators' ).empty().append( newList );
+
+		if ( response.parse.displaytitle ) {
+			$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
+			// The following messages can be used here:
+			// * editconflict
+			// * editingcomment
+			// * editingsection
+			// * editing
+			// * creating
+			$( '#firstHeading' ).msg(
+				mw.config.get( 'wgEditMessage', 'editing' ),
+				$displaytitle
+			);
+			document.title = mw.msg(
+				'pagetitle',
+				// The following messages can be used here:
+				// * editconflict
+				// * editingcomment
+				// * editingsection
+				// * editing
+				// * creating
+				mw.msg(
+					mw.config.get( 'wgEditMessage', 'editing' ),
+					$displaytitle.text()
+				)
+			);
+		}
+		if ( response.parse.categorieshtml ) {
+			$content = $( $.parseHTML( response.parse.categorieshtml ) );
+			mw.hook( 'wikipage.categories' ).fire( $content );
+			$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
+		}
+		if ( response.parse.templates ) {
+			newList = response.parse.templates.map( function ( template ) {
+				return $( '<li>' ).append(
+					$( '<a>' )
+						.addClass( template.exists ? '' : 'new' )
+						.attr( 'href', mw.util.getUrl( template.title ) )
+						.text( template.title )
+				);
+			} );
+
+			$parent = $( '.templatesUsed' );
+			if ( newList.length ) {
+				$list = $parent.find( 'ul' );
+				if ( $list.length ) {
+					$list.detach().empty();
+				} else {
+					$( '<div>' )
+						.addClass( 'mw-templatesUsedExplanation' )
+						.append( '<p>' )
+						.appendTo( $parent );
+					$list = $( '<ul>' );
+				}
+
+				// Add "Templates used in this preview" or replace
+				// "Templates used on this page" with it
+				$( '.mw-templatesUsedExplanation > p' )
+					.msg( 'templatesusedpreview', newList.length );
+
+				$list.append( newList ).appendTo( $parent );
+			} else {
+				$parent.empty();
+			}
+		}
+		if ( response.parse.limitreporthtml ) {
+			$( '.limitreport' ).html( response.parse.limitreporthtml )
+				.find( '.mw-collapsible' ).makeCollapsible();
+		}
+		if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
+			newList = response.parse.langlinks.map( function ( langlink ) {
+				var bcp47 = mw.language.bcp47( langlink.lang );
+				// eslint-disable-next-line mediawiki/class-doc
+				return $( '<li>' )
+					.addClass( 'interlanguage-link interwiki-' + langlink.lang )
+					.append( $( '<a>' )
+						.attr( {
+							href: langlink.url,
+							title: langlink.title + ' - ' + langlink.langname,
+							lang: bcp47,
+							hreflang: bcp47
+						} )
+						.text( langlink.autonym )
+					);
+			} );
+			$list = $( '#p-lang ul' );
+			$parent = $list.parent();
+			$list.detach().empty().append( newList ).prependTo( $parent );
+		}
+		arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
+		$previewHeader = $( '<div>' )
+			.addClass( 'previewnote' )
+			.append( $( '<h2>' )
+				.attr( 'id', 'mw-previewheader' )
+				.text( mw.message( 'preview' ).escaped() )
+			)
+			.append( $( '<div>' )
+				.addClass( 'warningbox' )
+				.html( parsedMessages.previewnote )
+				.append( ' ' )
+				.append( $( '<span>' )
+					.addClass( 'mw-continue-editing' )
+					.append( $( '<a>' )
+						.attr( 'href', '#' + $editform.attr( 'id' ) )
+						.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
+					)
+				)
+			);
+		response.parse.parsewarningshtml.forEach( function ( warning ) {
+			$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
+		} );
+
+		if ( response.parse.text ) {
+			$wikiPreview.find( '.previewnote' ).remove();
+			$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
+			$content
+				.detach()
+				.html( response.parse.text );
+
+			mw.hook( 'wikipage.content' ).fire( $content );
+
+			// Reattach
+			$wikiPreview.append( $previewHeader ).append( $content );
+
+			$wikiPreview.show();
+		}
+	}
+
+	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
 	 */
@@ -137,157 +301,7 @@
 
 			parseRequest = api.post( postData );
 			parseRequest.done( function ( response ) {
-				var newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader;
-				if ( response.parse.jsconfigvars ) {
-					mw.config.set( response.parse.jsconfigvars );
-				}
-				if ( response.parse.modules ) {
-					mw.loader.load( response.parse.modules.concat(
-						response.parse.modulestyles
-					) );
-				}
-
-				newList = [];
-				// eslint-disable-next-line no-jquery/no-each-util
-				$.each( response.parse.indicators, function ( name, indicator ) {
-					newList.push(
-						$( '<div>' )
-							.addClass( 'mw-indicator' )
-							.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
-							.html( indicator )
-							.get( 0 ),
-						// Add a whitespace between the <div>s because
-						// they get displayed with display: inline-block
-						document.createTextNode( '\n' )
-					);
-				} );
-				$( '.mw-indicators' ).empty().append( newList );
-
-				if ( response.parse.displaytitle ) {
-					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
-					// The following messages can be used here:
-					// * editconflict
-					// * editingcomment
-					// * editingsection
-					// * editing
-					// * creating
-					$( '#firstHeading' ).msg(
-						mw.config.get( 'wgEditMessage', 'editing' ),
-						$displaytitle
-					);
-					document.title = mw.msg(
-						'pagetitle',
-						// The following messages can be used here:
-						// * editconflict
-						// * editingcomment
-						// * editingsection
-						// * editing
-						// * creating
-						mw.msg(
-							mw.config.get( 'wgEditMessage', 'editing' ),
-							$displaytitle.text()
-						)
-					);
-				}
-				if ( response.parse.categorieshtml ) {
-					$content = $( $.parseHTML( response.parse.categorieshtml ) );
-					mw.hook( 'wikipage.categories' ).fire( $content );
-					$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
-				}
-				if ( response.parse.templates ) {
-					newList = response.parse.templates.map( function ( template ) {
-						return $( '<li>' ).append(
-							$( '<a>' )
-								.addClass( template.exists ? '' : 'new' )
-								.attr( 'href', mw.util.getUrl( template.title ) )
-								.text( template.title )
-						);
-					} );
-
-					$parent = $( '.templatesUsed' );
-					if ( newList.length ) {
-						$list = $parent.find( 'ul' );
-						if ( $list.length ) {
-							$list.detach().empty();
-						} else {
-							$( '<div>' )
-								.addClass( 'mw-templatesUsedExplanation' )
-								.append( '<p>' )
-								.appendTo( $parent );
-							$list = $( '<ul>' );
-						}
-
-						// Add "Templates used in this preview" or replace
-						// "Templates used on this page" with it
-						$( '.mw-templatesUsedExplanation > p' )
-							.msg( 'templatesusedpreview', newList.length );
-
-						$list.append( newList ).appendTo( $parent );
-					} else {
-						$parent.empty();
-					}
-				}
-				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml )
-						.find( '.mw-collapsible' ).makeCollapsible();
-				}
-				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
-					newList = response.parse.langlinks.map( function ( langlink ) {
-						var bcp47 = mw.language.bcp47( langlink.lang );
-						// eslint-disable-next-line mediawiki/class-doc
-						return $( '<li>' )
-							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
-							.append( $( '<a>' )
-								.attr( {
-									href: langlink.url,
-									title: langlink.title + ' - ' + langlink.langname,
-									lang: bcp47,
-									hreflang: bcp47
-								} )
-								.text( langlink.autonym )
-							);
-					} );
-					$list = $( '#p-lang ul' );
-					$parent = $list.parent();
-					$list.detach().empty().append( newList ).prependTo( $parent );
-				}
-				arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
-				$previewHeader = $( '<div>' )
-					.addClass( 'previewnote' )
-					.append( $( '<h2>' )
-						.attr( 'id', 'mw-previewheader' )
-						.text( mw.message( 'preview' ).escaped() )
-					)
-					.append( $( '<div>' )
-						.addClass( 'warningbox' )
-						.html( parsedMessages.previewnote )
-						.append( ' ' )
-						.append( $( '<span>' )
-							.addClass( 'mw-continue-editing' )
-							.append( $( '<a>' )
-								.attr( 'href', '#' + $editform.attr( 'id' ) )
-								.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
-							)
-						)
-					);
-				response.parse.parsewarningshtml.forEach( function ( warning ) {
-					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
-				} );
-
-				if ( response.parse.text ) {
-					$wikiPreview.find( '.previewnote' ).remove();
-					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
-					$content
-						.detach()
-						.html( response.parse.text );
-
-					mw.hook( 'wikipage.content' ).fire( $content );
-
-					// Reattach
-					$wikiPreview.append( $previewHeader ).append( $content );
-
-					$wikiPreview.show();
-				}
+				parsePreviewRequest( response );
 			} );
 		}
 		$.when( parseRequest, diffRequest ).done( function ( parseResp ) {
