@@ -102,7 +102,7 @@ class FeedUtils {
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
 		$comment, $actiontext = ''
 	) {
-		global $wgFeedDiffCutoff, $wgLang;
+		global $wgFeedDiffCutoff;
 
 		// log entries
 		$completeText = '<p>' . implode( ' ',
@@ -140,6 +140,7 @@ class FeedUtils {
 				if ( !$revRecord ) {
 					$diffText = false;
 				} else {
+					$mainContext = RequestContext::getMain();
 					$context = clone RequestContext::getMain();
 					$context->setTitle( $title );
 
@@ -149,12 +150,14 @@ class FeedUtils {
 					)->getModel();
 					$contentHandler = $contentHandlerFactory->getContentHandler( $model );
 					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
+					$lang = $mainContext->getLanguage();
+					$user = $mainContext->getUser();
 					$diffText = $de->getDiff(
-						wfMessage( 'previousrevision' )->text(), // hack
-						wfMessage( 'revisionasof',
-							$wgLang->timeanddate( $timestamp ),
-							$wgLang->date( $timestamp ),
-							$wgLang->time( $timestamp ) )->text() );
+						$mainContext->msg( 'previousrevision' )->text(), // hack
+						$mainContext->msg( 'revisionasof',
+							$lang->userTimeAndDate( $timestamp, $user ),
+							$lang->userDate( $timestamp, $user ),
+							$lang->userTime( $timestamp, $user ) )->text() );
 				}
 			}
 
