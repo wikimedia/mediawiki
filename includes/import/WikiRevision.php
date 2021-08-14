@@ -319,7 +319,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @since 1.2.6
 	 * @param string $text
 	 */
-	public function setComment( $text ) {
+	public function setComment( string $text ) {
 		$this->comment = $text;
 	}
 
@@ -542,7 +542,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @since 1.2.6
 	 * @return string
 	 */
-	public function getComment() {
+	public function getComment(): string {
 		return $this->comment;
 	}
 
