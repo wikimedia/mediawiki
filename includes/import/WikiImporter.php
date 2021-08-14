@@ -579,23 +579,6 @@ class WikiImporter {
 	}
 
 	/**
-	 * Alternate per-revision callback, for debugging.
-	 * @param WikiRevision &$revision
-	 */
-	public function debugRevisionHandler( &$revision ) {
-		$this->debug( "Got revision:" );
-		if ( is_object( $revision->title ) ) {
-			$this->debug( "-- Title: " . $revision->title->getPrefixedText() );
-		} else {
-			$this->debug( "-- Title: <invalid>" );
-		}
-		$this->debug( "-- User: " . $revision->user_text );
-		$this->debug( "-- Timestamp: " . $revision->timestamp );
-		$this->debug( "-- Comment: " . $revision->comment );
-		$this->debug( "-- Text: " . $revision->text );
-	}
-
-	/**
 	 * Notify the callback function of site info
 	 * @param array $siteInfo
 	 * @return mixed|false
