@@ -3608,6 +3608,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] não se encontra no domínio \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" não é um título que possa ser atribuído a uma página",
 	"htmlform-title-not-exists": "$1 não existe.",
+	"htmlform-title-interwiki": "$1 é um título interwikis, deve ser local.",
 	"htmlform-user-not-exists": "<strong>$1</strong> não existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> não é um nome de utilizador válido.",
 	"htmlform-tag-not-allowed": "$1 não é uma etiqueta permitida",

@@ -2567,6 +2567,7 @@
 	"feedback-submit": "ထည့်သွင်းရန်",
 	"feedback-thanks-title": "ကျေးဇူးတင်ပါသည်",
 	"searchsuggest-search": "{{SITENAME}} တွင် ရှာဖွေရန်",
+	"api-clientside-error-timeout": "မျော်မှန်းသည့်အချိန်အတွင်း ဆာဗာက မတုန့်ပြန်ခဲ့ပါ။",
 	"api-error-unknown-warning": "မသိသေးသော သတိပေးချက်: \"$1\"။",
 	"api-error-unknownerror": "အမည်မသိ အမှား - \"$1\"",
 	"duration-seconds": "$1 {{PLURAL:$1|စက္ကန့်|စက္ကန့်}}",

@@ -1171,7 +1171,7 @@
 	"htmlform-cloner-create": "rnu sul",
 	"htmlform-time-placeholder": "HH:MM:SS",
 	"logentry-delete-delete": "{{GENDER:$2|Ikks|Tkks}} $1 tasna $3",
-	"logentry-delete-restore": "$1 {{tawsit:$2|ittyawḥḍa}} Tasna $3 ($4)",
+	"logentry-delete-restore": "$1 {{GENDER:$2|ittyawḥḍa}} Tasna $3 ($4)",
 	"logentry-delete-revision": "$1 {{GENDER:$2|isnfl}} allfus n wuman {{PLURAL:$5|n yan uzzray|n $5 n izzrayn}} ɣ tasna $3 : $4",
 	"revdelete-content-hid": "tumayt intln",
 	"revdelete-restricted": "iskr aqn i indbaln",
