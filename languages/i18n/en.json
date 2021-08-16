@@ -4169,6 +4169,7 @@
 	"json-error-ctrl-char": "Control character error, possibly incorrectly encoded",
 	"json-error-syntax": "Syntax error",
 	"json-error-utf8": "Malformed UTF-8 characters, possibly incorrectly encoded",
+	"json-error-invalid-property-name": "The decoded property name is invalid",
 	"json-error-utf16": "Malformed UTF-16 characters, possibly incorrectly encoded",
 	"headline-anchor-title": "Link to this section",
 	"special-characters-group-latin": "Latin",
