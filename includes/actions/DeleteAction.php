@@ -387,12 +387,8 @@ class DeleteAction extends FormlessAction {
 	 * @param string $reason
 	 */
 	protected function showForm( string $reason ): void {
-		$outputPage = $this->getOutput();
 		$user = $this->getUser();
 		$title = $this->getTitle();
-
-		$checkWatch = $this->userOptionsLookup->getBoolOption( $user, 'watchdeletion' ) ||
-			$this->watchlistManager->isWatched( $user, $title );
 
 		$fields = [];
 
@@ -407,41 +403,29 @@ class DeleteAction extends FormlessAction {
 			$dropDownReason,
 			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->text() ]
 		);
-		$options = Xml::listDropDownOptionsOoui( $options );
 
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\DropdownInputWidget( [
-				'name' => 'wpDeleteReasonList',
-				'inputId' => 'wpDeleteReasonList',
-				'tabIndex' => 1,
-				'infusable' => true,
-				'value' => '',
-				'options' => $options,
-			] ),
-			[
-				'label' => $this->getFormMsg( self::MSG_COMMENT )->text(),
-				'align' => 'top',
-			]
-		);
+		$fields['DeleteReasonList'] = [
+			'type' => 'select',
+			'id' => 'wpDeleteReasonList',
+			'tabindex' => 1,
+			'infusable' => true,
+			'options' => $options,
+			'label' => $this->getFormMsg( self::MSG_COMMENT )->text(),
+		];
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 		// Unicode codepoints.
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\TextInputWidget( [
-				'name' => 'wpReason',
-				'inputId' => 'wpReason',
-				'tabIndex' => 2,
-				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
-				'infusable' => true,
-				'value' => $reason,
-				'autofocus' => true,
-			] ),
-			[
-				'label' => $this->getFormMsg( self::MSG_REASON_OTHER )->text(),
-				'align' => 'top',
-			]
-		);
+		$fields['Reason'] = [
+			'type' => 'text',
+			'id' => 'wpReason',
+			'tabindex' => 2,
+			'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
+			'infusable' => true,
+			'default' => $reason,
+			'autofocus' => true,
+			'label' => $this->getFormMsg( self::MSG_REASON_OTHER )->text(),
+		];
 
 		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getAuthority() );
 		if ( $delPage->canProbablyDeleteAssociatedTalk()->isGood() ) {
@@ -461,78 +445,42 @@ class DeleteAction extends FormlessAction {
 		}
 
 		if ( $user->isRegistered() ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
-					'name' => 'wpWatch',
-					'inputId' => 'wpWatch',
-					'tabIndex' => 4,
-					'selected' => $checkWatch,
-				] ),
-				[
-					'label' => $this->msg( 'watchthis' )->text(),
-					'align' => 'inline',
-					'infusable' => true,
-				]
-			);
+			$checkWatch = $this->userOptionsLookup->getBoolOption( $user, 'watchdeletion' ) ||
+				$this->watchlistManager->isWatched( $user, $title );
+			$fields['Watch'] = [
+				'type' => 'check',
+				'id' => 'wpWatch',
+				'tabindex' => 4,
+				'default' => $checkWatch,
+				'label-message' => 'watchthis',
+			];
 		}
 		if ( $this->isSuppressionAllowed() ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
-					'name' => 'wpSuppress',
-					'inputId' => 'wpSuppress',
-					'tabIndex' => 5,
-					'selected' => false,
-				] ),
-				[
-					'label' => $this->msg( 'revdelete-suppress' )->text(),
-					'align' => 'inline',
-					'infusable' => true,
-				]
-			);
+			$fields['Suppress'] = [
+				'type' => 'check',
+				'id' => 'wpSuppress',
+				'tabindex' => 5,
+				'default' => false,
+				'label-message' => 'revdelete-suppress',
+			];
 		}
 
-		$fields[] = new OOUI\FieldLayout(
-			new OOUI\ButtonInputWidget( [
-				'name' => 'wpConfirmB',
-				'inputId' => 'wpConfirmB',
-				'tabIndex' => 6,
-				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
-				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
-				'flags' => [ 'primary', 'destructive' ],
-				'type' => 'submit',
-			] ),
-			[
-				'align' => 'top',
-			]
-		);
+		$fields['ConfirmB'] = [
+			'type' => 'submit',
+			'id' => 'wpConfirmB',
+			'tabindex' => 6,
+			'buttonlabel' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
+			'flags' => [ 'primary', 'destructive' ],
+		];
 
-		$fieldset = new OOUI\FieldsetLayout( [
-			'label' => $this->getFormMsg( self::MSG_LEGEND )->text(),
-			'id' => 'mw-delete-table',
-			'items' => $fields,
-		] );
-
-		$form = new OOUI\FormLayout( [
-			'method' => 'post',
-			'action' => $this->getFormAction(),
-			'id' => 'deleteconfirm',
-		] );
-		$form->appendContent(
-			$fieldset,
-			new OOUI\HtmlSnippet(
-				Html::hidden( 'wpEditToken', $user->getEditToken( [ 'delete', $title->getPrefixedText() ] ) )
-			)
-		);
-
-		$outputPage->addHTML(
-			new OOUI\PanelLayout( [
-				'classes' => [ 'deletepage-wrapper' ],
-				'expanded' => false,
-				'padded' => true,
-				'framed' => true,
-				'content' => $form,
-			] )
-		);
+		HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+			->setWrapperLegendMsg( $this->getFormMsg( self::MSG_LEGEND ) )
+			->setWrapperAttributes( [ 'id' => 'mw-delete-table' ] )
+			->suppressDefaultSubmit()
+			->setAction( $this->getFormAction() )
+			->setId( 'deleteconfirm' )
+			->setTokenSalt( [ 'delete', $title->getPrefixedText() ] )
+			->showAlways();
 	}
 
 	/**

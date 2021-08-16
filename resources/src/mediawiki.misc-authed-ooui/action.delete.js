@@ -8,11 +8,10 @@
 
 	$( function () {
 		var colonSeparator = mw.msg( 'colon-separator' ),
-			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ).closest( '.oo-ui-widget' ) ),
-			reason = OO.ui.infuse( $( '#wpReason' ).closest( '.oo-ui-widget' ) ),
+			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ) ),
+			reason = OO.ui.infuse( $( '#wpReason' ) ),
 			filterFunction = function ( input ) {
-				// Should be built the same as in Article::delete()
-				// and SpecialRevisionDelete::submit()
+				// Should be built the same as in DeleteAction::getDeleteReason()
 				var comment = reasonList.getValue();
 				if ( comment === 'other' ) {
 					comment = input;
