@@ -988,8 +988,10 @@ EOT
 
 	/**
 	 * Delete the file, or an earlier version of it
+	 * @deprecated since 1.37 Use DeleteAction instead.
 	 */
 	public function delete() {
+		wfDeprecated( __METHOD__, '1.37' );
 		$file = $this->getFile();
 		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
 			// Standard article deletion
