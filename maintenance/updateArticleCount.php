@@ -53,7 +53,7 @@ class UpdateArticleCount extends Maintenance {
 
 		$this->output( "found {$result}.\n" );
 		if ( $this->hasOption( 'update' ) ) {
-			$this->output( "Updating site statistics table... " );
+			$this->output( "Updating site statistics table..." );
 			$dbw = $this->getDB( DB_PRIMARY );
 			$dbw->update(
 				'site_stats',

@@ -110,7 +110,7 @@ class SqliteMaintenance extends Maintenance {
 		$this->output( "Backing up database:\n   Locking..." );
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $dbw->getDbFilePath();
-		$this->output( "   Copying database file $ourFile to $fileName... " );
+		$this->output( "   Copying database file $ourFile to $fileName..." );
 		Wikimedia\suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
 			$err = error_get_last();

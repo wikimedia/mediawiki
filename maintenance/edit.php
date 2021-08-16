@@ -99,7 +99,7 @@ class EditCLI extends Maintenance {
 		}
 
 		# Do the edit
-		$this->output( "Saving... " );
+		$this->output( "Saving..." );
 		$updater = $page->newPageUpdater( $user );
 
 		$flags = ( $minor ? EDIT_MINOR : 0 ) |

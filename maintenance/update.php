@@ -162,7 +162,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		if ( !$this->hasOption( 'quick' ) ) {
 			$this->output( "Abort with control-c in the next five seconds "
-				. "(skip this countdown with --quick) ... " );
+				. "(skip this countdown with --quick) ..." );
 			$this->countDown( 5 );
 		}
 

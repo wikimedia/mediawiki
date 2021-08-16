@@ -109,7 +109,7 @@ class DeleteBatch extends Maintenance {
 					$title, [ 'ignoreRedirect' => true ]
 				);
 				if ( $img && $img->isLocal() && !$img->deleteFile( $reason, $user ) ) {
-					$this->output( " FAILED to delete associated file... " );
+					$this->output( " FAILED to delete associated file..." );
 				}
 			}
 			$page = $wikiPageFactory->newFromTitle( $title );

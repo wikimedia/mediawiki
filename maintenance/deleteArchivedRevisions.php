@@ -50,7 +50,7 @@ class DeleteArchivedRevisions extends Maintenance {
 			return;
 		}
 
-		$this->output( "Deleting archived revisions... " );
+		$this->output( "Deleting archived revisions..." );
 		$dbw->delete( 'archive', '*', __METHOD__ );
 		$count = $dbw->affectedRows();
 		$this->output( "done. $count revisions deleted.\n" );
