@@ -386,16 +386,6 @@
 			 */
 
 			/**
-			 * Fired via mw.track on resource loading error conditions.
-			 *
-			 * @event resourceloader_assert
-			 * @param {string} source Source of the error. Possible values:
-			 *
-			 *   - bug-T59567: failed to cache script due to an Opera function -> string conversion
-			 *     bug; see <https://phabricator.wikimedia.org/T59567> for details
-			 */
-
-			/**
 			 * Mapping of registered modules.
 			 *
 			 * See #implement and #execute for exact details on support for script, style and messages.
