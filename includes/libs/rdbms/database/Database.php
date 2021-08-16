@@ -1516,7 +1516,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !is_bool( $ret ) && $ret !== null && !( $ret instanceof IResultWrapper ) ) {
 			throw new DBUnexpectedError( $this,
-				static::class . '::doQuery() should return an IResultWrapper. ' );
+				static::class . '::doQuery() should return an IResultWrapper' );
 		}
 
 		return [ $ret, $lastError, $lastErrno, $recoverableSR, $recoverableCL, $reconnected ];

@@ -35,7 +35,7 @@ class RebuildMessages extends Maintenance {
 	}
 
 	public function execute() {
-		$this->output( "Purging message cache for all languages on this wiki... " );
+		$this->output( "Purging message cache for all languages on this wiki..." );
 		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		$messageCache->clear();
 		$this->output( "Done\n" );
