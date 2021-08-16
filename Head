@@ -1,4 +1,4 @@
-<?php
+
 /**
  * Default values for MediaWiki configuration settings.
  *
@@ -1051,7 +1051,6 @@ $wgMinUploadChunkSize = 1024;
  * @par Example:
  * @code
  * $wgUploadNavigationUrl = 'https://commons.wikimedia.org/wiki/Special:Upload';
- * @endcode
  */
 $wgUploadNavigationUrl = false;
 
