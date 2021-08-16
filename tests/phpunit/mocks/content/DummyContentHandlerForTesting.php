@@ -43,4 +43,8 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	public function makeEmptyContent() {
 		return new DummyContentForTesting( '' );
 	}
+
+	public function generateHTMLOnEdit(): bool {
+		return false;
+	}
 }
