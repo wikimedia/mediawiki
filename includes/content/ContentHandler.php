@@ -1054,11 +1054,11 @@ abstract class ContentHandler {
 	 *
 	 * @return mixed String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
-	 *
-	 * @todo &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason()
-	 * have it / want it.
 	 */
-	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
+	public function getAutoDeleteReason( Title $title, &$hasHistory = false ) {
+		if ( func_num_args() === 2 ) {
+			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
+		}
 		$dbr = wfGetDB( DB_REPLICA );
 		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 

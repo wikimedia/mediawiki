@@ -1286,6 +1286,8 @@ more stuff
 			$c += 1;
 		}
 
+		$this->hideDeprecated( 'WikiPage::getAutoDeleteReason:' );
+		$this->hideDeprecated( 'ContentHandler::getAutoDeleteReason:' );
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
 		if ( is_bool( $expectedResult ) || $expectedResult === null ) {
