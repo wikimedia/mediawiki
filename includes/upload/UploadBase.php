@@ -1291,7 +1291,7 @@ abstract class UploadBase {
 
 				return true;
 			}
-		} elseif ( $match === true ) {
+		} elseif ( $match ) {
 			wfDebug( __METHOD__ . ": mime type $mime matches extension $extension, passing file" );
 
 			/** @todo If it's a bitmap, make sure PHP or ImageMagick resp. can handle it! */
@@ -2039,7 +2039,7 @@ abstract class UploadBase {
 			return [ 'warning' => 'page-exists', 'file' => $file ];
 		}
 
-		if ( strpos( $file->getName(), '.' ) == false ) {
+		if ( !strpos( $file->getName(), '.' ) ) {
 			$partname = $file->getName();
 			$extension = '';
 		} else {

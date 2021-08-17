@@ -47,7 +47,7 @@ class ViewAction extends FormlessAction {
 		MediaWikiServices::getInstance()->getHookContainer()->emitDeprecationWarnings();
 
 		if (
-			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck on pages
+			!$config->get( 'DebugToolbar' ) && // don't let this get stuck on pages
 			$this->getWikiPage()->checkTouched() // page exists and is not a redirect
 		) {
 			// Include any redirect in the last-modified calculation

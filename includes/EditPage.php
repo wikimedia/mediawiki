@@ -2031,7 +2031,7 @@ class EditPage implements IEditObject {
 		);
 
 		// Check the constraints
-		if ( $constraintRunner->checkConstraints() === false ) {
+		if ( !$constraintRunner->checkConstraints() ) {
 			$failed = $constraintRunner->getFailedConstraint();
 
 			// Need to check SpamRegexConstraint here, to avoid needing to pass
@@ -2081,7 +2081,7 @@ class EditPage implements IEditObject {
 			);
 
 			// Check the constraints
-			if ( $constraintRunner->checkConstraints() === false ) {
+			if ( !$constraintRunner->checkConstraints() ) {
 				$failed = $constraintRunner->getFailedConstraint();
 				$this->handleFailedConstraint( $failed );
 				return Status::wrap( $failed->getLegacyStatus() );
@@ -2261,7 +2261,7 @@ class EditPage implements IEditObject {
 				);
 			}
 			// Check the constraints
-			if ( $constraintRunner->checkConstraints() === false ) {
+			if ( !$constraintRunner->checkConstraints() ) {
 				$failed = $constraintRunner->getFailedConstraint();
 				$this->handleFailedConstraint( $failed );
 				return Status::wrap( $failed->getLegacyStatus() );
@@ -2319,7 +2319,7 @@ class EditPage implements IEditObject {
 			)
 		);
 		// Check the constraints
-		if ( $constraintRunner->checkConstraints() === false ) {
+		if ( !$constraintRunner->checkConstraints() ) {
 			$failed = $constraintRunner->getFailedConstraint();
 			$this->handleFailedConstraint( $failed );
 			return Status::wrap( $failed->getLegacyStatus() );
