@@ -287,7 +287,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			if ( isset( $info['default'] ) ) {
 				// Already set, no problem
 				continue;
-			} elseif ( $prefFromUser !== null && // Make sure we're not just pulling nothing
+			}
+			if ( $prefFromUser !== null && // Make sure we're not just pulling nothing
 					$field->validate( $prefFromUser, $this->userOptionsManager->getOptions( $user ) ) === true ) {
 				$info['default'] = $prefFromUser;
 			} elseif ( $field->validate( $globalDefault, $this->userOptionsManager->getOptions( $user ) ) === true ) {
