@@ -13,16 +13,14 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	private $cache;
 
 	private const TEST_KEY = 'test';
-	private const TEST_TIME = 1563892142;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->cache = $this->newCacheInstance();
-		$this->cache->deleteMulti( [
-			$this->cache->makeKey( self::TEST_KEY ),
-			$this->cache->makeKey( self::TEST_KEY ) . ':lock'
-		] );
+
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
 	}
 
 	/**
@@ -132,6 +130,9 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
 	public function testChangeTTLRenew() {
+		$now = microtime( true ); // need real time
+		$this->cache->setMockTime( $now );
+
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$value = 'meow';
 
@@ -150,36 +151,39 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
 	public function testChangeTTLExpireRel() {
+		$now = microtime( true ); // need real time
+		$this->cache->setMockTime( $now );
+
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$value = 'meow';
 
 		$this->cache->add( $key, $value, 5 );
-		$this->assertSame( $value, $this->cache->get( $key ) );
 		$this->assertTrue( $this->cache->changeTTL( $key, -3600 ) );
 		$this->assertFalse( $this->cache->get( $key ) );
-		$this->assertFalse( $this->cache->changeTTL( $key, -3600 ) );
 	}
 
 	/**
 	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
 	public function testChangeTTLExpireAbs() {
+		$now = microtime( true ); // need real time
+		$this->cache->setMockTime( $now );
+
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$value = 'meow';
 
 		$this->cache->add( $key, $value, 5 );
-		$this->assertSame( $value, $this->cache->get( $key ) );
-
-		$now = $this->cache->getCurrentTime();
-		$this->assertTrue( $this->cache->changeTTL( $key, (int)$now - 3600 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, $now - 3600 ) );
 		$this->assertFalse( $this->cache->get( $key ) );
-		$this->assertFalse( $this->cache->changeTTL( $key, (int)$now - 3600 ) );
 	}
 
 	/**
 	 * @covers MediumSpecificBagOStuff::changeTTLMulti
 	 */
 	public function testChangeTTLMulti() {
+		$now = 1563892142;
+		$this->cache->setMockTime( $now );
+
 		$key1 = $this->cache->makeKey( 'test-key1' );
 		$key2 = $this->cache->makeKey( 'test-key2' );
 		$key3 = $this->cache->makeKey( 'test-key3' );
@@ -209,11 +213,11 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $ok, "One key missing" );
 		$this->assertSame( 1, $this->cache->get( $key1 ), "Key still live" );
 
+		$now = microtime( true ); // real time
 		$ok = $this->cache->setMulti( [ $key1 => 1, $key2 => 2, $key3 => 3 ] );
 		$this->assertTrue( $ok, "setMulti() succeeded" );
 
-		$now = $this->cache->getCurrentTime();
-		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], (int)$now + 86400 );
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], $now + 86400 );
 		$this->assertTrue( $ok, "Expiry set for all keys" );
 		$this->assertSame( 1, $this->cache->get( $key1 ), "Key still live" );
 
@@ -243,7 +247,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$this->cache->add( $key, $value, 5 );
-		$this->assertSame( $this->cache->get( $key ), $value );
+		$this->assertEquals( $this->cache->get( $key ), $value );
 	}
 
 	/**
@@ -252,7 +256,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers MediumSpecificBagOStuff::getWithSetCallback
 	 */
 	public function testGetWithSetCallback() {
-		$now = self::TEST_TIME;
+		$now = 1563892142;
 		$cache = new HashBagOStuff( [] );
 		$cache->setMockTime( $now );
 		$key = $cache->makeKey( self::TEST_KEY );
@@ -506,5 +510,12 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
+	}
+
+	protected function tearDown(): void {
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
+
+		parent::tearDown();
 	}
 }

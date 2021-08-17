@@ -51,7 +51,7 @@ use Wikimedia\ScopedCallback;
  * among datacenters.
  *
  * Subclasses should override the default "segmentationSize" field with an appropriate value.
- * The value should not be larger than what the backing store (by default) supports. It also
+ * The value should not be larger than what the storage backend (by default) supports. It also
  * should be roughly informed by common performance bottlenecks (e.g. values over a certain size
  * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
  * the maximum size and chunk count (indirectly) of values.
