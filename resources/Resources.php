@@ -1531,6 +1531,7 @@ return [
 			'special-characters-group-lao',
 			'special-characters-group-khmer',
 			'special-characters-group-canadianaboriginal',
+			'special-characters-group-runes',
 			'special-characters-title-endash',
 			'special-characters-title-emdash',
 			'special-characters-title-minus'
