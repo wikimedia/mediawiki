@@ -23,6 +23,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
@@ -193,9 +194,16 @@ class WikitextContentHandler extends TextContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
-		if ( $deprecatedContent ) {
-			return $deprecatedContent;
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pstParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPST(
+				$content,
+				$pstParams
+			);
 		}
 
 		'@phan-var WikitextContent $content';
@@ -218,5 +226,44 @@ class WikitextContentHandler extends TextContentHandler {
 		$ret = new $contentClass( $pst );
 		$ret->setPreSaveTransformFlags( $parser->getOutput()->getAllFlags() );
 		return $ret;
+	}
+
+	/**
+	 * Returns a Content object with preload transformations applied (or this
+	 * object if no transformations apply).
+	 *
+	 * @param Content $content
+	 * @param PreloadTransformParams $pltParams
+	 *
+	 * @return Content
+	 */
+	public function preloadTransform(
+		Content $content,
+		PreloadTransformParams $pltParams
+	): Content {
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pltParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPLT(
+				$content,
+				$pltParams
+			);
+		}
+
+		'@phan-var WikitextContent $content';
+
+		$text = $content->getText();
+		$plt = MediaWikiServices::getInstance()->getParser()->getPreloadText(
+			$text,
+			$pltParams->getPage(),
+			$pltParams->getParserOptions(),
+			$pltParams->getParams()
+		);
+
+		$contentClass = $this->getContentClass();
+		return new $contentClass( $plt );
 	}
 }

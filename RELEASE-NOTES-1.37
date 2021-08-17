@@ -83,6 +83,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 ==== Changed external libraries ====
 * Updated OOjs from v5.0.0 to v6.0.0
 * Updated WVUI from v0.1.0 to v0.2.0
+* Updated cssjanus/cssjanus from v1.3.0 to v2.0.0.
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.

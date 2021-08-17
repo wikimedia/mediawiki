@@ -45,4 +45,27 @@ class ContentTransformer {
 
 		return $contentHandler->preSaveTransform( $content, $pstParams );
 	}
+
+	/**
+	 * Returns a Content object with preload transformations applied (or $content
+	 * if no transformations apply).
+	 *
+	 * @param Content $content
+	 * @param PageReference $page
+	 * @param ParserOptions $parserOptions
+	 * @param array $params
+	 *
+	 * @return Content
+	 */
+	public function preloadTransform(
+		Content $content,
+		PageReference $page,
+		ParserOptions $parserOptions,
+		array $params = []
+	): Content {
+		$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+		$pltParams = new PreloadTransformParamsValue( $page, $parserOptions, $params );
+
+		return $contentHandler->preloadTransform( $content, $pltParams );
+	}
 }
