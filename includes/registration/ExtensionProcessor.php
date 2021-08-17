@@ -638,8 +638,11 @@ class ExtensionProcessor implements Processor {
 					if ( is_dir( $correctedPath ) ) {
 						$data['args'][0]['templateDirectory'] = $correctedPath;
 					} else {
-						// TODO: deprecate directories relative to core.
 						$data['args'][0]['templateDirectory'] = $templateDirectory;
+						wfDeprecatedMsg(
+							'Template directory should be relative to skin or omitted.',
+							'1.37'
+						);
 					}
 				} elseif ( isset( $data['args'][0] ) ) {
 					// If not set, we set a sensible default.
