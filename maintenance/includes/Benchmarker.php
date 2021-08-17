@@ -39,7 +39,6 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 abstract class Benchmarker extends Maintenance {
 	protected $defaultCount = 100;
-	private $lang;
 
 	public function __construct() {
 		parent::__construct();
