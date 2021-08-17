@@ -675,6 +675,8 @@ because of Phabricator reports.
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
 * The LocalFile::getHistory() hook is deprecated.
+* Previously the Skin templateDirectory option inside skin.json had to be
+  relative to MediaWiki core. This should now be relative to the skin.
 * Calling WikiPage::prepareContentForEdit() without a UserIdentity is now
   deprecated.
 * User::getEditTokenObject(), ::getEditToken(), and ::matchEditToken() were each
