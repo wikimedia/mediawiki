@@ -151,7 +151,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	/**
 	 * Used by test suites which need to reset the converter state.
 	 *
-	 * @private
+	 * Called by ParserTestRunner with the help of TestingAccessWrapper
 	 */
 	private function reloadTables() {
 	}
