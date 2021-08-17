@@ -695,11 +695,7 @@ class DatabaseBlock extends AbstractBlock {
 		$timestamp = wfTimestampNow();
 		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->mExpiry" );
 
-		if ( !$this->getExpiry() ) {
-			return false;
-		} else {
-			return $timestamp > $this->getExpiry();
-		}
+		return $this->getExpiry() && $timestamp > $this->getExpiry();
 	}
 
 	/**

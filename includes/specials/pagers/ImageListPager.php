@@ -248,20 +248,12 @@ class ImageListPager extends TablePager {
 		 */
 		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
-			if ( $field === 'img_timestamp' ) {
-				return true;
-			} else {
-				return false;
-			}
+			return $field === 'img_timestamp';
 		} elseif ( $this->getConfig()->get( 'MiserMode' )
 			&& $this->mShowAll /* && mUserName === null */
 		) {
 			// no oi_timestamp index, so only alphabetical sorting in this case.
-			if ( $field === 'img_name' ) {
-				return true;
-			} else {
-				return false;
-			}
+			return $field === 'img_name';
 		}
 
 		return in_array( $field, $sortable );

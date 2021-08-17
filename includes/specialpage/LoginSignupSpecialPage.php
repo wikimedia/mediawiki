@@ -1092,13 +1092,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return bool
 	 */
 	private function showCreateAccountLink() {
-		if ( $this->isSignup() ) {
-			return true;
-		} elseif ( $this->getContext()->getAuthority()->isAllowed( 'createaccount' ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		return $this->isSignup() ||
+			$this->getContext()->getAuthority()->isAllowed( 'createaccount' );
 	}
 
 	protected function getTokenName() {
