@@ -87,11 +87,9 @@ class FixTimestamps extends Maintenance {
 				// Monotonic change
 				$lastNormal = $timestamp;
 				++$numGoodRevs;
-				continue;
 			} elseif ( abs( $delta ) <= $grace ) {
 				// Non-monotonic change within grace interval
 				++$numGoodRevs;
-				continue;
 			} else {
 				// Non-monotonic change larger than grace interval
 				$badRevs[] = $row->rev_id;

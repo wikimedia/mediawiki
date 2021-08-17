@@ -238,7 +238,6 @@ class GIFMetadataExtractor {
 						// unrecognized extension block
 						fseek( $fh, -( $blockLength + 1 ), SEEK_CUR );
 						self::skipBlock( $fh );
-						continue;
 					}
 				} else {
 					self::skipBlock( $fh );
