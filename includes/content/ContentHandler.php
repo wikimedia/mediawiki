@@ -680,7 +680,6 @@ abstract class ContentHandler {
 		$slotDiffRenderer->setLanguage( $contentLanguage );
 
 		$inline = ( $options['diff-type'] ?? '' ) === 'inline';
-		$engine = 'wikidiff2';
 		$engine = DifferenceEngine::getEngine();
 
 		if ( $engine === 'php' ) {

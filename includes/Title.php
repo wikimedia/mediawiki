@@ -3739,27 +3739,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get next/previous revision ID relative to another revision ID
-	 * @param int $revId Revision ID. Get the revision that was before this one.
-	 * @param int $flags Bitfield of class READ_* constants
-	 * @param string $dir 'next' or 'prev'
-	 * @return int|bool New revision ID, or false if none exists
-	 */
-	private function getRelativeRevisionID( $revId, $flags, $dir ) {
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-		$rev = $rl->getRevisionById( $revId, $flags );
-		if ( !$rev ) {
-			return false;
-		}
-
-		$oldRev = ( $dir === 'next' )
-			? $rl->getNextRevision( $rev, $flags )
-			: $rl->getPreviousRevision( $rev, $flags );
-
-		return $oldRev ? $oldRev->getId() : false;
-	}
-
-	/**
 	 * Check if this is a new page
 	 *
 	 * @return bool

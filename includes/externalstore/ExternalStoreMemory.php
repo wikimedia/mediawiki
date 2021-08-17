@@ -36,10 +36,6 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 	/** @var int */
 	private static $nextId = 0;
 
-	public function __construct( array $params ) {
-		parent::__construct( $params );
-	}
-
 	public function fetchFromURL( $url ) {
 		list( $location, $id ) = self::getURLComponents( $url );
 		if ( $id === null ) {
