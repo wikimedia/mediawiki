@@ -22,6 +22,11 @@ describe( 'Special:Watchlist', function () {
 	it( 'should show page with new edit', function () {
 		const title = Util.getTestString( 'Title-' );
 
+		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
+		if ( Util.isTargetNotWikitext( title ) ) {
+			this.skip();
+		}
+
 		// create
 		browser.call( async () => {
 			await bot.edit( title, Util.getTestString() );

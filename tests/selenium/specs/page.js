@@ -22,6 +22,11 @@ describe( 'Page', function () {
 		browser.deleteAllCookies();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
+
+		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
+		if ( Util.isTargetNotWikitext( name ) ) {
+			this.skip();
+		}
 	} );
 
 	it( 'should be previewable', function () {
