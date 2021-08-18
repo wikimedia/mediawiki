@@ -574,6 +574,7 @@ return [
 	'vue' => [
 		'packageFiles' => [
 			'resources/src/vue/index.js',
+			'resources/src/vue/errorLogger.js',
 			'resources/src/vue/i18n.js',
 			[
 				'name' => 'resources/lib/vue/vue.js',
