@@ -175,7 +175,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 				continue;
 			}
 
-			if ( $auto === true ) {
+			if ( $auto ) {
 				$autopatrols[] = $row->log_id;
 			}
 		}

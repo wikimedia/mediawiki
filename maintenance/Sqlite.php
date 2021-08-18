@@ -67,7 +67,7 @@ class Sqlite {
 		try {
 			foreach ( $files as $file ) {
 				$err = $db->sourceFile( $file );
-				if ( $err != true ) {
+				if ( $err ) {
 					return $err;
 				}
 			}

@@ -2005,9 +2005,9 @@ class LocalFile extends File {
 		$wikiPage->setFile( $this );
 
 		// Determine log action. If reupload is done by reverting, use a special log_action.
-		if ( $revert === true ) {
+		if ( $revert ) {
 			$logAction = 'revert';
-		} elseif ( $reupload === true ) {
+		} elseif ( $reupload ) {
 			$logAction = 'overwrite';
 		} else {
 			$logAction = 'upload';
@@ -2035,7 +2035,7 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			if ( $createNullRevision !== false ) {
+			if ( $createNullRevision ) {
 				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 				// Use own context to get the action text in content language
 				$formatter = LogFormatter::newFromEntry( $logEntry );

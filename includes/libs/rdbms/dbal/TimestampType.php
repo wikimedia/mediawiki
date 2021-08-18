@@ -15,7 +15,7 @@ class TimestampType extends Type {
 	public function getSQLDeclaration( array $fieldDeclaration, AbstractPlatform $platform ) {
 		if ( $platform->getName() == 'mysql' ) {
 			// "infinite" (in expiry values has to be VARBINARY)
-			if ( isset( $fieldDeclaration['allowInfinite'] ) && $fieldDeclaration['allowInfinite'] == true ) {
+			if ( isset( $fieldDeclaration['allowInfinite'] ) && $fieldDeclaration['allowInfinite'] ) {
 				return 'VARBINARY(14)';
 			}
 			return 'BINARY(14)';
