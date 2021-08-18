@@ -222,7 +222,7 @@ class VersionChecker {
 										. 'in ' . $extension );
 								}
 
-								if ( $constraint === true &&
+								if ( $constraint &&
 									$this->abilities[$ability] !== true
 								) {
 									// add custom error message for missing ability if specified

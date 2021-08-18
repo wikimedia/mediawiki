@@ -453,7 +453,7 @@ class Linker {
 				$label = $frameParams['title'];
 			}
 			$s = self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', $time == true, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -713,7 +713,7 @@ class Linker {
 				$label = $frameParams['title'];
 			}
 			$s .= self::makeBrokenImageLinkObj(
-				$title, $label, '', '', '', $time == true, $handlerParams
+				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {

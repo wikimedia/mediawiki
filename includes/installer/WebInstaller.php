@@ -654,7 +654,7 @@ class WebInstaller extends Installer {
 		$html = ( $text instanceof HtmlArmor ) ?
 			HtmlArmor::getHtml( $text ) :
 			$this->parse( $text, true );
-		$icon = ( $icon == false ) ?
+		$icon = ( !$icon ) ?
 			'images/info-32.png' :
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();

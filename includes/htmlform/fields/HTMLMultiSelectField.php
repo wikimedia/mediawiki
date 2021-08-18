@@ -22,7 +22,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		parent::__construct( $params );
 
 		// If the disabled-options parameter is not provided, use an empty array
-		if ( isset( $this->mParams['disabled-options'] ) === false ) {
+		if ( !isset( $this->mParams['disabled-options'] ) ) {
 			$this->mParams['disabled-options'] = [];
 		}
 

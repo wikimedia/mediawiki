@@ -210,7 +210,7 @@ class SearchResultSet extends BaseSearchResultSet {
 				return $this->results;
 			}
 			$this->rewind();
-			while ( ( $result = $this->next() ) != false ) {
+			while ( $result = $this->next() ) {
 				$this->results[] = $result;
 			}
 			$this->rewind();
