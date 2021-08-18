@@ -44,12 +44,12 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		// Just a user uses $wgLang
 		$popt = ParserOptions::newCanonical( $user );
-		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $user, $popt->getUserIdentity() );
 		$this->assertSame( $userLang, $popt->getUserLangObj() );
 
 		// Passing both works
 		$popt = ParserOptions::newCanonical( $user, $lang );
-		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $user, $popt->getUserIdentity() );
 		$this->assertSame( $lang, $popt->getUserLangObj() );
 
 		// Passing 'canonical' uses an anon and $contLang, and ignores any passed $userLang
@@ -62,7 +62,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		// Passing an IContextSource uses the user and lang from it, and ignores
 		// any passed $userLang
 		$popt = ParserOptions::newCanonical( $context );
-		$this->assertSame( $user, $popt->getUser() );
+		$this->assertSame( $user, $popt->getUserIdentity() );
 		$this->assertSame( $lang, $popt->getUserLangObj() );
 		$popt = ParserOptions::newCanonical( $context, $lang2 );
 		$this->assertSame( $lang, $popt->getUserLangObj() );

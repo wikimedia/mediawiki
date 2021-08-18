@@ -635,6 +635,8 @@ because of Phabricator reports.
   is now hard deprecated. Use MovePageFactory instead.
 * userCan hook has been deprecated. Use getUserPermissionsErrors or
   getUserPermissionsErrorsExpensive instead.
+* Parser::mUser public access, Parser::getUser and ParserOptions::getUser were
+  hard deprecated.
 * …
 
 === Other changes in 1.37 ===
