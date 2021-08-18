@@ -79,9 +79,7 @@ class ActionFactory {
 		'render' => true,
 		'submit' => true,
 		'unprotect' => true,
-		'unwatch' => true,
 		'view' => true,
-		'watch' => true,
 
 		// Beginning of actions switched to using DI with an ObjectFactory spec
 		'credits' => [
