@@ -63,28 +63,22 @@ XDEBUG_ENABLE=true
 XHPROF_ENABLE=true
 ```
 
-Next, create a `docker-compose.override.yml` containing the following:
-
-```yaml
-version: '3.7'
-services:
-  # These lines ensure file ownership is set to your host user/group
-  mediawiki:
-    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
-    # Linux users only: this extra_hosts section is necessary for Xdebug:
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  mediawiki-web:
-    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
-  mediawiki-jobrunner:
-    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
-```
-
-Run the following command to add your user ID and group ID to your `.env` file:
+Next, run the following command to add your user ID and group ID to your `.env` file:
 
 ```sh
 echo "MW_DOCKER_UID=$(id -u)
 MW_DOCKER_GID=$(id -g)" >> .env
+```
+
+Linux users only: create a `docker-compose.override.yml` containing the following:
+
+```yaml
+version: '3.7'
+services:
+  mediawiki:
+    # Linux users only: this extra_hosts section is necessary for Xdebug:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 ```
 
 #### Start environment and install MediaWiki
@@ -192,19 +186,35 @@ If you need root on the container to install packages for troubleshooting,
 you can open a shell as root with `docker-compose exec --user root mediawiki
 bash`.
 
-#### Use Vector skin
+#### Using Extensions and Skins
+Using extensions and skins requires the extension or skin directory to exist
+in the appropriate folder within the core directory, or added as a volume in
+`docker-compose.override.yml`
 
-Clone the skin to `skins/Vector`:
+##### Example: Use Vector skin
 
-```sh
-git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
-```
+1. Clone the skin to `skins/Vector`:
 
-Configure MediaWiki to use the skin:
+    ```sh
+    git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
+    ```
 
-```sh
-echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
-```
+    OR
+
+    mount the directory as a volume in `docker-compose.override.yml`:
+    ```yaml
+   version: '3.7'
+   services:
+     mediawiki:
+       volumes:
+         - ~/vector:/var/www/html/w/skins/vector:cached
+    ```
+
+2. Configure MediaWiki to use the skin:
+
+    ```sh
+    echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
+    ```
 
 #### Xdebug
 
