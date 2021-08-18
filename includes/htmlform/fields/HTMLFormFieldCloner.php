@@ -170,7 +170,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( $field->skipLoadData( $subrequest ) ) {
 					continue;
-				} elseif ( !empty( $field->mParams['disabled'] ) ) {
+				}
+				if ( !empty( $field->mParams['disabled'] ) ) {
 					$row[$fieldname] = $field->getDefault();
 				} else {
 					$row[$fieldname] = $field->loadDataFromRequest( $subrequest );
@@ -186,9 +187,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
-				} else {
-					$row[$fieldname] = $field->getDefault();
 				}
+				$row[$fieldname] = $field->getDefault();
 			}
 			$ret[] = $row;
 		}
@@ -206,9 +206,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
-				} else {
-					$row[$fieldname] = $field->getDefault();
 				}
+				$row[$fieldname] = $field->getDefault();
 			}
 			$ret = [ $row ];
 		}

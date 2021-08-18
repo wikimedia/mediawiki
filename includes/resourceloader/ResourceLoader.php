@@ -598,7 +598,8 @@ class ResourceLoader implements LoggerAwareInterface {
 						// avoid duplicate write request slams (T124649)
 						// the lock must be specific to the current wiki (T247028)
 						continue;
-					} elseif ( $update === null ) {
+					}
+					if ( $update === null ) {
 						$entitiesUnreg[] = $entity;
 					} elseif ( $update === '*' ) {
 						$entitiesRenew[] = $entity;
