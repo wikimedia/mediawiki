@@ -44,6 +44,7 @@ class SkinTemplate extends Skin {
 	 */
 	public $template;
 
+	protected $action;
 	public $thispage;
 	public $titletxt;
 	public $userpage;
@@ -95,6 +96,8 @@ class SkinTemplate extends Skin {
 		$user = $this->getUser();
 		$title = $this->getTitle();
 
+		// Optimization: Cache getActionName() because it's expensive to compute
+		$this->action = Action::getActionName( $this );
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
 		$this->userpage = $user->getUserPage()->getPrefixedText();
@@ -179,7 +182,7 @@ class SkinTemplate extends Skin {
 		# when viewing)
 		# Most information on special pages and file pages is in user language,
 		# rather than content language, so those will not get this
-		if ( Action::getActionName( $this ) === 'view' &&
+		if ( $this->action === 'view' &&
 			( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) || $title->isRedirect() ) ) {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
@@ -978,9 +981,6 @@ class SkinTemplate extends Skin {
 			'variants' => []
 		];
 
-		// parameters
-		$action = Action::getActionName( $this );
-
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
 		// Checks if page is some kind of content
@@ -1028,7 +1028,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
 						[ "$skname-view-view", 'view' ],
-						( $onPage && ( $action == 'view' || $action == 'purge' ) ), '', true
+						( $onPage && ( $this->action == 'view' || $this->action == 'purge' ) ), '', true
 					);
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
@@ -1055,7 +1055,7 @@ class SkinTemplate extends Skin {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
 					// Whether the user is editing the page
-					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
+					$isEditing = $onPage && ( $this->action == 'edit' || $this->action == 'submit' );
 					// Whether to show the "Add a new section" tab
 					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->forceHideNewSectionLink()
@@ -1097,7 +1097,7 @@ class SkinTemplate extends Skin {
 				} elseif ( $title->hasSourceText() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
-						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
+						'class' => ( $onPage && $this->action == 'edit' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
@@ -1109,7 +1109,7 @@ class SkinTemplate extends Skin {
 				if ( $title->exists() ) {
 					// Adds history view link
 					$content_navigation['views']['history'] = [
-						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
+						'class' => ( $onPage && $this->action == 'history' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( 'action=history' ),
@@ -1117,7 +1117,7 @@ class SkinTemplate extends Skin {
 
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
-							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
+							'class' => ( $onPage && $this->action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
 								->setContext( $this->getContext() )->text(),
 							'href' => $title->getLocalURL( 'action=delete' )
@@ -1162,7 +1162,7 @@ class SkinTemplate extends Skin {
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
-						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
+						'class' => ( $onPage && $this->action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
@@ -1190,7 +1190,7 @@ class SkinTemplate extends Skin {
 						$mode,
 						$performer,
 						$title,
-						$action,
+						$this->action,
 						$onPage
 					);
 				}
@@ -1211,7 +1211,7 @@ class SkinTemplate extends Skin {
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $converter->getPreferredVariant();
-					if ( Action::getActionName( $this ) === 'view' ) {
+					if ( $this->action === 'view' ) {
 						$params = $request->getQueryValues();
 						unset( $params['title'] );
 					} else {
@@ -1276,7 +1276,7 @@ class SkinTemplate extends Skin {
 		# give the edit tab an accesskey, because that's fairly
 		# superfluous and conflicts with an accesskey (Ctrl-E) often
 		# used for editing in Safari.
-		if ( in_array( $action, [ 'edit', 'submit' ] ) ) {
+		if ( in_array( $this->action, [ 'edit', 'submit' ] ) ) {
 			if ( isset( $content_navigation['views']['edit'] ) ) {
 				$content_navigation['views']['edit']['tooltiponly'] = true;
 			}
