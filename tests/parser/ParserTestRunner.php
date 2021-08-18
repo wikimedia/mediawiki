@@ -967,7 +967,7 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $test['input'], $title, $options->getUser(), $options );
+			$out = $parser->preSaveTransform( $test['input'], $title, $options->getUserIdentity(), $options );
 			$output = $parser->getOutput();
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $test['input'], $options, $title );

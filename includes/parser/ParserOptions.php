@@ -708,7 +708,8 @@ class ParserOptions {
 	 * @return string
 	 */
 	private static function initDateFormat( ParserOptions $popt ) {
-		return $popt->getUser()->getDatePreference();
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+		return $userFactory->newFromUserIdentity( $popt->getUserIdentity() )->getDatePreference();
 	}
 
 	/**
@@ -1024,9 +1025,11 @@ class ParserOptions {
 	/**
 	 * Current user
 	 * @deprecated since 1.36. Use ::getUserIdentity instead.
+	 * Hard deprecated since 1.37.
 	 * @return User
 	 */
 	public function getUser() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserFactory()
 			->newFromUserIdentity( $this->mUser );
@@ -1454,9 +1457,14 @@ class ParserOptions {
 			$confstr .= $this->mExtraKey;
 		}
 
+		$user = $services->getUserFactory()->newFromUserIdentity( $this->getUserIdentity() );
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		Hooks::runner()->onPageRenderingHash( $confstr, $this->getUser(), $forOptions );
+		Hooks::runner()->onPageRenderingHash(
+			$confstr,
+			$user,
+			$forOptions
+		);
 
 		// Make it a valid memcached key fragment
 		$confstr = str_replace( ' ', '_', $confstr );

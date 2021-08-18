@@ -88,6 +88,8 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
+	use DeprecationHelper;
+
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
 	public const SFH_OBJECT_ARGS = 2;
@@ -237,9 +239,9 @@ class Parser {
 
 	/**
 	 * @var User
-	 * @deprecated since 1.35, use Parser::getUser()
+	 * @todo Please change to mUserIdentity when getUser will be removed
 	 */
-	public $mUser; # User object; only used when doing pre-save transform
+	private $mUser; # User object; only used when doing pre-save transform
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -431,6 +433,7 @@ class Parser {
 		TitleFormatter $titleFormatter,
 		HttpRequestFactory $httpRequestFactory
 	) {
+		$this->deprecatePublicProperty( 'mUser', '1.35', __CLASS__ );
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
@@ -1165,10 +1168,12 @@ class Parser {
 	 * Get a User object either from $this->mUser, if set, or from the
 	 * ParserOptions object otherwise
 	 * @deprecated since 1.36. Use ::getUserIdentity instead.
+	 * Hard deprecated since 1.37.
 	 * @return User
 	 * @since 1.17
 	 */
 	public function getUser() {
+		wfDeprecated( __METHOD__, '1.36' );
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
@@ -1176,11 +1181,15 @@ class Parser {
 	}
 
 	/**
-	 * Get an identity of the user for whom the parse is being made, if set.
+	 * Get a User object either from $this->mUser, if set, or from the
+	 * ParserOptions object otherwise
 	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity {
-		return $this->getUser();
+		if ( $this->mUser !== null ) {
+			return $this->mUser;
+		}
+		return $this->getOptions()->getUserIdentity();
 	}
 
 	/**
@@ -3173,7 +3182,7 @@ class Parser {
 					$context->setTitle( $title );
 					$context->setRequest( new FauxRequest( $pageArgs ) );
 					if ( $specialPage && $specialPage->maxIncludeCacheTime() === 0 ) {
-						$context->setUser( $this->getUser() );
+						$context->setUser( $this->userFactory->newFromUserIdentity( $this->getUserIdentity() ) );
 					} else {
 						// If this page is cached, then we better not be per user.
 						$context->setUser( User::newFromName( '127.0.0.1', false ) );
@@ -5959,7 +5968,7 @@ class Parser {
 			if ( $revObject && $revObject->getUser() ) {
 				$this->mRevisionUser = $revObject->getUser()->getName();
 			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
-				$this->mRevisionUser = $this->getUser()->getName();
+				$this->mRevisionUser = $this->getUserIdentity()->getName();
 			} else {
 				# Note that we fall through here with
 				# $this->mRevisionUser still null
@@ -6189,7 +6198,7 @@ class Parser {
 	 * @return string
 	 */
 	private function fuzzTestPst( $text, PageReference $page, ParserOptions $options ) {
-		return $this->preSaveTransform( $text, $page, $options->getUser(), $options );
+		return $this->preSaveTransform( $text, $page, $options->getUserIdentity(), $options );
 	}
 
 	/**
