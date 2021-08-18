@@ -6155,6 +6155,9 @@ class Parser {
 	/**
 	 * Strip/replaceVariables/unstrip for preprocessor regression testing
 	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
 	 * @param PageReference $page
 	 * @param ParserOptions $options
@@ -6175,6 +6178,11 @@ class Parser {
 	}
 
 	/**
+	 * Strip/replaceVariables/unstrip for preprocessor regression testing
+	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
 	 * @param PageReference $page
 	 * @param ParserOptions $options
@@ -6185,6 +6193,11 @@ class Parser {
 	}
 
 	/**
+	 * Strip/replaceVariables/unstrip for preprocessor regression testing
+	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
 	 * @param PageReference $page
 	 * @param ParserOptions $options
