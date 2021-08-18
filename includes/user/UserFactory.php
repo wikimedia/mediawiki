@@ -109,14 +109,12 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param string|null $ip IP address
 	 * @return User
 	 */
-	public function newAnonymous( $ip = null ): User {
+	public function newAnonymous( ?string $ip = null ): User {
 		if ( $ip ) {
-			$validIp = $this->userNameUtils->isIP( $ip );
-			if ( $validIp ) {
-				$user = $this->newFromName( $ip, self::RIGOR_NONE );
-			} else {
+			if ( !$this->userNameUtils->isIP( $ip ) ) {
 				throw new InvalidArgumentException( 'Invalid IP address' );
 			}
+			$user = $this->newFromName( $ip, self::RIGOR_NONE );
 		} else {
 			$user = new User();
 		}
