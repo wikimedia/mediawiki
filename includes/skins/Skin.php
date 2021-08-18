@@ -1816,8 +1816,6 @@ abstract class Skin extends ContextSource {
 						'id' => Sanitizer::escapeIdForAttribute( 'n-' . strtr( $line[1], ' ', '-' ) ),
 						'active' => false,
 					], $extraAttribs );
-				} else {
-					continue;
 				}
 			}
 		}

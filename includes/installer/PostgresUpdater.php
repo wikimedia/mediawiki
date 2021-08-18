@@ -861,8 +861,6 @@ END;
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
 			$this->output( "...$table table does not contain $field field.\n" );
-
-			return;
 		} else {
 			$this->output( "Dropping column '$table.$field'\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
@@ -874,8 +872,6 @@ END;
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi !== null ) {
 			$this->output( "...column '$table.$field' already exists\n" );
-
-			return;
 		} else {
 			$this->output( "Adding column '$table.$field'\n" );
 			$table = $this->db->addIdentifierQuotes( $table );

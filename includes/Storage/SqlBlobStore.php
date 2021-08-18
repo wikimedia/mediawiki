@@ -373,7 +373,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				$errors[$blobAddress] = "Unknown blob address schema: $schema."
 					. ' Use findBadBlobs.php to remedy.';
 				$result[$blobAddress] = false;
-				continue;
 			}
 		}
 
