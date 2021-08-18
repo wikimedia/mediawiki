@@ -1374,6 +1374,7 @@
 	"recentchanges-label-plusminus": "Аб’ём старонкі змяніўся на гэты лік байтаў",
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (гл. асобна [[Special:NewPages|новыя старонкі]])",
+	"recentchanges-legend-watchlistexpiry": "Часова назіраная старонка",
 	"recentchanges-submit": "Паказаць",
 	"rcfilters-tag-remove": "Выдаліць '$1'",
 	"rcfilters-legend-heading": "<strong>Спіс скарачэнняў:</strong>",
