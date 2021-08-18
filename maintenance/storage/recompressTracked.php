@@ -230,7 +230,8 @@ class RecompressTracked {
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
 			if ( $cmdOption == 'child-id' ) {
 				continue;
-			} elseif ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
+			}
+			if ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );
 			} elseif ( $this->$classOption ) {
 				$cmd .= " --$cmdOption";

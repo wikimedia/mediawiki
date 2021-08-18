@@ -1859,7 +1859,8 @@ class HTMLForm extends ContextSource {
 			$request = $this->getRequest();
 			if ( $field->skipLoadData( $request ) ) {
 				continue;
-			} elseif ( !empty( $field->mParams['disabled'] ) ) {
+			}
+			if ( !empty( $field->mParams['disabled'] ) ) {
 				$fieldData[$fieldname] = $field->getDefault();
 			} else {
 				$fieldData[$fieldname] = $field->loadDataFromRequest( $request );

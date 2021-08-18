@@ -706,7 +706,8 @@ abstract class MediaHandler {
 			if ( $v === false ) {
 				// Use default formatting
 				continue;
-			} elseif ( $v === null ) {
+			}
+			if ( $v === null ) {
 				// Remove this tag, don't format it for display
 				unset( $metadataArray[$tag] );
 			} else {
