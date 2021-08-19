@@ -20,16 +20,17 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
 	public function testStuff() {
 		$user = $this->getTestUser()->getUser();
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$pageWatched = $this->getExistingTestPage( 'UTPage' );
+		$pageNotWatched = $this->getExistingTestPage( 'UTPageNotWatched' );
 
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
-		$watchlistManager->addWatch( $user,  $page->getTitle() );
+		$watchlistManager->addWatch( $user, $pageWatched );
 
 		$result = $this->doApiRequestWithToken(
 			[
 				'action' => 'setnotificationtimestamp',
 				'timestamp' => '20160101020202',
-				'pageids' => $page->getId(),
+				'titles' => 'UTPage|UTPageNotWatched',
 			],
 			null,
 			$user
@@ -39,7 +40,8 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 			[
 				'batchcomplete' => true,
 				'setnotificationtimestamp' => [
-					[ 'ns' => 0, 'title' => 'UTPage', 'notificationtimestamp' => '2016-01-01T02:02:02Z' ]
+					[ 'ns' => 0, 'title' => 'UTPage', 'notificationtimestamp' => '2016-01-01T02:02:02Z' ],
+					[ 'ns' => 0, 'title' => 'UTPageNotWatched', 'notwatched' => true ]
 				],
 			],
 			$result[0]
@@ -47,8 +49,9 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$this->assertEquals(
-			$watchedItemStore->getNotificationTimestampsBatch( $user, [ $page->getTitle() ] ),
-			[ [ 'UTPage' => '20160101020202' ] ]
+			$watchedItemStore->getNotificationTimestampsBatch(
+				$user, [ $pageWatched->getTitle(), $pageNotWatched->getTitle() ] ),
+			[ [ 'UTPage' => '20160101020202', 'UTPageNotWatched' => false, ] ]
 		);
 	}
 
