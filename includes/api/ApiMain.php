@@ -129,6 +129,7 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'Parser',
 				'WikiPageFactory',
+				'ContentTransformer',
 			]
 		],
 		'stashedit' => [
@@ -193,6 +194,7 @@ class ApiMain extends ApiBase {
 				'RevisionStore',
 				'SlotRoleRegistry',
 				'ContentHandlerFactory',
+				'ContentTransformer',
 			]
 		],
 		'tokens' => ApiTokens::class,
