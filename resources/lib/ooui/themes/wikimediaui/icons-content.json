@@ -107,6 +107,9 @@
 		"robot": {
 			"file": "images/icons/robot.svg"
 		},
+		"share": {
+			"file": "images/icons/share.svg"
+		},
 		"specialPages": {
 			"file": {
 				"ltr": "images/icons/specialPages-ltr.svg",

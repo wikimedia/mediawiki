@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.3
+ * OOUI v0.42.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-03-12T21:47:47Z
+ * Date: 2021-08-19T04:44:48Z
  */
 ( function ( OO ) {
 
@@ -446,13 +446,13 @@ OO.ui.resolveMsg = function ( msg ) {
  */
 OO.ui.isSafeUrl = function ( url ) {
 	// Keep this function in sync with php/Tag.php
-	var i, protocolWhitelist;
+	var i, protocolAllowList;
 
 	function stringStartsWith( haystack, needle ) {
 		return haystack.substr( 0, needle.length ) === needle;
 	}
 
-	protocolWhitelist = [
+	protocolAllowList = [
 		'bitcoin', 'ftp', 'ftps', 'geo', 'git', 'gopher', 'http', 'https', 'irc', 'ircs',
 		'magnet', 'mailto', 'mms', 'news', 'nntp', 'redis', 'sftp', 'sip', 'sips', 'sms', 'ssh',
 		'svn', 'tel', 'telnet', 'urn', 'worldwind', 'xmpp'
@@ -462,8 +462,8 @@ OO.ui.isSafeUrl = function ( url ) {
 		return true;
 	}
 
-	for ( i = 0; i < protocolWhitelist.length; i++ ) {
-		if ( stringStartsWith( url, protocolWhitelist[ i ] + ':' ) ) {
+	for ( i = 0; i < protocolAllowList.length; i++ ) {
+		if ( stringStartsWith( url, protocolAllowList[ i ] + ':' ) ) {
 			return true;
 		}
 	}
@@ -715,24 +715,14 @@ OO.ui.Element.static.infuse = function ( node, config ) {
  */
 OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var error, data, cls, parts, obj, top, state, infusedChildren, doc, id,
+	var data, cls, parts, obj, top, state, infusedChildren, doc, id,
 		$elem = $( elem );
 
 	if ( $elem.length > 1 ) {
-		if ( elem && elem.selector ) {
-			error = 'Collection contains more than one element: ' + elem.selector;
-		} else {
-			error = 'Collection contains more than one element';
-		}
-		throw new Error( error );
+		throw new Error( 'Collection contains more than one element' );
 	}
 	if ( !$elem.length ) {
-		if ( elem && elem.selector ) {
-			error = 'Widget not found: ' + elem.selector;
-		} else {
-			error = 'Widget not found';
-		}
-		throw new Error( error );
+		throw new Error( 'Widget not found' );
 	}
 	if ( $elem[ 0 ].$oouiInfused ) {
 		$elem = $elem[ 0 ].$oouiInfused;
@@ -3201,6 +3191,10 @@ OO.ui.mixin.IconElement.prototype.getIcon = function () {
  * For a list of indicators included in the library, please see the
  * [OOUI documentation on MediaWiki] [1].
  *
+ * Note that indicators don't come with any functionality by default. See e.g.
+ * {@link OO.ui.SearchInputWidget SearchInputWidget} for a working 'clear' or
+ * {@link OO.ui.ComboBoxInputWidget ComboBoxInputWidget} for a working 'down' indicator.
+ *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
  *
  * @abstract
@@ -3210,7 +3204,7 @@ OO.ui.mixin.IconElement.prototype.getIcon = function () {
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$indicator] The indicator element created by the class. If this
  *  configuration is omitted, the indicator element will use a generated `<span>`.
- * @cfg {string} [indicator] Symbolic name of the indicator (e.g., ‘clear’ or ‘down’).
+ * @cfg {string} [indicator] Symbolic name of the indicator (e.g. ‘required’ or ‘down’).
  *  See the [OOUI documentation on MediaWiki][2] for a list of indicators included
  *  in the library.
  * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
@@ -3235,7 +3229,7 @@ OO.initClass( OO.ui.mixin.IndicatorElement );
 /* Static Properties */
 
 /**
- * Symbolic name of the indicator (e.g., ‘clear’ or  ‘down’).
+ * Symbolic name of the indicator (e.g. ‘required’ or ‘down’).
  * The static property will be overridden if the #indicator configuration is used.
  *
  * @static
@@ -3283,8 +3277,8 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorElement = function ( $indicat
 };
 
 /**
- * Set the indicator by its symbolic name: ‘clear’, ‘down’, ‘required’, ‘up’. Use `null`
- * to remove the indicator.
+ * Set the indicator by its symbolic name. Built-in names currently include ‘clear’, ‘up’,
+ * ‘down’ and ‘required’ (declared via indicators.json). Use `null` to remove the indicator.
  *
  * @param {string|null} indicator Symbolic name of indicator, or `null` for no indicator
  * @chainable
@@ -3315,7 +3309,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 };
 
 /**
- * Get the symbolic name of the indicator (e.g., ‘clear’ or  ‘down’).
+ * Get the symbolic name of the indicator (e.g., ‘required’ or ‘down’).
  *
  * @return {string|null} Symbolic name of indicator, null if not set
  */
@@ -7045,7 +7039,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 			// They can't be tabbed to, but they can be activated using access keys.
 			// OptionWidgets and focusable UI elements inside them have tabindex="-1" set.
 			item = this.findTargetItem( event );
-			if ( !( item.isHighlightable() || item.isSelectable() ) ) {
+			if ( item && !( item.isHighlightable() || item.isSelectable() ) ) {
 				// The item is disabled (weirdly, disabled items can be focussed in Firefox and IE,
 				// but not in Chrome). Do nothing (do not highlight or select anything).
 				return;
@@ -9907,8 +9901,7 @@ OO.ui.ButtonInputWidget.static.tagName = 'span';
  * @protected
  */
 OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
-	var type;
-	type = [ 'button', 'submit', 'reset' ].indexOf( config.type ) !== -1 ? config.type : 'button';
+	var type = config.type === 'submit' || config.type === 'reset' ? config.type : 'button';
 	return $( '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + type + '">' );
 };
 
@@ -10793,7 +10786,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * Set the internal list of options, used e.g. by setValue() to see which options are allowed.
  *
  * This method may be called before the parent constructor, so various properties may not be
- * intialized yet.
+ * initialized yet.
  *
  * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
  * @private
@@ -11016,7 +11009,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
  * Set the internal list of options, used e.g. by setValue() to see which options are allowed.
  *
  * This method may be called before the parent constructor, so various properties may not be
- * intialized yet.
+ * initialized yet.
  *
  * @param {Object[]} options Array of menu options in the format
  *  `{ data: …, label: … }`
@@ -11105,7 +11098,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password'
- *  'email', 'url' or 'number'.
+ *  'email', 'url' or 'number'. Subclasses might support other types.
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [autofocus=false] Use an HTML `autofocus` attribute to
  *  instruct the browser to focus this widget.
@@ -11130,9 +11123,9 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( {
-		type: 'text',
 		labelPosition: 'after'
 	}, config );
+	config.type = this.getSaneType( config );
 	if ( config.autocomplete === false ) {
 		config.autocomplete = 'off';
 	} else if ( config.autocomplete === true ) {
@@ -11151,7 +11144,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	OO.ui.mixin.RequiredElement.call( this, config );
 
 	// Properties
-	this.type = this.getSaneType( config );
+	this.type = config.type;
 	this.readOnly = false;
 	this.validate = null;
 	this.scrollWidth = null;
@@ -11172,7 +11165,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 
 	// Initialization
 	this.$element
-		.addClass( 'oo-ui-textInputWidget oo-ui-textInputWidget-type-' + this.type )
+		.addClass( 'oo-ui-textInputWidget oo-ui-textInputWidget-type-' + config.type )
 		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
 	if ( config.placeholder !== undefined ) {
@@ -11239,7 +11232,7 @@ OO.ui.TextInputWidget.static.validationPatterns = {
 /* Methods */
 
 /**
- * Handle icon mouse down events.
+ * Focus the input element when clicking on the icon.
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
@@ -11253,7 +11246,10 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
 };
 
 /**
- * Handle indicator mouse down events.
+ * Focus the input element when clicking on the indicator. This default implementation is
+ * effectively only suitable for the 'required' indicator. If you are looking for functional 'clear'
+ * or 'down' indicators, you might want to use the {@link OO.ui.SearchInputWidget SearchInputWidget}
+ * or {@link OO.ui.ComboBoxInputWidget ComboBoxInputWidget} subclasses.
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
@@ -11417,20 +11413,20 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
  * @protected
  */
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
-	if ( this.getSaneType( config ) === 'number' ) {
-		return $( '<input>' )
-			.attr( 'step', 'any' )
-			.attr( 'type', 'number' );
-	} else {
-		return $( '<input>' ).attr( 'type', this.getSaneType( config ) );
+	var $input = $( '<input>' ).attr( 'type', config.type );
+
+	if ( config.type === 'number' ) {
+		$input.attr( 'step', 'any' );
 	}
+
+	return $input;
 };
 
 /**
- * Get sanitized value for 'type' for given config.
+ * Get sanitized value for 'type' for given config. Subclasses might support other types.
  *
  * @param {Object} config Configuration options
- * @return {string|null}
+ * @return {string}
  * @protected
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
@@ -11748,7 +11744,8 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 
 /**
  * SearchInputWidgets are TextInputWidgets with `type="search"` assigned and feature a
- * {@link OO.ui.mixin.IconElement search icon} by default.
+ * {@link OO.ui.mixin.IconElement 'search' icon} as well as a functional
+ * {@link OO.ui.mixin.IndicatorElement 'clear' indicator} by default.
  * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs#SearchInputWidget
@@ -11799,7 +11796,7 @@ OO.ui.SearchInputWidget.prototype.getSaneType = function () {
 };
 
 /**
- * Handle key down events on the indicator
+ * Clear and focus the input element when pressing enter on the 'clear' indicator.
  *
  * @param {jQuery.Event} e KeyDown event
  * @return {boolean}
@@ -11814,7 +11811,7 @@ OO.ui.SearchInputWidget.prototype.onIndicatorKeyDown = function ( e ) {
 };
 
 /**
- * Handle click events on the indicator
+ * Clear and focus the input element when clicking on the 'clear' indicator.
  *
  * @param {jQuery.Event} e Click event
  * @return {boolean}
@@ -12551,13 +12548,9 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		this.fieldWidget.setLabelledBy( id );
 
 		// Forward clicks on the label to the widget, like `label for` would do
-		this.$label.on( 'click', function () {
-			this.fieldWidget.simulateLabelClick();
-		}.bind( this ) );
+		this.$label.on( 'click', this.onLabelClick.bind( this ) );
 		if ( this.helpInline ) {
-			this.$help.on( 'click', function () {
-				this.fieldWidget.simulateLabelClick();
-			}.bind( this ) );
+			this.$help.on( 'click', this.onLabelClick.bind( this ) );
 		}
 	}
 	this.$element
@@ -12596,6 +12589,15 @@ OO.mixinClass( OO.ui.FieldLayout, OO.ui.mixin.TitledElement );
  */
 OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
 	this.$element.toggleClass( 'oo-ui-fieldLayout-disabled', value );
+};
+
+/**
+ * Handle click events on the field label, or inline help
+ *
+ * @param {jQuery.Event} event
+ */
+OO.ui.FieldLayout.prototype.onLabelClick = function () {
+	this.fieldWidget.simulateLabelClick();
 };
 
 /**

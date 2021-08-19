@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.3
+ * OOUI v0.42.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-03-12T21:47:47Z
+ * Date: 2021-08-19T04:44:48Z
  */
 ( function ( OO ) {
 
@@ -4574,8 +4574,7 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyPress = function ( e ) {
 			stopOrContinue = this.doInputEnter( e, withMetaKey );
 		}
 
-		// Make sure the input gets resized.
-		setTimeout( this.updateInputSize.bind( this ), 0 );
+		this.updateInputSize();
 		return stopOrContinue;
 	}
 };

@@ -7,6 +7,7 @@
 			"Davidpar",
 			"Edustus",
 			"Fitoschido",
+			"Jmarchn",
 			"Kippelboy",
 			"Maceleiro",
 			"Macofe",
@@ -30,9 +31,13 @@
 	"ooui-dialog-process-dismiss": "Descarta",
 	"ooui-dialog-process-retry": "Torneu-ho a provar",
 	"ooui-dialog-process-continue": "Continua",
+	"ooui-combobox-button-label": "Commuta les opcions",
 	"ooui-selectfile-button-select": "Seleccioneu un fitxer",
+	"ooui-selectfile-button-select-multiple": "Selecció de fitxers",
 	"ooui-selectfile-not-supported": "El tipus de fitxer no és compatible",
 	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer",
 	"ooui-selectfile-dragdrop-placeholder": "Deseu els arxius aquí",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Dipositeu els fitxers aquí",
+	"ooui-popup-widget-close-button-aria-label": "Tanca",
 	"ooui-field-help": "Ajuda"
 }

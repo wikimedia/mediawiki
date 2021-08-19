@@ -84,6 +84,9 @@
 		"robot": {
 			"file": "../wikimediaui/images/icons/robot.svg"
 		},
+		"share": {
+			"file": "../wikimediaui/images/icons/share.svg"
+		},
 		"specialPages": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/specialPages-ltr.svg",
