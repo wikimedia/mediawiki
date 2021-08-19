@@ -1,19 +1,12 @@
 <?php
 /**
  * @group Cache
+ * @covers MapCacheLRU
  */
 class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @covers MapCacheLRU::newFromArray()
-	 * @covers MapCacheLRU::toArray()
-	 * @covers MapCacheLRU::getAllKeys()
-	 * @covers MapCacheLRU::clear()
-	 * @covers MapCacheLRU::getMaxSize()
-	 * @covers MapCacheLRU::setMaxSize()
-	 */
 	public function testArrayConversion() {
 		$raw = [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
@@ -82,10 +75,24 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers MapCacheLRU::has()
-	 * @covers MapCacheLRU::get()
-	 * @covers MapCacheLRU::set()
+	 * @covers MapCacheLRU::getWithSetCallback()
 	 */
+	public function testGetWithSetCallback() {
+		$cache = new MapCacheLRU( 3 );
+		$i = 0;
+		$fn = static function () use ( &$i ) {
+			$i++;
+			return $i;
+		};
+
+		$this->assertSame( null, $cache->get( 'a' ), 'initial' );
+		$this->assertSame( 1, $cache->getWithSetCallback( 'a', $fn ), 'first gen' );
+		$this->assertSame( 1, $cache->getWithSetCallback( 'a', $fn ), 'getWithSet hit' );
+		$this->assertSame( 1, $cache->get( 'a' ), 'plain get hit' );
+		$cache->clear( 'a' );
+		$this->assertSame( 2, $cache->getWithSetCallback( 'a', $fn ), 'second gen' );
+	}
+
 	public function testMissing() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
@@ -96,11 +103,6 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $cache->get( 'd', 0.0, false ) );
 	}
 
-	/**
-	 * @covers MapCacheLRU::has()
-	 * @covers MapCacheLRU::get()
-	 * @covers MapCacheLRU::set()
-	 */
 	public function testLRU() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
@@ -166,11 +168,6 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	/**
-	 * @covers MapCacheLRU::has()
-	 * @covers MapCacheLRU::get()
-	 * @covers MapCacheLRU::set()
-	 */
 	public function testExpiry() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
@@ -242,53 +239,74 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 1970, $cache->getField( 'MPs', 'Neil Kinnock' ) );
 	}
 
+	public static function provideInvalidKeys() {
+		yield [ 3.4 ];
+		yield [ false ];
+	}
+
 	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::has()
+	 */
+	public function testHasInvalidKey( $key ) {
+		$cache = new MapCacheLRU( 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->has( $key );
+	}
+
+	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::get()
+	 */
+	public function testGetInvalidKey( $key ) {
+		$cache = new MapCacheLRU( 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->get( $key );
+	}
+
+	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::set()
+	 */
+	public function testSetInvalidKey( $key ) {
+		$cache = new MapCacheLRU( 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->set( $key, 'x' );
+	}
+
+	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::hasField()
+	 */
+	public function testHasFieldInvalidKey( $field ) {
+		$cache = MapCacheLRU::newFromArray( [ 'key' => [] ], 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->hasField( 'key', $field );
+	}
+
+	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::getField()
+	 */
+	public function testGetFieldInvalidKey( $field ) {
+		$cache = MapCacheLRU::newFromArray( [ 'key' => [] ], 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->getField( 'key', $field );
+	}
+
+	/**
+	 * @dataProvider provideInvalidKeys
 	 * @covers MapCacheLRU::setField()
 	 */
-	public function testInvalidKeys() {
-		$cache = MapCacheLRU::newFromArray( [], 3 );
-
-		try {
-			$cache->has( 3.4 );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
-		try {
-			$cache->get( false );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
-		try {
-			$cache->set( 3.4, 'x' );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
-
-		try {
-			$cache->hasField( 'x', 3.4 );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
-		try {
-			$cache->getField( 'x', false );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
-		try {
-			$cache->setField( 'x', 3.4, 'x' );
-			$this->fail( "No exception" );
-		} catch ( UnexpectedValueException $e ) {
-			$this->assertRegExp( '/must be string or integer/', $e->getMessage() );
-		}
+	public function testSetFieldInvalidKey( $field ) {
+		$cache = new MapCacheLRU( 3 );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
+		$cache->setField( 'key', $field, 'x' );
 	}
 }
