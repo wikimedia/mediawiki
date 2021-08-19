@@ -222,6 +222,40 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * Confirm that 'ResourceModuleSkinStyles' skin attributes get injected
+	 * into the module, and have their file contents read correctly from their
+	 * own (out-of-module) directories.
+	 *
+	 * @covers ResourceLoader
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testInjectSkinStyles() {
+		$moduleDir = __DIR__ . '/../../data/resourceloader';
+		$skinDir = __DIR__ . '/../../data/resourceloader/myskin';
+		$rl = new ResourceLoader( new HashConfig( self::getSettings() ) );
+		$rl->setModuleSkinStyles( [
+			'fakeskin' => [
+				'localBasePath' => $skinDir,
+				'testing' => [
+					'override.css',
+				],
+			],
+		] );
+		$rl->register( 'testing', [
+			'localBasePath' => $moduleDir,
+			'styles' => [ 'simple.css' ],
+		] );
+		$ctx = $this->getResourceLoaderContext( [ 'skin' => 'fakeskin' ], $rl );
+
+		$module = $rl->getModule( 'testing' );
+		$this->assertInstanceOf( ResourceLoaderFileModule::class, $module );
+		$this->assertEquals(
+			[ 'all' => ".example { color: blue; }\n\n.override { line-height: 2; }\n" ],
+			$module->getStyles( $ctx )
+		);
+	}
+
+	/**
 	 * What happens when you mix @embed and @noflip?
 	 * This really is an integration test, but oh well.
 	 *
@@ -305,8 +339,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
 	 *
-	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
-	 * skin attributes.
+	 * The use of ResourceLoaderFilePath objects resembles the way that ResourceLoader::getModule()
+	 * injects additional files when 'ResourceModuleSkinStyles' or 'OOUIThemePaths' skin attributes
+	 * apply to a given module.
 	 *
 	 * @covers ResourceLoaderFilePath::getLocalBasePath
 	 * @covers ResourceLoaderFilePath::getRemoteBasePath
