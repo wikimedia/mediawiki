@@ -2727,7 +2727,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
 		$deletePage = new DeletePage( $this, $deleter );
-		$status = $deletePage->delete( $reason, $suppress, $error, $tags ?: [], $logsubtype, $immediate );
+		$status = $deletePage
+			->setSuppress( $suppress )
+			->setTags( $tags ?: [] )
+			->setLogSubtype( $logsubtype )
+			->forceImmediate( $immediate )
+			->delete( $reason );
+		$error = $deletePage->getLegacyHookErrors();
 		if ( $status->isGood() && $status->value === false ) {
 			// BC for scheduled deletion
 			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
@@ -2757,7 +2763,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
 		$deletePage = new DeletePage( $this, $deleter );
-		$status = $deletePage->deleteBatched( $reason, $suppress, $tags, $logsubtype, $immediate, $webRequestId );
+		$status = $deletePage
+			->setSuppress( $suppress )
+			->setTags( $tags )
+			->setLogSubtype( $logsubtype )
+			->forceImmediate( $immediate )
+			->deleteInternal( $reason, $webRequestId );
 		if ( $status->isGood() && $status->value === false ) {
 			// BC for scheduled deletion
 			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
