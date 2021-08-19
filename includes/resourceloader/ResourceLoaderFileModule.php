@@ -837,6 +837,41 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return [];
 	}
 
+	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
+		$moduleName = $this->getName();
+		foreach ( $moduleSkinStyles as $skinName => $overrides ) {
+			// If a module provides overrides for a skin, and that skin also provides overrides
+			// for the same module, then the module has precedence.
+			if ( isset( $this->skinStyles[$skinName] ) ) {
+				continue;
+			}
+
+			// If $moduleName in ResourceModuleSkinStyles is preceded with a '+', the defined style
+			// files will be added to 'default' skinStyles, otherwise 'default' will be ignored.
+			if ( isset( $overrides[$moduleName] ) ) {
+				$paths = (array)$overrides[$moduleName];
+				$styleFiles = [];
+			} elseif ( isset( $overrides['+' . $moduleName] ) ) {
+				$paths = (array)$overrides['+' . $moduleName];
+				$styleFiles = isset( $this->skinStyles['default'] ) ?
+					(array)$this->skinStyles['default'] :
+					[];
+			} else {
+				continue;
+			}
+
+			// Add new file paths, remapping them to refer to our directories and not use settings
+			// from the module we're modifying, which come from the base definition.
+			list( $localBasePath, $remoteBasePath ) = self::extractBasePaths( $overrides );
+
+			foreach ( $paths as $path ) {
+				$styleFiles[] = new ResourceLoaderFilePath( $path, $localBasePath, $remoteBasePath );
+			}
+
+			$this->skinStyles[$skinName] = $styleFiles;
+		}
+	}
+
 	/**
 	 * Get a list of file paths for all styles in this module, in order of proper inclusion.
 	 *

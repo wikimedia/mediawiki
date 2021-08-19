@@ -127,6 +127,19 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Provide overrides for skinStyles to modules that support that.
+	 *
+	 * This MUST be called after self::setName().
+	 *
+	 * @since 1.37
+	 * @see $wgResourceModuleSkinStyles
+	 * @param array $moduleSkinStyles
+	 */
+	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
+		// Stub, only supported by FileModule currently.
+	}
+
+	/**
 	 * Inject the functions that load/save the indirect file path dependency list from storage
 	 *
 	 * @param callable $loadCallback Function of (module name, variant)
