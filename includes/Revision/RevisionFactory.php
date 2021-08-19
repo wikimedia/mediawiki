@@ -123,9 +123,10 @@ interface RevisionFactory extends IDBAccessObject {
 	 * that RevisionFactory needs to create a RevisionRecord from the row.
 	 *
 	 * @param mixed $row
+	 * @param string $table 'archive' or empty
 	 * @return bool
 	 */
-	public function isRevisionRow( $row );
+	public function isRevisionRow( $row, string $table = '' );
 
 }
 

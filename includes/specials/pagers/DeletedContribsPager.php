@@ -255,21 +255,12 @@ class DeletedContribsPager extends IndexPager {
 		$classes = [];
 		$attribs = [];
 
-		/*
-		 * There may be more than just revision rows. To make sure that we'll only be processing
-		 * revisions here, let's _try_ to build a revision out of our row (without displaying
-		 * notices though) and then trying to grab data from the built object. If we succeed,
-		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
-		 * to extensions to subscribe to the hook to parse the row.
-		 */
-		Wikimedia\suppressWarnings();
-		try {
+		if ( $this->revisionFactory->isRevisionRow( $row, 'archive' ) ) {
 			$revRecord = $this->revisionFactory->newRevisionFromArchiveRow( $row );
 			$validRevision = (bool)$revRecord->getId();
-		} catch ( Exception $e ) {
+		} else {
 			$validRevision = false;
 		}
-		Wikimedia\restoreWarnings();
 
 		if ( $validRevision ) {
 			$attribs['data-mw-revid'] = $revRecord->getId();
