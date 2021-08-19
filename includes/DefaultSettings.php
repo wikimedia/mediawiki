@@ -9682,13 +9682,23 @@ $wgHTTPProxy = '';
  *
  * This affects the following:
  * - MWHttpRequest: If a request is to be made to a domain listed here, or any
- *   subdomain thereof, then no proxy will be used.
+ *   subdomain thereof, then $wgLocalHTTPProxy will be used.
  *   Command-line scripts are not affected by this setting and will always use
  *   the proxy if it is configured.
  *
  * @since 1.25
  */
 $wgLocalVirtualHosts = [];
+
+/**
+ * Proxy to use to requests to domains in $wgLocalVirtualHosts
+ *
+ * If set to false, no proxy will be used for local requests
+ *
+ * @var string|bool
+ * @since 1.37
+ */
+$wgLocalHTTPProxy = false;
 
 /**
  * Whether to respect/honour the request ID provided by the incoming request
