@@ -94,6 +94,9 @@
 		"noWikiText": {
 			"file": "images/icons/noWikiText.svg"
 		},
+		"ocr": {
+			"file": "images/icons/ocr.svg"
+		},
 		"outline": {
 			"file": {
 				"ltr": "images/icons/outline-ltr.svg",
