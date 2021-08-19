@@ -478,7 +478,8 @@ class JobQueueGroup {
 	private function assertValidJobs( array $jobs ) {
 		foreach ( $jobs as $job ) { // sanity checks
 			if ( !( $job instanceof IJobSpecification ) ) {
-				throw new InvalidArgumentException( "Expected IJobSpecification objects" );
+				$type = is_object( $job ) ? get_class( $job ) : gettype( $job );
+				throw new InvalidArgumentException( "Expected IJobSpecification objects, got " . $type );
 			}
 		}
 	}
