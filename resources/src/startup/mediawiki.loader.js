@@ -1754,377 +1754,377 @@
 			}
 
 			return registry[ moduleName ].module.exports;
+		}
+	};
+
+	/**
+	 * On browsers that implement the localStorage API, the module store serves as a
+	 * smart complement to the browser cache. Unlike the browser cache, the module store
+	 * can slice a concatenated response from ResourceLoader into its constituent
+	 * modules and cache each of them separately, using each module's versioning scheme
+	 * to determine when the cache should be invalidated.
+	 *
+	 * @private
+	 * @singleton
+	 * @class mw.loader.store
+	 */
+	mw.loader.store = {
+		// Whether the store is in use on this page.
+		enabled: null,
+
+		// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
+		MODULE_SIZE_MAX: 1e5,
+
+		// The contents of the store, mapping '[name]@[version]' keys
+		// to module implementations.
+		items: {},
+
+		// Names of modules to be stored during the next update.
+		// See add() and update().
+		queue: [],
+
+		// Cache hit stats
+		stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
+
+		/**
+		 * Construct a JSON-serializable object representing the content of the store.
+		 *
+		 * @return {Object} Module store contents.
+		 */
+		toJSON: function () {
+			return {
+				items: mw.loader.store.items,
+				vary: mw.loader.store.vary,
+				// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
+				// which is enough for the purpose of expiring after ~ 30 days.
+				asOf: Math.ceil( Date.now() / 1e7 )
+			};
 		},
 
 		/**
-		 * On browsers that implement the localStorage API, the module store serves as a
-		 * smart complement to the browser cache. Unlike the browser cache, the module store
-		 * can slice a concatenated response from ResourceLoader into its constituent
-		 * modules and cache each of them separately, using each module's versioning scheme
-		 * to determine when the cache should be invalidated.
+		 * The localStorage key for the entire module store. The key references
+		 * $wgDBname to prevent clashes between wikis which share a common host.
+		 *
+		 * @property {string}
+		 */
+		key: $VARS.storeKey,
+
+		/**
+		 * A string containing various factors on which to the module cache should vary.
+		 *
+		 * @property {string}
+		 */
+		vary: $VARS.storeVary,
+
+		/**
+		 * Initialize the store.
+		 *
+		 * Retrieves store from localStorage and (if successfully retrieved) decoding
+		 * the stored JSON value to a plain object.
+		 *
+		 * The try / catch block is used for JSON & localStorage feature detection.
+		 * See the in-line documentation for Modernizr's localStorage feature detection
+		 * code for a full account of why we need a try / catch:
+		 * <https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796>.
+		 */
+		init: function () {
+			var raw, data;
+
+			if ( this.enabled !== null ) {
+				// Init already ran
+				return;
+			}
+
+			if (
+				!$VARS.storeEnabled ||
+
+				// Disabled because localStorage quotas are tight and (in Firefox's case)
+				// shared by multiple origins.
+				// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
+				/Firefox/.test( navigator.userAgent )
+			) {
+				// Clear any previous store to free up space. (T66721)
+				this.clear();
+				this.enabled = false;
+				return;
+			}
+
+			try {
+				// This a string we stored, or `null` if the key does not (yet) exist.
+				raw = localStorage.getItem( this.key );
+				// If we get here, localStorage is available; mark enabled
+				this.enabled = true;
+				// If null, JSON.parse() will cast to string and re-parse, still null.
+				data = JSON.parse( raw );
+				if ( data &&
+					typeof data.items === 'object' &&
+					data.vary === this.vary &&
+					// Only use if it's been less than 30 days since the data was written
+					// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
+					Date.now() < ( data.asOf * 1e7 ) + 259e7
+				) {
+					// The data is not corrupt, matches our vary context, and has not expired.
+					this.items = data.items;
+					return;
+				}
+			} catch ( e ) {
+				// Perhaps localStorage was disabled by the user, or got corrupted.
+				// See point 3 and 4 below. (T195647)
+			}
+
+			// If we get here, one of four things happened:
+			//
+			// 1. localStorage did not contain our store key.
+			//    This means `raw` is `null`, and we're on a fresh page view (cold cache).
+			//    The store was enabled, and `items` starts fresh.
+			//
+			// 2. localStorage contained parseable data under our store key,
+			//    but it's not applicable to our current context (see #vary).
+			//    The store was enabled, and `items` starts fresh.
+			//
+			// 3. JSON.parse threw (localStorage contained corrupt data).
+			//    This means `raw` contains a string.
+			//    The store was enabled, and `items` starts fresh.
+			//
+			// 4. localStorage threw (disabled or otherwise unavailable).
+			//    This means `raw` was never assigned.
+			//    We will disable the store below.
+			if ( raw === undefined ) {
+				// localStorage failed; disable store
+				this.enabled = false;
+			}
+		},
+
+		/**
+		 * Retrieve a module from the store and update cache hit stats.
+		 *
+		 * @param {string} module Module name
+		 * @return {string|boolean} Module implementation or false if unavailable
+		 */
+		get: function ( module ) {
+			var key;
+
+			if ( this.enabled ) {
+				key = getModuleKey( module );
+				if ( key in this.items ) {
+					this.stats.hits++;
+					return this.items[ key ];
+				}
+
+				this.stats.misses++;
+			}
+
+			return false;
+		},
+
+		/**
+		 * Queue the name of a module that the next update should consider storing.
+		 *
+		 * @since 1.32
+		 * @param {string} module Module name
+		 */
+		add: function ( module ) {
+			if ( this.enabled ) {
+				this.queue.push( module );
+				this.requestUpdate();
+			}
+		},
+
+		/**
+		 * Add the contents of the named module to the in-memory store.
+		 *
+		 * This method does not guarantee that the module will be stored.
+		 * Inspection of the module's meta data and size will ultimately decide that.
+		 *
+		 * This method is considered internal to mw.loader.store and must only
+		 * be called if the store is enabled.
 		 *
 		 * @private
-		 * @singleton
-		 * @class mw.loader.store
+		 * @param {string} module Module name
 		 */
-		store: {
-			// Whether the store is in use on this page.
-			enabled: null,
+		set: function ( module ) {
+			var key, args, src,
+				encodedScript,
+				descriptor = mw.loader.moduleRegistry[ module ];
 
-			// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
-			MODULE_SIZE_MAX: 1e5,
+			key = getModuleKey( module );
 
-			// The contents of the store, mapping '[name]@[version]' keys
-			// to module implementations.
-			items: {},
+			if (
+				// Already stored a copy of this exact version
+				key in this.items ||
+				// Module failed to load
+				!descriptor ||
+				descriptor.state !== 'ready' ||
+				// Unversioned, private, or site-/user-specific
+				!descriptor.version ||
+				descriptor.group === $VARS.groupPrivate ||
+				descriptor.group === $VARS.groupUser ||
+				// Partial descriptor
+				// (e.g. skipped module, or style module with state=ready)
+				[ descriptor.script, descriptor.style, descriptor.messages,
+					descriptor.templates ].indexOf( undefined ) !== -1
+			) {
+				// Decline to store
+				return;
+			}
 
-			// Names of modules to be stored during the next update.
-			// See add() and update().
-			queue: [],
-
-			// Cache hit stats
-			stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
-
-			/**
-			 * Construct a JSON-serializable object representing the content of the store.
-			 *
-			 * @return {Object} Module store contents.
-			 */
-			toJSON: function () {
-				return {
-					items: mw.loader.store.items,
-					vary: mw.loader.store.vary,
-					// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
-					// which is enough for the purpose of expiring after ~ 30 days.
-					asOf: Math.ceil( Date.now() / 1e7 )
-				};
-			},
-
-			/**
-			 * The localStorage key for the entire module store. The key references
-			 * $wgDBname to prevent clashes between wikis which share a common host.
-			 *
-			 * @property {string}
-			 */
-			key: $VARS.storeKey,
-
-			/**
-			 * A string containing various factors on which to the module cache should vary.
-			 *
-			 * @property {string}
-			 */
-			vary: $VARS.storeVary,
-
-			/**
-			 * Initialize the store.
-			 *
-			 * Retrieves store from localStorage and (if successfully retrieved) decoding
-			 * the stored JSON value to a plain object.
-			 *
-			 * The try / catch block is used for JSON & localStorage feature detection.
-			 * See the in-line documentation for Modernizr's localStorage feature detection
-			 * code for a full account of why we need a try / catch:
-			 * <https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796>.
-			 */
-			init: function () {
-				var raw, data;
-
-				if ( this.enabled !== null ) {
-					// Init already ran
-					return;
-				}
-
-				if (
-					!$VARS.storeEnabled ||
-
-					// Disabled because localStorage quotas are tight and (in Firefox's case)
-					// shared by multiple origins.
-					// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-					/Firefox/.test( navigator.userAgent )
+			try {
+				if ( typeof descriptor.script === 'function' ) {
+					// Function literal: cast to string
+					encodedScript = String( descriptor.script );
+				} else if (
+					// Plain object: serialise as object literal (not JSON),
+					// making sure to preserve the functions.
+					typeof descriptor.script === 'object' &&
+					descriptor.script &&
+					!Array.isArray( descriptor.script )
 				) {
-					// Clear any previous store to free up space. (T66721)
-					this.clear();
-					this.enabled = false;
-					return;
+					encodedScript = '{' +
+						'main:' + JSON.stringify( descriptor.script.main ) + ',' +
+						'files:{' +
+						Object.keys( descriptor.script.files ).map( function ( file ) {
+							var value = descriptor.script.files[ file ];
+							return JSON.stringify( file ) + ':' +
+								( typeof value === 'function' ? value : JSON.stringify( value ) );
+						} ).join( ',' ) +
+						'}}';
+				} else {
+					// Array of urls, or null.
+					encodedScript = JSON.stringify( descriptor.script );
 				}
-
-				try {
-					// This a string we stored, or `null` if the key does not (yet) exist.
-					raw = localStorage.getItem( this.key );
-					// If we get here, localStorage is available; mark enabled
-					this.enabled = true;
-					// If null, JSON.parse() will cast to string and re-parse, still null.
-					data = JSON.parse( raw );
-					if ( data &&
-						typeof data.items === 'object' &&
-						data.vary === this.vary &&
-						// Only use if it's been less than 30 days since the data was written
-						// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
-						Date.now() < ( data.asOf * 1e7 ) + 259e7
-					) {
-						// The data is not corrupt, matches our vary context, and has not expired.
-						this.items = data.items;
-						return;
-					}
-				} catch ( e ) {
-					// Perhaps localStorage was disabled by the user, or got corrupted.
-					// See point 3 and 4 below. (T195647)
-				}
-
-				// If we get here, one of four things happened:
-				//
-				// 1. localStorage did not contain our store key.
-				//    This means `raw` is `null`, and we're on a fresh page view (cold cache).
-				//    The store was enabled, and `items` starts fresh.
-				//
-				// 2. localStorage contained parseable data under our store key,
-				//    but it's not applicable to our current context (see #vary).
-				//    The store was enabled, and `items` starts fresh.
-				//
-				// 3. JSON.parse threw (localStorage contained corrupt data).
-				//    This means `raw` contains a string.
-				//    The store was enabled, and `items` starts fresh.
-				//
-				// 4. localStorage threw (disabled or otherwise unavailable).
-				//    This means `raw` was never assigned.
-				//    We will disable the store below.
-				if ( raw === undefined ) {
-					// localStorage failed; disable store
-					this.enabled = false;
-				}
-			},
-
-			/**
-			 * Retrieve a module from the store and update cache hit stats.
-			 *
-			 * @param {string} module Module name
-			 * @return {string|boolean} Module implementation or false if unavailable
-			 */
-			get: function ( module ) {
-				var key;
-
-				if ( this.enabled ) {
-					key = getModuleKey( module );
-					if ( key in this.items ) {
-						this.stats.hits++;
-						return this.items[ key ];
-					}
-
-					this.stats.misses++;
-				}
-
-				return false;
-			},
-
-			/**
-			 * Queue the name of a module that the next update should consider storing.
-			 *
-			 * @since 1.32
-			 * @param {string} module Module name
-			 */
-			add: function ( module ) {
-				if ( this.enabled ) {
-					this.queue.push( module );
-					this.requestUpdate();
-				}
-			},
-
-			/**
-			 * Add the contents of the named module to the in-memory store.
-			 *
-			 * This method does not guarantee that the module will be stored.
-			 * Inspection of the module's meta data and size will ultimately decide that.
-			 *
-			 * This method is considered internal to mw.loader.store and must only
-			 * be called if the store is enabled.
-			 *
-			 * @private
-			 * @param {string} module Module name
-			 */
-			set: function ( module ) {
-				var key, args, src,
+				args = [
+					JSON.stringify( key ),
 					encodedScript,
-					descriptor = mw.loader.moduleRegistry[ module ];
+					JSON.stringify( descriptor.style ),
+					JSON.stringify( descriptor.messages ),
+					JSON.stringify( descriptor.templates )
+				];
+			} catch ( e ) {
+				mw.trackError( 'resourceloader.exception', {
+					exception: e,
+					source: 'store-localstorage-json'
+				} );
+				return;
+			}
 
-				key = getModuleKey( module );
+			src = 'mw.loader.implement(' + args.join( ',' ) + ');';
+			if ( src.length > this.MODULE_SIZE_MAX ) {
+				return;
+			}
+			this.items[ key ] = src;
+		},
 
-				if (
-					// Already stored a copy of this exact version
-					key in this.items ||
-					// Module failed to load
-					!descriptor ||
-					descriptor.state !== 'ready' ||
-					// Unversioned, private, or site-/user-specific
-					!descriptor.version ||
-					descriptor.group === $VARS.groupPrivate ||
-					descriptor.group === $VARS.groupUser ||
-					// Partial descriptor
-					// (e.g. skipped module, or style module with state=ready)
-					[ descriptor.script, descriptor.style, descriptor.messages,
-						descriptor.templates ].indexOf( undefined ) !== -1
-				) {
-					// Decline to store
-					return;
+		/**
+		 * Iterate through the module store, removing any item that does not correspond
+		 * (in name and version) to an item in the module registry.
+		 */
+		prune: function () {
+			var key, module;
+
+			for ( key in this.items ) {
+				module = key.slice( 0, key.indexOf( '@' ) );
+				if ( getModuleKey( module ) !== key ) {
+					this.stats.expired++;
+					delete this.items[ key ];
+				} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
+					// This value predates the enforcement of a size limit on cached modules.
+					delete this.items[ key ];
+				}
+			}
+		},
+
+		/**
+		 * Clear the entire module store right now.
+		 */
+		clear: function () {
+			this.items = {};
+			try {
+				localStorage.removeItem( this.key );
+			} catch ( e ) {}
+		},
+
+		/**
+		 * Request a sync of the in-memory store back to persisted localStorage.
+		 *
+		 * This function debounces updates. The debouncing logic should account
+		 * for the following factors:
+		 *
+		 * - Writing to localStorage is an expensive operation that must not happen
+		 *   during the critical path of initialising and executing module code.
+		 *   Instead, it should happen at a later time after modules have been given
+		 *   time and priority to do their thing first.
+		 *
+		 * - This method is called from mw.loader.store.add(), which will be called
+		 *   hundreds of times on a typical page, including within the same call-stack
+		 *   and eventloop-tick. This is because responses from load.php happen in
+		 *   batches. As such, we want to allow all modules from the same load.php
+		 *   response to be written to disk with a single flush, not many.
+		 *
+		 * - Repeatedly deleting and creating timers is non-trivial.
+		 *
+		 * - localStorage is shared by all pages from the same origin, if multiple
+		 *   pages are loaded with different module sets, the possibility exists that
+		 *   modules saved by one page will be clobbered by another. The impact of
+		 *   this is minor, it merely causes a less efficient cache use, and the
+		 *   problem would be corrected by subsequent page views.
+		 *
+		 * This method is considered internal to mw.loader.store and must only
+		 * be called if the store is enabled.
+		 *
+		 * @private
+		 * @method
+		 */
+		requestUpdate: ( function () {
+			var hasPendingWrites = false;
+
+			function flushWrites() {
+				var data, key;
+
+				// Remove anything from the in-memory store that came from previous page
+				// loads that no longer corresponds with current module names and versions.
+				mw.loader.store.prune();
+				// Process queued module names, serialise their contents to the in-memory store.
+				while ( mw.loader.store.queue.length ) {
+					mw.loader.store.set( mw.loader.store.queue.shift() );
 				}
 
+				key = mw.loader.store.key;
 				try {
-					if ( typeof descriptor.script === 'function' ) {
-						// Function literal: cast to string
-						encodedScript = String( descriptor.script );
-					} else if (
-						// Plain object: serialise as object literal (not JSON),
-						// making sure to preserve the functions.
-						typeof descriptor.script === 'object' &&
-						descriptor.script &&
-						!Array.isArray( descriptor.script )
-					) {
-						encodedScript = '{' +
-							'main:' + JSON.stringify( descriptor.script.main ) + ',' +
-							'files:{' +
-							Object.keys( descriptor.script.files ).map( function ( file ) {
-								var value = descriptor.script.files[ file ];
-								return JSON.stringify( file ) + ':' +
-									( typeof value === 'function' ? value : JSON.stringify( value ) );
-							} ).join( ',' ) +
-							'}}';
-					} else {
-						// Array of urls, or null.
-						encodedScript = JSON.stringify( descriptor.script );
-					}
-					args = [
-						JSON.stringify( key ),
-						encodedScript,
-						JSON.stringify( descriptor.style ),
-						JSON.stringify( descriptor.messages ),
-						JSON.stringify( descriptor.templates )
-					];
+					// Replacing the content of the module store might fail if the new
+					// contents would exceed the browser's localStorage size limit. To
+					// avoid clogging the browser with stale data, always remove the old
+					// value before attempting to set the new one.
+					localStorage.removeItem( key );
+					data = JSON.stringify( mw.loader.store );
+					localStorage.setItem( key, data );
 				} catch ( e ) {
 					mw.trackError( 'resourceloader.exception', {
 						exception: e,
-						source: 'store-localstorage-json'
+						source: 'store-localstorage-update'
 					} );
-					return;
 				}
 
-				src = 'mw.loader.implement(' + args.join( ',' ) + ');';
-				if ( src.length > this.MODULE_SIZE_MAX ) {
-					return;
+				// Let the next call to requestUpdate() create a new timer.
+				hasPendingWrites = false;
+			}
+
+			function onTimeout() {
+				// Defer the actual write via requestIdleCallback
+				mw.requestIdleCallback( flushWrites );
+			}
+
+			return function () {
+				// On the first call to requestUpdate(), create a timer that
+				// waits at least two seconds, then calls onTimeout.
+				// The main purpose is to allow the current batch of load.php
+				// responses to complete before we do anything. This batch can
+				// trigger many hundreds of calls to requestUpdate().
+				if ( !hasPendingWrites ) {
+					hasPendingWrites = true;
+					setTimeout( onTimeout, 2000 );
 				}
-				this.items[ key ] = src;
-			},
-
-			/**
-			 * Iterate through the module store, removing any item that does not correspond
-			 * (in name and version) to an item in the module registry.
-			 */
-			prune: function () {
-				var key, module;
-
-				for ( key in this.items ) {
-					module = key.slice( 0, key.indexOf( '@' ) );
-					if ( getModuleKey( module ) !== key ) {
-						this.stats.expired++;
-						delete this.items[ key ];
-					} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
-						// This value predates the enforcement of a size limit on cached modules.
-						delete this.items[ key ];
-					}
-				}
-			},
-
-			/**
-			 * Clear the entire module store right now.
-			 */
-			clear: function () {
-				this.items = {};
-				try {
-					localStorage.removeItem( this.key );
-				} catch ( e ) {}
-			},
-
-			/**
-			 * Request a sync of the in-memory store back to persisted localStorage.
-			 *
-			 * This function debounces updates. The debouncing logic should account
-			 * for the following factors:
-			 *
-			 * - Writing to localStorage is an expensive operation that must not happen
-			 *   during the critical path of initialising and executing module code.
-			 *   Instead, it should happen at a later time after modules have been given
-			 *   time and priority to do their thing first.
-			 *
-			 * - This method is called from mw.loader.store.add(), which will be called
-			 *   hundreds of times on a typical page, including within the same call-stack
-			 *   and eventloop-tick. This is because responses from load.php happen in
-			 *   batches. As such, we want to allow all modules from the same load.php
-			 *   response to be written to disk with a single flush, not many.
-			 *
-			 * - Repeatedly deleting and creating timers is non-trivial.
-			 *
-			 * - localStorage is shared by all pages from the same origin, if multiple
-			 *   pages are loaded with different module sets, the possibility exists that
-			 *   modules saved by one page will be clobbered by another. The impact of
-			 *   this is minor, it merely causes a less efficient cache use, and the
-			 *   problem would be corrected by subsequent page views.
-			 *
-			 * This method is considered internal to mw.loader.store and must only
-			 * be called if the store is enabled.
-			 *
-			 * @private
-			 * @method
-			 */
-			requestUpdate: ( function () {
-				var hasPendingWrites = false;
-
-				function flushWrites() {
-					var data, key;
-
-					// Remove anything from the in-memory store that came from previous page
-					// loads that no longer corresponds with current module names and versions.
-					mw.loader.store.prune();
-					// Process queued module names, serialise their contents to the in-memory store.
-					while ( mw.loader.store.queue.length ) {
-						mw.loader.store.set( mw.loader.store.queue.shift() );
-					}
-
-					key = mw.loader.store.key;
-					try {
-						// Replacing the content of the module store might fail if the new
-						// contents would exceed the browser's localStorage size limit. To
-						// avoid clogging the browser with stale data, always remove the old
-						// value before attempting to set the new one.
-						localStorage.removeItem( key );
-						data = JSON.stringify( mw.loader.store );
-						localStorage.setItem( key, data );
-					} catch ( e ) {
-						mw.trackError( 'resourceloader.exception', {
-							exception: e,
-							source: 'store-localstorage-update'
-						} );
-					}
-
-					// Let the next call to requestUpdate() create a new timer.
-					hasPendingWrites = false;
-				}
-
-				function onTimeout() {
-					// Defer the actual write via requestIdleCallback
-					mw.requestIdleCallback( flushWrites );
-				}
-
-				return function () {
-					// On the first call to requestUpdate(), create a timer that
-					// waits at least two seconds, then calls onTimeout.
-					// The main purpose is to allow the current batch of load.php
-					// responses to complete before we do anything. This batch can
-					// trigger many hundreds of calls to requestUpdate().
-					if ( !hasPendingWrites ) {
-						hasPendingWrites = true;
-						setTimeout( onTimeout, 2000 );
-					}
-				};
-			}() )
-		}
+			};
+		}() )
 	};
 
 }() );
