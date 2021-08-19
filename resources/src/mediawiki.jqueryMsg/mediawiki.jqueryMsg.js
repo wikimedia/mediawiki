@@ -163,20 +163,14 @@ mw.jqueryMsg = {};
 /**
  * Initialize parser defaults.
  *
- * ResourceLoaderJqueryMsgModule calls this to provide default values from
- * Sanitizer.php for allowed HTML elements. To override this data for individual
- * parsers, pass the relevant options to mw.jqueryMsg.Parser.
+ * This is currently used by the QUnit testrunner to change the reference in
+ * parserDefaults.messages to the test messages and back.
  *
  * @private
  * @param {Object} data New data to extend parser defaults with
- * @param {boolean} [deep=false] Whether the extend is done recursively (deep)
  */
-mw.jqueryMsg.setParserDefaults = function ( data, deep ) {
-	if ( deep ) {
-		$.extend( true, parserDefaults, data );
-	} else {
-		$.extend( parserDefaults, data );
-	}
+mw.jqueryMsg.setParserDefaults = function ( data ) {
+	$.extend( parserDefaults, data );
 };
 
 /**

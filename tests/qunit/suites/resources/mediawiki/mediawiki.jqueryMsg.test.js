@@ -1341,26 +1341,7 @@
 				FOO: 'foo',
 				BAR: 'bar'
 			},
-			'setParserDefaults is shallow by default'
-		);
-
-		mw.jqueryMsg.setParserDefaults(
-			{
-				magic: {
-					BAZ: 'baz'
-				}
-			},
-			true
-		);
-
-		assert.deepEqual(
-			mw.jqueryMsg.getParserDefaults().magic,
-			{
-				FOO: 'foo',
-				BAR: 'bar',
-				BAZ: 'baz'
-			},
-			'setParserDefaults is deep if requested'
+			'setParserDefaults updates the parser defaults'
 		);
 	} );
 }() );
