@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
  * This replaces the $wgVersion global found in earlier versions. When updating,
  * remember to also bump the stand-alone duplicate of this in PHPVersionCheck.
  *
- * @since 1.35
+ * @since 1.35 (also backported to 1.33.3 and 1.34.1)
  */
 define( 'MW_VERSION', '1.37.0-alpha' );
 
