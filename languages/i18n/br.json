@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adriendelucca",
 			"Als-Holder",
 			"Candalua",
 			"DannyS712",
@@ -2196,7 +2197,7 @@
 	"sessionfailure": "Evit doare ez eus ur gudenn gant ho talc'h;\nNullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.\nKlikit war \"kent\" hag adkargit ar bajenn oc'h deuet drezi; goude klaskit en-dro.",
 	"changecontentmodel": "Cheñch patrom danvez ur bajenn",
 	"changecontentmodel-legend": "Cheñch ar patrom danvez",
-	"changecontentmodel-title-label": "Anv ar bajenn",
+	"changecontentmodel-title-label": "Titl ar bajenn :",
 	"changecontentmodel-model-label": "Patrom danvez nevez",
 	"changecontentmodel-reason-label": "Abeg :",
 	"changecontentmodel-submit": "Kemmañ",
@@ -2592,7 +2593,7 @@
 	"allmessages-filter-modified": "Kemmet",
 	"allmessages-prefix": "Silañ dre rakger",
 	"allmessages-language": "Yezh :",
-	"allmessages-filter-submit": "Mont",
+	"allmessages-filter-submit": "Silañ",
 	"allmessages-filter-translate": "Treiñ",
 	"thumbnail-more": "Brasaat",
 	"filemissing": "Restr ezvezant",
@@ -3211,7 +3212,7 @@
 	"compare-rev2": "Adweladenn 2",
 	"compare-submit": "Keñveriañ",
 	"compare-revision-not-exists": "N'eus ket eus an adweladenn spisaet ganeoc'h.",
-	"diff-form": "ur '''furmskrid'''",
+	"diff-form": "Diforc'hioù",
 	"permanentlink": "Peurliamm",
 	"permanentlink-submit": "Lammañ d'ar c'hemm",
 	"specialpageinfo-submit": "Mont d'ar bajenn",
