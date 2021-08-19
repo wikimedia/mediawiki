@@ -270,6 +270,14 @@ class ActionFactory {
 		// $spec is either a class name, a callable, a specific object to use, or an
 		// ObjectFactory spec. Convert to ObjectFactory spec, or return the specific object.
 		if ( is_string( $spec ) ) {
+			if ( !class_exists( $spec ) ) {
+				$this->logger->info(
+					'Missing action class {actionClass}, treating as disabled',
+					[ 'actionClass' => $spec ]
+				);
+				return false;
+			}
+			// Class exists, can be used by ObjectFactory
 			$spec = [ 'class' => $spec ];
 		} elseif ( is_callable( $spec ) ) {
 			$spec = [ 'factory' => $spec ];
