@@ -150,67 +150,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	public function provideTestIsFileModule() {
-		$fileModuleObj = $this->createMock( ResourceLoaderFileModule::class );
-		return [
-			'factory ignored' => [ false,
-				[
-					'factory' => static function () {
-						return new ResourceLoaderTestModule();
-					}
-				]
-			],
-			'factory ignored (actual FileModule)' => [ false,
-				[
-					'factory' => static function () use ( $fileModuleObj ) {
-						return $fileModuleObj;
-					}
-				]
-			],
-			'simple empty' => [ true,
-				[]
-			],
-			'simple scripts' => [ true,
-				[ 'scripts' => 'example.js' ]
-			],
-			'simple scripts with targets' => [ true, [
-				'scripts' => [ 'a.js', 'b.js' ],
-				'targets' => [ 'desktop', 'mobile' ],
-			] ],
-			'FileModule' => [ true,
-				[ 'class' => ResourceLoaderFileModule::class, 'scripts' => 'example.js' ]
-			],
-			'TestModule' => [ false,
-				[ 'class' => ResourceLoaderTestModule::class, 'scripts' => 'example.js' ]
-			],
-			'SkinModule (FileModule subclass)' => [ true,
-				[ 'class' => ResourceLoaderSkinModule::class, 'scripts' => 'example.js' ]
-			],
-			'WikiModule' => [ false, [
-				'class' => ResourceLoaderWikiModule::class,
-				'scripts' => [ 'MediaWiki:Example.js' ],
-			] ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideTestIsFileModule
-	 * @covers ResourceLoader::isFileModule
-	 */
-	public function testIsFileModule( $expected, $module ) {
-		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader() );
-		$rl->register( 'test', $module );
-		$this->assertSame( $expected, $rl->isFileModule( 'test' ) );
-	}
-
-	/**
-	 * @covers ResourceLoader::isFileModule
-	 */
-	public function testIsFileModuleUnknown() {
-		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader() );
-		$this->assertSame( false, $rl->isFileModule( 'unknown' ) );
-	}
-
 	/**
 	 * @covers ResourceLoader::isModuleRegistered
 	 */
