@@ -2946,11 +2946,19 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'selectFieldValues' )
+			->with(
+				[ 'watchlist' ],
+				'wl_id',
+				[ 'wl_user' => 1, 'wl_namespace' => 0, 'wl_title' => [ 'Foo', 'Bar' ] ]
+			)
+			->willReturn( [ '2', '3' ] );
+		$mockDb->expects( $this->once() )
 			->method( 'update' )
 			->with(
 				'watchlist',
 				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
-				[ 'wl_user' => 1, 'wl_namespace' => 0, 'wl_title' => [ 'Foo', 'Bar' ] ]
+				[ 'wl_id' => [ 2, 3 ] ]
 			)
 			->willReturn( true );
 		$mockDb->expects( $this->once() )
@@ -2978,28 +2986,35 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'addQuotes' )
 			->willReturn( '20200101000000' );
 		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
+			->method( 'select' )
 			->with(
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
-				'wl_user',
+				[ 'wl_id', 'wl_user' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
-					'wl_notificationtimestamp IS NULL',
+					'wl_notificationtimestamp' => null,
 					'we_expiry IS NULL OR we_expiry > 20200101000000',
 				]
 			)
-			->willReturn( [ '2', '3' ] );
+			->willReturn( [
+				(object)[
+					'wl_id' => '4',
+					'wl_user' => '2',
+				],
+				(object)[
+					'wl_id' => '5',
+					'wl_user' => '3',
+				],
+			] );
 		$mockDb->expects( $this->once() )
 			->method( 'update' )
 			->with(
 				'watchlist',
 				[ 'wl_notificationtimestamp' => null ],
 				[
-					'wl_user' => [ 2, 3 ],
-					'wl_namespace' => 0,
-					'wl_title' => 'SomeDbKey',
+					'wl_id' => [ 4, 5 ],
 				]
 			);
 
@@ -3040,15 +3055,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'addQuotes' )
 			->willReturn( '20200101000000' );
 		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
+			->method( 'select' )
 			->with(
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
-				'wl_user',
+				[ 'wl_id', 'wl_user' ],
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
-					'wl_notificationtimestamp IS NULL',
+					'wl_notificationtimestamp' => null,
 					'we_expiry IS NULL OR we_expiry > 20200101000000',
 				],
 				'WatchedItemStore::updateNotificationTimestamp',
@@ -3082,18 +3097,25 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$titleValue = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'select' )
-			->willReturn( [
+			->willReturnOnConsecutiveCalls( [
 				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
 					'wl_notificationtimestamp' => '20151212010101'
 				]
+			],
+			[
+				(object)[
+					'wl_id' => '4',
+					'wl_user' => '2',
+				],
+				(object)[
+					'wl_id' => '5',
+					'wl_user' => '3',
+				],
 			] );
-		$mockDb->expects( $this->once() )
-			->method( 'selectFieldValues' )
-			->willReturn( [ '2', '3' ] );
 		$mockDb->expects( $this->once() )
 			->method( 'update' );
 
