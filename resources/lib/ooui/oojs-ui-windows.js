@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.3
+ * OOUI v0.42.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-03-12T21:47:47Z
+ * Date: 2021-08-19T04:44:48Z
  */
 ( function ( OO ) {
 
@@ -188,9 +188,6 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.ActionSet = function OoUiActionSet( config ) {
-	// Configuration initialization
-	config = config || {};
-
 	// Mixin constructors
 	OO.EventEmitter.call( this );
 
@@ -309,8 +306,10 @@ OO.ui.ActionSet.prototype.isSpecial = function ( action ) {
  * @param {string|string[]} [filters.actions] Actions that action widgets must have
  * @param {string|string[]} [filters.flags] Flags that action widgets must have (e.g., 'safe')
  * @param {string|string[]} [filters.modes] Modes that action widgets must have
- * @param {boolean} [filters.visible] Action widgets must be visible
- * @param {boolean} [filters.disabled] Action widgets must be disabled
+ * @param {boolean} [filters.visible] Visibility that action widgets must have, omit to get both
+ *  visible and invisible
+ * @param {boolean} [filters.disabled] Disabled state that action widgets must have, omit to get
+ *  both enabled and disabled
  * @return {OO.ui.ActionWidget[]} Action widgets matching all criteria
  */
 OO.ui.ActionSet.prototype.get = function ( filters ) {
@@ -319,7 +318,7 @@ OO.ui.ActionSet.prototype.get = function ( filters ) {
 	if ( filters ) {
 		this.organize();
 
-		// Collect category candidates
+		// Collect candidates for the 3 categories "actions", "flags" and "modes"
 		matches = [];
 		for ( category in this.categorized ) {
 			list = filters[ category ];
@@ -575,24 +574,30 @@ OO.ui.ActionSet.prototype.organize = function () {
 		this.others = [];
 		for ( i = 0, iLen = this.list.length; i < iLen; i++ ) {
 			action = this.list[ i ];
-			if ( action.isVisible() ) {
-				// Populate categories
-				for ( category in this.categories ) {
-					if ( !this.categorized[ category ] ) {
-						this.categorized[ category ] = {};
-					}
-					list = action[ this.categories[ category ] ]();
-					if ( !Array.isArray( list ) ) {
-						list = [ list ];
-					}
-					for ( j = 0, jLen = list.length; j < jLen; j++ ) {
-						item = list[ j ];
-						if ( !this.categorized[ category ][ item ] ) {
-							this.categorized[ category ][ item ] = [];
-						}
-						this.categorized[ category ][ item ].push( action );
-					}
+			// Populate the 3 categories "actions", "flags" and "modes"
+			for ( category in this.categories ) {
+				if ( !this.categorized[ category ] ) {
+					this.categorized[ category ] = {};
 				}
+				/**
+				 * This calls one of these getters. All return strings or arrays of strings.
+				 * {@see OO.ui.ActionWidget.getAction}
+				 * {@see OO.ui.FlaggedElement.getFlags}
+				 * {@see OO.ui.ActionWidget.getModes}
+				 */
+				list = action[ this.categories[ category ] ]();
+				if ( !Array.isArray( list ) ) {
+					list = [ list ];
+				}
+				for ( j = 0, jLen = list.length; j < jLen; j++ ) {
+					item = list[ j ];
+					if ( !this.categorized[ category ][ item ] ) {
+						this.categorized[ category ][ item ] = [];
+					}
+					this.categorized[ category ][ item ].push( action );
+				}
+			}
+			if ( action.isVisible() ) {
 				// Populate special/others
 				special = false;
 				for ( j = 0, jLen = specialFlags.length; j < jLen; j++ ) {
@@ -2765,7 +2770,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 				actions = data.actions !== undefined ? data.actions : config.actions,
 				title = data.title !== undefined ? data.title : config.title;
 
-			this.title.setLabel( title ).setTitle( title );
+			this.title.setLabel( title );
 			this.actions.add( this.getActionWidgets( actions ) );
 
 			this.$element.on( 'keydown', this.onDialogKeyDownHandler );
