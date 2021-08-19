@@ -369,10 +369,11 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::preSaveTransform
 	 * @covers WikitextContent::fillParserOutput
 	 */
 	public function testHadSignature() {
+		$this->hideDeprecated( 'AbstractContent::preSaveTransform' );
+
 		$titleObj = Title::newFromText( __CLASS__ );
 
 		$content = new WikitextContent( '~~~~' );

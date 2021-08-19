@@ -8,51 +8,6 @@
  */
 class JsonContentTest extends MediaWikiLangTestCase {
 
-	public function provideDataToEncode() {
-		return [
-			[
-				// Round-trip empty array
-				'[]',
-				'[]',
-			],
-			[
-				// Round-trip empty object
-				'{}',
-				'{}',
-			],
-			[
-				// Round-trip empty array/object (nested)
-				'{ "foo": {}, "bar": [] }',
-				"{\n    \"foo\": {},\n    \"bar\": []\n}",
-			],
-			[
-				'{ "foo": "bar" }',
-				"{\n    \"foo\": \"bar\"\n}",
-			],
-			[
-				'{ "foo": 1000 }',
-				"{\n    \"foo\": 1000\n}",
-			],
-			[
-				'{ "foo": 1000, "0": "bar" }',
-				"{\n    \"foo\": 1000,\n    \"0\": \"bar\"\n}",
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideDataToEncode
-	 */
-	public function testPreSaveTransform( $input, $transformed ) {
-		$obj = new JsonContent( $input );
-		$newObj = $obj->preSaveTransform(
-			$this->createMock( Title::class ),
-			$this->createMock( User::class ),
-			$this->createMock( ParserOptions::class )
-		);
-		$this->assertTrue( $newObj->equals( new JsonContent( $transformed ) ) );
-	}
-
 	public function provideDataAndParserText() {
 		return [
 			[
