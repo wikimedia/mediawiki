@@ -2502,13 +2502,14 @@ class RevisionStore
 	 * that RevisionStore needs to create a RevisionRecord from the row.
 	 *
 	 * @param mixed $row
+	 * @param string $table 'archive' or empty
 	 * @return bool
 	 */
-	public function isRevisionRow( $row ) {
+	public function isRevisionRow( $row, string $table = '' ) {
 		if ( !( $row instanceof stdClass ) ) {
 			return false;
 		}
-		$queryInfo = $this->getQueryInfo();
+		$queryInfo = $table === 'archive' ? $this->getArchiveQueryInfo() : $this->getQueryInfo();
 		foreach ( $queryInfo['fields'] as $alias => $field ) {
 			$name = is_numeric( $alias ) ? $field : $alias;
 			if ( !property_exists( $row, $name ) ) {
