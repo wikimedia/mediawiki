@@ -9,7 +9,7 @@
 ( function () {
 	'use strict';
 
-	var StringSet, isES6Supported,
+	var StringSet,
 		hasOwn = Object.hasOwnProperty;
 
 	function defineFallbacks() {
@@ -86,7 +86,7 @@
 	// - Edge 17 and 18, which don't support RegExp-related features
 	// - Safari and iOS versions below 14, which don't support non-BMP characters in variable names
 	//   (older versions have other problems too)
-	isES6Supported =
+	var isES6Supported =
 		// Check for Promise support (filters out most non-ES6 browsers)
 		typeof Promise === 'function' &&
 		// eslint-disable-next-line no-undef
@@ -272,7 +272,6 @@
 	 * @param {Object} cssBuffer
 	 */
 	function flushCssBuffer( cssBuffer ) {
-		var i;
 		// Make sure the next call to addEmbeddedCSS() starts a new buffer.
 		// This must be done before we run the callbacks, as those may end up
 		// queueing new chunks which would be lost otherwise (T105973).
@@ -285,7 +284,7 @@
 			lastCssBuffer = null;
 		}
 		newStyleTag( cssBuffer.cssText, marker );
-		for ( i = 0; i < cssBuffer.callbacks.length; i++ ) {
+		for ( var i = 0; i < cssBuffer.callbacks.length; i++ ) {
 			cssBuffer.callbacks[ i ]();
 		}
 	}
@@ -348,8 +347,7 @@
 	 * @return {boolean} True if all modules are in state 'ready', false otherwise
 	 */
 	function allReady( modules ) {
-		var i = 0;
-		for ( ; i < modules.length; i++ ) {
+		for ( var i = 0; i < modules.length; i++ ) {
 			if ( mw.loader.getState( modules[ i ] ) !== 'ready' ) {
 				return false;
 			}
@@ -379,10 +377,8 @@
 	 *  failed module otherwise
 	 */
 	function anyFailed( modules ) {
-		var state,
-			i = 0;
-		for ( ; i < modules.length; i++ ) {
-			state = mw.loader.getState( modules[ i ] );
+		for ( var i = 0; i < modules.length; i++ ) {
+			var state = mw.loader.getState( modules[ i ] );
 			if ( state === 'error' || state === 'missing' ) {
 				return modules[ i ];
 			}
@@ -405,7 +401,7 @@
 	 * @private
 	 */
 	function doPropagation() {
-		var errorModule, baseModuleError, module, i, failed, job,
+		var module, i, job,
 			didPropagate = true;
 
 		// Keep going until the last iteration performed no actions.
@@ -414,8 +410,8 @@
 
 			// Stage 1: Propagate failures
 			while ( errorModules.length ) {
-				errorModule = errorModules.shift();
-				baseModuleError = baseModules.indexOf( errorModule ) !== -1;
+				var errorModule = errorModules.shift(),
+					baseModuleError = baseModules.indexOf( errorModule ) !== -1;
 				for ( module in registry ) {
 					if ( registry[ module ].state !== 'error' && registry[ module ].state !== 'missing' ) {
 						if ( baseModuleError && baseModules.indexOf( module ) === -1 ) {
@@ -449,7 +445,7 @@
 			// Stage 3: Invoke job callbacks that are no longer blocked
 			for ( i = 0; i < jobs.length; i++ ) {
 				job = jobs[ i ];
-				failed = anyFailed( job.dependencies );
+				var failed = anyFailed( job.dependencies );
 				if ( failed !== false || allReady( job.dependencies ) ) {
 					jobs.splice( i, 1 );
 					i -= 1;
@@ -535,7 +531,7 @@
 	 * @throws {Error} If an unknown module or a circular dependency is encountered
 	 */
 	function sortDependencies( module, resolved, unresolved ) {
-		var e, i, skip, deps;
+		var e;
 
 		if ( !( module in registry ) ) {
 			e = new Error( 'Unknown module: ' + module );
@@ -552,7 +548,7 @@
 
 		if ( typeof registry[ module ].skip === 'string' ) {
 			// eslint-disable-next-line no-new-func
-			skip = ( new Function( registry[ module ].skip )() );
+			var skip = ( new Function( registry[ module ].skip )() );
 			registry[ module ].skip = !!skip;
 			if ( skip ) {
 				registry[ module ].dependencies = [];
@@ -567,9 +563,9 @@
 		}
 
 		// Track down dependencies
-		deps = registry[ module ].dependencies;
+		var deps = registry[ module ].dependencies;
 		unresolved.add( module );
-		for ( i = 0; i < deps.length; i++ ) {
+		for ( var i = 0; i < deps.length; i++ ) {
 			if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 				if ( unresolved.has( deps[ i ] ) ) {
 					e = new Error(
@@ -662,24 +658,23 @@
 	 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
 	 */
 	function resolveRelativePath( relativePath, basePath ) {
-		var prefixes, prefix, baseDirParts,
-			relParts = relativePath.match( /^((?:\.\.?\/)+)(.*)$/ );
-
+		var relParts = relativePath.match( /^((?:\.\.?\/)+)(.*)$/ );
 		if ( !relParts ) {
 			return null;
 		}
 
-		baseDirParts = basePath.split( '/' );
+		var baseDirParts = basePath.split( '/' );
 		// basePath looks like 'foo/bar/baz.js', so baseDirParts looks like [ 'foo', 'bar, 'baz.js' ]
 		// Remove the file component at the end, so that we are left with only the directory path
 		baseDirParts.pop();
 
-		prefixes = relParts[ 1 ].split( '/' );
+		var prefixes = relParts[ 1 ].split( '/' );
 		// relParts[ 1 ] looks like '../../', so prefixes looks like [ '..', '..', '' ]
 		// Remove the empty element at the end
 		prefixes.pop();
 
 		// For every ../ in the path prefix, remove one directory level from baseDirParts
+		var prefix;
 		while ( ( prefix = prefixes.pop() ) !== undefined ) {
 			if ( prefix === '..' ) {
 				baseDirParts.pop();
@@ -700,14 +695,13 @@
 	 */
 	function makeRequireFunction( moduleObj, basePath ) {
 		return function require( moduleName ) {
-			var fileName, fileContent, result, moduleParam,
-				scriptFiles = moduleObj.script.files;
-			fileName = resolveRelativePath( moduleName, basePath );
+			var fileName = resolveRelativePath( moduleName, basePath );
 			if ( fileName === null ) {
 				// Not a relative path, so it's a module name
 				return mw.loader.require( moduleName );
 			}
 
+			var scriptFiles = moduleObj.script.files;
 			if ( !hasOwn.call( scriptFiles, fileName ) ) {
 				throw new Error( 'Cannot require undefined file ' + fileName );
 			}
@@ -716,9 +710,10 @@
 				return moduleObj.packageExports[ fileName ];
 			}
 
-			fileContent = scriptFiles[ fileName ];
+			var result,
+				fileContent = scriptFiles[ fileName ];
 			if ( typeof fileContent === 'function' ) {
-				moduleParam = { exports: {} };
+				var moduleParam = { exports: {} };
 				fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam );
 				result = moduleParam.exports;
 			} else {
@@ -846,8 +841,6 @@
 	 * @param {Function} [error] Callback to execute when any dependency fails
 	 */
 	function enqueue( dependencies, ready, error ) {
-		var failed;
-
 		if ( allReady( dependencies ) ) {
 			// Run ready immediately
 			if ( ready !== undefined ) {
@@ -856,7 +849,7 @@
 			return;
 		}
 
-		failed = anyFailed( dependencies );
+		var failed = anyFailed( dependencies );
 		if ( failed !== false ) {
 			if ( error !== undefined ) {
 				// Execute error immediately if any dependencies have errors
@@ -901,7 +894,7 @@
 	 * @param {string} module Module name to execute
 	 */
 	function execute( module ) {
-		var key, value, media, i, urls, cssHandle, siteDeps, siteDepErr, runScript,
+		var key, value, media, i, siteDeps, siteDepErr,
 			cssPending = 0;
 
 		if ( registry[ module ].state !== 'loaded' ) {
@@ -911,16 +904,14 @@
 		registry[ module ].state = 'executing';
 		$CODE.profileExecuteStart();
 
-		runScript = function () {
-			var script, markModuleReady, nestedAddScript, mainScript;
-
+		var runScript = function () {
 			$CODE.profileScriptStart();
-			script = registry[ module ].script;
-			markModuleReady = function () {
+			var script = registry[ module ].script;
+			var markModuleReady = function () {
 				$CODE.profileScriptEnd();
 				setAndPropagate( module, 'ready' );
 			};
-			nestedAddScript = function ( arr, callback, j ) {
+			var nestedAddScript = function ( arr, callback, j ) {
 				// Recursively call queueModuleScript() in its own callback
 				// for each element of arr.
 				if ( j >= arr.length ) {
@@ -959,7 +950,7 @@
 							script( window.$, window.$, mw.loader.require, registry[ module ].module );
 						}
 					} else {
-						mainScript = script.files[ script.main ];
+						var mainScript = script.files[ script.main ];
 						if ( typeof mainScript !== 'function' ) {
 							throw new Error( 'Main file in module ' + module + ' must be a function' );
 						}
@@ -1008,11 +999,10 @@
 		// The below function uses a counting semaphore to make sure we don't call
 		// runScript() until after this module's stylesheets have been inserted
 		// into the DOM.
-		cssHandle = function () {
+		var cssHandle = function () {
 			// Increase semaphore, when creating a callback for addEmbeddedCSS.
 			cssPending++;
 			return function () {
-				var runScriptCopy;
 				// Decrease semaphore, when said callback is invoked.
 				cssPending--;
 				if ( cssPending === 0 ) {
@@ -1026,7 +1016,7 @@
 					// by making runScript() cannot be called more than once.  We store a private
 					// reference when we first reach this branch, then deference the original, and
 					// call our reference to it.
-					runScriptCopy = runScript;
+					var runScriptCopy = runScript;
 					runScript = undefined;
 					runScriptCopy();
 				}
@@ -1076,7 +1066,7 @@
 				} else if ( typeof value === 'object' ) {
 					// { "url": { <media>: [url, ..] } }
 					for ( media in value ) {
-						urls = value[ media ];
+						var urls = value[ media ];
 						for ( i = 0; i < urls.length; i++ ) {
 							addLink( urls[ i ], media, marker );
 						}
@@ -1211,10 +1201,12 @@
 	 * @param {string[]} batch
 	 */
 	function batchRequest( batch ) {
-		var reqBase, splits, b, bSource, bGroup,
-			source, group, i, modules, sourceLoadScript,
-			currReqBase, currReqBaseLength, moduleMap, currReqModules, l,
-			lastDotIndex, prefix, suffix, bytesAdded;
+		if ( !batch.length ) {
+			return;
+		}
+
+		var b, group, i, sourceLoadScript,
+			currReqBase, moduleMap, l;
 
 		/**
 		 * Start the currently drafted request to the server.
@@ -1236,22 +1228,18 @@
 			addScript( sourceLoadScript + '?' + makeQueryString( query ) );
 		}
 
-		if ( !batch.length ) {
-			return;
-		}
-
 		// Always order modules alphabetically to help reduce cache
 		// misses for otherwise identical content.
 		batch.sort();
 
 		// Query parameters common to all requests
-		reqBase = $VARS.reqBase;
+		var reqBase = $VARS.reqBase;
 
 		// Split module list by source and by group.
-		splits = Object.create( null );
+		var splits = Object.create( null );
 		for ( b = 0; b < batch.length; b++ ) {
-			bSource = registry[ batch[ b ] ].source;
-			bGroup = registry[ batch[ b ] ].group;
+			var bSource = registry[ batch[ b ] ].source,
+				bGroup = registry[ batch[ b ] ].group;
 			if ( !splits[ bSource ] ) {
 				splits[ bSource ] = Object.create( null );
 			}
@@ -1261,14 +1249,14 @@
 			splits[ bSource ][ bGroup ].push( batch[ b ] );
 		}
 
-		for ( source in splits ) {
+		for ( var source in splits ) {
 			sourceLoadScript = sources[ source ];
 
 			for ( group in splits[ source ] ) {
 
 				// Cache access to currently selected list of
 				// modules for this group from this source.
-				modules = splits[ source ][ group ];
+				var modules = splits[ source ][ group ];
 
 				// Query parameters common to requests for this module group
 				// Optimisation: Inherit (Object.create), not copy ($.extend)
@@ -1282,23 +1270,23 @@
 				// > '&modules='.length === 9
 				// > '&version=12345'.length === 14
 				// > 9 + 14 = 23
-				currReqBaseLength = makeQueryString( currReqBase ).length + 23;
+				var currReqBaseLength = makeQueryString( currReqBase ).length + 23;
 
 				// We may need to split up the request to honor the query string length limit,
 				// so build it piece by piece.
 				l = currReqBaseLength;
 				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
-				currReqModules = [];
+				var currReqModules = [];
 
 				for ( i = 0; i < modules.length; i++ ) {
 					// Determine how many bytes this module would add to the query string
-					lastDotIndex = modules[ i ].lastIndexOf( '.' );
 					// If lastDotIndex is -1, substr() returns an empty string
-					prefix = modules[ i ].substr( 0, lastDotIndex );
-					suffix = modules[ i ].slice( lastDotIndex + 1 );
-					bytesAdded = moduleMap[ prefix ] ?
-						suffix.length + 3 : // '%2C'.length == 3
-						modules[ i ].length + 3; // '%7C'.length == 3
+					var lastDotIndex = modules[ i ].lastIndexOf( '.' ),
+						prefix = modules[ i ].substr( 0, lastDotIndex ),
+						suffix = modules[ i ].slice( lastDotIndex + 1 ),
+						bytesAdded = moduleMap[ prefix ] ?
+							suffix.length + 3 : // '%2C'.length == 3
+							modules[ i ].length + 3; // '%7C'.length == 3
 
 					// If the url would become too long, create a new one, but don't create empty requests
 					if ( currReqModules.length && l + bytesAdded > mw.loader.maxQueryLength ) {
@@ -1385,12 +1373,12 @@
 	 * @param {string} [skip]
 	 */
 	function registerOne( module, version, dependencies, group, source, skip ) {
-		var requiresES6 = false;
 		if ( module in registry ) {
 			throw new Error( 'module already registered: ' + module );
 		}
 
 		// requiresES6 is encoded as a ! at the end of version
+		var requiresES6 = false;
 		version = String( version || '' );
 		if ( version.slice( -1 ) === '!' ) {
 			version = version.slice( 0, -1 );
