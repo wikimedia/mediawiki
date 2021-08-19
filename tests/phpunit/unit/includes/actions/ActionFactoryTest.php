@@ -4,6 +4,7 @@ use MediaWiki\Actions\ActionFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectFactory;
 
@@ -102,6 +103,52 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			$factory->getAction( 'the-override', $article, $context ),
 			'Article::getActionOverrides can override configured actions'
 		);
+	}
+
+	/**
+	 * @covers ::getAction
+	 */
+	public function testGetAction_missingClass() {
+		// Make sure nothing explodes from a class missing, instead its treated as
+		// disabled, both for actions set to true and where the class comes from the
+		// name, and actions that are configured as a string class name
+		$logger = new TestLogger(
+			true, // collect messages
+			static function ( $message, $level, $context ) {
+				// We only care about the ->info() log message generated from a
+				// missing class, not the debug messages
+				return $level === LogLevel::INFO ? $message : null;
+			},
+			true // collect context
+		);
+		$factory = $this->getFactory( [
+			'actions' => [
+				'actionnamewithnoclass' => true,
+				'anothermissingaction' => 'MissingClassName',
+			],
+			'logger' => $logger,
+		] );
+		$context = $this->createMock( IContextSource::class );
+		$article = $this->getArticle();
+		$this->assertFalse(
+			$factory->getAction( 'actionnamewithnoclass', $article, $context )
+		);
+		$this->assertFalse(
+			$factory->getAction( 'anothermissingaction', $article, $context )
+		);
+		$this->assertSame( [
+			[
+				LogLevel::INFO,
+				'Missing action class {actionClass}, treating as disabled',
+				[ 'actionClass' => 'ActionnamewithnoclassAction' ]
+			],
+			[
+				LogLevel::INFO,
+				'Missing action class {actionClass}, treating as disabled',
+				[ 'actionClass' => 'MissingClassName' ]
+			],
+		], $logger->getBuffer() );
+		$logger->clearBuffer();
 	}
 
 	/**
