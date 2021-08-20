@@ -625,6 +625,11 @@
 						"type": "boolean",
 						"description": "Whether it is possible to move pages in this namespace",
 						"default": true
+					},
+					"includable": {
+						"type": "boolean",
+						"description": "Whether it is possible to include/transclude pages in this namespace",
+						"default": true
 					}
 				},
 				"required": ["id", "constant", "name"]
