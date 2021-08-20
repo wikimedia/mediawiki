@@ -292,7 +292,7 @@ class WANObjectCache implements
 	private const TYPE_COOLOFF = 'c';
 
 	/** Value prefix of purge values */
-	private const PURGE_VAL_PREFIX = 'PURGED:';
+	private const PURGE_VAL_PREFIX = 'PURGED';
 
 	/**
 	 * @param array $params
@@ -1621,7 +1621,7 @@ class WANObjectCache implements
 		$isKeyTombstoned = ( $curInfo[self::KEY_TOMB_AS_OF] !== null );
 		if ( $isKeyTombstoned ) {
 			// Key is write-holed; use the (volatile) interim key as an alternative
-			list( $possValue, $possInfo ) = $this->getInterimValue( $key, $minAsOf );
+			list( $possValue, $possInfo ) = $this->getInterimValue( $key, $minAsOf, $initialTime );
 			// Update the "last purge time" since the $touchedCb timestamp depends on $value
 			$LPT = $this->resolveTouched( $possValue, $LPT, $touchedCb );
 		} else {
@@ -1726,7 +1726,7 @@ class WANObjectCache implements
 		) {
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
-				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
+				$this->setInterimValue( $key, $value, $lockTSE, $version, $postCallbackTime, $walltime );
 			} else {
 				$finalSetOpts = [
 					// @phan-suppress-next-line PhanUselessBinaryAddRight,PhanCoalescingAlwaysNull
@@ -1967,11 +1967,10 @@ class WANObjectCache implements
 	/**
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @param float $minAsOf Minimum acceptable "as of" timestamp
+	 * @param float $now Fetch time to determine "age" metadata
 	 * @return array (cached value or false, cache key metadata map)
 	 */
-	private function getInterimValue( $key, $minAsOf ) {
-		$now = $this->getCurrentTime();
-
+	private function getInterimValue( $key, $minAsOf, $now ) {
 		if ( $this->useInterimHoldOffCaching ) {
 			$wrapped = $this->cache->get(
 				$this->makeSisterKey( $key, self::TYPE_INTERIM )
@@ -1991,12 +1990,13 @@ class WANObjectCache implements
 	 * @param mixed $value
 	 * @param int $ttl
 	 * @param int|null $version Value version number
+	 * @param float $now Time after value regen
 	 * @param float $walltime How long it took to generate the value in seconds
 	 */
-	private function setInterimValue( $key, $value, $ttl, $version, $walltime ) {
+	private function setInterimValue( $key, $value, $ttl, $version, $now, $walltime ) {
 		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
-		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
+		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
 		$this->cache->merge(
 			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
 			static function () use ( $wrapped ) {
@@ -2797,11 +2797,6 @@ class WANObjectCache implements
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		$decision = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance );
 
-		$this->logger->debug(
-			"worthRefreshExpiring($curTTL, $logicalTTL, $lowTTL): " .
-			"p = $chance; refresh = " . ( $decision ? 'Y' : 'N' )
-		);
-
 		return $decision;
 	}
 
@@ -2845,11 +2840,6 @@ class WANObjectCache implements
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		$decision = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance );
-
-		$this->logger->debug(
-			"worthRefreshPopular($asOf, $ageNew, $timeTillRefresh, $now): " .
-			"p = $chance; refresh = " . ( $decision ? 'Y' : 'N' )
-		);
 
 		return $decision;
 	}
@@ -2917,7 +2907,13 @@ class WANObjectCache implements
 	 */
 	private function unwrap( $wrapped, $now ) {
 		$value = false;
-		$info = $this->newKeyInfoPlaceholder();
+		$info = [
+			self::KEY_VERSION => null,
+			self::KEY_AS_OF => null,
+			self::KEY_TTL => null,
+			self::KEY_CUR_TTL => null,
+			self::KEY_TOMB_AS_OF => null
+		];
 
 		if ( is_array( $wrapped ) ) {
 			// Entry expected to be a cached value; validate it
@@ -2954,19 +2950,6 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @return null[]
-	 */
-	private function newKeyInfoPlaceholder() {
-		return [
-			self::KEY_VERSION => null,
-			self::KEY_AS_OF => null,
-			self::KEY_TTL => null,
-			self::KEY_CUR_TTL => null,
-			self::KEY_TOMB_AS_OF => null
-		];
-	}
-
-	/**
 	 * @param string $key String of the format <scope>:<collection>[:<constant or variable>]...
 	 * @return string A collection name to describe this class of key
 	 */
@@ -2991,21 +2974,18 @@ class WANObjectCache implements
 		}
 
 		$segments = explode( ':', $value, 3 );
-		if ( isset( $segments[2] ) ) {
-			$prefix = $segments[0];
-			$timestamp = (float)$segments[1];
-			$holdoff = (int)$segments[2];
-		} elseif ( isset( $segments[1] ) ) {
-			$prefix = $segments[0];
-			$timestamp = (float)$segments[1];
-			// Value tombstones don't store hold-off TTLs
-			$holdoff = self::HOLDOFF_TTL;
-		} else {
+		$prefix = $segments[0];
+		if ( $prefix !== self::PURGE_VAL_PREFIX ) {
+			// Not a purge value
 			return null;
 		}
 
-		if ( "{$prefix}:" !== self::PURGE_VAL_PREFIX || $timestamp < $this->epoch ) {
-			// Not a purge value or the purge value is too old
+		$timestamp = (float)$segments[1];
+		// makeTombstonePurgeValue() doesn't store hold-off TTLs
+		$holdoff = isset( $segments[2] ) ? (int)$segments[2] : self::HOLDOFF_TTL;
+
+		if ( $timestamp < $this->epoch ) {
+			// Purge value is too old
 			return null;
 		}
 
@@ -3017,7 +2997,7 @@ class WANObjectCache implements
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>"
 	 */
 	private function makeTombstonePurgeValue( float $timestamp ) {
-		return self::PURGE_VAL_PREFIX . number_format( $timestamp, 4, '.', '' );
+		return self::PURGE_VAL_PREFIX . ':' . (int)$timestamp;
 	}
 
 	/**
@@ -3027,11 +3007,11 @@ class WANObjectCache implements
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
 	 */
 	private function makeCheckPurgeValue( float $timestamp, int $holdoff, array &$purge = null ) {
-		$normalizedTime = number_format( $timestamp, 4, '.', '' );
+		$normalizedTime = (int)$timestamp;
 		// Purge array that matches what parsePurgeValue() would have returned
 		$purge = [ self::PURGE_TIME => (float)$normalizedTime, self::PURGE_HOLDOFF => $holdoff ];
 
-		return self::PURGE_VAL_PREFIX . "$normalizedTime:$holdoff";
+		return self::PURGE_VAL_PREFIX . ":$normalizedTime:$holdoff";
 	}
 
 	/**
