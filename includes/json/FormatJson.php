@@ -215,8 +215,7 @@ class FormatJson {
 			}
 		}
 
-		// JSON_ERROR_RECURSION, JSON_ERROR_INF_OR_NAN,
-		// JSON_ERROR_UNSUPPORTED_TYPE, JSON_ERROR_INVALID_PROPERTY_NAME,
+		// JSON_ERROR_RECURSION, JSON_ERROR_INF_OR_NAN, JSON_ERROR_UNSUPPORTED_TYPE,
 		// are all encode errors that we don't need to care about here.
 		switch ( $code ) {
 			case JSON_ERROR_NONE:
@@ -237,6 +236,9 @@ class FormatJson {
 				break;
 			case JSON_ERROR_UTF8:
 				$msg = 'json-error-utf8';
+				break;
+			case JSON_ERROR_INVALID_PROPERTY_NAME:
+				$msg = 'json-error-invalid-property-name';
 				break;
 			case JSON_ERROR_UTF16:
 				$msg = 'json-error-utf16';

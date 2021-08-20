@@ -183,6 +183,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 			[ '{"j": 1 ] }', 'json-error-state-mismatch' ],
 			[ chr( 0 ), 'json-error-ctrl-char' ],
 			[ '"\ud834"', 'json-error-utf16' ],
+			[ '{"\u0000":1}', 'json-error-invalid-property-name' ],
 		];
 	}
 

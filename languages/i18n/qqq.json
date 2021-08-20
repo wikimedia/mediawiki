@@ -4394,6 +4394,7 @@
 	"json-error-ctrl-char": "User error message when an unexpected control character has been found.\nSee https://www.php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-syntax": "User error message when there is a syntax error; a malformed JSON.\nSee https://www.php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}\n{{Identical|Syntax error}}",
 	"json-error-utf8": "User error message when there are malformed UTF-8 characters, possibly incorrectly encoded.\nSee https://www.php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
+	"json-error-invalid-property-name": "User error message when a property (field) name that is not allowed by PHP is found when decoding a JSON object.\nSee https://www.php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-utf16": "User error message when there are malformed UTF-16 characters, possibly incorrectly encoded.\nSee https://www.php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"headline-anchor-title": "Title tooltip for the section anchor symbol, which is a link to the current section. Can be interpreted both as a noun (\"this is a link\") or as a verb (\"use this to link\").",
 	"special-characters-group-latin": "This is the name of a script, or alphabet, not a language.",
