@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -128,6 +129,8 @@ class BacklinkCache {
 	 * @return array
 	 */
 	public function __sleep() {
+		LoggerFactory::getInstance( 'backlinkcache' )
+			->warning( 'BacklinkCache should not be serializable' );
 		return [ 'partitionCache', 'fullResultCache', 'title' ];
 	}
 
