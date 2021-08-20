@@ -90,6 +90,7 @@ use MediaWiki\Mail\IEmailer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
+use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
@@ -508,6 +509,10 @@ return [
 		);
 
 		return $instance;
+	},
+
+	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
+		return $services->getService( '_PageCommandFactory' );
 	},
 
 	'Emailer' => static function ( MediaWikiServices $services ): IEmailer {
@@ -1883,7 +1888,7 @@ return [
 	'_PageCommandFactory' => static function ( MediaWikiServices $services ): PageCommandFactory {
 		return new PageCommandFactory(
 			$services->getMainConfig(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
 			$services->getRepoGroup(),
@@ -1899,7 +1904,12 @@ return [
 			$services->getActorNormalization(),
 			$services->getTitleFactory(),
 			$services->getUserEditTracker(),
-			$services->getCollationFactory()
+			$services->getCollationFactory(),
+			$services->getJobQueueGroup(),
+			$services->getCommentStore(),
+			ObjectCache::getInstance( 'db-replicated' ),
+			WikiMap::getCurrentWikiDbDomain()->getId(),
+			WebRequest::getRequestId()
 		);
 	},
 

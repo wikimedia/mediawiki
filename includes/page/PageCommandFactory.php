@@ -23,8 +23,11 @@
 namespace MediaWiki\Page;
 
 use ActorMigration;
+use BagOStuff;
+use CommentStore;
 use Config;
 use ContentModelChange;
+use JobQueueGroup;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -45,7 +48,7 @@ use Title;
 use TitleFactory;
 use TitleFormatter;
 use WatchedItemStoreInterface;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
 /**
@@ -55,6 +58,7 @@ use WikiPage;
  */
 class PageCommandFactory implements
 	ContentModelChangeFactory,
+	DeletePageFactory,
 	MergeHistoryFactory,
 	MovePageFactory,
 	RollbackPageFactory
@@ -63,8 +67,8 @@ class PageCommandFactory implements
 	/** @var Config */
 	private $config;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var LBFactory */
+	private $lbFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -114,9 +118,24 @@ class PageCommandFactory implements
 	/** @var CollationFactory */
 	private $collationFactory;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var BagOStuff */
+	private $dbReplicatedCache;
+
+	/** @var string */
+	private $localWikiID;
+
+	/** @var string */
+	private $webRequestID;
+
 	public function __construct(
 		Config $config,
-		ILoadBalancer $loadBalancer,
+		LBFactory $lbFactory,
 		NamespaceInfo $namespaceInfo,
 		WatchedItemStoreInterface $watchedItemStore,
 		RepoGroup $repoGroup,
@@ -132,10 +151,15 @@ class PageCommandFactory implements
 		ActorNormalization $actorNormalization,
 		TitleFactory $titleFactory,
 		UserEditTracker $userEditTracker,
-		CollationFactory $collationFactory
+		CollationFactory $collationFactory,
+		JobQueueGroup $jobQueueGroup,
+		CommentStore $commentStore,
+		BagOStuff $dbReplicatedCache,
+		string $localWikiID,
+		string $webRequestID
 	) {
 		$this->config = $config;
-		$this->loadBalancer = $loadBalancer;
+		$this->lbFactory = $lbFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->repoGroup = $repoGroup;
@@ -152,6 +176,11 @@ class PageCommandFactory implements
 		$this->titleFactory = $titleFactory;
 		$this->userEditTracker = $userEditTracker;
 		$this->collationFactory = $collationFactory;
+		$this->jobQueueGroup = $jobQueueGroup;
+		$this->commentStore = $commentStore;
+		$this->dbReplicatedCache = $dbReplicatedCache;
+		$this->localWikiID = $localWikiID;
+		$this->webRequestID = $webRequestID;
 	}
 
 	/**
@@ -177,6 +206,27 @@ class PageCommandFactory implements
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function newDeletePage( ProperPageIdentity $page, Authority $deleter ): DeletePage {
+		return new DeletePage(
+			$this->hookContainer,
+			$this->revisionStore,
+			$this->lbFactory,
+			$this->jobQueueGroup,
+			$this->commentStore,
+			new ServiceOptions( DeletePage::CONSTRUCTOR_OPTIONS, $this->config ),
+			$this->dbReplicatedCache,
+			$this->localWikiID,
+			$this->webRequestID,
+			$this->wikiPageFactory,
+			$this->userFactory,
+			$page,
+			$deleter
+		);
+	}
+
+	/**
 	 * @param PageIdentity $source
 	 * @param PageIdentity $destination
 	 * @param string|null $timestamp
@@ -191,7 +241,7 @@ class PageCommandFactory implements
 			$source,
 			$destination,
 			$timestamp,
-			$this->loadBalancer,
+			$this->lbFactory->getMainLB(),
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->watchedItemStore,
@@ -213,7 +263,7 @@ class PageCommandFactory implements
 			$from,
 			$to,
 			new ServiceOptions( MovePage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->loadBalancer,
+			$this->lbFactory->getMainLB(),
 			$this->namespaceInfo,
 			$this->watchedItemStore,
 			$this->repoGroup,
@@ -244,7 +294,7 @@ class PageCommandFactory implements
 	): RollbackPage {
 		return new RollbackPage(
 			new ServiceOptions( RollbackPage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->loadBalancer,
+			$this->lbFactory->getMainLB(),
 			$this->userFactory,
 			$this->readOnlyMode,
 			$this->revisionStore,
