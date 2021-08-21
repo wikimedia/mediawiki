@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Cyrillic script) (српски (ћирилица)‎)
+/** Serbian (Cyrillic script) (српски (ћирилица))
  *
  * To improve a translation please visit https://translatewiki.net
  *

@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Cyrillic script) (қазақша (кирил)‎)
+/** Kazakh (Cyrillic script) (қазақша (кирил))
  *
  * To improve a translation please visit https://translatewiki.net
  *
