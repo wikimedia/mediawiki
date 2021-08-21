@@ -658,19 +658,31 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$commentQuery['joins']
 		);
 
+		$archive = new PageArchive( $page->getTitle(), MediaWikiServices::getInstance()->getMainConfig() );
+		$archivedRevs = $archive->listRevisions();
+		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
+			$this->fail( 'Unexpected number of archived revisions' );
+		}
+		$archivedRev = MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionFromArchiveRow( $archivedRevs->current() );
+
 		$this->assertNull(
-			$page->getContent( RevisionRecord::FOR_PUBLIC ),
-			"WikiPage::getContent should return null after the page was suppressed for general users"
+			$archivedRev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ),
+			"Archived content should be null after the page was suppressed for general users"
 		);
 
 		$this->assertNull(
-			$page->getContent( RevisionRecord::FOR_THIS_USER, $this->getTestUser()->getUser() ),
-			"WikiPage::getContent should return null after the page was suppressed for individual users"
+			$archivedRev->getContent(
+				SlotRecord::MAIN,
+				RevisionRecord::FOR_THIS_USER,
+				$this->getTestUser()->getUser()
+			),
+			"Archived content should be null after the page was suppressed for individual users"
 		);
 
 		$this->assertNull(
-			$page->getContent( RevisionRecord::FOR_THIS_USER, $user ),
-			"WikiPage::getContent should return null after the page was suppressed even for a sysop"
+			$archivedRev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
+			"Archived content should be null after the page was suppressed even for a sysop"
 		);
 	}
 

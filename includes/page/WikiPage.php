@@ -2775,6 +2775,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( !$revRecord ) {
 			throw new BadMethodCallException( __METHOD__ . ' now requires a RevisionRecord' );
 		}
+		if ( $id !== $this->getId() ) {
+			throw new InvalidArgumentException( 'Mismatching page ID' );
+		}
+
 		$user = $user ?? new UserIdentityValue( 0, 'unknown' );
 		$services = MediaWikiServices::getInstance();
 		$deletePage = $services->getDeletePageFactory()->newDeletePage(
@@ -2782,7 +2786,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$services->getUserFactory()->newFromUserIdentity( $user )
 		);
 
-		$deletePage->doDeleteUpdates( $id, $revRecord );
+		$deletePage->doDeleteUpdates( $revRecord );
 	}
 
 	/**

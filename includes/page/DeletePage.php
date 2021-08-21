@@ -10,7 +10,6 @@ use DeferrableUpdate;
 use DeferredUpdates;
 use DeletePageJob;
 use Exception;
-use InvalidArgumentException;
 use JobQueueGroup;
 use LinksDeletionUpdate;
 use LinksUpdate;
@@ -197,6 +196,7 @@ class DeletePage {
 
 	/**
 	 * @internal FIXME: Hack used when running the DeletePage unit test to disable some legacy code.
+	 * @codeCoverageIgnore
 	 * @param bool $test
 	 */
 	public function setIsDeletePageUnitTest( bool $test ): void {
@@ -450,7 +450,7 @@ class DeletePage {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->doDeleteUpdates( $id, $revisionRecord );
+			$this->doDeleteUpdates( $revisionRecord );
 
 			$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
 			// TODO Replace hook (replace typehints)
@@ -592,16 +592,11 @@ class DeletePage {
 	 * @private Public for BC only
 	 * Do some database updates after deletion
 	 *
-	 * @param int $id The page_id value of the page being deleted
 	 * @param RevisionRecord $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->page->getRevisionRecord() may already return null when the page proper was deleted.
 	 */
-	public function doDeleteUpdates( int $id, RevisionRecord $revRecord ): void {
-		if ( $id !== $this->page->getId() ) {
-			throw new InvalidArgumentException( 'Mismatching page ID' );
-		}
-
+	public function doDeleteUpdates( RevisionRecord $revRecord ): void {
 		try {
 			$countable = $this->page->isCountable();
 		} catch ( Exception $ex ) {
@@ -652,7 +647,7 @@ class DeletePage {
 		if ( !$this->isDeletePageUnitTest ) {
 			// TODO Remove conditional once DeferredUpdates is servicified (T265749)
 			// Search engine
-			DeferredUpdates::addUpdate( new SearchUpdate( $id, $this->page->getTitle() ) );
+			DeferredUpdates::addUpdate( new SearchUpdate( $this->page->getId(), $this->page->getTitle() ) );
 		}
 	}
 
