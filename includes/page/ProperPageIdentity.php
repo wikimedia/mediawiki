@@ -78,7 +78,7 @@ interface ProperPageIdentity extends PageIdentity {
 	 * Always true.
 	 * Implementations must ensure that no "improper" instances can be created.
 	 *
-	 * @return bool
+	 * @return true
 	 */
 	public function canExist(): bool;
 
