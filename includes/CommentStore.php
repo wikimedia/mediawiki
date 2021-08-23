@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IDatabase;
  * The CommentStore class handles the database abstraction for reading
  * and writing comments, which are represented by CommentStoreComment objects.
  *
- * Data is internally stored in the `comment` table..
+ * Data is internally stored in the `comment` table.
  */
 
 /**

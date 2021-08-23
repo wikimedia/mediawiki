@@ -13,7 +13,7 @@
  *
  * @todo methods in test class should be tidied:
  *  - Should be split into separate test methods and data providers
- *  - Tests for LanguageConverter and Language should probably be separate..
+ *  - Tests for LanguageConverter and Language should probably be separate.
  */
 
 /**

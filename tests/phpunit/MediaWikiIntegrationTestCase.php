@@ -1654,7 +1654,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Undoes the specified schema overrides..
+	 * Undoes the specified schema overrides.
 	 * Called once per test class, just before addDataOnce().
 	 *
 	 * @param IMaintainableDatabase $db

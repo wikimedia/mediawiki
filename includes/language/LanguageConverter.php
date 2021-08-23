@@ -176,8 +176,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Provides additinal flags for converter. By default it return empty array and
-	 * typicslly should be overridden by implementation of converter..
+	 * Provides additional flags for converter. By default it return empty array and
+	 * typically should be overridden by implementation of converter.
 	 *
 	 * @return array
 	 */
@@ -205,8 +205,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Provides additinal flags for converter. By default it return empty array and
-	 * typicslly should be overridden by implementation of converter.
+	 * Provides additional flags for converter. By default it return empty array and
+	 * typically should be overridden by implementation of converter.
 	 * @since 1.36
 	 *
 	 * @return array

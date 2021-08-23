@@ -1217,7 +1217,7 @@ abstract class ContentHandler {
 	 * This default implementation returns false.
 	 *
 	 * Content models that return true here should also implement
-	 * Content::getSection, Content::replaceSection, etc. to handle sections..
+	 * Content::getSection, Content::replaceSection, etc. to handle sections.
 	 *
 	 * @stable to override
 	 *

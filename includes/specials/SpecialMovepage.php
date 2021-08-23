@@ -176,7 +176,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$newTitleTextMain = $request->getText( 'wpNewTitleMain' );
 		$newTitleTextNs = $request->getInt( 'wpNewTitleNs', $this->oldTitle->getNamespace() );
 		// Backwards compatibility for forms submitting here from other sources
-		// which is more common than it should be..
+		// which is more common than it should be.
 		$newTitleText_bc = $request->getText( 'wpNewTitle' );
 		$this->newTitle = strlen( $newTitleText_bc ) > 0
 			? Title::newFromText( $newTitleText_bc )
