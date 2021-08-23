@@ -780,6 +780,8 @@ because of Phabricator reports.
   - LinkRendererFactory::createForUser() - calling ::create() is now sufficient
   - ParserOptions::setStubThreshold() and ::getStubThreshold() - no replacement.
   - User::getStubThreshold() - no replacement.
+* The ArticleDelete and ArticleDeleteComplete hooks were deprecated. Use
+  PageDelete and PageDeleteComplete instead.
 * The following LESS mediawiki.mixins have been deprecated:
   - .box-sizing()
   - .transform()
