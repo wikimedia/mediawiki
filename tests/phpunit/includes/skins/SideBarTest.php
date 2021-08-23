@@ -54,7 +54,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 * @param string $text
 	 * @param string $message (Default: '')
-	 * @todo this assert method to should be converted to a test using a dataprovider..
+	 * @todo this assert method to should be converted to a test using a dataprovider.
 	 */
 	private function assertSideBar( $expected, $text, $message = '' ) {
 		$bar = [];

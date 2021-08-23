@@ -118,7 +118,7 @@ class LanguageConverterFactory {
 	 *
 	 * @param Language|null $language for which a LanguageConverter should be provided.
 	 * If null then LanguageConverter provided for current content language as returned
-	 * by the callback provided to the constructor..
+	 * by the callback provided to the constructor.
 	 *
 	 * @return ILanguageConverter
 	 */

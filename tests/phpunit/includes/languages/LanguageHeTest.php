@@ -24,7 +24,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	 */
 
 	// @todo the below test*PluralForms test methods can be refactored
-	//  to use a single test method and data provider..
+	//  to use a single test method and data provider.
 
 	/**
 	 * @dataProvider provideTwoPluralForms
