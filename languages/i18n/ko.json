@@ -2050,7 +2050,7 @@
 	"brokenredirectstext": "존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:",
 	"brokenredirects-edit": "편집",
 	"brokenredirects-delete": "삭제",
-	"withoutinterwiki": "언어 인터위키 링크가 없는 문서 목록",
+	"withoutinterwiki": "언어 링크가 없는 문서 목록",
 	"withoutinterwiki-summary": "다른 언어로의 연결이 없는 문서의 목록입니다:",
 	"withoutinterwiki-legend": "접두어",
 	"withoutinterwiki-submit": "보기",

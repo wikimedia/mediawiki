@@ -3868,6 +3868,7 @@
 	"json-error-ctrl-char": "Грешка во контролниот знак. Можеби е неисправно кодиран",
 	"json-error-syntax": "Синтаксна грешка",
 	"json-error-utf8": "Неисправно срочени знаци во UTF-8. Можеби неправилно кодирани.",
+	"json-error-invalid-property-name": "Декодираното име на својството е неважечко.",
 	"json-error-utf16": "Неисправно срочени знаци во UTF-16. Можеби неправилно кодирани.",
 	"headline-anchor-title": "Врска до поднасловов",
 	"special-characters-group-latin": "Латиница",

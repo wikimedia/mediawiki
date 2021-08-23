@@ -3724,6 +3724,7 @@
 	"json-error-ctrl-char": "Napaka kontrolnega znaka; morda je nepravilno zakodiran",
 	"json-error-syntax": "Skladenjska napaka",
 	"json-error-utf8": "Nepravilno oblikovani znaki UTF-8; morda so nepravilno zakodirani",
+	"json-error-invalid-property-name": "Dekodirano ime lastnosti ni veljavno",
 	"json-error-utf16": "Nepravilno oblikovani znaki UTF-16; morda so nepravilno zakodirani",
 	"headline-anchor-title": "Povezava na razdelek",
 	"special-characters-group-latin": "Latinica",

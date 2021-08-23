@@ -3861,6 +3861,7 @@
 	"json-error-ctrl-char": "Błąd znaku control, ewentualnie błędnie zakodowane.",
 	"json-error-syntax": "Błąd składni",
 	"json-error-utf8": "Nieprawidłowe znaki UTF-8, prawdopodobnie niepoprawnie zakodowane",
+	"json-error-invalid-property-name": "Zdekodowana nazwa własności jest nieprawidłowa",
 	"json-error-utf16": "Zniekształcone symbole UTF-16, prawdopodobnie błędnie zakodowane",
 	"headline-anchor-title": "Link do tej sekcji",
 	"special-characters-group-latin": "Łacińskie",

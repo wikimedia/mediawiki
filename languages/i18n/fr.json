@@ -4073,6 +4073,7 @@
 	"json-error-ctrl-char": "Erreur de caractères de contrôle, peut-être mal encodé",
 	"json-error-syntax": "Erreur de syntaxe",
 	"json-error-utf8": "Caractères UTF-8 mal formés, peut-être mal encodés",
+	"json-error-invalid-property-name": "Le nom de la propriété décodé est non valide.",
 	"json-error-utf16": "Caractères UTF-16 mal formés, peut-être mal encodés",
 	"headline-anchor-title": "Lien vers cette section",
 	"special-characters-group-latin": "latin",

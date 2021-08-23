@@ -3716,6 +3716,7 @@
 	"json-error-ctrl-char": "Error de character de controlo, possibilemente codificate incorrectemente",
 	"json-error-syntax": "Error de syntaxe",
 	"json-error-utf8": "Characteres UTF-8 mal formate, possibilemente codificate incorrectemente",
+	"json-error-invalid-property-name": "Le nomine de proprietate decodificate es invalide",
 	"json-error-utf16": "Characteres UTF-16 mal formate, possibilemente codificate incorrectemente",
 	"headline-anchor-title": "Ligamine a site section",
 	"special-characters-group-latin": "Latin",
