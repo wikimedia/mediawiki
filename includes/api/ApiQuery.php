@@ -60,6 +60,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
+				'ContentTransformer',
 			]
 		],
 		'duplicatefiles' => [
@@ -123,6 +124,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'ActorMigration',
+				'ContentTransformer',
 			]
 		],
 		'stashimageinfo' => [
@@ -157,6 +159,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'NamespaceInfo',
+				'ContentTransformer',
 			]
 		],
 		'allfileusages' => [
@@ -206,6 +209,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ActorMigration',
 				'NamespaceInfo',
+				'ContentTransformer',
 			]
 		],
 		'mystashedfiles' => ApiQueryMyStashedFiles::class,

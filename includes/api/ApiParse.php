@@ -22,6 +22,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
@@ -36,10 +37,10 @@ class ApiParse extends ApiBase {
 	/** @var string|false|null */
 	private $section = null;
 
-	/** @var Content */
+	/** @var Content|null */
 	private $content = null;
 
-	/** @var Content */
+	/** @var Content|null */
 	private $pstContent = null;
 
 	/** @var bool */
@@ -69,6 +70,9 @@ class ApiParse extends ApiBase {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -80,6 +84,7 @@ class ApiParse extends ApiBase {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param Parser $parser
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -91,7 +96,8 @@ class ApiParse extends ApiBase {
 		LinkCache $linkCache,
 		IContentHandlerFactory $contentHandlerFactory,
 		Parser $parser,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		ContentTransformer $contentTransformer
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -102,6 +108,7 @@ class ApiParse extends ApiBase {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->parser = $parser;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->contentTransformer = $contentTransformer;
 	}
 
 	private function getPoolKey(): string {
@@ -355,7 +362,12 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( $params['pst'] || $params['onlypst'] ) {
-				$this->pstContent = $this->content->preSaveTransform( $titleObj, $this->getUser(), $popts );
+				$this->pstContent = $this->contentTransformer->preSaveTransform(
+					$this->content,
+					$titleObj,
+					$this->getUser(),
+					$popts
+				);
 			}
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
@@ -605,6 +617,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['wikitext'] ) ) {
 			$result_array['wikitext'] = $this->content->serialize( $format );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'wikitext';
+			// @phan-suppress-next-line PhanImpossibleTypeComparison
 			if ( $this->pstContent !== null ) {
 				$result_array['psttext'] = $this->pstContent->serialize( $format );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'psttext';

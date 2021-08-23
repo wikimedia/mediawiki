@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
@@ -72,6 +73,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
 	/**
 	 * @since 1.37 Support injection of services
 	 * @stable to call
@@ -82,6 +86,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param ParserFactory|null $parserFactory
 	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param ContentTransformer|null $contentTransformer
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -90,7 +95,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		RevisionStore $revisionStore = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		ParserFactory $parserFactory = null,
-		SlotRoleRegistry $slotRoleRegistry = null
+		SlotRoleRegistry $slotRoleRegistry = null,
+		ContentTransformer $contentTransformer = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
 		// This class is part of the stable interface and
@@ -100,6 +106,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
 		$this->parserFactory = $parserFactory ?? $services->getParserFactory();
 		$this->slotRoleRegistry = $slotRoleRegistry ?? $services->getSlotRoleRegistry();
+		$this->contentTransformer = $contentTransformer ?? $services->getContentTransformer();
 	}
 
 	public function execute() {
@@ -671,7 +678,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 						if ( $this->difftotextpst ) {
 							$popts = ParserOptions::newFromContext( $this->getContext() );
-							$difftocontent = $difftocontent->preSaveTransform( $title, $this->getUser(), $popts );
+							$difftocontent = $this->contentTransformer->preSaveTransform(
+								$difftocontent,
+								$title,
+								$this->getUser(),
+								$popts
+							);
 						}
 
 						$engine = $handler->createDifferenceEngine( $context );

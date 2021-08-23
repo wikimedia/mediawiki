@@ -25,6 +25,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -57,6 +58,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param NameTableStore $changeTagDefStore
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -66,7 +68,8 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
 		NameTableStore $changeTagDefStore,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		ContentTransformer $contentTransformer
 	) {
 		parent::__construct(
 			$query,
@@ -75,7 +78,8 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$revisionStore,
 			$contentHandlerFactory,
 			$parserFactory,
-			$slotRoleRegistry
+			$slotRoleRegistry,
+			$contentTransformer
 		);
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
