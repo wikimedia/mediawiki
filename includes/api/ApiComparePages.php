@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -44,24 +45,30 @@ class ApiComparePages extends ApiBase {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		ContentTransformer $contentTransformer
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->contentTransformer = $contentTransformer;
 	}
 
 	public function execute() {
@@ -526,7 +533,12 @@ class ApiComparePages extends ApiBase {
 					$this->dieWithError( 'apierror-compare-no-title' );
 				}
 				$popts = ParserOptions::newFromContext( $this->getContext() );
-				$content = $content->preSaveTransform( $title, $this->getUser(), $popts );
+				$content = $this->contentTransformer->preSaveTransform(
+					$content,
+					$title,
+					$this->getUser(),
+					$popts
+				);
 			}
 
 			$section = $params["{$prefix}section-{$role}"];
