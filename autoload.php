@@ -187,6 +187,7 @@ $wgAutoloadLocalClasses = [
 	'BatchRowWriter' => __DIR__ . '/includes/utils/BatchRowWriter.php',
 	'BcryptPassword' => __DIR__ . '/includes/password/BcryptPassword.php',
 	'BenchUtf8TitleCheck' => __DIR__ . '/maintenance/benchmarks/bench_utf8_title_check.php',
+	'BenchmarkEval' => __DIR__ . '/maintenance/benchmarks/benchmarkEval.php',
 	'BenchmarkHooks' => __DIR__ . '/maintenance/benchmarks/benchmarkHooks.php',
 	'BenchmarkJSMinPlus' => __DIR__ . '/maintenance/benchmarks/benchmarkJSMinPlus.php',
 	'BenchmarkLruHash' => __DIR__ . '/maintenance/benchmarks/benchmarkLruHash.php',
