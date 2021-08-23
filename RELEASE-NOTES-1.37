@@ -406,6 +406,9 @@ because of Phabricator reports.
   DeleteAction, while the actual deletion logic will be moved to a separate
   service.
 * WikiImporter::debugRevisionHandler, unused and for debug only, was removed.
+* Content::preloadTransform was hard-deprecated since 1.37,
+  use ContentTransformer::preloadTransform instead. Extensions defining
+  a content model should override ContentHandler::preloadTransform.
 * …
 
 === Deprecations in 1.37 ===

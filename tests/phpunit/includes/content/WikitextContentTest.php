@@ -147,19 +147,6 @@ just a test"
 		];
 	}
 
-	public static function dataPreloadTransform() {
-		return [
-			[
-				'hello this is ~~~',
-				"hello this is ~~~",
-			],
-			[
-				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
-				'hello \'\'this\'\' is bar',
-			],
-		];
-	}
-
 	public static function dataGetRedirectTarget() {
 		return [
 			[ '#REDIRECT [[Test]]',

@@ -422,7 +422,7 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @since 1.21
-	 * @deprecated since 1.37. Use ContentTransformer::preloadTransform instead.
+	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preloadTransform instead.
 	 * Extensions defining a content model should override ContentHandler::preloadTransform.
 	 * @param Title $title
 	 * @param ParserOptions $popts
@@ -432,6 +432,7 @@ abstract class AbstractContent implements Content {
 	 * @see Content::preloadTransform
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts, $params = [] ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$pltParams = new PreloadTransformParamsValue( $title, $popts, $params );
 		return $this->getContentHandler()->preloadTransform(
 			$this,

@@ -415,7 +415,7 @@ interface Content {
 	 * object if no transformations apply).
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.37 Use ContentTransformer::preloadTransform
+	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preloadTransform
 	 * and override ContentHandler::preloadTransform.
 	 * @param Title $title
 	 * @param ParserOptions $parserOptions

@@ -57,18 +57,6 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers FallbackContent::preloadTransform
-	 */
-	public function testPreloadTransform() {
-		$title = Title::newFromText( 'Test' );
-		$content = $this->newContent( 'Horkyporky ~~~' );
-
-		$options = ParserOptions::newFromAnon();
-
-		$this->assertSame( $content, $content->preloadTransform( $title, $options ) );
-	}
-
-	/**
 	 * @covers FallbackContent::getRedirectTarget
 	 */
 	public function testGetRedirectTarget() {
