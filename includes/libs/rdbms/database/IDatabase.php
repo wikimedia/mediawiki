@@ -980,8 +980,8 @@ interface IDatabase {
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param string|array $options Combination map/list where each string-keyed entry maps a
-	 *   non-boolean option to the option parameters and each integer-keyed value is the
+	 * @param string|array $options Combination map/list where each string-keyed entry maps
+	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
 	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
 	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
@@ -1006,8 +1006,8 @@ interface IDatabase {
 	 *   accidentally, an empty condition for 'update' queries isn't allowed.
 	 *   IDatabase::ALL_ROWS should be passed explicitely in order to update all rows.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param string|array $options Combination map/list where each string-keyed entry maps a
-	 *   non-boolean option to the option parameters and each integer-keyed value is the
+	 * @param string|array $options Combination map/list where each string-keyed entry maps
+	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
 	 *     - IGNORE: Boolean: skip update of rows that would cause unique key conflicts.
 	 *       IDatabase::affectedRows() can be used to determine how many rows were updated.
@@ -1369,14 +1369,14 @@ interface IDatabase {
 	 *
 	 * @param string $table The table name
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
-	 *   name lists that define all applicable unique keys on the table. Each unique key on the
-	 *   table is "applicable" unless either:
+	 *   name lists that define all applicable unique keys on the table. There must only be
+	 *   one such key. Each unique key on the table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
-	 *     Columns belonging to a key in $uniqueIndexes must be defined here and non-null.
+	 *     Columns belonging to a key in $uniqueKeys must be defined here and non-null.
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
@@ -1396,23 +1396,24 @@ interface IDatabase {
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
-	 *     Columns belonging to a key in $uniqueIndexes must be defined here and non-null.
+	 *     Columns belonging to a key in $uniqueKeys must be defined here and non-null.
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
-	 *   name lists that define all applicable unique keys on the table. Each unique key on the
-	 *   table is "applicable" unless either:
+	 *   name lists that define all applicable unique keys on the table. There must only be
+	 *   one such key. Each unique key on the table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
 	 *   Passing string[] to $uniqueKeys is deprecated.
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
-	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
-	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
-	 *   convenient due to automatic value quoting and conversion of null to NULL. The SQL
-	 *   assignment format is useful for updates like "column = column + X". All assignments
-	 *   have no defined execution order, so they should not depend on each other. Do not
-	 *   modified AUTOINCREMENT or UUID columns in assignments.
+	 *   to a literal assigned value and each integer-keyed value is a SQL assignment expression
+	 *   of the form "<unquoted alphanumeric column> = <SQL expression>". The (column => value)
+	 *   entries are convenient due to automatic value quoting and conversion of null to NULL.
+	 *   The SQL assignment entries are useful for updates like "column = column + X". All of
+	 *   the assignments have no defined execution order, so callers should make sure that they
+	 *   not depend on each other. Do not modify AUTOINCREMENT or UUID columns in assignments,
+	 *   even if they are just "secondary" unique keys.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
