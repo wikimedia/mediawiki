@@ -88,6 +88,9 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var array */
 	protected $preErrors = [];
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/**
 	 * @param BlockUtils $blockUtils
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
@@ -96,6 +99,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param TitleFormatter $titleFormatter
+	 * @param NamespaceInfo $namespaceInfo
 	 */
 	public function __construct(
 		BlockUtils $blockUtils,
@@ -104,7 +108,8 @@ class SpecialBlock extends FormSpecialPage {
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		BlockActionInfo $blockActionInfo,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		NamespaceInfo $namespaceInfo
 	) {
 		parent::__construct( 'Block', 'block' );
 
@@ -115,6 +120,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->titleFormatter = $titleFormatter;
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function doesWrites() {
@@ -495,7 +501,7 @@ class SpecialBlock extends FormSpecialPage {
 					if ( $restriction instanceof PageRestriction && $restriction->getTitle() ) {
 						$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
 					} elseif ( $restriction instanceof NamespaceRestriction &&
-						$this->getLanguage()->getFormattedNsText( $restriction->getValue() )
+						$this->namespaceInfo->exists( $restriction->getValue() )
 					) {
 						$namespaceRestrictions[] = $restriction->getValue();
 					}
