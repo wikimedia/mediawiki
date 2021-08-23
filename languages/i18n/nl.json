@@ -3836,6 +3836,7 @@
 	"json-error-ctrl-char": "Fout in controlekarakter, mogelijk verkeerd gecodeerd",
 	"json-error-syntax": "Er zit een fout in de syntaxis",
 	"json-error-utf8": "Ongeldige UTF-8-tekens, mogelijk verkeerd gecodeerd",
+	"json-error-invalid-property-name": "De gedecodeerde eigenschapsnaam is ongeldig",
 	"json-error-utf16": "Ongeldige UTF-16-tekens, mogelijk verkeerd gecodeerd",
 	"headline-anchor-title": "Koppeling naar deze sectie maken",
 	"special-characters-group-latin": "Latijn",

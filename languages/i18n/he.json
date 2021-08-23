@@ -3842,6 +3842,7 @@
 	"json-error-ctrl-char": "שגיאה בתו בקרה, ייתכן שהקידוד שגוי",
 	"json-error-syntax": "שגיאת תחביר",
 	"json-error-utf8": "תווי UTF-8 פגומים, ייתכן שהקידוד שגוי",
+	"json-error-invalid-property-name": "שם המאפיין המפוענח אינו תקין",
 	"json-error-utf16": "תווי UTF-16 פגומים, ייתכן שהקידוד שגוי",
 	"headline-anchor-title": "קישור לפסקה זו",
 	"special-characters-group-latin": "לטיני",

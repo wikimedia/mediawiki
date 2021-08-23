@@ -1006,6 +1006,8 @@
 	"prefsnologintext2": "Molimo Vas prijavite se da biste promijenili postavke.",
 	"prefs-skin": "Izgled",
 	"prefs-skin-prefs": "Postavke izgleda",
+	"prefs-skin-responsive": "Omogući responzivne mrežne stranice",
+	"prefs-help-skin-responsive": "Prilagođava temu dostupnome prostoru vidnoga polja. (Moguće da nema učinka pri nekim temama).",
 	"skin-preview": "Pregled",
 	"datedefault": "Nemoj postaviti",
 	"prefs-labs": "Labs mogućnosti",

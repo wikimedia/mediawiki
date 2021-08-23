@@ -658,11 +658,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'table' => 'upsert_table',
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'uniqueIndexes' => 'field',
-					'set' => [ 'field' => 'set' ],
+					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
 					"UPDATE upsert_table " .
-					"SET field = 'set' " .
+					"SET field2 = 'set' " .
 					"WHERE (field = 'text'); " .
 					"INSERT INTO upsert_table " .
 					"(field,field2) " .
@@ -674,11 +674,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'table' => 'upsert_table',
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'uniqueIndexes' => [ [ 'field' ] ],
-					'set' => [ 'field' => 'set' ],
+					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
 				"UPDATE upsert_table " .
-				"SET field = 'set' " .
+				"SET field2 = 'set' " .
 				"WHERE (field = 'text'); " .
 				"INSERT INTO upsert_table " .
 				"(field,field2) " .

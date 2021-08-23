@@ -3854,6 +3854,7 @@
 	"json-error-ctrl-char": "Steuerzeichenfehler, vermutlich falsch kodiert",
 	"json-error-syntax": "Syntax-Fehler",
 	"json-error-utf8": "Fehlerhafte UTF-8-Zeichen, vermutlich falsch kodiert",
+	"json-error-invalid-property-name": "Der dekodierte Eigenschaftsname ist ungültig",
 	"json-error-utf16": "Fehlerhafte UTF-16-Zeichen, möglicherweise falsch codiert",
 	"headline-anchor-title": "Link zu diesem Abschnitt",
 	"special-characters-group-latin": "Lateinisch",

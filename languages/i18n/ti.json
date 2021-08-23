@@ -379,7 +379,7 @@
 	"recentchanges-label-minor": "እዚ ንእሽቶ ኣርትዖት እዩ",
 	"recentchanges-label-bot": "እዚ ኣርትዖት ብቦት ፈጺሙ ነይሩ",
 	"recentchanges-submit": "ኣርእይ",
-	"rcfilters-legend-heading": "<strong>ዝርዝር ምሕጻረ ቃላት፦</strong>",
+	"rcfilters-legend-heading": "<strong>ዝርዝር ኣሕጽሮተ ቃላት፦</strong>",
 	"rcfilters-activefilters-hide": "ሕባእ",
 	"rcfilters-activefilters-show": "ኣርእይ",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|ለውጢ|ለውጥታት}}፣ $2",

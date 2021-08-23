@@ -782,5 +782,6 @@
 	"api-clientside-error-timeout": "کارساز زمون انتظار جواب ندائه.",
 	"api-error-badtoken": "خطای داخلی: کد امنیتی اشتبائه (Bad token).",
 	"api-error-stashfailed": "خطای داخلی: کارساز نتونده پرونده موقت ره ذخیره هاکنه.",
-	"api-error-unknown-warning": "اخطار نشناسی‌یه: $1"
+	"api-error-unknown-warning": "اخطار نشناسی‌یه: $1",
+	"json-error-invalid-property-name": "این دی‌کدِ نوم بی‌اعتباره"
 }

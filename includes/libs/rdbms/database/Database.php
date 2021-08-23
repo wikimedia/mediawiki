@@ -2314,6 +2314,77 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @param array<int,array> $rows Normalized list of rows to insert
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @return bool Whether all the rows have NULL values for all identity key columns
+	 * @since 1.37
+	 */
+	final protected function assertValidUpsertRowArray( array $rows, array $identityKey ) {
+		$keyColumnCountNull = 0;
+		foreach ( $rows as $row ) {
+			foreach ( $identityKey as $column ) {
+				$keyColumnCountNull += ( isset( $row[$column] ) ? 0 : 1 );
+			}
+		}
+
+		if (
+			$keyColumnCountNull &&
+			$keyColumnCountNull !== ( count( $rows ) * count( $identityKey ) )
+		) {
+			throw new DBUnexpectedError(
+				$this,
+				"NULL values for unique key (" . implode( ',', $identityKey ) . ")"
+			);
+		}
+
+		return (bool)$keyColumnCountNull;
+	}
+
+	/**
+	 * @param array $set Combined column/literal assignment map and SQL assignment list
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param array<int,array> $rows List of rows to upsert
+	 * @since 1.37
+	 */
+	final protected function assertValidUpsertSetArray(
+		array $set,
+		array $identityKey,
+		array $rows
+	) {
+		// Sloppy callers might construct the SET array using the ROW array, leaving redundant
+		// column definitions for identity key columns. Detect this for backwards compatability.
+		$soleRow = ( count( $rows ) == 1 ) ? reset( $rows ) : null;
+		// Disallow value changes for any columns in the identity key. This avoids additional
+		// insertion order dependencies that are unwieldy and difficult to implement efficiently.
+		foreach ( $set as $k => $v ) {
+			if ( is_string( $k ) ) {
+				// Key is a column name and value is a literal (e.g. string, int, null, ...)
+				if ( in_array( $k, $identityKey, true ) ) {
+					if ( $soleRow && array_key_exists( $k, $soleRow ) && $soleRow[$k] === $v ) {
+						$this->queryLogger->warning(
+							__METHOD__ . " called with redundant assignment to column '$k'",
+							[ 'exception' => new RuntimeException() ]
+						);
+					} else {
+						throw new DBUnexpectedError(
+							$this,
+							"Cannot reassign column '$k' since it belongs to identity key"
+						);
+					}
+				}
+			} elseif ( preg_match( '/^([a-zA-Z0-9_]+)\s*=/', $v, $m ) ) {
+				// Value is of the form "<unquoted alphanumeric column> = <SQL expression>"
+				if ( in_array( $m[1], $identityKey, true ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						"Cannot reassign column '{$m[1]}' since it belongs to identity key"
+					);
+				}
+			}
+		}
+	}
+
+	/**
 	 * @param string $option Query option flag (e.g. "IGNORE" or "FOR UPDATE")
 	 * @param array $options Combination option/value map and boolean option list
 	 * @return bool Whether the option appears as an integer-keyed value in the options
@@ -2726,7 +2797,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $sqlfunc Name of a SQL function
 	 * @param string|string[] $fields Name(s) of column(s) with values to compare
 	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
-	 * @return mixed
+	 * @return string
 	 * @since 1.35
 	 */
 	protected function buildSuperlative( $sqlfunc, $fields, $values ) {
@@ -3350,33 +3421,52 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $uniqueKeys ) {
-			$uniqueKey = $this->normalizeUpsertKeys( $uniqueKeys );
-			$this->doReplace( $table, $uniqueKey, $rows, $fname );
+			$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
 		} else {
+			// For backwards compatibility, allow insertion of rows with no applicable key
+			$identityKey = null;
 			$this->queryLogger->warning(
-				__METHOD__ . " called with no unique keys",
+				__METHOD__ . " called with no unique key",
 				[ 'exception' => new RuntimeException() ]
 			);
+		}
+
+		if ( $identityKey ) {
+			$allDefaultKeyValues = $this->assertValidUpsertRowArray( $rows, $identityKey );
+			if ( $allDefaultKeyValues ) {
+				// For backwards compatibility, allow insertion of rows with all-NULL
+				// values for the unique columns (e.g. for an AUTOINCREMENT column)
+				$identityKey = null;
+				$this->queryLogger->warning(
+					__METHOD__ . " called with all-null values for unique key",
+					[ 'exception' => new RuntimeException() ]
+				);
+			}
+		}
+
+		if ( $identityKey ) {
+			$this->doReplace( $table, $identityKey, $rows, $fname );
+		} else {
 			$this->doInsert( $table, $rows, $fname );
 		}
 	}
 
 	/**
-	 * @see Database::replace()
-	 * @stable to override
 	 * @param string $table
-	 * @param string[] $uniqueKey List of columns defining a unique key
+	 * @param string[] $identityKey List of columns defining a unique key
 	 * @param array $rows Non-empty list of rows
 	 * @param string $fname
+	 * @see Database::replace()
+	 * @stable to override
 	 * @since 1.35
 	 */
-	protected function doReplace( $table, array $uniqueKey, array $rows, $fname ) {
+	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Delete any conflicting rows (including ones inserted from $rows)
-				$sqlCondition = $this->makeConditionCollidesUponKeys( [ $row ], [ $uniqueKey ] );
+				$sqlCondition = $this->makeConditionCollidesUponKeys( [ $row ], [ $identityKey ] );
 				$this->delete( $table, [ $sqlCondition ], $fname );
 				$affectedRowCount += $this->affectedRows();
 				// Now insert the row
@@ -3414,9 +3504,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return $this->makeList( [ $column => $values ], self::LIST_AND );
 		}
 
+		$nullByUniqueKeyColumn = array_fill_keys( $uniqueKey, null );
+
 		$disjunctions = [];
 		foreach ( $rows as $row ) {
-			$rowKeyMap = array_intersect_key( $row, array_fill_keys( $uniqueKey, true ) );
+			$rowKeyMap = array_intersect_key( $row, $nullByUniqueKeyColumn );
 			if ( count( $rowKeyMap ) != count( $uniqueKey ) ) {
 				throw new DBUnexpectedError(
 					$this,
@@ -3459,13 +3551,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $uniqueKeys ) {
-			$uniqueKey = $this->normalizeUpsertKeys( $uniqueKeys );
-			$this->doUpsert( $table, $rows, $uniqueKey, $set, $fname );
+			$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
 		} else {
+			// For backwards compatibility, allow insertion of rows with no applicable key
+			$identityKey = null;
 			$this->queryLogger->warning(
-				__METHOD__ . " called with no unique keys",
+				__METHOD__ . " called with no unique key",
 				[ 'exception' => new RuntimeException() ]
 			);
+		}
+
+		if ( $identityKey ) {
+			$allDefaultKeyValues = $this->assertValidUpsertRowArray( $rows, $identityKey );
+			$this->assertValidUpsertSetArray( $set, $identityKey, $rows );
+			if ( $allDefaultKeyValues ) {
+				// For backwards compatibility, allow insertion of rows with all-NULL
+				// values for the unique columns (e.g. for an AUTOINCREMENT column)
+				$identityKey = null;
+				$this->queryLogger->warning(
+					__METHOD__ . " called with all-null values for unique key",
+					[ 'exception' => new RuntimeException() ]
+				);
+			}
+		}
+
+		if ( $identityKey ) {
+			$this->doUpsert( $table, $rows, $identityKey, $set, $fname );
+		} else {
 			$this->doInsert( $table, $rows, $fname );
 		}
 
@@ -3473,22 +3585,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @see Database::upsert()
-	 * @stable to override
 	 * @param string $table
 	 * @param array[] $rows Non-empty list of rows
-	 * @param string[] $uniqueKey List of columns defining a unique key
-	 * @param array $set
+	 * @param string[] $identityKey List of columns defining a unique key
+	 * @param string[] $set Non-empty combined column/literal map and SQL assignment list
 	 * @param string $fname
+	 * @see Database::upsert()
+	 * @stable to override
 	 * @since 1.35
 	 */
-	protected function doUpsert( $table, array $rows, array $uniqueKey, array $set, $fname ) {
+	protected function doUpsert(
+		string $table,
+		array $rows,
+		array $identityKey,
+		array $set,
+		string $fname
+	) {
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Update any existing conflicting rows (including ones inserted from $rows)
-				$sqlConditions = $this->makeConditionCollidesUponKeys( [ $row ], [ $uniqueKey ] );
+				$sqlConditions = $this->makeConditionCollidesUponKeys( [ $row ], [ $identityKey ] );
 				$this->update( $table, $set, [ $sqlConditions ], $fname );
 				$rowsUpdated = $this->affectedRows();
 				$affectedRowCount += $rowsUpdated;
