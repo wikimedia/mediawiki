@@ -29,7 +29,7 @@ You'll need a locally running Docker and Docker Compose:
   - [Docker installation instructions][docker-install]
   - [Docker Compose installation instructions][docker-compose]
 
-[docker-install]: https://docs.docker.com/install/
+[docker-install]: https://docs.docker.com/get-docker/
 [docker-compose]: https://docs.docker.com/compose/install/
 
 ---
@@ -134,7 +134,7 @@ docker-compose exec mediawiki php tests/phpunit/phpunit.php /path/to/test
 
 See [PHPUnit Testing][phpunit-testing] on MediaWiki.org for more help.
 
-[phpunit-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing/Running_the_unit_tests
+[phpunit-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing/Running_the_tests
 
 ##### Selenium
 
@@ -147,7 +147,7 @@ npm ci
 npm run selenium-test
 ```
 
-[selenium-dedicated]: https://www.mediawiki.org/wiki/Selenium/Node.js/Target_Local_MediaWiki_(Container)
+[selenium-dedicated]: https://www.mediawiki.org/wiki/Selenium/Getting_Started/Run_tests_using_Fresh
 
 #### API Testing
 
