@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class InvalidateUserSesssions extends Maintenance {
+class InvalidateUserSessions extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
@@ -90,5 +90,5 @@ class InvalidateUserSesssions extends Maintenance {
 	}
 }
 
-$maintClass = InvalidateUserSesssions::class;
+$maintClass = InvalidateUserSessions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
