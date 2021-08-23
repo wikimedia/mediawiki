@@ -1,7 +1,10 @@
 ( function () {
 
 	/**
+	 * Client library for the action API. See mw.Rest for the REST API.
+	 *
 	 * @class mw.Api
+	 * @see https://www.mediawiki.org/wiki/API:Main_page
 	 */
 
 	/**
@@ -125,7 +128,7 @@
 		},
 
 		/**
-		 * Perform API get request
+		 * Perform API get request. See #ajax for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -138,7 +141,7 @@
 		},
 
 		/**
-		 * Perform API post request
+		 * Perform API post request. See #ajax for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -181,10 +184,31 @@
 		/**
 		 * Perform the API call.
 		 *
-		 * @param {Object} parameters
-		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} Done: API response data and the jqXHR object.
-		 *  Fail: Error code
+		 * @param {Object} parameters Parameters to the API. See also #defaultOptions.parameters.
+		 * @param {Object} [ajaxOptions] Parameters to pass to jQuery.ajax. See also
+		 *   #defaultOptions.ajax.
+		 * @return {jQuery.Promise} A promise that settles when the API response is processed.
+		 *   Has an 'abort' method which can be used to abort the request.
+		 *
+		 *   - On success, resolves to `( result, jqXHR )` where `result` is the parsed API response.
+		 *   - On an API error, rejects with `( code, result, result, jqXHR )` where `code` is the
+		 *     [API error code](https://www.mediawiki.org/wiki/API:Errors_and_warnings), and `result`
+		 *     is as above. When there are multiple errors, the code from the first one will be used.
+		 *     If there is no error code, "unknown" is used.
+		 *   - On other types of errors, rejects with `( 'http', details )` where `details` is an object
+		 *     with three fields: `xhr` (the jqXHR object), `textStatus`, and `exception`.
+		 *     The meaning of the last two fields is as follows:
+		 *     - When the request is aborted (the abort method of the promise is called), textStatus
+		 *       and exception are both set to "abort".
+		 *     - On a network timeout, textStatus and exception are both set to "timeout".
+		 *     - On a network error, textStatus is "error" and exception is the empty string.
+		 *     - When the HTTP response code is anything other than 2xx or 304 (the API does not
+		 *       use such response codes but some intermediate layer might), textStatus is "error"
+		 *       and exception is the HTTP status text (the text following the status code in the
+		 *       first line of the server response). For HTTP/2, `exception` is always an empty string.
+		 *     - When the response is not valid JSON but the previous error conditions aren't met,
+		 *       textStatus is "parsererror" and exception is the exception object thrown by
+		 *       `JSON.parse`.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token, requestIndex,
