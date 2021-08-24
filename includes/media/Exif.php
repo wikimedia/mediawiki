@@ -316,26 +316,24 @@ class Exif {
 	private function makeFilteredData() {
 		$this->mFilteredExifData = [];
 
-		foreach ( array_keys( $this->mRawExifData ) as $section ) {
+		foreach ( $this->mRawExifData as $section => $data ) {
 			if ( !array_key_exists( $section, $this->mExifTags ) ) {
 				$this->debug( $section, __FUNCTION__, "'$section' is not a valid Exif section" );
 				continue;
 			}
 
-			foreach ( array_keys( $this->mRawExifData[$section] ) as $tag ) {
+			foreach ( $data as $tag => $value ) {
 				if ( !array_key_exists( $tag, $this->mExifTags[$section] ) ) {
 					$this->debug( $tag, __FUNCTION__, "'$tag' is not a valid tag in '$section'" );
 					continue;
 				}
 
-				$this->mFilteredExifData[$tag] = $this->mRawExifData[$section][$tag];
-				// This is ok, as the tags in the different sections do not conflict.
-				// except in computed and thumbnail section, which we don't use.
-
-				$value = $this->mRawExifData[$section][$tag];
-				if ( !$this->validate( $section, $tag, $value ) ) {
+				if ( $this->validate( $section, $tag, $value ) ) {
+					// This is ok, as the tags in the different sections do not conflict.
+					// except in computed and thumbnail section, which we don't use.
+					$this->mFilteredExifData[$tag] = $value;
+				} else {
 					$this->debug( $value, __FUNCTION__, "'$tag' contained invalid data" );
-					unset( $this->mFilteredExifData[$tag] );
 				}
 			}
 		}
