@@ -162,11 +162,7 @@ class ParserTestsMaintenance extends Maintenance {
 				$recorderDB,
 				static function ( $name ) use ( $regex ) {
 					// Filter reports of old tests by the filter regex
-					if ( $regex === false ) {
-						return true;
-					} else {
-						return (bool)preg_match( $regex, $name );
-					}
+					return $regex === false || (bool)preg_match( $regex, $name );
 				} ) );
 		}
 

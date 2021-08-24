@@ -188,11 +188,7 @@ abstract class MediaHandler {
 	protected function hasMostDerivedMethod( $name ) {
 		$rc = new ReflectionClass( $this );
 		$rm = new ReflectionMethod( $this, $name );
-		if ( $rm->getDeclaringClass()->getName() === $rc->getName() ) {
-			return true;
-		} else {
-			return false;
-		}
+		return $rm->getDeclaringClass()->getName() === $rc->getName();
 	}
 
 	/**
