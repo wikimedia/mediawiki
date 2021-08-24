@@ -40,14 +40,17 @@ class NumericUppercaseCollation extends UppercaseCollation {
 	private $digitTransformLang;
 
 	/**
-	 * @param Language $lang How to convert digits.
+	 * @param Language $digitTransformLang How to convert digits.
 	 *  For example, if given language "my" than ၇ is treated like 7.
-	 *
-	 * It is expected that usually this is given the content language.
+	 *  It is expected that usually this is given the content language.
+	 * @param Language $enLanguage
 	 */
-	public function __construct( Language $lang ) {
-		$this->digitTransformLang = $lang;
-		parent::__construct();
+	public function __construct(
+		Language $digitTransformLang,
+		Language $enLanguage
+	) {
+		$this->digitTransformLang = $digitTransformLang;
+		parent::__construct( $enLanguage );
 	}
 
 	public function getSortKey( $string ) {
