@@ -752,7 +752,7 @@
 	"last": "ar iepriekšējo",
 	"page_first": "pirmā",
 	"page_last": "pēdējā",
-	"histlegend": "Atšķirību izvēle: atzīmē vajadzīgo versiju apaļās pogas un spied \"Salīdzināt izvēlētās versijas\".<br />\nApzīmējumi:\n\"ar pašreizējo\" = salīdzināt ar pašreizējo versiju,\n\"ar iepriekšējo\" = salīdzināt ar iepriekšējo versiju,\nm = maznozīmīgs labojums.",
+	"histlegend": "Atšķirību izvēle: Atzīmē vajadzīgo versiju izvēles rūtiņas un spied Enter vai pogu apakšā.<br />\nApzīmējumi: <strong>({{int:cur}})</strong> = atšķirība ar pēdējo versiju, <strong>({{int:last}})</strong> = atšķirība ar iepriekšējo versiju, <strong>{{int:minoreditletter}}</strong> = maznozīmīgs labojums.",
 	"history-fieldset-title": "Filtrēt versijas",
 	"history-show-deleted": "Tikai dzēstie labojumi",
 	"histfirst": "Senākās",
