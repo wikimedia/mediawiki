@@ -266,6 +266,9 @@ class ApiQuery extends ApiBase {
 		],
 		'categorymembers' => [
 			'class' => ApiQueryCategoryMembers::class,
+			'services' => [
+				'CollationFactory',
+			]
 		],
 		'deletedrevs' => [
 			'class' => ApiQueryDeletedrevs::class,

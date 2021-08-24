@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -32,6 +31,7 @@ abstract class Collation {
 	private static $instance;
 
 	/**
+	 * @deprecated 1.37 Use MediaWikiServices::getCollationFactory()->getCategoryCollation()
 	 * @since 1.16.3
 	 * @return Collation
 	 */
@@ -45,70 +45,13 @@ abstract class Collation {
 
 	/**
 	 * @since 1.16.3
+	 * @deprecated 1.37 Use MediaWikiServices::getCollationFactory()->makeCollation()
 	 * @throws MWException
 	 * @param string $collationName
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
-		$mwServices = MediaWikiServices::getInstance();
-		$languageFactory = $mwServices->getLanguageFactory();
-		switch ( $collationName ) {
-			case 'uppercase':
-				return new UppercaseCollation(
-					$languageFactory->getLanguage( 'en' )
-				);
-			case 'numeric':
-				return new NumericUppercaseCollation(
-					$mwServices->getContentLanguage(),
-					$languageFactory->getLanguage( 'en' )
-				);
-			case 'identity':
-				return new IdentityCollation(
-					$mwServices->getContentLanguage()
-				);
-			case 'uca-default':
-				return new IcuCollation(
-					$languageFactory,
-					'root'
-				);
-			case 'uca-default-u-kn':
-				return new IcuCollation(
-					$languageFactory,
-					'root-u-kn'
-				);
-			case 'xx-uca-ckb':
-				return new CollationCkb( $languageFactory );
-			case 'uppercase-ab':
-				return new AbkhazUppercaseCollation(
-					$languageFactory->getLanguage( 'ab' ),
-					$languageFactory->getLanguage( 'en' )
-				);
-			case 'uppercase-ba':
-				return new BashkirUppercaseCollation(
-					$languageFactory->getLanguage( 'ba' ),
-					$languageFactory->getLanguage( 'en' )
-				);
-			default:
-				$match = [];
-				if ( preg_match( '/^uca-([A-Za-z@=-]+)$/', $collationName, $match ) ) {
-					return new IcuCollation(
-						$languageFactory,
-						$match[1]
-					);
-				}
-
-				# Provide a mechanism for extensions to hook in.
-				$collationObject = null;
-				$hookRunner = new HookRunner( $mwServices->getHookContainer() );
-				$hookRunner->onCollation__factory( $collationName, $collationObject );
-
-				if ( $collationObject instanceof self ) {
-					return $collationObject;
-				}
-
-				// If all else fails...
-				throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
-		}
+		return MediaWikiServices::getInstance()->getCollationFactory()->makeCollation( $collationName );
 	}
 
 	/**

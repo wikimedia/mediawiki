@@ -84,7 +84,7 @@ class CollationTest extends MediaWikiLangTestCase {
 	 * @dataProvider firstLetterProvider
 	 */
 	public function testGetFirstLetter( $collation, $string, $firstLetter ) {
-		$col = Collation::factory( $collation );
+		$col = $this->getServiceContainer()->getCollationFactory()->makeCollation( $collation );
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}
 

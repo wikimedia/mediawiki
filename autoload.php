@@ -852,6 +852,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
+	'MediaWiki\\Collation\\CollationFactory' => __DIR__ . '/includes/collation/CollationFactory.php',
 	'MediaWiki\\DAO\\WikiAwareEntity' => __DIR__ . '/includes/dao/WikiAwareEntity.php',
 	'MediaWiki\\DAO\\WikiAwareEntityTrait' => __DIR__ . '/includes/dao/WikiAwareEntityTrait.php',
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/debug/DeprecatablePropertyArray.php',
