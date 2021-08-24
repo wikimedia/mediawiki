@@ -1445,13 +1445,10 @@ class ParserOutput extends CacheTime {
 			static function ( $field ) {
 				if ( $field === 'mParseStartTime' ) {
 					return false;
-				} elseif ( strpos( $field, "\0" ) !== false ) {
-					// Unserializing unknown private fields in HHVM causes
-					// member variables with nulls in their names (T229366)
-					return false;
-				} else {
-					return true;
 				}
+				// Unserializing unknown private fields in HHVM causes
+				// member variables with nulls in their names (T229366)
+				return strpos( $field, "\0" ) === false;
 			}
 		);
 	}

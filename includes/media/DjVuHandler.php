@@ -96,15 +96,7 @@ class DjVuHandler extends ImageHandler {
 			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
 			return false;
 		}
-		if ( in_array( $name, [ 'width', 'height', 'page' ] ) ) {
-			if ( $value <= 0 ) {
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			return false;
-		}
+		return in_array( $name, [ 'width', 'height', 'page' ] ) && $value > 0;
 	}
 
 	/**
