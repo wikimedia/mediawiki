@@ -687,7 +687,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
-		$prior = $dbw->selectField( 'logging', '1',
+		$prior = (bool)$dbw->selectField( 'logging', '1',
 			[ 'log_type' => $this->getType(),
 				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),

@@ -127,13 +127,11 @@ class CleanupImages extends TableCleanup {
 	}
 
 	private function imageExists( $name, $db ) {
-		return $db->selectField( 'image', '1', [ 'img_name' => $name ], __METHOD__ );
+		return (bool)$db->selectField( 'image', '1', [ 'img_name' => $name ], __METHOD__ );
 	}
 
 	private function pageExists( $name, $db ) {
-		return $db->selectField(
-			'page',
-			'1',
+		return (bool)$db->selectField( 'page', '1',
 			[ 'page_namespace' => NS_FILE, 'page_title' => $name ],
 			__METHOD__
 		);

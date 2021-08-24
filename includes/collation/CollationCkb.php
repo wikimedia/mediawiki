@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageFactory;
 
 /**
  * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
@@ -28,11 +28,13 @@ use MediaWiki\MediaWikiServices;
  * @since 1.23
  */
 class CollationCkb extends IcuCollation {
-	public function __construct() {
+	/**
+	 * @param LanguageFactory $languageFactory
+	 */
+	public function __construct( LanguageFactory $languageFactory ) {
 		// This will set $locale and collators, which affect the actual sorting order
-		parent::__construct( 'fa' );
+		parent::__construct( $languageFactory, 'fa' );
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
-		$this->digitTransformLanguage =
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ckb' );
+		$this->digitTransformLanguage = $languageFactory->getLanguage( 'ckb' );
 	}
 }

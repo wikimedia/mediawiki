@@ -185,13 +185,11 @@ class LocalRepo extends FileRepo {
 	 * @return bool File with this key is in use
 	 */
 	protected function deletedFileHasKey( $key, $lock = null ) {
-		$options = ( $lock === 'lock' ) ? [ 'FOR UPDATE' ] : [];
-
 		$dbw = $this->getPrimaryDB();
-
 		return (bool)$dbw->selectField( 'filearchive', '1',
 			[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ],
-			__METHOD__, $options
+			__METHOD__,
+			$lock === 'lock' ? [ 'FOR UPDATE' ] : []
 		);
 	}
 
@@ -203,18 +201,18 @@ class LocalRepo extends FileRepo {
 	 * @return bool File with this key is in use
 	 */
 	protected function hiddenFileHasKey( $key, $lock = null ) {
-		$options = ( $lock === 'lock' ) ? [ 'FOR UPDATE' ] : [];
-
 		$sha1 = self::getHashFromKey( $key );
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
 		$dbw = $this->getPrimaryDB();
-
 		return (bool)$dbw->selectField( 'oldimage', '1',
-			[ 'oi_sha1' => $sha1,
+			[
+				'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
-				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ],
-			__METHOD__, $options
+				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE,
+			],
+			__METHOD__,
+			$lock === 'lock' ? [ 'FOR UPDATE' ] : []
 		);
 	}
 

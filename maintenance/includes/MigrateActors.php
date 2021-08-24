@@ -84,12 +84,12 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		} else {
 			$this->output( "Checking that actors exist for all registered users\n" );
 			$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-			$anyMissing = $dbr->selectField(
+			$anyMissing = (bool)$dbr->selectField(
 				[ 'user', 'actor' ],
 				'1',
 				[ 'actor_id' => null ],
 				__METHOD__,
-				[ 'LIMIT 1' ],
+				[],
 				[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
 			);
 			if ( $anyMissing ) {
@@ -476,9 +476,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$countActors = 0;
 		$countErrors = 0;
 
-		$anyBad = $dbw->selectField(
-			'log_search',
-			'1',
+		$anyBad = (bool)$dbw->selectField( 'log_search', '1',
 			[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
 			__METHOD__
 		);

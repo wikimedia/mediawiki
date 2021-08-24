@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -49,33 +50,57 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
+		$mwServices = MediaWikiServices::getInstance();
+		$languageFactory = $mwServices->getLanguageFactory();
 		switch ( $collationName ) {
 			case 'uppercase':
-				return new UppercaseCollation;
+				return new UppercaseCollation(
+					$languageFactory->getLanguage( 'en' )
+				);
 			case 'numeric':
 				return new NumericUppercaseCollation(
-					MediaWikiServices::getInstance()->getContentLanguage() );
+					$mwServices->getContentLanguage(),
+					$languageFactory->getLanguage( 'en' )
+				);
 			case 'identity':
-				return new IdentityCollation;
+				return new IdentityCollation(
+					$mwServices->getContentLanguage()
+				);
 			case 'uca-default':
-				return new IcuCollation( 'root' );
+				return new IcuCollation(
+					$languageFactory,
+					'root'
+				);
 			case 'uca-default-u-kn':
-				return new IcuCollation( 'root-u-kn' );
+				return new IcuCollation(
+					$languageFactory,
+					'root-u-kn'
+				);
 			case 'xx-uca-ckb':
-				return new CollationCkb;
+				return new CollationCkb( $languageFactory );
 			case 'uppercase-ab':
-				return new AbkhazUppercaseCollation;
+				return new AbkhazUppercaseCollation(
+					$languageFactory->getLanguage( 'ab' ),
+					$languageFactory->getLanguage( 'en' )
+				);
 			case 'uppercase-ba':
-				return new BashkirUppercaseCollation;
+				return new BashkirUppercaseCollation(
+					$languageFactory->getLanguage( 'ba' ),
+					$languageFactory->getLanguage( 'en' )
+				);
 			default:
 				$match = [];
 				if ( preg_match( '/^uca-([A-Za-z@=-]+)$/', $collationName, $match ) ) {
-					return new IcuCollation( $match[1] );
+					return new IcuCollation(
+						$languageFactory,
+						$match[1]
+					);
 				}
 
 				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
-				Hooks::runner()->onCollation__factory( $collationName, $collationObject );
+				$hookRunner = new HookRunner( $mwServices->getHookContainer() );
+				$hookRunner->onCollation__factory( $collationName, $collationObject );
 
 				if ( $collationObject instanceof self ) {
 					return $collationObject;

@@ -156,8 +156,8 @@ class SiteStatsInit {
 	 */
 	public static function doPlaceholderInit() {
 		$dbw = self::getDB( DB_PRIMARY );
-		$exists = $dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
-		if ( $exists === false ) {
+		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
+		if ( !$exists ) {
 			$dbw->insert(
 				'site_stats',
 				[ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ),

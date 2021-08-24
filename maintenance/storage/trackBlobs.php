@@ -74,7 +74,7 @@ class TrackBlobs {
 
 		// Scan for HistoryBlobStub objects in the text table (T22757)
 
-		$exists = $dbr->selectField( 'text', '1',
+		$exists = (bool)$dbr->selectField( 'text', '1',
 			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
 			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 			__METHOD__
