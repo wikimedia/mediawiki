@@ -70,12 +70,9 @@ abstract class AlphabeticPager extends IndexPager {
 		}
 
 		$extra = '';
-		$first = true;
 		$msgs = $this->getOrderTypeMessages();
 		foreach ( array_keys( $msgs ) as $order ) {
-			if ( $first ) {
-				$first = false;
-			} else {
+			if ( $extra !== '' ) {
 				$extra .= $this->msg( 'pipe-separator' )->escaped();
 			}
 
