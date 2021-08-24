@@ -3923,6 +3923,7 @@
 	"json-error-ctrl-char": "Erro de caractere de controle, possivelmente codificada incorretamente",
 	"json-error-syntax": "Erro de sintaxe",
 	"json-error-utf8": "Caracteres UTF-8 malformados, possivelmente a codificação está incorreta.",
+	"json-error-invalid-property-name": "O nome da propriedade decodificada é inválido",
 	"json-error-utf16": "Caracteres UTF-16 malformados, possivelmente codificados incorretamente",
 	"headline-anchor-title": "Link para esta seção",
 	"special-characters-group-latin": "Latino",
