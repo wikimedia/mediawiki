@@ -20,16 +20,19 @@
  * @file
  */
 
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserGroupManager;
-use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.
  */
-class UserRightsProxy {
+class UserRightsProxy implements UserIdentity {
+	use WikiAwareEntityTrait;
+
 	/** @var IDatabase */
 	private $db;
 	/** @var string */
@@ -169,17 +172,18 @@ class UserRightsProxy {
 	}
 
 	/**
+	 * @param string|false $wikiId
 	 * @return int
 	 */
-	public function getId() {
+	public function getId( $wikiId = self::LOCAL ): int {
 		return $this->id;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isAnon() {
-		return $this->getId() == 0;
+	public function isAnon(): bool {
+		return !$this->isRegistered();
 	}
 
 	/**
@@ -187,7 +191,7 @@ class UserRightsProxy {
 	 *
 	 * @return string
 	 */
-	public function getName() {
+	public function getName(): string {
 		return $this->name . '@' . $this->dbDomain;
 	}
 
@@ -215,12 +219,7 @@ class UserRightsProxy {
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
-		// TODO: We are creating an artificial UserIdentity to pass on to the user group manager.
-		// After all the relevant UserGroupMemberships methods are ported into UserGroupManager,
-		// the usages of this class will be changed into usages of the UserGroupManager,
-		// thus the need of this class and the need of this artificial UserIdentityValue will parish.
-		$user = new UserIdentityValue( $this->getId(), $this->getName() );
-		return $this->userGroupManager->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
+		return $this->userGroupManager->getUserGroupMemberships( $this, IDBAccessObject::READ_LATEST );
 	}
 
 	/**
@@ -232,9 +231,7 @@ class UserRightsProxy {
 	 */
 	public function addGroup( $group, $expiry = null ) {
 		return $this->userGroupManager->addUserToGroup(
-			// TODO: Artificial UserIdentity just for passing the id and name.
-			// see comment in getGroupMemberships.
-			new UserIdentityValue( $this->getId(), $this->getName() ),
+			$this,
 			$group,
 			$expiry,
 			true
@@ -249,9 +246,7 @@ class UserRightsProxy {
 	 */
 	public function removeGroup( $group ) {
 		return $this->userGroupManager->removeUserFromGroup(
-			// TODO: Artificial UserIdentity just for passing the id and name.
-			// see comment in getGroupMemberships.
-			new UserIdentityValue( $this->getId(), $this->getName() ),
+			$this,
 			$group
 		);
 	}
@@ -302,5 +297,32 @@ class UserRightsProxy {
 			},
 			__METHOD__
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function equals( ?UserIdentity $user ): bool {
+		if ( !$user ) {
+			return false;
+		}
+		return $this->getName() === $user->getName();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function isRegistered(): bool {
+		return $this->getId( $this->getWikiId() ) != 0;
+	}
+
+	/**
+	 * Returns the db Domain of the wiki the UserRightsProxy is associated with.
+	 *
+	 * @since 1.37
+	 * @return string
+	 */
+	public function getWikiId() {
+		return $this->dbDomain;
 	}
 }
