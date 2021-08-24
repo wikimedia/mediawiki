@@ -240,62 +240,6 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Fills the provided ParserOutput object with information derived from the content.
-	 * Unless $generateHtml was false, this includes an HTML representation of the content
-	 * provided by getHtml().
-	 *
-	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
-	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
-	 *
-	 * Subclasses may override this to provide custom content processing.
-	 * For custom HTML generation alone, it is sufficient to override getHtml().
-	 *
-	 * @stable to override
-	 *
-	 * @param Title $title Context title for parsing
-	 * @param int $revId Revision ID (for {{REVISIONID}})
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml Whether or not to generate HTML
-	 * @param ParserOutput &$output The output object to fill (reference).
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-		ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		global $wgTextModelsToParse;
-
-		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
-			// parse just to get links etc into the database, HTML is replaced below.
-			$output = MediaWikiServices::getInstance()->getParser()
-				->parse( $this->getText(), $title, $options, true, true, $revId );
-		}
-
-		if ( $generateHtml ) {
-			$html = $this->getHtml();
-		} else {
-			$html = '';
-		}
-
-		$output->clearWrapperDivClass();
-		$output->setText( $html );
-	}
-
-	/**
-	 * Generates an HTML version of the content, for display. Used by
-	 * fillParserOutput() to provide HTML for the ParserOutput object.
-	 *
-	 * Subclasses may override this to provide a custom HTML rendering.
-	 * If further information is to be derived from the content (such as
-	 * categories), the fillParserOutput() method can be overridden instead.
-	 *
-	 * @stable to override
-	 *
-	 * @return string An HTML representation of the content
-	 */
-	protected function getHtml() {
-		return htmlspecialchars( $this->getText() );
-	}
-
-	/**
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *

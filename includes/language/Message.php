@@ -870,10 +870,11 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * Returns the message as a Content object.
-	 *
+	 * @deprecated since 1.38, MessageContent class is hard-deprecated.
 	 * @return Content
 	 */
 	public function content() {
+		wfDeprecated( __METHOD__, '1.38' );
 		if ( !$this->content ) {
 			$this->content = new MessageContent( $this );
 		}

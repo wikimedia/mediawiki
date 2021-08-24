@@ -296,7 +296,6 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'useDatabase' )->willReturn( $msg );
 		$msg->method( 'setContext' )->willReturn( $msg );
 		$msg->method( 'exists' )->willReturn( true );
-		$msg->method( 'content' )->willReturn( new MessageContent( $msg ) );
 		return $msg;
 	}
 }

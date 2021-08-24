@@ -43,6 +43,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
@@ -818,6 +819,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentModelStore(): NameTableStore {
 		return $this->getService( 'ContentModelStore' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return ContentRenderer
+	 */
+	public function getContentRenderer(): ContentRenderer {
+		return $this->getService( 'ContentRenderer' );
 	}
 
 	/**

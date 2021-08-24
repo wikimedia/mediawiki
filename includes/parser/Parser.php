@@ -3697,8 +3697,8 @@ class Parser {
 					$text = false;
 					break;
 				}
-				$content = $message->content();
 				$text = $message->plain();
+				break;
 			} else {
 				break;
 			}

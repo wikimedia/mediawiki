@@ -23,6 +23,8 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
+
 /**
  * Content handler implementation for unknown content.
  *
@@ -102,6 +104,25 @@ class FallbackContentHandler extends ContentHandler {
 	 */
 	public function supportsDirectEditing() {
 		return false;
+	}
+
+	/**
+	 * Fills the ParserOutput with an error message.
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 *
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		'@phan-var FallbackContent $content';
+		$msg = wfMessage( 'unsupported-content-model', [ $content->getModel() ] );
+		$html = Html::rawElement( 'div', [ 'class' => 'error' ], $msg->inContentLanguage()->parse() );
+		$output->setText( $html );
 	}
 
 	/**

@@ -62,28 +62,6 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Set the HTML and add the appropriate styles.
-	 *
-	 * @param Title $title
-	 * @param int $revId
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml
-	 * @param ParserOutput &$output
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-		ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		// FIXME: WikiPage::doEditContent generates parser output before validation.
-		// As such, native data may be invalid (though output is discarded later in that case).
-		if ( $generateHtml && $this->isValid() ) {
-			$output->setText( $this->rootValueTable( $this->getData()->getValue() ) );
-			$output->addModuleStyles( 'mediawiki.content.json' );
-		} else {
-			$output->setText( '' );
-		}
-	}
-
-	/**
 	 * Construct HTML table representation of any JSON value.
 	 *
 	 * See also valueCell, which is similar.
@@ -91,7 +69,7 @@ class JsonContent extends TextContent {
 	 * @param mixed $val
 	 * @return string HTML.
 	 */
-	protected function rootValueTable( $val ) {
+	public function rootValueTable( $val ) {
 		if ( is_object( $val ) ) {
 			return $this->objectTable( $val );
 		}
