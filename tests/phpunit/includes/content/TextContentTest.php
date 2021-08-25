@@ -131,29 +131,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $content->getText() );
 	}
 
-	public static function dataPreloadTransform() {
-		return [
-			[
-				'hello this is ~~~',
-				'hello this is ~~~',
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider dataPreloadTransform
-	 * @covers TextContent::preloadTransform
-	 */
-	public function testPreloadTransform( $text, $expected ) {
-		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(),
-			MediaWikiServices::getInstance()->getContentLanguage() );
-
-		$content = $this->newContent( $text );
-		$content = $content->preloadTransform( $this->context->getTitle(), $options );
-
-		$this->assertEquals( $expected, $content->getText() );
-	}
-
 	public static function dataGetRedirectTarget() {
 		return [
 			[ '#REDIRECT [[Test]]',
