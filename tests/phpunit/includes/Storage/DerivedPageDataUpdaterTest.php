@@ -7,6 +7,7 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
+use DummyContentHandlerForTesting;
 use JobQueueGroup;
 use LinksUpdate;
 use MediaWiki\Config\ServiceOptions;
@@ -31,6 +32,7 @@ use User;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 use WikitextContent;
+use WikitextContentHandler;
 
 /**
  * @group Database
@@ -562,6 +564,46 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			return $du instanceof LinksUpdate;
 		} );
 		$this->assertCount( 1, $linksUpdates );
+	}
+
+	public function testAvoidSecondaryDataUpdatesOnNonHTMLContentHandlers() {
+		$this->setMwGlobals( [
+			'wgContentHandlers' => [
+				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
+				'testing' => DummyContentHandlerForTesting::class,
+			],
+		] );
+
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentHandlerFactory' );
+		$user = $this->getTestUser()->getUser();
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision( $page, __METHOD__ );
+
+		$contentHandler = new DummyContentHandlerForTesting( 'testing' );
+		$mainContent1 = $contentHandler->unserializeContent( serialize( 'first' ) );
+		$update = new RevisionSlotsUpdate();
+		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache->deleteOptionsKey( $page );
+		$rev = $this->createRevision( $page, 'first', $mainContent1 );
+
+		// Run updates
+		$update->modifyContent( SlotRecord::MAIN, $mainContent1 );
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+		$dataUpdates = $updater->getSecondaryDataUpdates();
+		$updater->prepareUpdate( $rev );
+		$updater->doUpdates();
+
+		// Links updates should be triggered
+		$this->assertNotEmpty( $dataUpdates );
+		$linksUpdates = array_filter( $dataUpdates, static function ( $du ) {
+			return $du instanceof LinksUpdate;
+		} );
+		$this->assertCount( 1, $linksUpdates );
+
+		// Parser cache should not be populated.
+		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );
+		$this->assertFalse( $cached );
 	}
 
 	public function testGetSecondaryDataUpdatesDeleted() {

@@ -943,6 +943,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': using stashed edit output...' );
 		}
 
+		$renderHints['generate-html'] = $this->shouldGenerateHTMLOnEdit();
+
 		// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
 		// NOTE: the revision is either new or current, so we can bypass audience checks.
 		$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
@@ -1373,6 +1375,14 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * @since 1.37
+	 * @return ParserOutput
+	 */
+	public function getParserOutputForMetaData(): ParserOutput {
+		return $this->getRenderedRevision()->getRevisionParserOutput( [ 'generate-html' => false ] );
+	}
+
+	/**
 	 * @return ParserOutput
 	 */
 	public function getCanonicalParserOutput() {
@@ -1405,22 +1415,24 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			return [];
 		}
 
-		$output = $this->getCanonicalParserOutput();
 		$title = $wikiPage->getTitle();
+		$allUpdates = [];
+		$parserOutput = $this->shouldGenerateHTMLOnEdit() ?
+			$this->getCanonicalParserOutput() : $this->getParserOutputForMetaData();
 
 		// Construct a LinksUpdate for the combined canonical output.
 		$linksUpdate = new LinksUpdate(
 			$title,
-			$output,
+			$parserOutput,
 			$recursive
 		);
 
-		$allUpdates = [ $linksUpdate ];
-
+		$allUpdates[] = $linksUpdate;
 		// NOTE: Run updates for all slots, not just the modified slots! Otherwise,
 		// info for an inherited slot may end up being removed. This is also needed
 		// to ensure that purges are effective.
 		$renderedRevision = $this->getRenderedRevision();
+
 		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
 			$slot = $this->getRawSlot( $role );
 			$content = $slot->getContent();
@@ -1468,6 +1480,21 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * @return bool true if at least one of slots require rendering HTML on edit, false otherwise.
+	 *              This is needed for example in populating ParserCache.
+	 */
+	private function shouldGenerateHTMLOnEdit(): bool {
+		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
+			$slot = $this->getRawSlot( $role );
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $slot->getModel() );
+			if ( $contentHandler->generateHTMLOnEdit() ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Do standard updates after page edit, purge, or import.
 	 * Update links tables, site stats, search index, title cache, message cache, etc.
 	 * Purges pages that depend on this page when appropriate.
@@ -1484,22 +1511,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
-		$userParserOptions = ParserOptions::newFromUser( $this->user );
-		// Decide whether to save the final canonical parser ouput based on the fact that
-		// users are typically redirected to viewing pages right after they edit those pages.
-		// Due to vary-revision-id, getting/saving that output here might require a reparse.
-		if ( $userParserOptions->matchesForCacheKey( $this->getCanonicalParserOptions() ) ) {
-			// Whether getting the final output requires a reparse or not, the user will
-			// need canonical output anyway, since that is what their parser options use.
-			// A reparse now at least has the benefit of various warm process caches.
-			$this->doParserCacheUpdate();
-		} else {
-			// If the user does not have canonical parse options, then don't risk another parse
-			// to make output they cannot use on the page refresh that typically occurs after
-			// editing. Doing the parser output save post-send will still benefit *other* users.
-			DeferredUpdates::addCallableUpdate( function () {
-				$this->doParserCacheUpdate();
-			} );
+		if ( $this->shouldGenerateHTMLOnEdit() ) {
+			$this->triggerParserCacheUpdate();
 		}
 
 		$this->doSecondaryDataUpdates( [
@@ -1638,6 +1651,26 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->maybeEnqueueRevertedTagUpdateJob();
 
 		$this->doTransition( 'done' );
+	}
+
+	private function triggerParserCacheUpdate() {
+		$userParserOptions = ParserOptions::newFromUser( $this->user );
+		// Decide whether to save the final canonical parser output based on the fact that
+		// users are typically redirected to viewing pages right after they edit those pages.
+		// Due to vary-revision-id, getting/saving that output here might require a reparse.
+		if ( $userParserOptions->matchesForCacheKey( $this->getCanonicalParserOptions() ) ) {
+			// Whether getting the final output requires a reparse or not, the user will
+			// need canonical output anyway, since that is what their parser options use.
+			// A reparse now at least has the benefit of various warm process caches.
+			$this->doParserCacheUpdate();
+		} else {
+			// If the user does not have canonical parse options, then don't risk another parse
+			// to make output they cannot use on the page refresh that typically occurs after
+			// editing. Doing the parser output save post-send will still benefit *other* users.
+			DeferredUpdates::addCallableUpdate( function () {
+				$this->doParserCacheUpdate();
+			} );
+		}
 	}
 
 	/**

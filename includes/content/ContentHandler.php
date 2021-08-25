@@ -1266,6 +1266,18 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Whether an edit on the content should trigger an HTML render and ParserCache entry.
+	 *
+	 * @stable to override
+	 * @since 1.37
+	 *
+	 * @return bool true if edit should trigger an HTML render false otherwise
+	 */
+	public function generateHTMLOnEdit(): bool {
+		return true;
+	}
+
+	/**
 	 * Whether or not this content model supports direct editing via ApiEditPage
 	 *
 	 * @stable to override
