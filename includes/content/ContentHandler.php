@@ -1624,7 +1624,8 @@ abstract class ContentHandler {
 		return MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
-			$method
+			$method,
+			'1.37'
 		);
 	}
 

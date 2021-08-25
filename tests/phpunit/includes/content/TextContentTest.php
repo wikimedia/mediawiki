@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group ContentHandler
  * @group Database
@@ -91,44 +89,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		}
 
 		// TODO: assert more properties
-	}
-
-	public static function dataPreSaveTransform() {
-		return [
-			[
-				# 0: no signature resolution
-				'hello this is ~~~',
-				'hello this is ~~~',
-			],
-			[
-				# 1: rtrim
-				" Foo \n ",
-				' Foo',
-			],
-			[
-				# 2: newline normalization
-				"LF\n\nCRLF\r\n\r\nCR\r\rEND",
-				"LF\n\nCRLF\n\nCR\n\nEND",
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider dataPreSaveTransform
-	 * @covers TextContent::preSaveTransform
-	 */
-	public function testPreSaveTransform( $text, $expected ) {
-		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(),
-			MediaWikiServices::getInstance()->getContentLanguage() );
-
-		$content = $this->newContent( $text );
-		$content = $content->preSaveTransform(
-			$this->context->getTitle(),
-			$this->context->getUser(),
-			$options
-		);
-
-		$this->assertEquals( $expected, $content->getText() );
 	}
 
 	public static function dataGetRedirectTarget() {

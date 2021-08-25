@@ -387,8 +387,8 @@ interface Content {
 	 * object if no transformations apply).
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.37 Use ContentTransformer::preSaveTransform and override ContentHandler::preSaveTransform.
-	 *
+	 * @deprecated since 1.37. Hard-deprecated since 1.37. Use ContentTransformer::preSaveTransform
+	 * and override ContentHandler::preSaveTransform.
 	 * @param Title $title
 	 * @param User $user
 	 * @param ParserOptions $parserOptions
