@@ -168,6 +168,28 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::expandUrl
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testGetScriptURLsForDebug() {
+		$ctx = $this->getResourceLoaderContext();
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'remoteBasePath' => '/w/something',
+			'scripts' => [ 'script-comment.js' ],
+		] );
+		$module->setName( 'testing' );
+		$module->setConfig( $ctx->getResourceLoader()->getConfig() );
+
+		$this->assertEquals(
+			[
+				'https://example.org/w/something/script-comment.js'
+			],
+			$module->getScriptURLsForDebug( $ctx )
+		);
+	}
+
+	/**
 	 * @covers ResourceLoaderFileModule
 	 */
 	public function testGetAllSkinStyleFiles() {

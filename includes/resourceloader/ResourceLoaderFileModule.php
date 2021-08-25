@@ -385,12 +385,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string[]
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
+		$rl = $context->getResourceLoader();
+		$config = $this->getConfig();
+		$server = $config->get( 'Server' );
+
 		$urls = [];
 		foreach ( $this->getScriptFiles( $context ) as $file ) {
-			$urls[] = OutputPage::transformResourcePath(
-				$this->getConfig(),
-				$this->getRemotePath( $file )
-			);
+			$url = OutputPage::transformResourcePath( $config, $this->getRemotePath( $file ) );
+			// Expand debug URL in case we are another wiki's module source (T255367)
+			$url = $rl->expandUrl( $server, $url );
+			$urls[] = $url;
 		}
 		return $urls;
 	}
