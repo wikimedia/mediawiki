@@ -92,7 +92,7 @@ class PageStore implements PageLookup {
 
 		Assert::parameter( $ns >= 0, '$link', 'namespace must not be virtual' );
 
-		$page = $this->getPageByName( $ns, $link->getDBkey() );
+		$page = $this->getPageByName( $ns, $link->getDBkey(), $queryFlags );
 
 		if ( !$page ) {
 			$page = new PageIdentityValue( 0, $ns, $link->getDBkey(), $this->wikiId );
@@ -216,7 +216,7 @@ class PageStore implements PageLookup {
 			}
 		}
 
-		return $this->getPageByName( $page->getNamespace(), $page->getDBkey() );
+		return $this->getPageByName( $page->getNamespace(), $page->getDBkey(), $queryFlags );
 	}
 
 	/**
