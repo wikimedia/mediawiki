@@ -161,6 +161,7 @@ class ApiMain extends ApiBase {
 				'DBLoadBalancer',
 				'NamespaceInfo',
 				'ActorMigration',
+				'UserFactory',
 			]
 		],
 		'feedrecentchanges' => [

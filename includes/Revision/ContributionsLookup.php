@@ -129,8 +129,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = $this->getContribsPager( $context, [
-			'target' => $target->getName(),
+		$pager = $this->getContribsPager( $context, $target, [
 			'tagfilter' => $tag,
 			'revisionsOnly' => true
 		] );
@@ -241,8 +240,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( [] ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = $this->getContribsPager( $context, [
-			'target' => $user->getName(),
+		$pager = $this->getContribsPager( $context, $user, [
 			'tagfilter' => $tag,
 		] );
 
@@ -260,7 +258,11 @@ class ContributionsLookup {
 		return (int)$count;
 	}
 
-	private function getContribsPager( IContextSource $context, array $options ) {
+	private function getContribsPager(
+		IContextSource $context,
+		UserIdentity $targetUser,
+		array $options
+	) {
 		return new ContribsPager(
 			$context,
 			$options,
@@ -270,7 +272,8 @@ class ContributionsLookup {
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,
-			$this->namespaceInfo
+			$this->namespaceInfo,
+			$targetUser
 		);
 	}
 

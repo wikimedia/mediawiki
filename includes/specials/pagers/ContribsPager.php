@@ -26,6 +26,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -102,6 +104,9 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $mParentLens;
 
+	/** @var UserIdentity */
+	private $targetUser;
+
 	/**
 	 * @var TemplateParser
 	 */
@@ -132,6 +137,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param ActorMigration|null $actorMigration
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
+	 * @param UserIdentity|null $targetUser
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -142,15 +148,37 @@ class ContribsPager extends RangeChronologicalPager {
 		ILoadBalancer $loadBalancer = null,
 		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
-		NamespaceInfo $namespaceInfo = null
+		NamespaceInfo $namespaceInfo = null,
+		UserIdentity $targetUser = null
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();
 		$loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
 		// the rest too just to keep things simple.
-		$this->target = $options['target'] ?? '';
+		if ( $targetUser ) {
+			$this->target = $options['target'] ?? $targetUser->getName();
+			$this->targetUser = $targetUser;
+		} else {
+			// Use target option
+			// It's possible for the target to be empty. This is used by
+			// ContribsPagerTest and does not cause newFromName() to return
+			// false. It's probably not used by any production code.
+			$this->target = $options['target'] ?? '';
+			$this->targetUser = $services->getUserFactory()->newFromName(
+				$this->target, UserFactory::RIGOR_NONE
+			);
+			if ( !$this->targetUser ) {
+				// This can happen if the target contained "#". Callers
+				// typically pass user input through title normalization to
+				// avoid it.
+				throw new InvalidArgumentException( __METHOD__ . ': the user name is too ' .
+					'broken to use even with validation disabled.' );
+			}
+		}
+
 		$this->namespace = $options['namespace'] ?? '';
 		$this->tagFilter = $options['tagfilter'] ?? false;
 		$this->nsInvert = $options['nsInvert'] ?? false;
@@ -303,12 +331,12 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private function getTargetTable() {
 		$dbr = $this->getDatabase();
-		$user = User::newFromName( $this->target, false );
-		$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $dbr, $this->target ) : null;
+		$ipRangeConds = $this->targetUser->isRegistered()
+			? null : $this->getIpRangeConds( $dbr, $this->target );
 		if ( $ipRangeConds ) {
 			return 'ip_changes';
 		} else {
-			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
+			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
 			if ( isset( $conds['orconds']['actor'] ) ) {
 				return 'revision_actor_temp';
 			}
@@ -328,9 +356,8 @@ class ContribsPager extends RangeChronologicalPager {
 		];
 
 		// WARNING: Keep this in sync with getTargetTable()!
-		$user = User::newFromName( $this->target, false );
 		$dbr = $this->getDatabase();
-		$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $dbr, $this->target ) : null;
+		$ipRangeConds = !$this->targetUser->isRegistered() ? $this->getIpRangeConds( $dbr, $this->target ) : null;
 		if ( $ipRangeConds ) {
 			// Put ip_changes first (T284419)
 			array_unshift( $queryInfo['tables'], 'ip_changes' );
@@ -340,7 +367,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = $ipRangeConds;
 		} else {
 			// tables and joins are already handled by RevisionStore::getQueryInfo()
-			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
+			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
 			$queryInfo['conds'][] = $conds['conds'];
 			// Force the appropriate index to avoid bad query plans (T189026)
 			if ( isset( $conds['orconds']['actor'] ) ) {
