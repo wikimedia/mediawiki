@@ -402,7 +402,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * given $bootstrapConfig. In particular, all wiring files defined in the
 	 * ServiceWiringFiles setting are loaded, and the MediaWikiServices hook is called.
 	 *
-	 * @param Config|null $bootstrapConfig The Config object to be registered as the
+	 * @param Config $bootstrapConfig The Config object to be registered as the
 	 *        'BootstrapConfig' service.
 	 *
 	 * @param string $loadWiring set this to 'load' to load the wiring files specified
