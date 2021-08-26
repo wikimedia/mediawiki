@@ -240,7 +240,7 @@ abstract class TablePager extends IndexPager {
 			// Return an empty array to avoid clutter in HTML like class=""
 			return [];
 		} else {
-			return [ 'class' => $this->getRowClass( $row ) ];
+			return [ 'class' => $class ];
 		}
 	}
 
