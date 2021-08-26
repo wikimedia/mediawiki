@@ -58,7 +58,7 @@ class ActiveUsersPager extends UsersPager {
 	/**
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
-	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
