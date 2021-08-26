@@ -30,7 +30,7 @@ class BenchmarkTidy extends Benchmarker {
 	}
 
 	public function execute() {
-		$file = $this->getOption( 'file', __DIR__ . '/tidy/australia-untidy.html.gz' );
+		$file = $this->getOption( 'file', __DIR__ . '/data/tidy/australia-untidy.html.gz' );
 		$html = $this->loadFile( $file );
 		if ( $html === false ) {
 			$this->fatalError( "Unable to open input file" );
