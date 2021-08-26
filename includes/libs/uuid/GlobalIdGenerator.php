@@ -724,6 +724,7 @@ class GlobalIdGenerator {
 	}
 
 	public function __destruct() {
+		// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 		array_map( 'fclose', array_filter( $this->fileHandles ) );
 	}
 }
