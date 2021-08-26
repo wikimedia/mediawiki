@@ -235,13 +235,7 @@ abstract class TablePager extends IndexPager {
 	 * @return array Array of attribute => value
 	 */
 	protected function getRowAttrs( $row ) {
-		$class = $this->getRowClass( $row );
-		if ( $class === '' ) {
-			// Return an empty array to avoid clutter in HTML like class=""
-			return [];
-		} else {
-			return [ 'class' => $this->getRowClass( $row ) ];
-		}
+		return [ 'class' => $this->getRowClass( $row ) ];
 	}
 
 	/**
