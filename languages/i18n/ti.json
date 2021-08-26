@@ -749,7 +749,7 @@
 	"table_pager_last": "ናይ መወዳእታ ገጽ",
 	"table_pager_limit_submit": "ኪድ",
 	"table_pager_empty": "ውጽኢታት የለዉን",
-	"autosumm-new": "ሓድሽ ገጽ ዝተፈጠረ፦ «$1»",
+	"autosumm-new": "ገጽ ምስ «$1» ተፈጢሩ",
 	"size-bytes": "$1 {{PLURAL:$1|ባይት|ባይታት}}",
 	"size-kilobytes": "$1 ኪ.ባ.",
 	"size-megabytes": "$1 መ.ባ.",

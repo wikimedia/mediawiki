@@ -1525,6 +1525,7 @@
 	"timezone-local": "ဒေသ",
 	"version-editors": "ညးဒါန်ဂမၠိုၚ်",
 	"version-other": "တၞဟ်",
+	"version-poweredby-translators": "ညးတၠကၠာဲဘာသာtranslatewiki.netဂမၠိုင်",
 	"redirect": "ကလေင်စၞောန်ပညုင်လဝ် နကဵု ဝှာင်၊ ညးလွပ်၊ မုက်လိက်၊ မူမပလေဝ်ဒန်လဝ် ဟွံသေင်မ္ဂး အာင်ဒဳ",
 	"redirect-summary": "မုက်လိက်တၟေင်ဏအ် ကလေင်စၞောန် ကဵု ဝှာင်(မကဵုလဝ်ယၟု), မုက်လိက်မွဲ (given a revision ID or page ID), မုက်လိက် ညးမသုင်စောဲမွဲ (given a numeric user ID), ဟွံသေင်မ္ဂး တင်စၟတ်သမ္တီမွဲ (given the log ID). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], or [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "အာ",

@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Ammarpad",
+			"Anasskoko",
 			"DonCamillo",
 			"Em-em",
 			"Kambai Akau",
@@ -291,7 +292,7 @@
 	"loginreqlink": "Shiga",
 	"newarticle": "(Sabo)",
 	"newarticletext": "Kun latsa mahaɗi zuwa shafin da babu shi tukuna.\nDomin ƙirƙiro wannan shafin, ku fara rubutu a cikin fage na ƙasa (duba [$1 shafin taimako] don ƙarin bayani).\nIdan kun ɓata ne cikin shawaginku, to ku latsa maɓallin '''baya''' na safuwayan shawaginku.",
-	"noarticletext": "A halin yanzu babu mukala kan wannan shafi. Kuna iya '''[[Special:Search/{{PAGENAME}}|binciko wannan shafi]] ''' a cikin Hausa Wikipedia ko ku <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika log din ayyuka]. Idan kuma babu shi, zaku iya '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kirkirar wannan shafi]'''</span>.",
+	"noarticletext": "A halin yanzu babu muƙala akan wannan shafin, zaku iya '''[[Special:Search/{{PAGENAME}}|binciko wannan shafin]] ''' a cikin Hausa Wikipedia ko ku <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika jadawalin ayyuka]. Idan babu, zaku iya '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kirkiran shafin]'''</span>.",
 	"noarticletext-nopermission": "A halin yanzu babu mukala kan wannan shafi. Kuna iya '''[[Special:Search/{{PAGENAME}}|binciko wannan shafi]] ''' a cikin Hausa Wikipedia ko ku <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bincika log din ayyuka]. Idan kuma babu shi, zaku iya '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kirkirar wannan shafi]'''</span>.",
 	"previewnote": "'''Kada ku manta, wannan rigya-gani ne kawai.'''\nBa a adana sauye-sauyenku ba tukuna!",
 	"editing": "Gyaran $1",
