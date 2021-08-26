@@ -767,7 +767,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @deprecated since 1.36, use BlockUserFactory service instead
 	 * @param array $data
 	 * @param IContextSource $context
-	 * @return bool|array
+	 * @return bool|string|array|Status
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
 		$services = MediaWikiServices::getInstance();
@@ -787,7 +787,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param Authority $performer
 	 * @param BlockUserFactory $blockUserFactory
 	 * @param BlockUtils $blockUtils
-	 * @return bool|array
+	 * @return bool|string|array|Status
 	 */
 	private static function processFormInternal(
 		array $data,
@@ -1025,7 +1025,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Process the form on POST submission.
 	 * @param array $data
 	 * @param HTMLForm|null $form
-	 * @return bool|array True for success, false for didn't-try, array of errors on failure
+	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {
 		// If "Editing" checkbox is unchecked, the block must be a partial block affecting
