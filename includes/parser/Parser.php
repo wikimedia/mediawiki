@@ -3327,7 +3327,7 @@ class Parser {
 			} else {
 				# This will probably not be a working link, but at least it may
 				# provide some hint of where the problem is
-				preg_replace( '/^:/', '', $originalTitle );
+				$originalTitle = preg_replace( '/^:/', '', $originalTitle );
 				$text = "[[:$originalTitle]]";
 			}
 			$text .= $this->insertStripItem( '<!-- WARNING: template omitted, '
