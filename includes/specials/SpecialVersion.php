@@ -896,10 +896,9 @@ class SpecialVersion extends SpecialPage {
 			$descriptionMsg = $extension['descriptionmsg'];
 
 			if ( is_array( $descriptionMsg ) ) {
-				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
-				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
-				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
-				$description = $this->msg( $descriptionMsgKey, $descriptionMsg )->text();
+				$descriptionMsgKey = array_shift( $descriptionMsg );
+				$descriptionMsg = array_map( 'htmlspecialchars', $descriptionMsg ); // For sanity
+				$description = $this->msg( $descriptionMsgKey, ...$descriptionMsg )->text();
 			} else {
 				$description = $this->msg( $descriptionMsg )->text();
 			}
