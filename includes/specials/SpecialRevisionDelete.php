@@ -190,7 +190,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		// Check blocks
-		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
+		$checkReplica = !$this->submitClicked;
+		if (
+			$this->permissionManager->isBlockedFrom(
+				$user,
+				$this->targetObj,
+				$checkReplica
+			)
+		) {
 			throw new UserBlockedError(
 				$user->getBlock(),
 				$user,

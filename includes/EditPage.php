@@ -2726,7 +2726,13 @@ class EditPage implements IEditObject {
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
-				( $block->isSitewide() || $user->isBlockedFrom( $this->mTitle ) )
+				(
+					$block->isSitewide() ||
+					$user->isBlockedFrom(
+						$this->mTitle,
+						true
+					)
+				)
 			) {
 				// Show log extract if the user is sitewide blocked or is partially
 				// blocked and not allowed to edit their user page or user talk page

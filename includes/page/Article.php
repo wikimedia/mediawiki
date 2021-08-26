@@ -1311,13 +1311,17 @@ class Article implements Page {
 				// users, pretend like it does not exist at all.
 				$user = false;
 			}
+
 			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
-				( $block->isSitewide() || $user->isBlockedFrom( $title ) )
+				(
+					$block->isSitewide() ||
+					$user->isBlockedFrom( $title, true )
+				)
 			) {
 				// Show log extract if the user is sitewide blocked or is partially
 				// blocked and not allowed to edit their user page or user talk page
