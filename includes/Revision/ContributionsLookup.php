@@ -9,7 +9,7 @@ use FauxRequest;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -25,8 +25,8 @@ class ContributionsLookup {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/** @var LinkRenderer */
-	private $linkRenderer;
+	/** @var LinkRendererFactory */
+	private $linkRendererFactory;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -45,7 +45,7 @@ class ContributionsLookup {
 
 	/**
 	 * @param RevisionStore $revisionStore
-	 * @param LinkRenderer $linkRenderer
+	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
@@ -54,7 +54,7 @@ class ContributionsLookup {
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
-		LinkRenderer $linkRenderer,
+		LinkRendererFactory $linkRendererFactory,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
@@ -62,7 +62,7 @@ class ContributionsLookup {
 		NamespaceInfo $namespaceInfo
 	) {
 		$this->revisionStore = $revisionStore;
-		$this->linkRenderer = $linkRenderer;
+		$this->linkRendererFactory = $linkRendererFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
 		$this->loadBalancer = $loadBalancer;
@@ -264,7 +264,7 @@ class ContributionsLookup {
 		return new ContribsPager(
 			$context,
 			$options,
-			$this->linkRenderer,
+			$this->linkRendererFactory->createForUser( $context->getUser() ),
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->loadBalancer,

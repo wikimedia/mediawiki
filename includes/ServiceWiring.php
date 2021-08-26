@@ -378,7 +378,7 @@ return [
 	'ContributionsLookup' => static function ( MediaWikiServices $services ): ContributionsLookup {
 		return new ContributionsLookup(
 			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
+			$services->getLinkRendererFactory(),
 			$services->getLinkBatchFactory(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer(),
