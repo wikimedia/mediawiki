@@ -2353,16 +2353,7 @@ abstract class Skin extends ContextSource {
 				}
 			}
 			if ( isset( $options['link-class'] ) ) {
-				if ( isset( $attrs['class'] ) ) {
-					// In the future, this should accept an array of classes, not a string
-					if ( is_array( $attrs['class'] ) ) {
-						$attrs['class'][] = $options['link-class'];
-					} else {
-						$attrs['class'] .= " {$options['link-class']}";
-					}
-				} else {
-					$attrs['class'] = $options['link-class'];
-				}
+				$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], $options['link-class'] );
 			}
 			$html = Html::rawElement( isset( $attrs['href'] )
 				? 'a'
@@ -2445,23 +2436,34 @@ abstract class Skin extends ContextSource {
 				$attrs[$attr] = $item[$attr];
 			}
 		}
-		if ( isset( $item['active'] ) && $item['active'] ) {
-			if ( !isset( $attrs['class'] ) ) {
-				$attrs['class'] = '';
-			}
+		$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], 'mw-list-item' );
 
+		if ( isset( $item['active'] ) && $item['active'] ) {
 			// In the future, this should accept an array of classes, not a string
-			if ( is_array( $attrs['class'] ) ) {
-				$attrs['class'][] = 'active';
-			} else {
-				$attrs['class'] .= ' active';
-				$attrs['class'] = trim( $attrs['class'] );
-			}
+			$attrs['class'] = $this->addClassToClassList( $attrs['class'], 'active' );
 		}
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
 		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
+	}
+
+	/**
+	 * Adds a class to the existing class value, supporting it as a string
+	 * or array.
+	 *
+	 * @param string|array $class to update.
+	 * @param string $newClass to add.
+	 * @return string|array classes.
+	 */
+	private function addClassToClassList( $class, string $newClass ) {
+		if ( is_array( $class ) ) {
+			$class[] = $newClass;
+		} else {
+			$class .= ' ' . $newClass;
+			$class = trim( $class );
+		}
+		return $class;
 	}
 
 	/**
