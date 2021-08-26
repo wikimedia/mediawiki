@@ -1,13 +1,62 @@
 ( function () {
+	var defaultOptions;
 
 	/**
 	 * Client library for the action API. See mw.Rest for the REST API.
 	 *
+	 * See also <https://www.mediawiki.org/wiki/API:Main_page>.
+	 *
+	 * Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
+	 * one particular MediaWiki site.
+	 *
+	 *     var api = new mw.Api();
+	 *     api.get( {
+	 *         action: 'query',
+	 *         meta: 'userinfo'
+	 *     } ).done( function ( data ) {
+	 *         console.log( data );
+	 *     } );
+	 *
+	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
+	 *
+	 *     var api = new mw.Api();
+	 *     api.get( {
+	 *         action: 'query',
+	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
+	 *     } ).done( function ( data ) {
+	 *         console.log( data );
+	 *     } );
+	 *
+	 * Since MW 1.26, boolean values for API parameters can be specified natively. Parameter
+	 * values set to `false` or `undefined` will be omitted from the request, as required by
+	 * the API.
+	 *
 	 * @class mw.Api
-	 * @see https://www.mediawiki.org/wiki/API:Main_page
+	 * @constructor
+	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
+	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
+	mw.Api = function ( options ) {
+		var defaults = $.extend( {}, options ),
+			setsUrl = options && options.ajax && options.ajax.url !== undefined;
+
+		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
+		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
+
+		// Force a string if we got a mw.Uri object
+		if ( setsUrl ) {
+			defaults.ajax.url = String( defaults.ajax.url );
+		}
+		if ( defaults.useUS === undefined ) {
+			defaults.useUS = !setsUrl;
+		}
+
+		this.defaults = defaults;
+		this.requests = [];
+	};
 
 	/**
+	 * @private
 	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
 	 *     `options` to mw.Api constructor.
 	 * @property {Object} defaultOptions.parameters Default query parameters for API requests.
@@ -15,22 +64,21 @@
 	 * @property {boolean} defaultOptions.useUS Whether to use U+001F when joining multi-valued
 	 *     parameters (since 1.28). Default is true if ajax.url is not set, false otherwise for
 	 *     compatibility.
-	 * @private
 	 */
-	var defaultOptions = {
-			parameters: {
-				action: 'query',
-				format: 'json'
-			},
-			ajax: {
-				url: mw.util.wikiScript( 'api' ),
-				timeout: 30 * 1000, // 30 seconds
-				dataType: 'json'
-			}
+	defaultOptions = {
+		parameters: {
+			action: 'query',
+			format: 'json'
 		},
+		ajax: {
+			url: mw.util.wikiScript( 'api' ),
+			timeout: 30 * 1000, // 30 seconds
+			dataType: 'json'
+		}
+	};
 
-		// Keyed by ajax url and symbolic name for the individual request
-		promises = {};
+	// Keyed by ajax url and symbolic name for the individual request
+	var promises = {};
 
 	function mapLegacyToken( action ) {
 		// Legacy types for backward-compatibility with API action=tokens.
@@ -64,54 +112,6 @@
 			.resolve( value )
 			.promise( { abort: function () {} } );
 	} );
-
-	/**
-	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
-	 * mw.Api objects represent the API of a particular MediaWiki server.
-	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: 'userinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
-	 *
-	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
-	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
-	 *
-	 * Since MW 1.26, boolean values for a parameter can be specified directly. If the value is
-	 * `false` or `undefined`, the parameter will be omitted from the request, as required by the API.
-	 *
-	 * @constructor
-	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
-	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
-	 */
-	mw.Api = function ( options ) {
-		var defaults = $.extend( {}, options ),
-			setsUrl = options && options.ajax && options.ajax.url !== undefined;
-
-		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
-		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
-
-		// Force a string if we got a mw.Uri object
-		if ( setsUrl ) {
-			defaults.ajax.url = String( defaults.ajax.url );
-		}
-		if ( defaults.useUS === undefined ) {
-			defaults.useUS = !setsUrl;
-		}
-
-		this.defaults = defaults;
-		this.requests = [];
-	};
 
 	mw.Api.prototype = {
 		/**
