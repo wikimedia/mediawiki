@@ -35,6 +35,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -2712,7 +2713,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param bool|null $u1 Unused
 	 * @param array|string &$error Array of errors to append to
 	 * @param mixed $u2 Unused
-	 * @param string[] $tags Tags to apply to the deletion action
+	 * @param string[]|null $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return Status Status object; if successful, $status->value is the log_id of the
@@ -2726,7 +2727,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
 		$deletePage = new DeletePage( $this, $deleter );
-		return $deletePage->delete( $reason, $suppress, $error, $tags, $logsubtype, $immediate );
+		$status = $deletePage->delete( $reason, $suppress, $error, $tags ?: [], $logsubtype, $immediate );
+		if ( $status->isGood() && $status->value === false ) {
+			// BC for scheduled deletion
+			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			$status->value = null;
+		}
+		return $status;
 	}
 
 	/**
@@ -2750,7 +2757,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
 		$deletePage = new DeletePage( $this, $deleter );
-		return $deletePage->deleteBatched( $reason, $suppress, $tags, $logsubtype, $immediate, $webRequestId );
+		$status = $deletePage->deleteBatched( $reason, $suppress, $tags, $logsubtype, $immediate, $webRequestId );
+		if ( $status->isGood() && $status->value === false ) {
+			// BC for scheduled deletion
+			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			$status->value = null;
+		}
+		return $status;
 	}
 
 	/**
@@ -2793,8 +2806,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		RevisionRecord $revRecord = null,
 		UserIdentity $user = null
 	) {
+		if ( !$revRecord ) {
+			throw new BadMethodCallException( __METHOD__ . ' now requires a RevisionRecord' );
+		}
+		$user = $user ?? new UserIdentityValue( 0, 'unknown' );
 		$deletePage = new DeletePage( $this, $user );
-		$deletePage->doDeleteUpdates( $id, $content, $revRecord, $user );
+		$deletePage->doDeleteUpdates( $id, $revRecord );
 	}
 
 	/**
@@ -3202,7 +3219,30 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function getDeletionUpdates( $rev = null ) {
 		$deletePage = new DeletePage( $this, new UserIdentityValue( 0, 'Legacy code hater' ) );
-		return $deletePage->getDeletionUpdates( $rev );
+		if ( !$rev ) {
+			wfDeprecated( __METHOD__ . ' without a RevisionRecord', '1.32' );
+
+			try {
+				$rev = $this->getRevisionRecord();
+			} catch ( Exception $ex ) {
+				// If we can't load the content, something is wrong. Perhaps that's why
+				// the user is trying to delete the page, so let's not fail in that case.
+				// Note that doDeleteArticleReal() will already have logged an issue with
+				// loading the content.
+				wfDebug( __METHOD__ . ' failed to load current revision of page ' . $this->getId() );
+			}
+		}
+		if ( !$rev ) {
+			// Use an empty RevisionRecord
+			$newRev = new MutableRevisionRecord( $this );
+		} elseif ( $rev instanceof Content ) {
+			wfDeprecated( __METHOD__ . ' with a Content object instead of a RevisionRecord', '1.32' );
+			$newRev = new MutableRevisionRecord( $this );
+			$newRev->setSlot( SlotRecord::newUnsaved( SlotRecord::MAIN, $rev ) );
+		} else {
+			$newRev = $rev;
+		}
+		return $deletePage->getDeletionUpdates( $newRev );
 	}
 
 	/**
