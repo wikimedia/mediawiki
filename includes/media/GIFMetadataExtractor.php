@@ -93,6 +93,7 @@ class GIFMetadataExtractor {
 		list( $bpp, $have_map ) = self::decodeBPP( $buf );
 
 		// Skip over background and aspect ratio
+		// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 		fread( $fh, 2 );
 
 		// Skip over the GCT
@@ -108,6 +109,7 @@ class GIFMetadataExtractor {
 				$frameCount++;
 
 				# # Skip bounding box
+				// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 				fread( $fh, 8 );
 
 				# # Read BPP
@@ -118,6 +120,7 @@ class GIFMetadataExtractor {
 				if ( $have_map ) {
 					self::readGCT( $fh, $bpp );
 				}
+				// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 				fread( $fh, 1 );
 				self::skipBlock( $fh );
 			} elseif ( $buf == self::$gifExtensionSep ) {
@@ -129,8 +132,10 @@ class GIFMetadataExtractor {
 
 				if ( $extension_code == 0xF9 ) {
 					// Graphics Control Extension.
+					// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 					fread( $fh, 1 ); // Block size
 
+					// @phan-suppress-next-next-line PhanPluginUseReturnValueInternalKnown
 					// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 					fread( $fh, 1 ); // Transparency, disposal method, user input
 
@@ -141,6 +146,7 @@ class GIFMetadataExtractor {
 					$delay = unpack( 'v', $buf )[1];
 					$duration += $delay * 0.01;
 
+					// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 					fread( $fh, 1 ); // Transparent colour index
 
 					$term = fread( $fh, 1 ); // Should be a terminator
@@ -218,6 +224,7 @@ class GIFMetadataExtractor {
 						}
 
 						// Read out terminator byte
+						// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 						fread( $fh, 1 );
 					} elseif ( $data == 'XMP DataXMP' ) {
 						// application name for XMP data.
@@ -273,6 +280,7 @@ class GIFMetadataExtractor {
 	private static function readGCT( $fh, $bpp ) {
 		$max = 2 ** $bpp;
 		for ( $i = 1; $i <= $max; ++$i ) {
+			// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 			fread( $fh, 3 );
 		}
 	}
@@ -309,6 +317,7 @@ class GIFMetadataExtractor {
 			if ( $block_len == 0 ) {
 				return;
 			}
+			// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 			fread( $fh, $block_len );
 		}
 	}
