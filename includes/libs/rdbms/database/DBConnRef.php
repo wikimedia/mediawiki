@@ -705,7 +705,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function setSessionOptions( array $options ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		$this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function setSchemaVars( $vars ) {
