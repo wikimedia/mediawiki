@@ -1010,7 +1010,7 @@ class ApiPageSet extends ApiBase {
 				$pageId = (int)$row->page_id;
 
 				// Remove found page from the list of remaining items
-				if ( isset( $remaining ) ) {
+				if ( $remaining ) {
 					if ( $processTitles ) {
 						unset( $remaining[$row->page_namespace][$row->page_title] );
 					} else {
@@ -1028,7 +1028,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 
-		if ( isset( $remaining ) ) {
+		if ( $remaining ) {
 			// Any items left in the $remaining list are added as missing
 			if ( $processTitles ) {
 				// The remaining titles in $remaining are non-existent pages
