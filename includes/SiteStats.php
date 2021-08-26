@@ -23,7 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Static accessor class for site_stats and related things
@@ -295,7 +295,7 @@ class SiteStats {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private static function getLB() {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();
