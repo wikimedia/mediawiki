@@ -302,7 +302,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		return [
 			[ 'http://www.example.com/file.txt', 'http://www.example.com/file.txt' ],
 			[
-				"https://www.exa\u{00AD}\u{1806}\u{200B}\u{2060}\u{FEFF}" .
+				"https://www.exa\u{00AD}\u{200B}\u{2060}\u{FEFF}" .
 				"\u{034F}\u{180B}\u{180C}\u{180D}\u{200C}\u{200D}" .
 				"\u{FE00}\u{FE08}\u{FE0F}mple.com",
 				'https://www.example.com'
