@@ -4201,4 +4201,26 @@ class OutputPage extends ContextSource {
 	public function getCSP() {
 		return $this->CSP;
 	}
+
+	/**
+	 * The final bits that go to the bottom of a page
+	 * HTML document including the closing tags
+	 *
+	 * @internal
+	 * @since 1.37
+	 * @param Skin $skin
+	 * @return string
+	 */
+	public function tailElement( $skin ) {
+		$tail = [
+			MWDebug::getDebugHTML( $skin ),
+			$skin->bottomScripts(),
+			wfReportTime( $this->getCSP()->getNonce() ),
+			MWDebug::getHTMLDebugLog()
+			. Html::closeElement( 'body' )
+			. Html::closeElement( 'html' )
+		];
+
+		return WrappedStringList::join( "\n", $tail );
+	}
 }
