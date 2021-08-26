@@ -377,7 +377,7 @@ class DatabaseBlockStore {
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase|null $dbw Database to use if not the same as the one in the load balancer.
+	 * @param IDatabase $dbw Database to use if not the same as the one in the load balancer.
 	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 * @return array
 	 */
