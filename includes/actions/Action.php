@@ -337,7 +337,11 @@ abstract class Action implements MessageLocalizer {
 		}
 
 		// If the action requires an unblock, explicitly check the user's block.
-		if ( $this->requiresUnblock() && $user->isBlockedFrom( $this->getTitle() ) ) {
+		$checkReplica = !$this->getRequest()->wasPosted();
+		if (
+			$this->requiresUnblock() &&
+			$user->isBlockedFrom( $this->getTitle(), $checkReplica )
+		) {
 			$block = $user->getBlock();
 			if ( $block ) {
 				throw new UserBlockedError(
