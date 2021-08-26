@@ -42,7 +42,7 @@ abstract class Benchmarker extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'count', 'How many times to run a benchmark', false, true );
+		$this->addOption( 'count', "How many times to run a benchmark. Default: {$this->defaultCount}", false, true );
 		$this->addOption( 'verbose', 'Verbose logging of resource usage', false, false, 'v' );
 	}
 
@@ -197,7 +197,7 @@ abstract class Benchmarker extends Maintenance {
 	/**
 	 * @since 1.32
 	 * @param string $file Path to file (maybe compressed with gzip)
-	 * @return string Contents of file
+	 * @return string|false Contents of file, or false if file not found
 	 */
 	protected function loadFile( $file ) {
 		$content = file_get_contents( $file );
