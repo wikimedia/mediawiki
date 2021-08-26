@@ -471,6 +471,18 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"abc [[link]] def",
 				false, false, $wikiId
 			],
+			[
+				'<a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=LinkerTest.jpg" class="new" title="LinkerTest.jpg">Media:LinkerTest.jpg</a>',
+				'[[Media:LinkerTest.jpg]]'
+			],
+			[
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
+				'[[:Special:BlankPage]]'
+			],
+			[
+				'<a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">linktrail</a>...',
+				'[[link]]trail...'
+			]
 		];
 		// phpcs:enable
 	}
