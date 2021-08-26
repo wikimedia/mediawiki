@@ -212,7 +212,7 @@ class PageStore implements PageLookup {
 			if ( $page->exists() ) {
 				// if we have a page ID, use it
 				$id = $page->getId( $this->wikiId );
-				return $this->getPageById( $id );
+				return $this->getPageById( $id, $queryFlags );
 			}
 		}
 
