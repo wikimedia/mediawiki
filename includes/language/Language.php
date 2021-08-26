@@ -2922,47 +2922,43 @@ class Language {
 	public function firstChar( $s ) {
 		$firstChar = mb_substr( $s, 0, 1 );
 
-		if ( $firstChar !== false ) {
-			if ( strlen( $firstChar ) != 3 ) {
-				return $firstChar;
-			}
-
-			// Break down Hangul syllables to grab the first jamo
-			$code = mb_ord( $firstChar );
-			if ( $code < 0xac00 || $code >= 0xd7a4 ) {
-				return $firstChar;
-			} elseif ( $code < 0xb098 ) {
-				return "\u{3131}";
-			} elseif ( $code < 0xb2e4 ) {
-				return "\u{3134}";
-			} elseif ( $code < 0xb77c ) {
-				return "\u{3137}";
-			} elseif ( $code < 0xb9c8 ) {
-				return "\u{3139}";
-			} elseif ( $code < 0xbc14 ) {
-				return "\u{3141}";
-			} elseif ( $code < 0xc0ac ) {
-				return "\u{3142}";
-			} elseif ( $code < 0xc544 ) {
-				return "\u{3145}";
-			} elseif ( $code < 0xc790 ) {
-				return "\u{3147}";
-			} elseif ( $code < 0xcc28 ) {
-				return "\u{3148}";
-			} elseif ( $code < 0xce74 ) {
-				return "\u{314A}";
-			} elseif ( $code < 0xd0c0 ) {
-				return "\u{314B}";
-			} elseif ( $code < 0xd30c ) {
-				return "\u{314C}";
-			} elseif ( $code < 0xd558 ) {
-				return "\u{314D}";
-			} else {
-				return "\u{314E}";
-			}
+		if ( $firstChar === '' || strlen( $firstChar ) != 3 ) {
+			return $firstChar;
 		}
 
-		return '';
+		// Break down Hangul syllables to grab the first jamo
+		$code = mb_ord( $firstChar );
+		if ( $code < 0xac00 || $code >= 0xd7a4 ) {
+			return $firstChar;
+		} elseif ( $code < 0xb098 ) {
+			return "\u{3131}";
+		} elseif ( $code < 0xb2e4 ) {
+			return "\u{3134}";
+		} elseif ( $code < 0xb77c ) {
+			return "\u{3137}";
+		} elseif ( $code < 0xb9c8 ) {
+			return "\u{3139}";
+		} elseif ( $code < 0xbc14 ) {
+			return "\u{3141}";
+		} elseif ( $code < 0xc0ac ) {
+			return "\u{3142}";
+		} elseif ( $code < 0xc544 ) {
+			return "\u{3145}";
+		} elseif ( $code < 0xc790 ) {
+			return "\u{3147}";
+		} elseif ( $code < 0xcc28 ) {
+			return "\u{3148}";
+		} elseif ( $code < 0xce74 ) {
+			return "\u{314A}";
+		} elseif ( $code < 0xd0c0 ) {
+			return "\u{314B}";
+		} elseif ( $code < 0xd30c ) {
+			return "\u{314C}";
+		} elseif ( $code < 0xd558 ) {
+			return "\u{314D}";
+		} else {
+			return "\u{314E}";
+		}
 	}
 
 	/**
