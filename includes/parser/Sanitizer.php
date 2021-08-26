@@ -1643,19 +1643,19 @@ class Sanitizer {
 			// https://tools.ietf.org/html/rfc3454#section-3.1
 			// Strip them before further processing so deny lists and such work.
 			$strip = "/
-				\\s|          # general whitespace
-				\xc2\xad|     # 00ad SOFT HYPHEN
-				\xe1\xa0\x86| # 1806 MONGOLIAN TODO SOFT HYPHEN
-				\xe2\x80\x8b| # 200b ZERO WIDTH SPACE
-				\xe2\x81\xa0| # 2060 WORD JOINER
-				\xef\xbb\xbf| # feff ZERO WIDTH NO-BREAK SPACE
-				\xcd\x8f|     # 034f COMBINING GRAPHEME JOINER
-				\xe1\xa0\x8b| # 180b MONGOLIAN FREE VARIATION SELECTOR ONE
-				\xe1\xa0\x8c| # 180c MONGOLIAN FREE VARIATION SELECTOR TWO
-				\xe1\xa0\x8d| # 180d MONGOLIAN FREE VARIATION SELECTOR THREE
-				\xe2\x80\x8c| # 200c ZERO WIDTH NON-JOINER
-				\xe2\x80\x8d| # 200d ZERO WIDTH JOINER
-				[\xef\xb8\x80-\xef\xb8\x8f] # fe00-fe0f VARIATION SELECTOR-1-16
+				\\s|      # general whitespace
+				\u{00AD}| # 00ad SOFT HYPHEN
+				\u{1806}| # 1806 MONGOLIAN TODO SOFT HYPHEN
+				\u{200B}| # 200b ZERO WIDTH SPACE
+				\u{2060}| # 2060 WORD JOINER
+				\u{FEFF}| # feff ZERO WIDTH NO-BREAK SPACE
+				\u{034F}| # 034f COMBINING GRAPHEME JOINER
+				\u{180B}| # 180b MONGOLIAN FREE VARIATION SELECTOR ONE
+				\u{180C}| # 180c MONGOLIAN FREE VARIATION SELECTOR TWO
+				\u{180D}| # 180d MONGOLIAN FREE VARIATION SELECTOR THREE
+				\u{200C}| # 200c ZERO WIDTH NON-JOINER
+				\u{200D}| # 200d ZERO WIDTH JOINER
+				[\u{FE00}-\u{FE0F}] # fe00-fe0f VARIATION SELECTOR-1-16
 				/xuD";
 
 			$host = preg_replace( $strip, '', $host );
