@@ -13,7 +13,9 @@ use InvalidArgumentException;
 use JobQueueGroup;
 use LinksDeletionUpdate;
 use LinksUpdate;
+use LogicException;
 use ManualLogEntry;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -29,7 +31,7 @@ use Status;
 use WebRequest;
 use WikiMap;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
@@ -38,24 +40,46 @@ use WikiPage;
  * @unstable
  */
 class DeletePage {
+	public const CONSTRUCTOR_OPTIONS = [
+		'DeleteRevisionsBatchSize',
+		'ActorTableSchemaMigrationStage',
+	];
+
 	/** @var HookRunner */
 	private $hookRunner;
 	/** @var RevisionStore */
 	private $revisionStore;
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+	/** @var CommentStore */
+	private $commentStore;
+	/** @var ServiceOptions */
+	protected $options;
 	/** @var WikiPage */
 	private $page;
 	/** @var UserIdentity */
 	private $deleter;
 
 	/**
-	 * @param WikiPage $page
+	 * @param PageIdentity $page
 	 * @param UserIdentity $deleter
-	 * @todo Should use ProperPageIdentity, not WikiPage
+	 * @todo Should use ProperPageIdentity eventually, once WikiPage will extend that
 	 */
-	public function __construct( WikiPage $page, UserIdentity $deleter ) {
-		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->page = $page;
+	public function __construct( PageIdentity $page, UserIdentity $deleter ) {
+		if ( !$page->canExist() ) {
+			throw new BadMethodCallException( __METHOD__ . ' requires a proper page identity.' );
+		}
+		$services = MediaWikiServices::getInstance();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->revisionStore = $services->getRevisionStore();
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->jobQueueGroup = $services->getJobQueueGroup();
+		$this->commentStore = $services->getCommentStore();
+		$this->options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
+
+		$this->page = $services->getWikiPageFactory()->newFromTitle( $page );
 		$this->deleter = $deleter;
 	}
 
@@ -70,23 +94,20 @@ class DeletePage {
 	 * @param string[] $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return Status Status object; if successful, $status->value is the log_id of the
-	 *   deletion log entry. If the page couldn't be deleted because it wasn't
-	 *   found, $status is a non-fatal 'cannotdelete' error
+	 * @return Status Status object:
+	 *   - If immediate and successful, a good Status with value = log_id of the deletion log entry.
+	 *   - If scheduled, a good Status with value = false.
+	 *   - If the page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
+	 *   - A fatal Status otherwise.
 	 */
 	public function delete(
-		$reason,
-		$suppress = false,
+		string $reason,
+		bool $suppress = false,
 		&$error = '',
-		$tags = [],
-		$logsubtype = 'delete',
-		$immediate = false
-	) {
-		wfDebug( __METHOD__ );
-		if ( !$this->page->getTitle()->canExist() ) {
-			throw new BadMethodCallException( __METHOD__ . ' requires a proper page identity.' );
-		}
-
+		array $tags = [],
+		string $logsubtype = 'delete',
+		bool $immediate = false
+	): Status {
 		$status = Status::newGood();
 
 		$legacyDeleter = MediaWikiServices::getInstance()
@@ -102,15 +123,14 @@ class DeletePage {
 			return $status;
 		}
 
-		return $this->deleteBatched( $reason, $suppress, $tags,
-			$logsubtype, $immediate );
+		return $this->deleteBatched( $reason, $suppress, $tags, $logsubtype, $immediate );
 	}
 
 	/**
 	 * @private Public for BC only
 	 * Back-end article deletion
 	 *
-	 * Only invokes batching via the job queue if necessary per $wgDeleteRevisionsBatchSize.
+	 * Only invokes batching via the job queue if necessary per DeleteRevisionsBatchSize.
 	 * Deletions can often be completed inline without involving the job queue.
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
@@ -123,14 +143,17 @@ class DeletePage {
 	 * @return Status
 	 */
 	public function deleteBatched(
-		$reason, $suppress, $tags,
-		$logsubtype, $immediate = false, $webRequestId = null
-	) {
-		wfDebug( __METHOD__ );
-
+		string $reason,
+		bool $suppress,
+		array $tags,
+		string $logsubtype,
+		bool $immediate = false,
+		?string $webRequestId = null
+	): Status {
+		$title = $this->page->getTitle();
 		$status = Status::newGood();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$this->page->loadPageData( WikiPage::READ_LATEST );
@@ -140,11 +163,10 @@ class DeletePage {
 		// the revisions queries (which also JOIN on user). Only lock the page
 		// row and CAS check on page_latest to see if the trx snapshot matches.
 		$lockedLatest = $this->page->lockAndGetLatest();
-		if ( $id == 0 || $this->page->getLatest() != $lockedLatest ) {
+		if ( $id === 0 || $this->page->getLatest() !== $lockedLatest ) {
 			$dbw->endAtomic( __METHOD__ );
 			// Page not there or trx snapshot is stale
-			$status->error( 'cannotdelete',
-				wfEscapeWikiText( $this->page->getTitle()->getPrefixedText() ) );
+			$status->error( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) );
 			return $status;
 		}
 
@@ -155,6 +177,9 @@ class DeletePage {
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
 		$revisionRecord = $this->page->getRevisionRecord();
+		if ( !$revisionRecord ) {
+			throw new LogicException( "No revisions for $this->page?" );
+		}
 		try {
 			$content = $this->page->getContent( RevisionRecord::RAW );
 		} catch ( Exception $ex ) {
@@ -168,7 +193,7 @@ class DeletePage {
 		// one batch of revisions and defer archival of any others to the job queue.
 		$explictTrxLogged = false;
 		while ( true ) {
-			$done = $this->archiveRevisions( $dbw, $id, $suppress );
+			$done = $this->archiveRevisions( $id, $suppress );
 			if ( $done || !$immediate ) {
 				break;
 			}
@@ -179,7 +204,7 @@ class DeletePage {
 					$explictTrxLogged = true;
 					LoggerFactory::getInstance( 'wfDebug' )->debug(
 						'explicit transaction active in ' . __METHOD__ . ' while deleting {title}', [
-						'title' => $this->page->getTitle()->getText(),
+						'title' => $title->getText(),
 					] );
 				}
 				continue;
@@ -197,8 +222,8 @@ class DeletePage {
 			$dbw->endAtomic( __METHOD__ );
 
 			$jobParams = [
-				'namespace' => $this->page->getTitle()->getNamespace(),
-				'title' => $this->page->getTitle()->getDBkey(),
+				'namespace' => $title->getNamespace(),
+				'title' => $title->getDBkey(),
 				'wikiPageId' => $id,
 				'requestId' => $webRequestId ?? WebRequest::getRequestId(),
 				'reason' => $reason,
@@ -209,10 +234,8 @@ class DeletePage {
 			];
 
 			$job = new DeletePageJob( $jobParams );
-			JobQueueGroup::singleton()->push( $job );
-
-			$status->warning( 'delete-scheduled',
-				wfEscapeWikiText( $this->page->getTitle()->getPrefixedText() ) );
+			$this->jobQueueGroup->push( $job );
+			$status->value = false;
 		} else {
 			// Get archivedRevisionCount by db query, because there's no better alternative.
 			// Jobs cannot pass a count of archived revisions to the next job, because additional
@@ -221,18 +244,19 @@ class DeletePage {
 			// in the job queue to avoid simultaneous deletion operations would add overhead.
 			// Number of archived revisions cannot be known beforehand, because edits can be made
 			// while deletion operations are being processed, changing the number of archivals.
-			$archivedRevisionCount = (int)$dbw->selectField(
-				'archive', 'COUNT(*)',
+			$archivedRevisionCount = $dbw->selectRowCount(
+				'archive',
+				'*',
 				[
-					'ar_namespace' => $this->page->getTitle()->getNamespace(),
-					'ar_title' => $this->page->getTitle()->getDBkey(),
+					'ar_namespace' => $title->getNamespace(),
+					'ar_title' => $title->getDBkey(),
 					'ar_page_id' => $id
 				], __METHOD__
 			);
 
 			// Clone the title and wikiPage, so we have the information we need when
 			// we log and run the ArticleDeleteComplete hook.
-			$logTitle = clone $this->page->getTitle();
+			$logTitle = clone $title;
 			$wikiPageBeforeDelete = clone $this->page;
 
 			// Now that it's safely backed up, delete it
@@ -258,11 +282,7 @@ class DeletePage {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->doDeleteUpdates(
-				$id,
-				$content,
-				$revisionRecord
-			);
+			$this->doDeleteUpdates( $id, $revisionRecord );
 
 			$legacyDeleter = MediaWikiServices::getInstance()
 				->getUserFactory()
@@ -290,20 +310,17 @@ class DeletePage {
 	/**
 	 * Archives revisions as part of page deletion.
 	 *
-	 * @param IDatabase $dbw
 	 * @param int $id
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
 	 * @return bool
 	 */
-	private function archiveRevisions( $dbw, $id, $suppress ) {
-		global $wgDeleteRevisionsBatchSize, $wgActorTableSchemaMigrationStage;
-
+	private function archiveRevisions( int $id, bool $suppress ): bool {
 		// Given the lock above, we can be confident in the title and page ID values
 		$namespace = $this->page->getTitle()->getNamespace();
 		$dbKey = $this->page->getTitle()->getDBkey();
 
-		$commentStore = CommentStore::getStore();
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$revQuery = $this->revisionStore->getQueryInfo();
 		$bitfield = false;
@@ -336,14 +353,15 @@ class DeletePage {
 			$revQuery['joins']
 		);
 
+		$deleteBatchSize = $this->options->get( 'DeleteRevisionsBatchSize' );
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
-		// unusual case where there were exactly $wgDeleteRevisionBatchSize revisions remaining.
+		// unusual case where there were exactly $deleteBatchSize revisions remaining.
 		$res = $dbw->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
 			[ 'rev_page' => $id ],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC', 'LIMIT' => $wgDeleteRevisionsBatchSize + 1 ],
+			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC', 'LIMIT' => $deleteBatchSize + 1 ],
 			$revQuery['joins']
 		);
 
@@ -356,12 +374,12 @@ class DeletePage {
 
 		$done = true;
 		foreach ( $res as $row ) {
-			if ( count( $revids ) >= $wgDeleteRevisionsBatchSize ) {
+			if ( count( $revids ) >= $deleteBatchSize ) {
 				$done = false;
 				break;
 			}
 
-			$comment = $commentStore->getComment( 'rev_comment', $row );
+			$comment = $this->commentStore->getComment( 'rev_comment', $row );
 			$rowInsert = [
 					'ar_namespace'  => $namespace,
 					'ar_title'      => $dbKey,
@@ -374,7 +392,7 @@ class DeletePage {
 					'ar_page_id'    => $id,
 					'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
 					'ar_sha1'       => $row->rev_sha1,
-				] + $commentStore->insert( $dbw, 'ar_comment', $comment );
+				] + $this->commentStore->insert( $dbw, 'ar_comment', $comment );
 
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;
@@ -393,7 +411,7 @@ class DeletePage {
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+			if ( $this->options->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_WRITE_TEMP ) {
 				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 			}
 
@@ -411,20 +429,11 @@ class DeletePage {
 	 * Do some database updates after deletion
 	 *
 	 * @param int $id The page_id value of the page being deleted
-	 * @param Content|null $content Page content to be used when determining
-	 *   the required updates. This may be needed because $this->page->getContent()
-	 *   may already return null when the page proper was deleted.
-	 * @param RevisionRecord|null $revRecord The current page revision at the time of
+	 * @param RevisionRecord $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->page->getRevisionRecord() may already return null when the page proper was deleted.
-	 * @param UserIdentity|null $user The user that caused the deletion
 	 */
-	public function doDeleteUpdates(
-		$id,
-		Content $content = null,
-		RevisionRecord $revRecord = null,
-		UserIdentity $user = null
-	) {
+	public function doDeleteUpdates( int $id, RevisionRecord $revRecord ): void {
 		if ( $id !== $this->page->getId() ) {
 			throw new InvalidArgumentException( 'Mismatching page ID' );
 		}
@@ -443,19 +452,18 @@ class DeletePage {
 		) );
 
 		// Delete pagelinks, update secondary indexes, etc
-		$updates = $this->getDeletionUpdates( $revRecord ?: $content );
+		$updates = $this->getDeletionUpdates( $revRecord );
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
 		}
 
-		$causeAgent = $user ? $user->getName() : 'unknown';
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable(
-			$this->page->getTitle(), 'templatelinks', 'delete-page', $causeAgent );
+			$this->page->getTitle(), 'templatelinks', 'delete-page', $this->deleter->getName() );
 		// Reparse any pages including this image
 		if ( $this->page->getTitle()->getNamespace() === NS_FILE ) {
 			LinksUpdate::queueRecursiveJobsForTable(
-				$this->page->getTitle(), 'imagelinks', 'delete-page', $causeAgent );
+				$this->page->getTitle(), 'imagelinks', 'delete-page', $this->deleter->getName() );
 		}
 
 		// Clear caches
@@ -481,40 +489,17 @@ class DeletePage {
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
 	 *
-	 * @param RevisionRecord|Content|null $rev The revision being deleted. Also accepts a Content
-	 *       object for backwards compatibility.
+	 * @param RevisionRecord $rev The revision being deleted.
 	 * @return DeferrableUpdate[]
 	 */
-	public function getDeletionUpdates( $rev = null ) {
-		if ( !$rev ) {
-			wfDeprecated( __METHOD__ . ' without a RevisionRecord', '1.32' );
-
-			try {
-				$rev = $this->page->getRevisionRecord();
-			} catch ( Exception $ex ) {
-				// If we can't load the content, something is wrong. Perhaps that's why
-				// the user is trying to delete the page, so let's not fail in that case.
-				// Note that doDeleteArticleReal() will already have logged an issue with
-				// loading the content.
-				wfDebug( __METHOD__ . ' failed to load current revision of page ' . $this->page->getId() );
-			}
-		}
-
-		if ( !$rev ) {
-			$slotContent = [];
-		} elseif ( $rev instanceof Content ) {
-			wfDeprecated( __METHOD__ . ' with a Content object instead of a RevisionRecord', '1.32' );
-
-			$slotContent = [ SlotRecord::MAIN => $rev ];
-		} else {
-			$slotContent = array_map( static function ( SlotRecord $slot ) {
-				return $slot->getContent();
-			}, $rev->getSlots()->getSlots() );
-		}
+	public function getDeletionUpdates( RevisionRecord $rev ): array {
+		$slotContent = array_map( static function ( SlotRecord $slot ) {
+			return $slot->getContent();
+		}, $rev->getSlots()->getSlots() );
 
 		$allUpdates = [ new LinksDeletionUpdate( $this->page ) ];
 
-		// NOTE: once Content::getDeletionUpdates() is removed, we only need to content
+		// NOTE: once Content::getDeletionUpdates() is removed, we only need the content
 		// model here, not the content object!
 		// TODO: consolidate with similar logic in DerivedPageDataUpdater::getSecondaryDataUpdates()
 		/** @var ?Content $content */
