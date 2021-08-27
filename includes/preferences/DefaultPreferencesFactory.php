@@ -599,15 +599,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 		$signatureFieldConfig = [];
 		// Validate existing signature and show a message about it
-		if ( $this->userOptionsManager->getBoolOption( $user, 'fancysig' ) ) {
+		$signature = $this->userOptionsManager->getOption( $user, 'nickname' );
+		$useFancySig = $this->userOptionsManager->getBoolOption( $user, 'fancysig' );
+		if ( $useFancySig && $signature !== '' ) {
 			$validator = new SignatureValidator(
 				$user,
 				$context,
 				ParserOptions::newFromContext( $context )
 			);
-			$signatureErrors = $validator->validateSignature(
-				$this->userOptionsManager->getOption( $user, 'nickname' )
-			);
+			$signatureErrors = $validator->validateSignature( $signature );
 			if ( $signatureErrors ) {
 				$sigValidation = $this->options->get( 'SignatureValidation' );
 				$oldsigHTML .= '<p><strong>' .
@@ -1609,6 +1609,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
 		}
 
+		if ( $signature === '' ) {
+			// Make sure leaving the field empty is valid, since that's used as the default (T288151).
+			// Code using this preference in Parser::getUserSig() handles this case specially.
+			return true;
+		}
+
 		// Remaining checks only apply to fancy signatures
 		if ( !( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) ) {
 			return true;
@@ -1625,10 +1631,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		//
 		// Otherwise it would be completely removed when the user opens their preferences page, which
 		// would be very unfriendly.
-		//
-		// Additionally, if it was removed in that way, it would reset to the default value of '',
-		// which is actually invalid when 'fancysig' is enabled, which would cause an exception like
-		// "Default '' is invalid for preference...".
 		$user = $form->getUser();
 		if (
 			$signature === $this->userOptionsManager->getOption( $user, 'nickname' ) &&

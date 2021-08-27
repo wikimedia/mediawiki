@@ -4669,6 +4669,7 @@ class Parser {
 		}
 
 		if ( $nickname === null || $nickname === '' ) {
+			// Empty value results in the default signature (even when fancysig is enabled)
 			$nickname = $username;
 		} elseif ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
