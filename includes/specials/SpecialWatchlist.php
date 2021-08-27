@@ -345,7 +345,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 		}
 
-		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
+		if ( $this->getRequest()->getRawVal( 'action' ) == 'submit' ) {
 			$allBooleansFalse = [];
 
 			// If the user submitted the form, start with a baseline of "all

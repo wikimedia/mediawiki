@@ -498,10 +498,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * THIS IS NOT THE FUNCTION YOU WANT. Use Title::newFromText().
 	 *
 	 * Example of wrong and broken code:
-	 * $title = Title::newFromURL( $wgRequest->getVal( 'title' ) );
+	 * $title = Title::newFromURL( $request->getText( 'title' ) );
 	 *
 	 * Example of right code:
-	 * $title = Title::newFromText( $wgRequest->getVal( 'title' ) );
+	 * $title = Title::newFromText( $request->getText( 'title' ) );
 	 *
 	 * Create a new Title from URL-encoded text. Ensures that
 	 * the given title's length does not exceed the maximum.
@@ -2366,7 +2366,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
-			if ( $wgRequest->getVal( 'action' ) == 'render' ) {
+			if ( $wgRequest->getRawVal( 'action' ) == 'render' ) {
 				LoggerFactory::getInstance( 'T263581' )
 					->debug(
 						"Title::getLocalURL called from render action",

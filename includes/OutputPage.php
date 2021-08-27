@@ -2754,7 +2754,7 @@ class OutputPage extends ContextSource {
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
-			$returnto = Title::newFromText( $request->getVal( 'title', '' ) );
+			$returnto = Title::newFromText( $request->getText( 'title' ) );
 			if ( $action == 'edit' ) {
 				$msg = 'whitelistedittext';
 				$displayReturnto = $returnto;
@@ -3469,7 +3469,7 @@ class OutputPage extends ContextSource {
 	public function userCanPreview() {
 		$request = $this->getRequest();
 		if (
-			$request->getVal( 'action' ) !== 'submit' ||
+			$request->getRawVal( 'action' ) !== 'submit' ||
 			!$request->wasPosted()
 		) {
 			return false;
