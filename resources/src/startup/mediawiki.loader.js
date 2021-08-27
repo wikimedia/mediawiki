@@ -928,38 +928,32 @@
 			try {
 				if ( Array.isArray( script ) ) {
 					nestedAddScript( script, markModuleReady, 0 );
-				} else if (
-					typeof script === 'function' || (
-						typeof script === 'object' &&
-						script !== null
-					)
-				) {
-					if ( typeof script === 'function' ) {
-						// Keep in sync with queueModuleScript() for debug mode
-						if ( module === 'jquery' ) {
-							// This is a special case for when 'jquery' itself is being loaded.
-							// - The standard jquery.js distribution does not set `window.jQuery`
-							//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
-							// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
-							//   in a CommonJS-compatible environment, will use require('jquery'),
-							//   but that can't work when we're still inside that module.
-							script();
-						} else {
-							// Pass jQuery twice so that the signature of the closure which wraps
-							// the script can bind both '$' and 'jQuery'.
-							script( window.$, window.$, mw.loader.require, registry[ module ].module );
-						}
+				} else if ( typeof script === 'function' ) {
+					// Keep in sync with queueModuleScript() for debug mode
+					if ( module === 'jquery' ) {
+						// This is a special case for when 'jquery' itself is being loaded.
+						// - The standard jquery.js distribution does not set `window.jQuery`
+						//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
+						// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
+						//   in a CommonJS-compatible environment, will use require('jquery'),
+						//   but that can't work when we're still inside that module.
+						script();
 					} else {
-						var mainScript = script.files[ script.main ];
-						if ( typeof mainScript !== 'function' ) {
-							throw new Error( 'Main file in module ' + module + ' must be a function' );
-						}
-						// jQuery parameters are not passed for multi-file modules
-						mainScript(
-							makeRequireFunction( registry[ module ], script.main ),
-							registry[ module ].module
-						);
+						// Pass jQuery twice so that the signature of the closure which wraps
+						// the script can bind both '$' and 'jQuery'.
+						script( window.$, window.$, mw.loader.require, registry[ module ].module );
 					}
+					markModuleReady();
+				} else if ( typeof script === 'object' && script !== null ) {
+					var mainScript = script.files[ script.main ];
+					if ( typeof mainScript !== 'function' ) {
+						throw new Error( 'Main file in module ' + module + ' must be a function' );
+					}
+					// jQuery parameters are not passed for multi-file modules
+					mainScript(
+						makeRequireFunction( registry[ module ], script.main ),
+						registry[ module ].module
+					);
 					markModuleReady();
 				} else if ( typeof script === 'string' ) {
 					// Site and user modules are legacy scripts that run in the global scope.
