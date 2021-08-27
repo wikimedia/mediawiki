@@ -104,7 +104,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	public function testEncodePhpBug46944() {
 		$this->assertNotEquals(
 			'\ud840\udc00',
-			strtolower( FormatJson::encode( "\xf0\xa0\x80\x80" ) ),
+			strtolower( FormatJson::encode( "\u{20000}" ) ),
 			'Test encoding an broken json_encode character (U+20000)'
 		);
 	}
@@ -286,12 +286,12 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 				'\\u00e9' => '\\\u00e9', // security check for Unicode unescaping
 
 				// Line terminators
-				"\xe2\x80\xa8" => '\u2028',
-				"\xe2\x80\xa9" => '\u2029',
+				"\u{2028}" => '\u2028',
+				"\u{2029}" => '\u2029',
 			],
 			'unicode' => [
-				"\xc3\xa9" => '\u00e9',
-				"\xf0\x9d\x92\x9e" => '\ud835\udc9e', // U+1D49E, outside the BMP
+				"\u{00E9}" => '\u00e9',
+				"\u{1D49E}" => '\ud835\udc9e', // U+1D49E, outside the BMP
 			],
 			'xmlmeta' => [
 				'<' => '\u003C', // JSON_HEX_TAG uses uppercase hex digits
