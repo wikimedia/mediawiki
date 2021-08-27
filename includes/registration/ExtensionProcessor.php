@@ -53,8 +53,7 @@ class ExtensionProcessor implements Processor {
 		'ResourceLoaderSources',
 		'RevokePermissions',
 		'SessionProviders',
-		'SpecialPages',
-		'ValidSkinNames',
+		'SpecialPages'
 	];
 
 	/**
@@ -195,6 +194,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractHooks( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
+		$this->extractSkins( $dir, $info );
 		$this->extractSkinImportPaths( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
@@ -614,6 +614,38 @@ class ExtensionProcessor implements Processor {
 				foreach ( (array)$files as $file ) {
 					$this->globals["wgMessagesDirs"][$name][] = "$dir/$file";
 				}
+			}
+		}
+	}
+
+	/**
+	 * Extract skins and handle path correction for templateDirectory.
+	 *
+	 * @param string $dir
+	 * @param array $info
+	 */
+	protected function extractSkins( $dir, array $info ) {
+		if ( isset( $info['ValidSkinNames'] ) ) {
+			foreach ( $info['ValidSkinNames'] as $skinKey => $data ) {
+				if ( isset( $data['args'][0]['templateDirectory'] ) ) {
+					$templateDirectory = $data['args'][0]['templateDirectory'];
+					$correctedPath = $dir . '/' . $templateDirectory;
+					// Historically the template directory was relative to core
+					// but it really should've been relative to the skin directory.
+					// If the path exists relative to the skin directory, assume that
+					// is what was intended. Otherwise fall back on the previous behavior
+					// of having it relative to core.
+					if ( is_dir( $correctedPath ) ) {
+						$data['args'][0]['templateDirectory'] = $correctedPath;
+					} else {
+						// TODO: deprecate directories relative to core.
+						$data['args'][0]['templateDirectory'] = $templateDirectory;
+					}
+				} elseif ( isset( $data['args'][0] ) ) {
+					// If not set, we set a sensible default.
+					$data['args'][0]['templateDirectory'] = $dir . '/templates';
+				}
+				$this->globals['wgValidSkinNames'][$skinKey] = $data;
 			}
 		}
 	}
