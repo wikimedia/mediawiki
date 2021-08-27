@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -48,7 +50,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	private function getContribsPager( array $options ) {
+	private function getContribsPager( array $options, UserIdentity $targetUser = null ) {
 		return new ContribsPager(
 			new RequestContext(),
 			$options,
@@ -58,7 +60,8 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,
-			$this->namespaceInfo
+			$this->namespaceInfo,
+			$targetUser
 		);
 	}
 
@@ -190,6 +193,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContribsPager::getExtraSortFields
 	 * @covers \ContribsPager::getIndexField
 	 * @covers \ContribsPager::getQueryInfo
+	 * @covers \ContribsPager::getTargetTable
 	 */
 	public function testUniqueSortOrderWithoutIpChanges() {
 		$pager = $this->getContribsPager( [
@@ -212,6 +216,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \ContribsPager::getExtraSortFields
 	 * @covers \ContribsPager::getIndexField
 	 * @covers \ContribsPager::getQueryInfo
+	 * @covers \ContribsPager::getTargetTable
 	 */
 	public function testUniqueSortOrderOnIpChanges() {
 		$pager = $this->getContribsPager( [
@@ -298,4 +303,66 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getContribsPager( [] );
 		$this->assertStringContainsString( 'FROM_HOOK!', $pager->getBody() );
 	}
+
+	public function provideEmptyResultIntegration() {
+		$cases = [
+			[ 'target' => '127.0.0.1' ],
+			[ 'target' => '127.0.0.1/24' ],
+			[ 'testUser' => true ],
+			[ 'target' => '127.0.0.1', 'namespace' => 0 ],
+			[ 'target' => '127.0.0.1', 'namespace' => 0, 'nsInvert' => true ],
+			[ 'target' => '127.0.0.1', 'namespace' => 0, 'associated' => true ],
+			[ 'target' => '127.0.0.1', 'tagfilter' => 'tag' ],
+			[ 'target' => '127.0.0.1', 'topOnly' => true ],
+			[ 'target' => '127.0.0.1', 'newOnly' => true ],
+			[ 'target' => '127.0.0.1', 'hideMinor' => true ],
+			[ 'target' => '127.0.0.1', 'revisionsOnly' => true ],
+			[ 'target' => '127.0.0.1', 'deletedOnly' => true ],
+			[ 'target' => '127.0.0.1', 'start' => '20010115000000' ],
+			[ 'target' => '127.0.0.1', 'end' => '20210101000000' ],
+			[ 'target' => '127.0.0.1', 'start' => '20010115000000', 'end' => '20210101000000' ],
+		];
+		foreach ( $cases as $case ) {
+			yield [ $case ];
+		}
+	}
+
+	/**
+	 * This DB integration test confirms that the query is valid for various
+	 * filter options, by running the query on an empty DB.
+	 *
+	 * @dataProvider provideEmptyResultIntegration
+	 * @covers \ContribsPager::__construct
+	 * @covers \ContribsPager::getQueryInfo
+	 * @covers \ContribsPager::getDatabase
+	 * @covers \ContribsPager::getIpRangeConds
+	 * @covers \ContribsPager::getNamespaceCond
+	 * @covers \ContribsPager::getIndexField
+	 */
+	public function testEmptyResultIntegration( $options ) {
+		if ( !empty( $options['testUser'] ) ) {
+			$targetUser = new UserIdentityValue( 1, 'User' );
+		} else {
+			$targetUser = $this->getServiceContainer()->getUserFactory()
+				->newFromName( $options['target'] );
+		}
+		$pager = $this->getContribsPager( $options, $targetUser );
+		$this->assertIsString( $pager->getBody() );
+	}
+
+	/**
+	 * DB integration test with a row in the result set.
+	 *
+	 * @covers \ContribsPager::formatRow
+	 * @covers \ContribsPager::doBatchLookups
+	 */
+	public function testPopulatedIntegration() {
+		$this->tablesUsed[] = 'page';
+		$user = $this->getTestUser()->getUser();
+		$title = Title::newFromText( 'ContribsPagerTest' );
+		$this->editPage( $title, '', '', NS_MAIN, $user );
+		$pager = $this->getContribsPager( [], $user );
+		$this->assertIsString( $pager->getBody() );
+	}
+
 }

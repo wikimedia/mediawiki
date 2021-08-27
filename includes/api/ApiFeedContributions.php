@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -60,6 +61,9 @@ class ApiFeedContributions extends ApiBase {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var ApiHookRunner */
 	private $hookRunner;
 
@@ -74,6 +78,7 @@ class ApiFeedContributions extends ApiBase {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -85,7 +90,8 @@ class ApiFeedContributions extends ApiBase {
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		UserFactory $userFactory
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionStore = $revisionStore;
@@ -96,6 +102,7 @@ class ApiFeedContributions extends ApiBase {
 		$this->loadBalancer = $loadBalancer;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
+		$this->userFactory = $userFactory;
 
 		$this->hookRunner = new ApiHookRunner( $hookContainer );
 	}
@@ -149,6 +156,8 @@ class ApiFeedContributions extends ApiBase {
 		$params['end'] = '';
 		$params = ContribsPager::processDateFilter( $params );
 
+		$targetUser = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+
 		$pager = new ContribsPager(
 			$this->getContext(), [
 				'target' => $target,
@@ -168,7 +177,8 @@ class ApiFeedContributions extends ApiBase {
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,
-			$this->namespaceInfo
+			$this->namespaceInfo,
+			$targetUser
 		);
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
