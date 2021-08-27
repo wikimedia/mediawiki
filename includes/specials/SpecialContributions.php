@@ -290,7 +290,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
-			$pager = $this->getPager( $target );
+			$pager = $this->getPager( $userObj );
 			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
@@ -410,7 +410,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// T211910. Don't show action links if a range is outside block limit
 		$showForIp = IPUtils::isValid( $userObj ) ||
-			( IPUtils::isValidRange( $userObj ) && $this->getPager( $targetName )->isQueryableRange( $userObj ) );
+			( IPUtils::isValidRange( $userObj ) && $this->getPager( $userObj )->isQueryableRange( $userObj ) );
 
 		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
 		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
@@ -823,13 +823,12 @@ class SpecialContributions extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param string $target The normalized target username.
+	 * @param User $targetUser The normalized target user
 	 * @return ContribsPager
 	 */
-	private function getPager( $target ) {
+	private function getPager( $targetUser ) {
 		if ( $this->pager === null ) {
 			$options = [
-				'target' => $target,
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
 				'start' => $this->opts['start'] ?? '',
@@ -851,7 +850,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->loadBalancer,
 				$this->actorMigration,
 				$this->revisionStore,
-				$this->namespaceInfo
+				$this->namespaceInfo,
+				$targetUser
 			);
 		}
 
