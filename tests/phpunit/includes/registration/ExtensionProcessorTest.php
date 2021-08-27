@@ -62,6 +62,65 @@ class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testExtractSkins() {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, self::$default + [
+			'ValidSkinNames' => [
+				'test-vector' => [
+					'class' => 'SkinTestVector',
+				],
+				'test-vector-empty-args' => [
+					'class' => 'SkinTestVector',
+					'args' => []
+				],
+				'test-vector-empty-options' => [
+					'class' => 'SkinTestVector',
+					'args' => [
+						[]
+					]
+				],
+				'test-vector-core-relative' => [
+					'class' => 'SkinTestVector',
+					'args' => [
+						[
+							'templateDirectory' => 'skins/Vector/templates',
+						]
+					]
+				],
+				'test-vector-skin-relative' => [
+					'class' => 'SkinTestVector',
+					'args' => [
+						[
+							'templateDirectory' => 'templates',
+						]
+					]
+				],
+			]
+		], 1 );
+		$extracted = $processor->getExtractedInfo();
+		$validSkins = $extracted['globals']['wgValidSkinNames'];
+
+		$this->assertArrayHasKey( 'test-vector', $validSkins );
+		$this->assertArrayHasKey( 'test-vector-core-relative', $validSkins );
+		$this->assertArrayHasKey( 'test-vector-empty-args', $validSkins );
+		$this->assertArrayHasKey( 'test-vector-skin-relative', $validSkins );
+		$this->assertSame(
+			$this->dirname . '/templates',
+			$validSkins['test-vector-empty-options']['args'][0]['templateDirectory'],
+			'A sensible default is provided.'
+		);
+		$this->assertSame(
+			'skins/Vector/templates',
+			$validSkins['test-vector-core-relative']['args'][0]['templateDirectory'],
+			'unmodified'
+		);
+		$this->assertSame(
+			$this->dirname . '/templates',
+			$validSkins['test-vector-skin-relative']['args'][0]['templateDirectory'],
+			'modified'
+		);
+	}
+
 	public function testExtractNamespaces() {
 		// Test that namespace IDs defined in extension.json can be overwritten locally
 		if ( !defined( 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X' ) ) {
