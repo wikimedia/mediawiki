@@ -455,7 +455,7 @@ class ApiComparePages extends ApiBase {
 							[ 'apierror-missingcontent-revid-role', $rev->getId(), SlotRecord::MAIN ], 'missingcontent'
 						);
 					}
-					$content = $content ? $content->getSection( $section ) : null;
+					$content = $content->getSection( $section );
 					if ( !$content ) {
 						$this->dieWithError(
 							[ "apierror-compare-nosuch{$prefix}section", wfEscapeWikiText( $section ) ],
