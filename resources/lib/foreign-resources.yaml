@@ -343,6 +343,7 @@ wvui:
   dest:
     package/README.md:
     package/LICENSE:
-    # Do not pull in wvui.commonjs2.js until T281527 is resolved
+    package/dist/commonjs2/wvui.commonjs2.js:
+    package/dist/commonjs2/wvui.css:
     package/dist/commonjs2/wvui-search.commonjs2.js:
     package/dist/commonjs2/wvui-search.css:
