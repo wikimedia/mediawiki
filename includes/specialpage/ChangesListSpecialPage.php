@@ -628,7 +628,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 
 			// Used by Structured UI app to get results without MW chrome
-			if ( $this->getRequest()->getVal( 'action' ) === 'render' ) {
+			if ( $this->getRequest()->getRawVal( 'action' ) === 'render' ) {
 				$this->getOutput()->setArticleBodyOnly( true );
 			}
 

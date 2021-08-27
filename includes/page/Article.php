@@ -295,7 +295,7 @@ class Article implements Page {
 		}
 
 		$oldRev = $this->mRevisionRecord;
-		if ( $request->getVal( 'direction' ) == 'next' ) {
+		if ( $request->getRawVal( 'direction' ) === 'next' ) {
 			$nextid = 0;
 			if ( $oldRev ) {
 				$nextRev = $this->revisionStore->getNextRevision( $oldRev );
@@ -309,7 +309,7 @@ class Article implements Page {
 			} else {
 				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
 			}
-		} elseif ( $request->getVal( 'direction' ) == 'prev' ) {
+		} elseif ( $request->getRawVal( 'direction' ) === 'prev' ) {
 			$previd = 0;
 			if ( $oldRev ) {
 				$prevRev = $this->revisionStore->getPreviousRevision( $oldRev );
@@ -827,7 +827,7 @@ class Article implements Page {
 		$diff = $request->getVal( 'diff' );
 		$rcid = $request->getVal( 'rcid' );
 		$diffOnly = $request->getBool( 'diffonly', $user->getOption( 'diffonly' ) );
-		$purge = $request->getVal( 'action' ) == 'purge';
+		$purge = $request->getRawVal( 'action' ) === 'purge';
 		$unhide = $request->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
 

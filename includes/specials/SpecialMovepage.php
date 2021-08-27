@@ -156,11 +156,10 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$request = $this->getRequest();
-		$target = $par ?? $request->getVal( 'target' );
 
-		// Yes, the use of getVal() and getText() is wanted, see T22365
-
-		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
+		// Beware: The use of WebRequest::getText() is wanted! See T22365
+		$target = $par ?? $request->getText( 'target' );
+		$oldTitleText = $request->getText( 'wpOldTitle', $target );
 		$this->oldTitle = Title::newFromText( $oldTitleText );
 
 		if ( !$this->oldTitle ) {
@@ -205,7 +204,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
 
-		if ( $request->getVal( 'action' ) == 'submit' && $request->wasPosted()
+		if ( $request->getRawVal( 'action' ) == 'submit' && $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
 		) {
 			$this->doSubmit();

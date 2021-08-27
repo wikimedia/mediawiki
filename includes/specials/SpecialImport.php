@@ -107,7 +107,7 @@ class SpecialImport extends SpecialPage {
 		$this->checkReadOnly();
 
 		$request = $this->getRequest();
-		if ( $request->wasPosted() && $request->getVal( 'action' ) == 'submit' ) {
+		if ( $request->wasPosted() && $request->getRawVal( 'action' ) == 'submit' ) {
 			$this->doImport();
 		}
 		$this->showForm();

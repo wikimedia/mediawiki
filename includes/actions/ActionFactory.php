@@ -315,7 +315,7 @@ class ActionFactory {
 		}
 
 		$request = $context->getRequest();
-		$actionName = $request->getVal( 'action', 'view' );
+		$actionName = $request->getRawVal( 'action', 'view' );
 
 		// Normalize to lowercase
 		$actionName = strtolower( $actionName );

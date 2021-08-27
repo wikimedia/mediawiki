@@ -181,6 +181,7 @@
 	"right-override-export-depth": "Exportiere Seiten einschliesslich verlinkter Seiten bis zu einer Tiefe von 5",
 	"recentchanges": "Letzte Änderungen",
 	"recentchanges-label-plusminus": "Die Änderung der Seitengrösse in Bytes",
+	"rcfilters-preference-label": "«Letzte Änderungen» frei von JavaScript nutzen",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} nach der Änderung",
 	"rc-old-title": "ursprünglich erstellt als «$1»",
 	"recentchangeslinked-title": "Änderungen an Seiten, die von «$1» verlinkt sind",

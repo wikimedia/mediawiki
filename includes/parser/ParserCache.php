@@ -308,7 +308,7 @@ class ParserCache {
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
 		$pageid = $page->getId( PageRecord::LOCAL );
 		// TODO: remove the split T263581
-		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
+		$renderkey = (int)( $wgRequest->getRawVal( 'action' ) == 'render' );
 		$title = $this->titleFactory->castFromPageIdentity( $page );
 		$hash = $options->optionsHash( $usedOptions, $title );
 

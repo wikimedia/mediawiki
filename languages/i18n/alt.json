@@ -424,7 +424,7 @@
 	"nav-login-createaccount": "Кирер / аккаунт эдер",
 	"logout": "Чыгар",
 	"userlogout": "Чыгар",
-	"notloggedin": "Кирбеди",
+	"notloggedin": "Кирбегенер",
 	"userlogin-noaccount": "Аккаунт јок по?",
 	"userlogin-joinproject": "Кирер {{SITENAME}}",
 	"createaccount": "Аккаунт эдип алар",

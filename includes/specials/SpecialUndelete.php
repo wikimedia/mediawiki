@@ -153,7 +153,7 @@ class SpecialUndelete extends SpecialPage {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
-		$this->mAction = $request->getVal( 'action' );
+		$this->mAction = $request->getRawVal( 'action' );
 		if ( $par !== null && $par !== '' ) {
 			$this->mTarget = $par;
 		} else {
