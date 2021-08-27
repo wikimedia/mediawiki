@@ -1285,11 +1285,30 @@ class Article implements Page {
 	}
 
 	/**
-	 * Show a header specific to the namespace currently being viewed, like
-	 * [[MediaWiki:Talkpagetext]]. For Article::view().
+	 * Show a header specific to the namespace currently being viewed, such as
+	 * [[MediaWiki:Subjectpageheader]] on subject pages or
+	 * [[MediaWiki:Talkpageheader]] on talk pages.
+	 *
+	 * This function is used in Article::view().
+	 *
+	 * For the addition of subject page headers, see T151682.
 	 */
 	public function showNamespaceHeader() {
-		if ( $this->getTitle()->isTalkPage() && !$this->getContext()->msg( 'talkpageheader' )->isDisabled() ) {
+		if (
+			!$this->getTitle()->isTalkPage() &&
+			$this->getTitle()->exists() &&
+			!$this->getContext()->msg( 'subjectpageheader' )->isDisabled()
+		) {
+			$this->getContext()->getOutput()->wrapWikiMsg(
+				"<div class=\"mw-subjectpageheader\">\n$1\n</div>",
+				[ 'subjectpageheader' ]
+			);
+		}
+
+		if (
+			$this->getTitle()->isTalkPage() &&
+			!$this->getContext()->msg( 'talkpageheader' )->isDisabled()
+		) {
 			$this->getContext()->getOutput()->wrapWikiMsg(
 				"<div class=\"mw-talkpageheader\">\n$1\n</div>",
 				[ 'talkpageheader' ]

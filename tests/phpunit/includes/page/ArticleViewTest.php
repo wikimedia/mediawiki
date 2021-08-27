@@ -761,6 +761,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// Create an appropriate test page.
 		$title = Title::makeTitle( NS_MAIN, 'UseParsoidTest' );
 		$article = new Article( $title );
+		$article->getContext()->getOutput()->setTitle( $title );
 		$page = $this->getExistingTestPage( $title );
 		$page->doUserEditContent(
 			ContentHandler::makeContent(
@@ -783,6 +784,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		// Now enable Parsoid via the ArticleParserOptions hook
 		$article = new Article( $title );
+		$article->getContext()->getOutput()->setTitle( $title );
 		$this->setTemporaryHook( 'ArticleParserOptions', static function ( $article, $popts ) {
 			$popts->setUseParsoid();
 		} );

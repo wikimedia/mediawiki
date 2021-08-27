@@ -376,6 +376,7 @@
 	"redirectedfrom": "The text displayed when a certain page is redirected to another page. Parameters:\n* $1 - the name of the page user came from\n\nSimilar to {{msg-mw|Mobile-frontend-redirected-from}}",
 	"redirectpagesub": "Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.\n\n{{Identical|Redirect page}}",
 	"redirectto": "Alt text of the arrow icon shown on redirect pages ([[commons:File:Sample redirect page.jpg]]).\n\n{{Identical|Redirect to}}\n\nOn Wikidata, this message is shown directly on redirect pages.\n\n\"Redirect\" is a noun, not a verb. That is, translate \"redirect\" as in \"This is a redirect to:\"",
+	"subjectpageheader": "{{notranslate}}",
 	"talkpageheader": "{{notranslate}}",
 	"lastmodifiedat": "This message is shown below each page, in the footer with the logos and links.\n\nParameters:\n* $1 - date\n* $2 - time\nSee also:\n* {{msg-mw|Lastmodifiedatby}}",
 	"renderedwith-parsoid": "This message is shown below each page, in the footer with the logos and links, when the page has been rendered with [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
