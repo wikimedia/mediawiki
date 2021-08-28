@@ -742,14 +742,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
-	 * @param string[]|null $modules
+	 * @param string[] $modules
 	 * @return string Hash
 	 */
-	public function makeVersionQuery( ResourceLoaderContext $context, array $modules = null ) {
-		if ( $modules === null ) {
-			wfDeprecated( __METHOD__ . ' without $modules', '1.34' );
-			$modules = $context->getModules();
-		}
+	public function makeVersionQuery( ResourceLoaderContext $context, array $modules ) {
 		// As of MediaWiki 1.28, the server and client use the same algorithm for combining
 		// version hashes. There is no technical reason for this to be same, and for years the
 		// implementations differed. If getCombinedVersion in PHP (used for StartupModule and
