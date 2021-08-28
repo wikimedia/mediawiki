@@ -47,7 +47,7 @@ class LanguageBe_tarask extends Language {
 		# need to fold cases and convert to hex
 
 		# Replacing apostrophe sign U+2019 with U+0027
-		$s = preg_replace( '/\xe2\x80\x99/', '\'', $string );
+		$s = str_replace( "\u{2019}", '\'', $string );
 
 		$s = parent::normalizeForSearch( $s );
 
