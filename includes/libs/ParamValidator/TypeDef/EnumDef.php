@@ -90,7 +90,7 @@ class EnumDef extends TypeDef {
 		$ret['allowedKeys'][] = self::PARAM_DEPRECATED_VALUES;
 
 		$dv = $settings[self::PARAM_DEPRECATED_VALUES] ?? [];
-		if ( !is_array( $dv ?? false ) ) {
+		if ( !is_array( $dv ) ) {
 			$ret['issues'][self::PARAM_DEPRECATED_VALUES] = 'PARAM_DEPRECATED_VALUES must be an array, got '
 				. gettype( $dv );
 		} else {
