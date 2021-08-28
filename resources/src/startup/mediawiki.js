@@ -1561,8 +1561,6 @@
 								l = currReqBaseLength;
 								moduleMap = Object.create( null );
 								currReqModules = [];
-
-								mw.track( 'resourceloader.splitRequest', { maxQueryLength: mw.loader.maxQueryLength } );
 							}
 							if ( !moduleMap[ prefix ] ) {
 								moduleMap[ prefix ] = [];
