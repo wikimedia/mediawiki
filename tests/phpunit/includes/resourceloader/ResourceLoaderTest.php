@@ -788,7 +788,7 @@ END
 			],
 			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
-		$context = $this->getResourceLoaderContext( [], $rl );
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ], $rl );
 
 		$this->assertSame(
 			'',
@@ -1008,6 +1008,8 @@ END
 			[
 				'modules' => 'startup',
 				'only' => 'scripts',
+				// No module build for version hash in debug mode
+				'debug' => 'false',
 			],
 			$rl
 		);
@@ -1025,7 +1027,7 @@ END
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
 
-		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] ?? '' );
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp(
 			'/isCompatible.*window\.RLQ/s',

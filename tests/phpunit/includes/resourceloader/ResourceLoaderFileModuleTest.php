@@ -571,7 +571,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderFileModule::getFileHashes
 	 */
 	public function testGetVersionHash( $a, $b, $isEqual ) {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 
 		$moduleA = new ResourceLoaderFileTestModule( $a );
 		$moduleA->setConfig( $context->getResourceLoader()->getConfig() );

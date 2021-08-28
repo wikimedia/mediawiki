@@ -205,7 +205,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			try {
 				// The version should be formatted by ResourceLoader::makeHash and be of
-				// length ResourceLoader::HASH_LENGTH.
+				// length ResourceLoader::HASH_LENGTH (or empty string).
 				// The getVersionHash method is final and is covered by tests, as is makeHash().
 				$versionHash = $module->getVersionHash( $context );
 			} catch ( Exception $e ) {
@@ -220,20 +220,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 				$versionHash = '';
 				$states[$name] = 'error';
-			}
-
-			if ( $versionHash !== '' && strlen( $versionHash ) !== ResourceLoader::HASH_LENGTH ) {
-				$e = new RuntimeException( "Badly formatted module version hash" );
-				$resourceLoader->outputErrorAndLog( $e,
-						"Module '{module}' produced an invalid version hash: '{version}'.",
-					[
-						'module' => $name,
-						'version' => $versionHash,
-					]
-				);
-				// Module implementation either broken or deviated from ResourceLoader::makeHash
-				// Asserted by tests/phpunit/structure/ResourcesTest.
-				$versionHash = ResourceLoader::makeHash( $versionHash );
 			}
 
 			$skipFunction = $module->getSkipFunction();

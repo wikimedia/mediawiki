@@ -857,6 +857,14 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return string Hash formatted by ResourceLoader::makeHash
 	 */
 	final public function getVersionHash( ResourceLoaderContext $context ) {
+		if ( $context->getDebug() ) {
+			// In debug mode, make uncached startup module extra fast by not computing any hashes.
+			// Server responses from load.php for individual modules already have no-cache so
+			// we don't need them. This also makes breakpoint debugging easier, as each module
+			// gets its own consistent URL. (T235672)
+			return '';
+		}
+
 		// Cache this somewhat expensive operation. Especially because some classes
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();

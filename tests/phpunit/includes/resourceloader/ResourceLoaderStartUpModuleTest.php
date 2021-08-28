@@ -31,7 +31,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ]
 ]);',
 			] ],
@@ -62,7 +62,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "a",
-        "{blankVer}",
+        "",
         [
             1,
             3
@@ -70,18 +70,18 @@ mw.loader.register([
     ],
     [
         "b",
-        "{blankVer}",
+        "",
         [
             2
         ]
     ],
     [
         "c",
-        "{blankVer}"
+        ""
     ],
     [
         "d",
-        "{blankVer}"
+        ""
     ]
 ]);',
 			] ],
@@ -108,7 +108,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "a",
-        "{blankVer}",
+        "",
         [
             1,
             "x"
@@ -116,7 +116,7 @@ mw.loader.register([
     ],
     [
         "b",
-        "{blankVer}",
+        "",
         [
             2,
             "x"
@@ -124,7 +124,7 @@ mw.loader.register([
     ],
     [
         "c",
-        "{blankVer}"
+        ""
     ]
 ]);',
 			] ],
@@ -160,7 +160,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "top",
-        "{blankVer}",
+        "",
         [
             1,
             4
@@ -168,7 +168,7 @@ mw.loader.register([
     ],
     [
         "middle1",
-        "{blankVer}",
+        "",
         [
             2,
             4
@@ -176,21 +176,21 @@ mw.loader.register([
     ],
     [
         "middle2",
-        "{blankVer}",
+        "",
         [
             3
         ]
     ],
     [
         "bottom",
-        "{blankVer}",
+        "",
         [
             0
         ]
     ],
     [
         "util",
-        "{blankVer}"
+        ""
     ]
 ]);',
 			] ],
@@ -214,7 +214,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "top",
-        "{blankVer}",
+        "",
         [
             1,
             0
@@ -222,70 +222,9 @@ mw.loader.register([
     ],
     [
         "util",
-        "{blankVer}"
+        ""
     ]
 ]);',
-			] ],
-			[ [
-				'msg' => 'Version falls back gracefully if getModuleContent throws',
-				'modules' => [
-					'test.fail' => [
-						'factory' => function () {
-							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->onlyMethods( [ 'getModuleContent' ] )->getMock();
-							$mock->method( 'getModuleContent' )->will(
-								$this->throwException( new Exception )
-							);
-							return $mock;
-						}
-					]
-				],
-				'out' => '
-mw.loader.addSource({
-    "local": "/w/load.php"
-});
-mw.loader.register([
-    [
-        "test.fail",
-        ""
-    ]
-]);
-mw.loader.state({
-    "test.fail": "error"
-});',
-			] ],
-			[ [
-				'msg' => 'Version falls back gracefully if getDefinitionSummary throws',
-				'modules' => [
-					'test.fail' => [
-						'factory' => function () {
-							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->onlyMethods( [
-									'enableModuleContentVersion',
-									'getDefinitionSummary'
-								] )
-								->getMock();
-							$mock->method( 'enableModuleContentVersion' )->willReturn( false );
-							$mock->method( 'getDefinitionSummary' )->will(
-								$this->throwException( new Exception )
-							);
-							return $mock;
-						}
-					]
-				],
-				'out' => '
-mw.loader.addSource({
-    "local": "/w/load.php"
-});
-mw.loader.register([
-    [
-        "test.fail",
-        ""
-    ]
-]);
-mw.loader.state({
-    "test.fail": "error"
-});',
 			] ],
 			[ [
 				'msg' => 'Group signature',
@@ -307,17 +246,17 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ],
     [
         "test.group.foo",
-        "{blankVer}",
+        "",
         [],
         2
     ],
     [
         "test.group.bar",
-        "{blankVer}",
+        "",
         [],
         3
     ]
@@ -339,7 +278,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ]
 ]);'
 			] ],
@@ -368,19 +307,19 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ],
     [
         "test.core-generated",
-        "{blankVer}"
+        ""
     ],
     [
         "test.sitewide",
-        "{blankVer}"
+        ""
     ],
     [
         "test.user",
-        "{blankVer}"
+        ""
     ]
 ]);'
 			] ],
@@ -410,11 +349,11 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ],
     [
         "test.core-generated",
-        "{blankVer}"
+        ""
     ]
 ]);'
 			] ],
@@ -440,7 +379,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}",
+        "",
         [],
         null,
         "example"
@@ -480,11 +419,11 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.x.core",
-        "{blankVer}"
+        ""
     ],
     [
         "test.x.polyfill",
-        "{blankVer}",
+        "",
         [],
         null,
         null,
@@ -492,7 +431,7 @@ mw.loader.register([
     ],
     [
         "test.y.polyfill",
-        "{blankVer}",
+        "",
         [],
         null,
         null,
@@ -500,7 +439,7 @@ mw.loader.register([
     ],
     [
         "test.z.foo",
-        "{blankVer}",
+        "",
         [
             0,
             1,
@@ -524,7 +463,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.es6",
-        "{blankVer}!"
+        "!"
     ]
 ]);',
 			] ],
@@ -610,36 +549,36 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ],
     [
         "test.x.core",
-        "{blankVer}"
+        ""
     ],
     [
         "test.x.util",
-        "{blankVer}",
+        "",
         [
             1
         ]
     ],
     [
         "test.x.foo",
-        "{blankVer}",
+        "",
         [
             1
         ]
     ],
     [
         "test.x.bar",
-        "{blankVer}",
+        "",
         [
             2
         ]
     ],
     [
         "test.x.quux",
-        "{blankVer}",
+        "",
         [
             3,
             4,
@@ -648,32 +587,32 @@ mw.loader.register([
     ],
     [
         "test.group.foo.1",
-        "{blankVer}",
+        "",
         [],
         2
     ],
     [
         "test.group.foo.2",
-        "{blankVer}",
+        "",
         [],
         2
     ],
     [
         "test.group.bar.1",
-        "{blankVer}",
+        "",
         [],
         3
     ],
     [
         "test.group.bar.2",
-        "{blankVer}",
+        "",
         [],
         3,
         "example"
     ],
     [
         "test.es6",
-        "{blankVer}!"
+        "!"
     ]
 ]);'
 			] ],
@@ -705,6 +644,75 @@ mw.loader.register([
 			self::expandPlaceholders( $out ),
 			$module->getModuleRegistrations( $context ),
 			$case['msg']
+		);
+	}
+
+	/**
+	 * These test cases test behaviour that are specific to production mode.
+	 *
+	 * @see provideGetModuleRegistrations
+	 */
+	public function provideGetModuleRegistrationsProduction() {
+		yield 'Version falls back gracefully if getModuleContent throws' => [ [
+			'modules' => [
+				'test.fail' => [
+					'factory' => function () {
+						$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+							->onlyMethods( [ 'getModuleContent' ] )->getMock();
+						$mock->method( 'getModuleContent' )->will(
+							$this->throwException( new Exception )
+						);
+						return $mock;
+					}
+				]
+			],
+			'out' => 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
+				. 'mw.loader.register([["test.fail",""]]);' . "\n"
+				. 'mw.loader.state({"test.fail":"error"});',
+		] ];
+		yield 'Version falls back gracefully if getDefinitionSummary throws' => [ [
+			'modules' => [
+				'test.fail' => [
+					'factory' => function () {
+						$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+							->onlyMethods( [
+								'enableModuleContentVersion',
+								'getDefinitionSummary'
+							] )
+							->getMock();
+						$mock->method( 'enableModuleContentVersion' )->willReturn( false );
+						$mock->method( 'getDefinitionSummary' )->will(
+							$this->throwException( new Exception )
+						);
+						return $mock;
+					}
+				]
+			],
+			'out' => 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
+				. 'mw.loader.register([["test.fail",""]]);' . "\n"
+				. 'mw.loader.state({"test.fail":"error"});',
+		] ];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleRegistrationsProduction
+	 * @covers ResourceLoaderStartUpModule
+	 * @covers ResourceLoader
+	 */
+	public function testGetModuleRegistrationsProduction( array $case ) {
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
+		$rl = $context->getResourceLoader();
+		$rl->register( $case['modules'] );
+		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
+		$out = ltrim( $case['out'], "\n" );
+
+		// Tolerate exception logs for cases that expect getVersionHash() to throw.
+		$this->setLogger( 'exception', new Psr\Log\NullLogger() );
+
+		$this->assertEquals(
+			self::expandPlaceholders( $out ),
+			$module->getModuleRegistrations( $context )
 		);
 	}
 
@@ -773,11 +781,11 @@ mw.loader.register([
 mw.loader.register([
     [
         "test.blank",
-        "{blankVer}"
+        ""
     ],
     [
         "test.min",
-        "{blankVer}",
+        "",
         [
             0
         ],
@@ -819,7 +827,9 @@ mw.loader.register([
 	 * @covers ResourceLoaderStartupModule
 	 */
 	public function testGetVersionHash_varyModule() {
-		$context1 = $this->getResourceLoaderContext();
+		$context1 = $this->getResourceLoaderContext( [
+			'debug' => 'false',
+		] );
 		$rl1 = $context1->getResourceLoader();
 		$rl1->register( [
 			'test.a' => [ 'class' => ResourceLoaderTestModule::class ],
@@ -870,7 +880,7 @@ mw.loader.register([
 	 * @covers ResourceLoaderStartUpModule
 	 */
 	public function testGetVersionHash_varyDeps() {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
 		$rl->register( [
 			'test.a' => [
