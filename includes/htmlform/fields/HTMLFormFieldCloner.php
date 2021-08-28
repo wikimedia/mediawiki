@@ -59,7 +59,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		// Make sure the delete button, if explicitly specified, is sane
-		// @phan-suppress-next-line PhanTypeMismatchDimFetch Phan is very confused
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [

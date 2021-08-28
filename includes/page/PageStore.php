@@ -233,6 +233,7 @@ class PageStore implements PageLookup {
 			->conds( $conds )
 			->caller( __METHOD__ );
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $queryBuilder->fetchPageRecord();
 	}
 

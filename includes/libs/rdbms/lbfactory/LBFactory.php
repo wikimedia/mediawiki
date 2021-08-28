@@ -448,7 +448,6 @@ abstract class LBFactory implements ILBFactory {
 			'ifWritesSince' => null
 		];
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $opts['domain'] === false && isset( $opts['wiki'] ) ) {
 			$opts['domain'] = $opts['wiki']; // b/c
 		}
@@ -456,7 +455,6 @@ abstract class LBFactory implements ILBFactory {
 		// Figure out which clusters need to be checked
 		/** @var ILoadBalancer[] $lbs */
 		$lbs = [];
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $opts['cluster'] !== false ) {
 			$lbs[] = $this->getExternalLB( $opts['cluster'] );
 		} elseif ( $opts['domain'] !== false ) {

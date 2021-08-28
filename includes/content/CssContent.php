@@ -66,6 +66,7 @@ class CssContent extends TextContent {
 			return $this;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->getContentHandler()->makeRedirectContent( $target );
 	}
 

@@ -639,7 +639,6 @@ class ApiComparePages extends ApiBase {
 					if ( isset( $this->props['comment'] ) ) {
 						$vals["{$prefix}comment"] = $comment->text;
 					}
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 					$vals["{$prefix}parsedcomment"] = Linker::formatComment(
 						$comment->text, $title
 					);

@@ -37,7 +37,6 @@ class ApiImportReporter extends ImportReporter {
 	 * @param int $successCount
 	 * @param array $pageInfo
 	 * @return void
-	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function reportPage( ?PageIdentity $pageIdentity, $foreignTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry

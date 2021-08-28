@@ -609,7 +609,6 @@ MWExceptionHandler::installHandler();
 
 // Non-trivial validation of: $wgServer
 // The FatalError page only renders cleanly after MWExceptionHandler is installed.
-// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
 if ( $wgServer === false ) {
 	// T30798: $wgServer must be explicitly set
 	throw new FatalError(

@@ -882,6 +882,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		$this->errors = [];
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
 
@@ -1181,6 +1182,7 @@ MESSAGE;
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
+							// @phan-suppress-next-line SecurityCheck-XSS
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
 							$content['templates'] ?? []
 						);
@@ -1293,8 +1295,10 @@ MESSAGE;
 			if ( $scripts->value === '' ) {
 				$scripts = null;
 			} elseif ( $context->getDebug() ) {
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$scripts = new XmlJsCode(
 					'function($,jQuery,require,module){' . self::ensureNewline( $scripts->value ) . '}'
 				);

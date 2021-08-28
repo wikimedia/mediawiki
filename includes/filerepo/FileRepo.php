@@ -320,6 +320,7 @@ class FileRepo {
 			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				// custom URL for extension/zone
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				return $this->zones[$zone]['urlsByExt'][$ext];
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
 				// custom URL for zone

@@ -140,8 +140,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	public function filterDataForSubmit( $data ) {
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( $field instanceof HTMLNestedFilterable ) {
-				// @phan-suppress-next-next-line PhanUndeclaredProperty All HTMLForm fields have mParams,
-				// but the instanceof confuses phan, which doesn't support intersections
 				$info = $field->mParams;
 				$prefix = $info['prefix'] ?? $fieldname;
 				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {

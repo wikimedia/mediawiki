@@ -129,7 +129,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				}
 				$skinHtml .=
 					'<div class="config-skins-item">' .
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped screenshotText is safe
 					$this->parent->getCheckBox( [
 						'var' => "skin-$skin",
 						'rawtext' => $screenshotText,
@@ -206,6 +205,7 @@ class WebInstallerOptions extends WebInstallerPage {
 							}
 						}
 						if ( isset( $dependencyMap[$ext]['skins'] ) ) {
+							// @phan-suppress-next-line PhanTypeMismatchForeach Phan internal bug
 							foreach ( $dependencyMap[$ext]['skins'] as $name ) {
 								$links[] = Html::element(
 									'a',
@@ -222,7 +222,6 @@ class WebInstallerOptions extends WebInstallerPage {
 					} else {
 						$text = $ext;
 					}
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$extHtml .= $this->parent->getCheckBox( [
 						'var' => "ext-$ext",
 						'rawtext' => $text,
@@ -253,7 +252,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->addHTML(
 			# Uploading
 			$this->getFieldsetStart( 'config-upload-settings' ) .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
@@ -261,7 +259,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-upload-help' )
 			] ) .
 			'<div id="uploadwrapper" style="' . $uploadwrapperStyle . '">' .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
@@ -269,7 +266,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
 			] ) .
 			'</div>' .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => '_Logo',
 				'label' => 'config-logo',
@@ -278,7 +274,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			] )
 		);
 		$this->addHTML(
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgUseInstantCommons',
 				'label' => 'config-instantcommons',
@@ -322,7 +317,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
 			"<div id=\"config-memcachewrapper\" style=\"$hidden\">" .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextArea( [
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',

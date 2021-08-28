@@ -46,6 +46,7 @@ abstract class BaseSearchResultSet implements ISearchResultSet {
 			$this->bcIterator = 'RECURSION';
 			$this->bcIterator = $this->getIterator();
 		} elseif ( $this->bcIterator === 'RECURSION' ) {
+			// @phan-suppress-previous-line PhanTypeComparisonFromArray Use of string is a hack
 			// Either next/rewind or extractResults must be implemented.  This
 			// class was potentially instantiated directly. It should be
 			// abstract with abstract methods to enforce this but that's a
