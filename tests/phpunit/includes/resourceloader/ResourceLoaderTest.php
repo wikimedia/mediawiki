@@ -407,6 +407,29 @@ mw.example();
 } );',
 			] ],
 			[ [
+				'title' => 'Implement scripts with newline at end',
+
+				'name' => 'test.example',
+				'scripts' => "mw.example();\n",
+				'styles' => [],
+
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+mw.example();
+
+} );',
+			] ],
+			[ [
+				'title' => 'Implement scripts with comment at end',
+
+				'name' => 'test.example',
+				'scripts' => "mw.example();//Foo",
+				'styles' => [],
+
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
+mw.example();//Foo
+} );',
+			] ],
+			[ [
 				'title' => 'Implement styles',
 
 				'name' => 'test.example',
@@ -470,15 +493,23 @@ mw.example();
 						],
 						'three.js' => [
 							'type' => 'script',
-							'content' => 'mw.example( 3 );'
+							'content' => 'mw.example( 3 ); // Comment'
+						],
+						'four.js' => [
+							'type' => 'script',
+							'content' => "mw.example( 4 );\n"
+						],
+						'five.js' => [
+							'type' => 'script',
+							'content' => 'mw.example( 5 );'
 						],
 					],
-					'main' => 'three.js',
+					'main' => 'five.js',
 				],
 
 				'expected' => <<<END
 mw.loader.implement( "test.multifile", {
-    "main": "three.js",
+    "main": "five.js",
     "files": {
     "one.js": function ( require, module ) {
 mw.example( 1 );
@@ -487,7 +518,13 @@ mw.example( 1 );
     "n": 2
 },
     "three.js": function ( require, module ) {
-mw.example( 3 );
+mw.example( 3 ); // Comment
+},
+    "four.js": function ( require, module ) {
+mw.example( 4 );
+},
+    "five.js": function ( require, module ) {
+mw.example( 5 );
 }
 }
 } );

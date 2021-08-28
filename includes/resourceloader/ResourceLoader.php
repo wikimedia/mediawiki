@@ -1240,10 +1240,11 @@ MESSAGE;
 
 	/**
 	 * Ensure the string is either empty or ends in a line break
+	 * @internal
 	 * @param string $str
 	 * @return string
 	 */
-	private static function ensureNewline( $str ) {
+	public static function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
 		if ( $end === false || $end === '' || $end === "\n" ) {
 			return $str;
@@ -1304,13 +1305,14 @@ MESSAGE;
 				// $file is changed (by reference) from a descriptor array to the content of the file
 				// All of these essentially do $file = $file['content'];, some just have wrapping around it
 				if ( $file['type'] === 'script' ) {
+					// Ensure that the script has a newline at the end to close any comment in the
+					// last line.
+					$content = self::ensureNewline( $file['content'] );
 					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
 					if ( $context->getDebug() ) {
-						$file = new XmlJsCode( "function ( require, module ) {\n{$file['content']}\n}" );
+						$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
 					} else {
-						$file = new XmlJsCode(
-							'function(require,module){' . self::ensureNewline( $file['content'] ) . '}'
-						);
+						$file = new XmlJsCode( 'function(require,module){' . $content . '}' );
 					}
 				} else {
 					$file = $file['content'];

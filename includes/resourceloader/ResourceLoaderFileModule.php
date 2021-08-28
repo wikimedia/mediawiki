@@ -965,7 +965,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( array_unique( $scripts, SORT_REGULAR ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
 			$contents = $this->getFileContents( $localPath, 'script' );
-			$js .= $contents . "\n";
+			$js .= ResourceLoader::ensureNewline( $contents );
 		}
 		return $js;
 	}
