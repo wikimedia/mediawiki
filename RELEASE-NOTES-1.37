@@ -51,6 +51,9 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
   WikiPage::getActionOverrides().
 * $wgShellboxUrl is deprecated, use $wgShellboxUrls as a mapping of
   service => URL instead.
+* $wgIncludejQueryMigrate Default value for this configuration has changed
+  from true to false. This may break gadgets that depended on methods removed
+  in jQuery 3. See T280944 for more information.
 * …
 
 ==== Removed configuration ====

@@ -4470,7 +4470,7 @@ $wgIncludeLegacyJavaScript = false;
  *
  * @deprecated since 1.36
  */
-$wgIncludejQueryMigrate = true;
+$wgIncludejQueryMigrate = false;
 
 /**
  * ResourceLoader will not generate URLs whose query string is more than
