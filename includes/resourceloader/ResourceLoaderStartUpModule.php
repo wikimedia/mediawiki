@@ -204,6 +204,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 
 			try {
+				// The version should be formatted by ResourceLoader::makeHash and be of
+				// length ResourceLoader::HASH_LENGTH.
+				// The getVersionHash method is final and is covered by tests, as is makeHash().
 				$versionHash = $module->getVersionHash( $context );
 			} catch ( Exception $e ) {
 				// Don't fail the request (T152266)

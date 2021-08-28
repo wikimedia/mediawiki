@@ -227,13 +227,13 @@ mw.loader.register([
 ]);',
 			] ],
 			[ [
-				'msg' => 'Version falls back gracefully if getVersionHash throws',
+				'msg' => 'Version falls back gracefully if getModuleContent throws',
 				'modules' => [
 					'test.fail' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->onlyMethods( [ 'getVersionHash' ] )->getMock();
-							$mock->method( 'getVersionHash' )->will(
+								->onlyMethods( [ 'getModuleContent' ] )->getMock();
+							$mock->method( 'getModuleContent' )->will(
 								$this->throwException( new Exception )
 							);
 							return $mock;
@@ -255,13 +255,20 @@ mw.loader.state({
 });',
 			] ],
 			[ [
-				'msg' => 'Use version from getVersionHash',
+				'msg' => 'Version falls back gracefully if getDefinitionSummary throws',
 				'modules' => [
-					'test.version' => [
+					'test.fail' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->onlyMethods( [ 'getVersionHash' ] )->getMock();
-							$mock->method( 'getVersionHash' )->willReturn( '12345' );
+								->onlyMethods( [
+									'enableModuleContentVersion',
+									'getDefinitionSummary'
+								] )
+								->getMock();
+							$mock->method( 'enableModuleContentVersion' )->willReturn( false );
+							$mock->method( 'getDefinitionSummary' )->will(
+								$this->throwException( new Exception )
+							);
 							return $mock;
 						}
 					]
@@ -272,33 +279,13 @@ mw.loader.addSource({
 });
 mw.loader.register([
     [
-        "test.version",
-        "12345"
+        "test.fail",
+        ""
     ]
-]);',
-			] ],
-			[ [
-				'msg' => 'Re-hash version from getVersionHash if too long',
-				'modules' => [
-					'test.version' => [
-						'factory' => function () {
-							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->onlyMethods( [ 'getVersionHash' ] )->getMock();
-							$mock->method( 'getVersionHash' )->willReturn( '12345678' );
-							return $mock;
-						}
-					],
-				],
-				'out' => '
-mw.loader.addSource({
-    "local": "/w/load.php"
-});
-mw.loader.register([
-    [
-        "test.version",
-        "16es8"
-    ]
-]);',
+]);
+mw.loader.state({
+    "test.fail": "error"
+});',
 			] ],
 			[ [
 				'msg' => 'Group signature',

@@ -211,6 +211,17 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::makeHash
+	 */
+	public function testGetVersionHash_length() {
+		$hash = ResourceLoader::makeHash(
+			'Anything you do could have serious repercussions on future events.'
+		);
+		$this->assertSame( 'xhh1x', $hash, 'Hash' );
+		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $hash ), 'Hash length' );
+	}
+
+	/**
 	 * @covers ResourceLoader::getLessCompiler
 	 */
 	public function testLessImportDirs() {

@@ -842,20 +842,21 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get a string identifying the current version of this module in a given context.
 	 *
 	 * Whenever anything happens that changes the module's response (e.g. scripts, styles, and
-	 * messages) this value must change. This value is used to store module responses in cache.
-	 * (Both client-side and server-side.)
+	 * messages) this value must change. This value is used to store module responses in caches,
+	 * both server-side (by a CDN, or other HTTP cache), and client-side (in `mw.loader.store`,
+	 * and in the browser's own HTTP cache).
 	 *
-	 * It is not recommended to override this directly. Use getDefinitionSummary() instead.
-	 * If overridden, one must call the parent getVersionHash(), append data and re-hash.
-	 *
-	 * This method should be quick because it is frequently run by ResourceLoaderStartUpModule to
-	 * propagate changes to the client and effectively invalidate cache.
+	 * The underlying methods called here for any given module should be quick because this
+	 * is called for potentially thousands of module bundles in the same request as part of the
+	 * ResourceLoaderStartUpModule, which is how we invalidate caches and propagate changes to
+	 * clients.
 	 *
 	 * @since 1.26
+	 * @see self::getDefinitionSummary for how to customize version computation.
 	 * @param ResourceLoaderContext $context
-	 * @return string Hash (should use ResourceLoader::makeHash)
+	 * @return string Hash formatted by ResourceLoader::makeHash
 	 */
-	public function getVersionHash( ResourceLoaderContext $context ) {
+	final public function getVersionHash( ResourceLoaderContext $context ) {
 		// Cache this somewhat expensive operation. Especially because some classes
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();

@@ -67,6 +67,18 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @covers ResourceLoaderModule::getVersionHash
 	 */
+	public function testGetVersionHash_length() {
+		$context = $this->getResourceLoaderContext();
+		$module = new ResourceLoaderTestModule( [
+			'script' => 'foo();'
+		] );
+		$version = $module->getVersionHash( $context );
+		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $version ), 'Hash length' );
+	}
+
+	/**
+	 * @covers ResourceLoaderModule::getVersionHash
+	 */
 	public function testGetVersionHash_parentDefinition() {
 		$context = $this->getResourceLoaderContext();
 		$module = $this->getMockBuilder( ResourceLoaderModule::class )
