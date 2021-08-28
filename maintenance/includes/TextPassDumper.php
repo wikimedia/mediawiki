@@ -483,7 +483,7 @@ TEXT
 					'XML import parse failure',
 					xml_get_current_line_number( $parser ),
 					xml_get_current_column_number( $parser ),
-					$byte . ( $chunk === null ? null : ( '; "' . substr( $chunk, $byte - $offset, 16 ) . '"' ) ),
+					$byte . ( $chunk === false ? '' : ( '; "' . substr( $chunk, $byte - $offset, 16 ) . '"' ) ),
 					xml_error_string( xml_get_error_code( $parser ) ) )->escaped();
 
 				xml_parser_free( $parser );
