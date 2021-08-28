@@ -1356,6 +1356,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ExtensionInfo' => __DIR__ . '/includes/utils/ExtensionInfo.php',
 	'MediaWiki\\ExternalLinks\\ExternalLinksLookup' => __DIR__ . '/includes/ExternalLinks/ExternalLinksLookup.php',
 	'MediaWiki\\ExternalLinks\\LinkFilter' => __DIR__ . '/includes/ExternalLinks/LinkFilter.php',
+	'MediaWiki\\FeatureShutdown' => __DIR__ . '/includes/FeatureShutdown.php',
 	'MediaWiki\\Feed\\AtomFeed' => __DIR__ . '/includes/Feed/AtomFeed.php',
 	'MediaWiki\\Feed\\ChannelFeed' => __DIR__ . '/includes/Feed/ChannelFeed.php',
 	'MediaWiki\\Feed\\FeedItem' => __DIR__ . '/includes/Feed/FeedItem.php',

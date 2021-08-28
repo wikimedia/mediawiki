@@ -4542,4 +4542,10 @@ class MainConfigNames {
 	 */
 	public const OutputPipelineStages = 'OutputPipelineStages';
 
+	/**
+	 * Name constant for the FeatureShutdown setting, for use with Config::get()
+	 * @see MainConfigSchema::FeatureShutdown
+	 */
+	public const FeatureShutdown = 'FeatureShutdown';
+
 }

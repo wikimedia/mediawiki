@@ -135,6 +135,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 * You can use LoggerFactory::getContext() to add extra context to all PSR-3
   log events.
 * New helper methods Html::addClass() and Html::expandClassList().
+* The new FeatureShutdown service can be used to provide controlled outages for
+  deprecated interfaces.
 * …
 
 === External library changes in 1.44 ===

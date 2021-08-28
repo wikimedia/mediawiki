@@ -101,6 +101,7 @@ use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\FeatureShutdown;
 use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\FileRepo\RepoGroup;
@@ -858,6 +859,15 @@ return [
 			( $writeStores !== false ) ? (array)$writeStores : [],
 			$services->getDBLoadBalancer()->getLocalDomainID(),
 			LoggerFactory::getInstance( 'ExternalStore' )
+		);
+	},
+
+	'FeatureShutdown' => static function ( MediaWikiServices $services ): FeatureShutdown {
+		return new FeatureShutdown(
+			new ServiceOptions(
+				FeatureShutdown::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
 		);
 	},
 

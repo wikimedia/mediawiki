@@ -4526,3 +4526,9 @@ $wgEnableProtectionIndicators = null;
  * @see MediaWiki\MainConfigSchema::OutputPipelineStages
  */
 $wgOutputPipelineStages = null;
+
+/**
+ * Config variable stub for the FeatureShutdown setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::FeatureShutdown
+ */
+$wgFeatureShutdown = null;

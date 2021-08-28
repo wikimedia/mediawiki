@@ -13221,6 +13221,38 @@ class MainConfigSchema {
 		'default' => [],
 		'type' => 'map',
 	];
+
+	/**
+	 * Allow temporarily disabling use of certain features. Useful for
+	 * large site operators to push people to newer APIs while still
+	 * keeping the breakage short and contained.
+	 *
+	 * This should be an array, where a key is a feature name and the value
+	 * is an array of shutdown arrays, each containing the following keys:
+	 * 	'start' => Shutdown start, parsed with strtotime(). (required)
+	 * 	'end' => Shutdown end, parsed with strtotime(). (required)
+	 * 	'percentage' => Number between 0 and 100. If set, only a certain
+	 * 	  percentage of requests will be blocked.
+	 *
+	 * For example:
+	 * @code
+	 * $wgFeatureShutdown = [
+	 *   'pre-1.24-tokens' => [
+	 *     [
+	 *       'start' => '2021-07-01T00:00 +00:00',
+	 *       'end' => '2021-08-01T00:00 +00:00',
+	 *       'percentage' => 50,
+	 *     ],
+	 *   ],
+	 * ];
+	 * @encdode
+	 *
+	 * @since 1.44
+	 */
+	public const FeatureShutdown = [
+		'default' => [],
+		'type' => 'list',
+	];
 	// endregion -- End Miscellaneous
 
 }

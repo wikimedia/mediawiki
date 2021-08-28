@@ -1174,6 +1174,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.44
+	 * @return FeatureShutdown
+	 */
+	public function getFeatureShutdown(): FeatureShutdown {
+		return $this->getService( 'FeatureShutdown' );
+	}
+
+	/**
 	 * @since 1.35
 	 */
 	public function getFileBackendGroup(): FileBackendGroup {

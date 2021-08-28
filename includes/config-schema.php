@@ -2641,6 +2641,8 @@ return [
 			'EnableProtectionIndicators' => false,
 			'OutputPipelineStages' => [
 			],
+			'FeatureShutdown' => [
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3144,6 +3146,7 @@ return [
 			'ShowLogoutConfirmation' => 'boolean',
 			'EnableProtectionIndicators' => 'boolean',
 			'OutputPipelineStages' => 'object',
+			'FeatureShutdown' => 'array',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',
