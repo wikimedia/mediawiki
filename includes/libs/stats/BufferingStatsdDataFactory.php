@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015
+ * Copyright 2015 Ori Livneh
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,24 +25,31 @@ use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
 /**
- * A factory for application metric data.
+ * MediaWiki adaption of StatsdDataFactory that provides buffering and metric prefixing.
  *
- * This class prepends a context-specific prefix to each metric key and keeps
- * a reference to each constructed metric in an internal array buffer.
+ * The buffering functionality exists as a performance optimisation to reduce network
+ * traffic and StatsD processing by maximally utilizing StatsdClient's ability to
+ * compress counter increments, and send all data in a few large UDP packets
+ * over a single connection.
+ *
+ * These buffers are sent from MediaWiki::emitBufferedStatsdData. For web requests,
+ * this happens pre-send via wfLogProfilingData. For command-line scripts, this
+ * happens periodically from a database callback (see MWLBFactory::applyGlobalState).
+ *
+ * @todo Evaluate upstream's StatsdService class, which implements similar buffering logic
+ * and was released in statsd-php-client 1.0.13, shortly after we implemented this here
+ * for statsd-php-client 1.0.12 at the time.
  *
  * @since 1.25
- * @method StatsdData produceStatsdDataEntity()
+ * @method StatsdData produceStatsdDataEntity() We use StatsdData::setKey, which is not in
+ *  StatsdDataInterface https://gerrit.wikimedia.org/r/643976
  */
 class BufferingStatsdDataFactory extends StatsdDataFactory implements IBufferingStatsdDataFactory {
+	/** @var array */
 	protected $buffer = [];
-	/**
-	 * Collection enabled?
-	 * @var bool
-	 */
+	/** @var bool */
 	protected $enabled = true;
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $prefix;
 
 	public function __construct( $prefix ) {
@@ -50,15 +57,94 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		$this->prefix = $prefix;
 	}
 
+	//
+	// Methods for StatsdDataFactoryInterface
+	//
+
+	/**
+	 * @param string $key
+	 * @param float|int $time
+	 * @return void
+	 */
+	public function timing( $key, $time ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, $time, StatsdDataInterface::STATSD_METRIC_TIMING ];
+	}
+
+	/**
+	 * @param string $key
+	 * @param float|int $value
+	 * @return void
+	 */
+	public function gauge( $key, $value ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, $value, StatsdDataInterface::STATSD_METRIC_GAUGE ];
+	}
+
+	/**
+	 * @param string $key
+	 * @param float|int $value
+	 * @return void
+	 */
+	public function set( $key, $value ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, $value, StatsdDataInterface::STATSD_METRIC_SET ];
+	}
+
+	/**
+	 * @param string $key
+	 * @return void
+	 */
+	public function increment( $key ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, 1, StatsdDataInterface::STATSD_METRIC_COUNT ];
+	}
+
+	/**
+	 * @param string $key
+	 * @return void
+	 */
+	public function decrement( $key ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, -1, StatsdDataInterface::STATSD_METRIC_COUNT ];
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $delta
+	 * @return void
+	 */
+	public function updateCount( $key, $delta ) {
+		if ( !$this->enabled ) {
+			return;
+		}
+		$this->buffer[] = [ $key, $delta, StatsdDataInterface::STATSD_METRIC_COUNT ];
+	}
+
 	/**
 	 * Normalize a metric key for StatsD
 	 *
-	 * Replace occurences of '::' with dots and any other non-alphanumeric
-	 * characters with underscores. Combine runs of dots or underscores.
-	 * Then trim leading or trailing dots or underscores.
+	 * The following are changes you may rely on:
+	 *
+	 * - Non-alphanumerical characters are converted to underscores.
+	 * - Empty segments are removed, e.g. "foo..bar" becomes "foo.bar".
+	 *   This is mainly for StatsD-Graphite-Carbon setups where each segment is a directory
+	 *   and must have a non-empty name.
+	 * - Deliberately invalid input that looks like `__METHOD__` (namespaced PHP class and method)
+	 *   is changed from "\\Namespace\\Class::method" to "Namespace_Class.method".
+	 *   This is used by ProfilerOutputStats.
 	 *
 	 * @param string $key
-	 * @since 1.26
 	 * @return string
 	 */
 	private static function normalizeMetricKey( $key ) {
@@ -72,9 +158,6 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		$key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT
 	) {
 		$entity = $this->produceStatsdDataEntity();
-		if ( !$this->enabled ) {
-			return $entity;
-		}
 		if ( $key !== null ) {
 			$key = self::normalizeMetricKey( "{$this->prefix}.{$key}" );
 			$entity->setKey( $key );
@@ -85,12 +168,12 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		if ( $metric !== null ) {
 			$entity->setMetric( $metric );
 		}
-		// Don't bother buffering a counter update with a delta of zero.
-		if ( !( $metric === StatsdDataInterface::STATSD_METRIC_COUNT && !$value ) ) {
-			$this->buffer[] = $entity;
-		}
 		return $entity;
 	}
+
+	//
+	// Methods for IBufferingStatsdDataFactory
+	//
 
 	public function hasData() {
 		return !empty( $this->buffer );
@@ -101,7 +184,19 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	 * @return StatsdData[]
 	 */
 	public function getData() {
-		return $this->buffer;
+		$data = [];
+		foreach ( $this->buffer as list( $key, $val, $metric ) ) {
+			// Optimization: Don't bother transmitting a counter update with a delta of zero
+			if ( $metric === StatsdDataInterface::STATSD_METRIC_COUNT && !$val ) {
+				continue;
+			}
+
+			// Optimisation: Avoid produceStatsdData cost during web requests (T288702).
+			// Instead, we do it here in getData() right before the data is transmitted.
+			$data[] = $this->produceStatsdData( $key, $val, $metric );
+		}
+
+		return $data;
 	}
 
 	public function clearData() {
