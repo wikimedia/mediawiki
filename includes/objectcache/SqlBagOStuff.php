@@ -21,7 +21,6 @@
  * @ingroup Cache
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\Blob;
@@ -68,6 +67,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $purgeLimit = 100;
 	/** @var int Number of table shards to use on each server */
 	protected $numTableShards = 1;
+	/** @var int */
+	protected $writeBatchSize = 100;
 	/** @var string */
 	protected $tableName = 'objectcache';
 	/** @var bool Whether to use replicas instead of primaries (if using LoadBalancer) */
@@ -150,6 +151,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *      This option requires the use of LoadBalancer ("localKeyLB"/"globalKeyLB") and
 	 *      should only be used by ReplicatedBagOStuff. [optional]
 	 *   - syncTimeout: Max seconds to wait for replica DBs to catch up for WRITE_SYNC. [optional]
+	 *   - writeBatchSize: Default maximum number of rows to change in each query for write
+	 *      operations that can be chunked into a set of smaller writes. [optional]
 	 *
 	 * @param array $params
 	 */
@@ -158,7 +161,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$dbType = null;
 		if ( isset( $params['servers'] ) || isset( $params['server'] ) ) {
-			// Configuration uses a direct list of servers
+			// Configuration uses a direct list of servers.
+			// Object data is horizontally partitioned via key hash.
 			$index = 0;
 			foreach ( ( $params['servers'] ?? [ $params['server'] ] ) as $tag => $info ) {
 				$this->serverInfos[$index] = $info;
@@ -169,7 +173,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 		} else {
-			// Configuration uses the servers defined in LoadBalancer instances
+			// Configuration uses the servers defined in LoadBalancer instances.
+			// Object data is vertically partitioned via global vs local keys.
 			if ( isset( $params['globalKeyLB'] ) ) {
 				$this->globalKeyLb = ( $params['globalKeyLB'] instanceof ILoadBalancer )
 					? $params['globalKeyLB']
@@ -195,6 +200,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->purgeLimit = intval( $params['purgeLimit'] ?? $this->purgeLimit );
 		$this->tableName = $params['tableName'] ?? $this->tableName;
 		$this->numTableShards = intval( $params['shards'] ?? $this->numTableShards );
+		$this->writeBatchSize = intval( $params['writeBatchSize'] ?? $this->writeBatchSize );
 		$this->replicaOnly = $params['replicaOnly'] ?? false;
 
 		if ( $params['multiPrimaryMode'] ?? false ) {
@@ -501,11 +507,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return array<string,array|null> Order-preserved map of (key => (value,expiry,token) or null)
 	 */
 	private function fetchBlobs( array $keys, bool $getCasToken = false ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$silenceScope = $this->silenceTransactionProfiler();
+
 		// Initialize order-preserved per-key results; set values for live keys below
 		$dataByKey = array_fill_keys( $keys, null );
 
 		$readTime = (int)$this->getCurrentTime();
-
 		$keysByTableByShard = [];
 		foreach ( $keys as $key ) {
 			list( $shardIndex, $partitionTable ) = $this->getKeyLocation( $key );
@@ -1384,9 +1392,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		if ( $tag !== null ) {
 			// Purge one server only, to support concurrent purging in large wiki farms (T282761).
-			$shardIndexes = [ $this->getServerIndexByTag( $tag ) ];
+			$shardIndexes = [ $this->getShardServerIndexForTag( $tag ) ];
 		} else {
-			$shardIndexes = $this->getServerShardIndexes();
+			$shardIndexes = $this->getShardServerIndexes();
 			shuffle( $shardIndexes );
 		}
 
@@ -1444,9 +1452,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $tableIndexes );
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$maxUpdateRows = $config->get( 'UpdateRowsPerQuery' );
-		$batchSize = min( $maxUpdateRows, $limit );
+		$batchSize = min( $this->writeBatchSize, $limit );
 
 		foreach ( $tableIndexes as $numShardsDone => $tableIndex ) {
 			// The oldest expiry of a row we have deleted on this shard
@@ -1525,7 +1531,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	public function deleteAll() {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
-		foreach ( $this->getServerShardIndexes() as $shardIndex ) {
+		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
+			$db = null; // in case of connection failure
 			try {
 				$db = $this->getConnection( $shardIndex );
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
@@ -1715,10 +1722,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function setAndLogDBError( DBError $exception ) {
 		$this->logger->error( "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
-			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
+			$this->setLastError( self::ERR_UNREACHABLE );
 			$this->logger->warning( __METHOD__ . ": ignoring connection error" );
 		} else {
-			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
+			$this->setLastError( self::ERR_UNEXPECTED );
 			$this->logger->warning( __METHOD__ . ": ignoring query error" );
 		}
 	}
@@ -1781,7 +1788,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * Create the shard tables on all databases (e.g. via eval.php/shell.php)
 	 */
 	public function createTables() {
-		foreach ( $this->getServerShardIndexes() as $shardIndex ) {
+		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
 			$db = $this->getConnection( $shardIndex );
 			if ( in_array( $db->getType(), [ 'mysql', 'postgres' ], true ) ) {
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
@@ -1796,7 +1803,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * @return string[]|int[] List of server indexes or self::SHARD_LOCAL/self::SHARD_GLOBAL
 	 */
-	private function getServerShardIndexes() {
+	private function getShardServerIndexes() {
 		if ( $this->serverTags ) {
 			// Striped array of database servers
 			$shardIndexes = array_keys( $this->serverTags );
@@ -1819,7 +1826,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return int Server index for use with ::getConnection()
 	 * @throws InvalidArgumentException If tag is unknown
 	 */
-	private function getServerIndexByTag( string $tag ) {
+	private function getShardServerIndexForTag( string $tag ) {
 		if ( !$this->serverTags ) {
 			throw new InvalidArgumentException( "Given a tag but no tags are configured" );
 		}
