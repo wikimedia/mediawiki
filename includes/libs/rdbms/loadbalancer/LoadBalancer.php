@@ -74,7 +74,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var DatabaseDomain Local DB domain ID and default for selectDB() calls */
 	private $localDomain;
 
-	/** @var Database[][][] Map of (pool category => server index => domain => IDatabase) */
+	/** @var IDatabase[][][] Map of (pool category => server index => domain => IDatabase) */
 	private $conns;
 
 	/** @var string|null The name of the DB cluster */
@@ -1345,7 +1345,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param int $i Specific server index
 	 * @param DatabaseDomain $domain Domain the connection is for, possibly unspecified
 	 * @param array $lbInfo Additional information for setLBInfo()
-	 * @return Database
+	 * @return IDatabase
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */

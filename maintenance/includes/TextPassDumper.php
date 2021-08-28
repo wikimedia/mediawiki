@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -157,7 +158,7 @@ TEXT
 	}
 
 	/**
-	 * @return SqlBlobStore
+	 * @return BlobStore
 	 */
 	private function getBlobStore() {
 		return MediaWikiServices::getInstance()->getBlobStore();

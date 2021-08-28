@@ -26,6 +26,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 
 /**
@@ -46,7 +47,7 @@ class FetchText extends Maintenance {
 	}
 
 	/**
-	 * @return SqlBlobStore
+	 * @return BlobStore
 	 */
 	private function getBlobStore() {
 		return MediaWikiServices::getInstance()->getBlobStore();
