@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
@@ -51,7 +50,7 @@ use Wikimedia\Assert\PreconditionException;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Class representing a MediaWiki article and history.
@@ -275,14 +274,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return ContentHandlerFactory
+	 * @return IContentHandlerFactory
 	 */
 	private function getContentHandlerFactory(): IContentHandlerFactory {
 		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();

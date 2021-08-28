@@ -281,7 +281,7 @@ class SyncFileBackend extends Maintenance {
 				implode( "\n", $dPaths ) . "\n" );
 		}
 
-		return $status;
+		return Status::wrap( $status );
 	}
 
 	/**
