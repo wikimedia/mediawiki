@@ -148,10 +148,10 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	 * @return string
 	 */
 	private static function normalizeMetricKey( $key ) {
-		$key = preg_replace( '/[:.]+/', '.', $key );
-		$key = preg_replace( '/[^a-z0-9.]+/i', '_', $key );
+		$key = strtr( $key, [ '::' => '.' ] );
+		$key = preg_replace( '/[^a-zA-Z0-9.]+/', '_', $key );
 		$key = trim( $key, '_.' );
-		return str_replace( [ '._', '_.' ], '.', $key );
+		return strtr( $key, [ '..' => '.' ] );
 	}
 
 	public function produceStatsdData(
@@ -176,7 +176,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	//
 
 	public function hasData() {
-		return !empty( $this->buffer );
+		return (bool)$this->buffer;
 	}
 
 	/**
