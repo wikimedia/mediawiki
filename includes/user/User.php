@@ -2580,9 +2580,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param string $oname The option to check
 	 * @return bool User's current value for the option
 	 * @see getOption()
-	 * @deprecated since 1.35 Use UserOptionsLookup::getBoolOption instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Use UserOptionsLookup::getBoolOption instead
 	 */
 	public function getBoolOption( $oname ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getBoolOption( $this, $oname );
@@ -2788,7 +2790,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( !$wgSecureLogin ) {
 			return false;
 		}
-		return $this->getBoolOption( 'prefershttps' );
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getBoolOption( $this, 'prefershttps' );
 	}
 
 	/**
