@@ -106,13 +106,12 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => 'config-admin-email',
 				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			] ) .
-			// (T281549) Don't show the subscribe checkbox temporarily whilst we fix auto-subscription.
-			// phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
-			// $this->parent->getCheckBox( [
-			// 	'var' => '_Subscribe',
-			// 	'label' => 'config-subscribe',
-			// 	'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
-			// ] ) .
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
+			$this->parent->getCheckBox( [
+				'var' => '_Subscribe',
+				'label' => 'config-subscribe',
+				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
+			] ) .
 			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgPingback',

@@ -62,6 +62,12 @@ abstract class Installer {
 	public const MINIMUM_PCRE_VERSION = '7.2';
 
 	/**
+	 * URL to mediawiki-announce list summary page
+	 */
+	private const MEDIAWIKI_ANNOUNCE_URL =
+		'https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/';
+
+	/**
 	 * @var array
 	 */
 	protected $settings;
@@ -317,21 +323,6 @@ abstract class Installer {
 			'icon' => '',
 			'text' => '',
 		],
-	];
-
-	/**
-	 * URL to mediawiki-announce subscription
-	 */
-	protected $mediaWikiAnnounceUrl =
-		'https://lists.wikimedia.org/mailman/subscribe/mediawiki-announce';
-
-	/**
-	 * Supported language codes for Mailman
-	 */
-	protected $mediaWikiAnnounceLanguages = [
-		'ca', 'cs', 'da', 'de', 'en', 'es', 'et', 'eu', 'fi', 'fr', 'hr', 'hu',
-		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
-		'sl', 'sr', 'sv', 'tr', 'uk'
 	];
 
 	/**
@@ -1834,32 +1825,53 @@ abstract class Installer {
 	 * @return Status
 	 */
 	private function subscribeToMediaWikiAnnounce() {
-		$params = [
-			'email' => $this->getVar( '_AdminEmail' ),
-			'language' => 'en',
-			'digest' => 0
-		];
-
-		// Mailman doesn't support as many languages as we do, so check to make
-		// sure their selected language is available
-		$myLang = $this->getVar( '_UserLang' );
-		if ( in_array( $myLang, $this->mediaWikiAnnounceLanguages ) ) {
-			$myLang = $myLang == 'pt-br' ? 'pt_BR' : $myLang; // rewrite to Mailman's pt_BR
-			$params['language'] = $myLang;
+		$status = Status::newGood();
+		$http = MediaWikiServices::getInstance()->getHttpRequestFactory();
+		if ( !$http->canMakeRequests() ) {
+			$status->warning( 'config-install-subscribe-fail',
+				wfMessage( 'config-install-subscribe-notpossible' ) );
+			return $status;
 		}
 
-		$status = Status::newGood();
-		if ( MWHttpRequest::canMakeRequests() ) {
-			$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
-				$this->mediaWikiAnnounceUrl,
-				[ 'method' => 'POST', 'postData' => $params ],
-				__METHOD__
-			)->execute();
-			if ( !$res->isOK() ) {
-				$status->warning( 'config-install-subscribe-fail', $res->getMessage() );
-			}
+		// Create subscription request
+		$params = [ 'email' => $this->getVar( '_AdminEmail' ) ];
+		$req = $http->create( self::MEDIAWIKI_ANNOUNCE_URL . 'anonymous_subscribe',
+			[ 'method' => 'POST', 'postData' => $params ], __METHOD__ );
+
+		// Add headers needed to pass Django's CSRF checks
+		$token = str_repeat( 'a', 64 );
+		$req->setHeader( 'Referer', self::MEDIAWIKI_ANNOUNCE_URL );
+		$req->setHeader( 'Cookie', "csrftoken=$token" );
+		$req->setHeader( 'X-CSRFToken', $token );
+
+		// Send subscription request
+		$reqStatus = $req->execute();
+		if ( !$reqStatus->isOK() ) {
+			$status->warning( 'config-install-subscribe-fail',
+				Status::wrap( $reqStatus )->getMessage() );
+			return $status;
+		}
+
+		// Was the request submitted successfully?
+		// The status message is displayed after a redirect, using Django's messages
+		// framework, so load the list summary page and look for the expected text.
+		// (Though parsing the cookie set by the framework may be possible, it isn't
+		// simple, since the format of the cookie has changed between versions.)
+		$checkReq = $http->create( self::MEDIAWIKI_ANNOUNCE_URL, [], __METHOD__ );
+		$checkReq->setCookieJar( $req->getCookieJar() );
+		if ( !$checkReq->execute()->isOK() ) {
+			$status->warning( 'config-install-subscribe-possiblefail' );
+			return $status;
+		}
+		$html = $checkReq->getContent();
+		if ( strpos( $html, 'Please check your inbox for further instructions' ) !== false ) {
+			// Success
+		} elseif ( strpos( $html, 'Member already subscribed' ) !== false ) {
+			$status->warning( 'config-install-subscribe-alreadysubscribed' );
+		} elseif ( strpos( $html, 'Subscription request already pending' ) !== false ) {
+			$status->warning( 'config-install-subscribe-alreadypending' );
 		} else {
-			$status->warning( 'config-install-subscribe-notpossible' );
+			$status->warning( 'config-install-subscribe-possiblefail' );
 		}
 		return $status;
 	}
