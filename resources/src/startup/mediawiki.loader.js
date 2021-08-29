@@ -121,13 +121,10 @@
 	 *   batched handling.
 	 * @param {string} source Source of the error. Possible values:
 	 *
-	 *   - style: stylesheet error (only affects old IE where a special style loading method
-	 *     is used)
 	 *   - load-callback: exception thrown by user callback
 	 *   - module-execute: exception thrown by module code
 	 *   - resolve: failed to sort dependencies for a module in mw.loader.load
 	 *   - store-eval: could not evaluate module code cached in localStorage
-	 *   - store-localstorage-init: localStorage or JSON parse error in mw.loader.store.init
 	 *   - store-localstorage-json: JSON conversion error in mw.loader.store
 	 *   - store-localstorage-update: localStorage conversion error in mw.loader.store.
 	 */
