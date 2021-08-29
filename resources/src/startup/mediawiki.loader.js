@@ -839,7 +839,7 @@
 	function enqueue( dependencies, ready, error ) {
 		if ( allReady( dependencies ) ) {
 			// Run ready immediately
-			if ( ready !== undefined ) {
+			if ( ready ) {
 				ready();
 			}
 			return;
@@ -847,7 +847,7 @@
 
 		var failed = anyFailed( dependencies );
 		if ( failed !== false ) {
-			if ( error !== undefined ) {
+			if ( error ) {
 				// Execute error immediately if any dependencies have errors
 				error(
 					new Error( 'Dependency ' + failed + ' failed to load' ),
@@ -860,7 +860,7 @@
 		// Not all dependencies are ready, add to the load queue...
 
 		// Add ready and error callbacks if they were given
-		if ( ready !== undefined || error !== undefined ) {
+		if ( ready || error ) {
 			jobs.push( {
 				// Narrow down the list to modules that are worth waiting for
 				dependencies: dependencies.filter( function ( module ) {
@@ -1667,7 +1667,8 @@
 				// Resolve modules into flat list for internal queuing.
 				// This also filters out unknown modules and modules with
 				// unknown dependencies, allowing the rest to continue. (T36853)
-				enqueue( resolveStubbornly( modules ), undefined, undefined );
+				// Omit ready and error parameters, we don't have callbacks
+				enqueue( resolveStubbornly( modules ) );
 			}
 		},
 
