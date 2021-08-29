@@ -211,7 +211,7 @@ class BlockLogFormatter extends LogFormatter {
 	/**
 	 * Translate a block log flag if possible
 	 *
-	 * @param int $flag Flag to translate
+	 * @param string $flag Flag to translate
 	 * @param Language $lang Language object to use
 	 * @return string
 	 */
