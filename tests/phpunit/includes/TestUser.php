@@ -71,9 +71,7 @@ class TestUser {
 		// Adjust groups by adding any missing ones and removing any extras
 		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
 		$currentGroups = $userGroupManager->getUserGroups( $this->user );
-		foreach ( array_diff( $groups, $currentGroups ) as $group ) {
-			$userGroupManager->addUserToGroup( $this->user, $group );
-		}
+		$userGroupManager->addUserToMultipleGroups( $this->user, array_diff( $groups, $currentGroups ) );
 		foreach ( array_diff( $currentGroups, $groups ) as $group ) {
 			$userGroupManager->removeUserFromGroup( $this->user, $group );
 		}

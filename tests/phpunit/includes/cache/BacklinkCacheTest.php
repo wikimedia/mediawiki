@@ -114,6 +114,23 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideCasesForGetLinks
+	 * @covers BacklinkCache::getLinkPages
+	 */
+	public function testGetLinkPages(
+		array $expectedTitles, string $title, string $table, $startId = false, $endId = false, $max = INF
+	) {
+		$startId = $startId ? Title::newFromText( $startId )->getId() : false;
+		$endId = $endId ? Title::newFromText( $endId )->getId() : false;
+		$backlinkCache = Title::newFromText( $title )->getBacklinkCache();
+		$titlesArray = iterator_to_array( $backlinkCache->getLinkPages( $table, $startId, $endId, $max ) );
+		$this->assertEquals( count( $titlesArray ), count( $expectedTitles ) );
+		for ( $i = 0; $i < count( $titlesArray ); $i++ ) {
+			$this->assertEquals( $titlesArray[$i]->getDbKey(), $expectedTitles[$i] );
+		}
+	}
+
+	/**
 	 * @covers BacklinkCache::partition
 	 */
 	public function testPartition() {
@@ -139,6 +156,17 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testGetCascadeProtectedLinks() {
 		$backlinkCache = Title::newFromText( 'Template:BacklinkCacheTestA' )->getBacklinkCache();
 		$iterator = $backlinkCache->getCascadeProtectedLinks();
+		$array = iterator_to_array( $iterator );
+		$this->assertCount( 1, $array );
+		$this->assertTrue( self::$backlinkCacheTest['title']->isSamePageAs( $array[0] ) );
+	}
+
+	/**
+	 * @covers BacklinkCache::getCascadeProtectedLinkPages
+	 */
+	public function testGetCascadeProtectedLinkPages() {
+		$backlinkCache = Title::newFromText( 'Template:BacklinkCacheTestA' )->getBacklinkCache();
+		$iterator = $backlinkCache->getCascadeProtectedLinkPages();
 		$array = iterator_to_array( $iterator );
 		$this->assertCount( 1, $array );
 		$this->assertTrue( self::$backlinkCacheTest['title']->isSamePageAs( $array[0] ) );

@@ -343,6 +343,22 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToMultipleGroups
+	 */
+	public function testAddUserToMultipleGroups() {
+		$manager = $this->getManager();
+		$user = $this->getMutableTestUser()->getUser();
+
+		$manager->addUserToMultipleGroups( $user, [ self::GROUP, self::GROUP . '1' ] );
+		$this->assertMembership( $manager, $user, self::GROUP );
+		$this->assertMembership( $manager, $user, self::GROUP . '1' );
+
+		$anon = new UserIdentityValue( 0, 'Anon' );
+		$this->expectException( InvalidArgumentException::class );
+		$manager->addUserToMultipleGroups( $anon, [ self::GROUP, self::GROUP . '1' ] );
+	}
+
+	/**
 	 * @covers \MediaWiki\User\UserGroupManager::getUserGroupMemberships
 	 */
 	public function testGetUserGroupMembershipsForAnon() {
@@ -967,9 +983,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			'AutopromoteOnce' => $config
 		] );
 		$user = $this->getTestUser()->getUser();
-		foreach ( $userGroups as $group ) {
-			$manager->addUserToGroup( $user, $group );
-		}
+		$manager->addUserToMultipleGroups( $user, $userGroups );
 		foreach ( $formerGroups as $formerGroup ) {
 			$manager->addUserToGroup( $user, $formerGroup );
 			$manager->removeUserFromGroup( $user, $formerGroup );
