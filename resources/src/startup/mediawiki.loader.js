@@ -173,7 +173,7 @@
 	 * - `loaded`:
 	 *    The module has been loaded from the server and stashed via mw.loader#implement.
 	 *    Once the module has no more dependencies in-flight, the module will be executed,
-	 *    controlled via #requestPropagation and #doPropagation.
+	 *    controlled via #setAndPropagate and #doPropagation.
 	 * - `executing`:
 	 *    The module is being executed.
 	 * - `ready`:
@@ -225,7 +225,7 @@
 		 */
 		jobs = [],
 
-		// For #requestPropagation() and #doPropagation()
+		// For #setAndPropagate() and #doPropagation()
 		willPropagate = false,
 		errorModules = [],
 
@@ -472,11 +472,29 @@
 	}
 
 	/**
-	 * Request a (debounced) call to doPropagation().
+	 * Update a module's state in the registry and make sure any necessary
+	 * propagation will occur, by adding a (debounced) call to doPropagation().
+	 * See #doPropagation for more about propagation.
+	 * See #registry for more about how states are used.
 	 *
 	 * @private
+	 * @param {string} module
+	 * @param {string} state
 	 */
-	function requestPropagation() {
+	function setAndPropagate( module, state ) {
+		registry[ module ].state = state;
+		if ( state === 'ready' ) {
+			// Queue to later be synced to the local module store.
+			mw.loader.store.add( module );
+		} else if ( state === 'error' || state === 'missing' ) {
+			errorModules.push( module );
+		} else if ( state !== 'loaded' ) {
+			// We only have something to do in doPropagation for the
+			// 'loaded', 'ready', 'error', and 'missing' states.
+			// Avoid scheduling and propagation cost for frequent and short-lived
+			// transition states, such as 'loading' and 'executing'.
+			return;
+		}
 		if ( willPropagate ) {
 			// Already scheduled, or, we're already in a doPropagation stack.
 			return;
@@ -493,28 +511,6 @@
 		// to start being possible. But, first provide a moment (up to 'timeout')
 		// for native input event handling (e.g. scrolling/typing/clicking).
 		mw.requestIdleCallback( doPropagation, { timeout: 1 } );
-	}
-
-	/**
-	 * Update a module's state in the registry and make sure any necessary
-	 * propagation will occur. See #doPropagation for more about propagation.
-	 * See #registry for more about how states are used.
-	 *
-	 * @private
-	 * @param {string} module
-	 * @param {string} state
-	 */
-	function setAndPropagate( module, state ) {
-		registry[ module ].state = state;
-		if ( state === 'loaded' || state === 'ready' || state === 'error' || state === 'missing' ) {
-			if ( state === 'ready' ) {
-				// Queue to later be synced to the local module store.
-				mw.loader.store.add( module );
-			} else if ( state === 'error' || state === 'missing' ) {
-				errorModules.push( module );
-			}
-			requestPropagation();
-		}
 	}
 
 	/**
