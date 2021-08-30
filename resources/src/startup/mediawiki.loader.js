@@ -907,23 +907,23 @@
 				$CODE.profileScriptEnd();
 				setAndPropagate( module, 'ready' );
 			};
-			var nestedAddScript = function ( arr, callback, j ) {
+			var nestedAddScript = function ( arr, j ) {
 				// Recursively call queueModuleScript() in its own callback
 				// for each element of arr.
 				if ( j >= arr.length ) {
 					// We're at the end of the array
-					callback();
+					markModuleReady();
 					return;
 				}
 
 				queueModuleScript( arr[ j ], module, function () {
-					nestedAddScript( arr, callback, j + 1 );
+					nestedAddScript( arr, j + 1 );
 				} );
 			};
 
 			try {
 				if ( Array.isArray( script ) ) {
-					nestedAddScript( script, markModuleReady, 0 );
+					nestedAddScript( script, 0 );
 				} else if ( typeof script === 'function' ) {
 					// Keep in sync with queueModuleScript() for debug mode
 					if ( module === 'jquery' ) {
