@@ -1245,7 +1245,7 @@ class SpecialPageFactory {
 	 * that the current user has the required permissions for.
 	 *
 	 * @param User $user User object to check permissions provided
-	 * @return array ( string => Specialpage )
+	 * @return SpecialPage[]
 	 */
 	public function getUsablePages( User $user ): array {
 		$pages = [];
@@ -1267,7 +1267,7 @@ class SpecialPageFactory {
 	/**
 	 * Get listed special pages available to everyone by default.
 	 *
-	 * @return array ( string => Specialpage )
+	 * @return SpecialPage[]
 	 */
 	public function getRegularPages(): array {
 		$pages = [];
