@@ -402,11 +402,11 @@ interface ILoadBalancer {
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return DBConnRef Live connection handle or null on failure
+	 * @return DBConnRef Live connection handle
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
 	 */
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
 	/**
 	 * Get a live database handle, suitable for migrations and schema changes, for a server index
@@ -429,7 +429,7 @@ interface ILoadBalancer {
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
 	 */
-	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): MaintainableDBConnRef;
 
 	/**
 	 * Get the specific server index of the primary server

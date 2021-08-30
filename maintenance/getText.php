@@ -71,7 +71,7 @@ class GetTextMaint extends Maintenance {
 			RevisionRecord::FOR_PUBLIC;
 		$content = $rev->getContent( SlotRecord::MAIN, $audience );
 
-		if ( $content === false ) {
+		if ( $content === null ) {
 			$titleText = $title->getPrefixedText();
 			$this->fatalError( "Couldn't extract the text from $titleText.\n" );
 		}

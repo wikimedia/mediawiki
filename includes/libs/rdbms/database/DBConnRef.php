@@ -306,7 +306,7 @@ class DBConnRef implements IDatabase {
 
 	public function selectFieldValues(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
-	) {
+	): array {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

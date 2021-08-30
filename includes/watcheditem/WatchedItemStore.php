@@ -1199,7 +1199,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// First fetch the wl_ids from the watchlist table.
 		// We'd prefer to do a INSERT/SELECT in the same query with IDatabase::insertSelect(),
 		// but it doesn't allow us to use the "ON DUPLICATE KEY UPDATE" clause.
-		$wlIds = (array)$dbw->selectFieldValues( 'watchlist', 'wl_id', $cond, __METHOD__ );
+		$wlIds = $dbw->selectFieldValues( 'watchlist', 'wl_id', $cond, __METHOD__ );
 
 		$expiry = $dbw->timestamp( $expiry );
 

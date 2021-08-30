@@ -5,6 +5,7 @@ namespace Wikimedia\Tests\Rdbms;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\ConnectionManager;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -134,7 +135,7 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetLazyReadConnectionRef_nullGroups() {
-		$database = $this->getIDatabaseMock();
+		$database = $this->createMock( DBConnRef::class );
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
@@ -149,7 +150,7 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetLazyReadConnectionRef_withGroups() {
-		$database = $this->getIDatabaseMock();
+		$database = $this->createMock( DBConnRef::class );
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )

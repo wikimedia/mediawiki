@@ -170,9 +170,6 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				[ 'rev_timestamp' => self::$dummyRev['rev_timestamp'] ],
 				$fname
 			);
-			if ( !is_array( $revIds ) ) {
-				throw new UnexpectedValueException( 'Failed to insert dummy revisions' );
-			}
 			if ( count( $revIds ) !== count( $arIds ) ) {
 				throw new UnexpectedValueException(
 					'Tried to insert ' . count( $arIds ) . ' dummy revisions, but found '
