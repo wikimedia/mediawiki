@@ -43,6 +43,7 @@ use MediaWiki\User\UserIdentity;
 use MergeHistory;
 use MovePage;
 use NamespaceInfo;
+use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use RepoGroup;
 use Title;
@@ -62,7 +63,8 @@ class PageCommandFactory implements
 	DeletePageFactory,
 	MergeHistoryFactory,
 	MovePageFactory,
-	RollbackPageFactory
+	RollbackPageFactory,
+	UndeletePageFactory
 {
 
 	/** @var Config */
@@ -137,6 +139,9 @@ class PageCommandFactory implements
 	/** @var BacklinkCacheFactory */
 	private $backlinkCacheFactory;
 
+	/** @var LoggerInterface */
+	private $undeletePageLogger;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -161,7 +166,8 @@ class PageCommandFactory implements
 		BagOStuff $dbReplicatedCache,
 		string $localWikiID,
 		string $webRequestID,
-		BacklinkCacheFactory $backlinkCacheFactory
+		BacklinkCacheFactory $backlinkCacheFactory,
+		LoggerInterface $undeletePageLogger
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -187,6 +193,7 @@ class PageCommandFactory implements
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
+		$this->undeletePageLogger = $undeletePageLogger;
 	}
 
 	/**
@@ -313,6 +320,25 @@ class PageCommandFactory implements
 			$page,
 			$performer,
 			$byUser
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function newUndeletePage( ProperPageIdentity $page, Authority $authority ): UndeletePage {
+		return new UndeletePage(
+			$this->hookContainer,
+			$this->jobQueueGroup,
+			$this->lbFactory->getMainLB(),
+			$this->readOnlyMode,
+			$this->repoGroup,
+			$this->undeletePageLogger,
+			$this->revisionStore,
+			$this->userFactory,
+			$this->wikiPageFactory,
+			$page,
+			$authority
 		);
 	}
 }

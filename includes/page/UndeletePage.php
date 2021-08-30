@@ -20,15 +20,16 @@
 
 namespace MediaWiki\Page;
 
+use ChangeTags;
 use File;
 use HTMLCacheUpdateJob;
 use JobQueueGroup;
 use LocalFile;
 use ManualLogEntry;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
@@ -45,7 +46,6 @@ use WikiPage;
 /**
  * @since 1.38
  * @package MediaWiki\Page
- * @unstable
  */
 class UndeletePage {
 
@@ -90,21 +90,40 @@ class UndeletePage {
 	private $tags = [];
 
 	/**
+	 * @param HookContainer $hookContainer
+	 * @param JobQueueGroup $jobQueueGroup
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param RepoGroup $repoGroup
+	 * @param LoggerInterface $logger
+	 * @param RevisionStore $revisionStore
+	 * @param UserFactory $userFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ProperPageIdentity $page
 	 * @param Authority $performer
 	 */
-	public function __construct( ProperPageIdentity $page, Authority $performer ) {
-		$services = MediaWikiServices::getInstance();
-
-		$this->hookRunner = new HookRunner( $services->getHookContainer() );
-		$this->jobQueueGroup = $services->getJobQueueGroup();
-		$this->loadBalancer = $services->getDBLoadBalancer();
-		$this->readOnlyMode = $services->getReadOnlyMode();
-		$this->repoGroup = $services->getRepoGroup();
-		$this->logger = LoggerFactory::getInstance( 'PageArchive' );
-		$this->revisionStore = $services->getRevisionStore();
-		$this->userFactory = $services->getUserFactory();
-		$this->wikiPageFactory = $services->getWikiPageFactory();
+	public function __construct(
+		HookContainer $hookContainer,
+		JobQueueGroup $jobQueueGroup,
+		ILoadBalancer $loadBalancer,
+		ReadOnlyMode $readOnlyMode,
+		RepoGroup $repoGroup,
+		LoggerInterface $logger,
+		RevisionStore $revisionStore,
+		UserFactory $userFactory,
+		WikiPageFactory $wikiPageFactory,
+		ProperPageIdentity $page,
+		Authority $performer
+	) {
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->jobQueueGroup = $jobQueueGroup;
+		$this->loadBalancer = $loadBalancer;
+		$this->readOnlyMode = $readOnlyMode;
+		$this->repoGroup = $repoGroup;
+		$this->logger = $logger;
+		$this->revisionStore = $revisionStore;
+		$this->userFactory = $userFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 
 		$this->page = $page;
 		$this->performer = $performer;
@@ -155,12 +174,41 @@ class UndeletePage {
 	}
 
 	/**
+	 * Same as undeleteUnsafe, but checks permissions.
+	 *
+	 * @param string $comment
+	 * @return StatusValue
+	 */
+	public function undeleteIfAllowed( string $comment ): StatusValue {
+		$status = $this->authorizeUndeletion();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
+		return $this->undeleteUnsafe( $comment );
+	}
+
+	/**
+	 * @return PermissionStatus
+	 */
+	private function authorizeUndeletion(): PermissionStatus {
+		$status = PermissionStatus::newEmpty();
+		$this->performer->authorizeWrite( 'undelete', $this->page, $status );
+		if ( $this->tags ) {
+			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $this->tags, $this->performer ) );
+		}
+		return $status;
+	}
+
+	/**
 	 * Restore the given (or all) text and file revisions for the page.
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
 	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
 	 * (depending what operations are attempted).
+	 *
+	 * @note This method doesn't check user permissions. Use undeleteIfAllowed for that.
 	 *
 	 * @param string $comment
 	 * @return StatusValue Good Status with the following value on success:
@@ -170,7 +218,7 @@ class UndeletePage {
 	 *   ]
 	 *   Fatal Status on failure.
 	 */
-	public function undelete( string $comment ): StatusValue {
+	public function undeleteUnsafe( string $comment ): StatusValue {
 		$hookStatus = StatusValue::newGood();
 		$hookRes = $this->hookRunner->onPageUndelete(
 			$this->page,
