@@ -37,6 +37,7 @@ use ReadOnlyError;
 use ReadOnlyMode;
 use RepoGroup;
 use Status;
+use StatusValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -47,6 +48,11 @@ use WikiPage;
  * @unstable
  */
 class UndeletePage {
+
+	// Constants used as keys in the StatusValue returned by undelete()
+	public const FILES_RESTORED = 'files';
+	public const REVISIONS_RESTORED = 'revs';
+
 	/** @var HookRunner */
 	private $hookRunner;
 	/** @var JobQueueGroup */
@@ -72,7 +78,7 @@ class UndeletePage {
 	private $performer;
 	/** @var Status|null */
 	private $fileStatus;
-	/** @var Status|null */
+	/** @var StatusValue|null */
 	private $revisionStatus;
 
 	/**
@@ -111,8 +117,12 @@ class UndeletePage {
 	 * @param bool $unsuppress
 	 * @param string|string[]|null $tags Change tags to add to log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array|bool [ number of file revisions restored, number of image revisions
-	 *   restored, log message ] on success, false on failure.
+	 * @return StatusValue Good Status with the following value on success:
+	 *   [
+	 *     self::REVISIONS_RESTORED => number of text revisions restored,
+	 *     self::FILES_RESTORED => number of file revisions restored
+	 *   ]
+	 *   Fatal Status on failure.
 	 */
 	public function undelete(
 		$timestamps,
@@ -120,7 +130,7 @@ class UndeletePage {
 		$fileVersions = [],
 		$unsuppress = false,
 		$tags = null
-	) {
+	): StatusValue {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -134,7 +144,7 @@ class UndeletePage {
 			$img->load( File::READ_LATEST );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
-				return false;
+				return $this->fileStatus;
 			}
 			$filesRestored = $this->fileStatus->successCount;
 		} else {
@@ -144,7 +154,7 @@ class UndeletePage {
 		if ( $restoreText ) {
 			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
-				return false;
+				return $this->revisionStatus;
 			}
 
 			$textRestored = $this->revisionStatus->getValue();
@@ -154,8 +164,7 @@ class UndeletePage {
 
 		if ( !$textRestored && !$filesRestored ) {
 			$this->logger->debug( "Undelete: nothing undeleted..." );
-
-			return false;
+			return StatusValue::newGood( [ self::REVISIONS_RESTORED => 0, self::FILES_RESTORED => 0 ] );
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
@@ -173,7 +182,10 @@ class UndeletePage {
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
-		return [ $textRestored, $filesRestored, $comment ];
+		return StatusValue::newGood( [
+			self::REVISIONS_RESTORED => $textRestored,
+			self::FILES_RESTORED => $filesRestored
+		] );
 	}
 
 	/**
@@ -185,7 +197,7 @@ class UndeletePage {
 	 * @param bool $unsuppress Remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 * @param string $comment
 	 * @throws ReadOnlyError
-	 * @return Status Status object containing the number of revisions restored on success
+	 * @return StatusValue Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -466,9 +478,9 @@ class UndeletePage {
 	}
 
 	/**
-	 * @return Status|null
+	 * @return StatusValue|null
 	 */
-	public function getRevisionStatus() {
+	public function getRevisionStatus(): ?StatusValue {
 		return $this->revisionStatus;
 	}
 }
