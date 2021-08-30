@@ -408,8 +408,10 @@ class PageArchive {
 		$unsuppress = false,
 		$tags = null
 	) {
-		$up = new UndeletePage( $this->title );
-		$ret = $up->undeleteAsUser( $timestamps, $user, $comment, $fileVersions, $unsuppress, $tags );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
+		$up = new UndeletePage( $page, $user );
+		$ret = $up->undelete( $timestamps, $comment, $fileVersions, $unsuppress, $tags );
 		$this->fileStatus = $up->getFileStatus();
 		$this->revisionStatus = $up->getRevisionStatus();
 		return $ret;

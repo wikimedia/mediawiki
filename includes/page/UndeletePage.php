@@ -28,16 +28,15 @@ use ManualLogEntry;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
 use ReadOnlyMode;
 use RepoGroup;
 use Status;
-use Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -67,17 +66,20 @@ class UndeletePage {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
-	/** @var Title */
-	private $title;
+	/** @var ProperPageIdentity */
+	private $page;
+	/** @var Authority */
+	private $performer;
 	/** @var Status|null */
 	private $fileStatus;
 	/** @var Status|null */
 	private $revisionStatus;
 
 	/**
-	 * @param Title $title
+	 * @param ProperPageIdentity $page
+	 * @param Authority $performer
 	 */
-	public function __construct( Title $title ) {
+	public function __construct( ProperPageIdentity $page, Authority $performer ) {
 		$services = MediaWikiServices::getInstance();
 
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
@@ -90,7 +92,8 @@ class UndeletePage {
 		$this->userFactory = $services->getUserFactory();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 
-		$this->title = $title;
+		$this->page = $page;
+		$this->performer = $performer;
 	}
 
 	/**
@@ -103,7 +106,6 @@ class UndeletePage {
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
-	 * @param UserIdentity $user
 	 * @param string $comment
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
@@ -112,9 +114,8 @@ class UndeletePage {
 	 * @return array|bool [ number of file revisions restored, number of image revisions
 	 *   restored, log message ] on success, false on failure.
 	 */
-	public function undeleteAsUser(
+	public function undelete(
 		$timestamps,
-		UserIdentity $user,
 		$comment = '',
 		$fileVersions = [],
 		$unsuppress = false,
@@ -127,9 +128,9 @@ class UndeletePage {
 		$restoreText = $restoreAll || !empty( $timestamps );
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 
-		if ( $restoreFiles && $this->title->getNamespace() === NS_FILE ) {
+		if ( $restoreFiles && $this->page->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
-			$img = $this->repoGroup->getLocalRepo()->newFile( $this->title );
+			$img = $this->repoGroup->getLocalRepo()->newFile( $this->page );
 			$img->load( File::READ_LATEST );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
@@ -151,8 +152,6 @@ class UndeletePage {
 			$textRestored = 0;
 		}
 
-		// Touch the log!
-
 		if ( !$textRestored && !$filesRestored ) {
 			$this->logger->debug( "Undelete: nothing undeleted..." );
 
@@ -160,8 +159,8 @@ class UndeletePage {
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
-		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( $this->title );
+		$logEntry->setPerformer( $this->performer->getUser() );
+		$logEntry->setTarget( $this->page );
 		$logEntry->setComment( $comment );
 		$logEntry->addTags( $tags );
 		$logEntry->setParameters( [
@@ -199,8 +198,8 @@ class UndeletePage {
 		$restoreAll = empty( $timestamps );
 
 		$oldWhere = [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
+			'ar_namespace' => $this->page->getNamespace(),
+			'ar_title' => $this->page->getDBkey(),
 		];
 		if ( !$restoreAll ) {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
@@ -212,9 +211,6 @@ class UndeletePage {
 		$queryInfo['fields'][] = 'rev_id';
 		$queryInfo['joins']['revision'] = [ 'LEFT JOIN', 'ar_rev_id=rev_id' ];
 
-		/**
-		 * Select each archived revision...
-		 */
 		$result = $dbw->select(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
@@ -273,9 +269,10 @@ class UndeletePage {
 			}
 		}
 
-		$result->seek( 0 ); // move back
+		// move back
+		$result->seek( 0 );
 
-		$article = $this->wikiPageFactory->newFromTitle( $this->title );
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
 
 		$oldPageId = 0;
 		/** @var RevisionRecord|null $revision */
@@ -283,14 +280,15 @@ class UndeletePage {
 		$created = true;
 		$oldcountable = false;
 		$updatedCurrentRevision = false;
-		$restored = 0; // number of revisions restored
+		$restoredRevCount = 0;
 		$restoredPages = [];
 
 		// If there are no restorable revisions, we can skip most of the steps.
 		if ( $latestRestorableRow === null ) {
 			$failedRevisionCount = $rev_count;
 		} else {
-			$oldPageId = (int)$latestRestorableRow->ar_page_id; // pass this to ArticleUndelete hook
+			// pass this to ArticleUndelete hook
+			$oldPageId = (int)$latestRestorableRow->ar_page_id;
 
 			// Grab the content to check consistency with global state before restoring the page.
 			// XXX: The only current use case is Wikibase, which tries to enforce uniqueness of
@@ -298,21 +296,17 @@ class UndeletePage {
 			$revision = $revisionStore->newRevisionFromArchiveRow(
 				$latestRestorableRow,
 				0,
-				$this->title
+				$this->page
 			);
 
-			// TODO: use UserFactory::newFromUserIdentity from If610c68f4912e
 			// TODO: The User isn't used for anything in prepareSave()! We should drop it.
-			$user = $this->userFactory->newFromName(
-				$revision->getUser( RevisionRecord::RAW )->getName(),
-				UserFactory::RIGOR_NONE
-			);
+			$legacyRevUser = $this->userFactory->newFromUserIdentity( $revision->getUser( RevisionRecord::RAW ) );
 
 			foreach ( $revision->getSlotRoles() as $role ) {
 				$content = $revision->getContent( $role, RevisionRecord::RAW );
 
 				// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
-				$status = $content->prepareSave( $article, 0, -1, $user );
+				$status = $content->prepareSave( $wikiPage, 0, -1, $legacyRevUser );
 				if ( !$status->isOK() ) {
 					$dbw->endAtomic( __METHOD__ );
 
@@ -320,10 +314,10 @@ class UndeletePage {
 				}
 			}
 
-			$pageId = $article->insertOn( $dbw, $latestRestorableRow->ar_page_id );
+			$pageId = $wikiPage->insertOn( $dbw, $latestRestorableRow->ar_page_id );
 			if ( $pageId === false ) {
 				// The page ID is reserved; let's pick another
-				$pageId = $article->insertOn( $dbw );
+				$pageId = $wikiPage->insertOn( $dbw );
 				if ( $pageId === false ) {
 					// The page title must be already taken (race condition)
 					$created = false;
@@ -333,12 +327,12 @@ class UndeletePage {
 			# Does this page already exist? We'll have to update it...
 			if ( !$created ) {
 				# Load latest data for the current page (T33179)
-				$article->loadPageData( WikiPage::READ_EXCLUSIVE );
-				$pageId = $article->getId();
-				$oldcountable = $article->isCountable();
+				$wikiPage->loadPageData( WikiPage::READ_EXCLUSIVE );
+				$pageId = $wikiPage->getId();
+				$oldcountable = $wikiPage->isCountable();
 
 				$previousTimestamp = false;
-				$latestRevId = $article->getLatest();
+				$latestRevId = $wikiPage->getLatest();
 				if ( $latestRevId ) {
 					$previousTimestamp = $revisionStore->getTimestampFromId(
 						$latestRevId,
@@ -381,7 +375,7 @@ class UndeletePage {
 				$revision = $revisionStore->newRevisionFromArchiveRow(
 					$row,
 					0,
-					$this->title,
+					$this->page,
 					[
 						'page_id' => $pageId,
 						'deleted' => $unsuppress ? 0 : $row->ar_deleted
@@ -391,7 +385,7 @@ class UndeletePage {
 				// This will also copy the revision to ip_changes if it was an IP edit.
 				$revisionStore->insertRevisionOn( $revision, $dbw );
 
-				$restored++;
+				$restoredRevCount++;
 
 				$this->hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
 
@@ -411,23 +405,22 @@ class UndeletePage {
 				__METHOD__ );
 		}
 
-		$status = Status::newGood( $restored );
+		$status = Status::newGood( $restoredRevCount );
 
 		if ( $failedRevisionCount > 0 ) {
-			$status->warning(
-				wfMessage( 'undeleterevision-duplicate-revid', $failedRevisionCount ) );
+			$status->warning( 'undeleterevision-duplicate-revid', $failedRevisionCount );
 		}
 
 		// Was anything restored at all?
-		if ( $restored ) {
+		if ( $restoredRevCount ) {
 
 			if ( $updatedCurrentRevision ) {
 				// Attach the latest revision to the page...
 				// XXX: updateRevisionOn should probably move into a PageStore service.
-				$wasnew = $article->updateRevisionOn(
+				$wasnew = $wikiPage->updateRevisionOn(
 					$dbw,
 					$revision,
-					$created ? 0 : $article->getLatest()
+					$created ? 0 : $wikiPage->getLatest()
 				);
 			} else {
 				$wasnew = false;
@@ -436,8 +429,7 @@ class UndeletePage {
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
-				// TODO use UserFactory::newFromUserIdentity
-				$article->doEditUpdates(
+				$wikiPage->doEditUpdates(
 					$revision,
 					$revision->getUser( RevisionRecord::RAW ),
 					[
@@ -449,11 +441,11 @@ class UndeletePage {
 			}
 
 			$this->hookRunner->onArticleUndelete(
-				$this->title, $created, $comment, $oldPageId, $restoredPages );
+				$wikiPage->getTitle(), $created, $comment, $oldPageId, $restoredPages );
 
-			if ( $this->title->getNamespace() === NS_FILE ) {
+			if ( $this->page->getNamespace() === NS_FILE ) {
 				$job = HTMLCacheUpdateJob::newForBacklinks(
-					$this->title,
+					$this->page,
 					'imagelinks',
 					[ 'causeAction' => 'file-restore' ]
 				);
