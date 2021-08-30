@@ -424,6 +424,7 @@ because of Phabricator reports.
 * Content::preSaveTransform was hard-deprecated since 1.37,
   use ContentTransformer::preSaveTransform instead. Extensions defining
   a content model should override ContentHandler::preSaveTransform.
+* Skin::bottomScripts is deprecated. Use OutputPage::getBottomScripts instead.
 * …
 
 === Deprecations in 1.37 ===

@@ -3224,9 +3224,10 @@ class OutputPage extends ContextSource {
 	 * JS stuff to put at the bottom of the `<body>`.
 	 * These are legacy scripts ($this->mScripts), and user JS.
 	 *
+	 * @param string $extraHtml (only for use by this->tailElement(); will be removed in future)
 	 * @return string|WrappedStringList HTML
 	 */
-	public function getBottomScripts() {
+	public function getBottomScripts( $extraHtml = '' ) {
 		$chunks = [];
 		$chunks[] = $this->getRlClient()->getBodyHtml();
 
@@ -3241,6 +3242,10 @@ class OutputPage extends ContextSource {
 				$this->CSP->getNonce()
 			);
 		}
+		// This should be added last because the extra html comes from
+		// SkinAfterBottomScripts hook.
+		// TODO: Run the hook here directly and remove the parameter.
+		$chunks[] = $extraHtml;
 
 		return self::combineWrappedStrings( $chunks );
 	}
@@ -4212,9 +4217,14 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function tailElement( $skin ) {
+		// T257704: Temporarily run skin hook here pending
+		// creation dedicated outputpage hook for this
+		$extraHtml = '';
+		$this->getHookRunner()->onSkinAfterBottomScripts( $skin, $extraHtml );
+
 		$tail = [
 			MWDebug::getDebugHTML( $skin ),
-			$skin->bottomScripts(),
+			$this->getBottomScripts( $extraHtml ),
 			wfReportTime( $this->getCSP()->getNonce() ),
 			MWDebug::getHTMLDebugLog()
 			. Html::closeElement( 'body' )
