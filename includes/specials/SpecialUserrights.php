@@ -676,9 +676,9 @@ class UserrightsPage extends SpecialPage {
 	 * Show the form to edit group memberships.
 	 *
 	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
-	 * @param array $groups Array of groups the user is in. Not used by this implementation
+	 * @param string[] $groups Array of groups the user is in. Not used by this implementation
 	 *   anymore, but kept for backward compatibility with subclasses
-	 * @param array $groupMemberships Associative array of (group name => UserGroupMembership
+	 * @param UserGroupMembership[] $groupMemberships Associative array of (group name => UserGroupMembership
 	 *   object) containing the groups the user is in
 	 */
 	protected function showEditUserGroupsForm( $user, $groups, $groupMemberships ) {
