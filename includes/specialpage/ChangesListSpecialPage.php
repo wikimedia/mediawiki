@@ -122,8 +122,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideliu
 						'showHideSuffix' => 'showhideliu',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds['actor_user'] = null;
 						},
@@ -136,8 +136,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideanons
 						'showHideSuffix' => 'showhideanons',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'actor_user IS NOT NULL';
 						},
@@ -157,7 +157,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-unregistered-label',
 						'description' => 'rcfilters-filter-user-experience-level-unregistered-description',
 						'cssClassSuffix' => 'user-unregistered',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return !$rc->getAttribute( 'rc_user' );
 						}
 					],
@@ -166,7 +166,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-registered-label',
 						'description' => 'rcfilters-filter-user-experience-level-registered-description',
 						'cssClassSuffix' => 'user-registered',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_user' );
 						}
 					],
@@ -175,7 +175,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-newcomer-label',
 						'description' => 'rcfilters-filter-user-experience-level-newcomer-description',
 						'cssClassSuffix' => 'user-newcomer',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'newcomer';
@@ -186,7 +186,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-learner-label',
 						'description' => 'rcfilters-filter-user-experience-level-learner-description',
 						'cssClassSuffix' => 'user-learner',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'learner';
@@ -197,7 +197,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-experienced-label',
 						'description' => 'rcfilters-filter-user-experience-level-experienced-description',
 						'cssClassSuffix' => 'user-experienced',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'experienced';
@@ -221,15 +221,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidemine
 						'showHideSuffix' => 'showhidemine',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							/** @var IContextSource $ctx */
 							$user = $ctx->getUser();
 							$conds[] = 'actor_name<>' . $dbr->addQuotes( $user->getName() );
 						},
 						'cssClassSuffix' => 'self',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $ctx->getUser()->equals( $rc->getPerformerIdentity() );
 						},
 					],
@@ -238,10 +237,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-editsbyother-label',
 						'description' => 'rcfilters-filter-editsbyother-description',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							/** @var IContextSource $ctx */
 							$user = $ctx->getUser();
 							if ( $user->isAnon() ) {
 								$conds['actor_name'] = $user->getName();
@@ -250,7 +248,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							}
 						},
 						'cssClassSuffix' => 'others',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return !$ctx->getUser()->equals( $rc->getPerformerIdentity() );
 						},
 					]
@@ -270,13 +268,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidebots
 						'showHideSuffix' => 'showhidebots',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds['rc_bot'] = 0;
 						},
 						'cssClassSuffix' => 'bot',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_bot' );
 						},
 					],
@@ -285,13 +283,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-humans-label',
 						'description' => 'rcfilters-filter-humans-description',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds['rc_bot'] = 1;
 						},
 						'cssClassSuffix' => 'human',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return !$rc->getAttribute( 'rc_bot' );
 						},
 					]
@@ -314,13 +312,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideminor
 						'showHideSuffix' => 'showhideminor',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_minor = 0';
 						},
 						'cssClassSuffix' => 'minor',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_minor' );
 						}
 					],
@@ -329,13 +327,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-major-label',
 						'description' => 'rcfilters-filter-major-description',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_minor = 1';
 						},
 						'cssClassSuffix' => 'major',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return !$rc->getAttribute( 'rc_minor' );
 						}
 					]
@@ -353,8 +351,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-lastrevision-label',
 						'description' => 'rcfilters-filter-lastrevision-description',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) use ( $nonRevisionTypes ) {
 							$conds[] = $dbr->makeList(
 								[
 									'rc_this_oldid <> page_latest',
@@ -364,7 +363,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							);
 						},
 						'cssClassSuffix' => 'last',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_this_oldid' ) === $rc->getAttribute( 'page_latest' );
 						}
 					],
@@ -373,8 +372,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-previousrevision-label',
 						'description' => 'rcfilters-filter-previousrevision-description',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) use ( $nonRevisionTypes ) {
 							$conds[] = $dbr->makeList(
 								[
 									'rc_this_oldid = page_latest',
@@ -384,7 +384,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							);
 						},
 						'cssClassSuffix' => 'previous',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_this_oldid' ) !== $rc->getAttribute( 'page_latest' );
 						}
 					]
@@ -404,13 +404,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-pageedits-description',
 						'default' => false,
 						'priority' => -2,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
 						},
 						'cssClassSuffix' => 'src-mw-edit',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_EDIT;
 						},
 					],
@@ -420,13 +420,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-newpages-description',
 						'default' => false,
 						'priority' => -3,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
 						},
 						'cssClassSuffix' => 'src-mw-new',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_NEW;
 						},
 					],
@@ -439,13 +439,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-logactions-description',
 						'default' => false,
 						'priority' => -5,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
 						},
 						'cssClassSuffix' => 'src-mw-log',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_LOG;
 						}
 					],
@@ -466,8 +466,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidepatr
 						'showHideSuffix' => 'showhidepatr',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 						},
@@ -476,8 +476,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					[
 						'name' => 'hideunpatrolled',
 						'default' => false,
-						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED;
 						},
@@ -500,7 +500,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-reviewstatus-unpatrolled-label',
 						'description' => 'rcfilters-filter-reviewstatus-unpatrolled-description',
 						'cssClassSuffix' => 'reviewstatus-unpatrolled',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_UNPATROLLED;
 						},
 					],
@@ -509,7 +509,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-reviewstatus-manual-label',
 						'description' => 'rcfilters-filter-reviewstatus-manual-description',
 						'cssClassSuffix' => 'reviewstatus-manual',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_PATROLLED;
 						},
 					],
@@ -518,14 +518,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-reviewstatus-auto-label',
 						'description' => 'rcfilters-filter-reviewstatus-auto-description',
 						'cssClassSuffix' => 'reviewstatus-auto',
-						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_AUTOPATROLLED;
 						},
 					],
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
-				'queryCallable' => static function ( $specialPageClassName, $ctx, $dbr,
-					&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selected
+				'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+					IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selected
 				) {
 					if ( $selected === [] ) {
 						return;
@@ -552,13 +552,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'showHideSuffix' => 'showhidecategorization',
 			'default' => false,
 			'priority' => -4,
-			'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-				&$query_options, &$join_conds
+			'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+				IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 			) {
 				$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
 			},
 			'cssClassSuffix' => 'src-mw-categorize',
-			'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+			'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 				return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
 			},
 		];
@@ -1130,7 +1130,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * There is light processing to simplify core maintenance.
 	 * @param array $definition
-	 * @phan-param array<int,array{class:string,filters:array}> $definition
+	 * @phan-param array<int,array{class:class-string<ChangesListFilterGroup>,filters:array}> $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
 		$autoFillPriority = -1;
@@ -1156,7 +1156,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @return array The legacy show/hide toggle filters
+	 * @return ChangesListBooleanFilter[] The legacy show/hide toggle filters
 	 */
 	protected function getLegacyShowHideFilters() {
 		$filters = [];
@@ -1245,7 +1245,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Gets the currently registered filters groups
 	 *
-	 * @return array Associative array of ChangesListFilterGroup objects, with group name as key
+	 * @return ChangesListFilterGroup[] Associative array of ChangesListFilterGroup objects, with group name as key
 	 */
 	protected function getFilterGroups() {
 		return $this->filterGroups;
@@ -1281,7 +1281,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'messageKeys' => [],
 		];
 
-		usort( $this->filterGroups, static function ( $a, $b ) {
+		usort( $this->filterGroups, static function ( ChangesListFilterGroup $a, ChangesListFilterGroup $b ) {
 			return $b->getPriority() <=> $a->getPriority();
 		} );
 
@@ -1393,7 +1393,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 				$allInGroupEnabled = array_reduce(
 					$filters,
-					static function ( $carry, $filter ) use ( $opts ) {
+					static function ( bool $carry, ChangesListBooleanFilter $filter ) use ( $opts ) {
 						return $carry && $opts[ $filter->getName() ];
 					},
 					/* initialValue */ count( $filters ) > 0

@@ -62,13 +62,13 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
-	 * @var array
+	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups;
 
 	/**
 	 * @param Skin|IContextSource $obj
-	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
 	public function __construct( $obj, array $filterGroups = [] ) {
 		if ( $obj instanceof IContextSource ) {
@@ -248,11 +248,9 @@ class ChangesList extends ContextSource {
 			( $nsInfo->isTalk( $rc->mAttribs['rc_namespace'] ) ? 'talk' : 'subject' )
 		);
 
-		if ( $this->filterGroups !== null ) {
-			foreach ( $this->filterGroups as $filterGroup ) {
-				foreach ( $filterGroup->getFilters() as $filter ) {
-					$filter->applyCssClassIfNeeded( $this, $rc, $classes );
-				}
+		foreach ( $this->filterGroups as $filterGroup ) {
+			foreach ( $filterGroup->getFilters() as $filter ) {
+				$filter->applyCssClassIfNeeded( $this, $rc, $classes );
 			}
 		}
 

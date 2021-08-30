@@ -42,7 +42,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * @param IContextSource|Skin $obj
-	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 * @throws MWException
 	 */
 	public function __construct( $obj, array $filterGroups = [] ) {
