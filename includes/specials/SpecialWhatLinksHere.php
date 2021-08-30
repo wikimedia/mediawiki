@@ -345,7 +345,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$numRows = count( $rows );
 
 		// Work out the start and end IDs, for prev/next links
-		if ( $dir === 'prev' ) {
+		if ( !$limit ) { // T289351
+			$nextId = $prevId = false;
+			$rows = [];
+		} elseif ( $dir === 'prev' ) {
 			if ( $numRows > $limit ) {
 				// More rows available after these ones
 				// Get the nextId from the last row in the result set
