@@ -96,9 +96,9 @@ class ApiUndelete extends ApiBase {
 			( $params['timestamps'] ?? [] ),
 			$user,
 			$params['reason'],
-			$params['fileids'],
+			$params['fileids'] ?: [],
 			false,
-			$params['tags']
+			$params['tags'] ?: []
 		);
 		if ( !is_array( $retval ) ) {
 			$this->dieWithError( 'apierror-cantundelete' );
