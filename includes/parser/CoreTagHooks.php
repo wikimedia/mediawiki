@@ -214,16 +214,16 @@ class CoreTagHooks {
 				# and the variants are valid BCP 47 codes
 				if ( $converter->hasVariants()
 					&& strcasecmp( $fromArg, LanguageCode::bcp47( $fromArg ) ) === 0
-					&& strcasecmp( $toArg, LanguageCode::bcp47( $toArg ) ) === 0 ) {
+					&& strcasecmp( $toArg, LanguageCode::bcp47( $toArg ) ) === 0
+				) {
+					$toVariant = $converter->validateVariant( $toArg );
 
-						$toVariant = $converter->validateVariant( $toArg );
-
-						if ( $toVariant ) {
-							return $converter->autoConvert(
-								$parser->recursiveTagParse( $content ?? '', $frame ),
-								$toVariant
-							);
-						}
+					if ( $toVariant ) {
+						return $converter->autoConvert(
+							$parser->recursiveTagParse( $content ?? '', $frame ),
+							$toVariant
+						);
+					}
 				}
 			}
 		}
