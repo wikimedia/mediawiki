@@ -67,7 +67,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		# Nothing to do?
 		if ( $report || $count == 0 ) {
 			$this->commitTransaction( $dbw, __METHOD__ );
-			exit( 0 );
+			return;
 		}
 
 		# Delete each revision

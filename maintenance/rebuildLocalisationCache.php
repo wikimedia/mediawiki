@@ -165,7 +165,7 @@ class RebuildLocalisationCache extends Maintenance {
 				mt_srand( getmypid() );
 
 				$this->doRebuild( $codes, $lc, $force );
-				exit( 0 );
+				return;
 			} elseif ( $pid === -1 ) {
 				// Fork failed or one thread, do it serialized
 				$numRebuilt += $this->doRebuild( $codes, $lc, $force );
@@ -200,7 +200,7 @@ class RebuildLocalisationCache extends Maintenance {
 			}
 		}
 		if ( $parentStatus ) {
-			exit( $parentStatus );
+			$this->fatalError( 'Failed.', $parentStatus );
 		}
 	}
 

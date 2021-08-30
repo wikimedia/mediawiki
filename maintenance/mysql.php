@@ -66,7 +66,7 @@ class MysqlMaintenance extends Maintenance {
 			for ( $index = 0; $index < $serverCount; ++$index ) {
 				echo $lb->getServerName( $index ) . "\n";
 			}
-			exit( 0 );
+			return;
 		}
 		if ( $this->hasOption( 'host' ) ) {
 			$host = $this->getOption( 'host' );
@@ -174,9 +174,9 @@ class MysqlMaintenance extends Maintenance {
 		$ret = proc_close( $proc );
 		if ( $ret === -1 ) {
 			$this->fatalError( 'proc_close() returned -1' );
+		} elseif ( $ret ) {
+			$this->fatalError( 'Failed.', $ret );
 		}
-
-		exit( $ret );
 	}
 }
 
