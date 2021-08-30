@@ -226,7 +226,7 @@ class WikiFilePage extends WikiPage {
 		$file = $this->mFile;
 
 		if ( !$file instanceof LocalFile ) {
-			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file" );
+			wfDebug( __METHOD__ . " is not supported for this file" );
 			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
 		}
 
