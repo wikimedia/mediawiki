@@ -493,7 +493,7 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
+		$archive = new PageArchive( $this->mTargetObj );
 		if ( !$this->getHookRunner()->onUndeleteForm__showRevision(
 			$archive, $this->mTargetObj )
 		) {
@@ -853,7 +853,7 @@ class SpecialUndelete extends SpecialPage {
 			[ 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) ]
 		);
 
-		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
+		$archive = new PageArchive( $this->mTargetObj );
 		$this->getHookRunner()->onUndeleteForm__showHistory( $archive, $this->mTargetObj );
 
 		$out->addHTML( Html::openElement( 'div', [ 'class' => 'mw-undelete-history' ] ) );
@@ -1348,7 +1348,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->checkReadOnly();
 
 		$out = $this->getOutput();
-		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
+		$archive = new PageArchive( $this->mTargetObj );
 		$this->getHookRunner()->onUndeleteForm__undelete( $archive, $this->mTargetObj );
 		$ok = $archive->undeleteAsUser(
 			$this->mTargetTimestamp,
