@@ -219,8 +219,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$sortDirection = $dir === 'prev' ? SelectQueryBuilder::SORT_DESC : SelectQueryBuilder::SORT_ASC;
 
+		$fname = __METHOD__;
 		$queryFunc = static function ( IDatabase $dbr, $table, $fromCol ) use (
-			$conds, $target, $limit, $sortDirection
+			$conds, $target, $limit, $sortDirection, $fname
 		) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
@@ -246,7 +247,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					'rd_from', 'rd_fragment', 'page_is_redirect' ] )
 				->orderBy( 'page_id', $sortDirection )
 				->limit( $queryLimit )
-				->caller( __CLASS__ . '::showIndirectLinks' )
+				->caller( $fname )
 				->fetchResultSet();
 		};
 
