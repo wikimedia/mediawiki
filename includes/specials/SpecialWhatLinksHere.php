@@ -114,8 +114,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	public function onSuccess() {
 		$opts = new FormOptions();
 
-		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'limit', $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
+		$opts->add( 'namespace', null, FormOptions::INTNULL );
+		$opts->add( 'limit', null, FormOptions::INTNULL );
 		$opts->add( 'offset', '' );
 		$opts->add( 'from', 0 );
 		$opts->add( 'dir', 'next' );
@@ -126,6 +126,10 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$opts->add( 'invert', false );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
+
+		if ( $opts->getValue( 'limit' ) === null ) {
+			$opts->setValue( 'limit', $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
+		}
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
 		// Bind to member variable
@@ -450,8 +454,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			$prevPageId = $offsetPageID ? $rows[0]->page_id : false;
 			if ( $numRows > $limit ) {
 				// Get the next row from the last displayed row
-				$nextNamespace = $rows[$limit - 1]->page_namespace;
-				$nextPageId = $rows[$limit - 1]->page_id;
+				$nextNamespace = $rows[$limit - 1]->page_namespace ?? false;
+				$nextPageId = $rows[$limit - 1]->page_id ?? false;
 				// Remove undisplayed rows
 				$rows = array_slice( $rows, 0, $limit );
 			} else {
