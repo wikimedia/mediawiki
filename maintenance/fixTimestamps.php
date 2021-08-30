@@ -108,7 +108,7 @@ class FixTimestamps extends Maintenance {
 		good revisions to provide a majority reference." );
 		} elseif ( $numBadRevs == 0 ) {
 			$this->output( "No bad revisions found.\n" );
-			exit( 0 );
+			return;
 		}
 
 		$this->output( sprintf( "Fixing %d revisions (%.2f%% of revisions in search interval)\n",

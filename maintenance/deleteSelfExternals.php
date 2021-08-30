@@ -42,8 +42,7 @@ class DeleteSelfExternals extends Maintenance {
 		// Extract the host and scheme from $wgServer
 		$bits = wfParseUrl( $wgServer );
 		if ( !$bits ) {
-			$this->error( 'Could not parse $wgServer' );
-			exit( 1 );
+			$this->fatalError( 'Could not parse $wgServer' );
 		}
 
 		$this->output( "Deleting self externals from $wgServer\n" );

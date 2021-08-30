@@ -102,17 +102,16 @@ class MwSql extends Maintenance {
 			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ], __METHOD__ );
 			if ( $error !== true ) {
 				$this->fatalError( $error );
-			} else {
-				exit( 0 );
 			}
+			return;
 		}
 
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$res = $this->sqlDoQuery( $db, $query, /* dieOnError */ true );
 			$lbFactory->waitForReplication();
-			if ( $this->hasOption( 'status' ) ) {
-				exit( $res ? 0 : 2 );
+			if ( $this->hasOption( 'status' ) && !$res ) {
+				$this->fatalError( 'Failed.', 2 );
 			}
 			return;
 		}
@@ -158,8 +157,8 @@ class MwSql extends Maintenance {
 			$wholeLine = '';
 		}
 		$lbFactory->waitForReplication();
-		if ( $this->hasOption( 'status' ) ) {
-			exit( $res ? 0 : 2 );
+		if ( $this->hasOption( 'status' ) && !$res ) {
+			$this->fatalError( 'Failed.', 2 );
 		}
 	}
 

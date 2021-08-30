@@ -70,14 +70,13 @@ class UpdateSpecialPages extends Maintenance {
 				getPage( $special );
 			if ( !$specialObj ) {
 				$this->output( "No such special page: $special\n" );
-				exit;
+				return;
 			}
 			if ( $specialObj instanceof QueryPage ) {
 				$queryPage = $specialObj;
 			} else {
 				$class = get_class( $specialObj );
 				$this->fatalError( "$class is not an instance of QueryPage.\n" );
-				die;
 			}
 
 			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->getName() ) {

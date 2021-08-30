@@ -68,7 +68,7 @@ class RunJobs extends Maintenance {
 				try {
 					$fc = new ForkController( $procs );
 					if ( $fc->start() != 'child' ) {
-						exit( 0 );
+						return;
 					}
 				} catch ( MWException $e ) {
 					$this->fatalError( $e->getMessage() );
