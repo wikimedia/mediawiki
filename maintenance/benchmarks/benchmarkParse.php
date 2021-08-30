@@ -80,8 +80,7 @@ class BenchmarkParse extends Maintenance {
 
 		$title = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$title ) {
-			$this->error( "Invalid title" );
-			exit( 1 );
+			$this->fatalError( "Invalid title" );
 		}
 
 		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
@@ -89,8 +88,7 @@ class BenchmarkParse extends Maintenance {
 			$pageTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'page-time' ) ) );
 			$id = $this->getRevIdForTime( $title, $pageTimestamp );
 			if ( !$id ) {
-				$this->error( "The page did not exist at that time" );
-				exit( 1 );
+				$this->fatalError( "The page did not exist at that time" );
 			}
 
 			$revision = $revLookup->getRevisionById( $id );
@@ -99,8 +97,7 @@ class BenchmarkParse extends Maintenance {
 		}
 
 		if ( !$revision ) {
-			$this->error( "Unable to load revision, incorrect title?" );
-			exit( 1 );
+			$this->fatalError( "Unable to load revision, incorrect title?" );
 		}
 
 		$warmup = $this->getOption( 'warmup', 1 );

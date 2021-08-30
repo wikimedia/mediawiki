@@ -118,15 +118,13 @@ class EditCLI extends Maintenance {
 
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );
-			$exit = 0;
 		} else {
 			$this->output( "failed\n" );
-			$exit = 1;
 		}
 		if ( !$status->isGood() ) {
 			$this->output( $status->getMessage( false, false, 'en' )->text() . "\n" );
 		}
-		exit( $exit );
+		return $status->isOK();
 	}
 }
 
