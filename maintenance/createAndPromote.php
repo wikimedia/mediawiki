@@ -150,9 +150,7 @@ class CreateAndPromote extends Maintenance {
 
 		$userGroupManager = $services->getUserGroupManager();
 		# Promote user
-		foreach ( $promotions as $promotion ) {
-			$userGroupManager->addUserToGroup( $user, $promotion );
-		}
+		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users

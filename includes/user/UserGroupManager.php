@@ -620,9 +620,7 @@ class UserGroupManager implements IDBAccessObject {
 
 		$oldGroups = $this->getUserGroups( $user ); // previous groups
 		$oldUGMs = $this->getUserGroupMemberships( $user );
-		foreach ( $toPromote as $group ) {
-			$this->addUserToGroup( $user, $group );
-		}
+		$this->addUserToMultipleGroups( $user, $toPromote );
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 		$newUGMs = $this->getUserGroupMemberships( $user );
 
@@ -836,6 +834,30 @@ class UserGroupManager implements IDBAccessObject {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Add the user to the given list of groups.
+	 *
+	 * @since 1.37
+	 *
+	 * @param UserIdentity $user
+	 * @param string[] $groups Names of the groups to add
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
+	 *   wfTimestamp(), or null if the group assignment should not expire
+	 * @param bool $allowUpdate Whether to perform "upsert" instead of INSERT
+	 *
+	 * @throws InvalidArgumentException
+	 */
+	public function addUserToMultipleGroups(
+		UserIdentity $user,
+		array $groups,
+		string $expiry = null,
+		bool $allowUpdate = false
+	) {
+		foreach ( $groups as $group ) {
+			$this->addUserToGroup( $user, $group, $expiry, $allowUpdate );
+		}
 	}
 
 	/**
