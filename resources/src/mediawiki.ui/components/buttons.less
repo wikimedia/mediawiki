@@ -62,6 +62,8 @@
 		border-color: transparent;
 		font-weight: bold;
 
+		// If a sibling element is a checklist, the state should also apply to the button.
+		input[ type='checkbox' ]:hover + &,
 		&:hover {
 			background-color: @colorGray15;
 			color: @color-base--hover;
@@ -69,12 +71,14 @@
 			box-shadow: none;
 		}
 
+		input[ type='checkbox' ]:active + &,
 		&:active {
 			background-color: @colorGray14;
 			color: @color-base--active;
 			border-color: @colorGray7;
 		}
 
+		input[ type='checkbox' ]:focus + &,
 		&:focus {
 			background-color: transparent;
 			color: @color-base;
@@ -108,15 +112,18 @@
 		&.mw-ui-quiet {
 			color: @color-primary;
 
+			input[ type='checkbox' ]:hover + &,
 			&:hover {
 				background-color: transparent;
 				color: @color-primary--hover;
 			}
 
+			input[ type='checkbox' ]:active + &,
 			&:active {
 				color: @color-primary--active;
 			}
 
+			input[ type='checkbox' ]:focus + &,
 			&:focus {
 				background-color: transparent;
 				color: @color-primary--focus;
@@ -142,15 +149,18 @@
 		&.mw-ui-quiet {
 			color: @color-destructive;
 
+			input[ type='checkbox' ]:hover + &,
 			&:hover {
 				background-color: transparent;
 				color: @color-destructive--hover;
 			}
 
+			input[ type='checkbox' ]:active + &,
 			&:active {
 				color: @color-destructive--active;
 			}
 
+			input[ type='checkbox' ]:focus + &,
 			&:focus {
 				background-color: transparent;
 				color: @color-destructive;
