@@ -17,7 +17,6 @@
  *
  * @file
  */
-use Wikimedia\WrappedStringList;
 
 /**
  * Generic template for use with Mustache templates.
@@ -62,7 +61,7 @@ class SkinMustache extends SkinTemplate {
 		$html = $out->headElement( $this );
 
 		$html .= $tp->processTemplate( $template, $data );
-		$html .= $this->tailElement( $out );
+		$html .= $out->tailElement( $this );
 		return $html;
 	}
 
@@ -100,25 +99,5 @@ class SkinMustache extends SkinTemplate {
 			$data["msg-{$message}"] = $this->msg( $message )->text();
 		}
 		return $data;
-	}
-
-	/**
-	 * The final bits that go to the bottom of a page
-	 * HTML document including the closing tags
-	 *
-	 * @param OutputPage $out
-	 * @return string
-	 */
-	private function tailElement( $out ) {
-		$tail = [
-			MWDebug::getDebugHTML( $this ),
-			$this->bottomScripts(),
-			wfReportTime( $out->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog()
-			. Html::closeElement( 'body' )
-			. Html::closeElement( 'html' )
-		];
-
-		return WrappedStringList::join( "\n", $tail );
 	}
 }
