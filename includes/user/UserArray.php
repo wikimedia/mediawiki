@@ -96,4 +96,14 @@ abstract class UserArray implements Iterator {
 		);
 		return self::newFromResult( $res );
 	}
+
+	/**
+	 * @return User
+	 */
+	abstract public function current(): User;
+
+	/**
+	 * @return int
+	 */
+	abstract public function key(): int;
 }
