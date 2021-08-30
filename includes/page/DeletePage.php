@@ -32,6 +32,7 @@ use WebRequest;
 use WikiMap;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
 /**
@@ -49,6 +50,8 @@ class DeletePage {
 	private $hookRunner;
 	/** @var RevisionStore */
 	private $revisionStore;
+	/** @var LBFactory */
+	private $lbFactory;
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 	/** @var JobQueueGroup */
@@ -56,11 +59,26 @@ class DeletePage {
 	/** @var CommentStore */
 	private $commentStore;
 	/** @var ServiceOptions */
-	protected $options;
+	private $options;
+	/** @var string */
+	private $webRequestID;
+
 	/** @var WikiPage */
 	private $page;
 	/** @var UserIdentity */
 	private $deleter;
+
+	/** @var bool */
+	private $suppress = false;
+	/** @var string[] */
+	private $tags = [];
+	/** @var string */
+	private $logSubtype = 'delete';
+	/** @var bool */
+	private $forceImmediate = false;
+
+	/** @var string|array */
+	private $legacyHookErrors = '';
 
 	/**
 	 * @param PageIdentity $page
@@ -74,13 +92,68 @@ class DeletePage {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->revisionStore = $services->getRevisionStore();
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->lbFactory = $services->getDBLoadBalancerFactory();
+		$this->loadBalancer = $this->lbFactory->getMainLB();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->commentStore = $services->getCommentStore();
 		$this->options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
+		$this->webRequestID = WebRequest::getRequestId();
 
 		$this->page = $services->getWikiPageFactory()->newFromTitle( $page );
 		$this->deleter = $deleter;
+	}
+
+	/**
+	 * @internal BC method for use by WikiPage::doDeleteArticleReal only.
+	 * @return array|string
+	 */
+	public function getLegacyHookErrors() {
+		return $this->legacyHookErrors;
+	}
+
+	/**
+	 * If true, suppress all revisions and log the deletion in the suppression log instead of
+	 * the deletion log.
+	 *
+	 * @param bool $suppress
+	 * @return self For chaining
+	 */
+	public function setSuppress( bool $suppress ): self {
+		$this->suppress = $suppress;
+		return $this;
+	}
+
+	/**
+	 * Change tags to apply to the deletion action
+	 *
+	 * @param string[] $tags
+	 * @return self For chaining
+	 */
+	public function setTags( array $tags ): self {
+		$this->tags = $tags;
+		return $this;
+	}
+
+	/**
+	 * Set a specific log subtype for the deletion log entry.
+	 *
+	 * @param string $logSubtype
+	 * @return self For chaining
+	 */
+	public function setLogSubtype( string $logSubtype ): self {
+		$this->logSubtype = $logSubtype;
+		return $this;
+	}
+
+	/**
+	 * If false, allows deleting over time via the job queue
+	 *
+	 * @param bool $forceImmediate
+	 * @return self For chaining
+	 */
+	public function forceImmediate( bool $forceImmediate ): self {
+		$this->forceImmediate = $forceImmediate;
+		return $this;
 	}
 
 	/**
@@ -88,33 +161,21 @@ class DeletePage {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param bool $suppress Suppress all revisions and log the deletion in
-	 *   the suppression log instead of the deletion log
-	 * @param array|string &$error Array of errors to append to
-	 * @param string[] $tags Tags to apply to the deletion action
-	 * @param string $logsubtype
-	 * @param bool $immediate false allows deleting over time via the job queue
 	 * @return Status Status object:
 	 *   - If immediate and successful, a good Status with value = log_id of the deletion log entry.
 	 *   - If scheduled, a good Status with value = false.
 	 *   - If the page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
 	 *   - A fatal Status otherwise.
 	 */
-	public function delete(
-		string $reason,
-		bool $suppress = false,
-		&$error = '',
-		array $tags = [],
-		string $logsubtype = 'delete',
-		bool $immediate = false
-	): Status {
+	public function delete( string $reason ): Status {
 		$status = Status::newGood();
 
 		$legacyDeleter = MediaWikiServices::getInstance()
 			->getUserFactory()
 			->newFromUserIdentity( $this->deleter );
+		// TODO: Deprecate and replace hook (remove &$error, improve typehints)
 		if ( !$this->hookRunner->onArticleDelete(
-			$this->page, $legacyDeleter, $reason, $error, $status, $suppress )
+			$this->page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
 		) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
@@ -123,7 +184,7 @@ class DeletePage {
 			return $status;
 		}
 
-		return $this->deleteBatched( $reason, $suppress, $tags, $logsubtype, $immediate );
+		return $this->deleteInternal( $reason );
 	}
 
 	/**
@@ -135,21 +196,10 @@ class DeletePage {
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
 	 * @param string $reason
-	 * @param bool $suppress
-	 * @param string[] $tags
-	 * @param string $logsubtype
-	 * @param bool $immediate
 	 * @param string|null $webRequestId
 	 * @return Status
 	 */
-	public function deleteBatched(
-		string $reason,
-		bool $suppress,
-		array $tags,
-		string $logsubtype,
-		bool $immediate = false,
-		?string $webRequestId = null
-	): Status {
+	public function deleteInternal( string $reason, ?string $webRequestId = null ): Status {
 		$title = $this->page->getTitle();
 		$status = Status::newGood();
 
@@ -193,8 +243,8 @@ class DeletePage {
 		// one batch of revisions and defer archival of any others to the job queue.
 		$explictTrxLogged = false;
 		while ( true ) {
-			$done = $this->archiveRevisions( $id, $suppress );
-			if ( $done || !$immediate ) {
+			$done = $this->archiveRevisions( $id );
+			if ( $done || !$this->forceImmediate ) {
 				break;
 			}
 			$dbw->endAtomic( __METHOD__ );
@@ -212,8 +262,7 @@ class DeletePage {
 			if ( $dbw->trxLevel() ) {
 				$dbw->commit( __METHOD__ );
 			}
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->waitForReplication();
+			$this->lbFactory->waitForReplication();
 			$dbw->startAtomic( __METHOD__ );
 		}
 
@@ -225,12 +274,12 @@ class DeletePage {
 				'namespace' => $title->getNamespace(),
 				'title' => $title->getDBkey(),
 				'wikiPageId' => $id,
-				'requestId' => $webRequestId ?? WebRequest::getRequestId(),
+				'requestId' => $webRequestId ?? $this->webRequestID,
 				'reason' => $reason,
-				'suppress' => $suppress,
+				'suppress' => $this->suppress,
 				'userId' => $this->deleter->getId(),
-				'tags' => json_encode( $tags ),
-				'logsubtype' => $logsubtype,
+				'tags' => json_encode( $this->tags ),
+				'logsubtype' => $this->logSubtype,
 			];
 
 			$job = new DeletePageJob( $jobParams );
@@ -263,13 +312,13 @@ class DeletePage {
 			$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
 			// Log the deletion, if the page was suppressed, put it in the suppression log instead
-			$logtype = $suppress ? 'suppress' : 'delete';
+			$logtype = $this->suppress ? 'suppress' : 'delete';
 
-			$logEntry = new ManualLogEntry( $logtype, $logsubtype );
+			$logEntry = new ManualLogEntry( $logtype, $this->logSubtype );
 			$logEntry->setPerformer( $this->deleter );
 			$logEntry->setTarget( $logTitle );
 			$logEntry->setComment( $reason );
-			$logEntry->addTags( $tags );
+			$logEntry->addTags( $this->tags );
 			$logid = $logEntry->insert();
 
 			$dbw->onTransactionPreCommitOrIdle(
@@ -287,6 +336,7 @@ class DeletePage {
 			$legacyDeleter = MediaWikiServices::getInstance()
 				->getUserFactory()
 				->newFromUserIdentity( $this->deleter );
+			// TODO Replace hook (replace typehints)
 			$this->hookRunner->onArticleDeleteComplete(
 				$wikiPageBeforeDelete,
 				$legacyDeleter,
@@ -311,11 +361,9 @@ class DeletePage {
 	 * Archives revisions as part of page deletion.
 	 *
 	 * @param int $id
-	 * @param bool $suppress Suppress all revisions and log the deletion in
-	 *   the suppression log instead of the deletion log
 	 * @return bool
 	 */
-	private function archiveRevisions( int $id, bool $suppress ): bool {
+	private function archiveRevisions( int $id ): bool {
 		// Given the lock above, we can be confident in the title and page ID values
 		$namespace = $this->page->getTitle()->getNamespace();
 		$dbKey = $this->page->getTitle()->getDBkey();
@@ -326,7 +374,7 @@ class DeletePage {
 		$bitfield = false;
 
 		// Bitfields to further suppress the content
-		if ( $suppress ) {
+		if ( $this->suppress ) {
 			$bitfield = RevisionRecord::SUPPRESSED_ALL;
 			$revQuery['fields'] = array_diff( $revQuery['fields'], [ 'rev_deleted' ] );
 		}
@@ -390,7 +438,7 @@ class DeletePage {
 					'ar_parent_id'  => $row->rev_parent_id,
 					'ar_len'        => $row->rev_len,
 					'ar_page_id'    => $id,
-					'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
+					'ar_deleted'    => $this->suppress ? $bitfield : $row->rev_deleted,
 					'ar_sha1'       => $row->rev_sha1,
 				] + $this->commentStore->insert( $dbw, 'ar_comment', $comment );
 
