@@ -44,6 +44,16 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->assertSQL( 'SELECT f FROM a WHERE (1) AND (2) AND (3)' );
 	}
 
+	public function testConflictingConds() {
+		// T288882: the empty set is the right answer
+		$this->sqb
+			->select( '1' )
+			->from( 'a' )
+			->where( [ 'k' => 'v1' ] )
+			->andWhere( [ 'k' => 'v2' ] );
+		$this->assertSQL( 'SELECT 1 FROM a WHERE k = \'v1\' AND (k = \'v2\')' );
+	}
+
 	public function testTableAlias() {
 		$this->sqb
 			->table( 't', 'a' )
