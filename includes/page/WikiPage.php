@@ -173,13 +173,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// TODO: remove the need for casting to Title.
 		$title = Title::castFromPageIdentity( $pageIdentity );
 		if ( !$title->canExist() ) {
-			// TODO: In order to allow WikiPage to implement ProperPageIdentity,
-			//       throw here to prevent construction of a WikiPage that doesn't
-			//       represent a proper page.
-			wfDeprecatedMsg(
-				"WikiPage constructed on a Title that cannot exist as a page: $title",
-				'1.36'
-			);
+			throw new InvalidArgumentException( "WikiPage constructed on a Title that cannot exist as a page: $title" );
 		}
 
 		$this->mTitle = $title;
@@ -471,18 +465,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return void
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
-		if ( !$this->mTitle->canExist() ) {
-			// NOTE: If and when WikiPage implements PageIdentity but not yet ProperPageIdentity,
-			//       throw here to prevent usage of a WikiPage that doesn't
-			//       represent a proper page.
-			// NOTE: The constructor will already have triggered a warning, but seeing how
-			//       bad instances of WikiPage are used will be helpful.
-			wfDeprecatedMsg(
-				"Accessing WikiPage that cannot exist as a page: {$this->mTitle}. ",
-				'1.36'
-			);
-		}
-
 		$from = self::convertSelectType( $from );
 		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
 			// We already have the data from the correct location, no need to load it twice.
@@ -596,31 +578,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * Code that requires this WikiPage to be a "proper page" in the sense
-	 * defined by PageIdentity should call this method.
-	 *
-	 * @note In the future, this method should become redundant, as the
-	 * constructor should not allow a WikiPage to be constructed for as title
-	 * that does not represent a proper page. For the time being, we allow
-	 * such instances for backwards compatibility.
-	 *
-	 * @throws PreconditionException
-	 */
-	private function assertProperPage() {
-		Assert::precondition(
-			$this->mTitle->canExist(),
-			'This WikiPage instance does not represent a proper page!'
-		);
-	}
-
-	/**
 	 * @param string|false $wikiId
 	 *
 	 * @return int Page ID
 	 */
 	public function getId( $wikiId = self::LOCAL ): int {
 		$this->assertWiki( $wikiId );
-		$this->assertProperPage();
 
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
@@ -803,18 +766,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	protected function loadLastEdit() {
 		if ( $this->mLastRevision !== null ) {
 			return; // already loaded
-		}
-
-		if ( !$this->mTitle->canExist() ) {
-			// NOTE: If and when WikiPage implements PageIdentity but not yet ProperPageIdentity,
-			//       throw here to prevent usage of a WikiPage that doesn't
-			//       represent a proper page.
-			// NOTE: The constructor will already have triggered a warning, but seeing how
-			//       bad instances of WikiPage are used will be helpful.
-			wfDeprecatedMsg(
-				"Accessing WikiPage that cannot exist as a page: {$this->mTitle}. ",
-				'1.36'
-			);
 		}
 
 		$latest = $this->getLatest();
@@ -1410,8 +1361,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *   page ID is already in use.
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
-		$this->assertProperPage();
-
 		$pageIdForInsert = $pageId ? [ 'page_id' => $pageId ] : [];
 		$dbw->insert(
 			'page',
@@ -2269,8 +2218,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		&$cascade, $reason, UserIdentity $user, $tags = null
 	) {
 		global $wgCascadingRestrictionLevels;
-
-		$this->assertProperPage();
 
 		if ( wfReadOnly() ) {
 			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
@@ -3336,8 +3283,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.36
 	 */
 	public function canExist(): bool {
-		// NOTE: once WikiPage becomes a ProperPageIdentity, this should always return true
-		return $this->mTitle->canExist();
+		return true;
 	}
 
 	/**

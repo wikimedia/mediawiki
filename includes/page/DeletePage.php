@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Page;
 
-use BadMethodCallException;
 use CommentStore;
 use Content;
 use DeferrableUpdate;
@@ -63,14 +62,10 @@ class DeletePage {
 	private $deleter;
 
 	/**
-	 * @param PageIdentity $page
+	 * @param ProperPageIdentity $page
 	 * @param UserIdentity $deleter
-	 * @todo Should use ProperPageIdentity eventually, once WikiPage will extend that
 	 */
-	public function __construct( PageIdentity $page, UserIdentity $deleter ) {
-		if ( !$page->canExist() ) {
-			throw new BadMethodCallException( __METHOD__ . ' requires a proper page identity.' );
-		}
+	public function __construct( ProperPageIdentity $page, UserIdentity $deleter ) {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->revisionStore = $services->getRevisionStore();

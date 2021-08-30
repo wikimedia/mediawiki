@@ -413,6 +413,9 @@ because of Phabricator reports.
 * Content::preloadTransform was hard-deprecated since 1.37,
   use ContentTransformer::preloadTransform instead. Extensions defining
   a content model should override ContentHandler::preloadTransform.
+* Constructing WikiPage objects from Title instances that cannot exist,
+  hard-deprecated in 1.36, now throws an exception. Additionally, WikiPage
+  now implements ProperPageIdentity, rather than just PageIdentity.
 * Content::preSaveTransform was hard-deprecated since 1.37,
   use ContentTransformer::preSaveTransform instead. Extensions defining
   a content model should override ContentHandler::preSaveTransform.

@@ -56,6 +56,7 @@ class WikiPageFactory {
 		}
 
 		if ( !$pageIdentity->canExist() ) {
+			// BC with the Title class
 			throw new InvalidArgumentException(
 				"The given PageIdentity does not represent a proper page"
 			);

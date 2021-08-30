@@ -18,14 +18,11 @@ namespace MediaWiki\Page;
  *   ExistingPageRecord instead. Once WikiPage is removed or guaranteed to be immutable and
  *   existing, ExistingPageRecord will become an alias of PageRecord.
  *
- * @todo In the future, PageRecord should extend ProperPageIdentity. This will only
- *   become possible when WikiPage can no longer represent non-proper pages.
- *
  * @stable to type
  *
  * @since 1.36
  */
-interface PageRecord extends PageIdentity {
+interface PageRecord extends ProperPageIdentity {
 
 	/**
 	 * False if the page has had more than one edit.
