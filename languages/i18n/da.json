@@ -1361,7 +1361,7 @@
 	"action-suppressrevision": "se og gendanne skjulte siderevisioner",
 	"action-suppressionlog": "se denne private log",
 	"action-block": "blokere denne bruger fra at redigere",
-	"action-protect": "ændre på beskyttelsen af denne side",
+	"action-protect": "ændre på indstillingerne for beskyttelsen af denne side",
 	"action-rollback": "hurtigt gendanne alle redigeringerne foretaget af den bruger, som senest redigerede en bestemt side,",
 	"action-import": "importere sider fra en anden wiki",
 	"action-importupload": "importere sider fra en filoplægning",
@@ -3588,5 +3588,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP-interval",
 	"paramvalidator-help-type-user-subtype-id": "bruger-ID (f.eks. \"#12345\")",
 	"paramvalidator-help-type-title": "Type: sidetitel",
-	"paramvalidator-help-type-title-must-exist": "Accepterer kun sider der findes."
+	"paramvalidator-help-type-title-must-exist": "Accepterer kun sider der findes.",
+	"paramvalidator-help-type-title-no-must-exist": "Accepterer ikkeeksisterende sider."
 }

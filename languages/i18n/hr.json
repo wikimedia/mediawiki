@@ -2424,7 +2424,7 @@
 	"block-options": "Dodatne mogućnosti:",
 	"block-prevent-edit": "Uređivanje",
 	"block-reason": "Razlog:",
-	"block-target": "Suradničko ime, IP-adresa ili IP opseg:",
+	"block-target": "Suradničko ime, IP-adresa ili IP raspon:",
 	"unblockip": "Deblokiraj suradnika",
 	"unblockiptext": "Ovaj se obrazac koristi za vraćanje prava na pisanje prethodno blokiranoj IP adresi.",
 	"ipusubmit": "Ukloni ovaj blok",
