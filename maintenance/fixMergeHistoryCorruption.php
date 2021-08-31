@@ -47,6 +47,7 @@ class FixMergeHistoryCorruption extends Maintenance {
 	}
 
 	public function execute() {
+		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		$dryRun = true;
@@ -65,7 +66,7 @@ class FixMergeHistoryCorruption extends Maintenance {
 			$conds['page_namespace'] = (int)$this->getOption( 'ns' );
 		}
 
-		$res = $dbw->newSelectQueryBuilder()
+		$res = $dbr->newSelectQueryBuilder()
 			->from( 'page' )
 			->join( 'revision', null, 'page_latest=rev_id' )
 			->fields( [ 'page_namespace', 'page_title', 'page_id' ] )
@@ -93,7 +94,7 @@ class FixMergeHistoryCorruption extends Maintenance {
 
 			// Check if there are any revisions that have this $row->page_id as their
 			// rev_page and select the largest which should be the newest revision.
-			$revId = $dbw->selectField(
+			$revId = $dbr->selectField(
 				'revision',
 				'MAX(rev_id)',
 				[ 'rev_page' => $row->page_id ],
