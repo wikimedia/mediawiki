@@ -16,17 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
  */
 
 use MediaWiki\MediaWikiServices;
 use Symfony\Component\Yaml\Yaml;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Manage foreign resources registered with ResourceLoader.
  *
  * @since 1.32
+ * @ingroup ResourceLoader
  */
 class ForeignResourceManager {
 	/** @var string */
@@ -98,6 +97,7 @@ class ForeignResourceManager {
 		// systems, and the user's /tmp and $IP may be on different filesystems.
 		$this->tmpParentDir = "{$this->libDir}/.foreign/tmp";
 
+		// Support XDG_CACHE_HOME to speed up CI by avoiding repeated downloads.
 		$cacheHome = getenv( 'XDG_CACHE_HOME' ) ? realpath( getenv( 'XDG_CACHE_HOME' ) ) : false;
 		$this->cacheDir = $cacheHome ? "$cacheHome/mw-foreign" : "{$this->libDir}/.foreign/cache";
 	}
@@ -167,10 +167,12 @@ class ForeignResourceManager {
 			}
 		}
 
-		$this->output( "\nDone!\n" );
 		$this->cleanUp();
 		if ( $this->hasErrors ) {
-			// The verify mode should check all modules/files and fail after, not during.
+			// The "verify" action should check all modules and files and fail after, not during.
+			// We don't throw on the first issue so that developers enjoy access to all actionable
+			// information at once (given we can't have cascading errors).
+			// The "verify" action prints errors along the way and simply exits here.
 			return false;
 		}
 
@@ -180,11 +182,11 @@ class ForeignResourceManager {
 	/**
 	 * @param string $src
 	 * @param string $integrity
-	 *
+	 * @param string $moduleName
 	 * @return string
 	 */
-	private function cacheKey( $src, $integrity ) {
-		$key = basename( $src ) . '_' . substr( $integrity, -12 );
+	private function cacheKey( $src, $integrity, $moduleName ) {
+		$key = $moduleName . '_' . hash( 'fnv132', $integrity ) . '_' . basename( $src );
 		$key = preg_replace( '/[.\/+?=_-]+/', '_', $key );
 		return rtrim( $key, '_' );
 	}
@@ -194,7 +196,8 @@ class ForeignResourceManager {
 	 * @return string|false
 	 */
 	private function cacheGet( $key ) {
-		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @file_get_contents( "{$this->cacheDir}/$key.data" );
 	}
 
 	/**
@@ -202,21 +205,24 @@ class ForeignResourceManager {
 	 * @param mixed $data
 	 */
 	private function cacheSet( $key, $data ) {
-		wfMkdirParents( $this->cacheDir );
+	    // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@mkdir( $this->cacheDir, 0777, true );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
 
 	/**
 	 * @param string $src
-	 * @param string $integrity
-	 *
+	 * @param string|null $integrity
+	 * @param string $moduleName
 	 * @return string
 	 */
-	private function fetch( $src, $integrity ) {
-		$key = $this->cacheKey( $src, $integrity );
-		$data = $this->cacheGet( $key );
-		if ( $data ) {
-			return $data;
+	private function fetch( string $src, $integrity, string $moduleName ) {
+		if ( $integrity !== null ) {
+			$key = $this->cacheKey( $src, $integrity, $moduleName );
+			$data = $this->cacheGet( $key );
+			if ( $data ) {
+				return $data;
+			}
 		}
 
 		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
@@ -232,6 +238,7 @@ class ForeignResourceManager {
 		$actualIntegrity = $algo . '-' . base64_encode( hash( $algo, $data, true ) );
 		if ( $integrity === $actualIntegrity ) {
 			$this->verbose( "... passed integrity check for {$src}\n" );
+			$key = $this->cacheKey( $src, $actualIntegrity, $moduleName );
 			$this->cacheSet( $key, $data );
 		} elseif ( $this->action === 'make-sri' ) {
 			$this->output( "Integrity for {$src}\n\tintegrity: {$actualIntegrity}\n" );
@@ -254,11 +261,11 @@ class ForeignResourceManager {
 		if ( !isset( $info['src'] ) ) {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
 		}
-		$data = $this->fetch( $info['src'], $info['integrity'] ?? null );
+		$data = $this->fetch( $info['src'], $info['integrity'] ?? null, $moduleName );
 		$dest = $info['dest'] ?? basename( $info['src'] );
 		$path = "$destDir/$dest";
 		if ( $this->action === 'verify' && sha1_file( $path ) !== sha1( $data ) ) {
-			throw new Exception( "File for '$moduleName' is different." );
+			$this->error( "File for '$moduleName' is different.\n" );
 		}
 		if ( $this->action === 'update' ) {
 			wfMkdirParents( $destDir );
@@ -279,10 +286,10 @@ class ForeignResourceManager {
 			if ( !isset( $file['src'] ) ) {
 				throw new Exception( "Module '$moduleName' file '$dest' must have a 'src' key." );
 			}
-			$data = $this->fetch( $file['src'], $file['integrity'] ?? null );
+			$data = $this->fetch( $file['src'], $file['integrity'] ?? null, $moduleName );
 			$path = "$destDir/$dest";
 			if ( $this->action === 'verify' && sha1_file( $path ) !== sha1( $data ) ) {
-				throw new Exception( "File '$dest' for '$moduleName' is different." );
+				$this->error( "File '$dest' for '$moduleName' is different.\n" );
 			} elseif ( $this->action === 'update' ) {
 				wfMkdirParents( $destDir );
 				file_put_contents( "$destDir/$dest", $data );
@@ -301,7 +308,7 @@ class ForeignResourceManager {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
 		}
 		// Download the resource to a temporary file and open it
-		$data = $this->fetch( $info['src'], $info['integrity' ] );
+		$data = $this->fetch( $info['src'], $info['integrity' ], $moduleName );
 		$tmpFile = "{$this->tmpParentDir}/$moduleName.tar";
 		$this->verbose( "... writing '$moduleName' src to $tmpFile\n" );
 		file_put_contents( $tmpFile, $data );
@@ -342,13 +349,11 @@ class ForeignResourceManager {
 						$remote = $file->getPathname();
 						$local = strtr( $remote, [ $from => $to ] );
 						if ( sha1_file( $remote ) !== sha1_file( $local ) ) {
-							$this->error( "File '$local' is different." );
-							$this->hasErrors = true;
+							$this->error( "File '$local' is different.\n" );
 						}
 					}
 				} elseif ( sha1_file( $from ) !== sha1_file( $to ) ) {
-					$this->error( "File '$to' is different." );
-					$this->hasErrors = true;
+					$this->error( "File '$to' is different.\n" );
 				}
 			} elseif ( $this->action === 'update' ) {
 				$this->verbose( "... moving $from to $to\n" );
@@ -378,6 +383,7 @@ class ForeignResourceManager {
 	 * @param string $text
 	 */
 	private function error( $text ) {
+		$this->hasErrors = true;
 		( $this->errorPrinter )( $text );
 	}
 
@@ -386,12 +392,12 @@ class ForeignResourceManager {
 
 		// Prune the cache of files we don't recognise.
 		$knownKeys = [];
-		foreach ( $this->registry as $info ) {
+		foreach ( $this->registry as $module => $info ) {
 			if ( $info['type'] === 'file' || $info['type'] === 'tar' ) {
-				$knownKeys[] = $this->cacheKey( $info['src'], $info['integrity'] );
+				$knownKeys[] = $this->cacheKey( $info['src'], $info['integrity'], $module );
 			} elseif ( $info['type'] === 'multi-file' ) {
 				foreach ( $info['files'] as $file ) {
-					$knownKeys[] = $this->cacheKey( $file['src'], $file['integrity'] );
+					$knownKeys[] = $this->cacheKey( $file['src'], $file['integrity'], $module );
 				}
 			}
 		}
