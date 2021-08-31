@@ -3,6 +3,7 @@
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -13,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
 class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @return MockObject|CommentStore
+	 * @return MockObject&CommentStore
 	 */
 	private function getMockCommentStore() {
 		$mockStore = $this->createMock( CommentStore::class );
@@ -29,10 +30,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param IDatabase $mockDb
+	 * @param DBConnRef $mockDb
 	 * @return WatchedItemQueryService
 	 */
-	private function newService( $mockDb ) {
+	private function newService( DBConnRef $mockDb ) {
 		return new WatchedItemQueryService(
 			$this->getMockLoadBalancer( $mockDb ),
 			$this->getMockCommentStore(),
@@ -43,17 +44,17 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @return MockObject|IDatabase
+	 * @return MockObject&DBConnRef
 	 */
 	private function getMockDb() {
-		$mock = $this->createMock( IDatabase::class );
+		$mock = $this->createMock( DBConnRef::class );
 
 		$mock->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( static function ( $a, $conj ) {
+			->willReturnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				$conds = [];
 				foreach ( $a as $k => $v ) {
@@ -66,7 +67,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					}
 				}
 				return implode( $sqlConj, $conds );
-			} ) );
+			} );
 
 		$mock->method( 'addQuotes' )
 			->will( $this->returnCallback( static function ( $value ) {
@@ -85,10 +86,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param IDatabase $mockDb
+	 * @param DBConnRef $mockDb
 	 * @return LoadBalancer
 	 */
-	private function getMockLoadBalancer( $mockDb ) {
+	private function getMockLoadBalancer( DBConnRef $mockDb ) {
 		$mock = $this->createMock( LoadBalancer::class );
 		$mock->method( 'getConnectionRef' )
 			->with( DB_REPLICA )

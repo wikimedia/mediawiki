@@ -74,7 +74,7 @@ class DatabaseDomain {
 	 * @param DatabaseDomain|string $domain Result of DatabaseDomain::toString()
 	 * @return DatabaseDomain
 	 */
-	public static function newFromId( $domain ) {
+	public static function newFromId( $domain ): self {
 		if ( $domain instanceof self ) {
 			return $domain;
 		}
@@ -197,7 +197,7 @@ class DatabaseDomain {
 	/**
 	 * @return string
 	 */
-	public function getId() {
+	public function getId(): string {
 		if ( $this->equivalentString === null ) {
 			$this->equivalentString = $this->convertToString();
 		}
@@ -208,7 +208,7 @@ class DatabaseDomain {
 	/**
 	 * @return string
 	 */
-	private function convertToString() {
+	private function convertToString(): string {
 		$parts = [ (string)$this->database ];
 		if ( $this->schema !== null ) {
 			$parts[] = $this->schema;

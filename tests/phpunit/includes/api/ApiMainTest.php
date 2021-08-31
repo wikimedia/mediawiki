@@ -2,7 +2,9 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -335,12 +337,9 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	private function doTestCheckMaxLag( $lag ) {
-		$mockLB = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'getMaxLag', 'getConnectionRef', '__destruct' ] )
-			->getMock();
+		$mockLB = $this->createMock( ILoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ 'somehost', $lag ] );
-		$mockLB->method( 'getConnectionRef' )->willReturn( $this->db );
+		$mockLB->method( 'getConnectionRef' )->willReturn( $this->createMock( DBConnRef::class ) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$req = new FauxRequest();

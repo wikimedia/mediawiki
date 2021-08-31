@@ -160,7 +160,7 @@ interface ILoadBalancer {
 	 * @return string
 	 * @since 1.36
 	 */
-	public function getClusterName();
+	public function getClusterName(): string;
 
 	/**
 	 * Get the local (and default) database domain ID of connection handles
@@ -169,14 +169,14 @@ interface ILoadBalancer {
 	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
 	 * @since 1.31
 	 */
-	public function getLocalDomainID();
+	public function getLocalDomainID(): string;
 
 	/**
 	 * @param DatabaseDomain|string|bool $domain Database domain
 	 * @return string Value of $domain if it is foreign or the local domain otherwise
 	 * @since 1.32
 	 */
-	public function resolveDomainID( $domain );
+	public function resolveDomainID( $domain ): string;
 
 	/**
 	 * Close all connection and redefine the local domain for testing or schema creation
@@ -383,7 +383,7 @@ interface ILoadBalancer {
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
 	 * Get a lazy-connecting database handle reference for a server index
@@ -483,7 +483,7 @@ interface ILoadBalancer {
 	 * @param int $i Specific server index
 	 * @return string Readable server name, falling back to the hostname or IP address
 	 */
-	public function getServerName( $i );
+	public function getServerName( $i ): string;
 
 	/**
 	 * Return the server configuration map for the server with the specified index

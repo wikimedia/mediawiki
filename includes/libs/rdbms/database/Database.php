@@ -1817,7 +1817,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * @inheritDoc
 	 */
-	public function newSelectQueryBuilder() {
+	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return new SelectQueryBuilder( $this );
 	}
 

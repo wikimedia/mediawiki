@@ -281,7 +281,7 @@ class LoadBalancer implements ILoadBalancer {
 		];
 	}
 
-	public function getClusterName() {
+	public function getClusterName(): string {
 		if ( $this->clusterName !== null ) {
 			$name = $this->clusterName;
 		} else {
@@ -292,11 +292,11 @@ class LoadBalancer implements ILoadBalancer {
 		return $name;
 	}
 
-	public function getLocalDomainID() {
+	public function getLocalDomainID(): string {
 		return $this->localDomain->getId();
 	}
 
-	public function resolveDomainID( $domain ) {
+	public function resolveDomainID( $domain ): string {
 		return $this->resolveDomainInstance( $domain )->getId();
 	}
 
@@ -304,7 +304,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param DatabaseDomain|string|bool $domain
 	 * @return DatabaseDomain
 	 */
-	final protected function resolveDomainInstance( $domain ) {
+	final protected function resolveDomainInstance( $domain ): DatabaseDomain {
 		if ( $domain instanceof DatabaseDomain ) {
 			return $domain; // already a domain instance
 		} elseif ( $domain === false || $domain === $this->localDomain->getId() ) {
@@ -1085,7 +1085,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' CONN_SILENCE_ERRORS is not supported'
@@ -1576,10 +1576,10 @@ class LoadBalancer implements ILoadBalancer {
 		return (bool)$this->getStreamingReplicaIndexes();
 	}
 
-	public function getServerName( $i ) {
+	public function getServerName( $i ): string {
 		$name = $this->servers[$i]['serverName'] ?? ( $this->servers[$i]['host'] ?? '' );
 
-		return ( $name != '' ) ? $name : 'localhost';
+		return ( $name !== '' ) ? $name : 'localhost';
 	}
 
 	public function getServerInfo( $i ) {
