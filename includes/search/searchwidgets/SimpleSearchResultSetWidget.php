@@ -66,21 +66,24 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 		$out = '';
 		foreach ( $iwResults as $iwPrefix => $results ) {
 			$out .= $this->headerHtml( $iwPrefix, $term );
-			$out .= "<ul class='mw-search-iwresults'>";
+			$out .= Html::openElement( 'ul', [ 'class' => 'mw-search-iwresults' ] );
 			// TODO: Assumes interwiki results are never paginated
 			$position = 0;
 			foreach ( $results as $result ) {
 				$out .= $this->resultWidget->render( $result, $position++ );
 			}
-			$out .= "</ul>";
+			$out .= Html::closeElement( 'ul' );
 		}
 
-		return "<div id='mw-search-interwiki'>" .
-			"<div id='mw-search-interwiki-caption'>" .
-				$this->specialSearch->msg( 'search-interwiki-caption' )->parse() .
-			'</div>' .
-			$out .
-		"</div>";
+		return Html::rawElement(
+			'div',
+			[ 'id' => 'mw-search-interwiki' ],
+			Html::rawElement(
+				'div',
+				[ 'id' => 'mw-search-interwiki-caption' ],
+				$this->specialSearch->msg( 'search-interwiki-caption' )->parse()
+			) . $out
+		);
 	}
 
 	/**
@@ -108,10 +111,15 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 			$this->specialSearch->msg( 'search-interwiki-more' )->escaped()
 		);
 
-		return "<div class='mw-search-interwiki-project'>" .
-			"<span class='mw-search-interwiki-more'>{$searchLink}</span>" .
-			$caption .
-		"</div>";
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'mw-search-interwiki-project' ],
+			Html::rawElement(
+				'span',
+				[ 'class' => 'mw-search-interwiki-more' ],
+				$searchLink
+			) . $caption
+		);
 	}
 
 	protected function loadCustomCaptions() {
