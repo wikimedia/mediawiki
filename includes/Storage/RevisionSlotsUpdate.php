@@ -219,7 +219,10 @@ class RevisionSlotsUpdate {
 		if ( isset( $this->modifiedSlots[$role] ) ) {
 			return $this->modifiedSlots[$role];
 		} else {
-			throw new RevisionAccessException( 'No such slot: ' . $role );
+			throw new RevisionAccessException(
+				'No such slot: {role}',
+				[ 'role' => $role ]
+			);
 		}
 	}
 

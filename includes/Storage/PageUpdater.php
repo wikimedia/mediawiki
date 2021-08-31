@@ -657,7 +657,10 @@ class PageUpdater {
 			if ( $parent ) {
 				$slot = $parent->getSlot( $role, RevisionRecord::RAW );
 			} else {
-				throw new RevisionAccessException( 'No such slot: ' . $role );
+				throw new RevisionAccessException(
+					'No such slot: {role}',
+					[ 'role' => $role ]
+				);
 			}
 		}
 

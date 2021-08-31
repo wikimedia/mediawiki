@@ -339,7 +339,10 @@ class SlotRecord {
 		if ( !isset( $this->row->$name ) ) {
 			// distinguish between unknown and uninitialized fields
 			if ( property_exists( $this->row, $name ) ) {
-				throw new IncompleteRevisionException( 'Uninitialized field: ' . $name );
+				throw new IncompleteRevisionException(
+					'Uninitialized field: {name}',
+					[ 'name' => $name ]
+				);
 			} else {
 				throw new OutOfBoundsException( 'No such field: ' . $name );
 			}
