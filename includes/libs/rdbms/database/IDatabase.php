@@ -634,7 +634,7 @@ interface IDatabase {
 	 */
 	public function selectFieldValues(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
-	);
+	): array;
 
 	/**
 	 * Execute a SELECT query constructed using the various parameters provided

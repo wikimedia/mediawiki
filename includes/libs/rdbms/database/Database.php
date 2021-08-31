@@ -1848,7 +1848,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function selectFieldValues(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
-	) {
+	): array {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
 		} elseif ( !is_string( $var ) ) { // sanity

@@ -70,7 +70,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @todo make protected
 	 * @note for access by subclasses only
 	 */
-	public $mTitle = null;
+	public $mTitle;
 
 	/**
 	 * @var bool
@@ -315,7 +315,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Get the title object of the article
 	 * @return Title Title object of this page
 	 */
-	public function getTitle() {
+	public function getTitle(): Title {
 		return $this->mTitle;
 	}
 
