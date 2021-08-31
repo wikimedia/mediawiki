@@ -1,10 +1,12 @@
+@import 'mediawiki.skin.variables.less';
+
 /* stylelint-disable selector-class-pattern */
 a.stub {
-	color: #723;
+	color: @color-link-stub;
 }
 
 a.new {
-	color: #d33;
+	color: @color-link-new;
 }
 
 /* self links */
@@ -25,23 +27,23 @@ a.mw-selflink:visited {
 }
 
 a.new:visited {
-	color: #a55858;
+	color: @color-link-new--visited;
 }
 
 /* Interwiki & External links */
 .mw-parser-output a.extiw,
 .mw-parser-output a.external {
-	color: #36b;
+	color: @color-link-external;
 }
 
 .mw-parser-output a.extiw:visited,
 .mw-parser-output a.external:visited {
-	color: #636; /* See T5112. */
+	color: @color-link-external--visited;
 }
 
 .mw-parser-output a.extiw:active,
 .mw-parser-output a.external:active {
-	color: #b63;
+	color: @color-link-external--active;
 }
 
 /* Underline preference */
