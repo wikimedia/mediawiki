@@ -255,7 +255,17 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	public function where( $conds ) {
 		if ( is_array( $conds ) ) {
-			$this->conds = array_merge( $this->conds, $conds );
+			foreach ( $conds as $key => $cond ) {
+				if ( is_int( $key ) ) {
+					$this->conds[] = $cond;
+				} elseif ( isset( $this->conds[$key] ) ) {
+					// T288882
+					$this->conds[] = $this->db->makeList(
+						[ $key => $cond ], IDatabase::LIST_AND );
+				} else {
+					$this->conds[$key] = $cond;
+				}
+			}
 		} else {
 			$this->conds[] = $conds;
 		}
