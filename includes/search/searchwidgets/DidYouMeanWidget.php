@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
+use Html;
 use ISearchResultSet;
 use SpecialSearch;
 
@@ -31,7 +32,7 @@ class DidYouMeanWidget {
 			return '';
 		}
 
-		return "<div class='searchdidyoumean'>$html</div>";
+		return Html::rawElement( 'div', [ 'class' => 'searchdidyoumean' ], $html );
 	}
 
 	/**
