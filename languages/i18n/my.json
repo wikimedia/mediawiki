@@ -2569,6 +2569,7 @@
 	"feedback-submit": "ထည့်သွင်းရန်",
 	"feedback-thanks-title": "ကျေးဇူးတင်ပါသည်",
 	"searchsuggest-search": "{{SITENAME}} တွင် ရှာဖွေရန်",
+	"api-clientside-error-noconnect": "ဆာဗာသို့ မချိတ်ဆက်နိုင်ပါ။ အလုပ်ဖြစ်သော အင်တာနက်ကွန်နက်ရှင်ရအောင် သေချာပြုလုပ်၍ ထပ်မံကြိုးစားကြည့်ပါ။",
 	"api-clientside-error-timeout": "မျော်မှန်းသည့်အချိန်အတွင်း ဆာဗာက မတုန့်ပြန်ခဲ့ပါ။",
 	"api-error-unknown-warning": "မသိသေးသော သတိပေးချက်: \"$1\"။",
 	"api-error-unknownerror": "အမည်မသိ အမှား - \"$1\"",
