@@ -402,7 +402,7 @@
 			didPropagate = true;
 
 		// Keep going until the last iteration performed no actions.
-		do {
+		while ( didPropagate ) {
 			didPropagate = false;
 
 			// Stage 1: Propagate failures
@@ -463,7 +463,7 @@
 					didPropagate = true;
 				}
 			}
-		} while ( didPropagate );
+		}
 
 		willPropagate = false;
 	}
