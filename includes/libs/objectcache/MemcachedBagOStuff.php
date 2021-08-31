@@ -43,9 +43,9 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? 917504; // < 1MiB
 		parent::__construct( $params );
 
-		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
 		$this->routingPrefix = $params['routingPrefix'] ?? '';
 
+		// ...and does not use special disk-cache plugins
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SERVICE;
 	}
 

@@ -64,7 +64,6 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		$this->maxCacheKeys = $maxKeys;
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SCRIPT;
-		$this->attrMap[self::ATTR_LOCALITY] = self::QOS_LOCALITY_PROC;
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {

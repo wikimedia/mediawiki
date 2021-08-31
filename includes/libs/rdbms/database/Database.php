@@ -137,8 +137,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxStatusIgnoredCause;
 	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
 	private $trxTimestamp = null;
-	/** @var float Replication lag estimate at the time of BEGIN for the last transaction */
-	private $trxReplicaLag = null;
+	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
+	private $trxReplicaLagStatus = null;
 	/** @var string|null Name of the function that start the last transaction */
 	private $trxFname = null;
 	/** @var bool Whether possible write queries were done in the last transaction started */
@@ -4821,8 +4821,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
 		// tables are used, this avoids counting snapshot lag as part of replication lag.
-		$this->trxReplicaLag = null; // clear cached value first
-		$this->trxReplicaLag = $this->getApproximateLagStatus()['lag'];
+		$this->trxReplicaLagStatus = null; // clear cached value first
+		$this->trxReplicaLagStatus = $this->getApproximateLagStatus();
 		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
 		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
 		// with the transaction just because startAtomic() has not yet finished updating the
@@ -5164,9 +5164,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.27
 	 */
 	final protected function getRecordedTransactionLagStatus() {
-		return ( $this->trxLevel() && $this->trxReplicaLag !== null )
-			? [ 'lag' => $this->trxReplicaLag, 'since' => $this->trxTimestamp() ]
-			: null;
+		return $this->trxLevel() ? $this->trxReplicaLagStatus : null;
 	}
 
 	/**

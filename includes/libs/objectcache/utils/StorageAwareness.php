@@ -30,56 +30,39 @@ namespace Wikimedia\LightweightObjectStore;
  * @since 1.35
  */
 interface StorageAwareness {
-	/** @var int No error */
+	/** No storage medium error */
 	public const ERR_NONE = 0;
-	/** @var int No store server/medium response */
+	/** Storage medium failed to yield a response */
 	public const ERR_NO_RESPONSE = 1;
-	/** @var int Cannot connect to store server/medium */
+	/** Storage medium could not be reached */
 	public const ERR_UNREACHABLE = 2;
-	/** @var int Operation failed */
+	/** Storage medium operation failed due to usage limitations or an I/O error */
 	public const ERR_UNEXPECTED = 3;
 
-	/** @var int Emulation/fallback mode; see QOS_EMULATION_*; higher is better */
+	/** Emulation/fallback mode; see QOS_EMULATION_*; higher is better */
 	public const ATTR_EMULATION = 1;
-	/** @var int Multi-DC consistency of SYNC_WRITES; see QOS_SYNCWRITES_*; higher is better */
-	public const ATTR_SYNCWRITES = 2;
-	/** @var int Locality; see QOS_LOCALITY_*; higher is better */
-	public const ATTR_LOCALITY = 3;
-	/** @var int Durability; see QOS_DURABILITY_*; higher is better */
-	public const ATTR_DURABILITY = 4;
+	/** Durability of writes; see QOS_DURABILITY_* (higher means stronger) */
+	public const ATTR_DURABILITY = 2;
 
-	/** @var int Fallback disk-based SQL store */
+	/** Fallback disk-based SQL store */
 	public const QOS_EMULATION_SQL = 1;
 
-	/** @var int Asynchronous; eventually consistent or even "best effort" replicated */
-	public const QOS_SYNCWRITES_NONE = 1;
-	/** @var int Synchronous; eventually consistent or even "best effort" replicated */
-	public const QOS_SYNCWRITES_BE = 2;
-	/** @var int Synchronous with quorum; (replicas read + replicas written) > quorum */
-	public const QOS_SYNCWRITES_QC = 3;
-	/** @var int Synchronous; strict serializable */
-	public const QOS_SYNCWRITES_SS = 4;
+	/** Data is stored on remote hosts and accessed via the local area network */
+	public const QOS_LOCALITY_LAN = 1;
+	/** Data is stored on the local host and accessed via shared RAM, sockets, or filesystems */
+	public const QOS_LOCALITY_SRV = 2;
 
-	/** @var int Data is replicated accross a wide area network */
-	public const QOS_LOCALITY_WAN = 1;
-	/** @var int Data is stored on servers within the local area network */
-	public const QOS_LOCALITY_LAN = 2;
-	/** @var int Data is stored in RAM owned by another process or in the local filesystem */
-	public const QOS_LOCALITY_SRV = 3;
-	/** @var int Data is stored in RAM owned by this process */
-	public const QOS_LOCALITY_PROC = 4;
-
-	/** @var int Data is never saved to begin with (blackhole store) */
+	/** Data is never saved to begin with (blackhole store) */
 	public const QOS_DURABILITY_NONE = 1;
-	/** @var int Data is lost at the end of the current web request or CLI script */
+	/** Data is lost at the end of the current web request or CLI script */
 	public const QOS_DURABILITY_SCRIPT = 2;
-	/** @var int Data is lost once the service storing the data restarts */
+	/** Data is lost once the service storing the data restarts */
 	public const QOS_DURABILITY_SERVICE = 3;
-	/** @var int Data is saved to disk, though without immediate fsync() */
+	/** Data is saved to disk and writes do not usually block on fsync() */
 	public const QOS_DURABILITY_DISK = 4;
-	/** @var int Data is saved to disk via an RDBMS, usually with immediate fsync() */
+	/** Data is saved to disk and writes usually block on fsync(), like a standard RDBMS */
 	public const QOS_DURABILITY_RDBMS = 5;
 
-	/** @var int Generic "unknown" value; useful for comparisons (always "good enough") */
+	/** Generic "unknown" value; useful for comparisons (always "good enough") */
 	public const QOS_UNKNOWN = INF;
 }
