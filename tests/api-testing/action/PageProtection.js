@@ -12,9 +12,91 @@ describe( 'Page protection', function () {
 		wikiUser = await action.alice();
 	} );
 
+	describe( 'permission checks', function () {
+		it( 'should allow only admins to protect and unprotect an existing page', async () => {
+			const page = utils.title( 'ProtectionTest_' );
+			await admin.edit( page, { text: 'A page to protect' } );
+
+			// regular user cannot protect
+			const wikiUserToken = await wikiUser.token();
+			const userTriesToProtect = await wikiUser.actionError( 'protect', {
+				title: page,
+				token: wikiUserToken,
+				protections: 'edit=autoconfirmed'
+			}, 'POST' );
+
+			assert.equal( userTriesToProtect.code, 'permissiondenied' );
+
+			// sysop can protect
+			const adminToken = await admin.token();
+			const adminProtects = await admin.action( 'protect', {
+				title: page,
+				token: adminToken,
+				protections: 'edit=sysop'
+			}, 'POST' );
+			assert.equal( adminProtects.protect.protections[ 0 ].edit, 'sysop' );
+
+			// anon user cannot edit
+			const anonToken = await anonymousUser.token();
+			const anonTriesToEdit = await anonymousUser.actionError( 'edit', {
+				title: page,
+				token: anonToken,
+				text: 'Eve can not edit'
+			}, 'POST' );
+
+			assert.equal( anonTriesToEdit.code, 'protectedpage' );
+
+			// regular user cannot unprotect
+			const userTriesToUnprotect = await wikiUser.actionError( 'protect', {
+				title: page,
+				token: wikiUserToken,
+				protections: ''
+			}, 'POST' );
+
+			assert.equal( userTriesToUnprotect.code, 'permissiondenied' );
+
+			// sysop can unprotect
+			await admin.action( 'protect', {
+				title: page,
+				token: adminToken,
+				protections: ''
+			}, 'POST' );
+
+			// anon can edit now
+			await anonymousUser.edit( page, { text: 'even can edit now!' } );
+		} );
+
+	} );
+
+	describe( 'cascading protection', function () {
+		it( 'should prevent regular users from editing templates used on a protected page', async () => {
+			const template = utils.title( 'Template:Protected_' );
+			const page = utils.title( 'Unprotected_' );
+
+			await admin.edit( template, { text: 'Whatever' } );
+
+			await admin.edit( page, { text: `Using {{${template}}}` } );
+			await admin.action( 'protect', {
+				title: page,
+				token: await admin.token(),
+				protections: 'edit=sysop',
+				cascade: 'yes'
+			}, 'POST' );
+
+			const userTriesToEditTemplate = await wikiUser.actionError( 'edit', {
+				title: page,
+				token: await wikiUser.token(),
+				text: 'evil content'
+			}, 'POST' );
+
+			assert.equal( userTriesToEditTemplate.code, 'protectedpage' );
+		} );
+	} );
+
 	describe( 'levels', function () {
 		const protectedPage = utils.title( 'Protected_' );
 		const semiProtectedPage = utils.title( 'SemiProtected_' );
+		const protectedNonexistingPage = utils.title( 'Nonexisting_' );
 
 		before( async () => {
 			// Get edit token for admin
@@ -29,6 +111,9 @@ describe( 'Page protection', function () {
 			// Add edit protections to only allow members of sysop group to edit Protected page
 			const addSysopProtection = await admin.action( 'protect', { title: protectedPage, token: adminEditToken, protections: 'edit=sysop' }, 'POST' );
 			assert.equal( addSysopProtection.protect.protections[ 0 ].edit, 'sysop' );
+
+			const addSysopProtectionNonexisting = await admin.action( 'protect', { title: protectedNonexistingPage, token: adminEditToken, protections: 'create=sysop' }, 'POST' );
+			assert.equal( addSysopProtectionNonexisting.protect.protections[ 0 ].create, 'sysop' );
 
 			// Add edit protections to only allow auto confirmed users to edit Semi Protected page
 			const addAutoConfirmedProtection = await admin.action( 'protect', { title: semiProtectedPage, token: adminEditToken, protections: 'edit=autoconfirmed' }, 'POST' );
@@ -49,6 +134,17 @@ describe( 'Page protection', function () {
 				title: protectedPage,
 				token,
 				text: 'wikiUser editing protected page'
+			}, 'POST' );
+
+			assert.equal( editPage.code, 'protectedpage' );
+		} );
+
+		it( 'should NOT allow autoconfirmed user to create a Protected title', async () => {
+			const token = await wikiUser.token();
+			const editPage = await wikiUser.actionError( 'edit', {
+				title: protectedNonexistingPage,
+				token,
+				text: 'wikiUser creating protected title'
 			}, 'POST' );
 
 			assert.equal( editPage.code, 'protectedpage' );
