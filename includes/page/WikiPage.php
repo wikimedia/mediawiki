@@ -2731,7 +2731,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->setTags( $tags ?: [] )
 			->setLogSubtype( $logsubtype )
 			->forceImmediate( $immediate )
-			->delete( $reason );
+			->deleteUnsafe( $reason );
 		$error = $deletePage->getLegacyHookErrors();
 		if ( $status->isGood() && $status->value === false ) {
 			// BC for scheduled deletion

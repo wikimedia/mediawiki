@@ -19,15 +19,19 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
+use Message;
 use ObjectCache;
 use ResourceLoaderWikiModule;
 use SearchUpdate;
 use SiteStatsUpdate;
 use Status;
+use StatusValue;
 use WebRequest;
 use WikiMap;
 use Wikimedia\IPUtils;
@@ -44,6 +48,7 @@ class DeletePage {
 	public const CONSTRUCTOR_OPTIONS = [
 		'DeleteRevisionsBatchSize',
 		'ActorTableSchemaMigrationStage',
+		'DeleteRevisionsLimit',
 	];
 
 	/** @var HookRunner */
@@ -67,6 +72,8 @@ class DeletePage {
 	private $page;
 	/** @var UserIdentity */
 	private $deleter;
+	/** @var Authority */
+	private $deleterAuthority;
 
 	/** @var bool */
 	private $suppress = false;
@@ -101,6 +108,7 @@ class DeletePage {
 
 		$this->page = $services->getWikiPageFactory()->newFromTitle( $page );
 		$this->deleter = $deleter;
+		$this->deleterAuthority = $services->getUserFactory()->newFromUserIdentity( $deleter );
 	}
 
 	/**
@@ -157,8 +165,74 @@ class DeletePage {
 	}
 
 	/**
-	 * Back-end article deletion
-	 * Deletes the article with database consistency, writes logs, purges caches
+	 * Same as deleteUnsafe, but checks permissions.
+	 *
+	 * @param string $reason
+	 * @return StatusValue
+	 */
+	public function deleteIfAllowed( string $reason ): StatusValue {
+		$status = $this->authorizeDeletion();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
+		return $this->deleteUnsafe( $reason );
+	}
+
+	/**
+	 * @return PermissionStatus
+	 */
+	private function authorizeDeletion(): PermissionStatus {
+		$status = PermissionStatus::newEmpty();
+		$this->deleterAuthority->authorizeWrite( 'delete', $this->page, $status );
+		if (
+			!$this->deleterAuthority->authorizeWrite( 'bigdelete', $this->page ) &&
+			$this->isBigDeletion()
+		) {
+			$status->fatal( 'delete-toobig', Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) ) );
+		}
+		return $status;
+	}
+
+	private function isBigDeletion(): bool {
+		$revLimit = $this->options->get( 'DeleteRevisionsLimit' );
+		if ( !$revLimit ) {
+			return false;
+		}
+
+		$revCount = $this->revisionStore->countRevisionsByPageId(
+			$this->loadBalancer->getConnectionRef( DB_REPLICA ),
+			$this->page->getId()
+		);
+
+		return $revCount > $revLimit;
+	}
+
+	/**
+	 * Determines if this deletion would be batched (executed over time by the job queue)
+	 * or not (completed in the same request as the delete call).
+	 *
+	 * It is unlikely but possible that an edit from another request could push the page over the
+	 * batching threshold after this function is called, but before the caller acts upon the
+	 * return value. Callers must decide for themselves how to deal with this. $safetyMargin
+	 * is provided as an unreliable but situationally useful help for some common cases.
+	 *
+	 * @param int $safetyMargin Added to the revision count when checking for batching
+	 * @return bool True if deletion would be batched, false otherwise
+	 */
+	public function isBatchedDelete( int $safetyMargin = 0 ): bool {
+		$revCount = $this->revisionStore->countRevisionsByPageId(
+			$this->loadBalancer->getConnectionRef( DB_REPLICA ),
+			$this->page->getId()
+		);
+		$revCount += $safetyMargin;
+
+		return $revCount >= $this->options->get( 'DeleteRevisionsBatchSize' );
+	}
+
+	/**
+	 * Back-end article deletion: deletes the article with database consistency, writes logs, purges caches.
+	 * @note This method doesn't check user permissions. Use deleteIfAllowed for that.
 	 *
 	 * @param string $reason Delete reason for deletion log
 	 * @return Status Status object:
@@ -167,7 +241,7 @@ class DeletePage {
 	 *   - If the page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
 	 *   - A fatal Status otherwise.
 	 */
-	public function delete( string $reason ): Status {
+	public function deleteUnsafe( string $reason ): Status {
 		$status = Status::newGood();
 
 		$legacyDeleter = MediaWikiServices::getInstance()
