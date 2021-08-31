@@ -56,30 +56,17 @@ class LogEventsList extends ContextSource {
 	private $hookRunner;
 
 	/**
-	 * The first two parameters used to be $skin and $out, but now only a context
-	 * is needed, that's why there's a second unused parameter.
-	 *
 	 * @stable to call. As of the 1.36 release, there is no factory for this class, and it is
 	 *         instantiated directly by several extensions. The constructor needs to retain
 	 *         backwards compatibility until a factory has been introduced.
 	 *
-	 * @param IContextSource|Skin $context Context to use; formerly it was
-	 *   a Skin object. Use of Skin is deprecated.
-	 * @param LinkRenderer|null $linkRenderer previously unused
+	 * @param IContextSource $context
+	 * @param LinkRenderer|null $linkRenderer
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
 	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
 	public function __construct( $context, $linkRenderer = null, $flags = 0 ) {
-		if ( $context instanceof IContextSource ) {
-			$this->setContext( $context );
-		} else {
-			// Old parameters, $context should be a Skin object
-			wfDeprecatedMsg(
-				'Passing Skin object to ' . __METHOD__ . ' has been deprecated.', '1.36'
-			);
-			$this->setContext( $context->getContext() );
-		}
-
+		$this->setContext( $context );
 		$this->flags = $flags;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		if ( $linkRenderer instanceof LinkRenderer ) {
