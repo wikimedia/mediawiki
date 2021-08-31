@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Rdbms;
 
+use Countable;
 use OutOfBoundsException;
 use SeekableIterator;
 use stdClass;
@@ -22,13 +23,20 @@ use stdClass;
  *
  * @ingroup Database
  */
-interface IResultWrapper extends SeekableIterator {
+interface IResultWrapper extends Countable, SeekableIterator {
 	/**
 	 * Get the number of rows in a result object
 	 *
 	 * @return int
 	 */
 	public function numRows();
+
+	/**
+	 * Get the number of rows in a result object
+	 *
+	 * @return int
+	 */
+	public function count();
 
 	/**
 	 * Fetch the next row from the given result object, in object form. Fields can be retrieved with

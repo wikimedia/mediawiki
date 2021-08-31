@@ -1527,7 +1527,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
-			->willReturn( null );
+			->willReturn( [] );
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 		$mockDb->expects( $this->never() )

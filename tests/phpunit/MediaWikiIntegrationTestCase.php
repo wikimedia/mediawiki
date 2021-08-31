@@ -2048,7 +2048,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$options + [ 'ORDER BY' => $fields ],
 			$join_conds
 		);
-		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
+		$this->assertNotFalse( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;
 
@@ -2057,7 +2057,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::stripStringKeys( $r );
 
 			$i += 1;
-			$this->assertNotEmpty( $r, "row #$i missing" );
+			$this->assertNotFalse( $r, "row #$i missing" );
 
 			$this->assertEquals( $expected, $r, "row #$i mismatches" );
 		}

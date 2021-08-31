@@ -115,7 +115,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return bool True if this RevisionRecord is known to have same content as $rec.
 	 *         False if the content is different (or not known to be the same).
 	 */
-	public function hasSameContent( RevisionRecord $rec ) {
+	public function hasSameContent( RevisionRecord $rec ): bool {
 		if ( $rec === $this ) {
 			return true;
 		}
@@ -153,7 +153,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return Content|null The content of the given slot, or null if access is forbidden.
 	 */
-	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): ?Content {
 		// XXX: throwing an exception would be nicer, but would a further
 		// departure from the old signature of Revision::getContent() when it existed,
 		// and thus result in more complex and error prone refactoring.
@@ -177,7 +177,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return SlotRecord The slot meta-data. If access to the slot's content is forbidden,
 	 *         calling getContent() on the SlotRecord will throw an exception.
 	 */
-	public function getSlot( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getSlot( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): SlotRecord {
 		$slot = $this->mSlots->getSlot( $role );
 
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
@@ -194,7 +194,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return bool
 	 */
-	public function hasSlot( $role ) {
+	public function hasSlot( $role ): bool {
 		return $this->mSlots->hasSlot( $role );
 	}
 
@@ -204,7 +204,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return string[]
 	 */
-	public function getSlotRoles() {
+	public function getSlotRoles(): array {
 		return $this->mSlots->getSlotRoles();
 	}
 
@@ -219,7 +219,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getSlots() {
+	public function getSlots(): RevisionSlots {
 		return $this->mSlots;
 	}
 
@@ -237,7 +237,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getOriginalSlots() {
+	public function getOriginalSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getOriginalSlots() );
 	}
 
@@ -252,7 +252,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getInheritedSlots() {
+	public function getInheritedSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getInheritedSlots() );
 	}
 
@@ -367,7 +367,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return PageIdentity
 	 */
-	public function getPage() {
+	public function getPage(): PageIdentity {
 		return $this->mPage;
 	}
 

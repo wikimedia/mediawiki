@@ -1099,7 +1099,7 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, $conn, $role );
 	}
 
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
@@ -1112,7 +1112,12 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role );
 	}
 
-	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ) {
+	public function getMaintenanceConnectionRef(
+		$i,
+		$groups = [],
+		$domain = false,
+		$flags = 0
+	): MaintainableDBConnRef {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' CONN_SILENCE_ERRORS is not supported'

@@ -146,7 +146,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
-	public function newMainLB( $domain = false, $owner = null ) {
+	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$database = $domainInstance->getDatabase();
 		$section = $this->getSectionFromDatabase( $database );
@@ -172,7 +172,7 @@ class LBFactoryMulti extends LBFactory {
 		);
 	}
 
-	public function getMainLB( $domain = false ) {
+	public function getMainLB( $domain = false ): ILoadBalancer {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
 
@@ -183,7 +183,7 @@ class LBFactoryMulti extends LBFactory {
 		return $this->mainLBs[$section];
 	}
 
-	public function newExternalLB( $cluster, $owner = null ) {
+	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
 		if ( !isset( $this->externalLoadsByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
@@ -200,7 +200,7 @@ class LBFactoryMulti extends LBFactory {
 		);
 	}
 
-	public function getExternalLB( $cluster ) {
+	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB(
 				$cluster,
@@ -211,7 +211,7 @@ class LBFactoryMulti extends LBFactory {
 		return $this->externalLBs[$cluster];
 	}
 
-	public function getAllMainLBs() {
+	public function getAllMainLBs(): array {
 		$lbs = [];
 		foreach ( $this->sectionsByDB as $db => $section ) {
 			if ( !isset( $lbs[$section] ) ) {
@@ -222,7 +222,7 @@ class LBFactoryMulti extends LBFactory {
 		return $lbs;
 	}
 
-	public function getAllExternalLBs() {
+	public function getAllExternalLBs(): array {
 		$lbs = [];
 		foreach ( $this->externalLoadsByCluster as $cluster => $unused ) {
 			$lbs[$cluster] = $this->getExternalLB( $cluster );

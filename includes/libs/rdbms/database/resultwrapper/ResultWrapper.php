@@ -122,6 +122,10 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->doNumRows();
 	}
 
+	public function count() {
+		return $this->doNumRows();
+	}
+
 	public function fetchObject() {
 		$this->currentPos = $this->nextPos++;
 		$this->currentRow = $this->doFetchObject();

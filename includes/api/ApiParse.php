@@ -270,7 +270,7 @@ class ApiParse extends ApiBase {
 
 				$pageObj = $this->getTitleOrPageId( $pageParams, 'fromdb' );
 				$titleObj = $pageObj->getTitle();
-				if ( !$titleObj || !$titleObj->exists() ) {
+				if ( !$titleObj->exists() ) {
 					$this->dieWithError( 'apierror-missingtitle' );
 				}
 

@@ -4236,7 +4236,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return BacklinkCache
 	 */
-	public function getBacklinkCache() {
+	public function getBacklinkCache(): BacklinkCache {
 		return BacklinkCache::get( $this );
 	}
 

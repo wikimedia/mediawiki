@@ -117,7 +117,7 @@ interface ILBFactory {
 	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newMainLB( $domain = false, $owner = null );
+	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer;
 
 	/**
 	 * Get the tracked load balancer instance for a main cluster
@@ -127,7 +127,7 @@ interface ILBFactory {
 	 * @param bool|string $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
 	 */
-	public function getMainLB( $domain = false );
+	public function getMainLB( $domain = false ): ILoadBalancer;
 
 	/**
 	 * Create a new load balancer instance for an external cluster
@@ -144,7 +144,7 @@ interface ILBFactory {
 	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newExternalLB( $cluster, $owner = null );
+	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer;
 
 	/**
 	 * Get the tracked load balancer instance for an external cluster
@@ -154,7 +154,7 @@ interface ILBFactory {
 	 * @param string $cluster External cluster name
 	 * @return ILoadBalancer
 	 */
-	public function getExternalLB( $cluster );
+	public function getExternalLB( $cluster ): ILoadBalancer;
 
 	/**
 	 * Get the tracked load balancer instances for all main clusters
@@ -166,7 +166,7 @@ interface ILBFactory {
 	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
-	public function getAllMainLBs();
+	public function getAllMainLBs(): array;
 
 	/**
 	 * Get the tracked load balancer instances for all external clusters
@@ -176,7 +176,7 @@ interface ILBFactory {
 	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
-	public function getAllExternalLBs();
+	public function getAllExternalLBs(): array;
 
 	/**
 	 * Execute a function for each instantiated tracked load balancer instance
