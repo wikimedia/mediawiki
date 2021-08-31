@@ -112,7 +112,8 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 			$this->mUser = $freshUser;
 		} else {
 			throw new RevisionAccessException(
-				'Unable to load fresh row for rev_id: ' . $this->mId
+				'Unable to load fresh row for rev_id: {rev_id}',
+				[ 'rev_id' => $this->mId ]
 			);
 		}
 	}
