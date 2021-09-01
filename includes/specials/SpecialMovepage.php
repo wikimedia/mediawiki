@@ -731,7 +731,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) && $this->fixRedirects ) {
-			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
+			DoubleRedirectJob::fixRedirects( 'move', $ot );
 		}
 
 		$out = $this->getOutput();
@@ -868,7 +868,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 				if ( $status->isOK() ) {
 					if ( $this->fixRedirects ) {
-						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
+						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage );
 					}
 					$oldLink = $linkRenderer->makeLink(
 						$oldSubpage,
