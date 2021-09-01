@@ -891,7 +891,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * Returns an array of associative arrays with information about each tag:
 	 * - name: Tag name (string)
-	 * - labelMsg: Short description message (Message object)
+	 * - labelMsg: Short description message (Message object, or false for hidden tags)
 	 * - label: Short description message (raw message contents)
 	 * - descriptionMsg: Long description message (Message object)
 	 * - description: Long description message (raw message contents)
@@ -925,15 +925,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						$hits > 0
 					) {
 						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $context );
-						if ( $labelMsg === false ) {
-							// Tag is hidden, skip it
-							continue;
-						}
 						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
 						$result[] = [
 							'name' => $tagName,
 							'labelMsg' => $labelMsg,
-							'label' => $labelMsg->plain(),
+							'label' => $labelMsg ? $labelMsg->plain() : $tagName,
 							'descriptionMsg' => $descriptionMsg,
 							'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
@@ -964,7 +960,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $context->getLanguage() );
 		foreach ( $tags as &$tagInfo ) {
-			$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
+			if ( $tagInfo['labelMsg'] ) {
+				$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
+			} else {
+				$tagInfo['label'] = $context->msg( 'rcfilters-tag-hidden', $tagInfo['name'] )->text();
+			}
 			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
 				$language->truncateForVisual(
 					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
