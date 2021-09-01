@@ -85,7 +85,7 @@ class RevisionRenderer {
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
 	 *        (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
 	 * @param array $hints Hints given as an associative array. Known keys:
-	 *      - 'use-master' Use master when rendering for the parser cache during save.
+	 *      - 'use-master' Use primary DB when rendering for the parser cache during save.
 	 *        Default is to use a replica.
 	 *      - 'audience' the audience to use for content access. Default is
 	 *        RevisionRecord::FOR_PUBLIC if $forUser is not set, RevisionRecord::FOR_THIS_USER
@@ -167,7 +167,7 @@ class RevisionRenderer {
 	}
 
 	private function getSpeculativeRevId( $dbIndex ) {
-		// Use a separate master connection in order to see the latest data, by avoiding
+		// Use a separate primary DB connection in order to see the latest data, by avoiding
 		// stale data from REPEATABLE-READ snapshots.
 		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
@@ -182,7 +182,7 @@ class RevisionRenderer {
 	}
 
 	private function getSpeculativePageId( $dbIndex ) {
-		// Use a separate master connection in order to see the latest data, by avoiding
+		// Use a separate primary DB connection in order to see the latest data, by avoiding
 		// stale data from REPEATABLE-READ snapshots.
 		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 

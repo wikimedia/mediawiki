@@ -407,7 +407,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - serverName : Optional readable name for the database server.
 	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the database server.
-	 *   - topologicalMaster: Optional name of the master server within the replication topology.
+	 *   - topologicalMaster: Optional name of the primary server within the replication topology.
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
@@ -678,7 +678,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Get a handle to the master server of the cluster to which this server belongs
+	 * Get a handle to the primary DB server of the cluster to which this server belongs
 	 *
 	 * @return IDatabase|null
 	 * @since 1.27
@@ -1125,8 +1125,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Main use cases:
 	 *
 	 * - Subsequent web requests should not need to wait for replication from
-	 *   the master position seen by this web request, unless this request made
-	 *   changes to the master. This is handled by ChronologyProtector by checking
+	 *   the primary position seen by this web request, unless this request made
+	 *   changes to the primary DB. This is handled by ChronologyProtector by checking
 	 *   doneWrites() at the end of the request. doneWrites() returns true if any
 	 *   query set lastWriteTime; which query() does based on isWriteQuery().
 	 *
@@ -1150,7 +1150,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// treat these as write queries, in that their results have "affected rows"
 		// as meta data as from writes, instead of "num rows" as from reads.
 		// But, we treat them as read queries because when reading data (from
-		// either replica or master) we use transactions to enable repeatable-read
+		// either replica or primary DB) we use transactions to enable repeatable-read
 		// snapshots, which ensures we get consistent results from the same snapshot
 		// for all queries within a request. Use cases:
 		// - Treating these as writes would trigger ChronologyProtector (see method doc).
@@ -1352,7 +1352,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 
 			// Permit temporary table writes on replica DB connections
-			// but require a writable master connection for any persistent writes.
+			// but require a writable primary DB connection for any persistent writes.
 			if ( $isPermWrite ) {
 				$this->assertIsWritableMaster();
 
@@ -3722,7 +3722,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$selectJoinConds
 	) {
 		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
-		// on only the master (without needing row-based-replication). It also makes it easy to
+		// on only the primary DB (without needing row-based-replication). It also makes it easy to
 		// know how big the INSERT is going to be.
 		$fields = [];
 		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
@@ -5235,7 +5235,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getLag() {
 		if ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) {
-			return 0; // this is the master
+			return 0; // this is the primary DB
 		} elseif ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
 			return 0; // static dataset
 		}

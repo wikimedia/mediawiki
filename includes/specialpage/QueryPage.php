@@ -405,7 +405,7 @@ abstract class QueryPage extends SpecialPage {
 							[ 'qc_type' => $this->getName() ],
 							$fname
 						);
-						// Save results into the querycache table on the master
+						// Save results into the querycache table on the primary DB
 						if ( count( $vals ) ) {
 							$dbw->insert( 'querycache', $vals, $fname );
 						}

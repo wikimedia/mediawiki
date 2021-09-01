@@ -222,7 +222,7 @@ interface ILBFactory {
 	 *
 	 * This is useful for two main cases:
 	 *   - a) Committing changes to the masters
-	 *   - b) Releasing the snapshot on all connections, master and replica DBs
+	 *   - b) Releasing the snapshot on all connections, primary and replica DBs
 	 *
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
@@ -231,7 +231,7 @@ interface ILBFactory {
 	public function commitAll( $fname = __METHOD__, array $options = [] );
 
 	/**
-	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
+	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
 	 *   - commitMasterChanges()
@@ -248,7 +248,7 @@ interface ILBFactory {
 	public function beginMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Commit changes and clear view snapshots on all master connections
+	 * Commit changes and clear view snapshots on all primary connections
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -260,7 +260,7 @@ interface ILBFactory {
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] );
 
 	/**
-	 * Rollback changes on all master connections
+	 * Rollback changes on all primary connections
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -287,7 +287,7 @@ interface ILBFactory {
 	public function isReadyForRoundOperations();
 
 	/**
-	 * Determine if any master connection has pending changes
+	 * Determine if any primary connection has pending changes
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -305,7 +305,7 @@ interface ILBFactory {
 	public function laggedReplicaUsed();
 
 	/**
-	 * Determine if any master connection has pending/written changes from this request
+	 * Determine if any primary connection has pending/written changes from this request
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -315,7 +315,7 @@ interface ILBFactory {
 	public function hasOrMadeRecentMasterChanges( $age = null );
 
 	/**
-	 * Waits for the replica DBs to catch up to the current master position
+	 * Waits for the replica DBs to catch up to the current primary position
 	 *
 	 * Use this when updating very large numbers of rows, as in maintenance scripts,
 	 * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.

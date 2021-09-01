@@ -219,7 +219,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				->fetchUserIdentity() ??
 			// The actor ID mostly comes from DB, so if we can't find an actor by ID,
 			// it's most likely due to lagged replica and not cause it doesn't actually exist.
-			// Probably we just inserted it? Try master.
+			// Probably we just inserted it? Try primary database.
 			$this->newSelectQueryBuilder( self::READ_LATEST )
 				->caller( __METHOD__ )
 				->conds( [ 'actor_id' => $actorId ] )

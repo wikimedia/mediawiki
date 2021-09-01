@@ -1067,7 +1067,7 @@ class PageUpdater {
 
 			if ( $revPageId === $masterPageId ) {
 				wfWarn( __METHOD__ . ": Encountered stale Title object: old ID was $titlePageId, "
-					. "continuing with new ID from master, $masterPageId" );
+					. "continuing with new ID from primary DB, $masterPageId" );
 			} else {
 				throw new InvalidArgumentException(
 					"Revision inherited page ID $revPageId from its parent, "

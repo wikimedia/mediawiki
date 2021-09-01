@@ -145,9 +145,9 @@ interface IDatabase {
 	/** @var string Field for getLBInfo()/setLBInfo() */
 	public const LB_READ_ONLY_REASON = 'readOnlyReason';
 
-	/** @var string Master server than can stream OLTP updates to replica servers */
+	/** @var string primary DB server than can stream OLTP updates to replica servers */
 	public const ROLE_STREAMING_MASTER = 'streaming-master';
-	/** @var string Replica server that streams OLTP updates from the master server */
+	/** @var string Replica server that streams OLTP updates from the primary DB server */
 	public const ROLE_STREAMING_REPLICA = 'streaming-replica';
 	/** @var string Replica server of a static dataset that does not get OLTP updates */
 	public const ROLE_STATIC_CLONE = 'static-clone';
@@ -193,7 +193,7 @@ interface IDatabase {
 	public function getTopologyRole();
 
 	/**
-	 * Get the readable name of the sole root master server for the replication topology
+	 * Get the readable name of the sole root primary DB server for the replication topology
 	 *
 	 * A replication topology defines which servers can originate changes to a given dataset
 	 * and how those changes propagate among database servers. It is assumed that the server
@@ -1636,7 +1636,7 @@ interface IDatabase {
 	public function wasErrorReissuable();
 
 	/**
-	 * Wait for the replica DB to catch up to a given master position
+	 * Wait for the replica DB to catch up to a given primary DB position
 	 *
 	 * Note that this does not start any new transactions. If any existing transaction
 	 * is flushed, and this is called, then queries will reflect the point the DB was synced
@@ -1660,16 +1660,16 @@ interface IDatabase {
 	public function getReplicaPos();
 
 	/**
-	 * Get the position of this master
+	 * Get the position of this primary DB
 	 *
-	 * @return DBPrimaryPos|bool False if this is not a master
+	 * @return DBPrimaryPos|bool False if this is not a primary DB
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function getPrimaryPos();
 
 	/**
 	 * @deprecated since 1.37; use getPrimaryPos() instead.
-	 * @return DBPrimaryPos|bool False if this is not a master
+	 * @return DBPrimaryPos|bool False if this is not a primary DB
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function getMasterPos();
@@ -2096,7 +2096,7 @@ interface IDatabase {
 	 * This is intended for clearing out REPEATABLE-READ snapshots so that callers can
 	 * see a new point-in-time of the database. This is useful when one of many transaction
 	 * rounds finished and significant time will pass in the script's lifetime. It is also
-	 * useful to call on a replica DB after waiting on replication to catch up to the master.
+	 * useful to call on a replica DB after waiting on replication to catch up to the primary DB.
 	 *
 	 * @param string $fname Calling function name
 	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*

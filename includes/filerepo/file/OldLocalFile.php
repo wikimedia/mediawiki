@@ -293,7 +293,7 @@ class OldLocalFile extends LocalFile {
 			$fileQuery['joins']
 		);
 
-		if ( !$row ) { // fallback to master
+		if ( !$row ) { // fallback to primary DB
 			$dbr = $this->repo->getPrimaryDB();
 			$row = $dbr->selectRow(
 				$fileQuery['tables'],

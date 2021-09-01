@@ -829,7 +829,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param array $options Supported options are:
-	 *  - 'forWrite': whether to use the master database instead of a replace
+	 *  - 'forWrite': whether to use the primary database instead of a replica
 	 *  - 'sort': how to sort the titles, either SORT_ASC or SORT_DESC
 	 *  - 'sortByExpiry': whether to also sort results by expiration, with temporarily watched titles
 	 *                    above titles watched indefinitely and titles expiring soonest at the top

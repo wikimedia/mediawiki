@@ -424,7 +424,7 @@ abstract class MWLBFactory {
 				}
 			);
 			// Check for other windows to run them. A script may read or do a few writes
-			// to the master but mostly be writing to something else, like a file store.
+			// to the primary DB but mostly be writing to something else, like a file store.
 			$lbFactory->getMainLB()->setTransactionListener(
 				__METHOD__,
 				static function ( $trigger ) use ( $stats, $config ) {

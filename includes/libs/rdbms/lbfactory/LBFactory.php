@@ -445,7 +445,7 @@ abstract class LBFactory implements ILBFactory {
 			}
 		}
 
-		// Get all the master positions of applicable DBs right now.
+		// Get all the primary DB positions of applicable DBs right now.
 		// This can be faster since waiting on one cluster reduces the
 		// time needed to wait on the next clusters.
 		$masterPositions = array_fill( 0, count( $lbs ), false );
@@ -729,7 +729,7 @@ abstract class LBFactory implements ILBFactory {
 		} );
 
 		if ( !$usedCluster ) {
-			return $url; // no master/replica clusters touched
+			return $url; // no primary/replica clusters touched
 		}
 
 		return strpos( $url, '?' ) === false ? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
