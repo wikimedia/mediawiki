@@ -171,7 +171,7 @@ class UserAuthority implements Authority {
 		PageIdentity $target,
 		PermissionStatus $status = null
 	): bool {
-		// Note that we do not use RIGOR_SECURE to avoid hitting the master
+		// Note that we do not use RIGOR_SECURE to avoid hitting the primary
 		// database for read operations. RIGOR_FULL performs the same checks,
 		// but is subject to replication lag.
 		return $this->internalCan(
@@ -198,7 +198,7 @@ class UserAuthority implements Authority {
 	): bool {
 		// Any side-effects can be added here.
 
-		// Note that we do not use RIGOR_SECURE to avoid hitting the master
+		// Note that we do not use RIGOR_SECURE to avoid hitting the primary
 		// database for read operations. RIGOR_FULL performs the same checks,
 		// but is subject to replication lag.
 		return $this->internalCan(

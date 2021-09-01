@@ -45,7 +45,7 @@ use Wikimedia\WaitConditionLoop;
  * ### Purpose
  *
  * For performance and scalability reasons, almost all data is queried from replica databases.
- * Only queries relating to writing data, are sent to a database master. When rendering a web page
+ * Only queries relating to writing data, are sent to a primary database. When rendering a web page
  * with content or activity feeds on it, the very latest information may thus not yet be there.
  * That's okay in general, but if, for example, a client recently changed their preferences or
  * submitted new data, we do our best to make sure their next web response does reflect at least
@@ -62,11 +62,11 @@ use Wikimedia\WaitConditionLoop;
  *
  * A client performs a POST request, perhaps to publish an edit or change their preferences. This
  * request is routed to the primary DC (this is the responsibility of infrastructure outside
- * the web app). There, the data is saved to the database master, after which the database
+ * the web app). There, the data is saved to the primary database, after which the database
  * host will asynchronously replicate this to its replicas in the same and any other DCs.
  *
- * Toward the end of the response to this POST request, the application takes note of the database
- * master's current "position", and save this under a "clientId" key in the ChronologyProtector
+ * Toward the end of the response to this POST request, the application takes note of the primary
+ * database's current "position", and save this under a "clientId" key in the ChronologyProtector
  * store. The web response will also set two cookies that are similarly short-lived (about ten
  * seconds): `UseDC=master` and `cpPosIndex=<posIndex>@<write time>#<clientId>`.
  *
@@ -248,8 +248,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/**
 	 * Apply client "session consistency" replication position to a new ILoadBalancer
 	 *
-	 * If the stash has a previous master position recorded, this will try to make
-	 * sure that the next query to a replica DB of that master will see changes up
+	 * If the stash has a previous primary position recorded, this will try to make
+	 * sure that the next query to a replica DB of that primary DB will see changes up
 	 * to that position by delaying execution. The delay may timeout and allow stale
 	 * data if no non-lagged replica DBs are available.
 	 *
@@ -324,7 +324,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( !$this->shutdownTimestampsByCluster ) {
-			$this->logger->debug( __METHOD__ . ": no master positions/timestamps to save" );
+			$this->logger->debug( __METHOD__ . ": no primary positions/timestamps to save" );
 
 			return [];
 		}
@@ -351,7 +351,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		if ( $ok ) {
 			$bouncedPositions = [];
 			$this->logger->debug(
-				__METHOD__ . ": saved master positions/timestamp for DB cluster(s) $clusterList"
+				__METHOD__ . ": saved primary positions/timestamp for DB cluster(s) $clusterList"
 			);
 
 		} else {
@@ -359,7 +359,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$bouncedPositions = $this->shutdownPositionsByMaster;
 			// Raced out too many times or stash is down
 			$this->logger->warning(
-				__METHOD__ . ": failed to save master positions for DB cluster(s) $clusterList"
+				__METHOD__ . ": failed to save primary positions for DB cluster(s) $clusterList"
 			);
 		}
 
@@ -435,7 +435,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			": client ID is {$this->clientId}; key is {$this->key}"
 		);
 
-		// If there is an expectation to see master positions from a certain write
+		// If there is an expectation to see primary positions from a certain write
 		// index or higher, then block until it appears, or until a timeout is reached.
 		// Since the write index restarts each time the key is created, it is possible that
 		// a lagged store has a matching key write index. However, in that case, it should

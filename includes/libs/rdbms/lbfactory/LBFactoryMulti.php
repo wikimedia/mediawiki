@@ -28,7 +28,7 @@ use LogicException;
 use UnexpectedValueException;
 
 /**
- * A multi-database, multi-master factory for Wikimedia and similar installations
+ * A multi-database, multi-primary DB factory for Wikimedia and similar installations
  *
  * @ingroup Database
  */
@@ -56,7 +56,7 @@ class LBFactoryMulti extends LBFactory {
 	private $templateOverridesBySection;
 	/** @var array[] Map of (external cluster => server config map overrides) */
 	private $templateOverridesByCluster;
-	/** @var array Server config override map for all main/external master servers */
+	/** @var array Server config override map for all main/external primary DB servers */
 	private $masterTemplateOverrides;
 	/** @var array[] Map of (server name => server config map overrides) for all servers */
 	private $templateOverridesByServer;
@@ -86,7 +86,7 @@ class LBFactoryMulti extends LBFactory {
 	 *   - sectionsByDB: map of (database => main section). The database name "DEFAULT" is
 	 *      interpeted as a catch-all for all databases not otherwise mentioned. [optional]
 	 *   - sectionLoads: map of (main section => server name => load ratio); the first host
-	 *      listed in each section is the master server for that section. [optional]
+	 *      listed in each section is the primary DB server for that section. [optional]
 	 *   - groupLoadsBySection: map of (main section => group => server name => group load ratio).
 	 *      Any ILoadBalancer::GROUP_GENERIC group will be ignored. [optional]
 	 *   - groupLoadsByDB: map of (database => group => server name => load ratio) map. [optional]
@@ -279,12 +279,12 @@ class LBFactoryMulti extends LBFactory {
 	 * @return array[] List of server config maps
 	 */
 	private function makeServerConfigArrays( array $serverTemplate, array $groupLoads ) {
-		// The master server is the first host explicitly listed in the generic load group
+		// The primary DB server is the first host explicitly listed in the generic load group
 		if ( !$groupLoads[ILoadBalancer::GROUP_GENERIC] ) {
-			throw new UnexpectedValueException( "Empty generic load array; no master defined." );
+			throw new UnexpectedValueException( "Empty generic load array; no primary DB defined." );
 		}
 		$groupLoadsByServerName = $this->reindexGroupLoadsByServerName( $groupLoads );
-		// Get the ordered map of (server name => load); the master server is first
+		// Get the ordered map of (server name => load); the primary DB server is first
 		$genericLoads = $groupLoads[ILoadBalancer::GROUP_GENERIC];
 		// Implictly append any hosts that only appear in custom load groups
 		$genericLoads += array_fill_keys( array_keys( $groupLoadsByServerName ), 0 );

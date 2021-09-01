@@ -69,7 +69,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 	}
 
 	public function storeMulti( $type, array $dataByEntity, $ttl ) {
-		// Avoid opening a master connection when it's not needed.
+		// Avoid opening a primary DB connection when it's not needed.
 		// ResourceLoader::saveModuleDependenciesInternal calls this method unconditionally
 		// with empty values most of the time.
 		if ( !$dataByEntity ) {
@@ -121,7 +121,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 	}
 
 	public function remove( $type, $entities ) {
-		// Avoid opening a master connection when it's not needed.
+		// Avoid opening a primary DB connection when it's not needed.
 		// ResourceLoader::saveModuleDependenciesInternal calls this method unconditionally
 		// with empty values most of the time.
 		if ( !$entities ) {

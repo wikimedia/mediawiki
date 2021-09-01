@@ -59,7 +59,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 * @throws UserNotLoggedIn
 	 */
 	public function execute( $code ) {
-		// Ignore things like master queries/connections on GET requests.
+		// Ignore things like primary queries/connections on GET requests.
 		// It's very convenient to just allow formless link usage.
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 

@@ -26,7 +26,7 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 
 /**
- * A simple single-master LBFactory that gets its configuration from the b/c globals
+ * A simple single-primary DB LBFactory that gets its configuration from the b/c globals
  */
 class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */

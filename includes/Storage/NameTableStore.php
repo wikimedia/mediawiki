@@ -167,14 +167,14 @@ class NameTableStore {
 		if ( $searchResult === false ) {
 			$id = $this->store( $name );
 			if ( $id === null ) {
-				// RACE: $name was already in the db, probably just inserted, so load from master.
+				// RACE: $name was already in the db, probably just inserted, so load from primary DB.
 				// Use DBO_TRX to avoid missing inserts due to other threads or REPEATABLE-READs.
 				$table = $this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 
 				$searchResult = array_search( $name, $table, true );
 				if ( $searchResult === false ) {
 					// Insert failed due to IGNORE flag, but DB_PRIMARY didn't give us the data
-					$m = "No insert possible but master didn't give us a record for " .
+					$m = "No insert possible but primary DB didn't give us a record for " .
 						"'{$name}' in '{$this->table}'";
 					$this->logger->error( $m );
 					throw new NameTableAccessException( $m );
@@ -266,7 +266,7 @@ class NameTableStore {
 	 * If the id doesn't exist this will throw.
 	 * This should be used in cases where we believe the id already exists.
 	 *
-	 * Note: Calls to this method will result in a master select for non existing IDs.
+	 * Note: Calls to this method will result in a primary DB select for non existing IDs.
 	 *
 	 * @param int $id
 	 * @throws NameTableAccessException The id does not exist
