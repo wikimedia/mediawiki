@@ -90,7 +90,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
 	 *   - lagDetectionOptions : if using pt-heartbeat, this can be set to an array map to change
 	 *       the default behavior. Normally, the heartbeat row with the server
-	 *       ID of this server's master will be used. Set the "conds" field to
+	 *       ID of this server's primary DB will be used. Set the "conds" field to
 	 *       override the query conditions, e.g. ['shard' => 's1'].
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
 	 *   - insertSelectIsSafe : force that native INSERT SELECT is or is not safe [default: null]
@@ -563,17 +563,17 @@ abstract class DatabaseMysqlBase extends Database {
 			// Best method for multi-DC setups: use logical channel names
 			$ago = $this->fetchSecondsSinceHeartbeat( $options['conds'] );
 		} else {
-			// Standard method: use master server ID (works with stock pt-heartbeat)
+			// Standard method: use primary server ID (works with stock pt-heartbeat)
 			$masterInfo = $this->getMasterServerInfo();
 			if ( !$masterInfo ) {
 				$this->queryLogger->error(
-					"Unable to query master of {db_server} for server ID",
+					"Unable to query primary of {db_server} for server ID",
 					$this->getLogContext( [
 						'method' => __METHOD__
 					] )
 				);
 
-				return false; // could not get master server ID
+				return false; // could not get primary server ID
 			}
 
 			$conds = [ 'server_id' => intval( $masterInfo['serverId'] ) ];
@@ -610,7 +610,7 @@ abstract class DatabaseMysqlBase extends Database {
 			function () use ( $cache, $key, $fname ) {
 				// Get and leave a lock key in place for a short period
 				if ( !$cache->lock( $key, 0, 10 ) ) {
-					return false; // avoid master connection spike slams
+					return false; // avoid primary DB connection spike slams
 				}
 
 				$conn = $this->getLazyMasterHandle();
@@ -619,7 +619,7 @@ abstract class DatabaseMysqlBase extends Database {
 				}
 
 				$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-				// Connect to and query the master; catch errors to avoid outages
+				// Connect to and query the primary DB; catch errors to avoid outages
 				try {
 					$res = $conn->query( 'SELECT @@server_id AS id', $fname, $flags );
 					$row = $res ? $res->fetchObject() : false;
@@ -703,7 +703,7 @@ abstract class DatabaseMysqlBase extends Database {
 					$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
 				);
 
-				return -1; // this is the master itself?
+				return -1; // this is the primary DB itself?
 			}
 			// GTIDs with domains (channels) that are active and are present on the replica
 			$gtidsWait = $pos::getRelevantActiveGTIDs( $pos, $refPos );
@@ -786,7 +786,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Get the position of the master from SHOW SLAVE STATUS
+	 * Get the position of the primary DB from SHOW SLAVE STATUS
 	 *
 	 * @return MySQLPrimaryPos|bool
 	 */
@@ -816,7 +816,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Get the position of the master from SHOW MASTER STATUS
+	 * Get the position of the primary DB from SHOW MASTER STATUS
 	 *
 	 * @return MySQLPrimaryPos|bool
 	 */

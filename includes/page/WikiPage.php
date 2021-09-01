@@ -833,7 +833,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$revision = $this->getRevisionStore()
 				->getRevisionByPageId( $this->getId(), $latest, RevisionStore::READ_LOCKING );
 		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
-			// Bug T93976: if page_latest was loaded from the master, fetch the
+			// Bug T93976: if page_latest was loaded from the primary DB, fetch the
 			// revision from there as well, as it may not exist yet on a replica DB.
 			// Also, this keeps the queries in the same REPEATABLE-READ snapshot.
 			$revision = $this->getRevisionStore()
@@ -1352,7 +1352,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		// Update newtalk / watchlist notification status;
-		// Avoid outage if the master is not reachable by using a deferred updated
+		// Avoid outage if the primary DB is not reachable by using a deferred updated
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $performer, $oldid ) {
 				$legacyUser = MediaWikiServices::getInstance()

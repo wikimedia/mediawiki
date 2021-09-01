@@ -65,7 +65,7 @@ class DoubleRedirectJob extends Job {
 	 *   pointing to this title are fixed
 	 */
 	public static function fixRedirects( $reason, $redirTitle ) {
-		# Need to use the master to get the redirect table updated in the same transaction
+		# Need to use the primary DB to get the redirect table updated in the same transaction
 		$dbw = wfGetDB( DB_PRIMARY );
 		$res = $dbw->select(
 			[ 'redirect', 'page' ],

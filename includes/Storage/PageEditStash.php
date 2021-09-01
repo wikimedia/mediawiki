@@ -337,7 +337,7 @@ class PageEditStash {
 			$start = microtime( true );
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use its results and make use of the time spent parsing.
-			// Skip this logic if there no master connection in case this method
+			// Skip this logic if there no primary connection in case this method
 			// is called on an HTTP GET request for some reason.
 			$dbw = $this->lb->getAnyOpenConnection( $this->lb->getWriterIndex() );
 			if ( $dbw && $dbw->lock( $key, __METHOD__, 30 ) ) {

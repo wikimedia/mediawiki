@@ -1287,7 +1287,7 @@ class AuthManager implements LoggerAwareInterface {
 				return $ret;
 			}
 
-			// Load from master for existence check
+			// Load from primary DB for existence check
 			$user->load( User::READ_LOCKING );
 
 			if ( $state['userid'] === 0 ) {
@@ -1784,7 +1784,7 @@ class AuthManager implements LoggerAwareInterface {
 			'from' => $from,
 		] );
 
-		// Ignore warnings about master connections/writes...hard to avoid here
+		// Ignore warnings about primary connections/writes...hard to avoid here
 		$trxProfilerSilencedScope = \Profiler::instance()->getTransactionProfiler()->silenceForScope();
 		try {
 			$status = $user->addToDatabase();

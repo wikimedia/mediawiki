@@ -341,7 +341,7 @@ class RevisionStore
 			}
 		}
 
-		// If we still don't have a title, fallback to master if that wasn't already happening.
+		// If we still don't have a title, fallback to primary DB if that wasn't already happening.
 		if ( $queryFlags === self::READ_NORMAL ) {
 			$title = $this->getPage( $pageId, $revId, self::READ_LATEST );
 			if ( $title ) {
@@ -422,7 +422,7 @@ class RevisionStore
 	 * MCR migration note: this replaced Revision::insertOn
 	 *
 	 * @param RevisionRecord $rev
-	 * @param IDatabase $dbw (master connection)
+	 * @param IDatabase $dbw (primary connection)
 	 *
 	 * @return RevisionRecord the new revision record.
 	 */
@@ -536,7 +536,7 @@ class RevisionStore
 	 * @param RevisionRecord $revision After this method returns, the $revision object will be
 	 *                                 obsolete in that it does not have the new slots.
 	 * @param RevisionSlotsUpdate $revisionSlotsUpdate
-	 * @param IDatabase $dbw (master connection)
+	 * @param IDatabase $dbw (primary connection)
 	 *
 	 * @return SlotRecord[] the new slot records.
 	 * @internal
@@ -1058,7 +1058,7 @@ class RevisionStore
 			return null;
 		}
 
-		// Fetch the actual revision row from master, without locking all extra tables.
+		// Fetch the actual revision row from primary DB, without locking all extra tables.
 		$oldRevision = $this->loadRevisionFromConds(
 			$dbw,
 			[ 'rev_id' => intval( $pageLatest ) ],
@@ -1114,7 +1114,7 @@ class RevisionStore
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return null|RecentChange
 	 */
@@ -1222,8 +1222,8 @@ class RevisionStore
 	 * MCR migration note: this replaced Revision::newFromId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
@@ -1244,8 +1244,8 @@ class RevisionStore
 	 * MCR migration note: this replaced Revision::newFromTitle
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
@@ -1266,7 +1266,7 @@ class RevisionStore
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
+			// and fall back to primary DB if the page is not found on a replica.
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
@@ -1274,7 +1274,7 @@ class RevisionStore
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
+			// and fall back to primary DB. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -1291,8 +1291,8 @@ class RevisionStore
 	 * MCR migration note: this replaced Revision::newFromPageId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master (since 1.20)
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB (since 1.20)
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
@@ -1304,7 +1304,7 @@ class RevisionStore
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
+			// and fall back to primary DB if the page is not found on a replica.
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
@@ -1312,7 +1312,7 @@ class RevisionStore
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
+			// and fall back to primary DB. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -1333,8 +1333,8 @@ class RevisionStore
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 *      Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
@@ -1770,7 +1770,7 @@ class RevisionStore
 
 	/**
 	 * Check that the given row matches the given Title object.
-	 * When a mismatch is detected, this tries to re-load the title from master,
+	 * When a mismatch is detected, this tries to re-load the title from primary DB,
 	 * to avoid spurious errors during page moves.
 	 *
 	 * @param \stdClass $row
@@ -2675,7 +2675,7 @@ class RevisionStore
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -2691,7 +2691,7 @@ class RevisionStore
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 * @return RevisionRecord|null
 	 */
 	public function getNextRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {

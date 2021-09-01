@@ -26,7 +26,7 @@ use InvalidArgumentException;
 /**
  * Database connection manager.
  *
- * This manages access to master and replica databases.
+ * This manages access to primary and replica databases.
  *
  * @since 1.29
  *

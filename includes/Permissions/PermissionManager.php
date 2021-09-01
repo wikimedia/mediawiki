@@ -58,7 +58,7 @@ class PermissionManager {
 	/** @var string Does cheap and expensive checks possibly from a replica DB */
 	public const RIGOR_FULL = 'full';
 
-	/** @var string Does cheap and expensive checks, using the master as needed */
+	/** @var string Does cheap and expensive checks, using the primary DB as needed */
 	public const RIGOR_SECURE = 'secure';
 
 	/**
@@ -257,7 +257,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 *
 	 * @return bool
 	 */
@@ -295,7 +295,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param string[] $ignoreErrors Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 *
@@ -331,7 +331,7 @@ class PermissionManager {
 	 *
 	 * @param User $user
 	 * @param PageIdentity|LinkTarget $page Title to check
-	 * @param bool $fromReplica Whether to check the replica DB instead of the master
+	 * @param bool $fromReplica Whether to check the replica DB instead of the primary DB
 	 *
 	 * @return bool
 	 */
@@ -378,7 +378,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 *
 	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
@@ -482,7 +482,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -558,7 +558,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -695,7 +695,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -841,7 +841,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -941,7 +941,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -991,7 +991,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -1048,7 +1048,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -1167,7 +1167,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -1211,7 +1211,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page
@@ -1267,7 +1267,7 @@ class PermissionManager {
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
 	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
-	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @param LinkTarget $page

@@ -629,7 +629,7 @@ class JobRunner implements LoggerAwareInterface {
 		$time = false;
 		$lb = $this->lbFactory->getMainLB();
 		if ( $syncThreshold !== false && $lb->hasStreamingReplicaServers() ) {
-			// Generally, there is one master connection to the local DB
+			// Generally, there is one primary connection to the local DB
 			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 			// We need natively blocking fast locks
 			if ( $dbwSerial && $dbwSerial->namedLocksEnqueue() ) {

@@ -318,8 +318,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__
 		);
 		if ( $ret === false ) {
-			// Try the master
-			$this->logger->warning( __METHOD__ . ": master fallback on $cacheID" );
+			// Try the primary DB
+			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
 			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField(
@@ -330,7 +330,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			);
 			ScopedCallback::consume( $scope );
 			if ( $ret === false ) {
-				$this->logger->warning( __METHOD__ . ": master failed to find $cacheID" );
+				$this->logger->warning( __METHOD__ . ": primary DB failed to find $cacheID" );
 			}
 		}
 		if ( $itemID !== false && $ret !== false ) {
@@ -395,7 +395,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Helper function for self::batchFetchBlobs for merging master/replica DB results
+	 * Helper function for self::batchFetchBlobs for merging primary/replica DB results
 	 * @param array &$ret Current self::batchFetchBlobs return value
 	 * @param array &$ids Map from blob_id to requested itemIDs
 	 * @param mixed $res DB result from Database::select

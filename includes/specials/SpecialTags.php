@@ -114,7 +114,7 @@ class SpecialTags extends SpecialPage {
 			// populating the memcache of tag data (see ChangeTags::listDefinedTags)
 			// with out-of-date data from the replica DB, because the replica DB hasn't caught
 			// up to the fact that a new tag has been created as part of an implicit,
-			// as yet uncommitted transaction on master.
+			// as yet uncommitted transaction on primary DB.
 			if ( $out->getRedirect() !== '' ) {
 				return;
 			}

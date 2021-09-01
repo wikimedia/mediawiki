@@ -1600,7 +1600,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *   To improve performance, non-critical checks are done against replica DBs.
-	 *   Check when actually saving should be done against master.
+	 *   Check when actually saving should be done against primary DB.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
 	 *   a infinite recursion with autopromote. See T270145.
 	 */
@@ -1918,7 +1918,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *             PermissionManager::isBlockedFrom(), as appropriate.
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of
-	 *   the master. Hacked from false due to horrible probs on site.
+	 *   the primary DB. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
@@ -1955,7 +1955,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Check if user is blocked from editing a particular article
 	 *
 	 * @param PageIdentity $title Title to check
-	 * @param bool $fromReplica Whether to check the replica DB instead of the master
+	 * @param bool $fromReplica Whether to check the replica DB instead of the primary DB
 	 * @return bool
 	 *
 	 * @deprecated since 1.33,
@@ -3336,7 +3336,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				// Maybe the problem was a missed cache update; clear it to be safe
 				$this->clearSharedCache( 'refresh' );
 				// User was changed in the meantime or loaded with stale data
-				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
+				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'primary' : 'replica';
 				LoggerFactory::getInstance( 'preferences' )->warning(
 					"CAS update failed on user_touched for user ID '{user_id}' ({db_flag} read)",
 					[ 'user_id' => $this->mId, 'db_flag' => $from ]
@@ -3457,7 +3457,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				// Don't pass $this, since calling ::getId, ::getName might force ::load
 				// and this user might not be ready for the yet.
 				$newUser->mActorId = $insertActor( new UserIdentityValue( $newUser->mId, $newUser->mName ), $dbw );
-				// Load the user from master to avoid replica lag
+				// Load the user from primary DB to avoid replica lag
 				$newUser->load( self::READ_LATEST );
 			} else {
 				$newUser = null;
@@ -4229,10 +4229,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get a new instance of this user that was loaded from the master via a locking read
+	 * Get a new instance of this user that was loaded from the primary DB via a locking read
 	 *
 	 * Use this instead of the main context User when updating that user. This avoids races
-	 * where that user was loaded from a replica DB or even the master but without proper locks.
+	 * where that user was loaded from a replica DB or even the primary DB but without proper locks.
 	 *
 	 * @return User|null Returns null if the user was not found in the DB
 	 * @since 1.27

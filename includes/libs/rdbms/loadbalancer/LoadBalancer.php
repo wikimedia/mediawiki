@@ -285,7 +285,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $this->clusterName !== null ) {
 			$name = $this->clusterName;
 		} else {
-			// Fallback to the current master name if not specified
+			// Fallback to the current primary name if not specified
 			$name = $this->getServerName( $this->getWriterIndex() );
 		}
 
@@ -479,8 +479,8 @@ class LoadBalancer implements ILoadBalancer {
 			$sum += $load;
 		}
 		if ( $sum == 0 ) {
-			# No appropriate DB servers except maybe the master and some replica DBs with zero load
-			# Do NOT use the master
+			# No appropriate DB servers except maybe the primary and some replica DBs with zero load
+			# Do NOT use the primary DB
 			# Instead, this function will return false, triggering read-only mode,
 			# and a lagged replica DB will be used instead.
 			return false;
@@ -881,7 +881,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Wait for a given replica DB to catch up to the master pos stored in "waitForPos"
+	 * Wait for a given replica DB to catch up to the primary DB pos stored in "waitForPos"
 	 *
 	 * @param int $index Specific server index
 	 * @param int|null $timeout Max seconds to wait; default is "waitTimeout"
@@ -1435,12 +1435,12 @@ class LoadBalancer implements ILoadBalancer {
 		$count = $this->getCurrentConnectionCount();
 		if ( $count >= self::CONN_HELD_WARN_THRESHOLD ) {
 			$this->perfLogger->warning(
-				__METHOD__ . ": {connections}+ connections made (master={masterdb})",
+				__METHOD__ . ": {connections}+ connections made (primary={primarydb})",
 				$this->getConnLogContext(
 					$conn,
 					[
 						'connections' => $count,
-						'masterdb' => $this->getMasterServerName(),
+						'primarydb' => $this->getMasterServerName(),
 						'db_domain' => $domain->getId()
 					]
 				 )
@@ -1617,7 +1617,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getReplicaResumePos() {
-		// Get the position of any existing master server connection
+		// Get the position of any existing primary DB server connection
 		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
 		if ( $masterConn ) {
 			return $masterConn->getPrimaryPos();
@@ -2208,7 +2208,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
 	 * @param DatabaseDomain $domain
-	 * @return bool Whether the entire master server or the local domain DB is read-only
+	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
 	private function isMasterRunningReadOnly( DatabaseDomain $domain ) {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
@@ -2297,7 +2297,7 @@ class LoadBalancer implements ILoadBalancer {
 		foreach ( $this->conns as $connsByServer ) {
 			foreach ( $connsByServer as $i => $serverConns ) {
 				if ( $i === $this->getWriterIndex() ) {
-					continue; // skip master
+					continue; // skip primary DB
 				}
 				foreach ( $serverConns as $conn ) {
 					$callback( $conn, ...$params );
@@ -2388,7 +2388,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !$pos ) {
-			// Get the current master position, opening a connection only if needed
+			// Get the current primary DB position, opening a connection only if needed
 			$this->replLogger->debug( __METHOD__ . ': no position passed; using current' );
 			$index = $this->getWriterIndex();
 			$flags = self::CONN_SILENCE_ERRORS;
@@ -2420,7 +2420,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$ok = false; // something is misconfigured
 			$this->replLogger->error(
-				__METHOD__ . ': could not get master pos for {db_server}',
+				__METHOD__ . ': could not get primary pos for {db_server}',
 				$this->getConnLogContext( $conn, [ 'exception' => new RuntimeException() ] )
 			);
 		}
@@ -2532,7 +2532,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @return string Name of the master server of the relevant DB cluster (e.g. "db1052")
+	 * @return string Name of the primary DB server of the relevant DB cluster (e.g. "db1052")
 	 */
 	private function getMasterServerName() {
 		return $this->getServerName( $this->getWriterIndex() );

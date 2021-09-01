@@ -123,7 +123,7 @@ class UploadStash {
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			if ( !$this->fetchFileMetadata( $key ) ) {
 				// If nothing was received, it's likely due to replication lag.
-				// Check the master to see if the record is there.
+				// Check the primary DB to see if the record is there.
 				$this->fetchFileMetadata( $key, DB_PRIMARY );
 			}
 
@@ -370,7 +370,7 @@ class UploadStash {
 
 		$dbw = $this->repo->getPrimaryDB();
 
-		// this is a cheap query. it runs on the master so that this function
+		// this is a cheap query. it runs on the primary DB so that this function
 		// still works when there's lag. It won't be called all that often.
 		$row = $dbw->selectRow(
 			'uploadstash',
@@ -506,7 +506,7 @@ class UploadStash {
 		// populate $fileMetadata[$key]
 		$dbr = null;
 		if ( $readFromDB === DB_PRIMARY ) {
-			// sometimes reading from the master is necessary, if there's replication lag.
+			// sometimes reading from the primary DB is necessary, if there's replication lag.
 			$dbr = $this->repo->getPrimaryDB();
 		} else {
 			$dbr = $this->repo->getReplicaDB();
