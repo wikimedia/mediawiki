@@ -51,6 +51,7 @@ use Title;
 use TitleFactory;
 use TitleFormatter;
 use WatchedItemStoreInterface;
+use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
@@ -146,6 +147,9 @@ class PageCommandFactory implements
 	/** @var PageUpdaterFactory */
 	private $pageUpdaterFactory;
 
+	/** @var ITextFormatter */
+	private $contLangMsgTextFormatter;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -172,7 +176,8 @@ class PageCommandFactory implements
 		string $webRequestID,
 		BacklinkCacheFactory $backlinkCacheFactory,
 		LoggerInterface $undeletePageLogger,
-		PageUpdaterFactory $pageUpdaterFactory
+		PageUpdaterFactory $pageUpdaterFactory,
+		ITextFormatter $contLangMsgTextFormatter
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -200,6 +205,7 @@ class PageCommandFactory implements
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
 		$this->undeletePageLogger = $undeletePageLogger;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 	}
 
 	/**
@@ -241,6 +247,8 @@ class PageCommandFactory implements
 			$this->wikiPageFactory,
 			$this->userFactory,
 			$this->backlinkCacheFactory,
+			$this->namespaceInfo,
+			$this->contLangMsgTextFormatter,
 			$page,
 			$deleter
 		);

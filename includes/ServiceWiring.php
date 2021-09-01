@@ -2035,7 +2035,10 @@ return [
 			WebRequest::getRequestId(),
 			$services->getBacklinkCacheFactory(),
 			LoggerFactory::getInstance( 'UndeletePage' ),
-			$services->getPageUpdaterFactory()
+			$services->getPageUpdaterFactory(),
+			$services->getMessageFormatterFactory()->getTextFormatter(
+				$services->getContentLanguage()->getCode()
+			)
 		);
 	},
 
