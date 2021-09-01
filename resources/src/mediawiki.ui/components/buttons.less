@@ -66,9 +66,15 @@
 		input[ type='checkbox' ]:hover + &,
 		&:hover {
 			background-color: @colorGray15;
-			color: @color-base--hover;
+			color: @color-base;
 			border-color: transparent;
-			box-shadow: none;
+		}
+
+		input[ type='checkbox' ]:focus + &,
+		&:focus {
+			color: @color-base;
+			border-color: @border-color-base--focus;
+			box-shadow: @box-shadow-primary--focus;
 		}
 
 		input[ type='checkbox' ]:active + &,
@@ -76,13 +82,6 @@
 			background-color: @colorGray14;
 			color: @color-base--active;
 			border-color: @colorGray7;
-		}
-
-		input[ type='checkbox' ]:focus + &,
-		&:focus {
-			background-color: transparent;
-			color: @color-base;
-			border-color: @border-color-base--focus;
 			box-shadow: none;
 		}
 
