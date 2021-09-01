@@ -359,7 +359,7 @@ class PermissionManager {
 		}
 
 		// only for the purpose of the hook. We really don't need this here.
-		$allowUsertalk = $user->isAllowUsertalk();
+		$allowUsertalk = $block->isUsertalkEditAllowed();
 
 		// Allow extensions to let a blocked user access a particular page
 		$this->hookRunner->onUserIsBlockedFrom( $user, $title, $blocked, $allowUsertalk );
