@@ -28,6 +28,9 @@
 class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	use ResourceLoaderOOUIModule;
 
+	/** @var array<string,string|ResourceLoaderFilePath> */
+	private $themeStyles = [];
+
 	public function __construct( array $options = [] ) {
 		if ( isset( $options['themeScripts'] ) ) {
 			$skinScripts = $this->getSkinSpecific( $options['themeScripts'], 'scripts' );
@@ -37,14 +40,16 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 			$this->extendSkinSpecific( $options['skinScripts'], $skinScripts );
 		}
 		if ( isset( $options['themeStyles'] ) ) {
-			$skinStyles = $this->getSkinSpecific( $options['themeStyles'], 'styles' );
-			if ( !isset( $options['skinStyles'] ) ) {
-				$options['skinStyles'] = [];
-			}
-			$this->extendSkinSpecific( $options['skinStyles'], $skinStyles );
+			$this->themeStyles = $this->getSkinSpecific( $options['themeStyles'], 'styles' );
 		}
 
 		parent::__construct( $options );
+	}
+
+	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
+		parent::setSkinStylesOverride( $moduleSkinStyles );
+
+		$this->extendSkinSpecific( $this->skinStyles, $this->themeStyles );
 	}
 
 	/**
@@ -92,7 +97,7 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 		// Add our remaining skinStyles/skinScripts for skins that did not have them defined
 		foreach ( $extraSkinSpecific as $skin => $file ) {
 			if ( !isset( $skinSpecific[$skin] ) ) {
-				$skinSpecific[$skin] = $file;
+				$skinSpecific[$skin] = [ $file ];
 			}
 		}
 	}
