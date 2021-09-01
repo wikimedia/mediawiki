@@ -1371,7 +1371,7 @@
 	"userrights-expiry-options": "1 jour:1 day,1 semaine:1 week,1 mois:1 month,3 mois:3 months,6 mois:6 month,1 an:1 year",
 	"userrights-invalid-expiry": "La date d’expiration pour le groupe « $1 » n’est pas valide.",
 	"userrights-expiry-in-past": "La date d’expiration pour le groupe « $1 » est passée.",
-	"userrights-cannot-shorten-expiry": "Vous ne pouvez pas rallonger la durée d’expiration de l’appartenance au groupe « $1 ». Seuls les utilisateurs disposant de l’autorisation d’ajouter et de supprimer ce groupe peuvent rallonger les durées d’expiration.",
+	"userrights-cannot-shorten-expiry": "Vous ne pouvez pas raccourcir la durée d’expiration de l’appartenance au groupe « $1 ». Seuls les utilisateurs disposant de l’autorisation d’ajouter et de supprimer ce groupe peuvent raccourcir les durées d’expiration.",
 	"userrights-conflict": "Conflit de modification des droits utilisateur ! Veuillez relire et confirmer vos modifications.",
 	"group": "Groupe :",
 	"group-user": "Utilisateurs",
