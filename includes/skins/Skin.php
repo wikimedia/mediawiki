@@ -2269,6 +2269,9 @@ abstract class Skin extends ContextSource {
 	 * on the link) is present it will be used to generate a tooltip and
 	 * accesskey for the link.
 	 *
+	 * The 'link-html' key can be used to prepend additional HTML inside the link HTML.
+	 * For example to prepend an icon.
+	 *
 	 * The keys "context" and "primary" are ignored; these keys are used
 	 * internally by skins and are not supposed to be included in the HTML
 	 * output.
@@ -2324,7 +2327,7 @@ abstract class Skin extends ContextSource {
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
-				'tooltip-params', 'exists' ] as $k ) {
+				'tooltip-params', 'exists', 'link-html' ] as $k ) {
 				unset( $attrs[$k] );
 			}
 
@@ -2369,6 +2372,11 @@ abstract class Skin extends ContextSource {
 			if ( isset( $options['link-class'] ) ) {
 				$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], $options['link-class'] );
 			}
+
+			if ( isset( $item['link-html'] ) ) {
+				$html = $item['link-html'] . ' ' . $html;
+			}
+
 			$html = Html::rawElement( isset( $attrs['href'] )
 				? 'a'
 				: $options['link-fallback'], $attrs, $html );
