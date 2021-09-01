@@ -63,9 +63,8 @@ class DoubleRedirectJob extends Job {
 	 *   "double-redirect-fixed-<reason>"
 	 * @param LinkTarget $redirTitle The title which has changed, redirects
 	 *   pointing to this title are fixed
-	 * @param bool $destTitle Not used
 	 */
-	public static function fixRedirects( $reason, $redirTitle, $destTitle = false ) {
+	public static function fixRedirects( $reason, $redirTitle ) {
 		# Need to use the master to get the redirect table updated in the same transaction
 		$dbw = wfGetDB( DB_PRIMARY );
 		$res = $dbw->select(
