@@ -35,7 +35,6 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -47,6 +46,7 @@ use Wikimedia\Rdbms\IDatabase;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget, PageIdentity, IDBAccessObject {
+	use DeprecationHelper;
 	use WikiAwareEntityTrait;
 
 	/** @var MapCacheLRU|null */
@@ -149,35 +149,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/** @var int Estimated number of revisions; null of not loaded */
 	private $mEstimateRevisions;
 
-	/** @var array Array of groups allowed to edit this article */
-	public $mRestrictions = [];
-
-	/**
-	 * @var string|bool Comma-separated set of permission keys
-	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
-	 * Edit and move sections are separated by a colon
-	 * Example: "edit=autoconfirmed,sysop:move=sysop"
-	 */
-	protected $mOldRestrictions = false;
-
-	/** @var bool Cascade restrictions on this page to included templates and images? */
-	public $mCascadeRestriction;
-
-	/** Caching the results of getCascadeProtectionSources */
-	public $mCascadingRestrictions;
-
-	/** @var array When do the restrictions on this page expire? */
-	protected $mRestrictionsExpiry = [];
-
-	/** @var bool Are cascading restrictions in effect on this page? */
-	protected $mHasCascadingRestrictions;
-
-	/** @var array Where are the cascading restrictions coming from on this page? */
-	public $mCascadeSources;
-
-	/** @var bool Boolean for initialisation on demand */
-	public $mRestrictionsLoaded = false;
-
 	/**
 	 * Text form including namespace/interwiki, initialised on demand
 	 *
@@ -187,9 +158,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @var string|null
 	 */
 	public $prefixedText = null;
-
-	/** @var mixed Cached value for getTitleProtection (create protection) */
-	public $mTitleProtection;
 
 	/**
 	 * @var int Namespace index when there is no namespace. Don't change the
@@ -644,7 +612,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$this->mDbPageLanguage = (string)$row->page_lang;
 			}
 			if ( isset( $row->page_restrictions ) ) {
-				$this->mOldRestrictions = $row->page_restrictions;
+				// If we have them handy, save them so we don't need to look them up later
+				MediaWikiServices::getInstance()->getRestrictionStore()
+					->registerOldRestrictions( $this, $row->page_restrictions );
+
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -2470,195 +2441,84 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Get a filtered list of all restriction types supported by this wiki.
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::listAllRestrictionTypes instead
+	 *
 	 * @param bool $exists True to get all restriction types that apply to
 	 * titles that do exist, False for all restriction types that apply to
 	 * titles that do not exist
 	 * @return array
 	 */
 	public static function getFilteredRestrictionTypes( $exists = true ) {
-		global $wgRestrictionTypes;
-		$types = $wgRestrictionTypes;
-		if ( $exists ) {
-			# Remove the create restriction for existing titles
-			$types = array_diff( $types, [ 'create' ] );
-		} else {
-			# Only the create and upload restrictions apply to non-existing titles
-			$types = array_intersect( $types, [ 'create', 'upload' ] );
-		}
-		return $types;
+		return MediaWikiServices::getInstance()
+			->getRestrictionStore()
+			->listAllRestrictionTypes( $exists );
 	}
 
 	/**
 	 * Returns restriction types for the current Title
 	 *
+	 * @deprecated since 1.37, use RestrictionStore::listApplicableRestrictionTypes instead
+	 *
 	 * @return array Applicable restriction types
 	 */
 	public function getRestrictionTypes() {
-		if ( $this->isSpecialPage() ) {
-			return [];
-		}
-
-		$types = self::getFilteredRestrictionTypes( $this->exists() );
-
-		if ( $this->mNamespace !== NS_FILE ) {
-			# Remove the upload restriction for non-file titles
-			$types = array_diff( $types, [ 'upload' ] );
-		}
-
-		Hooks::runner()->onTitleGetRestrictionTypes( $this, $types );
-
-		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
-			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}" );
-
-		return $types;
+		return MediaWikiServices::getInstance()
+			->getRestrictionStore()
+			->listApplicableRestrictionTypes( $this );
 	}
 
 	/**
 	 * Is this title subject to title protection?
 	 * Title protection is the one applied against creation of such title.
 	 *
+	 * @deprecated since 1.37, use RestrictionStore::getRestrictions() instead
+	 *
 	 * @return array|bool An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
 	public function getTitleProtection() {
-		$protection = $this->getTitleProtectionInternal();
-		if ( $protection ) {
-			if ( $protection['permission'] == 'sysop' ) {
-				$protection['permission'] = 'editprotected'; // B/C
-			}
-			if ( $protection['permission'] == 'autoconfirmed' ) {
-				$protection['permission'] = 'editsemiprotected'; // B/C
-			}
-		}
-		return $protection;
-	}
-
-	/**
-	 * Fetch title protection settings
-	 *
-	 * To work correctly, $this->loadRestrictions() needs to have access to the
-	 * actual protections in the database without munging 'sysop' =>
-	 * 'editprotected' and 'autoconfirmed' => 'editsemiprotected'. Other
-	 * callers probably want $this->getTitleProtection() instead.
-	 *
-	 * @return array|bool
-	 */
-	protected function getTitleProtectionInternal() {
-		// Can't protect pages in special namespaces
-		if ( $this->mNamespace < 0 ) {
-			return false;
-		}
-
-		// Can't protect pages that exist.
-		if ( $this->exists() ) {
-			return false;
-		}
-
-		if ( $this->mTitleProtection === null ) {
-			$dbr = wfGetDB( DB_REPLICA );
-			$commentStore = CommentStore::getStore();
-			$commentQuery = $commentStore->getJoin( 'pt_reason' );
-			$res = $dbr->select(
-				[ 'protected_titles' ] + $commentQuery['tables'],
-				[
-					'user' => 'pt_user',
-					'expiry' => 'pt_expiry',
-					'permission' => 'pt_create_perm'
-				] + $commentQuery['fields'],
-				[ 'pt_namespace' => $this->mNamespace, 'pt_title' => $this->mDbkeyform ],
-				__METHOD__,
-				[],
-				$commentQuery['joins']
-			);
-
-			// fetchRow returns false if there are no rows.
-			$row = $dbr->fetchRow( $res );
-			if ( $row ) {
-				$this->mTitleProtection = [
-					'user' => $row['user'],
-					'expiry' => $dbr->decodeExpiry( $row['expiry'] ),
-					'permission' => $row['permission'],
-					'reason' => $commentStore->getComment( 'pt_reason', $row )->text,
-				];
-			} else {
-				$this->mTitleProtection = false;
-			}
-		}
-		return $this->mTitleProtection;
+		return MediaWikiServices::getInstance()->getRestrictionStore()->getCreateProtection( $this )
+			?: false;
 	}
 
 	/**
 	 * Remove any title protection due to page existing
+	 *
+	 * @deprecated since 1.37, do not use (this is only for WikiPage::onArticleCreate)
 	 */
 	public function deleteTitleProtection() {
-		$dbw = wfGetDB( DB_PRIMARY );
-
-		$dbw->delete(
-			'protected_titles',
-			[ 'pt_namespace' => $this->mNamespace, 'pt_title' => $this->mDbkeyform ],
-			__METHOD__
-		);
-		$this->mTitleProtection = false;
+		MediaWikiServices::getInstance()->getRestrictionStore()->deleteCreateProtection( $this );
 	}
 
 	/**
 	 * Is this page "semi-protected" - the *only* protection levels are listed
 	 * in $wgSemiprotectedRestrictionLevels?
 	 *
+	 * @deprecated since 1.37, use RestrictionStore::isSemiProtected instead
+	 *
 	 * @param string $action Action to check (default: edit)
 	 * @return bool
 	 */
 	public function isSemiProtected( $action = 'edit' ) {
-		global $wgSemiprotectedRestrictionLevels;
-
-		$restrictions = $this->getRestrictions( $action );
-		$semi = $wgSemiprotectedRestrictionLevels;
-		if ( !$restrictions || !$semi ) {
-			// Not protected, or all protection is full protection
-			return false;
-		}
-
-		// Remap autoconfirmed to editsemiprotected for BC
-		foreach ( array_keys( $semi, 'autoconfirmed' ) as $key ) {
-			$semi[$key] = 'editsemiprotected';
-		}
-		foreach ( array_keys( $restrictions, 'autoconfirmed' ) as $key ) {
-			$restrictions[$key] = 'editsemiprotected';
-		}
-
-		return !array_diff( $restrictions, $semi );
+		return MediaWikiServices::getInstance()->getRestrictionStore()->isSemiProtected(
+			$this, $action
+		);
 	}
 
 	/**
 	 * Does the title correspond to a protected article?
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::isProtected instead
 	 *
 	 * @param string $action The action the page is protected from,
 	 * by default checks all actions.
 	 * @return bool
 	 */
 	public function isProtected( $action = '' ) {
-		global $wgRestrictionLevels;
-
-		$restrictionTypes = $this->getRestrictionTypes();
-
-		# Special pages have inherent protection
-		if ( $this->isSpecialPage() ) {
-			return true;
-		}
-
-		# Check regular protection levels
-		foreach ( $restrictionTypes as $type ) {
-			if ( $action == $type || $action == '' ) {
-				$r = $this->getRestrictions( $type );
-				foreach ( $wgRestrictionLevels as $level ) {
-					if ( in_array( $level, $r ) && $level != '' ) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
+		return MediaWikiServices::getInstance()->getRestrictionStore()->isProtected(
+			$this, $action
+		);
 	}
 
 	/**
@@ -2688,28 +2548,32 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
 	 *
+	 * @deprecated since 1.37, use RestrictionStore::isCascadeProtected instead
+	 *
 	 * @return bool If the page is subject to cascading restrictions.
 	 */
 	public function isCascadeProtected() {
-		list( $isCascadeProtected, ) = $this->getCascadeProtectionSources( false );
-		return $isCascadeProtected;
+		return MediaWikiServices::getInstance()->getRestrictionStore()->isCascadeProtected( $this );
 	}
 
 	/**
 	 * Determines whether cascading protection sources have already been loaded from
 	 * the database.
 	 *
-	 * @param bool $getPages True to check if the pages are loaded, or false to check
-	 * if the status is loaded.
-	 * @return bool Whether or not the specified information has been loaded
+	 * @deprecated since 1.37, use RestrictionStore::areCascadeProtectionSourcesLoaded instead
+	 *
+	 * @return bool
 	 * @since 1.23
 	 */
-	public function areCascadeProtectionSourcesLoaded( $getPages = true ) {
-		return $getPages ? $this->mCascadeSources !== null : $this->mHasCascadingRestrictions !== null;
+	public function areCascadeProtectionSourcesLoaded() {
+		return MediaWikiServices::getInstance()->getRestrictionStore()
+			->areCascadeProtectionSourcesLoaded( $this );
 	}
 
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::getCascadeProtectionSources instead
 	 *
 	 * @param bool $getPages Whether or not to retrieve the actual pages
 	 *        that the restrictions have come from and the actual restrictions
@@ -2722,97 +2586,38 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *        false.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
-		$pagerestrictions = [];
-
-		if ( $this->mCascadeSources !== null && $getPages ) {
-			return [ $this->mCascadeSources, $this->mCascadingRestrictions ];
-		} elseif ( $this->mHasCascadingRestrictions !== null && !$getPages ) {
-			return [ $this->mHasCascadingRestrictions, $pagerestrictions ];
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( !$getPages ) {
+			return [ $restrictionStore->isCascadeProtected( $this ), [] ];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-
-		if ( $this->mNamespace === NS_FILE ) {
-			$tables = [ 'imagelinks', 'page_restrictions' ];
-			$where_clauses = [
-				'il_to' => $this->mDbkeyform,
-				'il_from=pr_page',
-				'pr_cascade' => 1
-			];
-		} else {
-			$tables = [ 'templatelinks', 'page_restrictions' ];
-			$where_clauses = [
-				'tl_namespace' => $this->mNamespace,
-				'tl_title' => $this->mDbkeyform,
-				'tl_from=pr_page',
-				'pr_cascade' => 1
-			];
+		$ret = $restrictionStore->getCascadeProtectionSources( $this );
+		$ret[0] = array_map( 'Title::castFromPageIdentity', $ret[0] );
+		if ( !$ret[0] ) {
+			$ret[0] = false;
 		}
-
-		if ( $getPages ) {
-			$cols = [ 'pr_page', 'page_namespace', 'page_title',
-				'pr_expiry', 'pr_type', 'pr_level' ];
-			$where_clauses[] = 'page_id=pr_page';
-			$tables[] = 'page';
-		} else {
-			$cols = [ 'pr_expiry' ];
-		}
-
-		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__ );
-
-		$sources = $getPages ? [] : false;
-		$now = wfTimestampNow();
-
-		foreach ( $res as $row ) {
-			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
-			if ( $expiry > $now ) {
-				if ( $getPages ) {
-					$page_id = $row->pr_page;
-					$page_ns = $row->page_namespace;
-					$page_title = $row->page_title;
-					$sources[$page_id] = self::makeTitle( $page_ns, $page_title );
-					# Add groups needed for each restriction type if its not already there
-					# Make sure this restriction type still exists
-
-					if ( !isset( $pagerestrictions[$row->pr_type] ) ) {
-						$pagerestrictions[$row->pr_type] = [];
-					}
-
-					if (
-						isset( $pagerestrictions[$row->pr_type] )
-						&& !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] )
-					) {
-						$pagerestrictions[$row->pr_type][] = $row->pr_level;
-					}
-				} else {
-					$sources = true;
-				}
-			}
-		}
-
-		if ( $getPages ) {
-			$this->mCascadeSources = $sources;
-			$this->mCascadingRestrictions = $pagerestrictions;
-		} else {
-			$this->mHasCascadingRestrictions = $sources;
-		}
-
-		return [ $sources, $pagerestrictions ];
+		return $ret;
 	}
 
 	/**
 	 * Accessor for mRestrictionsLoaded
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::areRestrictionsLoaded instead
 	 *
 	 * @return bool Whether or not the page's restrictions have already been
 	 * loaded from the database
 	 * @since 1.23
 	 */
 	public function areRestrictionsLoaded() {
-		return $this->mRestrictionsLoaded;
+		return MediaWikiServices::getInstance()
+			->getRestrictionStore()
+			->areRestrictionsLoaded( $this );
 	}
 
 	/**
 	 * Accessor/initialisation for mRestrictions
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::getRestrictions instead
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @return array Restriction levels needed to take the action. All levels are
@@ -2821,57 +2626,56 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *     be mapped to 'editprotected' and 'editsemiprotected' respectively.
 	 */
 	public function getRestrictions( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-		return $this->mRestrictions[$action] ?? [];
+		return MediaWikiServices::getInstance()->getRestrictionStore()->getRestrictions( $this, $action );
 	}
 
 	/**
 	 * Accessor/initialisation for mRestrictions
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::getAllRestrictions instead
 	 *
 	 * @return array Keys are actions, values are arrays as returned by
 	 *     Title::getRestrictions()
 	 * @since 1.23
 	 */
 	public function getAllRestrictions() {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-		return $this->mRestrictions;
+		return MediaWikiServices::getInstance()->getRestrictionStore()->getAllRestrictions( $this );
 	}
 
 	/**
 	 * Get the expiry time for the restriction against a given action
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::getRestrictionExpiry instead
 	 *
 	 * @param string $action
 	 * @return string|bool 14-char timestamp, or 'infinity' if the page is protected forever
 	 *     or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-		return $this->mRestrictionsExpiry[$action] ?? false;
+		return MediaWikiServices::getInstance()->getRestrictionStore()->getRestrictionExpiry(
+			$this, $action
+		) ?? false;
 	}
 
 	/**
 	 * Returns cascading restrictions for the current article
 	 *
+	 * @deprecated since 1.37, use RestrictionStore::areRestrictionsCascading instead
+	 *
 	 * @return bool
 	 */
 	public function areRestrictionsCascading() {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-
-		return $this->mCascadeRestriction;
+		return MediaWikiServices::getInstance()
+			->getRestrictionStore()
+			->areRestrictionsCascading( $this );
 	}
 
 	/**
 	 * Compiles list of active page restrictions from both page table (pre 1.10)
 	 * and page_restrictions table for this existing page.
 	 * Public for usage by LiquidThreads.
+	 *
+	 * @deprecated since 1.37, use RestrictionStore::loadRestrictionsFromRows instead
 	 *
 	 * @param stdClass[] $rows Array of db result objects
 	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
@@ -2880,75 +2684,15 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
-		// This function will only read rows from a table that we migrated away
-		// from before adding READ_LATEST support to loadRestrictions, so we
-		// don't need to support reading from DB_PRIMARY here.
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$restrictionTypes = $this->getRestrictionTypes();
-
-		foreach ( $restrictionTypes as $type ) {
-			$this->mRestrictions[$type] = [];
-			$this->mRestrictionsExpiry[$type] = 'infinity';
-		}
-
-		$this->mCascadeRestriction = false;
-
-		# Backwards-compatibility: also load the restrictions from the page record (old format).
-		if ( $oldFashionedRestrictions !== null ) {
-			$this->mOldRestrictions = $oldFashionedRestrictions;
-		}
-
-		if ( $this->mOldRestrictions === false ) {
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this ); # in case we already had an article ID
-			$this->mOldRestrictions = $linkCache->getGoodLinkFieldObj( $this, 'restrictions' );
-		}
-
-		if ( $this->mOldRestrictions != '' ) {
-			foreach ( explode( ':', trim( $this->mOldRestrictions ) ) as $restrict ) {
-				$temp = explode( '=', trim( $restrict ) );
-				if ( count( $temp ) == 1 ) {
-					// old old format should be treated as edit/move restriction
-					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
-					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
-				} else {
-					$restriction = trim( $temp[1] );
-					if ( $restriction != '' ) { // some old entries are empty
-						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
-					}
-				}
-			}
-		}
-
-		if ( count( $rows ) ) {
-			# Current system - load second to make them override.
-			$now = wfTimestampNow();
-
-			# Cycle through all the restrictions.
-			foreach ( $rows as $row ) {
-				// Don't take care of restrictions types that aren't allowed
-				if ( !in_array( $row->pr_type, $restrictionTypes ) ) {
-					continue;
-				}
-
-				$expiry = $dbr->decodeExpiry( $row->pr_expiry );
-
-				// Only apply the restrictions if they haven't expired!
-				if ( !$expiry || $expiry > $now ) {
-					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
-					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-
-					$this->mCascadeRestriction = $this->mCascadeRestriction || $row->pr_cascade;
-				}
-			}
-		}
-
-		$this->mRestrictionsLoaded = true;
+		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictionsFromRows(
+			$this, $rows, $oldFashionedRestrictions
+		);
 	}
 
 	/**
 	 * Load restrictions from the page_restrictions table
+	 *
+	 * @deprecated since 1.37, no public replacement
 	 *
 	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
@@ -2958,79 +2702,18 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *  from the primary DB.
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null, $flags = 0 ) {
-		$readLatest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
-		if ( $this->mRestrictionsLoaded && !$readLatest ) {
-			return;
-		}
-
-		$id = $this->getArticleID( $flags );
-		if ( $id ) {
-			$fname = __METHOD__;
-			$loadRestrictionsFromDb = static function ( IDatabase $dbr ) use ( $fname, $id ) {
-				return iterator_to_array(
-					$dbr->select(
-						'page_restrictions',
-						[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
-						[ 'pr_page' => $id ],
-						$fname
-					)
-				);
-			};
-
-			if ( $readLatest ) {
-				$dbr = wfGetDB( DB_PRIMARY );
-				$rows = $loadRestrictionsFromDb( $dbr );
-			} else {
-				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-				$rows = $cache->getWithSetCallback(
-					// Page protections always leave a new null revision
-					$cache->makeKey( 'page-restrictions', 'v1', $id, $this->getLatestRevID() ),
-					$cache::TTL_DAY,
-					static function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
-						$dbr = wfGetDB( DB_REPLICA );
-
-						$setOpts += Database::getCacheSetOptions( $dbr );
-						$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-						if ( $lb->hasOrMadeRecentMasterChanges() ) {
-							// @TODO: cleanup Title cache and caller assumption mess in general
-							$ttl = WANObjectCache::TTL_UNCACHEABLE;
-						}
-
-						return $loadRestrictionsFromDb( $dbr );
-					}
-				);
-			}
-
-			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
-		} else {
-			$title_protection = $this->getTitleProtectionInternal();
-
-			if ( $title_protection ) {
-				$now = wfTimestampNow();
-				$expiry = wfGetDB( DB_REPLICA )->decodeExpiry( $title_protection['expiry'] );
-
-				if ( !$expiry || $expiry > $now ) {
-					// Apply the restrictions
-					$this->mRestrictionsExpiry['create'] = $expiry;
-					$this->mRestrictions['create'] =
-						explode( ',', trim( $title_protection['permission'] ) );
-				} else { // Get rid of the old restrictions
-					$this->mTitleProtection = false;
-				}
-			} else {
-				$this->mRestrictionsExpiry['create'] = 'infinity';
-			}
-			$this->mRestrictionsLoaded = true;
-		}
+		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictions( $this, $flags,
+			$oldFashionedRestrictions );
 	}
 
 	/**
 	 * Flush the protection cache in this object and force reload from the database.
 	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
+	 *
+	 * @deprecated since 1.37, now internal
 	 */
 	public function flushRestrictions() {
-		$this->mRestrictionsLoaded = false;
-		$this->mTitleProtection = null;
+		MediaWikiServices::getInstance()->getRestrictionStore()->flushRestrictions( $this );
 	}
 
 	/**
@@ -3344,9 +3027,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			$this->mArticleID = (int)$id;
 		}
-		$this->mRestrictionsLoaded = false;
-		$this->mRestrictions = [];
-		$this->mOldRestrictions = false;
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
@@ -3358,6 +3038,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$this->mIsBigDeletion = null;
 
 		MediaWikiServices::getInstance()->getLinkCache()->clearLink( $this );
+		MediaWikiServices::getInstance()->getRestrictionStore()->flushRestrictions( $this );
 	}
 
 	public static function clearCaches() {

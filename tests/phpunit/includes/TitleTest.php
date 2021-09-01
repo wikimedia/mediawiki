@@ -1,13 +1,16 @@
 <?php
 
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -1414,10 +1417,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$title->loadRestrictions();
 		$this->assertTrue( $title->areRestrictionsLoaded() );
-		$this->assertSame(
-			'infinity',
-			$title->getRestrictionExpiry( 'create' )
-		);
+		$this->assertFalse( $title->getRestrictionExpiry( 'create' ),
+			"Existing page can't have create protection" );
+		$this->assertSame( 'infinity', $title->getRestrictionExpiry( 'edit' ) );
 		$page = $this->getNonexistingTestPage( 'UTest1' );
 		$title = $page->getTitle();
 		$protectExpiry = wfTimestamp( TS_MW, time() + 10000 );
@@ -1429,7 +1431,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'test',
 			$this->getTestSysop()->getUser()
 		);
-		$title->mRestrictionsLoaded = false;
+		$title->flushRestrictions();
 		$title->loadRestrictions();
 		$this->assertSame(
 			$title->getRestrictionExpiry( 'create' ),
@@ -1485,16 +1487,132 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideRestrictionStoreForwarding
+	 * @covers Title::getFilteredRestrictionTypes
+	 * @covers Title::getRestrictionTypes
+	 * @covers Title::getTitleProtection
+	 * @covers Title::deleteTitleProtection
+	 * @covers Title::isSemiProtected
+	 * @covers Title::isProtected
+	 * @covers Title::isCascadeProtected
+	 * @covers Title::areCascadeProtectionSourcesLoaded
+	 * @covers Title::getCascadeProtectionSources
+	 * @covers Title::areRestrictionsLoaded
+	 * @covers Title::getRestrictions
+	 * @covers Title::getAllRestrictions
+	 * @covers Title::getRestrictionExpiry
+	 * @covers Title::areRestrictionsCascading
+	 * @covers Title::loadRestrictionsFromRows
+	 * @covers Title::loadRestrictions
+	 * @covers Title::flushRestrictions
+	 */
+	public function testRestrictionStoreForwarding(
+		string $method, array $params, $return, array $options = []
+	) {
+		$expectedParams = $options['expectedParams'] ?? $params;
+
+		if ( isset( $options['static'] ) ) {
+			$callee = 'Title';
+		} else {
+			$callee = $this->getExistingTestPage()->getTitle();
+			$expectedParams = array_merge( [ $callee ], $expectedParams );
+		}
+
+		$mockRestrictionStore = $this->createMock( RestrictionStore::class );
+
+		$expectedMethod = $options['expectedMethod'] ?? $method;
+
+		// Don't try to forward to a method that doesn't exist!
+		$this->assertIsCallable( [ $mockRestrictionStore, $expectedMethod ] );
+
+		$expectedCall = $mockRestrictionStore->expects( $this->once() )
+			->method( $expectedMethod )
+			->with( ...$expectedParams );
+		if ( !isset( $options['void'] ) ) {
+			$expectedCall->willReturn( $return );
+		}
+
+		$mockRestrictionStore->expects( $this->never() )
+			->method( $this->anythingBut( $expectedMethod ) );
+
+		$this->setService( 'RestrictionStore', $mockRestrictionStore );
+
+		$options['expectedReturn'] = $options['expectedReturn'] ?? $return;
+
+		$comparisonMethod = isset( $options['weakCompareReturn'] ) ? 'assertEquals' : 'assertSame';
+
+		$this->$comparisonMethod( $options['expectedReturn'], [ $callee, $method ]( ...$params ) );
+	}
+
+	public static function provideRestrictionStoreForwarding() {
+		$pageIdentity = PageIdentityValue::localIdentity( 144, NS_MAIN, 'Sample' );
+		$title = Title::castFromPageIdentity( $pageIdentity );
+		return [
+			[ 'getFilteredRestrictionTypes', [ true ], [ 'abc' ],
+				[ 'static' => true, 'expectedMethod' => 'listAllRestrictionTypes' ] ],
+			[ 'getFilteredRestrictionTypes', [ false ], [ 'def' ],
+				[ 'static' => true, 'expectedMethod' => 'listAllRestrictionTypes' ] ],
+			[ 'getRestrictionTypes', [], [ 'ghi' ],
+				[ 'expectedMethod' => 'listApplicableRestrictionTypes' ] ],
+			[ 'getTitleProtection', [], [ 'jkl' ], [ 'expectedMethod' => 'getCreateProtection' ] ],
+			[ 'getTitleProtection', [], null,
+				[ 'expectedMethod' => 'getCreateProtection', 'expectedReturn' => false ] ],
+			[ 'deleteTitleProtection', [], null,
+				[ 'expectedMethod' => 'deleteCreateProtection', 'void' => true ] ],
+			[ 'isSemiProtected', [ 'phlebotomize' ], true ],
+			[ 'isSemiProtected', [ 'splecotomize' ], false ],
+			[ 'isProtected', [ 'strezotomize' ], true ],
+			[ 'isProtected', [ 'chrelotomize' ], false ],
+			[ 'isCascadeProtected', [], true ],
+			[ 'isCascadeProtected', [], false ],
+			[ 'areCascadeProtectionSourcesLoaded', [ true ], true, [ 'expectedParams' => [] ] ],
+			[ 'areCascadeProtectionSourcesLoaded', [ true ], false, [ 'expectedParams' => [] ] ],
+			[ 'areCascadeProtectionSourcesLoaded', [ false ], true, [ 'expectedParams' => [] ] ],
+			[ 'areCascadeProtectionSourcesLoaded', [ false ], false, [ 'expectedParams' => [] ] ],
+			[ 'getCascadeProtectionSources', [], [ [ $pageIdentity ], [ 'mno' ] ],
+				[ 'expectedReturn' => [ [ $title ], [ 'mno' ] ], 'weakCompareReturn' => true ] ],
+			[ 'getCascadeProtectionSources', [], [ [], [] ],
+				[ 'expectedReturn' => [ false, [] ] ] ],
+			[ 'getCascadeProtectionSources', [ true ], [ [ $pageIdentity ], [ 'mno' ] ],
+				[ 'expectedParams' => [], 'expectedReturn' => [ [ $title ], [ 'mno' ] ],
+				'weakCompareReturn' => true ] ],
+			[ 'getCascadeProtectionSources', [ true ], [ [], [] ],
+				[ 'expectedParams' => [], 'expectedReturn' => [ false, [] ] ] ],
+			[ 'getCascadeProtectionSources', [ false ], false,
+				[ 'expectedMethod' => 'isCascadeProtected', 'expectedParams' => [],
+				'expectedReturn' => [ false, [] ] ] ],
+			[ 'getCascadeProtectionSources', [ false ], true,
+				[ 'expectedMethod' => 'isCascadeProtected', 'expectedParams' => [],
+				'expectedReturn' => [ true, [] ] ] ],
+			[ 'areRestrictionsLoaded', [], true ],
+			[ 'areRestrictionsLoaded', [], false ],
+			[ 'getRestrictions', [ 'stu' ], [ 'vwx' ] ],
+			[ 'getAllRestrictions', [], [ 'yza' ] ],
+			[ 'getRestrictionExpiry', [ 'bcd' ], 'efg' ],
+			[ 'getRestrictionExpiry', [ 'hij' ], null, [ 'expectedReturn' => false ] ],
+			[ 'areRestrictionsCascading', [], true ],
+			[ 'areRestrictionsCascading', [], false ],
+			[ 'loadRestrictionsFromRows', [ [ 'hij' ], 'klm' ], null, [ 'void' => true ] ],
+			[ 'loadRestrictions', [ 'nop', 123 ], null,
+				[ 'void' => true, 'expectedParams' => [ 123, 'nop' ] ] ],
+			[ 'flushRestrictions', [], null, [ 'void' => true ] ],
+		];
+	}
+
+	/**
 	 * @covers Title::getRestrictions
 	 */
 	public function testGetRestrictions() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$title->mRestrictions = [
-			'a' => [ 'sysop' ],
-			'b' => [ 'sysop' ],
-			'c' => [ 'sysop' ]
-		];
-		$title->mRestrictionsLoaded = true;
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => [
+				'a' => [ 'sysop' ],
+				'b' => [ 'sysop' ],
+				'c' => [ 'sysop' ]
+			],
+		] ];
 		$this->assertArrayEquals( [ 'sysop' ], $title->getRestrictions( 'a' ) );
 		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
 		// TODO: maybe test if loadRestrictionsFromRows() is called?
@@ -1504,15 +1622,19 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getAllRestrictions
 	 */
 	public function testGetAllRestrictions() {
-		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$title->mRestrictions = [
+		$restrictions = [
 			'a' => [ 'sysop' ],
 			'b' => [ 'sysop' ],
-			'c' => [ 'sysop' ]
+			'c' => [ 'sysop' ],
 		];
-		$title->mRestrictionsLoaded = true;
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => $restrictions
+		] ];
 		$this->assertArrayEquals(
-			$title->mRestrictions,
+			$restrictions,
 			$title->getAllRestrictions()
 		);
 	}
@@ -1522,13 +1644,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRestrictionExpiry() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$reflection = new ReflectionClass( $title );
-		$reflection_property = $reflection->getProperty( 'mRestrictionsExpiry' );
-		$reflection_property->setAccessible( true );
-		$reflection_property->setValue( $title, [
-			'a' => 'infinity', 'b' => 'infinity', 'c' => 'infinity'
-		] );
-		$title->mRestrictionsLoaded = true;
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'expiry' => [
+				'a' => 'infinity', 'b' => 'infinity', 'c' => 'infinity'
+			],
+			// XXX This is bogus, restrictions will never be empty when expiry is not
+			'restrictions' => [],
+		] ];
 		$this->assertSame( 'infinity', $title->getRestrictionExpiry( 'a' ) );
 		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
 	}
@@ -1538,7 +1662,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetTitleProtection() {
 		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
-		$title->mTitleProtection = false;
 		$this->assertFalse( $title->getTitleProtection() );
 	}
 
@@ -1547,17 +1670,19 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsSemiProtected() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$title->mRestrictions = [
-			'edit' => [ 'sysop' ]
-		];
 		$this->setMwGlobals( [
 			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
 		] );
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => [ 'edit' => [ 'sysop' ] ],
+		] ];
 		$this->assertFalse( $title->isSemiProtected( 'edit' ) );
-		$title->mRestrictions = [
-			'edit' => [ 'autoconfirmed' ]
-		];
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => [ 'edit' => [ 'autoconfirmed' ] ],
+		] ];
 		$this->assertTrue( $title->isSemiProtected( 'edit' ) );
 	}
 
@@ -1578,13 +1703,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 			'wgRestrictionTypes' => [ 'create', 'edit', 'move', 'upload' ]
 		] );
-		$title->mRestrictions = [
-			'edit' => [ 'sysop' ]
-		];
-		$this->assertFalse( $title->isProtected( 'edit' ) );
-		$title->mRestrictions = [
-			'edit' => [ 'test' ]
-		];
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => [ 'edit' => [ 'sysop' ] ],
+		] ];
+		$this->assertTrue( $title->isProtected( 'edit' ) );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'restrictions' => [ 'edit' => [ 'test' ] ],
+		] ];
 		$this->assertFalse( $title->isProtected( 'edit' ) );
 	}
 
@@ -1616,14 +1743,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testIsCascadeProtected() {
 		$page = $this->getExistingTestPage( 'UTest1' );
 		$title = $page->getTitle();
-		$reflection = new ReflectionClass( $title );
-		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
-		$reflection_property->setAccessible( true );
-		$reflection_property->setValue( $title, true );
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
+			'has_cascading' => true,
+		] ];
 		$this->assertTrue( $title->isCascadeProtected() );
-		$reflection_property->setValue( $title, null );
+		$wrapper->cache = [];
 		$this->assertFalse( $title->isCascadeProtected() );
-		$reflection_property->setValue( $title, null );
+		$wrapper->cache = [];
 		$cascade = 1;
 		$anotherPage = $this->getExistingTestPage( 'UTest2' );
 		$anotherPage->doUserEditContent(
@@ -1643,6 +1771,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Title::getCascadeProtectionSources
+	 * @group Broken
 	 */
 	public function testGetCascadeProtectionSources() {
 		$page = $this->getExistingTestPage( 'UTest1' );

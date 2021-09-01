@@ -10,6 +10,7 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
@@ -240,13 +241,18 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->overrideUserPermissions( $this->user, [ "edit", "bogus", 'createpage' ] );
 
-		$this->title->mCascadeSources = [
-			Title::makeTitle( NS_MAIN, "Bogus" ),
-			Title::makeTitle( NS_MAIN, "UnBogus" )
-		];
-		$this->title->mCascadingRestrictions = [
-			"bogus" => [ 'bogus', "sysop", "protect", "" ]
-		];
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+			'cascade_sources' => [
+				[
+					Title::makeTitle( NS_MAIN, "Bogus" ),
+					Title::makeTitle( NS_MAIN, "UnBogus" )
+				], [
+					"bogus" => [ 'bogus', "sysop", "protect", "" ],
+				]
+			],
+		] ];
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -275,24 +281,29 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$expectedPermErrors,
 		$expectedUserCan
 	) {
-		$this->setTitle( $namespace, "test page" );
-		$this->title->mTitleProtection['permission'] = '';
-		$this->title->mTitleProtection['user'] = $this->user->getId();
-		$this->title->mTitleProtection['expiry'] = 'infinity';
-		$this->title->mTitleProtection['reason'] = 'test';
-		$this->title->mCascadeRestriction = false;
-		$this->title->mRestrictionsLoaded = true;
+		$this->setTitle( $namespace, "Test page" );
 
-		if ( isset( $titleOverrides['protectedPermission' ] ) ) {
-			$this->title->mTitleProtection['permission'] = $titleOverrides['protectedPermission'];
-		}
-		if ( isset( $titleOverrides['interwiki'] ) ) {
-			$this->title->mInterwiki = $titleOverrides['interwiki'];
-		}
+		$this->overrideUserPermissions( $this->user, $userPerms );
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$this->overrideUserPermissions( $this->user, $userPerms );
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+			'create_protection' => [
+				'permission' => $titleOverrides['protectedPermission'] ?? '',
+				'user' => $this->user->getId(),
+				'expiry' => 'infinity',
+				'reason' => 'test',
+			],
+			'has_cascading' => false,
+			// XXX This is bogus, restrictions won't be empty if there's create protection
+			'restrictions' => [],
+		] ];
+
+		if ( isset( $titleOverrides['interwiki'] ) ) {
+			$this->title->mInterwiki = $titleOverrides['interwiki'];
+		}
 
 		$this->assertEquals(
 			$expectedPermErrors,
