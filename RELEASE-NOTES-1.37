@@ -675,6 +675,8 @@ because of Phabricator reports.
   - getTitleProtection()
   - flushRestrictions()
   - loadRestrictions()
+* User::isAllowUsertalk was hard deprecated. Use User::getBlock and
+  AbstractBlock::isUsertalkEditAllowed instead.
 * …
 
 === Other changes in 1.37 ===
