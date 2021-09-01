@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -593,6 +594,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				null,
 			],
 			[
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">:Special:BlankPage</a>',
+				'[[::Special:BlankPage]]',
+				null,
+			],
+			[
 				'[[Foo<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
 				'[[Foo[[Special:BlankPage]]',
 				null,
@@ -654,5 +660,192 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
 
 		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * @covers Linker::makeCommentLink
+	 * @dataProvider provideMakeCommentLink
+	 */
+	public function testMakeCommentLink( $expected, $linkTarget, $text, $wikiId = null, $options = [] ) {
+		$conf = new SiteConfiguration();
+		$conf->settings = [
+			'wgServer' => [
+				'enwiki' => '//en.example.org'
+			],
+			'wgArticlePath' => [
+				'enwiki' => '/w/$1',
+			],
+		];
+		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( [
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgCapitalLinks' => true,
+			'wgConf' => $conf,
+		] );
+
+		$this->assertEquals( $expected, Linker::makeCommentLink( $linkTarget, $text, $wikiId, $options ) );
+	}
+
+	public static function provideMakeCommentLink() {
+		return [
+			[
+				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Test</a>',
+				new TitleValue( NS_SPECIAL, 'BlankPage' ),
+				'Test'
+			],
+			'External comment link' => [
+				'<a class="external" rel="nofollow" href="//en.example.org/w/BlankPage">Test</a>',
+				new TitleValue( NS_MAIN, 'BlankPage' ),
+				'Test',
+				'enwiki'
+			],
+			'External special page comment link' => [
+				'<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Test</a>',
+				new TitleValue( NS_SPECIAL, 'BlankPage' ),
+				'Test',
+				'enwiki'
+			],
+		];
+	}
+
+	/**
+	 * @covers Linker::commentBlock
+	 * @dataProvider provideCommentBlock
+	 */
+	public function testCommentBlock(
+		$expected, $comment, $title = null, $local = false, $wikiId = null, $useParentheses = true
+	) {
+		$conf = new SiteConfiguration();
+		$conf->settings = [
+			'wgServer' => [
+				'enwiki' => '//en.example.org'
+			],
+			'wgArticlePath' => [
+				'enwiki' => '/w/$1',
+			],
+		];
+		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( [
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgCapitalLinks' => true,
+			'wgConf' => $conf,
+		] );
+
+		$this->assertEquals( $expected, Linker::commentBlock( $comment, $title, $local, $wikiId, $useParentheses ) );
+	}
+
+	public static function provideCommentBlock() {
+		// phpcs:disable Generic.Files.LineLength
+		return [
+			[
+				' <span class="comment">(Test)</span>',
+				'Test'
+			],
+			'Empty comment' => [ '', '' ],
+			'Backwards compatibility empty comment' => [ '', '*' ],
+			'No parenthesis' => [
+				' <span class="comment comment--without-parentheses">Test</span>',
+				'Test',
+				null, false, null,
+				false
+			],
+			'Page exist link' => [
+				' <span class="comment">(<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>)</span>',
+				'[[Special:BlankPage]]'
+			],
+			'Page does not exist link' => [
+				' <span class="comment">(<a href="/wiki/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>)</span>',
+				'[[Test]]'
+			],
+			'Link to other page section' => [
+				' <span class="comment">(<a href="/wiki/Special:BlankPage#Test" title="Special:BlankPage">#Test</a>)</span>',
+				'[[#Test]]',
+				Title::newFromText( 'Special:BlankPage' )
+			],
+			'$local is true' => [
+				' <span class="comment">(<a href="#Test">#Test</a>)</span>',
+				'[[#Test]]',
+				Title::newFromText( 'Special:BlankPage' ),
+				true
+			],
+			'Given wikiId' => [
+				' <span class="comment">(<a class="external" rel="nofollow" href="//en.example.org/w/Test">Test</a>)</span>',
+				'[[Test]]',
+				null, false,
+				'enwiki'
+			],
+			'Section link to external wiki page' => [
+				' <span class="comment">(<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage#Test">#Test</a>)</span>',
+				'[[#Test]]',
+				Title::newFromText( 'Special:BlankPage' ),
+				false,
+				'enwiki'
+			],
+		];
+	}
+
+	/**
+	 * @covers Linker::revComment
+	 * @dataProvider provideRevComment
+	 */
+	public function testRevComment(
+		string $expected,
+		bool $isSysop = false,
+		int $visibility = 0,
+		bool $local = false,
+		bool $isPublic = false,
+		bool $useParentheses = true,
+		?string $comment = 'Some comment!'
+	) {
+		$pageData = $this->insertPage( 'RevCommentTestPage' );
+		$revisionRecord = new MutableRevisionRecord( $pageData['title'] );
+		if ( $comment ) {
+			$revisionRecord->setComment( CommentStoreComment::newUnsavedComment( $comment ) );
+		}
+		$revisionRecord->setVisibility( $visibility );
+
+		$context = RequestContext::getMain();
+		$user = $isSysop ? $this->getTestSysop()->getUser() : $this->getTestUser()->getUser();
+		$context->setUser( $user );
+
+		$this->assertEquals( $expected, Linker::revComment( $revisionRecord, $local, $isPublic, $useParentheses ) );
+	}
+
+	public static function provideRevComment() {
+		// phpcs:disable Generic.Files.LineLength
+		return [
+			'Should be visible' => [
+				' <span class="comment">(Some comment!)</span>'
+			],
+			'Should not have parenthesis' => [
+				' <span class="comment comment--without-parentheses">Some comment!</span>',
+				false, 0, false, false,
+				false
+			],
+			'Should be empty' => [
+				'',
+				false, 0, false, false, true,
+				null
+			],
+			'Deleted comment should not be visible to normal users' => [
+				' <span class="history-deleted comment"> <span class="comment">(edit summary removed)</span></span>',
+				false,
+				RevisionRecord::DELETED_COMMENT
+			],
+			'Deleted comment should not be visible to normal users even if public' => [
+				' <span class="history-deleted comment"> <span class="comment">(edit summary removed)</span></span>',
+				false,
+				RevisionRecord::DELETED_COMMENT,
+				false,
+				true
+			],
+			'Deleted comment should be visible to sysops' => [
+				' <span class="history-deleted comment"> <span class="comment">(Some comment!)</span></span>',
+				true,
+				RevisionRecord::DELETED_COMMENT
+			],
+		];
 	}
 }
