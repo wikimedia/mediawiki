@@ -69,6 +69,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
@@ -1361,6 +1362,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getResourceLoader(): ResourceLoader {
 		return $this->getService( 'ResourceLoader' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return RestrictionStore
+	 */
+	public function getRestrictionStore(): RestrictionStore {
+		return $this->getService( 'RestrictionStore' );
 	}
 
 	/**
