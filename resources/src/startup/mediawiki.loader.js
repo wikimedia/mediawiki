@@ -121,13 +121,10 @@
 	 *   batched handling.
 	 * @param {string} source Source of the error. Possible values:
 	 *
-	 *   - style: stylesheet error (only affects old IE where a special style loading method
-	 *     is used)
 	 *   - load-callback: exception thrown by user callback
 	 *   - module-execute: exception thrown by module code
 	 *   - resolve: failed to sort dependencies for a module in mw.loader.load
 	 *   - store-eval: could not evaluate module code cached in localStorage
-	 *   - store-localstorage-init: localStorage or JSON parse error in mw.loader.store.init
 	 *   - store-localstorage-json: JSON conversion error in mw.loader.store
 	 *   - store-localstorage-update: localStorage conversion error in mw.loader.store.
 	 */
@@ -405,7 +402,7 @@
 			didPropagate = true;
 
 		// Keep going until the last iteration performed no actions.
-		do {
+		while ( didPropagate ) {
 			didPropagate = false;
 
 			// Stage 1: Propagate failures
@@ -466,7 +463,7 @@
 					didPropagate = true;
 				}
 			}
-		} while ( didPropagate );
+		}
 
 		willPropagate = false;
 	}
@@ -1431,21 +1428,20 @@
 		 * @private
 		 */
 		work: function () {
-			var q, module, implementation,
+			mw.loader.store.init();
+
+			var q = queue.length,
 				storedImplementations = [],
 				storedNames = [],
 				requestNames = [],
 				batch = new StringSet();
 
-			mw.loader.store.init();
-
 			// Iterate the list of requested modules, and do one of three things:
 			// - 1) Nothing (if already loaded or being loaded).
 			// - 2) Eval the cached implementation from the module store.
 			// - 3) Request from network.
-			q = queue.length;
 			while ( q-- ) {
-				module = queue[ q ];
+				var module = queue[ q ];
 				// Only consider modules which are the initial 'registered' state
 				if ( module in registry && registry[ module ].state === 'registered' ) {
 					// Ignore duplicates
@@ -1454,7 +1450,7 @@
 						registry[ module ].state = 'loading';
 						batch.add( module );
 
-						implementation = mw.loader.store.get( module );
+						var implementation = mw.loader.store.get( module );
 						if ( implementation ) {
 							// Module store enabled and contains this module/version
 							storedImplementations.push( implementation );
@@ -1475,7 +1471,6 @@
 			queue = [];
 
 			asyncEval( storedImplementations, function ( err ) {
-				var failed;
 				// Not good, the cached mw.loader.implement calls failed! This should
 				// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 				// Depending on how corrupt the string is, it is likely that some
@@ -1493,7 +1488,7 @@
 					source: 'store-eval'
 				} );
 				// For any failed ones, fallback to requesting from network
-				failed = storedNames.filter( function ( name ) {
+				var failed = storedNames.filter( function ( name ) {
 					return registry[ name ].state === 'loading';
 				} );
 				batchRequest( failed );
@@ -1515,8 +1510,7 @@
 		 * @throws {Error} If source id is already registered
 		 */
 		addSource: function ( ids ) {
-			var id;
-			for ( id in ids ) {
+			for ( var id in ids ) {
 				if ( id in sources ) {
 					throw new Error( 'source already registered: ' + id );
 				}
@@ -1544,7 +1538,6 @@
 		 * @param {string} [skip=null] Script body of the skip function
 		 */
 		register: function ( modules ) {
-			var i;
 			if ( typeof modules === 'object' ) {
 				resolveIndexedDependencies( modules );
 				// Optimisation: Up to 55% faster.
@@ -1555,7 +1548,7 @@
 				// arguments manipulation, and isn't also the caller itself.
 				// JS semantics make it hard to optimise recursion to a different
 				// signature of itself.
-				for ( i = 0; i < modules.length; i++ ) {
+				for ( var i = 0; i < modules.length; i++ ) {
 					registerOne.apply( null, modules[ i ] );
 				}
 			} else {
@@ -1677,13 +1670,11 @@
 		 * @param {Object} states Object of module name/state pairs
 		 */
 		state: function ( states ) {
-			var module, state;
-			for ( module in states ) {
-				state = states[ module ];
+			for ( var module in states ) {
 				if ( !( module in registry ) ) {
 					mw.loader.register( module );
 				}
-				setAndPropagate( module, state );
+				setAndPropagate( module, states[ module ] );
 			}
 		},
 
@@ -1723,10 +1714,8 @@
 		 * @return {Mixed} Exported value
 		 */
 		require: function ( moduleName ) {
-			var state = mw.loader.getState( moduleName );
-
 			// Only ready modules can be required
-			if ( state !== 'ready' ) {
+			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
 				// Module may've forgotten to declare a dependency
 				throw new Error( 'Module "' + moduleName + '" is not loaded' );
 			}
@@ -1806,8 +1795,6 @@
 		 * <https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796>.
 		 */
 		init: function () {
-			var raw, data;
-
 			if ( this.enabled !== null ) {
 				// Init already ran
 				return;
@@ -1827,13 +1814,15 @@
 				return;
 			}
 
+			var raw;
+
 			try {
 				// This a string we stored, or `null` if the key does not (yet) exist.
 				raw = localStorage.getItem( this.key );
 				// If we get here, localStorage is available; mark enabled
 				this.enabled = true;
 				// If null, JSON.parse() will cast to string and re-parse, still null.
-				data = JSON.parse( raw );
+				var data = JSON.parse( raw );
 				if ( data &&
 					typeof data.items === 'object' &&
 					data.vary === this.vary &&
@@ -1880,10 +1869,8 @@
 		 * @return {string|boolean} Module implementation or false if unavailable
 		 */
 		get: function ( module ) {
-			var key;
-
 			if ( this.enabled ) {
-				key = getModuleKey( module );
+				var key = getModuleKey( module );
 				if ( key in this.items ) {
 					this.stats.hits++;
 					return this.items[ key ];
@@ -1921,11 +1908,10 @@
 		 * @param {string} module Module name
 		 */
 		set: function ( module ) {
-			var key, args, src,
+			var args,
 				encodedScript,
-				descriptor = mw.loader.moduleRegistry[ module ];
-
-			key = getModuleKey( module );
+				descriptor = mw.loader.moduleRegistry[ module ],
+				key = getModuleKey( module );
 
 			if (
 				// Already stored a copy of this exact version
@@ -1985,7 +1971,7 @@
 				return;
 			}
 
-			src = 'mw.loader.implement(' + args.join( ',' ) + ');';
+			var src = 'mw.loader.implement(' + args.join( ',' ) + ');';
 			if ( src.length > this.MODULE_SIZE_MAX ) {
 				return;
 			}
@@ -1997,11 +1983,11 @@
 		 * (in name and version) to an item in the module registry.
 		 */
 		prune: function () {
-			var key, module;
-
-			for ( key in this.items ) {
-				module = key.slice( 0, key.indexOf( '@' ) );
-				if ( getModuleKey( module ) !== key ) {
+			for ( var key in this.items ) {
+				// key is in the form [name]@[version], slice to get just the name
+				// to provide to getModuleKey, which will return a key in the same
+				// form but with the latest version
+				if ( getModuleKey( key.slice( 0, key.indexOf( '@' ) ) ) !== key ) {
 					this.stats.expired++;
 					delete this.items[ key ];
 				} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
@@ -2056,8 +2042,6 @@
 			var hasPendingWrites = false;
 
 			function flushWrites() {
-				var data, key;
-
 				// Remove anything from the in-memory store that came from previous page
 				// loads that no longer corresponds with current module names and versions.
 				mw.loader.store.prune();
@@ -2066,14 +2050,14 @@
 					mw.loader.store.set( mw.loader.store.queue.shift() );
 				}
 
-				key = mw.loader.store.key;
+				var key = mw.loader.store.key;
 				try {
 					// Replacing the content of the module store might fail if the new
 					// contents would exceed the browser's localStorage size limit. To
 					// avoid clogging the browser with stale data, always remove the old
 					// value before attempting to set the new one.
 					localStorage.removeItem( key );
-					data = JSON.stringify( mw.loader.store );
+					var data = JSON.stringify( mw.loader.store );
 					localStorage.setItem( key, data );
 				} catch ( e ) {
 					mw.trackError( 'resourceloader.exception', {
