@@ -177,6 +177,7 @@ class DBFileJournal extends FileJournal {
 	 *
 	 * @return IDatabase
 	 * @throws DBError
+	 * @since 1.37
 	 */
 	protected function getPrimaryDB() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();

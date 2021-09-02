@@ -1888,4 +1888,177 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEmpty( $title->getSubpages() );
 	}
+
+	/**
+	 * @covers Title::getNsText
+	 * @dataProvider provideNamespaces
+	 */
+	public function testGetNsText( $namespace, $expected ) {
+		if ( $namespace instanceof Title ) {
+			$this->assertSame( $expected, $namespace->getNsText() );
+		} else {
+			$actual = Title::makeTitle( $namespace, 'Title_test' )->getNsText();
+			$this->assertSame( $expected, $actual );
+		}
+	}
+
+	public function provideNamespaces() {
+		// For ->isExternal() code path, construct a title with interwiki
+		$title = Title::makeTitle( NS_FILE, 'test', 'frag', 'meta' );
+		return [
+			[ NS_MAIN, '' ],
+			[ NS_FILE, 'File' ],
+			[ NS_MEDIA, 'Media' ],
+			[ NS_TALK, 'Talk' ],
+			[ NS_CATEGORY, 'Category' ],
+			[ $title, 'File' ],
+		];
+	}
+
+	/**
+	 * @covers Title::getSubjectNsText
+	 * @dataProvider providePagesWithSubjects
+	 */
+	public function testGetSubjectNsText( Title $title, $expected ) {
+		$actual = $title->getSubjectNsText();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function providePagesWithSubjects() {
+		return [
+			[ Title::makeTitle( NS_USER_TALK, 'User_test' ), 'User' ],
+			[ Title::makeTitle( NS_PROJECT, 'Test' ), 'Project' ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), '' ],
+			[ Title::makeTitle( NS_CATEGORY, 'Cat_test' ), 'Category' ],
+		];
+	}
+
+	/**
+	 * @covers Title::getTalkNsText
+	 * @dataProvider provideTitlesWithTalkPages
+	 */
+	public function testGetTalkNsText( Title $title, $expected ) {
+		$actual = $title->getTalkNsText();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function provideTitlesWithTalkPages() {
+		return [
+			[ Title::makeTitle( NS_HELP, 'Help page' ), 'Help_talk' ],
+			[ Title::newMainPage(), 'Talk' ],
+			[ Title::makeTitle( NS_PROJECT, 'Test' ), 'Project_talk' ],
+		];
+	}
+
+	/**
+	 * @covers Title::isSpecial
+	 */
+	public function testIsSpecial() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Recentchanges/Subpage' );
+		$this->assertTrue( $title->isSpecial( 'Recentchanges' ) );
+	}
+
+	/**
+	 * @covers Title::isSpecial
+	 */
+	public function testIsNotSpecial() {
+		$title = Title::newFromText( 'NotSpecialPage/Subpage', NS_SPECIAL );
+		$this->assertFalse( $title->isSpecial( 'NotSpecialPage' ) );
+	}
+
+	/**
+	 * @covers Title::isTalkPage
+	 */
+	public function testIsTalkPage() {
+		$title = Title::newFromText( 'Talk page', NS_TALK );
+		$this->assertTrue( $title->isTalkPage() );
+
+		$titleNotInTalkNs = Title::makeTitle( NS_HELP, 'Test' );
+		$this->assertFalse( $titleNotInTalkNs->isTalkPage() );
+	}
+
+	/**
+	 * @covers Title::getBacklinkCache
+	 */
+	public function testGetBacklinkCache() {
+		$backLinkCache = Title::makeTitle( NS_FILE, 'Test' )->getBacklinkCache();
+		$this->assertInstanceOf( BacklinkCache::class, $backLinkCache );
+	}
+
+	/**
+	 * @covers Title::isSubpage
+	 * @covers Title::isSubpageOf
+	 * @dataProvider provideNsWithSubpagesSupport
+	 */
+	public function testIsSubpageOfWithNamespacesSubpages( $namespace, $pageName, $subpageName ) {
+		$page = Title::makeTitle( $namespace, $pageName, '', 'meta' );
+		$subPage = Title::makeTitle( $namespace, $subpageName, '', 'meta' );
+
+		$this->assertTrue( $subPage->isSubpageOf( $page ) );
+		$this->assertTrue( $subPage->isSubpage() );
+	}
+
+	public function provideNsWithSubpagesSupport() {
+		return [
+			[ NS_HELP, 'Mainhelp', 'Mainhelp/Subhelp' ],
+			[ NS_USER, 'Mainuser', 'Mainuser/Subuser' ],
+			[ NS_TALK, 'Maintalk', 'Maintalk/Subtalk' ],
+			[ NS_PROJECT, 'Mainproject', 'Mainproject/Subproject' ],
+		];
+	}
+
+	/**
+	 * @covers Title::isSubpage
+	 * @covers Title::isSubpageOf
+	 * @dataProvider provideNsWithNoSubpages
+	 */
+	public function testIsSubpageOfWithoutNamespacesSubpages( $namespace, $pageName, $subpageName ) {
+		$page = Title::makeTitle( $namespace, $pageName, '', 'meta' );
+		$subPage = Title::makeTitle( $namespace, $subpageName, '', 'meta' );
+
+		$this->assertFalse( $page->isSubpageOf( $page ) );
+		$this->assertFalse( $subPage->isSubpage() );
+	}
+
+	public function provideNsWithNoSubpages() {
+		return [
+			[ NS_CATEGORY, 'Maincat', 'Maincat/Subcat' ],
+			[ NS_MAIN, 'Mainpage', 'Mainpage/Subpage' ]
+		];
+	}
+
+	/**
+	 * @covers Title::getEditURL
+	 * @dataProvider provideTitleEditURLs
+	 */
+	public function testGetEditURL( Title $title, $expected ) {
+		$actual = $title->getEditURL();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function provideTitleEditURLs() {
+		return [
+			[ Title::newFromText( 'Title', NS_MAIN ), '/w/index.php?title=Title&action=edit' ],
+			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
+			[ Title::newFromText( 'Test', NS_HELP ), '/w/index.php?title=Help:Test&action=edit' ],
+		];
+	}
+
+	/**
+	 * @covers Title::getEditURL
+	 * @dataProvider provideTitleEditURLsWithActionPaths
+	 */
+	public function testGetEditUrlWithActionPaths( Title $title, $expected ) {
+		$this->setMwGlobals( 'wgActionPaths', [ 'edit' => '/wiki/edit/$1' ] );
+		$actual = $title->getEditURL();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function provideTitleEditURLsWithActionPaths() {
+		return [
+			[ Title::newFromText( 'Title', NS_MAIN ), '/wiki/edit/Title' ],
+			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
+			[ Title::newFromText( 'Test', NS_HELP ), '/wiki/edit/Help:Test' ],
+		];
+	}
 }

@@ -1445,23 +1445,23 @@
 			// - 3) Request from network.
 			while ( q-- ) {
 				var module = queue[ q ];
-				// Only consider modules which are the initial 'registered' state
-				if ( module in registry && registry[ module ].state === 'registered' ) {
-					// Ignore duplicates
-					if ( !batch.has( module ) ) {
-						// Progress the state machine
-						registry[ module ].state = 'loading';
-						batch.add( module );
+				// Only consider modules which are the initial 'registered' state,
+				// and ignore duplicates
+				if ( mw.loader.getState( module ) === 'registered' &&
+					!batch.has( module )
+				) {
+					// Progress the state machine
+					registry[ module ].state = 'loading';
+					batch.add( module );
 
-						var implementation = mw.loader.store.get( module );
-						if ( implementation ) {
-							// Module store enabled and contains this module/version
-							storedImplementations.push( implementation );
-							storedNames.push( module );
-						} else {
-							// Module store disabled or doesn't have this module/version
-							requestNames.push( module );
-						}
+					var implementation = mw.loader.store.get( module );
+					if ( implementation ) {
+						// Module store enabled and contains this module/version
+						storedImplementations.push( implementation );
+						storedNames.push( module );
+					} else {
+						// Module store disabled or doesn't have this module/version
+						requestNames.push( module );
 					}
 				}
 			}
@@ -1738,6 +1738,45 @@
 	 * @singleton
 	 * @class mw.loader.store
 	 */
+
+	// Whether we have already triggered a timer for flushWrites
+	var hasPendingWrites = false;
+
+	/**
+	 * Actually update the store
+	 *
+	 * @see #requestUpdate
+	 * @private
+	 */
+	function flushWrites() {
+		// Remove anything from the in-memory store that came from previous page
+		// loads that no longer corresponds with current module names and versions.
+		mw.loader.store.prune();
+		// Process queued module names, serialise their contents to the in-memory store.
+		while ( mw.loader.store.queue.length ) {
+			mw.loader.store.set( mw.loader.store.queue.shift() );
+		}
+
+		var key = mw.loader.store.key;
+		try {
+			// Replacing the content of the module store might fail if the new
+			// contents would exceed the browser's localStorage size limit. To
+			// avoid clogging the browser with stale data, always remove the old
+			// value before attempting to set the new one.
+			localStorage.removeItem( key );
+			var data = JSON.stringify( mw.loader.store );
+			localStorage.setItem( key, data );
+		} catch ( e ) {
+			mw.trackError( 'resourceloader.exception', {
+				exception: e,
+				source: 'store-localstorage-update'
+			} );
+		}
+
+		// Let the next call to requestUpdate() create a new timer.
+		hasPendingWrites = false;
+	}
+
 	mw.loader.store = {
 		// Whether the store is in use on this page.
 		enabled: null,
@@ -2041,55 +2080,23 @@
 		 * @private
 		 * @method
 		 */
-		requestUpdate: ( function () {
-			var hasPendingWrites = false;
-
-			function flushWrites() {
-				// Remove anything from the in-memory store that came from previous page
-				// loads that no longer corresponds with current module names and versions.
-				mw.loader.store.prune();
-				// Process queued module names, serialise their contents to the in-memory store.
-				while ( mw.loader.store.queue.length ) {
-					mw.loader.store.set( mw.loader.store.queue.shift() );
-				}
-
-				var key = mw.loader.store.key;
-				try {
-					// Replacing the content of the module store might fail if the new
-					// contents would exceed the browser's localStorage size limit. To
-					// avoid clogging the browser with stale data, always remove the old
-					// value before attempting to set the new one.
-					localStorage.removeItem( key );
-					var data = JSON.stringify( mw.loader.store );
-					localStorage.setItem( key, data );
-				} catch ( e ) {
-					mw.trackError( 'resourceloader.exception', {
-						exception: e,
-						source: 'store-localstorage-update'
-					} );
-				}
-
-				// Let the next call to requestUpdate() create a new timer.
-				hasPendingWrites = false;
+		requestUpdate: function () {
+			// On the first call to requestUpdate(), create a timer that
+			// waits at least two seconds, then calls onTimeout.
+			// The main purpose is to allow the current batch of load.php
+			// responses to complete before we do anything. This batch can
+			// trigger many hundreds of calls to requestUpdate().
+			if ( !hasPendingWrites ) {
+				hasPendingWrites = true;
+				setTimeout(
+					// Defer the actual write via requestIdleCallback
+					function () {
+						mw.requestIdleCallback( flushWrites );
+					},
+					2000
+				);
 			}
-
-			function onTimeout() {
-				// Defer the actual write via requestIdleCallback
-				mw.requestIdleCallback( flushWrites );
-			}
-
-			return function () {
-				// On the first call to requestUpdate(), create a timer that
-				// waits at least two seconds, then calls onTimeout.
-				// The main purpose is to allow the current batch of load.php
-				// responses to complete before we do anything. This batch can
-				// trigger many hundreds of calls to requestUpdate().
-				if ( !hasPendingWrites ) {
-					hasPendingWrites = true;
-					setTimeout( onTimeout, 2000 );
-				}
-			};
-		}() )
+		}
 	};
 
 }() );
