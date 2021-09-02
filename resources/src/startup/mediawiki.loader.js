@@ -696,13 +696,14 @@
 				return mw.loader.require( moduleName );
 			}
 
-			var scriptFiles = moduleObj.script.files;
-			if ( !hasOwn.call( scriptFiles, fileName ) ) {
-				throw new Error( 'Cannot require undefined file ' + fileName );
-			}
 			if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
 				// File has already been executed, return the cached result
 				return moduleObj.packageExports[ fileName ];
+			}
+
+			var scriptFiles = moduleObj.script.files;
+			if ( !hasOwn.call( scriptFiles, fileName ) ) {
+				throw new Error( 'Cannot require undefined file ' + fileName );
 			}
 
 			var result,
