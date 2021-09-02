@@ -914,6 +914,16 @@ interface ILoadBalancer {
 	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
+	 * @since 1.37
+	 */
+	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = 10 );
+
+	/**
+	 * @deprecated since 1.37; please use waitForPrimaryPos() instead.
+	 * @param IDatabase $conn Replica DB
+	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
+	 * @param int $timeout Timeout in seconds [optional]
+	 * @return bool Success
 	 * @since 1.34
 	 */
 	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
