@@ -35,6 +35,12 @@
 @color-destructive: #d33;
 @color-destructive--hover: #ff4242;
 @color-destructive--active: #b32424;
+@color-destructive--focus: @color-destructive;
+@background-color-quiet--hover: rgba( 0, 24, 73, 7/255 ); // = `@wmui-color-base90` on white.
+@background-color-quiet--active: rgba( 0, 36, 73, 21/255 ); // = `@wmui-color-base80` on white.
+@background-color-primary--hover: fade( #347bff, 20% );
+@background-color-destructive--hover: fade( #d11d13, 20% );
+
 // Other UI colors
 @color-placeholder: @colorGray7;
 
@@ -66,6 +72,8 @@
 @border-color-base--focus: @color-primary--focus;
 @border-color-input-binary--active: @color-primary--active;
 @border-color-input-binary--checked: @color-primary;
+@border-color-destructive: @color-destructive;
+@border-color-destructive--focus: @border-color-destructive;
 
 // Border styles
 @border-style-base: solid;
@@ -82,6 +90,7 @@
 @box-shadow-base--focus: inset 0 0 0 1px @color-primary--focus;
 @box-shadow-primary--focus: inset 0 0 0 1px @color-primary--focus, inset 0 0 0 2px @color-base--inverted;
 @box-shadow-input-binary--active: inset 0 0 0 1px @color-primary--active;
+@box-shadow-destructive--focus: inset 0 0 0 1px @color-destructive, inset 0 0 0 2px @color-base--inverted;
 
 // Icon related variables
 @min-size-icon: 20px;

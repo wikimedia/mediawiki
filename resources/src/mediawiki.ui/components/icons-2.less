@@ -92,9 +92,12 @@
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	background-color: transparent;
-	border: 0;
 	margin: 0;
 	padding: 0;
+
+	&:not( .mw-ui-button ) {
+		border: 0;
+	}
 
 	&:before {
 		.mixin-background-square( @icon-size-md );

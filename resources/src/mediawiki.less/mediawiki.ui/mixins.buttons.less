@@ -10,11 +10,6 @@
 	// Container layout
 	display: inline-block;
 	.box-sizing( border-box );
-	min-height: 32px;
-	min-width: 4em;
-	max-width: 28.75em; // equivalent to 460px, @see T95367
-	margin: 0;
-	padding: 5px 12px;
 	border: @border-base;
 	border-radius: @border-radius-base;
 	cursor: pointer;
@@ -28,6 +23,14 @@
 	text-align: center;
 	// Disable weird iOS styling
 	-webkit-appearance: none;
+
+	&:not( .mw-ui-icon-element ) {
+		min-height: 32px;
+		min-width: 4em;
+		max-width: 28.75em; // equivalent to 460px, @see T95367
+		margin: 0;
+		padding: 5px 12px;
+	}
 }
 
 // Mixin for button interaction states.
@@ -48,7 +51,6 @@
 		}
 
 		&:focus {
-			background-color: @background-color-base;
 			// Make sure that `color` isn't inheriting from user-agent styles
 			color: @color-base;
 			border-color: @border-color-base--focus;
