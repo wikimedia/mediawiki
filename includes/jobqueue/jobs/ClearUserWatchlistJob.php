@@ -89,7 +89,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 
 		// Commit changes and remove lock before inserting next job.
 		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbf->commitMasterChanges( __METHOD__ );
+		$lbf->commitPrimaryChanges( __METHOD__ );
 		unset( $scopedLock );
 
 		if ( count( $watchlistIds ) === (int)$batchSize ) {

@@ -172,7 +172,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// but this fools getMainLB() at least.
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
-		$factory->commitMasterChanges( __METHOD__ );
+		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
@@ -195,7 +195,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// but this fools getMainLB() at least.
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
-		$factory->commitMasterChanges( __METHOD__ );
+		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();

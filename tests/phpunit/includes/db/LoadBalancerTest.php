@@ -498,7 +498,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::beginPrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approveMasterChanges()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitMasterChanges()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitPrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionIdleCallbacks()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionListenerCallbacks()
 	 */
@@ -554,7 +554,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		} );
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
-		$lb->commitMasterChanges( __METHOD__ );
+		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runMasterTransactionIdleCallbacks();
 		$lb->runMasterTransactionListenerCallbacks();
 
@@ -578,7 +578,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		} );
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
-		$lb->commitMasterChanges( __METHOD__ );
+		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runMasterTransactionIdleCallbacks();
 		$lb->runMasterTransactionListenerCallbacks();
 

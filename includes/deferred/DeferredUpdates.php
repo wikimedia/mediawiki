@@ -509,12 +509,12 @@ class DeferredUpdates {
 		if ( $useExplicitTrxRound ) {
 			$lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 		} else {
-			$lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
+			$lbFactory->commitPrimaryChanges( $fnameTrxOwner ); // new implicit round
 		}
 		// Run the update after any stale primary DB view snapshots have been flushed
 		$update->doUpdate();
 		// Commit any pending changes from the explicit or implicit transaction round
-		$lbFactory->commitMasterChanges( $fnameTrxOwner );
+		$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
 	}
 
 	/**
