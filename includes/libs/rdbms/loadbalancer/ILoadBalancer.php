@@ -517,6 +517,7 @@ interface ILoadBalancer {
 	 *
 	 * @return DBPrimaryPos|bool Returns false if not applicable
 	 * @throws DBError
+	 * @since 1.37
 	 */
 	public function getPrimaryPos();
 
@@ -588,6 +589,7 @@ interface ILoadBalancer {
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return int Number of pre-commit callbacks run (since 1.32)
+	 * @since 1.37
 	 */
 	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
 
@@ -609,6 +611,7 @@ interface ILoadBalancer {
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBTransactionError
+	 * @since 1.37
 	 */
 	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null );
 
@@ -634,6 +637,7 @@ interface ILoadBalancer {
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
+	 * @since 1.37
 	 */
 	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
 
@@ -650,6 +654,7 @@ interface ILoadBalancer {
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
+	 * @since 1.37
 	 */
 	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null );
 

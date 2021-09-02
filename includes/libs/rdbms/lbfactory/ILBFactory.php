@@ -244,6 +244,7 @@ interface ILBFactory {
 	 *
 	 * @param string $fname
 	 * @throws DBTransactionError
+	 * @since 1.37
 	 */
 	public function beginPrimaryChanges( $fname = __METHOD__ );
 
@@ -263,6 +264,7 @@ interface ILBFactory {
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 * @throws DBTransactionError
+	 * @since 1.37
 	 */
 	public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] );
 

@@ -1664,6 +1664,7 @@ interface IDatabase {
 	 *
 	 * @return DBPrimaryPos|bool False if this is not a primary DB
 	 * @throws DBError If an error occurs, {@see query}
+	 * @since 1.37
 	 */
 	public function getPrimaryPos();
 
