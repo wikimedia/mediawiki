@@ -936,7 +936,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->getConnLogContext( $conn )
 		);
 
-		$result = $conn->masterPosWait( $this->waitForPos, $timeout );
+		$result = $conn->primaryPosWait( $this->waitForPos, $timeout );
 
 		$ok = ( $result !== null && $result != -1 );
 		if ( $ok ) {
@@ -2402,25 +2402,25 @@ class LoadBalancer implements ILoadBalancer {
 			$this->replLogger->debug( __METHOD__ . ': no position passed; using current' );
 			$index = $this->getWriterIndex();
 			$flags = self::CONN_SILENCE_ERRORS;
-			$masterConn = $this->getAnyOpenConnection( $index, $flags );
-			if ( $masterConn ) {
-				$pos = $masterConn->getPrimaryPos();
+			$primaryConn = $this->getAnyOpenConnection( $index, $flags );
+			if ( $primaryConn ) {
+				$pos = $primaryConn->getPrimaryPos();
 			} else {
-				$masterConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
-				if ( !$masterConn ) {
+				$primaryConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
+				if ( !$primaryConn ) {
 					throw new DBReplicationWaitError(
 						null,
 						"Could not obtain a primary database connection to get the position"
 					);
 				}
-				$pos = $masterConn->getPrimaryPos();
-				$this->closeConnection( $masterConn );
+				$pos = $primaryConn->getPrimaryPos();
+				$this->closeConnection( $primaryConn );
 			}
 		}
 
 		if ( $pos instanceof DBPrimaryPos ) {
 			$this->replLogger->debug( __METHOD__ . ': waiting' );
-			$result = $conn->masterPosWait( $pos, $timeout );
+			$result = $conn->primaryPosWait( $pos, $timeout );
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
 				$this->replLogger->debug( __METHOD__ . ': done waiting (success)' );
