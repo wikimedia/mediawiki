@@ -88,7 +88,12 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getTopologyRootPrimary() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function getTopologyRootMaster() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -582,7 +587,12 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

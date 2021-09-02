@@ -936,7 +936,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->getConnLogContext( $conn )
 		);
 
-		$result = $conn->masterPosWait( $this->waitForPos, $timeout );
+		$result = $conn->primaryPosWait( $this->waitForPos, $timeout );
 
 		$ok = ( $result !== null && $result != -1 );
 		if ( $ok ) {
@@ -1867,7 +1867,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
-	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
+	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
@@ -1939,7 +1939,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
+	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->runPrimaryTransactionIdleCallbacks( $fname, $owner );
+	}
+
+	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
@@ -1968,7 +1973,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->runPrimaryTransactionListenerCallbacks( $fname, $owner );
+	}
+
+	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->ownerId === null ) {
 			/** @noinspection PhpUnusedLocalVariableInspection */
@@ -1988,6 +1998,11 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
+	}
+
+	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->rollbackPrimaryChanges( $fname, $owner );
 	}
 
 	/**
@@ -2402,25 +2417,25 @@ class LoadBalancer implements ILoadBalancer {
 			$this->replLogger->debug( __METHOD__ . ': no position passed; using current' );
 			$index = $this->getWriterIndex();
 			$flags = self::CONN_SILENCE_ERRORS;
-			$masterConn = $this->getAnyOpenConnection( $index, $flags );
-			if ( $masterConn ) {
-				$pos = $masterConn->getPrimaryPos();
+			$primaryConn = $this->getAnyOpenConnection( $index, $flags );
+			if ( $primaryConn ) {
+				$pos = $primaryConn->getPrimaryPos();
 			} else {
-				$masterConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
-				if ( !$masterConn ) {
+				$primaryConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
+				if ( !$primaryConn ) {
 					throw new DBReplicationWaitError(
 						null,
 						"Could not obtain a primary database connection to get the position"
 					);
 				}
-				$pos = $masterConn->getPrimaryPos();
-				$this->closeConnection( $masterConn );
+				$pos = $primaryConn->getPrimaryPos();
+				$this->closeConnection( $primaryConn );
 			}
 		}
 
 		if ( $pos instanceof DBPrimaryPos ) {
 			$this->replLogger->debug( __METHOD__ . ': waiting' );
-			$result = $conn->masterPosWait( $pos, $timeout );
+			$result = $conn->primaryPosWait( $pos, $timeout );
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
 				$this->replLogger->debug( __METHOD__ . ': done waiting (success)' );

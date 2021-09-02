@@ -332,18 +332,23 @@ abstract class LBFactory implements ILBFactory {
 		$this->commitPrimaryChanges( $fname, $options );
 	}
 
-	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
+	final public function rollbackPrimaryChanges( $fname = __METHOD__ ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
 		$this->trxRoundId = false;
 		// Actually perform the rollback on all primary DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname, $this->id ] );
+		$this->forEachLBCallMethod( 'rollbackPrimaryChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
 		$this->trxRoundStage = self::ROUND_CURSORY;
+	}
+
+	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->rollbackPrimaryChanges( $fname );
 	}
 
 	/**
@@ -355,13 +360,13 @@ abstract class LBFactory implements ILBFactory {
 		$e = null; // first callback exception
 		do {
 			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-				$ex = $lb->runMasterTransactionIdleCallbacks( $fname, $this->id );
+				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname, $this->id );
 				$e = $e ?: $ex;
 			} );
 		} while ( $this->hasMasterChanges() );
 		// Run all listener callbacks once
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-			$ex = $lb->runMasterTransactionListenerCallbacks( $fname, $this->id );
+			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname, $this->id );
 			$e = $e ?: $ex;
 		} );
 

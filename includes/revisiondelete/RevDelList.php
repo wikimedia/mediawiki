@@ -278,7 +278,7 @@ abstract class RevDelList extends RevisionListBase {
 		$status->merge( $this->doPreCommitUpdates() );
 		if ( !$status->isOK() ) {
 			// Fatal error, such as no configured archive directory or I/O failures
-			$this->lbFactory->rollbackMasterChanges( __METHOD__ );
+			$this->lbFactory->rollbackPrimaryChanges( __METHOD__ );
 			return $status;
 		}
 

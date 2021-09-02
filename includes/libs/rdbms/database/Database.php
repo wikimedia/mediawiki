@@ -587,7 +587,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRole;
 	}
 
+	public function getTopologyRootPrimary() {
+		return $this->topologyRootMaster;
+	}
+
 	public function getTopologyRootMaster() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->topologyRootMaster;
 	}
 
@@ -4050,9 +4055,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
+	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
 		# Real waits are implemented in the subclass.
 		return 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->primaryPosWait( $pos, $timeout );
 	}
 
 	/**

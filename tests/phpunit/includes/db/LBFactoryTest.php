@@ -113,11 +113,11 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getTopologyRootMaster(),
-			'cluster master set' );
+			$dbw->getTopologyRootPrimary(),
+			'cluster primary is set' );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertEquals(
@@ -125,8 +125,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getTopologyRootMaster(),
-			'cluster master set'
+			$dbr->getTopologyRootPrimary(),
+			'cluster primary is set'
 		);
 
 		$factory->shutdown();

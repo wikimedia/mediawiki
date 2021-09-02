@@ -166,13 +166,13 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getTopologyRootMaster(),
-			'cluster master set'
+			$dbw->getTopologyRootPrimary(),
+			'cluster primary is set'
 		);
-		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
+		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on primary" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
@@ -181,8 +181,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getTopologyRootMaster(),
-			'cluster master set'
+			$dbr->getTopologyRootPrimary(),
+			'cluster master is set'
 		);
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertEquals( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
@@ -499,8 +499,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approveMasterChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitPrimaryChanges()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionIdleCallbacks()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionListenerCallbacks()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionIdleCallbacks()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionListenerCallbacks()
 	 */
 	public function testTransactionCallbackChains() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
@@ -555,8 +555,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
-		$lb->runMasterTransactionIdleCallbacks();
-		$lb->runMasterTransactionListenerCallbacks();
+		$lb->runPrimaryTransactionIdleCallbacks();
+		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $bc );
 		$this->assertEquals( 2, $tlCalls );
@@ -579,8 +579,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
-		$lb->runMasterTransactionIdleCallbacks();
-		$lb->runMasterTransactionListenerCallbacks();
+		$lb->runPrimaryTransactionIdleCallbacks();
+		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
 		$this->assertEquals( 2, $tlCalls );
