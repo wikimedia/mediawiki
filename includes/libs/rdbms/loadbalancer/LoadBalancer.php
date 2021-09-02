@@ -2153,11 +2153,16 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->lastPrimaryChangeTimestamp();
 	}
 
-	public function hasOrMadeRecentMasterChanges( $age = null ) {
+	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
 		$age = $age ?? $this->waitTimeout;
 
 		return ( $this->hasPrimaryChanges()
 			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );
+	}
+
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
 	public function pendingMasterChangeCallers() {

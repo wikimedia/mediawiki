@@ -287,7 +287,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return void
 	 */
 	public function stageSessionReplicationPosition( ILoadBalancer $lb ) {
-		if ( !$this->enabled || !$lb->hasOrMadeRecentMasterChanges( INF ) ) {
+		if ( !$this->enabled || !$lb->hasOrMadeRecentPrimaryChanges( INF ) ) {
 			return;
 		}
 

@@ -699,7 +699,7 @@ class MediaWiki {
 		// work for cross-domain redirects to foreign wikis, so set the ?cpPoxIndex in that case.
 		$isCrossWikiRedirect = (
 			$output->getRedirect() &&
-			$lbFactory->hasOrMadeRecentMasterChanges( INF ) &&
+			$lbFactory->hasOrMadeRecentPrimaryChanges( INF ) &&
 			self::getUrlDomainDistance( $output->getRedirect() ) === 'remote'
 		);
 
@@ -745,7 +745,7 @@ class MediaWiki {
 			// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that
 			// handles this POST request (e.g. the "primary" data center). Also have the user
 			// briefly bypass CDN so ChronologyProtector works for cacheable URLs.
-			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
+			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
 				$expires = $now + max(
 					ChronologyProtector::POSITION_COOKIE_TTL,
 					$config->get( 'DataCenterUpdateStickTTL' )

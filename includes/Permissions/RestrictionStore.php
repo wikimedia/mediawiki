@@ -390,7 +390,7 @@ class RestrictionStore {
 					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
 						$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 						$setOpts += Database::getCacheSetOptions( $dbr );
-						if ( $this->loadBalancer->hasOrMadeRecentMasterChanges() ) {
+						if ( $this->loadBalancer->hasOrMadeRecentPrimaryChanges() ) {
 							// TODO: cleanup Title cache and caller assumption mess in general
 							$ttl = WANObjectCache::TTL_UNCACHEABLE;
 						}
