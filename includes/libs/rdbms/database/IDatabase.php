@@ -1656,6 +1656,18 @@ interface IDatabase {
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if it timed out, and null on error
 	 * @throws DBError If an error occurs, {@see query}
+	 * @since 1.37
+	 */
+	public function primaryPosWait( DBPrimaryPos $pos, $timeout );
+
+	/**
+	 * @deprecated since 1.37; use primaryPosWait() instead.
+	 * @param DBPrimaryPos $pos
+	 * @param int $timeout The maximum number of seconds to wait for synchronisation
+	 * @return int|null Zero if the replica DB was past that position already,
+	 *   greater than zero if we waited for some period of time, less than
+	 *   zero if it timed out, and null on error
+	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function masterPosWait( DBPrimaryPos $pos, $timeout );
 

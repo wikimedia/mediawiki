@@ -672,7 +672,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return $approxLag;
 	}
 
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
+	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
 		if ( !( $pos instanceof MySQLPrimaryPos ) ) {
 			throw new InvalidArgumentException( "Position not an instance of MySQLPrimaryPos" );
 		}
