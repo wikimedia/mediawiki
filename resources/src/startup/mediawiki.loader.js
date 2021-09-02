@@ -33,6 +33,10 @@
 
 	defineFallbacks();
 
+	// In test mode, this generates `mw.redefineFallbacksForTest = defineFallbacks;`.
+	// Otherwise, it produces nothing. See also ResourceLoaderStartUpModule::getScript().
+	$CODE.maybeRedefineFallbacksForTest();
+
 	/**
 	 * Client for ResourceLoader server end point.
 	 *
@@ -106,8 +110,6 @@
 				return false;
 			}
 		}() );
-
-	mw.redefineFallbacksForTest = window.QUnit && defineFallbacks;
 
 	/**
 	 * Fired via mw.track on various resource loading errors.

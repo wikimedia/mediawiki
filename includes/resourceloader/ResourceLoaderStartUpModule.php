@@ -379,6 +379,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( 'user' ) ),
 			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( 'private' ) ),
+			// Only expose private mw.redefineFallbacksForTest in test mode.
+			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( 'EnableJavaScriptTest' ) ?
+				'mw.redefineFallbacksForTest = defineFallbacks;' :
+				'',
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
