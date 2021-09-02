@@ -257,7 +257,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX still default' );
 
 		$called = false;
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 
@@ -265,7 +265,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 
 		$called = false;
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 
@@ -350,14 +350,14 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $called );
 
 		$called = false;
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 
 		$called = false;
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 

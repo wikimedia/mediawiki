@@ -495,7 +495,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::forEachOpenMasterConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::setTransactionListener()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::beginMasterChanges()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::beginPrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approveMasterChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitMasterChanges()
@@ -538,7 +538,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			++$tlCalls;
 		} );
 
-		$lb->beginMasterChanges( __METHOD__ );
+		$lb->beginPrimaryChanges( __METHOD__ );
 		$bc = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
 		$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 			$bc['a'] = 1;
@@ -562,7 +562,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 2, $tlCalls );
 
 		$tlCalls = 0;
-		$lb->beginMasterChanges( __METHOD__ );
+		$lb->beginPrimaryChanges( __METHOD__ );
 		$ac = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
 		$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 			$ac['a'] = 1;

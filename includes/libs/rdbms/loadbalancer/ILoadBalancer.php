@@ -44,7 +44,7 @@ use LogicException;
  *     pending until either commitMasterChanges() or rollbackMasterChanges() is called. The
  *     application must have some point where it calls commitMasterChanges() near the end of
  *     the PHP request.
- * Every iteration of beginMasterChanges()/commitMasterChanges() is called a "transaction round".
+ * Every iteration of beginPrimaryChanges()/commitMasterChanges() is called a "transaction round".
  * Rounds are useful on the primary DB connections because they make single-DB (and by and large
  * multi-DB) updates in web requests all-or-nothing. Also, transactions on replica DBs are useful
  * when REPEATABLE-READ or SERIALIZABLE isolation is used because all foriegn keys and constraints
@@ -631,6 +631,14 @@ interface ILoadBalancer {
 	 *   - commitAll()
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBExpectedError
+	 */
+	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use beginPrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError

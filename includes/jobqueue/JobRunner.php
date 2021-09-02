@@ -366,7 +366,7 @@ class JobRunner implements LoggerAwareInterface {
 			if ( $job->hasExecutionFlag( $job::JOB_NO_EXPLICIT_TRX_ROUND ) ) {
 				$this->lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
 			} else {
-				$this->lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
+				$this->lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 			}
 			// Clear any stale REPEATABLE-READ snapshots from replica DB connections
 			$this->lbFactory->flushReplicaSnapshots( $fnameTrxOwner );

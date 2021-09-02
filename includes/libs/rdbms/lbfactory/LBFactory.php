@@ -268,7 +268,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
 	}
 
-	final public function beginMasterChanges( $fname = __METHOD__ ) {
+	final public function beginPrimaryChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
@@ -282,8 +282,13 @@ abstract class LBFactory implements ILBFactory {
 		}
 		$this->trxRoundId = $fname;
 		// Set DBO_TRX flags on all appropriate DBs
-		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname, $this->id ] );
+		$this->forEachLBCallMethod( 'beginPrimaryChanges', [ $fname, $this->id ] );
 		$this->trxRoundStage = self::ROUND_CURSORY;
+	}
+
+	public function beginMasterChanges( $fname = __METHOD__ ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->beginPrimaryChanges( $fname );
 	}
 
 	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
@@ -531,7 +536,7 @@ abstract class LBFactory implements ILBFactory {
 		// If a nested caller committed on behalf of $fname, start another empty $fname
 		// transaction, leaving the caller with the same empty transaction state as before.
 		if ( $fnameEffective !== $fname ) {
-			$this->beginMasterChanges( $fnameEffective );
+			$this->beginPrimaryChanges( $fnameEffective );
 		}
 
 		return $waitSucceeded;
@@ -665,7 +670,7 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	protected function initLoadBalancer( ILoadBalancer $lb ) {
 		if ( $this->trxRoundId !== false ) {
-			$lb->beginMasterChanges( $this->trxRoundId, $this->id ); // set DBO_TRX
+			$lb->beginPrimaryChanges( $this->trxRoundId, $this->id ); // set DBO_TRX
 		}
 
 		$lb->setTableAliases( $this->tableAliases );
