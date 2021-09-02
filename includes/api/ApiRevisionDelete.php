@@ -116,7 +116,7 @@ class ApiRevisionDelete extends ApiBase {
 			$data['items'][$id]['id'] = $id;
 		}
 
-		$list->reloadFromMaster();
+		$list->reloadFromPrimary();
 		for ( $item = $list->reset(); $list->current(); $item = $list->next() ) {
 			$data['items'][$item->getId()] += $item->getApiData( $this->getResult() );
 		}
