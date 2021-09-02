@@ -587,7 +587,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRole;
 	}
 
+	public function getTopologyRootPrimary() {
+		return $this->topologyRootMaster;
+	}
+
 	public function getTopologyRootMaster() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->topologyRootMaster;
 	}
 

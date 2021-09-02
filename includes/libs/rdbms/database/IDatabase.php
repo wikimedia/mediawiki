@@ -199,7 +199,15 @@ interface IDatabase {
 	 * and how those changes propagate among database servers. It is assumed that the server
 	 * only participates in the replication of a single relevant dataset.
 	 *
-	 * @return string|null Readable server name; null if unknown or if co-masters are defined
+	 * @return string|null Readable server name; null if unknown or if co-primaries are defined
+	 * @throws DBQueryError
+	 * @since 1.37
+	 */
+	public function getTopologyRootPrimary();
+
+	/**
+	 * @deprecated since 1.37; use getTopologyRootPrimary() instead.
+	 * @return string|null Readable server name; null if unknown or if co-primaries are defined
 	 * @throws DBQueryError
 	 * @since 1.34
 	 */
