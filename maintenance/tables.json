@@ -3537,7 +3537,7 @@
 			},
 			{
 				"name": "user_editcount",
-				"comment": "Count of edits and edit-like actions. Not intended to be an accurate copy of 'COUNT(*) WHERE rev_actor refers to a user's actor_id'. May contain NULL for old accounts if batch-update scripts haven't been run, as well as listing deleted edits and other myriad ways it could be out of sync.Meant primarily for heuristic checks to give an impression of whether the account has been used much.",
+				"comment": "Count of edits and edit-like actions. Not intended to be an accurate copy of 'COUNT(*) WHERE rev_actor refers to a user's actor_id'. May contain NULL for old accounts if batch-update scripts haven't been run, as well as listing deleted edits and other myriad ways it could be out of sync. Meant primarily for heuristic checks to give an impression of whether the account has been used much.",
 				"type": "integer",
 				"options": { "notnull": false }
 			},
