@@ -317,6 +317,13 @@ interface ILBFactory {
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
 	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasPrimaryChanges();
+
+	/**
+	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
+	 * @return bool
 	 */
 	public function hasMasterChanges();
 

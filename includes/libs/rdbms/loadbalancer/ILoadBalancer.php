@@ -760,6 +760,13 @@ interface ILoadBalancer {
 	/**
 	 * Whether there are pending changes or callbacks in a transaction by this thread
 	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasPrimaryChanges();
+
+	/**
+	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
+	 * @return bool
 	 */
 	public function hasMasterChanges();
 
