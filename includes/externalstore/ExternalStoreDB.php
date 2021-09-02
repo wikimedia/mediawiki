@@ -114,7 +114,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @inheritDoc
 	 */
 	public function store( $location, $data ) {
-		$dbw = $this->getMaster( $location );
+		$dbw = $this->getPrimary( $location );
 		$dbw->insert(
 			$this->getTable( $dbw, $location ),
 			[ 'blob_text' => $data ],
@@ -187,8 +187,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *
 	 * @param string $cluster Cluster name
 	 * @return MaintainableDBConnRef
+	 * @since 1.37
 	 */
-	public function getMaster( $cluster ) {
+	public function getPrimary( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
 
 		return $lb->getMaintenanceConnectionRef(
@@ -197,6 +198,16 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
 			$lb::CONN_TRX_AUTOCOMMIT
 		);
+	}
+
+	/**
+	 * @deprecated since 1.37; please use getPrimary() instead.
+	 * @param string $cluster Cluster name
+	 * @return MaintainableDBConnRef
+	 */
+	public function getMaster( $cluster ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimary( $cluster );
 	}
 
 	/**
@@ -257,7 +268,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		static $supportedTypes = [ 'mysql', 'sqlite' ];
 
-		$dbw = $this->getMaster( $cluster );
+		$dbw = $this->getPrimary( $cluster );
 		if ( !in_array( $dbw->getType(), $supportedTypes, true ) ) {
 			throw new DBUnexpectedError( $dbw, "RDBMS type '{$dbw->getType()}' not supported." );
 		}
@@ -321,7 +332,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			// Try the primary DB
 			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
 			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
-			$dbw = $this->getMaster( $cluster );
+			$dbw = $this->getPrimary( $cluster );
 			$ret = $dbw->selectField(
 				$this->getTable( $dbw, $cluster ),
 				'blob_text',
@@ -371,7 +382,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				implode( ',', array_keys( $ids ) )
 			);
 			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
-			$dbw = $this->getMaster( $cluster );
+			$dbw = $this->getPrimary( $cluster );
 			$res = $dbw->select(
 				$this->getTable( $dbr, $cluster ),
 				[ 'blob_id', 'blob_text' ],
