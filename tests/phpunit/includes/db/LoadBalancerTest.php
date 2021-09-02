@@ -499,7 +499,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approveMasterChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitPrimaryChanges()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionIdleCallbacks()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionIdleCallbacks()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionListenerCallbacks()
 	 */
 	public function testTransactionCallbackChains() {
@@ -555,7 +555,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
-		$lb->runMasterTransactionIdleCallbacks();
+		$lb->runPrimaryTransactionIdleCallbacks();
 		$lb->runMasterTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $bc );
@@ -579,7 +579,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->finalizePrimaryChanges();
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
-		$lb->runMasterTransactionIdleCallbacks();
+		$lb->runPrimaryTransactionIdleCallbacks();
 		$lb->runMasterTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
