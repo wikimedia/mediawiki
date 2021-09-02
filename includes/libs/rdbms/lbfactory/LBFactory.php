@@ -463,11 +463,11 @@ abstract class LBFactory implements ILBFactory {
 		// Get all the primary DB positions of applicable DBs right now.
 		// This can be faster since waiting on one cluster reduces the
 		// time needed to wait on the next clusters.
-		$masterPositions = array_fill( 0, count( $lbs ), false );
+		$primaryPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
 			if (
 				// No writes to wait on getting replicated
-				!$lb->hasMasterConnection() ||
+				!$lb->hasPrimaryConnection() ||
 				// No replication; avoid getPrimaryPos() permissions errors (T29975)
 				!$lb->hasStreamingReplicaServers() ||
 				// No writes since the last replication wait
@@ -479,7 +479,7 @@ abstract class LBFactory implements ILBFactory {
 				continue; // no need to wait
 			}
 
-			$masterPositions[$i] = $lb->getPrimaryPos();
+			$primaryPositions[$i] = $lb->getPrimaryPos();
 		}
 
 		// Run any listener callbacks *after* getting the DB positions. The more
@@ -490,9 +490,9 @@ abstract class LBFactory implements ILBFactory {
 
 		$failed = [];
 		foreach ( $lbs as $i => $lb ) {
-			if ( $masterPositions[$i] ) {
+			if ( $primaryPositions[$i] ) {
 				// The RDBMS may not support getPrimaryPos()
-				if ( !$lb->waitForAll( $masterPositions[$i], $opts['timeout'] ) ) {
+				if ( !$lb->waitForAll( $primaryPositions[$i], $opts['timeout'] ) ) {
 					$failed[] = $lb->getServerName( $lb->getWriterIndex() );
 				}
 			}

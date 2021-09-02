@@ -747,6 +747,13 @@ interface ILoadBalancer {
 
 	/**
 	 * @return bool Whether a primary connection is already open
+	 * @since 1.37
+	 */
+	public function hasPrimaryConnection();
+
+	/**
+	 * @deprecated since 1.37; please use hasPrimaryConnection() instead.
+	 * @return bool Whether a primary connection is already open
 	 */
 	public function hasMasterConnection();
 

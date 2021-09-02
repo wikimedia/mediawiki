@@ -2116,8 +2116,13 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->trxRoundStage;
 	}
 
-	public function hasMasterConnection() {
+	public function hasPrimaryConnection() {
 		return $this->isOpen( $this->getWriterIndex() );
+	}
+
+	public function hasMasterConnection() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasPrimaryConnection();
 	}
 
 	public function hasMasterChanges() {
