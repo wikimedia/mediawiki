@@ -786,6 +786,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @throws JobQueueConnectionError
 	 * @return IMaintainableDatabase
+	 * @since 1.37
 	 */
 	protected function getPrimaryDB() {
 		try {

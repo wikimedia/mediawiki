@@ -15,6 +15,7 @@ use UnexpectedValueException;
  *
  * @see https://mariadb.com/kb/en/library/gtid/
  * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
+ * @since 1.37
  */
 class MySQLPrimaryPos implements DBPrimaryPos {
 	/** @var string One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */

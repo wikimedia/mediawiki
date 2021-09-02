@@ -520,6 +520,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Get a connection to the primary DB
 	 * @return IDatabase
+	 * @since 1.37
 	 */
 	public function getPrimaryDB() {
 		return wfGetDB( DB_PRIMARY );
