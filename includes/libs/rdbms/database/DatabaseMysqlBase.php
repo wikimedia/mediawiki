@@ -564,7 +564,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$ago = $this->fetchSecondsSinceHeartbeat( $options['conds'] );
 		} else {
 			// Standard method: use primary server ID (works with stock pt-heartbeat)
-			$masterInfo = $this->getMasterServerInfo();
+			$masterInfo = $this->getPrimaryServerInfo();
 			if ( !$masterInfo ) {
 				$this->queryLogger->error(
 					"Unable to query primary of {db_server} for server ID",
@@ -594,7 +594,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return false;
 	}
 
-	protected function getMasterServerInfo() {
+	protected function getPrimaryServerInfo() {
 		$cache = $this->srvCache;
 		$key = $cache->makeGlobalKey(
 			'mysql',
@@ -632,6 +632,11 @@ abstract class DatabaseMysqlBase extends Database {
 				return $id ? [ 'serverId' => $id, 'asOf' => time() ] : false;
 			}
 		);
+	}
+
+	protected function getMasterServerInfo() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryServerInfo();
 	}
 
 	/**
