@@ -41,7 +41,7 @@ use LogicException;
  *   - In CLI mode, the flag has no effect with regards to LoadBalancer.
  *   - In non-CLI mode, the flag causes implicit transactions to be used; the first query on
  *     a database starts a transaction on that database. The transactions are meant to remain
- *     pending until either commitPrimaryChanges() or rollbackMasterChanges() is called. The
+ *     pending until either commitPrimaryChanges() or rollbackPrimaryChanges() is called. The
  *     application must have some point where it calls commitPrimaryChanges() near the end of
  *     the PHP request.
  * Every iteration of beginPrimaryChanges()/commitPrimaryChanges() is called a "transaction round".
@@ -630,7 +630,7 @@ interface ILoadBalancer {
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
 	 *   - commitPrimaryChanges()
-	 *   - rollbackMasterChanges()
+	 *   - rollbackPrimaryChanges()
 	 *   - commitAll()
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
@@ -704,6 +704,15 @@ interface ILoadBalancer {
 
 	/**
 	 * Issue ROLLBACK only on primary, only if queries were done on connection
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBExpectedError
+	 * @since 1.37
+	 */
+	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use rollbackPrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError

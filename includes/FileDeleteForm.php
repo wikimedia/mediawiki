@@ -279,7 +279,7 @@ class FileDeleteForm {
 				} else {
 					// Page deleted but file still there? rollback page delete
 					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->rollbackMasterChanges( __METHOD__ );
+					$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 				}
 			} else {
 				$dbw->endAtomic( __METHOD__ );

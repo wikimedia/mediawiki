@@ -406,7 +406,7 @@ class DeferredUpdates {
 			]
 		);
 
-		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 
 		// Try to push the update as a job so it can run later if possible
 		if ( $update instanceof EnqueueableDataUpdate ) {
@@ -428,7 +428,7 @@ class DeferredUpdates {
 				]
 			);
 
-			$lbFactory->rollbackMasterChanges( __METHOD__ );
+			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 		}
 
 		return $e;
@@ -471,7 +471,7 @@ class DeferredUpdates {
 			]
 		);
 
-		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 	}
 
 	/**
