@@ -398,7 +398,7 @@
 	"missingarticle-rev": "(версія № $1)",
 	"missingarticle-diff": "(Різниця: $1, $2)",
 	"readonly_lag": "База даних автоматично заблокована від змін, доки вторинний сервер бази даних не синхронізується з первинним",
-	"nonwrite-api-promise-error": "Був надісланий HTTP-заголовок «Promise-Non-Write-API-Action», але запит не був до API-запитом.",
+	"nonwrite-api-promise-error": "Був надісланий HTTP-заголовок «Promise-Non-Write-API-Action», але запит не був API-запитом.",
 	"timeouterror": "Час очікування сервера вийшов",
 	"timeouterror-text": "Перевищено максимальний час запиту — $1 {{PLURAL:$1|секунда|секунди|секунд}}.",
 	"internalerror": "Внутрішня помилка",

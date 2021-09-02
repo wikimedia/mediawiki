@@ -1985,6 +1985,7 @@
 	"emailblock": "အီးမေးကို ပိတ်ပင်ထားသည်",
 	"blocklist-nousertalk": "မိမိ၏ဆွေးနွေးချက်စာမျက်နှာကို တည်းဖြတ်မရနိုင်ပါ",
 	"blocklist-editing": "တည်းဖြတ်ခြင်း",
+	"blocklist-editing-sitewide": "တည်းဖြတ်ခြင်း (ဆိုဒ်အနှံ့)",
 	"blocklist-editing-page": "စာမျက်နှာများ",
 	"blocklist-editing-ns": "အမည်ညွှန်းများ",
 	"ipblocklist-empty": "ပိတ်ပင်ထားမှုစာရင်းသည် ဗလာဖြစ်နေသည်။",

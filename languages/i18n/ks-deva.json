@@ -34,6 +34,7 @@
 	"october": "अक्टूबर",
 	"november": "नवम्बर",
 	"december": "दिसम्बर",
+	"pagecategories": "{{PLURAL:$1|ज़ऻच़|ज़ाच़ि}}",
 	"help": "मदथ",
 	"talkpagelinktext": "बहस",
 	"aboutsite": "{{SITENAME}} मुतलख",
@@ -44,5 +45,7 @@
 	"mainpage-nstab": "अहम सफ़ॖ",
 	"recentchanges": "नवि तब्दीलि",
 	"minoreditletter": "ल",
-	"rc-change-size-new": "बदलावस पतॖ $1 {{PLURAL:$1|बाइट}}"
+	"rc-change-size-new": "बदलावस पतॖ $1 {{PLURAL:$1|बाइट}}",
+	"ncategories": "$1 {{PLURAL:$1|ज़ऻच़|ज़ाच़ि}}",
+	"categories": "ज़ाच़ि"
 }
