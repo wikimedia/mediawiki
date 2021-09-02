@@ -1017,7 +1017,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->enforceConnectionFlags( $conn, $flags );
 		// Set primary DB handles as read-only if the load balancer is configured as read-only
 		// or the primary database server is running in server-side read-only mode. Note that
-		// replica DB handles are always read-only via Database::assertIsWritableMaster().
+		// replica DB handles are always read-only via Database::assertIsWritablePrimary().
 		// Read-only mode due to replication lag is *avoided* here to avoid recursion.
 		if ( $i === $this->getWriterIndex() ) {
 			if ( $this->readOnlyReason !== false ) {

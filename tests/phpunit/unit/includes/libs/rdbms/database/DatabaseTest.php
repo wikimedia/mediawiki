@@ -238,7 +238,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory = LBFactorySingle::newFromConnection( $db );
 		// Ask for the connection so that LB sets internal state
-		// about this connection being the master connection
+		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
 		$conn = $lb->openConnection( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
@@ -332,7 +332,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory = LBFactorySingle::newFromConnection( $db );
 		// Ask for the connection so that LB sets internal state
-		// about this connection being the master connection
+		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
 		$conn = $lb->openConnection( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
@@ -801,7 +801,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritableMaster()
+	 * @covers Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
@@ -817,7 +817,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritableMaster()
+	 * @covers Database::assertIsWritablePrimary()
 	 */
 	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
@@ -841,7 +841,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritableMaster()
+	 * @covers Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
@@ -861,7 +861,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritableMaster()
+	 * @covers Database::assertIsWritablePrimary()
 	 */
 	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
@@ -876,7 +876,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritableMaster()
+	 * @covers Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet() {
 		$this->expectException( DBReadOnlyRoleError::class );
