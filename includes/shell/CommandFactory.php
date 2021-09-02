@@ -172,12 +172,15 @@ class CommandFactory {
 	/**
 	 * Instantiates a new BoxedCommand.
 	 *
+	 * @param ?string $service Name of Shellbox (as configured in
+	 *                         $wgShellboxUrls) that should be used
 	 * @return BoxedCommand
 	 */
-	public function createBoxed(): BoxedCommand {
-		if ( $this->shellboxClientFactory->isEnabled() ) {
+	public function createBoxed( ?string $service = null ): BoxedCommand {
+		if ( $this->shellboxClientFactory->isEnabled( $service ) ) {
 			$client = $this->shellboxClientFactory->getClient( [
-				'timeout' => $this->limits['walltime'] + 1
+				'timeout' => $this->limits['walltime'] + 1,
+				'service' => $service,
 			] );
 			$executor = new RemoteBoxedExecutor( $client );
 			$executor->setLogger( $this->logger );
