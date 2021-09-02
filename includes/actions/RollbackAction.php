@@ -120,7 +120,7 @@ class RollbackAction extends FormAction {
 	 * @throws ThrottledError
 	 */
 	public function show() {
-		if ( !$this->getUser()->getOption( 'showrollbackconfirmation' ) ||
+		if ( !$this->userOptionsLookup->getOption( $this->getUser(), 'showrollbackconfirmation' ) ||
 			 $this->getRequest()->wasPosted() ) {
 			$this->handleRollbackRequest();
 		} else {
