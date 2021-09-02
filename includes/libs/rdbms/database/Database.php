@@ -4063,6 +4063,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
+	 * @since 1.37
 	 * @stable to override
 	 */
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
@@ -4072,7 +4073,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
 		wfDeprecated( __METHOD__, '1.37' );
