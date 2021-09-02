@@ -493,7 +493,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::openConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::forEachOpenMasterConnection()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::forEachOpenPrimaryConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::setTransactionListener()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::beginPrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
@@ -528,7 +528,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$conn2 = $lb->openConnection( $lb->getWriterIndex(), '' );
 
 		$count = 0;
-		$lb->forEachOpenMasterConnection( static function () use ( &$count ) {
+		$lb->forEachOpenPrimaryConnection( static function () use ( &$count ) {
 			++$count;
 		} );
 		$this->assertEquals( 2, $count, 'Connection handle count' );
