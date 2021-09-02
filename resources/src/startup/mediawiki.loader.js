@@ -61,7 +61,7 @@
 	 *
 	 * @private
 	 * @param {string} str String to hash
-	 * @return {string} hash as an seven-character base 36 string
+	 * @return {string} hash as an five-character base 36 string
 	 */
 	function fnv132( str ) {
 		var hash = 0x811C9DC5,
@@ -150,7 +150,7 @@
 	 *             'module': export Object
 	 *
 	 *             // Set from execute() or mw.loader.state()
-	 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
+	 *             'state': 'registered', 'loading', 'loaded', 'executing', 'ready', 'error', or 'missing'
 	 *
 	 *             // Optionally added at run-time by mw.loader.implement()
 	 *             'script': closure, array of urls, or string
