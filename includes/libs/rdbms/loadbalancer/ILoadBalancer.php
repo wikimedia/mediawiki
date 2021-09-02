@@ -773,6 +773,13 @@ interface ILoadBalancer {
 	/**
 	 * Get the timestamp of the latest write query done by this thread
 	 * @return float|bool UNIX timestamp or false
+	 * @since 1.37
+	 */
+	public function lastPrimaryChangeTimestamp();
+
+	/**
+	 * @deprecated since 1.37; please use lastPrimaryChangeTimestamp() instead.
+	 * @return float|bool UNIX timestamp or false
 	 */
 	public function lastMasterChangeTimestamp();
 

@@ -478,7 +478,7 @@ abstract class LBFactory implements ILBFactory {
 				// No writes since the last replication wait
 				(
 					$opts['ifWritesSince'] &&
-					$lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
+					$lb->lastPrimaryChangeTimestamp() < $opts['ifWritesSince']
 				)
 			) {
 				continue; // no need to wait

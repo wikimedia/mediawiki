@@ -2139,7 +2139,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->hasPrimaryChanges();
 	}
 
-	public function lastMasterChangeTimestamp() {
+	public function lastPrimaryChangeTimestamp() {
 		$lastTime = false;
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$lastTime ) {
 			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
@@ -2148,11 +2148,16 @@ class LoadBalancer implements ILoadBalancer {
 		return $lastTime;
 	}
 
+	public function lastMasterChangeTimestamp() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->lastPrimaryChangeTimestamp();
+	}
+
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$age = $age ?? $this->waitTimeout;
 
 		return ( $this->hasPrimaryChanges()
-			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
+			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );
 	}
 
 	public function pendingMasterChangeCallers() {
