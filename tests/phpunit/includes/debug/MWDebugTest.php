@@ -93,7 +93,6 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
-		// assertCount() not available on WMF integration server
 		$this->assertCount( 1, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
@@ -109,7 +108,6 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 		// Another deprecation
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
-		// assertCount() not available on WMF integration server
 		$this->assertCount( 3, MWDebug::getLog(),
 			"Only one deprecated warning per function should be kept"
 		);
