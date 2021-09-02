@@ -388,7 +388,7 @@ abstract class LBFactory implements ILBFactory {
 		$callersByDB = [];
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
 			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
-			$callers = $lb->pendingMasterChangeCallers();
+			$callers = $lb->pendingPrimaryChangeCallers();
 			if ( $callers ) {
 				$callersByDB[$primaryName] = $callers;
 			}
