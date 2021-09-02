@@ -1445,23 +1445,23 @@
 			// - 3) Request from network.
 			while ( q-- ) {
 				var module = queue[ q ];
-				// Only consider modules which are the initial 'registered' state
-				if ( module in registry && registry[ module ].state === 'registered' ) {
-					// Ignore duplicates
-					if ( !batch.has( module ) ) {
-						// Progress the state machine
-						registry[ module ].state = 'loading';
-						batch.add( module );
+				// Only consider modules which are the initial 'registered' state,
+				// and ignore duplicates
+				if ( mw.loader.getState( module ) === 'registered' &&
+					!batch.has( module )
+				) {
+					// Progress the state machine
+					registry[ module ].state = 'loading';
+					batch.add( module );
 
-						var implementation = mw.loader.store.get( module );
-						if ( implementation ) {
-							// Module store enabled and contains this module/version
-							storedImplementations.push( implementation );
-							storedNames.push( module );
-						} else {
-							// Module store disabled or doesn't have this module/version
-							requestNames.push( module );
-						}
+					var implementation = mw.loader.store.get( module );
+					if ( implementation ) {
+						// Module store enabled and contains this module/version
+						storedImplementations.push( implementation );
+						storedNames.push( module );
+					} else {
+						// Module store disabled or doesn't have this module/version
+						requestNames.push( module );
 					}
 				}
 			}
