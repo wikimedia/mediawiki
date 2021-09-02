@@ -28,3 +28,6 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Категория',
 	NS_CATEGORY_TALK    => 'Категорияны_шӱӱжери',
 ];
+
+// Remove Russian aliases
+$namespaceGenderAliases = [];
