@@ -50,6 +50,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @return CentralIdLookup|null
 	 */
 	public static function factory( $providerId = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		try {
 			return MediaWikiServices::getInstance()
 				->getCentralIdLookupFactory()
@@ -74,6 +75,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @return CentralIdLookup|null
 	 */
 	public static function factoryNonLocal(): ?self {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()
 			->getCentralIdLookupFactory()
 			->getNonLocalLookup();
