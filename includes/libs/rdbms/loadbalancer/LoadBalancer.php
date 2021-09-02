@@ -1867,7 +1867,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
-	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
+	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
@@ -1937,6 +1937,11 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = $oldStage;
 
 		return $errors ? $errors[0] : null;
+	}
+
+	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->runPrimaryTransactionIdleCallbacks( $fname, $owner );
 	}
 
 	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {

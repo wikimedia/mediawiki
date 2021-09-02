@@ -355,7 +355,7 @@ abstract class LBFactory implements ILBFactory {
 		$e = null; // first callback exception
 		do {
 			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-				$ex = $lb->runMasterTransactionIdleCallbacks( $fname, $this->id );
+				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname, $this->id );
 				$e = $e ?: $ex;
 			} );
 		} while ( $this->hasMasterChanges() );
