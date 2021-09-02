@@ -35,6 +35,40 @@
 		} );
 	} );
 
+	QUnit.test( '.getModuleSize() - packageFiles, styles', function ( assert ) {
+		mw.loader.implement(
+			'test.inspect.packageFiles',
+			{
+				main: 'init.js',
+				files: {
+					'data.json': { hello: 'world' },
+					'alice.js': function ( require, module ) {
+						var core = require( './core.js' );
+						module.exports = core.sayHello( 'Alice' );
+					},
+					'core.js': function ( require, module ) {
+						module.exports = {
+							sayHello: function ( name ) {
+								return 'Hello ' + name;
+							}
+						};
+					},
+					'init.js': function ( require ) {
+						mw.alice = require( './alice.js' );
+					}
+				}
+			},
+			{ css: [ '.example {}' ] }
+		);
+
+		return mw.loader.using( 'test.inspect.packageFiles' ).then( function () {
+			assert.strictEqual(
+				mw.inspect.getModuleSize( 'test.inspect.packageFiles' ),
+				372
+			);
+		} );
+	} );
+
 	QUnit.test( '.getModuleSize() - scripts, messages', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.scriptmsg',
