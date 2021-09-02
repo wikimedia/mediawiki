@@ -690,6 +690,15 @@ interface ILoadBalancer {
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return Exception|null The first exception or null if there were none
+	 * @since 1.37
+	 */
+	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use runPrimaryTransactionListenerCallbacks() instead.
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @return Exception|null The first exception or null if there were none
 	 */
 	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
 
