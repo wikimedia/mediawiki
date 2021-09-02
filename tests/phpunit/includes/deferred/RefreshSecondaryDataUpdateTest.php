@@ -24,7 +24,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $goodTrxFname );
+				$lbFactory->commitPrimaryChanges( $goodTrxFname );
 				++$goodCalls;
 			} );
 		$goodUpdate->expects( $this->once() )
@@ -87,7 +87,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $goodTrxFname );
+				$lbFactory->commitPrimaryChanges( $goodTrxFname );
 				++$goodCalls;
 			} );
 		$goodUpdate->expects( $this->once() )
@@ -103,7 +103,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$badUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$badCalls, $lbFactory, $badTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $badTrxFname );
+				$lbFactory->commitPrimaryChanges( $badTrxFname );
 				++$badCalls;
 				throw new LogicException( 'We have a problem' );
 			} );

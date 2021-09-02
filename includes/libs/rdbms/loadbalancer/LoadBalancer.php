@@ -1701,7 +1701,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function commitAll( $fname = __METHOD__, $owner = null ) {
-		$this->commitMasterChanges( $fname, $owner );
+		$this->commitPrimaryChanges( $fname, $owner );
 		$this->flushMasterSnapshots( $fname, $owner );
 		$this->flushReplicaSnapshots( $fname, $owner );
 	}
@@ -1788,7 +1788,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->approvePrimaryChanges( $options, $fname, $owner );
 	}
 
-	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
@@ -1817,7 +1817,12 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->beginPrimaryChanges( $fname, $owner );
+	}
+
+	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_APPROVED );
 		if ( $this->ownerId === null ) {
@@ -1855,6 +1860,11 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
+	}
+
+	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
 	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {

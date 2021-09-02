@@ -93,7 +93,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 
 		// T221577, T248003: flush any transaction; each update needs outer transaction scope
 		// and the code above may have implicitly started one.
-		$this->lbFactory->commitMasterChanges( __METHOD__ );
+		$this->lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		$e = null;
 		foreach ( $updates as $update ) {

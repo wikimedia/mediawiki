@@ -164,7 +164,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.
-		$factory->beginMasterChanges( __METHOD__ );
+		$factory->beginPrimaryChanges( __METHOD__ );
 		$dbw->onTransactionPreCommitOrIdle( static function () use ( $factory, &$called ) {
 			++$called;
 			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
@@ -172,7 +172,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// but this fools getMainLB() at least.
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
-		$factory->commitMasterChanges( __METHOD__ );
+		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
@@ -186,7 +186,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.hrow
 		// DBTransactionError due to transaction ROUND_* stages being mismatched.
-		$factory->beginMasterChanges( __METHOD__ );
+		$factory->beginPrimaryChanges( __METHOD__ );
 		$dbw->query( "SELECT 1 as t", __METHOD__ );
 		$dbw->onTransactionResolution( static function () use ( $factory, &$called ) {
 			++$called;
@@ -195,7 +195,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// but this fools getMainLB() at least.
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
-		$factory->commitMasterChanges( __METHOD__ );
+		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();

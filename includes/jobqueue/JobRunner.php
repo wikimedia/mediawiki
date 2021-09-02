@@ -364,16 +364,16 @@ class JobRunner implements LoggerAwareInterface {
 			$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
 			// Flush any pending changes left over from an implicit transaction round
 			if ( $job->hasExecutionFlag( $job::JOB_NO_EXPLICIT_TRX_ROUND ) ) {
-				$this->lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
+				$this->lbFactory->commitPrimaryChanges( $fnameTrxOwner ); // new implicit round
 			} else {
-				$this->lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
+				$this->lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 			}
 			// Clear any stale REPEATABLE-READ snapshots from replica DB connections
 			$this->lbFactory->flushReplicaSnapshots( $fnameTrxOwner );
 			$status = $job->run();
 			$error = $job->getLastError();
 			// Commit all pending changes from this job
-			$this->commitMasterChanges( $job, $fnameTrxOwner );
+			$this->commitPrimaryChanges( $job, $fnameTrxOwner );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
 		} catch ( Throwable $e ) {
@@ -623,7 +623,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * @param string $fnameTrxOwner
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( RunnableJob $job, $fnameTrxOwner ) {
+	private function commitPrimaryChanges( RunnableJob $job, $fnameTrxOwner ) {
 		$syncThreshold = $this->options->get( 'JobSerialCommitThreshold' );
 
 		$time = false;
@@ -646,7 +646,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		if ( !$dbwSerial ) {
-			$this->lbFactory->commitMasterChanges(
+			$this->lbFactory->commitPrimaryChanges(
 				$fnameTrxOwner,
 				// Abort if any transaction was too big
 				[ 'maxWriteDuration' => $this->options->get( 'MaxJobDBWriteDuration' ) ]
@@ -682,7 +682,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		// Actually commit the DB primary changes
-		$this->lbFactory->commitMasterChanges(
+		$this->lbFactory->commitPrimaryChanges(
 			$fnameTrxOwner,
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $this->options->get( 'MaxJobDBWriteDuration' ) ]

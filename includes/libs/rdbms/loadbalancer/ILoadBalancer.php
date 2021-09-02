@@ -41,10 +41,10 @@ use LogicException;
  *   - In CLI mode, the flag has no effect with regards to LoadBalancer.
  *   - In non-CLI mode, the flag causes implicit transactions to be used; the first query on
  *     a database starts a transaction on that database. The transactions are meant to remain
- *     pending until either commitMasterChanges() or rollbackMasterChanges() is called. The
- *     application must have some point where it calls commitMasterChanges() near the end of
+ *     pending until either commitPrimaryChanges() or rollbackMasterChanges() is called. The
+ *     application must have some point where it calls commitPrimaryChanges() near the end of
  *     the PHP request.
- * Every iteration of beginMasterChanges()/commitMasterChanges() is called a "transaction round".
+ * Every iteration of beginPrimaryChanges()/commitPrimaryChanges() is called a "transaction round".
  * Rounds are useful on the primary DB connections because they make single-DB (and by and large
  * multi-DB) updates in web requests all-or-nothing. Also, transactions on replica DBs are useful
  * when REPEATABLE-READ or SERIALIZABLE isolation is used because all foriegn keys and constraints
@@ -626,7 +626,7 @@ interface ILoadBalancer {
 	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitMasterChanges()
+	 *   - commitPrimaryChanges()
 	 *   - rollbackMasterChanges()
 	 *   - commitAll()
 	 * This allows for custom transaction rounds from any outer transaction scope.
@@ -635,10 +635,26 @@ interface ILoadBalancer {
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 */
+	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use beginPrimaryChanges() instead.
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBExpectedError
+	 */
 	public function beginMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Issue COMMIT on all open primary connections to flush changes and view snapshots
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBExpectedError
+	 */
+	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use commitPrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
