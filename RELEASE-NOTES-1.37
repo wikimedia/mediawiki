@@ -598,8 +598,8 @@ because of Phabricator reports.
   warnings.
 * WikiPage::doEditContent(), deprecated since 1.32, now emits deprecation
   warnings.
-* CentralIdLookup::factory and ::factoryNonLocal were deprecated, obtain an
-  instance from MediaWikiServices instead.
+* CentralIdLookup::factory and ::factoryNonLocal were hard-deprecated,
+  obtain an instance from MediaWikiServices instead.
 * BotPassword::invalidateAllPasswordsForCentralId() was deprecated.
 * BotPassword::removeAllPasswordsForCentralId() was deprecated.
 * The Title class members: $mTextform, $mUrlform, $mDbkeyform, $mNamespace,
