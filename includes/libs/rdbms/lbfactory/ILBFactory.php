@@ -235,7 +235,7 @@ interface ILBFactory {
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
 	 *   - commitPrimaryChanges()
-	 *   - rollbackMasterChanges()
+	 *   - rollbackPrimaryChanges()
 	 *   - commitAll()
 	 *
 	 * This only applies to the tracked load balancer instances.
@@ -282,6 +282,13 @@ interface ILBFactory {
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
+	 * @param string $fname Caller name
+	 * @since 1.37
+	 */
+	public function rollbackPrimaryChanges( $fname = __METHOD__ );
+
+	/**
+	 * @deprecated since 1.37; please use rollbackPrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ );

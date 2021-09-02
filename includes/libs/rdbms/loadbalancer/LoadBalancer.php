@@ -1978,7 +1978,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->runPrimaryTransactionListenerCallbacks( $fname, $owner );
 	}
 
-	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->ownerId === null ) {
 			/** @noinspection PhpUnusedLocalVariableInspection */
@@ -1998,6 +1998,11 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
+	}
+
+	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->rollbackPrimaryChanges( $fname, $owner );
 	}
 
 	/**
