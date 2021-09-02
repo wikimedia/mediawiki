@@ -500,7 +500,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approveMasterChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitPrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionIdleCallbacks()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::runMasterTransactionListenerCallbacks()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionListenerCallbacks()
 	 */
 	public function testTransactionCallbackChains() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
@@ -556,7 +556,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runPrimaryTransactionIdleCallbacks();
-		$lb->runMasterTransactionListenerCallbacks();
+		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $bc );
 		$this->assertEquals( 2, $tlCalls );
@@ -580,7 +580,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->approveMasterChanges( [] );
 		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runPrimaryTransactionIdleCallbacks();
-		$lb->runMasterTransactionListenerCallbacks();
+		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
 		$this->assertEquals( 2, $tlCalls );

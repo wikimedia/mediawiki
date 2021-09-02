@@ -361,7 +361,7 @@ abstract class LBFactory implements ILBFactory {
 		} while ( $this->hasMasterChanges() );
 		// Run all listener callbacks once
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-			$ex = $lb->runMasterTransactionListenerCallbacks( $fname, $this->id );
+			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname, $this->id );
 			$e = $e ?: $ex;
 		} );
 
