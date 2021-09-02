@@ -1702,7 +1702,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function commitAll( $fname = __METHOD__, $owner = null ) {
 		$this->commitPrimaryChanges( $fname, $owner );
-		$this->flushMasterSnapshots( $fname, $owner );
+		$this->flushPrimarySnapshots( $fname, $owner );
 		$this->flushReplicaSnapshots( $fname, $owner );
 	}
 
@@ -1803,7 +1803,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// Clear any empty transactions (no writes/callbacks) from the implicit round
-		$this->flushMasterSnapshots( $fname, $owner );
+		$this->flushPrimarySnapshots( $fname, $owner );
 
 		$this->trxRoundId = $fname;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -2096,11 +2096,16 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
-	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null ) {
+	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
+	}
+
+	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->flushPrimarySnapshots( $fname, $owner );
 	}
 
 	/**
@@ -2111,8 +2116,13 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->trxRoundStage;
 	}
 
-	public function hasMasterConnection() {
+	public function hasPrimaryConnection() {
 		return $this->isOpen( $this->getWriterIndex() );
+	}
+
+	public function hasMasterConnection() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasPrimaryConnection();
 	}
 
 	public function hasMasterChanges() {
