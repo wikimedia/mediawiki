@@ -84,7 +84,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-watched-label',
 					'description' => 'rcfilters-filter-watchlist-watched-description',
 					'cssClassSuffix' => 'watched',
-					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 						return $rc->getAttribute( 'wl_user' );
 					}
 				],
@@ -93,7 +93,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-watchednew-label',
 					'description' => 'rcfilters-filter-watchlist-watchednew-description',
 					'cssClassSuffix' => 'watchednew',
-					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 						return $rc->getAttribute( 'wl_user' ) &&
 							$rc->getAttribute( 'rc_timestamp' ) &&
 							$rc->getAttribute( 'wl_notificationtimestamp' ) &&
@@ -105,14 +105,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-notwatched-label',
 					'description' => 'rcfilters-filter-watchlist-notwatched-description',
 					'cssClassSuffix' => 'notwatched',
-					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 						return $rc->getAttribute( 'wl_user' ) === null;
 					},
 				]
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( $specialPageClassName, $context, IDatabase $dbr,
-				&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+			'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+				IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
+			) {
 				sort( $selectedValues );
 				$notwatchedCond = 'wl_user IS NULL';
 				$watchedCond = 'wl_user IS NOT NULL';
