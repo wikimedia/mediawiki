@@ -714,7 +714,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * This gets called shortly before the "</body>" tag.
-	 *
+	 * @deprecated since 1.37
 	 * @return string|WrappedStringList HTML containing scripts to put before `</body>`
 	 */
 	public function bottomScripts() {
