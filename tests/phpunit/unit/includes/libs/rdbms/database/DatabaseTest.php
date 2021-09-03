@@ -337,7 +337,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$conn = $lb->openConnection( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
 
-		$this->assertFalse( $lb->hasMasterChanges() );
+		$this->assertFalse( $lb->hasPrimaryChanges() );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 		$called = false;
 		$callback = static function ( IDatabase $db ) use ( &$called ) {

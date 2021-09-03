@@ -406,7 +406,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 				// Make sure this thread sees its own changes, if the ID isn't 0
 				if ( $this->mId != 0 ) {
 					$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-					if ( $lb->hasOrMadeRecentMasterChanges() ) {
+					if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
 						$flags |= self::READ_LATEST;
 						$this->queryFlagsUsed = $flags;
 					}
@@ -418,7 +418,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			case 'name':
 				// Make sure this thread sees its own changes
 				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				if ( $lb->hasOrMadeRecentMasterChanges() ) {
+				if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
 					$flags |= self::READ_LATEST;
 					$this->queryFlagsUsed = $flags;
 				}

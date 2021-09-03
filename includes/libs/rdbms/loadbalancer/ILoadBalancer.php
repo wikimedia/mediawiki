@@ -760,11 +760,25 @@ interface ILoadBalancer {
 	/**
 	 * Whether there are pending changes or callbacks in a transaction by this thread
 	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasPrimaryChanges();
+
+	/**
+	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
+	 * @return bool
 	 */
 	public function hasMasterChanges();
 
 	/**
 	 * Get the timestamp of the latest write query done by this thread
+	 * @return float|bool UNIX timestamp or false
+	 * @since 1.37
+	 */
+	public function lastPrimaryChangeTimestamp();
+
+	/**
+	 * @deprecated since 1.37; please use lastPrimaryChangeTimestamp() instead.
 	 * @return float|bool UNIX timestamp or false
 	 */
 	public function lastMasterChangeTimestamp();
@@ -773,6 +787,14 @@ interface ILoadBalancer {
 	 * Check if this load balancer object had any recent or still
 	 * pending writes issued against it by this PHP thread
 	 *
+	 * @param float|null $age How many seconds ago is "recent" [defaults to mWaitTimeout]
+	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasOrMadeRecentPrimaryChanges( $age = null );
+
+	/**
+	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
 	 * @param float|null $age How many seconds ago is "recent" [defaults to mWaitTimeout]
 	 * @return bool
 	 */

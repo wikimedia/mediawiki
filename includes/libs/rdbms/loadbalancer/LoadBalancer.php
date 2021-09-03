@@ -2125,7 +2125,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->hasPrimaryConnection();
 	}
 
-	public function hasMasterChanges() {
+	public function hasPrimaryChanges() {
 		$pending = false;
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$pending ) {
 			$pending = $pending || $conn->writesOrCallbacksPending();
@@ -2134,7 +2134,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $pending;
 	}
 
-	public function lastMasterChangeTimestamp() {
+	public function hasMasterChanges() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasPrimaryChanges();
+	}
+
+	public function lastPrimaryChangeTimestamp() {
 		$lastTime = false;
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$lastTime ) {
 			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
@@ -2143,11 +2148,21 @@ class LoadBalancer implements ILoadBalancer {
 		return $lastTime;
 	}
 
-	public function hasOrMadeRecentMasterChanges( $age = null ) {
+	public function lastMasterChangeTimestamp() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->lastPrimaryChangeTimestamp();
+	}
+
+	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
 		$age = $age ?? $this->waitTimeout;
 
-		return ( $this->hasMasterChanges()
-			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
+		return ( $this->hasPrimaryChanges()
+			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );
+	}
+
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
 	public function pendingMasterChangeCallers() {

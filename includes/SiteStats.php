@@ -56,7 +56,7 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
+		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );

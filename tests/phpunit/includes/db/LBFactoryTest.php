@@ -277,7 +277,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'hasReplicaServers' )->willReturn( true );
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getAnyOpenConnection' )->willReturn( $mockDB1 );
-		$lb1->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+		$lb1->method( 'hasOrMadeRecentPrimaryChanges' )->will( $this->returnCallback(
 				static function () use ( $mockDB1 ) {
 					$p = 0;
 					$p |= $mockDB1->writesOrCallbacksPending();
@@ -306,7 +306,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'hasReplicaServers' )->willReturn( true );
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getAnyOpenConnection' )->willReturn( $mockDB2 );
-		$lb2->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+		$lb2->method( 'hasOrMadeRecentPrimaryChanges' )->will( $this->returnCallback(
 			static function () use ( $mockDB2 ) {
 				$p = 0;
 				$p |= $mockDB2->writesOrCallbacksPending();

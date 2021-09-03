@@ -317,6 +317,13 @@ interface ILBFactory {
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
 	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasPrimaryChanges();
+
+	/**
+	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
+	 * @return bool
 	 */
 	public function hasMasterChanges();
 
@@ -334,6 +341,13 @@ interface ILBFactory {
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
+	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
+	 * @return bool
+	 */
+	public function hasOrMadeRecentPrimaryChanges( $age = null );
+
+	/**
+	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
 	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
 	 * @return bool
 	 */
