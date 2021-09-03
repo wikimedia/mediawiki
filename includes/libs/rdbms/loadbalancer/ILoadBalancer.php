@@ -804,6 +804,13 @@ interface ILoadBalancer {
 	 * Get the list of callers that have pending primary changes
 	 *
 	 * @return string[] List of method names
+	 * @since 1.37
+	 */
+	public function pendingPrimaryChangeCallers();
+
+	/**
+	 * @deprecated since 1.37; please use pendingPrimaryChangeCallers() instead.
+	 * @return string[] List of method names
 	 */
 	public function pendingMasterChangeCallers();
 
