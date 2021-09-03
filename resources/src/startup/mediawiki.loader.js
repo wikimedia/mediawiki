@@ -1943,7 +1943,7 @@
 		set: function ( module ) {
 			var args,
 				encodedScript,
-				descriptor = mw.loader.moduleRegistry[ module ],
+				descriptor = registry[ module ],
 				key = getModuleKey( module );
 
 			if (
