@@ -1719,7 +1719,7 @@ class LoadBalancer implements ILoadBalancer {
 		$total = 0;
 		do {
 			$count = 0; // callbacks execution attempts
-			$this->forEachOpenMasterConnection( static function ( Database $conn ) use ( &$count ) {
+			$this->forEachOpenPrimaryConnection( static function ( Database $conn ) use ( &$count ) {
 				// Run any pre-commit callbacks while leaving the post-commit ones suppressed.
 				// Any error should cause all (peer) transactions to be rolled back together.
 				$count += $conn->runOnTransactionPreCommitCallbacks();
@@ -1727,7 +1727,7 @@ class LoadBalancer implements ILoadBalancer {
 			$total += $count;
 		} while ( $count > 0 );
 		// Defer post-commit callbacks until after COMMIT/ROLLBACK happens on all handles
-		$this->forEachOpenMasterConnection( static function ( Database $conn ) {
+		$this->forEachOpenPrimaryConnection( static function ( Database $conn ) {
 			$conn->setTrxEndCallbackSuppression( true );
 		} );
 		$this->trxRoundStage = self::ROUND_FINALIZED;
@@ -1751,7 +1751,7 @@ class LoadBalancer implements ILoadBalancer {
 		$limit = $options['maxWriteDuration'] ?? 0;
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
+		$this->forEachOpenPrimaryConnection( function ( IDatabase $conn ) use ( $limit ) {
 			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and
 			// throw an error (causing rollback).
@@ -1811,7 +1811,7 @@ class LoadBalancer implements ILoadBalancer {
 		// For each of these handles, any writes and callbacks will be tied to a single
 		// transaction. The (peer) handles will reject begin()/commit() calls unless they
 		// are part of an en masse commit or an en masse rollback.
-		$this->forEachOpenMasterConnection( function ( Database $conn ) {
+		$this->forEachOpenPrimaryConnection( function ( Database $conn ) {
 			$this->applyTransactionRoundFlags( $conn );
 		} );
 		$this->trxRoundStage = self::ROUND_CURSORY;
@@ -1837,7 +1837,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Commit any writes and clear any snapshots as well (callbacks require AUTOCOMMIT).
 		// Note that callbacks should already be suppressed due to finalizePrimaryChanges().
-		$this->forEachOpenMasterConnection(
+		$this->forEachOpenPrimaryConnection(
 			function ( IDatabase $conn ) use ( $fname, &$failures ) {
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
@@ -1855,7 +1855,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 		if ( $restore ) {
 			// Unmark handles as participating in this explicit transaction round
-			$this->forEachOpenMasterConnection( function ( Database $conn ) {
+			$this->forEachOpenPrimaryConnection( function ( Database $conn ) {
 				$this->undoTransactionRoundFlags( $conn );
 			} );
 		}
@@ -1888,7 +1888,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 
 		// Now that the COMMIT/ROLLBACK step is over, enable post-commit callback runs
-		$this->forEachOpenMasterConnection( static function ( Database $conn ) {
+		$this->forEachOpenPrimaryConnection( static function ( Database $conn ) {
 			$conn->setTrxEndCallbackSuppression( false );
 		} );
 
@@ -1898,7 +1898,7 @@ class LoadBalancer implements ILoadBalancer {
 		do {
 			// Run any pending callbacks for each connection...
 			$count = 0; // callback execution attempts
-			$this->forEachOpenMasterConnection(
+			$this->forEachOpenPrimaryConnection(
 				static function ( Database $conn ) use ( $type, &$errors, &$count ) {
 					if ( $conn->trxLevel() ) {
 						return; // retry in the next iteration, after commit() is called
@@ -1907,7 +1907,7 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			);
 			// Clear out any active transactions left over from callbacks...
-			$this->forEachOpenMasterConnection(
+			$this->forEachOpenPrimaryConnection(
 				function ( Database $conn ) use ( &$errors, $fname ) {
 					if ( $conn->writesPending() ) {
 						// A callback from another handle wrote to this one and DBO_TRX is set
@@ -1963,7 +1963,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$errors = [];
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenMasterConnection(
+		$this->forEachOpenPrimaryConnection(
 			static function ( Database $conn ) use ( $type, &$errors ) {
 				$conn->runTransactionListenerCallbacks( $type, $errors );
 			}
@@ -1988,12 +1988,12 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( $fname ) {
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( $fname ) {
 			$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 		} );
 		if ( $restore ) {
 			// Unmark handles as participating in this explicit transaction round
-			$this->forEachOpenMasterConnection( function ( Database $conn ) {
+			$this->forEachOpenPrimaryConnection( function ( Database $conn ) {
 				$this->undoTransactionRoundFlags( $conn );
 			} );
 		}
@@ -2098,7 +2098,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( $fname ) {
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
 	}
@@ -2127,7 +2127,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function hasPrimaryChanges() {
 		$pending = false;
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$pending ) {
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$pending ) {
 			$pending = $pending || $conn->writesOrCallbacksPending();
 		} );
 
@@ -2141,7 +2141,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function lastPrimaryChangeTimestamp() {
 		$lastTime = false;
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$lastTime ) {
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$lastTime ) {
 			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
 		} );
 
@@ -2167,7 +2167,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function pendingPrimaryChangeCallers() {
 		$fnames = [];
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$fnames ) {
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$fnames ) {
 			$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
 		} );
 
@@ -2336,16 +2336,21 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
-		$masterIndex = $this->getWriterIndex();
+	public function forEachOpenPrimaryConnection( $callback, array $params = [] ) {
+		$primaryIndex = $this->getWriterIndex();
 		foreach ( $this->conns as $connsByServer ) {
-			if ( isset( $connsByServer[$masterIndex] ) ) {
+			if ( isset( $connsByServer[$primaryIndex] ) ) {
 				/** @var IDatabase $conn */
-				foreach ( $connsByServer[$masterIndex] as $conn ) {
+				foreach ( $connsByServer[$primaryIndex] as $conn ) {
 					$callback( $conn, ...$params );
 				}
 			}
 		}
+	}
+
+	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->forEachOpenPrimaryConnection( $callback, $params );
 	}
 
 	public function forEachOpenReplicaConnection( $callback, array $params = [] ) {
@@ -2489,7 +2494,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			unset( $this->trxRecurringCallbacks[$name] );
 		}
-		$this->forEachOpenMasterConnection(
+		$this->forEachOpenPrimaryConnection(
 			static function ( IDatabase $conn ) use ( $name, $callback ) {
 				$conn->setTransactionListener( $name, $callback );
 			}

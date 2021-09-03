@@ -528,7 +528,7 @@ class DeferredUpdates {
 
 		$connsBusy = false;
 		$lbFactory->forEachLB( static function ( LoadBalancer $lb ) use ( &$connsBusy ) {
-			$lb->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
+			$lb->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
 				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
 					$connsBusy = true;
 				}

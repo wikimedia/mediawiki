@@ -861,6 +861,14 @@ interface ILoadBalancer {
 	 * Call a function with each open connection object to a primary
 	 * @param callable $callback
 	 * @param array $params
+	 * @since 1.37
+	 */
+	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
+
+	/**
+	 * @deprecated since 1.37; please use forEachOpenPrimaryConnection() instead.
+	 * @param callable $callback
+	 * @param array $params
 	 */
 	public function forEachOpenMasterConnection( $callback, array $params = [] );
 
