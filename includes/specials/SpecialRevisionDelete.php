@@ -679,7 +679,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->typeLabels['success']
 		);
 		$this->wasSaved = true;
-		$this->revDelList->reloadFromMaster();
+		$this->revDelList->reloadFromPrimary();
 		$this->showForm();
 	}
 

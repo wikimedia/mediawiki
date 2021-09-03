@@ -335,10 +335,19 @@ abstract class RevDelList extends RevisionListBase {
 	/**
 	 * Reload the list data from the primary DB. This can be done after setVisibility()
 	 * to allow $item->getHTML() to show the new data.
+	 * @since 1.37
 	 */
-	public function reloadFromMaster() {
+	public function reloadFromPrimary() {
 		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$this->res = $this->doQuery( $dbw );
+	}
+
+	/**
+	 * @deprecated since 1.37; please use reloadFromPrimary() instead.
+	 */
+	public function reloadFromMaster() {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->reloadFromPrimary();
 	}
 
 	/**

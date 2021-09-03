@@ -465,7 +465,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->getOutput()->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>",
 			'tags-edit-success' );
 		$this->wasSaved = true;
-		$this->revList->reloadFromMaster();
+		$this->revList->reloadFromPrimary();
 		$this->reason = ''; // no need to spew the reason back at the user
 		$this->showForm();
 	}
