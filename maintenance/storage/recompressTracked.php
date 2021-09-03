@@ -813,7 +813,7 @@ class CgzCopyTransaction {
 		// Insert the data into the destination cluster
 		$targetCluster = $this->parent->getTargetCluster();
 		$store = $this->parent->store;
-		$targetDB = $store->getMaster( $targetCluster );
+		$targetDB = $store->getPrimary( $targetCluster );
 		$targetDB->clearFlag( DBO_TRX ); // we manage the transactions
 		$targetDB->begin( __METHOD__ );
 		$baseUrl = $this->parent->store->store( $targetCluster, serialize( $this->cgz ) );
