@@ -323,7 +323,6 @@ TEXT
 			if ( !$statusRootPage->isGood() ) {
 				// Die here so that it doesn't print "Done!"
 				$this->fatalError( $statusRootPage->getMessage( false, false, 'en' )->text() );
-				return false;
 			}
 		}
 		if ( $this->hasOption( 'skip-to' ) ) {

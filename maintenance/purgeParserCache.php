@@ -78,7 +78,6 @@ class PurgeParserCache extends Maintenance {
 			$timestamp = time() + $wgParserCacheExpireTime - intval( $inputAge );
 		} else {
 			$this->fatalError( "Must specify either --expiredate or --age" );
-			return;
 		}
 		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
 		$this->lastTimestamp = microtime( true );
@@ -86,7 +85,6 @@ class PurgeParserCache extends Maintenance {
 		$humanDate = ConvertibleTimestamp::convert( TS_RFC2822, $timestamp );
 		if ( $this->hasOption( 'dry-run' ) ) {
 			$this->fatalError( "\nDry run mode, would delete objects having an expiry before " . $humanDate . "\n" );
-			return;
 		}
 
 		$this->output( "Deleting objects expiring before " . $humanDate . "\n" );

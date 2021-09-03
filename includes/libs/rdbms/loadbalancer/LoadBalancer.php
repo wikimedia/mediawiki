@@ -521,7 +521,6 @@ class LoadBalancer implements ILoadBalancer {
 			$this->lastError = 'Unknown error'; // set here in case of worse failure
 			$this->lastError = 'No working replica DB server: ' . $this->lastError;
 			$this->reportConnectionError();
-			return null; // unreachable due to exception
 		}
 
 		return $i;
@@ -1601,7 +1600,6 @@ class LoadBalancer implements ILoadBalancer {
 		$conn = $this->getConnection( $index, self::CONN_SILENCE_ERRORS );
 		if ( !$conn ) {
 			$this->reportConnectionError();
-			return null; // unreachable due to exception
 		}
 
 		try {
