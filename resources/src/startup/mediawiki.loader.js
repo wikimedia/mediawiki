@@ -1143,33 +1143,6 @@
 	}
 
 	/**
-	 * Resolve indexed dependencies.
-	 *
-	 * ResourceLoader uses an optimisation to save space which replaces module names in
-	 * dependency lists with the index of that module within the array of module
-	 * registration data if it exists. The benefit is a significant reduction in the data
-	 * size of the startup module. This function changes those dependency lists back to
-	 * arrays of strings.
-	 *
-	 * @private
-	 * @param {Array} modules Modules array
-	 */
-	function resolveIndexedDependencies( modules ) {
-		var i, j, deps;
-		function resolveIndex( dep ) {
-			return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
-		}
-		for ( i = 0; i < modules.length; i++ ) {
-			deps = modules[ i ][ 2 ];
-			if ( deps ) {
-				for ( j = 0; j < deps.length; j++ ) {
-					deps[ j ] = resolveIndex( deps[ j ] );
-				}
-			}
-		}
-	}
-
-	/**
 	 * @private
 	 * @param {Object} params Map of parameter names to values
 	 * @return {string}
@@ -1541,21 +1514,37 @@
 		 * @param {string} [skip=null] Script body of the skip function
 		 */
 		register: function ( modules ) {
-			if ( typeof modules === 'object' ) {
-				resolveIndexedDependencies( modules );
+			if ( typeof modules !== 'object' ) {
+				registerOne.apply( null, arguments );
+				return;
+			}
+			// Need to resolve indexed dependencies:
+			// ResourceLoader uses an optimisation to save space which replaces module
+			// names in dependency lists with the index of that module within the
+			// array of module registration data if it exists. The benefit is a significant
+			// reduction in the data size of the startup module. This loop changes
+			// those dependency lists back to arrays of strings.
+			function resolveIndex( dep ) {
+				return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
+			}
+
+			var i, j, deps;
+			for ( i = 0; i < modules.length; i++ ) {
+				deps = modules[ i ][ 2 ];
+				if ( deps ) {
+					for ( j = 0; j < deps.length; j++ ) {
+						deps[ j ] = resolveIndex( deps[ j ] );
+					}
+				}
 				// Optimisation: Up to 55% faster.
-				// Typically called only once, and with a batch.
+				// Typically register() is called exactly once on a page, and with a batch.
 				// See <https://gist.github.com/Krinkle/f06fdb3de62824c6c16f02a0e6ce0e66>
 				// Benchmarks taught us that the code for adding an object to `registry`
-				// should actually be inline, or in a simple function that does no
-				// arguments manipulation, and isn't also the caller itself.
+				// should be in a function that has only one signature and does no arguments
+				// manipulation.
 				// JS semantics make it hard to optimise recursion to a different
-				// signature of itself.
-				for ( var i = 0; i < modules.length; i++ ) {
-					registerOne.apply( null, modules[ i ] );
-				}
-			} else {
-				registerOne.apply( null, arguments );
+				// signature of itself, hence we moved this out.
+				registerOne.apply( null, modules[ i ] );
 			}
 		},
 
