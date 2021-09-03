@@ -183,11 +183,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'isReplacedInStructuredUi' => true,
 					'activeValue' => false,
 					'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
-					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
-							&$fields, &$conds, &$query_options, &$join_conds ) {
+					'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+						IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+					) {
 						$nonRevisionTypes = [ RC_LOG ];
-						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes(
-							$nonRevisionTypes );
+						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
 						if ( $nonRevisionTypes ) {
 							$conds[] = $dbr->makeList(
 								[
@@ -221,7 +221,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
 					'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
 					'cssClassSuffix' => 'watchedunseen',
-					'isRowApplicableCallable' => function ( $ctx, RecentChange $rc ) {
+					'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
 						return !$this->isChangeEffectivelySeen( $rc );
 					},
 				],
@@ -230,15 +230,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlistactivity-seen-label',
 					'description' => 'rcfilters-filter-watchlistactivity-seen-description',
 					'cssClassSuffix' => 'watchedseen',
-					'isRowApplicableCallable' => function ( $ctx, RecentChange $rc ) {
+					'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
 						return $this->isChangeEffectivelySeen( $rc );
 					}
 				],
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
 			'queryCallable' => static function (
-				$specialPageClassName,
-				$context,
+				string $specialPageClassName,
+				IContextSource $context,
 				IDatabase $dbr,
 				&$tables,
 				&$fields,

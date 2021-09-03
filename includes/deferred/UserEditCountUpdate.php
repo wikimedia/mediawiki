@@ -93,9 +93,9 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// wait for the replica DB to catch up so they will be counted.
 					$dbr = $lb->getConnectionRef( DB_REPLICA );
 					// If $dbr is actually the primary DB, then clearing the snapshot
-					// is harmless and waitForMasterPos() will just no-op.
+					// is harmless and waitForPrimaryPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
-					$lb->waitForMasterPos( $dbr );
+					$lb->waitForPrimaryPos( $dbr );
 					$editTracker->initializeUserEditCount( $targetUserIdentity );
 				}
 

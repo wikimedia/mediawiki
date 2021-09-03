@@ -44,7 +44,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
 
 		// Wait before lock to try to reduce time waiting in the lock.
-		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up before lock' );
 			return false;
 		}
@@ -57,7 +57,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 			return false;
 		}
 
-		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up within lock' );
 			return false;
 		}

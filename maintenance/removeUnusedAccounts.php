@@ -132,10 +132,10 @@ class RemoveUnusedAccounts extends Maintenance {
 	 *
 	 * @param int $id User's ID
 	 * @param int|null $actor User's actor ID
-	 * @param bool $master Perform checking on the master
+	 * @param bool $primary Perform checking on the primary DB
 	 * @return bool
 	 */
-	private function isInactiveAccount( $id, $actor, $master = false ) {
+	private function isInactiveAccount( $id, $actor, $primary = false ) {
 		if ( $actor === null ) {
 			// There's no longer a way for a user to be active in any of
 			// these tables without having an actor ID. The only way to link
@@ -143,7 +143,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			return true;
 		}
 
-		$dbo = $this->getDB( $master ? DB_PRIMARY : DB_REPLICA );
+		$dbo = $this->getDB( $primary ? DB_PRIMARY : DB_REPLICA );
 		$checks = [
 			'archive' => 'ar',
 			'image' => 'img',

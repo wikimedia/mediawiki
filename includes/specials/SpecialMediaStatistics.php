@@ -39,6 +39,11 @@ class SpecialMediaStatistics extends QueryPage {
 	protected $totalPerType = 0;
 
 	/**
+	 * @var int Combined file count of all files in a section
+	 */
+	protected $countPerType = 0;
+
+	/**
 	 * @var int Combined file size of all files
 	 */
 	protected $totalSize = 0;
@@ -151,6 +156,7 @@ class SpecialMediaStatistics extends QueryPage {
 				}
 				$this->outputMediaType( $mediaType );
 				$this->totalPerType = 0;
+				$this->countPerType = 0;
 				$this->outputTableStart( $mediaType );
 				$prevMediaType = $mediaType;
 			}
@@ -164,6 +170,7 @@ class SpecialMediaStatistics extends QueryPage {
 				$this->msg( 'mediastatistics-allbytes' )
 					->numParams( $this->totalSize )
 					->sizeParams( $this->totalSize )
+					->numParams( $this->totalCount )
 					->text()
 			);
 		}
@@ -182,6 +189,8 @@ class SpecialMediaStatistics extends QueryPage {
 					->numParams( $this->totalPerType )
 					->sizeParams( $this->totalPerType )
 					->numParams( $this->makePercentPretty( $this->totalPerType / $this->totalBytes ) )
+					->numParams( $this->countPerType )
+					->numParams( $this->makePercentPretty( $this->countPerType / $this->totalCount ) )
 					->text()
 		);
 		$this->totalSize += $this->totalPerType;
@@ -229,6 +238,7 @@ class SpecialMediaStatistics extends QueryPage {
 				->parse()
 		);
 		$this->totalPerType += $bytes;
+		$this->countPerType += $count;
 		$this->getOutput()->addHTML( Html::rawElement( 'tr', [], $row ) );
 	}
 

@@ -38,9 +38,9 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 	 */
 	public function testModifyQuery( $filterDefinitions, $expectedValues, $input ) {
 		$queryCallable = function (
-			$className,
-			$ctx,
-			$dbr,
+			string $className,
+			IContextSource $ctx,
+			IDatabase $dbr,
 			&$tables,
 			&$fields,
 			&$conds,
@@ -102,9 +102,9 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 	 */
 	public function testNoOpModifyQuery( $filterDefinitions, $input, $message ) {
 		$noFiltersAllowedCallable = static function (
-			$className,
-			$ctx,
-			$dbr,
+			string $className,
+			IContextSource $ctx,
+			IDatabase $dbr,
 			&$tables,
 			&$fields,
 			&$conds,

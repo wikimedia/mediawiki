@@ -557,7 +557,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 
 		$oldId = $this->revision->getParentId();
-		$flags = $this->useMaster() ? RevisionStore::READ_LATEST : 0;
+		$flags = $this->usePrimary() ? RevisionStore::READ_LATEST : 0;
 		$this->parentRevision = $oldId
 			? $this->revisionStore->getRevisionById( $oldId, $flags )
 			: null;
@@ -699,7 +699,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			->getContentHandler( $this->getContentModel( $role ) );
 	}
 
-	private function useMaster() {
+	private function usePrimary() {
 		// TODO: can we just set a flag to true in prepareContent()?
 		return $this->wikiPage->wasLoadedFrom( self::READ_LATEST );
 	}
@@ -930,7 +930,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$this->parentRevision = $parentRevision;
 		}
 
-		$renderHints = [ 'use-master' => $this->useMaster(), 'audience' => RevisionRecord::RAW ];
+		$renderHints = [ 'use-master' => $this->usePrimary(), 'audience' => RevisionRecord::RAW ];
 
 		if ( $stashedEdit ) {
 			/** @var ParserOutput $output */
@@ -1323,7 +1323,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				null,
 				null,
 				[
-					'use-master' => $this->useMaster(),
+					'use-master' => $this->usePrimary(),
 					'audience' => RevisionRecord::RAW,
 					'known-revision-output' => $options['known-revision-output'] ?? null
 				]

@@ -861,6 +861,14 @@ interface ILoadBalancer {
 	 * Call a function with each open connection object to a primary
 	 * @param callable $callback
 	 * @param array $params
+	 * @since 1.37
+	 */
+	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
+
+	/**
+	 * @deprecated since 1.37; please use forEachOpenPrimaryConnection() instead.
+	 * @param callable $callback
+	 * @param array $params
 	 */
 	public function forEachOpenMasterConnection( $callback, array $params = [] );
 
@@ -902,6 +910,16 @@ interface ILoadBalancer {
 	 * Otherwise, if $pos is not provided, this will connect to the primary server
 	 * to get an accurate position.
 	 *
+	 * @param IDatabase $conn Replica DB
+	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
+	 * @param int $timeout Timeout in seconds [optional]
+	 * @return bool Success
+	 * @since 1.37
+	 */
+	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = 10 );
+
+	/**
+	 * @deprecated since 1.37; please use waitForPrimaryPos() instead.
 	 * @param IDatabase $conn Replica DB
 	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]

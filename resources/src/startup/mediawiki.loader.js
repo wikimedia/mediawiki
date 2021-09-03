@@ -10,6 +10,7 @@
 	'use strict';
 
 	var StringSet,
+		store,
 		hasOwn = Object.hasOwnProperty;
 
 	function defineFallbacks() {
@@ -484,7 +485,7 @@
 		registry[ module ].state = state;
 		if ( state === 'ready' ) {
 			// Queue to later be synced to the local module store.
-			mw.loader.store.add( module );
+			store.add( module );
 		} else if ( state === 'error' || state === 'missing' ) {
 			errorModules.push( module );
 		} else if ( state !== 'loaded' ) {
@@ -1404,7 +1405,7 @@
 		 * @private
 		 */
 		work: function () {
-			mw.loader.store.init();
+			store.init();
 
 			var q = queue.length,
 				storedImplementations = [],
@@ -1427,7 +1428,7 @@
 					registry[ module ].state = 'loading';
 					batch.add( module );
 
-					var implementation = mw.loader.store.get( module );
+					var implementation = store.get( module );
 					if ( implementation ) {
 						// Module store enabled and contains this module/version
 						storedImplementations.push( implementation );
@@ -1452,12 +1453,12 @@
 				// Depending on how corrupt the string is, it is likely that some
 				// modules' implement() succeeded while the ones after the error will
 				// never run and leave their modules in the 'loading' state forever.
-				mw.loader.store.stats.failed++;
+				store.stats.failed++;
 
 				// Since this is an error not caused by an individual module but by
 				// something that infected the implement call itself, don't take any
 				// risks and clear everything in this cache.
-				mw.loader.store.clear();
+				store.clear();
 
 				mw.trackError( 'resourceloader.exception', {
 					exception: err,
@@ -1740,21 +1741,20 @@
 	function flushWrites() {
 		// Remove anything from the in-memory store that came from previous page
 		// loads that no longer corresponds with current module names and versions.
-		mw.loader.store.prune();
+		store.prune();
 		// Process queued module names, serialise their contents to the in-memory store.
-		while ( mw.loader.store.queue.length ) {
-			mw.loader.store.set( mw.loader.store.queue.shift() );
+		while ( store.queue.length ) {
+			store.set( store.queue.shift() );
 		}
 
-		var key = mw.loader.store.key;
 		try {
 			// Replacing the content of the module store might fail if the new
 			// contents would exceed the browser's localStorage size limit. To
 			// avoid clogging the browser with stale data, always remove the old
 			// value before attempting to set the new one.
-			localStorage.removeItem( key );
-			var data = JSON.stringify( mw.loader.store );
-			localStorage.setItem( key, data );
+			localStorage.removeItem( store.key );
+			var data = JSON.stringify( store );
+			localStorage.setItem( store.key, data );
 		} catch ( e ) {
 			mw.trackError( 'resourceloader.exception', {
 				exception: e,
@@ -1766,7 +1766,9 @@
 		hasPendingWrites = false;
 	}
 
-	mw.loader.store = {
+	// We use a local variable `store` so that its easier to access, but also need to set
+	// this in mw.loader so its exported - combine the two
+	mw.loader.store = store = {
 		// Whether the store is in use on this page.
 		enabled: null,
 
@@ -1791,8 +1793,8 @@
 		 */
 		toJSON: function () {
 			return {
-				items: mw.loader.store.items,
-				vary: mw.loader.store.vary,
+				items: store.items,
+				vary: store.vary,
 				// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
 				// which is enough for the purpose of expiring after ~ 30 days.
 				asOf: Math.ceil( Date.now() / 1e7 )
@@ -1941,7 +1943,7 @@
 		set: function ( module ) {
 			var args,
 				encodedScript,
-				descriptor = mw.loader.moduleRegistry[ module ],
+				descriptor = registry[ module ],
 				key = getModuleKey( module );
 
 			if (

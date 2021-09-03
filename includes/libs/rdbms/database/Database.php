@@ -1076,8 +1076,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Make sure that this server is not marked as a replica nor read-only as a sanity check
 	 *
 	 * @throws DBReadOnlyError
+	 * @since 1.37
 	 */
-	protected function assertIsWritableMaster() {
+	protected function assertIsWritablePrimary() {
 		$info = $this->getReadOnlyReason();
 		if ( $info ) {
 			list( $reason, $source ) = $info;
@@ -1087,6 +1088,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 			}
 		}
+	}
+
+	/**
+	 * @deprecated since 1.37; please use assertIsWritablePrimary() instead.
+	 * @throws DBReadOnlyError
+	 */
+	protected function assertIsWritableMaster() {
+		wfDeprecated( __METHOD__, '1.37' );
+		$this->assertIsWritablePrimary();
 	}
 
 	/**
@@ -1359,7 +1369,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Permit temporary table writes on replica DB connections
 			// but require a writable primary DB connection for any persistent writes.
 			if ( $isPermWrite ) {
-				$this->assertIsWritableMaster();
+				$this->assertIsWritablePrimary();
 
 				// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
 				if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
@@ -4053,6 +4063,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
+	 * @since 1.37
 	 * @stable to override
 	 */
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
@@ -4062,7 +4073,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
 		wfDeprecated( __METHOD__, '1.37' );
