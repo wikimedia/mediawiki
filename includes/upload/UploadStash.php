@@ -290,7 +290,7 @@ class UploadStash {
 			$serializedFileProps = serialize( $fileProps );
 		}
 
-		$this->fileMetadata[$key] = [
+		$insertRow = [
 			'us_user' => $this->user->getId(),
 			'us_key' => $key,
 			'us_orig_path' => $path,
@@ -310,13 +310,15 @@ class UploadStash {
 
 		$dbw->insert(
 			'uploadstash',
-			$this->fileMetadata[$key],
+			$insertRow,
 			__METHOD__
 		);
 
 		// store the insertid in the class variable so immediate retrieval
 		// (possibly laggy) isn't necessary.
-		$this->fileMetadata[$key]['us_id'] = $dbw->insertId();
+		$insertRow['us_id'] = $dbw->insertId();
+
+		$this->fileMetadata[$key] = $insertRow;
 
 		# create the UploadStashFile object for this file.
 		$this->initFile( $key );
