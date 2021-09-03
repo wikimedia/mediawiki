@@ -981,7 +981,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	protected function getLinkRenderer() {
 		if ( $this->linkRenderer === null ) {
-			 $this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}
 		return $this->linkRenderer;
 	}

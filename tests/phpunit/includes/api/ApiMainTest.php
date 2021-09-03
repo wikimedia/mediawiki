@@ -1026,9 +1026,9 @@ class ApiMainTest extends ApiTestCase {
 		$apiEx1->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'sv-error2' ) );
 
 		$badMsg = $this->getMockBuilder( ApiRawMessage::class )
-			 ->setConstructorArgs( [ 'An error', 'ignored' ] )
-			 ->onlyMethods( [ 'getApiCode' ] )
-			 ->getMock();
+			->setConstructorArgs( [ 'An error', 'ignored' ] )
+			->onlyMethods( [ 'getApiCode' ] )
+			->getMock();
 		$badMsg->method( 'getApiCode' )->willReturn( "bad\nvalue" );
 		$apiEx2 = new ApiUsageException( null, StatusValue::newFatal( $badMsg ) );
 

@@ -666,8 +666,8 @@ class CrhExceptions {
 			'/' . self::WB . '([bcgkpşBCGKPŞ])Ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
 				self::WB . ')/u' => '$1Ü$2Ь$3',
 
-			 # ö и ü в начале слова
-			 # случаи, когда нужен Ь
+			# ö и ü в начале слова
+			# случаи, когда нужен Ь
 			'/' . self::WB . 'ö([' . Crh::L_N_CONS . 'pP])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
 				=> 'ö$1ь$2',
 			'/' . self::WB . 'Ö([' . Crh::L_N_CONS_LC . 'p])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
@@ -749,21 +749,21 @@ class CrhExceptions {
 			'/([' . Crh::L_CONS . '])ye/u' => '$1ье',
 			'/([' . Crh::L_CONS . '])Y[eE]/u' => '$1ЬЕ',
 
-			 # расставляем Ь перед Ё
-			 # place Ь in front of Ё
+			# расставляем Ь перед Ё
+			# place Ь in front of Ё
 			'/([' . Crh::L_CONS . '])y[oö]/u' => '$1ьё',
 			'/([' . Crh::L_CONS . '])Y[oOöÖ]/u' => '$1ЬЁ',
-			 # оставшиеся вхождения yo и yö
-			 # remaining occurrences of yo and yö
+			# оставшиеся вхождения yo и yö
+			# remaining occurrences of yo and yö
 			'/y[oö]/u' => 'ё',
 			'/[yY][oOöÖ]/u' => 'Ё',
 
-			 # расставляем Ь перед Ю
-			 # place Ь in front of Ю
+			# расставляем Ь перед Ю
+			# place Ь in front of Ю
 			'/([' . Crh::L_CONS . '])y[uü]/u' => '$1ью',
 			'/([' . Crh::L_CONS . '])Y[uUüÜ]/u' => '$1ЬЮ',
-			 # оставшиеся вхождения yu и yü
-			 # remaining occurrences of yu and yü
+			# оставшиеся вхождения yu и yü
+			# remaining occurrences of yu and yü
 			'/y[uü]/u' => 'ю',
 			'/[yY][uUüÜ]/u' => 'Ю',
 

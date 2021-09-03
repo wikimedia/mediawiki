@@ -169,8 +169,8 @@ class UploadFromUrl extends UploadBase {
 
 		return !empty( $url )
 			&& MediaWikiServices::getInstance()
-				   ->getPermissionManager()
-				   ->userHasRight( $user, 'upload_by_url' );
+				->getPermissionManager()
+				->userHasRight( $user, 'upload_by_url' );
 	}
 
 	/**

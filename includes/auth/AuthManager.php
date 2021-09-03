@@ -648,7 +648,7 @@ class AuthManager implements LoggerAwareInterface {
 
 				if ( $provider->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK &&
 					$res->linkRequest &&
-					 // don't confuse the user with an incorrect message if linking is disabled
+					// don't confuse the user with an incorrect message if linking is disabled
 					$this->getAuthenticationProvider( ConfirmLinkSecondaryAuthenticationProvider::class )
 				) {
 					$state['maybeLink'][$res->linkRequest->getUniqueId()] = $res->linkRequest;

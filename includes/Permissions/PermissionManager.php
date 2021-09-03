@@ -602,7 +602,8 @@ class PermissionManager {
 
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $whiteListRead, true )
-				 || in_array( $dbName, $whiteListRead, true ) ) {
+				|| in_array( $dbName, $whiteListRead, true )
+			) {
 				$allowed = true;
 			} elseif ( $title->getNamespace() === NS_MAIN ) {
 				# Old settings might have the title prefixed with
@@ -626,7 +627,8 @@ class PermissionManager {
 
 		$whitelistReadRegexp = $this->options->get( 'WhitelistReadRegexp' );
 		if ( !$allowed && is_array( $whitelistReadRegexp )
-			 && !empty( $whitelistReadRegexp ) ) {
+			&& !empty( $whitelistReadRegexp )
+		) {
 			$name = $title->getPrefixedText();
 			// Check for regex whitelisting
 			foreach ( $whitelistReadRegexp as $listItem ) {
@@ -721,8 +723,8 @@ class PermissionManager {
 		}
 
 		if ( $this->options->get( 'EmailConfirmToEdit' )
-			 && !$user->isEmailConfirmed()
-			 && $action === 'edit'
+			&& !$user->isEmailConfirmed()
+			&& $action === 'edit'
 		) {
 			$errors[] = [ 'confirmedittext' ];
 		}
@@ -879,20 +881,23 @@ class PermissionManager {
 			}
 		} elseif ( $action == 'move' ) {
 			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
-				 && $title->getNamespace() === NS_USER && !$isSubPage ) {
+				&& $title->getNamespace() === NS_USER && !$isSubPage
+			) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-user-page' ];
 			}
 
 			// Check if user is allowed to move files if it's a file
 			if ( $title->getNamespace() === NS_FILE &&
-					!$this->userHasRight( $user, 'movefile' ) ) {
+				!$this->userHasRight( $user, 'movefile' )
+			) {
 				$errors[] = [ 'movenotallowedfile' ];
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
 			if ( $title->getNamespace() === NS_CATEGORY &&
-					!$this->userHasRight( $user, 'move-categorypages' ) ) {
+				!$this->userHasRight( $user, 'move-categorypages' )
+			) {
 				$errors[] = [ 'cant-move-category-page' ];
 			}
 
@@ -1077,7 +1082,7 @@ class PermissionManager {
 			$title_protection = $title->getTitleProtection();
 			if ( $title_protection ) {
 				if ( $title_protection['permission'] == ''
-					 || !$this->userHasRight( $user, $title_protection['permission'] )
+					|| !$this->userHasRight( $user, $title_protection['permission'] )
 				) {
 					$errors[] = [
 						'titleprotected',
@@ -1136,7 +1141,7 @@ class PermissionManager {
 				$errors[] = [ 'undelete-cantedit' ];
 			}
 			if ( !$title->exists()
-				 && count( $this->getPermissionErrorsInternal( 'create', $user, $title, $rigor, true ) )
+				&& count( $this->getPermissionErrorsInternal( 'create', $user, $title, $rigor, true ) )
 			) {
 				// Undeleting where nothing currently exists implies creating
 				$errors[] = [ 'undelete-cantcreate' ];
@@ -1553,7 +1558,8 @@ class PermissionManager {
 		}
 
 		if ( !isset( $this->options->get( 'GroupPermissions' )['*'][$right] )
-			 || !$this->options->get( 'GroupPermissions' )['*'][$right] ) {
+			|| !$this->options->get( 'GroupPermissions' )['*'][$right]
+		) {
 			$this->cachedRights[$right] = false;
 			return false;
 		}
@@ -1685,8 +1691,8 @@ class PermissionManager {
 			}
 
 			if ( $right != '' &&
-				 !isset( $namespaceRightGroups[$right] ) &&
-				 ( !$user || $this->userHasRight( $user, $right ) )
+				!isset( $namespaceRightGroups[$right] ) &&
+				( !$user || $this->userHasRight( $user, $right ) )
 			) {
 				// Do any of the namespace rights imply the restriction right? (see explanation above)
 				foreach ( $namespaceRightGroups as $groups ) {

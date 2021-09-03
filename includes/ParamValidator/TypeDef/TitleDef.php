@@ -102,11 +102,11 @@ class TitleDef extends TypeDef {
 		}
 
 		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
-			 !empty( $settings[self::PARAM_RETURN_OBJECT] ) &&
-			 (
-				 ( $settings[ParamValidator::PARAM_ISMULTI_LIMIT1] ?? 100 ) > 10 ||
-				 ( $settings[ParamValidator::PARAM_ISMULTI_LIMIT2] ?? 100 ) > 10
-			 )
+			!empty( $settings[self::PARAM_RETURN_OBJECT] ) &&
+			(
+				( $settings[ParamValidator::PARAM_ISMULTI_LIMIT1] ?? 100 ) > 10 ||
+				( $settings[ParamValidator::PARAM_ISMULTI_LIMIT2] ?? 100 ) > 10
+			)
 		) {
 			$ret['issues'][] = 'Multi-valued title-type parameters with PARAM_RETURN_OBJECT '
 				. 'should set low values (<= 10) for PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2.'

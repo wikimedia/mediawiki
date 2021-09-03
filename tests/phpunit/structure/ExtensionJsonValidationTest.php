@@ -46,7 +46,7 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 		$allThings = ExtensionRegistry::getInstance()->getAllThings();
 
 		foreach ( $allThings as $thing ) {
-			 yield [ $thing['path'] ];
+			yield [ $thing['path'] ];
 		}
 	}
 

@@ -12,7 +12,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 
 		$jobq->push( Job::factory( 'null', Title::newMainPage(), [] ) );
 		$this->assertSame( 1, SiteStats::jobs(),
-			 'A single job enqueued bumps jobscount stat to 1' );
+			'A single job enqueued bumps jobscount stat to 1' );
 
 		$jobq->push( Job::factory( 'null', Title::newMainPage(), [] ) );
 		$this->assertSame( 1, SiteStats::jobs(),

@@ -73,7 +73,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testPhpInvalidVersion( $phpVersion ) {
 		$this->expectException( UnexpectedValueException::class );
-		 $checker = new VersionChecker( '1.0.0', $phpVersion, [] );
+		$checker = new VersionChecker( '1.0.0', $phpVersion, [] );
 	}
 
 	public static function providePhpInvalidVersion() {

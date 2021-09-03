@@ -180,7 +180,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 				[],
 				"script-src 'unsafe-eval' blob: 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json",
 				"script-src 'unsafe-eval' blob: 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
-			 ],
+			],
 			[
 				[ 'script-src' => [ 'http://example.com', 'http://something,else.com' ] ],
 				"script-src 'unsafe-eval' blob: 'self' 'nonce-secret' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json",

@@ -221,10 +221,10 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 		// Ensure the router doesn't choke on long paths.
 		$lorem = "Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_" .
 			"tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_" .
-			 "nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._" .
-			 "Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_" .
-			 "eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_" .
-			 "in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum.";
+				"nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._" .
+				"Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_" .
+				"eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_" .
+				"in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum.";
 
 		$tests += [
 			"Long path" => [

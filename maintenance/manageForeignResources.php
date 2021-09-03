@@ -60,8 +60,8 @@ TEXT
 	public function execute() {
 		global $IP;
 		$frm = new ForeignResourceManager(
-			 "{$IP}/resources/lib/foreign-resources.yaml",
-			 "{$IP}/resources/lib",
+			"{$IP}/resources/lib/foreign-resources.yaml",
+			"{$IP}/resources/lib",
 			function ( $text ) {
 				$this->output( $text );
 			},

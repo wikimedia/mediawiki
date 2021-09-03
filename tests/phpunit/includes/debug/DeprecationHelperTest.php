@@ -44,7 +44,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'protectedNonDeprecated', E_USER_ERROR,
 				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
 			[ 'privateNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
 			[ 'nonExistent', E_USER_NOTICE, 'Undefined property: TestDeprecatedClass::$nonExistent' ],
 		];
 	}
@@ -114,11 +114,11 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'privateDeprecated', null, null ],
 			[ 'fallbackDeprecated', null, null ],
 			[ 'fallbackGetterOnly', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
+				'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
 			[ 'protectedNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
 			[ 'privateNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
 			[ 'nonExistent', null, null ],
 		];
 	}
