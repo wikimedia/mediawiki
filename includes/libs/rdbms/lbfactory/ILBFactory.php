@@ -344,6 +344,13 @@ interface ILBFactory {
 	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
 	 * @return bool
 	 */
+	public function hasOrMadeRecentPrimaryChanges( $age = null );
+
+	/**
+	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
+	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
+	 * @return bool
+	 */
 	public function hasOrMadeRecentMasterChanges( $age = null );
 
 	/**

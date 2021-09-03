@@ -427,12 +427,17 @@ abstract class LBFactory implements ILBFactory {
 		return $ret;
 	}
 
-	public function hasOrMadeRecentMasterChanges( $age = null ) {
+	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
 		$ret = false;
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $age, &$ret ) {
-			$ret = $ret || $lb->hasOrMadeRecentMasterChanges( $age );
+			$ret = $ret || $lb->hasOrMadeRecentPrimaryChanges( $age );
 		} );
 		return $ret;
+	}
+
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
 	public function waitForReplication( array $opts = [] ) {

@@ -2263,7 +2263,7 @@ class RevisionStore
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )
 			&& $lb->hasStreamingReplicaServers()
-			&& $lb->hasOrMadeRecentMasterChanges()
+			&& $lb->hasOrMadeRecentPrimaryChanges()
 		) {
 			$flags = self::READ_LATEST;
 			$dbw = $this->getDBConnectionRef( DB_PRIMARY );

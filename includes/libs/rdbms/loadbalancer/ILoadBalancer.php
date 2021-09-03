@@ -789,6 +789,14 @@ interface ILoadBalancer {
 	 *
 	 * @param float|null $age How many seconds ago is "recent" [defaults to mWaitTimeout]
 	 * @return bool
+	 * @since 1.37
+	 */
+	public function hasOrMadeRecentPrimaryChanges( $age = null );
+
+	/**
+	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
+	 * @param float|null $age How many seconds ago is "recent" [defaults to mWaitTimeout]
+	 * @return bool
 	 */
 	public function hasOrMadeRecentMasterChanges( $age = null );
 
