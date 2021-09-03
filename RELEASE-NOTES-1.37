@@ -409,6 +409,9 @@ because of Phabricator reports.
   languages where nouns must be capitalized. This class is no longer added to
   the body tag and must be provided by skins.
 * The SkinTemplateOutputPageBeforeExec hook, deprecated since 1.35, was removed.
+* Calling Message::toString() without a parameter, hard-deprecated since 1.36,
+  is not longer supported. You can instead use the explicit formatting methods
+  directly, such as Message::text() and Message::escaped().
 * Article::getContentObject, deprecated since 1.32, was removed.
 * Article::delete(), Article::confirmDelete() and ImagePage::delete() were
   hard-deprecated. The logic responsible for building the form is being moved to
