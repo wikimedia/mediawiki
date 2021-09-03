@@ -173,7 +173,7 @@
 	"config-admin-error-user": "เกิดข้อผิดพลาดภายในขณะสร้างผู้ดูแลด้วยชื่อ \"<nowiki>$1</nowiki>\"",
 	"config-admin-error-password": "เกิดข้อผิดพลาดภายในขณะตั้งค่ารหัสผ่านสำหรับผู้ดูแล \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "คุณป้อนที่อยู่อีเมลที่ไม่ถูกต้อง",
-	"config-subscribe": "สมัครรับข้อมูลกับ[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce รายชื่อผู้รับจดหมายเกี่ยวกับการประกาศการออกรุ่น]",
+	"config-subscribe": "สมัครรับข้อมูลกับ[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ รายชื่อผู้รับจดหมายเกี่ยวกับการประกาศการออกรุ่น]",
 	"config-subscribe-help": "รายชื่อนี้เป็นรายชื่อผู้รับจดหมายที่มีปริมาณต่ำสำหรับแจ้งข่าวเกี่ยวกับการประกาศการออกรุ่น รวมถึงการประกาศความปลอดภัยที่สำคัญ\nคุณควรสมัครรับข้อมูล และทำการอัปเดตการติดตั้ง MediaWiki ของคุณเมื่อมีรุ่นใหม่ออกมา",
 	"config-subscribe-noemail": "คุณได้พยายามสมัครรับข้อมูลกับรายชื่อผู้รับจดหมายการประกาศการออกรุ่นโดยไม่ได้ระบุที่อยู่อีเมล\nโปรดระบุที่อยู่อีเมล ถ้าคุณต้องการสมัครรับข้อมูลกับรายชื่อผู้รับจดหมาย",
 	"config-pingback": "แบ่งปันข้อมูลเกี่ยวกับการติดตั้งนี้ให้กับผู้พัฒนา MediaWiki",
@@ -283,5 +283,5 @@
 	"config-extensions-requires": "$1 (จำเป็นต้องมี $2)",
 	"config-screenshot": "ภาพหน้าจอ",
 	"mainpagetext": "<strong>ติดตั้งมีเดียวิกิแล้ว</strong>",
-	"mainpagedocfooter": "ศึกษา[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ\n\n== เริ่มต้น ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ คำถามที่ถามบ่อยใน MediaWiki] (ภาษาอังกฤษ)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของ MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources แปล MediaWiki เป็นภาษาท้องถิ่นของคุณ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam เรียนรู้วิธีต่อสู้กับสแปมบนวิกิของคุณ]"
+	"mainpagedocfooter": "ศึกษา[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ\n\n== เริ่มต้น ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ คำถามที่ถามบ่อยใน MediaWiki] (ภาษาอังกฤษ)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ เมลลิงลิสต์ของ MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources แปล MediaWiki เป็นภาษาท้องถิ่นของคุณ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam เรียนรู้วิธีต่อสู้กับสแปมบนวิกิของคุณ]"
 }

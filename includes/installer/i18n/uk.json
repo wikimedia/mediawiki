@@ -185,7 +185,7 @@
 	"config-admin-error-password": "Внутрішня помилка під час встановлення пароля для адміністратора \"<nowiki>$1</nowiki>\":<pre>$2</pre>",
 	"config-admin-error-password-invalid": "Неправильний пароль адміністратора вікі: $1",
 	"config-admin-error-bademail": "Ви ввели недопустиму адресу електронної пошти.",
-	"config-subscribe": "Підписатися на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce розсилку анонсів нових версій MediaWiki].",
+	"config-subscribe": "Підписатися на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ розсилку анонсів нових версій MediaWiki].",
 	"config-subscribe-help": "Це список розсилки з малим обсягом повідомлень, що використовується для анонсування релізів, а також важливих повідомлень про безпеку.\nВам варто підписати і оновлювати інсталяцію MediaWiki, коли з'являтимуться нові версії.",
 	"config-subscribe-noemail": "Ви намагались підписатись на розсилку анонсів релізів, не вказавши адреси електронної пошти.\nБудь ласка, вкажіть адресу електронної пошти, якщо хочете підписатись на розсилку.",
 	"config-pingback": "Поділитися даними про цю інсталяцію з розробниками MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Політика конфіденційності].",
@@ -290,7 +290,7 @@
 	"config-install-updates": "Запобігти запуску непотрібних оновлень",
 	"config-install-updates-failed": "<strong>Помилка:</strong> Вставка оновленних ключів в таблиці не вдалося через таку помилку:$1",
 	"config-install-sysop": "Створення облікового запису адміністратора",
-	"config-install-subscribe-fail": "Не можливо підписатись на mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Не можливо підписатись на mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL не встановлено і опція <code>allow_url_fopen</code> не доступна.",
 	"config-install-mainpage": "Створення головної сторінки із вмістом за замовчуванням",
 	"config-install-mainpage-exists": "Головна сторінка вже існує, пропускаємо",
@@ -312,5 +312,5 @@
 	"config-extension-not-found": "Не вдалося знайти файл реєстрації для розширення «$1»",
 	"config-extension-dependency": "При встановленні розширення «$1» виникла помилка залежності: $2",
 	"mainpagetext": "<strong>Програмне забезпечення «MediaWiki» встановлено.</strong>",
-	"mainpagedocfooter": "Інформацію про роботу з цією вікі можна знайти на сторінці [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Довідка:Вміст].\n\n== Деякі корисні ресурси ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список налаштувань];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часті питання з приводу MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локалізувати MediaWiki своєю мовою]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дізнатися, як боротися зі спамом у своїй вікі]"
+	"mainpagedocfooter": "Інформацію про роботу з цією вікі можна знайти на сторінці [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Довідка:Вміст].\n\n== Деякі корисні ресурси ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список налаштувань];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часті питання з приводу MediaWiki];\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Розсилка повідомлень про появу нових версій MediaWiki];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локалізувати MediaWiki своєю мовою]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дізнатися, як боротися зі спамом у своїй вікі]"
 }

@@ -163,7 +163,7 @@
 	"config-admin-error-password": "Дошло је до унутрашње грешке при постављању лозинке за администратора „<nowiki>$1</nowiki>”: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Некоректна лозинка за вики администратора: $1",
 	"config-admin-error-bademail": "Унели сте неважећу имејл-адресу.",
-	"config-subscribe": "Претплатите се на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements дописну листу].",
+	"config-subscribe": "Претплатите се на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release announcements дописну листу].",
 	"config-subscribe-noemail": "Покушали сте да се претплатите на дописну листу за објаве о новим издањима без пружања адресе е-поште.\nПружите адресу е-поште ако желите да се претплатите на њу.",
 	"config-pingback": "Дели податке о овој инсталацији са MediaWiki програмерима. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Политика приватности].",
 	"config-almost-done": "Скоро сте готови!\nСада можете прескочити преосталу конфигурацију и одмах инсталирати вики.",
@@ -255,7 +255,7 @@
 	"config-install-updates": "Спречи покретање непотребних ажурирања",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Уметање клучева за ажурирање у табеле није успело због следеће грешке: $1",
 	"config-install-sysop": "Отварање корисничког налога администратора",
-	"config-install-subscribe-fail": "Није могуће претплатити се на mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Није могуће претплатити се на mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL није инсталиран, а параметар <code>allow_url_fopen</code> није доступан.",
 	"config-install-mainpage": "Прављење главне стране са подразумеваним садржајем",
 	"config-install-mainpage-exists": "Главна страна већ постоји, прескакање",
@@ -277,5 +277,5 @@
 	"config-extension-not-found": "Није могуће пронаћи датотеку регистрације за додатак „$1”",
 	"config-extension-dependency": "Дошло је до грешке зависности при инсталирању додатка „$1”: $2",
 	"mainpagetext": "<strong>MediaWiki је инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за више информација о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Списак поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања о MediaWiki-ју]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима софтвера MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализујте MediaWiki на ваш језик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Сазнајте како да се борите против непожељног садржаја на свом викију]"
+	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за више информација о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Списак поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања о MediaWiki-ју]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Дописна листа о издањима софтвера MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализујте MediaWiki на ваш језик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Сазнајте како да се борите против непожељног садржаја на свом викију]"
 }

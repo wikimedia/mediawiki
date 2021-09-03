@@ -157,7 +157,7 @@
 	"config-admin-error-user": "Εσωτερικό σφάλμα κατά τη δημιουργία διαχειριστή με το όνομα «<nowiki>$1</nowiki>».",
 	"config-admin-error-password": "Εσωτερικό σφάλμα κατά τον καθορισμό συνθηματικού για το διαχειριστή «<nowiki>$1</nowiki>»: <pre>$2</pre>",
 	"config-admin-error-bademail": "Έχετε εισαγάγει μη έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου.",
-	"config-subscribe": "Εγγραφή στη [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce λίστα αλληλογραφίας ανακοινώσεων σχετικά με νέες κυκλοφορίες].",
+	"config-subscribe": "Εγγραφή στη [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ λίστα αλληλογραφίας ανακοινώσεων σχετικά με νέες κυκλοφορίες].",
 	"config-subscribe-help": "Πρόκειται για μια λίστα αλληλογραφίας χαμηλού όγκου που χρησιμοποιείται για ανακοινώσεις σχετικά με νέες κυκλοφορίες, συμπεριλαμβανομένων σημαντικών ανακοινώσεων ασφαλείας. \nΚαλό θα ήταν να εγγραφείτε σε αυτήν και να ενημερώνετε την εγκατάσταση του MediaWiki όταν βγαίνουν νέες εκδόσεις.",
 	"config-pingback": "Διαμοιρασμός δεδομένων σχετικά με αυτήν την εγκατάσταση με τους προγραμματιστές του MediaWiki.",
 	"config-pingback-help": "Αν επιλέξετε αυτή την επιλογή, το MediaWiki θα στέλνει περιοδικά στο https://www.mediawiki.org βασικά δεδομένα σχετικά με αυτήν την υλοποίηση του MediaWiki. Αυτά τα δεδομένα περιλαμβάνουν, για παράδειγμα, τον τύπο του συστήματος, την έκδοση PHP και την επιλεγμένη βάση δεδομένων. Το Ίδρυμα Wikimedia μοιράζεται αυτά τα δεδομένα με τους προγραμματιστές του MediaWiki για να καθοδηγήσει τις μελλοντικές προσπάθειες ανάπτυξης. θα αποσταλούν τα ακόλουθα δεδομένα σχετικά με το σύστημά σας:\n<pre>$1</pre>",
@@ -254,7 +254,7 @@
 	"config-install-updates": "Αποτρέψτε αχρειάστες ενημερώσεις",
 	"config-install-updates-failed": "<strong>Σφάλμα:</strong> Η εισαγωγή κλειδιών ενημέρωσης  σε πίνακες απέτυχε με το ακόλουθο σφάλμα: $1",
 	"config-install-sysop": "Γίνεται δημιουργία του λογαριασμού χρήστη του διαχειριστή",
-	"config-install-subscribe-fail": "Ανίκανος να εγγραφείτε στο mediawiki-ανακοινώση: $1",
+	"config-install-subscribe-fail": "Ανίκανος να εγγραφείτε στο mediawiki-ανακοινώση[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "Το cURL δεν είναι εγκατεστημένο και  το <code>allow_url_fopen</code> δεν είναι διαθέσιμο.",
 	"config-install-mainpage": "Γίνεται δημιουργία της αρχικής σελίδας με προεπιλεγμένο περιεχόμενο",
 	"config-install-mainpage-exists": "Κύρια σελίδα ήδη υπάρχει, παρακάμπτεται",
@@ -272,5 +272,5 @@
 	"config-extensions-requires": "$1 (απαιτεί το $2)",
 	"config-screenshot": "στιγμιότυπο",
 	"mainpagetext": "<strong>To MediaWiki εγκαταστάθηκε.</strong>",
-	"mainpagedocfooter": "Συμβουλευτείτε τον [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents οδηγό χρήστη] για πληροφορίες σχετικά με το λογισμικό wiki.\n\n== Ξεκινώντας ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Λίστα ρυθμίσεων διαμόρφωσης]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ\n Συχνές ερωτήσεις για το MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Λίστα αλληλογραφίας νέων κυκλοφοριών του MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Μεταφράστε το MediaWiki στη γλώσσα σας]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Μάθετε πώς να καταπολεμήσετε το ανεπιθύμητο περιεχόμενο στο wiki σας]"
+	"mainpagedocfooter": "Συμβουλευτείτε τον [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents οδηγό χρήστη] για πληροφορίες σχετικά με το λογισμικό wiki.\n\n== Ξεκινώντας ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Λίστα ρυθμίσεων διαμόρφωσης]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ\n Συχνές ερωτήσεις για το MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Λίστα αλληλογραφίας νέων κυκλοφοριών του MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Μεταφράστε το MediaWiki στη γλώσσα σας]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Μάθετε πώς να καταπολεμήσετε το ανεπιθύμητο περιεχόμενο στο wiki σας]"
 }

@@ -175,7 +175,7 @@
 	"config-admin-error-password": "Internt fel lösenordet för administratören \"<nowiki>$1</nowiki>\" ställdes in: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Ogiltigt lösenord för wikiadministratören: $1",
 	"config-admin-error-bademail": "Du har angivit en ogiltig e-postadress.",
-	"config-subscribe": "Prenumerera på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlistan för kungörelser av nya versioner].",
+	"config-subscribe": "Prenumerera på [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ e-postlistan för kungörelser av nya versioner].",
 	"config-subscribe-help": "Detta är en e-postlista med låg volym vilken används för meddelanden om nya versionssläpp, inklusive viktiga säkerhetsmeddelanden.\nDu bör prenumerera på den och uppdatera din MediaWiki-installation när nya versioner kommer ut.",
 	"config-subscribe-noemail": "Du försökte att prenumerera på e-postlistan för versionssläppsmeddelanden utan att tillhandahålla en e-postadress.\nAnge en e-postadress om du vill prenumerera på e-postlistan.",
 	"config-pingback": "Dela data om denna installation med MediaWikis utvecklare.[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Integritetspolicy].",
@@ -280,7 +280,7 @@
 	"config-install-updates": "Förhindra att onödiga uppdateringar körs",
 	"config-install-updates-failed": "<strong>Fel:</strong> Infogning av uppdateringsnycklar i tabeller misslyckades med följande fel:$1",
 	"config-install-sysop": "Skapar administratörskonto",
-	"config-install-subscribe-fail": "Det gick inte att prenumerera på mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Det gick inte att prenumerera på mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL är inte installerad och <code>allow_url_fopen</code> är inte tillgänglig.",
 	"config-install-mainpage": "Skapa huvudsida med standardinnehåll",
 	"config-install-mainpage-exists": "Huvudsidan finns redan, hoppar över",
@@ -301,5 +301,5 @@
 	"config-extension-not-found": "Kunde inte hitta registreringsfilen för tillägget \"$1\"",
 	"config-extension-dependency": "En beroendefel inträffade när tillägget \"$1\" installerades: $2",
 	"mainpagetext": "<strong>MediaWiki har installerats utan problem.</strong>",
-	"mainpagedocfooter": "Information om hur wiki-programvaran används finns i [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents användarguiden].\n\n== Att komma igång ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista över konfigurationsinställningar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postlista för nya versioner av MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Läs om hur du bekämpar spam på din wiki]"
+	"mainpagedocfooter": "Information om hur wiki-programvaran används finns i [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents användarguiden].\n\n== Att komma igång ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista över konfigurationsinställningar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-postlista för nya versioner av MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Läs om hur du bekämpar spam på din wiki]"
 }

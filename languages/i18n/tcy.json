@@ -1855,7 +1855,7 @@
 	"tooltip-namespace_association": "ಆಯ್ತಿ ಪುದರ್-ಜಾಗೆಗ್ ಸಂಬಂಧ ಪಟ್ಟಿನ ಪಾತೆರ ಅತ್ತಾಂಡ ವಿಸಯದ ಪುದರ್-ಜಾಗೆನ್ಲಾ ಒಟ್ಟುಗು ಸೇರಾಯೆರೆ ಈ ಪೆಟ್ಟಿಗೆನ್ ಆಯ್ಪುಲೆ",
 	"blanknamespace": "(ಮುಕ್ಯೊ)",
 	"contributions": "ಬಳಕೆದಾರೆರ್ನ ಕಾನಿಕೆಲು",
-	"tool-link-contributions": "{{GENDER:$1|ಸದಸ್ಯೆರ್ನ}} ಕಾಣಿಕೆಲು",
+	"tool-link-contributions": "{{GENDER:$1|ಬಳಕೆದಾರೆರ್ನ}} ಕಾನಿಕೆಲು",
 	"contributions-title": "$1 ಗ್ ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆ",
 	"mycontris": "ಕಾನಿಕೆಲು",
 	"anoncontribs": "ಕಾನಿಕೆಲು",
