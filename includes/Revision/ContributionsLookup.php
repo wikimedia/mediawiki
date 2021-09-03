@@ -89,7 +89,6 @@ class ContributionsLookup {
 				$dir = 'prev';
 				$segment = $seg[1];
 			} elseif ( $seg[0] == 'before' ) {
-				$dir = 'next';
 				$segment = $seg[1];
 			} else {
 				$dir = null;

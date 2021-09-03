@@ -1432,7 +1432,6 @@ function wfClientAcceptsGzip( $force = false ) {
 				)
 			) {
 				if ( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) {
-					$result = false;
 					return $result;
 				}
 				wfDebug( "wfClientAcceptsGzip: client accepts gzip." );

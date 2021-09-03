@@ -53,11 +53,9 @@ class FixMergeHistoryCorruption extends Maintenance {
 		$dryRun = true;
 		if ( $this->hasOption( 'dry-run' ) && $this->hasOption( 'delete' ) ) {
 			$this->fatalError( 'Cannot do both --dry-run and --delete.' );
-		} elseif ( $this->hasOption( 'dry-run' ) ) {
-			$dryRun = true;
 		} elseif ( $this->hasOption( 'delete' ) ) {
 			$dryRun = false;
-		} else {
+		} elseif ( !$this->hasOption( 'dry-run' ) ) {
 			$this->fatalError( 'Either --dry-run or --delete must be specified.' );
 		}
 
