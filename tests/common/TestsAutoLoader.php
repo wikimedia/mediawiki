@@ -59,7 +59,6 @@ $wgAutoloadClasses += [
 	'MediaWikiCliOptions' => "$testDir/phpunit/MediaWikiCliOptions.php",
 	'MediaWikiCoversValidator' => "$testDir/phpunit/MediaWikiCoversValidator.php",
 	'MediaWikiGroupValidator' => "$testDir/phpunit/MediaWikiGroupValidator.php",
-	'MediaWikiHooksPHPUnitExtension' => "$testDir/phpunit/MediaWikiHooksPHPUnitExtension.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
 	'MediaWikiLoggerPHPUnitExtension' => "$testDir/phpunit/MediaWikiLoggerPHPUnitExtension.php",
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",

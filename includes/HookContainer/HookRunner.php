@@ -244,8 +244,6 @@ class HookRunner implements
 	\MediaWiki\Hook\MarkPatrolledCompleteHook,
 	\MediaWiki\Hook\MarkPatrolledHook,
 	\MediaWiki\Hook\MediaWikiPerformActionHook,
-	\MediaWiki\Hook\MediaWikiPHPUnitTest__endTestHook,
-	\MediaWiki\Hook\MediaWikiPHPUnitTest__startTestHook,
 	\MediaWiki\Hook\MediaWikiServicesHook,
 	\MediaWiki\Hook\MimeMagicGuessFromContentHook,
 	\MediaWiki\Hook\MimeMagicImproveFromExtensionHook,
@@ -2502,20 +2500,6 @@ class HookRunner implements
 		return $this->container->run(
 			'MediaWikiPerformAction',
 			[ $output, $article, $title, $user, $request, $mediaWiki ]
-		);
-	}
-
-	public function onMediaWikiPHPUnitTest__endTest( $test, $time ) {
-		return $this->container->run(
-			'MediaWikiPHPUnitTest::endTest',
-			[ $test, $time ]
-		);
-	}
-
-	public function onMediaWikiPHPUnitTest__startTest( $test ) {
-		return $this->container->run(
-			'MediaWikiPHPUnitTest::startTest',
-			[ $test ]
 		);
 	}
 
