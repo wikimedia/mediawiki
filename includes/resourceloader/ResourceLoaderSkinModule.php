@@ -344,9 +344,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$featureFilePaths = [];
 
-		foreach ( self::FEATURE_FILES as $feature => $files ) {
+		foreach ( self::FEATURE_FILES as $feature => $featureFiles ) {
 			if ( in_array( $feature, $this->features ) ) {
-				foreach ( $files as $mediaType => $files ) {
+				foreach ( $featureFiles as $mediaType => $files ) {
 					foreach ( $files as $filepath ) {
 						$featureFilePaths[$mediaType][] = new ResourceLoaderFilePath(
 							$filepath,
