@@ -863,8 +863,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 * @param OutputPage $out
 	 */
-	private function prevNextLinks( ?int $totalRes, ?ISearchResultSet $textMatches, string $term,
-								   OutputPage $out ) {
+	private function prevNextLinks( ?int $totalRes, ?ISearchResultSet $textMatches, string $term, OutputPage $out ) {
 		if ( $totalRes > $this->limit || $this->offset ) {
 			// Allow matches to define the correct offset, as interleaved
 			// AB testing may require a different next page offset.

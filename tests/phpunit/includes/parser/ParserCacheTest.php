@@ -506,9 +506,9 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		$hookContainer = $this->createHookContainer( [
 			'ParserCacheSaveComplete' =>
-				function ( ParserCache $hookCache, ParserOutput $value,
-						   Title $hookTitle, ParserOptions $popts, int $revId )
-				use ( $parserOutput, $options ) {
+				function (
+					ParserCache $hookCache, ParserOutput $value, Title $hookTitle, ParserOptions $popts, int $revId
+				) use ( $parserOutput, $options ) {
 					$this->assertSame( $parserOutput, $value );
 					$this->assertSame( $options, $popts );
 					$this->assertSame( 42, $revId );

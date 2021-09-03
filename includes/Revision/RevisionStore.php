@@ -1735,7 +1735,7 @@ class RevisionStore
 					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
 						// If we found no slots, try looking on the primary database (T259738)
 						$this->logger->info(
-							 'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
+							'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
 								'revid' => $revId,
 								'trace' => wfBacktrace( true )

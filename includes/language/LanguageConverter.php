@@ -536,7 +536,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$htmlFullTag = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)|';
 
 			$reg = '/' . $codefix . $scriptfix . $prefix . $htmlFullTag .
-				 '&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
+				'&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
 		}
 		$startPos = 0;
 		$sourceBlob = '';

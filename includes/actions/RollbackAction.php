@@ -121,7 +121,8 @@ class RollbackAction extends FormAction {
 	 */
 	public function show() {
 		if ( !$this->userOptionsLookup->getOption( $this->getUser(), 'showrollbackconfirmation' ) ||
-			 $this->getRequest()->wasPosted() ) {
+			$this->getRequest()->wasPosted()
+		) {
 			$this->handleRollbackRequest();
 		} else {
 			$this->showRollbackConfirmationForm();

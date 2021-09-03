@@ -264,8 +264,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 * reauthenticate for security reasons.
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
-			 ( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
-			 $this->getUser()->isRegistered()
+			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
+			$this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
 			return;

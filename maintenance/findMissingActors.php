@@ -68,7 +68,7 @@ class FindMissingActors extends Maintenance {
 
 		$this->addDescription( 'Find and fix invalid actor IDs.' );
 		$this->addOption( 'field', 'The name of a database field to process',
-			 true, true );
+			true, true );
 		$this->addOption( 'skip', 'A comma-separated list of actor IDs to skip.',
 			false, true );
 		$this->addOption( 'overwrite-with', 'Replace missing actors with this user. '
@@ -76,7 +76,7 @@ class FindMissingActors extends Maintenance {
 			. 'system user (per $wgReservedUsernames) or locally registered user. '
 			. 'If not given, invalid actors will only be listed, not fixed. '
 			. 'You will be prompted for confirmation before data is written. ',
-			 false, true );
+			false, true );
 
 		$this->setBatchSize( 1000 );
 	}

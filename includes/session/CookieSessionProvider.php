@@ -152,7 +152,7 @@ class CookieSessionProvider extends SessionProvider {
 							'session' => $sessionId,
 							'userid' => $userId,
 							'username' => $userInfo->getName(),
-					 ] );
+					] );
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
@@ -321,11 +321,11 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function suggestLoginUsername( WebRequest $request ) {
-		 $name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
-		 if ( $name !== null ) {
-			 $name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE );
-		 }
-		 return $name === false ? null : $name;
+		$name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
+		if ( $name !== null ) {
+			$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE );
+		}
+		return $name === false ? null : $name;
 	}
 
 	/**

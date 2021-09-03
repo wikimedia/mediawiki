@@ -297,7 +297,7 @@ class ImportImages extends Maintenance {
 						$f = $this->findAuxFile( $file, $commentExt );
 						if ( !$f ) {
 							$this->output( " No comment file with extension {$commentExt} found "
-								 . "for {$file}, using default comment." );
+								. "for {$file}, using default comment." );
 						} else {
 							$commentText = file_get_contents( $f );
 							if ( !$commentText ) {
@@ -332,8 +332,8 @@ class ImportImages extends Maintenance {
 					$archive = $image->publish( $file, $flags, $publishOptions );
 					if ( !$archive->isGood() ) {
 						$this->output( "failed. (" .
-							 $archive->getMessage( false, false, 'en' )->text() .
-							 ")\n" );
+							$archive->getMessage( false, false, 'en' )->text() .
+							")\n" );
 						$failed++;
 						continue;
 					}

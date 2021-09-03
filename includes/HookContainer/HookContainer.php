@@ -145,7 +145,7 @@ class HookContainer implements SalvageableService {
 				if ( is_string( $return ) ) {
 					wfDeprecatedMsg(
 						"Returning a string from a hook handler is deprecated since MediaWiki 1.35 ' .
-						 '(done by $functionName for $hook)",
+							'(done by $functionName for $hook)",
 						'1.35', false, false
 					);
 					throw new UnexpectedValueException( $return );

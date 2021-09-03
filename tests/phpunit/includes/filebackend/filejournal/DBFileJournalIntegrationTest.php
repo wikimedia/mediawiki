@@ -159,8 +159,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( $now - 60 );
 		$change = [ 'op' => 'update', 'path' => '/path1',
 			'newSha1' => base_convert( sha1( 'b' ), 16, 36 ) ];
-		$this->assertEquals(
-		   StatusValue::newGood(), $journal->logChangeBatch( [ $change ], 'batch2' ) );
+		$this->assertEquals( StatusValue::newGood(), $journal->logChangeBatch( [ $change ], 'batch2' ) );
 		$expectedEntries[] = $makeExpectedEntry(
 			...array_merge( array_values( $change ), [ 'batch2', $now - 60 ] ) );
 

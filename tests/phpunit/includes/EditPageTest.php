@@ -43,7 +43,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testExtractSectionTitle( $section, $title ) {
 		$this->assertEquals(
 			$title,
-			 TestingAccessWrapper::newFromClass( EditPage::class )->extractSectionTitle( $section )
+			TestingAccessWrapper::newFromClass( EditPage::class )->extractSectionTitle( $section )
 		);
 	}
 
@@ -803,7 +803,8 @@ hello
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
 			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'editcontentmodel' &&
-					 $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
+					$page->getContentModel() === CONTENT_MODEL_WIKITEXT
+				) {
 					$result = false;
 
 					return false;

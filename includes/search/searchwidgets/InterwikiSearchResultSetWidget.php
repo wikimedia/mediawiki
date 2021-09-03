@@ -177,9 +177,9 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 
 		$iwIcon = new OOUI\IconWidget( [
 			'icon' => 'favicon'
-		 ] );
+		] );
 
-		 $iwIcon->setAttributes( [ 'style' => "background-image:url($iwIconUrl);" ] );
+		$iwIcon->setAttributes( [ 'style' => "background-image:url($iwIconUrl);" ] );
 
 		return $iwIcon;
 	}

@@ -716,14 +716,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testCheckUserBlockActionPermission() {
 		$tester = $this->getMockBuilder( Action::class )
-					   ->disableOriginalConstructor()
-					   ->getMock();
+			->disableOriginalConstructor()
+			->getMock();
 		$tester->method( 'getName' )
-			   ->willReturn( 'tester' );
+			->willReturn( 'tester' );
 		$tester->method( 'getRestriction' )
-			   ->willReturn( 'test' );
+			->willReturn( 'test' );
 		$tester->method( 'requiresUnblock' )
-			   ->willReturn( false );
+			->willReturn( false );
 
 		$this->setMwGlobals( [
 			'wgActions' => [

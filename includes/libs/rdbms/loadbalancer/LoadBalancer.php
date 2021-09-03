@@ -459,13 +459,13 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
 					$this->replLogger->debug(
 						__METHOD__ . ": server {db_server} is not replicating?",
-						 [ 'db_server' => $srvName ]
-					 );
+						[ 'db_server' => $srvName ]
+					);
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
 					$this->replLogger->debug(
 						__METHOD__ .
-						 ": server {db_server} has {lag} seconds of lag (>= {maxlag})",
+							": server {db_server} has {lag} seconds of lag (>= {maxlag})",
 						[ 'db_server' => $srvName, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
@@ -1443,7 +1443,7 @@ class LoadBalancer implements ILoadBalancer {
 						'primarydb' => $this->getPrimaryServerName(),
 						'db_domain' => $domain->getId()
 					]
-				 )
+				)
 			);
 		}
 

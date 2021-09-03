@@ -104,7 +104,7 @@ namespace MediaWiki\HookContainer {
 						'name' => 'FooExtension-FooActionHandler',
 						'class' => 'FooExtension\\Hooks',
 						'services' => [] ],
-					  'deprecated' => true
+					'deprecated' => true
 					],
 					[]
 				],

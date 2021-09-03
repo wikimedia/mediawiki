@@ -255,7 +255,7 @@ class ApiParamValidator {
 		if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 			if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 				$ret['issues'][ApiBase::PARAM_HELP_MSG_PER_VALUE] = 'PARAM_HELP_MSG_PER_VALUE must be an array,'
-				   . ' got ' . gettype( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] );
+					. ' got ' . gettype( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] );
 			} elseif ( !is_array( $settings[ParamValidator::PARAM_TYPE] ?? '' ) ) {
 				$ret['issues'][ApiBase::PARAM_HELP_MSG_PER_VALUE] = 'PARAM_HELP_MSG_PER_VALUE can only be used '
 					. 'with PARAM_TYPE as an array';
@@ -274,7 +274,7 @@ class ApiParamValidator {
 		if ( isset( $settings[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
 			if ( !is_array( $settings[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
 				$ret['issues'][ApiBase::PARAM_TEMPLATE_VARS] = 'PARAM_TEMPLATE_VARS must be an array,'
-				   . ' got ' . gettype( $settings[ApiBase::PARAM_TEMPLATE_VARS] );
+					. ' got ' . gettype( $settings[ApiBase::PARAM_TEMPLATE_VARS] );
 			} elseif ( $settings[ApiBase::PARAM_TEMPLATE_VARS] === [] ) {
 				$ret['issues'][ApiBase::PARAM_TEMPLATE_VARS] = 'PARAM_TEMPLATE_VARS cannot be the empty array';
 			} else {

@@ -1084,11 +1084,12 @@ class ParserTestRunner {
 		// Skip tests targetting features Parsoid doesn't (yet) support
 		// @todo T270312
 		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
-			 isset( $opts['msg'] ) || isset( $opts['section'] ) ||
-			 isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
-			 isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
-			 isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
-			 isset( $opts['cat'] ) || isset( $opts['showflags'] ) ) {
+			isset( $opts['msg'] ) || isset( $opts['section'] ) ||
+			isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
+			isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
+			isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
+			isset( $opts['cat'] ) || isset( $opts['showflags'] )
+		) {
 			return false; // skip test
 		}
 		$parsoidHtml = $test->sections['html/parsoid+integrated'] ??
