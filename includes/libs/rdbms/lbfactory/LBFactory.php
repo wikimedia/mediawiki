@@ -363,7 +363,7 @@ abstract class LBFactory implements ILBFactory {
 				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname, $this->id );
 				$e = $e ?: $ex;
 			} );
-		} while ( $this->hasMasterChanges() );
+		} while ( $this->hasPrimaryChanges() );
 		// Run all listener callbacks once
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
 			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname, $this->id );
@@ -404,13 +404,18 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	public function hasMasterChanges() {
+	public function hasPrimaryChanges() {
 		$ret = false;
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->hasMasterChanges();
+			$ret = $ret || $lb->hasPrimaryChanges();
 		} );
 
 		return $ret;
+	}
+
+	public function hasMasterChanges() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasPrimaryChanges();
 	}
 
 	public function laggedReplicaUsed() {
@@ -510,7 +515,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function getEmptyTransactionTicket( $fname ) {
-		if ( $this->hasMasterChanges() ) {
+		if ( $this->hasPrimaryChanges() ) {
 			$this->queryLogger->error(
 				__METHOD__ . ": $fname does not have outer scope",
 				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]

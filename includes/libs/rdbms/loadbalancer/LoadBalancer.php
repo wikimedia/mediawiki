@@ -2125,13 +2125,18 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->hasPrimaryConnection();
 	}
 
-	public function hasMasterChanges() {
+	public function hasPrimaryChanges() {
 		$pending = false;
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$pending ) {
 			$pending = $pending || $conn->writesOrCallbacksPending();
 		} );
 
 		return $pending;
+	}
+
+	public function hasMasterChanges() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->hasPrimaryChanges();
 	}
 
 	public function lastMasterChangeTimestamp() {
@@ -2146,7 +2151,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$age = $age ?? $this->waitTimeout;
 
-		return ( $this->hasMasterChanges()
+		return ( $this->hasPrimaryChanges()
 			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
 	}
 

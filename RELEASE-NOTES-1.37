@@ -475,6 +475,8 @@ because of Phabricator reports.
   - ILBFactory::rollbackMasterChanges() -> ::rollbackPrimaryChanges()
   - ILoadBalancer::flushMasterSnapshots() -> ::flushPrimarySnapshots()
   - ILoadBalancer::hasMasterConnection() -> ::hasPrimaryConnection()
+  - ILoadBalancer::hasMasterChanges() -> ::hasPrimaryChanges()
+  - ILBFactory::hasMasterChanges() -> ::hasPrimaryChanges()
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
