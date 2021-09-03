@@ -312,7 +312,7 @@ abstract class LBFactory implements ILBFactory {
 		} while ( $count > 0 );
 		$this->trxRoundId = false;
 		// Perform pre-commit checks, aborting on failure
-		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options, $fname, $this->id ] );
+		$this->forEachLBCallMethod( 'approvePrimaryChanges', [ $options, $fname, $this->id ] );
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all primary DB connections and revert DBO_TRX
@@ -387,10 +387,10 @@ abstract class LBFactory implements ILBFactory {
 	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
-			$masterName = $lb->getServerName( $lb->getWriterIndex() );
+			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
 			$callers = $lb->pendingMasterChangeCallers();
 			if ( $callers ) {
-				$callersByDB[$masterName] = $callers;
+				$callersByDB[$primaryName] = $callers;
 			}
 		} );
 
@@ -635,9 +635,9 @@ abstract class LBFactory implements ILBFactory {
 		// caused such DB writes occurred in the primary datacenter, and clients are temporarily
 		// pinned to the primary datacenter after causing DB writes, then this should suffice.
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
-			$masterName = $lb->getServerName( $lb->getWriterIndex() );
-			if ( isset( $unsavedPositions[$masterName] ) ) {
-				$lb->waitForAll( $unsavedPositions[$masterName] );
+			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
+			if ( isset( $unsavedPositions[$primaryName] ) ) {
+				$lb->waitForAll( $unsavedPositions[$primaryName] );
 			}
 		} );
 	}
