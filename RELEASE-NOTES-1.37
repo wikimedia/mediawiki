@@ -309,6 +309,8 @@ because of Phabricator reports.
   runner. It had been broken for at least three years already. The original use
   case was speeding up tests on Oracle, but Oracle support was dropped several
   releases ago.
+* The MediaWikiPHPUnitTest__endTestHook and MediaWikiPHPUnitTest__startTestHook
+  PHPUnit hooks were removed. MediaWikiHooksPHPUnitExtension was also removed.
 * EntryPoint::getTextFormatters() was made private without a deprecation period;
   it had no known external callers.
 * DatabaseBlock::chooseBlock, deprecated since 1.35, was removed.
