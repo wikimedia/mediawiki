@@ -1312,8 +1312,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					throw new LogicException( $msg );
 				}
 				$expandedConfig = [];
-				foreach ( $fileInfo['config'] as $key => $var ) {
-					$expandedConfig[ is_numeric( $key ) ? $var : $key ] = $this->getConfig()->get( $var );
+				foreach ( $fileInfo['config'] as $configKey => $var ) {
+					$expandedConfig[ is_numeric( $configKey ) ? $var : $configKey ] = $this->getConfig()->get( $var );
 				}
 				$expanded['content'] = $expandedConfig;
 			} elseif ( !empty( $fileInfo['main'] ) ) {
