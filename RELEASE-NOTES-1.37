@@ -134,6 +134,8 @@ because of Phabricator reports.
 * (T284044) Added language support for Carpathian Romani (rmc).
 * (T286460) Added language support for Gun (guw, Gungbe).
 * (T287345) Added language support for Baoulé (bci).
+* (T25216) Started the renaming of the language code for Norman from nrm to
+  nrf.
 
 === Breaking changes in 1.37 ===
 * The Revision class, hard deprecated in 1.35, was removed entirely. As
@@ -486,6 +488,8 @@ because of Phabricator reports.
       ::hasOrMadeRecentPrimaryChanges()
   - ILBFactory::hasOrMadeRecentMasterChanges() ->
       ::hasOrMadeRecentPrimaryChanges()
+  - ILoadBalancer::pendingMasterChangeCallers() ->
+      ::pendingPrimaryChangeCallers()
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.

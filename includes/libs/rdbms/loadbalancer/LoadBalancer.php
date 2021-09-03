@@ -2165,13 +2165,18 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
-	public function pendingMasterChangeCallers() {
+	public function pendingPrimaryChangeCallers() {
 		$fnames = [];
 		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$fnames ) {
 			$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
 		} );
 
 		return $fnames;
+	}
+
+	public function pendingMasterChangeCallers() {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->pendingPrimaryChangeCallers();
 	}
 
 	public function getLaggedReplicaMode( $domain = false ) {
