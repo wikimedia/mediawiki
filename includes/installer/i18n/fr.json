@@ -199,7 +199,7 @@
 	"config-admin-error-password": "Erreur interne lors de l’inscription d’un mot de passe pour l’administrateur « <nowiki>$1</nowiki> » : <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Mot de passe administrateur du wiki non valide : $1",
 	"config-admin-error-bademail": "Vous avez entré une adresse de courriel non valide.",
-	"config-subscribe": "Abonnez-vous à la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce liste de diffusion des annonces de nouvelles versions].",
+	"config-subscribe": "Abonnez-vous à la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ liste de diffusion des annonces de nouvelles versions].",
 	"config-subscribe-help": "Il s’agit d’une liste de diffusion à faible volume utilisée pour annoncer les nouvelles versions, y compris les versions améliorant la sécurité du logiciel.\nVous devriez vous y abonner et mettre à jour votre version de MediaWiki lorsque de nouvelles versions sont publiées.",
 	"config-subscribe-noemail": "Vous avez essayé de vous abonner à la liste de diffusion des annonces de nouvelles versions sans fournir une adresse courriel.\nVeuillez fournir une adresse de courriel si vous souhaitez vous abonner à la liste de diffusion.",
 	"config-pingback": "Partager des données au sujet de cette installation avec les développeurs de MediaWiki.\n[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Politique de confidentialité].",
@@ -304,7 +304,7 @@
 	"config-install-updates": "Empêcher l’exécution des mises à jour non nécessaires",
 	"config-install-updates-failed": "<strong>Erreur :</strong> l’insertion des clés mises à jour dans les tables a échoué avec l’erreur suivante : $1",
 	"config-install-sysop": "Création du compte administrateur",
-	"config-install-subscribe-fail": "Impossible de s’abonner à mediawiki-announce : $1",
+	"config-install-subscribe-fail": "Impossible de s’abonner à mediawiki-announce [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL n’est pas installé et <code>allow_url_fopen</code> n’est pas disponible.",
 	"config-install-mainpage": "Création de la page principale avec un contenu par défaut",
 	"config-install-mainpage-exists": "La page principale existe déjà, création ignorée.",
@@ -326,5 +326,5 @@
 	"config-extension-not-found": "Impossible de trouver le fichier d’inscription pour l’extension « $1 ».",
 	"config-extension-dependency": "Une erreur de dépendance s’est produite en installant l’extension « $1 » : $2",
 	"mainpagetext": "<strong>MediaWiki a été installé.</strong>",
-	"mainpagedocfooter": "Consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
+	"mainpagedocfooter": "Consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
 }

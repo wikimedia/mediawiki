@@ -8,6 +8,7 @@
 			"Duolaimi",
 			"FakeGreenHand",
 			"Fengchao",
+			"GuoPC",
 			"Hudafu",
 			"Hydra",
 			"Hzy980512",
@@ -202,7 +203,7 @@
 	"config-admin-error-password": "在为管理员“<nowiki>$1</nowiki>”设置密码时发生内部错误：<pre>$2</pre>",
 	"config-admin-error-password-invalid": "无效的wiki管理员密码：$1",
 	"config-admin-error-bademail": "您输入了无效的电子邮件地址。",
-	"config-subscribe": "订阅[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 发行公告邮件列表]。",
+	"config-subscribe": "订阅[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ 发行公告邮件列表]。",
 	"config-subscribe-help": "此低流量的邮件列表仅用于发行公告，其中包括重要安全公告。请订阅该列表以便在新的版本推出时升级您的MediaWiki。",
 	"config-subscribe-noemail": "您选择了订阅发行公告邮件列表，但没有提供电子邮件地址。\n请提供一个电子邮件地址以订阅邮件列表。",
 	"config-pingback": "与MediaWiki开发人员分享有关此安装程序的数据。[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 隐私政策]。",
@@ -307,7 +308,7 @@
 	"config-install-updates": "防止运行不需要的更新",
 	"config-install-updates-failed": "<strong>错误：</strong>表格中插入更新关键字失败并出现如下错误：$1",
 	"config-install-sysop": "正在创建管理员用户帐号",
-	"config-install-subscribe-fail": "无法订阅mediawiki-announce：$1",
+	"config-install-subscribe-fail": "无法订阅[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]：$1",
 	"config-install-subscribe-notpossible": "没有安装cURL，<code>allow_url_fopen</code>也不可用。",
 	"config-install-mainpage": "正在创建显示默认内容的首页",
 	"config-install-mainpage-exists": "首页已存在，正在跳过",
@@ -329,5 +330,5 @@
 	"config-extension-not-found": "找不到名为“$1”的扩展的注册文件",
 	"config-extension-dependency": "安装扩展“$1”时遇到了一个依赖错误：$2",
 	"mainpagetext": "<strong>已安装MediaWiki。</strong>",
-	"mainpagedocfooter": "请查阅[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用户指导]以获取使用本wiki软件的信息。\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 本地化MediaWiki到您的语言]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上打击破坏]"
+	"mainpagedocfooter": "请查阅[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用户指导]以获取使用本wiki软件的信息。\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki发布邮件列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 本地化MediaWiki到您的语言]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上打击破坏]"
 }

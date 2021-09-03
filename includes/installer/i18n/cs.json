@@ -181,7 +181,7 @@
 	"config-admin-error-password": "Vnitřní chyba při nastavování hesla správci se jménem „<nowiki>$1</nowiki>“: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Neplatné heslo wiki administrátora: $1",
 	"config-admin-error-bademail": "Zadali jste neplatnou e-mailovou adresu.",
-	"config-subscribe": "Přihlásit se k odběru [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-mailové konference pro oznamování nových verzí].",
+	"config-subscribe": "Přihlásit se k odběru [ps://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ e-mailové konference pro oznamování nových verzí].",
 	"config-subscribe-help": "Tohle je e-mailová konference s nízkým provozem, na které se oznamují nové verze, včetně důležitých bezpečnostních oznámení.\nMěli byste se do ní přihlásit a při vydání nových verzí aktualizovat svou instalaci MediaWiki.",
 	"config-subscribe-noemail": "Pokusili jste se přihlásit k odběru e-mailové konference pro oznamování nových verzí, aniž byste poskytli e-mailovou adresu.\nPokud se chcete přihlásit k odběru, zadejte e-mailovou adresu.",
 	"config-pingback": "Sdílet údaje o této instalaci s vývojáři MediaWiki.",
@@ -286,7 +286,7 @@
 	"config-install-updates": "Ruší se spuštění nepotřebných aktualizací",
 	"config-install-updates-failed": "<strong>Chyba:</strong> Vložení aktualizačních klíčů do tabulek selhalo s následující chybou: $1",
 	"config-install-sysop": "Zakládá se uživatelský účet správce",
-	"config-install-subscribe-fail": "Nelze se přihlásit k odběru mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Nelze se přihlásit k odběru [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "Není nainstalován cURL a není dostupné <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "Vytváří se počáteční obsah hlavní strany",
 	"config-install-mainpage-exists": "Hlavní strana již existuje, přeskakuji.",
@@ -307,5 +307,5 @@
 	"config-extension-not-found": "Nepodařilo se najít registrační soubor pro rozšíření „$1“",
 	"config-extension-dependency": "Při instalaci rozšíření „$1“ nastala chyba závislostí: $2",
 	"mainpagetext": "<strong>MediaWiki byla úspěšně nainstalována.</strong>",
-	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uživatelská příručka] vám napoví, jak používat MediaWiki.\n\n== Začínáme ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučte se bojovat se spamem na vaší wiki]"
+	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uživatelská příručka] vám napoví, jak používat MediaWiki.\n\n== Začínáme ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-mailová konference oznámení MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučte se bojovat se spamem na vaší wiki]"
 }

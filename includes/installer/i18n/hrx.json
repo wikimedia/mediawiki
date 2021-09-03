@@ -162,7 +162,7 @@
 	"config-admin-error-user": "Es ist beim Erstelle von der Administrator mit dem Noome „<nowiki>$1</nowiki>“ en interner Fehler uffgetret.",
 	"config-admin-error-password": "Es ist beim Setze von das Passwort für den Administrator „<nowiki>$1</nowiki>“ en interner Fehler uffgetret: <pre>$2</pre>",
 	"config-admin-error-bademail": "Es woard en ungültiche E-Mail-Adress oongeb",
-	"config-subscribe": "Bitte die Mailinglist [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mitteilunge zu Versionsveröffentlichunge] abonniere.",
+	"config-subscribe": "Bitte die Mailinglist [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mitteilunge zu Versionsveröffentlichunge] abonniere.",
 	"config-subscribe-help": "Es handelt sich hierbei um en Mailinglist mit weniche Aussendunge, die für Mitteilunge zu Versionsveröffentlichunge, inschliesslich wichticher Sicherheitsveröffentlichungen, benutzt weard.\nDie Mailingliste sollte abonniert werre. Zudem sollte die MediaWiki-Installation stets aktualisiert werre, sobald en neie Programmversion veröffentlicht woard.",
 	"config-subscribe-noemail": "Beim Abonniere (fazer assinatura) von der Mailinglist mit Mitteilunge zu Versionsveröffentlichunge woard ken E-Mail-Adress oongeb.\nBitte en E-Mail-Adress oongewe, soweit die Mailinglist abonniert werre soll.",
 	"config-almost-done": "Der Vorgang ist nächst abgeschloss!\nDie verbleibende Konfigurationsinstellunge könne üwersprung und das Wiki umgehend installiert sin.",
@@ -252,7 +252,7 @@
 	"config-install-stats": "Statistike werre initialisiert",
 	"config-install-keys": "Geheimschlüssel werre erstellt",
 	"config-install-sysop": "Administratorkonto weard erstellt",
-	"config-install-subscribe-fail": "Abonniere von „mediawiki-announce“ ist gescheitert: $1",
+	"config-install-subscribe-fail": "Abonniere von „mediawiki-announce“ ist gescheitert[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL ist net installiert und <code>allow_url_fopen</code> ist niet verfüchbar.",
 	"config-install-mainpage": "Erstellung von der Hauptseit mit Standardinhalte (padronisierte Inhalte)",
 	"config-install-extension-tables": "Erstellung von der Tabelle für die aktivierte Erweitrunge",
@@ -263,5 +263,5 @@
 	"config-nofile": "Die Datei „$1“ konnt net gefund sin. Woor sie gelöscht?",
 	"config-extension-link": "Wusst du, dass dein Wiki die Nutzung von [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions Erweiterungen] unnerstützt?\n\nDu kannst [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category Erweitrunge noh Kategorie] doorrichsuche orrer die [https://www.mediawiki.org/wiki/Extension_Matrix Matrix der Erweiterungen] oonsiehn, um en Üwersicht zu verfüchbare Erweitrunge zu erhalten.",
 	"mainpagetext": "'''MediaWiki woor erfollichreich installiert.'''",
-	"mainpagedocfooter": "Hellef zur Benutzung und Konfiguration von der Wiki-Software finnst du im [https://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Oonfänghellef ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings List von der Konfigurationsvariable]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist neier MediaWiki-Versione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisier MediaWiki für dein Sproch]"
+	"mainpagedocfooter": "Hellef zur Benutzung und Konfiguration von der Wiki-Software finnst du im [https://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Oonfänghellef ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings List von der Konfigurationsvariable]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglist neier MediaWiki-Versione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisier MediaWiki für dein Sproch]"
 }

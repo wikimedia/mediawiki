@@ -187,7 +187,7 @@
 	"config-admin-error-password": "Kesalahan internal saat membuat sandi untuk admin \"<nowiki>$1</nowiki>\":<pre>$2</pre>",
 	"config-admin-error-password-invalid": "Kata sandi pengurus wiki salah: $1",
 	"config-admin-error-bademail": "Anda memasukkan alamat surel yang tidak sah.",
-	"config-subscribe": "Berlangganan [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce milis pengumuman rilis].",
+	"config-subscribe": "Berlangganan [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ milis pengumuman rilis].",
 	"config-subscribe-help": "Ini adalah milis bervolume rendah yang digunakan untuk pengumuman rilis, termasuk pengumuman keamanan penting.\nAnda sebaiknya berlangganan dan memperbarui instalasi MediaWiki saat versi baru keluar.",
 	"config-subscribe-noemail": "Anda mencoba untuk berlangganan milis pengumuman rilis tanpa menyediakan alamat email.\nHarap berikan alamat surel jika Anda ingin berlangganan ke milis.",
 	"config-pingback": "Bagikan data tentang pemasangan ini kepada pengembang MediaWiki.\n[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Kebijakan privasi].",
@@ -292,7 +292,7 @@
 	"config-install-updates": "Cegah jalannya pembaruan yang tidak dibutuhkan",
 	"config-install-updates-failed": "<strong>Galat:</strong> Memasukkan kunci pembaruan ke dalam tabel gagal dengan kode galat: $1",
 	"config-install-sysop": "Membuat akun pengguna pengurus",
-	"config-install-subscribe-fail": "Tidak dapat berlangganan mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Tidak dapat berlangganan mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL tidak diinstal dan <code>allow_url_fopen</code> tidak tersedia.",
 	"config-install-mainpage": "Membuat halaman utama dengan konten bawaan",
 	"config-install-mainpage-exists": "Halaman utama sudah ada, meloncati",
@@ -313,5 +313,5 @@
 	"config-extension-not-found": "Tidak dapat menemukan berkas registrasi untuk ekstensi \"$1\"",
 	"config-extension-dependency": "Galat dependensi terjadi ketika memasang ekstensi \"$1\": $2.",
 	"mainpagetext": "<strong>MediaWiki telah terpasang.</strong>",
-	"mainpagedocfooter": "Baca [https://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Daftar pengaturan konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Pelokalan MediaWiki untuk bahasa Anda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Belajar bagaimana menghadapi spam di wiki lokal]"
+	"mainpagedocfooter": "Baca [https://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Daftar pengaturan konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Pelokalan MediaWiki untuk bahasa Anda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Belajar bagaimana menghadapi spam di wiki lokal]"
 }

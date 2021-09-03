@@ -127,7 +127,7 @@
 	"config-admin-error-user": "Med ustvarjanjem administratorja »<nowiki>$1</nowiki>« je prišlo do notranje napake.",
 	"config-admin-error-password": "Med nastavljanjem gesla za administratorja »<nowiki>$1</nowiki>« je prišlo do notranje napake: <pre>$2</pre>",
 	"config-admin-error-bademail": "Vnesli ste neveljaven e-poštni naslov.",
-	"config-subscribe": "Naročite se na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce poštni seznam obvestil o izdajah].",
+	"config-subscribe": "Naročite se na [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ poštni seznam obvestil o izdajah].",
 	"config-almost-done": "Skoraj ste že končali!\nPreostalo konfiguriranje lahko zdaj preskočite in wiki takoj namestite.",
 	"config-optional-continue": "Zastavi mi več vprašanj.",
 	"config-optional-skip": "Se že dolgočasim; samo namesti wiki.",
@@ -174,5 +174,5 @@
 	"config-download-localsettings": "Prenesi <code>LocalSettings.php</code>",
 	"config-help": "pomoč",
 	"mainpagetext": "<strong>Programje MediaWiki je bilo nameščeno.</strong>",
-	"mainpagedocfooter": "Oglejte si [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uporabniški priročnik] za informacije o uporabi programja wiki.\n\n== Kako začeti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Poogsto zastavljena vprašanja MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Poštni seznam izdaj MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Izvedite, kako se boriti proti smetju na svojem wikiju]"
+	"mainpagedocfooter": "Oglejte si [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uporabniški priročnik] za informacije o uporabi programja wiki.\n\n== Kako začeti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Poogsto zastavljena vprašanja MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Poštni seznam izdaj MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Izvedite, kako se boriti proti smetju na svojem wikiju]"
 }

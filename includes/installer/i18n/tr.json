@@ -192,7 +192,7 @@
 	"config-admin-error-password": "Hizmetli \"<nowiki>$1</nowiki>\" için bir parola belirlerken iç hata oluştu: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Geçersiz viki hizmetli ğarolası: $1",
 	"config-admin-error-bademail": "Geçersiz e-posta adresi girdiniz.",
-	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sürüm duyuruları e-posta listesine] abone olun.",
+	"config-subscribe": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Sürüm duyuruları e-posta listesine] abone olun.",
 	"config-subscribe-help": "Bu, önemli güvenlik duyuruları dahil olmak üzere duyuru ilanlarında kullanılan düşük hacimli bir posta listesidir.\nAbone olmalısınız ve yeni sürümler çıktığında MediaWiki kurulumunuzu güncellemelisiniz.",
 	"config-subscribe-noemail": "Sürüm duyuruları e-posta listesine herhangi bir e-posta adresi belirtmeden abone olmaya çalıştınız.\nLütfen abone olmak istiyorsanız bir posta adresi belirtiniz.",
 	"config-pingback": "Bu kurulum hakkındaki verileri MediaWiki geliştiricileri ile paylaşın. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Gizlilik ilkesi].",
@@ -297,7 +297,7 @@
 	"config-install-updates": "Gereksiz güncellemeleri çalıştırmayı önle",
 	"config-install-updates-failed": "<strong>Hata:</strong> Güncelleme anahtarlarını tablolara ekleme şu hatayla başarısız oldu: $1",
 	"config-install-sysop": "Hizmetli kullanıcı hesabı oluşturma",
-	"config-install-subscribe-fail": "mediawiki-announce abone olunamıyor: $1",
+	"config-install-subscribe-fail": "mediawiki-announce abone olunamıyor[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL yüklü değil ve <code>allow_url_fopen</code> kullanılamaz.",
 	"config-install-mainpage": "Varsayılan içerik ile anasayfa oluşturma",
 	"config-install-mainpage-exists": "Ana sayfa zaten var, atlanıyor",
@@ -318,5 +318,5 @@
 	"config-extension-not-found": "\"$1\" uzantısı için kayıt dosyası bulunamadı",
 	"config-extension-dependency": "\"$1\" uzantısı kurulurken bir bağımlılık hatası oluştu: $2",
 	"mainpagetext": "<strong>MediaWiki başarı ile kuruldu.</strong>",
-	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrenin]"
+	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrenin]"
 }

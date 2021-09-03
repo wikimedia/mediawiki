@@ -55,7 +55,7 @@
 	"config-admin-password-mismatch": "თქვენ მიერ შეყვანილი პაროლები ერთმანეთს არ ემთხვევა.",
 	"config-admin-email": "ელ. ფოსტის მისამართი:",
 	"config-admin-error-bademail": "თქვენ მიერ შეყვანილი ელ.ფოსტა არასწორია.",
-	"config-subscribe": "გამოიწერეთ [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის ახალი ვერსიის გამოსვლის სიახლეები].",
+	"config-subscribe": "გამოიწერეთ [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ მედიავიკის ახალი ვერსიის გამოსვლის სიახლეები].",
 	"config-optional-continue": "მკითხე მეტი.",
 	"config-profile": "მომხმარებელთა უფლებების პროფილი:",
 	"config-profile-wiki": "ღია ვიკი",
@@ -88,5 +88,5 @@
 	"config-help": "დახმარება",
 	"config-help-tooltip": "გასაშლელად დააწკაპუნეთ",
 	"mainpagetext": "'''მედიავიკი წარმატებით ჩაიტვირთა.'''",
-	"mainpagedocfooter": "ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [https://meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].\n\n== დაწყება ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources მედიავიკის ლოკალიზება თქვენ ენაზე]"
+	"mainpagedocfooter": "ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [https://meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].\n\n== დაწყება ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ მედიავიკის გამოცემის დაგზავნის სია]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources მედიავიკის ლოკალიზება თქვენ ენაზე]"
 }

@@ -179,7 +179,7 @@
 	"config-admin-error-password": "Belső hiba történt a(z) „<nowiki>$1</nowiki>” nevű adminisztrátor jelszavának beállításakor: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Érvénytelen wikiadminisztrátor-jelszó: $1",
 	"config-admin-error-bademail": "Érvénytelen e-mail-címet adtál meg.",
-	"config-subscribe": "Feliratkozás a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce kiadási bejelentések levelezőlistájára].",
+	"config-subscribe": "Feliratkozás a [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ kiadási bejelentések levelezőlistájára].",
 	"config-subscribe-help": "Ez egy alacsony forgalmú levelezőlista, ahol a kiadásokkal kapcsolatos bejelentések jelennek meg, a fontos biztonsági javításokkal együtt.\nAjánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki.",
 	"config-subscribe-noemail": "Anélkül próbáltál feliratkozni a kiadási bejelentések levelezőlistájára, hogy megadtál volna egy e-mail-címet.\nAdj meg egyet, ha fel szeretnél iratkozni a levelezőlistára.",
 	"config-pingback": "Oszd meg az adatokat a MediaWiki fejlesztőkkel a mostani telepítésről [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Privacy policy].",
@@ -281,7 +281,7 @@
 	"config-install-updates": "Nem szükséges frissítések futtatásának megakadályozása",
 	"config-install-updates-failed": "<strong>Hiba:</strong> A frissítő kulcsok beillesztése a táblákba nem sikerült a következő hiba miatt: $1",
 	"config-install-sysop": "Az adminisztrátor felhasználói fiókjának létrehozása",
-	"config-install-subscribe-fail": "Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1",
+	"config-install-subscribe-fail": "Nem sikerült feliratkozni a mediawiki-announce levelezőlistára[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "A cURL nincs telepítve és az <code>allow_url_fopen</code> nem érhető el.",
 	"config-install-mainpage": "Kezdőlap létrehozása az alapértelmezett tartalommal",
 	"config-install-mainpage-exists": "A kezdőlap már létezik, kihagyás",
@@ -300,5 +300,5 @@
 	"config-extensions-requires": "$1 ($2 szükséges hozzá)",
 	"config-screenshot": "képernyőkép",
 	"mainpagetext": "<strong>A MediaWiki telepítése sikeresen befejeződött.</strong>",
-	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents felhasználói útmutatót].\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GYIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tudd meg többet, hogyan küzdhetsz a kéretlen levelek ellen a wikiden]"
+	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents felhasználói útmutatót].\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GYIK]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tudd meg többet, hogyan küzdhetsz a kéretlen levelek ellen a wikiden]"
 }

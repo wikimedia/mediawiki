@@ -190,7 +190,7 @@
 	"config-admin-error-password": "Interne fout bij het instellen van een wachtwoord voor de beheerder \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Ongeldig beheerderswachtwoord: $1",
 	"config-admin-error-bademail": "U hebt een ongeldig e-mailadres opgegeven.",
-	"config-subscribe": "Abonneren op de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailinglijst releaseaankondigen].",
+	"config-subscribe": "Abonneren op de [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ releaseaankondigen].",
 	"config-subscribe-help": "Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.\nAbonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.",
 	"config-subscribe-noemail": "U hebt geprobeerd zich te abonneren op de mailinglijst voor release-aankondigingen zonder een e-mailadres op te geven.\nGeef een e-mailadres op als u zich wilt abonneren op de mailinglijst.",
 	"config-pingback": "Gegevens over deze installatie delen met MediaWiki-ontwikkelaars. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Privacybeleid].",
@@ -295,8 +295,11 @@
 	"config-install-updates": "Voorkomen dat updates onnodig worden uitgevoerd",
 	"config-install-updates-failed": "<strong>Fout:</strong> het toevoegen van updatesleutels aan tabellen is mislukt met de volgende fout: $1",
 	"config-install-sysop": "Account voor beheerder aanmaken",
-	"config-install-subscribe-fail": "Het is niet mogelijk te abonneren op mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Het is niet mogelijk te abonneren op [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL is niet geïnstalleerd en <code>allow_url_fopen</code> is niet beschikbaar.",
+	"config-install-subscribe-alreadysubscribed": "U bent al geabonneerd op de mediawiki-announce mailinglijst. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ Bekijk of wijzig uw voorkeuren].",
+	"config-install-subscribe-alreadypending": "Een verzoek om te abonneren op mediawiki-announce is al verzonden. Reageer op de bevestigingse-mail die eerder is verstuurd.",
+	"config-install-subscribe-possiblefail": "Uw verzoek om te abonneren op de mediawiki-announce mailinglijst is mogelijk niet goed ontvangen. Als u over een paar minuten nog geen bevestigingse-mail ontvangen heeft, ga dan naar [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] om uw verzoek opnieuw in te dienen.",
 	"config-install-mainpage": "Hoofdpagina aanmaken met standaard inhoud",
 	"config-install-mainpage-exists": "Hoofdpagina bestaat al, overslaan",
 	"config-install-extension-tables": "Tabellen voor ingeschakelde uitbreidingen worden aangemaakt",
@@ -316,5 +319,5 @@
 	"config-extension-not-found": "Kan het registratiebestand voor de uitbreiding \"$1\" niet vinden",
 	"config-extension-dependency": "Afhankelijkheidsfout opgetreden tijdens de installatie van de uitbreiding $1: $2",
 	"mainpagetext": "<strong>De installatie van MediaWiki is geslaagd.</strong>",
-	"mainpagedocfooter": "Raadpleeg de [https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe u spam kunt voorkomen op uw wiki]"
+	"mainpagedocfooter": "Raadpleeg de [https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe u spam kunt voorkomen op uw wiki]"
 }

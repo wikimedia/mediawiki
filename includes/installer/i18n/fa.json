@@ -186,7 +186,7 @@
 	"config-admin-error-password": "خطای داخلی هنگام تنظیم یک رمز عبور برای مدیر \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-password-invalid": "گذرواژه نامعتبر مدیر ویکی: $1",
 	"config-admin-error-bademail": "شما آدرس ایمیل نامعتبر وارد کرده‌اید.",
-	"config-subscribe": "عضویت در [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].",
+	"config-subscribe": "عضویت در [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release announcements mailing list].",
 	"config-subscribe-help": "این یک فهرست پستی کم‌حجم است که برای اطلاع‌رسانی کاربرد دارد و شامل اطلاعیه‌های امنیتی می‌شود.\nشما باید در آن ثبت نام کنید و وقتی نسخهٔ جدید مدیاویکی ارائه شد آن را روزآمد کنید.",
 	"config-subscribe-noemail": "شما بدون ثبت نشانی پست الکترونیکی قصد داشتید در فهرست اطلاع‌رسانی پخش نرم‌افزار ثبت‌نام کنید.\nاگر قصد ثبت‌نام دارید لطفاً یک نشانی پست الکترونیکی مشخص کنید.",
 	"config-pingback": "اشتراک گذاری داده‌های نصب با توسعه‌دهندگان مدیاویکی",
@@ -312,5 +312,5 @@
 	"config-extension-not-found": "پرونده ثبت افزونه «$1» پیدا نشد.",
 	"config-extension-dependency": "خطای وابسته در حین نصب افزونه «$1» رخ داد: $2",
 	"mainpagetext": "'''مدیاویکی با موفقیت نصب شد.'''",
-	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources محلی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
+	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources محلی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
 }

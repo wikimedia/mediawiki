@@ -182,7 +182,7 @@
 	"config-admin-error-password": "خطأ داخلي عند وضع كلمة سر للإداري «<nowiki>$1</nowiki>»: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "كلمة مرور إداري ويكي غير مقبولة: $1",
 	"config-admin-error-bademail": "لقد قمت بإدخال عنوان البريد الإلكتروني غير صالح.",
-	"config-subscribe": "اشترك في [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce نشر إعلانات القائمة البريدية].",
+	"config-subscribe": "اشترك في [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ نشر إعلانات القائمة البريدية].",
 	"config-subscribe-help": "هذه قائمة بريدية ذات حجم منخفض تُستخدَم لإعلانات الإصدار، بما في ذلك إعلانات الأمان المهمة، \nيجب عليك الاشتراك فيها وتحديث تثبيت ميدياويكي الخاص بك عندما تظهر إصدارات جديدة.",
 	"config-subscribe-noemail": "حاولت الاشتراك في القائمة البريدية الخاصة بإصدار إعلانات دون تقديم عنوان بريد إلكتروني. يُرجَى إدخال عنوان بريد إلكتروني إذا كنت ترغب في الاشتراك في القائمة البريدية.",
 	"config-pingback": "شارك بيانات هذا التثبيت مع مطوري برمجيات ميدياويكي. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement سياسة الخصوصية].",
@@ -287,7 +287,7 @@
 	"config-install-updates": "منع تشغيل التحديثات غير الضرورية",
 	"config-install-updates-failed": "<strong>خطأ:</strong> إدخال مفاتيح التحديث إلى الجداول فشلت بسبب الخطأ التالي: $1",
 	"config-install-sysop": "إنشاء حساب مستخدم إداري",
-	"config-install-subscribe-fail": "غير قادر على الاشتراك في ميدياويكي-إعلان: $1",
+	"config-install-subscribe-fail": "غير قادر على الاشتراك في ميدياويكي-إعلان[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "لم يتم تثبيت cURL و <code>allow_url_fopen</code> غير متوفر.",
 	"config-install-mainpage": "إنشاء صفحة رئيسية بالمحتوى الافتراضي",
 	"config-install-mainpage-exists": "الصفحة الرئيسية موجودة بالفعل، تم تجاهل هذا الأمر",
@@ -308,5 +308,5 @@
 	"config-extension-not-found": "لم يمكن العثور على ملف التسجيل للامتداد «$1»",
 	"config-extension-dependency": "خطأ اعتماد حدث أثناء تنصيب الامتداد «$1»: $2",
 	"mainpagetext": "<strong>تم تثبيت ميدياويكي بنجاح.</strong>",
-	"mainpagedocfooter": "استشر [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam تعلم كيفية مكافحة السخام في الويكي الخاص بك]"
+	"mainpagedocfooter": "استشر [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ القائمة البريدية الخاصة بإصدار ميدياويكي]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam تعلم كيفية مكافحة السخام في الويكي الخاص بك]"
 }
