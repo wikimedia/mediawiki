@@ -2440,7 +2440,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $conn->getLag();
 	}
 
-	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
+	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = null ) {
 		$timeout = max( 1, $timeout ?: $this->waitTimeout );
 
 		if ( $conn->getLBInfo( self::INFO_SERVER_INDEX ) === $this->getWriterIndex() ) {
@@ -2486,6 +2486,11 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return $ok;
+	}
+
+	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->waitForPrimaryPos( $conn, $pos, $timeout );
 	}
 
 	public function setTransactionListener( $name, callable $callback = null ) {

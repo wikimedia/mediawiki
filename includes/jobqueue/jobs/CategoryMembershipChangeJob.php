@@ -92,9 +92,9 @@ class CategoryMembershipChangeJob extends Job {
 			return false; // deleted?
 		}
 
-		// Cut down on the time spent in waitForMasterPos() in the critical section
+		// Cut down on the time spent in waitForPrimaryPos() in the critical section
 		$dbr = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
-		if ( !$lb->waitForMasterPos( $dbr ) ) {
+		if ( !$lb->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( "Timed out while pre-waiting for replica DB to catch up" );
 			return false;
 		}
@@ -108,7 +108,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Wait till replica DB is caught up so that jobs for this page see each others' changes
-		if ( !$lb->waitForMasterPos( $dbr ) ) {
+		if ( !$lb->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
 			return false;
 		}
