@@ -1578,9 +1578,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
 				[ $proto, $cluster ] = explode( '://', $url, 2 );
-				// Avoid getMaster() because setupDatabaseWithTestPrefix()
+				// Avoid getPrimary() because setupDatabaseWithTestPrefix()
 				// requires Database instead of plain DBConnRef/IDatabase
-				$dbws[] = $externalStoreDB->getMaster( $cluster );
+				$dbws[] = $externalStoreDB->getPrimary( $cluster );
 			}
 		}
 
