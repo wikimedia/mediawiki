@@ -137,7 +137,7 @@ class RepoGroup {
 	 *   latest:         If true, load from the latest available data into File objects
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool|MediaWiki\Permissions\Authority,latest?:bool} $options
-	 * @return File|bool False if title is not found
+	 * @return File|false False if title is not found
 	 */
 	public function findFile( $title, $options = [] ) {
 		if ( !is_array( $options ) ) {
@@ -210,7 +210,7 @@ class RepoGroup {
 	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
 	 *       The search title uses the input titles; the other is the final post-redirect title.
 	 *       All titles are returned as string DB keys and the inner array is associative.
-	 * @return array Map of (file name => File objects) for matches
+	 * @return array Map of (file name => File objects) for matches or (search title => (title,timestamp))
 	 */
 	public function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
@@ -245,7 +245,7 @@ class RepoGroup {
 	/**
 	 * Interface for FileRepo::checkRedirect()
 	 * @param PageIdentity|LinkTarget|string $title
-	 * @return bool|Title
+	 * @return Title|false
 	 */
 	public function checkRedirect( $title ) {
 		if ( !$this->reposInitialised ) {
@@ -275,7 +275,7 @@ class RepoGroup {
 	 *
 	 * @param string $hash Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile()
-	 * @return File|bool File object or false if it is not found
+	 * @return File|false File object or false if it is not found
 	 */
 	public function findFileFromKey( $hash, $options = [] ) {
 		if ( !$this->reposInitialised ) {
@@ -318,7 +318,7 @@ class RepoGroup {
 	/**
 	 * Find all instances of files with this keys
 	 *
-	 * @param array $hashes Base 36 SHA-1 hashes
+	 * @param string[] $hashes Base 36 SHA-1 hashes
 	 * @return File[][]
 	 */
 	public function findBySha1s( array $hashes ) {
@@ -341,7 +341,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance with a given key.
 	 * @param string|int $index
-	 * @return bool|FileRepo
+	 * @return FileRepo|false
 	 */
 	public function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
@@ -356,7 +356,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance by its name
 	 * @param string $name
-	 * @return FileRepo|bool
+	 * @return FileRepo|false
 	 */
 	public function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {
@@ -378,10 +378,7 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	public function getLocalRepo() {
-		/** @var LocalRepo $repo */
-		$repo = $this->getRepo( 'local' );
-
-		return $repo;
+		return $this->getRepo( 'local' );
 	}
 
 	/**
@@ -436,7 +433,7 @@ class RepoGroup {
 	 * Create a local repo with the specified option overrides.
 	 *
 	 * @param array $info
-	 * @return FileRepo
+	 * @return LocalRepo
 	 */
 	public function newCustomLocalRepo( $info = [] ) {
 		return $this->newRepo( $info + $this->localInfo );
