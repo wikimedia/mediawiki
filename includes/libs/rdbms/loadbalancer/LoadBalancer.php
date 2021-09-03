@@ -1022,7 +1022,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $i === $this->getWriterIndex() ) {
 			if ( $this->readOnlyReason !== false ) {
 				$readOnlyReason = $this->readOnlyReason;
-			} elseif ( $this->isMasterConnectionReadOnly( $conn, $flags ) ) {
+			} elseif ( $this->isPrimaryConnectionReadOnly( $conn, $flags ) ) {
 				$readOnlyReason = 'The primary database server is running in read-only mode.';
 			} else {
 				$readOnlyReason = false;
@@ -1366,7 +1366,7 @@ class LoadBalancer implements ILoadBalancer {
 			array_merge( $server, [
 				// Basic replication role information
 				'topologyRole' => $this->getTopologyRole( $i, $server ),
-				'topologicalMaster' => $this->getMasterServerName(),
+				'topologicalMaster' => $this->getPrimaryServerName(),
 				// Use the database specified in $domain (null means "none or entrypoint DB");
 				// fallback to the $server default if the RDBMs is an embedded library using a
 				// file on disk since there would be nothing to access to without a DB/file name.
@@ -1440,7 +1440,7 @@ class LoadBalancer implements ILoadBalancer {
 					$conn,
 					[
 						'connections' => $count,
-						'primarydb' => $this->getMasterServerName(),
+						'primarydb' => $this->getPrimaryServerName(),
 						'db_domain' => $domain->getId()
 					]
 				 )
@@ -1618,9 +1618,9 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getReplicaResumePos() {
 		// Get the position of any existing primary DB server connection
-		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
-		if ( $masterConn ) {
-			return $masterConn->getPrimaryPos();
+		$primaryConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
+		if ( $primaryConn ) {
+			return $primaryConn->getPrimaryPos();
 		}
 
 		// Get the highest position of any existing replica server connection
@@ -2204,7 +2204,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
-		} elseif ( $this->isMasterRunningReadOnly( $domainInstance ) ) {
+		} elseif ( $this->isPrimaryRunningReadOnly( $domainInstance ) ) {
 			return 'The primary database server is running in read-only mode.';
 		} elseif ( $this->getLaggedReplicaMode( $domain ) ) {
 			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
@@ -2223,7 +2223,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return bool Whether the entire server or currently selected DB/schema is read-only
 	 */
-	private function isMasterConnectionReadOnly( IDatabase $conn, $flags = 0 ) {
+	private function isPrimaryConnectionReadOnly( IDatabase $conn, $flags = 0 ) {
 		// Note that table prefixes are not related to server-side read-only mode
 		$key = $this->srvCache->makeGlobalKey(
 			'rdbms-server-readonly',
@@ -2265,13 +2265,13 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param DatabaseDomain $domain
 	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
-	private function isMasterRunningReadOnly( DatabaseDomain $domain ) {
+	private function isPrimaryRunningReadOnly( DatabaseDomain $domain ) {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
 		return (bool)$this->wanCache->getWithSetCallback(
 			// Note that table prefixes are not related to server-side read-only mode
 			$this->wanCache->makeGlobalKey(
 				'rdbms-server-readonly',
-				$this->getMasterServerName(),
+				$this->getPrimaryServerName(),
 				$domain->getDatabase(),
 				(string)$domain->getSchema()
 			),
@@ -2286,7 +2286,7 @@ class LoadBalancer implements ILoadBalancer {
 				$conn = $this->getServerConnection( $index, $domain->getId(), $flags );
 				if ( $conn ) {
 					try {
-						$readOnly = (int)$this->isMasterConnectionReadOnly( $conn );
+						$readOnly = (int)$this->isPrimaryConnectionReadOnly( $conn );
 					} catch ( DBError $e ) {
 						$readOnly = 0;
 					}
@@ -2599,7 +2599,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @return string Name of the primary DB server of the relevant DB cluster (e.g. "db1052")
 	 */
-	private function getMasterServerName() {
+	private function getPrimaryServerName() {
 		return $this->getServerName( $this->getWriterIndex() );
 	}
 
