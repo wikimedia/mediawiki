@@ -256,7 +256,7 @@ class FileRepo {
 	 * Get an explanatory message if this repo is read-only.
 	 * This checks if an administrator disabled writes to the backend.
 	 *
-	 * @return string|bool Returns false if the repo is not read-only
+	 * @return string|false Returns false if the repo is not read-only
 	 */
 	public function getReadOnlyReason() {
 		return $this->backend->getReadOnlyReason();
@@ -296,7 +296,7 @@ class FileRepo {
 	 * The suffix, if supplied, is considered to be unencoded, and will be
 	 * URL-encoded before being returned.
 	 *
-	 * @param string|bool $suffix
+	 * @param string|false $suffix
 	 * @return string
 	 */
 	public function getVirtualUrl( $suffix = false ) {
@@ -313,7 +313,7 @@ class FileRepo {
 	 *
 	 * @param string $zone One of: public, deleted, temp, thumb
 	 * @param string|null $ext Optional file extension
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
 		if ( in_array( $zone, [ 'public', 'thumb', 'transcoded' ] ) ) {
@@ -413,7 +413,7 @@ class FileRepo {
 	 * Create a new File object from the local repository
 	 *
 	 * @param PageIdentity|LinkTarget|string $title
-	 * @param bool|string $time Time at which the image was uploaded. If this
+	 * @param string|false $time Time at which the image was uploaded. If this
 	 *   is specified, the returned object will be an instance of the
 	 *   repository's old file class instead of a current file. Repositories
 	 *   not supporting version control should return false if this parameter
@@ -452,7 +452,7 @@ class FileRepo {
 	 *                   be found. If set and not an Authority object, throws an exception.
 	 *                   Authority is only accepted since 1.37, User was required before.
 	 *   latest:         If true, load from the latest available data into File objects
-	 * @return File|bool False on failure
+	 * @return File|false False on failure
 	 * @throws InvalidArgumentException
 	 */
 	public function findFile( $title, $options = [] ) {
@@ -536,7 +536,7 @@ class FileRepo {
 	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
 	 *       The search title uses the input titles; the other is the final post-redirect title.
 	 *       All titles are returned as string DB keys and the inner array is associative.
-	 * @return array Map of (file name => File objects) for matches
+	 * @return array Map of (file name => File objects) for matches or (search title => (title,timestamp))
 	 */
 	public function findFiles( array $items, $flags = 0 ) {
 		$result = [];
@@ -580,7 +580,7 @@ class FileRepo {
 	 *
 	 * @param string $sha1 Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile().
-	 * @return File|bool False on failure
+	 * @return File|false False on failure
 	 * @throws InvalidArgumentException if the `private` option is set and not an Authority object
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
@@ -805,7 +805,7 @@ class FileRepo {
 	 *
 	 * @param string|string[] $query Query string to append
 	 * @param string $entry Entry point; defaults to index
-	 * @return string|bool False on failure
+	 * @return string|false False on failure
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -884,7 +884,7 @@ class FileRepo {
 	/**
 	 * Get the URL of the stylesheet to apply to description pages
 	 *
-	 * @return string|bool False on failure
+	 * @return string|false False on failure
 	 */
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -1136,7 +1136,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This does no locking nor journaling and is intended for purging thumbnails.
 	 *
-	 * @param array $paths List of virtual URLs or storage paths
+	 * @param string[] $paths List of virtual URLs or storage paths
 	 * @return Status
 	 */
 	public function quickPurgeBatch( array $paths ) {
@@ -1200,7 +1200,7 @@ class FileRepo {
 	/**
 	 * Concatenate a list of temporary files into a target file location.
 	 *
-	 * @param array $srcPaths Ordered list of source virtual URLs/storage paths
+	 * @param string[] $srcPaths Ordered list of source virtual URLs/storage paths
 	 * @param string $dstPath Target file system path
 	 * @param int $flags Bitwise combination of the following flags:
 	 *   self::DELETE_SOURCE     Delete the source files on success
@@ -1640,7 +1640,7 @@ class FileRepo {
 	 * Get the timestamp of a file with a given virtual URL/storage path
 	 *
 	 * @param string $virtualUrl
-	 * @return string|bool False on failure
+	 * @return string|false False on failure
 	 */
 	public function getFileTimestamp( $virtualUrl ) {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
@@ -1825,7 +1825,7 @@ class FileRepo {
 	 * STUB
 	 *
 	 * @param PageIdentity|LinkTarget $title Title of image
-	 * @return Title|bool
+	 * @return Title|false
 	 */
 	public function checkRedirect( $title ) {
 		return false;
