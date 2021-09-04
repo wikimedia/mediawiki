@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
-// @phan-file-suppress PhanTypeMissingReturn false positives
 /**
  * Foreign file with an accessible MediaWiki database
  *

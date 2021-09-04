@@ -46,6 +46,7 @@ class FakeResultWrapper extends ResultWrapper {
 	}
 
 	protected function doGetFieldNames() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new RuntimeException( __METHOD__ . ' is unimplemented' );
 	}
 }

@@ -149,6 +149,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @throws MWException
 	 */
 	public function getOptionsOOUI() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Sections make this difficult. See getInputOOUI().
 		throw new MWException( 'HTMLMultiSelectField#getOptionsOOUI() is not supported' );
 	}

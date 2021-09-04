@@ -594,6 +594,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @throws MWException
 	 */
 	public function enumFiles( $callback ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException( 'enumFiles is not supported by ' . static::class );
 	}
 

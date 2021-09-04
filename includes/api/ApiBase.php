@@ -1374,6 +1374,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param array|null $data See ApiErrorFormatter::addError()
 	 * @param int|null $httpCode HTTP error code to use
 	 * @throws ApiUsageException always
+	 * @return never
 	 */
 	public function dieWithError( $msg, $code = null, $data = null, $httpCode = null ) {
 		throw ApiUsageException::newWithMessage( $this, $msg, $code, $data, $httpCode );
@@ -1432,6 +1433,7 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.29 Accepts a StatusValue
 	 * @param StatusValue $status
 	 * @throws ApiUsageException always
+	 * @return never
 	 */
 	public function dieStatus( StatusValue $status ) {
 		if ( $status->isGood() ) {
@@ -1569,6 +1571,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $method Method or function name
 	 * @param string $message Error message
 	 * @throws MWException always
+	 * @return never
 	 */
 	protected static function dieDebug( $method, $message ) {
 		throw new MWException( "Internal error in $method: $message" );

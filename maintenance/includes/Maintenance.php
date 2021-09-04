@@ -484,6 +484,7 @@ abstract class Maintenance {
 	 * @param string $msg Error message
 	 * @param int $exitCode PHP exit status. Should be in range 1-254.
 	 * @since 1.31
+	 * @return never
 	 */
 	protected function fatalError( $msg, $exitCode = 1 ) {
 		$this->error( $msg );

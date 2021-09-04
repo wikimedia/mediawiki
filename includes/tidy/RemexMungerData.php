@@ -73,6 +73,7 @@ class RemexMungerData {
 	public $nonblankNodeCount = 0;
 
 	public function __set( $name, $value ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new \Exception( "Cannot set property \"$name\"" );
 	}
 

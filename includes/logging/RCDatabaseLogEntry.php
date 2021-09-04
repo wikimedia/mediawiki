@@ -37,11 +37,13 @@ use Wikimedia\Rdbms\IDatabase;
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public static function newFromId( $id, IDatabase $db ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}
 
 	public static function getSelectQueryData() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}

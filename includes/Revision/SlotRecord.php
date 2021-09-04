@@ -70,9 +70,15 @@ class SlotRecord {
 	public static function newWithSuppressedContent( SlotRecord $slot ) {
 		$row = $slot->row;
 
-		return new SlotRecord( $row, static function () {
-			throw new SuppressedDataException( 'Content suppressed!' );
-		} );
+		return new SlotRecord(
+			$row,
+			/**
+			 * @return never
+			 */
+			static function () {
+				throw new SuppressedDataException( 'Content suppressed!' );
+			}
+		);
 	}
 
 	/**

@@ -130,9 +130,6 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgExtraNamespaces' => 'string[]',
 ] );
 
-// TODO Use @return never annotations - T240141
-$cfg['plugins'] = array_diff( $cfg['plugins'], [ 'AddNeverReturnTypePlugin' ] );
-
 // Include a local config file if it exists
 if ( file_exists( __DIR__ . '/local-config.php' ) ) {
 	require __DIR__ . '/local-config.php';

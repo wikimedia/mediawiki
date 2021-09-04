@@ -144,6 +144,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function setLBInfo( $nameOrArray, $value = null ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
 	}
@@ -284,6 +285,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function close( $fname = __METHOD__, $owner = null ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
 
@@ -450,11 +452,13 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function selectDB( $db ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
 	}
 
 	public function selectDomain( $domain ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
 	}

@@ -40,6 +40,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	 * @return AuthenticationResponse|void
 	 */
 	public function continuePrimaryAuthentication( array $reqs ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 
@@ -109,6 +110,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	 * @stable to override
 	 */
 	public function continuePrimaryAccountCreation( $user, $creator, array $reqs ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 
@@ -147,6 +149,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	 * @stable to override
 	 */
 	public function beginPrimaryAccountLink( $user, array $reqs ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		if ( $this->accountCreationType() === self::TYPE_LINK ) {
 			throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 		} else {
@@ -161,6 +164,7 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	 * @stable to override
 	 */
 	public function continuePrimaryAccountLink( $user, array $reqs ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 

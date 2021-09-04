@@ -6034,6 +6034,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Called by serialize. Throw an exception when DB connection is serialized.
 	 * This causes problems on some database engines because the connection is
 	 * not restored on unserialize.
+	 * @return never
 	 */
 	public function __sleep() {
 		throw new RuntimeException( 'Database serialization may cause problems, since ' .
