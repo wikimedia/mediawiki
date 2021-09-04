@@ -37,11 +37,6 @@ class ChangesList extends ContextSource {
 
 	public const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
-	/**
-	 * @var Skin
-	 */
-	public $skin;
-
 	protected $watchlist = false;
 	protected $lastdate;
 	protected $message;
@@ -67,17 +62,11 @@ class ChangesList extends ContextSource {
 	protected $filterGroups;
 
 	/**
-	 * @param Skin|IContextSource $obj
+	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
-	public function __construct( $obj, array $filterGroups = [] ) {
-		if ( $obj instanceof IContextSource ) {
-			$this->setContext( $obj );
-			$this->skin = $obj->getSkin();
-		} else {
-			$this->setContext( $obj->getContext() );
-			$this->skin = $obj;
-		}
+	public function __construct( $context, array $filterGroups = [] ) {
+		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
