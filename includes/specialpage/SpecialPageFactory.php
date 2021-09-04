@@ -657,7 +657,7 @@ class SpecialPageFactory {
 			]
 		],
 		'Randompage' => [
-			'class' => \RandomPage::class,
+			'class' => \SpecialRandomPage::class,
 			'services' => [
 				'DBLoadBalancer',
 				'NamespaceInfo',
@@ -670,14 +670,14 @@ class SpecialPageFactory {
 			]
 		],
 		'Randomredirect' => [
-			'class' => \SpecialRandomredirect::class,
+			'class' => \SpecialRandomRedirect::class,
 			'services' => [
 				'DBLoadBalancer',
 				'NamespaceInfo',
 			]
 		],
 		'Randomrootpage' => [
-			'class' => \SpecialRandomrootpage::class,
+			'class' => \SpecialRandomRootPage::class,
 			'services' => [
 				'DBLoadBalancer',
 				'NamespaceInfo',
