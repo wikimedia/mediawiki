@@ -232,7 +232,6 @@ class RawAction extends FormlessAction {
 
 			if ( $content === null ) {
 				// revision not found (or suppressed)
-				$text = false;
 			} elseif ( !$content instanceof TextContent ) {
 				// non-text content
 				wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
@@ -247,7 +246,6 @@ class RawAction extends FormlessAction {
 
 				if ( $content === null || $content === false ) {
 					// section not found (or section not supported, e.g. for JS, JSON, and CSS)
-					$text = false;
 				} else {
 					$text = $content->getText();
 				}

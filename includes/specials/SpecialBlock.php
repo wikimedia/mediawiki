@@ -857,7 +857,6 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $isPartialBlock ) {
 			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
 				$titles = explode( "\n", $data['PageRestrictions'] );
-				$pageRestrictions = [];
 				foreach ( $titles as $title ) {
 					$pageRestrictions[] = PageRestriction::newFromTitle( $title );
 				}

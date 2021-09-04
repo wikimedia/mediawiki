@@ -419,7 +419,6 @@ abstract class SearchEngine {
 
 			foreach ( $allkeywords as $kw ) {
 				if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
-					$extractedNamespace = null;
 					$parsed = substr( $query, strlen( $kw ) );
 					$allQuery = true;
 					break;
