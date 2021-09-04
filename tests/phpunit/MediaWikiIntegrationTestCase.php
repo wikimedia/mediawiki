@@ -1863,11 +1863,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( in_array( 'user', $tablesUsed ) ) {
 				TestUserRegistry::clear();
 
-				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
-				// @todo Should we start setting $wgUser to something nondeterministic
+				// Reset context user, which is probably 127.0.0.1, as its loaded
+				// data is probably not valid. This used to manipulate $wgUser but
+				// since that is deprecated tests are more likely to be relying on
+				// RequestContext::getMain() instead.
+				// @todo Should we start setting the user to something nondeterministic
 				//  to encourage tests to be updated to not depend on it?
-				global $wgUser;
-				$wgUser->clearInstanceCache( $wgUser->mFrom );
+				$user = RequestContext::getMain()->getUser();
+				$user->clearInstanceCache( $user->mFrom );
 			}
 
 			$this->truncateTables( $tablesUsed, $db );

@@ -528,10 +528,9 @@ class ApiMain extends ApiBase {
 			// If we're in a mode that breaks the same-origin policy, strip
 			// user credentials for security.
 			if ( $this->lacksSameOriginSecurity() ) {
-				global $wgUser;
 				wfDebug( "API: stripping user credentials when the same-origin policy is not applied" );
 				$user = new User();
-				$wgUser = $user;
+				StubGlobalUser::setUser( $user );
 				$derivativeContext->setUser( $user );
 				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
 			}

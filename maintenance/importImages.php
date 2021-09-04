@@ -125,7 +125,7 @@ class ImportImages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgFileExtensions, $wgUser, $wgRestrictionLevels;
+		global $wgFileExtensions, $wgRestrictionLevels;
 
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
@@ -160,7 +160,7 @@ class ImportImages extends Maintenance {
 		if ( !$user instanceof User ) {
 			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		}
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		# Get block check. If a value is given, this specified how often the check is performed
 		$checkUserBlock = (int)$this->getOption( 'check-userblock' );
@@ -286,7 +286,7 @@ class ImportImages extends Maintenance {
 							);
 							continue;
 						}
-						$wgUser = $realUser;
+						StubGlobalUser::setUser( $realUser );
 						$user = $realUser;
 					}
 				} else {
