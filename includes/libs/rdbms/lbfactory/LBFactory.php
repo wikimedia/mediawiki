@@ -287,7 +287,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function beginMasterChanges( $fname = __METHOD__ ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->beginPrimaryChanges( $fname );
 	}
 
