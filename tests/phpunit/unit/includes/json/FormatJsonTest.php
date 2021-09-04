@@ -14,6 +14,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 			[ '  ', '  ' ],
 			// One tab
 			[ "\t", "\t" ],
+			// Empty string
+			[ '', '' ],
 		];
 	}
 
@@ -34,6 +36,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 				'"7":["8",{"9":"10"}]',
 				// Whitespace clean up doesn't touch strings that look alike
 				"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}",
+				"    []",
 			],
 		];
 
@@ -48,7 +51,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 			456
 		],
 		"\"7\":[\"8\",{\"9\":\"10\"}]",
-		"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
+		"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}",
+		"    []"
 	]
 }';
 
