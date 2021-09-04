@@ -497,6 +497,8 @@ because of Phabricator reports.
   - RevDelList::reloadFromMaster -> ::reloadFromPrimary()
   - ExternalStoreDB::getMaster -> ::getPrimary()
   - DatabaseMysqlBase::getMasterServerInfo() -> ::getPrimaryServerInfo()
+  - MWExceptionHandler::rollbackMasterChangesAndLog() ->
+      ::rollbackPrimaryChangesAndLog()
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
