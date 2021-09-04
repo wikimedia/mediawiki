@@ -266,7 +266,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function testDoEditContent() {
 		$this->hideDeprecated( 'WikiPage::doEditContent' );
 
+		// We set $wgUser to a User we create to avoid dealing with StubGlobalUser
+		// deprecation, etc. The entire method is deprecated anyway.
+		$user = $this->getTestSysop()->getUser();
+
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgUser;
+		$originalUser = $wgUser;
+		$wgUser = $user;
 
 		// NOTE: Test that Editing also works with a fragment title!
 		$page = $this->newPage( __METHOD__ . '#Fragment' );
@@ -332,8 +339,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertStringContainsString( '[[gubergren]]', $newText, 'New text must replace old text.' );
 		$this->assertStringNotContainsString( '[[Lorem ipsum]]', $newText, 'New text must replace old text.' );
 		$this->assertStringNotContainsString( '~~~~', $newText, 'PST must substitute signature.' );
-		$this->assertStringContainsString( $wgUser->getName(), $newText,
+		$this->assertStringContainsString( $user->getName(), $newText,
 			'Must fall back to $wgUser when no user has been specified.' );
+
+		// Reset so that other tests would still fail if interacting with $wgUser
+		$wgUser = $originalUser;
 	}
 
 	/**

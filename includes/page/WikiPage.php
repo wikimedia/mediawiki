@@ -1841,8 +1841,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( !$performer ) {
 			// Its okay to fallback to $wgUser because this whole method is deprecated
+			// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 			global $wgUser;
-			$performer = $wgUser;
+			$performer = StubGlobalUser::getRealUser( $wgUser );
 		}
 
 		return $this->doUserEditContent(
@@ -2060,8 +2061,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	) {
 		if ( !$user ) {
 			wfDeprecated( __METHOD__ . ' without a UserIdentity', '1.37' );
+			// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 			global $wgUser;
-			$user = $wgUser;
+			$user = StubGlobalUser::getRealUser( $wgUser );
 		}
 
 		$slots = RevisionSlotsUpdate::newFromContent( [ SlotRecord::MAIN => $content ] );

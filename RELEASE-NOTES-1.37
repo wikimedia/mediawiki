@@ -782,6 +782,11 @@ because of Phabricator reports.
    - PPDPart has been merged into PPDPart_Hash
    - PPDStack has been merged into PPDStack_Hash
    - PPDStackElement has been merged into PPDStackElement_Hash
+* By default, the global variable $wgUser is now an instance of the new class
+  StubGlobalUser rather than User, and the first time it is used it will emit
+  deprecation warnings (the $wgUser variable was deprecated in 1.35). For
+  extensions that read from this variable, please use a relevant ContextSource
+  instead, falling back to RequestContext::getMain() if none is available.
 * Collation::singleton and ::factory were deprecated, obtain an CollationFactory
   instance from MediaWikiServices instead.
 * Title::getDefaultNamespace() has been deprecated to be removed because
