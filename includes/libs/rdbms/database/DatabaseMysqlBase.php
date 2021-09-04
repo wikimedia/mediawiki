@@ -860,7 +860,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function getMasterPos() {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getPrimaryPos();
 	}
 

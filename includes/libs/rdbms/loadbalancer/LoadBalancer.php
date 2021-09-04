@@ -1612,7 +1612,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getMasterPos() {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getPrimaryPos();
 	}
 
