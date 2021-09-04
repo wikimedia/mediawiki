@@ -101,7 +101,7 @@ class CreateBotPassword extends Maintenance {
 			$passwordLength = strlen( $password );
 			if ( $passwordLength < BotPassword::PASSWORD_MINLENGTH ) {
 				$message = "Bot passwords must have at least " . BotPassword::PASSWORD_MINLENGTH .
-				  " characters. Given password is $passwordLength characters.";
+					" characters. Given password is $passwordLength characters.";
 				$this->fatalError( $message );
 			}
 		}

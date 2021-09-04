@@ -430,8 +430,9 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @group medium
 	 * @covers ::wfMerge
 	 */
-	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText,
-							   $expectedMergeAttemptResult ) {
+	public function testMerge(
+		$old, $mine, $yours, $expectedMergeResult, $expectedText, $expectedMergeAttemptResult
+	) {
 		$this->markTestSkippedIfNoDiff3();
 
 		$mergedText = null;

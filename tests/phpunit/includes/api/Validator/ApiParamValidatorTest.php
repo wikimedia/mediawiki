@@ -681,12 +681,12 @@ class ApiParamValidatorTest extends ApiTestCase {
 			->onlyMethods( [ 'getParamInfo' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'getParamInfo' )
-		   ->with(
+			->with(
 				$this->identicalTo( 'aptest' ),
 				$this->identicalTo( $settings ),
 				$this->identicalTo( $options + [ 'module' => $module ] )
-		   )
-		   ->willReturn( [ $dummy ] );
+			)
+			->willReturn( [ $dummy ] );
 
 		TestingAccessWrapper::newFromObject( $validator )->paramValidator = $mock;
 		$this->assertSame( [ $dummy ], $validator->getParamInfo( $module, 'test', $settings, $options ) );
@@ -708,15 +708,15 @@ class ApiParamValidatorTest extends ApiTestCase {
 			->onlyMethods( [ 'getHelpInfo' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'getHelpInfo' )
-		   ->with(
+			->with(
 				$this->identicalTo( 'aptest' ),
 				$this->identicalTo( $settings ),
 				$this->identicalTo( $options + [ 'module' => $module ] )
-		   )
-		   ->willReturn( [
-			   'mv1' => MessageValue::new( 'parentheses', [ 'foobar' ] ),
-			   'mv2' => MessageValue::new( 'paramvalidator-help-continue' ),
-		   ] );
+			)
+			->willReturn( [
+				'mv1' => MessageValue::new( 'parentheses', [ 'foobar' ] ),
+				'mv2' => MessageValue::new( 'paramvalidator-help-continue' ),
+			] );
 
 		TestingAccessWrapper::newFromObject( $validator )->paramValidator = $mock;
 		$ret = $validator->getHelpInfo( $module, 'test', $settings, $options );

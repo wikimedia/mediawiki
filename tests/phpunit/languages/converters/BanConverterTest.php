@@ -29,7 +29,7 @@ class BanConverterTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( $variants as $variant ) {
 			$this->assertTrue( $this->getLanguageConverter()->hasVariant( $variant ),
-			 "no variant for $variant language" );
+				"no variant for $variant language" );
 		}
 	}
 

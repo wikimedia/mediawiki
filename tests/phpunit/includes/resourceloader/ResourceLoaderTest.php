@@ -218,7 +218,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$lc = $rl->getLessCompiler( [ 'foo'  => '2px', 'Foo' => '#eeeeee' ] );
 		$basePath = dirname( dirname( __DIR__ ) ) . '/data/less';
 		$lc->SetImportDirs( [
-			 "$basePath/common" => '',
+			"$basePath/common" => '',
 		] );
 		$css = $lc->parseFile( "$basePath/module/use-import-dir.less" )->getCss();
 		$this->assertStringEqualsFile( "$basePath/module/styles.css", $css );
@@ -1044,7 +1044,7 @@ END
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
 			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
-			 'https://example.org/script.js' => [ 'as' => 'script' ],
+			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
 
 		$rl = new EmptyResourceLoader();
@@ -1075,14 +1075,14 @@ END
 		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
 			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$foo->method( 'getPreloadLinks' )->willReturn( [
-			 'https://example.org/script.js' => [ 'as' => 'script' ],
+			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
 
 		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
 			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$bar->method( 'getPreloadLinks' )->willReturn( [
-			 '/example.png' => [ 'as' => 'image' ],
-			 '/example.jpg' => [ 'as' => 'image' ],
+			'/example.png' => [ 'as' => 'image' ],
+			'/example.jpg' => [ 'as' => 'image' ],
 		] );
 
 		$rl = new EmptyResourceLoader();

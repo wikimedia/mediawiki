@@ -40,8 +40,12 @@ class ApiQuery extends ApiBase {
 	 * List of Api Query prop modules
 	 */
 	private const QUERY_PROP_MODULES = [
-		'categories' => ApiQueryCategories::class,
-		'categoryinfo' => ApiQueryCategoryInfo::class,
+		'categories' => [
+			'class' => ApiQueryCategories::class,
+		],
+		'categoryinfo' => [
+			'class' => ApiQueryCategoryInfo::class,
+		],
 		'contributors' => [
 			'class' => ApiQueryContributors::class,
 			'services' => [
@@ -69,9 +73,15 @@ class ApiQuery extends ApiBase {
 				'RepoGroup',
 			]
 		],
-		'extlinks' => ApiQueryExternalLinks::class,
-		'fileusage' => ApiQueryBacklinksprop::class,
-		'images' => ApiQueryImages::class,
+		'extlinks' => [
+			'class' => ApiQueryExternalLinks::class,
+		],
+		'fileusage' => [
+			'class' => ApiQueryBacklinksprop::class,
+		],
+		'images' => [
+			'class' => ApiQueryImages::class,
+		],
 		'imageinfo' => [
 			'class' => ApiQueryImageInfo::class,
 			'services' => [
@@ -99,8 +109,12 @@ class ApiQuery extends ApiBase {
 				'LinkBatchFactory',
 			]
 		],
-		'linkshere' => ApiQueryBacklinksprop::class,
-		'iwlinks' => ApiQueryIWLinks::class,
+		'linkshere' => [
+			'class' => ApiQueryBacklinksprop::class,
+		],
+		'iwlinks' => [
+			'class' => ApiQueryIWLinks::class,
+		],
 		'langlinks' => [
 			'class' => ApiQueryLangLinks::class,
 			'services' => [
@@ -114,7 +128,9 @@ class ApiQuery extends ApiBase {
 				'PageProps',
 			]
 		],
-		'redirects' => ApiQueryBacklinksprop::class,
+		'redirects' => [
+			'class' => ApiQueryBacklinksprop::class,
+		],
 		'revisions' => [
 			'class' => ApiQueryRevisions::class,
 			'services' => [
@@ -142,14 +158,18 @@ class ApiQuery extends ApiBase {
 				'LinkBatchFactory',
 			]
 		],
-		'transcludedin' => ApiQueryBacklinksprop::class,
+		'transcludedin' => [
+			'class' => ApiQueryBacklinksprop::class,
+		],
 	];
 
 	/**
 	 * List of Api Query list modules
 	 */
 	private const QUERY_LIST_MODULES = [
-		'allcategories' => ApiQueryAllCategories::class,
+		'allcategories' => [
+			'class' => ApiQueryAllCategories::class,
+		],
 		'alldeletedrevisions' => [
 			'class' => ApiQueryAllDeletedRevisions::class,
 			'services' => [
@@ -200,6 +220,7 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
+		'mystashedfiles' => ApiQueryMyStashedFiles::class,
 		'allrevisions' => [
 			'class' => ApiQueryAllRevisions::class,
 			'services' => [
@@ -212,7 +233,9 @@ class ApiQuery extends ApiBase {
 				'ContentTransformer',
 			]
 		],
-		'mystashedfiles' => ApiQueryMyStashedFiles::class,
+		'mystashedfiles' => [
+			'class' => ApiQueryMyStashedFiles::class,
+		],
 		'alltransclusions' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
@@ -229,7 +252,9 @@ class ApiQuery extends ApiBase {
 				'GroupPermissionsLookup',
 			]
 		],
-		'backlinks' => ApiQueryBacklinks::class,
+		'backlinks' => [
+			'class' => ApiQueryBacklinks::class,
+		],
 		'blocks' => [
 			'class' => ApiQueryBlocks::class,
 			'services' => [
@@ -239,7 +264,9 @@ class ApiQuery extends ApiBase {
 				'UserNameUtils',
 			],
 		],
-		'categorymembers' => ApiQueryCategoryMembers::class,
+		'categorymembers' => [
+			'class' => ApiQueryCategoryMembers::class,
+		],
 		'deletedrevs' => [
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [
@@ -249,17 +276,27 @@ class ApiQuery extends ApiBase {
 				'LinkBatchFactory',
 			],
 		],
-		'embeddedin' => ApiQueryBacklinks::class,
-		'exturlusage' => ApiQueryExtLinksUsage::class,
+		'embeddedin' => [
+			'class' => ApiQueryBacklinks::class,
+		],
+		'exturlusage' => [
+			'class' => ApiQueryExtLinksUsage::class,
+		],
 		'filearchive' => [
 			'class' => ApiQueryFilearchive::class,
 			'services' => [
 				'CommentStore',
 			],
 		],
-		'imageusage' => ApiQueryBacklinks::class,
-		'iwbacklinks' => ApiQueryIWBacklinks::class,
-		'langbacklinks' => ApiQueryLangBacklinks::class,
+		'imageusage' => [
+			'class' => ApiQueryBacklinks::class,
+		],
+		'iwbacklinks' => [
+			'class' => ApiQueryIWBacklinks::class,
+		],
+		'langbacklinks' => [
+			'class' => ApiQueryLangBacklinks::class,
+		],
 		'logevents' => [
 			'class' => ApiQueryLogEvents::class,
 			'services' => [
@@ -267,8 +304,12 @@ class ApiQuery extends ApiBase {
 				'ChangeTagDefStore',
 			],
 		],
-		'pageswithprop' => ApiQueryPagesWithProp::class,
-		'pagepropnames' => ApiQueryPagePropNames::class,
+		'pageswithprop' => [
+			'class' => ApiQueryPagesWithProp::class,
+		],
+		'pagepropnames' => [
+			'class' => ApiQueryPagePropNames::class,
+		],
 		'prefixsearch' => [
 			'class' => ApiQueryPrefixSearch::class,
 			'services' => [
@@ -288,7 +329,9 @@ class ApiQuery extends ApiBase {
 				'SpecialPageFactory',
 			]
 		],
-		'random' => ApiQueryRandom::class,
+		'random' => [
+			'class' => ApiQueryRandom::class,
+		],
 		'recentchanges' => [
 			'class' => ApiQueryRecentChanges::class,
 			'services' => [
@@ -305,7 +348,9 @@ class ApiQuery extends ApiBase {
 				'SearchEngineFactory',
 			],
 		],
-		'tags' => ApiQueryTags::class,
+		'tags' => [
+			'class' => ApiQueryTags::class,
+		],
 		'usercontribs' => [
 			'class' => ApiQueryUserContribs::class,
 			'services' => [
@@ -403,7 +448,9 @@ class ApiQuery extends ApiBase {
 				'RepoGroup',
 			]
 		],
-		'tokens' => ApiQueryTokens::class,
+		'tokens' => [
+			'class' => ApiQueryTokens::class,
+		],
 		'languageinfo' => [
 			'class' => ApiQueryLanguageinfo::class,
 			'services' => [

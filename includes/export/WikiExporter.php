@@ -545,7 +545,7 @@ class WikiExporter {
 				$this->sink->writeRevision( $revRow, $output );
 			} catch ( RevisionAccessException $ex ) {
 				MWDebug::warning( 'Problem encountered retrieving rev and slot metadata for'
-								  . ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
+					. ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
 			}
 			$lastRow = $revRow;
 		}

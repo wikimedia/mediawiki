@@ -189,7 +189,7 @@ class RecentChangesUpdateJob extends Job {
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => array_map( 'strval', array_keys( $names ) ),
 					'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
-				 ],
+				],
 				__METHOD__
 			);
 			// Note: In order for this to be actually consistent, we would need

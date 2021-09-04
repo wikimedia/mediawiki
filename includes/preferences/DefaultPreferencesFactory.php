@@ -505,7 +505,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'/api.php?action=query&meta=userinfo&uiprop=*',
 				],
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
-			 ),
+			),
 			'help-message' => [ 'prefs-user-downloaddata-help-message', urlencode( $user->getTitleKey() ) ],
 			'section' => 'personal/info',
 		];

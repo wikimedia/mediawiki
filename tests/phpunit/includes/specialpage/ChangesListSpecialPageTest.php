@@ -185,7 +185,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterAssociatedSpecial() {
 		$this->assertConditions(
 			[ # expected
-			  'rc_namespace IN (-1,0,1)',
+				'rc_namespace IN (-1,0,1)',
 			],
 			[
 				'namespace' => '1;-1',

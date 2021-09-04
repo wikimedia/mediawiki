@@ -1199,7 +1199,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$slotRows = $this->db->select(
 			$info['tables'],
 			$info['fields'],
-			 [ 'slot_revision_id' => $revRecord->getId() ],
+			[ 'slot_revision_id' => $revRecord->getId() ],
 			__METHOD__,
 			[],
 			$info['joins']

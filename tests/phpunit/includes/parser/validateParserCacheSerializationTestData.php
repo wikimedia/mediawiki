@@ -63,8 +63,7 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 				$serializationFormat['deserializer']
 			);
 			$serializationUtils->setLogger( new ConsoleLogger( 'validator' ) );
-			foreach ( $serializationUtils->getSerializedInstances()
-					  as $testCaseName => $currentSerialized ) {
+			foreach ( $serializationUtils->getSerializedInstances() as $testCaseName => $currentSerialized ) {
 				$expected = $serializationUtils
 					->getStoredSerializedInstance( $className, $testCaseName, $this->getOption( 'version' ) );
 				$this->validateSerializationData( $currentSerialized, $expected );

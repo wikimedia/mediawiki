@@ -66,7 +66,7 @@ class NewSectionMissingSummaryConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			// From EditPage, regarding the fatal:
-			 // or 'missingcommentheader' if $section == 'new'. Blegh
+			// or 'missingcommentheader' if $section == 'new'. Blegh
 			$statusValue->fatal( 'missingsummary' );
 			$statusValue->value = self::AS_SUMMARY_NEEDED;
 		}

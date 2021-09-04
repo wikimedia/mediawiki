@@ -585,7 +585,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array $argsByKey,
 		int $flags,
 		&$resByKey = []
-	 ) {
+	) {
 		// Initialize order-preserved per-key results; callbacks mark successful results
 		$resByKey = array_fill_keys( array_keys( $argsByKey ), false );
 

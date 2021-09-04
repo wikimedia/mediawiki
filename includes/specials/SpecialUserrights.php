@@ -870,7 +870,7 @@ class UserrightsPage extends SpecialPage {
 			// expiries, not shorten them. So they should only see the expiry
 			// dropdown if the group currently has a finite expiry
 			$canOnlyLengthenExpiry = ( $set && $this->canAdd( $group ) &&
-				 !$this->canRemove( $group ) && $usergroups[$group]->getExpiry() );
+				!$this->canRemove( $group ) && $usergroups[$group]->getExpiry() );
 			// Should the checkbox be disabled?
 			$disabledCheckbox = !(
 				( $set && $this->canRemove( $group ) ) ||

@@ -210,7 +210,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
 			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
-			 'https://example.org/script.js' => [ 'as' => 'script' ],
+			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
 		$this->assertSame(
 			[
@@ -223,8 +223,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
 			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
-			 'https://example.org/script.js' => [ 'as' => 'script' ],
-			 '/example.png' => [ 'as' => 'image' ],
+			'https://example.org/script.js' => [ 'as' => 'script' ],
+			'/example.png' => [ 'as' => 'image' ],
 		] );
 		$this->assertSame(
 			[

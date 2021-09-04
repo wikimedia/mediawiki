@@ -1436,11 +1436,11 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $this->getAuthority()->probablyCan( 'protect', $title ) &&
-					 $title->getRestrictionTypes() &&
-					 $permissionManager->getNamespaceRestrictionLevels(
+					$title->getRestrictionTypes() &&
+					$permissionManager->getNamespaceRestrictionLevels(
 						$title->getNamespace(),
 						$performer->getUser()
-					 ) !== [ '' ]
+					) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [

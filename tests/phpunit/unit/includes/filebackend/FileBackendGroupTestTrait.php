@@ -148,13 +148,13 @@ trait FileBackendGroupTestTrait {
 				'cuz',
 				[],
 				[ 'configuredROMode' => new ConfiguredReadOnlyMode( 'cuz' ) ],
-		   ],
-		   'readOnly with readOnly set to false but string in passed object' => [
-			   'readOnly',
-			   false,
-			   [ 'readOnly' => false ],
-			   [ 'configuredROMode' => new ConfiguredReadOnlyMode( 'cuz' ) ],
-		   ],
+			],
+			'readOnly with readOnly set to false but string in passed object' => [
+				'readOnly',
+				false,
+				[ 'readOnly' => false ],
+				[ 'configuredROMode' => new ConfiguredReadOnlyMode( 'cuz' ) ],
+			],
 		];
 	}
 
