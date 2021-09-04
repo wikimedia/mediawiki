@@ -11,16 +11,15 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$enLanguage = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$this->collation = new CustomUppercaseCollation(
+			MediaWikiServices::getInstance()->getLanguageFactory(),
 			[
 				'D',
 				'C',
 				'Cs',
 				'B'
 			],
-			$enLanguage, // digital transformation language
-			$enLanguage // English, for generic uppercase
+			'en' // digital transformation language
 		);
 	}
 

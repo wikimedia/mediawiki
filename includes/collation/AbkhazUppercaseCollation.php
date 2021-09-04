@@ -20,17 +20,16 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageFactory;
+
 class AbkhazUppercaseCollation extends CustomUppercaseCollation {
 
 	/**
-	 * @param Language $abLanguage Language object for Abkhaz
-	 * @param Language $enLanguage Language object for English
+	 * @param LanguageFactory $languageFactory
 	 */
-	public function __construct(
-		Language $abLanguage,
-		Language $enLanguage
-	) {
+	public function __construct( LanguageFactory $languageFactory ) {
 		parent::__construct(
+			$languageFactory,
 			[
 				'А',
 				'Б',
@@ -97,8 +96,7 @@ class AbkhazUppercaseCollation extends CustomUppercaseCollation {
 				'ь',
 				'ә',
 			],
-			$abLanguage,
-			$enLanguage
+			'ab'
 		);
 	}
 }
