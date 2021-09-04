@@ -73,7 +73,6 @@
 		-->
 		<exclude-pattern>*/includes/specials/SpecialMostimages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialRandompage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
