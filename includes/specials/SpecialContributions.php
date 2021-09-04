@@ -221,15 +221,17 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
-			$userObj = $this->userFactory->newFromName(
-				$nt->getText(), UserRigorOptions::RIGOR_NONE );
+			$target = $nt->getText();
+			if ( IPUtils::isValidRange( $target ) ) {
+				$target = IPUtils::sanitizeRange( $target );
+			}
+			$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
 			$id = $userObj->getId();
 
-			$target = $nt->getText();
 			$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
 			$out->setPageTitle( $this->msg( 'contributions-title', $target ) );
 
