@@ -25,6 +25,7 @@ namespace MediaWiki\Page;
 use ActorMigration;
 use Config;
 use ContentModelChange;
+use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
@@ -110,6 +111,9 @@ class PageCommandFactory implements
 	/** @var UserEditTracker */
 	private $userEditTracker;
 
+	/** @var CollationFactory */
+	private $collationFactory;
+
 	public function __construct(
 		Config $config,
 		ILoadBalancer $loadBalancer,
@@ -127,7 +131,8 @@ class PageCommandFactory implements
 		ActorMigration $actorMigration,
 		ActorNormalization $actorNormalization,
 		TitleFactory $titleFactory,
-		UserEditTracker $userEditTracker
+		UserEditTracker $userEditTracker,
+		CollationFactory $collationFactory
 	) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
@@ -146,6 +151,7 @@ class PageCommandFactory implements
 		$this->actorNormalization = $actorNormalization;
 		$this->titleFactory = $titleFactory;
 		$this->userEditTracker = $userEditTracker;
+		$this->collationFactory = $collationFactory;
 	}
 
 	/**
@@ -218,7 +224,8 @@ class PageCommandFactory implements
 			$this->wikiPageFactory,
 			$this->userFactory,
 			$this->userEditTracker,
-			$this
+			$this,
+			$this->collationFactory
 		);
 	}
 

@@ -649,7 +649,7 @@ class LinksUpdate extends DataUpdate {
 		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter();
 
-		$collation = Collation::singleton();
+		$collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$languageConverter->findVariantLink( $name, $nt, true );

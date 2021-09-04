@@ -59,6 +59,7 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
@@ -316,6 +317,15 @@ return [
 
 	'ChangeTagDefStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		return $services->getNameTableStoreFactory()->getChangeTagDef();
+	},
+
+	'CollationFactory' => static function ( MediaWikiServices $services ): CollationFactory {
+		return new CollationFactory(
+			new ServiceOptions(
+				CollationFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getObjectFactory(),
+			$services->getHookContainer()
+		);
 	},
 
 	'CommentStore' => static function ( MediaWikiServices $services ): CommentStore {
@@ -1888,7 +1898,8 @@ return [
 			$services->getActorMigration(),
 			$services->getActorNormalization(),
 			$services->getTitleFactory(),
-			$services->getUserEditTracker()
+			$services->getUserEditTracker(),
+			$services->getCollationFactory()
 		);
 	},
 

@@ -19,6 +19,7 @@
  * @file
  */
 
+use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
@@ -119,6 +120,9 @@ class MovePage {
 	/** @var MovePageFactory */
 	private $movePageFactory;
 
+	/** @var CollationFactory */
+	public $collationFactory;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
@@ -143,6 +147,7 @@ class MovePage {
 	 * @param UserFactory|null $userFactory
 	 * @param UserEditTracker|null $userEditTracker
 	 * @param MovePageFactory|null $movePageFactory
+	 * @param CollationFactory|null $collationFactory
 	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
 	 */
 	public function __construct(
@@ -160,7 +165,8 @@ class MovePage {
 		WikiPageFactory $wikiPageFactory = null,
 		UserFactory $userFactory = null,
 		UserEditTracker $userEditTracker = null,
-		MovePageFactory $movePageFactory = null
+		MovePageFactory $movePageFactory = null,
+		CollationFactory $collationFactory = null
 	) {
 		if ( !$options ) {
 			wfDeprecatedMsg(
@@ -195,6 +201,7 @@ class MovePage {
 		$this->userFactory = $userFactory ?? $services()->getUserFactory();
 		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
 		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
+		$this->collationFactory = $collationFactory ?? $services()->getCollationFactory();
 	}
 
 	/**
@@ -689,12 +696,13 @@ class MovePage {
 			__METHOD__
 		);
 		$type = $this->nsInfo->getCategoryLinkType( $this->newTitle->getNamespace() );
+		$collation = $this->collationFactory->getCategoryCollation();
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
 			$dbw->update( 'categorylinks',
 				[
-					'cl_sortkey' => Collation::singleton()->getSortKey(
+					'cl_sortkey' => $collation->getSortKey(
 							$this->newTitle->getCategorySortkey( $prefix ) ),
 					'cl_collation' => $this->options->get( 'CategoryCollation' ),
 					'cl_type' => $type,

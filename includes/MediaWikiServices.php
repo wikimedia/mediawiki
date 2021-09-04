@@ -39,6 +39,7 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -732,6 +733,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagDefStore(): NameTableStore {
 		return $this->getService( 'ChangeTagDefStore' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return CollationFactory
+	 */
+	public function getCollationFactory(): CollationFactory {
+		return $this->getService( 'CollationFactory' );
 	}
 
 	/**

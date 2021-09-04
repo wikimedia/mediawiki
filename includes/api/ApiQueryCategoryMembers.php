@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Collation\CollationFactory;
+
 /**
  * A query module to enumerate pages that belong to a category.
  *
@@ -27,12 +29,21 @@
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
+	/** @var Collation */
+	private $collation;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param CollationFactory $collationFactory
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CollationFactory $collationFactory
+	) {
 		parent::__construct( $query, $moduleName, 'cm' );
+		$this->collation = $collationFactory->getCategoryCollation();
 	}
 
 	public function execute() {
@@ -150,7 +161,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				if ( $params['startsortkeyprefix'] !== null ) {
-					$startsortkey = Collation::singleton()->getSortKey( $params['startsortkeyprefix'] );
+					$startsortkey = $this->collation->getSortKey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
 						$encParamName = $this->encodeParamName( 'starthexsortkey' );
@@ -161,7 +172,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$startsortkey = $params['startsortkey'];
 				}
 				if ( $params['endsortkeyprefix'] !== null ) {
-					$endsortkey = Collation::singleton()->getSortKey( $params['endsortkeyprefix'] );
+					$endsortkey = $this->collation->getSortKey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
 						$encParamName = $this->encodeParamName( 'endhexsortkey' );

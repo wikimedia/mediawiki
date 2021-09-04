@@ -715,6 +715,8 @@ because of Phabricator reports.
   - loadRestrictions()
 * User::isAllowUsertalk was hard deprecated. Use User::getBlock and
   AbstractBlock::isUsertalkEditAllowed instead.
+* Collation::singleton and ::factory were deprecated, obtain an CollationFactory
+  instance from MediaWikiServices instead.
 * …
 
 === Other changes in 1.37 ===

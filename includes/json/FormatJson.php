@@ -77,25 +77,6 @@ class FormatJson {
 	public const STRIP_COMMENTS = 0x400;
 
 	/**
-	 * Characters problematic in JavaScript.
-	 *
-	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
-	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
-	 */
-	private const BAD_CHARS = [
-		"\u{2028}", // U+2028 LINE SEPARATOR
-		"\u{2029}", // U+2029 PARAGRAPH SEPARATOR
-	];
-
-	/**
-	 * Escape sequences for characters listed in FormatJson::BAD_CHARS.
-	 */
-	private const BAD_CHARS_ESCAPED = [
-		'\u2028', // U+2028 LINE SEPARATOR
-		'\u2029', // U+2029 PARAGRAPH SEPARATOR
-	];
-
-	/**
 	 * Returns the JSON representation of a value.
 	 *
 	 * @note Empty arrays are encoded as numeric arrays, not as objects, so cast any associative
@@ -107,42 +88,33 @@ class FormatJson {
 	 *
 	 * @param mixed $value The value to encode. Can be any type except a resource.
 	 * @param string|bool $pretty If a string, add non-significant whitespace to improve
-	 *   readability, using that string for indentation. If true, use the default indent
-	 *   string (four spaces).
+	 *   readability, using that string for indentation (must consist only of whitespace
+	 *   characters). If true, use the default indent string (four spaces).
 	 * @param int $escaping Bitfield consisting of _OK class constants
 	 * @return string|false String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
-		if ( !is_string( $pretty ) ) {
-			$pretty = $pretty ? '    ' : false;
-		}
-
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
 		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
 		// escaping negatively impacts the human readability of URLs and similar strings.
 		$options = JSON_UNESCAPED_SLASHES;
-		$options |= $pretty !== false ? JSON_PRETTY_PRINT : 0;
-		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
-		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
-		$json = json_encode( $value, $options );
-		if ( $json === false ) {
-			return false;
-		}
-
-		if ( $pretty !== false && $pretty !== '    ' ) {
-			// Change the four-space indent to a tab indent
-			$json = str_replace( "\n    ", "\n\t", $json );
-			while ( strpos( $json, "\t    " ) !== false ) {
-				$json = str_replace( "\t    ", "\t\t", $json );
-			}
-
-			if ( $pretty !== "\t" ) {
-				// Change the tab indent to the provided indent
-				$json = str_replace( "\t", $pretty, $json );
-			}
+		if ( $pretty || is_string( $pretty ) ) {
+			$options |= JSON_PRETTY_PRINT;
 		}
 		if ( $escaping & self::UTF8_OK ) {
-			$json = str_replace( self::BAD_CHARS, self::BAD_CHARS_ESCAPED, $json );
+			$options |= JSON_UNESCAPED_UNICODE;
+		}
+		if ( !( $escaping & self::XMLMETA_OK ) ) {
+			$options |= JSON_HEX_TAG | JSON_HEX_AMP;
+		}
+		$json = json_encode( $value, $options );
+
+		if ( is_string( $pretty ) && $pretty !== '    ' && $json !== false ) {
+			// Change the four-space indent to the provided indent.
+			// The regex matches four spaces either at the start of a line or immediately
+			// after the previous match. $pretty should contain only whitespace characters,
+			// so there should be no need to call StringUtils::escapeRegexReplacement().
+			$json = preg_replace( '/ {4}|.*+\n\K {4}/A', $pretty, $json );
 		}
 
 		return $json;
