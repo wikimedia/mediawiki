@@ -19,6 +19,9 @@ Some specific notes for MediaWiki 1.37 upgrades are below:
 For notes on 1.36.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.37 ===
+* (T242768) The PasswordCannotMatchUsername password policy has been removed,
+  please use PasswordCannotBeSubstringInUsername instead. If you have not
+  customised your password policies, there will be nothing to do here.
 * …
 
 ==== New configuration ====

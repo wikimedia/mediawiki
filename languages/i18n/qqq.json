@@ -4617,7 +4617,6 @@
 	"passwordpolicies-policy-displaywithflags": "{{optional}}\nParameters:\n* $1 - the text from the \"passwordpolicies-policy-...\" messages, i.e. {{msg-mw|passwordpolicies-policy-minimalpasswordlength}}\n* $2 - the name of this password policy\n* $3 - comma-separated list of the text from the \"passwordpolicies-policyflag-...\" messages, e.g. {{msg-mw|passwordpolicies-policyflag-forcechange}}",
 	"passwordpolicies-policy-minimalpasswordlength": "Password policy that enforces a minimum number of characters a password must be. $1 - minimum number of characters that a password can be",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Password policy that enforces a minimum number of characters a password must be to be able to login to the wiki. $1 - minimum number of characters that a password can be to be able to login",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Password policy that enforces that the password of the account cannot be the same as the username",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Password policy that enforces that the password of the account cannot be a substring within the username",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Password policy that enforces that passwords are not on a list of default passwords (often previously used during MediaWiki automated testing)",
 	"passwordpolicies-policy-maximalpasswordlength": "Password policy that enforces a maximum number of characters a password must be. $1 - maximum number of characters that a password can be",

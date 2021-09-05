@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\CommonPasswords\CommonPasswords;
 
@@ -81,25 +80,6 @@ class PasswordPolicyChecks {
 		$status = Status::newGood();
 		if ( $policyVal < strlen( $password ) ) {
 			$status->fatal( 'passwordtoolong', $policyVal );
-		}
-		return $status;
-	}
-
-	/**
-	 * Check if username and password are a (case-insensitive) match.
-	 * @param bool $policyVal true to force compliance.
-	 * @param UserIdentity $user
-	 * @param string $password
-	 * @return Status error if username and password match, and policy is true
-	 */
-	public static function checkPasswordCannotMatchUsername( $policyVal, UserIdentity $user, $password ) {
-		$status = Status::newGood();
-		$username = $user->getName();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if (
-			$policyVal && hash_equals( $contLang->lc( $username ), $contLang->lc( $password ) )
-		) {
-			$status->error( 'password-name-match' );
 		}
 		return $status;
 	}
