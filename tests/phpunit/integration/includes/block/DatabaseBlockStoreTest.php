@@ -5,7 +5,6 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Psr\Log\NullLogger;
 
@@ -56,7 +55,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// Most tests need read only to be false
 		$readOnlyMode = $this->getDummyReadOnlyMode( false );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$defaultConstructorArgs = [
 			'serviceOptions' => new ServiceOptions(
 				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
@@ -116,7 +115,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $autoblock->isUsertalkEditAllowed(), $block->isUsertalkEditAllowed() );
 		$this->assertSame( $autoblock->isSitewide(), $block->isSitewide() );
 
-		$restrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		$restrictionStore = $this->getServiceContainer()->getBlockRestrictionStore();
 		$this->assertTrue(
 			$restrictionStore->equals(
 				$autoblock->getRestrictions(),

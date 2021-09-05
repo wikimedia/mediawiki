@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -53,7 +52,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 			$conds['rev_id'] = $filterIds;
 		}
 
-		$revQuery = MediaWikiServices::getInstance()
+		$revQuery = $this->getServiceContainer()
 			->getRevisionStore()
 			->getQueryInfo( [ 'page', 'user' ] );
 
@@ -87,7 +86,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$wikiPage = $this->getExistingTestPage( __METHOD__ );
 		$currentRevId = $wikiPage->getRevisionRecord()->getId();
 
-		$revQuery = MediaWikiServices::getInstance()
+		$revQuery = $this->getServiceContainer()
 			->getRevisionStore()
 			->getQueryInfo( [ 'page', 'user' ] );
 		$row = $this->db->selectRow(
