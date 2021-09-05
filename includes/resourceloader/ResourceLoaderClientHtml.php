@@ -395,7 +395,6 @@ JAVASCRIPT;
 		sort( $modules );
 
 		if ( $mainContext->getDebug() && count( $modules ) > 1 ) {
-			$chunks = [];
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {
 				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery, $nonce );

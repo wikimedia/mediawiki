@@ -729,7 +729,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						$t = $lang->userTime( $emailTimestamp, $displayUser );
 						$emailauthenticated = $context->msg( 'emailauthenticated',
 							$time, $d, $t )->parse() . '<br />';
-						$disableEmailPrefs = false;
 						$emailauthenticationclass = 'mw-email-authenticated';
 					} else {
 						$disableEmailPrefs = true;

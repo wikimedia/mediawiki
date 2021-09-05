@@ -196,7 +196,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$casToken = $res['cas'];
 			} else {
 				$result = false;
-				$casToken = null;
 			}
 		} else {
 			$result = $client->get( $routeKey );
