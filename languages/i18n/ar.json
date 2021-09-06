@@ -2986,6 +2986,7 @@
 	"tooltip-search": "ابحث في {{SITENAME}}",
 	"tooltip-search-go": "اذهب إلى صفحة بالاسم نفسه إن وجدت",
 	"tooltip-search-fulltext": "ابحث في الصفحات عن هذا النص",
+	"tooltip-p-cactions": "المزيد من الخيارات",
 	"tooltip-p-logo": "زُر الصفحة الرئيسية",
 	"tooltip-p-personal": "قائمة المستخدم",
 	"tooltip-n-mainpage": "زر الصفحة الرئيسية",
