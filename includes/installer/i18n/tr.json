@@ -297,8 +297,11 @@
 	"config-install-updates": "Gereksiz güncellemeleri çalıştırmayı önle",
 	"config-install-updates-failed": "<strong>Hata:</strong> Güncelleme anahtarlarını tablolara ekleme şu hatayla başarısız oldu: $1",
 	"config-install-sysop": "Hizmetli kullanıcı hesabı oluşturma",
-	"config-install-subscribe-fail": "mediawiki-announce abone olunamıyor[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
+	"config-install-subscribe-fail": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]'a abone olunamıyor: $1",
 	"config-install-subscribe-notpossible": "cURL yüklü değil ve <code>allow_url_fopen</code> kullanılamaz.",
+	"config-install-subscribe-alreadysubscribed": "mediawiki-announce'a zaten abone oldunuz. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ Abonelik tercihlerinizi görüntüleyin ya da değiştirin].",
+	"config-install-subscribe-alreadypending": "mediawiki-announce'a abonelik isteği zaten gönderildi. Lütfen daha önce gönderilen onay e-postasına cevap verin.",
+	"config-install-subscribe-possiblefail": "mediawiki-announce'a abonelik isteğiniz onaylanmamış olabilir. Eğer birkaç dakika içinde onay e-postası almazsanız, [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] adresine giderek tekrar istek gönderin.",
 	"config-install-mainpage": "Varsayılan içerik ile anasayfa oluşturma",
 	"config-install-mainpage-exists": "Ana sayfa zaten var, atlanıyor",
 	"config-install-extension-tables": "Uzantılar için etkinleştirilmiş tablolar oluşturma",
@@ -318,5 +321,5 @@
 	"config-extension-not-found": "\"$1\" uzantısı için kayıt dosyası bulunamadı",
 	"config-extension-dependency": "\"$1\" uzantısı kurulurken bir bağımlılık hatası oluştu: $2",
 	"mainpagetext": "<strong>MediaWiki başarı ile kuruldu.</strong>",
-	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrenin]"
+	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki sürüm e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Diliniz için MediaWiki'yi yerelleştirin]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Vikinizde spam ile nasıl savaşılacağını öğrenin]"
 }
