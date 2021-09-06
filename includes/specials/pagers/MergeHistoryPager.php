@@ -49,21 +49,21 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param SpecialMergeHistory $form
-	 * @param array $conds
-	 * @param PageIdentity $source
-	 * @param PageIdentity $dest
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
+	 * @param array $conds
+	 * @param PageIdentity $source
+	 * @param PageIdentity $dest
 	 */
 	public function __construct(
 		SpecialMergeHistory $form,
-		$conds,
-		PageIdentity $source,
-		PageIdentity $dest,
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		$conds,
+		PageIdentity $source,
+		PageIdentity $dest
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;

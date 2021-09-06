@@ -56,29 +56,29 @@ class ActiveUsersPager extends UsersPager {
 	private $excludegroups;
 
 	/**
-	 * @param IContextSource|null $context
-	 * @param FormOptions $opts
-	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param IContextSource $context
 	 * @param HookContainer $hookContainer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
+	 * @param FormOptions $opts
 	 */
 	public function __construct(
-		?IContextSource $context,
-		FormOptions $opts,
-		LinkBatchFactory $linkBatchFactory,
+		IContextSource $context,
 		HookContainer $hookContainer,
+		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		FormOptions $opts
 	) {
 		parent::__construct(
 			$context,
-			null,
-			null,
-			$linkBatchFactory,
 			$hookContainer,
+			$linkBatchFactory,
 			$loadBalancer,
-			$userGroupManager
+			$userGroupManager,
+			null,
+			null
 		);
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );

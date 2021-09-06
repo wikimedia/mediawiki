@@ -31,11 +31,11 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class SpecialAllMessages extends SpecialPage {
 
-	/** @var LocalisationCache */
-	private $localisationCache;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
+
+	/** @var LocalisationCache */
+	private $localisationCache;
 
 	/**
 	 * @param LocalisationCache $localisationCache
@@ -82,11 +82,11 @@ class SpecialAllMessages extends SpecialPage {
 
 		$pager = new AllMessagesTablePager(
 			$this->getContext(),
-			$opts,
-			$this->getLinkRenderer(),
 			$this->getContentLanguage(),
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
 			$this->localisationCache,
-			$this->loadBalancer
+			$opts
 		);
 
 		$formDescriptor = [

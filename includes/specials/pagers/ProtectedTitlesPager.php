@@ -48,25 +48,25 @@ class ProtectedTitlesPager extends AlphabeticPager {
 
 	/**
 	 * @param SpecialProtectedtitles $form
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 * @param array $conds
 	 * @param string|null $type
 	 * @param string|null $level
 	 * @param int|null $namespace
 	 * @param string|null $sizetype
 	 * @param int|null $size
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
-		$form,
+		SpecialProtectedtitles $form,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
 		$conds,
 		$type,
 		$level,
 		$namespace,
 		$sizetype,
-		$size,
-		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		$size
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );

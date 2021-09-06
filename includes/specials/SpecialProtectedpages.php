@@ -90,7 +90,13 @@ class SpecialProtectedpages extends SpecialPage {
 		$noRedirect = in_array( 'noredirect', $filters );
 
 		$pager = new ProtectedPagesPager(
-			$this,
+			$this->getContext(),
+			$this->commentStore,
+			$this->linkBatchFactory,
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$this->rowCommentFormatter,
+			$this->userCache,
 			[],
 			$type,
 			$level,
@@ -99,13 +105,7 @@ class SpecialProtectedpages extends SpecialPage {
 			$size,
 			$indefOnly,
 			$cascadeOnly,
-			$noRedirect,
-			$this->getLinkRenderer(),
-			$this->linkBatchFactory,
-			$this->loadBalancer,
-			$this->commentStore,
-			$this->userCache,
-			$this->rowCommentFormatter
+			$noRedirect
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(

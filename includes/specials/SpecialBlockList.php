@@ -247,16 +247,17 @@ class SpecialBlockList extends SpecialPage {
 		}
 
 		return new BlockListPager(
-			$this,
-			$conds,
-			$this->linkBatchFactory,
-			$this->blockRestrictionStore,
-			$this->loadBalancer,
-			$this->getSpecialPageFactory(),
-			$this->commentStore,
-			$this->blockUtils,
+			$this->getContext(),
 			$this->blockActionInfo,
-			$this->rowCommentFormatter
+			$this->blockRestrictionStore,
+			$this->blockUtils,
+			$this->commentStore,
+			$this->linkBatchFactory,
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$this->rowCommentFormatter,
+			$this->getSpecialPageFactory(),
+			$conds
 		);
 	}
 

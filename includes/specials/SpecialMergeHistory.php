@@ -226,12 +226,12 @@ class SpecialMergeHistory extends SpecialPage {
 		# List all stored revisions
 		$revisions = new MergeHistoryPager(
 			$this,
-			[],
-			$this->mTargetObj,
-			$this->mDestObj,
 			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->revisionStore
+			$this->revisionStore,
+			[],
+			$this->mTargetObj,
+			$this->mDestObj
 		);
 		$haveRevisions = $revisions->getNumRows() > 0;
 

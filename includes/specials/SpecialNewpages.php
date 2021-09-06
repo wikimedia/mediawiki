@@ -221,15 +221,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$out->setFeedAppendQuery( wfArrayToCgi( $allValues ) );
 		}
 
-		$pager = new NewPagesPager(
-			$this,
-			$this->opts,
-			$this->linkBatchFactory,
-			$this->getHookContainer(),
-			$this->groupPermissionsLookup,
-			$this->loadBalancer,
-			$this->namespaceInfo
-		);
+		$pager = $this->getNewPagesPager();
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
 
@@ -530,6 +522,18 @@ class SpecialNewpages extends IncludableSpecialPage {
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
 
+	private function getNewPagesPager() {
+		return new NewPagesPager(
+			$this,
+			$this->groupPermissionsLookup,
+			$this->getHookContainer(),
+			$this->linkBatchFactory,
+			$this->loadBalancer,
+			$this->namespaceInfo,
+			$this->opts
+		);
+	}
+
 	/**
 	 * Should a specific result row provide "patrollable" links?
 	 *
@@ -565,15 +569,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getPageTitle()->getFullURL()
 		);
 
-		$pager = new NewPagesPager(
-			$this,
-			$this->opts,
-			$this->linkBatchFactory,
-			$this->getHookContainer(),
-			$this->groupPermissionsLookup,
-			$this->loadBalancer,
-			$this->namespaceInfo
-		);
+		$pager = $this->getNewPagesPager();
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
 

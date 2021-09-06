@@ -127,11 +127,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		$pager = new NewFilesPager(
 			$context,
-			$opts,
-			$this->getLinkRenderer(),
 			$this->groupPermissionsLookup,
+			$this->linkBatchFactory,
+			$this->getLinkRenderer(),
 			$this->loadBalancer,
-			$this->linkBatchFactory
+			$opts
 		);
 
 		$out->addHTML( $pager->getBody() );

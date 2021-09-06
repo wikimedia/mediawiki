@@ -50,11 +50,11 @@ class ImageListPager extends TablePager {
 
 	protected $mTableName = 'image';
 
-	/** @var LocalRepo */
-	private $localRepo;
-
 	/** @var CommentStore */
 	private $commentStore;
+
+	/** @var LocalRepo */
+	private $localRepo;
 
 	/** @var UserCache */
 	private $userCache;
@@ -70,29 +70,29 @@ class ImageListPager extends TablePager {
 
 	/**
 	 * @param IContextSource $context
+	 * @param CommentStore $commentStore
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RepoGroup $repoGroup
+	 * @param UserCache $userCache
+	 * @param UserNameUtils $userNameUtils
 	 * @param string $userName
 	 * @param string $search
 	 * @param bool $including
 	 * @param bool $showAll
-	 * @param LinkRenderer $linkRenderer
-	 * @param RepoGroup $repoGroup
-	 * @param ILoadBalancer $loadBalancer
-	 * @param CommentStore $commentStore
-	 * @param UserCache $userCache
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		IContextSource $context,
+		CommentStore $commentStore,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RepoGroup $repoGroup,
+		UserCache $userCache,
+		UserNameUtils $userNameUtils,
 		$userName,
 		$search,
 		$including,
-		$showAll,
-		LinkRenderer $linkRenderer,
-		RepoGroup $repoGroup,
-		ILoadBalancer $loadBalancer,
-		CommentStore $commentStore,
-		UserCache $userCache,
-		UserNameUtils $userNameUtils
+		$showAll
 	) {
 		$this->setContext( $context );
 
@@ -129,8 +129,8 @@ class ImageListPager extends TablePager {
 		$this->mDb = $dbr;
 
 		parent::__construct( $context, $linkRenderer );
-		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->commentStore = $commentStore;
+		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->userCache = $userCache;
 	}
 

@@ -63,37 +63,35 @@ class UsersPager extends AlphabeticPager {
 	/** @var string */
 	protected $requestedUser;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
 	/** @var HookRunner */
 	private $hookRunner;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
 	/**
-	 * @param IContextSource|null $context
+	 * @param IContextSource $context
+	 * @param HookContainer $hookContainer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserGroupManager $userGroupManager
 	 * @param string|null $par
 	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
-	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
-		?IContextSource $context,
-		$par,
-		$including,
-		LinkBatchFactory $linkBatchFactory,
+		IContextSource $context,
 		HookContainer $hookContainer,
+		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		$par,
+		$including
 	) {
-		if ( $context ) {
-			$this->setContext( $context );
-		}
+		$this->setContext( $context );
 
 		$request = $this->getRequest();
 		$par = $par ?? '';
@@ -137,9 +135,9 @@ class UsersPager extends AlphabeticPager {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct();
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userGroupManager = $userGroupManager;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/**

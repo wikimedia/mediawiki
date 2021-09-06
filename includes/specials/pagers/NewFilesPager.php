@@ -47,19 +47,19 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	/**
 	 * @param IContextSource $context
-	 * @param FormOptions $opts
-	 * @param LinkRenderer $linkRenderer
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param FormOptions $opts
 	 */
 	public function __construct(
 		IContextSource $context,
-		FormOptions $opts,
-		LinkRenderer $linkRenderer,
 		GroupPermissionsLookup $groupPermissionsLookup,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );

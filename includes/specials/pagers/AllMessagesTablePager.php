@@ -67,20 +67,20 @@ class AllMessagesTablePager extends TablePager {
 	private $localisationCache;
 
 	/**
-	 * @param IContextSource|null $context
-	 * @param FormOptions $opts
-	 * @param LinkRenderer $linkRenderer
+	 * @param IContextSource $context
 	 * @param Language $contentLanguage
-	 * @param LocalisationCache $localisationCache
+	 * @param LinkRenderer $linkRenderer
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LocalisationCache $localisationCache
+	 * @param FormOptions $opts
 	 */
 	public function __construct(
-		?IContextSource $context,
-		FormOptions $opts,
-		LinkRenderer $linkRenderer,
+		IContextSource $context,
 		Language $contentLanguage,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
 		LocalisationCache $localisationCache,
-		ILoadBalancer $loadBalancer
+		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
