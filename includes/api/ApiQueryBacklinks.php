@@ -220,7 +220,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private function runSecondQuery( $resultPageSet = null ) {
 		$db = $this->getDB();
-		$this->addTables( [ 'page', $this->bl_table ] );
+		$this->addTables( [ $this->bl_table, 'page' ] );
 		$this->addWhere( "{$this->bl_from}=page_id" );
 
 		if ( $resultPageSet === null ) {
@@ -294,6 +294,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$orderBy[] = $this->bl_from . $sort;
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addOption( 'USE INDEX', [ 'page' => 'PRIMARY' ] );
+		// T290379: Avoid MariaDB deciding to scan all of `page`.
+		$this->addOption( 'STRAIGHT_JOIN' );
 
 		$res = $this->select( __METHOD__ );
 
