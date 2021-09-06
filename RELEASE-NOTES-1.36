@@ -28,6 +28,8 @@ THIS IS NOT A RELEASE YET
 * (T290776) Fix $phase check in OutputHandler.
 * The wikimedia/parsoid library has been upgraded from v0.13.0 to v0.13.1.
 * (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
+* (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
+  table scan.
 
 == MediaWiki 1.36.1 ==
 
