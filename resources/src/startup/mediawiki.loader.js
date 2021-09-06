@@ -1810,7 +1810,9 @@
 		key: $VARS.storeKey,
 
 		/**
-		 * A string containing various factors on which to the module cache should vary.
+		 * A string containing various factors by which the module cache should vary.
+		 *
+		 * Defined by ResourceLoaderStartupModule::getStoreVary() in PHP.
 		 *
 		 * @property {string}
 		 */
@@ -1821,77 +1823,78 @@
 		 *
 		 * Retrieves store from localStorage and (if successfully retrieved) decoding
 		 * the stored JSON value to a plain object.
-		 *
-		 * The try / catch block is used for JSON & localStorage feature detection.
-		 * See the in-line documentation for Modernizr's localStorage feature detection
-		 * code for a full account of why we need a try / catch:
-		 * <https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796>.
 		 */
 		init: function () {
-			if ( this.enabled !== null ) {
-				// Init already ran
-				return;
-			}
-
-			if (
-				!$VARS.storeEnabled ||
-
-				// Disabled because localStorage quotas are tight and (in Firefox's case)
-				// shared by multiple origins.
-				// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-				/Firefox/.test( navigator.userAgent )
-			) {
-				// Clear any previous store to free up space. (T66721)
-				this.clear();
+			// Init only once per page
+			if ( this.enabled === null ) {
 				this.enabled = false;
-				return;
-			}
+				if (
+					!$VARS.storeEnabled ||
 
-			var raw;
+					// Disabled because localStorage quotas are tight and (in Firefox's case)
+					// shared by multiple origins.
+					// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
+					/Firefox/.test( navigator.userAgent )
+				) {
+					// Clear any previous store to free up space. (T66721)
+					this.clear();
+				} else {
+					this.load();
+				}
+			}
+		},
+
+		/**
+		 * Internal helper for init(). Separated for ease of testing.
+		 */
+		load: function () {
+			// These are the scenarios to think about:
+			//
+			// 1. localStorage is disallowed by the browser.
+			//    This means `localStorage.getItem` throws.
+			//    The store stays disabled.
+			//
+			// 2. localStorage did not contain our store key.
+			//    This usually means the browser has a cold cache for this site,
+			//    and thus localStorage.getItem returns null.
+			//    The store will be enabled, and `items` starts fresh.
+			//
+			// 3. localStorage contains parseable data, but it's not usable.
+			//    This means the data is too old, or is not valid for mw.loader.store.vary
+			//    (e.g. user switched skin or language).
+			//    The store will be enabled, and `items` starts fresh.
+			//
+			// 4. localStorage contains invalid JSON data.
+			//    This means the data was corrupted, and `JSON.parse` throws.
+			//    The store will be enabled, and `items` starts fresh.
+			//
+			// 5. localStorage contains valid and usable JSON.
+			//    This means we have a warm cache from a previous visit.
+			//    The store will be enabled, and `items` starts with the stored data.
 
 			try {
-				// This a string we stored, or `null` if the key does not (yet) exist.
-				raw = localStorage.getItem( this.key );
-				// If we get here, localStorage is available; mark enabled
+				var raw = localStorage.getItem( this.key );
+
+				// If we make it here, localStorage is enabled and available.
+				// The rest of the function may fail, but that only affects what we load from
+				// the cache. We'll still enable the store to allow storing new modules.
 				this.enabled = true;
-				// If null, JSON.parse() will cast to string and re-parse, still null.
+
+				// If getItem returns null, JSON.parse() will cast to string and re-parse, still null.
 				var data = JSON.parse( raw );
 				if ( data &&
-					typeof data.items === 'object' &&
 					data.vary === this.vary &&
+					data.items &&
 					// Only use if it's been less than 30 days since the data was written
 					// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
 					Date.now() < ( data.asOf * 1e7 ) + 259e7
 				) {
 					// The data is not corrupt, matches our vary context, and has not expired.
 					this.items = data.items;
-					return;
 				}
 			} catch ( e ) {
-				// Perhaps localStorage was disabled by the user, or got corrupted.
-				// See point 3 and 4 below. (T195647)
-			}
-
-			// If we get here, one of four things happened:
-			//
-			// 1. localStorage did not contain our store key.
-			//    This means `raw` is `null`, and we're on a fresh page view (cold cache).
-			//    The store was enabled, and `items` starts fresh.
-			//
-			// 2. localStorage contained parseable data under our store key,
-			//    but it's not applicable to our current context (see #vary).
-			//    The store was enabled, and `items` starts fresh.
-			//
-			// 3. JSON.parse threw (localStorage contained corrupt data).
-			//    This means `raw` contains a string.
-			//    The store was enabled, and `items` starts fresh.
-			//
-			// 4. localStorage threw (disabled or otherwise unavailable).
-			//    This means `raw` was never assigned.
-			//    We will disable the store below.
-			if ( raw === undefined ) {
-				// localStorage failed; disable store
-				this.enabled = false;
+				// Ignore error from localStorage or JSON.parse.
+				// Don't print any warning (T195647).
 			}
 		},
 
