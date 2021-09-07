@@ -18,9 +18,7 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 	}
 
 	protected function tearDown(): void {
-		if ( is_file( $this->fileName ) || is_link( $this->fileName ) ) {
-			unlink( $this->fileName );
-		}
+		@unlink( $this->fileName );
 		parent::tearDown();
 	}
 
