@@ -146,18 +146,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testConstructionWithPageThatCannotExist( $ns, $text ) {
 		$title = Title::makeTitle( $ns, $text );
-
-		// NOTE: once WikiPage becomes a ProperPageIdentity, the constructor should throw!
-		$this->filterDeprecated( '/WikiPage constructed on a Title that cannot exist as a page/' );
-		$this->filterDeprecated( '/Accessing WikiPage that cannot exist as a page/' );
-		$page = new WikiPage( $title );
-
-		$this->assertFalse( $page->canExist() );
-		$this->assertFalse( $page->exists() );
-		$this->assertNull( $page->getRevisionRecord() );
-
-		$this->expectException( RuntimeException::class );
-		$page->getId();
+		$this->expectException( InvalidArgumentException::class );
+		new WikiPage( $title );
 	}
 
 	/**
