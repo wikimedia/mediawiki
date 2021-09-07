@@ -1154,7 +1154,7 @@
 	"prefs-help-watchlist-token2": "Dies ist der geheime Schlüssel zum Webfeed deiner Beobachtungsliste.\nJeder, der ihn kennt, kann deine Beobachtungsliste lesen. Teile ihn deshalb nicht Anderen mit.\nSofern notwendig, [[Special:ResetTokens|kannst du ihn zurücksetzen]].",
 	"prefs-help-tokenmanagement": "Du kannst den geheimen Schlüssel für dein Benutzerkonto ansehen und zurücksetzen, der auf den Webfeed deiner Beobachtungsliste zugreifen kann. Jeder, der den Schlüssel kennt, kann deine Beobachtungsliste lesen. Deshalb teile ihn nicht anderen mit.",
 	"prefs-user-downloaddata-label": "Benutzerdaten:",
-	"prefs-user-downloaddata-info": "Meine Benutzerdaten dieses Projekts",
+	"prefs-user-downloaddata-info": "ansehen",
 	"savedprefs": "Deine Einstellungen wurden gespeichert.",
 	"savedrights": "Die Benutzergruppen von {{GENDER:$1|$1}} wurden gespeichert.",
 	"timezonelegend": "Zeitzone:",
