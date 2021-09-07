@@ -12,12 +12,12 @@ namespace MediaWiki\Page;
  *
  * @since 1.36
  */
-interface ExistingPageRecord extends PageRecord, ProperPageIdentity {
+interface ExistingPageRecord extends PageRecord {
 
 	/**
 	 * Always true.
 	 *
-	 * @return bool
+	 * @return true
 	 */
 	public function exists(): bool;
 }
