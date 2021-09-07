@@ -197,7 +197,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
 			self::ARG0_KEYMAP,
-			self::RES_KEYMAP,
+			self::RES_NONKEY,
 			func_get_args()
 		);
 	}
