@@ -585,9 +585,7 @@
 				return (
 					$wpUploadFile.length && $wpUploadFile.get( 0 ).files.length !== 0
 				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
-			},
-
-			message: mw.msg( 'editwarning-warning' )
+			}
 		} );
 
 		$uploadForm.on( 'submit', function () {
