@@ -5254,7 +5254,6 @@ $wgCentralIdLookupProvider = 'local';
  *		as part of the login workflow, regardless if it is correct.
  *	- MaximalPasswordLength - maximum length password a user is allowed
  *		to attempt. Prevents DoS attacks with pbkdf2.
- *	- PasswordCannotMatchUsername - Password cannot match the username.
  *	- PasswordCannotBeSubstringInUsername - Password cannot be a substring
  *		(contained within) the username.
  *	- PasswordCannotMatchDefaults - Username/password combination cannot
@@ -5294,7 +5293,6 @@ $wgPasswordPolicy = [
 		],
 		'default' => [
 			'MinimalPasswordLength' => [ 'value' => 1, 'suggestChangeOnLogin' => true ],
-			'PasswordCannotMatchUsername' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'PasswordCannotBeSubstringInUsername' => [
 				'value' => true,
 				'suggestChangeOnLogin' => true
@@ -5307,7 +5305,6 @@ $wgPasswordPolicy = [
 	'checks' => [
 		'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
 		'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
-		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotBeSubstringInUsername' =>
 			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
 		'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',

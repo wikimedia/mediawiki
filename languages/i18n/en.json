@@ -4392,7 +4392,6 @@
 	"passwordpolicies-policy-displaywithflags": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span> <span class=\"passwordpolicies-policy-flags\">($3)</span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Password must be at least $1 {{PLURAL:$1|character|characters}} long",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Password must be at least $1 {{PLURAL:$1|character|characters}} long to be able to login",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Password cannot be the same as username",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Password cannot be a substring within the username",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Password cannot match a specific list of default passwords",
 	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
