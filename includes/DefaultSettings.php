@@ -7481,8 +7481,17 @@ $wgDeprecationReleaseLimit = false;
  * - 'output' (`string|string[]`):  ProfilerOutput subclass or subclasess to use.
  *   Default: `[]`.
  *
- * The output classes available in MediaWiki core are:
- * ProfilerOutputText, ProfilerOutputStats, and ProfilerOutputDump.
+ * The options array is passed in its entirety to the specified
+ * Profiler `class`. Check individual Profiler subclasses for additional
+ * options that may be available.
+ *
+ * Profiler subclasses available in MediaWiki core:
+ *
+ * - ProfilerXhprof: Based on XHProf or Tideways.
+ * - ProfilerExcimer: Based on Excimer.
+ * - ProfilerSectionOnly
+ *
+ * Profiler output classes available in MediaWiki:
  *
  * - ProfilerOutputText: outputs profiling data in the web page body as
  *   a comment.  You can make the profiling data in HTML render visibly
@@ -7499,18 +7508,22 @@ $wgDeprecationReleaseLimit = false;
  * Examples:
  *
  * @code
- *  $wgProfiler['class'] = ProfilerXhprof::class;
- *  $wgProfiler['output'] = ProfilerOutputText::class;
+ * $wgProfiler = [
+ *   'class' => ProfilerXhprof::class,
+ *   'output' => ProfilerOutputText::class,
+ * ];
  * @endcode
  *
  * @code
- *   $wgProfiler['class'] = ProfilerXhprof:class;
- *   $wgProfiler['output'] = [ ProfilerOutputText::class ];
- *   $wgProfiler['sampling'] = 50; // one every 50 requests
+ * $wgProfiler = [
+ *   'class' => ProfilerXhprof::class,
+ *   'output' => [ ProfilerOutputText::class ],
+ *   'sampling' => 50, // one in every 50 requests
+ * ];
  * @endcode
  *
  * For performance, the profiler is always disabled for CLI scripts as they
- * could be long running and the data would accumulate. Use the '--profiler'
+ * could be long running and the data would accumulate. Use the `--profiler`
  * parameter of maintenance scripts to override this.
  *
  * @since 1.17.0
