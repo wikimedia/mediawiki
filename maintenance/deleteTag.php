@@ -30,8 +30,6 @@ class DeleteTag extends Maintenance {
 			$tagId = $defStore->getId( $tag );
 		} catch ( NameTableAccessException $ex ) {
 			$this->fatalError( "Tag '$tag' not found" );
-			// To make analyzers happy
-			return;
 		}
 
 		$status = ChangeTags::canDeleteTag( $tag, null, ChangeTags::BYPASS_MAX_USAGE_CHECK );
