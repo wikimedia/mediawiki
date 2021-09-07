@@ -1124,7 +1124,9 @@ $wgFileBlacklist = [
  */
 $wgMimeTypeBlacklist = [
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'text/html', 'text/javascript', 'text/x-javascript', 'application/x-shellscript',
+	'text/html',
+	# Similarly with JavaScript itself
+	'application/javascript', 'text/javascript', 'text/x-javascript', 'application/x-shellscript',
 	# PHP scripts may execute arbitrary code on the server
 	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers
@@ -9423,14 +9425,6 @@ $wgAjaxUploadDestCheck = true;
  * Enable previewing licences via AJAX.
  */
 $wgAjaxLicensePreview = true;
-
-/**
- * Have clients send edits to be prepared when filling in edit summaries.
- * This gives the server a head start on the expensive parsing operation.
- *
- * @deprecated Since 1.36; disabling this feature will be removed in the next release.
- */
-$wgAjaxEditStash = true;
 
 /**
  * Settings for incoming cross-site AJAX requests:

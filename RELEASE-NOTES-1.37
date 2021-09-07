@@ -57,6 +57,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgIncludejQueryMigrate Default value for this configuration has changed
   from true to false. This may break gadgets that depended on methods removed
   in jQuery 3. See T280944 for more information.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
 * …
 
 ==== Removed configuration ====
@@ -65,6 +67,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgShowSQLErrors, deprecated and non-functional since 1.32.
 * $wgLangObjCacheSize - The LanguageFactory service now always retains
   at most 10 objects in its LRU-cache.
+* (T274695) $wgAjaxEditStash, deprecated in 1.36.
+* …
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
@@ -500,6 +504,8 @@ because of Phabricator reports.
   - RevDelList::reloadFromMaster -> ::reloadFromPrimary()
   - ExternalStoreDB::getMaster -> ::getPrimary()
   - DatabaseMysqlBase::getMasterServerInfo() -> ::getPrimaryServerInfo()
+  - MWExceptionHandler::rollbackMasterChangesAndLog() ->
+      ::rollbackPrimaryChangesAndLog()
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
@@ -721,6 +727,11 @@ because of Phabricator reports.
   - loadRestrictions()
 * User::isAllowUsertalk was hard deprecated. Use User::getBlock and
   AbstractBlock::isUsertalkEditAllowed instead.
+* Classes used by Preprocessor_DOM have been merged with classes used by
+  Preprocessor_Hash, as Preprocessor_DOM was removed in 1.35.
+   - PPDPart has been merged into PPDPart_Hash
+   - PPDStack has been merged into PPDStack_Hash
+   - PPDStackElement has been merged into PPDStackElement_Hash
 * Collation::singleton and ::factory were deprecated, obtain an CollationFactory
   instance from MediaWikiServices instead.
 * …

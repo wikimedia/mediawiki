@@ -101,7 +101,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 				DeferredUpdates::attemptUpdate( $update, $this->lbFactory );
 			} catch ( Exception $e ) {
 				// Try as many updates as possible on the first pass
-				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				MWExceptionHandler::rollbackPrimaryChangesAndLog( $e );
 			}
 		}
 

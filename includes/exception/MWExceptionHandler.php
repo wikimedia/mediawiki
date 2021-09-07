@@ -119,11 +119,11 @@ class MWExceptionHandler {
 	 *
 	 * This method is used to attempt to recover from exceptions
 	 *
-	 * @since 1.23
+	 * @since 1.37
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 */
-	public static function rollbackMasterChangesAndLog(
+	public static function rollbackPrimaryChangesAndLog(
 		Throwable $e,
 		$catcher = self::CAUGHT_BY_OTHER
 	) {
@@ -145,6 +145,19 @@ class MWExceptionHandler {
 		}
 
 		self::logException( $e, $catcher );
+	}
+
+	/**
+	 * @deprecated since 1.37; please use rollbackPrimaryChangesAndLog() instead.
+	 * @param Throwable $e
+	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 */
+	public static function rollbackMasterChangesAndLog(
+		Throwable $e,
+		$catcher = self::CAUGHT_BY_OTHER
+	) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		self::rollbackPrimaryChangesAndLog( $e, $catcher );
 	}
 
 	/**
@@ -182,7 +195,7 @@ class MWExceptionHandler {
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 */
 	public static function handleException( Throwable $e, $catcher = self::CAUGHT_BY_OTHER ) {
-		self::rollbackMasterChangesAndLog( $e, $catcher );
+		self::rollbackPrimaryChangesAndLog( $e, $catcher );
 		self::report( $e );
 	}
 
