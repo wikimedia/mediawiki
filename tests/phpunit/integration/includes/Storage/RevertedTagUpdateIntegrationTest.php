@@ -6,7 +6,6 @@ use ChangeTags;
 use DeferredUpdates;
 use FormatJson;
 use HashConfig;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
 
@@ -280,7 +279,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// simulate the approval of the edit
-		$manager = MediaWikiServices::getInstance()->getRevertedTagUpdateManager();
+		$manager = $this->getServiceContainer()->getRevertedTagUpdateManager();
 		$manager->approveRevertedTagForRevision( $revertRevId );
 
 		// run the job

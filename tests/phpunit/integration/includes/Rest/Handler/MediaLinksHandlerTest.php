@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\MediaLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -24,7 +23,7 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	private function newHandler() {
 		return new MediaLinksHandler(
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			$this->makeMockRepoGroup( [ 'Existing.jpg' ] ),
 			$this->getServiceContainer()->getPageStore()
 		);
