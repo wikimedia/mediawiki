@@ -52,6 +52,10 @@ class ProfilerXhprof extends Profiler {
 	 *    that will be passed to its enable function,
 	 *    such as `XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_NO_BUILTINS`.
 	 *    With Tideways-XHProf, use `TIDEWAYS_XHPROF_FLAGS_*` instead.
+	 *  - bool running: If true, it is assumed that the enable function was already
+	 *    called. The `flags` option is ignored in this case.
+	 *    This exists for use with a custom web entrypoint from which the profiler
+	 *    is started before MediaWiki is included.
 	 *  - array include: If set, only function names matching a pattern in this
 	 *    array will be reported. The pattern strings will be matched using
 	 *    the PHP fnmatch() function.
@@ -65,12 +69,15 @@ class ProfilerXhprof extends Profiler {
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
-		$flags = $params['flags'] ?? 0;
-		$options = isset( $params['exclude'] )
-			? [ 'ignored_functions' => $params['exclude'] ]
-			: [];
+		// Background for the 'running' option at T180183 and T247332.
+		if ( empty( $params['running'] ) ) {
+			$flags = $params['flags'] ?? 0;
+			$options = isset( $params['exclude'] )
+				? [ 'ignored_functions' => $params['exclude'] ]
+				: [];
 
-		Xhprof::enable( $flags, $options );
+			Xhprof::enable( $flags, $options );
+		}
 
 		$this->sprofiler = new SectionProfiler();
 	}
