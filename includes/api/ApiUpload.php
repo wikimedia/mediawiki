@@ -648,31 +648,30 @@ class ApiUpload extends ApiBase {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:
 				$this->dieRecoverableError( [ 'filename-tooshort' ], 'filename' );
-				break;
+				// dieRecoverableError prevents continuation
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->dieRecoverableError(
 					[ ApiMessage::create(
 						'illegal-filename', null, [ 'filename' => $verification['filtered'] ]
 					) ], 'filename'
 				);
-				break;
+				// dieRecoverableError prevents continuation
 			case UploadBase::FILENAME_TOO_LONG:
 				$this->dieRecoverableError( [ 'filename-toolong' ], 'filename' );
-				break;
+				// dieRecoverableError prevents continuation
 			case UploadBase::FILETYPE_MISSING:
 				$this->dieRecoverableError( [ 'filetype-missing' ], 'filename' );
-				break;
+				// dieRecoverableError prevents continuation
 			case UploadBase::WINDOWS_NONASCII_FILENAME:
 				$this->dieRecoverableError( [ 'windows-nonascii-filename' ], 'filename' );
-				break;
 
 			// Unrecoverable errors
 			case UploadBase::EMPTY_FILE:
 				$this->dieWithError( 'empty-file' );
-				break;
+				// dieWithError prevents continuation
 			case UploadBase::FILE_TOO_LARGE:
 				$this->dieWithError( 'file-too-large' );
-				break;
+				// dieWithError prevents continuation
 
 			case UploadBase::FILETYPE_BADTYPE:
 				$extradata = [
@@ -700,7 +699,7 @@ class ApiUpload extends ApiBase {
 				}
 
 				$this->dieWithError( $msg, 'filetype-banned', $extradata );
-				break;
+				// dieWithError prevents continuation
 
 			case UploadBase::VERIFICATION_ERROR:
 				$msg = ApiMessage::create( $verification['details'], 'verification-error' );
@@ -713,16 +712,15 @@ class ApiUpload extends ApiBase {
 				$msg->setApiData( $msg->getApiData() + [ 'details' => $details ] );
 				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$this->dieWithError( $msg );
-				break;
+				// dieWithError prevents continuation
 
 			case UploadBase::HOOK_ABORTED:
 				$msg = $verification['error'] === '' ? 'hookaborted' : $verification['error'];
 				$this->dieWithError( $msg, 'hookaborted', [ 'details' => $verification['error'] ] );
-				break;
+				// dieWithError prevents continuation
 			default:
 				$this->dieWithError( 'apierror-unknownerror-nocode', 'unknown-error',
 					[ 'details' => [ 'code' => $verification['status'] ] ] );
-				break;
 		}
 	}
 

@@ -124,7 +124,6 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	);
 	echo $message;
 	trigger_error( $message, E_USER_ERROR );
-	die( 1 );
 }
 
 HeaderCallback::register();
