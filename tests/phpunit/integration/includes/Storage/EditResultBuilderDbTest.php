@@ -6,7 +6,6 @@ use ChangeTags;
 use CommentStoreComment;
 use IDatabase;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -54,7 +53,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 
@@ -337,14 +336,13 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	 * @return EditResultBuilder
 	 */
 	private function getEditResultBuilder( int $manualRevertSearchRadius = 15 ) {
-		$services = MediaWikiServices::getInstance();
 		$options = new ServiceOptions(
 			EditResultBuilder::CONSTRUCTOR_OPTIONS,
 			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
 		);
 
 		return new EditResultBuilder(
-			$services->getRevisionStore(),
+			$this->getServiceContainer()->getRevisionStore(),
 			ChangeTags::listSoftwareDefinedTags(),
 			$options
 		);

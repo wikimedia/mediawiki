@@ -3,7 +3,6 @@
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -26,7 +25,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->user = $this->getTestUser()->getUser();
 
 		// Prepare factory
-		$this->blockUserFactory = MediaWikiServices::getInstance()->getBlockUserFactory();
+		$this->blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
 	}
 
 	/**

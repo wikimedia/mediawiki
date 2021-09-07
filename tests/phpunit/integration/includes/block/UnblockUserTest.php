@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Block;
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
 use User;
@@ -33,7 +32,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->user = $this->getTestUser()->getUser();
 
 		// Prepare factory
-		$this->unblockUserFactory = MediaWikiServices::getInstance()->getUnblockUserFactory();
+		$this->unblockUserFactory = $this->getServiceContainer()->getUnblockUserFactory();
 	}
 
 	private function convertErrorsArray( $arr ) {
@@ -51,7 +50,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 			'address' => $this->user->getName(),
 			'by' => $performer->getUser()
 		] );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertInstanceOf( DatabaseBlock::class, $this->user->getBlock() );
 		$status = $this->unblockUserFactory->newUnblockUser(
