@@ -2645,7 +2645,6 @@ class EditPage implements IEditObject {
 		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
-			'wgAjaxEditStash' => $config->get( 'AjaxEditStash' ),
 		] );
 
 		// Add whether to use 'save' or 'publish' messages to JavaScript for post-edit, other

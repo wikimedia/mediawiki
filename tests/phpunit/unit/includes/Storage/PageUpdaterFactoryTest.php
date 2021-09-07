@@ -24,7 +24,6 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 			'ArticleCountMethod' => null,
 			'RCWatchCategoryMembership' => null,
 			'PageCreationLog' => null,
-			'AjaxEditStash' => null,
 			'UseAutomaticEditSummaries' => null,
 			'ManualRevertSearchRadius' => null,
 			'UseRCPatrol' => null,

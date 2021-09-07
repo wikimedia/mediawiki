@@ -86,8 +86,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		return $row ? RecentChange::newFromRow( $row ) : null;
 	}
 
-	// TODO: test setAjaxEditStash();
-
 	/**
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 * @covers \WikiPage::newPageUpdater()

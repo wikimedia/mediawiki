@@ -63,7 +63,6 @@ class PageUpdaterFactory {
 		'ArticleCountMethod',
 		'RCWatchCategoryMembership',
 		'PageCreationLog',
-		'AjaxEditStash',
 		'UseAutomaticEditSummaries',
 		'ManualRevertSearchRadius',
 		'UseRCPatrol',
@@ -283,7 +282,6 @@ class PageUpdaterFactory {
 		);
 
 		$pageUpdater->setUsePageCreationLog( $this->options->get( 'PageCreationLog' ) );
-		$pageUpdater->setAjaxEditStash( $this->options->get( 'AjaxEditStash' ) );
 		$pageUpdater->setUseAutomaticEditSummaries(
 			$this->options->get( 'UseAutomaticEditSummaries' )
 		);

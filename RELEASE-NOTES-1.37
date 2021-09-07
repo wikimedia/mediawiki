@@ -67,6 +67,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgShowSQLErrors, deprecated and non-functional since 1.32.
 * $wgLangObjCacheSize - The LanguageFactory service now always retains
   at most 10 objects in its LRU-cache.
+* (T274695) $wgAjaxEditStash, deprecated in 1.36.
+* …
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
