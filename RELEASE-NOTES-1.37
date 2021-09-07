@@ -725,6 +725,11 @@ because of Phabricator reports.
   - loadRestrictions()
 * User::isAllowUsertalk was hard deprecated. Use User::getBlock and
   AbstractBlock::isUsertalkEditAllowed instead.
+* Classes used by Preprocessor_DOM have been merged with classes used by
+  Preprocessor_Hash, as Preprocessor_DOM was removed in 1.35.
+   - PPDPart has been merged into PPDPart_Hash
+   - PPDStack has been merged into PPDStack_Hash
+   - PPDStackElement has been merged into PPDStackElement_Hash
 * Collation::singleton and ::factory were deprecated, obtain an CollationFactory
   instance from MediaWikiServices instead.
 * …
