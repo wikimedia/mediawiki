@@ -23,9 +23,11 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 
 /**
- * Arbitrary section name based PHP profiling. This custom profiler can track
- * code execution that doesn't cleanly map to a function call and thus can't be
- * handled by Xhprof or Excimer. For example, parser invocations or DB queries.
+ * Arbitrary section name based PHP profiling.
+ *
+ * This custom profiler can track code execution that doesn't cleanly map to a
+ * function call and thus can't be handled by ProfilerXhprof or ProfilerExcimer.
+ * For example, parser invocations or DB queries.
  *
  * @since 1.25
  * @ingroup Profiler

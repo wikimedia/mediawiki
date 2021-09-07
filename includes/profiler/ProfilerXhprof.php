@@ -1,5 +1,7 @@
 <?php
 /**
+ * Copyright 2014 Wikimedia Foundation and contributors
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,35 +21,14 @@
  */
 
 /**
- * Profiler wrapper for XHProf extension.
+ * Profiler that captures all function calls from the XHProf PHP extension.
  *
- * @code
- * $wgProfiler['class'] = ProfilerXhprof::class;
- * $wgProfiler['flags'] = XHPROF_FLAGS_NO_BUILTINS;
- * $wgProfiler['output'] = 'text';
- * $wgProfiler['visible'] = true;
- * @endcode
+ * This extension can be installed via PECL or your operating system's package manager.
+ * This also supports the Tideways-XHProf PHP extension, as well as the older
+ * (discontinued) Tideways extension
  *
- * @code
- * $wgProfiler['class'] = ProfilerXhprof::class;
- * $wgProfiler['flags'] = XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_NO_BUILTINS;
- * $wgProfiler['output'] = 'udp';
- * @endcode
- *
- * ProfilerXhprof profiles all functions using the XHProf PHP extenstion. This
- * extension can be installed via PECL or your operating system's package manager.
- *
- * To restrict the functions for which profiling data is collected, you can
- * use either a allow list ($wgProfiler['include']) or a deny list
- * ($wgProfiler['exclude']) containing an array of function names.
- * Shell-style patterns are also accepted.
- *
- * This also supports Tideways-XHProf PHP extension, which is mostly a drop-in
- * replacement for Xhprof (replace XHPROF_FLAGS_* with TIDEWAYS_XHPROF_FLAGS_*),
- * as well as the older (discontinued) Tideways extension (TIDEWAYS_FLAGS_*).
- *
- * @copyright © 2014 Wikimedia Foundation and contributors
  * @ingroup Profiler
+ * @see $wgProfiler
  * @see Xhprof
  * @see https://php.net/xhprof
  * @see https://github.com/tideways/php-xhprof-extension
@@ -65,16 +46,32 @@ class ProfilerXhprof extends Profiler {
 	protected $sprofiler;
 
 	/**
-	 * @param array $params
-	 * @see Xhprof::__construct()
+	 * @see $wgProfiler
+	 * @param array $params Associative array of parameters:
+	 *  - int flags: Bitmask of constants from the Xhprof or Tideways extension
+	 *    that will be passed to its enable function,
+	 *    such as `XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_NO_BUILTINS`.
+	 *    With Tideways-XHProf, use `TIDEWAYS_XHPROF_FLAGS_*` instead.
+	 *  - array include: If set, only function names matching a pattern in this
+	 *    array will be reported. The pattern strings will be matched using
+	 *    the PHP fnmatch() function.
+	 *  - array exclude: If set, function names matching an exact name in this
+	 *    will be skipped over by XHProf. Ignored functions become transparent
+	 *    in the profile. For example, `foo=>ignored=>bar` becomes `foo=>bar`.
+	 *    This option is backed by XHProf's `ignored_functions` option.
+	 *
+	 *    **Note:** The `exclude` option is not supported in Tideways-XHProf.
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
 		$flags = $params['flags'] ?? 0;
 		$options = isset( $params['exclude'] )
-			? [ 'ignored_functions' => $params['exclude'] ] : [];
+			? [ 'ignored_functions' => $params['exclude'] ]
+			: [];
+
 		Xhprof::enable( $flags, $options );
+
 		$this->sprofiler = new SectionProfiler();
 	}
 
