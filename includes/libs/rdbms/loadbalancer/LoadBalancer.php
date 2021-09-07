@@ -1734,7 +1734,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->finalizePrimaryChanges( $fname, $owner );
 	}
 
@@ -1782,7 +1782,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->approvePrimaryChanges( $options, $fname, $owner );
 	}
 
