@@ -328,7 +328,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->commitPrimaryChanges( $fname, $options );
 	}
 
