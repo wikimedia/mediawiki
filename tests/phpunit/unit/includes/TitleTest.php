@@ -224,4 +224,41 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
+	/**
+	 * @covers Title::getFragment
+	 * @covers Title::setFragment
+	 * @covers Title::normalizeFragment
+	 * @dataProvider provideDataForTestSetAndGetFragment
+	 */
+	public function testSetAndGetFragment( string $fragment, $expected ) {
+		$title = Title::makeTitle( NS_MAIN, 'Title' );
+		$title->setFragment( $fragment );
+		$this->assertSame( $expected, $title->getFragment() );
+	}
+
+	public function provideDataForTestSetAndGetFragment() {
+		return [
+			[ '#fragment', 'fragment' ],
+			[ '#fragment_frag', 'fragment frag' ],
+			[ 'fragment', 'fragment' ],
+			[ 'fragment_frag', 'fragment frag' ],
+		];
+	}
+
+	/**
+	 * @covers Title::hasFragment
+	 * @dataProvider provideTitleWithOrWithoutFragments
+	 */
+	public function testHasFragment( Title $title, $expected ) {
+		$this->assertSame( $expected, $title->hasFragment() );
+	}
+
+	public function provideTitleWithOrWithoutFragments() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Title', 'fragment' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Title' ), false ],
+			[ Title::makeTitle( NS_HELP, '' ), false ],
+		];
+	}
+
 }
