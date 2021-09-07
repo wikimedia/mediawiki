@@ -845,7 +845,7 @@ class MediaWiki {
 		try {
 			$this->restInPeace();
 		} catch ( Throwable $e ) {
-			MWExceptionHandler::rollbackMasterChangesAndLog(
+			MWExceptionHandler::rollbackPrimaryChangesAndLog(
 				$e,
 				MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
 			);

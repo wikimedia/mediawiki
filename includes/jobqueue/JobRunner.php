@@ -377,7 +377,7 @@ class JobRunner implements LoggerAwareInterface {
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
 		} catch ( Throwable $e ) {
-			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+			MWExceptionHandler::rollbackPrimaryChangesAndLog( $e );
 			$status = false;
 			$error = get_class( $e ) . ': ' . $e->getMessage();
 			$caught[] = get_class( $e );
