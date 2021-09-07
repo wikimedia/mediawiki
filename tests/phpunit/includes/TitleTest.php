@@ -2061,4 +2061,79 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ Title::newFromText( 'Test', NS_HELP ), '/wiki/edit/Help:Test' ],
 		];
 	}
+
+	/**
+	 * @covers Title::isMainPage
+	 * @covers Title::equals
+	 */
+	public function testIsMainPage() {
+		$this->assertTrue( Title::newMainPage()->isMainPage() );
+	}
+
+	/**
+	 * @covers Title::isMainPage
+	 * @covers Title::equals
+	 * @dataProvider provideMainPageTitles
+	 */
+	public function testIsNotMainPage( Title $title, $expected ) {
+		$this->assertSame( $title->isMainPage(), $expected );
+	}
+
+	public function provideMainPageTitles() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), false ],
+			[ Title::makeTitle( NS_CATEGORY, 'mw:Category' ), false ],
+		];
+	}
+
+	/**
+	 * @covers Title::getPrefixedURL
+	 * @covers Title::prefix
+	 * @dataProvider provideDataForTestGetPrefixedURL
+	 */
+	public function testGetPrefixedURL( Title $title, $expected ) {
+		$actual = $title->getPrefixedURL();
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function provideDataForTestGetPrefixedURL() {
+		return [
+			[ Title::makeTitle( NS_FILE, 'Title' ), 'File:Title' ],
+			[ Title::makeTitle( NS_MEDIA, 'Title' ), 'Media:Title' ],
+			[ Title::makeTitle( NS_CATEGORY, 'Title' ), 'Category:Title' ],
+			[ Title::makeTitle( NS_FILE, 'Title with spaces' ), 'File:Title_with_spaces' ],
+			[
+				Title::makeTitle( NS_FILE, 'Title with spaces', '', 'mw' ),
+				'mw:File:Title_with_spaces'
+			],
+		];
+	}
+
+	/**
+	 * @covers Title::__toString
+	 */
+	public function testToString() {
+		$title = Title::makeTitle( NS_USER, 'User test' );
+
+		$this->assertSame( 'User:User test', (string)$title );
+	}
+
+	/**
+	 * @covers Title::getFullText
+	 * @dataProvider provideDataForTestGetFullText
+	 */
+	public function testGetFullText( Title $title, $expected ) {
+		$actual = $title->getFullText();
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function provideDataForTestGetFullText() {
+		return [
+			[ Title::makeTitle( NS_TALK, 'Test' ), 'Talk:Test' ],
+			[ Title::makeTitle( NS_HELP, 'Test', 'frag' ), 'Help:Test#frag' ],
+			[ Title::makeTitle( NS_TALK, 'Test', 'frag', 'phab' ), 'phab:Talk:Test#frag' ],
+		];
+	}
 }
