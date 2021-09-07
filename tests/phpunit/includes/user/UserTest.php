@@ -534,12 +534,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 					'sysop' => [
 						'MinimalPasswordLength' => 8,
 						'MinimumPasswordLengthToLogin' => 1,
-						'PasswordCannotMatchUsername' => 1,
 						'PasswordCannotBeSubstringInUsername' => 1,
 					],
 					'default' => [
 						'MinimalPasswordLength' => 6,
-						'PasswordCannotMatchUsername' => true,
 						'PasswordCannotBeSubstringInUsername' => true,
 						'PasswordCannotMatchDefaults' => true,
 						'MaximalPasswordLength' => 40,
@@ -548,7 +546,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 				'checks' => [
 					'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
 					'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
-					'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 					'PasswordCannotBeSubstringInUsername' =>
 						'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
 					'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
