@@ -807,6 +807,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$r0 = $d0;
 			}
 			// Do the output
+			// @phan-suppress-next-line PhanPluginRedundantAssignmentInLoop Confusing, $r1 is set later
 			if ( $x0 !== '' && $x1 === '-' && $x2 !== '' ) {
 				// Range
 				if ( $ord2 > $ord0 ) {

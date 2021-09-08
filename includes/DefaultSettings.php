@@ -50,6 +50,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /** @endcond */
 
+/** @phan-file-suppress PhanPluginRedundantAssignmentInGlobalScope */
+
 /**
  * $wgConf hold the site configuration.
  * Not used for much in a default install.

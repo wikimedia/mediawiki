@@ -347,7 +347,6 @@ class PPFrame_Hash implements PPFrame {
 					}
 					$out .= $s;
 				} else {
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$out .= $this->parser->extensionSubstitution( $bits, $this );
 				}
 			} elseif ( $contextName === 'h' ) {

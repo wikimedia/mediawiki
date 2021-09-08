@@ -297,6 +297,7 @@ class XmlDumpWriter {
 	 * @return SqlBlobStore
 	 */
 	private function getBlobStore() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return MediaWikiServices::getInstance()->getBlobStore();
 	}
 
@@ -374,6 +375,7 @@ class XmlDumpWriter {
 		} else {
 			if ( $rev->getComment()->text != '' ) {
 				$out .= "      "
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped getComment is polluted by truncate
 					. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
 					. "\n";
 			}
@@ -597,6 +599,7 @@ class XmlDumpWriter {
 		} else {
 			$comment = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
 			if ( $comment != '' ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped CommentStore is polluted by truncate
 				$out .= "    " . Xml::elementClean( 'comment', null, strval( $comment ) ) . "\n";
 			}
 		}

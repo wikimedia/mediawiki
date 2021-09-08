@@ -255,7 +255,6 @@ class LogPage {
 				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
-					// @phan-suppress-next-line SecurityCheck-XSS mixed between plaintext and html
 					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
@@ -270,6 +269,7 @@ class LogPage {
 
 			if ( isset( $wgLogActionsHandlers[$key] ) ) {
 				$args = func_get_args();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				$rv = call_user_func_array( $wgLogActionsHandlers[$key], $args );
 			} else {
 				wfDebug( "LogPage::actionText - unknown action $key" );

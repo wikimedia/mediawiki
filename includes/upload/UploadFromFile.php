@@ -53,7 +53,6 @@ class UploadFromFile extends UploadBase {
 	 */
 	public function initialize( $name, $webRequestUpload ) {
 		$this->mUpload = $webRequestUpload;
-		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
 		$this->initializePathInfo( $name,
 			$this->mUpload->getTempName(), $this->mUpload->getSize() );
 	}

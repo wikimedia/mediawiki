@@ -274,6 +274,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				wfMessage( 'unknown-error' )
 			);
 		} elseif ( $mto ) {
+			// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 			return $mto;
 		} else {
 			$newParams = [

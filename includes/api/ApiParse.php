@@ -786,7 +786,6 @@ class ApiParse extends ApiBase {
 		}
 		if ( $section === null ) {
 			$this->dieWithError( [ 'apierror-sectionsnotsupported-what', $what ], 'nosuchsection' );
-			$section = false;
 		}
 
 		return $section;

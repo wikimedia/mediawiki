@@ -152,6 +152,7 @@ class MwSql extends Maintenance {
 				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
+			// @phan-suppress-next-line SecurityCheck-SQLInjection
 			$res = $this->sqlDoQuery( $db, $wholeLine, $doDie );
 			$prompt = $newPrompt;
 			$wholeLine = '';

@@ -378,6 +378,7 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	public function getLocalRepo() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->getRepo( 'local' );
 	}
 
@@ -436,6 +437,7 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	public function newCustomLocalRepo( $info = [] ) {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->newRepo( $info + $this->localInfo );
 	}
 

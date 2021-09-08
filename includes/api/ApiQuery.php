@@ -220,7 +220,6 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'mystashedfiles' => ApiQueryMyStashedFiles::class,
 		'allrevisions' => [
 			'class' => ApiQueryAllRevisions::class,
 			'services' => [

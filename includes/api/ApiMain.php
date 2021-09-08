@@ -814,6 +814,7 @@ class ApiMain extends ApiBase {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $printer;
 	}
 

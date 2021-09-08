@@ -2212,7 +2212,7 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
-			// @phan-suppress-next-line SecurityCheck-XSS using false for escape is valid here
+			// @phan-suppress-next-line SecurityCheck-XSS,SecurityCheck-DoubleEscaped using false for escape is valid
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
 				$this->getExternalLinkAttribs( $url ), $this->getTitle() ) . $dtrail . $trail;
 
@@ -4442,6 +4442,7 @@ class Parser {
 				// be able to convert that piece of data.
 				// Gets replaced with html in ParserOutput::getText
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage );
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection ) . '"';
 				if ( $editsectionContent !== null ) {
 					$editlink .= '>' . $editsectionContent . '</mw:editsection>';
@@ -5392,11 +5393,9 @@ class Parser {
 		}
 
 		# Process alignment parameters
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['horizAlign'] ) {
 			$params['frame']['align'] = key( $params['horizAlign'] );
 		}
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['vertAlign'] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
