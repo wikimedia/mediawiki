@@ -156,7 +156,7 @@ class MWExceptionHandler {
 		Throwable $e,
 		$catcher = self::CAUGHT_BY_OTHER
 	) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		self::rollbackPrimaryChangesAndLog( $e, $catcher );
 	}
 
