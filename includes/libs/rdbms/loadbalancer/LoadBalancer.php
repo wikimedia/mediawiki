@@ -2348,7 +2348,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->forEachOpenPrimaryConnection( $callback, $params );
 	}
 
