@@ -3620,7 +3620,6 @@
 	"passwordpolicies-policy-displaywithflags": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span> <span class=\"passwordpolicies-policy-flags\">($3)</span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Lykilorð verður að vera að minnsta kosti $1 {{PLURAL:$1|stafur|stafir}} að lengd",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Lykilorð verður að vera að minnsta kosti $1 {{PLURAL:$1|stafur|stafir}} að lengd til að hægt sé að skrá inn",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Lykilorðið má ekki vera eins og notandanafnið",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Lykilorðið má ekki vera undirstrengur í notandanafni",
 	"passwordpolicies-policy-maximalpasswordlength": "Lykilorð verður að vera styttra en $1 {{PLURAL:$|stafur|stafir}} að lengd",
 	"passwordpolicies-policyflag-forcechange": "verður að breyta við innskráningu",

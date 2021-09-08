@@ -3262,7 +3262,6 @@
 	"passwordpolicies-policies": "政策",
 	"passwordpolicies-policy-minimalpasswordlength": "密碼一定要有至少$1個{{PLURAL:$1|字元}}長",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "密碼一定要有至少$1個{{PLURAL:$1|字元}}長先可以簽到",
-	"passwordpolicies-policy-passwordcannotmatchusername": "密碼唔可以同用戶名一樣",
 	"passwordpolicies-policy-maximalpasswordlength": "密碼一定要短過$1個{{PLURAL:$1|字元}}長",
 	"unprotected-js": "基於安全理由，JavaScript唔可以由未保護嘅版載入。請淨係喺MediaWiki: 空間名或者係用戶子頁度開JavaScript。",
 	"userlogout-continue": "你係咪想簽走？",

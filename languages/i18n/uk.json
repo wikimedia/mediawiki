@@ -4201,7 +4201,6 @@
 	"passwordpolicies-policy-displaywithflags": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span> <span class=\"passwordpolicies-policy-flags\">($3)</span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Пароль має містити принаймні $1 {{PLURAL:$1|символ|символи|символів}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль має містити принаймні $1 {{PLURAL:$1|символ|символи|символів}} щоб мати можливість увійти до свого облікового запису",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль не може збігатися з назвою облікового запису",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Пароль не може бути частиною імені користувача",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Пароль не може збігатися з паролями зі спеціального списку стандартних паролів",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль повинен бути коротшим $1 {{PLURAL:$1|символа|символів}}",

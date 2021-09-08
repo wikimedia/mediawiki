@@ -3834,7 +3834,6 @@
 	"passwordpolicies-policies": "Politikak",
 	"passwordpolicies-policy-minimalpasswordlength": "Pasahitzak gutxienez {{PLURAL:$1|kraktere $1eko|$1 karaktereko}} luzera izan behar du",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pasahitzak gutxienez {{PLURAL:$1|kraktere $1eko|$1 karaktereko}} luzera izan behar du saioa hasi ahal izateko",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Pasahitza ezin da erabiltzaile izenaren berdina izan",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Pasahitzak ezin du erabiltzaile izenaren azpikatea izan bere barruan.",
 	"passwordpolicies-policy-maximalpasswordlength": "Pasahitza ezin da {{PLURAL:$1|karaktere $1|$1 karaktere}} baino luzeagoa izan",
 	"passwordpolicies-policyflag-forcechange": "Saioa hastean aldatzea derrigorrezkoa",

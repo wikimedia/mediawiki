@@ -4035,7 +4035,6 @@
 	"passwordpolicies-policies": "Politiko",
 	"passwordpolicies-policy-minimalpasswordlength": "Pasvortoj devas esti longaj almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pasvorto devas esti longa almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}} por ensalutado",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La pasvorto ne povas esti la sama kiel la uzantnomo",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Pasvorto ne povas esti subĉeno de la uzantnomo",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Pasvorto ne povas esti unu el la specife listigitaj defaŭltaj pasvortoj",
 	"passwordpolicies-policy-maximalpasswordlength": "Pasvorto devas esti malpli longa ol $1 {{PLURAL:$1|signo|signoj}}",

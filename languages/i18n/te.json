@@ -3614,7 +3614,6 @@
 	"passwordpolicies-policies": "విధానాలు",
 	"passwordpolicies-policy-minimalpasswordlength": "సంకేతపదం కనీసం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు ఉండాలి",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "లాగినవ్వాలంటే సంకేతపదం కనీసం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు ఉండాలి",
-	"passwordpolicies-policy-passwordcannotmatchusername": "సంకేతపదం, వాడుకరిపేరూ ఒకటే ఉండే వీల్లేదు.",
 	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి",
 	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు"
 }

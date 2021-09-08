@@ -4055,7 +4055,6 @@
 	"passwordpolicies-policy-display": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Лозинка мора да има најмање {{PLURAL:$1|један знак|$1 знака|$1 знакова}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Лозинка мора имати најмање $1 {{PLURAL:$1|знак|знака|знакова}} да бисте се могли пријавити.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Лозинка не сме бити иста као корисничко име",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Лозинка не сме бити подниз унутар корисничког имена",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Лозинка не сме да се подудара с онима на списку подразумеваних лозинки",
 	"passwordpolicies-policy-maximalpasswordlength": "Лозинка мора да буде краћа од $1 {{PLURAL:$1|знака|знакова}}",

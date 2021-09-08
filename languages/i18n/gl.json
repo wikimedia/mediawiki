@@ -3931,7 +3931,6 @@
 	"passwordpolicies-policies": "Políticas",
 	"passwordpolicies-policy-minimalpasswordlength": "O contrasinal debe conter como mínimo $1 {{PLURAL:$1|carácter|caracteres}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "O contrasinal debe conter como mínimo $1 {{PLURAL:$1|carácter|caracteres}} para poder iniciar a sesión",
-	"passwordpolicies-policy-passwordcannotmatchusername": "O contrasinal non pode coincidir co nome de usuario",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "O contrasinal non pode ser un texto contido dentro do nome de usuario",
 	"passwordpolicies-policy-maximalpasswordlength": "O contrasinal debe conter menos de $1 {{PLURAL:$1|carácter|caracteres}}",
 	"passwordpolicies-policyflag-forcechange": "debe modificarse ó iniciar sesión",

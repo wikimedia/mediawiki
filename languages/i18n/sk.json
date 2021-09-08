@@ -3890,7 +3890,6 @@
 	"passwordpolicies-policies": "Pravidlá",
 	"passwordpolicies-policy-minimalpasswordlength": "Heslo musí mať aspoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znakov}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pre prihlásenie je vyžadované heslo s aspoň {{PLURAL:$1|$1 znakom|$1 znakmi}}",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Heslo nesmie byť rovnaké ako používateľské meno",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Heslo nesmie byť súčasťou používateľského mena",
 	"passwordpolicies-policy-maximalpasswordlength": "Heslo musí byť kratšie ako {{PLURAL:$1|$1 znak|$1 znaky|$1 znakov}}",
 	"passwordpolicies-policy-passwordnotincommonlist": "Heslo nesmie byť v zozname 100 000 najčastejšie používaných hesiel.",

@@ -3928,7 +3928,6 @@
 	"passwordpolicies-policies": "Politeghe",
 	"passwordpolicies-policy-minimalpasswordlength": "La parola ciav la gh'hà de vesser longa almanch $1 {{PLURAL:$1|carater}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "La parola ciav la gh'hà de vesser longa almanch $1 {{PLURAL:$1|carater}} per podè andà dent.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La parola ciav la gh'hà de vesser diversa del nom de l'utent",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La parola ciav la gh'hà de avègh denter nò el nom de l'utent",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "La parola ciav la po minga vesser egual de quei compres in la lista di parole ciav predefinide.",
 	"passwordpolicies-policy-maximalpasswordlength": "La parola 'dordin la gh'hà de vesser longa manch de $1 {{PLURAL:$1|carater}}",

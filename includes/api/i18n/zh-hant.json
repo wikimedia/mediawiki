@@ -100,7 +100,7 @@
 	"apihelp-compare-param-toid": "要比對的第二個頁面 ID。",
 	"apihelp-compare-param-torev": "要比對的第二個修訂。",
 	"apihelp-compare-param-torelative": "使用判定自 <var>fromtitle</var>、<var>fromid</var>、或 <var>fromrev</var> 之修訂相關的修訂。所有其它的 'to' 選項將會忽略。",
-	"apihelp-compare-param-topst": "在 <var>totext</var> 執行預先保存轉換。",
+	"apihelp-compare-param-topst": "在 <var>totext</var> 執行預先儲存轉換。",
 	"apihelp-compare-param-toslots": "覆蓋由 <var>totitle</var>、<var>toid</var> 或 <var>torev</var> 指定的修訂內容。\n\n此參數指定要變動的間隔。使用 <var>totext-&#x7B;slot}</var>、<var>tocontentmodel-&#x7B;slot}</var>、與 <var>tocontentformat-&#x7B;slot}</var> 來指定各間隔的內容。",
 	"apihelp-compare-param-totext-{slot}": "指定間隔的文字。若忽略的話，間隔會從修訂中移除。",
 	"apihelp-compare-param-tosection-{slot}": "當 <var>totext-&#x7B;slot}</var> 是單一段落的內容時，這代表是段落的號碼。這會合併至由 <var>totitle</var>、<var>toid</var>、<var>torev</var> 指定的修訂，就像用於段落編輯。",

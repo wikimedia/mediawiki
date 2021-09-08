@@ -4193,7 +4193,6 @@
 	"passwordpolicies-policies": "Ограничения",
 	"passwordpolicies-policy-minimalpasswordlength": "Пароль должен быть длиной не менее $1 {{PLURAL:$1|символа|символов}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль должен быть длиной не менее $1 {{PLURAL:$1|символа|символов}}, чтобы участник мог войти в свою учётную запись",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль не может совпадать с названием учётной записи",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Пароль не может быть подстрокой от имени пользователя",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Пароль не может совпадать ни с одним паролем, внесённым в специальный список паролей, используемых по умолчанию",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль должен быть короче $1 {{PLURAL:$1|символа|символов}}",

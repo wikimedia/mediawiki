@@ -3582,7 +3582,6 @@
 	"passwordpolicies": "Password politikker",
 	"passwordpolicies-group": "Gruppe",
 	"passwordpolicies-policies": "Politikker",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Adgangskoden kan ikke være det samme som brugernavnet",
 	"userlogout-continue": "Ønsker du at logge af?",
 	"paramvalidator-help-type-user-subtype-name": "brugernavn",
 	"paramvalidator-help-type-user-subtype-ip": "IP",

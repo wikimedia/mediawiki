@@ -3734,7 +3734,6 @@
 	"passwordpolicies-policies": "നയങ്ങൾ",
 	"passwordpolicies-policy-minimalpasswordlength": "രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "പ്രവേശിക്കാനായി രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "ഉപയോക്തൃനാമം തന്നെ രഹസ്യവാക്ക് ആകാൻ പാടില്ല",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "രഹസ്യവാക്ക്, ഉപയോക്തൃനാമത്തിന്റെ ഉപപദം ആയിരിക്കാൻ പാടില്ല.",
 	"passwordpolicies-policy-maximalpasswordlength": "രഹസ്യവാക്കിന് കുറഞ്ഞത് $1 {{PLURAL:$1|അക്ഷരം|അക്ഷരങ്ങൾ}} നീളമുണ്ടാവണം",
 	"passwordpolicies-policyflag-forcechange": "ലോഗിൻ മാറ്റിയിരിക്കണം",

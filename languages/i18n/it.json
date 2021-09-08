@@ -4078,7 +4078,6 @@
 	"passwordpolicies-policies": "Politiche",
 	"passwordpolicies-policy-minimalpasswordlength": "La password deve essere lunga almeno $1 {{PLURAL:$1|carattere|caratteri}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "La password deve essere lunga almeno $1 {{PLURAL:$1|carattere|caratteri}} per poter accedere",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La password non può essere uguale al nome utente",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La password non può essere parte del nome utente",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "La password non può corrispondere a quelle comprese nello specifico elenco delle password predefinite",
 	"passwordpolicies-policy-maximalpasswordlength": "La password deve essere lunga meno di $1 {{PLURAL:$1|carattere|caratteri}}",

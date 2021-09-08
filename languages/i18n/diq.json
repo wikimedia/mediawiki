@@ -4068,7 +4068,6 @@
 	"passwordpolicies-policies": "Politikeyi",
 	"passwordpolicies-policy-minimalpasswordlength": "Parola gani tewr senık be {{PLURAL:$1|1 karakter|$1 karakteran}} derg bo",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Seba cıkewtışi ra parolaya şıma gani $1 {{PLURAL:$1|karakter|karakteran}} ra derg bo",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Parola zey nameyê karberi nêbena",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Parola namey karberi ra yew letey ihtiwa nêbena",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Parola be parolayanê lista hesabyayana pêro nina",
 	"passwordpolicies-policy-maximalpasswordlength": "Parola gani tewr senık be {{PLURAL:$1|1 karakter|$1 karakteran}} derg bo",

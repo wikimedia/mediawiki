@@ -4079,7 +4079,6 @@
 	"passwordpolicies-policies": "السياسات",
 	"passwordpolicies-policy-minimalpasswordlength": "يجب أن يكون طول كلمة المرور على الأقل $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "يجب أن يكون طول كلمة المرور على الأقل $1 {{PLURAL:$1|حرف|أحرف}} لتتمكن من تسجيل الدخول",
-	"passwordpolicies-policy-passwordcannotmatchusername": "لا يمكن أن تكون كلمة المرور هي نفس اسم المستخدم",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "كلمة السر لا يمكن أن تكون سلسلة حروف فرعية خلال اسم المستخدم.",
 	"passwordpolicies-policy-maximalpasswordlength": "يجب أن يكون طول كلمة المرور أقل من $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policyflag-forcechange": "يجب أن تتغير عند تسجيل الدخول",

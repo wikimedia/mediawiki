@@ -4173,7 +4173,6 @@
 	"passwordpolicies-policies": "策略",
 	"passwordpolicies-policy-minimalpasswordlength": "密码长度必须至少$1个{{PLURAL:$1|字符}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "密码长度必须至少$1个{{PLURAL:$1|字符}}才能登陆",
-	"passwordpolicies-policy-passwordcannotmatchusername": "密码不能与用户名相同",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "密码不能是用户名中含有的子字符串",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "密码不能在特定的默认密码列表中",
 	"passwordpolicies-policy-maximalpasswordlength": "密码长度必须少于$1个{{PLURAL:$1|字符}}",

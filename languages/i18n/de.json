@@ -4072,7 +4072,6 @@
 	"passwordpolicies-policies": "Richtlinien",
 	"passwordpolicies-policy-minimalpasswordlength": "Ein Passwort muss mindestens {{PLURAL:$1|ein|$1}} Zeichen lang sein",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Ein Passwort muss mindestens {{PLURAL:$1|ein|$1}} Zeichen zur Anmeldung lang sein",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Ein Passwort kann nicht mit dem Benutzernamen identisch sein",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Das Passwort darf keine Teilzeichenfolge des Benutzernamens sein",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Das Passwort darf nicht mit einer bestimmten Liste von Standardpasswörtern übereinstimmen",
 	"passwordpolicies-policy-maximalpasswordlength": "Ein Passwort muss weniger als {{PLURAL:$1|ein|$1}} Zeichen lang sein",

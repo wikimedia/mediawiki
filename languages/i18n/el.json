@@ -3839,7 +3839,6 @@
 	"passwordpolicies-policies": "Πολιτικές",
 	"passwordpolicies-policy-minimalpasswordlength": "Το συνθηματικό πρέπει να έχει μήκος τουλάχιστον $1 {{PLURAL:$1|χαρακτήρα|χαρακτήρων}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Το συνθηματικό πρέπει να έχει μήκος τουλάχιστον $1 {{PLURAL:$1|χαρακτήρα|χαρακτήρων}} για να είναι δυνατή η σύνδεση",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Το συνθηματικό δεν μπορεί να είναι ίδιο με το όνομα χρήστη",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Ο κωδικός πρόσβασης δεν μπορεί να περιλαμβάνεται στο όνομα χρήστη",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Το συνθηματικό δεν μπορεί να είναι συμφωνεί με κάποιο με συγκεκριμένη λίστα προεπιλεγμένων συνθηματικών",
 	"passwordpolicies-policy-maximalpasswordlength": "Το συνθηματικό πρέπει να έχει μήκος λιγότερο από $1 {{PLURAL:$1|χαρακτήρα|χαρακτήρες}}",

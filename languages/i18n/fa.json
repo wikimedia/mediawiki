@@ -4057,7 +4057,6 @@
 	"passwordpolicies-policies": "سیاست‌ها",
 	"passwordpolicies-policy-minimalpasswordlength": "گذرواژه باید حداقل $1 {{PLURAL:$1|نویسه|نویسه}} طول داشته باشد",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "گذرواژه باید حداقل $1 {{PLURAL:$1|نویسه|نویسه}} طول داشته باشد تا بتواند به سامانه وارد شود",
-	"passwordpolicies-policy-passwordcannotmatchusername": "گذرواژه نمی تواند مانند نام کاربری باشد",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "اسم رمز نباید ترکیبی از نام کاربری باشد",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "گذرواژه نمی‌تواند با فهرست مشخص گذرواژه‌های پیش‌فرض یکسان باشد",
 	"passwordpolicies-policy-maximalpasswordlength": "گذرواژه باید کمتر از $1 {{PLURAL:$1|نویسه|نویسه}} طول داشته باشد",

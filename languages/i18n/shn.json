@@ -2864,7 +2864,6 @@
 	"passwordpolicies-summary": "ဢၼ်ၼႆႉပဵၼ်သဵၼ်ႈမၢႆ လၢႆးငၢႆး ၶေႃႈလပ်ႉဢၼ်ယမ် တွၼ်ႈတႃႇ ၸုမ်းၽူႈၸႂ်ႉတိုဝ်း ဢၼ်လႆႈမၵ်းမၼ်ႈဝႆႉ တီႈၼႂ်းဝီႇၶီႇဢၼ်ၼႆႉ။",
 	"passwordpolicies-policy-minimalpasswordlength": "ၶေႃႈလပ်ႉၼႆႉ တီႈဢေႇသုတ်းမၼ်း တေလႆႈမီး တၢင်းယၢဝ်း $1 {{PLURAL:$1|တူဝ်|တူဝ် }}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "တွၼ်ႈတႃႇၶဝ်ႈလွၵ်ႉဢိၼ်ႇလႆႈၼၼ်ႉ ၶေႃႈလပ်ႉၼႆႉ တီႈဢေႇသုတ်းမၼ်း တေလႆႈမီး တၢင်းယၢဝ်း $1 {{PLURAL:$1|တူဝ်|တူဝ် }}",
-	"passwordpolicies-policy-passwordcannotmatchusername": "ၶေႃႈလပ်ႉၼႆ့ တေဢမ်ႇၸၢင်ႈမိူၼ်လႆႈတင်း ၸိုဝ်ႈၽူႈၸႂ်ႉတိုဝ်း",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "ၶေႃႈလပ်ႉၼႆႉ တေဢမ်ႇလႆႈပဵၼ် တူဝ်လိၵ်ႈဢၼ်ၶဝ်ႈပႃးၼႂ်း ၸိုဝ်ႈၽူႈၸႂ်ႉတိုဝ်း",
 	"passwordpolicies-policy-maximalpasswordlength": "တၢင်းယၢဝ်းၶေႃႈလပ်ႉၼႆႉ တီႈဢေႇသုတ်းမၼ်း တေလႆႈမီး တၢင်းယၢဝ်း $1 {{PLURAL:$1|တူဝ်|တူဝ် }}",
 	"mycustomjsredirectprotected": "ၸဝ်ႈၵဝ်ႇ ဢမ်ႇမီးသုၼ်ႇၶႂၢင်းပၼ် တွၼ်ႈတႃႇမႄးထတ်း ၼႃႈလိၵ်ႈ JavaScript ဢၼ်ၼႆႉ၊ ယွၼ်ႉပိူဝ်ႈဝႃႈ မၼ်းပဵၼ် တူဝ်ပိၼ်ႇၸီႉ လႄႈ မၼ်းဢမ်ႇမီး မၢႆ တီႈၼႂ်း ဢွင်ႈၽူႈၸႂ်ႉတိုဝ်းၸဝ်ႈၵဝ်ႇ။",

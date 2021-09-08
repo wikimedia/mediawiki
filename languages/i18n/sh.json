@@ -3770,7 +3770,6 @@
 	"passwordpolicies-policies": "Pravila",
 	"passwordpolicies-policy-minimalpasswordlength": "Lozinka mora da ima najmanje $1 {{PLURAL:$1|znak|znaka|znakova}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Lozinka mora da ima najmanje $1 {{PLURAL:$1|znak|znaka|znakova}} da bi ste mogli da se prijavite",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Lozinka ne može biti ista što i korisničko ime",
 	"passwordpolicies-policy-maximalpasswordlength": "Lozinka ne mora biti više od $1 {{PLURAL:$1|znaka|znakova}}",
 	"passwordpolicies-policyflag-forcechange": "mora se promjeniti pri prijavi",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "predloži izmjenu pri prijavi",

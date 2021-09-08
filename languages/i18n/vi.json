@@ -4119,7 +4119,6 @@
 	"passwordpolicies-policies": "Quy định",
 	"passwordpolicies-policy-minimalpasswordlength": "Mật khẩu phải có ít nhất $1 ký tự",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Mật khẩu phải có ít nhất $1 ký tự để cho bạn đăng nhập",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Mật khẩu không thể khớp với tên người dùng",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Mật khẩu không được là một phần của tên người dùng",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Mật khẩu không thể khớp với các mật khẩu mặc định trong danh sách cụ thể",
 	"passwordpolicies-policy-maximalpasswordlength": "Mật khẩu không thể vượt quá $1 ký tự",
