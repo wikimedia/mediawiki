@@ -4,9 +4,11 @@ namespace MediaWiki\Tests\Unit\Page;
 
 use ContentModelChange;
 use HashConfig;
+use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RollbackPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
@@ -15,8 +17,6 @@ use MediaWikiUnitTestCase;
 use MergeHistory;
 use MovePage;
 use Title;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
@@ -26,7 +26,7 @@ use WikiPage;
 class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 	use MockServiceDependenciesTrait;
 
-	private function getFactory() {
+	private function getFactory(): PageCommandFactory {
 		// Create a PageCommandFactory with all of the services needed
 		$config = new HashConfig( [
 			// RollbackPage
@@ -36,18 +36,18 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 			// MovePage
 			'CategoryCollation' => 'uppercase',
 			'MaximumMovedPages' => 100,
-		] );
 
-		$database = $this->createMock( IDatabase::class );
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )->willReturn( $database );
+			// DeletePage
+			'DeleteRevisionsBatchSize' => 10,
+			'ActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
+			'DeleteRevisionsLimit' => 10,
+		] );
 
 		// Helper method from MockServiceDependenciesTrait
 		return $this->newServiceInstance(
 			PageCommandFactory::class,
 			[
 				'config' => $config,
-				'loadBalancer' => $loadBalancer,
 			]
 		);
 	}
@@ -62,6 +62,15 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 			ContentModelChange::class,
 			$contentModelChange,
 			'Creating ContentModelChange works'
+		);
+	}
+
+	public function testDeletePage() {
+		$page = $this->createMock( ProperPageIdentity::class );
+		$page->method( 'canExist' )->willReturn( true );
+		$this->assertInstanceOf(
+			DeletePage::class,
+			$this->getFactory()->newDeletePage( $page, $this->createMock( Authority::class ) )
 		);
 	}
 

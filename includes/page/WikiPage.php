@@ -26,7 +26,6 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
@@ -2672,7 +2671,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$reason, UserIdentity $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
-		$deletePage = new DeletePage( $this, $deleter );
+		$services = MediaWikiServices::getInstance();
+		$deletePage = $services->getDeletePageFactory()->newDeletePage(
+			$this,
+			$services->getUserFactory()->newFromUserIdentity( $deleter )
+		);
+
 		$status = $deletePage
 			->setSuppress( $suppress )
 			->setTags( $tags ?: [] )
@@ -2708,7 +2712,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$reason, $suppress, UserIdentity $deleter, $tags,
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
-		$deletePage = new DeletePage( $this, $deleter );
+		$services = MediaWikiServices::getInstance();
+		$deletePage = $services->getDeletePageFactory()->newDeletePage(
+			$this,
+			$services->getUserFactory()->newFromUserIdentity( $deleter )
+		);
+
 		$status = $deletePage
 			->setSuppress( $suppress )
 			->setTags( $tags )
@@ -2767,7 +2776,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			throw new BadMethodCallException( __METHOD__ . ' now requires a RevisionRecord' );
 		}
 		$user = $user ?? new UserIdentityValue( 0, 'unknown' );
-		$deletePage = new DeletePage( $this, $user );
+		$services = MediaWikiServices::getInstance();
+		$deletePage = $services->getDeletePageFactory()->newDeletePage(
+			$this,
+			$services->getUserFactory()->newFromUserIdentity( $user )
+		);
+
 		$deletePage->doDeleteUpdates( $id, $revRecord );
 	}
 
@@ -3175,7 +3189,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( $rev = null ) {
-		$deletePage = new DeletePage( $this, new UserIdentityValue( 0, 'Legacy code hater' ) );
+		$user = new UserIdentityValue( 0, 'Legacy code hater' );
+		$services = MediaWikiServices::getInstance();
+		$deletePage = $services->getDeletePageFactory()->newDeletePage(
+			$this,
+			$services->getUserFactory()->newFromUserIdentity( $user )
+		);
+
 		if ( !$rev ) {
 			wfDeprecated( __METHOD__ . ' without a RevisionRecord', '1.32' );
 
