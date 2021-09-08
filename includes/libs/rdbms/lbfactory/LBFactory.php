@@ -328,7 +328,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->commitPrimaryChanges( $fname, $options );
 	}
 
@@ -347,7 +347,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->rollbackPrimaryChanges( $fname );
 	}
 
@@ -414,7 +414,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function hasMasterChanges() {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->hasPrimaryChanges();
 	}
 
