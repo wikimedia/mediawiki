@@ -2126,7 +2126,6 @@ class Language {
 			}
 		}
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $data[0] == 'System' || $tz == '' ) {
 			# Global offset in minutes.
 			$minDiff = $wgLocalTZoffset;

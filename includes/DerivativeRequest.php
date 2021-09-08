@@ -91,6 +91,7 @@ class DerivativeRequest extends FauxRequest {
 	}
 
 	public function getUpload( $key ) {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->base->getUpload( $key );
 	}
 

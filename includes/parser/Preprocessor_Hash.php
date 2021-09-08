@@ -674,6 +674,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$i += $count;
 					continue;
 				}
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$name = $rule['names'][$matchingCount];
 				if ( $name === null ) {
 					// No element, just literal text

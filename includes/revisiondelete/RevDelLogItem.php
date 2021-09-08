@@ -129,7 +129,6 @@ class RevDelLogItem extends RevDelItem {
 		$action = $formatter->getActionText();
 
 		$comment = $this->commentStore->getComment( 'log_comment', $this->row )->text;
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 		$comment = $this->list->getLanguage()->getDirMark()
 			. Linker::commentBlock( $comment );
 

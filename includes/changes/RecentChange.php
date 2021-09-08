@@ -603,6 +603,8 @@ class RecentChange implements Taggable {
 		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $wgRCEngines[$scheme] ) ) {
 			return $wgRCEngines[$scheme];
 		}
+		// TODO For non test a object could be here?
+		// @phan-suppress-next-line PhanTypeExpectedObjectOrClassName
 		return new $wgRCEngines[$scheme]( $params );
 	}
 

@@ -231,6 +231,7 @@ class ApiContinuationManager {
 				$generatorParams += $kvp;
 			}
 			$generatorParams += $this->generatorParams;
+			// @phan-suppress-next-line PhanTypeInvalidLeftOperand False positive in phan
 			$data += $generatorParams;
 			$generatorKeys = implode( '|', array_keys( $generatorParams ) );
 		} elseif ( $this->generatorContinuationData ) {

@@ -218,6 +218,7 @@ abstract class QueryPage extends SpecialPage {
 	 * This is strongly deprecated; getQueryInfo() should be overridden instead.
 	 * @throws MWException
 	 * @return string
+	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	protected function getSQL() {
 		/* Implement getQueryInfo() instead */

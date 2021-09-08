@@ -68,6 +68,7 @@ class CoreTagHooks {
 			[ '&gt;', '&lt;' ],
 			$content
 		);
+		// @phan-suppress-next-line SecurityCheck-XSS
 		return Html::rawElement( 'pre', $attribs, $content );
 	}
 
@@ -158,6 +159,7 @@ class CoreTagHooks {
 	 * @internal
 	 */
 	public static function gallery( ?string $content, array $attributes, Parser $parser ): string {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		return $parser->renderImageGallery( $content ?? '', $attributes );
 	}
 
@@ -219,6 +221,7 @@ class CoreTagHooks {
 					$toVariant = $converter->validateVariant( $toArg );
 
 					if ( $toVariant ) {
+						// @phan-suppress-next-line SecurityCheck-XSS
 						return $converter->autoConvert(
 							$parser->recursiveTagParse( $content ?? '', $frame ),
 							$toVariant

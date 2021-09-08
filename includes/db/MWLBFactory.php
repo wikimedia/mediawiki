@@ -259,6 +259,7 @@ abstract class MWLBFactory {
 	/**
 	 * @param string $prefix Table prefix
 	 * @param string $dbType Database type
+	 * @return never
 	 */
 	private static function reportIfPrefixSet( $prefix, $dbType ) {
 		$e = new UnexpectedValueException(
@@ -272,6 +273,7 @@ abstract class MWLBFactory {
 	/**
 	 * @param string $srvDB Server config database
 	 * @param string $ldDB Local DB domain database
+	 * @return never
 	 */
 	private static function reportMismatchedDBs( $srvDB, $ldDB ) {
 		$e = new UnexpectedValueException(
@@ -289,6 +291,7 @@ abstract class MWLBFactory {
 	/**
 	 * @param string $srvTP Server config table prefix
 	 * @param string $ldTP Local DB domain database
+	 * @return never
 	 */
 	private static function reportMismatchedPrefixes( $srvTP, $ldTP ) {
 		$e = new UnexpectedValueException(

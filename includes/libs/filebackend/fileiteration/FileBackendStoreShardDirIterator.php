@@ -29,6 +29,7 @@ class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator
 		if ( $list === null ) {
 			return new ArrayIterator( [] );
 		} else {
+			// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 			return is_array( $list ) ? new ArrayIterator( $list ) : $list;
 		}
 	}

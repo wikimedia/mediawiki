@@ -1738,7 +1738,7 @@ class WANObjectCache implements
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
 			} else {
 				$finalSetOpts = [
-					// @phan-suppress-next-line PhanUselessBinaryAddRight
+					// @phan-suppress-next-line PhanUselessBinaryAddRight,PhanCoalescingAlwaysNull
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,

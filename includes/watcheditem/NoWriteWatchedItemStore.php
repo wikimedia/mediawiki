@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\DBReadOnlyError;
 /**
  * @internal
  * @since 1.31
+ * @phan-file-suppress PhanPluginNeverReturnMethod
  */
 class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 

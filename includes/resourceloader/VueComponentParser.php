@@ -102,6 +102,7 @@ class VueComponentParser {
 		$treeBuilder = new TreeBuilder( $domBuilder, [ 'ignoreErrors' => true ] );
 		$tokenizer = new Tokenizer( new Dispatcher( $treeBuilder ), $html, [ 'ignoreErrors' => true ] );
 		$tokenizer->execute();
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $domBuilder->getFragment();
 	}
 

@@ -424,7 +424,6 @@ class ExtensionRegistry {
 	) {
 		if ( isset( $info['AutoloadClasses'] ) ) {
 			$autoload = self::processAutoLoader( $dir, $info['AutoloadClasses'] );
-			// @phan-suppress-next-line PhanUndeclaredVariableAssignOp
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
 		}

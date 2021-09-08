@@ -2248,9 +2248,11 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 function wfGetLB( $wiki = false ) {
 	wfDeprecated( __FUNCTION__, '1.27' );
 	if ( $wiki === false ) {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();
 	} else {
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $factory->getMainLB( $wiki );
 	}
 }

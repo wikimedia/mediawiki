@@ -42,7 +42,10 @@ use MediaWiki\Page\PageReference;
  */
 abstract class CacheKeyHelper {
 
-	/** Private constructor to defy instantiation. */
+	/**
+	 * Private constructor to defy instantiation.
+	 * @return never
+	 */
 	private function __construct() {
 		// we should never even get here...
 		throw new LogicException( 'Should not instantiate ' . __CLASS__ );

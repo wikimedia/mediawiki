@@ -733,7 +733,6 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	public static function isDeleted( $rc, $field ) {
-		// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfBitwiseOp false positive
 		return ( $rc->mAttribs['rc_deleted'] & $field ) == $field;
 	}
 

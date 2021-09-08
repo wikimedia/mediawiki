@@ -179,6 +179,7 @@ class ApiHelp extends ApiBase {
 		$haveModules = [];
 		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
 		if ( !empty( $options['toc'] ) && $haveModules ) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Linker?
 			$out->addHTML( Linker::generateTOC( $haveModules, $context->getLanguage() ) );
 		}
 		$out->addHTML( $html );

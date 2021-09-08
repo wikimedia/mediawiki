@@ -1199,8 +1199,6 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Actually output LocalSettings.php for download
-	 *
-	 * @suppress SecurityCheck-XSS
 	 */
 	private function outputLS() {
 		$this->request->response()->header( 'Content-type: application/x-httpd-php' );

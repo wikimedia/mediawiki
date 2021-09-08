@@ -170,7 +170,6 @@ class LinkHolderArray {
 
 	/**
 	 * Replace internal links
-	 * @suppress SecurityCheck-XSS Gets confused with $entry['pdbk']
 	 * @param string &$text
 	 */
 	protected function replaceInternal( &$text ) {
@@ -312,7 +311,6 @@ class LinkHolderArray {
 	/**
 	 * Replace interwiki links
 	 * @param string &$text
-	 * @suppress SecurityCheck-XSS Gets confused with $this->interwikis['pdbk']
 	 */
 	protected function replaceInterwiki( &$text ) {
 		if ( empty( $this->interwikis ) ) {

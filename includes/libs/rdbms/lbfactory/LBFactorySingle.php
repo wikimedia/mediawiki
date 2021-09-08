@@ -70,6 +70,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
@@ -78,10 +79,12 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
 	public function getExternalLB( $cluster ): ILoadBalancer {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 

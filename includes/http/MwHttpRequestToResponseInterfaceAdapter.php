@@ -32,6 +32,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	public function getProtocolVersion(): void {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// This is not accessible via MWHttpRequest, but it is set in its protected `respVersion` property.
 		// If this is ever needed, it can get exposed in MWHttpRequest.
 		throw new LogicException( __METHOD__ . ' is not implemented' );
@@ -91,6 +92,10 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		return ''; // not exposed through MWHttpRequest, unlikely to ever be useful
 	}
 
+	/**
+	 * @param string $method
+	 * @return never
+	 */
 	private function throwExceptionForBuilderMethod( string $method ): void {
 		throw new LogicException( "Builder method $method is not supported." );
 	}

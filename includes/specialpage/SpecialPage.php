@@ -341,6 +341,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Output an error message telling the user what access level they have to have
 	 * @stable to override
 	 * @throws PermissionsError
+	 * @return never
 	 */
 	protected function displayRestrictionError() {
 		throw new PermissionsError( $this->mRestriction );
@@ -351,7 +352,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @stable to override
 	 * @since 1.19
-	 * @return void
+	 * @return void|never
 	 * @throws PermissionsError
 	 */
 	public function checkPermissions() {
@@ -364,7 +365,7 @@ class SpecialPage implements MessageLocalizer {
 	 * If the wiki is currently in readonly mode, throws a ReadOnlyError
 	 *
 	 * @since 1.19
-	 * @return void
+	 * @return void|never
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {

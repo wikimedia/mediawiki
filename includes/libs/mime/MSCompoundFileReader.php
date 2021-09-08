@@ -233,6 +233,11 @@ class MSCompoundFileReader {
 		return $this->readOffset( $this->sectorOffset( $sectorId ), 1 << $this->header['sector_shift'] );
 	}
 
+	/**
+	 * @param string $message
+	 * @param int $code
+	 * @return never
+	 */
 	private function error( $message, $code ) {
 		throw new RuntimeException( $message, $code );
 	}

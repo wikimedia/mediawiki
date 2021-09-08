@@ -320,6 +320,7 @@ class FileRepo {
 			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				// custom URL for extension/zone
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				return $this->zones[$zone]['urlsByExt'][$ext];
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
 				// custom URL for zone
@@ -1967,7 +1968,7 @@ class FileRepo {
 	 * Throw an exception if this repo is read-only by design.
 	 * This does not and should not check getReadOnlyReason().
 	 *
-	 * @return void
+	 * @return void|never
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {
