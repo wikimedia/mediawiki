@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Tests\Unit\Page;
 
+use BacklinkCache;
 use BagOStuff;
 use CommentStore;
 use IDatabase;
 use JobQueueGroup;
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageIdentity;
@@ -77,6 +79,9 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
+		$blc = $this->createMock( BacklinkCache::class );
+		$blcFactory = $this->createMock( BacklinkCacheFactory::class );
+		$blcFactory->method( 'getBacklinkCache' )->willReturn( $blc );
 
 		$ret = new DeletePage(
 			$this->createHookContainer(),
@@ -91,7 +96,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			$wpFactory,
 			$this->createMock( UserFactory::class ),
 			$page,
-			$deleter
+			$deleter,
+			$blcFactory
 		);
 		$ret->setIsDeletePageUnitTest( true );
 		return $ret;

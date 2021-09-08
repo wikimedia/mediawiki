@@ -16,6 +16,7 @@ use LinksDeletionUpdate;
 use LinksUpdate;
 use LogicException;
 use ManualLogEntry;
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -95,6 +96,9 @@ class DeletePage {
 	/** @var string|array */
 	private $legacyHookErrors = '';
 
+	/** @var BacklinkCacheFactory */
+	private $backlinkCacheFactory;
+
 	/**
 	 * @param HookContainer $hookContainer
 	 * @param RevisionStore $revisionStore
@@ -109,6 +113,7 @@ class DeletePage {
 	 * @param UserFactory $userFactory
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
+	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
@@ -123,7 +128,8 @@ class DeletePage {
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
 		ProperPageIdentity $page,
-		Authority $deleter
+		Authority $deleter,
+		BacklinkCacheFactory $backlinkCacheFactory
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revisionStore = $revisionStore;
@@ -140,6 +146,7 @@ class DeletePage {
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
+		$this->backlinkCacheFactory = $backlinkCacheFactory;
 	}
 
 	/**
@@ -626,11 +633,21 @@ class DeletePage {
 
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable(
-			$this->page->getTitle(), 'templatelinks', 'delete-page', $this->deleter->getUser()->getName() );
+			$this->page->getTitle(),
+			'templatelinks',
+			'delete-page',
+			$this->deleter->getUser()->getName(),
+			$this->backlinkCacheFactory->getBacklinkCache( $this->page->getTitle() )
+		);
 		// Reparse any pages including this image
 		if ( $this->page->getTitle()->getNamespace() === NS_FILE ) {
 			LinksUpdate::queueRecursiveJobsForTable(
-				$this->page->getTitle(), 'imagelinks', 'delete-page', $this->deleter->getUser()->getName() );
+				$this->page->getTitle(),
+				'imagelinks',
+				'delete-page',
+				$this->deleter->getUser()->getName(),
+				$this->backlinkCacheFactory->getBacklinkCache( $this->page->getTitle() )
+			);
 		}
 
 		if ( !$this->isDeletePageUnitTest ) {

@@ -39,10 +39,10 @@ use Wikimedia\Rdbms\IResultWrapper;
  * partitions. This is a shared cache.
  *
  * Instances of this class should typically be fetched with the method
- * $title->getBacklinkCache().
+ * ::getBacklinkCache() from the BacklinkCacheFactory service.
  *
  * Ideally you should only get your backlinks from here when you think
- * there is some advantage in caching them. Otherwise it's just a waste
+ * there is some advantage in caching them. Otherwise, it's just a waste
  * of memory.
  *
  * Introduced by r47317

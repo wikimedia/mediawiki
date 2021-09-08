@@ -1936,7 +1936,8 @@ class Article implements Page {
 		$outputPage->addModules( 'mediawiki.action.delete' );
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 
-		$backlinkCache = $title->getBacklinkCache();
+		$services = MediaWikiServices::getInstance();
+		$backlinkCache = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->addHtml(
 				Html::warningBox(
@@ -1962,7 +1963,6 @@ class Article implements Page {
 		$this->getHookRunner()->onArticleConfirmDelete( $this, $outputPage, $reason );
 
 		$user = $this->getContext()->getUser();
-		$services = MediaWikiServices::getInstance();
 		$checkWatch = $services->getUserOptionsLookup()->getBoolOption( $user, 'watchdeletion' ) ||
 			$this->watchlistManager->isWatched( $user, $title );
 

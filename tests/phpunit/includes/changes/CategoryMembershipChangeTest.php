@@ -67,7 +67,11 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	private function newChange( RevisionRecord $revision = null ) {
-		$change = new CategoryMembershipChange( Title::newFromText( self::$pageName ), $revision );
+		$title = Title::newFromText( self::$pageName );
+		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
+		$change = new CategoryMembershipChange(
+			$title, $blcFactory->getBacklinkCache( $title ), $revision
+		);
 		$change->overrideNewForCategorizationCallback(
 			'CategoryMembershipChangeTest::newForCategorizationCallback'
 		);

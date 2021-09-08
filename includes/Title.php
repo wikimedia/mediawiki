@@ -3916,12 +3916,16 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get a backlink cache object
+	 * Get a backlink cache object.
+	 *
+	 * @deprecated since 1.37, use BacklinkCacheFactory::getBacklinkCache()
 	 *
 	 * @return BacklinkCache
 	 */
 	public function getBacklinkCache(): BacklinkCache {
-		return BacklinkCache::get( $this );
+		wfDeprecated( __METHOD__, '1.37' );
+		return MediaWikiServices::getInstance()->getBacklinkCacheFactory()
+			->getBacklinkCache( $this );
 	}
 
 	/**

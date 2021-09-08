@@ -2369,8 +2369,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getBacklinkCache
 	 */
 	public function testGetBacklinkCache() {
-		$backLinkCache = Title::makeTitle( NS_FILE, 'Test' )->getBacklinkCache();
-		$this->assertInstanceOf( BacklinkCache::class, $backLinkCache );
+		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
+		$backlinkCache = $blcFactory->getBacklinkCache( Title::makeTitle( NS_FILE, 'Test' ) );
+		$this->assertInstanceOf( BacklinkCache::class, $backlinkCache );
 	}
 
 	public function provideNsWithSubpagesSupport() {

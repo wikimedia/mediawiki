@@ -192,10 +192,10 @@ class CategoryMembershipChangeJob extends Job {
 			return;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		// Get the prior revision (the same for null edits)
 		if ( $newRev->getParentId() ) {
-			$oldRev = MediaWikiServices::getInstance()
-				->getRevisionLookup()
+			$oldRev = $services->getRevisionLookup()
 				->getRevisionById( $newRev->getParentId(), RevisionLookup::READ_LATEST );
 			if ( !$oldRev || $oldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				return;
@@ -211,7 +211,8 @@ class CategoryMembershipChangeJob extends Job {
 			return; // nothing to do
 		}
 
-		$catMembChange = new CategoryMembershipChange( $title, $newRev );
+		$blc = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
+		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev );
 		$catMembChange->checkTemplateLinks();
 
 		$batchSize = $config->get( 'UpdateRowsPerQuery' );
