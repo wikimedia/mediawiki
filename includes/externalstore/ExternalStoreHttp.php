@@ -35,6 +35,7 @@ class ExternalStoreHttp extends ExternalStoreMedium {
 	}
 
 	public function store( $location, $data ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException( "ExternalStoreHttp is read-only and does not support store()." );
 	}
 

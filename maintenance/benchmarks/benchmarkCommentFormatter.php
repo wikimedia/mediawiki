@@ -21,7 +21,6 @@ class BenchmarkCommentFormatter extends Benchmarker {
 		if ( !isset( $result['query']['recentchanges'] ) ) {
 			$this->fatalError( "Invalid JSON data" );
 		}
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable T240141
 		$entries = $result['query']['recentchanges'];
 		$inputs = [];
 		foreach ( $entries as $entry ) {

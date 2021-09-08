@@ -54,6 +54,9 @@ class PPFuzzTester {
 	 */
 	private static $currentTest = false;
 
+	/**
+	 * @return void|never
+	 */
 	public function execute() {
 		if ( !file_exists( 'results' ) ) {
 			mkdir( 'results' );

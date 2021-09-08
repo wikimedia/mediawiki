@@ -1494,6 +1494,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @throws DBConnectionError
+	 * @return never
 	 */
 	private function reportConnectionError() {
 		$conn = $this->errorConnection; // the connection which caused the error

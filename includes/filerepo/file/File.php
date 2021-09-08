@@ -1962,6 +1962,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 
 	/**
 	 * @throws MWException
+	 * @return never
 	 */
 	protected function readOnlyError() {
 		throw new MWException( static::class . ': write operations are not supported' );

@@ -350,6 +350,7 @@ class WikitextContent extends TextContent {
 	 * @throws MWException
 	 */
 	protected function getHtml() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException(
 			"getHtml() not implemented for wikitext. "
 				. "Use getParserOutput()->getText()."
