@@ -2160,7 +2160,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
