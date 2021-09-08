@@ -2000,7 +2000,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->rollbackPrimaryChanges( $fname, $owner );
 	}
 

@@ -347,7 +347,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->rollbackPrimaryChanges( $fname );
 	}
 
