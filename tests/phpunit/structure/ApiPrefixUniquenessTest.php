@@ -20,7 +20,8 @@ class ApiPrefixUniquenessTest extends MediaWikiIntegrationTestCase {
 			$class = get_class( $module );
 
 			$prefix = $module->getModulePrefix();
-			if ( $prefix === '' /* HACK: T196962 */ || $prefix === 'wbeu' ) {
+			if ( $prefix === '' /* HACK: T196962 */ || $prefix === 'wbeu'
+				/* HACK: T290585 */ || $prefix === 'pi' ) {
 				continue;
 			}
 
