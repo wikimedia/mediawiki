@@ -670,9 +670,9 @@ class WANObjectCache implements
 
 			$purge = isset( $wrappedBySisterKey[$fluxKey] )
 				? $this->parsePurgeValue( $wrappedBySisterKey[$fluxKey] )
-				: false;
+				: null;
 
-			if ( $purge !== false ) {
+			if ( $purge !== null ) {
 				$purges[$key] = $purge;
 			}
 		}
@@ -696,13 +696,11 @@ class WANObjectCache implements
 		foreach ( $checkSisterKeys as $timeKey ) {
 			$purge = isset( $wrappedBySisterKey[$timeKey] )
 				? $this->parsePurgeValue( $wrappedBySisterKey[$timeKey] )
-				: false;
+				: null;
 
-			if ( $purge === false ) {
-				// Key is not set or malformed; regenerate
-				$newVal = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL );
-				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
-				$purge = $this->parsePurgeValue( $newVal );
+			if ( $purge === null ) {
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				$this->cache->add( $timeKey, $wrapped, self::CHECK_KEY_TTL );
 			}
 
 			$purges[] = $purge;
@@ -1109,23 +1107,16 @@ class WANObjectCache implements
 		$wrappedBySisterKey = $this->cache->getMulti( $checkSisterKeysByKey );
 		$wrappedBySisterKey += array_fill_keys( $checkSisterKeysByKey, false );
 
+		$now = $this->getCurrentTime();
 		$times = [];
 		foreach ( $checkSisterKeysByKey as $key => $checkSisterKey ) {
 			$purge = $this->parsePurgeValue( $wrappedBySisterKey[$checkSisterKey] );
-			if ( $purge !== false ) {
-				$time = $purge[self::PURGE_TIME];
-			} else {
-				// Casting assures identical floats for the next getCheckKeyTime() calls
-				$now = (string)$this->getCurrentTime();
-				$this->cache->add(
-					$checkSisterKey,
-					$this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL ),
-					self::CHECK_KEY_TTL
-				);
-				$time = (float)$now;
+			if ( $purge === null ) {
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				$this->cache->add( $checkSisterKey, $wrapped, self::CHECK_KEY_TTL );
 			}
 
-			$times[$key] = $time;
+			$times[$key] = $purge[self::PURGE_TIME];
 		}
 
 		return $times;
@@ -1167,10 +1158,10 @@ class WANObjectCache implements
 	 */
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
-		$ok = $this->relayVolatilePurges(
-			[ $checkSisterKey => $this->makeCheckPurgeValue( $this->getCurrentTime(), $holdoff ) ],
-			self::CHECK_KEY_TTL
-		);
+
+		$now = $this->getCurrentTime();
+		$purgeBySisterKey = [ $checkSisterKey => $this->makeCheckPurgeValue( $now, $holdoff ) ];
+		$ok = $this->relayVolatilePurges( $purgeBySisterKey, self::CHECK_KEY_TTL );
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
@@ -2310,7 +2301,7 @@ class WANObjectCache implements
 
 		$wrapped = $this->cache->get( $checkSisterKey );
 		$purge = $this->parsePurgeValue( $wrapped );
-		if ( $purge && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
+		if ( $purge !== null && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
 			$ok = $this->cache->changeTTL( $checkSisterKey, self::TTL_SECOND );
@@ -2951,7 +2942,7 @@ class WANObjectCache implements
 		} else {
 			// Entry expected to be a tombstone; parse it
 			$purge = $this->parsePurgeValue( $wrapped );
-			if ( $purge !== false ) {
+			if ( $purge !== null ) {
 				// Tombstoned keys should always have a negative current $ttl
 				$info[self::KEY_CUR_TTL] =
 					min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
@@ -2992,12 +2983,11 @@ class WANObjectCache implements
 	 * Valid purge values come from makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
 	 *
 	 * @param mixed $value Cached value
-	 * @return array|bool Array containing a UNIX timestamp (float) and hold-off period (integer),
-	 *  or false if value isn't a valid purge value
+	 * @return array|null Tuple of (UNIX timestamp, hold-off seconds); null if value is invalid
 	 */
 	private function parsePurgeValue( $value ) {
 		if ( !is_string( $value ) ) {
-			return false;
+			return null;
 		}
 
 		$segments = explode( ':', $value, 3 );
@@ -3011,12 +3001,12 @@ class WANObjectCache implements
 			// Value tombstones don't store hold-off TTLs
 			$holdoff = self::HOLDOFF_TTL;
 		} else {
-			return false;
+			return null;
 		}
 
 		if ( "{$prefix}:" !== self::PURGE_VAL_PREFIX || $timestamp < $this->epoch ) {
 			// Not a purge value or the purge value is too old
-			return false;
+			return null;
 		}
 
 		return [ self::PURGE_TIME => $timestamp, self::PURGE_HOLDOFF => $holdoff ];
@@ -3026,17 +3016,22 @@ class WANObjectCache implements
 	 * @param float $timestamp UNIX timestamp
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>"
 	 */
-	private function makeTombstonePurgeValue( $timestamp ) {
+	private function makeTombstonePurgeValue( float $timestamp ) {
 		return self::PURGE_VAL_PREFIX . number_format( $timestamp, 4, '.', '' );
 	}
 
 	/**
 	 * @param float $timestamp UNIX timestamp
 	 * @param int $holdoff In seconds
+	 * @param array|null &$purge Unwrapped purge value array [returned]
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
 	 */
-	private function makeCheckPurgeValue( $timestamp, int $holdoff ) {
-		return self::PURGE_VAL_PREFIX . number_format( $timestamp, 4, '.', '' ) . ":$holdoff";
+	private function makeCheckPurgeValue( float $timestamp, int $holdoff, array &$purge = null ) {
+		$normalizedTime = number_format( $timestamp, 4, '.', '' );
+		// Purge array that matches what parsePurgeValue() would have returned
+		$purge = [ self::PURGE_TIME => (float)$normalizedTime, self::PURGE_HOLDOFF => $holdoff ];
+
+		return self::PURGE_VAL_PREFIX . "$normalizedTime:$holdoff";
 	}
 
 	/**
