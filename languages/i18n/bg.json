@@ -3914,7 +3914,6 @@
 	"passwordpolicies-policies": "Правила",
 	"passwordpolicies-policy-minimalpasswordlength": "Паролата трябва да бъде от поне $1 {{PLURAL:$1|знак|знака}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Паролата трябва да бъде поне $1 {{PLURAL:$1|знак|знака}} за да можете да влезете",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Паролата не може да бъде същата като потребителското име",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Паролата не може да бъде подниз в потребителското име",
 	"passwordpolicies-policy-maximalpasswordlength": "Паролата трябва да бъде по-малко от $1 {{PLURAL:$1|знак|знака}}",
 	"passwordpolicies-policyflag-forcechange": "трябва да бъде променена при влизане",

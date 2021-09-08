@@ -3972,7 +3972,6 @@
 	"passwordpolicies-policies": "Reeglid",
 	"passwordpolicies-policy-minimalpasswordlength": "Parool peab olema vähemalt $1 {{PLURAL:$1|märgi}} pikkune.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Parool peab olema vähemalt $1 {{PLURAL:$1|märgi}} pikkune, et saaks sisse logida.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Parool ei tohi olla sama mis kasutajanimi.",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Parool ei tohi olla kasutajanime alamsõne.",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Parool ei tohi kuuluda kindlaksmääratud vaikeparoolide loetellu.",
 	"passwordpolicies-policy-maximalpasswordlength": "Parool peab olema $1 {{PLURAL:$1|märgist}} lühem.",

@@ -3110,7 +3110,6 @@
 	"specialmute-header": "Under kan du setja dempeinnstillingane dine for brukaren <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"mute-preferences": "Demp brukar",
 	"revid": "versjon $1",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikkje vera det same som brukarnamnet",
 	"userlogout-continue": "Ynskjer du å logga ut?",
 	"nonmain-slot-differences-therefore-readonly": "Du kan ikkje endra wikiteksten til denne versjonen av sida av di det er gjort endringar av data på sida som ikkje er wikitekst-baserte. [$1 For å attoppretta denne versjonen, trykk her]"
 }

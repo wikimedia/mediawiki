@@ -4029,7 +4029,6 @@
 	"passwordpolicies-policies": "নীতিসমূহ",
 	"passwordpolicies-policy-minimalpasswordlength": "পাসওয়ার্ড অবশ্যই {{PLURAL:$1|১ অক্ষরের|$1 অক্ষরের}} হতে হবে",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "প্রবেশ করতে সক্ষম হতে পাসওয়ার্ড অবশ্যই $1 {{PLURAL:$1|অক্ষরের}} হতে হবে",
-	"passwordpolicies-policy-passwordcannotmatchusername": "পাসওয়ার্ড ব্যবহারকারী নামের মত একই হতে পারে না",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "ব্যবহারকারী নামের একটি অংশ পাসওয়ার্ড হিসেবে দেওয়া যাবে না",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "পাসওয়ার্ডটি বিশেষ তালিকাভুক্ত পূর্বনির্ধারিত পাসওয়ার্ডের সাথে মিলতে পারবে না",
 	"passwordpolicies-policy-maximalpasswordlength": "পাসওয়ার্ড $1 {{PLURAL:$1|অক্ষরের}} চেয়ে কম দীর্ঘ হতে হবে",

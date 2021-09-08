@@ -4294,7 +4294,6 @@
 	"passwordpolicies-policy-displaywithflags": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span> <span class=\"passwordpolicies-policy-flags\">($3)</span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Les mots de passe doivent avoir au moins $1 caractère{{PLURAL:$1||s}} de long",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Les mots de passe doivent avoir au moins $1 caractère{{PLURAL:$1||s}} de long pour autoriser la connexion",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Le mot de passe ne peut pas être le même que le nom d‘utilisateur",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Le mot de passe ne peut pas être une sous-chaîne du nom d’utilisateur",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Le mot de passe ne peut pas être identiques à ceux de d'une liste spécifique de mots de passe par défaut.",
 	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",

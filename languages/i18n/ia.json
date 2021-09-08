@@ -3933,7 +3933,6 @@
 	"passwordpolicies-policies": "Politicas",
 	"passwordpolicies-policy-minimalpasswordlength": "Le contrasigno debe continer al minus $1 {{PLURAL:$1|character|characteres}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Le contrasigno debe continer al minus $1 {{PLURAL:$1|character|characteres}} pro poter aperir session",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Le contrasigno non pote esser identic al nomine de usator",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Le contrasigno non pote facer parte del nomine de usator",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Le contrasigno non pote figurar in un lista specific de contrasignos predefinite",
 	"passwordpolicies-policy-maximalpasswordlength": "Le contrasigno debe continer minus de $1 {{PLURAL:$1|character|characteres}}",

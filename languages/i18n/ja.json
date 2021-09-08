@@ -4209,7 +4209,6 @@
 	"passwordpolicies-policies": "ポリシー",
 	"passwordpolicies-policy-minimalpasswordlength": "パスワードは$1{{PLURAL:$1|文字}}以上でなければなりません",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "ログインできるようにするには、パスワードは$1{{PLURAL:$1|文字}}以上でなければなりません",
-	"passwordpolicies-policy-passwordcannotmatchusername": "パスワードは利用者名と同じにすることはできません",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "パスワードに利用者名の一部を含むことはできません。",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "パスワードは、デフォルトパスワードの特定のリストと一致するものは設定できません",
 	"passwordpolicies-policy-maximalpasswordlength": "パスワードは$1{{PLURAL:$1|文字}}以下でなければなりません",

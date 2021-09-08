@@ -4019,7 +4019,6 @@
 	"passwordpolicies-policies": "Regler",
 	"passwordpolicies-policy-minimalpasswordlength": "Passordet må være på minst $1 {{PLURAL:$1|tegn}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Passordet må være på minst $1 {{PLURAL:$1|tegn}} for å kunne logge inn",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikke være det samme som brukernavnet",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Passordet kan ikke være en understreng av brukernavnet",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Passordet kan ikke matche en spesifikk liste over standardpassord",
 	"passwordpolicies-policy-maximalpasswordlength": "Passordet kan maksimalt være på $1 {{PLURAL:$1|tegn}}",

@@ -2898,6 +2898,5 @@
 	"pagedata-bad-title": "Ongeldige titel: $1.",
 	"passwordpolicies-policy-minimalpasswordlength": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees om te kan aanmeld",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Wagwoord mag nie dieselfde wees as gebruikernaam nie",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Wagwoord kan nie 'n substring binne die gebruikersnaam wees nie"
 }

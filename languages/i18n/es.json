@@ -4174,7 +4174,6 @@
 	"passwordpolicies-policies": "Normativas",
 	"passwordpolicies-policy-minimalpasswordlength": "La contraseña debe tener al menos $1 {{PLURAL:$1|carácter|caracteres}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "La contraseña debe tener al menos $1 {{PLURAL:$1|carácter|caracteres}} para poder iniciar sesión",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La contraseña no puede ser la misma que el nombre de usuario",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La contraseña no puede ser parte del nombre de usuario",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "La contraseña no puede coincidir con una lista concreta de contraseñas predeterminadas",
 	"passwordpolicies-policy-maximalpasswordlength": "La contraseña no puede tener más de $1 {{PLURAL:$1|caracter|caracteres}}",

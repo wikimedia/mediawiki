@@ -3294,6 +3294,5 @@
 	"passwordpolicies-policies": "नीती",
 	"passwordpolicies-policy-minimalpasswordlength": "परवलीचा शब्द हा किमान $1 {{PLURAL:$1|अक्षरापेक्षा|अक्षरांपेक्षा}} जास्त लांबीचा हवा",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "सनोंद-प्रवेशास,परवलीचा शब्द हा किमान $1 {{PLURAL:$1|अक्षर}} लांबीचा असावयास हवा",
-	"passwordpolicies-policy-passwordcannotmatchusername": "परवलीचा शब्द हा सदस्यनाव असू शकत नाही",
 	"passwordpolicies-policy-maximalpasswordlength": "परवलीचा शब्द हा $1 {{PLURAL:$1|अक्षरापेक्षा|अक्षरांपेक्षा}} कमी लांबीचा हवा"
 }

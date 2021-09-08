@@ -3863,7 +3863,6 @@
 	"passwordpolicies-policies": "Polítiques",
 	"passwordpolicies-policy-minimalpasswordlength": "La contraseña tien de tener polo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "La contraseña tien de tener polo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}} pa poder aniciar sesión",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La contraseña nun puede ser la mesma que'l nome d'usuariu",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La contraseña nun pue ser una cadena contenida nel nome d'usuariu",
 	"passwordpolicies-policy-maximalpasswordlength": "La llonxitú de la contraseña tien de ser menor que {{PLURAL:$1|1 caráuter|$1 caráuteres}}",
 	"passwordpolicies-policyflag-forcechange": "tien de camudase al aniciar sesión",

@@ -4141,7 +4141,6 @@
 	"passwordpolicies-policies": "Políticas",
 	"passwordpolicies-policy-minimalpasswordlength": "A senha deve ter pelo menos $1 {{PLURAL:$1|caráter|caracteres}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A senha deve ter pelo menos $1 {{PLURAL:$1|caráter|caracteres}} para poder entrar",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Senha não pode ser o mesmo que nome de usuário",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "A senha não pode ser uma subteto dentro do nome de usuário",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "A senha não pode corresponder a uma lista específica de senhas padrão",
 	"passwordpolicies-policy-maximalpasswordlength": "A senha deve ser menor que $1 {{PLURAL:$1|caráter|caracteres}}",

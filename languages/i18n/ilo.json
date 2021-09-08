@@ -3555,7 +3555,6 @@
 	"passwordpolicies-policies": "Dagiti annuroten",
 	"passwordpolicies-policy-minimalpasswordlength": "Ti kontrasenias ket nasken a saan a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Ti kontrasenias ket nasken a saan a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog tapno makabaelan ti sumrek",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Ti kontrasenia ket saan a mabalin a kapada a kas ti nagan ti agar-aramat",
 	"passwordpolicies-policy-maximalpasswordlength": "Ti kontrasenias ket nasken a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog",
 	"userlogout-continue": "Kayatmo kadi ti rummuar?",
 	"paramvalidator-help-type-user-subtype-name": "nagan ti agar-aramat",

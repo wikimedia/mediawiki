@@ -4052,7 +4052,6 @@
 	"passwordpolicies-policies": "Pravidla",
 	"passwordpolicies-policy-minimalpasswordlength": "Heslo musí být alespoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}} dlouhé",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pro přihlášení je vyžadováno alespoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}} dlouhé heslo",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Heslo se nesmí shodovat s uživatelským jménem",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Heslo nesmí být součástí uživatelského jména",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Heslo nesmí být v určitém seznamu běžných hesel",
 	"passwordpolicies-policy-maximalpasswordlength": "Heslo musí být kratší než {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}}",

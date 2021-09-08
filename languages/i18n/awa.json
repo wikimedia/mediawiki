@@ -3878,7 +3878,6 @@
 	"passwordpolicies-policies": "पॉलिसी",
 	"passwordpolicies-policy-minimalpasswordlength": "आपका कूटशब्द कम से कम {{PLURAL:$1|1 कैरेक्टर|$1 कैरेक्टरों}} का होना चाहिये।",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "लॉगिन हेतु पासवर्ड कम से कम $1 {{PLURAL:$1|अक्षर}} लम्बा होना चाहिये",
-	"passwordpolicies-policy-passwordcannotmatchusername": "पासवर्ड सदस्यनाम के समान नहीं हो सकता",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "पासवर्ड उपयोगकर्ता नांव कय एक विकल्प नाही होइ सकत",
 	"passwordpolicies-policy-maximalpasswordlength": "पासवर्ड $1 {{PLURAL:$1|अक्षर|अक्षरों}} से कम लम्बा होना चाहिये",
 	"passwordpolicies-policyflag-forcechange": "must change on login",

@@ -3983,7 +3983,6 @@
 	"passwordpolicies-policies": "Politici",
 	"passwordpolicies-policy-minimalpasswordlength": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}} pentru a vă putea autentifica.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Parola nu poate fi identică cu numele de utilizator",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Parola nu poate fi o parte din numele de utilizator",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Parola nu se poate potrivi cu o listă specifică de parole implicite",
 	"passwordpolicies-policy-maximalpasswordlength": "Parola trebuie să aibă cel puțin $1 {{PLURAL:$1|caracter|caractere|de caractere}}.",

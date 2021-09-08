@@ -4014,7 +4014,6 @@
 	"passwordpolicies-policies": "Polítiques",
 	"passwordpolicies-policy-minimalpasswordlength": "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Les contrasenyes han de tenir com a mínim $1 {{PLURAL:$1|caràcter|caràcters}} d'extensió per poder iniciar una sessió",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La contrasenya no pot ser igual que el nom d'usuari",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La contrasenya no pot ser una subcadena de text dins del nom d'usuari",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "La contrasenya no pot coincidir amb una llista específica de contrasenyes per defecte",
 	"passwordpolicies-policy-maximalpasswordlength": "Les contrasenyes han de tenir menys de $1 {{PLURAL:$1|caràcter|caràcters}} d'extensió",

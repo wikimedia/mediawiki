@@ -3089,7 +3089,6 @@
 	"passwordpolicies-summary": "ХӀокху агӀонгахь гойту декъашхойн паролашна болу бехкам. Декъашхойн йукъабогӀуш болу бакъонийн тобанашка хьажжина бу бехкам.",
 	"passwordpolicies-policy-minimalpasswordlength": "Пароль $1 {{PLURAL:$1|символал}} йеха хила йеза",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль хила йеза $1 {{PLURAL:$1|хьаьркал}} йеха, декъашхочун шен агӀо карайайтархьама",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль декъашхочун цӀерах тера хила ца йеза",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль $1 {{PLURAL:$1|хьаьркал}} йоца хила ца йеза",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "болхболича чекхбаккха хийцам",
 	"userlogout-continue": "Лаьий хьуна болх дӀаберзо?"

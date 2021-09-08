@@ -4057,7 +4057,6 @@
 	"passwordpolicies-policies": "מדיניות",
 	"passwordpolicies-policy-minimalpasswordlength": "הסיסמה חייבת להיות באורך של {{PLURAL:$1|תו אחד|$1 תווים}} לפחות",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "הסיסמה חייבת להיות באורך של {{PLURAL:$1|תו אחד|$1 תווים}} לפחות כדי שניתן יהיה להיכנס לחשבון",
-	"passwordpolicies-policy-passwordcannotmatchusername": "הסיסמה לא יכולה להיות זהה לשם המשתמש",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "הסיסמה לא יכולה להיות תת־מחרוזת בתוך שם המשתמש",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "הסיסמה לא יכולה להתאים לרשימה מסוימת של סיסמאות ברירת מחדל",
 	"passwordpolicies-policy-maximalpasswordlength": "הסיסמה חייבת להיות קצרה יותר {{PLURAL:$1|מתו אחד|מ־$1 תווים}}",

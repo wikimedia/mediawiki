@@ -4075,7 +4075,6 @@
 	"passwordpolicies-policies": "Zasady",
 	"passwordpolicies-policy-minimalpasswordlength": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Aby się zalogować, hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Hasło nie może być takie samo jak nazwa użytkownika",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Hasło nie może być zawarte wewnątrz nazwy użytkownika",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Hasło nie może być zgodne z konkretną listą domyślnych haseł",
 	"passwordpolicies-policy-maximalpasswordlength": "Hasło musi mieć mniej niż $1 {{PLURAL:$1|znak|znaki|znaków}}",

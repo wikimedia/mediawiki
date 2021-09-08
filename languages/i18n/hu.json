@@ -3954,7 +3954,6 @@
 	"passwordpolicies-policies": "Irányelvek",
 	"passwordpolicies-policy-minimalpasswordlength": "A jelszónak legalább $1 karakterből kell állnia",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A jelszónak legalább $1 karakterből kell állnia a bejelentkezéshez",
-	"passwordpolicies-policy-passwordcannotmatchusername": "A jelszó nem lehet azonos a felhasználónévvel",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "A jelszó nem lehet a felhasználónév részszövege",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "A jelszó nem lehet azonos alapértelmezett jelszavak egy konkrét listáján szereplő jelszavak egyikével sem",
 	"passwordpolicies-policy-maximalpasswordlength": "A jelszó legfeljebb $1 karakter hosszú lehet",

@@ -3926,7 +3926,6 @@
 	"passwordpolicies-policies": "Régole",
 	"passwordpolicies-policy-minimalpasswordlength": "La ciav a dev esse almanch longa $1 {{PLURAL:$1|1 caràter|$1 caràter}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "La ciav a dev esse longa almanch $1 {{PLURAL:$1|caràter}} për podèj intré ant ël sistema",
-	"passwordpolicies-policy-passwordcannotmatchusername": "La ciav a peul pa esse ugual a lë stranòm",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La ciav a peul pa esse na sotastringa ëd lë stranòm",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "La ciav a peul pa esse an na lista specìfica 'd ciav conossùe",
 	"passwordpolicies-policy-maximalpasswordlength": "La ciav a dev esse longa meno che $1 {{PLURAL:$1|caràter}}",

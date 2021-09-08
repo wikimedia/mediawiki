@@ -4054,7 +4054,6 @@
 	"passwordpolicies-policies": "Beleid",
 	"passwordpolicies-policy-minimalpasswordlength": "Wachtwoord moet ten minste {{PLURAL:$1|$1 teken|$1 tekens}} bevatten",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Wachtwoord moet ten minste {{PLURAL:$1|$1 teken|$1 tekens}} bevatten om te mogen aanmelden",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Wachtwoord mag niet hetzelfde zijn als de gebruikersnaam",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Wachtwoord mag niet deel uitmaken van de gebruikersnaam",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Wachtwoord mag niet overeenkomen met wachtwoorden op de lijst met standaardwachtwoorden",
 	"passwordpolicies-policy-maximalpasswordlength": "Wachtwoord moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten",

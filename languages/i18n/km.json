@@ -2751,7 +2751,6 @@
 	"passwordpolicies-policies": "គោលការណ៍",
 	"passwordpolicies-policy-minimalpasswordlength": "ពាក្យសម្ងាត់ត្រូវ​តែវែងជាង{{PLURAL:$1|តួអក្សរ|$1តួអក្សរ}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "ពាក្យសម្ងាត់ត្រូវ​តែវែងជាង$1 {{PLURAL:$1|តួអក្សរ|តួអក្សរ}}ទើបអាចកត់ឈ្មោះចូលបាន",
-	"passwordpolicies-policy-passwordcannotmatchusername": "ពាក្យសម្ងាត់មិនត្រូវដូចគ្នានឹងអត្តនាមទេ",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "ពាក្យសម្ងាត់មិនអាចត្រូវគ្នានឹងបញ្ជីជាក់លាក់មួយដែលចុះនូវពាក្យសម្ងាត់លំនាំដើមទេ",
 	"passwordpolicies-policy-maximalpasswordlength": "ពាក្យសម្ងាត់ត្រូវតែខ្លីជាង $1 {{PLURAL:$1|តួអក្សរ|តួអក្សរ}}"
 }

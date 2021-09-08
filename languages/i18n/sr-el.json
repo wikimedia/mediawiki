@@ -4012,7 +4012,6 @@
 	"passwordpolicies-policy-display": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span>",
 	"passwordpolicies-policy-minimalpasswordlength": "Lozinka mora da ima najmanje {{PLURAL:$1|jedan znak|$1 znaka|$1 znakova}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Lozinka mora sadržati najmanje $1 {{PLURAL:$1|karakter|karaktera}} da bi ste mogli da se prijavite.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Lozinka ne sme biti ista kao korisničko ime",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Lozinka ne sme biti podniz unutar korisničkog imena",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Lozinka ne sme da se podudara s onima na spisku podrazumevanih lozinki",
 	"passwordpolicies-policy-maximalpasswordlength": "Lozinka mora da bude kraća od $1 {{PLURAL:$1|znaka|znakova}}",

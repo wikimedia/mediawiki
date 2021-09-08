@@ -4010,7 +4010,6 @@
 	"passwordpolicies-policies": "정책",
 	"passwordpolicies-policy-minimalpasswordlength": "비밀번호는 적어도 $1 {{PLURAL:$1|자}}여야 합니다",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "로그인하려면 비밀번호는 적어도 {{PLURAL:$1|자}}여야 합니다",
-	"passwordpolicies-policy-passwordcannotmatchusername": "비밀번호는 사용자 이름과 같을 수 없습니다",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "비밀번호는 사용자 이름의 부분 문자열이 될 수 없습니다",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "비밀번호가 특정 목록의 기본 비밀번호와 일치할 수 없습니다",
 	"passwordpolicies-policy-maximalpasswordlength": "비밀번호는 적어도 $1 {{PLURAL:$1|자}} 미만이어야 합니다",

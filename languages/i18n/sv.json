@@ -4026,7 +4026,6 @@
 	"passwordpolicies-policies": "Policyer",
 	"passwordpolicies-policy-minimalpasswordlength": "Lösenordet måste vara minst $1 {{PLURAL:$1|tecken}} långt",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Lösenordet måste vara minst $1 {{PLURAL:$1|tecken}} långt för att kunna logga in",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Lösenordet kan inte vara likadant som användarnamnet",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Lösenordet får inte vara en understräng inom användarnamnet.",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Lösenordet kan inte matcha en specifik lista över standardlösenord",
 	"passwordpolicies-policy-maximalpasswordlength": "Lösenordet måste vara högst $1 {{PLURAL:$1|tecken}} långt",

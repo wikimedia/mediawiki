@@ -3941,7 +3941,6 @@
 	"passwordpolicies-policies": "Pravilniki",
 	"passwordpolicies-policy-minimalpasswordlength": "Geslo mora dolgo biti vsaj $1 {{PLURAL:$1|znak|znaka|znake|znakov}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Geslo mora biti dolgo vsaj $1 {{PLURAL:$1|znak|znaka|znake|znakov}}, da je omogočena prijava",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Geslo ne more biti enako kot uporabniško ime",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Geslo ne sme biti podniz znotraj uporabniškega imena.",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Geslo se ne sme nahajati na seznamu privzetih gesel",
 	"passwordpolicies-policy-maximalpasswordlength": "Geslo ne sme biti daljše od $1 {{PLURAL:$1|znak|znaka|znake|znakov}}",

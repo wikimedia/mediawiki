@@ -3826,7 +3826,6 @@
 	"passwordpolicies-policies": "นโยบาย",
 	"passwordpolicies-policy-minimalpasswordlength": "รหัสผ่านต้องมีความยาวอย่างน้อย $1 อักขระ",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "รหัสผ่านต้องมีความยาวอย่างน้อย $1 อักขระจึงจะสามารถล็อกอินได้",
-	"passwordpolicies-policy-passwordcannotmatchusername": "ห้ามรหัสผ่านซ้ำกับชื่อผู้ใช้",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "รหัสผ่านไม่สามารถเป็นสายอักขระย่อยในชื่อผู้ใช้",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "รหัสผ่านตรงกับรายการรหัสผ่านโดยปริยายที่กำหนดไม่ได้",
 	"passwordpolicies-policy-maximalpasswordlength": "รหัสผ่านจะต้องมีความยาวน้อยกว่า $1 อักขระ",

@@ -3944,7 +3944,6 @@
 	"passwordpolicies-policies": "Палітыкі",
 	"passwordpolicies-policy-minimalpasswordlength": "Пароль мусіць мець даўжыню найменей $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль мусіць мець даўжыню найменш $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}, каб уваходзіць у сыстэму",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль ня можа супадаць зь імем ўдзельніка",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Пароль ня можа быць падрадком унутры імені карыстальніка",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Пароль ня можа супадаць з адмысловым сьпісам пароляў па змоўчаньні",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль мусіць быць даўжынёй менш за $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}",

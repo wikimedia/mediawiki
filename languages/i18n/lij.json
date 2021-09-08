@@ -3820,7 +3820,6 @@
 	"passwordpolicies-policies": "Polittiche",
 	"passwordpolicies-policy-minimalpasswordlength": "A password a gh'ha da aveighe aomanco $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A password a gh'ha da aveighe aomanco $1 {{PLURAL:$1|carattere|caratteri}} pe poei acede.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "A password a no poeu ese pægia do nomme utente",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "A password a no poeu ese un tòcco do nomme utente",
 	"passwordpolicies-policy-maximalpasswordlength": "A password a gh'ha da ese meno de $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"passwordpolicies-policyflag-forcechange": "a deve cangiâ a l'acesso",

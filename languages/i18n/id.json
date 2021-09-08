@@ -4088,7 +4088,6 @@
 	"passwordpolicies-policies": "Kebijakan",
 	"passwordpolicies-policy-minimalpasswordlength": "Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|karakter|karakter}}.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|karakter|karakter}} agar dapat masuk log",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Kata sandi tidak boleh sama dengan nama pengguna",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Kata sandi tidak boleh berisi bagian dari nama pengguna",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Kata sandi tidak boleh cocok dengan kata sandi yang masuk daftar hitam",
 	"passwordpolicies-policy-maximalpasswordlength": "Kata sandi tidak boleh kurang dari {{PLURAL:$1|karakter|karakter}}.",
