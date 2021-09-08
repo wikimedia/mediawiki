@@ -60,6 +60,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
+use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageStore;
@@ -869,6 +870,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactory(): LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return DeletePageFactory
+	 */
+	public function getDeletePageFactory(): DeletePageFactory {
+		return $this->getService( 'DeletePageFactory' );
 	}
 
 	/**

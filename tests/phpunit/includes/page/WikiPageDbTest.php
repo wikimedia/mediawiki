@@ -22,6 +22,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
+	/** @var WikiPage[] */
 	private $pagesToDelete;
 
 	protected function setUp(): void {
@@ -62,8 +63,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	protected function tearDown(): void {
 		$user = $this->getTestSysop()->getUser();
 		foreach ( $this->pagesToDelete as $p ) {
-			/** @var WikiPage $p */
-
 			try {
 				if ( $p->canExist() && $p->exists() ) {
 					$p->doDeleteArticleReal( "testing done.", $user );
@@ -551,9 +550,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$id = $page->getId();
-		$user = $this->getTestSysop()->getUserIdentity();
+		$user = $this->getTestSysop()->getUser();
 
-		$page->doDeleteArticleReal( "testing deletion", $user );
+		$reason = "testing deletion";
+		$status = $page->doDeleteArticleReal( $reason, $user );
 
 		$this->assertFalse(
 			$page->getTitle()->getArticleID() > 0,
@@ -585,29 +585,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$res->free();
 
 		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
-	}
 
-	/**
-	 * @covers WikiPage::doDeleteArticleReal
-	 */
-	public function testDoDeleteArticleReal_user0() {
-		$page = $this->createPage(
-			__METHOD__,
-			"[[original text]] foo",
-			CONTENT_MODEL_WIKITEXT
-		);
-
-		$deleter = $this->getTestSysop()->getUser();
-
-		$errorStack = '';
-		$status = $page->doDeleteArticleReal(
-			/* reason */ "testing user 0 deletion",
-			/* deleter */ $deleter,
-			/* suppress */ false,
-			/* unused 1 */ null,
-			/* errorStack */ $errorStack,
-			/* unused 2 */ null
-		);
+		// Test deletion logging
 		$logId = $status->getValue();
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
@@ -624,52 +603,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			[ [
 				'delete',
 				'delete',
-				'testing user 0 deletion',
-				(string)$deleter->getActorId(),
-				(string)$page->getTitle()->getNamespace(),
-				$page->getTitle()->getDBkey(),
-			] ],
-			[],
-			$commentQuery['joins']
-		);
-	}
-
-	/**
-	 * @covers WikiPage::doDeleteArticleReal
-	 */
-	public function testDoDeleteArticleReal_userSysop() {
-		$page = $this->createPage(
-			__METHOD__,
-			"[[original text]] foo",
-			CONTENT_MODEL_WIKITEXT
-		);
-
-		$user = $this->getTestSysop()->getUser();
-		$errorStack = '';
-		$status = $page->doDeleteArticleReal(
-			/* reason */ "testing sysop deletion",
-			$user,
-			/* suppress */ false,
-			/* unused 1 */ null,
-			/* errorStack */ $errorStack
-		);
-		$logId = $status->getValue();
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
-		$this->assertSelect(
-			[ 'logging' ] + $commentQuery['tables'], /* table */
-			[
-				'log_type',
-				'log_action',
-				'log_comment' => $commentQuery['fields']['log_comment_text'],
-				'log_actor',
-				'log_namespace',
-				'log_title',
-			],
-			[ 'log_id' => $logId ],
-			[ [
-				'delete',
-				'delete',
-				'testing sysop deletion',
+				$reason,
 				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
@@ -690,17 +624,15 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			"[[original text]] foo",
 			CONTENT_MODEL_WIKITEXT
 		);
-		$id = $page->getId();
 
 		$user = $this->getTestSysop()->getUser();
-		$errorStack = '';
 		$status = $page->doDeleteArticleReal(
 			/* reason */ "testing deletion",
 			$user,
-			/* suppress */ true,
-			/* unused 1 */ null,
-			/* errorStack */ $errorStack
+			/* suppress */ true
 		);
+
+		// Test suppression logging
 		$logId = $status->getValue();
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
@@ -1340,8 +1272,6 @@ more stuff
 
 		$this->assertEquals( $expectedHistory, $hasHistory,
 			"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
-
-		$page->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
 	}
 
 	public function providePreSaveTransform() {
