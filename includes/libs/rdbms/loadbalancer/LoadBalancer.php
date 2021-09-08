@@ -1862,7 +1862,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
