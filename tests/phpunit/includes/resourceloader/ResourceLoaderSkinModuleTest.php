@@ -108,23 +108,14 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 			[
 				[
 					'Logos' => [
-						'wordmark' => [
-							'src' => '/logo-wordmark.png',
-							'width' => 100,
-							'height' => 15,
-						],
+						'wordmark' => '/logo-wordmark.png',
 						'1x' => '/logo.png',
 						'svg' => '/logo.svg',
 						'2x' => 'logo-2x.png'
 					],
 				],
 				[
-					'wordmark' => [
-						'src' => '/logo-wordmark.png',
-						'width' => 100,
-						'height' => 15,
-						'style' => 'width: 6.25em; height: 0.9375em;',
-					],
+					'wordmark' => '/logo-wordmark.png',
 					'1x' => '/logo.png',
 					'svg' => '/logo.svg',
 					'2x' => 'logo-2x.png',
@@ -277,11 +268,7 @@ CSS
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
-						'wordmark' => [
-							'src' => '/img/wordmark.png',
-							'width' => 120,
-							'height' => 20,
-						],
+						'wordmark' => '/img/wordmark.png',
 					],
 				],
 				'expected' => '/img/default.png',
