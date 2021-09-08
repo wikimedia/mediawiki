@@ -206,7 +206,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return MaintainableDBConnRef
 	 */
 	public function getMaster( $cluster ) {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getPrimary( $cluster );
 	}
 
