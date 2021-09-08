@@ -8,7 +8,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\TestingAccessWrapper;
 
 class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
@@ -201,72 +200,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			'<a href="" class="class1 class2 link-class">Test</a>',
 			$link
 		);
-	}
-
-	public function provideGetCopyrightIcon() {
-		return [
-			[
-				[
-					'RightsIcon' => '',
-					'FooterIcons' => [],
-				],
-				'',
-				'Returns empty string when no configuration'
-			],
-			[
-				[
-					'FooterIcons' => [
-						'copyright' => [
-							'copyright' => '<img src="footer-copyright.png">'
-						]
-					],
-					'RightsIcon' => 'copyright.png',
-					'RightsUrl' => 'https://',
-					'RightsText' => 'copyright'
-				],
-				'<img src="footer-copyright.png">',
-				'Reads from FooterIcons first'
-			],
-			[
-				[
-					'FooterIcons' => [],
-					'RightsIcon' => 'copyright.png',
-					'RightsUrl' => 'https://',
-					'RightsText' => 'copyright'
-				],
-				'<a href="https://"><img src="copyright.png" alt="copyright" width="88" height="31" /></a>',
-				'Copyright can be created from Rights- prefixed config variables.'
-			],
-			[
-				[
-					'FooterIcons' => [],
-					'RightsIcon' => 'copyright.png',
-					'RightsUrl' => '',
-					'RightsText' => 'copyright'
-				],
-				'<img src="copyright.png" alt="copyright" width="88" height="31" />',
-				'$wgRightsUrl is optional.'
-			],
-		];
-	}
-
-	/**
-	 * @covers Skin::getCopyrightIcon
-	 * @dataProvider provideGetCopyrightIcon
-	 */
-	public function testGetCopyrightIcon( $globals, $expected, $msg ) {
-		$this->setMwGlobals( $globals );
-		$skin = new class extends Skin {
-			public function outputPage() {
-			}
-		};
-		$hashConfig = new HashConfig( $globals );
-		$ctx = RequestContext::getMain();
-		$ctx->setConfig( $hashConfig );
-		$skin->setContext( $ctx );
-		$wrapper = TestingAccessWrapper::newFromObject( $skin );
-		$icon = $wrapper->getCopyrightIcon();
-		$this->assertEquals( $expected, $icon, $msg );
 	}
 
 	/**
