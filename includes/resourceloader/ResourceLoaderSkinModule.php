@@ -533,14 +533,34 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	}
 
 	/**
+	 * Modifies configured logo width/height to ensure they are present and scaleable
+	 * with different font-sizes.
+	 * @param array $logoElement with width, height and src keys.
+	 * @return array modified version of $logoElement
+	 */
+	private static function getRelativeSizedLogo( array $logoElement ) {
+		$width = $logoElement['width'];
+		$height = $logoElement['height'];
+		$widthRelative = $width / 16;
+		$heightRelative = $height / 16;
+		// Allow skins to scale the wordmark with browser font size (T207789)
+		$logoElement['style'] = 'width: ' . $widthRelative . 'em; height: ' . $heightRelative . 'em;';
+		return $logoElement;
+	}
+
+	/**
 	 * Return an array of all available logos that a skin may use.
 	 * @since 1.35
 	 * @param Config $conf
 	 * @return array with the following keys:
-	 *  - 1x: a square logo (required)
-	 *  - 2x: a square logo for HD displays (optional)
-	 *  - wordmark: a rectangle logo (wordmark) for print media and skins which desire
-	 *      horizontal logo (optional)
+	 *  - 1x(string): a square logo composing the `icon` and `wordmark` (required)
+	 *  - 2x (string): a square logo for HD displays (optional)
+	 *  - wordmark (object): a rectangle logo (wordmark) for print media and skins which desire
+	 *      horizontal logo (optional). Must declare width and height fields,  defined in pixels
+	 *      which will be converted to ems based on 16px font-size.
+	 *  - tagline (object): replaces `tagline` message in certain skins. Must declare width and
+	 *      height fields defined in pixels, which are converted to ems based on 16px font-size.
+	 *  - icon (string): a square logo similar to 1x, but without the wordmark. SVG recommended.
 	 */
 	public static function getAvailableLogos( $conf ): array {
 		$logos = $conf->get( 'Logos' );
@@ -573,6 +593,21 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		// check the configuration is valid
 		if ( !isset( $logos['1x'] ) ) {
 			throw new RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
+		}
+
+		// @todo: Note the beta cluster and other wikis may be using
+		// unsupported configuration where these values are set to false.
+		// The boolean check can be removed when this has been addressed.
+		if ( isset( $logos['wordmark'] ) && $logos['wordmark'] ) {
+			// Allow skins to scale the wordmark with browser font size (T207789)
+			$logos['wordmark'] = self::getRelativeSizedLogo( $logos['wordmark'] );
+		}
+
+		// @todo: Note the beta cluster and other wikis may be using
+		// unsupported configuration where these values are set to false.
+		// The boolean check can be removed when this has been addressed.
+		if ( isset( $logos['tagline'] ) && $logos['tagline'] ) {
+			$logos['tagline'] = self::getRelativeSizedLogo( $logos['tagline'] );
 		}
 		// return the modified logos!
 		return $logos;
