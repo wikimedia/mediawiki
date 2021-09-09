@@ -4051,7 +4051,7 @@
 	"mediastatistics-nfiles": "$1 ($2 %)",
 	"mediastatistics-nbytes": "$1 octet{{PLURAL:$1||s}} ($2 ; $3%)",
 	"mediastatistics-bytespertype": "Taille totale de fichiers pour cette section de {{PLURAL:$4|$4 fichier|$4 fichiers}} ($5%) : $1 octet{{PLURAL:$1||s}} ($2 ; $3%).",
-	"mediastatistics-allbytes": "Taille totale pour {{PLURAL:$3|tout le fichier|tous les $3 fichiers : $1 {{PLURAL:$1|octet|octets}} ($2).",
+	"mediastatistics-allbytes": "Taille totale pour {{PLURAL:$3|tout le fichier|tous les $3 fichiers}} : $1 {{PLURAL:$1|octet|octets}} ($2).",
 	"mediastatistics-table-mimetype": "Type MIME",
 	"mediastatistics-table-extensions": "Extensions possibles",
 	"mediastatistics-table-count": "Nombre de fichiers",

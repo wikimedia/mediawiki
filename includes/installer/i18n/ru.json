@@ -306,6 +306,8 @@
 	"config-install-subscribe-fail": "Не удаётся подписаться на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL не установлен и не доступна опция <code>allow_url_fopen</code>.",
 	"config-install-subscribe-alreadysubscribed": "Вы уже подписаны на mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ Просмотр или изменение настроек подписки].",
+	"config-install-subscribe-alreadypending": "Запрос на подписку на mediawiki-announce уже подан. Пожалуйста, ответьте на электронное письмо с подтверждением, которое было отправлено ранее.",
+	"config-install-subscribe-possiblefail": "Возможно, ваш запрос на подписку на mediawiki-announce не был принят. Если вы не получите электронное письмо с подтверждением в течение нескольких минут, перейдите на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] и попробуйте отправить ваш запрос ещё раз.",
 	"config-install-mainpage": "Создание главной страницы с содержимым по умолчанию",
 	"config-install-mainpage-exists": "Главная страница уже существует, пропускаем",
 	"config-install-extension-tables": "Создание таблиц для включённых расширений",
