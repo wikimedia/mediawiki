@@ -58,6 +58,7 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ConfigRepository;
@@ -209,6 +210,10 @@ return [
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
+	},
+
+	'BacklinkCacheFactory' => static function ( MediaWikiServices $services ): BacklinkCacheFactory {
+		return new BacklinkCacheFactory( $services->getMainWANObjectCache() );
 	},
 
 	'BadFileLookup' => static function ( MediaWikiServices $services ): BadFileLookup {

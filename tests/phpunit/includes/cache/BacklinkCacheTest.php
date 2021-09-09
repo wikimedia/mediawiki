@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageReferenceValue;
+
 /**
  * @group Database
  * @group Cache
@@ -170,6 +172,15 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$array = iterator_to_array( $iterator );
 		$this->assertCount( 1, $array );
 		$this->assertTrue( self::$backlinkCacheTest['title']->isSamePageAs( $array[0] ) );
+	}
+
+	/**
+	 * @covers BacklinkCache::get
+	 */
+	public function testGet() {
+		$page = PageReferenceValue::localReference( NS_CATEGORY, "kittens" );
+		$cache = BacklinkCache::get( $page );
+		$this->assertTrue( $cache->getPage()->isSamePageAs( $page ) );
 	}
 
 }
