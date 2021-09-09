@@ -27,7 +27,7 @@
  * @since 1.7
  * @ingroup Exception
  */
-class ErrorPageError extends MWException implements ILocalizedException {
+class ErrorPageError extends AbstractLocalizedException {
 	public const SEND_OUTPUT = 0;
 	public const STAGE_OUTPUT = 1;
 	public $title, $msg, $params;
