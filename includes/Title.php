@@ -1770,10 +1770,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Get the default namespace index, for when there is no namespace
+	 * @deprecated since 1.37, no callers, should be removed.
 	 *
 	 * @return int Default namespace index
 	 */
 	public function getDefaultNamespace() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->mDefaultNamespace;
 	}
 

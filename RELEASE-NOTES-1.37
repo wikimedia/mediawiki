@@ -744,6 +744,8 @@ because of Phabricator reports.
    - PPDStackElement has been merged into PPDStackElement_Hash
 * Collation::singleton and ::factory were deprecated, obtain an CollationFactory
   instance from MediaWikiServices instead.
+* Title::getDefaultNamespace() has been deprecated to be removed because
+  there are no callers/consumers.
 * …
 
 === Other changes in 1.37 ===
