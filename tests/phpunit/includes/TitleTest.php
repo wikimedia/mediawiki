@@ -3,13 +3,10 @@
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageReference;
-use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -22,6 +19,20 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->mergeMwGlobalArrayValue(
+			'wgExtraNamespaces',
+			[
+				12302 => 'TEST-JS',
+				12303 => 'TEST-JS_TALK',
+			]
+		);
+		$this->mergeMwGlobalArrayValue(
+			'wgNamespaceContentModels',
+			[
+				12302 => CONTENT_MODEL_JAVASCRIPT,
+			]
+		);
+
 		$this->setMwGlobals( [
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
@@ -33,7 +44,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgArticlePath' => '/wiki/$1',
 		] );
 		$this->setUserLang( 'en' );
-		$this->setContentLang( 'en' );
+		$this->setMwGlobals( 'wgLanguageCode', 'en' );
 
 		// For testSecureAndSplitValid, testSecureAndSplitInvalid
 		$this->setMwGlobals( 'wgLocalInterwikis', [ 'localtestiw' ] );
@@ -57,15 +68,618 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			// testGetFragmentForURL
 			[ 'iw_prefix' => 'de', 'iw_local' => 1 ],
 			[ 'iw_prefix' => 'zz', 'iw_local' => 0 ],
+
+			// Some tests use interwikis - define valid prefixes and their configuration
+			// DummyServicesTrait::getDummyInterwikiLookup
+			[ 'iw_prefix' => 'acme', 'iw_url' => 'https://acme.test/$1' ],
+			[ 'iw_prefix' => 'yy', 'iw_url' => 'https://yy.wiki.test/wiki/$1', 'iw_local' => true ]
 		] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
 	protected function tearDown(): void {
+		Title::clearCaches();
 		parent::tearDown();
 		// delete dummy pages
 		$this->getNonexistingTestPage( 'UTest1' );
 		$this->getNonexistingTestPage( 'UTest2' );
+	}
+
+	public static function provideInNamespace() {
+		return [
+			[ 'Main Page', NS_MAIN, true ],
+			[ 'Main Page', NS_TALK, false ],
+			[ 'Main Page', NS_USER, false ],
+			[ 'User:Foo', NS_USER, true ],
+			[ 'User:Foo', NS_USER_TALK, false ],
+			[ 'User:Foo', NS_TEMPLATE, false ],
+			[ 'User_talk:Foo', NS_USER_TALK, true ],
+			[ 'User_talk:Foo', NS_USER, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInNamespace
+	 * @covers Title::inNamespace
+	 */
+	public function testInNamespace( $title, $ns, $expectedBool ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedBool, $title->inNamespace( $ns ) );
+	}
+
+	/**
+	 * @covers Title::inNamespaces
+	 */
+	public function testInNamespaces() {
+		$mainpage = Title::newFromText( 'Main Page' );
+		$this->assertTrue( $mainpage->inNamespaces( NS_MAIN, NS_USER ) );
+		$this->assertTrue( $mainpage->inNamespaces( [ NS_MAIN, NS_USER ] ) );
+		$this->assertTrue( $mainpage->inNamespaces( [ NS_USER, NS_MAIN ] ) );
+		$this->assertFalse( $mainpage->inNamespaces( [ NS_PROJECT, NS_TEMPLATE ] ) );
+	}
+
+	public static function provideHasSubjectNamespace() {
+		return [
+			[ 'Main Page', NS_MAIN, true ],
+			[ 'Main Page', NS_TALK, true ],
+			[ 'Main Page', NS_USER, false ],
+			[ 'User:Foo', NS_USER, true ],
+			[ 'User:Foo', NS_USER_TALK, true ],
+			[ 'User:Foo', NS_TEMPLATE, false ],
+			[ 'User_talk:Foo', NS_USER_TALK, true ],
+			[ 'User_talk:Foo', NS_USER, true ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideHasSubjectNamespace
+	 * @covers Title::hasSubjectNamespace
+	 */
+	public function testHasSubjectNamespace( $title, $ns, $expectedBool ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
+	}
+
+	public function dataGetContentModel() {
+		return [
+			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
+			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo.js', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'User:Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ],
+			[ 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ],
+			[ 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ],
+			[ 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ],
+		];
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 * @covers Title::getContentModel
+	 */
+	public function testGetContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedModelId, $title->getContentModel() );
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 * @covers Title::hasContentModel
+	 */
+	public function testHasContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertTrue( $title->hasContentModel( $expectedModelId ) );
+	}
+
+	public static function provideIsSiteConfigPage() {
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.js', false ],
+			[ 'Help:Foo/bar.js', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo/bar.js', false ],
+			[ 'User:Foo/bar.json', false ],
+			[ 'User:Foo/bar.css', false ],
+			[ 'User:Foo/bar.JS', false ],
+			[ 'User:Foo/bar.JSON', false ],
+			[ 'User:Foo/bar.CSS', false ],
+			[ 'User talk:Foo/bar.css', false ],
+			[ 'User:Foo/bar.js.xxx', false ],
+			[ 'User:Foo/bar.xxx', false ],
+			[ 'MediaWiki:Foo.js', 'javascript' ],
+			[ 'MediaWiki:Foo.json', 'json' ],
+			[ 'MediaWiki:Foo.css', 'css' ],
+			[ 'MediaWiki:Foo.JS', false ],
+			[ 'MediaWiki:Foo.JSON', false ],
+			[ 'MediaWiki:Foo.CSS', false ],
+			[ 'MediaWiki:Foo/bar.css', 'css' ],
+			[ 'MediaWiki:Foo.css.xxx', false ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsSiteConfigPage
+	 * @covers Title::isSiteConfigPage
+	 * @covers Title::isSiteJsConfigPage
+	 * @covers Title::isSiteJsonConfigPage
+	 * @covers Title::isSiteCssConfigPage
+	 */
+	public function testSiteConfigPage( $title, $expected ) {
+		$title = Title::newFromText( $title );
+
+		// $expected is either false or the relevant type ('javascript', 'json', 'css')
+		$this->assertSame(
+			$expected !== false,
+			$title->isSiteConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'javascript',
+			$title->isSiteJsConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'json',
+			$title->isSiteJsonConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'css',
+			$title->isSiteCssConfigPage()
+		);
+	}
+
+	public static function provideIsUserConfigPage() {
+		return [
+			[ 'Help:Foo', false ],
+			[ 'Help:Foo.js', false ],
+			[ 'Help:Foo/bar.js', false ],
+			[ 'User:Foo', false ],
+			[ 'User:Foo.js', false ],
+			[ 'User:Foo/bar.js', 'javascript' ],
+			[ 'User:Foo/bar.JS', false ],
+			[ 'User:Foo/bar.json', 'json' ],
+			[ 'User:Foo/bar.JSON', false ],
+			[ 'User:Foo/bar.css', 'css' ],
+			[ 'User:Foo/bar.CSS', false ],
+			[ 'User talk:Foo/bar.css', false ],
+			[ 'User:Foo/bar.js.xxx', false ],
+			[ 'User:Foo/bar.xxx', false ],
+			[ 'MediaWiki:Foo.js', false ],
+			[ 'MediaWiki:Foo.json', false ],
+			[ 'MediaWiki:Foo.css', false ],
+			[ 'MediaWiki:Foo.JS', false ],
+			[ 'MediaWiki:Foo.JSON', false ],
+			[ 'MediaWiki:Foo.CSS', false ],
+			[ 'MediaWiki:Foo.css.xxx', false ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsUserConfigPage
+	 * @covers Title::isUserConfigPage
+	 * @covers Title::isUserJsConfigPage
+	 * @covers Title::isUserJsonConfigPage
+	 * @covers Title::isUserCssConfigPage
+	 */
+	public function testIsUserConfigPage( $title, $expected ) {
+		$title = Title::newFromText( $title );
+
+		// $expected is either false or the relevant type ('javascript', 'json', 'css')
+		$this->assertSame(
+			$expected !== false,
+			$title->isUserConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'javascript',
+			$title->isUserJsConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'json',
+			$title->isUserJsonConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'css',
+			$title->isUserCssConfigPage()
+		);
+	}
+
+	public static function provideIsWikitextPage() {
+		return [
+			[ 'Help:Foo', true ],
+			[ 'Help:Foo.js', true ],
+			[ 'Help:Foo/bar.js', true ],
+			[ 'User:Foo', true ],
+			[ 'User:Foo.js', true ],
+			[ 'User:Foo/bar.js', false ],
+			[ 'User:Foo/bar.json', false ],
+			[ 'User:Foo/bar.css', false ],
+			[ 'User talk:Foo/bar.css', true ],
+			[ 'User:Foo/bar.js.xxx', true ],
+			[ 'User:Foo/bar.xxx', true ],
+			[ 'MediaWiki:Foo.js', false ],
+			[ 'User:Foo/bar.JS', true ],
+			[ 'User:Foo/bar.JSON', true ],
+			[ 'User:Foo/bar.CSS', true ],
+			[ 'MediaWiki:Foo.json', false ],
+			[ 'MediaWiki:Foo.css', false ],
+			[ 'MediaWiki:Foo.JS', true ],
+			[ 'MediaWiki:Foo.JSON', true ],
+			[ 'MediaWiki:Foo.CSS', true ],
+			[ 'MediaWiki:Foo.css.xxx', true ],
+			[ 'TEST-JS:Foo', false ],
+			[ 'TEST-JS:Foo.js', false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsWikitextPage
+	 * @covers Title::isWikitextPage
+	 */
+	public function testIsWikitextPage( $title, $expectedBool ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
+	}
+
+	public static function provideGetOtherPage() {
+		return [
+			[ 'Main Page', 'Talk:Main Page' ],
+			[ 'Talk:Main Page', 'Main Page' ],
+			[ 'Help:Main Page', 'Help talk:Main Page' ],
+			[ 'Help talk:Main Page', 'Help:Main Page' ],
+			[ 'Special:FooBar', null ],
+			[ 'Media:File.jpg', null ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetOtherpage
+	 * @covers Title::getOtherPage
+	 *
+	 * @param string $text
+	 * @param string|null $expected
+	 */
+	public function testGetOtherPage( $text, $expected ) {
+		if ( $expected === null ) {
+			$this->expectException( MWException::class );
+		}
+
+		$title = Title::newFromText( $text );
+		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
+	}
+
+	/**
+	 * @covers Title::clearCaches
+	 */
+	public function testClearCaches() {
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+
+		$title1 = Title::newFromText( 'Foo' );
+		$linkCache->addGoodLinkObj( 23, $title1 );
+
+		Title::clearCaches();
+
+		$title2 = Title::newFromText( 'Foo' );
+		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
+		$this->assertSame( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
+	}
+
+	public function provideGetLinkURL() {
+		yield 'Simple' => [
+			'/wiki/Goats',
+			NS_MAIN,
+			'Goats'
+		];
+
+		yield 'Fragment' => [
+			'/wiki/Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön'
+		];
+
+		yield 'Fragment only (query is ignored)' => [
+			'#Goatificatiön',
+			NS_MAIN,
+			'',
+			'Goatificatiön',
+			'',
+			[
+				'a' => 1,
+			]
+		];
+
+		yield 'Unknown interwiki with fragment' => [
+			'https://xx.wiki.test/wiki/xyzzy:Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'xyzzy'
+		];
+
+		yield 'Interwiki with fragment' => [
+			'https://acme.test/Goats#Goatificati.C3.B6n',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'acme'
+		];
+
+		yield 'Interwiki with query' => [
+			'https://acme.test/Goats?a=1&b=blank+blank#Goatificati.C3.B6n',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'acme',
+			[
+				'a' => 1,
+				'b' => 'blank blank'
+			]
+		];
+
+		yield 'Local interwiki with fragment' => [
+			'https://yy.wiki.test/wiki/Goats#Goatificatiön',
+			NS_MAIN,
+			'Goats',
+			'Goatificatiön',
+			'yy'
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetLinkURL
+	 *
+	 * @covers Title::getLinkURL
+	 * @covers Title::getFullURL
+	 * @covers Title::getLocalURL
+	 * @covers Title::getFragmentForURL
+	 */
+	public function testGetLinkURL(
+		$expected,
+		$ns,
+		$title,
+		$fragment = '',
+		$interwiki = '',
+		$query = '',
+		$query2 = false,
+		$proto = false
+	) {
+		$this->setMwGlobals( [
+			'wgServer' => 'https://xx.wiki.test',
+			'wgArticlePath' => '/wiki/$1',
+			'wgExternalInterwikiFragmentMode' => 'legacy',
+			'wgFragmentMode' => [ 'html5', 'legacy' ]
+		] );
+
+		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
+		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
+	}
+
+	public function provideProperPage() {
+		return [
+			[ NS_MAIN, 'Test' ],
+			[ NS_MAIN, 'User' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideProperPage
+	 * @covers Title::toPageIdentity
+	 */
+	public function testToPageIdentity( $ns, $text ) {
+		$title = Title::makeTitle( $ns, $text );
+
+		$page = $title->toPageIdentity();
+
+		$this->assertNotSame( $title, $page );
+		$this->assertSame( $title->getId(), $page->getId() );
+		$this->assertSame( $title->getNamespace(), $page->getNamespace() );
+		$this->assertSame( $title->getDBkey(), $page->getDBkey() );
+		$this->assertSame( $title->getWikiId(), $page->getWikiId() );
+	}
+
+	/**
+	 * @dataProvider provideProperPage
+	 * @covers Title::toPageRecord
+	 */
+	public function testToPageRecord( $ns, $text ) {
+		$title = Title::makeTitle( $ns, $text );
+		$wikiPage = $this->getExistingTestPage( $title );
+
+		$record = $title->toPageRecord();
+
+		$this->assertNotSame( $title, $record );
+		$this->assertNotSame( $title, $wikiPage );
+
+		$this->assertSame( $title->getId(), $record->getId() );
+		$this->assertSame( $title->getNamespace(), $record->getNamespace() );
+		$this->assertSame( $title->getDBkey(), $record->getDBkey() );
+		$this->assertSame( $title->getWikiId(), $record->getWikiId() );
+
+		$this->assertSame( $title->getLatestRevID(), $record->getLatest() );
+		$this->assertSame( MWTimestamp::convert( TS_MW, $title->getTouched() ), $record->getTouched() );
+		$this->assertSame( $title->isNewPage(), $record->isNew() );
+		$this->assertSame( $title->isRedirect(), $record->isRedirect() );
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::toPageRecord
+	 */
+	public function testToPageRecord_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->toPageRecord();
+	}
+
+	public function provideImproperPage() {
+		return [
+			[ NS_MAIN, '' ],
+			[ NS_MAIN, '<>' ],
+			[ NS_MAIN, '|' ],
+			[ NS_MAIN, '#' ],
+			[ NS_PROJECT, '#test' ],
+			[ NS_MAIN, '', 'test', 'acme' ],
+			[ NS_MAIN, ' Test' ],
+			[ NS_MAIN, '_Test' ],
+			[ NS_MAIN, 'Test ' ],
+			[ NS_MAIN, 'Test_' ],
+			[ NS_MAIN, "Test\nthis" ],
+			[ NS_MAIN, "Test\tthis" ],
+			[ -33, 'Test' ],
+			[ 77663399, 'Test' ],
+
+			// Valid but can't exist
+			[ NS_MAIN, '', 'test' ],
+			[ NS_SPECIAL, 'Test' ],
+			[ NS_MAIN, 'Test', '', 'acme' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::getId
+	 */
+	public function testGetId_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->getId();
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::getId
+	 */
+	public function testGetId_fragment() {
+		$title = Title::makeTitle( NS_MAIN, 'Test', 'References' );
+
+		// should not throw
+		$this->assertIsInt( $title->getId() );
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::toPageIdentity
+	 */
+	public function testToPageIdentity_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->toPageIdentity();
+	}
+
+	public function provideMakeTitle() {
+		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
+		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
+		yield 'fragment' => [ 'Foo#Section', NS_MAIN, 'Foo', 'Section' ];
+		yield 'only fragment' => [ '#Section', NS_MAIN, '', 'Section' ];
+		yield 'interwiki' => [ 'acme:Foo', NS_MAIN, 'Foo', '', 'acme' ];
+		yield 'normalized underscores' => [ 'Foo Bar', NS_MAIN, 'Foo_Bar' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitle
+	 * @covers Title::makeTitle
+	 */
+	public function testMakeTitle( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->assertTrue( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitle_invalid() {
+		yield 'bad namespace' => [ 'Special:Badtitle/NS-1234:Foo', -1234, 'Foo' ];
+		yield 'lower case' => [ 'User:foo', NS_USER, 'foo' ];
+		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'bad character' => [ 'Foo|Bar', NS_MAIN, 'Foo|Bar' ];
+		yield 'bad interwiki' => [ 'qwerty:Foo', NS_MAIN, 'Foo', null, 'qwerty' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitle_invalid
+	 * @covers Title::makeTitle
+	 */
+	public function testMakeTitle_invalid( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->assertFalse( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitleSafe() {
+		yield 'main namespace' => [ 'Foo', NS_MAIN, 'Foo' ];
+		yield 'user namespace' => [ 'User:Foo', NS_USER, 'Foo' ];
+		yield 'fragment' => [ 'Foo#Section', NS_MAIN, 'Foo', 'Section' ];
+		yield 'only fragment' => [ '#Section', NS_MAIN, '', 'Section' ];
+		yield 'interwiki' => [ 'acme:Foo', NS_MAIN, 'Foo', '', 'acme' ];
+
+		// Normalize
+		yield 'normalized underscores' => [ 'Foo Bar', NS_MAIN, 'Foo_Bar' ];
+		yield 'lower case' => [ 'User:Foo', NS_USER, 'foo' ];
+
+		// Bad interwiki becomes part of the title text. Is this intentional?
+		yield 'bad interwiki' => [ 'Qwerty:Foo', NS_MAIN, 'Foo', '', 'qwerty' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitleSafe
+	 * @covers Title::makeTitleSafe
+	 */
+	public function testMakeTitleSafe( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
+
+		$this->assertTrue( $title->isValid() );
+		$this->assertSame( $expected, $title->getFullText() );
+	}
+
+	public function provideMakeTitleSafe_invalid() {
+		yield 'bad namespace' => [ -1234, 'Foo' ];
+		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'bad character' => [ NS_MAIN, 'Foo|Bar' ];
+	}
+
+	/**
+	 * @dataProvider provideMakeTitleSafe_invalid
+	 * @covers Title::makeTitleSafe
+	 */
+	public function testMakeTitleSafe_invalid( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
+
+		$this->assertNull( $title );
+	}
+
+	/**
+	 * @covers Title::getContentModel
+	 * @covers Title::setContentModel
+	 * @covers Title::uncache
+	 */
+	public function testSetContentModel() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$title->setContentModel( CONTENT_MODEL_UNKNOWN );
+		$this->assertSame( CONTENT_MODEL_UNKNOWN, $title->getContentModel() );
+
+		// Ensure that the instance we get back from newFromText isn't the modified one.
+		$title = Title::newFromText( 'Foo' );
+		$this->assertNotSame( CONTENT_MODEL_UNKNOWN, $title->getContentModel() );
 	}
 
 	/**
@@ -246,6 +860,14 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public static function provideSpecialNamesWithAndWithoutParameter() {
+		return [
+			[ 'Special:Version', null ],
+			[ 'Special:Version/', '' ],
+			[ 'Special:Version/param', 'param' ],
+		];
+	}
+
 	/**
 	 * @dataProvider provideSpecialNamesWithAndWithoutParameter
 	 * @covers Title::fixSpecialName
@@ -266,14 +888,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public static function provideSpecialNamesWithAndWithoutParameter() {
-		return [
-			[ 'Special:Version', null ],
-			[ 'Special:Version/', '' ],
-			[ 'Special:Version/param', 'param' ],
-		];
-	}
-
 	public function flattenErrorsArray( $errors ) {
 		$result = [];
 		foreach ( $errors as $error ) {
@@ -281,31 +895,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * @dataProvider provideGetPageViewLanguage
-	 * @covers Title::getPageViewLanguage
-	 */
-	public function testGetPageViewLanguage( $expected, $titleText, $contLang,
-		$lang, $variant, $msg = ''
-	) {
-		// Setup environnement for this test
-		$this->setMwGlobals( [
-			'wgDefaultLanguageVariant' => $variant,
-			'wgAllowUserJs' => true,
-		] );
-		$this->setUserLang( $lang );
-		$this->setContentLang( $contLang );
-
-		$title = Title::newFromText( $titleText );
-		$this->assertInstanceOf( Title::class, $title,
-			"Test must be passed a valid title text, you gave '$titleText'"
-		);
-		$this->assertEquals( $expected,
-			$title->getPageViewLanguage()->getCode(),
-			$msg
-		);
 	}
 
 	public static function provideGetPageViewLanguage() {
@@ -347,112 +936,28 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideBaseTitleCases
-	 * @covers Title::getBaseText
+	 * @dataProvider provideGetPageViewLanguage
+	 * @covers Title::getPageViewLanguage
 	 */
-	public function testGetBaseText( $title, $expected ) {
-		$title = Title::newFromText( $title );
-		$this->assertSame( $expected, $title->getBaseText() );
-	}
+	public function testGetPageViewLanguage( $expected, $titleText, $contLang,
+		$lang, $variant, $msg = ''
+	) {
+		// Setup environnement for this test
+		$this->setMwGlobals( [
+			'wgDefaultLanguageVariant' => $variant,
+			'wgAllowUserJs' => true,
+		] );
+		$this->setUserLang( $lang );
+		$this->setMwGlobals( 'wgLanguageCode', $contLang );
 
-	/**
-	 * @dataProvider provideBaseTitleCases
-	 * @covers Title::getBaseTitle
-	 */
-	public function testGetBaseTitle( $title, $expected ) {
-		$title = Title::newFromText( $title );
-		$base = $title->getBaseTitle();
-		$this->assertTrue( $base->isValid() );
-		$this->assertTrue(
-			$base->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) )
+		$title = Title::newFromText( $titleText );
+		$this->assertInstanceOf( Title::class, $title,
+			"Test must be passed a valid title text, you gave '$titleText'"
 		);
-	}
-
-	public static function provideBaseTitleCases() {
-		return [
-			# Title, expected base
-			[ 'User:John_Doe', 'John Doe' ],
-			[ 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ],
-			[ 'User:Foo / Bar / Baz', 'Foo / Bar ' ],
-			[ 'User:Foo/', 'Foo' ],
-			[ 'User:Foo/Bar/', 'Foo/Bar' ],
-			[ 'User:/', '/' ],
-			[ 'User://', '/' ],
-			[ 'User:/oops/', '/oops' ],
-			[ 'User:/indeed', '/indeed' ],
-			[ 'User://indeed', '/' ],
-			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba/Zamba/Mamba' ],
-			[ 'User://x//y//z//', '//x//y//z/' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideRootTitleCases
-	 * @covers Title::getRootText
-	 */
-	public function testGetRootText( $title, $expected ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expected, $title->getRootText() );
-	}
-
-	/**
-	 * @dataProvider provideRootTitleCases
-	 * @covers Title::getRootTitle
-	 */
-	public function testGetRootTitle( $title, $expected ) {
-		$title = Title::newFromText( $title );
-		$root = $title->getRootTitle();
-		$this->assertTrue( $root->isValid() );
-		$this->assertTrue(
-			$root->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) )
+		$this->assertEquals( $expected,
+			$title->getPageViewLanguage()->getCode(),
+			$msg
 		);
-	}
-
-	public static function provideRootTitleCases() {
-		return [
-			# Title, expected base
-			[ 'User:John_Doe', 'John Doe' ],
-			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
-			[ 'User:Foo / Bar / Baz', 'Foo ' ],
-			[ 'User:Foo/', 'Foo' ],
-			[ 'User:Foo/Bar/', 'Foo' ],
-			[ 'User:/', '/' ],
-			[ 'User://', '/' ],
-			[ 'User:/oops/', '/oops' ],
-			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba' ],
-			[ 'User://x//y//z//', '//x' ],
-			[ 'Talk:////', '///' ],
-			[ 'Template:////', '///' ],
-			[ 'Template:Foo////', 'Foo' ],
-			[ 'Template:Foo////Bar', 'Foo' ],
-		];
-	}
-
-	/**
-	 * @todo Handle $wgNamespacesWithSubpages cases
-	 * @dataProvider provideSubpageTitleCases
-	 * @covers Title::getSubpageText
-	 */
-	public function testGetSubpageText( $title, $expected ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expected, $title->getSubpageText() );
-	}
-
-	public static function provideSubpageTitleCases() {
-		return [
-			# Title, expected base
-			[ 'User:John_Doe', 'John Doe' ],
-			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
-			[ 'User:John_Doe/subOne', 'subOne' ],
-			[ 'User:/', '/' ],
-			[ 'User://', '' ],
-			[ 'User:/oops/', '' ],
-			[ 'User:/indeed', '/indeed' ],
-			[ 'User://indeed', 'indeed' ],
-			[ 'User:/Ramba/Zamba/Mamba/', '' ],
-			[ 'User://x//y//z//', '' ],
-			[ 'Template:Foo', 'Foo' ]
-		];
 	}
 
 	public function provideSubpage() {
@@ -479,62 +984,302 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $expected->equals( $actual ), 'Title equality' );
 	}
 
-	public function provideCastFromPageIdentity() {
-		yield [ null ];
-
-		$fake = $this->createMock( PageIdentity::class );
-		$fake->method( 'getId' )->willReturn( 7 );
-		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
-		$fake->method( 'getDBkey' )->willReturn( 'Test' );
-
-		yield [ $fake ];
-
-		$fake = $this->createMock( Title::class );
-		$fake->method( 'getId' )->willReturn( 7 );
-		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
-		$fake->method( 'getDBkey' )->willReturn( 'Test' );
-
-		yield [ $fake ];
+	public static function provideIsAlwaysKnown() {
+		return [
+			[ 'Some nonexistent page', false ],
+			[ 'UTPage', false ],
+			[ '#test', true ],
+			[ 'Special:BlankPage', true ],
+			[ 'Special:SomeNonexistentSpecialPage', false ],
+			[ 'MediaWiki:Parentheses', true ],
+			[ 'MediaWiki:Some nonexistent message', false ],
+		];
 	}
 
 	/**
-	 * @covers Title::castFromPageIdentity
-	 * @dataProvider provideCastFromPageIdentity
+	 * @covers Title::isAlwaysKnown
+	 * @dataProvider provideIsAlwaysKnown
+	 * @param string $page
+	 * @param bool $isKnown
 	 */
-	public function testCastFromPageIdentity( ?PageIdentity $value ) {
-		$title = Title::castFromPageIdentity( $value );
-
-		if ( $value === null ) {
-			$this->assertNull( $title );
-		} elseif ( $value instanceof Title ) {
-			$this->assertSame( $value, $title );
-		} else {
-			$this->assertSame( $value->getId(), $title->getArticleID() );
-			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
-			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
-		}
+	public function testIsAlwaysKnown( $page, $isKnown ) {
+		$title = Title::newFromText( $page );
+		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
 	}
 
-	public function provideCastFromPageReference() {
-		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
+	public static function provideIsValid() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '|' ), false ],
+			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), true ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
+			[ Title::makeTitle( -33, 'Test' ), false ],
+			[ Title::makeTitle( 77663399, 'Test' ), false ],
+		];
 	}
 
 	/**
-	 * @covers Title::castFromPageReference
-	 * @dataProvider provideCastFromPageIdentity
-	 * @dataProvider provideCastFromPageReference
+	 * @covers Title::isValid
+	 * @dataProvider provideIsValid
+	 * @param Title $title
+	 * @param bool $isValid
 	 */
-	public function testCastFromPageReference( ?PageReference $value ) {
-		$title = Title::castFromPageReference( $value );
+	public function testIsValid( Title $title, $isValid ) {
+		$this->assertEquals( $isValid, $title->isValid(), $title->getFullText() );
+	}
 
-		if ( $value === null ) {
-			$this->assertNull( $title );
-		} elseif ( $value instanceof Title ) {
-			$this->assertSame( $value, $title );
-		} else {
-			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
-			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
-		}
+	public static function provideIsValidRedirectTarget() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Foo', 'test' ), true ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), true ],
+			[ Title::makeTitle( NS_SPECIAL, 'UserLogout' ), false ],
+			[ Title::makeTitle( NS_SPECIAL, 'RecentChanges' ), true ],
+		];
+	}
+
+	/**
+	 * @covers Title::isValidRedirectTarget
+	 * @dataProvider provideIsValidRedirectTarget
+	 * @param Title $title
+	 * @param bool $isValid
+	 */
+	public function testIsValidRedirectTarget( Title $title, $isValid ) {
+		// InterwikiLookup is configured in setUp()
+		$this->assertEquals( $isValid, $title->isValidRedirectTarget(), $title->getFullText() );
+	}
+
+	public static function provideCanExist() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '|' ), false ],
+			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'acme' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
+			[ Title::makeTitle( -33, 'Test' ), false ],
+			[ Title::makeTitle( 77663399, 'Test' ), false ],
+
+			// Valid but can't exist
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), false ],
+		];
+	}
+
+	/**
+	 * @covers Title::canExist
+	 * @dataProvider provideCanExist
+	 * @param Title $title
+	 * @param bool $canExist
+	 */
+	public function testCanExist( Title $title, $canExist ) {
+		$this->assertEquals( $canExist, $title->canExist(), $title->getFullText() );
+	}
+
+	/**
+	 * @covers Title::isAlwaysKnown
+	 */
+	public function testIsAlwaysKnownOnInterwiki() {
+		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
+		$this->assertTrue( $title->isAlwaysKnown() );
+	}
+
+	public function provideGetSkinFromConfigSubpage() {
+		return [
+			[ 'User:Foo', '' ],
+			[ 'User:Foo.css', '' ],
+			[ 'User:Foo/', '' ],
+			[ 'User:Foo/bar', '' ],
+			[ 'User:Foo./bar', '' ],
+			[ 'User:Foo/bar.', 'bar' ],
+			[ 'User:Foo/bar.css', 'bar' ],
+			[ '/bar.css', '' ],
+			[ '//bar.css', 'bar' ],
+			[ '.css', '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetSkinFromConfigSubpage
+	 * @covers Title::getSkinFromConfigSubpage
+	 */
+	public function testGetSkinFromConfigSubpage( $title, $expected ) {
+		$title = Title::newFromText( $title );
+		$this->assertSame( $expected, $title->getSkinFromConfigSubpage() );
+	}
+
+	/**
+	 * @covers Title::getWikiId
+	 */
+	public function testGetWikiId() {
+		$title = Title::newFromText( 'Foo' );
+		$this->assertFalse( $title->getWikiId() );
+	}
+
+	/**
+	 * @covers Title::getFragment
+	 * @covers Title::getFragment
+	 * @covers Title::uncache
+	 */
+	public function testSetFragment() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$title->setFragment( '#Xyzzy' );
+		$this->assertSame( 'Xyzzy', $title->getFragment() );
+
+		// Ensure that the instance we get back from newFromText isn't the modified one.
+		$title = Title::newFromText( 'Foo' );
+		$this->assertNotSame( 'Xyzzy', $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::__clone
+	 */
+	public function testClone() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$clone = clone $title;
+		$clone->setFragment( '#Xyzzy' );
+
+		// Ensure that the instance we get back from newFromText is the original one
+		$title2 = Title::newFromText( 'Foo' );
+		$this->assertSame( $title, $title2 );
+	}
+
+	public static function provideBaseTitleCases() {
+		return [
+			# Namespace, Title text, expected base
+			[ NS_USER, 'John_Doe', 'John Doe' ],
+			[ NS_USER, 'John_Doe/subOne/subTwo', 'John Doe/subOne' ],
+			[ NS_USER, 'Foo / Bar / Baz', 'Foo / Bar ' ],
+			[ NS_USER, 'Foo/', 'Foo' ],
+			[ NS_USER, 'Foo/Bar/', 'Foo/Bar' ],
+			[ NS_USER, '/', '/' ],
+			[ NS_USER, '//', '/' ],
+			[ NS_USER, '/oops/', '/oops' ],
+			[ NS_USER, '/indeed', '/indeed' ],
+			[ NS_USER, '//indeed', '/' ],
+			[ NS_USER, '/Ramba/Zamba/Mamba/', '/Ramba/Zamba/Mamba' ],
+			[ NS_USER, '//x//y//z//', '//x//y//z/' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 * @covers Title::getBaseText
+	 */
+	public function testGetBaseText( $namespace, $title, $expected ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$this->assertSame( $expected, $title->getBaseText() );
+	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 * @covers Title::getBaseTitle
+	 */
+	public function testGetBaseTitle( $namespace, $title, $expected ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$base = $title->getBaseTitle();
+		$this->assertTrue( $base->isValid() );
+		$this->assertTrue(
+			$base->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) )
+		);
+	}
+
+	public static function provideRootTitleCases() {
+		return [
+			# Namespace, Title, expected base
+			[ NS_USER, 'John_Doe', 'John Doe' ],
+			[ NS_USER, 'John_Doe/subOne/subTwo', 'John Doe' ],
+			[ NS_USER, 'Foo / Bar / Baz', 'Foo ' ],
+			[ NS_USER, 'Foo/', 'Foo' ],
+			[ NS_USER, 'Foo/Bar/', 'Foo' ],
+			[ NS_USER, '/', '/' ],
+			[ NS_USER, '//', '/' ],
+			[ NS_USER, '/oops/', '/oops' ],
+			[ NS_USER, '/Ramba/Zamba/Mamba/', '/Ramba' ],
+			[ NS_USER, '//x//y//z//', '//x' ],
+			[ NS_TALK, '////', '///' ],
+			[ NS_TEMPLATE, '////', '///' ],
+			[ NS_TEMPLATE, 'Foo////', 'Foo' ],
+			[ NS_TEMPLATE, 'Foo////Bar', 'Foo' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRootTitleCases
+	 * @covers Title::getRootText
+	 */
+	public function testGetRootText( $namespace, $title, $expected ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$this->assertEquals( $expected, $title->getRootText() );
+	}
+
+	/**
+	 * @dataProvider provideRootTitleCases
+	 * @covers Title::getRootTitle
+	 */
+	public function testGetRootTitle( $namespace, $title, $expected ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$root = $title->getRootTitle();
+		$this->assertTrue( $root->isValid() );
+		$this->assertTrue(
+			$root->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) )
+		);
+	}
+
+	public static function provideSubpageTitleCases() {
+		return [
+			# Namespace, Title, expected base
+			[ NS_USER, 'John_Doe', 'John Doe' ],
+			[ NS_USER, 'John_Doe/subOne/subTwo', 'subTwo' ],
+			[ NS_USER, 'John_Doe/subOne', 'subOne' ],
+			[ NS_USER, '/', '/' ],
+			[ NS_USER, '//', '' ],
+			[ NS_USER, '/oops/', '' ],
+			[ NS_USER, '/indeed', '/indeed' ],
+			[ NS_USER, '//indeed', 'indeed' ],
+			[ NS_USER, '/Ramba/Zamba/Mamba/', '' ],
+			[ NS_USER, '//x//y//z//', '' ],
+			[ NS_TEMPLATE, 'Foo', 'Foo' ],
+			[ NS_CATEGORY, 'Foo', 'Foo' ],
+			[ NS_MAIN, 'Bar', 'Bar' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSubpageTitleCases
+	 * @covers Title::getSubpageText
+	 */
+	public function testGetSubpageText( $namespace, $title, $expected ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$this->assertEquals( $expected, $title->getSubpageText() );
 	}
 
 	public static function provideGetTitleValue() {
@@ -587,130 +1332,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testGetFragment( $full, $fragment ) {
 		$title = Title::newFromText( $full );
 		$this->assertEquals( $fragment, $title->getFragment() );
-	}
-
-	/**
-	 * @covers Title::isAlwaysKnown
-	 * @dataProvider provideIsAlwaysKnown
-	 * @param string $page
-	 * @param bool $isKnown
-	 */
-	public function testIsAlwaysKnown( $page, $isKnown ) {
-		$title = Title::newFromText( $page );
-		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
-	}
-
-	public static function provideIsAlwaysKnown() {
-		return [
-			[ 'Some nonexistent page', false ],
-			[ 'UTPage', false ],
-			[ '#test', true ],
-			[ 'Special:BlankPage', true ],
-			[ 'Special:SomeNonexistentSpecialPage', false ],
-			[ 'MediaWiki:Parentheses', true ],
-			[ 'MediaWiki:Some nonexistent message', false ],
-		];
-	}
-
-	/**
-	 * @covers Title::isValid
-	 * @dataProvider provideIsValid
-	 * @param Title $title
-	 * @param bool $isValid
-	 */
-	public function testIsValid( Title $title, $isValid ) {
-		$this->assertEquals( $isValid, $title->isValid(), $title->getFullText() );
-	}
-
-	public static function provideIsValid() {
-		return [
-			[ Title::makeTitle( NS_MAIN, '' ), false ],
-			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
-			[ Title::makeTitle( NS_MAIN, '|' ), false ],
-			[ Title::makeTitle( NS_MAIN, '#' ), false ],
-			[ Title::makeTitle( NS_PROJECT, '#' ), false ],
-			[ Title::makeTitle( NS_MAIN, '', 'test' ), true ],
-			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
-			[ Title::makeTitle( NS_MAIN, '', 'test', 'wikipedia' ), true ],
-			[ Title::makeTitle( NS_MAIN, 'Test', '', 'wikipedia' ), true ],
-			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
-			[ Title::makeTitle( NS_SPECIAL, 'Test' ), true ],
-			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
-			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
-			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
-			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
-			[ Title::makeTitle( -33, 'Test' ), false ],
-			[ Title::makeTitle( 77663399, 'Test' ), false ],
-		];
-	}
-
-	/**
-	 * @covers Title::isValidRedirectTarget
-	 * @dataProvider provideIsValidRedirectTarget
-	 * @param Title $title
-	 * @param bool $isValid
-	 */
-	public function testIsValidRedirectTarget( Title $title, $isValid ) {
-		// InterwikiLookup is configured in setUp()
-		$this->assertEquals( $isValid, $title->isValidRedirectTarget(), $title->getFullText() );
-	}
-
-	public static function provideIsValidRedirectTarget() {
-		return [
-			[ Title::makeTitle( NS_MAIN, '' ), false ],
-			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Foo', 'test' ), true ],
-			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
-			[ Title::makeTitle( NS_MAIN, '_' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), true ],
-			[ Title::makeTitle( NS_SPECIAL, 'UserLogout' ), false ],
-			[ Title::makeTitle( NS_SPECIAL, 'RecentChanges' ), true ],
-		];
-	}
-
-	/**
-	 * @covers Title::canExist
-	 * @dataProvider provideCanExist
-	 * @param Title $title
-	 * @param bool $canExist
-	 */
-	public function testCanExist( Title $title, $canExist ) {
-		$this->assertEquals( $canExist, $title->canExist(), $title->getFullText() );
-	}
-
-	public static function provideCanExist() {
-		return [
-			[ Title::makeTitle( NS_MAIN, '' ), false ],
-			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
-			[ Title::makeTitle( NS_MAIN, '|' ), false ],
-			[ Title::makeTitle( NS_MAIN, '#' ), false ],
-			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
-			[ Title::makeTitle( NS_MAIN, '', 'test', 'acme' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
-			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
-			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
-			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
-			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
-			[ Title::makeTitle( -33, 'Test' ), false ],
-			[ Title::makeTitle( 77663399, 'Test' ), false ],
-
-			// Valid but can't exist
-			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
-			[ Title::makeTitle( NS_SPECIAL, 'Test' ), false ],
-			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), false ],
-		];
-	}
-
-	/**
-	 * @covers Title::isAlwaysKnown
-	 */
-	public function testIsAlwaysKnownOnInterwiki() {
-		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
-		$this->assertTrue( $title->isAlwaysKnown() );
 	}
 
 	/**
@@ -969,6 +1590,22 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->getOtherPage();
 	}
 
+	public static function provideIsMovable() {
+		return [
+			'Simple title' => [ 'Foo', true ],
+			// @todo Should these next two really be true?
+			'Empty name' => [ Title::makeTitle( NS_MAIN, '' ), true ],
+			'Invalid name' => [ Title::makeTitle( NS_MAIN, '<' ), true ],
+			'Interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ), false ],
+			'Special page' => [ 'Special:FooBar', false ],
+			'Aborted by hook' => [ 'Hooked in place', false,
+				static function ( Title $title, &$result ) {
+					$result = false;
+				}
+			],
+		];
+	}
+
 	/**
 	 * @dataProvider provideIsMovable
 	 * @covers Title::isMovable
@@ -986,44 +1623,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertSame( $expected, $title->isMovable() );
-	}
-
-	public static function provideIsMovable() {
-		return [
-			'Simple title' => [ 'Foo', true ],
-			// @todo Should these next two really be true?
-			'Empty name' => [ Title::makeTitle( NS_MAIN, '' ), true ],
-			'Invalid name' => [ Title::makeTitle( NS_MAIN, '<' ), true ],
-			'Interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ), false ],
-			'Special page' => [ 'Special:FooBar', false ],
-			'Aborted by hook' => [ 'Hooked in place', false,
-				static function ( Title $title, &$result ) {
-					$result = false;
-				}
-			],
-		];
-	}
-
-	public function provideCreateFragmentTitle() {
-		return [
-			[ Title::makeTitle( NS_MAIN, 'Test' ), 'foo' ],
-			[ Title::makeTitle( NS_TALK, 'Test', 'foo' ), '' ],
-			[ Title::makeTitle( NS_CATEGORY, 'Test', 'foo' ), 'bar' ],
-			[ Title::makeTitle( NS_MAIN, 'Test1', '', 'interwiki' ), 'baz' ]
-		];
-	}
-
-	/**
-	 * @covers Title::createFragmentTarget
-	 * @dataProvider provideCreateFragmentTitle
-	 */
-	public function testCreateFragmentTitle( Title $title, $fragment ) {
-		$fragmentTitle = $title->createFragmentTarget( $fragment );
-
-		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
-		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
-		$this->assertEquals( $title->getInterwiki(), $fragmentTitle->getInterwiki() );
-		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
 	}
 
 	public function provideGetPrefixedText() {
@@ -1112,6 +1711,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $title->getPrefixedDBkey() );
 	}
 
+	public function provideGetFragmentForURL() {
+		return [
+			[ 'Foo', '' ],
+			[ 'Foo#ümlåût', '#ümlåût' ],
+			[ 'de:Foo#Bå®', '#Bå®' ],
+			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],
+		];
+	}
+
 	/**
 	 * @covers Title::getFragmentForURL
 	 * @dataProvider provideGetFragmentForURL
@@ -1130,12 +1738,16 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		self::assertEquals( $expected, $title->getFragmentForURL() );
 	}
 
-	public function provideGetFragmentForURL() {
+	public function provideIsRawHtmlMessage() {
 		return [
-			[ 'Foo', '' ],
-			[ 'Foo#ümlåût', '#ümlåût' ],
-			[ 'de:Foo#Bå®', '#Bå®' ],
-			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],
+			[ 'MediaWiki:Foobar', true ],
+			[ 'MediaWiki:Foo bar', true ],
+			[ 'MediaWiki:Foo-bar', true ],
+			[ 'MediaWiki:foo bar', true ],
+			[ 'MediaWiki:foo-bar', true ],
+			[ 'MediaWiki:foobar', true ],
+			[ 'MediaWiki:some-other-message', false ],
+			[ 'Main Page', false ],
 		];
 	}
 
@@ -1152,230 +1764,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$title = Title::newFromText( $textForm );
 		$this->assertSame( $expected, $title->isRawHtmlMessage() );
-	}
-
-	public function provideIsRawHtmlMessage() {
-		return [
-			[ 'MediaWiki:Foobar', true ],
-			[ 'MediaWiki:Foo bar', true ],
-			[ 'MediaWiki:Foo-bar', true ],
-			[ 'MediaWiki:foo bar', true ],
-			[ 'MediaWiki:foo-bar', true ],
-			[ 'MediaWiki:foobar', true ],
-			[ 'MediaWiki:some-other-message', false ],
-			[ 'Main Page', false ],
-		];
-	}
-
-	public function provideEquals() {
-		yield '(newFromText) same text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Main Page' ),
-			true
-		];
-		yield '(newFromText) different text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Not The Main Page' ),
-			false
-		];
-		yield '(newFromText) different namespace, same text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Project:Main Page' ),
-			false
-		];
-		yield '(newFromText) namespace alias' => [
-			Title::newFromText( 'File:Example.png' ),
-			Title::newFromText( 'Image:Example.png' ),
-			true
-		];
-		yield '(newFromText) same special page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Special:Version' ),
-			true
-		];
-		yield '(newFromText) different special page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Special:Recentchanges' ),
-			false
-		];
-		yield '(newFromText) compare special and normal page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Main Page' ),
-			false
-		];
-		yield '(makeTitle) same text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			true
-		];
-		yield '(makeTitle) different text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_MAIN, 'Bar', '', '' ),
-			false
-		];
-		yield '(makeTitle) different namespace, same text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_TALK, 'Foo', '', '' ),
-			false
-		];
-		yield '(makeTitle) same fragment' => [
-			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
-			true
-		];
-		yield '(makeTitle) different fragment (ignored)' => [
-			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', 'Baz', '' ),
-			true
-		];
-		yield '(makeTitle) fragment vs no fragment (ignored)' => [
-			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			true
-		];
-		yield '(makeTitle) same interwiki' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
-			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
-			true
-		];
-		yield '(makeTitle) different interwiki' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
-			false
-		];
-
-		// Wrong type
-		yield '(makeTitle vs PageIdentityValue) name text' => [
-			Title::makeTitle( NS_MAIN, 'Foo' ),
-			new PageIdentityValue( 0, NS_MAIN, 'Foo', PageIdentity::LOCAL ),
-			false
-		];
-		yield '(makeTitle vs TitleValue) name text' => [
-			Title::makeTitle( NS_MAIN, 'Foo' ),
-			new TitleValue( NS_MAIN, 'Foo' ),
-			false
-		];
-		yield '(makeTitle vs UserIdentityValue) name text' => [
-			Title::makeTitle( NS_MAIN, 'Foo' ),
-			new UserIdentityValue( 7, 'Foo' ),
-			false
-		];
-	}
-
-	/**
-	 * @covers Title::equals
-	 * @dataProvider provideEquals
-	 */
-	public function testEquals( Title $firstValue, $secondValue, $expectedSame ) {
-		$this->assertSame(
-			$expectedSame,
-			$firstValue->equals( $secondValue )
-		);
-	}
-
-	public function provideIsSamePageAs() {
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 1 );
-		yield '(PageIdentityValue) same text, title has ID 0' => [
-			$title,
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
-			true
-		];
-
-		$title = Title::makeTitle( 1, 'Bar_Baz' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) same text, PageIdentityValue has ID 0' => [
-			$title,
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
-			true
-		];
-
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different text, both IDs are 0' => [
-			$title,
-			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different namespace' => [
-			$title,
-			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo', '' );
-		$title->resetArticleID( 1 );
-		yield '(PageIdentityValue) different wiki, different ID' => [
-			$title,
-			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo', '' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different wiki, both IDs are 0' => [
-			$title,
-			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
-			false
-		];
-	}
-
-	/**
-	 * @covers Title::isSamePageAs
-	 * @dataProvider provideIsSamePageAs
-	 */
-	public function testIsSamePageAs( Title $firstValue, $secondValue, $expectedSame ) {
-		$this->assertSame(
-			$expectedSame,
-			$firstValue->isSamePageAs( $secondValue )
-		);
-	}
-
-	public function provideIsSameLinkAs() {
-		yield 'same text' => [
-			Title::makeTitle( 0, 'Foo' ),
-			new TitleValue( 0, 'Foo' ),
-			true
-		];
-		yield 'same namespace' => [
-			Title::makeTitle( 1, 'Bar_Baz' ),
-			new TitleValue( 1, 'Bar_Baz' ),
-			true
-		];
-		yield 'same text, different namespace' => [
-			Title::makeTitle( 0, 'Foo' ),
-			new TitleValue( 1, 'Foo' ),
-			false
-		];
-		yield 'different text' => [
-			Title::makeTitle( 0, 'Foo' ),
-			new TitleValue( 0, 'Foozz' ),
-			false
-		];
-		yield 'different fragment' => [
-			Title::makeTitle( 0, 'Foo', '' ),
-			new TitleValue( 0, 'Foo', 'Bar' ),
-			false
-		];
-		yield 'different interwiki' => [
-			Title::makeTitle( 0, 'Foo', '', 'bar' ),
-			new TitleValue( 0, 'Foo', '', '' ),
-			false
-		];
-	}
-
-	/**
-	 * @covers Title::isSameLinkAs
-	 * @dataProvider provideIsSameLinkAs
-	 */
-	public function testIsSameLinkAs( Title $firstValue, $secondValue, $expectedSame ) {
-		$this->assertSame(
-			$expectedSame,
-			$firstValue->isSameLinkAs( $secondValue )
-		);
 	}
 
 	/**
@@ -1889,19 +2277,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertEmpty( $title->getSubpages() );
 	}
 
-	/**
-	 * @covers Title::getNsText
-	 * @dataProvider provideNamespaces
-	 */
-	public function testGetNsText( $namespace, $expected ) {
-		if ( $namespace instanceof Title ) {
-			$this->assertSame( $expected, $namespace->getNsText() );
-		} else {
-			$actual = Title::makeTitle( $namespace, 'Title_test' )->getNsText();
-			$this->assertSame( $expected, $actual );
-		}
-	}
-
 	public function provideNamespaces() {
 		// For ->isExternal() code path, construct a title with interwiki
 		$title = Title::makeTitle( NS_FILE, 'test', 'frag', 'meta' );
@@ -1916,12 +2291,16 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Title::getSubjectNsText
-	 * @dataProvider providePagesWithSubjects
+	 * @covers Title::getNsText
+	 * @dataProvider provideNamespaces
 	 */
-	public function testGetSubjectNsText( Title $title, $expected ) {
-		$actual = $title->getSubjectNsText();
-		$this->assertSame( $expected, $actual );
+	public function testGetNsText( $namespace, $expected ) {
+		if ( $namespace instanceof Title ) {
+			$this->assertSame( $expected, $namespace->getNsText() );
+		} else {
+			$actual = Title::makeTitle( $namespace, 'Title_test' )->getNsText();
+			$this->assertSame( $expected, $actual );
+		}
 	}
 
 	public function providePagesWithSubjects() {
@@ -1934,11 +2313,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Title::getTalkNsText
-	 * @dataProvider provideTitlesWithTalkPages
+	 * @covers Title::getSubjectNsText
+	 * @dataProvider providePagesWithSubjects
 	 */
-	public function testGetTalkNsText( Title $title, $expected ) {
-		$actual = $title->getTalkNsText();
+	public function testGetSubjectNsText( Title $title, $expected ) {
+		$actual = $title->getSubjectNsText();
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -1948,6 +2327,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ Title::newMainPage(), 'Talk' ],
 			[ Title::makeTitle( NS_PROJECT, 'Test' ), 'Project_talk' ],
 		];
+	}
+
+	/**
+	 * @covers Title::getTalkNsText
+	 * @dataProvider provideTitlesWithTalkPages
+	 */
+	public function testGetTalkNsText( Title $title, $expected ) {
+		$actual = $title->getTalkNsText();
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -1985,6 +2373,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( BacklinkCache::class, $backLinkCache );
 	}
 
+	public function provideNsWithSubpagesSupport() {
+		return [
+			[ NS_HELP, 'Mainhelp', 'Mainhelp/Subhelp' ],
+			[ NS_USER, 'Mainuser', 'Mainuser/Subuser' ],
+			[ NS_TALK, 'Maintalk', 'Maintalk/Subtalk' ],
+			[ NS_PROJECT, 'Mainproject', 'Mainproject/Subproject' ],
+		];
+	}
+
 	/**
 	 * @covers Title::isSubpage
 	 * @covers Title::isSubpageOf
@@ -1998,12 +2395,10 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $subPage->isSubpage() );
 	}
 
-	public function provideNsWithSubpagesSupport() {
+	public function provideNsWithNoSubpages() {
 		return [
-			[ NS_HELP, 'Mainhelp', 'Mainhelp/Subhelp' ],
-			[ NS_USER, 'Mainuser', 'Mainuser/Subuser' ],
-			[ NS_TALK, 'Maintalk', 'Maintalk/Subtalk' ],
-			[ NS_PROJECT, 'Mainproject', 'Mainproject/Subproject' ],
+			[ NS_CATEGORY, 'Maincat', 'Maincat/Subcat' ],
+			[ NS_MAIN, 'Mainpage', 'Mainpage/Subpage' ]
 		];
 	}
 
@@ -2020,10 +2415,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $subPage->isSubpage() );
 	}
 
-	public function provideNsWithNoSubpages() {
+	public function provideTitleEditURLs() {
 		return [
-			[ NS_CATEGORY, 'Maincat', 'Maincat/Subcat' ],
-			[ NS_MAIN, 'Mainpage', 'Mainpage/Subpage' ]
+			[ Title::makeTitle( NS_MAIN, 'Title' ), '/w/index.php?title=Title&action=edit' ],
+			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
+			[ Title::makeTitle( NS_HELP, 'Test' ), '/w/index.php?title=Help:Test&action=edit' ],
 		];
 	}
 
@@ -2036,11 +2432,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideTitleEditURLs() {
+	public function provideTitleEditURLsWithActionPaths() {
 		return [
-			[ Title::newFromText( 'Title', NS_MAIN ), '/w/index.php?title=Title&action=edit' ],
+			[ Title::newFromText( 'Title', NS_MAIN ), '/wiki/edit/Title' ],
 			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
-			[ Title::newFromText( 'Test', NS_HELP ), '/w/index.php?title=Help:Test&action=edit' ],
+			[ Title::newFromText( 'Test', NS_HELP ), '/wiki/edit/Help:Test' ],
 		];
 	}
 
@@ -2052,14 +2448,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgActionPaths', [ 'edit' => '/wiki/edit/$1' ] );
 		$actual = $title->getEditURL();
 		$this->assertSame( $expected, $actual );
-	}
-
-	public function provideTitleEditURLsWithActionPaths() {
-		return [
-			[ Title::newFromText( 'Title', NS_MAIN ), '/wiki/edit/Title' ],
-			[ Title::makeTitle( NS_HELP, 'Test', '', 'mw' ), '' ],
-			[ Title::newFromText( 'Test', NS_HELP ), '/wiki/edit/Help:Test' ],
-		];
 	}
 
 	/**
@@ -2136,4 +2524,5 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ Title::makeTitle( NS_TALK, 'Test', 'frag', 'phab' ), 'phab:Talk:Test#frag' ],
 		];
 	}
+
 }
