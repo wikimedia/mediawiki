@@ -372,8 +372,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.maxQueryLength' => $context->encodeJson( $this->getMaxQueryLength() ),
 			// The client-side module cache can be disabled by site configuration.
 			// It is also always disabled in debug mode.
-			'$VARS.storeEnabled' => $context->encodeJson(
-				$conf->get( 'ResourceLoaderStorageEnabled' ) && !$context->getDebug()
+			'$VARS.storeDisabled' => $context->encodeJson(
+				!$conf->get( 'ResourceLoaderStorageEnabled' ) || $context->getDebug()
 			),
 			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
