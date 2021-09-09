@@ -1073,7 +1073,9 @@ return [
 			$options,
 			$services->getDBLoadBalancerFactory(),
 			$services->getNamespaceInfo(),
-			$services->getTitleParser()
+			$services->getTitleParser(),
+			$services->getLinkCache(),
+			$services->getStatsdDataFactory()
 		);
 	},
 

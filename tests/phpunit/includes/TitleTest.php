@@ -1387,6 +1387,26 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $title->getArticleID(), $title->getId() );
 	}
 
+	public function provideNonProperTitles() {
+		return [
+			'section link' => [ Title::makeTitle( NS_MAIN, '', 'Section' ) ],
+			'empty' => [ Title::makeTitle( NS_MAIN, '' ) ],
+			'bad chars' => [ Title::makeTitle( NS_MAIN, '_|_' ) ],
+			'empty in namspace' => [ Title::makeTitle( NS_USER, '' ) ],
+			'special' => [ Title::makeTitle( NS_SPECIAL, 'RecentChanges' ) ],
+			'interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNonProperTitles
+	 * @covers Title::getArticleID
+	 */
+	public function testGetArticleIDFromNonProperTitle( $title ) {
+		// make sure nothing explodes
+		$this->assertSame( 0, $title->getArticleID() );
+	}
+
 	public function provideCanHaveTalkPage() {
 		return [
 			'User page has talk page' => [
