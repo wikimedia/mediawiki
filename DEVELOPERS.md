@@ -288,6 +288,17 @@ like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 Switching on the remote log for Xdebug comes at a performance cost so only
 use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG=remote_log=/tmp/xdebug.log`
 
+###### "(Permission Denied)" errors on running docker-compose
+
+See if you're able to run any docker commands to start with. Try running
+`docker container ls` - it should also throw you a permission error. If not,
+go through the following steps to get access to the socket that the docker
+client uses to talk to the daemon.
+
+`sudo usermod -aG docker $USER`
+
+And then relogin (or `newgrp docker`) to re-login with the new group membership.
+
 ###### "(Cannot access the database: Unknown error (localhost))"
 
 The environment's working directory has recently changed to `/var/www/html/w`.
