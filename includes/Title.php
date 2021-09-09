@@ -2779,11 +2779,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		# around uninitialized in every Title object; therefore we only add it
 		# if needed and don't declare it statically.
 		if ( $this->mHasSubpages === null ) {
-			$this->mHasSubpages = false;
 			$subpages = $this->getSubpages( 1 );
-			if ( $subpages instanceof TitleArray ) {
-				$this->mHasSubpages = (bool)$subpages->current();
-			}
+			$this->mHasSubpages = $subpages instanceof TitleArray && $subpages->count();
 		}
 
 		return $this->mHasSubpages;
