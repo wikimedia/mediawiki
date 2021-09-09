@@ -58,7 +58,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$id = 12345;
 		$userRightsProxy = UserRightsProxy::newFromId( 'foowiki', $id );
 		$this->assertInstanceOf( UserRightsProxy::class, $userRightsProxy );
-		$this->assertSame( $id, $userRightsProxy->getId() );
+		$this->assertSame( $id, $userRightsProxy->getId( $userRightsProxy->getWikiId() ) );
 	}
 
 	/**
@@ -91,6 +91,34 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 			$userRightsProxy->getUserPage()->getLinkURL(),
 			'/index.php/User:UserRightsProxyTest@foowiki'
 		);
+	}
+
+	/**
+	 * @covers ::equals
+	 */
+	public function testEquals() {
+		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
+		$userRightsProxy2 = $this->createMock( UserRightsProxy::class );
+		$userRightsProxy2->method( 'getName' )->willReturn( 'UserRightsProxyTest@foowiki' );
+		$this->assertTrue( $userRightsProxy->equals( $userRightsProxy2 ) );
+	}
+
+	/**
+	 * @covers ::getWikiId
+	 */
+	public function testGetWikiId() {
+		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
+		$this->assertSame( $userRightsProxy->getWikiId(), 'foowiki' );
+	}
+
+	/**
+	 * @covers ::isAnon
+	 * @covers ::isRegistered
+	 */
+	public function testIsRegistered() {
+		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
+		$this->assertTrue( $userRightsProxy->isRegistered() );
+		$this->assertFalse( $userRightsProxy->isAnon() );
 	}
 
 	/**
