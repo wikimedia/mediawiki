@@ -121,7 +121,7 @@ class BlockListPager extends TablePager {
 
 	/**
 	 * @param string $name
-	 * @param string $value
+	 * @param string|null $value
 	 * @return string
 	 * @suppress PhanTypeArraySuspicious
 	 */

@@ -465,7 +465,8 @@ abstract class TablePager extends IndexPager {
 	 * need more context.
 	 *
 	 * @param string $name The database field name
-	 * @param string $value The value retrieved from the database
+	 * @param string|null $value The value retrieved from the database, or null if
+	 *   the row doesn't contain this field
 	 */
 	abstract public function formatValue( $name, $value );
 
