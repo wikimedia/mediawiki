@@ -202,22 +202,30 @@ class SpecialMute extends FormSpecialPage {
 	protected function getFormFields() {
 		$config = $this->getConfig();
 		$fields = [];
-		if (
-			$config->get( MainConfigNames::EnableUserEmailMuteList ) &&
-			$config->get( MainConfigNames::EnableUserEmail ) &&
-			$this->getUser()->getEmailAuthenticationTimestamp()
-		) {
-			$fields['email-blacklist'] = [
-				'type' => 'check',
-				'label-message' => [
-					'specialmute-label-mute-email',
-					$this->getTarget() ? $this->getTarget()->getName() : ''
-				],
-				'default' => $this->isTargetMuted( 'email-blacklist' ),
-			];
+
+		if ( !$config->get( MainConfigNames::EnableUserEmail ) ) {
+			throw new ErrorPageError( 'specialmute', 'specialmute-error-email-disabled' );
+		}
+
+		if ( !$config->get( MainConfigNames::EnableUserEmailMuteList ) ) {
+			throw new ErrorPageError( 'specialmute', 'specialmute-error-mutelist-disabled' );
+		}
+
+		if ( !$this->getUser()->getEmailAuthenticationTimestamp() ) {
+			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-email-set' );
 		}
 
 		$target = $this->getTarget();
+
+		$fields['email-blacklist'] = [
+			'type' => 'check',
+			'label-message' => [
+				'specialmute-label-mute-email',
+				$target ? $target->getName() : ''
+			],
+			'default' => $this->isTargetMuted( 'email-blacklist' ),
+		];
+
 		$legacyUser = $target ? User::newFromIdentity( $target ) : null;
 		$this->getHookRunner()->onSpecialMuteModifyFormFields( $legacyUser, $this->getUser(), $fields );
 
