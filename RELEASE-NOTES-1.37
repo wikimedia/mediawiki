@@ -631,6 +631,8 @@ because of Phabricator reports.
   It wasn't used and job given the purpose of JobSpecification class it's
   not needed.
 * The protected method File::getImageSize() is deprecated.
+* BacklinkCache::get() was deprecated, use
+  BacklinkCacheFactory::getBacklinkCache() instead.
 * MediaHandler::getImageSize(), ::getMetadata() and ::isMetadataValid were
   deprecated and should no longer be overridden. Instead, subclasses should
   override getSizeAndMetadata().

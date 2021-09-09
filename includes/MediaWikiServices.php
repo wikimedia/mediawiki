@@ -38,6 +38,7 @@ use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ConfigRepository;
@@ -605,6 +606,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getAuthManager(): AuthManager {
 		return $this->getService( 'AuthManager' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return BacklinkCacheFactory
+	 */
+	public function getBacklinkCacheFactory(): BacklinkCacheFactory {
+		return $this->getService( 'BacklinkCacheFactory' );
 	}
 
 	/**
