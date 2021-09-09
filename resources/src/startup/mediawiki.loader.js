@@ -1081,7 +1081,7 @@
 				siteDepErr = e;
 				runScript();
 			}
-			if ( siteDepErr === undefined ) {
+			if ( !siteDepErr ) {
 				enqueue( siteDeps, runScript, runScript );
 			}
 		} else if ( cssPending === 0 ) {
