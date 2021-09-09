@@ -28,11 +28,24 @@
 	.mw-ui-button-states();
 
 	&.mw-ui-icon-element {
-		// stylelint-disable-next-line declaration-no-important
-		color: transparent !important;
+		&:not( .mw-ui-icon-with-label-desktop ) {
+			// stylelint-disable-next-line declaration-no-important
+			color: transparent !important;
 
-		span {
-			.mixin-screen-reader-text();
+			span {
+				.mixin-screen-reader-text();
+			}
+		}
+
+		@media all and ( max-width: @width-breakpoint-desktop ) {
+			&.mw-ui-icon-with-label-desktop {
+				// stylelint-disable-next-line declaration-no-important
+				color: transparent !important;
+			}
+
+			span {
+				.mixin-screen-reader-text();
+			}
 		}
 	}
 

@@ -207,10 +207,15 @@
 
 @media all and ( min-width: @width-breakpoint-desktop ) {
 	.mw-ui-icon-with-label-desktop {
-		color: @icon-color;
+		// stylelint-disable-next-line declaration-no-important
+		color: @icon-color !important;
 		width: auto;
 		line-height: inherit;
 		flex-basis: auto;
+		// Special case outside of standard buttons styling due to surrounding
+		// interface elements, see T237019.
+		// stylelint-disable-next-line declaration-no-important
+		font-weight: 500 !important;
 
 		&:hover,
 		&:focus,
