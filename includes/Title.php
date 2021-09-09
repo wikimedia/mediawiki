@@ -2582,11 +2582,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *        that the restrictions have come from and the actual restrictions
 	 *        themselves.
 	 * @return array Two elements: First is an array of Title objects of the
-	 *        pages from which cascading restrictions have come, false for
-	 *        none, or true if such restrictions exist but $getPages was not
-	 *        set. Second is an array like that returned by
-	 *        Title::getAllRestrictions(), or an empty array if $getPages is
-	 *        false.
+	 *        pages from which cascading restrictions have come if $getPages
+	 *        is true, or a bool indicating whetehr any cascading protection
+	 *        applies if $getPages was set to false.
+	 *        Second is an array like that returned by Title::getAllRestrictions(),
+	 *        or an empty array if $getPages is false.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
 		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
@@ -2596,9 +2596,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		$ret = $restrictionStore->getCascadeProtectionSources( $this );
 		$ret[0] = array_map( 'Title::castFromPageIdentity', $ret[0] );
-		if ( !$ret[0] ) {
-			$ret[0] = false;
-		}
 		return $ret;
 	}
 
