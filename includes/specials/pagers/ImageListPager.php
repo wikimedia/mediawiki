@@ -454,7 +454,7 @@ class ImageListPager extends TablePager {
 
 	/**
 	 * @param string $field
-	 * @param string $value
+	 * @param string|null $value
 	 * @return Message|string|int The return type depends on the value of $field:
 	 *   - thumb: string
 	 *   - img_timestamp: string

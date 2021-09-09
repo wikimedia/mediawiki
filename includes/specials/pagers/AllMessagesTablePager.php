@@ -273,7 +273,7 @@ class AllMessagesTablePager extends TablePager {
 
 	/**
 	 * @param string $field
-	 * @param string $value
+	 * @param string|null $value
 	 * @return string HTML
 	 */
 	public function formatValue( $field, $value ) {

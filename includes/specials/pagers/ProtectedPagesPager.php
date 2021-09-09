@@ -137,7 +137,7 @@ class ProtectedPagesPager extends TablePager {
 
 	/**
 	 * @param string $field
-	 * @param string $value
+	 * @param string|null $value
 	 * @return string HTML
 	 * @throws MWException
 	 */
