@@ -201,7 +201,7 @@ class SpecialMute extends FormSpecialPage {
 		$config = $this->getConfig();
 		$fields = [];
 		if (
-			$config->get( 'EnableUserEmailBlacklist' ) &&
+			$config->get( 'EnableUserEmailMuteList' ) &&
 			$config->get( 'EnableUserEmail' ) &&
 			$this->getUser()->getEmailAuthenticationTimestamp()
 		) {

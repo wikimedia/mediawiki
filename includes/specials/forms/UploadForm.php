@@ -261,7 +261,7 @@ class UploadForm extends HTMLForm {
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
-				$prohibitedExtensions = array_unique( $config->get( 'FileBlacklist' ) );
+				$prohibitedExtensions = array_unique( $config->get( 'ProhibitedFileExtensions' ) );
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
 						$this->msg( 'upload-preferred' )

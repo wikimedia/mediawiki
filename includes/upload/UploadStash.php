@@ -472,7 +472,7 @@ class UploadStash {
 	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
-		global $wgFileBlacklist;
+		global $wgProhibitedFileExtensions;
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
 
@@ -486,7 +486,7 @@ class UploadStash {
 		}
 
 		$extension = File::normalizeExtension( $extension );
-		if ( in_array( $extension, $wgFileBlacklist ) ) {
+		if ( in_array( $extension, $wgProhibitedFileExtensions ) ) {
 			// The file should already be checked for being evil.
 			// However, if somehow we got here, we definitely
 			// don't want to give it an extension of .php and

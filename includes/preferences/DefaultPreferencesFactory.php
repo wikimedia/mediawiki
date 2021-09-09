@@ -125,7 +125,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'EmailConfirmToEdit',
 		'EnableEmail',
 		'EnableUserEmail',
-		'EnableUserEmailBlacklist',
+		'EnableUserEmailMuteList',
 		'EnotifMinorEdits',
 		'EnotifRevealEditorAddress',
 		'EnotifUserTalk',
@@ -785,7 +785,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'disabled' => $disableEmailPrefs,
 				];
 
-				if ( $this->options->get( 'EnableUserEmailBlacklist' ) ) {
+				if ( $this->options->get( 'EnableUserEmailMuteList' ) ) {
 					$defaultPreferences['email-blacklist'] = [
 						'type' => 'usersmultiselect',
 						'label-message' => 'email-mutelist-label',
