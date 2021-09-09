@@ -1829,7 +1829,7 @@
 			if ( this.enabled === null ) {
 				this.enabled = false;
 				if (
-					!$VARS.storeEnabled ||
+					$VARS.storeDisabled ||
 
 					// Disabled because localStorage quotas are tight and (in Firefox's case)
 					// shared by multiple origins.
