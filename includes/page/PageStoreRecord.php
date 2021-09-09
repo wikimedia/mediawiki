@@ -33,6 +33,22 @@ use Wikimedia\Assert\Assert;
 class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 
 	/**
+	 * Fields that must be present in the row object passed to the constructor.
+	 * Note that page_lang is optional, so it is not included here.
+	 *
+	 * @since 1.37
+	 */
+	public const REQUIRED_FIELDS = [
+		'page_id',
+		'page_namespace',
+		'page_title',
+		'page_is_redirect',
+		'page_is_new',
+		'page_latest',
+		'page_touched',
+	];
+
+	/**
 	 * Fields from the page table.
 	 *
 	 * @var stdClass
@@ -40,28 +56,16 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	private $row;
 
 	/**
-	 * The $row object must provide the following fields:
-	 * - page_id: the page ID
-	 * - page_namespace: the page's namespace
-	 * - page_title: the page's title in normalized DB key form.
-	 * - page_latest: the revision ID of the page's current revision
-	 * - page_is_new: whether the page is new and only has one edit
-	 * - page_is_redirect: whether the page is a redirect
-	 * - page_touched: the time at which the page was last re-parsed
-	 * - page_lang: the page's primary language, if explicitly recorded.
+	 * The $row object must provide all fields listed in PageStoreRecord::REQUIRED_FIELDS.
 	 *
 	 * @param stdClass $row A row from the page table
 	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
 	 *        or self::LOCAL for the local wiki.
 	 */
 	public function __construct( stdClass $row, $wikiId ) {
-		Assert::parameter( isset( $row->page_id ), '$row->page_id', 'is required' );
-		Assert::parameter( isset( $row->page_namespace ), '$row->page_namespace', 'is required' );
-		Assert::parameter( isset( $row->page_title ), '$row->page_title', 'is required' );
-		Assert::parameter( isset( $row->page_latest ), '$row->page_latest', 'is required' );
-		Assert::parameter( isset( $row->page_is_new ), '$row->page_is_new', 'is required' );
-		Assert::parameter( isset( $row->page_is_redirect ), '$row->page_is_redirect', 'is required' );
-		Assert::parameter( isset( $row->page_touched ), '$row->page_touched', 'is required' );
+		foreach ( self::REQUIRED_FIELDS as $field ) {
+			Assert::parameter( isset( $row->$field ), '$row->' . $field, 'is required' );
+		}
 
 		Assert::parameter( $row->page_id > 0, '$pageId', 'must be greater than zero (page must exist)' );
 

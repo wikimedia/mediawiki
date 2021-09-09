@@ -1471,7 +1471,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$len,
 				$this->mPageIsRedirectField,
 				$this->mLatest,
-				$model
+				$model,
+				$this->mLanguage
 			);
 		}
 

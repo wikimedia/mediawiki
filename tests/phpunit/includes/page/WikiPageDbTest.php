@@ -1522,6 +1522,7 @@ more stuff
 			'page_touched' => '20120101020202',
 			'page_links_updated' => '20140101020202',
 			'page_lang' => 'it',
+			'page_content_model' => CONTENT_MODEL_WIKITEXT,
 		];
 		foreach ( $overrides as $key => $value ) {
 			$row[$key] = $value;

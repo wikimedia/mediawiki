@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Page;
 
+use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use NamespaceInfo;
@@ -30,17 +32,27 @@ class PageStoreFactory {
 	/** @var TitleParser */
 	private $titleParser;
 
+	/** @var LinkCache */
+	private $linkCache;
+
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleParser $titleParser
+	 * @param LinkCache $linkCache
+	 * @param StatsdDataFactoryInterface $stats
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILBFactory $dbLoadBalancerFactory,
 		NamespaceInfo $namespaceInfo,
-		TitleParser $titleParser
+		TitleParser $titleParser,
+		LinkCache $linkCache,
+		StatsdDataFactoryInterface $stats
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -48,6 +60,8 @@ class PageStoreFactory {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleParser = $titleParser;
+		$this->linkCache = $linkCache;
+		$this->stats = $stats;
 	}
 
 	/**
@@ -61,6 +75,8 @@ class PageStoreFactory {
 			$this->dbLoadBalancerFactory->getMainLB( $wikiId ),
 			$this->namespaceInfo,
 			$this->titleParser,
+			$wikiId !== WikiAwareEntity::LOCAL ? null : $this->linkCache,
+			$this->stats,
 			$wikiId
 		);
 	}

@@ -31,7 +31,10 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return MockObject|ILoadBalancer
 	 */
 	private function installMockLoadBalancer( IDatabase $db ) {
-		$lb = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnectionRef', 'getLocalDomainID' ] );
+		$lb = $this->createNoOpMock(
+			ILoadBalancer::class,
+			[ 'getConnectionRef', 'getLocalDomainID', 'reuseConnection' ]
+		);
 
 		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_PRIMARY );
 		$lb->method( 'getConnectionRef' )->willReturn( $dbRef );
@@ -76,7 +79,8 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			'page_links_updated' => MWTimestamp::now(),
 			'page_latest' => 23948576,
 			'page_len' => 2323,
-			'page_content_model' => CONTENT_MODEL_WIKITEXT
+			'page_content_model' => CONTENT_MODEL_WIKITEXT,
+			'page_restrictions' => ''
 		] );
 	}
 

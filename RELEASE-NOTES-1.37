@@ -585,6 +585,8 @@ because of Phabricator reports.
   post-initialization configuration.
 * ContentHandler::getContentText() is now soft deprecated.
   Use Content::getText() instead.
+* LinkCache::addLinkObj() has been deprecated, use PageStore::getPageForLink()
+  instead.
 * MediaWiki\User\UserNamePrefixSearch::search() previously accepted as
   its first parameter either the string 'public' or a UserIdentity object,
   to filter results for. It now expects an Authority object instead of

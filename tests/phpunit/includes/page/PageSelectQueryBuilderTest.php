@@ -40,7 +40,9 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			$serviceOptions,
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
-			$services->getTitleParser()
+			$services->getTitleParser(),
+			$services->getLinkCache(),
+			$services->getStatsdDataFactory()
 		);
 	}
 
@@ -135,6 +137,10 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			->fetchPageRecord();
 
 		$this->assertTrue( $recAB->isSamePageAs( $rec ) );
+
+		// The page should have ended up in the LinkCache
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$this->assertSame( $rec->getId(), $linkCache->getGoodLinkID( $rec ) );
 
 		$rec = $pageStore->newSelectQueryBuilder()
 			->whereTitles( NS_TALK, 'AB' )
