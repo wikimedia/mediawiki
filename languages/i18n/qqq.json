@@ -2946,7 +2946,7 @@
 	"ipb-hardblock": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}",
 	"ipbcreateaccount": "{{Identical|Prevent account creation}}",
 	"ipbemailban": "Used as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}\n{{Identical|Prevent user from sending e-mail}}",
-	"ipbenableautoblock": "{{doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}\n{{Identical|Automatically block ...}}",
+	"ipbenableautoblock": "{{doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]].\n\nParameters:\n* $1 - The duration of the automatic IP block.\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}\n{{Identical|Automatically block ...}}",
 	"ipbsubmit": "{{Identical|Block this user}}",
 	"ipbother": "{{Identical|Other time}}",
 	"ipboptions": "Options for the duration of the block.\n\n{{doc-mediawiki-options-list}}\n\n{{Identical|Infinite}}",

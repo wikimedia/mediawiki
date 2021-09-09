@@ -2720,7 +2720,7 @@
 	"ipb-hardblock": "Apply block to logged-in users from this IP address",
 	"ipbcreateaccount": "Account creation",
 	"ipbemailban": "Sending email",
-	"ipbenableautoblock": "Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from",
+	"ipbenableautoblock": "Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from, for a period of $1",
 	"ipbsubmit": "Block this user",
 	"ipbother": "Other time:",
 	"ipboptions": "2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite",

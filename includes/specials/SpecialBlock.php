@@ -369,7 +369,10 @@ class SpecialBlock extends FormSpecialPage {
 
 		$a['AutoBlock'] = [
 			'type' => 'check',
-			'label-message' => 'ipbenableautoblock',
+			'label-message' => [
+				'ipbenableautoblock',
+				Message::durationParam( $conf->get( 'AutoblockExpiry' ) )
+			],
 			'default' => true,
 			'section' => 'options',
 		];
