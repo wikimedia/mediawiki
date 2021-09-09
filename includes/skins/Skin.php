@@ -2645,4 +2645,43 @@ abstract class Skin extends ContextSource {
 	public function setSearchPageTitle( Title $title ) {
 		$this->searchPageTitle = $title;
 	}
+
+	/**
+	 * Returns skin options
+	 * Recommended to use SkinFactory::getSkinOptions instead
+	 *
+	 * @internal
+	 * @return array Skin options passed into constructor
+	 */
+	public function getOptions(): array {
+		return $this->options;
+	}
+
+	/**
+	 * Returns skin options for portlet links, used by addPortletLink
+	 *
+	 * @internal
+	 * @param ResourceLoaderContext $context
+	 * @return array $linkOptions
+	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
+	 *   a link in. This should be an array of arrays containing a 'tag' and
+	 *   optionally an 'attributes' key. If you only have one element you don't
+	 *   need to wrap it in another array. eg: To use <a><span>...</span></a>
+	 *   in all links use [ 'text-wrapper' => [ 'tag' => 'span' ] ]
+	 *   for your options. If text-wrapper contains multiple entries they are
+	 *   interpreted as going from the outer wrapper to the inner wrapper.
+	 */
+	public static function getPortletLinkOptions( ResourceLoaderContext $context ): array {
+		$skinName = $context->getSkin();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$options = $skinFactory->getSkinOptions( $skinName );
+		$portletLinkOptions = $options['link'] ?? [];
+		// Normalize link options to always have this key
+		$portletLinkOptions += [ 'text-wrapper' => [] ];
+		// Normalize text-wrapper to always be an array of arrays
+		if ( isset( $portletLinkOptions['text-wrapper']['tag'] ) ) {
+			$portletLinkOptions['text-wrapper'] = [ $portletLinkOptions['text-wrapper'] ];
+		}
+		return $portletLinkOptions;
+	}
 }

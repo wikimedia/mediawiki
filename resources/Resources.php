@@ -1143,6 +1143,7 @@ return [
 				'GenerateThumbnailOnParse',
 				'LoadScript',
 			] ],
+			[ 'name' => 'portletLinkOptions.json', 'callback' => 'Skin::getPortletLinkOptions' ],
 		],
 		'dependencies' => [
 			'jquery.client',
