@@ -3845,7 +3845,7 @@
 	"mediastatistics": "إحصاءات الميديا",
 	"mediastatistics-summary": "إحصاءات عن أنماط الملفات المرفوعة، وتشمل أحدث نسخة من الملف فقط، حيث تستبعد النسخ القديمة أو المحذوفة من الملفات.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|بايت واحد|بايتان اثنان|$1 بايتات|$1 بايتاً|$1 بايت}} ($2; $3%)",
-	"mediastatistics-bytespertype": "إجمالي حجم {{PLURAL:$4|$4 الملف|$4 الملفات}} لهذا القسم: {{PLURAL:$1|بايت$1|$1 بايت}} ($2; $3%).",
+	"mediastatistics-bytespertype": "إجمالي حجم الملف لهذا القسم من {{PLURAL:$4|$4 ملف|$4 ملفات}} ($5%): {{PLURAL:$1|$1 بايت}} ($2؛ $3%).",
 	"mediastatistics-allbytes": "الحجم الكلي لكل {{PLURAL:$3|$3 الملف|$3 الملفات}}: {{PLURAL:$1|$1 بايت}} ($2).",
 	"mediastatistics-table-mimetype": "نوع MIME",
 	"mediastatistics-table-extensions": "الامتدادات الممكنة",
