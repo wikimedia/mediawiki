@@ -1341,12 +1341,12 @@
 			throw new Error( 'module already registered: ' + module );
 		}
 
-		// requiresES6 is encoded as a ! at the end of version
-		var requiresES6 = false;
 		version = String( version || '' );
-		if ( version.slice( -1 ) === '!' ) {
+		// requiresES6 is encoded as a ! at the end of version
+		var requiresES6 = version.slice( -1 ) === '!';
+		if ( requiresES6 ) {
+			// Remove the extra ! at the end to get the real version
 			version = version.slice( 0, -1 );
-			requiresES6 = true;
 		}
 
 		registry[ module ] = {
