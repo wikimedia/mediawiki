@@ -1689,15 +1689,6 @@
 		},
 
 		/**
-		 * Get the names of all registered modules.
-		 *
-		 * @return {Array}
-		 */
-		getModuleNames: function () {
-			return Object.keys( registry );
-		},
-
-		/**
 		 * Get the exported value of a module.
 		 *
 		 * This static method is publicly exposed for debugging purposes
