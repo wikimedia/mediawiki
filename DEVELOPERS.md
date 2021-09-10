@@ -261,7 +261,7 @@ $wgResourceLoaderMaxage = [
 
 For MacOS and Windows users, this may significantly slow down page loads.
 Depending on what you're working on, it may be better to not disable caching and
-insted do hard refreshes in your browser.
+instead do hard refreshes in your browser.
 
 See [Manual:Caching][manual-caching] on MediaWiki.org for more information.
 
