@@ -188,6 +188,9 @@ class SpecialTags extends SpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
+		if ( $disp === false ) {
+			$disp = Xml::element( 'em', null, $this->msg( 'tags-hidden' )->text() );
+		}
 		if ( $showEditLinks ) {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(
