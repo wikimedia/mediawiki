@@ -640,7 +640,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			if ( $firstInList ) {
 				$first = Xml::element( 'input',
 					array_merge( $radio, [
-						'style' => 'visibility:hidden',
+						// Disable the hidden radio because it can still
+						// be selected with arrow keys on Firefox
+						'disabled' => '',
 						'name' => 'oldid',
 						'id' => 'mw-oldid-null' ] )
 				);
