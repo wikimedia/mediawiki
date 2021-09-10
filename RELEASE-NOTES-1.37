@@ -174,6 +174,8 @@ because of Phabricator reports.
 * (T284044) Added language support for Carpathian Romani (rmc).
 * (T286460) Added language support for Gun (guw, Gungbe).
 * (T287345) Added language support for Baoulé (bci).
+* (T290126) Added language support for Kildin Sami (sjd).
+* (T290408) Added language support for Pite Sami (sje).
 * (T25216) Started the renaming of the language code for Norman from nrm to
   nrf.
 
