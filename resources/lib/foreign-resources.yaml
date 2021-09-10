@@ -231,8 +231,8 @@ oojs:
 
 oojs-router:
   type: tar
-  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.2.0.tgz
-  integrity: sha384-VngYqdQ3vTDMXbm4e4FUZCCGos7fB0Jkr9V+kBL5MElprK1h0yQZOzBNnMHtSJS/
+  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.3.0.tgz
+  integrity: sha384-FeAuFD6G2sGGXCWvxncx9QOTEAoq5VQdNWkXEhvi4XAoOSqe8RGms5JgmL8Fl8FB
   dest:
     package/dist/oojs-router.js:
     package/LICENSE:
