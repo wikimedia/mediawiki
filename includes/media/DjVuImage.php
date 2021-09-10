@@ -24,7 +24,7 @@
  * @ingroup Media
  */
 
-use MediaWiki\Shell\Shell;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Support for detecting/validating DjVu image files and getting
@@ -249,28 +249,51 @@ class DjVuImage {
 	 * @return string|null|false
 	 */
 	public function retrieveMetaData() {
-		global $wgDjvuDump, $wgDjvuTxt;
+		global $wgDjvuDump, $wgDjvuTxt, $wgDjvuShell;
 
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
-		if ( isset( $wgDjvuDump ) ) {
-			# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
-			# https://sourceforge.net/p/djvu/bugs/71/
-			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
-			$dump = wfShellExec( $cmd );
+		$command = MediaWikiServices::getInstance()->getShellCommandFactory()
+			->createBoxed( 'media' )
+			->disableNetwork()
+			->firejailDefaultSeccomp()
+			->routeName( 'djvu-metadata' );
+		$command
+			->params( $wgDjvuShell, 'scripts/retrieveMetaData.sh' )
+			->inputFileFromFile(
+				'scripts/retrieveMetaData.sh',
+				__DIR__ . '/scripts/retrieveMetaData.sh' )
+			->inputFileFromFile( 'file.djvu', $this->mFilename )
+			->memoryLimit( self::DJVUTXT_MEMORY_LIMIT );
+
+		$env = [];
+		if ( $wgDjvuDump !== null ) {
+			$env['DJVU_DUMP'] = $wgDjvuDump;
+			$command->outputFileToString( 'dump' );
+		}
+		if ( $wgDjvuTxt !== null ) {
+			$env['DJVU_TXT'] = $wgDjvuTxt;
+			$command->outputFileToString( 'txt' );
+			$command->outputFileToString( 'txt_exit_code' );
+		}
+
+		$result = $command
+			->environment( $env )
+			->execute();
+		if ( $wgDjvuDump !== null ) {
+			$dump = $result->getFileContents( 'dump' );
 			$xml = $this->convertDumpToXML( $dump );
 		} else {
 			$xml = null;
 		}
+
 		# Text layer
-		if ( isset( $wgDjvuTxt ) ) {
-			$cmd = Shell::escape( $wgDjvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
-			wfDebug( __METHOD__ . ": $cmd" );
-			$retval = '';
-			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
+		if ( $wgDjvuTxt !== null ) {
+			$retval = (int)trim( $result->getFileContents( 'txt_exit_code' ) );
 			if ( $retval == 0 ) {
+				$txt = $result->getFileContents( 'txt' );
 				# Strip some control characters
 				# Ignore carriage returns
 				$txt = preg_replace( "/\\\\013/", "", $txt );
