@@ -1563,7 +1563,7 @@
 		 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
 		 *  For back-compat with MediaWiki 1.27 and earlier, the version may be omitted.
 		 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
-		 *  a list of URLs to load via `<script src>`, a string for `$.globalEval()`, or an
+		 *  a list of URLs to load via `<script src>`, a string for `domEval()`, or an
 		 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
 		 *  If an object is provided, the main file will be executed immediately, and the other
 		 *  files will only be executed if loaded via require(). If a function or string is
