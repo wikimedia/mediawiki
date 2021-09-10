@@ -75,6 +75,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgLangObjCacheSize - The LanguageFactory service now always retains
   at most 10 objects in its LRU-cache.
 * (T274695) $wgAjaxEditStash, deprecated in 1.36.
+* $wgDjvuToXML, without deprecation because it is obsolete and abandoned
+  upstream. Use $wgDjvuDump instead.
 * …
 
 === New user-facing features in 1.37 ===

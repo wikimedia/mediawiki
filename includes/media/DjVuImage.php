@@ -249,22 +249,18 @@ class DjVuImage {
 	 * @return string|bool
 	 */
 	public function retrieveMetaData() {
-		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
+		global $wgDjvuDump, $wgDjvuTxt;
 
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
 		if ( isset( $wgDjvuDump ) ) {
-			# djvudump is faster as of version 3.5
+			# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
 			# https://sourceforge.net/p/djvu/bugs/71/
 			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
-		} elseif ( isset( $wgDjvuToXML ) ) {
-			$cmd = Shell::escape( $wgDjvuToXML ) . ' --without-anno --without-text ' .
-				Shell::escape( $this->mFilename );
-			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;
 		}
