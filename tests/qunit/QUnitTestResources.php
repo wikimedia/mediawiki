@@ -60,6 +60,7 @@ return [
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
+			'tests/qunit/suites/resources/startup/mw.Map.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.requestIdleCallback.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.errorLogger.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
