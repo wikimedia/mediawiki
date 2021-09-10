@@ -1,6 +1,8 @@
 <?php
 
-$wgLocalTZoffset = date("Z") / 60;
+if ( !wfIsWindows() ) {
+	$wgLocalTZoffset = date("Z") / 60;
+}
 $wgLocaltimezone = 'Europe/Berlin';
 $wgUrlProtocols[] = 'file://';
 $wgNamespacesWithSubpages[NS_MAIN] = true;
