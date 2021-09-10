@@ -2,7 +2,7 @@
 
 var slice = Array.prototype.slice;
 
-// Apply site-level config
+// Apply site-level data
 mw.config.set( require( './config.json' ) );
 
 // Load other files in the package
@@ -773,6 +773,8 @@ mw.user = {
 	 */
 	tokens: new mw.Map()
 };
+
+mw.user.options.set( require( './user.json' ) );
 
 // Process callbacks for modern browsers (Grade A) that require modules.
 var queue = window.RLQ;

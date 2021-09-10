@@ -47,7 +47,6 @@ return [
 	'user' => [ 'class' => ResourceLoaderUserModule::class ],
 	'user.styles' => [ 'class' => ResourceLoaderUserStylesModule::class ],
 
-	'user.defaults' => [ 'class' => ResourceLoaderUserDefaultsModule::class ],
 	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
 
 	'mediawiki.skinning.elements' => [
@@ -147,6 +146,7 @@ return [
 
 			// (not this though)
 			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
+			[ 'name' => 'user.json', 'callback' => 'ResourceLoader::getUserDefaults' ],
 			[
 				'name' => 'legacy.wikibits.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
