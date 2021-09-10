@@ -24,7 +24,7 @@
  * @newable
  * @ingroup Upload
  */
-class UploadStashException extends MWException implements ILocalizedException {
+class UploadStashException extends AbstractLocalizedException {
 	/** @var string|array|MessageSpecifier */
 	protected $messageSpec;
 
