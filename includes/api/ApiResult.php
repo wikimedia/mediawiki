@@ -358,13 +358,9 @@ class ApiResult implements ApiSerializable {
 			}
 			$value = $contentLanguage->normalize( $value );
 		} elseif ( is_array( $value ) ) {
-			// Work around https://bugs.php.net/bug.php?id=45959 by copying to a temporary
-			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
-			$tmp = [];
 			foreach ( $value as $k => $v ) {
-				$tmp[$k] = self::validateValue( $v );
+				$value[$k] = self::validateValue( $v );
 			}
-			$value = $tmp;
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
 			$type = gettype( $value );
 			if ( is_resource( $value ) ) {
