@@ -29,10 +29,12 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 			$bpage->doUserEditContent( $content, $user, "test" );
 		}
 
-		$title->getBacklinkCache()->clear();
+		$backlinkCache = $this->getServiceContainer()->getBacklinkCacheFactory()
+			->getBacklinkCache( $title );
+		$backlinkCache->clear();
 		$this->assertEquals(
 			20,
-			$title->getBacklinkCache()->getNumLinks( 'pagelinks' ),
+			$backlinkCache->getNumLinks( 'pagelinks' ),
 			'Correct number of backlinks'
 		);
 

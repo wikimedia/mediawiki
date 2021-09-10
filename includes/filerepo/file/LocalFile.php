@@ -2175,11 +2175,13 @@ class LocalFile extends File {
 					$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 				} else {
 					# Update backlink pages pointing to this title if created
+					$blcFactory = MediaWikiServices::getInstance()->getBacklinkCacheFactory();
 					LinksUpdate::queueRecursiveJobsForTable(
 						$this->getTitle(),
 						'imagelinks',
 						'upload-image',
-						$performer->getUser()->getName()
+						$performer->getUser()->getName(),
+						$blcFactory->getBacklinkCache( $this->getTitle() )
 					);
 				}
 

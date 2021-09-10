@@ -28,6 +28,7 @@ use CommentStore;
 use Config;
 use ContentModelChange;
 use JobQueueGroup;
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -133,6 +134,9 @@ class PageCommandFactory implements
 	/** @var string */
 	private $webRequestID;
 
+	/** @var BacklinkCacheFactory */
+	private $backlinkCacheFactory;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -156,7 +160,8 @@ class PageCommandFactory implements
 		CommentStore $commentStore,
 		BagOStuff $dbReplicatedCache,
 		string $localWikiID,
-		string $webRequestID
+		string $webRequestID,
+		BacklinkCacheFactory $backlinkCacheFactory
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -181,6 +186,7 @@ class PageCommandFactory implements
 		$this->dbReplicatedCache = $dbReplicatedCache;
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
+		$this->backlinkCacheFactory = $backlinkCacheFactory;
 	}
 
 	/**
@@ -222,7 +228,8 @@ class PageCommandFactory implements
 			$this->wikiPageFactory,
 			$this->userFactory,
 			$page,
-			$deleter
+			$deleter,
+			$this->backlinkCacheFactory
 		);
 	}
 

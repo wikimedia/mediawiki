@@ -636,6 +636,8 @@ because of Phabricator reports.
 * The protected method File::getImageSize() is deprecated.
 * BacklinkCache::get() was deprecated, use
   BacklinkCacheFactory::getBacklinkCache() instead.
+* Title::getBacklinkCache() was hard deprecated. Use ::getBacklinkCache()
+  method in the BacklinkCacheFactory service.
 * MediaHandler::getImageSize(), ::getMetadata() and ::isMetadataValid were
   deprecated and should no longer be overridden. Instead, subclasses should
   override getSizeAndMetadata().
