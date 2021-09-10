@@ -9,8 +9,10 @@ use MediaWiki\MediaWikiServices;
 class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 
 	public function testGender() {
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$user = User::createNew( '*Female' );
-		$user->setOption( 'gender', 'female' );
+		$userOptionsManager->setOption( $user, 'gender', 'female' );
 		$user->saveSettings();
 
 		$msg = ( new RawMessage( '{{GENDER:*Female|m|f|o}}' ) )->parse();

@@ -106,11 +106,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			$optionName = 'variant-tg';
 		}
 
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->setOption( $optionName, $optionVal );
+		$userOptionsManager->setOption( $user, $optionName, $optionVal );
 
 		$this->setContextUser( $user );
 
@@ -136,11 +138,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
+
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$user = User::newFromId( "admin" );
 		$user->setId( 1 );
 		$user->mFrom = 'defaults';
 		// The user's data is ignored because the variant is set in the URL.
-		$user->setOption( 'variant', 'tg-latn' );
+		$userOptionsManager->setOption( $user, 'variant', 'tg-latn' );
 
 		$this->setContextUser( $user );
 

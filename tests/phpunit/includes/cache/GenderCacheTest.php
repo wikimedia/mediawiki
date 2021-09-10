@@ -15,16 +15,18 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		// ensure the correct default gender
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'gender' => 'unknown' ] );
 
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$male = $this->getMutableTestUser()->getUser();
-		$male->setOption( 'gender', 'male' );
+		$userOptionsManager->setOption( $male, 'gender', 'male' );
 		$male->saveSettings();
 
 		$female = $this->getMutableTestUser()->getUser();
-		$female->setOption( 'gender', 'female' );
+		$userOptionsManager->setOption( $female, 'gender', 'female' );
 		$female->saveSettings();
 
 		$default = $this->getMutableTestUser()->getUser();
-		$default->setOption( 'gender', null );
+		$userOptionsManager->setOption( $default, 'gender', null );
 		$default->saveSettings();
 
 		self::$nameMap = [

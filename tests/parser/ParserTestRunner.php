@@ -1285,13 +1285,14 @@ class ParserTestRunner {
 		$setup[] = $reset;
 		$teardown[] = $reset;
 
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		// Make a user object with the same language
 		$user = new User;
-		$user->setOption( 'language', $langCode );
+		$userOptionsManager->setOption( $user, 'language', $langCode );
 		$setup['wgLang'] = $lang;
 
 		// We (re)set $wgThumbLimits to a single-element array above.
-		$user->setOption( 'thumbsize', 0 );
+		$userOptionsManager->setOption( $user, 'thumbsize', 0 );
 
 		$setup['wgUser'] = $user;
 
