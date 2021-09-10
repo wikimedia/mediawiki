@@ -9,6 +9,7 @@ use MediaWiki\Page\PageReferenceValue;
  * @covers LinkCache
  */
 class LinkCacheTest extends MediaWikiIntegrationTestCase {
+	use LinkCacheTestTrait;
 
 	private function newLinkCache( WANObjectCache $wanCache = null ) {
 		if ( !$wanCache ) {
@@ -123,25 +124,16 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider providePageAndLink
-	 * @covers LinkCache::addGoodLinkObj()
+	 * @covers LinkCache::addGoodLinkObjFromRow()
 	 * @covers LinkCache::getGoodLinkRow()
 	 * @covers LinkCache::getGoodLinkID()
 	 * @covers LinkCache::getGoodLinkFieldObj()
 	 */
-	public function testAddGoodLinkObjWithAllParameters( $page ) {
-		$linkCache = $this->newLinkCache();
+	public function testAddGoodLinkObjWithAllParameters() {
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$page = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
-		$linkCache->addGoodLinkObj(
-			8,
-			$page,
-			18,
-			0,
-			118,
-			CONTENT_MODEL_TEXT,
-			'xyz'
-		);
+		$this->addGoodLinkObject( 8, $page, 18, 0, 118, CONTENT_MODEL_TEXT, 'xyz' );
 
 		$row = $linkCache->getGoodLinkRow( $page->getNamespace(), $page->getDBkey() );
 		$this->assertEquals( 8, (int)$row->page_id );
@@ -171,19 +163,17 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers LinkCache::addGoodLinkObj()
+	 * @covers LinkCache::addGoodLinkObjFromRow()
 	 * @covers LinkCache::getGoodLinkRow()
 	 * @covers LinkCache::getGoodLinkID()
 	 * @covers LinkCache::getGoodLinkFieldObj()
 	 */
-	public function testAddGoodLinkObjWithMinimalParameters() {
-		$linkCache = $this->newLinkCache();
+	public function testAddGoodLinkObjFromRowWithMinimalParameters() {
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$page = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
-		$linkCache->addGoodLinkObj(
-			8,
-			$page
-		);
+
+		$this->addGoodLinkObject( 8, $page );
 		$expectedRow = [
 			'page_id' => 8,
 			'page_len' => -1,
@@ -226,13 +216,14 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers LinkCache::addGoodLinkObj()
+	 * @covers LinkCache::addGoodLinkObjFromRow()
 	 */
-	public function testAddGoodLinkObjWithInterwikiLink() {
-		$linkCache = $this->newLinkCache();
+	public function testAddGoodLinkObjFromRowWithInterwikiLink() {
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$page = new TitleValue( NS_USER, __METHOD__, '', 'acme' );
-		$linkCache->addGoodLinkObj( 8, $page );
+
+		$this->addGoodLinkObject( 8, $page );
 
 		$this->assertSame( 0, $linkCache->getGoodLinkID( $page ) );
 	}
@@ -244,10 +235,10 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers LinkCache::clearLink()
 	 */
 	public function testAddBadLinkObj( $key ) {
-		$linkCache = $this->newLinkCache();
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 		$this->assertFalse( $linkCache->isBadLink( $key ) );
 
-		$linkCache->addGoodLinkObj( 17, $key );
+		$this->addGoodLinkObject( 17, $key );
 
 		$linkCache->addBadLinkObj( $key );
 		$this->assertTrue( $linkCache->isBadLink( $key ) );

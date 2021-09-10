@@ -6,6 +6,8 @@ use MediaWiki\MediaWikiServices;
  * @covers SearchNearMatcher
  */
 class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
+	use LinkCacheTestTrait;
+
 	public function nearMatchProvider() {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],
@@ -74,7 +76,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		$enableSearchContributorsByIP = false
 	) {
 		$services = MediaWikiServices::getInstance();
-		$services->getLinkCache()->addGoodLinkObj( 42, Title::newFromText( $titleText ) );
+		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => $enableSearchContributorsByIP,
 		] );
@@ -126,7 +128,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetNearMatchResultSet() {
 		$services = MediaWikiServices::getInstance();
-		$services->getLinkCache()->addGoodLinkObj( 42, Title::newFromText( "Test Link" ) );
+		$this->addGoodLinkObject( 42, Title::newFromText( "Test Link" ) );
 
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => false,

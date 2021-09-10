@@ -97,6 +97,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/block
 	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/block/Restriction/RestrictionTestCase.php",
 
+	# tests/phpunit/includes/cache
+	'LinkCacheTestTrait' => "$testDir/phpunit/includes/cache/LinkCacheTestTrait.php",
+
 	# tests/phpunit/includes/changes
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 

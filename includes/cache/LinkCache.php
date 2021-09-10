@@ -279,7 +279,8 @@ class LinkCache implements LoggerAwareInterface {
 	/**
 	 * Add information about an existing page to the cache.
 	 *
-	 * @see addGoodLinkObjFromRow()
+	 * @deprecated since 1.37, use addGoodLinkObjFromRow() instead. PHPUnit tests
+	 *             must use LinkCacheTestTrait::addGoodLinkObject().
 	 *
 	 * @param int $id Page's ID
 	 * @param LinkTarget|PageReference $page The page to set cached info for.

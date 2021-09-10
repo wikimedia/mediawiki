@@ -1455,7 +1455,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
-			$this->mTitle->loadFromRow( (object)$row );
+			$insertedRow = $this->pageData( $dbw, [ 'page_id' => $this->getId() ] );
+
+			if ( !$insertedRow ) {
+				throw new MWException( 'Failed to load freshly inserted row' );
+			}
+
+			$this->mTitle->loadFromRow( $insertedRow );
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
 			$this->mRedirectTarget = null;
@@ -1463,16 +1469,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->mPageIsRedirectField = (bool)$rt;
 			$this->mIsNew = (bool)$isNew;
 			$this->mIsRedirect = (bool)$isRedirect;
+
 			// Update the LinkCache.
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addGoodLinkObj(
-				$this->getId(),
+			$linkCache->addGoodLinkObjFromRow(
 				$this->mTitle,
-				$len,
-				$this->mPageIsRedirectField,
-				$this->mLatest,
-				$model,
-				$this->mLanguage
+				$insertedRow
 			);
 		}
 
