@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
@@ -12,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ResourceLoaderWikiModule
  */
 class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
+	use LinkCacheTestTrait;
 
 	/**
 	 * @dataProvider provideConstructor
@@ -438,12 +438,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		} );
 
 		// Mock away Title's db queries with LinkCache
-		MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
-			1, // id
-			new TitleValue( NS_MEDIAWIKI, 'Redirect.js' ),
-			1, // len
-			1 // redirect
-		);
+		$this->addGoodLinkObject( 1, new TitleValue( NS_MEDIAWIKI, 'Redirect.js' ), 1, 1 );
 
 		$this->assertSame(
 			"/*\nMediaWiki:Redirect.js\n*/\ntarget;\n",
