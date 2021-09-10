@@ -219,7 +219,7 @@ class ExtensionProcessor implements Processor {
 
 		// config should be after all core globals are extracted,
 		// so duplicate setting detection will work fully
-		if ( $version === 2 ) {
+		if ( $version >= 2 ) {
 			$this->extractConfig2( $info, $dir );
 		} else {
 			// $version === 1
@@ -233,7 +233,7 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		if ( $version === 2 ) {
+		if ( $version >= 2 ) {
 			$this->extractAttributes( $path, $info );
 		}
 
@@ -248,7 +248,7 @@ class ExtensionProcessor implements Processor {
 				continue;
 			}
 
-			if ( $version === 2 ) {
+			if ( $version >= 2 ) {
 				// Only allowed attributes are set
 				if ( in_array( $key, self::CORE_ATTRIBS ) ) {
 					$this->storeToArray( $path, $key, $val, $this->attributes );
