@@ -26,7 +26,7 @@
  * @newable
  * @ingroup API
  */
-class ApiUsageException extends MWException implements ILocalizedException {
+class ApiUsageException extends AbstractLocalizedException {
 
 	protected $modulePath;
 	protected $status;
