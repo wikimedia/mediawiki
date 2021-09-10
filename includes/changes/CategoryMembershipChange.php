@@ -61,13 +61,19 @@ class CategoryMembershipChange {
 	 */
 	private $newForCategorizationCallback = null;
 
+	/** @var BacklinkCache */
+	private $backlinkCache;
+
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
+	 * @param BacklinkCache $backlinkCache
 	 * @param RevisionRecord|null $revision Latest revision of the categorized page.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( Title $pageTitle, RevisionRecord $revision = null ) {
+	public function __construct(
+		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision = null
+	) {
 		$this->pageTitle = $pageTitle;
 		$this->revision = $revision;
 		if ( $revision === null ) {
@@ -76,6 +82,7 @@ class CategoryMembershipChange {
 			$this->timestamp = $revision->getTimestamp();
 		}
 		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
+		$this->backlinkCache = $backlinkCache;
 	}
 
 	/**
@@ -98,7 +105,7 @@ class CategoryMembershipChange {
 	 * Determines the number of template links for recursive link updates
 	 */
 	public function checkTemplateLinks() {
-		$this->numTemplateLinks = $this->pageTitle->getBacklinkCache()->getNumLinks( 'templatelinks' );
+		$this->numTemplateLinks = $this->backlinkCache->getNumLinks( 'templatelinks' );
 	}
 
 	/**

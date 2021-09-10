@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class with Backlink related Job helper methods
  *
@@ -89,6 +91,8 @@ class BacklinkJobUtils {
 		$title = $job->getTitle();
 		$params = $job->getParams();
 
+		$backlinkCache = MediaWikiServices::getInstance()->getBacklinkCacheFactory()
+			->getBacklinkCache( $title );
 		if ( isset( $params['pages'] ) || empty( $params['recursive'] ) ) {
 			$ranges = []; // sanity; this is a leaf node
 			$realBSize = 0;
@@ -99,7 +103,7 @@ class BacklinkJobUtils {
 			$realBSize = $params['range']['batchSize'];
 		} else {
 			// This is a base job to trigger the insertion of partitioned jobs...
-			$ranges = $title->getBacklinkCache()->partition( $params['table'], $bSize );
+			$ranges = $backlinkCache->partition( $params['table'], $bSize );
 			$realBSize = $bSize;
 		}
 
@@ -109,7 +113,7 @@ class BacklinkJobUtils {
 		// Combine the first range (of size $bSize) backlinks into leaf jobs
 		if ( isset( $ranges[0] ) ) {
 			list( $start, $end ) = $ranges[0];
-			$iter = $title->getBacklinkCache()->getLinks( $params['table'], $start, $end );
+			$iter = $backlinkCache->getLinks( $params['table'], $start, $end );
 			$titles = iterator_to_array( $iter );
 			/** @var Title[] $titleBatch */
 			foreach ( array_chunk( $titles, $cSize ) as $titleBatch ) {

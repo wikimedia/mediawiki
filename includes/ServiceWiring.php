@@ -1916,7 +1916,8 @@ return [
 			$services->getCommentStore(),
 			ObjectCache::getInstance( 'db-replicated' ),
 			WikiMap::getCurrentWikiDbDomain()->getId(),
-			WebRequest::getRequestId()
+			WebRequest::getRequestId(),
+			$services->getBacklinkCacheFactory()
 		);
 	},
 
