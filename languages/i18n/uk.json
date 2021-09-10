@@ -2630,7 +2630,7 @@
 	"sp-contributions-username": "IP-адреса або ім'я користувача:",
 	"sp-contributions-toponly": "Показувати тільки редагування, що є останніми версіями",
 	"sp-contributions-newonly": "Показувати тільки редагування, які є створеннями сторінок",
-	"sp-contributions-hideminor": "Приховати незначні редагування.",
+	"sp-contributions-hideminor": "Приховати незначні редагування",
 	"sp-contributions-submit": "Пошук",
 	"sp-contributions-outofrange": "Неможливо показати будь-які результати. Запитуваний діапазон IP-адрес є більшим, аніж CIDR-ліміт у /$1.",
 	"sp-contributions-concurrency-user": "Перепрошуємо, з вашого облікового запису зроблено забагато запитів. Будь ласка, спробуйте пізніше.",

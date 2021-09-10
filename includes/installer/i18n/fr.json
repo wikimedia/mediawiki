@@ -304,7 +304,7 @@
 	"config-install-updates": "Empêcher l’exécution des mises à jour non nécessaires",
 	"config-install-updates-failed": "<strong>Erreur :</strong> l’insertion des clés mises à jour dans les tables a échoué avec l’erreur suivante : $1",
 	"config-install-sysop": "Création du compte administrateur",
-	"config-install-subscribe-fail": "Impossible de s’abonner à mediawiki-announce [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]  $1",
+	"config-install-subscribe-fail": "Impossible de s’abonner à mediawiki-announce [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce] : $1",
 	"config-install-subscribe-notpossible": "cURL n’est pas installé et <code>allow_url_fopen</code> n’est pas disponible.",
 	"config-install-subscribe-alreadysubscribed": "Vous êtes déjà abonné à mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ Afficher ou modifier vos préférences d’abonnement].",
 	"config-install-subscribe-alreadypending": "Une demande pour s’abonner à mediawiki-announce a déjà été faite. Veuillez répondre au courriel de confirmation qui a été envoyé précédemment.",
