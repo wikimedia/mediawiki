@@ -11,8 +11,14 @@ statistics in processes where `$wgCommandLineMode` is true.
 
 #### `wanobjectcache.{kClass}.{cache_action_and_result}`
 
-Upon cache access via `WANObjectCache::getWithSetCallback()`, this measures the time spent
-in that method.
+Upon cache access via `WANObjectCache::getWithSetCallback()`, this measures the total time spent
+in this method from start to end for all cases, except process-cache hits.
+
+See also subsets of this measure:
+
+* `wanobjectcache.{kClass}.regen_walltime`: If regenerated, just the portion of time to regenerate the value.
+* `wanobjectcache.{kClass}.regen_set_delay`: If regenerated and approved for storing, the time from start to right
+  before storing.
 
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
@@ -38,27 +44,6 @@ in that method.
   * `"renew.busy"`: Artificial demand from an async refresh failed to produce a value.
     The key used the `busyValue` option, and could not get a regeneration lock.
 
-#### `wanobjectcache.{kClass}.regen_set_delay`
-
-Upon cache update due to a cache miss or async refresh, this measures the time spent in
-`WANObjectCache::getWithSetCallback()`, from the start of the method to right after
-the new value has been computed by the callback.
-
-This essentially measures the whole method (including retrieval of any old value,
-validation, any regeneration locks, and the callback), except for the time spent
-in sending the value to the backend store.
-
-* Type: Measure (in milliseconds).
-* Variable `kClass`: The first part of your cache key.
-
-#### `wanobjectcache.{kClass}.regen_set_bytes`
-
-Upon cache update due to a cache miss or async refresh, this estimates the size of a newly
-computed value sent to the backend store.
-
-* Type: Counter (in bytes).
-* Variable `kClass`: The first part of your cache key.
-
 #### `wanobjectcache.{kClass}.regen_walltime`
 
 Upon cache update due to a cache miss or async refresh, this measures the time spent in
@@ -66,30 +51,6 @@ the regeneration callback when computing a new value.
 
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
-
-#### `wanobjectcache.{kClass}.ck_touch.{result}`
-
-Call counter from `WANObjectCache::touchCheckKey()`.
-
-* Type: Counter.
-* Variable `kClass`: The first part of your cache key.
-* Variable `result`: One of `"ok"` or `"error"`.
-
-#### `wanobjectcache.{kClass}.ck_reset.{result}`
-
-Call counter from `WANObjectCache::resetCheckKey()`.
-
-* Type: Counter.
-* Variable `kClass`: The first part of your cache key.
-* Variable `result`: One of `"ok"` or `"error"`.
-
-#### `wanobjectcache.{kClass}.delete.{result}`
-
-Call counter from `WANObjectCache::delete()`.
-
-* Type: Counter.
-* Variable `kClass`: The first part of your cache key.
-* Variable `result`: One of `"ok"` or `"error"`.
 
 #### `wanobjectcache.{kClass}.cooloff_bounce`
 
@@ -139,3 +100,48 @@ When the regeneration callback is slow, the following scenarios may use the cool
   When `lockTSE` is in use, and no stale value is found on the backend, and no `busyValue`
   callback is provided, then multiple requests may generate the value simultaneously;
   the cool-off is used to decide which requests store their interim value.
+
+#### `wanobjectcache.{kClass}.regen_set_delay`
+
+Upon cache update due to a cache miss or async refresh, this measures the time spent in
+`WANObjectCache::getWithSetCallback()`, from the start of the method to right after
+the new value has been computed by the callback.
+
+This essentially measures the whole method (including retrieval of any old value,
+validation, any regeneration locks, and the callback), except for the time spent
+in sending the value to the backend store.
+
+* Type: Measure (in milliseconds).
+* Variable `kClass`: The first part of your cache key.
+
+#### `wanobjectcache.{kClass}.regen_set_bytes`
+
+Upon cache update due to a cache miss or async refresh, this estimates the size of a newly
+computed value sent to the backend store.
+
+* Type: Counter (in bytes).
+* Variable `kClass`: The first part of your cache key.
+
+#### `wanobjectcache.{kClass}.ck_touch.{result}`
+
+Call counter from `WANObjectCache::touchCheckKey()`.
+
+* Type: Counter.
+* Variable `kClass`: The first part of your cache key.
+* Variable `result`: One of `"ok"` or `"error"`.
+
+#### `wanobjectcache.{kClass}.ck_reset.{result}`
+
+Call counter from `WANObjectCache::resetCheckKey()`.
+
+* Type: Counter.
+* Variable `kClass`: The first part of your cache key.
+* Variable `result`: One of `"ok"` or `"error"`.
+
+#### `wanobjectcache.{kClass}.delete.{result}`
+
+Call counter from `WANObjectCache::delete()`.
+
+* Type: Counter.
+* Variable `kClass`: The first part of your cache key.
+* Variable `result`: One of `"ok"` or `"error"`.
