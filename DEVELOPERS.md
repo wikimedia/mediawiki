@@ -243,6 +243,30 @@ XDEBUG_CONFIG=client_host=192.168.42.34 client_port=9000 log=/tmp/xdebug.log
 This shouldn't be necessary for basic use cases, but see [the Xdebug settings
 documentation](https://xdebug.org/docs/all_settings) for available settings.
 
+#### Caching
+
+MediaWiki by default comes with fairly aggressive caching that may complicate
+development. A common `LocalSettings.php` configuration for development is
+as follows:
+
+``` lang=php
+$wgMainCacheType = CACHE_NONE;
+$wgMessageCacheType = CACHE_NONE;
+$wgParserCacheType = CACHE_NONE;
+$wgResourceLoaderMaxage = [
+  'versioned' => 0,
+  'unversioned' => 0
+];
+```
+
+For MacOS and Windows users, this may significantly slow down page loads.
+Depending on what you're working on, it may be better to not disable caching and
+insted do hard refreshes in your browser.
+
+See [Manual:Caching][manual-caching] on MediaWiki.org for more information.
+
+[manual-caching]: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Caching
+
 ##### Troubleshooting
 
 ###### Xdebug ports
