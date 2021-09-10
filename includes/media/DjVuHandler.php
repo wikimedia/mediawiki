@@ -40,8 +40,8 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool
 	 */
 	public function isEnabled() {
-		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
-		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
+		global $wgDjvuRenderer, $wgDjvuDump;
+		if ( !$wgDjvuRenderer || !$wgDjvuDump ) {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump" );
 
 			return false;
