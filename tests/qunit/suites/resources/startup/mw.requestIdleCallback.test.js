@@ -1,5 +1,5 @@
 ( function () {
-	QUnit.module( 'mediawiki.requestIdleCallback', QUnit.newMwEnvironment( {
+	QUnit.module( 'mw.requestIdleCallback', QUnit.newMwEnvironment( {
 		setup: function () {
 			var clock = this.clock = this.sandbox.useFakeTimers();
 
