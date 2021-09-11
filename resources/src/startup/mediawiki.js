@@ -117,7 +117,6 @@
 		 * @return {boolean} True on success, false on failure
 		 */
 		set: function ( selection, value ) {
-			var s;
 			// Use `arguments.length` because `undefined` is also a valid value.
 			if ( arguments.length > 1 ) {
 				// Set one key
@@ -127,7 +126,7 @@
 				}
 			} else if ( typeof selection === 'object' ) {
 				// Set multiple keys
-				for ( s in selection ) {
+				for ( var s in selection ) {
 					this.values[ s ] = selection[ s ];
 				}
 				return true;

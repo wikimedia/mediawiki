@@ -1,5 +1,5 @@
 ( function () {
-	QUnit.module( 'mediawiki.loader', QUnit.newMwEnvironment( {
+	QUnit.module( 'mw.loader', QUnit.newMwEnvironment( {
 		setup: function ( assert ) {
 			// Expose for load.mock.php
 			mw.loader.testFail = function ( reason ) {
