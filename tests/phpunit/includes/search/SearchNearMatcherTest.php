@@ -39,10 +39,10 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 			'check language with variants direct' => [ 'Near', 'tg', 'near', 'Near' ],
 			'check language with variants converted' => [ 'Near', 'tg', 'неар', 'Near' ],
 			'no matching' => [ null, 'en', 'near match test',  'Far Match Test' ],
-// Special cases: files
+			// Special cases: files
 			'file ok' => [ 'File:Example.svg', 'en', 'File:Example.svg', 'File:Example.svg' ],
 			'file not ok' => [ null, 'en', 'File:Example_s.svg', 'File:Example.svg' ],
-// Special cases: users
+			// Special cases: users
 			'user ok' => [ 'User:Superuser', 'en', 'User:Superuser', 'User:Superuser' ],
 			'user ok even if no user' => [
 				'User:SuperuserNew', 'en', 'User:SuperuserNew', 'User:Superuser'
@@ -50,7 +50,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 			'user search use by IP' => [
 				'Special:Contributions/132.17.48.1', 'en', 'User:132.17.48.1', 'User:Superuser', true,
 			],
-// Special cases: other content types
+			// Special cases: other content types
 			'mediawiki ok even if no page' => [
 				'MediaWiki:Add New Page', 'en', 'MediaWiki:Add New Page', 'MediaWiki:Add Old Page'
 			],
