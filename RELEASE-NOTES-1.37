@@ -66,6 +66,10 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
   - $wgMimeTypeBlacklist is now $wgMimeTypeExclusions
   - $wgEnableUserEmailBlacklist is now $wgEnableUserEmailMuteList
   - $wgShortPagesNamespaceBlacklist is now $wgShortPagesNamespaceExclusions
+* $wgFragmentMode - Default value of this variable has changed from legacy-first
+  to html5-first: both the HTML5 anchor and the legacy percent-encoding-style
+  anchor will still be generated for section titles, but references to them will
+  use the HTML5 version, resulting in human-readable fragments.
 * …
 
 ==== Removed configuration ====
