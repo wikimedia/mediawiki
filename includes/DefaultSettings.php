@@ -7454,7 +7454,7 @@ $wgDeprecationReleaseLimit = false;
 /**
  * Profiler configuration.
  *
- * To use a profiler, set $wgProfiler in LocalSetings.php.
+ * To use a profiler, set $wgProfiler in LocalSettings.php.
  *
  * Options:
  *
