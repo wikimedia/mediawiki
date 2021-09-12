@@ -27,8 +27,6 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return string|null
 	 */
 	public function execute() {
-		global $wgLang;
-
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			$this->submitSkins();
 			return 'skip';
@@ -37,8 +35,23 @@ class WebInstallerOptions extends WebInstallerPage {
 			return 'continue';
 		}
 
-		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
 		$this->startForm();
+		$this->addModeOptions();
+		$this->addEmailOptions();
+		$this->addSkinOptions();
+		$this->addExtensionOptions();
+		$this->addFileOptions();
+		$this->addAdvancedOptions();
+		$this->endForm();
+
+		return null;
+	}
+
+	/**
+	 * Wiki mode - user rights and copyright model.
+	 * @return void
+	 */
+	private function addModeOptions(): void {
 		$this->addHTML(
 			# User Rights
 			// getRadioSet() builds a set of labeled radio buttons.
@@ -66,9 +79,17 @@ class WebInstallerOptions extends WebInstallerPage {
 				'commonAttribs' => [ 'class' => 'licenseRadio' ],
 			] ) .
 			$this->getCCChooser() .
-			$this->parent->getHelpBox( 'config-license-help' ) .
+			$this->parent->getHelpBox( 'config-license-help' )
+		);
+	}
 
-			# E-mail
+	/**
+	 * User email options.
+	 * @return void
+	 */
+	private function addEmailOptions(): void {
+		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
+		$this->addHTML(
 			$this->getFieldsetStart( 'config-email-settings' ) .
 			$this->parent->getCheckBox( [
 				'var' => 'wgEnableEmail',
@@ -105,7 +126,13 @@ class WebInstallerOptions extends WebInstallerPage {
 			"</div>" .
 			$this->getFieldsetEnd()
 		);
+	}
 
+	/**
+	 * Opt-in for bundled skins.
+	 * @return void
+	 */
+	private function addSkinOptions(): void {
 		$skins = $this->parent->findExtensions( 'skins' )->value;
 		'@phan-var array[] $skins';
 		$skinHtml = $this->getFieldsetStart( 'config-skins' );
@@ -147,6 +174,14 @@ class WebInstallerOptions extends WebInstallerPage {
 		$skinHtml .= $this->parent->getHelpBox( 'config-skins-help' ) .
 			$this->getFieldsetEnd();
 		$this->addHTML( $skinHtml );
+	}
+
+	/**
+	 * Opt-in for bundled extensions.
+	 * @return void
+	 */
+	private function addExtensionOptions(): void {
+		global $wgLang;
 
 		$extensions = $this->parent->findExtensions()->value;
 		'@phan-var array[] $extensions';
@@ -241,7 +276,13 @@ class WebInstallerOptions extends WebInstallerPage {
 				'var extDependencyMap = ' . Xml::encodeJsVar( $dependencyMap )
 			) );
 		}
+	}
 
+	/**
+	 * Image and file upload options.
+	 * @return void
+	 */
+	private function addFileOptions(): void {
 		// Having / in paths in Windows looks funny :)
 		$this->setVar( 'wgDeletedDirectory',
 			str_replace(
@@ -283,7 +324,13 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			$this->getFieldsetEnd()
 		);
+	}
 
+	/**
+	 * System administration related options.
+	 * @return void
+	 */
+	private function addAdvancedOptions(): void {
 		$caches = [ 'none' ];
 		$cachevalDefault = 'none';
 
@@ -327,9 +374,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			'</div>' .
 			$this->getFieldsetEnd()
 		);
-		$this->endForm();
-
-		return null;
 	}
 
 	/**
