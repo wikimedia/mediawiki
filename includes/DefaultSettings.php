@@ -3873,7 +3873,7 @@ $wgDisableOutputCompression = false;
  *
  * @since 1.30
  */
-$wgFragmentMode = [ 'legacy', 'html5' ];
+$wgFragmentMode = [ 'html5', 'legacy' ];
 
 /**
  * Which ID escaping mode should be used for external interwiki links? See documentation
