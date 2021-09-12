@@ -956,7 +956,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	public function isExternal() {
+	public function isExternal(): bool {
 		return $this->mInterwiki !== '';
 	}
 
@@ -967,7 +967,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return string Interwiki prefix
 	 */
-	public function getInterwiki() {
+	public function getInterwiki(): string {
 		return $this->mInterwiki;
 	}
 
@@ -1039,7 +1039,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return string Main part of the title
 	 */
-	public function getText() {
+	public function getText(): string {
 		return $this->mTextform;
 	}
 
@@ -1333,7 +1333,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 * @since 1.19
 	 */
-	public function inNamespace( $ns ) {
+	public function inNamespace( int $ns ): bool {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			equals( $this->mNamespace, $ns );
 	}
@@ -1786,7 +1786,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @return string Title fragment
 	 */
-	public function getFragment() {
+	public function getFragment(): string {
 		return $this->mFragment;
 	}
 
@@ -1796,7 +1796,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 * @since 1.23
 	 */
-	public function hasFragment() {
+	public function hasFragment(): bool {
 		return $this->mFragment !== '';
 	}
 
@@ -1842,7 +1842,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param string $fragment
 	 * @return Title
 	 */
-	public function createFragmentTarget( $fragment ) {
+	public function createFragmentTarget( string $fragment ): self {
 		return self::makeTitle(
 			$this->mNamespace,
 			$this->getText(),
@@ -3506,7 +3506,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param LinkTarget $other
 	 * @return bool
 	 */
-	public function isSameLinkAs( LinkTarget $other ) {
+	public function isSameLinkAs( LinkTarget $other ): bool {
 		// NOTE: keep in sync with TitleValue::isSameLinkAs()!
 		// NOTE: === is needed for number-like titles
 		return ( $other->getInterwiki() === $this->getInterwiki() )
