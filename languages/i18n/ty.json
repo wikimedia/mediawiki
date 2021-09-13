@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"MinecraftAustralia",
 			"Sab",
 			"Sainte-Rose (on ty.wikipedia.org)",
 			"TMg",
@@ -80,6 +81,7 @@
 	"portal": "Fare auhoa",
 	"editsection": "fa’ahuru ’ē",
 	"editold": "fa’ahuru ’ē",
+	"editlink": "taui",
 	"nstab-main": "Parau pāpa’i",
 	"nstab-user": "Ta’ata",
 	"nstab-special": "Ta’a ’ē",
@@ -88,6 +90,8 @@
 	"nstab-template": "Hōho’a fāito",
 	"nstab-help": "Tauturu",
 	"nstab-category": "Huru",
+	"mainpage-nstab": "Fa’ari’ira’a",
+	"loginlanguagelabel": "Reo: $1",
 	"history-feed-title": "Parau tuatāpapa",
 	"prefs-rc": "Te mau fa’ahuru-’ē-ra’a ’āpī",
 	"prefs-files": "Te mau putu’ite",

@@ -150,7 +150,7 @@
 	"tog-enotifrevealaddr": "在通知郵件中顯示我的電子郵件地址",
 	"tog-shownumberswatching": "顯示監視使用者數量",
 	"tog-oldsig": "目前簽名：",
-	"tog-fancysig": "將簽名視為wiki語法（不自動產生連結）",
+	"tog-fancysig": "將簽名視為wikitext（不自動添加至使用者頁面的連結）",
 	"tog-uselivepreview": "顯示預覽時不重新載入頁面",
 	"tog-forceeditsummary": "未填寫編輯摘要（或預設回退摘要）時提醒我",
 	"tog-watchlisthideown": "隱藏監視清單中我自己的編輯",

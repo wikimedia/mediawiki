@@ -39,13 +39,18 @@
 	"talkpagelinktext": "बहस",
 	"aboutsite": "{{SITENAME}} मुतलख",
 	"mainpage": "आहम सफ़ा",
+	"mainpage-description": "अहम सफ़ॖ",
 	"editsection": "तब्दील",
 	"editsectionhint": "$1 शाबह तर तैयब दीउ",
 	"red-link-title": "$1 (सफ़ॖ छु नॖ मौजूद)",
 	"mainpage-nstab": "अहम सफ़ॖ",
 	"recentchanges": "नवि तब्दीलि",
+	"diff": "फ़र्क़",
+	"hist": "तवऻरीख़",
 	"minoreditletter": "ल",
+	"boteditletter": "ब",
 	"rc-change-size-new": "बदलावस पतॖ $1 {{PLURAL:$1|बाइट}}",
+	"randompage": "कांह ति सफ़ॖ",
 	"ncategories": "$1 {{PLURAL:$1|ज़ऻच़|ज़ाच़ि}}",
 	"categories": "ज़ाच़ि"
 }
