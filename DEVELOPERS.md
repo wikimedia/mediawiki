@@ -129,7 +129,7 @@ docker-compose exec mediawiki php tests/phpunit/phpunit.php
 Run a single test:
 
 ```sh
-docker-compose exec mediawiki php tests/phpunit/phpunit.php /path/to/test
+docker-compose exec mediawiki php tests/phpunit/phpunit.php ./path/to/test
 ```
 
 See [PHPUnit Testing][phpunit-testing] on MediaWiki.org for more help.
@@ -186,7 +186,8 @@ If you need root on the container to install packages for troubleshooting,
 you can open a shell as root with `docker-compose exec --user root mediawiki
 bash`.
 
-#### Using Extensions and Skins
+#### Using extensions and skins
+
 Using extensions and skins requires the extension or skin directory to exist
 in the appropriate folder within the core directory, or added as a volume in
 `docker-compose.override.yml`
