@@ -230,28 +230,13 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache,
 			$nsInfo, $specialPageFactory, $hookContainer );
-		$linkRenderer->setStubThreshold( 0 );
 		$this->assertSame(
 			'',
 			$linkRenderer->getLinkClasses( $foobarTitle )
 		);
-
-		$linkRenderer->setStubThreshold( 20 );
-		$this->assertEquals(
-			'stub',
-			$linkRenderer->getLinkClasses( $foobarTitle )
-		);
-
-		$linkRenderer->setStubThreshold( 0 );
 		$this->assertEquals(
 			'mw-redirect',
 			$linkRenderer->getLinkClasses( $redirectTitle )
-		);
-
-		$linkRenderer->setStubThreshold( 20 );
-		$this->assertSame(
-			'',
-			$linkRenderer->getLinkClasses( $userTitle )
 		);
 	}
 

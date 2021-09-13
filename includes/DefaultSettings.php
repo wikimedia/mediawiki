@@ -5704,7 +5704,6 @@ $wgDefaultUserOptions = [
 	'shownumberswatching' => 1,
 	'showrollbackconfirmation' => 0,
 	'skin' => false,
-	'stubthreshold' => 0,
 	'thumbsize' => 5,
 	'underline' => 2,
 	'uselivepreview' => 0,

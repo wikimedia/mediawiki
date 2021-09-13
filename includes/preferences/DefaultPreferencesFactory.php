@@ -1026,23 +1026,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$stubThresholdValues = [ 50, 100, 500, 1000, 2000, 5000, 10000 ];
-		$stubThresholdOptions = [ $l10n->msg( 'stub-threshold-disabled' )->text() => 0 ];
-		foreach ( $stubThresholdValues as $value ) {
-			$stubThresholdOptions[$l10n->msg( 'size-bytes', $value )->text()] = $value;
-		}
-
-		$defaultPreferences['stubthreshold'] = [
-			'type' => 'select',
-			'section' => 'rendering/advancedrendering',
-			'options' => $stubThresholdOptions,
-			// This is not a raw HTML message; label-raw is needed for the manual <a></a>
-			'label-raw' => $l10n->msg( 'stub-threshold' )->rawParams(
-				'<a class="stub">' .
-				$l10n->msg( 'stub-threshold-sample-link' )->parse() .
-				'</a>' )->parse(),
-		];
-
 		$defaultPreferences['showhiddencats'] = [
 			'type' => 'toggle',
 			'section' => 'rendering/advancedrendering',

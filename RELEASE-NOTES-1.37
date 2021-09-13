@@ -782,6 +782,12 @@ because of Phabricator reports.
   instance from MediaWikiServices instead.
 * Title::getDefaultNamespace() has been deprecated to be removed because
   there are no callers/consumers.
+* With removal of the stub threshold feature the following methods have been
+  hard deprecated:
+  - LinkRenderer::setStubThreshold and ::getStubThreshold - no replacement.
+  - LinkRendererFactory::createForUser - calling ::create is now sufficient
+  - ParserOptions::setStubThreshold and ::getStubThreshold - no replacement.
+  - User::getStubThreshold - no replacement.
 * …
 
 === Other changes in 1.37 ===
@@ -814,6 +820,7 @@ because of Phabricator reports.
   - SpecialRandompage.php -> SpecialRandomPage.php
   - SpecialRandomredirect.php -> SpecialRandomRedirect.php
   - SpecialRandomrootpage.php -> SpecialRandomRootPage.php
+* The stub threshold feature has been removed. See T284917.
 * …
 
 == Compatibility ==

@@ -20,6 +20,7 @@
  * @file
  * @ingroup Parser
  */
+
 use MediaWiki\BadFileLookup;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
@@ -1212,9 +1213,6 @@ class Parser {
 		// XXX We make the LinkRenderer with current options and then cache it forever
 		if ( !$this->mLinkRenderer ) {
 			$this->mLinkRenderer = $this->linkRendererFactory->create();
-			$this->mLinkRenderer->setStubThreshold(
-				$this->getOptions()->getStubThreshold()
-			);
 		}
 
 		return $this->mLinkRenderer;

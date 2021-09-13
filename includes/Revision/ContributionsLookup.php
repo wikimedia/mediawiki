@@ -265,7 +265,7 @@ class ContributionsLookup {
 		return new ContribsPager(
 			$context,
 			$options,
-			$this->linkRendererFactory->createForUser( $context->getUser() ),
+			$this->linkRendererFactory->create(),
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->loadBalancer,
