@@ -22,9 +22,11 @@ use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
- * New base template for a skin's template extended from QuickTemplate
- * this class features helper methods that provide common ways of interacting
- * with the data stored in the QuickTemplate
+ * Extended QuickTemplate with additional MediaWiki-specific helper methods.
+ *
+ * @todo Phase this class out and make it an alias for QuickTemplate. Move methods
+ *  individually as-appropriate either down to QuickTemplate, or (with deprecation)
+ *  up to SkinTemplate.
  *
  * @stable to extend
  */
