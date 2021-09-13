@@ -1858,36 +1858,38 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		list( $cache ) = $this->newWanCache();
 		$key = wfRandomString();
 
-		$mockWallClock = 1549343530.2053;
-		$priorTime = $mockWallClock; // reference time
+		$mockWallClock = 1549343530.0053;
+		$priorTime = floor( $mockWallClock ); // reference time
 		$cache->setMockTime( $mockWallClock );
 
-		$mockWallClock += 0.100;
 		$t0 = $cache->getCheckKeyTime( $key );
 		$this->assertGreaterThanOrEqual( $priorTime, $t0, 'Check key auto-created' );
 
-		$priorTime = $mockWallClock;
-		$mockWallClock += 0.100;
+		$mockWallClock += 1.100;
+		$priorTime = floor( $mockWallClock );
 		$cache->touchCheckKey( $key );
 		$t1 = $cache->getCheckKeyTime( $key );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check key created' );
 
+		$mockWallClock += 1.100;
 		$t2 = $cache->getCheckKeyTime( $key );
 		$this->assertSame( $t1, $t2, 'Check key time did not change' );
 
-		$mockWallClock += 0.100;
+		$mockWallClock += 1.100;
 		$cache->touchCheckKey( $key );
 		$t3 = $cache->getCheckKeyTime( $key );
 		$this->assertGreaterThan( $t2, $t3, 'Check key time increased' );
 
+		$mockWallClock += 1.100;
 		$t4 = $cache->getCheckKeyTime( $key );
 		$this->assertSame( $t3, $t4, 'Check key time did not change' );
 
-		$mockWallClock += 0.100;
+		$mockWallClock += 1.100;
 		$cache->resetCheckKey( $key );
 		$t5 = $cache->getCheckKeyTime( $key );
 		$this->assertGreaterThan( $t4, $t5, 'Check key time increased' );
 
+		$mockWallClock += 1.100;
 		$t6 = $cache->getCheckKeyTime( $key );
 		$this->assertSame( $t5, $t6, 'Check key time did not change' );
 	}
@@ -2129,7 +2131,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache = new WANObjectCache( [ 'cache' => $bag ] );
 		$key = $cache->makeGlobalKey( 'The whole of the Law' );
 
-		$now = microtime( true );
+		$now = floor( microtime( true ) );
 		$cache->setMockTime( $now );
 
 		$cache->set( $key, 'Do what thou Wilt' );
