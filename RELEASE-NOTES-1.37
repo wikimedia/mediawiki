@@ -723,7 +723,7 @@ because of Phabricator reports.
   and ::whereUserNamePrefix()
 * Manually constructing a MovePage object, deprecated in 1.34,
   is now hard deprecated. Use MovePageFactory instead.
-* userCan hook has been deprecated. Use getUserPermissionsErrors or
+* userCan hook has been hard deprecated. Use getUserPermissionsErrors or
   getUserPermissionsErrorsExpensive instead.
 * Parser::mUser public access, Parser::getUser and ParserOptions::getUser were
   hard deprecated.
