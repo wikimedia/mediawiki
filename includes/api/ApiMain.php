@@ -202,9 +202,6 @@ class ApiMain extends ApiBase {
 				'ContentTransformer',
 			]
 		],
-		'tokens' => [
-			'class' => ApiTokens::class,
-		],
 		'checktoken' => [
 			'class' => ApiCheckToken::class,
 		],

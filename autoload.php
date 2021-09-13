@@ -150,7 +150,6 @@ $wgAutoloadLocalClasses = [
 	'ApiSetPageLanguage' => __DIR__ . '/includes/api/ApiSetPageLanguage.php',
 	'ApiStashEdit' => __DIR__ . '/includes/api/ApiStashEdit.php',
 	'ApiTag' => __DIR__ . '/includes/api/ApiTag.php',
-	'ApiTokens' => __DIR__ . '/includes/api/ApiTokens.php',
 	'ApiUnblock' => __DIR__ . '/includes/api/ApiUnblock.php',
 	'ApiUndelete' => __DIR__ . '/includes/api/ApiUndelete.php',
 	'ApiUpload' => __DIR__ . '/includes/api/ApiUpload.php',
