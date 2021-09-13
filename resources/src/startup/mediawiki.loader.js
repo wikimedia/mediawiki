@@ -2030,9 +2030,6 @@
 				if ( getModuleKey( key.slice( 0, key.indexOf( '@' ) ) ) !== key ) {
 					this.stats.expired++;
 					delete this.items[ key ];
-				} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
-					// This value predates the enforcement of a size limit on cached modules.
-					delete this.items[ key ];
 				}
 			}
 		},
