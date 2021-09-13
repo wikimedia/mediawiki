@@ -1,5 +1,7 @@
 <?php
 /**
+ * Copyright © Gabriel Wicke -- http://www.aulinx.de/
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,19 +24,11 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 
 /**
- * Base class for template-based skins.
+ * Base class for QuickTemplate-based skins.
  *
- * Template-filler skin base class
- * Formerly generic PHPTal (http://phptal.sourceforge.net/) skin
- * Based on Brion's smarty skin
- * @copyright Copyright © Gabriel Wicke -- http://www.aulinx.de/
- *
- * @todo Needs some serious refactoring into functions that correspond
- * to the computations individual esi snippets need. Most importantly no body
- * parsing for most of those of course.
+ * The template data is filled in SkinTemplate::prepareQuickTemplate.
  *
  * @stable to extend
- *
  * @ingroup Skins
  */
 class SkinTemplate extends Skin {

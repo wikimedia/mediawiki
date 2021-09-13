@@ -22,8 +22,38 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Generic wrapper for template functions, with interface
- * compatible with what we use of PHPTAL 0.7.
+ * PHP-based skin template that holds data.
+ *
+ * Modern usage with returned output:
+ *
+ *     class MyTemplate extends QuickTemplate {
+ *         public function execute() {
+ *             $html = 'Hello, ' . Html::element( 'strong', [], $this->get( 'name' ) );
+ *             echo $html;
+ *         }
+ *     }
+ *     $tpl = new MyTemplate();
+ *     $tpl->set( 'name', 'World' );
+ *     $output = $tpl->getHTML();
+ *
+ * Classic usage with native HTML echo:
+ *
+ *     class MyTemplate extends QuickTemplate {
+ *         public function execute() { ?>
+ *
+ *             Hello, <strong><?php $this->text( 'name' ); ?></strong>
+ *
+ *         <?php
+ *         }
+ *     }
+ *     $tpl = new MyTemplate();
+ *     $tpl->set( 'name', 'World' );
+ *
+ *     $tpl->execute(); // echo output
+ *
+ *
+ * QuickTemplate was originally developed as drop-in replacement for PHPTAL 0.7 (<http://phptal.org/>).
+ *
  * @stable to extend
  * @ingroup Skins
  */
