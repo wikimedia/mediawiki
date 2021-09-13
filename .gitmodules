@@ -1523,3 +1523,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MagicNumberedHeadings
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/EmbedSpotify"]
+	path = extensions/EmbedSpotify
+	url = https://github.com/NessunKim/mediawiki-embed-spotify
+	branch = master
+	ignore = dirty
