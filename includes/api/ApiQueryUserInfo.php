@@ -215,13 +215,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['options'][ApiResult::META_BC_BOOLS] = array_keys( $vals['options'] );
 		}
 
-		if ( isset( $this->prop['preferencestoken'] ) &&
-			!$this->lacksSameOriginSecurity() &&
-			$this->getAuthority()->isAllowed( 'editmyoptions' )
-		) {
-			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
-		}
-
 		if ( isset( $this->prop['editcount'] ) ) {
 			// use intval to prevent null if a non-logged-in user calls
 			// api.php?format=jsonfm&action=query&meta=userinfo&uiprop=editcount
@@ -379,7 +372,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'registrationdate',
 					'unreadcount',
 					'centralids',
-					'preferencestoken',
 					'latestcontrib',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
@@ -388,13 +380,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 						self::WL_UNREAD_LIMIT - 1,
 						self::WL_UNREAD_LIMIT . '+',
 					],
-				],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
-					'preferencestoken' => [
-						'apiwarn-deprecation-withreplacement',
-						$this->getModulePrefix() . "prop=preferencestoken",
-						'action=query&meta=tokens',
-					]
 				],
 			],
 			'attachedwiki' => null,

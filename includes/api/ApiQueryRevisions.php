@@ -39,8 +39,6 @@ use MediaWiki\Storage\NameTableStore;
  */
 class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
-	private $token = null;
-
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -85,45 +83,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->actorMigration = $actorMigration;
-	}
-
-	private $tokenFunctions;
-
-	/** @deprecated since 1.24 */
-	protected function getTokenFunctions() {
-		// tokenname => function
-		// function prototype is func( User $user )
-		// should return token or false
-
-		if ( isset( $this->tokenFunctions ) ) {
-			return $this->tokenFunctions;
-		}
-
-		// If we're in a mode that breaks the same-origin policy, no tokens can
-		// be obtained
-		if ( $this->lacksSameOriginSecurity() ) {
-			return [];
-		}
-
-		$this->tokenFunctions = [
-			'rollback' => [ self::class, 'getRollbackToken' ]
-		];
-
-		return $this->tokenFunctions;
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 * @return string|false
-	 */
-	public static function getRollbackToken( User $user ) {
-		if ( !$user->isAllowed( 'rollback' ) ) {
-			return false;
-		}
-
-		return $user->getEditToken( 'rollback' );
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
@@ -199,7 +158,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$this->token = $params['token'];
 			$opts = [ 'page' ];
 			if ( $this->fld_user ) {
 				$opts[] = 'user';
@@ -478,22 +436,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			} else {
 				$revision = $this->revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 				$rev = $this->extractRevisionInfo( $revision, $row );
-
-				if ( $this->token !== null ) {
-					$tokenFunctions = $this->getTokenFunctions();
-					foreach ( $this->token as $t ) {
-						$val = call_user_func(
-							$tokenFunctions[$t],
-							$this->getUser()
-						);
-						if ( $val === false ) {
-							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
-						} else {
-							$rev[$t . 'token'] = $val;
-						}
-					}
-				}
-
 				$fit = $this->processRow( $row, $rev, $hookData ) &&
 					$this->addPageSubItem( $row->rev_page, $rev, 'rev' );
 				if ( !$fit ) {
@@ -514,13 +456,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $resultPageSet !== null ) {
 			$resultPageSet->populateFromRevisionIDs( $generated );
 		}
-	}
-
-	public function getCacheMode( $params ) {
-		if ( isset( $params['token'] ) ) {
-			return 'private';
-		}
-		return parent::getCacheMode( $params );
 	}
 
 	public function getAllowedParams() {
@@ -563,11 +498,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'tag' => null,
-			'token' => [
-				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
-				ApiBase::PARAM_ISMULTI => true
-			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],

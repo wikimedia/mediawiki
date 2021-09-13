@@ -22,8 +22,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
 
-		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
-
 		self::$users = [
 			'sysop' => static::getTestSysop(),
 			'uploader' => static::getTestUser(),
@@ -149,19 +147,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		Authority $performer = null, $tokenType = 'auto'
 	) {
 		return $this->doApiRequest( $params, $session, false, $performer, $tokenType );
-	}
-
-	protected function getTokenList( TestUser $user, $session = null ) {
-		$data = $this->doApiRequest( [
-			'action' => 'tokens',
-			'type' => 'edit|delete|protect|move|block|unblock|watch'
-		], $session, false, $user->getUser() );
-
-		if ( !array_key_exists( 'tokens', $data[0] ) ) {
-			throw new MWException( 'Api failed to return a token list' );
-		}
-
-		return $data[0]['tokens'];
 	}
 
 	protected static function getErrorFormatter() {

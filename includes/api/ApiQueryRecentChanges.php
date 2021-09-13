@@ -72,68 +72,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
 		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-		$fld_tags = false, $fld_sha1 = false, $token = [];
-
-	private $tokenFunctions;
-
-	/**
-	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func( User $user, $rc)
-	 * it should return a token or false (permission denied)
-	 * @deprecated since 1.24
-	 * @return array [ tokenname => function ]
-	 */
-	protected function getTokenFunctions() {
-		if ( isset( $this->tokenFunctions ) ) {
-			return $this->tokenFunctions;
-		}
-
-		// If we're in a mode that breaks the same-origin policy, no tokens can
-		// be obtained
-		if ( $this->lacksSameOriginSecurity() ) {
-			return [];
-		}
-
-		$this->tokenFunctions = [
-			'patrol' => [ self::class, 'getPatrolToken' ]
-		];
-
-		return $this->tokenFunctions;
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 * @param RecentChange|null $rc
-	 * @return string|false
-	 */
-	public static function getPatrolToken( User $user, $rc = null ) {
-		$validTokenUser = false;
-
-		if ( $rc ) {
-			if ( ( $user->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $user->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
-			) {
-				$validTokenUser = true;
-			}
-		} elseif ( $user->useRCPatrol() || $user->useNPPatrol() ) {
-			$validTokenUser = true;
-		}
-
-		if ( $validTokenUser ) {
-			// The patrol token is always the same, let's exploit that
-			static $cachedPatrolToken = null;
-
-			if ( $cachedPatrolToken === null ) {
-				$cachedPatrolToken = $user->getEditToken( 'patrol' );
-			}
-
-			return $cachedPatrolToken;
-		}
-
-		return false;
-	}
+		$fld_tags = false, $fld_sha1 = false;
 
 	/**
 	 * Sets internal state to include the desired properties in the output.
@@ -303,8 +242,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_user
 			|| $this->fld_userid
-			// Token needs actor_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
-			|| $this->token !== null
 			|| $params['user'] !== null
 			|| $params['excludeuser'] !== null
 		) {
@@ -417,9 +354,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$this->token = $params['token'];
-
-		if ( $this->fld_comment || $this->fld_parsedcomment || $this->token ) {
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			$commentQuery = $this->commentStore->getJoin( 'rc_comment' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
@@ -686,22 +621,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->token !== null ) {
-			$tokenFunctions = $this->getTokenFunctions();
-			foreach ( $this->token as $t ) {
-				$val = call_user_func(
-					$tokenFunctions[$t],
-					$this->getUser(),
-					RecentChange::newFromRow( $row )
-				);
-				if ( $val === false ) {
-					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
-				} else {
-					$vals[$t . 'token'] = $val;
-				}
-			}
-		}
-
 		if ( $anyHidden && ( $row->rc_deleted & RevisionRecord::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
@@ -725,9 +644,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( isset( $params['show'] ) &&
 			$this->includesPatrollingFlags( array_fill_keys( $params['show'], true ) )
 		) {
-			return 'private';
-		}
-		if ( isset( $params['token'] ) ) {
 			return 'private';
 		}
 		if ( $this->userCanSeeRevDel() ) {
@@ -794,11 +710,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'sha1',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-			],
-			'token' => [
-				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
-				ApiBase::PARAM_ISMULTI => true
 			],
 			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
