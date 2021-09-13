@@ -470,6 +470,7 @@ because of Phabricator reports.
   use ContentTransformer::preSaveTransform instead. Extensions defining
   a content model should override ContentHandler::preSaveTransform.
 * Skin::bottomScripts is deprecated. Use OutputPage::getBottomScripts instead.
+* LinksUpdate::getTriggeringUser now returns ?UserIdentity instead of ?User.
 * …
 
 === Deprecations in 1.37 ===
