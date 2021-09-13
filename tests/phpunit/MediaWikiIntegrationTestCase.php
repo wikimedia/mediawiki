@@ -259,7 +259,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
 			$page->doUserEditContent(
-				ContentHandler::makeContent( 'UTContent', $title ),
+				ContentHandler::makeContent(
+					'UTContent',
+					$title,
+					// Regardless of how the wiki is configure or what extensions are present,
+					// force this page to be a wikitext one.
+					CONTENT_MODEL_WIKITEXT
+				),
 				$user,
 				'UTPageSummary',
 				EDIT_NEW | EDIT_SUPPRESS_RC
