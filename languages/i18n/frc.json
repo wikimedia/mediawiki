@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beunice",
 			"DannyS712",
 			"Ebe123",
 			"Hangmanwa7id",
@@ -21,7 +22,7 @@
 	"tog-newpageshidepatrolled": "Cacher pages patrollés de la list des pages nouveau",
 	"tog-hidecategorization": "Masquer la catégorisation des pages",
 	"tog-extendwatchlist": "Agrandir la liste des pages guettées pour montrer tous les changements",
-	"tog-usenewrc": "User les derniers changements improuvés (JavaScript)",
+	"tog-usenewrc": "Grouper les changements par page dans les modifications récentes et la liste de suivi",
 	"tog-numberheadings": "Mettre les numéros sus les en-têtes",
 	"tog-editondblclick": "Faire un clic-double pour changer la page (nécessite JavaScript)",
 	"tog-editsectiononrightclick": "Changer une section en faisant un clic droit sus son nom (JavaScript)",
@@ -117,6 +118,8 @@
 	"october-date": "$1 octobre",
 	"november-date": "$1 novembre",
 	"december-date": "$1 décembre",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Classe|Classes}}",
 	"category_header": "Articles dans classe \"$1\"",
 	"subcategories": "Sous-classes",
@@ -135,7 +138,7 @@
 	"morenotlisted": "Cette liste est pas complète.",
 	"mypage": "Ma page",
 	"mytalk": "Ma page de discussion",
-	"anontalk": "Discussion avec cette adresse IP",
+	"anontalk": "Discuter",
 	"navigation": "Navigation",
 	"and": "&#32;et",
 	"faq": "Questions Communes",
@@ -153,6 +156,7 @@
 	"searcharticle": "Aller",
 	"history": "Changements du page",
 	"history_short": "Changements",
+	"history_small": "changements",
 	"updatedmarker": "changé depuis ma dernière visite",
 	"printableversion": "Version imprimable",
 	"permalink": "Lien permanent",
@@ -488,6 +492,7 @@
 	"revisiondelete": "Supprimer/rétablir les changements",
 	"revdelete-nooldid-title": "Aucun changement choisi",
 	"revdelete-nooldid-text": "Vous avez pas choisi le ou les changement(s) pour user cette fonction.",
+	"revdelete-show-file-submit": "Oui",
 	"logdelete-selected": "{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:",
 	"revdelete-legend": "Mettre des restrictions",
 	"revdelete-hide-text": "Cacher le texte de la version",
@@ -502,6 +507,7 @@
 	"revdelete-submit": "Appliquer à la version choisie",
 	"revdelete-success": "'''Vous avez bien changé la visibilité des versions.'''",
 	"logdelete-success": "'''Vous avez bien changé la visibilité des événements.'''",
+	"revdelete-reasonotherlist": "Autre raison",
 	"mergehistory-reason": "Raison:",
 	"mergelog": "Journal des fusions",
 	"lineno": "Ligne $1:",
@@ -653,6 +659,7 @@
 	"filehist-deleteone": "effacer",
 	"filehist-current": "Courant",
 	"filehist-datetime": "Date et heure",
+	"filehist-thumb": "Miniature",
 	"filehist-user": "Useur",
 	"filehist-dimensions": "Dimensions",
 	"filehist-comment": "Commentaire",
@@ -794,5 +801,6 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])",
 	"redirect-file": "Nom du fichier",
 	"specialpages": "Pages spéciales",
+	"tags-hidden": "(masqué)",
 	"searchsuggest-search": "Charcher"
 }
