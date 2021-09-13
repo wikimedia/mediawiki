@@ -57,11 +57,6 @@ class LinkRenderer {
 	private $expandUrls = false;
 
 	/**
-	 * @var int
-	 */
-	private $stubThreshold = 0;
-
-	/**
 	 * @var TitleFormatter
 	 */
 	private $titleFormatter;
@@ -139,17 +134,20 @@ class LinkRenderer {
 	}
 
 	/**
+	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
 	 * @param int $threshold
 	 */
 	public function setStubThreshold( $threshold ) {
-		$this->stubThreshold = $threshold;
+		wfDeprecated( __METHOD__, '1.37' );
 	}
 
 	/**
+	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
 	 * @return int
 	 */
 	public function getStubThreshold() {
-		return $this->stubThreshold;
+		wfDeprecated( __METHOD__, '1.37' );
+		return 0;
 	}
 
 	/**
@@ -438,12 +436,6 @@ class LinkRenderer {
 		if ( $this->linkCache->getGoodLinkFieldObj( $target, 'redirect' ) ) {
 			# Page is a redirect
 			return 'mw-redirect';
-		} elseif (
-			$this->stubThreshold > 0 && $this->nsInfo->isContent( $target->getNamespace() ) &&
-			$this->linkCache->getGoodLinkFieldObj( $target, 'length' ) < $this->stubThreshold
-		) {
-			# Page is a stub
-			return 'stub';
 		}
 
 		return '';

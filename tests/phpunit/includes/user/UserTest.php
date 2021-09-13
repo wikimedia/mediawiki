@@ -441,7 +441,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getOptions
 	 * @covers User::getBoolOption
 	 * @covers User::getIntOption
-	 * @covers User::getStubThreshold
 	 */
 	public function testOptions() {
 		$this->hideDeprecated( 'User::getBoolOption' );
@@ -455,7 +454,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->setOption( 'userjs-someintoption', '42' );
 		$user->setOption( 'rclimit', 200 );
 		$user->setOption( 'wpwatchlistdays', '0' );
-		$user->setOption( 'stubthreshold', 1024 );
 		$user->setOption( 'userjs-usedefaultoverride', '' );
 		$user->saveSettings();
 
@@ -469,11 +467,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$user->getIntOption( 'userjs-usedefaultoverride', 123 ),
 			'Int options that are empty string can have a default returned'
 		);
-		$this->assertSame(
-			1024,
-			$user->getStubThreshold(),
-			'Valid stub threshold preferences are respected'
-		);
 
 		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
@@ -486,25 +479,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$user->getIntOption( 'userjs-usedefaultoverride' ),
 			'Int options that are empty string and have no default specified default to 0'
 		);
-		$this->assertSame(
-			1024,
-			$user->getStubThreshold(),
-			'Valid stub threshold preferences are respected after cache is cleared'
-		);
 
 		// Check that an option saved as a string '0' is returned as an integer.
 		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
 		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
-
-		// Check that getStubThreashold resorts to 0 if invalid
-		$user->setOption( 'stubthreshold', 4096 );
-		$user->saveSettings();
-		$this->assertSame(
-			0,
-			$user->getStubThreshold(),
-			'If a stub threashold is impossible, it defaults to 0'
-		);
 	}
 
 	/**

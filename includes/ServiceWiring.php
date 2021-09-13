@@ -755,15 +755,7 @@ return [
 	},
 
 	'LinkRenderer' => static function ( MediaWikiServices $services ): LinkRenderer {
-		if ( defined( 'MW_NO_SESSION' ) ) {
-			return $services->getLinkRendererFactory()->create();
-		} else {
-			// Normally information from the current request would not be passed in here;
-			// this is an exception. (See also the class documentation.)
-			return $services->getLinkRendererFactory()->createForUser(
-				RequestContext::getMain()->getUser()
-			);
-		}
+		return $services->getLinkRendererFactory()->create();
 	},
 
 	'LinkRendererFactory' => static function ( MediaWikiServices $services ): LinkRendererFactory {

@@ -19,6 +19,7 @@
  *
  * @file
  */
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -81,7 +82,6 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
-	 *     'stubThreshold' => (int): Stub threshold to use when determining link classes.
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -96,10 +96,6 @@ class Linker {
 		$options = (array)$options;
 		if ( $options ) {
 			// Custom options, create new LinkRenderer
-			if ( !isset( $options['stubThreshold'] ) ) {
-				$defaultLinkRenderer = $services->getLinkRenderer();
-				$options['stubThreshold'] = $defaultLinkRenderer->getStubThreshold();
-			}
 			$linkRenderer = $services->getLinkRendererFactory()
 				->createFromLegacyOptions( $options );
 		} else {
