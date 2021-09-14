@@ -881,6 +881,7 @@
 	"rev-deleted-event": "(log details removed)",
 	"rev-deleted-user-contribs": "[username or IP address removed - edit hidden from contributions]",
 	"rev-deleted-text-permission": "This page revision has been <strong>deleted</strong>.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page=$1}} deletion log].",
+	"rev-suppressed-text": "This page revision has been <strong>suppressed</strong>.",
 	"rev-suppressed-text-permission": "This page revision has been <strong>suppressed</strong>.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/suppress|page=$1}} suppression log].",
 	"rev-deleted-text-unhide": "This page revision has been <strong>deleted</strong>.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].\nYou can still [$1 view this revision] if you wish to proceed.",
 	"rev-suppressed-text-unhide": "This page revision has been <strong>suppressed</strong>.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].\nYou can still [$1 view this revision] if you wish to proceed.",

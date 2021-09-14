@@ -368,13 +368,19 @@ class Article implements Page {
 		}
 
 		if ( !$this->mRevisionRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
-			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
-				$this->mRevisionRecord->getId() );
+			wfDebug( __METHOD__ . " failed to retrieve content of revision " . $this->mRevisionRecord->getId() );
 
 			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
 			// title used in wikilinks, should not contain whitespaces
-			$this->fetchResult = Status::newFatal(
-				'rev-deleted-text-permission', $this->getTitle()->getPrefixedDBkey() );
+			$this->fetchResult = new Status;
+			$title = $this->getTitle()->getPrefixedDBkey();
+
+			if ( $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
+				$this->fetchResult->fatal( 'rev-suppressed-text' );
+			} else {
+				$this->fetchResult->fatal( 'rev-deleted-text-permission', $title );
+			}
+
 			return null;
 		}
 
