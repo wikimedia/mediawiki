@@ -995,7 +995,7 @@
 	ignore = dirty
 [submodule "extensions/PortableInfobox"]
 	path = extensions/PortableInfobox
-	url = https://github.com/lkucharczyk/mediawiki-PortableInfobox
+	url = https://github.com/Universal-Omega/PortableInfobox
 	branch = master
 	ignore = dirty
 [submodule "extensions/UserMerge"]
