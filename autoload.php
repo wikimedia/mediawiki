@@ -7,7 +7,6 @@ $wgAutoloadLocalClasses = [
 	'APCUBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCUBagOStuff.php',
 	'AbkhazUppercaseCollation' => __DIR__ . '/includes/collation/AbkhazUppercaseCollation.php',
 	'AbstractContent' => __DIR__ . '/includes/content/AbstractContent.php',
-	'AbstractLocalizedException' => __DIR__ . '/includes/exception/AbstractLocalizedException.php',
 	'Action' => __DIR__ . '/includes/actions/Action.php',
 	'ActiveUsersPager' => __DIR__ . '/includes/specials/pagers/ActiveUsersPager.php',
 	'ActivityUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/ActivityUpdateJob.php',
