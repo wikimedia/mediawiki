@@ -1776,9 +1776,6 @@
 		// Whether the store is in use on this page.
 		enabled: null,
 
-		// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
-		MODULE_SIZE_MAX: 1e5,
-
 		// The contents of the store, mapping '[name]@[version]' keys
 		// to module implementations.
 		items: {},
@@ -2012,7 +2009,9 @@
 			}
 
 			var src = 'mw.loader.implement(' + args.join( ',' ) + ');';
-			if ( src.length > this.MODULE_SIZE_MAX ) {
+
+			// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
+			if ( src.length > 1e5 ) {
 				return;
 			}
 			this.items[ key ] = src;
@@ -2029,9 +2028,6 @@
 				// form but with the latest version
 				if ( getModuleKey( key.slice( 0, key.indexOf( '@' ) ) ) !== key ) {
 					this.stats.expired++;
-					delete this.items[ key ];
-				} else if ( this.items[ key ].length > this.MODULE_SIZE_MAX ) {
-					// This value predates the enforcement of a size limit on cached modules.
 					delete this.items[ key ];
 				}
 			}

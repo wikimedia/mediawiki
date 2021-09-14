@@ -404,7 +404,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 					if ( isset( $logo['1.5x'] ) ) {
 						$styles[
 							'(-webkit-min-device-pixel-ratio: 1.5), ' .
-							'(min--moz-device-pixel-ratio: 1.5), ' .
 							'(min-resolution: 1.5dppx), ' .
 							'(min-resolution: 144dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
@@ -414,7 +413,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 					if ( isset( $logo['2x'] ) ) {
 						$styles[
 							'(-webkit-min-device-pixel-ratio: 2), ' .
-							'(min--moz-device-pixel-ratio: 2), ' .
 							'(min-resolution: 2dppx), ' .
 							'(min-resolution: 192dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
