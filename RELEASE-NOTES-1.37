@@ -100,6 +100,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== New external libraries ====
+* Added symfony/polyfill-php80 1.23.1.
 * Added whatwg-fetch 3.6.2.
 * Added wikimedia/normalized-exception 1.0.1.
 * …
