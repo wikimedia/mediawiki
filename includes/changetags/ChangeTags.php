@@ -207,6 +207,7 @@ class ChangeTags {
 			if ( !$tag ) {
 				continue;
 			}
+			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 			$description = self::tagDescription( $tag, $context );
 			if ( $description === false ) {
 				continue;
@@ -217,7 +218,6 @@ class ChangeTags {
 								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
 				$description
 			);
-			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
 
 		if ( !$displayTags ) {
