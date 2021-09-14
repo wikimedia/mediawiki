@@ -11,21 +11,27 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
- * @covers Wikimedia\Rdbms\ConnectionManager
+ * @covers \Wikimedia\Rdbms\ConnectionManager
  *
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends TestCase {
 	/**
-	 * @return IDatabase|MockObject
+	 * @return IDatabase&MockObject
 	 */
 	private function getIDatabaseMock() {
-		return $this->getMockBuilder( IDatabase::class )
-			->getMock();
+		return $this->createMock( IDatabase::class );
 	}
 
 	/**
-	 * @return LoadBalancer|MockObject
+	 * @return DBConnRef&MockObject
+	 */
+	private function getDBConnRefMock() {
+		return $this->createMock( DBConnRef::class );
+	}
+
+	/**
+	 * @return LoadBalancer&MockObject
 	 */
 	private function getLoadBalancerMock() {
 		return $this->createMock( LoadBalancer::class );
@@ -105,7 +111,7 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetReadConnectionRef_nullGroups() {
-		$database = $this->getIDatabaseMock();
+		$database = $this->getDBConnRefMock();
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
@@ -120,7 +126,7 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetReadConnectionRef_withGroups() {
-		$database = $this->getIDatabaseMock();
+		$database = $this->getDBConnRefMock();
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
@@ -165,7 +171,7 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetWriteConnectionRef() {
-		$database = $this->getIDatabaseMock();
+		$database = $this->getDBConnRefMock();
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )

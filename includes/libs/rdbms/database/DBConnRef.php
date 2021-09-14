@@ -301,7 +301,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function newSelectQueryBuilder() {
+	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

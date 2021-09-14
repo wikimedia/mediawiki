@@ -7,6 +7,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -383,7 +384,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	public function testOptionsForUpdateNotRefetchedBeforeInsert() {
-		$mockDb = $this->createMock( \Wikimedia\Rdbms\IDatabase::class );
+		$mockDb = $this->createMock( DBConnRef::class );
 		$mockDb->expects( $this->once() ) // This is critical what we are testing
 			->method( 'select' )
 			->willReturn( new FakeResultWrapper( [

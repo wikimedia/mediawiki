@@ -2,7 +2,7 @@
 
 use MediaWiki\Http\HttpRequestFactory;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -17,13 +17,13 @@ class PingbackTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param IDatabase $database
+	 * @param DBConnRef $database
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param bool $enablePingback
 	 * @param BagOStuff|null $cache
 	 */
 	private function testRun(
-		$database,
+		DBConnRef $database,
 		$httpRequestFactory,
 		bool $enablePingback = true,
 		$cache = null
@@ -48,7 +48,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - no db calls (no select, lock, or upsert)
 		// - no HTTP request
 		$this->testRun(
-			$this->createNoOpMock( IDatabase::class ),
+			$this->createNoOpMock( DBConnRef::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			false /* $enablePingback */
 		);
@@ -63,7 +63,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - no db lock
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->method( 'add' )->willReturn( false );
@@ -85,7 +85,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// Expect:
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField', 'lock' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$database->expects( $this->once() )->method( 'lock' )->willReturn( false );
 
@@ -109,7 +109,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - db lock acquired
 		// - HTTP POST request
 		// - db upsert for timestamp
-		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField', 'lock', 'upsert' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'upsert' ] );
 		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'post' ] );
 
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( $priorPing );
@@ -142,7 +142,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - no db lock
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn(
 			ConvertibleTimestamp::convert( TS_UNIX, '20110401080000' )
 		);

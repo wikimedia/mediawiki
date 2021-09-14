@@ -601,7 +601,7 @@ interface IDatabase {
 	 *
 	 * @return SelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder();
+	public function newSelectQueryBuilder(): SelectQueryBuilder;
 
 	/**
 	 * A SELECT wrapper which returns a single field from a single result row

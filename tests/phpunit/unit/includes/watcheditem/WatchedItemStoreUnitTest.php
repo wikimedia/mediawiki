@@ -11,9 +11,9 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -27,22 +27,22 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;
 
 	/**
-	 * @return MockObject|IDatabase
+	 * @return MockObject&DBConnRef
 	 */
 	private function getMockDb() {
-		return $this->createMock( IDatabase::class );
+		return $this->createMock( DBConnRef::class );
 	}
 
 	/**
-	 * @param IDatabase $mockDb
+	 * @param DBConnRef $mockDb
 	 * @param string|null $expectedConnectionType
-	 * @return MockObject|LoadBalancer
+	 * @return MockObject&ILoadBalancer
 	 */
 	private function getMockLoadBalancer(
-		$mockDb,
+		DBConnRef $mockDb,
 		$expectedConnectionType = null
 	) {
-		$mock = $this->createMock( LoadBalancer::class );
+		$mock = $this->createMock( ILoadBalancer::class );
 		if ( $expectedConnectionType !== null ) {
 			$mock->method( 'getConnectionRef' )
 				->with( $expectedConnectionType )
@@ -55,12 +55,12 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param IDatabase $mockDb
+	 * @param DBConnRef $mockDb
 	 * @param string|null $expectedConnectionType
-	 * @return MockObject|LBFactory
+	 * @return MockObject&LBFactory
 	 */
 	private function getMockLBFactory(
-		$mockDb,
+		DBConnRef $mockDb,
 		$expectedConnectionType = null
 	) {
 		$loadBalancer = $this->getMockLoadBalancer( $mockDb, $expectedConnectionType );
@@ -136,10 +136,10 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param IDatabase $mockDb
+	 * @param DBConnRef $mockDb
 	 * @return LinkBatchFactory
 	 */
-	private function getMockLinkBatchFactory( $mockDb ) {
+	private function getMockLinkBatchFactory( DBConnRef $mockDb ) {
 		return new LinkBatchFactory(
 			$this->createMock( LinkCache::class ),
 			$this->createMock( TitleFormatter::class ),
@@ -2220,7 +2220,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			new WatchedItem( $user, $targets[0], '20151212010101' ),
 			new WatchedItem( $user, $targets[1], null ),
 		];
-		$mockDb = $this->createNoOpMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( DBConnRef::class );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->at( 1 ) )
@@ -2254,7 +2254,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$testPageFactory( 101, 1, 'AnotherDbKey' ),
 		];
 
-		$mockDb = $this->createNoOpMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( DBConnRef::class );
 
 		$mockCache = $this->createNoOpMock( HashBagOStuff::class );
 
