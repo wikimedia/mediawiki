@@ -45,7 +45,7 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
 			'conds' => [
-				'rev_page' => $this->title->getArticleID(),
+				'rev_page' => $this->title->getId(),
 				'rev_id' => $ids,
 			],
 			'options' => [ 'ORDER BY' => 'rev_id DESC' ],

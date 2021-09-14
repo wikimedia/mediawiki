@@ -19,7 +19,8 @@
  *
  * Attribution notice: when this file was created, much of its content was taken
  * from the Revision.php file as present in release 1.30. Refer to the history
- * of that file for original authorship.
+ * of that file for original authorship (that file was removed entirely in 1.37,
+ * but its history can still be found in prior versions of MediaWiki).
  *
  * @file
  */
@@ -52,8 +53,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
-use Message;
 use MWException;
 use MWTimestamp;
 use MWUnknownContentModelException;
@@ -61,9 +60,9 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChange;
-use Revision;
 use RuntimeException;
 use StatusValue;
+use stdClass;
 use Title;
 use TitleFactory;
 use Traversable;
@@ -83,7 +82,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionStore
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  */
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
@@ -154,9 +153,6 @@ class RevisionStore
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -222,7 +218,6 @@ class RevisionStore
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->pageStore = $pageStore;
 		$this->titleFactory = $titleFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -264,7 +259,7 @@ class RevisionStore
 	}
 
 	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
+	 * @param int $mode DB_PRIMARY or DB_REPLICA
 	 *
 	 * @param array $groups
 	 * @return DBConnRef
@@ -277,7 +272,7 @@ class RevisionStore
 	/**
 	 * Determines the page Title based on the available information.
 	 *
-	 * MCR migration note: this corresponds to Revision::getTitle
+	 * MCR migration note: this corresponded to Revision::getTitle
 	 *
 	 * @deprecated since 1.36, Use RevisionRecord::getPage() instead.
 	 * @note The resulting Title object will be misleading if the RevisionStore is not
@@ -346,7 +341,7 @@ class RevisionStore
 			}
 		}
 
-		// If we still don't have a title, fallback to master if that wasn't already happening.
+		// If we still don't have a title, fallback to primary DB if that wasn't already happening.
 		if ( $queryFlags === self::READ_NORMAL ) {
 			$title = $this->getPage( $pageId, $revId, self::READ_LATEST );
 			if ( $title ) {
@@ -359,7 +354,11 @@ class RevisionStore
 		}
 
 		throw new RevisionAccessException(
-			"Could not determine title for page ID $pageId and revision ID $revId"
+			'Could not determine title for page ID {page_id} and revision ID {rev_id}',
+			[
+				'page_id' => $pageId,
+				'rev_id' => $revId,
+			]
 		);
 	}
 
@@ -420,10 +419,10 @@ class RevisionStore
 	 * Insert a new revision into the database, returning the new revision record
 	 * on success and dies horribly on failure.
 	 *
-	 * MCR migration note: this replaces Revision::insertOn
+	 * MCR migration note: this replaced Revision::insertOn
 	 *
 	 * @param RevisionRecord $rev
-	 * @param IDatabase $dbw (master connection)
+	 * @param IDatabase $dbw (primary connection)
 	 *
 	 * @return RevisionRecord the new revision record.
 	 */
@@ -471,9 +470,7 @@ class RevisionStore
 
 		$pageId = $this->failOnEmpty( $rev->getPageId( $this->wikiId ), 'rev_page field' ); // check this early
 
-		$parentId = $rev->getParentId() === null
-			? $this->getPreviousRevisionId( $dbw, $rev )
-			: $rev->getParentId();
+		$parentId = $rev->getParentId() ?? $this->getPreviousRevisionId( $dbw, $rev );
 
 		/** @var RevisionRecord $rev */
 		$rev = $dbw->doAtomicSection(
@@ -529,13 +526,6 @@ class RevisionStore
 
 		$this->hookRunner->onRevisionRecordInserted( $rev );
 
-		// Soft deprecated in 1.31, hard deprecated in 1.35
-		if ( $this->hookContainer->isRegistered( 'RevisionInsertComplete' ) ) {
-			// Only create the Revision object if its needed
-			$legacyRevision = new Revision( $rev );
-			$this->hookRunner->onRevisionInsertComplete( $legacyRevision, null, null );
-		}
-
 		return $rev;
 	}
 
@@ -546,7 +536,7 @@ class RevisionStore
 	 * @param RevisionRecord $revision After this method returns, the $revision object will be
 	 *                                 obsolete in that it does not have the new slots.
 	 * @param RevisionSlotsUpdate $revisionSlotsUpdate
-	 * @param IDatabase $dbw (master connection)
+	 * @param IDatabase $dbw (primary connection)
 	 *
 	 * @return SlotRecord[] the new slot records.
 	 * @internal
@@ -555,7 +545,7 @@ class RevisionStore
 		RevisionRecord $revision,
 		RevisionSlotsUpdate $revisionSlotsUpdate,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$this->checkDatabaseDomain( $dbw );
 
 		// Make sure all modified and removed slots are derived slots
@@ -613,7 +603,7 @@ class RevisionStore
 		RevisionRecord $revision,
 		RevisionSlotsUpdate $revisionSlotsUpdate,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$page = $revision->getPage();
 		$revId = $revision->getId( $this->wikiId );
 		$blobHints = [
@@ -981,7 +971,7 @@ class RevisionStore
 	}
 
 	/**
-	 * MCR migration note: this corresponds to Revision::checkContentModel
+	 * MCR migration note: this corresponded to Revision::checkContentModel
 	 *
 	 * @param Content $content
 	 * @param PageIdentity $page
@@ -1022,7 +1012,7 @@ class RevisionStore
 	 * to prevent a new revision from being inserted before the null revision has been written
 	 * to the database.
 	 *
-	 * MCR migration note: this replaces Revision::newNullRevision
+	 * MCR migration note: this replaced Revision::newNullRevision
 	 *
 	 * @todo Introduce newFromParentRevision(). newNullRevision can then be based on that
 	 * (or go away).
@@ -1068,7 +1058,7 @@ class RevisionStore
 			return null;
 		}
 
-		// Fetch the actual revision row from master, without locking all extra tables.
+		// Fetch the actual revision row from primary DB, without locking all extra tables.
 		$oldRevision = $this->loadRevisionFromConds(
 			$dbw,
 			[ 'rev_id' => intval( $pageLatest ) ],
@@ -1098,7 +1088,7 @@ class RevisionStore
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isUnpatrolled
+	 * MCR migration note: this replaced Revision::isUnpatrolled
 	 *
 	 * @todo This is overly specific, so move or kill this method.
 	 *
@@ -1118,13 +1108,13 @@ class RevisionStore
 	/**
 	 * Get the RC object belonging to the current revision, if there's one
 	 *
-	 * MCR migration note: this replaces Revision::getRecentChange
+	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
 	 * @todo move this somewhere else?
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return null|RecentChange
 	 */
@@ -1147,7 +1137,7 @@ class RevisionStore
 	 * This method does not call $slot->getContent(), and may be used as a callback
 	 * called by $slot->getContent().
 	 *
-	 * MCR migration note: this roughly corresponds to Revision::getContentInternal
+	 * MCR migration note: this roughly corresponded to Revision::getContentInternal
 	 *
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
@@ -1162,15 +1152,12 @@ class RevisionStore
 	 */
 	private function loadSlotContent(
 		SlotRecord $slot,
-		$blobData = null,
-		$blobFlags = null,
-		$blobFormat = null,
-		$queryFlags = 0
+		?string $blobData = null,
+		?string $blobFlags = null,
+		?string $blobFormat = null,
+		int $queryFlags = 0
 	) {
 		if ( $blobData !== null ) {
-			Assert::parameterType( 'string', $blobData, '$blobData' );
-			Assert::parameterType( 'string|null', $blobFlags, '$blobFlags' );
-
 			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
 
 			if ( $blobFlags === null ) {
@@ -1180,7 +1167,11 @@ class RevisionStore
 				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
 				if ( $data === false ) {
 					throw new RevisionAccessException(
-						"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
+						'Failed to expand blob data using flags {flags} (key: {cache_key})',
+						[
+							'flags' => $blobFlags,
+							'cache_key' => $cacheKey,
+						]
 					);
 				}
 			}
@@ -1191,10 +1182,12 @@ class RevisionStore
 				$data = $this->blobStore->getBlob( $address, $queryFlags );
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
-					"Failed to load data blob from $address: " . $e->getMessage() . '. '
+					'Failed to load data blob from {address}'
 						. 'If this problem persist, use the findBadBlobs maintenance script '
 						. 'to investigate the issue and mark bad blobs.',
-					0, $e
+					[ 'address' => $e->getMessage() ],
+					0,
+					$e
 				);
 			}
 		}
@@ -1226,11 +1219,11 @@ class RevisionStore
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromId
+	 * MCR migration note: this replaced Revision::newFromId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
@@ -1248,11 +1241,11 @@ class RevisionStore
 	 * that's attached to a given link target. If not attached
 	 * to that link target, will return null.
 	 *
-	 * MCR migration note: this replaces Revision::newFromTitle
+	 * MCR migration note: this replaced Revision::newFromTitle
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
@@ -1273,7 +1266,7 @@ class RevisionStore
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
+			// and fall back to primary DB if the page is not found on a replica.
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
@@ -1281,7 +1274,7 @@ class RevisionStore
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
+			// and fall back to primary DB. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -1295,11 +1288,11 @@ class RevisionStore
 	 * that's attached to a given page ID.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromPageId
+	 * MCR migration note: this replaced Revision::newFromPageId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master (since 1.20)
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB (since 1.20)
+	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
@@ -1311,7 +1304,7 @@ class RevisionStore
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
+			// and fall back to primary DB if the page is not found on a replica.
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
@@ -1319,7 +1312,7 @@ class RevisionStore
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
+			// and fall back to primary DB. The assumption is that we only want to force the fallback
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -1335,13 +1328,13 @@ class RevisionStore
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 * MCR migration note: this replaced Revision::loadFromTimestamp
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 *      Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
@@ -1391,7 +1384,7 @@ class RevisionStore
 		);
 
 		if ( !$res->numRows() && !( $queryFlags & self::READ_LATEST ) ) {
-			// If we found no slots, try looking on the master database (T212428, T252156)
+			// If we found no slots, try looking on the primary database (T212428, T252156)
 			$this->logger->info(
 				__METHOD__ . ' falling back to READ_LATEST.',
 				[
@@ -1523,10 +1516,14 @@ class RevisionStore
 	}
 
 	/**
-	 * Make a fake revision object from an archive table row. This is queried
+	 * Make a fake RevisionRecord object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
 	 *
-	 * MCR migration note: this replaces Revision::newFromArchiveRow
+	 * The user ID and user name may optionally be supplied using the aliases
+	 * ar_user and ar_user_text (the names of fields which existed before
+	 * MW 1.34).
+	 *
+	 * MCR migration note: this replaced Revision::newFromArchiveRow
 	 *
 	 * @param \stdClass $row
 	 * @param int $queryFlags
@@ -1551,7 +1548,7 @@ class RevisionStore
 	/**
 	 * @see RevisionFactory::newRevisionFromRow
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow
+	 * MCR migration note: this replaced Revision::newFromRow
 	 *
 	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
@@ -1573,8 +1570,8 @@ class RevisionStore
 	 * @see newRevisionFromArchiveRow()
 	 * @since 1.35
 	 *
-	 * @param \stdClass $row
-	 * @param null|\stdClass[]|RevisionSlots $slots
+	 * @param stdClass $row
+	 * @param null|stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1589,17 +1586,12 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	public function newRevisionFromArchiveRowAndSlots(
-		$row,
+		stdClass $row,
 		$slots,
-		$queryFlags = 0,
-		PageIdentity $page = null,
+		int $queryFlags = 0,
+		?PageIdentity $page = null,
 		array $overrides = []
 	) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
-
-		// check second argument, since Revision::newFromArchiveRow had $overrides in that spot.
-		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
-
 		if ( !$page && isset( $overrides['title'] ) ) {
 			if ( !( $overrides['title'] instanceof PageIdentity ) ) {
 				throw new MWException( 'title field override must contain a PageIdentity object.' );
@@ -1653,8 +1645,8 @@ class RevisionStore
 	/**
 	 * @see newFromRevisionRow()
 	 *
-	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
-	 * @param null|\stdClass[]|RevisionSlots $slots
+	 * @param stdClass $row A database row generated from a query based on getQueryInfo()
+	 * @param null|stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1665,17 +1657,16 @@ class RevisionStore
 	 *
 	 * @return RevisionRecord
 	 * @throws MWException
+	 * @throws RevisionAccessException
 	 * @see RevisionFactory::newRevisionFromRow
 	 */
 	public function newRevisionFromRowAndSlots(
-		$row,
+		stdClass $row,
 		$slots,
-		$queryFlags = 0,
-		PageIdentity $page = null,
-		$fromCache = false
+		int $queryFlags = 0,
+		?PageIdentity $page = null,
+		bool $fromCache = false
 	) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
-
 		if ( !$page ) {
 			if ( isset( $row->page_id )
 				&& isset( $row->page_namespace )
@@ -1696,7 +1687,15 @@ class RevisionStore
 				$page = $this->getPage( $pageId, $revId, $queryFlags );
 			}
 		} else {
-			$this->ensureRevisionRowMatchesPage( $row, $page );
+			$page = $this->ensureRevisionRowMatchesPage( $row, $page );
+		}
+
+		if ( !$page ) {
+			// This should already have been caught about, but apparently
+			// it not always is, see T286877.
+			throw new RevisionAccessException(
+				"Failed to determine page associated with revision {$row->rev_id}"
+			);
 		}
 
 		try {
@@ -1724,7 +1723,7 @@ class RevisionStore
 			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $page );
 		}
 
-		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
+		// If this is a cached row, instantiate a cache-aware RevisionRecord to avoid stale data.
 		if ( $fromCache ) {
 			$rev = new RevisionStoreCacheRecord(
 				function ( $revId ) use ( $queryFlags ) {
@@ -1734,9 +1733,9 @@ class RevisionStore
 						[ 'rev_id' => intval( $revId ) ]
 					);
 					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
-						// If we found no slots, try looking on the master database (T259738)
+						// If we found no slots, try looking on the primary database (T259738)
 						$this->logger->info(
-							 'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
+							'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
 								'revid' => $revId,
 								'trace' => wfBacktrace( true )
@@ -1771,28 +1770,43 @@ class RevisionStore
 
 	/**
 	 * Check that the given row matches the given Title object.
-	 * When a mismatch is detected, this tries to re-load the title from master,
+	 * When a mismatch is detected, this tries to re-load the title from primary DB,
 	 * to avoid spurious errors during page moves.
 	 *
 	 * @param \stdClass $row
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $context
+	 *
+	 * @return Pageidentity
 	 */
-	private function ensureRevisionRowMatchesTitle( $row, Title $title, $context = [] ) {
+	private function ensureRevisionRowMatchesPage( $row, PageIdentity $page, $context = [] ) {
 		$revId = (int)( $row->rev_id ?? 0 );
 		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
-		$titlePageId = $title->getArticleID();
-
+		$expectedPageId = $page->getId( $this->wikiId );
 		// Avoid fatal error when the Title's ID changed, T246720
-		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
-			$masterPageId = $title->getArticleID( Title::READ_LATEST );
-			$masterLatest = $title->getLatestRevID( Title::READ_LATEST );
-
+		if ( $revPageId && $expectedPageId && $revPageId !== $expectedPageId ) {
+			// NOTE: PageStore::getPageByReference may use the page ID, which we don't want here.
+			$pageRec = $this->pageStore->getPageByName(
+				$page->getNamespace(),
+				$page->getDBkey(),
+				PageStore::READ_LATEST
+			);
+			$masterPageId = $pageRec->getId( $this->wikiId );
+			$masterLatest = $pageRec->getLatest( $this->wikiId );
 			if ( $revPageId === $masterPageId ) {
-				$this->logger->warning(
+				if ( $page instanceof Title ) {
+					// If we were using a Title object, keep using it, but update the page ID.
+					// This way, we don't unexpectedly mix Titles with immutable value objects.
+					$page->resetArticleID( $masterPageId );
+
+				} else {
+					$page = $pageRec;
+				}
+
+				$this->logger->info(
 					"Encountered stale Title object",
 					[
-						'page_id_stale' => $titlePageId,
+						'page_id_stale' => $expectedPageId,
 						'page_id_reloaded' => $masterPageId,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
@@ -1800,40 +1814,36 @@ class RevisionStore
 					] + $context
 				);
 			} else {
-				throw new RevisionAccessException(
-					"Revision $revId belongs to page ID $revPageId, "
-					. "the provided Title object belongs to page ID $masterPageId"
+				$expectedTitle = (string)$page;
+				if ( $page instanceof Title ) {
+					// If we started with a Title, keep using a Title.
+					$page = $this->titleFactory->newFromID( $revPageId );
+				} else {
+					$page = $pageRec;
+				}
+
+				// This could happen if a caller to e.g. getRevisionById supplied a Title that is
+				// plain wrong. In this case, we should ideally throw an IllegalArgumentException.
+				// However, it is more likely that we encountered a race condition during a page
+				// move (T268910, T279832) or database corruption (T263340). That situation
+				// should not be ignored, but we can allow the request to continue in a reasonable
+				// manner without breaking things for the user.
+				$this->logger->error(
+					"Encountered mismatching Title object (see T259022, T268910, T279832, T263340)",
+					[
+						'expected_page_id' => $masterPageId,
+						'expected_page_title' => $expectedTitle,
+						'rev_page' => $revPageId,
+						'rev_page_title' => (string)$page,
+						'page_latest' => $masterLatest,
+						'rev_id' => $revId,
+						'trace' => wfBacktrace()
+					] + $context
 				);
 			}
 		}
-	}
 
-	/**
-	 * Check that the given row matches the given PageIdentity object.
-	 * When a mismatch is detected, this tries to re-load the title from master,
-	 * to avoid spurious errors during page moves.
-	 *
-	 * @param \stdClass $row
-	 * @param PageIdentity $page
-	 * @param array $context
-	 */
-	private function ensureRevisionRowMatchesPage( $row, PageIdentity $page, $context = [] ) {
-		if ( $page instanceof Title ) {
-			$this->ensureRevisionRowMatchesTitle( $row, Title::castFromPageIdentity( $page ), $context );
-			return;
-		}
-
-		$revId = (int)( $row->rev_id ?? 0 );
-		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
-		$titlePageId = $this->getArticleId( $page );
-
-		// Raise fatal error when the Title's ID changed, T246720
-		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
-			throw new RevisionAccessException(
-				"Revision $revId belongs to page ID $revPageId, "
-				. "the provided Title object belongs to page ID $titlePageId"
-			);
-		}
+		return $page;
 	}
 
 	/**
@@ -2222,321 +2232,13 @@ class RevisionStore
 	}
 
 	/**
-	 * Constructs a new MutableRevisionRecord based on the given associative array following
-	 * the MW1.29 convention for the Revision constructor.
-	 *
-	 * MCR migration note: this replaces Revision::newFromRow
-	 *
-	 * @deprecated since 1.31, hard deprecated since 1.36'
-	 *
-	 * @param array $fields
-	 * @param int $queryFlags
-	 * @param PageIdentity|null $page
-	 *
-	 * @return MutableRevisionRecord
-	 * @throws MWException
-	 * @throws RevisionAccessException
-	 */
-	public function newMutableRevisionFromArray(
-		array $fields,
-		$queryFlags = 0,
-		PageIdentity $page = null
-	) {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		if ( !$page && isset( $fields['title'] ) ) {
-			if ( !( $fields['title'] instanceof PageIdentity ) ) {
-				throw new MWException( 'title field must contain a Title object.' );
-			}
-
-			$page = $fields['title'];
-		}
-
-		if ( !$page ) {
-			$pageId = $fields['page'] ?? 0;
-			$revId = $fields['id'] ?? 0;
-
-			$page = $this->getPage( $pageId, $revId, $queryFlags );
-		}
-
-		if ( !isset( $fields['page'] ) ) {
-			$fields['page'] = $this->getArticleId( $page );
-		}
-
-		// if we have a content object, use it to set the model and type
-		if ( !empty( $fields['content'] ) && !( $fields['content'] instanceof Content )
-			&& !is_array( $fields['content'] )
-		) {
-			throw new MWException(
-				'content field must contain a Content object or an array of Content objects.'
-			);
-		}
-
-		if ( !empty( $fields['text_id'] ) ) {
-			throw new MWException( 'The text_id field can not be used in MediaWiki 1.35 and later' );
-		}
-
-		if (
-			isset( $fields['comment'] )
-			&& !( $fields['comment'] instanceof CommentStoreComment )
-		) {
-			$commentData = $fields['comment_data'] ?? null;
-
-			if ( $fields['comment'] instanceof Message ) {
-				$fields['comment'] = CommentStoreComment::newUnsavedComment(
-					$fields['comment'],
-					$commentData
-				);
-			} else {
-				$commentText = trim( strval( $fields['comment'] ) );
-				$fields['comment'] = CommentStoreComment::newUnsavedComment(
-					$commentText,
-					$commentData
-				);
-			}
-		}
-
-		$revision = new MutableRevisionRecord( $page, $this->wikiId );
-
-		/** @var Content[] $slotContent */
-		if ( isset( $fields['content'] ) ) {
-			if ( is_array( $fields['content'] ) ) {
-				$slotContent = $fields['content'];
-			} else {
-				$slotContent = [ SlotRecord::MAIN => $fields['content'] ];
-			}
-		} elseif ( isset( $fields['text'] ) ) {
-			if ( isset( $fields['content_model'] ) ) {
-				$model = $fields['content_model'];
-			} else {
-				$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
-				$model = $slotRoleHandler->getDefaultModel( $page );
-			}
-
-			$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
-			$content = $contentHandler->unserializeContent( $fields['text'] );
-			$slotContent = [ SlotRecord::MAIN => $content ];
-		} else {
-			$slotContent = [];
-		}
-
-		foreach ( $slotContent as $role => $content ) {
-			$revision->setContent( $role, $content );
-		}
-
-		$this->initializeMutableRevisionFromArray( $revision, $fields );
-
-		return $revision;
-	}
-
-	/**
-	 * @param MutableRevisionRecord $record
-	 * @param array $fields
-	 */
-	private function initializeMutableRevisionFromArray(
-		MutableRevisionRecord $record,
-		array $fields
-	) {
-		/** @var UserIdentity $user */
-		$user = null;
-		if ( isset( $fields['user'] ) && ( $fields['user'] instanceof UserIdentity ) ) {
-			$fields['user']->assertWiki( $this->wikiId );
-			$user = $fields['user'];
-		} else {
-			$actorID = isset( $fields['actor'] ) && is_numeric( $fields['actor'] ) ? (int)$fields['actor'] : null;
-			$userID = isset( $fields['user'] ) && is_numeric( $fields['user'] ) ? (int)$fields['user'] : null;
-			try {
-				$user = $this->actorStore->newActorFromRowFields(
-					$userID,
-					$fields['user_text'] ?? null,
-					$actorID
-				);
-			} catch ( InvalidArgumentException $ex ) {
-				$user = null;
-			}
-			if ( !$user && $actorID ) {
-				try {
-					$user = $this->actorStore->getActorById(
-						$actorID,
-						$this->getDBConnectionRefForQueryFlags( self::READ_NORMAL )
-					);
-				} catch ( InvalidArgumentException $ex ) {
-					$user = null;
-				}
-			}
-			if ( !$user ) {
-				try {
-					if ( $userID ) {
-						$fromUserId = $this->actorStore->getUserIdentityByUserId( $userID );
-						if ( $fromUserId ) {
-							$user = $fromUserId;
-						} elseif ( $fields['user_text'] ?? null ) {
-							$fromName = $this->actorStore
-								->getUserIdentityByName( $fields['user_text'] ?? null );
-							if ( $fromName ) {
-								$user = $fromName;
-							}
-						}
-					}
-				} catch ( InvalidArgumentException $ex ) {
-					$user = null;
-				}
-			}
-			// Could not initialize the user, maybe it doesn't exist?
-			if ( isset( $fields['user_text'] ) ) {
-				$user = new UserIdentityValue(
-					$userID === null ? 0 : $userID,
-					$fields['user_text'],
-					$this->wikiId
-				);
-			}
-		}
-
-		if ( $user ) {
-			$record->setUser( $user );
-		}
-
-		$timestamp = isset( $fields['timestamp'] )
-			? strval( $fields['timestamp'] )
-			: MWTimestamp::now( TS_MW );
-
-		$record->setTimestamp( $timestamp );
-
-		if ( isset( $fields['page'] ) ) {
-			$record->setPageId( intval( $fields['page'] ) );
-		}
-
-		if ( isset( $fields['id'] ) ) {
-			$record->setId( intval( $fields['id'] ) );
-		}
-		if ( isset( $fields['parent_id'] ) ) {
-			$record->setParentId( intval( $fields['parent_id'] ) );
-		}
-
-		if ( isset( $fields['sha1'] ) ) {
-			$record->setSha1( $fields['sha1'] );
-		}
-
-		if ( isset( $fields['size'] ) ) {
-			$record->setSize( intval( $fields['size'] ) );
-		} elseif ( isset( $fields['len'] ) ) {
-			$record->setSize( intval( $fields['len'] ) );
-		}
-
-		if ( isset( $fields['minor_edit'] ) ) {
-			$record->setMinorEdit( intval( $fields['minor_edit'] ) !== 0 );
-		}
-		if ( isset( $fields['deleted'] ) ) {
-			$record->setVisibility( intval( $fields['deleted'] ) );
-		}
-
-		if ( isset( $fields['comment'] ) ) {
-			Assert::parameterType(
-				CommentStoreComment::class,
-				$fields['comment'],
-				'$row[\'comment\']'
-			);
-			$record->setComment( $fields['comment'] );
-		}
-	}
-
-	/**
-	 * Load either the current, or a specified, revision
-	 * that's attached to a given page. If not attached
-	 * to that page, will return null.
-	 *
-	 * MCR migration note: this replaces Revision::loadFromPageId
-	 *
-	 * @deprecated since 1.35 Use RevisionStore::getRevisionByPageId instead.
-	 *
-	 * @param IDatabase $db
-	 * @param int $pageid
-	 * @param int $id
-	 * @return RevisionRecord|null
-	 */
-	public function loadRevisionFromPageId( IDatabase $db, $pageid, $id = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
-		if ( $id ) {
-			$conds['rev_id'] = intval( $id );
-		} else {
-			$conds[] = 'rev_id=page_latest';
-		}
-		return $this->loadRevisionFromConds( $db, $conds );
-	}
-
-	/**
-	 * Load either the current, or a specified, revision
-	 * that's attached to a given page. If not attached
-	 * to that page, will return null.
-	 *
-	 * MCR migration note: this replaces Revision::loadFromTitle
-	 *
-	 * @note direct use is deprecated!
-	 * @todo remove when unused!
-	 * @deprecated since 1.35
-	 *
-	 * @param IDatabase $db
-	 * @param Title $title
-	 * @param int $id
-	 *
-	 * @return RevisionRecord|null
-	 */
-	public function loadRevisionFromTitle( IDatabase $db, $title, $id = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $id ) {
-			$matchId = intval( $id );
-		} else {
-			$matchId = 'page_latest';
-		}
-
-		return $this->loadRevisionFromConds(
-			$db,
-			[
-				"rev_id=$matchId",
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
-			],
-			0,
-			$title
-		);
-	}
-
-	/**
-	 * Load the revision for the given title with the given timestamp.
-	 * WARNING: Timestamps may in some circumstances not be unique,
-	 * so this isn't the best key to use.
-	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * @param IDatabase $db
-	 * @param Title $title
-	 * @param string $timestamp
-	 * @return RevisionRecord|null
-	 */
-	public function loadRevisionFromTimestamp( IDatabase $db, $title, $timestamp ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->loadRevisionFromConds( $db,
-			[
-				'rev_timestamp' => $db->timestamp( $timestamp ),
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
-			],
-			0,
-			$title
-		);
-	}
-
-	/**
 	 * Given a set of conditions, fetch a revision
 	 *
 	 * This method should be used if we are pretty sure the revision exists.
 	 * Unless $flags has READ_LATEST set, this method will first try to find the revision
-	 * on a replica before hitting the master database.
+	 * on a replica before hitting the primary database.
 	 *
-	 * MCR migration note: this corresponds to Revision::newFromConds
+	 * MCR migration note: this corresponded to Revision::newFromConds
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
@@ -2561,10 +2263,10 @@ class RevisionStore
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )
 			&& $lb->hasStreamingReplicaServers()
-			&& $lb->hasOrMadeRecentMasterChanges()
+			&& $lb->hasOrMadeRecentPrimaryChanges()
 		) {
 			$flags = self::READ_LATEST;
-			$dbw = $this->getDBConnectionRef( DB_MASTER );
+			$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $page, $options );
 		}
 
@@ -2575,7 +2277,7 @@ class RevisionStore
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
 	 *
-	 * MCR migration note: this corresponds to Revision::loadFromConds
+	 * MCR migration note: this corresponded to Revision::loadFromConds
 	 *
 	 * @param IDatabase $db
 	 * @param array $conditions
@@ -2621,7 +2323,7 @@ class RevisionStore
 	 * Given a set of conditions, return a row with the
 	 * fields necessary to build RevisionRecord objects.
 	 *
-	 * MCR migration note: this corresponds to Revision::fetchFromConds
+	 * MCR migration note: this corresponded to Revision::fetchFromConds
 	 *
 	 * @param IDatabase $db
 	 * @param array $conditions
@@ -2656,7 +2358,7 @@ class RevisionStore
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionStoreRecord object.
 	 *
-	 * MCR migration note: this replaces Revision::getQueryInfo
+	 * MCR migration note: this replaced Revision::getQueryInfo
 	 *
 	 * If the format of fields returned changes in any way then the cache key provided by
 	 * self::getRevisionRowCacheKey should be updated.
@@ -2806,10 +2508,36 @@ class RevisionStore
 	}
 
 	/**
+	 * Determine whether the parameter is a row containing all the fields
+	 * that RevisionStore needs to create a RevisionRecord from the row.
+	 *
+	 * @param mixed $row
+	 * @param string $table 'archive' or empty
+	 * @return bool
+	 */
+	public function isRevisionRow( $row, string $table = '' ) {
+		if ( !( $row instanceof stdClass ) ) {
+			return false;
+		}
+		$queryInfo = $table === 'archive' ? $this->getArchiveQueryInfo() : $this->getQueryInfo();
+		foreach ( $queryInfo['fields'] as $alias => $field ) {
+			$name = is_numeric( $alias ) ? $field : $alias;
+			if ( !property_exists( $row, $name ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionArchiveRecord object.
 	 *
-	 * MCR migration note: this replaces Revision::getArchiveQueryInfo
+	 * Since 1.34, ar_user and ar_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
+	 * MCR migration note: this replaced Revision::getArchiveQueryInfo
 	 *
 	 * @since 1.31
 	 *
@@ -2820,9 +2548,11 @@ class RevisionStore
 	 */
 	public function getArchiveQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
-		$actorQuery = $this->actorMigration->getJoin( 'ar_user' );
 		$ret = [
-			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'archive',
+				'archive_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'ar_id',
 				'ar_page_id',
@@ -2834,9 +2564,14 @@ class RevisionStore
 				'ar_deleted',
 				'ar_len',
 				'ar_parent_id',
-					'ar_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'ar_sha1',
+				'ar_actor',
+				'ar_user' => 'archive_actor.actor_user',
+				'ar_user_text' => 'archive_actor.actor_name',
+			] + $commentQuery['fields'],
+			'joins' => [
+				'archive_actor' => [ 'JOIN', 'actor_id=ar_actor' ]
+			] + $commentQuery['joins'],
 		];
 
 		return $ret;
@@ -2845,7 +2580,7 @@ class RevisionStore
 	/**
 	 * Do a batched query for the sizes of a set of revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getParentLengths
+	 * MCR migration note: this replaced Revision::getParentLengths
 	 *
 	 * @param int[] $revIds
 	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
@@ -2870,23 +2605,6 @@ class RevisionStore
 		}
 
 		return $revLens;
-	}
-
-	/**
-	 * Do a batched query for the sizes of a set of revisions.
-	 *
-	 * MCR migration note: this replaces Revision::getParentLengths
-	 *
-	 * @deprecated since 1.35 use RevisionStore::getRevisionSizes instead.
-	 *
-	 * @param IDatabase $db
-	 * @param int[] $revIds
-	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
-	 *         of the corresponding revision.
-	 */
-	public function listRevisionSizes( IDatabase $db, array $revIds ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->getRevisionSizes( $revIds );
 	}
 
 	/**
@@ -2951,14 +2669,13 @@ class RevisionStore
 	 * Get the revision before $rev in the page's history, if any.
 	 * Will return null for the first revision but also for deleted or unsaved revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getPrevious
+	 * MCR migration note: this replaced Revision::getPrevious
 	 *
-	 * @see Title::getPreviousRevisionID
-	 * @see PageArchive::getPreviousRevision
+	 * @see PageArchive::getPreviousRevisionRecord
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -2970,13 +2687,11 @@ class RevisionStore
 	 * Get the revision after $rev in the page's history, if any.
 	 * Will return null for the latest revision but also for deleted or unsaved revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getNext
-	 *
-	 * @see Title::getNextRevisionID
+	 * MCR migration note: this replaced Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 * @return RevisionRecord|null
 	 */
 	public function getNextRevision( RevisionRecord $rev, $flags = self::READ_NORMAL ) {
@@ -2987,7 +2702,7 @@ class RevisionStore
 	 * Get previous revision Id for this page_id
 	 * This is used to populate rev_parent_id on save
 	 *
-	 * MCR migration note: this corresponds to Revision::getPreviousRevisionId
+	 * MCR migration note: this corresponded to Revision::getPreviousRevisionId
 	 *
 	 * @param IDatabase $db
 	 * @param RevisionRecord $rev
@@ -3024,7 +2739,7 @@ class RevisionStore
 	 * Historically, there was an extra Title parameter that was passed before $id. This is no
 	 * longer needed and is deprecated in 1.34.
 	 *
-	 * MCR migration note: this replaces Revision::getTimestampFromId
+	 * MCR migration note: this replaced Revision::getTimestampFromId
 	 *
 	 * @param int $id
 	 * @param int $flags
@@ -3057,7 +2772,7 @@ class RevisionStore
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * MCR migration note: this replaces Revision::countByPageId
+	 * MCR migration note: this replaced Revision::countByPageId
 	 *
 	 * @param IDatabase $db
 	 * @param int $id Page id
@@ -3080,7 +2795,7 @@ class RevisionStore
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * MCR migration note: this replaces Revision::countByTitle
+	 * MCR migration note: this replaced Revision::countByTitle
 	 *
 	 * @param IDatabase $db
 	 * @param PageIdentity $page
@@ -3099,11 +2814,11 @@ class RevisionStore
 	 * the time a user started editing the page. Limit to
 	 * 50 revisions for the sake of performance.
 	 *
-	 * MCR migration note: this replaces Revision::userWasLastToEdit
+	 * MCR migration note: this replaced Revision::userWasLastToEdit
 	 *
 	 * @deprecated since 1.31; Can possibly be removed, since the self-conflict suppression
 	 *       logic in EditPage that uses this seems conceptually dubious. Revision::userWasLastToEdit
-	 *       has been deprecated since 1.24.
+	 *       had been deprecated since 1.24 (the Revision class was removed entirely in 1.37).
 	 *
 	 * @param IDatabase $db The Database to perform the check on.
 	 * @param int $pageId The ID of the page in question
@@ -3147,7 +2862,7 @@ class RevisionStore
 	 * This method allows for the use of caching, though accessing anything that normally
 	 * requires permission checks (aside from the text) will trigger a small DB lookup.
 	 *
-	 * MCR migration note: this replaces Revision::newKnownCurrent
+	 * MCR migration note: this replaced Revision::newKnownCurrent
 	 *
 	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
@@ -3156,32 +2871,30 @@ class RevisionStore
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
-		if ( !$page instanceof Title ) {
-
-			// TODO: For foreign wikis we can not cast from PageIdentityValue to Title,
-			// since getLatestRevID will fetch from local database. To be fixed with cross-wiki
-			// aware PageStore. T274067
-			$page->assertWiki( PageIdentity::LOCAL );
-			$title = Title::castFromPageIdentity( $page );
-		} else {
-			$title = $page;
-		}
 		$revIdPassed = $revId;
-		$pageId = $this->getArticleID( $title );
-
+		$pageId = $this->getArticleId( $page );
 		if ( !$pageId ) {
 			return false;
 		}
 
 		if ( !$revId ) {
-			$revId = $title->getLatestRevID();
+			if ( $page instanceof Title ) {
+				$revId = $page->getLatestRevID();
+			} else {
+				$pageRecord = $this->pageStore->getPageByReference( $page );
+				if ( $pageRecord ) {
+					$revId = $pageRecord->getLatest( $this->getWikiId() );
+				}
+			}
 		}
 
 		if ( !$revId ) {
-			wfWarn(
-				'No latest revision known for page ' . $title->getPrefixedDBkey()
-				. ' even though it exists with page ID ' . $pageId
-			);
+			$this->logger->warning(
+				'No latest revision known for page {page} even though it exists with page ID {page_id}', [
+				'page' => $page->__toString(),
+				'page_id' => $pageId,
+				'wiki_id' => $this->getWikiId() ?: 'local',
+			] );
 			return false;
 		}
 
@@ -3207,7 +2920,7 @@ class RevisionStore
 
 		// Reflect revision deletion and user renames.
 		if ( $row ) {
-			$this->ensureRevisionRowMatchesTitle( $row, $title, [
+			$title = $this->ensureRevisionRowMatchesPage( $row, $page, [
 				'from_cache_flag' => $fromCache,
 				'page_id_initial' => $pageId,
 				'rev_id_used' => $revId,
@@ -3372,7 +3085,7 @@ class RevisionStore
 		$options = [],
 		?string $order = null,
 		int $flags = IDBAccessObject::READ_NORMAL
-	) : array {
+	): array {
 		$this->assertRevisionParameter( 'old', $pageId, $old );
 		$this->assertRevisionParameter( 'new', $pageId, $new );
 
@@ -3585,7 +3298,54 @@ class RevisionStore
 		}
 	}
 
-	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
+	/**
+	 * Tries to find a revision identical to $revision in $searchLimit most recent revisions
+	 * of this page. The comparison is based on SHA1s of these revisions.
+	 *
+	 * @since 1.37
+	 *
+	 * @param RevisionRecord $revision which revision to compare to
+	 * @param int $searchLimit How many recent revisions should be checked
+	 *
+	 * @return RevisionRecord|null
+	 */
+	public function findIdenticalRevision(
+		RevisionRecord $revision,
+		int $searchLimit
+	): ?RevisionRecord {
+		$revision->assertWiki( $this->wikiId );
+		$db = $this->getDBConnectionRef( DB_REPLICA );
+		$revQuery = $this->getQueryInfo();
+		$subquery = $db->buildSelectSubquery(
+			$revQuery['tables'],
+			$revQuery['fields'],
+			[ 'rev_page' => $revision->getPageId( $this->wikiId ) ],
+			__METHOD__,
+			[
+				'ORDER BY' => [
+					'rev_timestamp DESC',
+					// for cases where there are multiple revs with same timestamp
+					'rev_id DESC'
+				],
+				'LIMIT' => $searchLimit,
+				// skip the most recent edit, we can't revert to it anyway
+				'OFFSET' => 1
+			],
+			$revQuery['joins']
+		);
+
+		// selectRow effectively uses LIMIT 1 clause, returning only the first result
+		$revisionRow = $db->selectRow(
+			[ 'recent_revs' => $subquery ],
+			'*',
+			[ 'rev_sha1' => $revision->getSha1() ],
+			__METHOD__
+		);
+
+		return $revisionRow ? $this->newRevisionFromRow( $revisionRow ) : null;
+	}
+
+	// TODO: move relevant methods from Title here, e.g. isBigDeletion, etc.
 }
 
 /**

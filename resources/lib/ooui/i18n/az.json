@@ -4,6 +4,7 @@
 			"Cekli829",
 			"Interfase",
 			"Jduranboger",
+			"NMW03",
 			"Wertuose"
 		]
 	},
@@ -11,5 +12,7 @@
 	"ooui-outline-control-move-up": "Bəndi yuxarı apar",
 	"ooui-outline-control-remove": "Bəndi sil",
 	"ooui-toolbar-more": "Daha artıq",
-	"ooui-toolgroup-collapse": "Daha az"
+	"ooui-toolgroup-collapse": "Daha az",
+	"ooui-selectfile-button-select": "Fayl seç",
+	"ooui-selectfile-dragdrop-placeholder": "Faylı buraya burax"
 }

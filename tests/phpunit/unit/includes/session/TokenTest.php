@@ -7,17 +7,17 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\Token
+ * @covers \MediaWiki\Session\Token
  */
 class TokenTest extends MediaWikiUnitTestCase {
 
 	public function testBasics() {
 		$token = $this->getMockBuilder( Token::class )
-			->setMethods( [ 'toStringAtTimestamp' ] )
+			->onlyMethods( [ 'toStringAtTimestamp' ] )
 			->setConstructorArgs( [ 'sekret', 'salty', true ] )
 			->getMock();
-		$token->expects( $this->any() )->method( 'toStringAtTimestamp' )
-			->will( $this->returnValue( 'faketoken+\\' ) );
+		$token->method( 'toStringAtTimestamp' )
+			->willReturn( 'faketoken+\\' );
 
 		$this->assertSame( 'faketoken+\\', $token->toString() );
 		$this->assertSame( 'faketoken+\\', (string)$token );
@@ -56,6 +56,8 @@ class TokenTest extends MediaWikiUnitTestCase {
 	public function testMatch() {
 		$token = TestingAccessWrapper::newFromObject( new Token( 'sekret', 'salty', false ) );
 
+		$this->assertFalse( $token->match( null ) );
+
 		$test = $token->toStringAtTimestamp( time() - 10 );
 		$this->assertTrue( $token->match( $test ) );
 		$this->assertTrue( $token->match( $test, 12 ) );
@@ -63,5 +65,4 @@ class TokenTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse( $token->match( 'ee2f7a2488dea9176c224cfb400d43be5644fdea-\\' ) );
 	}
-
 }

@@ -35,10 +35,16 @@ class ApiEmailUser extends ApiBase {
 			switch ( $targetUser ) {
 				case 'notarget':
 					$this->dieWithError( 'apierror-notarget' );
+					// dieWithError prevents continuation
+
 				case 'noemail':
 					$this->dieWithError( [ 'noemail', $params['target'] ] );
+					// dieWithError prevents continuation
+
 				case 'nowikiemail':
 					$this->dieWithError( 'nowikiemailtext', 'nowikiemail' );
+					// dieWithError prevents continuation
+
 				default:
 					$this->dieWithError( [ 'apierror-unknownerror', $targetUser ] );
 			}

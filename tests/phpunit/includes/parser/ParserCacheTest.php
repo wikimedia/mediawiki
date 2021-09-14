@@ -42,18 +42,13 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	/** @var PageRecord */
 	private $page;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->time = time();
 		$this->cacheTime = MWTimestamp::convert( TS_MW, $this->time + 1 );
 		$this->page = $this->createPageRecord();
 
 		MWTimestamp::setFakeTime( $this->time );
-	}
-
-	protected function tearDown() : void {
-		MWTimestamp::setFakeTime( null );
-		parent::tearDown();
 	}
 
 	/**
@@ -125,25 +120,17 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ParserCache::getMetadata
-	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataMissing() {
-		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
-
 		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY );
-		$this->assertFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_CURRENT_ONLY ) );
-		$this->assertNotFalse( $cache->getKey( $this->page, ParserOptions::newCanonical( 'canonical' ) ) );
 		$this->assertNull( $metadataFromCache );
 	}
 
 	/**
 	 * @covers ParserCache::getMetadata
-	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataAllGood() {
-		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 
@@ -151,8 +138,6 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY );
 		$this->assertNotNull( $metadataFromCache );
-		$this->assertNotFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_CURRENT_ONLY ) );
 		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
 		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
 		$this->assertSame( $this->page->getLatest(), $metadataFromCache->getCacheRevisionId() );
@@ -161,21 +146,15 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ParserCache::getMetadata
-	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataExpired() {
-		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save( $parserOutput, $this->page, ParserOptions::newCanonical( 'canonical' ), $this->cacheTime );
 
 		$this->page = $this->createPageRecord( [ 'page_touched' => $this->time + 10000 ] );
 		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY ) );
-		$this->assertFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_CURRENT_ONLY ) );
 		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_EXPIRED );
-		$this->assertNotFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_EXPIRED ) );
 		$this->assertNotNull( $metadataFromCache );
 		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
 		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
@@ -185,24 +164,16 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ParserCache::getMetadata
-	 * @covers ParserCache::getKey
 	 */
 	public function testGetMetadataOutdated() {
-		$this->hideDeprecated( 'ParserCache::getKey' );
 		$cache = $this->createParserCache();
 		$parserOutput = $this->createDummyParserOutput();
 		$cache->save( $parserOutput, $this->page, ParserOptions::newCanonical( 'canonical' ), $this->cacheTime );
 
 		$this->page = $this->createPageRecord( [ 'page_latest' => $this->page->getLatest() + 1 ] );
 		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_CURRENT_ONLY ) );
-		$this->assertFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_CURRENT_ONLY ) );
 		$this->assertNull( $cache->getMetadata( $this->page, ParserCache::USE_EXPIRED ) );
-		$this->assertFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_EXPIRED ) );
 		$metadataFromCache = $cache->getMetadata( $this->page, ParserCache::USE_OUTDATED );
-		$this->assertNotFalse( $cache->getKey( $this->page,
-			ParserOptions::newCanonical( 'canonical' ), ParserCache::USE_OUTDATED ) );
 		$this->assertSame( $this->getDummyUsedOptions(), $metadataFromCache->getUsedOptions() );
 		$this->assertSame( 4242, $metadataFromCache->getCacheExpiry() );
 		$this->assertNotSame( $this->page->getLatest(), $metadataFromCache->getCacheRevisionId() );
@@ -535,9 +506,9 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		$hookContainer = $this->createHookContainer( [
 			'ParserCacheSaveComplete' =>
-				function ( ParserCache $hookCache, ParserOutput $value,
-						   Title $hookTitle, ParserOptions $popts, int $revId )
-				use ( $parserOutput, $options ) {
+				function (
+					ParserCache $hookCache, ParserOutput $value, Title $hookTitle, ParserOptions $popts, int $revId
+				) use ( $parserOutput, $options ) {
 					$this->assertSame( $parserOutput, $value );
 					$this->assertSame( $options, $popts );
 					$this->assertSame( 42, $revId );
@@ -645,25 +616,26 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * back to a version of the code that doesn't know about JSON.
 	 *
 	 * @covers ParserCache::getMetadata
-	 * @covers ParserCache::getKey
 	 */
 	public function testCorruptMetadata() {
-		$this->hideDeprecated( 'ParserCache::getKey' );
-		$cache = $this->createParserCache( null, new HashBagOStuff() );
+		$cacheStorage = new HashBagOStuff();
+		$cache = $this->createParserCache( null, $cacheStorage );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newCanonical( 'canonical' );
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
 
+		// Mess up the metadata
 		$optionsKey = TestingAccessWrapper::newFromObject( $cache )->makeMetadataKey(
 			$this->page
 		);
+		$cacheStorage->set( $optionsKey, 'bad data' );
 
-		$cache->getCacheStorage()->set( $optionsKey, 'bad data' );
+		// Recreate the cache to drop in-memory cached metadata.
+		$cache = $this->createParserCache( null, $cacheStorage );
 
 		// just make sure we don't crash and burn
 		$this->assertNull( $cache->getMetadata( $this->page ) );
-		$this->assertFalse( $cache->getKey( $this->page, $options1, false ) );
 	}
 
 	/**

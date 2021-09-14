@@ -379,9 +379,9 @@
 
 	QUnit.test( 'reveal hash fragment', function ( assert ) {
 		var $collapsible = prepareCollapsible(
-				'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '<div id="div,a:nth-child(even)">' + loremIpsum + '</div></div>'
+				'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '<div id="español,a:nth-child(even)">' + loremIpsum + '</div></div>'
 			),
-			fragment = document.getElementById( 'div,a:nth-child(even)' ),
+			fragment = document.getElementById( 'español,a:nth-child(even)' ),
 			done = assert.async();
 
 		assert.assertTrue( fragment.offsetParent === null, 'initial: fragment is hidden' );
@@ -392,7 +392,7 @@
 			window.location.hash = '';
 		} );
 
-		window.location.hash = 'div,a:nth-child(even)';
+		window.location.hash = 'espa%C3%B1ol,a:nth-child(even)';
 	} );
 
 	QUnit.test( 'T168689 - nested collapsible divs should keep independent state', function ( assert ) {

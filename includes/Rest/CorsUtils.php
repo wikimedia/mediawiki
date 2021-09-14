@@ -13,6 +13,7 @@ use MediaWiki\User\UserIdentity;
 class CorsUtils implements BasicAuthorizerInterface {
 	/** @var array */
 	public const CONSTRUCTOR_OPTIONS = [
+		'AllowedCorsHeaders',
 		'AllowCrossOrigin',
 		'RestAllowCrossOriginCookieAuth',
 		'CanonicalServer',
@@ -75,7 +76,7 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * @param Origin $origin
 	 * @return bool
 	 */
-	private function allowOrigin( Origin $origin ) : bool {
+	private function allowOrigin( Origin $origin ): bool {
 		$allowed = array_merge( [ $this->getCanonicalDomain() ], $this->options->get( 'CrossSiteAJAXdomains' ) );
 		$excluded = $this->options->get( 'CrossSiteAJAXdomainExceptions' );
 
@@ -85,7 +86,7 @@ class CorsUtils implements BasicAuthorizerInterface {
 	/**
 	 * @return string
 	 */
-	private function getCanonicalDomain() : string {
+	private function getCanonicalDomain(): string {
 		[
 			'host' => $host,
 		] = wfParseUrl( $this->options->get( 'CanonicalServer' ) );
@@ -103,7 +104,7 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * @param ResponseInterface $response
 	 * @return ResponseInterface
 	 */
-	public function modifyResponse( RequestInterface $request, ResponseInterface $response ) : ResponseInterface {
+	public function modifyResponse( RequestInterface $request, ResponseInterface $response ): ResponseInterface {
 		if ( !$this->options->get( 'AllowCrossOrigin' ) ) {
 			return $response;
 		}
@@ -158,19 +159,22 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * @param array $allowedMethods
 	 * @return ResponseInterface
 	 */
-	public function createPreflightResponse( array $allowedMethods ) : ResponseInterface {
+	public function createPreflightResponse( array $allowedMethods ): ResponseInterface {
 		$response = $this->responseFactory->createNoContent();
+		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
 
-		// Authorization header must be explicitly listed which prevent the use of '*'
-		$response->setHeader( 'Access-Control-Allow-Headers', [
+		$allowedHeaders = $this->options->get( 'AllowedCorsHeaders' );
+		$allowedHeaders = array_merge( $allowedHeaders, array_diff( [
+			// Authorization header must be explicitly listed which prevent the use of '*'
 			'Authorization',
+			// REST must allow Content-Type to be operational
 			'Content-Type',
+			// REST relies on conditional requests for some endpoints
 			'If-Mach',
 			'If-None-Match',
 			'If-Modified-Since',
-		] );
-
-		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
+		], $allowedHeaders ) );
+		$response->setHeader( 'Access-Control-Allow-Headers', $allowedHeaders );
 
 		return $response;
 	}

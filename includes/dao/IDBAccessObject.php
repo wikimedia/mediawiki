@@ -30,13 +30,13 @@
  *
  * There are four types of reads:
  *   - READ_NORMAL    : Potentially cached read of data (e.g. from a replica DB or stale replica)
- *   - READ_LATEST    : Up-to-date read as of transaction start (e.g. from master or a quorum read)
+ *   - READ_LATEST    : Up-to-date read as of transaction start (e.g. from primary or a quorum read)
  *   - READ_LOCKING   : Up-to-date read as of now, that locks (shared) the records
  *   - READ_EXCLUSIVE : Up-to-date read as of now, that locks (exclusive) the records
  * All record locks persist for the duration of the transaction.
  *
  * A special constant READ_LATEST_IMMUTABLE can be used for fetching append-only data. Such
- * data is either (a) on a replica DB and up-to-date or (b) not yet there, but on the master/quorum.
+ * data is either (a) on a replica DB and up-to-date or (b) not yet there, but on the primary/quorum.
  * Because the data is append-only, it can never be stale on a replica DB if present.
  *
  * Callers should use READ_NORMAL (or pass in no flags) unless the read determines a write.
@@ -59,16 +59,16 @@ interface IDBAccessObject {
 	/** @var int Read from a replica DB/non-quorum */
 	public const READ_NORMAL = 0;
 
-	/** @var int Read from the master/quorum */
+	/** @var int Read from the primary/quorum */
 	public const READ_LATEST = 1;
 
-	/** @var int Read from the master/quorum and lock out other writers */
+	/** @var int Read from the primary/quorum and lock out other writers */
 	public const READ_LOCKING = self::READ_LATEST | 2; // READ_LATEST (1) and "LOCK IN SHARE MODE" (2)
 
-	/** @var int Read from the master/quorum and lock out other writers and locking readers */
+	/** @var int Read from the primary/quorum and lock out other writers and locking readers */
 	public const READ_EXCLUSIVE = self::READ_LOCKING | 4; // READ_LOCKING (3) and "FOR UPDATE" (4)
 
-	/** @var int Read from a replica DB or without a quorum, using the master/quorum on miss */
+	/** @var int Read from a replica DB or without a quorum, using the primary/quorum on miss */
 	public const READ_LATEST_IMMUTABLE = 8;
 
 	// Convenience constant for tracking how data was loaded (higher => higher QoS)

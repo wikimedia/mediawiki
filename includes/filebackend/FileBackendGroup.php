@@ -74,17 +74,22 @@ class FileBackendGroup {
 	];
 
 	/**
-	 * @deprecated since 1.35, inject the service instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * inject the service instead
+	 *
 	 * @return FileBackendGroup
 	 */
-	public static function singleton() : FileBackendGroup {
+	public static function singleton(): FileBackendGroup {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getFileBackendGroup();
 	}
 
 	/**
-	 * @deprecated since 1.35, test framework should reset services between tests instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * test framework should reset services between tests instead
 	 */
 	public static function destroySingleton() {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
 	}
 

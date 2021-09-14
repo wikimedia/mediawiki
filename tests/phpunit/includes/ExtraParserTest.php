@@ -16,7 +16,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	/** @var Parser */
 	protected $parser;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

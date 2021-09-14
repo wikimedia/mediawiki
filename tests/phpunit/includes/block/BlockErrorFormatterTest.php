@@ -23,7 +23,7 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 	public function testGetMessage( $block, $expectedKey, $expectedParams ) {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$request = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getIP' ] )
+			->onlyMethods( [ 'getIP' ] )
 			->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '1.2.3.4' );
@@ -172,7 +172,7 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetMessageCompositeBlocks( $ids, $expected ) {
 		$block = $this->getMockBuilder( CompositeBlock::class )
-			->setMethods( [ 'getIdentifier' ] )
+			->onlyMethods( [ 'getIdentifier' ] )
 			->getMock();
 		$block->method( 'getIdentifier' )
 			->willReturn( $ids );

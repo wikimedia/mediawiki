@@ -164,7 +164,7 @@
 	"config-admin-error-user": "Erô interno durante a creaçion de 'n aministratô co-o nomme \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Erô interno durante l'impostaçion de 'na password pe aministratô \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "T'hæ inseio un adresso e-mail non vallido.",
-	"config-subscribe": "Sottoscrivi a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list di anonçi de release].",
+	"config-subscribe": "Sottoscrivi a [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mailing list di anonçi de release].",
 	"config-subscribe-help": "Se tratta de 'na mailing list a basso traffego dedicâ a-i anonçi de sciortie de noeuve verscioin, compreize de importante segnalaçioin pe-a segueçça.\nSe conseggia de inscrivise e agiornâ a proppia instalaçion de MediaWiki quande sciorte 'na noeuva verscion.",
 	"config-subscribe-noemail": "T'hæ provou a inscrivite a-a mailing list dedicâ a-i anonçi de noeuve verscioin sença fornî un adresso e-mail.\nInseisci un adresso e-mail se ti dexidei efetoâ l'inscriçion a-a mailing list.",
 	"config-pingback": "Condividdi i dæti insce questa installaçion co-i svilupatoî da MediaWiki.",
@@ -264,7 +264,7 @@
 	"config-install-updates": "Impedî l'esecuçion di agiornamenti non necessai",
 	"config-install-updates-failed": "<strong>Erô:</strong> l'inseimento de ciave de agiornamento inte tabelle o no l'è ariescio pe-o seguente erô: $1",
 	"config-install-sysop": "Creaçion de l'utença pe l'aministratô",
-	"config-install-subscribe-fail": "Imposcibbile sottoscrive mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Imposcibbile sottoscrive mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL o no l'è instalou e <code>allow_url_fopen</code> o no l'è disponibbile.",
 	"config-install-mainpage": "Creaçion da paggina prinçipâ con contegnuo predefinio",
 	"config-install-mainpage-exists": "A paggina prinçipâ a l'existe za, ignorou",
@@ -278,5 +278,5 @@
 	"config-nofile": "O file \"$1\" o no poeu vese atrovou. O l'è stæto eliminou?",
 	"config-extension-link": "Ti o saveivi che o to wiki o suporta i  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions estenscioin]?\n\nTi poeu navegâ tra i [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category estenscioin pe categoria].",
 	"mainpagetext": "<strong>MediaWiki o l'è stæto instalou.</strong>",
-	"mainpagedocfooter": "Consurta a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guidda utente] pe ciu informaçioin in sce l'uso de questo software wiki.\n\n== Pe començâ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostaçioin de configuaçion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequente sciu MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anonçi MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Troeuva MediaWiki inta to lengoa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imprendi a combatte o spam in sciâ to wiki]"
+	"mainpagedocfooter": "Consurta a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guidda utente] pe ciu informaçioin in sce l'uso de questo software wiki.\n\n== Pe començâ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostaçioin de configuaçion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequente sciu MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailing list anonçi MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Troeuva MediaWiki inta to lengoa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imprendi a combatte o spam in sciâ to wiki]"
 }

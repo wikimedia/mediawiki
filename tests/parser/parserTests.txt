@@ -1742,6 +1742,19 @@ protection !! here
 |}
 !! end
 
+!! test
+Nowiki with newlines in list
+!! wikitext
+:<nowiki>test
+123</nowiki>
+!! html/php
+<dl><dd>test
+123</dd></dl>
+!! html/parsoid
+<dl><dd data-parsoid="{}"><span typeof="mw:Nowiki">test
+123</span></dd></dl>
+!! end
+
 ## The output here may change with the outcome of T255007
 !! test
 Nowiki and french spacing
@@ -1785,6 +1798,9 @@ French spacing and spans
 <p><a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>&#160;: <span>123</span>
 «&#160;Test&#160;»<span>123</span>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Test" title="Test" class="new">Test</a><span typeof="mw:DisplaySpace"> </span>: <span data-parsoid='{"stx":"html"}'>123</span>
+«<span typeof="mw:DisplaySpace"> </span>Test<span typeof="mw:DisplaySpace"> </span>»<span data-parsoid='{"stx":"html"}'>123</span></p>
 !! end
 
 ###
@@ -2074,6 +2090,18 @@ IE conditional comments
 <!--[if lt IE 9]&#x3E;
 	<script&#x3E;alert('hi');</script&#x3E;
 <![endif]-->
+!! end
+
+## Regession test for Parsoid
+!! test
+Comment with valid json
+!! wikitext
+hi <!--{"hi":"ho"}--> ho
+!! html/php
+<p>hi  ho
+</p>
+!! html/parsoid
+<p>hi <!--{"hi":"ho"}--> ho</p>
 !! end
 
 ###
@@ -7108,6 +7136,23 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 </tbody></table>
 !! end
 
+!! test
+Table cell attributes: Pipes protected by nested nowikis should be treated as a plain character
+!! wikitext
+{|
+|<code><nowiki>{{ACB|PG}}</nowiki></code>
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td><code>{{ACB|PG}}</code>
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><td><code><span typeof="mw:Nowiki">{{ACB|PG}}</span></code></td></tr>
+</tbody></table>
+!! end
+
 # See: http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html
 # N.B. The "|}" to close the table is missing from the input, so parsoid's
 #      *2wt modes will fail.
@@ -8577,6 +8622,8 @@ Link containing double-single-quotes '' in text embedded in italics (T6598 sanit
 ## FIXME: Title part of filename is interpreted in php
 !! test
 Link with double quotes in title part (literal) and alternate part (interpreted)
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Denys_Savchenko_''Pentecoste''.jpg]]
 
@@ -8586,7 +8633,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 
 [[''Pentecoste''|''Pentecoste'']]
 !! html/php
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg"><span>File:Denys Savchenko <i>Pentecoste</i>.jpg</span></a></span>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">''Pentecoste''</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">Pentecoste</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)"><i>Pentecoste</i></a>
@@ -10442,6 +10489,42 @@ parsoid={
 **a
 ***b  
 *** b-new
+!! end
+
+!! test
+1. Lists and block-element interaction
+!! options
+parsoid=wt2html,selser
+!! wikitext
+*<div>a
+*b
+</div>ಕ
+!! html/php+tidy
+<ul><li><div>a</div></li>
+<li>b</li></ul>
+<p>ಕ</p>
+!! html/parsoid
+<ul><li><div data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</div></li>
+<li>b</li></ul>
+<p>ಕ</p>
+!! end
+
+!! test
+2. Lists and block-element interaction
+!! options
+parsoid=wt2html,selser
+!! wikitext
+*{{1x|<div>a
+*b
+}}</div>ಕ
+!! html/php+tidy
+<ul><li><div>a</div></li>
+<li>b</li></ul>
+<p>ಕ</p>
+!! html/parsoid
+<ul about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"UL","pi":[[{"k":"1"}]]}' data-mw='{"parts":["*",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div>a\n*b\n"}},"i":0}}]}'><li><div>a</div></li>
+<li>b</li></ul><span about="#mwt1">
+</span><p>ಕ</p>
 !! end
 
 !! test
@@ -13603,6 +13686,21 @@ parsoid=wt2html
 <p>-{{</p>
 !! end
 
+## Regression test for Parsoid
+!! test
+Language converter over extlink
+!! wikitext
+{{1x
+| [-{oh no]}-]
+}}
+!! html/php
+<pre>[-{oh no]}-]
+</pre>
+!! html/parsoid
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{}' data-mw='{"parts":[{"template":{"target":{"wt":"1x\n","href":"./Template:1x"},"params":{"1":{"wt":" [-{oh no]}-]\n"}},"i":0}}]}'>[-{oh no]}-]</pre><span about="#mwt1">
+</span>
+!! end
+
 ###
 ### Token Stream Patcher tests
 ###
@@ -13685,27 +13783,22 @@ Template:quote
 Templates: Template Name/Arg clash: 1. Use of positional param
 !! wikitext
 {{quote|foo}}
-!! html
+!! html/php
 <p>foo
 </p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"quote","href":"./Template:Quote"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
 !!end
 
 !!test
 Templates: Template Name/Arg clash: 2. Use of named param
 !! wikitext
 {{quote|quote=foo}}
-!! html
+!! html/php
 <p>foo
 </p>
-!!end
-
-!!test
-Templates: Template Name/Arg clash: 3. Use of named param with empty input
-!! wikitext
-{{quote|quote}}
-!! html
-<p>quote
-</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"quote","href":"./Template:Quote"},"params":{"quote":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
 !!end
 
 ###
@@ -14354,9 +14447,12 @@ Templates: Wiki Tables: 4. Templated tags, no content
 !! wikitext
 {{tbl-start}}
 {{tbl-end}}
-!! html
+!! html/php
 <table>
 <tbody><tr><td></td></tr></tbody></table>
+!! html/parsoid
+<table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":1}}]}'>
+</table>
 !! end
 
 !!test
@@ -14804,6 +14900,12 @@ Template:SafeSubstTest
 {{<includeonly>safesubst:</includeonly>Includes}}
 !! endarticle
 
+!! article
+Template:SafeSubstSelfTest
+!! text
+{{safesubst:SafeSubstSelfTest}}
+!! endarticle
+
 !! test
 T24297: safesubst: works during PST
 !! options
@@ -14830,6 +14932,16 @@ subst: does not work during normal parse
 !! html
 <p>{{subst:Includes}}
 </p>
+!! end
+
+!! test
+safesubst self: does not work during normal parse - T276476
+!! options
+pst title=[[Template:SafeSubstSelfTest]]
+!! wikitext
+{{SafeSubstSelfTest}}
+!! html/php
+{{SafeSubstSelfTest}}
 !! end
 
 !! test
@@ -15502,6 +15614,19 @@ subpage title=[[Page]]
 </p>
 !! end
 
+!! test
+Subpage with namespaces
+!! options
+subpage title=[[Subpage test/1/2/3/4]]
+!! wikitext
+[[User:../subpage]]
+[[meatball:../subpage]]
+!! html
+<p>[[User:../subpage]]
+[[meatball:../subpage]]
+</p>
+!! end
+
 ###
 ### Categories
 ###
@@ -15563,6 +15688,20 @@ cat
 cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Category with newline in sort key
+!! options
+cat
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Wikidata:Tools|
+*]]
+!! html/php
+cat=Wikidata:Tools sort=*
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Wikidata:Tools#*"/>
 !! end
 
 !! test
@@ -17273,13 +17412,38 @@ Media link to nonexistent file (T3702)
 !! end
 
 !! test
+Media link with nested wikilinks
+!! wikitext
+[[Media:Foobar.jpg|[[Test]]]]
+[[Media:Foobar.jpg|[[File:Foobar.jpg]]]]
+!! html/php
+<p>[[Media:Foobar.jpg|<a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>]]
+[[Media:Foobar.jpg|<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>]]
+</p>
+!! html/parsoid
+<p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" class="new">Test</a>]]
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>]]</p>
+!! end
+
+!! test
+Media link with multiple options
+!! wikitext
+[[Media:Foobar.jpg|123|345]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">123|345</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">123|345</a></p>
+!! end
+
+!! test
 Character reference normalization in link text (T3938)
 !! wikitext
 [[Main Page|this&that]]
 !! html
 <p><a href="/wiki/Main_Page" title="Main Page">this&amp;that</a>
 </p>
-!!end
+!! end
 
 !! article
 אַ
@@ -18239,13 +18403,15 @@ all additional text is vanished
 Language converter glossary rules inside attributes (T119158)
 !! options
 language=sr variant=sr-el
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 -{H|foAjrjvi=>sr-el:" onload="alert(1)" data-foo="}-
 
 [[File:Foobar.jpg|alt=-{}-foAjrjvi-{}-]]
 !! html/php
 <p class="mw-empty-elt">
-</p><p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
+</p><p><span class="mw-default-size" typeof="mw:Image"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
 </p>
 !! html/parsoid
 <p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"foAjrjvi","l":"sr-el","t":"\" onload=\"alert(1)\" data-foo=\""}]}'/></p>
@@ -21169,7 +21335,7 @@ language=zh variant=zh-cn
 !! html/php
 <p>大陆
 </p><p>台灣
-</p><p>српски (ћирилица)‎
+</p><p>српски (ћирилица)
 </p>
 !! html/parsoid
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-cn"}}'></span></p>
@@ -21885,7 +22051,7 @@ Balinese language conversion
 language=ban variant=ban-x-palmleaf
 !! wikitext
 ᬫᬦ᭄ᬢ᭄ᬭ -{ban-x-palmleaf:AAA;ban:BBB}-
-!! html
+!! html/php
 <p>mantra AAA
 </p>
 !! end
@@ -22760,6 +22926,8 @@ name=
 Page status indicators: Torture test
 !! options
 showindicators
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 <indicator name="01">hello world</indicator>
 <indicator name="02">[[Main Page]]</indicator>
@@ -22779,8 +22947,8 @@ paragraphs</indicator>
 !! html/php
 01=hello world
 02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
-03=<img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" />
-04=<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></a>
+03=<span typeof="mw:Image"><span><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></span></span>
+04=<span typeof="mw:Image"><a href="/wiki/File:Foobar.jpg"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></a></span>
 05=<ul><li>foo</li>
 <li>bar</li></ul>
 06=foo
@@ -22923,6 +23091,8 @@ Strip reserved data attributes
 
 !! test
 percent-encoding and + signs in internal links (T28410)
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[User:+%]] [[Page+title%]]
 [[%+]] [[%+|%20]] [[%+ ]] [[%+r]]
@@ -22931,7 +23101,7 @@ percent-encoding and + signs in internal links (T28410)
 !! html/php
 <p><a href="/index.php?title=User:%2B%25&amp;action=edit&amp;redlink=1" class="new" title="User:+% (page does not exist)">User:+%</a> <a href="/index.php?title=Page%2Btitle%25&amp;action=edit&amp;redlink=1" class="new" title="Page+title% (page does not exist)">Page+title%</a>
 <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%20</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+ </a> <a href="/index.php?title=%25%2Br&amp;action=edit&amp;redlink=1" class="new" title="%+r (page does not exist)">%+r</a>
-<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9">bar</a>
+<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9"><span>File:%+abc9</span></a></span>
 <a href="/index.php?title=3E&amp;action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/index.php?title=3E%2B&amp;action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
 </p>
 !! html/parsoid
@@ -23111,6 +23281,8 @@ __TOC__
 T35845: Headings become cursive in TOC when they contain an image
 !! options
 title=[[Main Page]]
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 __TOC__
 ==Image [[Image:foobar.jpg]]==
@@ -23121,7 +23293,7 @@ __TOC__
 </ul>
 </div>
 
-<h2><span class="mw-headline" id="Image">Image <a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Image">Image <span class="mw-default-size" typeof="mw:Image"><a href="/wiki/File:Foobar.jpg"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
 <h2 id="Image" data-parsoid='{}'>Image <span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></span></h2>
@@ -30078,4 +30250,23 @@ parsoid=wt2html
 <div tabindex="3">A</div>
 !! html+tidy
 <div>A</div>
+!! end
+
+!! test
+aside tag in extension HTML is not p-wrapped (T278565)
+!! wikitext
+<asidetag></asidetag>This is some article content.
+!! html/php
+<aside>Some aside content</aside><p>This is some article content.</p>
+!! html/parsoid
+<aside typeof="mw:Extension/asidetag" data-mw='{"name":"asidetag","attrs":{},"body":{"extsrc":""}}'>Some aside content</aside><p>This is some article content.</p>
+!! end
+
+!! test
+aside tag is not allowed directly in wikitext (T278565)
+!! wikitext
+<aside>This aside tag in wikitext should be escaped</aside>
+!! html
+<p>&lt;aside&gt;This aside tag in wikitext should be escaped&lt;/aside&gt;
+</p>
 !! end

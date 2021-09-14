@@ -3,18 +3,24 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * TODO convert to a Unit test
+ *
  * @covers CustomUppercaseCollation
  */
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
-		$this->collation = new CustomUppercaseCollation( [
-			'D',
-			'C',
-			'Cs',
-			'B'
-		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
+		$this->collation = new CustomUppercaseCollation(
+			MediaWikiServices::getInstance()->getLanguageFactory(),
+			[
+				'D',
+				'C',
+				'Cs',
+				'B'
+			],
+			'en' // digital transformation language
+		);
 	}
 
 	/**

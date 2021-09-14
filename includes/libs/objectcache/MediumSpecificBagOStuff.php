@@ -32,7 +32,7 @@ use Wikimedia\WaitConditionLoop;
  * @since 1.34
  */
 abstract class MediumSpecificBagOStuff extends BagOStuff {
-	/** @var array[] Lock tracking */
+	/** @var array<string,array> Map of (key => (class, depth, expiry) */
 	protected $locks = [];
 	/** @var int ERR_* class constant */
 	protected $lastError = self::ERR_NONE;
@@ -70,6 +70,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	protected const METRIC_OP_INCR = 'incr';
 	protected const METRIC_OP_DECR = 'decr';
 	protected const METRIC_OP_CAS = 'cas';
+
+	protected const LOCK_RCLASS = 0;
+	protected const LOCK_DEPTH = 1;
+	protected const LOCK_TIME = 2;
+	protected const LOCK_EXPIRY = 3;
 
 	/**
 	 * @see BagOStuff::__construct()
@@ -453,37 +458,62 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Acquire an advisory lock on a key string
-	 *
-	 * Note that if reentry is enabled, duplicate calls ignore $expiry
-	 *
 	 * @param string $key
-	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
-	 * @param int $expiry Lock expiry [optional]; 1 day maximum
-	 * @param string $rclass Allow reentry if set and the current lock used this value
-	 * @return bool Success
+	 * @param int $timeout
+	 * @param int $exptime
+	 * @param string $rclass
+	 * @return bool
 	 */
-	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
-		// Avoid deadlocks and allow lock reentry if specified
+	public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' ) {
+		$exptime = min( $exptime ?: INF, self::TTL_DAY );
+
+		$acquired = false;
+
 		if ( isset( $this->locks[$key] ) ) {
-			if ( $rclass != '' && $this->locks[$key]['class'] === $rclass ) {
-				++$this->locks[$key]['depth'];
-				return true;
-			} else {
-				return false;
+			// Already locked; avoid deadlocks and allow lock reentry if specified
+			if ( $rclass != '' && $this->locks[$key][self::LOCK_RCLASS] === $rclass ) {
+				++$this->locks[$key][self::LOCK_DEPTH];
+				$acquired = true;
+			}
+		} else {
+			// Not already locked; acquire a lock on the backend
+			$lockTsUnix = $this->doLock( $key, $timeout, $exptime );
+			if ( $lockTsUnix !== null ) {
+				$this->locks[$key] = [
+					self::LOCK_RCLASS => $rclass,
+					self::LOCK_DEPTH  => 1,
+					self::LOCK_TIME   => $lockTsUnix,
+					self::LOCK_EXPIRY => $lockTsUnix + $exptime
+				];
+				$acquired = true;
 			}
 		}
 
+		return $acquired;
+	}
+
+	/**
+	 * @see MediumSpecificBagOStuff::lock()
+	 *
+	 * @param string $key
+	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
+	 * @param int $exptime Lock time-to-live 1 day maximum [optional]
+	 * @return float|null UNIX timestamp of acquisition; null on failure
+	 */
+	protected function doLock( $key, $timeout, $exptime ) {
+		$lockTsUnix = null;
+
 		$fname = __METHOD__;
-		$expiry = min( $expiry ?: INF, self::TTL_DAY );
 		$loop = new WaitConditionLoop(
-			function () use ( $key, $expiry, $fname ) {
+			function () use ( $key, $exptime, $fname, &$lockTsUnix ) {
 				$this->clearLastError();
-				if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
+				if ( $this->add( $this->makeLockKey( $key ), 1, $exptime ) ) {
+					$lockTsUnix = microtime( true );
+
 					return WaitConditionLoop::CONDITION_REACHED; // locked!
 				} elseif ( $this->getLastError() ) {
 					$this->logger->warning(
-						$fname . ' failed due to I/O error for {key}.',
+						"$fname failed due to I/O error for {key}.",
 						[ 'key' => $key ]
 					);
 
@@ -494,19 +524,16 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			},
 			$timeout
 		);
-
 		$code = $loop->invoke();
-		$locked = ( $code === $loop::CONDITION_REACHED );
-		if ( $locked ) {
-			$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
-		} elseif ( $code === $loop::CONDITION_TIMED_OUT ) {
+
+		if ( $code === $loop::CONDITION_TIMED_OUT ) {
 			$this->logger->warning(
 				"$fname failed due to timeout for {key}.",
 				[ 'key' => $key, 'timeout' => $timeout ]
 			);
 		}
 
-		return $locked;
+		return $lockTsUnix;
 	}
 
 	/**
@@ -516,41 +543,75 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool Success
 	 */
 	public function unlock( $key ) {
-		if ( !isset( $this->locks[$key] ) ) {
-			return false;
-		}
+		$released = false;
 
-		if ( --$this->locks[$key]['depth'] <= 0 ) {
-			unset( $this->locks[$key] );
-
-			$ok = $this->doDelete( "{$key}:lock" );
-			if ( !$ok ) {
-				$this->logger->warning(
-					__METHOD__ . ' failed to release lock for {key}.',
-					[ 'key' => $key ]
-				);
+		if ( isset( $this->locks[$key] ) ) {
+			if ( --$this->locks[$key][self::LOCK_DEPTH] > 0 ) {
+				$released = true;
+			} else {
+				$released = $this->doUnlock( $key );
+				unset( $this->locks[$key] );
+				if ( !$released ) {
+					$this->logger->warning(
+						__METHOD__ . ' failed to release lock for {key}.',
+						[ 'key' => $key ]
+					);
+				}
 			}
-
-			return $ok;
+		} else {
+			$this->logger->warning(
+				__METHOD__ . ' no lock to release for {key}.',
+				[ 'key' => $key ]
+			);
 		}
 
-		return true;
+		return $released;
 	}
 
 	/**
-	 * Delete all objects expiring before a certain date.
-	 * @param string|int $timestamp The reference date in MW or TS_UNIX format
-	 * @param callable|null $progress Optional, a function which will be called
-	 *     regularly during long-running operations with the percentage progress
-	 *     as the first parameter. [optional]
-	 * @param int $limit Maximum number of keys to delete [default: INF]
+	 * @see MediumSpecificBagOStuff::unlock()
 	 *
-	 * @return bool Success; false if unimplemented
+	 * @param string $key
+	 * @return bool Success
 	 */
+	protected function doUnlock( $key ) {
+		// Estimate the remaining TTL of the lock key
+		$curTTL = $this->locks[$key][self::LOCK_EXPIRY] - $this->getCurrentTime();
+		// Maximum expected one-way-delay for a query to reach the backend
+		$maxOWD = 0.050;
+
+		$released = false;
+
+		if ( ( $curTTL - $maxOWD ) > 0 ) {
+			// The lock key is extremely unlikely to expire before a deletion operation
+			// sent from this method arrives on the relevant backend server
+			$released = $this->doDelete( $this->makeLockKey( $key ) );
+		} else {
+			// It is unsafe for this method to delete the lock key due to the risk of it
+			// expiring and being claimed by another thread before the deletion operation
+			// arrives on the backend server
+			$this->logger->warning(
+				"Lock for {key} held too long ({age} sec).",
+				[ 'key' => $key, 'curTTL' => $curTTL ]
+			);
+		}
+
+		return $released;
+	}
+
+	/**
+	 * @param string $key
+	 * @return string
+	 */
+	protected function makeLockKey( $key ) {
+		return "$key:lock";
+	}
+
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		return false;
 	}
@@ -978,6 +1039,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			}
 		}
 
+		$this->checkValueSerializability( $value, $key );
+
 		return $this->serialize( $value );
 	}
 
@@ -1035,8 +1098,67 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Log if a new cache value does not appear suitable for serialization at a quick glance
+	 *
+	 * This aids migration of values to JSON-like structures and the debugging of exceptions
+	 * due to serialization failure.
+	 *
+	 * This does not recurse more than one level into container structures.
+	 *
+	 * A proper cache key value is one of the following:
+	 *  - null
+	 *  - a scalar
+	 *  - an array with scalar/null values
+	 *  - an array tree with scalar/null "leaf" values
+	 *  - an stdClass instance with scalar/null field values
+	 *  - an stdClass instance tree with scalar/null "leaf" values
+	 *  - an instance of a class that implements JsonSerializable
+	 *
+	 * @param mixed $value Result of the value generation callback for the key
+	 * @param string $key Cache key
+	 */
+	private function checkValueSerializability( $value, $key ) {
+		if ( is_array( $value ) ) {
+			$this->checkIterableMapSerializability( $value, $key );
+		} elseif ( is_object( $value ) ) {
+			// Note that Closure instances count as objects
+			if ( $value instanceof stdClass ) {
+				$this->checkIterableMapSerializability( $value, $key );
+			} elseif ( !( $value instanceof JsonSerializable ) ) {
+				$this->logger->warning(
+					"{class} value for '{cachekey}'; serialization is suspect.",
+					[ 'cachekey' => $key, 'class' => get_class( $value ) ]
+				);
+			}
+		}
+	}
+
+	/**
+	 * @param array|stdClass $value Result of the value generation callback for the key
+	 * @param string $key Cache key
+	 */
+	private function checkIterableMapSerializability( $value, $key ) {
+		foreach ( $value as $index => $entry ) {
+			if ( is_object( $entry ) ) {
+				// Note that Closure instances count as objects
+				if (
+					!( $entry instanceof stdClass ) &&
+					!( $entry instanceof JsonSerializable )
+				) {
+					$this->logger->warning(
+						"{class} value for '{cachekey}' at '$index'; serialization is suspect.",
+						[ 'cachekey' => $key, 'class' => get_class( $entry ) ]
+					);
+
+					return;
+				}
+			}
+		}
+	}
+
+	/**
 	 * @param mixed $value
-	 * @return string|int String/integer representation
+	 * @return string|int|false String/integer representation
 	 * @note Special handling is usually needed for integers so incr()/decr() work
 	 */
 	protected function serialize( $value ) {
@@ -1044,7 +1166,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param string|int $value
+	 * @param string|int|false $value
 	 * @return mixed Original value or false on error
 	 * @note Special handling is usually needed for integers so incr()/decr() work
 	 */

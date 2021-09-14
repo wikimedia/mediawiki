@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\WikiPageFactory;
 
 /**
  * API interface for page purging
@@ -26,6 +27,23 @@ use MediaWiki\Logger\LoggerFactory;
  */
 class ApiPurge extends ApiBase {
 	private $mPageSet = null;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param WikiPageFactory $wikiPageFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		WikiPageFactory $wikiPageFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->wikiPageFactory = $wikiPageFactory;
+	}
 
 	/**
 	 * Purges the cache of a page
@@ -54,7 +72,7 @@ class ApiPurge extends ApiBase {
 		foreach ( $pageSet->getGoodTitles() as $title ) {
 			$r = [];
 			ApiQueryBase::addTitleInfo( $r, $title );
-			$page = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 			if ( !$user->pingLimiter( 'purge' ) ) {
 				// Directly purge and skip the UI part of purge()
 				$page->doPurge();

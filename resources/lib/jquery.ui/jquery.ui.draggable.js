@@ -216,7 +216,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 		if ( !elementInDom && this.options.helper === "original" )
 			return false;
 
-		if((this.options.revert == "invalid" && !dropped) || (this.options.revert == "valid" && dropped) || this.options.revert === true || ($.isFunction(this.options.revert) && this.options.revert.call(this.element, dropped))) {
+		if((this.options.revert == "invalid" && !dropped) || (this.options.revert == "valid" && dropped) || this.options.revert === true || (typeof this.options.revert === 'function' && this.options.revert.call(this.element, dropped))) {
 			var that = this;
 			$(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
 				if(that._trigger("stop", event) !== false) {
@@ -261,7 +261,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 		var handle = !this.options.handle || !$(this.options.handle, this.element).length ? true : false;
 		$(this.options.handle, this.element)
 			.find("*")
-			.andSelf()
+			.addBack()
 			.each(function() {
 				if(this == event.target) handle = true;
 			});
@@ -273,7 +273,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 	_createHelper: function(event) {
 
 		var o = this.options;
-		var helper = $.isFunction(o.helper) ? $(o.helper.apply(this.element[0], [event])) : (o.helper == 'clone' ? this.element.clone().removeAttr('id') : this.element);
+		var helper = typeof o.helper === 'function' ? $(o.helper.apply(this.element[0], [event])) : (o.helper == 'clone' ? this.element.clone().removeAttr('id') : this.element);
 
 		if(!helper.parents('body').length)
 			helper.appendTo((o.appendTo == 'parent' ? this.element[0].parentNode : o.appendTo));
@@ -289,7 +289,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 		if (typeof obj == 'string') {
 			obj = obj.split(' ');
 		}
-		if ($.isArray(obj)) {
+		if (Array.isArray(obj)) {
 			obj = {left: +obj[0], top: +obj[1] || 0};
 		}
 		if ('left' in obj) {

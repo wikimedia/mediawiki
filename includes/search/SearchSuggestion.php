@@ -34,7 +34,7 @@ class SearchSuggestion {
 	private $url;
 
 	/**
-	 * @var Title|null the suggested title
+	 * @var Title|null
 	 */
 	private $suggestedTitle;
 

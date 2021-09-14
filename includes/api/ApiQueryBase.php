@@ -217,7 +217,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Same as addFields(), but add the fields only if a condition is met
 	 * @param array|string $value See addFields()
 	 * @param bool $condition If false, do nothing
-	 * @return bool $condition
+	 * @return bool
 	 */
 	protected function addFieldsIf( $value, $condition ) {
 		if ( $condition ) {
@@ -258,7 +258,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Same as addWhere(), but add the WHERE clauses only if a condition is met
 	 * @param string|array $value
 	 * @param bool $condition If false, do nothing
-	 * @return bool $condition
+	 * @return bool
 	 */
 	protected function addWhereIf( $value, $condition ) {
 		if ( $condition ) {
@@ -414,7 +414,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$queryBuilder->joinConds( (array)$extraQuery['join_conds'] );
 		}
 
-		if ( $hookData !== null && Hooks::isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
+		if ( $hookData !== null && $this->getHookContainer()->isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
 			$info = $queryBuilder->getQueryInfo();
 			$this->getHookRunner()->onApiQueryBaseBeforeQuery(
 				$this, $info['tables'], $info['fields'], $info['conds'],
@@ -608,6 +608,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->getAuthority()->isAllowedAny(
 			'deletedhistory',
 			'deletedtext',
+			'deleterevision',
 			'suppressrevision',
 			'viewsuppressed'
 		);

@@ -477,7 +477,7 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 		], $installed->getInstalledDependencies() );
 	}
 
-	public function provideInstalled() : array {
+	public function provideInstalled(): array {
 		$root = __DIR__ . '/../../../../data/composer/';
 
 		return [

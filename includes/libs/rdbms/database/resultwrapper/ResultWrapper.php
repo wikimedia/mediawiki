@@ -2,8 +2,7 @@
 
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
-use RuntimeException;
+use OutOfBoundsException;
 use stdClass;
 
 /**
@@ -19,32 +18,31 @@ use stdClass;
  * Subclasses can override methods to make it solely work on the result resource instead.
  *
  * @ingroup Database
+ * @stable to override
  */
-class ResultWrapper implements IResultWrapper {
-	/** @var IDatabase */
-	protected $db;
-	/** @var mixed|null RDBMS driver-specific result resource */
-	protected $result;
+abstract class ResultWrapper implements IResultWrapper {
+	/**
+	 * @var int The offset of the row that would be returned by the next call
+	 *   to fetchObject().
+	 */
+	protected $nextPos = 0;
 
-	/** @var int */
-	protected $pos = 0;
-	/** @var stdClass|bool|null */
+	/**
+	 * @var int The offset of the current row that would be returned by current()
+	 *   and may have been previously returned by fetchObject().
+	 */
+	protected $currentPos = 0;
+
+	/**
+	 * @var stdClass|array|bool|null The row at $this->currentPos, or null if it has
+	 *   not yet been retrieved, or false if the current row was past the end.
+	 */
 	protected $currentRow;
 
 	/**
-	 * @param IDatabase $db Database handle that the result comes from
-	 * @param self|mixed $result RDBMS driver-specific result resource
+	 * @var string[]|null Cache of field names
 	 */
-	public function __construct( IDatabase $db, $result ) {
-		$this->db = $db;
-		if ( $result instanceof self ) {
-			$this->result = $result->result;
-		} elseif ( $result !== null ) {
-			$this->result = $result;
-		} else {
-			throw new InvalidArgumentException( "Null result resource provided" );
-		}
-	}
+	private $fieldNames;
 
 	/**
 	 * Get the underlying RDBMS driver-specific result resource
@@ -52,50 +50,116 @@ class ResultWrapper implements IResultWrapper {
 	 * The result resource field should not be accessed from non-Database related classes.
 	 * It is database class specific and is stored here to associate iterators with queries.
 	 *
-	 * @param self|mixed &$res
-	 * @return mixed
 	 * @since 1.34
+	 * @deprecated since 1.37
+	 *
+	 * @param self|mixed $res
+	 * @return mixed
 	 */
-	public static function &unwrap( &$res ) {
-		if ( $res instanceof self ) {
-			if ( $res->result === null ) {
-				throw new RuntimeException( "The result resource was already freed" );
-			}
-
-			return $res->result;
+	public static function unwrap( $res ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		if ( $res instanceof MysqliResultWrapper ) {
+			return $res->getInternalResult();
+		} elseif ( $res instanceof SqliteResultWrapper ) {
+			return $res->getInternalResult();
+		} elseif ( $res instanceof PostgresResultWrapper ) {
+			return $res->getInternalResult();
+		} elseif ( $res instanceof IResultWrapper ) {
+			throw new \InvalidArgumentException( __METHOD__ . ': $res does not support unwrap()' );
 		} else {
 			return $res;
 		}
 	}
 
+	/**
+	 * Get the number of rows in the result set
+	 *
+	 * @since 1.37
+	 * @return int
+	 */
+	abstract protected function doNumRows();
+
+	/**
+	 * Get the next row as a stdClass object, or false if iteration has
+	 * proceeded past the end. The offset within the result set is in
+	 * $this->currentPos.
+	 *
+	 * @since 1.37
+	 * @return stdClass|bool
+	 */
+	abstract protected function doFetchObject();
+
+	/**
+	 * Get the next row as an array containing the data duplicated, once with
+	 * string keys and once with numeric keys, per the PDO::FETCH_BOTH
+	 * convention. Or false if iteration has proceeded past the end.
+	 *
+	 * @return array|bool
+	 */
+	abstract protected function doFetchRow();
+
+	/**
+	 * Modify the current cursor position to the row with the specified offset.
+	 * If $pos is out of bounds, the behaviour is undefined.
+	 *
+	 * @param int $pos
+	 */
+	abstract protected function doSeek( $pos );
+
+	/**
+	 * Free underlying data. It is not necessary to do anything.
+	 */
+	abstract protected function doFree();
+
+	/**
+	 * Get the field names in the result set.
+	 *
+	 * @return string[]
+	 */
+	abstract protected function doGetFieldNames();
+
 	public function numRows() {
-		return $this->getDB()->numRows( $this );
+		return $this->doNumRows();
+	}
+
+	public function count() {
+		return $this->doNumRows();
 	}
 
 	public function fetchObject() {
-		return $this->getDB()->fetchObject( $this );
+		$this->currentPos = $this->nextPos++;
+		$this->currentRow = $this->doFetchObject();
+		return $this->currentRow;
 	}
 
 	public function fetchRow() {
-		return $this->getDB()->fetchRow( $this );
+		$this->currentPos = $this->nextPos++;
+		$this->currentRow = $this->doFetchRow();
+		return $this->currentRow;
 	}
 
 	public function seek( $pos ) {
-		$this->getDB()->dataSeek( $this, $pos );
-		$this->pos = $pos;
+		$numRows = $this->numRows();
+		// Allow seeking to zero if there are no results
+		$max = $numRows ? $numRows - 1 : 0;
+		if ( $pos < 0 || $pos > $max ) {
+			throw new OutOfBoundsException( __METHOD__ . ': invalid position' );
+		}
+		if ( $numRows ) {
+			$this->doSeek( $pos );
+		}
+		$this->nextPos = $pos;
+		$this->currentPos = $pos;
+		$this->currentRow = null;
 	}
 
 	public function free() {
-		$this->db = null;
-		$this->result = null;
+		$this->doFree();
+		$this->currentRow = false;
 	}
 
 	public function rewind() {
-		if ( $this->numRows() ) {
-			$this->getDB()->dataSeek( $this, 0 );
-		}
-		$this->pos = 0;
-		$this->currentRow = null;
+		$this->seek( 0 );
 	}
 
 	public function current() {
@@ -107,30 +171,23 @@ class ResultWrapper implements IResultWrapper {
 	}
 
 	public function key() {
-		return $this->pos;
+		return $this->currentPos;
 	}
 
 	public function next() {
-		$this->pos++;
-		$this->currentRow = $this->fetchObject();
-
-		return $this->currentRow;
+		return $this->fetchObject();
 	}
 
 	public function valid() {
-		return $this->current() !== false;
+		return $this->currentPos >= 0
+			&& $this->currentPos < $this->numRows();
 	}
 
-	/**
-	 * @return IDatabase
-	 * @throws RuntimeException
-	 */
-	private function getDB() {
-		if ( !$this->db ) {
-			throw new RuntimeException( "Database handle was already freed" );
+	public function getFieldNames() {
+		if ( $this->fieldNames === null ) {
+			$this->fieldNames = $this->doGetFieldNames();
 		}
-
-		return $this->db;
+		return $this->fieldNames;
 	}
 }
 

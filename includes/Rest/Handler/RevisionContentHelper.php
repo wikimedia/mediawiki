@@ -2,17 +2,17 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use Title;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * @since 1.36
+ * @internal for use by core REST infrastructure
  */
 class RevisionContentHelper extends PageContentHelper {
 
@@ -24,7 +24,7 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 	/**
-	 * @return string|null Title text or null if unable to retrieve title
+	 * @return string|null title text or null if unable to retrieve title
 	 */
 	public function getTitleText(): ?string {
 		$revision = $this->getTargetRevision();
@@ -34,25 +34,23 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	public function getTitle() {
+	public function getPage(): ?ExistingPageRecord {
 		$revision = $this->getTargetRevision();
-		return $revision
-			? $this->titleFactory->castFromLinkTarget( $revision->getPageAsLinkTarget() )
-			: false;
+		return $revision ? $this->pageLookup->getPageByReference( $revision->getPage() ) : null;
 	}
 
 	/**
-	 * @return RevisionRecord|bool latest revision or false if unable to retrieve revision
+	 * @return RevisionRecord|null latest revision or null if unable to retrieve revision
 	 */
-	public function getTargetRevision() {
-		if ( $this->targetRevision === null ) {
+	public function getTargetRevision(): ?RevisionRecord {
+		if ( $this->targetRevision === false ) {
 			$revId = $this->getRevisionId();
 			if ( $revId ) {
-				$this->targetRevision = $this->revisionLookup->getRevisionById( $revId ) ?: false;
+				$this->targetRevision = $this->revisionLookup->getRevisionById( $revId );
 			} else {
-				$this->targetRevision = false;
+				$this->targetRevision = null;
 			}
 		}
 		return $this->targetRevision;
@@ -101,7 +99,7 @@ class RevisionContentHelper extends PageContentHelper {
 	 * @return array
 	 */
 	public function constructMetadata(): array {
-		$titleObject = $this->getTitle();
+		$page = $this->getPage();
 		$revision = $this->getTargetRevision();
 
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
@@ -113,9 +111,9 @@ class RevisionContentHelper extends PageContentHelper {
 			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
 			'content_model' => $mainSlot->getModel(),
 			'page' => [
-				'id' => $titleObject->getArticleID(),
-				'key' => $this->titleFormatter->getPrefixedDBkey( $titleObject ),
-				'title' => $this->titleFormatter->getPrefixedText( $titleObject ),
+				'id' => $page->getId(),
+				'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
+				'title' => $this->titleFormatter->getPrefixedText( $page ),
 			],
 			'license' => [
 				'url' => $this->config->get( 'RightsUrl' ),
@@ -173,7 +171,7 @@ class RevisionContentHelper extends PageContentHelper {
 			);
 		}
 
-		if ( !$this->authority->authorizeRead( 'read', $this->getTitle() ) ) {
+		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-revision' )->plaintextParams( $revId ),
 				403

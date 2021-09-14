@@ -13,7 +13,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	/** @var TestLogger */
 	private $logger;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->logger = new TestLogger( false, static function ( $message, $level ) {

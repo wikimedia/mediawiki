@@ -24,5 +24,5 @@ abstract class BasicAuthorizerBase implements BasicAuthorizerInterface {
 	 * @return BasicRequestAuthorizer
 	 */
 	abstract protected function createRequestAuthorizer( RequestInterface $request,
-		Handler $handler ) : BasicRequestAuthorizer;
+		Handler $handler ): BasicRequestAuthorizer;
 }

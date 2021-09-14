@@ -78,7 +78,7 @@ class DeprecatablePropertyArray implements ArrayAccess {
 	 * @param string $fname
 	 * @return bool
 	 */
-	private function checkDeprecatedAccess( $offset, string $fname ) : bool {
+	private function checkDeprecatedAccess( $offset, string $fname ): bool {
 		if ( array_key_exists( $offset, $this->deprecatedProperties ) ) {
 			$deprecatedVersion = $this->deprecatedProperties[$offset];
 			wfDeprecated(

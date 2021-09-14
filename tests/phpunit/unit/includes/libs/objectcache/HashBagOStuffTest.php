@@ -28,11 +28,6 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 			BagOStuff::QOS_DURABILITY_SCRIPT,
 			$bag->getQoS( BagOStuff::ATTR_DURABILITY )
 		);
-
-		$this->assertSame(
-			BagOStuff::QOS_LOCALITY_PROC,
-			$bag->getQoS( BagOStuff::ATTR_LOCALITY )
-		);
 	}
 
 	/**

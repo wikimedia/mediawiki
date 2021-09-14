@@ -41,7 +41,7 @@ class UserEditCountInitJob extends Job implements GenericParameterJob {
 
 	public function run() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 
 		$dbw->update(
 			'user',

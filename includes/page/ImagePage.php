@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -169,7 +170,13 @@ class ImagePage extends Article {
 			if ( !$fol->isDisabled() ) {
 				$out->addWikiTextAsInterface( $fol->plain() );
 			}
-			$out->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
+			$out->addHTML(
+				Html::rawElement(
+					'div',
+					[ 'id' => 'shared-image-desc' ],
+					$this->mExtraDescription
+				) . "\n"
+			);
 		}
 
 		$this->closeShowImage();
@@ -233,20 +240,50 @@ class ImagePage extends Article {
 	 */
 	protected function showTOC( $metadata ) {
 		$r = [
-			'<li><a href="#file">' . $this->getContext()->msg( 'file-anchor-link' )->escaped() . '</a></li>',
-			'<li><a href="#filehistory">' . $this->getContext()->msg( 'filehist' )->escaped() . '</a></li>',
-			'<li><a href="#filelinks">' . $this->getContext()->msg( 'imagelinks' )->escaped() . '</a></li>',
+			Html::rawElement(
+				'li',
+				[],
+				Html::rawElement(
+					'a',
+					[ 'href' => '#file' ],
+					$this->getContext()->msg( 'file-anchor-link' )->escaped()
+				)
+			),
+			Html::rawElement(
+				'li',
+				[],
+				Html::rawElement(
+					'a',
+					[ 'href' => '#filehistory' ],
+					$this->getContext()->msg( 'filehist' )->escaped()
+				)
+			),
+			Html::rawElement(
+				'li',
+				[],
+				Html::rawElement(
+					'a',
+					[ 'href' => '#filelinks' ],
+					$this->getContext()->msg( 'imagelinks' )->escaped()
+				)
+			),
 		];
 
 		$this->getHookRunner()->onImagePageShowTOC( $this, $r );
 
 		if ( $metadata ) {
-			$r[] = '<li><a href="#metadata">' .
-				$this->getContext()->msg( 'metadata' )->escaped() .
-				'</a></li>';
+			$r[] = Html::rawElement(
+				'li',
+				[],
+				Html::rawElement(
+					'a',
+					[ 'href' => '#metadata' ],
+					$this->getContext()->msg( 'metadata' )->escaped()
+				)
+			);
 		}
 
-		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
+		return Html::rawElement( 'ul', [ 'id' => 'filetoc' ], implode( "\n", $r ) );
 	}
 
 	/**
@@ -371,6 +408,7 @@ class ImagePage extends Article {
 									&& max( $size[0], $size[1] ) <= $wgSVGMaxSize )
 							)
 							&& $size[0] != $width && $size[1] != $height
+							&& $size[0] != $maxWidth && $size[1] != $maxHeight
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
 							if ( $sizeLink ) {
@@ -427,9 +465,13 @@ class ImagePage extends Article {
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
 					];
-					$out->addHTML( '<div class="fullImageLink" id="file">' .
-						$thumbnail->toHtml( $options ) .
-						$anchorclose . "</div>\n" );
+					$out->addHTML(
+						Html::rawElement(
+							'div',
+							[ 'class' => 'fullImageLink', 'id' => 'file' ],
+							$thumbnail->toHtml( $options ) . $anchorclose
+						) . "\n"
+					);
 				}
 
 				if ( $isMulti ) {
@@ -509,9 +551,13 @@ class ImagePage extends Article {
 				# if direct link is allowed but it's not a renderable image, show an icon.
 				$icon = $this->displayImg->iconThumb();
 
-				$out->addHTML( '<div class="fullImageLink" id="file">' .
-					$icon->toHtml( [ 'file-link' => true ] ) .
-					"</div>\n" );
+				$out->addHTML(
+					Html::rawElement(
+						'div',
+						[ 'class' => 'fullImageLink', 'id' => 'file' ],
+						$icon->toHtml( [ 'file-link' => true ] )
+					) . "\n"
+				);
 			}
 
 			$longDesc = $this->getContext()->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
@@ -987,8 +1033,10 @@ EOT
 
 	/**
 	 * Delete the file, or an earlier version of it
+	 * @deprecated since 1.37 Use DeleteAction instead.
 	 */
 	public function delete() {
+		wfDeprecated( __METHOD__, '1.37' );
 		$file = $this->getFile();
 		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
 			// Standard article deletion
@@ -998,10 +1046,15 @@ EOT
 		'@phan-var LocalFile $file';
 
 		$context = $this->getContext();
+		$services = MediaWikiServices::getInstance();
 		$deleter = new FileDeleteForm(
 			$file,
-			$context->getUser(),
-			$context->getOutput()
+			$context,
+			$services->getReadOnlyMode(),
+			$services->getRepoGroup(),
+			$services->getWatchlistManager(),
+			$this->linkRenderer,
+			$services->getUserOptionsLookup()
 		);
 		$deleter->execute();
 	}
@@ -1036,13 +1089,13 @@ EOT
 	/**
 	 * Returns the corresponding $wgImageLimits entry for the selected user option
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return int[]
 	 * @since 1.21
 	 * @deprecated Since 1.35 Use static function MediaFileTrait::getImageLimitsFromOption
 	 */
-	public function getImageLimitsFromOption( $user, $optionName ) {
+	public function getImageLimitsFromOption( UserIdentity $user, $optionName ) {
 		return MediaFileTrait::getImageLimitsFromOption( $user, $optionName );
 	}
 

@@ -141,5 +141,5 @@ abstract class Preprocessor {
 	 *   - Preprocessor::DOM_UNCACHED: disable use of the preprocessor cache.
 	 * @return PPNode
 	 */
-	 abstract public function preprocessToObj( $text, $flags = 0 );
+	abstract public function preprocessToObj( $text, $flags = 0 );
 }

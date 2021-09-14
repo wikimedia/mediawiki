@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content handler for JavaScript pages.
  *
@@ -58,5 +61,44 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		$url = $destination->getFullURL( 'action=raw&ctype=text/javascript', false, PROTO_RELATIVE );
 		$class = $this->getContentClass();
 		return new $class( '/* #REDIRECT */' . Xml::encodeJsCall( 'mw.loader.load', [ $url ] ) );
+	}
+
+	public function preSaveTransform(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): Content {
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pstParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPST(
+				$content,
+				$pstParams
+			);
+		}
+
+		'@phan-var JavascriptContent $content';
+
+		$parserOptions = $pstParams->getParserOptions();
+		// @todo Make pre-save transformation optional for script pages (T34858)
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getUserOptionsLookup()->getBoolOption( $pstParams->getUser(), 'pst-cssjs' ) ) {
+			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
+			$parserOptions = clone $parserOptions;
+			$parserOptions->setPreSaveTransform( false );
+		}
+
+		$text = $content->getText();
+		$pst = $services->getParser()->preSaveTransform(
+			$text,
+			$pstParams->getPage(),
+			$pstParams->getUser(),
+			$parserOptions
+		);
+
+		$contentClass = $this->getContentClass();
+		return new $contentClass( $pst );
 	}
 }

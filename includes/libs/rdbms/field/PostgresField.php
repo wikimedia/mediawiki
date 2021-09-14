@@ -37,14 +37,14 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->remappedTableName( $table );
 		foreach ( $db->getCoreSchemas() as $schema ) {
 			$res = $db->query(
 				sprintf( $q,
 					$db->addQuotes( $schema ),
 					$db->addQuotes( $table ),
 					$db->addQuotes( $field )
-				)
+				),
+				__METHOD__
 			);
 			$row = $db->fetchObject( $res );
 			if ( !$row ) {

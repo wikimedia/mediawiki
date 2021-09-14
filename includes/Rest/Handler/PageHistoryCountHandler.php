@@ -2,8 +2,11 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ActorMigration;
 use ChangeTags;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageLookup;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -12,7 +15,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use Title;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -48,43 +50,55 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var NameTableStore */
 	private $changeTagDefStore;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var PageLookup */
+	private $pageLookup;
+
 	/** @var WANObjectCache */
 	private $cache;
 
-	/** @var RevisionRecord|bool */
-	private $revision;
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var RevisionRecord|false|null */
+	private $revision = false;
 
 	/** @var array */
 	private $lastModifiedTimes;
 
-	/** @var Title */
-	private $titleObject;
+	/** @var ExistingPageRecord|false|null */
+	private $page = false;
 
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
-	 * @param PermissionManager $permissionManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $cache
+	 * @param PageLookup $pageLookup
+	 * @param ActorMigration $actorMigration
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
-		PermissionManager $permissionManager,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
-		WANObjectCache $cache
+		WANObjectCache $cache,
+		PageLookup $pageLookup,
+		ActorMigration $actorMigration
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
-		$this->permissionManager = $permissionManager;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->pageLookup = $pageLookup;
+		$this->actorMigration = $actorMigration;
 	}
 
 	private function normalizeType( $type ) {
@@ -121,7 +135,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title the title of the page to load history for
+	 * @param string $title the title of the page to load history for
 	 * @param string $type the validated count type
 	 * @return Response
 	 * @throws LocalizedHttpException
@@ -129,8 +143,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	public function run( $title, $type ) {
 		$normalizedType = $this->normalizeType( $type );
 		$this->validateParameterCombination( $normalizedType );
-		$titleObj = $this->getTitle();
-		if ( !$titleObj || !$titleObj->getArticleID() ) {
+		$page = $this->getPage();
+		if ( !$page ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
@@ -139,7 +153,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
@@ -173,7 +187,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	private function getCount( $type ) {
-		$pageId = $this->getTitle()->getArticleID();
+		$pageId = $this->getPage()->getId();
 		switch ( $type ) {
 			case 'anonymous':
 				return $this->getCachedCount( $type,
@@ -261,28 +275,30 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @return RevisionRecord|bool current revision or false if unable to retrieve revision
+	 * @return RevisionRecord|null current revision or false if unable to retrieve revision
 	 */
-	private function getCurrentRevision() {
-		if ( $this->revision === null ) {
-			$title = $this->getTitle();
-			if ( $title && $title->getArticleID() ) {
-				$this->revision = $this->revisionStore->getKnownCurrentRevision( $title );
+	private function getCurrentRevision(): ?RevisionRecord {
+		if ( $this->revision === false ) {
+			$page = $this->getPage();
+			if ( $page ) {
+				$this->revision = $this->revisionStore->getKnownCurrentRevision( $page ) ?: null;
 			} else {
-				$this->revision = false;
+				$this->revision = null;
 			}
 		}
 		return $this->revision;
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	private function getTitle() {
-		if ( $this->titleObject === null ) {
-			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] );
+	private function getPage(): ?ExistingPageRecord {
+		if ( $this->page === false ) {
+			$this->page = $this->pageLookup->getExistingPageByText(
+				$this->getValidatedParams()['title']
+			);
 		}
-		return $this->titleObject;
+		return $this->page;
 	}
 
 	/**
@@ -296,6 +312,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		if ( $lastModifiedTimes ) {
 			return max( array_values( $lastModifiedTimes ) );
 		}
+		return null;
 	}
 
 	/**
@@ -357,8 +374,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	private function getCachedCount( $type,
 		callable $fetchCount
 	) {
-		$titleObj = $this->getTitle();
-		$pageId = $titleObj->getArticleID();
+		$pageId = $this->getPage()->getId();
 		return $this->cache->getWithSetCallback(
 			$this->cache->makeKey( 'rest', 'pagehistorycount', $pageId, $type ),
 			WANObjectCache::TTL_WEEK,
@@ -407,6 +423,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getAnonCount( $pageId, RevisionRecord $fromRev = null ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
+		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
+
 		$cond = [
 			'rev_page' => $pageId,
 			'actor_user IS NULL',
@@ -420,26 +438,22 @@ class PageHistoryCountHandler extends SimpleHandler {
 				"OR rev_timestamp > {$oldTs}";
 		}
 
+		// This redundant join condition tells MySQL that rev_page and revactor_page are the
+		// same, so it can propagate the condition
+		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
+			$revQuery['joins']['temp_rev_user'][1] =
+				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
+		}
+
 		$edits = $dbr->selectRowCount(
 			[
-				'revision_actor_temp',
 				'revision',
-				'actor'
-			],
+			] + $revQuery['tables'],
 			'1',
 			$cond,
 			__METHOD__,
 			[ 'LIMIT' => self::COUNT_LIMITS['anonymous'] + 1 ], // extra to detect truncation
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				],
-				'actor' => [
-					'JOIN',
-					'revactor_actor = actor_id'
-				]
-			]
+			$revQuery['joins']
 		);
 		return $edits;
 	}
@@ -452,6 +466,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getBotCount( $pageId, RevisionRecord $fromRev = null ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
+		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
+
+		// This redundant join condition tells MySQL that rev_page and revactor_page are the
+		// same, so it can propagate the condition
+		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
+			$revQuery['joins']['temp_rev_user'][1] =
+				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
+		}
+
 		$cond = [
 			'rev_page=' . intval( $pageId ),
 			$dbr->bitAnd( 'rev_deleted',
@@ -461,8 +484,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 					'user_groups',
 					'1',
 					[
-						'actor.actor_user = ug_user',
-						'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
+						$revQuery['fields']['rev_user'] . ' = ug_user',
+						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
 					__METHOD__
@@ -477,24 +500,13 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		$edits = $dbr->selectRowCount(
 			[
-				'revision_actor_temp',
 				'revision',
-				'actor',
-			],
+			] + $revQuery['tables'],
 			'1',
 			$cond,
 			__METHOD__,
 			[ 'LIMIT' => self::COUNT_LIMITS['bot'] + 1 ], // extra to detect truncation
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				],
-				'actor' => [
-					'JOIN',
-					'revactor_actor = actor_id'
-				],
-			]
+			$revQuery['joins']
 		);
 		return $edits;
 	}

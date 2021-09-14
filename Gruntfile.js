@@ -9,7 +9,6 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
-	grunt.loadNpmTasks( 'grunt-svgmin' );
 
 	karmaProxy[ wgScriptPath ] = {
 		target: wgServer + wgScriptPath,
@@ -42,41 +41,6 @@ module.exports = function ( grunt ) {
 				reportNeedlessDisables: true
 			},
 			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
-		},
-		svgmin: {
-			options: {
-				js2svg: {
-					indent: '\t',
-					pretty: true
-				},
-				multipass: true,
-				plugins: [ {
-					cleanupIDs: false
-				}, {
-					removeDesc: false
-				}, {
-					removeRasterImages: true
-				}, {
-					removeTitle: false
-				}, {
-					removeViewBox: false
-				}, {
-					removeXMLProcInst: false
-				}, {
-					sortAttrs: true
-				} ]
-			},
-			all: {
-				files: [ {
-					expand: true,
-					cwd: 'resources/src',
-					src: [
-						'**/*.svg'
-					],
-					dest: 'resources/src/',
-					ext: '.svg'
-				} ]
-			}
 		},
 		watch: {
 			files: [
@@ -149,7 +113,6 @@ module.exports = function ( grunt ) {
 		return ok;
 	} );
 
-	grunt.registerTask( 'minify', 'svgmin' );
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 };

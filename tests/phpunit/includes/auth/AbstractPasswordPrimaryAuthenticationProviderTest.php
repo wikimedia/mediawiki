@@ -3,6 +3,8 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MultiConfig;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -10,6 +12,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
  */
 class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	public function testConstructor() {
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
@@ -29,7 +33,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
+		$this->initProvider( $provider, $this->getServiceContainer()->getMainConfig() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPasswordFactory();
@@ -41,8 +45,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$this->initProvider( $provider, $this->getServiceContainer()->getMainConfig() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPassword( null );
@@ -57,15 +60,8 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( new \MultiConfig( [
-			$config,
-			MediaWikiServices::getInstance()->getMainConfig()
-		] ) );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		$this->initProvider( $provider, new MultiConfig( [ $config, $this->getServiceContainer()->getMainConfig() ] ) );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'ResetPasswordExpiration' => [] ] );
 
 		$config->set( 'PasswordExpirationDays', 0 );
 		$this->assertNull( $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
@@ -77,12 +73,18 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			2 /* Fuzz */
 		);
 
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'ResetPasswordExpiration' => [ function ( $user, &$expires ) {
-				$this->assertSame( 'UTSysop', $user->getName() );
-				$expires = '30001231235959';
-			} ]
-		] );
+		$this->initProvider(
+			$provider,
+			new MultiConfig( [ $config, $this->getServiceContainer()->getMainConfig() ] ),
+			null,
+			null,
+			$this->createHookContainer( [
+				'ResetPasswordExpiration' => [ function ( $user, &$expires ) {
+					$this->assertSame( 'UTSysop', $user->getName() );
+					$expires = '30001231235959';
+				} ]
+			] )
+		);
 		$this->assertSame( '30001231235959', $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
 	}
 
@@ -108,8 +110,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$this->initProvider( $provider, $this->getServiceContainer()->getMainConfig() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->assertEquals( $uppStatus, $providerPriv->checkPasswordValidity( 'foo', 'bar' ) );
@@ -132,16 +133,20 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
 			$services->getBlockManager(),
-			$services->getBlockErrorFormatter()
+			$services->getWatchlistManager(),
+			$services->getDBLoadBalancer(),
+			$services->getContentLanguage(),
+			$services->getLanguageConverterFactory(),
+			$services->getBotPasswordStore(),
+			$services->getUserFactory(),
+			$services->getUserIdentityLookup(),
+			$services->getUserOptionsManager()
 		);
 
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
 		);
-		$provider->setConfig( $config );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setManager( $manager );
-		$provider->setHookContainer( $services->getHookContainer() );
+		$this->initProvider( $provider, $config, null, $manager, $services->getHookContainer() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$manager->removeAuthenticationSessionData( null );
@@ -228,7 +233,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		);
 		$provider->expects( $this->once() )
 			->method( 'providerChangeAuthenticationData' )
-			->with( $this->equalTo( $req ) );
+			->with( $req );
 
 		$provider->providerRevokeAccessForUser( 'foo' );
 	}

@@ -215,10 +215,9 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 		$this->globalIdGenerator->getTimestampFromUUIDv1( $uuid );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$this->globalIdGenerator = new GlobalIdGenerator(
 			wfTempDir(),
-			new HashBagOStuff( [] ),
 			static function ( $command ) {
 				return wfShellExec( $command );
 			}

@@ -21,8 +21,6 @@
  * @since 1.22
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * A query action to return meta information about the foreign file repos
  * configured on the wiki.
@@ -31,29 +29,34 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryFileRepoInfo extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		RepoGroup $repoGroup
+	) {
 		parent::__construct( $query, $moduleName, 'fri' );
-	}
-
-	protected function getInitialisedRepoGroup() {
-		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-		$repoGroup->initialiseRepos();
-
-		return $repoGroup;
+		$this->repoGroup = $repoGroup;
 	}
 
 	public function execute() {
 		$conf = $this->getConfig();
 
 		$params = $this->extractRequestParams();
-		$props = array_flip( $params['prop'] );
+		$props = array_fill_keys( $params['prop'], true );
 
 		$repos = [];
 
-		$repoGroup = $this->getInitialisedRepoGroup();
 		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
 
-		$repoGroup->forEachForeignRepo(
+		$this->repoGroup->forEachForeignRepo(
 			static function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
 				$repoProps = $repo->getInfo();
 				$repoProps['canUpload'] = in_array( $repoProps['name'], $foreignTargets );
@@ -62,7 +65,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 			}
 		);
 
-		$localInfo = $repoGroup->getLocalRepo()->getInfo();
+		$localInfo = $this->repoGroup->getLocalRepo()->getInfo();
 		$localInfo['canUpload'] = $conf->get( 'EnableUploads' );
 		$repos[] = array_intersect_key( $localInfo, $props );
 
@@ -92,15 +95,13 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 	public function getProps() {
 		$props = [];
-		$repoGroup = $this->getInitialisedRepoGroup();
-
-		$repoGroup->forEachForeignRepo( static function ( FileRepo $repo ) use ( &$props ) {
+		$this->repoGroup->forEachForeignRepo( static function ( FileRepo $repo ) use ( &$props ) {
 			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
 		} );
 
 		$propValues = array_values( array_unique( array_merge(
 			$props,
-			array_keys( $repoGroup->getLocalRepo()->getInfo() )
+			array_keys( $this->repoGroup->getLocalRepo()->getInfo() )
 		) ) );
 
 		$propValues[] = 'canUpload';

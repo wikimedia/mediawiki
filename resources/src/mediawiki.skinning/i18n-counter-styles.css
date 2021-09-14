@@ -1,0 +1,14 @@
+/* stylelint-disable property-no-unknown -- https://github.com/wikimedia/stylelint-config-wikimedia/issues/145 */
+/* Taken from https://www.w3.org/TR/predefined-counter-styles/#meetei-styles */
+@counter-style meetei {
+	system: numeric;
+	symbols: '\ABF0' '\ABF1' '\ABF2' '\ABF3' '\ABF4' '\ABF5' '\ABF6' '\ABF7' '\ABF8' '\ABF9';
+	suffix: ') ';
+}
+
+/* Taken from https://www.w3.org/TR/predefined-counter-styles/#ol-chiki-styles */
+@counter-style santali {
+	system: numeric;
+	symbols: '\1C50' '\1C51' '\1C52' '\1C53' '\1C54' '\1C55' '\1C56' '\1C57' '\1C58' '\1C59';
+}
+/* stylelint-enable */

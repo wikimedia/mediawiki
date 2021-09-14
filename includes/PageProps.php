@@ -22,6 +22,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -42,7 +43,7 @@ class PageProps {
 	private const CACHE_SIZE = 100; // integer; max cached pages
 
 	/** @var MapCacheLRU */
-	private $cache = null;
+	private $cache;
 
 	/**
 	 * @return PageProps
@@ -88,7 +89,7 @@ class PageProps {
 	 * returned. An empty array will be returned if no matching properties
 	 * were found.
 	 *
-	 * @param Title[]|TitleArray|Title $titles
+	 * @param iterable<PageIdentity>|PageIdentity $titles
 	 * @param string[]|string $propertyNames
 	 * @return array associative array mapping page ID to property value
 	 */
@@ -159,7 +160,7 @@ class PageProps {
 	 * will always be returned. An empty array will be returned if no
 	 * matching properties were found.
 	 *
-	 * @param Title[]|TitleArray|Title $titles
+	 * @param iterable<PageIdentity>|PageIdentity $titles
 	 * @return array associative array mapping page ID to property value array
 	 */
 	public function getAllProperties( $titles ) {
@@ -215,24 +216,40 @@ class PageProps {
 	}
 
 	/**
-	 * @param Title[]|TitleArray|Title $titles
+	 * @param iterable<PageIdentity>|PageIdentity $titles
 	 * @return int[] List of good page IDs
 	 */
 	private function getGoodIDs( $titles ) {
 		$result = [];
 		if ( is_iterable( $titles ) ) {
-			$this->linkBatchFactory->newLinkBatch( $titles )->execute();
+			if ( $titles instanceof TitleArray ||
+				( is_array( $titles ) && reset( $titles ) instanceof Title
+			) ) {
+				// If the first element is a Title, assume all elements are Titles,
+				// and pre-fetch their IDs using a batch query. For PageIdentityValues
+				// or PageStoreRecords, this is not necessary, since they already
+				// know their ID.
+				$this->linkBatchFactory->newLinkBatch( $titles )->execute();
+			}
 
 			foreach ( $titles as $title ) {
-				$pageID = $title->getArticleID();
-				if ( $pageID > 0 ) {
-					$result[] = $pageID;
+				// Until we only allow ProperPageIdentity, Title objects
+				// can deceive us with an unexpected Special page
+				if ( $title->canExist() ) {
+					$pageID = $title->getId();
+					if ( $pageID > 0 ) {
+						$result[] = $pageID;
+					}
 				}
 			}
 		} else {
-			$pageID = $titles->getArticleID();
-			if ( $pageID > 0 ) {
-				$result[] = $pageID;
+			// Until we only allow ProperPageIdentity, Title objects
+			// can deceive us with an unexpected Special page
+			if ( $titles->canExist() ) {
+				$pageID = $titles->getId();
+				if ( $pageID > 0 ) {
+					$result[] = $pageID;
+				}
 			}
 		}
 		return $result;

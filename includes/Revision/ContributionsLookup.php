@@ -9,7 +9,7 @@ use FauxRequest;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -25,8 +25,8 @@ class ContributionsLookup {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/** @var LinkRenderer */
-	private $linkRenderer;
+	/** @var LinkRendererFactory */
+	private $linkRendererFactory;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -45,7 +45,7 @@ class ContributionsLookup {
 
 	/**
 	 * @param RevisionStore $revisionStore
-	 * @param LinkRenderer $linkRenderer
+	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
@@ -54,7 +54,7 @@ class ContributionsLookup {
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
-		LinkRenderer $linkRenderer,
+		LinkRendererFactory $linkRendererFactory,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
@@ -62,7 +62,7 @@ class ContributionsLookup {
 		NamespaceInfo $namespaceInfo
 	) {
 		$this->revisionStore = $revisionStore;
-		$this->linkRenderer = $linkRenderer;
+		$this->linkRendererFactory = $linkRendererFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
 		$this->loadBalancer = $loadBalancer;
@@ -89,7 +89,6 @@ class ContributionsLookup {
 				$dir = 'prev';
 				$segment = $seg[1];
 			} elseif ( $seg[0] == 'before' ) {
-				$dir = 'next';
 				$segment = $seg[1];
 			} else {
 				$dir = null;
@@ -129,8 +128,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = $this->getContribsPager( $context, [
-			'target' => $target->getName(),
+		$pager = $this->getContribsPager( $context, $target, [
 			'tagfilter' => $tag,
 			'revisionsOnly' => true
 		] );
@@ -241,8 +239,7 @@ class ContributionsLookup {
 		$context->setRequest( new FauxRequest( [] ) );
 
 		// TODO: explore moving this to factory method for testing
-		$pager = $this->getContribsPager( $context, [
-			'target' => $user->getName(),
+		$pager = $this->getContribsPager( $context, $user, [
 			'tagfilter' => $tag,
 		] );
 
@@ -260,17 +257,22 @@ class ContributionsLookup {
 		return (int)$count;
 	}
 
-	private function getContribsPager( IContextSource $context, array $options ) {
+	private function getContribsPager(
+		IContextSource $context,
+		UserIdentity $targetUser,
+		array $options
+	) {
 		return new ContribsPager(
 			$context,
 			$options,
-			$this->linkRenderer,
+			$this->linkRendererFactory->create(),
 			$this->linkBatchFactory,
 			$this->hookContainer,
 			$this->loadBalancer,
 			$this->actorMigration,
 			$this->revisionStore,
-			$this->namespaceInfo
+			$this->namespaceInfo,
+			$targetUser
 		);
 	}
 

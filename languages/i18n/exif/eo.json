@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"KuboF",
 			"Michawiki",
 			"Mihxil",
 			"Mirin",
@@ -361,5 +362,9 @@
 	"exif-urgency-normal": "Norma ($1)",
 	"exif-urgency-low": "Malalta ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Prioritato difinita de uzanto ($1)"
+	"exif-urgency-other": "Prioritato difinita de uzanto ($1)",
+	"exif-usepanoramaviewer-true": "Jes",
+	"exif-usepanoramaviewer-false": "Ne",
+	"exif-exposurelockused-true": "Jes",
+	"exif-exposurelockused-false": "Ne"
 }

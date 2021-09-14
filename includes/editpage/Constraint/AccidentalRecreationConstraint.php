@@ -49,14 +49,14 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 		$this->allowRecreation = $allowRecreation;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( $this->deletedSinceLastEdit && !$this->allowRecreation ) {
 			return self::CONSTRAINT_FAILED;
 		}
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->deletedSinceLastEdit && !$this->allowRecreation ) {
 			$statusValue->setResult( false, self::AS_ARTICLE_WAS_DELETED );

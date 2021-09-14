@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
@@ -50,31 +51,31 @@ class SpecialBlockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( 'BlockList' );
 
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -122,6 +123,7 @@ class SpecialBlockList extends SpecialPage {
 				'options-messages' => [
 					'blocklist-tempblocks' => 'tempblocks',
 					'blocklist-indefblocks' => 'indefblocks',
+					'blocklist-autoblocks' => 'autoblocks',
 					'blocklist-userblocks' => 'userblocks',
 					'blocklist-addressblocks' => 'addressblocks',
 					'blocklist-rangeblocks' => 'rangeblocks',
@@ -210,6 +212,10 @@ class SpecialBlockList extends SpecialPage {
 		if ( in_array( 'userblocks', $this->options ) ) {
 			$conds['ipb_user'] = 0;
 		}
+		if ( in_array( 'autoblocks', $this->options ) ) {
+			// ipb_parent_block_id = 0 because of T282890
+			$conds[] = "ipb_parent_block_id IS NULL OR ipb_parent_block_id = 0";
+		}
 		if ( in_array( 'addressblocks', $this->options ) ) {
 			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
 		}
@@ -241,9 +247,9 @@ class SpecialBlockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
-			$this->actorMigration,
 			$this->commentStore,
-			$this->blockUtils
+			$this->blockUtils,
+			$this->blockActionInfo
 		);
 	}
 

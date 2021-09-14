@@ -29,6 +29,8 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
@@ -82,6 +84,9 @@ class WikiExporter {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var TitleParser */
+	private $titleParser;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -120,6 +125,7 @@ class WikiExporter {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->revisionStore = $services->getRevisionStore();
+		$this->titleParser = $services->getTitleParser();
 	}
 
 	/**
@@ -200,12 +206,12 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 */
-	public function pageByTitle( $title ) {
+	public function pageByTitle( PageIdentity $page ) {
 		$this->dumpFrom(
-			'page_namespace=' . $title->getNamespace() .
-			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
+			'page_namespace=' . $page->getNamespace() .
+			' AND page_title=' . $this->db->addQuotes( $page->getDBkey() ) );
 	}
 
 	/**
@@ -213,11 +219,13 @@ class WikiExporter {
 	 * @throws MWException
 	 */
 	public function pageByName( $name ) {
-		$title = Title::newFromText( $name );
-		if ( $title === null ) {
+		try {
+			$link = $this->titleParser->parseTitle( $name );
+			$this->dumpFrom(
+				'page_namespace=' . $link->getNamespace() .
+				' AND page_title=' . $this->db->addQuotes( $link->getDBkey() ) );
+		} catch ( MalformedTitleException $ex ) {
 			throw new MWException( "Can't export invalid title" );
-		} else {
-			$this->pageByTitle( $title );
 		}
 	}
 
@@ -318,23 +326,22 @@ class WikiExporter {
 		$result = null; // Assuring $result is not undefined, if exception occurs early
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 
 		$tables = array_merge(
-			[ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+			[ 'logging', 'actor' ], $commentQuery['tables']
 		);
 		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp', 'log_namespace',
-			'log_title', 'log_params', 'log_deleted', 'user_name'
-		] + $commentQuery['fields'] + $actorQuery['fields'];
+			'log_title', 'log_params', 'log_deleted', 'actor_user', 'actor_name'
+		] + $commentQuery['fields'];
 		$options = [
 			'ORDER BY' => 'log_id',
 			'USE INDEX' => [ 'logging' => 'PRIMARY' ],
 			'LIMIT' => self::BATCH_SIZE,
 		];
 		$joins = [
-			'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
-		] + $commentQuery['joins'] + $actorQuery['joins'];
+			'actor' => [ 'JOIN', 'actor_id=log_actor' ]
+		] + $commentQuery['joins'];
 
 		$lastLogId = 0;
 		while ( true ) {
@@ -533,8 +540,13 @@ class WikiExporter {
 				$output = $this->writer->openPage( $revRow );
 				$this->sink->writeOpenPage( $revRow, $output );
 			}
-			$output = $this->writer->writeRevision( $revRow, $slotRows );
-			$this->sink->writeRevision( $revRow, $output );
+			try {
+				$output = $this->writer->writeRevision( $revRow, $slotRows );
+				$this->sink->writeRevision( $revRow, $output );
+			} catch ( RevisionAccessException $ex ) {
+				MWDebug::warning( 'Problem encountered retrieving rev and slot metadata for'
+					. ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
+			}
 			$lastRow = $revRow;
 		}
 

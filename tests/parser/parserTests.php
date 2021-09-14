@@ -88,7 +88,7 @@ class ParserTestsMaintenance extends Maintenance {
 		// Cases of weird db corruption were encountered when running tests on earlyish
 		// versions of SQLite
 		if ( $wgDBtype == 'sqlite' ) {
-			$db = wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_PRIMARY );
 			$version = $db->getServerVersion();
 			if ( version_compare( $version, '3.6' ) < 0 ) {
 				die( "Parser tests require SQLite version 3.6 or later, you have $version\n" );
@@ -151,7 +151,7 @@ class ParserTestsMaintenance extends Maintenance {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$recorderLB = $lbFactory->newMainLB();
 			// This connection will have the wiki's table prefix, not parsertest_
-			$recorderDB = $recorderLB->getConnection( DB_MASTER );
+			$recorderDB = $recorderLB->getConnection( DB_PRIMARY );
 
 			// Add recorder before previewer because recorder will create the
 			// DB table if it doesn't exist
@@ -162,11 +162,7 @@ class ParserTestsMaintenance extends Maintenance {
 				$recorderDB,
 				static function ( $name ) use ( $regex ) {
 					// Filter reports of old tests by the filter regex
-					if ( $regex === false ) {
-						return true;
-					} else {
-						return (bool)preg_match( $regex, $name );
-					}
+					return $regex === false || (bool)preg_match( $regex, $name );
 				} ) );
 		}
 

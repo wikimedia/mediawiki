@@ -359,5 +359,11 @@
 	"exif-urgency-normal": "Normální ($1)",
 	"exif-urgency-low": "Nízká ($1)",
 	"exif-urgency-high": "Vysoká ($1)",
-	"exif-urgency-other": "Uživatelsky definovaná ($1)"
+	"exif-urgency-other": "Uživatelsky definovaná ($1)",
+	"exif-firstphotodate": "Datum prvního snímku",
+	"exif-lastphotodate": "Datum posledního snímku",
+	"exif-projectiontype": "Typ projekce",
+	"exif-exposurelockused": "Použit zámek expozice",
+	"exif-exposurelockused-true": "Ano",
+	"exif-exposurelockused-false": "Ne"
 }

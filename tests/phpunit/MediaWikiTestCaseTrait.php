@@ -3,8 +3,10 @@
 use MediaWiki\HookContainer\HookContainer;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
-use Pimple\Psr11\ServiceLocator;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Services\NoSuchServiceException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
@@ -14,8 +16,8 @@ trait MediaWikiTestCaseTrait {
 	private $originalPhpErrorFilter;
 
 	/**
-	 * Returns a PHPUnit constraint that matches anything other than a fixed set of values. This can
-	 * be used to list accepted values, e.g.
+	 * Returns a PHPUnit constraint that matches (with `===`) anything other than a fixed set of values.
+	 * This can be used to list accepted values, e.g.
 	 *   $mock->expects( $this->never() )->method( $this->anythingBut( 'foo', 'bar' ) );
 	 * which will throw if any unexpected method is called.
 	 *
@@ -23,8 +25,13 @@ trait MediaWikiTestCaseTrait {
 	 * @return Constraint
 	 */
 	protected function anythingBut( ...$values ) {
+		if ( !in_array( '__destruct', $values, true ) ) {
+			// Ensure that __destruct is always included. PHPUnit will fail very hard with no
+			// useful output if __destruct ends up being called (T280780).
+			$values[] = '__destruct';
+		}
 		return $this->logicalNot( $this->logicalOr(
-			...array_map( [ $this, 'matches' ], $values )
+			...array_map( [ $this, 'identicalTo' ], $values )
 		) );
 	}
 
@@ -61,14 +68,19 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * Create an ObjectFactory with no dependencies
+	 * Create an ObjectFactory with no dependencies and no services
 	 *
 	 * @return ObjectFactory
 	 */
 	protected function createSimpleObjectFactory() {
-		return new ObjectFactory(
-			new ServiceLocator( new \Pimple\Container(), [] )
+		$serviceContainer = $this->createMock( ContainerInterface::class );
+		$serviceContainer->method( 'has' )->willReturn( false );
+		$serviceContainer->method( 'get' )->willReturnCallback(
+			static function ( $serviceName ) {
+				throw new NoSuchServiceException( $serviceName );
+			}
 		);
+		return new ObjectFactory( $serviceContainer );
 	}
 
 	/**
@@ -87,6 +99,24 @@ trait MediaWikiTestCaseTrait {
 			$hookContainer->register( $name, $callback );
 		}
 		return $hookContainer;
+	}
+
+	/**
+	 * Check if $extName is a loaded PHP extension, will skip the
+	 * test whenever it is not loaded.
+	 *
+	 * @since 1.21 added to MediaWikiIntegrationTestCase
+	 * @since 1.37 moved to MediaWikiTestCaseTrait to be available in unit tests
+	 * @param string $extName
+	 * @return bool
+	 */
+	protected function checkPHPExtension( $extName ) {
+		$loaded = extension_loaded( $extName );
+		if ( !$loaded ) {
+			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
+		}
+
+		return $loaded;
 	}
 
 	/**
@@ -217,10 +247,24 @@ trait MediaWikiTestCaseTrait {
 	/**
 	 * Re-enable any disabled deprecation warnings and allow same deprecations to be thrown
 	 * multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	 *
 	 * @after
 	 */
 	protected function mwDebugTearDown() {
 		MWDebug::clearLog();
+		MWDebug::clearDeprecationFilters();
+	}
+
+	/**
+	 * Reset any fake timestamps so that they don't mess with any other tests.
+	 *
+	 * @since 1.37 before that, integration tests had it reset in
+	 * MediaWikiIntegrationTestCase::mediaWikiTearDown, and unit tests didn't at all
+	 *
+	 * @after
+	 */
+	protected function fakeTimestampTearDown() {
+		ConvertibleTimestamp::setFakeTime( null );
 	}
 
 	/**
@@ -233,7 +277,6 @@ trait MediaWikiTestCaseTrait {
 		/** @var MockObject $msg */
 		$msg = $this->getMockBuilder( Message::class )
 			->disableOriginalConstructor()
-			->setMethods( [] )
 			->getMock();
 		$msg->method( 'toString' )->willReturn( $text );
 		$msg->method( '__toString' )->willReturn( $text );

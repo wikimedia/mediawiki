@@ -7,7 +7,7 @@
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $oouiNodes, modules, extraModules;
 
-		$oouiNodes = $root.find( '.mw-htmlform-field-autoinfuse' );
+		$oouiNodes = $root.find( '.mw-htmlform-autoinfuse' );
 
 		$oouiNodes = $oouiNodes.filter( function () {
 			return !$( this ).closest( '.mw-htmlform-autoinfuse-lazy' ).length;

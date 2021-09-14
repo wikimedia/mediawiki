@@ -1009,7 +1009,7 @@ class ParserOutput extends CacheTime {
 
 		// Important to parse with correct title (T33469)
 		$cat = wfMessage( $msg )
-			->title( $title )
+			->page( $title )
 			->inContentLanguage()
 			->text();
 
@@ -1328,19 +1328,34 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Check whether the cache TTL was lowered due to dynamic content
+	 * Check whether the cache TTL was lowered from the site default.
 	 *
 	 * When content is determined by more than hard state (e.g. page edits),
 	 * such as template/file transclusions based on the current timestamp or
 	 * extension tags that generate lists based on queries, this return true.
 	 *
+	 * This method mainly exists to facilitate the logic in
+	 * WikiPage::triggerOpportunisticLinksUpdate. As such, beware that reducing the TTL for
+	 * reasons that do not relate to "dynamic content", may have the side-effect of incurring
+	 * more RefreshLinksJob executions.
+	 *
+	 * @internal For use by Parser and WikiPage
+	 * @since 1.37
+	 * @return bool
+	 */
+	public function hasReducedExpiry(): bool {
+		global $wgParserCacheExpireTime;
+
+		return $this->getCacheExpiry() < $wgParserCacheExpireTime;
+	}
+
+	/**
+	 * @see ParserOutput::hasReducedExpiry
 	 * @return bool
 	 * @since 1.25
 	 */
 	public function hasDynamicContent() {
-		global $wgParserCacheExpireTime;
-
-		return $this->getCacheExpiry() < $wgParserCacheExpireTime;
+		return $this->hasReducedExpiry();
 	}
 
 	/**
@@ -1430,13 +1445,10 @@ class ParserOutput extends CacheTime {
 			static function ( $field ) {
 				if ( $field === 'mParseStartTime' ) {
 					return false;
-				} elseif ( strpos( $field, "\0" ) !== false ) {
-					// Unserializing unknown private fields in HHVM causes
-					// member variables with nulls in their names (T229366)
-					return false;
-				} else {
-					return true;
 				}
+				// Unserializing unknown private fields in HHVM causes
+				// member variables with nulls in their names (T229366)
+				return strpos( $field, "\0" ) === false;
 			}
 		);
 	}

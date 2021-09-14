@@ -10,6 +10,7 @@
 			"Fatemi127",
 			"Freshman404",
 			"Huji",
+			"Jeeputer",
 			"KhabarNegar",
 			"Ladsgroup",
 			"Macofe",
@@ -19,7 +20,7 @@
 			"Signal89"
 		]
 	},
-	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|مستندات]]\n* [[mw:API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api فهرست پست الکترونیکی]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce اعلانات رابط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R ایرادها و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده  هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|مستندات]]\n* [[mw:API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api فهرست پست الکترونیکی]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce اعلانات رابط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R ایرادها و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده  هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
 	"apihelp-main-param-action": "کدام عملیات را انجام دهد.",
 	"apihelp-main-param-format": "فرمت خروجی.",
 	"apihelp-main-param-smaxage": "تنظيم  <code>s-maxage</code> سرآیند کنترل حافضهٔ نهان HTTP بر اين تعداد ثانيه.",
@@ -266,6 +267,7 @@
 	"apihelp-query+iwbacklinks-param-title": "پیوند میان‌ویکی برای جستجو. باید همراه <var>$1blprefix</var> استفاده شود.",
 	"apihelp-query+iwbacklinks-param-limit": "تعداد صفحه‌ها برای بازگرداندن.",
 	"apihelp-query+iwbacklinks-param-prop": "خصوصیتی که باید گرفته شود.",
+	"apihelp-query+iwlinks-param-prop": "خصوصیت‌های اضافه جهت دریافت برای هر میان‌ویکی",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "افزودن نشانی اینترنتی کامل.",
 	"apihelp-query+langbacklinks-param-prop": "خصوصیتی که باید گرفته شود:",
 	"apihelp-query+langlinks-paramvalue-prop-url": "افزودن نشانی اینترنتی کامل.",
@@ -331,5 +333,6 @@
 	"api-help-main-header": "پودمان اصلی",
 	"api-help-source": "منبع: $1",
 	"api-help-param-deprecated": "توصیه.",
+	"apierror-contenttoobig": "حجم محتوای ارائه‌شده از سوی شما از محدودیت اندازهٔ مقاله برابر با $1 {{PLURAL:$1|کیبی‌بایت}} گذر کرده‌است.",
 	"api-credits-header": "اعتبار"
 }

@@ -39,7 +39,7 @@ use MediaWiki\User\UserIdentity;
  *
  * - Each watching user will be notified about the page edit time expressed in
  * his/her local time (UTC is shown additionally). To achieve this, we need to
- * find the individual timeoffset of each watching user from the preferences..
+ * find the individual timeoffset of each watching user from the preferences.
  *
  * Suggested improvement to slack down the number of sent emails: We could think
  * of sending out bulk mails (bcc:user1,user2...) for all these users having the

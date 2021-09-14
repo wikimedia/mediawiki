@@ -11,6 +11,8 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWgLockManagers() {
+		$this->hideDeprecated( 'LockManagerGroup::singleton' );
+		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers',
 			[ [ 'name' => 'a', 'class' => 'b' ], [ 'name' => 'c', 'class' => 'd' ] ] );
 		LockManagerGroup::destroySingletons();
@@ -27,6 +29,8 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSingletonFalse() {
+		$this->hideDeprecated( 'LockManagerGroup::singleton' );
+		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers', [ [ 'name' => 'a', 'class' => 'b' ] ] );
 		LockManagerGroup::destroySingletons();
 
@@ -37,6 +41,8 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSingletonNull() {
+		$this->hideDeprecated( 'LockManagerGroup::singleton' );
+		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers', [ [ 'name' => 'a', 'class' => 'b' ] ] );
 		LockManagerGroup::destroySingletons();
 
@@ -47,6 +53,8 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDestroySingletons() {
+		$this->hideDeprecated( 'LockManagerGroup::singleton' );
+		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$instance = LockManagerGroup::singleton();
 		$this->assertSame( $instance, LockManagerGroup::singleton() );
 		LockManagerGroup::destroySingletons();
@@ -54,6 +62,8 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDestroySingletonsNamedDomain() {
+		$this->hideDeprecated( 'LockManagerGroup::singleton' );
+		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$instance = LockManagerGroup::singleton( 'domain' );
 		$this->assertSame( $instance, LockManagerGroup::singleton( 'domain' ) );
 		LockManagerGroup::destroySingletons();
@@ -68,7 +78,7 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$mockLB->expects( $this->never() )
 			->method( $this->anythingBut( '__destruct', 'getLazyConnectionRef' ) );
 		$mockLB->expects( $this->once() )->method( 'getLazyConnectionRef' )
-			->with( DB_MASTER, [], 'domain', $mockLB::CONN_TRX_AUTOCOMMIT )
+			->with( DB_PRIMARY, [], 'domain', $mockLB::CONN_TRX_AUTOCOMMIT )
 			->willReturn( 'bogus value' );
 
 		$mockLBFactory = $this->createMock( LBFactory::class );

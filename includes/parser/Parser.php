@@ -20,17 +20,21 @@
  * @file
  * @ingroup Parser
  */
+
 use MediaWiki\BadFileLookup;
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -85,6 +89,8 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
+	use DeprecationHelper;
+
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
 	public const SFH_OBJECT_ARGS = 2;
@@ -234,9 +240,9 @@ class Parser {
 
 	/**
 	 * @var User
-	 * @deprecated since 1.35, use Parser::getUser()
+	 * @todo Please change to mUserIdentity when getUser will be removed
 	 */
-	public $mUser; # User object; only used when doing pre-save transform
+	private $mUser; # User object; only used when doing pre-save transform
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -258,8 +264,6 @@ class Parser {
 	private $mOutputType;   # Output type, one of the OT_xxx constants
 	/** @deprecated since 1.35 */
 	public $ot;            # Shortcut alias, see setOutputType()
-	/** @deprecated since 1.35, use Parser::getRevisionObject() */
-	public $mRevisionObject; # The revision object of the specified revision ID
 	/** @deprecated since 1.35, use Parser::getRevisionId() */
 	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
 	/** @deprecated since 1.35, use Parser::getRevisionTimestamp() */
@@ -320,6 +324,9 @@ class Parser {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
 	 * $mOptions, which is public and widely used, and also with the local variable $options used
@@ -355,6 +362,9 @@ class Parser {
 
 	/** @var UserFactory */
 	private $userFactory;
+
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -401,6 +411,8 @@ class Parser {
 	 * @param WANObjectCache $wanCache
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
+	 * @param HttpRequestFactory $httpRequestFactory
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -418,8 +430,11 @@ class Parser {
 		TidyDriverBase $tidy,
 		WANObjectCache $wanCache,
 		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TitleFormatter $titleFormatter,
+		HttpRequestFactory $httpRequestFactory
 	) {
+		$this->deprecatePublicProperty( 'mUser', '1.35', __CLASS__ );
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
@@ -462,6 +477,8 @@ class Parser {
 
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
+		$this->titleFormatter = $titleFormatter;
+		$this->httpRequestFactory = $httpRequestFactory;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -517,6 +534,7 @@ class Parser {
 	 * parser.
 	 * @deprecated since 1.35, this initialization is done in the constructor
 	 *  and manual calls to ::firstCallInit() have no effect.
+	 * @since 1.7
 	 */
 	public function firstCallInit() {
 		/*
@@ -539,7 +557,6 @@ class Parser {
 			$this->getHookContainer()
 		);
 		$this->mLinkID = 0;
-		$this->mRevisionObject = null;
 		$this->mRevisionTimestamp = null;
 		$this->mRevisionId = null;
 		$this->mRevisionUser = null;
@@ -577,6 +594,7 @@ class Parser {
 
 	/**
 	 * Reset the ParserOutput
+	 * @since 1.34
 	 */
 	public function resetOutput() {
 		$this->mOutput = new ParserOutput;
@@ -589,7 +607,7 @@ class Parser {
 	 *
 	 * @param string $text Text we want to parse
 	 * @param-taint $text escapes_htmlnoent
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
@@ -597,11 +615,12 @@ class Parser {
 	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
 	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
 	 *  use the current timestamp.
-	 * @return ParserOutput A ParserOutput
+	 * @return ParserOutput
 	 * @return-taint escaped
+	 * @since 1.10 method is public
 	 */
 	public function parse(
-		$text, Title $title, ParserOptions $options,
+		$text, PageReference $page, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
 	) {
 		if ( $clearState ) {
@@ -613,7 +632,7 @@ class Parser {
 		// Strip U+0000 NULL (T159174)
 		$text = str_replace( "\000", '', $text );
 
-		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+		$this->startParse( $page, $options, self::OT_HTML, $clearState );
 
 		$this->currentRevisionCache = null;
 		$this->mInputSize = strlen( $text );
@@ -622,14 +641,12 @@ class Parser {
 		}
 
 		$oldRevisionId = $this->mRevisionId;
-		$oldRevisionObject = $this->mRevisionObject;
 		$oldRevisionRecordObject = $this->mRevisionRecordObject;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		$oldRevisionUser = $this->mRevisionUser;
 		$oldRevisionSize = $this->mRevisionSize;
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
-			$this->mRevisionObject = null;
 			$this->mRevisionRecordObject = null;
 			$this->mRevisionTimestamp = null;
 			$this->mRevisionUser = null;
@@ -657,7 +674,7 @@ class Parser {
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getTargetLanguageConverter()->convertTitle( $title );
+				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -688,7 +705,6 @@ class Parser {
 		$this->mOutput->setText( $text );
 
 		$this->mRevisionId = $oldRevisionId;
-		$this->mRevisionObject = $oldRevisionObject;
 		$this->mRevisionRecordObject = $oldRevisionRecordObject;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
 		$this->mRevisionUser = $oldRevisionUser;
@@ -748,8 +764,8 @@ class Parser {
 		}
 		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
 		$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
-		$limitReport .= 'Dynamic content: ' .
-			( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
+		$limitReport .= 'Reduced expiry: ' .
+			( $this->mOutput->hasReducedExpiry() ? 'true' : 'false' ) .
 			"\n";
 		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
 
@@ -831,6 +847,7 @@ class Parser {
 	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 * @return string UNSAFE half-parsed HTML
 	 * @return-taint escaped
+	 * @since 1.8
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
 		$text = $this->internalParse( $text, false, $frame );
@@ -893,17 +910,18 @@ class Parser {
 	 * Also removes comments.
 	 * Do not call this function recursively.
 	 * @param string $text
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int|null $revid
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
+	 * @since 1.8
 	 */
-	public function preprocess( $text, ?Title $title,
+	public function preprocess( $text, ?PageReference $page,
 		ParserOptions $options, $revid = null, $frame = false
 	) {
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
+		$this->startParse( $page, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
@@ -936,18 +954,19 @@ class Parser {
 	 * functions are untouched.
 	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param array $params
 	 * @return string
+	 * @since 1.17
 	 */
-	public function getPreloadText( $text, Title $title, ParserOptions $options, $params = [] ) {
+	public function getPreloadText( $text, PageReference $page, ParserOptions $options, $params = [] ) {
 		$msg = new RawMessage( $text );
 		$text = $msg->params( $params )->plain();
 
 		# Parser (re)initialisation
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, self::OT_PLAIN, true );
+		$this->startParse( $page, $options, self::OT_PLAIN, true );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
@@ -961,6 +980,7 @@ class Parser {
 	 * Should only be used when doing pre-save transform.
 	 *
 	 * @param UserIdentity|null $user user identity or null (to reset)
+	 * @since 1.17
 	 */
 	public function setUser( ?UserIdentity $user ) {
 		if ( $user ) {
@@ -973,11 +993,40 @@ class Parser {
 	/**
 	 * Set the context title
 	 *
+	 * @deprecated since 1.37, use setPage() instead.
 	 * @param Title|null $t
+	 * @since 1.12
 	 */
 	public function setTitle( Title $t = null ) {
+		$this->setPage( $t );
+	}
+
+	/**
+	 * @since 1.6
+	 * @deprecated since 1.37, use getPage instead.
+	 * @return Title
+	 */
+	public function getTitle(): Title {
+		if ( !$this->mTitle ) {
+			$this->mTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
+		}
+		return $this->mTitle;
+	}
+
+	/**
+	 * Set the page used as context for parsing, e.g. when resolving relative subpage links.
+	 *
+	 * @since 1.37
+	 * @param ?PageReference $t
+	 */
+	public function setPage( ?PageReference $t = null ) {
 		if ( !$t ) {
 			$t = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
+		} else {
+			// For now (early 1.37 alpha), always convert to Title, so we don't have to do it over
+			// and over again in other methods. Eventually, we will no longer need to have a Title
+			// instance internally.
+			$t = Title::castFromPageReference( $t );
 		}
 
 		if ( $t->hasFragment() ) {
@@ -989,22 +1038,12 @@ class Parser {
 	}
 
 	/**
-	 * @return Title|null
+	 * Returns the page used as context for parsing, e.g. when resolving relative subpage links.
+	 * @since 1.37
+	 * @return ?PageReference
 	 */
-	public function getTitle() : ?Title {
+	public function getPage(): ?PageReference {
 		return $this->mTitle;
-	}
-
-	/**
-	 * Accessor/mutator for the Title object
-	 *
-	 * @param Title|null $x Title object or null to just get the current one
-	 * @return Title|null
-	 * @deprecated since 1.35, use getTitle() / setTitle()
-	 */
-	public function Title( Title $x = null ) : ?Title {
-		wfDeprecated( __METHOD__, '1.35' );
-		return wfSetVar( $this->mTitle, $x );
 	}
 
 	/**
@@ -1019,6 +1058,7 @@ class Parser {
 	/**
 	 * Mutator for the output type.
 	 * @param int $ot One of the Parser::OT_… constants
+	 * @since 1.8
 	 */
 	public function setOutputType( $ot ): void {
 		$this->mOutputType = $ot;
@@ -1045,7 +1085,7 @@ class Parser {
 
 	/**
 	 * @return ParserOutput
-	 * @since 1.12.2
+	 * @since 1.14
 	 */
 	public function getOutput() {
 		return $this->mOutput;
@@ -1053,6 +1093,7 @@ class Parser {
 
 	/**
 	 * @return ParserOptions|null
+	 * @since 1.6
 	 */
 	public function getOptions() {
 		return $this->mOptions;
@@ -1081,6 +1122,7 @@ class Parser {
 
 	/**
 	 * @return int
+	 * @since 1.14
 	 */
 	public function nextLinkID() {
 		return $this->mLinkID++;
@@ -1088,6 +1130,7 @@ class Parser {
 
 	/**
 	 * @param int $id
+	 * @since 1.8
 	 */
 	public function setLinkID( $id ) {
 		$this->mLinkID = $id;
@@ -1096,6 +1139,7 @@ class Parser {
 	/**
 	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
 	 * @return Language
+	 * @since 1.7
 	 */
 	public function getFunctionLang() {
 		return $this->getTargetLanguage();
@@ -1107,7 +1151,7 @@ class Parser {
 	 *
 	 * @since 1.19
 	 *
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
@@ -1125,9 +1169,12 @@ class Parser {
 	 * Get a User object either from $this->mUser, if set, or from the
 	 * ParserOptions object otherwise
 	 * @deprecated since 1.36. Use ::getUserIdentity instead.
+	 * Hard deprecated since 1.37.
 	 * @return User
+	 * @since 1.17
 	 */
 	public function getUser() {
+		wfDeprecated( __METHOD__, '1.36' );
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
@@ -1135,11 +1182,15 @@ class Parser {
 	}
 
 	/**
-	 * Get an identity of the user for whom the parse is being made, if set.
+	 * Get a User object either from $this->mUser, if set, or from the
+	 * ParserOptions object otherwise
 	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity {
-		return $this->getUser();
+		if ( $this->mUser !== null ) {
+			return $this->mUser;
+		}
+		return $this->getOptions()->getUserIdentity();
 	}
 
 	/**
@@ -1162,9 +1213,6 @@ class Parser {
 		// XXX We make the LinkRenderer with current options and then cache it forever
 		if ( !$this->mLinkRenderer ) {
 			$this->mLinkRenderer = $this->linkRendererFactory->create();
-			$this->mLinkRenderer->setStubThreshold(
-				$this->getOptions()->getStubThreshold()
-			);
 		}
 
 		return $this->mLinkRenderer;
@@ -1214,9 +1262,9 @@ class Parser {
 	 *     '<element param="x">tag content</element>' ]
 	 * @endcode
 	 *
-	 * @param array $elements List of element names. Comments are always extracted.
+	 * @param string[] $elements List of element names. Comments are always extracted.
 	 * @param string $text Source text string.
-	 * @param array &$matches Out parameter, Array: extracted tags
+	 * @param array[] &$matches Out parameter, Array: extracted tags
 	 * @return string Stripped text
 	 */
 	public static function extractTagsAndParams( array $elements, $text, &$matches ) {
@@ -1288,6 +1336,7 @@ class Parser {
 
 	/**
 	 * @return StripState
+	 * @since 1.34
 	 */
 	public function getStripState() {
 		return $this->mStripState;
@@ -1594,7 +1643,7 @@ class Parser {
 	 *
 	 * @return ILanguageConverter
 	 */
-	private function getTargetLanguageConverter() : ILanguageConverter {
+	private function getTargetLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getTargetLanguage()
 		);
@@ -1605,7 +1654,7 @@ class Parser {
 	 *
 	 * @return ILanguageConverter
 	 */
-	private function getContentLanguageConverter() : ILanguageConverter {
+	private function getContentLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getContentLanguage()
 		);
@@ -2161,7 +2210,7 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
-			// @phan-suppress-next-line SecurityCheck-XSS using false for escape is valid here
+			// @phan-suppress-next-line SecurityCheck-XSS,SecurityCheck-DoubleEscaped using false for escape is valid
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
 				$this->getExternalLinkAttribs( $url ), $this->getTitle() ) . $dtrail . $trail;
 
@@ -2698,17 +2747,17 @@ class Parser {
 	 * breaking URLs in the following text without breaking trails on the
 	 * wiki links, it's been made into a horrible function.
 	 *
-	 * @param Title $nt
+	 * @param LinkTarget $nt
 	 * @param string $text
 	 * @param string $trail
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	private function makeKnownLinkHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder( LinkTarget $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
+			$text = htmlspecialchars( $this->titleFormatter->getPrefixedText( $nt ) );
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
@@ -2832,6 +2881,7 @@ class Parser {
 	 * @param string $text Wikitext
 	 * @param int $flags Bit field of Preprocessor::DOM_* constants
 	 * @return PPNode
+	 * @since 1.23 method is public
 	 */
 	public function preprocessToDom( $text, $flags = 0 ) {
 		return $this->getPreprocessor()->preprocessToObj( $text, $flags );
@@ -2856,6 +2906,7 @@ class Parser {
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not
 	 *   double-brace expansion.
 	 * @return string
+	 * @since 1.24 method is public
 	 */
 	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
@@ -3129,7 +3180,7 @@ class Parser {
 					$context->setTitle( $title );
 					$context->setRequest( new FauxRequest( $pageArgs ) );
 					if ( $specialPage && $specialPage->maxIncludeCacheTime() === 0 ) {
-						$context->setUser( $this->getUser() );
+						$context->setUser( $this->userFactory->newFromUserIdentity( $this->getUserIdentity() ) );
 					} else {
 						// If this page is cached, then we better not be per user.
 						$context->setUser( User::newFromName( '127.0.0.1', false ) );
@@ -3274,7 +3325,7 @@ class Parser {
 			} else {
 				# This will probably not be a working link, but at least it may
 				# provide some hint of where the problem is
-				preg_replace( '/^:/', '', $originalTitle );
+				$originalTitle = preg_replace( '/^:/', '', $originalTitle );
 				$text = "[[:$originalTitle]]";
 			}
 			$text .= $this->insertStripItem( '<!-- WARNING: template omitted, '
@@ -3394,63 +3445,41 @@ class Parser {
 	 * Get the semi-parsed DOM representation of a template with a given title,
 	 * and its redirect destination title. Cached.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 *
 	 * @return array
+	 * @since 1.12
 	 */
-	public function getTemplateDom( Title $title ) {
+	public function getTemplateDom( LinkTarget $title ) {
 		$cacheTitle = $title;
-		$titleText = $title->getPrefixedDBkey();
+		$titleKey = CacheKeyHelper::getKeyForPage( $title );
 
-		if ( isset( $this->mTplRedirCache[$titleText] ) ) {
-			list( $ns, $dbk ) = $this->mTplRedirCache[$titleText];
+		if ( isset( $this->mTplRedirCache[$titleKey] ) ) {
+			list( $ns, $dbk ) = $this->mTplRedirCache[$titleKey];
 			$title = Title::makeTitle( $ns, $dbk );
-			$titleText = $title->getPrefixedDBkey();
+			$titleKey = CacheKeyHelper::getKeyForPage( $title );
 		}
-		if ( isset( $this->mTplDomCache[$titleText] ) ) {
-			return [ $this->mTplDomCache[$titleText], $title ];
+		if ( isset( $this->mTplDomCache[$titleKey] ) ) {
+			return [ $this->mTplDomCache[$titleKey], $title ];
 		}
 
 		# Cache miss, go to the database
 		list( $text, $title ) = $this->fetchTemplateAndTitle( $title );
 
 		if ( $text === false ) {
-			$this->mTplDomCache[$titleText] = false;
+			$this->mTplDomCache[$titleKey] = false;
 			return [ false, $title ];
 		}
 
 		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
-		$this->mTplDomCache[$titleText] = $dom;
+		$this->mTplDomCache[$titleKey] = $dom;
 
-		if ( !$title->equals( $cacheTitle ) ) {
-			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
+		if ( !$title->isSamePageAs( $cacheTitle ) ) {
+			$this->mTplRedirCache[ CacheKeyHelper::getKeyForPage( $cacheTitle ) ] =
 				[ $title->getNamespace(), $title->getDBkey() ];
 		}
 
 		return [ $dom, $title ];
-	}
-
-	/**
-	 * Fetch the current revision of a given title. Note that the revision
-	 * (and even the title) may not exist in the database, so everything
-	 * contributing to the output of the parser should use this method
-	 * where possible, rather than getting the revisions themselves. This
-	 * method also caches its results, so using it benefits performance.
-	 *
-	 * This can return false if the callback returns false
-	 *
-	 * @deprecated since 1.35, use fetchCurrentRevisionRecordOfTitle instead
-	 * @since 1.24
-	 * @param Title $title
-	 * @return Revision|false
-	 */
-	public function fetchCurrentRevisionOfTitle( Title $title ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revisionRecord = $this->fetchCurrentRevisionRecordOfTitle( $title );
-		if ( $revisionRecord ) {
-			return new Revision( $revisionRecord );
-		}
-		return $revisionRecord;
 	}
 
 	/**
@@ -3463,15 +3492,16 @@ class Parser {
 	 * This can return null if the callback returns false
 	 *
 	 * @since 1.35
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return RevisionRecord|null
 	 */
-	public function fetchCurrentRevisionRecordOfTitle( Title $title ) {
-		$cacheKey = $title->getPrefixedDBkey();
+	public function fetchCurrentRevisionRecordOfTitle( LinkTarget $link ) {
+		$cacheKey = CacheKeyHelper::getKeyForPage( $link );
 		if ( !$this->currentRevisionCache ) {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
 		}
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
+			$title = Title::castFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =
 				// Defaults to Parser::statelessFetchRevisionRecord()
 				call_user_func(
@@ -3490,71 +3520,61 @@ class Parser {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return bool
 	 * @since 1.34
 	 * @internal
 	 */
-	public function isCurrentRevisionOfTitleCached( Title $title ) {
+	public function isCurrentRevisionOfTitleCached( LinkTarget $link ) {
+		$key = CacheKeyHelper::getKeyForPage( $link );
 		return (
 			$this->currentRevisionCache &&
-			$this->currentRevisionCache->has( $title->getPrefixedText() )
+			$this->currentRevisionCache->has( $key )
 		);
 	}
 
 	/**
-	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
-	 * without passing them on to it.
-	 *
-	 * @deprecated since 1.35, use statelessFetchRevisionRecord
-	 * @since 1.24
-	 * @param Title $title
-	 * @param Parser|bool $parser
-	 * @return Revision|bool False if missing
-	 */
-	public static function statelessFetchRevision( Title $title, $parser = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revRecord = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getKnownCurrentRevision( $title );
-		return $revRecord ? new Revision( $revRecord ) : false;
-	}
-
-	/**
-	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
-	 * without passing them on to it.
+	 * Wrapper around RevisionLookup::getKnownCurrentRevision
 	 *
 	 * @since 1.34
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param Parser|null $parser
 	 * @return RevisionRecord|bool False if missing
 	 */
-	public static function statelessFetchRevisionRecord( Title $title, $parser = null ) {
+	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
+		if ( $link instanceof PageIdentity ) {
+			// probably a Title, just use it.
+			$page = $link;
+		} else {
+			// XXX: use RevisionStore::getPageForLink()!
+			//      ...but get the info for the current revision at the same time?
+			//      Should RevisionStore::getKnownCurrentRevision accept a LinkTarget?
+			$page = Title::castFromLinkTarget( $link );
+		}
+
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
-			->getKnownCurrentRevision( $title );
+			->getKnownCurrentRevision( $page );
 		return $revRecord;
 	}
 
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return array ( string or false, Title )
+	 * @since 1.11
 	 */
-	public function fetchTemplateAndTitle( Title $title ) {
+	public function fetchTemplateAndTitle( LinkTarget $link ) {
+		// Use Title for compatibility with callbacks and return type
+		$title = Title::castFromLinkTarget( $link );
+
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
 		if ( isset( $stuff['revision-record'] ) ) {
 			$revRecord = $stuff['revision-record'];
 		} else {
-			// Triggers deprecation warnings via DeprecatablePropertyArray
-			$rev = $stuff['revision'] ?? null;
-			if ( $rev instanceof Revision ) {
-				$revRecord = $rev->getRevisionRecord();
-			} else {
-				$revRecord = null;
-			}
+			$revRecord = null;
 		}
 
 		$text = $stuff['text'];
@@ -3581,26 +3601,17 @@ class Parser {
 	}
 
 	/**
-	 * Fetch the unparsed text of a template and register a reference to it.
-	 * @param Title $title
-	 * @return string|bool
-	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
-	 */
-	public function fetchTemplate( Title $title ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->fetchTemplateAndTitle( $title )[0];
-	}
-
-	/**
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $page
 	 * @param bool|Parser $parser
 	 *
-	 * @return array|DeprecatablePropertyArray
+	 * @return array
+	 * @since 1.12
 	 */
-	public static function statelessFetchTemplate( $title, $parser = false ) {
+	public static function statelessFetchTemplate( $page, $parser = false ) {
+		$title = Title::castFromLinkTarget( $page ); // for compatibility with return type
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
@@ -3699,18 +3710,6 @@ class Parser {
 				} else {
 					$text = false;
 				}
-				// Hook is hard deprecated since 1.35
-				if ( Hooks::isRegistered( 'ParserFetchTemplate' ) ) {
-					// Only create the Revision object if needed
-					$legacyRevision = new Revision( $revRecord );
-					Hooks::runner()->onParserFetchTemplate(
-						$parser,
-						$title,
-						$legacyRevision,
-						$text,
-						$deps
-					);
-				}
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -3736,43 +3735,42 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		$legacyRevision = static function () use ( $revRecord ) {
-			return $revRecord ? new Revision( $revRecord ) : null;
-		};
 		$retValues = [
-			'revision' => $legacyRevision,
-			'revision-record' => $revRecord ?: false, // So isset works
+			// previously, when this also returned a Revision object, we set
+			// 'revision-record' to false instead of null if it was unavailable,
+			// so that callers to use isset and then rely on the revision-record
+			// key instead of the revision key, even if there was no corresponding
+			// object - we continue to set to false here for backwards compatability
+			'revision-record' => $revRecord ?: false,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
 		];
-		$propertyArray = new DeprecatablePropertyArray(
-			$retValues,
-			[ 'revision' => '1.35' ],
-			__METHOD__
-		);
-		return $propertyArray;
+		return $retValues;
 	}
 
 	/**
 	 * Fetch a file and its title and register a reference to it.
 	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
+	 * @since 1.18
 	 */
-	public function fetchFileAndTitle( Title $title, array $options = [] ) {
-		$file = $this->fetchFileNoRegister( $title, $options );
+	public function fetchFileAndTitle( LinkTarget $link, array $options = [] ) {
+		$file = $this->fetchFileNoRegister( $link, $options );
 
 		$time = $file ? $file->getTimestamp() : false;
 		$sha1 = $file ? $file->getSha1() : false;
 		# Register the file as a dependency...
-		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
-		if ( $file && !$title->equals( $file->getTitle() ) ) {
+		$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
+		if ( $file && !$link->isSameLinkAs( $file->getTitle() ) ) {
 			# Update fetched file title
-			$title = $file->getTitle();
-			$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
+			$page = $file->getTitle();
+			$this->mOutput->addImage( $page->getDBkey(), $time, $sha1 );
 		}
+
+		$title = Title::castFromLinkTarget( $link ); // for return type compat
 		return [ $file, $title ];
 	}
 
@@ -3782,11 +3780,11 @@ class Parser {
 	 * Also useful if you need to fetch a file but not use it yet,
 	 * for example to get the file's handler.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
 	 */
-	protected function fetchFileNoRegister( Title $title, array $options = [] ) {
+	protected function fetchFileNoRegister( LinkTarget $link, array $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
 		} else {
@@ -3794,7 +3792,7 @@ class Parser {
 			if ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 				$file = $repoGroup->findFileFromKey( $options['sha1'], $options );
 			} else { // get by (name,timestamp)
-				$file = $repoGroup->findFile( $title, $options );
+				$file = $repoGroup->findFile( $link, $options );
 			}
 		}
 		return $file;
@@ -3803,16 +3801,19 @@ class Parser {
 	/**
 	 * Transclude an interwiki link.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param string $action Usually one of (raw, render)
 	 *
 	 * @return string
 	 * @internal
 	 */
-	public function interwikiTransclude( Title $title, $action ) {
+	public function interwikiTransclude( LinkTarget $link, $action ) {
 		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
+
+		// TODO: extract relevant functionality from Title
+		$title = Title::castFromLinkTarget( $link );
 
 		$url = $title->getFullURL( [ 'action' => $action ] );
 		if ( strlen( $url ) > 1024 ) {
@@ -3831,8 +3832,8 @@ class Parser {
 				sha1( $url )
 			),
 			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
-			static function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
-				$req = MWHttpRequest::factory( $url, [], $fname );
+			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
+				$req = $this->httpRequestFactory->create( $url, [], $fname );
 
 				$status = $req->execute(); // Status object
 				if ( !$status->isOK() ) {
@@ -3930,6 +3931,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 * @internal
+	 * @since 1.12
 	 */
 	public function extensionSubstitution( array $params, PPFrame $frame ) {
 		static $errorStr = '<span class="error">';
@@ -4034,6 +4036,7 @@ class Parser {
 
 	/**
 	 * @return bool False if the limit has been exceeded
+	 * @since 1.13
 	 */
 	public function incrementExpensiveFunctionCount() {
 		$this->mExpensiveFunctionCount++;
@@ -4099,6 +4102,7 @@ class Parser {
 	 * @see ParserOutput::addTrackingCategory()
 	 * @param string $msg Message key
 	 * @return bool Whether the addition was successful
+	 * @since 1.19 method is public
 	 */
 	public function addTrackingCategory( $msg ) {
 		return $this->mOutput->addTrackingCategory( $msg, $this->getTitle() );
@@ -4346,7 +4350,6 @@ class Parser {
 			$anchor = $safeHeadline;
 			$fallbackAnchor = $fallbackHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
-				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
 				$anchor .= "_$i";
 				$linkAnchor .= "_$i";
@@ -4355,7 +4358,6 @@ class Parser {
 				$refers[$arrayKey] = true;
 			}
 			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
-				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${fallbackArrayKey}_$i"] ); ++$i );
 				$fallbackAnchor .= "_$i";
 				$refers["${fallbackArrayKey}_$i"] = true;
@@ -4438,6 +4440,7 @@ class Parser {
 				// be able to convert that piece of data.
 				// Gets replaced with html in ParserOutput::getText
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage );
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection ) . '"';
 				if ( $editsectionContent !== null ) {
 					$editlink .= '>' . $editsectionContent . '</mw:editsection>';
@@ -4528,19 +4531,20 @@ class Parser {
 	 * conversion, substituting signatures, {{subst:}} templates, etc.
 	 *
 	 * @param string $text The text to transform
-	 * @param Title $title The Title object for the current article
+	 * @param PageReference $page the current article
 	 * @param UserIdentity $user The User object describing the current user
 	 * @param ParserOptions $options Parsing options
 	 * @param bool $clearState Whether to clear the parser state first
 	 * @return string The altered wiki markup
+	 * @since 1.3
 	 */
-	public function preSaveTransform( $text, Title $title, UserIdentity $user,
+	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
 		ParserOptions $options, $clearState = true
 	) {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
 		}
-		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
+		$this->startParse( $page, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
 		// Strip U+0000 NULL (T159174)
@@ -4649,6 +4653,7 @@ class Parser {
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
+	 * @since 1.6
 	 */
 	public function getUserSig( UserIdentity $user, $nickname = false, $fancySig = null ) {
 		$username = $user->getName();
@@ -4663,6 +4668,7 @@ class Parser {
 		}
 
 		if ( $nickname === null || $nickname === '' ) {
+			// Empty value results in the default signature (even when fancysig is enabled)
 			$nickname = $username;
 		} elseif ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
@@ -4701,7 +4707,7 @@ class Parser {
 		$msgName = $user->isRegistered() ? 'signature' : 'signature-anon';
 
 		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()
-			->title( $this->getTitle() )->text();
+			->page( $this->getPage() )->text();
 	}
 
 	/**
@@ -4709,6 +4715,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string|bool An expanded string, or false if invalid.
+	 * @since 1.6
 	 */
 	public function validateSig( $text ) {
 		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
@@ -4723,6 +4730,7 @@ class Parser {
 	 * @param string $text
 	 * @param bool $parsing Whether we're cleaning (preferences save) or parsing
 	 * @return string Signature text
+	 * @since 1.6
 	 */
 	public function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
@@ -4765,6 +4773,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string Signature text with /~{3,5}/ removed
+	 * @since 1.7
 	 */
 	public static function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
@@ -4775,31 +4784,32 @@ class Parser {
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
 	 *
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
 	 * @param int|null $revId
+	 * @since 1.3
 	 */
-	public function startExternalParse( ?Title $title, ParserOptions $options,
+	public function startExternalParse( ?PageReference $page, ParserOptions $options,
 		$outputType, $clearState = true, $revId = null
 	) {
-		$this->startParse( $title, $options, $outputType, $clearState );
+		$this->startParse( $page, $options, $outputType, $clearState );
 		if ( $revId !== null ) {
 			$this->mRevisionId = $revId;
 		}
 	}
 
 	/**
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
 	 */
-	private function startParse( ?Title $title, ParserOptions $options,
+	private function startParse( ?PageReference $page, ParserOptions $options,
 		$outputType, $clearState = true
 	) {
-		$this->setTitle( $title );
+		$this->setPage( $page );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		if ( $clearState ) {
@@ -4812,10 +4822,11 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param ?PageReference $page The context page or null to use $wgTitle
 	 * @return string
+	 * @since 1.3
 	 */
-	public function transformMsg( $text, ParserOptions $options, Title $title = null ) {
+	public function transformMsg( $text, ParserOptions $options, ?PageReference $page = null ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -4824,12 +4835,12 @@ class Parser {
 		}
 		$executing = true;
 
-		if ( !$title ) {
+		if ( !$page ) {
 			global $wgTitle;
-			$title = $wgTitle;
+			$page = $wgTitle;
 		}
 
-		$text = $this->preprocess( $text, $title, $options );
+		$text = $this->preprocess( $text, $page, $options );
 
 		$executing = false;
 		return $text;
@@ -4858,6 +4869,7 @@ class Parser {
 	 * @param callable $callback The callback function (and object) to use for the tag
 	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
+	 * @since 1.3
 	 */
 	public function setHook( $tag, callable $callback ) {
 		$tag = strtolower( $tag );
@@ -4875,6 +4887,7 @@ class Parser {
 
 	/**
 	 * Remove all tag hooks
+	 * @since 1.12
 	 */
 	public function clearTagHooks() {
 		$this->mTagHooks = [];
@@ -4923,6 +4936,7 @@ class Parser {
 	 *
 	 * @throws MWException
 	 * @return string|callable The old callback function for this name, if any
+	 * @since 1.6
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
 		$oldVal = $this->mFunctionHooks[$id][0] ?? null;
@@ -4959,7 +4973,7 @@ class Parser {
 	 * Get all registered function hook identifiers
 	 *
 	 * @return array
-	 * @since 1.10.0
+	 * @since 1.8
 	 */
 	public function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
@@ -5215,6 +5229,9 @@ class Parser {
 				foreach ( $handlerParamMap as $magic => $paramName ) {
 					$paramMap[$magic] = [ 'handler', $paramName ];
 				}
+			} else {
+				// Parse the size for non-existent files.  See T273013
+				$paramMap[ 'img_width' ] = [ 'handler', 'width' ];
 			}
 			$this->mImageParams[$handlerClass] = $paramMap;
 			$this->mImageParamsMagicArray[$handlerClass] =
@@ -5226,12 +5243,13 @@ class Parser {
 	/**
 	 * Parse image options text and use it to make an image
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param string $options
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
+	 * @since 1.5
 	 */
-	public function makeImage( Title $title, $options, $holders = false ) {
+	public function makeImage( LinkTarget $link, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -5266,10 +5284,11 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$options = [];
 		$descQuery = false;
+		$title = Title::castFromLinkTarget( $link ); // hook signature compat
 		$this->hookRunner->onBeforeParserFetchFileAndTitle(
 			$this, $title, $options, $descQuery );
 		# Fetch and register the file (file title may be different via hooks)
-		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
+		list( $file, $link ) = $this->fetchFileAndTitle( $link, $options );
 
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
@@ -5295,16 +5314,23 @@ class Parser {
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
 					$parsedWidthParam = self::parseWidthParam( $value );
+					// Parsoid applies data-(width|height) attributes to broken
+					// media spans, for client use.  See T273013
+					$validateFunc = static function ( $name, $value ) use ( $handler ) {
+						return $handler
+							? $handler->validateParam( $name, $value )
+							: $value > 0;
+					};
 					if ( isset( $parsedWidthParam['width'] ) ) {
 						$width = $parsedWidthParam['width'];
-						if ( $handler->validateParam( 'width', $width ) ) {
+						if ( $validateFunc( 'width', $width ) ) {
 							$params[$type]['width'] = $width;
 							$validated = true;
 						}
 					}
 					if ( isset( $parsedWidthParam['height'] ) ) {
 						$height = $parsedWidthParam['height'];
-						if ( $handler->validateParam( 'height', $height ) ) {
+						if ( $validateFunc( 'height', $height ) ) {
 							$params[$type]['height'] = $height;
 							$validated = true;
 						}
@@ -5365,11 +5391,9 @@ class Parser {
 		}
 
 		# Process alignment parameters
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['horizAlign'] ) {
 			$params['frame']['align'] = key( $params['horizAlign'] );
 		}
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['vertAlign'] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
@@ -5400,7 +5424,7 @@ class Parser {
 			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
-				$params['frame']['alt'] = $title->getText();
+				$params['frame']['alt'] = $link->getText();
 			}
 			# Do not set $params['frame']['title'] because tooltips don't make sense
 			# for framed images
@@ -5412,7 +5436,7 @@ class Parser {
 				} else {
 					# No caption, fall back to using the filename for the
 					# alt text
-					$params['frame']['alt'] = $title->getText();
+					$params['frame']['alt'] = $link->getText();
 				}
 			}
 			# Use the "caption" for the tooltip text
@@ -5420,11 +5444,13 @@ class Parser {
 		}
 		$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
 
+		// hook signature compat again, $link may have changed
+		$title = Title::castFromLinkTarget( $link );
 		$this->hookRunner->onParserMakeImageParams( $title, $file, $params, $this );
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;
-		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
+		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
 		# Give the handler a chance to modify the parser object
@@ -5556,7 +5582,7 @@ class Parser {
 	 * Accessor
 	 *
 	 * @return array
-	 * @since before 1.11
+	 * @since 1.6
 	 */
 	public function getTags() {
 		return array_keys( $this->mTagHooks );
@@ -5734,6 +5760,7 @@ class Parser {
 	 * @param string $defaultText Default to return if section is not found
 	 *
 	 * @return string Text of the requested section
+	 * @since 1.7
 	 */
 	public function getSection( $text, $sectionId, $defaultText = '' ) {
 		return $this->extractSections( $text, $sectionId, 'get', $defaultText );
@@ -5750,6 +5777,7 @@ class Parser {
 	 * @param string $newText Replacing text
 	 *
 	 * @return string Modified text
+	 * @since 1.7
 	 */
 	public function replaceSection( $oldText, $sectionId, $newText ) {
 		return $this->extractSections( $oldText, $sectionId, 'replace', $newText );
@@ -5836,33 +5864,10 @@ class Parser {
 	 *   - c) Null, meaning the parse is for preview mode and there is no revision
 	 *
 	 * @return int|null
+	 * @since 1.13
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
-	}
-
-	/**
-	 * Get the revision object for $this->mRevisionId
-	 *
-	 * @deprecated since 1.35, use getRevisionRecordObject
-	 * @return Revision|null Either a Revision object or null
-	 * @since 1.23 (public since 1.23)
-	 */
-	public function getRevisionObject() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		if ( $this->mRevisionObject ) {
-			return $this->mRevisionObject;
-		}
-
-		$this->mRevisionObject = null;
-
-		$revRecord = $this->getRevisionRecordObject();
-		if ( $revRecord ) {
-			$this->mRevisionObject = new Revision( $revRecord );
-		}
-
-		return $this->mRevisionObject;
 	}
 
 	/**
@@ -5876,7 +5881,7 @@ class Parser {
 			return $this->mRevisionRecordObject;
 		}
 
-		// NOTE: try to get the RevisionObject even if mRevisionId is null.
+		// NOTE: try to get the RevisionRecord object even if mRevisionId is null.
 		// This is useful when parsing a revision that has not yet been saved.
 		// However, if we get back a saved revision even though we are in
 		// preview mode, we'll have to ignore it, see below.
@@ -5924,6 +5929,7 @@ class Parser {
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
 	 * @return string TS_MW timestamp
+	 * @since 1.9
 	 */
 	public function getRevisionTimestamp() {
 		if ( $this->mRevisionTimestamp !== null ) {
@@ -5949,6 +5955,7 @@ class Parser {
 	 * Get the name of the user that edited the last revision
 	 *
 	 * @return string|null User name
+	 * @since 1.15
 	 */
 	public function getRevisionUser(): ?string {
 		if ( $this->mRevisionUser === null ) {
@@ -5959,7 +5966,7 @@ class Parser {
 			if ( $revObject && $revObject->getUser() ) {
 				$this->mRevisionUser = $revObject->getUser()->getName();
 			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
-				$this->mRevisionUser = $this->getUser()->getName();
+				$this->mRevisionUser = $this->getUserIdentity()->getName();
 			} else {
 				# Note that we fall through here with
 				# $this->mRevisionUser still null
@@ -5972,6 +5979,7 @@ class Parser {
 	 * Get the size of the revision
 	 *
 	 * @return int|null Revision size
+	 * @since 1.22
 	 */
 	public function getRevisionSize() {
 		if ( $this->mRevisionSize === null ) {
@@ -5993,6 +6001,7 @@ class Parser {
 	 * Mutator for $mDefaultSort
 	 *
 	 * @param string $sort New value
+	 * @since 1.0
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
@@ -6008,6 +6017,7 @@ class Parser {
 	 * page name.
 	 *
 	 * @return string
+	 * @since 1.9
 	 */
 	public function getDefaultSort() {
 		if ( $this->mDefaultSort !== false ) {
@@ -6022,6 +6032,7 @@ class Parser {
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
 	 * @return string|bool
+	 * @since 1.14
 	 */
 	public function getCustomDefaultSort() {
 		return $this->mDefaultSort;
@@ -6057,6 +6068,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string Anchor (starting with '#')
+	 * @since 1.12
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
@@ -6073,6 +6085,7 @@ class Parser {
 	 *
 	 * @param string $text The section name
 	 * @return string Anchor (starting with '#')
+	 * @since 1.17
 	 */
 	public function guessLegacySectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
@@ -6085,6 +6098,7 @@ class Parser {
 	 * Like guessSectionNameFromWikiText(), but takes already-stripped text as input.
 	 * @param string $text Section name (plain text)
 	 * @return string Anchor (starting with '#')
+	 * @since 1.31
 	 */
 	public static function guessSectionNameFromStrippedText( $text ) {
 		$sectionName = self::getSectionNameFromStrippedText( $text );
@@ -6124,6 +6138,7 @@ class Parser {
 	 * @param string $text Text string to be stripped of wikitext
 	 * for use in a Section anchor
 	 * @return string Filtered text string
+	 * @since 1.12
 	 */
 	public function stripSectionName( $text ) {
 		# Strip internal link markup
@@ -6147,18 +6162,21 @@ class Parser {
 	/**
 	 * Strip/replaceVariables/unstrip for preprocessor regression testing
 	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 *
 	 * @return string
 	 */
-	private function fuzzTestSrvus( $text, Title $title, ParserOptions $options,
+	private function fuzzTestSrvus( $text, PageReference $page, ParserOptions $options,
 		$outputType = self::OT_HTML
 	) {
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, $outputType, true );
+		$this->startParse( $page, $options, $outputType, true );
 
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
@@ -6167,23 +6185,33 @@ class Parser {
 	}
 
 	/**
+	 * Strip/replaceVariables/unstrip for preprocessor regression testing
+	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	private function fuzzTestPst( $text, Title $title, ParserOptions $options ) {
-		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
+	private function fuzzTestPst( $text, PageReference $page, ParserOptions $options ) {
+		return $this->preSaveTransform( $text, $page, $options->getUserIdentity(), $options );
 	}
 
 	/**
+	 * Strip/replaceVariables/unstrip for preprocessor regression testing
+	 *
+	 * Called in preprocessorFuzzTest.php maintenance script
+	 * with the help of TestingAccessWrapper to hide it from the public interface
+	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	private function fuzzTestPreprocess( $text, Title $title, ParserOptions $options ) {
-		return $this->fuzzTestSrvus( $text, $title, $options, self::OT_PREPROCESS );
+	private function fuzzTestPreprocess( $text, PageReference $page, ParserOptions $options ) {
+		return $this->fuzzTestSrvus( $text, $page, $options, self::OT_PREPROCESS );
 	}
 
 	/**
@@ -6202,6 +6230,7 @@ class Parser {
 	 *
 	 * @return string
 	 * @internal
+	 * @since 1.12
 	 */
 	public function markerSkipCallback( $s, callable $callback ) {
 		$i = 0;
@@ -6232,6 +6261,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string
+	 * @since 1.19
 	 */
 	public function killMarkers( $text ) {
 		return $this->mStripState->killMarkers( $text );

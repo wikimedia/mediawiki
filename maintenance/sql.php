@@ -48,7 +48,7 @@ class MwSql extends Maintenance {
 		$this->addOption( 'wikidb',
 			'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'replicadb',
-			'Replica DB server to use instead of the master DB (can be "any")', false, true );
+			'Replica DB server to use instead of the primary DB (can be "any")', false, true );
 	}
 
 	public function execute() {
@@ -80,15 +80,15 @@ class MwSql extends Maintenance {
 				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {
-			$index = DB_MASTER;
+			$index = DB_PRIMARY;
 		}
 
 		$db = $lb->getMaintenanceConnectionRef( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
-			$this->fatalError( "The server selected ({$db->getServer()}) is not a replica DB." );
+			$this->fatalError( "Server {$db->getServerName()} is not a replica DB." );
 		}
 
-		if ( $index === DB_MASTER ) {
+		if ( $index === DB_PRIMARY ) {
 			$updater = DatabaseUpdater::newForDB( $db, true, $this );
 			$db->setSchemaVars( $updater->getSchemaVars() );
 		}
@@ -102,17 +102,16 @@ class MwSql extends Maintenance {
 			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ], __METHOD__ );
 			if ( $error !== true ) {
 				$this->fatalError( $error );
-			} else {
-				exit( 0 );
 			}
+			return;
 		}
 
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$res = $this->sqlDoQuery( $db, $query, /* dieOnError */ true );
 			$lbFactory->waitForReplication();
-			if ( $this->hasOption( 'status' ) ) {
-				exit( $res ? 0 : 2 );
+			if ( $this->hasOption( 'status' ) && !$res ) {
+				$this->fatalError( 'Failed.', 2 );
 			}
 			return;
 		}
@@ -153,13 +152,14 @@ class MwSql extends Maintenance {
 				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
+			// @phan-suppress-next-line SecurityCheck-SQLInjection
 			$res = $this->sqlDoQuery( $db, $wholeLine, $doDie );
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}
 		$lbFactory->waitForReplication();
-		if ( $this->hasOption( 'status' ) ) {
-			exit( $res ? 0 : 2 );
+		if ( $this->hasOption( 'status' ) && !$res ) {
+			$this->fatalError( 'Failed.', 2 );
 		}
 	}
 

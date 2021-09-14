@@ -5,13 +5,23 @@
  */
 class FallbackContentTest extends MediaWikiLangTestCase {
 
+	private const CONTENT_MODEL = 'xyzzy';
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			[ self::CONTENT_MODEL => FallbackContentHandler::class ]
+		);
+	}
+
 	/**
 	 * @param string $data
 	 * @param string $type
 	 *
 	 * @return FallbackContent
 	 */
-	public function newContent( $data, $type = 'xyzzy' ) {
+	public function newContent( $data, $type = self::CONTENT_MODEL ) {
 		return new FallbackContent( $data, $type );
 	}
 
@@ -31,31 +41,6 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 		$this->assertStringNotContainsString( 'Horkyporky', $html );
 		$this->assertStringNotContainsString( '(unsupported-content-model)', $html );
-	}
-
-	/**
-	 * @covers FallbackContent::preSaveTransform
-	 */
-	public function testPreSaveTransform() {
-		$title = Title::newFromText( 'Test' );
-		$user = $this->getTestUser()->getUser();
-		$content = $this->newContent( 'Horkyporky ~~~' );
-
-		$options = ParserOptions::newFromAnon();
-
-		$this->assertSame( $content, $content->preSaveTransform( $title, $user, $options ) );
-	}
-
-	/**
-	 * @covers FallbackContent::preloadTransform
-	 */
-	public function testPreloadTransform() {
-		$title = Title::newFromText( 'Test' );
-		$content = $this->newContent( 'Horkyporky ~~~' );
-
-		$options = ParserOptions::newFromAnon();
-
-		$this->assertSame( $content, $content->preloadTransform( $title, $options ) );
 	}
 
 	/**
@@ -159,7 +144,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	public function testGetContentHandler() {
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers',
-			[ 'horkyporky' => 'UnknownContentHandler' ]
+			[ 'horkyporky' => FallbackContentHandler::class ]
 		);
 
 		$content = $this->newContent( "hello world.", 'horkyporky' );

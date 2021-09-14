@@ -36,7 +36,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testEnableFlags() {
 		$handler = TestingAccessWrapper::newFromObject(
 			$this->getMockBuilder( PHPSessionHandler::class )
-				->setMethods( null )
+				->onlyMethods( [] )
 				->disableOriginalConstructor()
 				->getMock()
 		);
@@ -320,7 +320,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
 		$handler = $this->getMockBuilder( PHPSessionHandler::class )
-			->setMethods( null )
+			->onlyMethods( [] )
 			->disableOriginalConstructor()
 			->getMock();
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'disable' );
@@ -347,7 +347,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWrongInstance( $method, $args ) {
 		$handler = $this->getMockBuilder( PHPSessionHandler::class )
-			->setMethods( null )
+			->onlyMethods( [] )
 			->disableOriginalConstructor()
 			->getMock();
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'enable' );

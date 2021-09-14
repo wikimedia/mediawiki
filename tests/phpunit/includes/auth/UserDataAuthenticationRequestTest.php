@@ -12,7 +12,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		return new UserDataAuthenticationRequest;
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgHiddenPrefs', [] );
 	}

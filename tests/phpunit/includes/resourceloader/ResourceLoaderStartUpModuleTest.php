@@ -232,7 +232,7 @@ mw.loader.register([
 					'test.fail' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->will(
 								$this->throwException( new Exception )
 							);
@@ -260,7 +260,7 @@ mw.loader.state({
 					'test.version' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->willReturn( '12345' );
 							return $mock;
 						}
@@ -283,7 +283,7 @@ mw.loader.register([
 					'test.version' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->willReturn( '12345678' );
 							return $mock;
 						}
@@ -707,6 +707,7 @@ mw.loader.register([
 		}
 		$rl->register( $case['modules'] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
 		$out = ltrim( $case['out'], "\n" );
 
 		// Disable log from getModuleRegistrations via MWExceptionHandler
@@ -751,6 +752,7 @@ mw.loader.register([
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
 		$out = 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
 		. 'mw.loader.register(['
 		. '["test.blank","{blankVer}"],'
@@ -776,6 +778,7 @@ mw.loader.register([
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
 		$out =
 'mw.loader.addSource({
     "local": "/w/load.php"
@@ -805,31 +808,23 @@ mw.loader.register([
 	}
 
 	/**
-	 * @covers ResourceLoaderStartupModule::getDefinitionSummary
+	 * @covers ResourceLoaderStartupModule
 	 */
 	public function testGetVersionHash_varyConfig() {
 		$context = $this->getResourceLoaderContext();
 
-		$this->setMwGlobals( 'wgArticlePath', '/w1' );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$version1 = $module->getVersionHash( $context );
-		$module = new ResourceLoaderStartUpModule();
-		$version2 = $module->getVersionHash( $context );
 
-		$this->setMwGlobals( 'wgArticlePath', '/w3' );
 		$module = new ResourceLoaderStartUpModule();
-		$version3 = $module->getVersionHash( $context );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
+		$version2 = $module->getVersionHash( $context );
 
 		$this->assertEquals(
 			$version1,
 			$version2,
 			'Deterministic version hash'
-		);
-
-		$this->assertEquals(
-			$version1,
-			$version3,
-			'Config change no longer impacts version hash'
 		);
 	}
 
@@ -844,6 +839,7 @@ mw.loader.register([
 			'test.b' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl1->getConfig() );
 		$version1 = $module->getVersionHash( $context1 );
 
 		$context2 = $this->getResourceLoaderContext();
@@ -853,6 +849,7 @@ mw.loader.register([
 			'test.c' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl2->getConfig() );
 		$version2 = $module->getVersionHash( $context2 );
 
 		$context3 = $this->getResourceLoaderContext();
@@ -865,6 +862,7 @@ mw.loader.register([
 			],
 		] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl3->getConfig() );
 		$version3 = $module->getVersionHash( $context3 );
 
 		// Module name *is* significant (T201686)
@@ -894,6 +892,7 @@ mw.loader.register([
 			],
 		] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
 		$version1 = $module->getVersionHash( $context );
 
 		$context = $this->getResourceLoaderContext();
@@ -905,6 +904,7 @@ mw.loader.register([
 			],
 		] );
 		$module = new ResourceLoaderStartUpModule();
+		$module->setConfig( $rl->getConfig() );
 		$version2 = $module->getVersionHash( $context );
 
 		// Dependencies *are* significant (T201686)

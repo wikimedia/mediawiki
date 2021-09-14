@@ -4,12 +4,12 @@ namespace MediaWiki\Rest\Handler;
 
 use File;
 use MediaFileTrait;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use Title;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -22,46 +22,51 @@ class MediaFileHandler extends SimpleHandler {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/**
-	 * @var Title|bool|null
-	 */
-	private $title = null;
+	/** @var PageLookup */
+	private $pageLookup;
 
 	/**
-	 * @var File|bool|null
+	 * @var ExistingPageRecord|false|null
 	 */
-	private $file = null;
+	private $page = false;
+
+	/**
+	 * @var File|false|null
+	 */
+	private $file = false;
 
 	/**
 	 * @param RepoGroup $repoGroup
+	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		PageLookup $pageLookup
 	) {
 		$this->repoGroup = $repoGroup;
+		$this->pageLookup = $pageLookup;
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	private function getTitle() {
-		if ( $this->title === null ) {
-			$this->title =
-				Title::newFromText( $this->getValidatedParams()['title'], NS_FILE ) ?? false;
+	private function getPage(): ?ExistingPageRecord {
+		if ( $this->page === false ) {
+			$this->page = $this->pageLookup->getExistingPageByText(
+					$this->getValidatedParams()['title'], NS_FILE
+				);
 		}
-		return $this->title;
+		return $this->page;
 	}
 
 	/**
-	 * @return File|bool File or false if unable to retrieve file
+	 * @return File|null
 	 */
-	private function getFile() {
-		if ( $this->file === null ) {
-			$title = $this->getTitle();
-			// TODO: make RepoGroup::findFile take Authority
-			$user = User::newFromIdentity( $this->getAuthority()->getUser() );
+	private function getFile(): ?File {
+		if ( $this->file === false ) {
+			$page = $this->getPage();
 			$this->file =
-				$this->repoGroup->findFile( $title, [ 'private' => $user ] ) ?? false;
+				$this->repoGroup->findFile( $page, [ 'private' => $this->getAuthority() ] ) ?: null;
 		}
 		return $this->file;
 	}
@@ -72,32 +77,26 @@ class MediaFileHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title ) {
-		$titleObj = $this->getTitle();
-		$fileObj = $this->getFile();
+		$page = $this->getPage();
 
-		if ( !$titleObj || !$titleObj->exists() ) {
+		if ( !$page ) {
 			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams(
-					$titleObj->getPrefixedDBkey()
-				),
+				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
 				404
 			);
 		}
 
-		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams(
-					$titleObj->getPrefixedDBkey()
-				),
+				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
 				403
 			);
 		}
 
+		$fileObj = $this->getFile();
 		if ( !$fileObj || !$fileObj->exists() ) {
 			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-cannot-load-file' )->plaintextParams(
-					$titleObj->getPrefixedDBkey()
-				),
+				MessageValue::new( 'rest-cannot-load-file' )->plaintextParams( $title ),
 				404
 			);
 		}
@@ -110,7 +109,7 @@ class MediaFileHandler extends SimpleHandler {
 	 * @param File $file the file to load media links for
 	 * @return array response data
 	 */
-	private function getResponse( File $file ) : array {
+	private function getResponse( File $file ): array {
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(), 'imagesize'
 		);
@@ -128,9 +127,7 @@ class MediaFileHandler extends SimpleHandler {
 			]
 		];
 
-		// TODO: make MediaFileTrait::getFileInfo take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
-		return $this->getFileInfo( $file, $user, $transforms );
+		return $this->getFileInfo( $file, $this->getAuthority(), $transforms );
 	}
 
 	public function needsWriteAccess() {

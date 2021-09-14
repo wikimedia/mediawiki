@@ -39,7 +39,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * should query the new value and backfill the cache using set().
  * The preferred way to do this logic is through getWithSetCallback().
  * When querying the store on cache miss, the closest DB replica
- * should be used. Try to avoid heavyweight DB master or quorum reads.
+ * should be used. Try to avoid heavyweight DB primary or quorum reads.
  *
  * To ensure consumers of the cache see new values in a timely manner,
  * you either need to follow either the validation strategy, or the
@@ -104,14 +104,18 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * should not be relied on for cases where reads are used to determine writes to source
  * (e.g. non-cache) data stores, except when reading immutable data.
  *
- * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix to avoid
- * collisions with keys that are not wrapped as metadata arrays. For any given key that
- * a caller uses, there are several "sister" keys that might be involved under the hood.
- * Each "sister" key differs only by a single-character:
- *   - v: used for regular value keys
- *   - i: used for temporarily storing values of tombstoned keys
- *   - t: used for storing timestamp "check" keys
- *   - m: used for temporary mutex keys to avoid cache stampedes
+ * Internally, access to a given key actually involves the use of one or more "sister" keys.
+ * A sister key is constructed by prefixing the base key with "WANCache:" (used to distinguish
+ * WANObjectCache formatted keys) and suffixing a colon followed by a single-character sister
+ * key type. The sister key types include the following:
+ *
+ * - `v`: used to store "regular" values (metadata-wrapped) and temporary purge "tombstones".
+ * - `f`: used to store copies of temporary purge "tombstones" (only with `onHostRoutingPrefix`).
+ * - `t`: used to store "last purge" timestamps for "check" keys.
+ * - `m`: used to store temporary mutex locks to avoid cache stampedes.
+ * - `i`: used to store temporary interim values (metadata-wrapped) for tombstoned keys.
+ * - `c`: used to store temporary "cool-off" indicators, which specify a period during which
+ *        values cannot be stored, neither regularly nor using interim keys.
  *
  * @ingroup Cache
  * @since 1.26
@@ -193,8 +197,6 @@ class WANObjectCache implements
 	public const GRACE_TTL_NONE = 0;
 	/** Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
 	public const HOLDOFF_TTL_NONE = 0;
-	/** Alias for HOLDOFF_TTL_NONE (b/c) (deprecated since 1.34) */
-	public const HOLDOFF_NONE = self::HOLDOFF_TTL_NONE;
 
 	/** @var float Idiom for getWithSetCallback() meaning "no minimum required as-of timestamp" */
 	public const MIN_TIMESTAMP_NONE = 0.0;
@@ -276,20 +278,20 @@ class WANObjectCache implements
 	/** Key to how long it took to generate the value */
 	private const FLD_GENERATION_TIME = 6;
 
-	/** Single character value mutex key component */
+	/** Single character component for value keys */
 	private const TYPE_VALUE = 'v';
-	/** Single character timestamp key component */
+	/** Single character component for timestamp check keys */
 	private const TYPE_TIMESTAMP = 't';
-	/** Single character flux key component */
+	/** Single character component for flux keys */
 	private const TYPE_FLUX = 'f';
-	/** Single character mutex key component */
+	/** Single character component for mutex lock keys */
 	private const TYPE_MUTEX = 'm';
-	/** Single character interium key component */
+	/** Single character component for interium value keys */
 	private const TYPE_INTERIM = 'i';
-	/** Single character cool-off key component */
+	/** Single character component for cool-off bounce keys */
 	private const TYPE_COOLOFF = 'c';
 
-	/** Prefix for tombstone key values */
+	/** Value prefix of purge values */
 	private const PURGE_VAL_PREFIX = 'PURGED:';
 
 	/**
@@ -668,9 +670,9 @@ class WANObjectCache implements
 
 			$purge = isset( $wrappedBySisterKey[$fluxKey] )
 				? $this->parsePurgeValue( $wrappedBySisterKey[$fluxKey] )
-				: false;
+				: null;
 
-			if ( $purge !== false ) {
+			if ( $purge !== null ) {
 				$purges[$key] = $purge;
 			}
 		}
@@ -694,13 +696,11 @@ class WANObjectCache implements
 		foreach ( $checkSisterKeys as $timeKey ) {
 			$purge = isset( $wrappedBySisterKey[$timeKey] )
 				? $this->parsePurgeValue( $wrappedBySisterKey[$timeKey] )
-				: false;
+				: null;
 
-			if ( $purge === false ) {
-				// Key is not set or malformed; regenerate
-				$newVal = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL );
-				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
-				$purge = $this->parsePurgeValue( $newVal );
+			if ( $purge === null ) {
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				$this->cache->add( $timeKey, $wrapped, self::CHECK_KEY_TTL );
 			}
 
 			$purges[] = $purge;
@@ -1107,23 +1107,16 @@ class WANObjectCache implements
 		$wrappedBySisterKey = $this->cache->getMulti( $checkSisterKeysByKey );
 		$wrappedBySisterKey += array_fill_keys( $checkSisterKeysByKey, false );
 
+		$now = $this->getCurrentTime();
 		$times = [];
 		foreach ( $checkSisterKeysByKey as $key => $checkSisterKey ) {
 			$purge = $this->parsePurgeValue( $wrappedBySisterKey[$checkSisterKey] );
-			if ( $purge !== false ) {
-				$time = $purge[self::PURGE_TIME];
-			} else {
-				// Casting assures identical floats for the next getCheckKeyTime() calls
-				$now = (string)$this->getCurrentTime();
-				$this->cache->add(
-					$checkSisterKey,
-					$this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL ),
-					self::CHECK_KEY_TTL
-				);
-				$time = (float)$now;
+			if ( $purge === null ) {
+				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
+				$this->cache->add( $checkSisterKey, $wrapped, self::CHECK_KEY_TTL );
 			}
 
-			$times[$key] = $time;
+			$times[$key] = $purge[self::PURGE_TIME];
 		}
 
 		return $times;
@@ -1165,10 +1158,10 @@ class WANObjectCache implements
 	 */
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
-		$ok = $this->relayVolatilePurges(
-			[ $checkSisterKey => $this->makeCheckPurgeValue( $this->getCurrentTime(), $holdoff ) ],
-			self::CHECK_KEY_TTL
-		);
+
+		$now = $this->getCurrentTime();
+		$purgeBySisterKey = [ $checkSisterKey => $this->makeCheckPurgeValue( $now, $holdoff ) ];
+		$ok = $this->relayVolatilePurges( $purgeBySisterKey, self::CHECK_KEY_TTL );
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
@@ -1529,7 +1522,7 @@ class WANObjectCache implements
 		// Nested callback process cache use is not lag-safe with regard to HOLDOFF_TTL since
 		// process cached values are more lagged than persistent ones as they are not purged.
 		if ( $pCache && $this->callbackDepth == 0 ) {
-			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), $pcTTL, false );
+			$cached = $pCache->get( $key, $pcTTL, false );
 			if ( $cached !== false ) {
 				$this->logger->debug( "getWithSetCallback($key): process cache hit" );
 				return $cached;
@@ -1554,7 +1547,7 @@ class WANObjectCache implements
 
 		// Update the process cache if enabled
 		if ( $pCache && $value !== false ) {
-			$pCache->set( $this->getProcessCacheKey( $key, $version ), $value );
+			$pCache->set( $key, $value );
 		}
 
 		return $value;
@@ -1718,6 +1711,10 @@ class WANObjectCache implements
 		// How long it took to fetch, validate, and generate the value
 		$elapsed = max( $postCallbackTime - $initialTime, 0.0 );
 
+		// How long it took to generate the value
+		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
+		$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
+
 		// Attempt to save the newly generated value if applicable
 		if (
 			// Callback yielded a cacheable value
@@ -1727,15 +1724,12 @@ class WANObjectCache implements
 			// Key does not appear to be undergoing a set() stampede
 			$this->checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock )
 		) {
-			// How long it took to generate the value
-			$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
-			$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
 			} else {
 				$finalSetOpts = [
-					// @phan-suppress-next-line PhanUselessBinaryAddRight
+					// @phan-suppress-next-line PhanUselessBinaryAddRight,PhanCoalescingAlwaysNull
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,
@@ -1909,7 +1903,7 @@ class WANObjectCache implements
 				$this->cache->clearLastError();
 				if (
 					!$this->cache->add( $cooloffSisterKey, 1, self::COOLOFF_TTL ) &&
-					// Don't treat failures due to I/O errors as the key being in cooloff
+					// Don't treat failures due to I/O errors as the key being in cool-off
 					$this->cache->getLastError() === BagOStuff::ERR_NONE
 				) {
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
@@ -2307,7 +2301,7 @@ class WANObjectCache implements
 
 		$wrapped = $this->cache->get( $checkSisterKey );
 		$purge = $this->parsePurgeValue( $wrapped );
-		if ( $purge && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
+		if ( $purge !== null && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
 			$ok = $this->cache->changeTTL( $checkSisterKey, self::TTL_SECOND );
@@ -2472,7 +2466,7 @@ class WANObjectCache implements
 		if ( count( $ids ) !== count( $res ) ) {
 			// If makeMultiKeys() is called on a list of non-unique IDs, then the resulting
 			// ArrayIterator will have less entries due to "first appearance" de-duplication
-			$ids = array_keys( array_flip( $ids ) );
+			$ids = array_keys( array_fill_keys( $ids, true ) );
 			if ( count( $ids ) !== count( $res ) ) {
 				throw new UnexpectedValueException( "Multi-key result does not match ID list" );
 			}
@@ -2948,7 +2942,7 @@ class WANObjectCache implements
 		} else {
 			// Entry expected to be a tombstone; parse it
 			$purge = $this->parsePurgeValue( $wrapped );
-			if ( $purge !== false ) {
+			if ( $purge !== null ) {
 				// Tombstoned keys should always have a negative current $ttl
 				$info[self::KEY_CUR_TTL] =
 					min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
@@ -2989,12 +2983,11 @@ class WANObjectCache implements
 	 * Valid purge values come from makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
 	 *
 	 * @param mixed $value Cached value
-	 * @return array|bool Array containing a UNIX timestamp (float) and hold-off period (integer),
-	 *  or false if value isn't a valid purge value
+	 * @return array|null Tuple of (UNIX timestamp, hold-off seconds); null if value is invalid
 	 */
 	private function parsePurgeValue( $value ) {
 		if ( !is_string( $value ) ) {
-			return false;
+			return null;
 		}
 
 		$segments = explode( ':', $value, 3 );
@@ -3008,12 +3001,12 @@ class WANObjectCache implements
 			// Value tombstones don't store hold-off TTLs
 			$holdoff = self::HOLDOFF_TTL;
 		} else {
-			return false;
+			return null;
 		}
 
 		if ( "{$prefix}:" !== self::PURGE_VAL_PREFIX || $timestamp < $this->epoch ) {
 			// Not a purge value or the purge value is too old
-			return false;
+			return null;
 		}
 
 		return [ self::PURGE_TIME => $timestamp, self::PURGE_HOLDOFF => $holdoff ];
@@ -3023,17 +3016,22 @@ class WANObjectCache implements
 	 * @param float $timestamp UNIX timestamp
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>"
 	 */
-	private function makeTombstonePurgeValue( $timestamp ) {
+	private function makeTombstonePurgeValue( float $timestamp ) {
 		return self::PURGE_VAL_PREFIX . number_format( $timestamp, 4, '.', '' );
 	}
 
 	/**
 	 * @param float $timestamp UNIX timestamp
 	 * @param int $holdoff In seconds
+	 * @param array|null &$purge Unwrapped purge value array [returned]
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
 	 */
-	private function makeCheckPurgeValue( $timestamp, int $holdoff ) {
-		return self::PURGE_VAL_PREFIX . number_format( $timestamp, 4, '.', '' ) . ":$holdoff";
+	private function makeCheckPurgeValue( float $timestamp, int $holdoff, array &$purge = null ) {
+		$normalizedTime = number_format( $timestamp, 4, '.', '' );
+		// Purge array that matches what parsePurgeValue() would have returned
+		$purge = [ self::PURGE_TIME => (float)$normalizedTime, self::PURGE_HOLDOFF => $holdoff ];
+
+		return self::PURGE_VAL_PREFIX . "$normalizedTime:$holdoff";
 	}
 
 	/**
@@ -3053,15 +3051,6 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param int $version
-	 * @return string
-	 */
-	private function getProcessCacheKey( $key, $version ) {
-		return $key . ' ' . (int)$version;
-	}
-
-	/**
 	 * @param ArrayIterator $keys
 	 * @param array $opts
 	 * @return string[] Map of (ID => cache key)
@@ -3074,7 +3063,7 @@ class WANObjectCache implements
 			$version = $opts['version'] ?? null;
 			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
 			foreach ( $keys as $key => $id ) {
-				if ( !$pCache->has( $this->getProcessCacheKey( $key, $version ), $pcTTL ) ) {
+				if ( !$pCache->has( $key, $pcTTL ) ) {
 					$keysMissing[$id] = $key;
 				}
 			}

@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class FormatMetadataTest extends MediaWikiMediaTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->checkPHPExtension( 'exif' );

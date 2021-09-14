@@ -12,7 +12,7 @@ namespace MediaWiki\Rest;
 class HttpException extends \Exception {
 
 	/** @var array|null */
-	private $errorData = null;
+	private $errorData;
 
 	/**
 	 * @stable to call

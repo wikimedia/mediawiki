@@ -54,7 +54,7 @@ class CreationPermissionConstraint implements IEditConstraint {
 		$this->title = $title;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( !$this->performer->authorizeWrite( 'create', $this->title ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
@@ -65,7 +65,7 @@ class CreationPermissionConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {

@@ -9,7 +9,7 @@
  * @author Reda Kerbouche
  */
 
-$fallback = 'fr, arq';
+$fallback = 'fr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Alɣagdud',

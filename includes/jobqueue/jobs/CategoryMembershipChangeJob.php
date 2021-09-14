@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -45,33 +46,33 @@ class CategoryMembershipChangeJob extends Job {
 	private const ENQUEUE_FUDGE_SEC = 60;
 
 	/**
-	 * @param Title $title The title of the page for which to update category membership.
+	 * @param PageIdentity $page the page for which to update category membership.
 	 * @param string $revisionTimestamp The timestamp of the new revision that triggered the job.
 	 * @return JobSpecification
 	 */
-	public static function newSpec( Title $title, $revisionTimestamp ) {
+	public static function newSpec( PageIdentity $page, $revisionTimestamp ) {
 		return new JobSpecification(
 			'categoryMembershipChange',
 			[
-				'pageId' => $title->getArticleID(),
+				'pageId' => $page->getId(),
 				'revTimestamp' => $revisionTimestamp,
 			],
 			[
 				'removeDuplicates' => true,
 				'removeDuplicatesIgnoreParams' => [ 'revTimestamp' ]
 			],
-			$title
+			$page
 		);
 	}
 
 	/**
 	 * Constructor for use by the Job Queue infrastructure.
 	 * @note Don't call this when queueing a new instance, use newSpec() instead.
-	 * @param Title $title Title of the categorized page.
+	 * @param PageIdentity $page the categorized page.
 	 * @param array $params Such latest revision instance of the categorized page.
 	 */
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'categoryMembershipChange', $title, $params );
+	public function __construct( PageIdentity $page, array $params ) {
+		parent::__construct( 'categoryMembershipChange', $page, $params );
 		// Only need one job per page. Note that ENQUEUE_FUDGE_SEC handles races where an
 		// older revision job gets inserted while the newer revision job is de-duplicated.
 		$this->removeDuplicates = true;
@@ -81,7 +82,7 @@ class CategoryMembershipChangeJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
-		$dbw = $lb->getConnectionRef( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
@@ -91,9 +92,9 @@ class CategoryMembershipChangeJob extends Job {
 			return false; // deleted?
 		}
 
-		// Cut down on the time spent in waitForMasterPos() in the critical section
+		// Cut down on the time spent in waitForPrimaryPos() in the critical section
 		$dbr = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
-		if ( !$lb->waitForMasterPos( $dbr ) ) {
+		if ( !$lb->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( "Timed out while pre-waiting for replica DB to catch up" );
 			return false;
 		}
@@ -107,7 +108,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Wait till replica DB is caught up so that jobs for this page see each others' changes
-		if ( !$lb->waitForMasterPos( $dbr ) ) {
+		if ( !$lb->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
 			return false;
 		}
@@ -191,10 +192,10 @@ class CategoryMembershipChangeJob extends Job {
 			return;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		// Get the prior revision (the same for null edits)
 		if ( $newRev->getParentId() ) {
-			$oldRev = MediaWikiServices::getInstance()
-				->getRevisionLookup()
+			$oldRev = $services->getRevisionLookup()
 				->getRevisionById( $newRev->getParentId(), RevisionLookup::READ_LATEST );
 			if ( !$oldRev || $oldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				return;
@@ -210,7 +211,8 @@ class CategoryMembershipChangeJob extends Job {
 			return; // nothing to do
 		}
 
-		$catMembChange = new CategoryMembershipChange( $title, $newRev );
+		$blc = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
+		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev );
 		$catMembChange->checkTemplateLinks();
 
 		$batchSize = $config->get( 'UpdateRowsPerQuery' );

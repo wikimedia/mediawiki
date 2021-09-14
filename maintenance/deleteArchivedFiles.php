@@ -47,7 +47,7 @@ class DeleteArchivedFiles extends Maintenance {
 		}
 
 		# Data should come off the master, wrapped in a transaction
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
@@ -88,9 +88,7 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			// Check if the file is used anywhere...
-			$inuse = $dbw->selectField(
-				'oldimage',
-				'1',
+			$inuse = (bool)$dbw->selectField( 'oldimage', '1',
 				[
 					'oi_sha1' => $sha1,
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE

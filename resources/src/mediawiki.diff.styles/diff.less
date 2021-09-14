@@ -56,6 +56,10 @@
 
 .diff-lineno {
 	font-weight: bold;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .mw-diff-inline-added,
@@ -81,6 +85,8 @@
 .diff-addedline,
 .diff-deletedline,
 .diff-context {
+	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 13px;
 	line-height: 1.6;
 	vertical-align: top;
@@ -182,6 +188,10 @@
 	&:active {
 		display: block;
 		color: transparent;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	}
 
 	&:hover {
@@ -213,4 +223,14 @@
 	#mw-diff-otitle5 {
 		display: none;
 	}
+}
+
+/* Lock selection to a single side */
+.diff[ data-selected-side='left' ] .diff-right,
+.diff[ data-selected-side='right' ] .diff-left {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: text;
 }

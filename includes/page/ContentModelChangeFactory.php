@@ -41,5 +41,5 @@ interface ContentModelChangeFactory {
 		Authority $performer,
 		WikiPage $wikipage,
 		string $newContentModel
-	) : ContentModelChange;
+	): ContentModelChange;
 }

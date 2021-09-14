@@ -8,10 +8,10 @@
 	 * event topic for one or more subscribers to send to an error logging service. Also log those
 	 * errors to the console, which is the default behaviour of the Vue.js runtime.
 	 *
-	 * @see https://phabricator.wikimedia.org/T249826
+	 * See also <https://phabricator.wikimedia.org/T249826>.
 	 *
-	 * @param {Error} error
 	 * @ignore
+	 * @param {Error} error
 	 */
 	Vue.config.errorHandler = function ( error ) {
 		mw.errorLogger.logError( error, 'error.vue' );

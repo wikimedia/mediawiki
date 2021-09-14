@@ -1,3 +1,10 @@
+General:
+* Icb54f847 and Ie2e3e06d Fixing multiple jQuery deprecations.
+* Idc22523a Fixing jQuery deprecations of bind() and unbind()
+
+jquery.ui.position.js
+* I047a92b45 Avoid deprecated jQuery.offset() on invalid DOM element.
+
 jquery.ui.core.js
 * I7ffbfd2e5 Avoid deprecated jQuery.expr[":"].
 * I717f2580e Avoid deprecated jQuery.expr.filters.

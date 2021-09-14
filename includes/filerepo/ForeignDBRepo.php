@@ -21,6 +21,7 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
@@ -80,17 +81,17 @@ class ForeignDBRepo extends LocalRepo {
 		$this->dbDomain = $dbDomain->getId();
 	}
 
-	public function getMasterDB() {
+	public function getPrimaryDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$func = $this->getDBFactory();
-			$this->dbConn = $func( DB_MASTER );
+			$this->dbConn = $func( DB_PRIMARY );
 		}
 
 		return $this->dbConn;
 	}
 
 	public function getReplicaDB() {
-		return $this->getMasterDB();
+		return $this->getPrimaryDB();
 	}
 
 	/**
@@ -124,5 +125,9 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	public function getInfo() {
 		return FileRepo::getInfo();
+	}
+
+	public function getBlobStore(): ?BlobStore {
+		return null;
 	}
 }

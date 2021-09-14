@@ -20,7 +20,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/** @var DatabaseTestHelper|Database */
 	private $database;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
 		MWDebug::clearDeprecationFilters();
@@ -658,11 +658,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'table' => 'upsert_table',
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'uniqueIndexes' => 'field',
-					'set' => [ 'field' => 'set' ],
+					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
 					"UPDATE upsert_table " .
-					"SET field = 'set' " .
+					"SET field2 = 'set' " .
 					"WHERE (field = 'text'); " .
 					"INSERT INTO upsert_table " .
 					"(field,field2) " .
@@ -674,11 +674,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'table' => 'upsert_table',
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'uniqueIndexes' => [ [ 'field' ] ],
-					'set' => [ 'field' => 'set' ],
+					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
 				"UPDATE upsert_table " .
-				"SET field = 'set' " .
+				"SET field2 = 'set' " .
 				"WHERE (field = 'text'); " .
 				"INSERT INTO upsert_table " .
 				"(field,field2) " .
@@ -1019,33 +1019,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'table' => 'module_deps',
-					'uniqueIndexes' => [ 'md_module', 'md_skin' ],
-					'rows' => [
-						[
-							'md_module' => 'module',
-							'md_skin' => 'skin',
-							'md_deps' => 'deps',
-						], [
-							'md_module' => 'module2',
-							'md_skin' => 'skin2',
-							'md_deps' => 'deps2',
-						],
-					],
-				],
-				"BEGIN; DELETE FROM module_deps " .
-					"WHERE ((md_module = 'module') OR (md_skin = 'skin')); " .
-					"INSERT INTO module_deps " .
-					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps'); " .
-					"DELETE FROM module_deps " .
-					"WHERE ((md_module = 'module2') OR (md_skin = 'skin2')); " .
-					"INSERT INTO module_deps " .
-					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module2','skin2','deps2'); COMMIT"
-			],
-			[
-				[
-					'table' => 'module_deps',
 					'uniqueIndexes' => [],
 					'rows' => [
 						'md_module' => 'module',
@@ -1065,11 +1038,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::conditional
 	 */
 	public function testConditional( $sql, $sqlText ) {
-		$this->assertEquals( trim( $this->database->conditional(
+		$this->assertEquals( $this->database->conditional(
 			$sql['conds'],
 			$sql['true'],
 			$sql['false']
-		) ), $sqlText );
+		), $sqlText );
 	}
 
 	public static function provideConditional() {

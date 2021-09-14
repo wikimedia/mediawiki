@@ -19,7 +19,7 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	 * @param array $optionsArray
 	 * @return LanguageNameUtils
 	 */
-	private function newObj( array $optionsArray = [] ) : LanguageNameUtils {
+	private function newObj( array $optionsArray = [] ): LanguageNameUtils {
 		// TODO Why is hookContainer unset here sometimes?
 		$this->hookContainer = $this->hookContainer ?? $this->createHookContainer();
 		return new LanguageNameUtils(

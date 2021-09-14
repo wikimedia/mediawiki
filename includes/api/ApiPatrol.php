@@ -22,13 +22,29 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionStore;
 
 /**
  * Allows user to patrol pages
  * @ingroup API
  */
 class ApiPatrol extends ApiBase {
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param RevisionStore $revisionStore
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		RevisionStore $revisionStore
+	) {
+		parent::__construct( $main, $action );
+		$this->revisionStore = $revisionStore;
+	}
 
 	/**
 	 * Patrols the article or provides the reason the patrol failed.
@@ -43,12 +59,11 @@ class ApiPatrol extends ApiBase {
 				$this->dieWithError( [ 'apierror-nosuchrcid', $params['rcid'] ] );
 			}
 		} else {
-			$store = MediaWikiServices::getInstance()->getRevisionStore();
-			$rev = $store->getRevisionById( $params['revid'] );
+			$rev = $this->revisionStore->getRevisionById( $params['revid'] );
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['revid'] ] );
 			}
-			$rc = $store->getRecentChange( $rev );
+			$rc = $this->revisionStore->getRecentChange( $rev );
 			if ( !$rc ) {
 				$this->dieWithError( [ 'apierror-notpatrollable', $params['revid'] ] );
 			}

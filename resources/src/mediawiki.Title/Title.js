@@ -623,7 +623,7 @@ Title.isTalkNamespace = function ( namespaceId ) {
 /**
  * Check if signature buttons should be shown in a given namespace
  *
- * See MWNamespace::wantSignatures in PHP
+ * See NamespaceInfo::wantSignatures in PHP
  *
  * @param {number} namespaceId Namespace ID
  * @return {boolean} Namespace is a signature namespace

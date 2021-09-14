@@ -32,5 +32,6 @@
 	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva",
 	"ooui-selectfile-dragdrop-placeholder": "Dobd ide a fájlt",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Dobd ide a fájlt",
+	"ooui-popup-widget-close-button-aria-label": "Bezárás",
 	"ooui-field-help": "Súgó"
 }

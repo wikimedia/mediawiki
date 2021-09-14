@@ -235,7 +235,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage|null
 	 */
-	public function getImage( $name, ResourceLoaderContext $context ) : ?ResourceLoaderImage {
+	public function getImage( $name, ResourceLoaderContext $context ): ?ResourceLoaderImage {
 		$this->loadFromDefinition();
 		$images = $this->getImages( $context );
 		return $images[$name] ?? null;
@@ -246,7 +246,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage[] Array keyed by image name
 	 */
-	public function getImages( ResourceLoaderContext $context ) : array {
+	public function getImages( ResourceLoaderContext $context ): array {
 		$skin = $context->getSkin();
 		if ( $this->imageObjects === null ) {
 			$this->loadFromDefinition();
@@ -294,7 +294,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string[]
 	 */
-	public function getGlobalVariants( ResourceLoaderContext $context ) : array {
+	public function getGlobalVariants( ResourceLoaderContext $context ): array {
 		$skin = $context->getSkin();
 		if ( $this->globalVariants === null ) {
 			$this->loadFromDefinition();
@@ -319,7 +319,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	public function getStyles( ResourceLoaderContext $context ) : array {
+	public function getStyles( ResourceLoaderContext $context ): array {
 		$this->loadFromDefinition();
 
 		// Build CSS rules
@@ -395,7 +395,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param string $fallback Fallback URI
 	 * @return string[] CSS declarations to use given URIs as background-image
 	 */
-	protected function getCssDeclarations( $primary, $fallback ) : array {
+	protected function getCssDeclarations( $primary, $fallback ): array {
 		$primaryUrl = CSSMin::buildUrlValue( $primary );
 		$fallbackUrl = CSSMin::buildUrlValue( $fallback );
 		return [

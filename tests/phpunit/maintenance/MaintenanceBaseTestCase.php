@@ -15,7 +15,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	 */
 	protected $maintenance;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->maintenance = $this->createMaintenance();
@@ -25,7 +25,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	 * Do a little stream cleanup to prevent output in case the child class
 	 * hasn't tested the capture buffer.
 	 */
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->maintenance ) {
 			$this->maintenance->cleanupChanneled();
 		}

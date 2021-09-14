@@ -33,5 +33,12 @@
 			<pluralRule count="few">v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14 @integer 2~4, 22~24, 32~34, 42~44, 52~54, 62, 102, 1002, … @decimal 0.2~0.4, 1.2~1.4, 2.2~2.4, 3.2~3.4, 4.2~4.4, 5.2, 10.2, 100.2, 1000.2, …</pluralRule>
 			<pluralRule count="other"> @integer 0, 5~19, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0, 0.5~1.0, 1.5~2.0, 2.5~2.7, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …</pluralRule>
 		</pluralRules>
+		<!-- Inari Sámi. Not correct in CLDR -->
+		<pluralRules locales="smn">
+			<pluralRule count="one">n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000</pluralRule>
+			<pluralRule count="two">n = 2 and v = 0 @integer 2</pluralRule>
+			<pluralRule count="few">i = 0 or i = 3..6 or i = 2 and v != 0 or i = 1 and t != 0 @integer 0, 3~6 @decimal 0.0, 1.1, 2.0, 3.0, 4.0, 5.0, 6.0, 0.00, 2.00, 3.00, 4.00, 5.00, 6.00, …</pluralRule>
+			<pluralRule count="other"> @integer 7~19, 100, 1000, 10000, 1000000, … @decimal 7.0~9.9, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>

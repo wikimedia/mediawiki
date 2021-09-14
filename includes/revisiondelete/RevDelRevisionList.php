@@ -22,6 +22,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -59,7 +60,7 @@ class RevDelRevisionList extends RevDelList {
 
 	/**
 	 * @param IContextSource $context
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 * @param HookContainer $hookContainer
@@ -69,7 +70,7 @@ class RevDelRevisionList extends RevDelList {
 	 */
 	public function __construct(
 		IContextSource $context,
-		Title $title,
+		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
@@ -77,7 +78,7 @@ class RevDelRevisionList extends RevDelList {
 		RevisionStore $revisionStore,
 		WANObjectCache $wanObjectCache
 	) {
-		parent::__construct( $context, $title, $ids, $lbFactory );
+		parent::__construct( $context, $page, $ids, $lbFactory );
 		$this->lbFactory = $lbFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->htmlCacheUpdater = $htmlCacheUpdater;
@@ -215,7 +216,7 @@ class RevDelRevisionList extends RevDelList {
 
 	public function getCurrent() {
 		if ( $this->currentRevId === null ) {
-			$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+			$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 			$this->currentRevId = $dbw->selectField(
 				'page', 'page_latest', $this->title->pageCond(), __METHOD__ );
 		}

@@ -98,7 +98,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 
 		( new AutoCommitUpdate(
-			$services->getDBLoadBalancer()->getConnectionRef( DB_MASTER ),
+			$services->getDBLoadBalancer()->getConnectionRef( DB_PRIMARY ),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
 				$set = [];
@@ -138,22 +138,20 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$dbr = $services->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, 'vslow' );
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
-		$rcQuery = RecentChange::getQueryInfo();
-		$activeUsers = $dbr->selectField(
-			$rcQuery['tables'],
-			'COUNT( DISTINCT ' . $rcQuery['fields']['rc_user_text'] . ' )',
-			[
+		$activeUsers = $dbr->newSelectQueryBuilder()
+			->select( 'COUNT(DISTINCT rc_actor)' )
+			->from( 'recentchanges' )
+			->join( 'actor', 'actor', 'actor_id=rc_actor' )
+			->where( [
 				'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Exclude external (Wikidata)
-				ActorMigration::newMigration()->isNotAnon( $rcQuery['fields']['rc_user'] ),
+				'actor_user IS NOT NULL',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
 				'rc_timestamp >= ' . $dbr->addQuotes(
 					$dbr->timestamp( time() - $config->get( 'ActiveUserDays' ) * 24 * 3600 ) ),
-			],
-			__METHOD__,
-			[],
-			$rcQuery['joins']
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
 		$dbw->update(
 			'site_stats',
 			[ 'ss_active_users' => intval( $activeUsers ) ],

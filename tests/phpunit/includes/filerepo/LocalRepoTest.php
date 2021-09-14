@@ -47,8 +47,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 
 		$row = (object)[
 			"{$prefix}_name" => 'Test_file',
-			// We cheat and include this for img_ too, it will be ignored
-			"{$prefix}_archive_name" => 'Archive_name',
 			"{$prefix}_user" => '1',
 			"{$prefix}_timestamp" => '12345678910111',
 			"{$prefix}_metadata" => '',
@@ -57,13 +55,18 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			"{$prefix}_height" => '0',
 			"{$prefix}_width" => '0',
 			"{$prefix}_bits" => '0',
+			"{$prefix}_media_type" => 'UNKNOWN',
 			"{$prefix}_description_text" => '',
 			"{$prefix}_description_data" => null,
 		];
+		if ( $prefix === 'oi' ) {
+			$row->oi_archive_name = 'Archive_name';
+			$row->oi_deleted = '0';
+		}
 		$file = $this->newRepo()->newFileFromRow( $row );
 		$this->assertInstanceOf( $expectedClass, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
-		$this->assertSame( 1, $file->getUser( 'id' ) );
+		$this->assertSame( 1, $file->getUploader()->getId() );
 	}
 
 	public static function provideNewFileFromRow() {
@@ -102,6 +105,11 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( 'File:Test_file', 'Some description' );
 
 		$file = $this->newRepo()->newFromArchiveName( 'Test_file', 'b' );
+		$this->assertInstanceOf( OldLocalFile::class, $file );
+		$this->assertSame( 'Test_file', $file->getName() );
+
+		$page = $this->getExistingTestPage( 'File:Test_file' );
+		$file = $this->newRepo()->newFromArchiveName( $page, 'b' );
 		$this->assertInstanceOf( OldLocalFile::class, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
 	}
@@ -159,9 +167,13 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCheckRedirect_redirect() {
 		$this->editPage( 'File:Redirect', '#REDIRECT [[File:Target]]' );
-		$this->assertEquals( 'File:Target',
-			$this->newRepo()->checkRedirect( Title::makeTitle( NS_FILE, 'Redirect' ) )
-				->getPrefixedText() );
+
+		$target = $this->newRepo()->checkRedirect( Title::makeTitle( NS_FILE, 'Redirect' ) );
+		$this->assertEquals( 'File:Target', $target->getPrefixedText() );
+
+		$page = $this->getExistingTestPage( 'File:Redirect' );
+		$target = $this->newRepo()->checkRedirect( $page );
+		$this->assertEquals( 'File:Target', $target->getPrefixedText() );
 	}
 
 	/**
@@ -179,7 +191,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			->withConsecutive(
 				[ 'filerepo-file-redirect', 'local', md5( 'Redirect' ) ]
 			);
-		$mockBag->expects( $this->exactly( 1 ) )
+		$mockBag->expects( $this->once() )
 			->method( 'makeGlobalKey' )
 			->withConsecutive(
 				[ 'filerepo-file-redirect', $dbDomain, md5( 'Redirect' ) ]

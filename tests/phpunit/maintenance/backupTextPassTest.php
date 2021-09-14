@@ -93,7 +93,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		// The mock itself
 		$prefetchMock = $this->getMockBuilder( BaseDump::class )
-			->setMethods( [ 'prefetch' ] )
+			->onlyMethods( [ 'prefetch' ] )
 			->disableOriginalConstructor()
 			->getMock();
 		$prefetchMock->method( 'prefetch' )
@@ -198,7 +198,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$dumper->loadWithArgv( [ "--stub=file:" . $nameStub,
 				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
 				"--maxtime=1" /*This is in minutes. Fixup is below*/,
-				"--buffersize=32768", // The default of 32 iterations fill up 32KB about twice
+				"--buffersize=32768", // The default of 32 iterations fill up 32 KiB about twice
 				"--checkpointfile=checkpoint-%s-%s.xml.gz" ] );
 			$dumper->setDB( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
@@ -506,8 +506,8 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	public function bufferSizeProvider() {
 		// expected, bufferSize to initialize with, message
 		return [
-			[ 512 * 1024, 512 * 1024, "Setting 512KB is not effective" ],
-			[ 8192, 8192, "Setting 8KB is not effective" ],
+			[ 512 * 1024, 512 * 1024, "Setting 512 KiB is not effective" ],
+			[ 8192, 8192, "Setting 8 KiB is not effective" ],
 			[ 4096, 2048, "Could set buffer size below lower bound" ]
 		];
 	}

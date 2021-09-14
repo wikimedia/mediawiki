@@ -36,9 +36,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
@@ -52,7 +49,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 * @param RepoGroup $repoGroup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
-	 * @param ActorMigration $actorMigration
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param UserCache $userCache
@@ -61,7 +57,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 		RepoGroup $repoGroup,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
 		UserCache $userCache
@@ -70,7 +65,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->repoGroup = $repoGroup;
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->userCache = $userCache;
@@ -112,8 +106,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->repoGroup,
 			$this->loadBalancer,
 			$this->commentStore,
-			$this->actorMigration,
-			$this->userCache
+			$this->userCache,
+			$this->userNameUtils
 		);
 
 		$out = $this->getOutput();

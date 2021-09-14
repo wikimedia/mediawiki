@@ -127,8 +127,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		// Make sure URL ends with /
 		$this->url = rtrim( $params['url'], '/' ) . '/';
 
-		// Default config, R+W > N; no locks on reads though; writes go straight to state-machine
-		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_QC;
+		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_DISK;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

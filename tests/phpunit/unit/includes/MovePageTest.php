@@ -42,7 +42,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'good' => false,
 		];
 		yield 'can not edit old page' => [
-			'authority' => $this->mockAnonAuthority( function (
+			'authority' => $this->mockAnonAuthority( static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -71,7 +71,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 			'good' => false,
 		];
 		yield 'can not edit new page' => [
-			'authority' => $this->mockAnonAuthority( function (
+			'authority' => $this->mockAnonAuthority( static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -117,7 +117,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 	public function testCheckPermissions_spam() {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );
 		$spamChecker->method( 'checkSummary' )
-			->willReturnCallback( function ( string $reason ) {
+			->willReturnCallback( static function ( string $reason ) {
 				return $reason === 'SPAM';
 			} );
 		$mp = $this->newServiceInstance(

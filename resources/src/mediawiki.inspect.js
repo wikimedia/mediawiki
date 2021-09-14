@@ -48,9 +48,31 @@
 		for ( i = 0; bytes >= 1024; bytes /= 1024 ) {
 			i++;
 		}
-		// Maintain one decimal for kB and above, but don't
+		// Maintain one decimal for KiB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
+	}
+
+	function serializeModuleScript( script ) {
+		// Based on mw.loader.store.set in startup/mediawiki.js
+		if ( typeof script === 'function' ) {
+			// Classic script
+			return String( script );
+		}
+		if ( $.isPlainObject( script ) ) {
+			// Package files object
+			return '{' +
+				'main:' + JSON.stringify( script.main ) + ',' +
+				'files:{' +
+				Object.keys( script.files ).map( function ( file ) {
+					var value = script.files[ file ];
+					return JSON.stringify( file ) + ':' +
+						( typeof value === 'function' ? value : JSON.stringify( value ) );
+				} ).join( ',' ) +
+				'}}';
+		}
+		// Array of urls, or null.
+		return JSON.stringify( script );
 	}
 
 	/**
@@ -88,57 +110,39 @@
 	 * @return {number|null} Module size in bytes or null
 	 */
 	inspect.getModuleSize = function ( moduleName ) {
-		var module = mw.loader.moduleRegistry[ moduleName ],
-			args, i, size;
+		// Approximate the size of this module as originally received from the server.
+		//
+		// We typically receive them from the server through batches from load.php,
+		// or embedded as inline scripts (handled in PHP by ResourceLoader::makeModuleResponse
+		// and ResourceLoaderClientHtml respectively).
+		//
+		// Each module is bundled by ResourceLoader::makeLoaderImplementScript in PHP,
+		// and might look as follows:
+		//
+		//     mw.loader.implement("example",function(){},{"css":[".x{color:red}"]});
+		//
+		// These parameters are stored by mw.loader.implement in the registry,
+		// and below we'll measure the size of each.
+		var module = mw.loader.moduleRegistry[ moduleName ];
 
 		if ( module.state !== 'ready' ) {
 			return null;
 		}
-
 		if ( !module.style && !module.script ) {
 			return 0;
 		}
 
-		function getFunctionBody( func ) {
-			return String( func )
-				// To ensure a deterministic result, replace the start of the function
-				// declaration with a fixed string. For example, in Chrome 55, it seems
-				// V8 seemingly-at-random decides to sometimes put a line break between
-				// the opening brace and first statement of the function body. T159751.
-				.replace( /^\s*function\s*\([^)]*\)\s*{\s*/, 'function(){' )
-				.replace( /\s*}\s*$/, '}' );
-		}
+		var size = 0;
+		size += byteLength( JSON.stringify( moduleName ) );
+		size += byteLength( serializeModuleScript( module.script ) );
 
-		// Based on the load.php response for this module.
-		// For example: `mw.loader.implement("example", function(){}, {"css":[".x{color:red}"]});`
-		// @see mw.loader.store.set().
-		args = [
-			moduleName,
-			module.script,
-			module.style,
-			module.messages,
-			module.templates
-		];
-		// Trim trailing null or empty object, as load.php would have done.
-		// @see ResourceLoader::makeLoaderImplementScript and ResourceLoader::trimArray.
-		i = args.length;
-		while ( i-- ) {
-			if ( args[ i ] === null || ( $.isPlainObject( args[ i ] ) && $.isEmptyObject( args[ i ] ) ) ) {
-				args.splice( i, 1 );
-			} else {
-				break;
-			}
-		}
-
-		size = 0;
-		for ( i = 0; i < args.length; i++ ) {
-			if ( typeof args[ i ] === 'function' ) {
-				size += byteLength( getFunctionBody( args[ i ] ) );
-			} else {
-				size += byteLength( JSON.stringify( args[ i ] ) );
-			}
-		}
-
+		// The last three parameters are optional. The server omits these when they
+		// are empty (handled via ResourceLoader::trimArray), which is reflected
+		// in the registry as a default null value. Count such nulls as zero instead
+		// of as an actual `null` argument, since they were not actually in the bundle.
+		size += module.style ? byteLength( JSON.stringify( module.style ) ) : 0;
+		size += module.messages ? byteLength( JSON.stringify( module.messages ) ) : 0;
+		size += module.templates ? byteLength( JSON.stringify( module.templates ) ) : 0;
 		return size;
 	};
 
@@ -274,7 +278,7 @@
 	inspect.reports = {
 		/**
 		 * Generate a breakdown of all loaded modules and their size in
-		 * kilobytes. Modules are ordered from largest to smallest.
+		 * kibibytes. Modules are ordered from largest to smallest.
 		 *
 		 * @return {Object[]} Size reports
 		 */

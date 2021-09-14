@@ -79,7 +79,7 @@ class AutoSummaryMissingSummaryConstraint implements IEditConstraint {
 		$this->originalContent = $originalContent;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if (
 			!$this->allowBlankSummary &&
 			!$this->newContent->equals( $this->originalContent ) &&
@@ -94,7 +94,7 @@ class AutoSummaryMissingSummaryConstraint implements IEditConstraint {
 		return $this->result;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			$statusValue->fatal( 'missingsummary' );

@@ -15,7 +15,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 
 	protected $oldPatrollersGroup;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgGroupPermissions;
 
 		parent::setUp();
@@ -33,7 +33,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 		];
 
 		# setup the ChangesListSpecialPage (or subclass) object
-		$this->changesListSpecialPage = $this->getPage();
+		$this->changesListSpecialPage = $this->getPageAccessWrapper();
 		$context = $this->changesListSpecialPage->getContext();
 		$context = new DerivativeContext( $context );
 		$context->setUser( $this->getTestUser( [ 'patrollers' ] )->getUser() );
@@ -41,9 +41,12 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 		$this->changesListSpecialPage->registerFilters();
 	}
 
-	abstract protected function getPage();
+	/**
+	 * @return ChangesListSpecialPage
+	 */
+	abstract protected function getPageAccessWrapper();
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		global $wgGroupPermissions;
 
 		if ( $this->oldPatrollersGroup !== null ) {

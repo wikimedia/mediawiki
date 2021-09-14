@@ -81,7 +81,7 @@ abstract class TypeDef {
 	 * @param string|null $suffix Suffix to append when producing the message key
 	 * @return DataMessageValue
 	 */
-	protected function failureMessage( $code, array $data = null, $suffix = null ) : DataMessageValue {
+	protected function failureMessage( $code, array $data = null, $suffix = null ): DataMessageValue {
 		return DataMessageValue::new(
 			"paramvalidator-$code" . ( $suffix !== null ? "-$suffix" : '' ),
 			[], $code, $data
@@ -164,7 +164,7 @@ abstract class TypeDef {
 	 *  - 'messages': (MessageValue[]) Messages to be checked for existence.
 	 * @return array $ret, with any relevant changes.
 	 */
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		return $ret;
 	}
 

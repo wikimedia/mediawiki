@@ -36,9 +36,9 @@ def unichr3(*args):
     return [unichr(int(i[2:7], 16)) for i in args if i[2:7]]
 
 # DEFINE
-UNIHAN_VER = '6.3.0'
-SF_MIRROR = 'dfn'
-SCIM_TABLES_VER = '0.5.13'
+UNIHAN_VER = '12.1.0'
+SF_MIRROR = 'master'
+SCIM_TABLES_VER = '0.5.14.1'
 SCIM_PINYIN_VER = '0.5.92'
 LIBTABE_VER = '0.2.3'
 # END OF DEFINE
@@ -305,7 +305,7 @@ def main():
     han_dest = 'Unihan-%s.zip' % UNIHAN_VER
     download(url, han_dest)
 
-    sfurlbase = 'http://%s.dl.sourceforge.net/sourceforge/' % SF_MIRROR
+    sfurlbase = 'https://%s.dl.sourceforge.net/sourceforge/' % SF_MIRROR
 
     # Get scim-tables-$(SCIM_TABLES_VER).tar.gz:
     url = sfurlbase + 'scim/scim-tables-%s.tar.gz' % SCIM_TABLES_VER

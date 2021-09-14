@@ -49,3 +49,9 @@ h2:lang( te ), h3:lang( te ), h4:lang( te ), h5:lang( te ), h6:lang( te ) {
 	line-height: 1.4em;
 }
 /* stylelint-enable selector-list-comma-newline-after */
+
+// Increase `line-height` for Thai top vowel + top tone combination on `h2`,
+// for example on `ตั้`. See T285972.
+h2:lang( th ) {
+	line-height: 1.6;
+}

@@ -60,14 +60,19 @@ class WikiFilePage extends WikiPage {
 		if ( $this->mFileLoaded ) {
 			return true;
 		}
-		$this->mFileLoaded = true;
 
 		$this->mFile = $services->getRepoGroup()->findFile( $this->mTitle );
 		if ( !$this->mFile ) {
 			$this->mFile = $services->getRepoGroup()->getLocalRepo()
-				->newFile( $this->mTitle ); // always a File
+				->newFile( $this->mTitle );
 		}
+
+		if ( !$this->mFile instanceof File ) {
+			throw new RuntimeException( 'Expected to find file. See T250767' );
+		}
+
 		$this->mRepo = $this->mFile->getRepo();
+		$this->mFileLoaded = true;
 		return true;
 	}
 
@@ -221,7 +226,7 @@ class WikiFilePage extends WikiPage {
 		$file = $this->mFile;
 
 		if ( !$file instanceof LocalFile ) {
-			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file" );
+			wfDebug( __METHOD__ . " is not supported for this file" );
 			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
 		}
 

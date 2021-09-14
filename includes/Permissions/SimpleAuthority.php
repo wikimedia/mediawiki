@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use InvalidArgumentException;
+use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 
@@ -38,7 +39,7 @@ class SimpleAuthority implements Authority {
 	/** @var UserIdentity */
 	private $actor;
 
-	/** @var array permissions (stored in the keys, values are ignured) */
+	/** @var array permissions (stored in the keys, values are ignored) */
 	private $permissions;
 
 	/**
@@ -48,7 +49,7 @@ class SimpleAuthority implements Authority {
 	 */
 	public function __construct( UserIdentity $actor, array $permissions ) {
 		$this->actor = $actor;
-		$this->permissions = array_flip( $permissions );
+		$this->permissions = array_fill_keys( $permissions, true );
 	}
 
 	/**
@@ -58,6 +59,16 @@ class SimpleAuthority implements Authority {
 	 */
 	public function getUser(): UserIdentity {
 		return $this->actor;
+	}
+
+	/**
+	 * @param int $freshness
+	 *
+	 * @return ?Block always null
+	 * @since 1.37
+	 */
+	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
+		return null;
 	}
 
 	/**
@@ -191,4 +202,5 @@ class SimpleAuthority implements Authority {
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}
+
 }

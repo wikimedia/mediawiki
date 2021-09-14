@@ -176,7 +176,7 @@
 	"config-admin-error-password": "Intern feil ved opprettelse av passord for admin «<nowiki>$1</nowiki>»: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Ugyldig wikiadministratorpassord: $1",
 	"config-admin-error-bademail": "Du har skrevet inn en ugyldig e-postadresse.",
-	"config-subscribe": "Abonner på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlisten for utgivelsesannonseringer].",
+	"config-subscribe": "Abonner på [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ e-postlisten for utgivelsesannonseringer].",
 	"config-subscribe-help": "Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.\nDu bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.",
 	"config-subscribe-noemail": "Du prøvde å abonnere på epost-meldinger om nye versjoner uten å oppgi en epost-adresse. Vær vennlig å oppgi en epost-adresse om du ønsker dette abonnementet.",
 	"config-pingback": "Del data om denne installasjonen med MediaWiki-utviklerne.",
@@ -281,7 +281,7 @@
 	"config-install-updates": "Forhindre unødvendige oppdateringer",
 	"config-install-updates-failed": "<strong>Feil:</strong> Innsetting av oppdateringsnøkler i tabellene mislyktes med følgende feilmelding: $1",
 	"config-install-sysop": "Oppretter brukerkonto for administrator",
-	"config-install-subscribe-fail": "Ikke mulig å abonnere på mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Ikke mulig å abonnere på mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL er ikke installert og <code>allow_url_fopen</code> er ikke tilgjengelig.",
 	"config-install-mainpage": "Oppretter hovedside med standard innhold",
 	"config-install-mainpage-exists": "Hovedsiden eksisterer allerede, hopper over",
@@ -302,5 +302,5 @@
 	"config-extension-not-found": "Kunne ikke finne registreringsfil for utvidelsen «$1»",
 	"config-extension-dependency": "En avhengighetsfeil inntraff under installering av utvidelsen «$1»: $2",
 	"mainpagetext": "<strong>MediaWiki har blitt installert.</strong>",
-	"mainpagedocfooter": "Sjekk [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents brukerveiledningen] for å få informasjon om hvordan du bruker wiki-programvaren.\n\n==Hvordan komme igang==\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Innstillingsliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Ofte stilte spørsmål om MediaWiki]\n*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Tilpass MediaWiki for ditt språk]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg å beskytte deg mot spam på wikien din]"
+	"mainpagedocfooter": "Sjekk [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents brukerveiledningen] for å få informasjon om hvordan du bruker wiki-programvaren.\n\n==Hvordan komme igang==\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Innstillingsliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Ofte stilte spørsmål om MediaWiki]\n*[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-postliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Tilpass MediaWiki for ditt språk]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg å beskytte deg mot spam på wikien din]"
 }

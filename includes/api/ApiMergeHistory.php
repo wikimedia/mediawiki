@@ -20,13 +20,31 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MergeHistoryFactory;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * API Module to merge page histories
  * @ingroup API
  */
 class ApiMergeHistory extends ApiBase {
+
+	/** @var MergeHistoryFactory */
+	private $mergeHistoryFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param MergeHistoryFactory $mergeHistoryFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		MergeHistoryFactory $mergeHistoryFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->mergeHistoryFactory = $mergeHistoryFactory;
+	}
 
 	public function execute() {
 		$this->useTransactionalTimeLimit();
@@ -82,17 +100,16 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	/**
-	 * @param Title $from
-	 * @param Title $to
+	 * @param PageIdentity $from
+	 * @param PageIdentity $to
 	 * @param string $timestamp
 	 * @param string $reason
 	 * @return Status
 	 */
-	protected function merge( Title $from, Title $to, $timestamp, $reason ) {
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
-		$mh = $factory->newMergeHistory( $from, $to, $timestamp );
+	protected function merge( PageIdentity $from, PageIdentity $to, $timestamp, $reason ) {
+		$mh = $this->mergeHistoryFactory->newMergeHistory( $from, $to, $timestamp );
 
-		return $mh->merge( $this->getUser(), $reason );
+		return $mh->merge( $this->getAuthority(), $reason );
 	}
 
 	public function mustBePosted() {

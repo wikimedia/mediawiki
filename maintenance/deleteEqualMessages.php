@@ -178,11 +178,12 @@ class DeleteEqualMessages extends Maintenance {
 		$wgUser = $user;
 
 		// Hide deletions from RecentChanges
-		$user->addGroup( 'bot' );
+		$userGroupManager = $services->getUserGroupManager();
+		$userGroupManager->addUserToGroup( $user, 'bot' );
 
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
 		foreach ( $messageInfo['results'] as $result ) {

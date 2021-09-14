@@ -36,7 +36,7 @@ body {
 }
 
 .portal ul {
-	list-style: none none;
+	list-style: none;
 	margin: 0 0.5em;
 	font-size: 0.813em;
 	line-height: 1.4;
@@ -165,8 +165,7 @@ body {
 }
 
 .config-settings-block {
-	list-style-type: none;
-	list-style-image: none;
+	list-style: none;
 	margin: 0;
 	padding: 0;
 }
@@ -204,6 +203,8 @@ body {
 	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
 	height: 32px; /* provide enough vertical room for the image */
 	display: inline-block; /* allow the height property (above) to work */
+	/* TODO: re-evaluate this */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	line-height: 32px; /* center the text vertically */
 }
 
@@ -243,6 +244,7 @@ body {
 .config-help-field-data {
 	display: block;
 	overflow: hidden;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	min-width: min-content;
 	background-color: #d6f3ff;
 	padding: 5px 8px 4px 8px;

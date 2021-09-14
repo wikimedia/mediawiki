@@ -158,7 +158,11 @@ util = {
 		if ( params ) {
 			query = $.param( params );
 		}
-		if ( query ) {
+
+		if ( !title && fragment ) {
+			// If only a fragment was given, make a fragment-only link (T288415)
+			url = '';
+		} else if ( query ) {
 			url = title ?
 				util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query :
 				util.wikiScript() + '?' + query;
@@ -168,7 +172,7 @@ util = {
 		}
 
 		// Append the encoded fragment
-		if ( fragment && fragment.length ) {
+		if ( fragment ) {
 			url += '#' + util.escapeIdForLink( fragment );
 		}
 

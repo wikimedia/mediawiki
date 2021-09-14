@@ -51,6 +51,7 @@ SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, m
 	this.placeholderItem = new OO.ui.MenuOptionWidget( {
 		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
 		label: $labelNoEntries,
+		disabled: true,
 		icon: 'bookmark'
 	} );
 

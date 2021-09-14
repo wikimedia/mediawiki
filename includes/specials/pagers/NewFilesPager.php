@@ -19,9 +19,9 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\UserFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -39,37 +39,27 @@ class NewFilesPager extends RangeChronologicalPager {
 	 */
 	protected $opts;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var UserCache */
-	private $userCache;
-
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
-	 * @param PermissionManager $permissionManager
-	 * @param ActorMigration $actorMigration
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
-	 * @param UserCache $userCache
-	 * @param UserFactory $userFactory
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		IContextSource $context,
 		FormOptions $opts,
 		LinkRenderer $linkRenderer,
-		PermissionManager $permissionManager,
-		ActorMigration $actorMigration,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
-		UserCache $userCache,
-		UserFactory $userFactory
+		LinkBatchFactory $linkBatchFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -77,10 +67,8 @@ class NewFilesPager extends RangeChronologicalPager {
 		parent::__construct( $context, $linkRenderer );
 
 		$this->opts = $opts;
-		$this->permissionManager = $permissionManager;
-		$this->actorMigration = $actorMigration;
-		$this->userCache = $userCache;
-		$this->userFactory = $userFactory;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
 		$startTimestamp = '';
@@ -98,21 +86,18 @@ class NewFilesPager extends RangeChronologicalPager {
 		$opts = $this->opts;
 		$conds = [];
 		$dbr = $this->getDatabase();
-		$actorQuery = $this->actorMigration->getJoin( 'img_user' );
-		$tables = [ 'image' ] + $actorQuery['tables'];
-		$fields = [ 'img_name', 'img_timestamp' ] + $actorQuery['fields'];
+		$tables = [ 'image', 'actor' ];
+		$fields = [ 'img_name', 'img_timestamp', 'actor_user', 'actor_name' ];
 		$options = [];
-		$jconds = $actorQuery['joins'];
+		$jconds = [ 'actor' => [ 'JOIN', 'actor_id=img_actor' ] ];
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
-			$userObj = $this->userFactory->newFromName( $user, UserFactory::RIGOR_NONE );
-			$conds[] = $this->actorMigration
-				->getWhere( $dbr, 'img_user', $userObj )['conds'];
+			$conds['actor_name'] = $user;
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
-			$groupsWithBotPermission = $this->permissionManager->getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';
@@ -121,7 +106,7 @@ class NewFilesPager extends RangeChronologicalPager {
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = ' . $actorQuery['fields']['img_user'],
+						'ug_user = actor_user',
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
@@ -139,7 +124,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				'JOIN',
 				[
 					'rc_title = img_name',
-					'rc_actor = ' . $actorQuery['fields']['img_actor'],
+					'rc_actor = img_actor',
 					'rc_timestamp = img_timestamp'
 				]
 			];
@@ -202,17 +187,18 @@ class NewFilesPager extends RangeChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
-		$userIds = [];
 		$this->mResult->seek( 0 );
+		$lb = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
-			$userIds[] = $row->img_user;
+			if ( $row->actor_user ) {
+				$lb->add( NS_USER, $row->actor_name );
+			}
 		}
-		// Do a link batch query for names and userpages
-		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+		$lb->execute();
 	}
 
 	public function formatRow( $row ) {
-		$username = $this->userCache->getUserName( $row->img_user, $row->img_user_text );
+		$username = $row->actor_name;
 
 		if ( ExternalUserNames::isExternal( $username ) ) {
 			$ul = htmlspecialchars( $username );

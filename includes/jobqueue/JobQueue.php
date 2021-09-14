@@ -145,9 +145,10 @@ abstract class JobQueue {
 
 	/**
 	 * @return string Wiki ID
-	 * @deprecated 1.33
+	 * @deprecated 1.33 (hard deprecated since 1.37)
 	 */
 	final public function getWiki() {
+		wfDeprecated( __METHOD__, '1.33' );
 		return WikiMap::getWikiIdFromDbDomain( $this->domain );
 	}
 
@@ -353,10 +354,8 @@ abstract class JobQueue {
 		}
 
 		foreach ( $jobs as $job ) {
-			if ( $job->getType() !== $this->type ) {
-				throw new JobQueueError(
-					"Got '{$job->getType()}' job; expected a '{$this->type}' job." );
-			} elseif ( $job->getReleaseTimestamp() && !$this->supportsDelayedJobs() ) {
+			$this->assertMatchingJobType( $job );
+			if ( $job->getReleaseTimestamp() && !$this->supportsDelayedJobs() ) {
 				throw new JobQueueError(
 					"Got delayed '{$job->getType()}' job; delays are not supported." );
 			}
@@ -422,9 +421,7 @@ abstract class JobQueue {
 	 */
 	final public function ack( RunnableJob $job ) {
 		$this->assertNotReadOnly();
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		$this->doAck( $job );
 	}
@@ -450,7 +447,7 @@ abstract class JobQueue {
 	 * spawned when a template is edited. One can think of the task as "update links
 	 * of pages that use template X" and an instance of that task as a "root job".
 	 * However, what actually goes into the queue are range and leaf job subtypes.
-	 * Since these jobs include things like page ID ranges and DB master positions,
+	 * Since these jobs include things like page ID ranges and DB primary positions,
 	 * and can morph into smaller jobs recursively, simple duplicate detection
 	 * for individual jobs being identical (like that of job_sha1) is not useful.
 	 *
@@ -468,9 +465,7 @@ abstract class JobQueue {
 	 */
 	final public function deduplicateRootJob( IJobSpecification $job ) {
 		$this->assertNotReadOnly();
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		return $this->doDeduplicateRootJob( $job );
 	}
@@ -510,9 +505,7 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	final protected function isRootJobOldDuplicate( IJobSpecification $job ) {
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		return $this->doIsRootJobOldDuplicate( $job );
 	}
@@ -738,6 +731,16 @@ abstract class JobQueue {
 	protected function assertNotReadOnly() {
 		if ( $this->readOnlyReason !== false ) {
 			throw new JobQueueReadOnlyError( "Job queue is read-only: {$this->readOnlyReason}" );
+		}
+	}
+
+	/**
+	 * @param IJobSpecification $job
+	 * @throws JobQueueError
+	 */
+	private function assertMatchingJobType( IJobSpecification $job ) {
+		if ( $job->getType() !== $this->type ) {
+			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 	}
 

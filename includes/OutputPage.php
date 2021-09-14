@@ -23,8 +23,8 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Permissions\Authority;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -290,10 +290,10 @@ class OutputPage extends ContextSource {
 	];
 
 	/**
-	 * If the current page was reached through a redirect, $mRedirectedFrom contains the Title
+	 * If the current page was reached through a redirect, $mRedirectedFrom contains the title
 	 * of the redirect.
 	 *
-	 * @var Title
+	 * @var PageReference
 	 */
 	private $mRedirectedFrom = null;
 
@@ -606,16 +606,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a mapping from a LinkTarget to a Content, for things like page preview.
+	 * Force the given Content object for the given page, for things like page preview.
 	 * @see self::addContentOverrideCallback()
 	 * @since 1.32
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageReference $target
 	 * @param Content $content
 	 */
-	public function addContentOverride( LinkTarget $target, Content $content ) {
+	public function addContentOverride( $target, Content $content ) {
 		if ( !$this->contentOverrides ) {
 			// Register a callback for $this->contentOverrides on the first call
-			$this->addContentOverrideCallback( function ( LinkTarget $target ) {
+			$this->addContentOverrideCallback( function ( $target ) {
 				$key = $target->getNamespace() . ':' . $target->getDBkey();
 				return $this->contentOverrides[$key] ?? null;
 			} );
@@ -957,11 +957,11 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set $mRedirectedFrom, the Title of the page which redirected us to the current page.
+	 * Set $mRedirectedFrom, the page which redirected us to the current page.
 	 *
-	 * @param Title $t
+	 * @param PageReference $t
 	 */
-	public function setRedirectedFrom( $t ) {
+	public function setRedirectedFrom( PageReference $t ) {
 		$this->mRedirectedFrom = $t;
 	}
 
@@ -1048,9 +1048,11 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the Title object to use
 	 *
-	 * @param Title $t
+	 * @param PageReference $t
 	 */
-	public function setTitle( Title $t ) {
+	public function setTitle( PageReference $t ) {
+		$t = Title::castFromPageReference( $t );
+
 		// @phan-suppress-next-next-line PhanUndeclaredMethod
 		// @fixme Not all implementations of IContextSource have this method!
 		$this->getContext()->setTitle( $t );
@@ -1082,27 +1084,35 @@ class OutputPage extends ContextSource {
 	/**
 	 * Build message object for a subtitle containing a backlink to a page
 	 *
-	 * @param Title $title Title to link to
+	 * @param PageReference $page Title to link to
 	 * @param array $query Array of additional parameters to include in the link
 	 * @return Message
 	 * @since 1.25
 	 */
-	public static function buildBacklinkSubtitle( Title $title, $query = [] ) {
-		if ( $title->isRedirect() ) {
+	public static function buildBacklinkSubtitle( PageReference $page, $query = [] ) {
+		if ( $page instanceof PageRecord || $page instanceof Title ) {
+			// Callers will typically have a PageRecord
+			if ( $page->isRedirect() ) {
+				$query['redirect'] = 'no';
+			}
+		} elseif ( $page->getNamespace() !== NS_SPECIAL ) {
+			// We don't know whether it's a redirect, so add the parameter, just to be sure.
 			$query['redirect'] = 'no';
 		}
+
+		$target = TitleValue::castPageToLinkTarget( $page );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return wfMessage( 'backlinksubtitle' )
-			->rawParams( $linkRenderer->makeLink( $title, null, [], $query ) );
+			->rawParams( $linkRenderer->makeLink( $target, null, [], $query ) );
 	}
 
 	/**
 	 * Add a subtitle containing a backlink to a page
 	 *
-	 * @param Title $title Title to link to
+	 * @param PageReference $title Title to link to
 	 * @param array $query Array of additional parameters to include in the link
 	 */
-	public function addBacklinkSubtitle( Title $title, $query = [] ) {
+	public function addBacklinkSubtitle( PageReference $title, $query = [] ) {
 		$this->addSubtitle( self::buildBacklinkSubtitle( $title, $query ) );
 	}
 
@@ -1777,14 +1787,14 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext in the user interface language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
-	 * @param Title|null $title Optional title to use; default of `null`
+	 * @param PageReference|null $title Optional title to use; default of `null`
 	 *   means use current page title.
 	 * @throws MWException if $title is not provided and OutputPage::getTitle()
 	 *   is null
 	 * @since 1.32
 	 */
 	public function addWikiTextAsInterface(
-		$text, $linestart = true, Title $title = null
+		$text, $linestart = true, PageReference $title = null
 	) {
 		if ( $title === null ) {
 			$title = $this->getTitle();
@@ -1827,14 +1837,14 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext in the page content language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
-	 * @param Title|null $title Optional title to use; default of `null`
+	 * @param PageReference|null $title Optional title to use; default of `null`
 	 *   means use current page title.
 	 * @throws MWException if $title is not provided and OutputPage::getTitle()
 	 *   is null
 	 * @since 1.32
 	 */
 	public function addWikiTextAsContent(
-		$text, $linestart = true, Title $title = null
+		$text, $linestart = true, PageReference $title = null
 	) {
 		if ( $title === null ) {
 			$title = $this->getTitle();
@@ -1850,15 +1860,15 @@ class OutputPage extends ContextSource {
 	 * Output is unwrapped.
 	 *
 	 * @param string $text Wikitext
-	 * @param Title $title
-	 * @param bool $linestart Is this the start of a line?
+	 * @param PageReference $title
+	 * @param bool $linestart Is this the start of a line?@param
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
 	 * @param string|null $wrapperClass if not empty, wraps the output in
 	 *   a `<div class="$wrapperClass">`
 	 */
 	private function addWikiTextTitleInternal(
-		$text, Title $title, $linestart, $interface, $wrapperClass = null
+		$text, PageReference $title, $linestart, $interface, $wrapperClass = null
 	) {
 		$parserOutput = $this->parseInternal(
 			$text, $title, $linestart, $interface
@@ -2093,7 +2103,7 @@ class OutputPage extends ContextSource {
 	 * Parse wikitext and return the HTML (internal implementation helper)
 	 *
 	 * @param string $text
-	 * @param Title $title The title to use
+	 * @param PageReference $title The title to use
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
@@ -2744,7 +2754,7 @@ class OutputPage extends ContextSource {
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
-			$returnto = Title::newFromText( $request->getVal( 'title', '' ) );
+			$returnto = Title::newFromText( $request->getText( 'title' ) );
 			if ( $action == 'edit' ) {
 				$msg = 'whitelistedittext';
 				$displayReturnto = $returnto;
@@ -2915,7 +2925,7 @@ class OutputPage extends ContextSource {
 	 * or the title indicated in the request, or else the main page
 	 *
 	 * @param mixed|null $unused
-	 * @param Title|string|null $returnto Title or String to return to
+	 * @param PageReference|LinkTarget|string|null $returnto Page to return to
 	 * @param string|null $returntoquery Query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
@@ -2932,17 +2942,18 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( is_object( $returnto ) ) {
-			$titleObj = $returnto;
+			$linkTarget = TitleValue::castPageToLinkTarget( $returnto );
 		} else {
-			$titleObj = Title::newFromText( $returnto );
-		}
-		// We don't want people to return to external interwiki. That
-		// might potentially be used as part of a phishing scheme
-		if ( !is_object( $titleObj ) || $titleObj->isExternal() ) {
-			$titleObj = Title::newMainPage();
+			$linkTarget = Title::newFromText( $returnto );
 		}
 
-		$this->addReturnTo( $titleObj, wfCgiToArray( $returntoquery ) );
+		// We don't want people to return to external interwiki. That
+		// might potentially be used as part of a phishing scheme
+		if ( !is_object( $linkTarget ) || $linkTarget->isExternal() ) {
+			$linkTarget = Title::newMainPage();
+		}
+
+		$this->addReturnTo( $linkTarget, wfCgiToArray( $returntoquery ) );
 	}
 
 	private function getRlClientContext() {
@@ -2964,7 +2975,7 @@ class OutputPage extends ContextSource {
 			);
 			if ( $this->contentOverrideCallbacks ) {
 				$this->rlClientContext = new DerivativeResourceLoaderContext( $this->rlClientContext );
-				$this->rlClientContext->setContentOverrideCallback( function ( Title $title ) {
+				$this->rlClientContext->setContentOverrideCallback( function ( $title ) {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
 						$content = $callback( $title );
 						if ( $content !== null ) {
@@ -2973,10 +2984,9 @@ class OutputPage extends ContextSource {
 								// Proactively replace this so that we can display a message
 								// to the user, instead of letting it go to Html::inlineScript(),
 								// where it would be considered a server-side issue.
-								$titleFormatted = $title->getPrefixedText();
 								$content = new JavaScriptContent(
 									Xml::encodeJsCall( 'mw.log.error', [
-										"Cannot preview $titleFormatted due to script-closing tag."
+										"Cannot preview $title due to script-closing tag."
 									] )
 								);
 							}
@@ -3014,7 +3024,6 @@ class OutputPage extends ContextSource {
 				'noscript',
 				'user.styles',
 			] );
-			$this->getSkin()->doSetupSkinUserCss( $this );
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
@@ -3130,11 +3139,6 @@ class OutputPage extends ContextSource {
 			$bodyClasses[] = 'mw-underline-' . ( $underline ? 'always' : 'never' );
 		}
 
-		if ( $this->getLanguage()->capitalizeAllNouns() ) {
-			# A <body> class is probably not the best way to do this . . .
-			$bodyClasses[] = 'capitalize-all-nouns';
-		}
-
 		// Parser feature migration class
 		// The idea is that this will eventually be removed, after the wikitext
 		// which requires it is cleaned up.
@@ -3220,9 +3224,10 @@ class OutputPage extends ContextSource {
 	 * JS stuff to put at the bottom of the `<body>`.
 	 * These are legacy scripts ($this->mScripts), and user JS.
 	 *
+	 * @param string $extraHtml (only for use by this->tailElement(); will be removed in future)
 	 * @return string|WrappedStringList HTML
 	 */
-	public function getBottomScripts() {
+	public function getBottomScripts( $extraHtml = '' ) {
 		$chunks = [];
 		$chunks[] = $this->getRlClient()->getBodyHtml();
 
@@ -3237,6 +3242,10 @@ class OutputPage extends ContextSource {
 				$this->CSP->getNonce()
 			);
 		}
+		// This should be added last because the extra html comes from
+		// SkinAfterBottomScripts hook.
+		// TODO: Run the hook here directly and remove the parameter.
+		$chunks[] = $extraHtml;
 
 		return self::combineWrappedStrings( $chunks );
 	}
@@ -3383,9 +3392,9 @@ class OutputPage extends ContextSource {
 			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $this->performerCanEditOrCreate( $this->getAuthority(), $title );
+		$vars['wgIsProbablyEditable'] = $this->getAuthority()->probablyCan( 'edit', $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
-			$this->performerCanEditOrCreate( $this->getAuthority(), $relevantTitle );
+			$this->getAuthority()->probablyCan( 'edit', $relevantTitle );
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
@@ -3401,9 +3410,11 @@ class OutputPage extends ContextSource {
 		}
 		// End of stable config vars
 
+		$titleFormatter = $services->getTitleFormatter();
+
 		if ( $this->mRedirectedFrom ) {
 			// @internal For skin JS
-			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
+			$vars['wgRedirectedFrom'] = $titleFormatter->getPrefixedDBkey( $this->mRedirectedFrom );
 		}
 
 		// Allow extensions to add their custom variables to the mw.config map.
@@ -3463,7 +3474,7 @@ class OutputPage extends ContextSource {
 	public function userCanPreview() {
 		$request = $this->getRequest();
 		if (
-			$request->getVal( 'action' ) !== 'submit' ||
+			$request->getRawVal( 'action' ) !== 'submit' ||
 			!$request->wasPosted()
 		) {
 			return false;
@@ -3485,19 +3496,6 @@ class OutputPage extends ContextSource {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @param Authority $performer
-	 * @param PageIdentity $page
-	 * @return bool
-	 */
-	private function performerCanEditOrCreate(
-		Authority $performer,
-		PageIdentity $page
-	) {
-		return $performer->probablyCan( 'edit', $page )
-		&& ( $page->exists() || $performer->probablyCan( 'create', $page ) );
 	}
 
 	/**
@@ -3535,6 +3533,14 @@ class OutputPage extends ContextSource {
 			] );
 		}
 
+		# Browser based phonenumber detection
+		if ( $config->get( 'BrowserFormatDetection' ) !== false ) {
+			$tags['meta-format-detection'] = Html::element( 'meta', [
+				'name' => 'format-detection',
+				'content' => $config->get( 'BrowserFormatDetection' ),
+			] );
+		}
+
 		foreach ( $this->mMetatags as $tag ) {
 			if ( strncasecmp( $tag[0], 'http:', 5 ) === 0 ) {
 				$a = 'http-equiv';
@@ -3562,7 +3568,7 @@ class OutputPage extends ContextSource {
 
 		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
-			if ( $this->performerCanEditOrCreate( $this->getAuthority(), $this->getTitle() ) ) {
+			if ( $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', [
@@ -4008,12 +4014,17 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
 		// This MUST match the equivalent logic in CSSMin::remapOne()
-		$hash = md5_file( "$localPath/$file" );
-		if ( $hash === false ) {
-			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );
-			$hash = '';
+		$localFile = "$localPath/$file";
+		$url = "$remotePathPrefix/$file";
+		if ( file_exists( $localFile ) ) {
+			$hash = md5_file( $localFile );
+			if ( $hash === false ) {
+				wfLogWarning( __METHOD__ . ": Failed to hash $localFile" );
+				$hash = '';
+			}
+			$url .= '?' . substr( $hash, 0, 5 );
 		}
-		return "$remotePathPrefix/$file?" . substr( $hash, 0, 5 );
+		return $url;
 	}
 
 	/**
@@ -4101,11 +4112,11 @@ class OutputPage extends ContextSource {
 	 *
 	 * For example:
 	 *
-	 *     $wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>", 'some-error' );
+	 *     $wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>", 'some-error' );
 	 *
 	 * Is equivalent to:
 	 *
-	 *     $wgOut->addWikiTextAsInterface( "<div class='error'>\n"
+	 *     $wgOut->addWikiTextAsInterface( "<div class='errorbox'>\n"
 	 *         . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
 	 * The newline after the opening div is needed in some wikitext. See T21226.
@@ -4194,5 +4205,32 @@ class OutputPage extends ContextSource {
 	 */
 	public function getCSP() {
 		return $this->CSP;
+	}
+
+	/**
+	 * The final bits that go to the bottom of a page
+	 * HTML document including the closing tags
+	 *
+	 * @internal
+	 * @since 1.37
+	 * @param Skin $skin
+	 * @return string
+	 */
+	public function tailElement( $skin ) {
+		// T257704: Temporarily run skin hook here pending
+		// creation dedicated outputpage hook for this
+		$extraHtml = '';
+		$this->getHookRunner()->onSkinAfterBottomScripts( $skin, $extraHtml );
+
+		$tail = [
+			MWDebug::getDebugHTML( $skin ),
+			$this->getBottomScripts( $extraHtml ),
+			wfReportTime( $this->getCSP()->getNonce() ),
+			MWDebug::getHTMLDebugLog()
+			. Html::closeElement( 'body' )
+			. Html::closeElement( 'html' )
+		];
+
+		return WrappedStringList::join( "\n", $tail );
 	}
 }

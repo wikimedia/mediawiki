@@ -22,7 +22,7 @@
  * Wrapper around strtr() that holds replacements
  */
 class ReplacementArray {
-	private $data = [];
+	private $data;
 
 	/**
 	 * Create an object with the specified replacement array

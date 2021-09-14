@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * Class to parse and build external user names
@@ -31,12 +32,12 @@ class ExternalUserNames {
 	/**
 	 * @var string
 	 */
-	private $usernamePrefix = 'imported';
+	private $usernamePrefix;
 
 	/**
 	 * @var bool
 	 */
-	private $assignKnownUsers = false;
+	private $assignKnownUsers;
 
 	/**
 	 * @var bool[]
@@ -105,7 +106,8 @@ class ExternalUserNames {
 	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
-		if ( User::getCanonicalName( $name, 'usable' ) === false ) {
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		if ( $userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE ) === false ) {
 			return $name;
 		}
 

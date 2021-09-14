@@ -324,6 +324,13 @@
 		assert.strictEqual( formatParse( 'mixed-to-sentence' ), 'This has messed up capitalization', 'To sentence case' );
 		mw.messages.set( 'all-caps-except-first', '{{lcfirst:{{uc:thIS hAS MEsSed uP CapItaliZatiON}}}}' );
 		assert.strictEqual( formatParse( 'all-caps-except-first' ), 'tHIS HAS MESSED UP CAPITALIZATION', 'To opposite sentence case' );
+
+		mw.messages.set( 'ucfirst-outside-BMP', '{{ucfirst:\uD803\uDCC0 is U+10CC0 (OLD HUNGARIAN SMALL LETTER A)}}' );
+		assert.strictEqual( formatParse( 'ucfirst-outside-BMP' ), '\uD803\uDC80 is U+10CC0 (OLD HUNGARIAN SMALL LETTER A)', 'Ucfirst outside BMP' );
+
+		mw.messages.set( 'lcfirst-outside-BMP', '{{lcfirst:\uD803\uDC80 is U+10C80 (OLD HUNGARIAN CAPITAL LETTER A)}}' );
+		assert.strictEqual( formatParse( 'lcfirst-outside-BMP' ), '\uD803\uDCC0 is U+10C80 (OLD HUNGARIAN CAPITAL LETTER A)', 'Lcfirst outside BMP' );
+
 	} );
 
 	QUnit.test( 'Grammar', function ( assert ) {
@@ -1334,26 +1341,7 @@
 				FOO: 'foo',
 				BAR: 'bar'
 			},
-			'setParserDefaults is shallow by default'
-		);
-
-		mw.jqueryMsg.setParserDefaults(
-			{
-				magic: {
-					BAZ: 'baz'
-				}
-			},
-			true
-		);
-
-		assert.deepEqual(
-			mw.jqueryMsg.getParserDefaults().magic,
-			{
-				FOO: 'foo',
-				BAR: 'bar',
-				BAZ: 'baz'
-			},
-			'setParserDefaults is deep if requested'
+			'setParserDefaults updates the parser defaults'
 		);
 	} );
 }() );

@@ -9,7 +9,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 	protected $tmpFilepath;
 	protected $text = 'testing';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$filename = 'Foo.png';
@@ -37,8 +37,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			'img_sha1' => sha1( $this->text ),
 		];
 
-		$dbMock->expects( $this->any() )
-			->method( 'select' )
+		$dbMock->method( 'select' )
 			->will( $this->onConsecutiveCalls(
 				new FakeResultWrapper( [ $imageRow ] ), // image
 				new FakeResultWrapper( [] ), // image
@@ -46,7 +45,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			) );
 
 		$repoMock = $this->getMockBuilder( LocalRepo::class )
-			->setMethods( [ 'getMasterDB' ] )
+			->onlyMethods( [ 'getPrimaryDB' ] )
 			->setConstructorArgs( [ [
 					'name' => 'migratefilerepolayouttest',
 					'backend' => $backend
@@ -54,16 +53,14 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$repoMock
-			->expects( $this->any() )
-			->method( 'getMasterDB' )
-			->will( $this->returnValue( $dbMock ) );
+			->method( 'getPrimaryDB' )
+			->willReturn( $dbMock );
 
 		$this->migratorMock = $this->getMockBuilder( MigrateFileRepoLayout::class )
-			->setMethods( [ 'getRepo' ] )->getMock();
+			->onlyMethods( [ 'getRepo' ] )->getMock();
 		$this->migratorMock
-			->expects( $this->any() )
 			->method( 'getRepo' )
-			->will( $this->returnValue( $repoMock ) );
+			->willReturn( $repoMock );
 
 		$this->tmpFilepath = TempFSFile::factory(
 			'migratefilelayout-test-', 'png', wfTempDir() )->getPath();
@@ -92,7 +89,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 		rmdir( $directory );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		foreach ( glob( $this->tmpPrefix . '*' ) as $directory ) {
 			$this->deleteFilesRecursively( $directory );
 		}

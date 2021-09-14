@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="Generic.ControlStructures.InlineControlStructure" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
@@ -14,7 +13,6 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.PHPUnit.AssertCount.NotUsed" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser" />
@@ -57,47 +55,42 @@
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
-		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
-		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
-		<exclude-pattern>maintenance/CommandLineInc\.php</exclude-pattern>
-		<exclude-pattern>tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/doMaintenance\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/mergeMessageFileList\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/CommandLineInc\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Classes.DuplicateClassName.Found">
-		<exclude-pattern>*/includes/libs/rdbms/database/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
+		<exclude-pattern>*/includes/libs/rdbms/dbal/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
-		<exclude-pattern>*/languages/messages/Messages*\.php</exclude-pattern>
+		<exclude-pattern>*/languages/messages/*</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.NotMatch">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/specials/SpecialMostimages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialRandompage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_if_switch\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_utf8_title_check\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTitles\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/getText\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/importDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/install\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/invalidateUserSessions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/jsparse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/lag\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/minify\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/parse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
@@ -110,16 +103,16 @@
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
-		<exclude-pattern>*/languages/*\.php</exclude-pattern>
+		<exclude-pattern>*/languages/*</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
-		<exclude-pattern>*/tests/parser/*\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/parser/*</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/bootstrap\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/phpunit\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.WrongCase">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/language/alltrans\.php</exclude-pattern>
@@ -136,10 +129,10 @@
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
-		<exclude-pattern>*/tests/phpunit/unit/includes/GlobalFunctions/*\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/unit/includes/GlobalFunctions/*</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.PHP.NoSilencedErrors.Discouraged">
 		<!--
@@ -162,14 +155,14 @@
 		in MediaWikiTestCaseTrait can still be bypassed and cause a random failures.
 
 		-->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/libs/rdbms/database/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
+		<exclude-pattern>*/includes/libs/rdbms/dbal/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
@@ -178,20 +171,20 @@
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
-		<exclude-pattern>*/languages/*\.php</exclude-pattern>
+		<exclude-pattern>*/languages/*</exclude-pattern>
 		<!-- We don't care that much about violations in tests -->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubUserLang\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">
-		<exclude-pattern>*/tests/phpunit/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/*</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.escapeshellarg">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
@@ -200,7 +193,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/GlobalFunctions\.php</exclude-pattern>
@@ -210,20 +203,20 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.proc_open">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>includes/export/DumpPipeOutput\.php</exclude-pattern>
-		<exclude-pattern>includes/resourceloader/ResourceLoaderImage\.php</exclude-pattern>
-		<exclude-pattern>includes/shell/Command\.php</exclude-pattern>
-		<exclude-pattern>maintenance/includes/TextPassDumper\.php</exclude-pattern>
-		<exclude-pattern>maintenance/mysql\.php</exclude-pattern>
-		<exclude-pattern>maintenance/storage/recompressTracked\.php</exclude-pattern>
-		<exclude-pattern>tests/parser/editTests\.php</exclude-pattern>
+		<exclude-pattern>*/includes/export/DumpPipeOutput\.php</exclude-pattern>
+		<exclude-pattern>*/includes/resourceloader/ResourceLoaderImage\.php</exclude-pattern>
+		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/includes/TextPassDumper\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
+		<exclude-pattern>*/tests/parser/editTests\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.shell_exec">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
@@ -231,13 +224,13 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.system">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Commenting.MissingCovers.MissingCovers">
-		<exclude-pattern>tests/phpunit/structure/*</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/structure/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
 		<!--
@@ -250,9 +243,7 @@
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
-	<arg name="extensions" value="php,sample"/>
-	<exclude-pattern type="relative">^extensions/</exclude-pattern>
-	<exclude-pattern type="relative">^skins/</exclude-pattern>
-	<exclude-pattern>LocalSettings\.php</exclude-pattern>
-	<exclude-pattern>LocalSettings-installer\.php</exclude-pattern>
+	<arg name="extensions" value="php"/>
+	<exclude-pattern type="relative">^(extensions|skins)/*</exclude-pattern>
+	<exclude-pattern>LocalSettings(-installer)?\.php</exclude-pattern>
 </ruleset>

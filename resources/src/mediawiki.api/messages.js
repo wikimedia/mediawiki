@@ -13,16 +13,18 @@
 		/**
 		 * Get a set of messages.
 		 *
-		 * @param {Array} messages Messages to retrieve
+		 * @param {string|string[]} messages Messages to retrieve
 		 * @param {Object} [options] Additional parameters for the API call
 		 * @return {jQuery.Promise}
 		 */
 		getMessages: function ( messages, options ) {
+			var that = this;
 			options = options || {};
+			messages = Array.isArray( messages ) ? messages : [ messages ];
 			return this.get( $.extend( {
 				action: 'query',
 				meta: 'allmessages',
-				ammessages: messages,
+				ammessages: messages.slice( 0, 50 ),
 				amlang: mw.config.get( 'wgUserLanguage' ),
 				formatversion: 2
 			}, options ) ).then( function ( data ) {
@@ -34,14 +36,29 @@
 					}
 				} );
 
-				return result;
+				// If no more messages are needed, return now, otherwise calls
+				// itself recursively, because only 50 messages can be loaded
+				// at a time. This limit of 50 comes from ApiBase::LIMIT_SML1;
+				// ApiQueryAllMessages sets the 'ammessages' parameter to include
+				// multiple values, and for users without the `apihighlimits` right
+				// LIMIT_SML1 is the limit imposed on the number of values.
+				if ( messages.length <= 50 ) {
+					return result;
+				}
+
+				return that.getMessages( messages.slice( 50 ), options ).then(
+					function ( innerResult ) {
+						// Merge result objects
+						return $.extend( result, innerResult );
+					}
+				);
 			} );
 		},
 
 		/**
 		 * Loads a set of messages and add them to mw.messages.
 		 *
-		 * @param {Array} messages Messages to retrieve
+		 * @param {string|string[]} messages Messages to retrieve
 		 * @param {Object} [options] Additional parameters for the API call
 		 * @return {jQuery.Promise}
 		 */
@@ -53,7 +70,7 @@
 		 * Loads a set of messages and add them to mw.messages. Only messages that are not already known
 		 * are loaded. If all messages are known, the returned promise is resolved immediately.
 		 *
-		 * @param {Array} messages Messages to retrieve
+		 * @param {string[]} messages Messages to retrieve
 		 * @param {Object} [options] Additional parameters for the API call
 		 * @return {jQuery.Promise}
 		 */

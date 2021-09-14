@@ -90,15 +90,12 @@ interface ActorNormalization {
 	 * If it is already assigned, return the existing ID.
 	 *
 	 * @param UserIdentity $user
-	 * @param IDatabase|null $dbw The database connection to acquire the ID from.
+	 * @param IDatabase $dbw The database connection to acquire the ID from.
 	 *        The database must correspond to the wiki this ActorNormalization is bound to.
-	 *        If not given, a connection for this ActorNormalization's wiki will be created.
-	 *        Not providing a database connection triggers a deprecation warning!
-	 *        In the future, this parameter will be required.
 	 * @return int greater then 0
 	 * @throws CannotCreateActorException if no actor ID has been assigned to this $user
 	 */
-	public function acquireActorId( UserIdentity $user, IDatabase $dbw = null ): int;
+	public function acquireActorId( UserIdentity $user, IDatabase $dbw ): int;
 
 	/**
 	 * Find an actor by $id.

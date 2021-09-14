@@ -6,25 +6,25 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @coversDefaultClass DBFileJournal
  * @covers ::__construct
- * @covers ::getMasterDB
+ * @covers ::getPrimaryDB
  * @group Database
  */
 class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		global $IP;
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		if ( $db->getType() !== 'mysql' ) {
 			return;
 		}
-		if ( !$db->tableExists( 'filejournal' ) ) {
+		if ( !$db->tableExists( 'filejournal', __METHOD__ ) ) {
 			$db->sourceFile( "$IP/maintenance/archives/patch-filejournal.sql" );
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		if ( $db->getType() !== 'mysql' ) {
 			$this->markTestSkipped( 'No filejournal schema available for this database type' );
 		}
@@ -159,8 +159,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( $now - 60 );
 		$change = [ 'op' => 'update', 'path' => '/path1',
 			'newSha1' => base_convert( sha1( 'b' ), 16, 36 ) ];
-		$this->assertEquals(
-		   StatusValue::newGood(), $journal->logChangeBatch( [ $change ], 'batch2' ) );
+		$this->assertEquals( StatusValue::newGood(), $journal->logChangeBatch( [ $change ], 'batch2' ) );
 		$expectedEntries[] = $makeExpectedEntry(
 			...array_merge( array_values( $change ), [ 'batch2', $now - 60 ] ) );
 

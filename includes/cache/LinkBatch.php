@@ -20,8 +20,15 @@
  * @file
  * @ingroup Cache
  */
+
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -37,6 +44,11 @@ class LinkBatch {
 	 * @var array[] 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	public $data = [];
+
+	/**
+	 * @var PageIdentity[]|null PageIdentity objects corresponding to the links in the batch
+	 */
+	private $pageIdentities = null;
 
 	/**
 	 * @var string|null For debugging which method is using this class.
@@ -69,7 +81,7 @@ class LinkBatch {
 	private $loadBalancer;
 
 	/**
-	 * @param Traversable|LinkTarget[] $arr Initial items to be added to the batch
+	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial items to be added to the batch
 	 * @param LinkCache|null $linkCache
 	 * @param TitleFormatter|null $titleFormatter
 	 * @param Language|null $contentLanguage
@@ -116,14 +128,21 @@ class LinkBatch {
 	}
 
 	/**
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageReference $link
 	 */
-	public function addObj( $linkTarget ) {
-		if ( is_object( $linkTarget ) ) {
-			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
-		} else {
-			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object" );
+	public function addObj( $link ) {
+		if ( !$link ) {
+			// Don't die if we got null, just skip. There is nothing to do anyway.
+			// For now, let's avoid things like T282180. We should be more strict in the future.
+			LoggerFactory::getInstance( 'LinkBatch' )->warning(
+				'Skipping null link, probably due to a bad title.',
+				[ 'trace' => wfBacktrace( true ) ]
+			);
+			return;
 		}
+
+		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $link, '$link' );
+		$this->add( $link->getNamespace(), $link->getDBkey() );
 	}
 
 	/**
@@ -179,6 +198,21 @@ class LinkBatch {
 	}
 
 	/**
+	 * Do the query, add the results to the LinkCache object,
+	 * and return PageIdentity instances corresponding to the pages in the batch.
+	 *
+	 * @since 1.37
+	 * @return PageIdentity[] A list of PageIdentities
+	 */
+	public function getPageIdentities(): array {
+		if ( $this->pageIdentities === null ) {
+			$this->execute();
+		}
+
+		return $this->pageIdentities;
+	}
+
+	/**
 	 * Do the query and add the results to a given LinkCache object
 	 * Return an array mapping PDBK to ID
 	 *
@@ -210,17 +244,34 @@ class LinkBatch {
 
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
+		if ( $this->pageIdentities === null ) {
+			$this->pageIdentities = [];
+		}
+
 		$ids = [];
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
-			$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
-			if ( $title ) {
+			try {
+				$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
+
 				$cache->addGoodLinkObjFromRow( $title, $row );
 				$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 				$ids[$pdbk] = $row->page_id;
-			} else {
-				wfLogWarning( __METHOD__ . ': encountered invalid title: ' .
-					$row->page_namespace . '-' . $row->page_title );
+
+				$pageIdentity = new PageIdentityValue(
+					(int)$row->page_id,
+					(int)$row->page_namespace,
+					$row->page_title,
+					PageIdentity::LOCAL
+				);
+
+				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
+				$this->pageIdentities[$key] = $pageIdentity;
+			} catch ( InvalidArgumentException $ex ) {
+				LoggerFactory::getInstance( 'LinkBatch' )->warning(
+					'Encountered invalid title',
+					[ 'title_namespace' => $row->page_namespace, 'title_dbkey' => $row->page_title ]
+				);
 			}
 
 			unset( $remaining[$row->page_namespace][$row->page_title] );
@@ -229,13 +280,21 @@ class LinkBatch {
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $unused ) {
-				$title = TitleValue::tryNew( (int)$ns, (string)$dbkey );
-				if ( $title ) {
+				try {
+					$title = new TitleValue( (int)$ns, (string)$dbkey );
+
 					$cache->addBadLinkObj( $title );
 					$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 					$ids[$pdbk] = 0;
-				} else {
-					wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $ns . '-' . $dbkey );
+
+					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, PageIdentity::LOCAL );
+					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
+					$this->pageIdentities[$key] = $pageIdentity;
+				} catch ( InvalidArgumentException $ex ) {
+					LoggerFactory::getInstance( 'LinkBatch' )->warning(
+						'Encountered invalid title',
+						[ 'title_namespace' => $ns, 'title_dbkey' => $dbkey ]
+					);
 				}
 			}
 		}

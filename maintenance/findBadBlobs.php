@@ -502,7 +502,7 @@ class FindBadBlobs extends Maintenance {
 
 		$badAddress = substr( $badAddress, 0, 255 );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->update(
 			'content',
 			[ 'content_address' => $badAddress ],

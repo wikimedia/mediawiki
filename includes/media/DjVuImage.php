@@ -63,21 +63,20 @@ class DjVuImage {
 	}
 
 	/**
-	 * Return data in the style of getimagesize()
-	 * @return array|false Array or false on failure
+	 * Return width and height
+	 * @return array An array with "width" and "height" keys, or an empty array on failure.
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
 
 		if ( $data !== false ) {
-			$width = $data['width'];
-			$height = $data['height'];
-
-			return [ $width, $height, 'DjVu',
-				"width=\"$width\" height=\"$height\"" ];
+			return [
+				'width' => $data['width'],
+				'height' => $data['height']
+			];
+		} else {
+			return [];
 		}
-
-		return false;
 	}
 
 	// ---------
@@ -250,22 +249,18 @@ class DjVuImage {
 	 * @return string|bool
 	 */
 	public function retrieveMetaData() {
-		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
+		global $wgDjvuDump, $wgDjvuTxt;
 
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
 		if ( isset( $wgDjvuDump ) ) {
-			# djvudump is faster as of version 3.5
+			# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
 			# https://sourceforge.net/p/djvu/bugs/71/
 			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
-		} elseif ( isset( $wgDjvuToXML ) ) {
-			$cmd = Shell::escape( $wgDjvuToXML ) . ' --without-anno --without-text ' .
-				Shell::escape( $this->mFilename );
-			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;
 		}

@@ -46,9 +46,6 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var RevisionFactory */
 	private $revisionFactory;
 
@@ -65,7 +62,6 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
-	 * @param ActorMigration $actorMigration
 	 * @param RevisionFactory $revisionFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserNameUtils $userNameUtils
@@ -75,7 +71,6 @@ class SpecialDeletedContributions extends SpecialPage {
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		RevisionFactory $revisionFactory,
 		NamespaceInfo $namespaceInfo,
 		UserNameUtils $userNameUtils,
@@ -85,7 +80,6 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->revisionFactory = $revisionFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userNameUtils = $userNameUtils;
@@ -145,10 +139,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
-		$out->setHTMLTitle( $this->msg(
-			'pagetitle',
-			$this->msg( 'deletedcontributions-title', $target )->plain()
-		)->inContentLanguage() );
+		$out->setPageTitle( $this->msg( 'deletedcontributions-title', $target ) );
 
 		$this->getForm();
 
@@ -160,7 +151,6 @@ class SpecialDeletedContributions extends SpecialPage {
 			$this->getHookContainer(),
 			$this->loadBalancer,
 			$this->commentStore,
-			$this->actorMigration,
 			$this->revisionFactory
 		);
 		if ( !$pager->getNumRows() ) {
@@ -236,7 +226,8 @@ class SpecialDeletedContributions extends SpecialPage {
 			$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
 			if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
-					$nt = $this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+					$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
+						. ':' . $block->getTargetName();
 				}
 
 				// LogEventsList::showLogExtract() wants the first parameter by ref

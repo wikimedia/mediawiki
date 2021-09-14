@@ -22,17 +22,20 @@
 
 namespace MediaWiki\Block;
 
-use ActorMigration;
 use AutoCommitUpdate;
 use CommentStore;
 use DeferredUpdates;
+use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
-use User;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -57,8 +60,8 @@ class DatabaseBlockStore {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var ActorMigration */
-	private $actorMigration;
+	/** @var ActorStoreFactory */
+	private $actorStoreFactory;
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
@@ -75,36 +78,42 @@ class DatabaseBlockStore {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param LoggerInterface $logger
-	 * @param ActorMigration $actorMigration
+	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		ActorMigration $actorMigration,
+		ActorStoreFactory $actorStoreFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->logger = $logger;
-		$this->actorMigration = $actorMigration;
+		$this->actorStoreFactory = $actorStoreFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -117,7 +126,7 @@ class DatabaseBlockStore {
 			return;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$blockRestrictionStore = $this->blockRestrictionStore;
 
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
@@ -139,11 +148,37 @@ class DatabaseBlockStore {
 	}
 
 	/**
+	 * Throws an exception if the given database connection does not match the
+	 * given wiki ID.
+	 *
+	 * @param ?IDatabase $db
+	 * @param string|false $expectedWiki
+	 */
+	private function checkDatabaseDomain( ?IDatabase $db, $expectedWiki ) {
+		if ( $db ) {
+			$dbDomain = $db->getDomainID();
+			$storeDomain = $this->loadBalancer->resolveDomainID( $expectedWiki );
+			if ( $dbDomain !== $storeDomain ) {
+				throw new InvalidArgumentException(
+					"DB connection domain '$dbDomain' does not match '$storeDomain'"
+				);
+			}
+		} else {
+			if ( $expectedWiki !== UserIdentity::LOCAL ) {
+				throw new InvalidArgumentException(
+					"Must provide a database connection for wiki '$expectedWiki'."
+				);
+			}
+		}
+	}
+
+	/**
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer
+	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer.
+	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 * @return bool|array False on failure, assoc array on success:
 	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 * @throws MWException
@@ -156,12 +191,14 @@ class DatabaseBlockStore {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
 
+		$this->checkDatabaseDomain( $database, $block->getBlocker()->getWikiId() );
+
 		$this->logger->debug( 'Inserting block; timestamp ' . $block->getTimestamp() );
 
 		// TODO T258866 - consider passing the database
 		$this->purgeExpiredBlocks();
 
-		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
@@ -205,11 +242,12 @@ class DatabaseBlockStore {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
 
 			if ( $this->options->get( 'BlockDisablesLogin' ) ) {
-				$target = $block->getTarget();
-				if ( $target instanceof User ) {
+				$targetUserIdentity = $block->getTargetUserIdentity();
+				if ( $targetUserIdentity ) {
+					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
 					// Change user login token to force them to be logged out.
-					$target->setToken();
-					$target->saveSettings();
+					$targetUser->setToken();
+					$targetUser->saveSettings();
 				}
 			}
 
@@ -230,7 +268,14 @@ class DatabaseBlockStore {
 	public function updateBlock( DatabaseBlock $block ) {
 		$this->logger->debug( 'Updating block; timestamp ' . $block->getTimestamp() );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		// We could allow cross-wiki updates here, just like we do in insertBlock().
+		Assert::parameter(
+			$block->getBlocker()->getWikiId() === UserIdentity::LOCAL,
+			'$block->getBlocker()',
+			'must belong to the local wiki.'
+		);
+
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -297,7 +342,7 @@ class DatabaseBlockStore {
 	 * @return bool whether it was deleted
 	 * @throws MWException
 	 */
-	public function deleteBlock( DatabaseBlock $block ) : bool {
+	public function deleteBlock( DatabaseBlock $block ): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -309,7 +354,7 @@ class DatabaseBlockStore {
 				__METHOD__ . " requires that a block id be set\n"
 			);
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
 		$dbw->delete(
@@ -332,28 +377,33 @@ class DatabaseBlockStore {
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase $dbw
+	 * @param IDatabase $dbw Database to use if not the same as the one in the load balancer.
+	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 * @return array
 	 */
 	private function getArrayForDatabaseBlock(
 		DatabaseBlock $block,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$expiry = $dbw->encodeExpiry( $block->getExpiry() );
 
-		$target = $block->getTarget();
-		$forcedTargetId = $block->getForcedTargetId();
-		if ( $forcedTargetId ) {
-			$userId = $forcedTargetId;
-		} elseif ( $target instanceof User ) {
-			$userId = $target->getId();
+		if ( $block->getTargetUserIdentity() ) {
+			$userId = $block->getTargetUserIdentity()->getId();
 		} else {
 			$userId = 0;
 		}
+		if ( !$block->getBlocker() ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
+		// DatabaseBlockStore supports inserting cross-wiki blocks by passing non-local IDatabase and blocker.
+		$blockerActor = $this->actorStoreFactory
+			->getActorStore( $dbw->getDomainID() )
+			->acquireActorId( $block->getBlocker(), $dbw );
 
 		$blockArray = [
-			'ipb_address'          => (string)$target,
+			'ipb_address'          => $block->getTargetName(),
 			'ipb_user'             => $userId,
+			'ipb_by_actor'         => $blockerActor,
 			'ipb_timestamp'        => $dbw->timestamp( $block->getTimestamp() ),
 			'ipb_auto'             => $block->getType() === AbstractBlock::TYPE_AUTO,
 			'ipb_anon_only'        => !$block->isHardblock(),
@@ -373,13 +423,8 @@ class DatabaseBlockStore {
 			'ipb_reason',
 			$block->getReasonComment()
 		);
-		$actorArray = $this->actorMigration->getInsertValues(
-			$dbw,
-			'ipb_by',
-			$block->getBlocker()
-		);
 
-		$combinedArray = $blockArray + $commentArray + $actorArray;
+		$combinedArray = $blockArray + $commentArray;
 		return $combinedArray;
 	}
 
@@ -389,27 +434,29 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array
 	 */
-	private function getArrayForAutoblockUpdate( DatabaseBlock $block ) : array {
+	private function getArrayForAutoblockUpdate( DatabaseBlock $block ): array {
+		if ( !$block->getBlocker() ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$blockerActor = $this->actorStoreFactory
+			->getActorNormalization()
+			->acquireActorId( $block->getBlocker(), $dbw );
 		$blockArray = [
+			'ipb_by_actor'       => $blockerActor,
 			'ipb_create_account' => $block->isCreateAccountBlocked(),
 			'ipb_deleted'        => (int)$block->getHideName(), // typecast required for SQLite
 			'ipb_allow_usertalk' => $block->isUsertalkEditAllowed(),
 			'ipb_sitewide'       => $block->isSitewide(),
 		];
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		$commentArray = $this->commentStore->insert(
 			$dbw,
 			'ipb_reason',
 			$block->getReasonComment()
 		);
-		$actorArray = $this->actorMigration->getInsertValues(
-			$dbw,
-			'ipb_by',
-			$block->getBlocker()
-		);
 
-		$combinedArray = $blockArray + $commentArray + $actorArray;
+		$combinedArray = $blockArray + $commentArray;
 		return $combinedArray;
 	}
 
@@ -420,12 +467,12 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array IDs of retroactive autoblocks made
 	 */
-	private function doRetroactiveAutoblock( DatabaseBlock $block ) : array {
+	private function doRetroactiveAutoblock( DatabaseBlock $block ): array {
 		$autoBlockIds = [];
 		// If autoblock is enabled, autoblock the LAST IP(s) used
 		if ( $block->isAutoblocking() && $block->getType() == AbstractBlock::TYPE_USER ) {
 			$this->logger->debug(
-				'Doing retroactive autoblocks for ' . $block->getTarget()
+				'Doing retroactive autoblocks for ' . $block->getTargetName()
 			);
 
 			$hookAutoBlocked = [];
@@ -451,50 +498,49 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array
 	 */
-	private function performRetroactiveAutoblock( DatabaseBlock $block ) : array {
+	private function performRetroactiveAutoblock( DatabaseBlock $block ): array {
 		if ( !$this->options->get( 'PutIPinRC' ) ) {
 			// No IPs in the recent changes table to autoblock
 			return [];
 		}
 
-		list( $target, $type ) = $block->getTargetAndType();
+		$type = $block->getType();
 		if ( $type !== AbstractBlock::TYPE_USER ) {
 			// Autoblocks only apply to users
 			return [];
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$rcQuery = $this->actorMigration->getWhere( $dbr, 'rc_user', $target, false );
 
-		$options = [
-			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => 1,
-		];
+		$targetUser = $block->getTargetUserIdentity();
+		$actor = $targetUser ? $this->actorStoreFactory->getActorNormalization()->findActorId(
+			$targetUser,
+			$dbr
+		) : null;
 
-		$res = $dbr->select(
-			[ 'recentchanges' ] + $rcQuery['tables'],
-			[ 'rc_ip' ],
-			$rcQuery['conds'],
+		if ( !$actor ) {
+			$this->logger->debug( 'No actor found to retroactively autoblock' );
+			return [];
+		}
+
+		$rcIp = $dbr->selectField(
+			[ 'recentchanges' ],
+			'rc_ip',
+			[ 'rc_actor' => $actor ],
 			__METHOD__,
-			$options,
-			$rcQuery['joins']
+			[ 'ORDER BY' => 'rc_timestamp DESC' ]
 		);
 
-		if ( !$res->numRows() ) {
+		if ( !$rcIp ) {
 			$this->logger->debug( 'No IP found to retroactively autoblock' );
 			return [];
 		}
 
-		$blockIds = [];
-		foreach ( $res as $row ) {
-			if ( $row->rc_ip ) {
-				$id = $block->doAutoblock( $row->rc_ip );
-				if ( $id ) {
-					$blockIds[] = $id;
-				}
-			}
+		$id = $block->doAutoblock( $rcIp );
+		if ( !$id ) {
+			return [];
 		}
-		return $blockIds;
+		return [ $id ];
 	}
 
 }

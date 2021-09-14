@@ -319,7 +319,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @since 1.2.6
 	 * @param string $text
 	 */
-	public function setComment( $text ) {
+	public function setComment( string $text ) {
 		$this->comment = $text;
 	}
 
@@ -542,7 +542,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @since 1.2.6
 	 * @return string
 	 */
-	public function getComment() {
+	public function getComment(): string {
 		return $this->comment;
 	}
 
@@ -675,7 +675,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return bool
 	 */
 	public function importLogItem() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$user = $this->getUserObj() ?: User::newFromName( $this->getUser(), false );
 
@@ -687,7 +687,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
-		$prior = $dbw->selectField( 'logging', '1',
+		$prior = (bool)$dbw->selectField( 'logging', '1',
 			[ 'log_type' => $this->getType(),
 				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
@@ -703,15 +703,17 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 				. $this->timestamp );
 			return false;
 		}
+		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+			->acquireActorId( $user, $dbw );
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+			'log_actor' => $actorId,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_params' => $this->params
-		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() )
-			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $user );
+		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;

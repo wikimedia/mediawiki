@@ -2306,8 +2306,8 @@ Long pages
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:b91ee293&action=edit 09b5b0a2]<br>
 [[MediaWiki_talk:b91ee293|Talk]]
 </td><td>
-WARNING: This page is $1 kilobytes long; some
-browsers may have problems editing pages approaching or longer than 32kb.
+WARNING: This page is $1 kibibytes long; some
+browsers may have problems editing pages approaching or longer than 32 KiB.
 Please consider breaking the page into smaller sections.
 </td><td>
 {{int:b91ee293}}

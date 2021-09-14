@@ -19,16 +19,16 @@
  * @author Roan Kattouw
  */
 
-use RemexHtml\DOM\DOMBuilder;
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\HtmlFormatter;
-use RemexHtml\Serializer\Serializer;
-use RemexHtml\Serializer\SerializerNode;
-use RemexHtml\Tokenizer\Attributes;
-use RemexHtml\Tokenizer\Tokenizer;
-use RemexHtml\TreeBuilder\Dispatcher;
-use RemexHtml\TreeBuilder\Element;
-use RemexHtml\TreeBuilder\TreeBuilder;
+use Wikimedia\RemexHtml\DOM\DOMBuilder;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
+use Wikimedia\RemexHtml\Serializer\Serializer;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
+use Wikimedia\RemexHtml\Tokenizer\Attributes;
+use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
+use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
+use Wikimedia\RemexHtml\TreeBuilder\Element;
+use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 
 /**
  * Parser for Vue single file components (.vue files). See parse() for usage.
@@ -55,13 +55,16 @@ class VueComponentParser {
 	 * @return array
 	 * @throws Exception If the input is invalid
 	 */
-	public function parse( string $html, array $options = [] ) : array {
+	public function parse( string $html, array $options = [] ): array {
 		$dom = $this->parseHTML( $html );
 		// Remex wraps everything in <html><head>, unwrap that
-		$head = $dom->firstChild->firstChild;
+		$head = $dom->getElementsByTagName( 'head' )->item( 0 );
 
 		// Find the <script>, <template> and <style> tags. They can appear in any order, but they
 		// must be at the top level, and there can only be one of each.
+		if ( !$head ) {
+			throw new Exception( 'Parsed DOM did not contain a <head> tag' );
+		}
 		$nodes = $this->findUniqueTags( $head, [ 'script', 'template', 'style' ] );
 
 		// Throw an error if we didn't find a <script> or <template> tag. <style> is optional.
@@ -94,11 +97,12 @@ class VueComponentParser {
 	 * @param string $html
 	 * @return DOMDocument
 	 */
-	private function parseHTML( $html ) : DOMDocument {
+	private function parseHTML( $html ): DOMDocument {
 		$domBuilder = new DOMBuilder( [ 'suppressHtmlNamespace' => true ] );
 		$treeBuilder = new TreeBuilder( $domBuilder, [ 'ignoreErrors' => true ] );
 		$tokenizer = new Tokenizer( new Dispatcher( $treeBuilder ), $html, [ 'ignoreErrors' => true ] );
 		$tokenizer->execute();
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $domBuilder->getFragment();
 	}
 
@@ -110,7 +114,7 @@ class VueComponentParser {
 	 * @param string[] $tagNames Tag names to look for (must be all lowercase)
 	 * @return DOMElement[] Associative arrays whose keys are tag names and values are DOM nodes
 	 */
-	private function findUniqueTags( DOMNode $rootNode, array $tagNames ) : array {
+	private function findUniqueTags( DOMNode $rootNode, array $tagNames ): array {
 		$nodes = [];
 		foreach ( $rootNode->childNodes as $node ) {
 			$tagName = strtolower( $node->nodeName );
@@ -130,7 +134,7 @@ class VueComponentParser {
 	 * @param array $allowedAttributes Attributes the node is allowed to have
 	 * @throws Exception If the node has an attribute it's not allowed to have
 	 */
-	private function validateAttributes( DOMNode $node, array $allowedAttributes ) : void {
+	private function validateAttributes( DOMNode $node, array $allowedAttributes ): void {
 		if ( $allowedAttributes ) {
 			foreach ( $node->attributes as $attr ) {
 				if ( !in_array( $attr->name, $allowedAttributes ) ) {
@@ -152,7 +156,7 @@ class VueComponentParser {
 	 * @param DOMNode $templateNode The <template> node
 	 * @throws Exception If the contents of the <template> node are invalid
 	 */
-	private function validateTemplateTag( DOMNode $templateNode ) : void {
+	private function validateTemplateTag( DOMNode $templateNode ): void {
 		// Verify that the <template> tag only contains one tag, and put it in $rootTemplateNode
 		// We can't use ->childNodes->length === 1 here because whitespace shows up as text nodes,
 		// and comments are also allowed.
@@ -185,7 +189,7 @@ class VueComponentParser {
 	 * @return array [ 'style' => string, 'lang' => string ]
 	 * @throws Exception If an invalid language is used, or if the 'scoped' attribute is set.
 	 */
-	private function getStyleAndLang( DOMElement $styleNode ) : array {
+	private function getStyleAndLang( DOMElement $styleNode ): array {
 		$style = trim( $styleNode->nodeValue );
 		$styleLang = $styleNode->hasAttribute( 'lang' ) ?
 			$styleNode->getAttribute( 'lang' ) : 'css';

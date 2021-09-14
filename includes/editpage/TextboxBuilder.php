@@ -2,7 +2,7 @@
 /**
  * Helps EditPage build textboxes
  *
- * (C) Copyright 2017 Kunal Mehta <legoktm@member.fsf.org>
+ * (C) Copyright 2017 Kunal Mehta <legoktm@debian.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@
 namespace MediaWiki\EditPage;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Sanitizer;
 use Title;
-use User;
 
 /**
  * Helps EditPage build textboxes
@@ -97,11 +97,11 @@ class TextboxBuilder {
 	/**
 	 * @param string $name
 	 * @param mixed[] $customAttribs
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Title $title
 	 * @return mixed[]
 	 */
-	public function buildTextboxAttribs( $name, array $customAttribs, User $user, Title $title ) {
+	public function buildTextboxAttribs( $name, array $customAttribs, UserIdentity $user, Title $title ) {
 		$attribs = $customAttribs + [
 				'accesskey' => ',',
 				'id' => $name,
@@ -116,7 +116,8 @@ class TextboxBuilder {
 		// * mw-editfont-monospace
 		// * mw-editfont-sans-serif
 		// * mw-editfont-serif
-		$class = 'mw-editfont-' . $user->getOption( 'editfont' );
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$class = 'mw-editfont-' . $userOptionsLookup->getOption( $user, 'editfont' );
 
 		if ( isset( $attribs['class'] ) ) {
 			if ( is_string( $attribs['class'] ) ) {

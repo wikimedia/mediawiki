@@ -52,7 +52,11 @@ class SearchMySQL extends SearchDatabase {
 		# @todo FIXME: This doesn't handle parenthetical expressions.
 		$m = [];
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-				$filteredText, $m, PREG_SET_ORDER ) ) {
+				$filteredText, $m, PREG_SET_ORDER )
+		) {
+			$services = MediaWikiServices::getInstance();
+			$contLang = $services->getContentLanguage();
+			$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 			foreach ( $m as $bits ) {
 				Wikimedia\suppressWarnings();
 				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
@@ -76,8 +80,7 @@ class SearchMySQL extends SearchDatabase {
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-				$convertedVariants = $contLang->autoConvertToAllVariants( $term );
+				$convertedVariants = $langConverter->autoConvertToAllVariants( $term );
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
@@ -342,7 +345,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $text
 	 */
 	public function update( $id, $title, $text ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->replace(
 			'searchindex',
 			'si_page',
@@ -363,7 +366,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 */
 	public function updateTitle( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $this->normalizeText( $title ) ],
 			[ 'si_page' => $id ],
@@ -379,7 +382,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title Title of page that was deleted
 	 */
 	public function delete( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
 	}
 

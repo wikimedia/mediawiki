@@ -46,31 +46,33 @@ class WebPHandler extends BitmapHandler {
 	private const VP8X_XMP = 4;
 	private const VP8X_ANIM = 2;
 
-	public function getMetadata( $image, $filename ) {
+	public function getSizeAndMetadata( $state, $filename ) {
 		$parsedWebPData = self::extractMetadata( $filename );
 		if ( !$parsedWebPData ) {
-			return self::BROKEN_FILE;
+			return [ 'metadata' => [ '_error' => self::BROKEN_FILE ] ];
 		}
 
 		$parsedWebPData['metadata']['_MW_WEBP_VERSION'] = self::_MW_WEBP_VERSION;
-		return serialize( $parsedWebPData );
+		$info = [
+			'width' => $parsedWebPData['width'],
+			'height' => $parsedWebPData['height'],
+			'metadata' => $parsedWebPData
+		];
+		return $info;
 	}
 
 	public function getMetadataType( $image ) {
 		return 'parsed-webp';
 	}
 
-	public function isMetadataValid( $image, $metadata ) {
-		if ( $metadata === self::BROKEN_FILE ) {
+	public function isFileMetadataValid( $image ) {
+		$data = $image->getMetadataArray();
+		if ( $data === [ '_error' => self::BROKEN_FILE ] ) {
 				// Do not repetitivly regenerate metadata on broken file.
 				return self::METADATA_GOOD;
 		}
 
-		Wikimedia\suppressWarnings();
-		$data = unserialize( $metadata );
-		Wikimedia\restoreWarnings();
-
-		if ( !$data || !is_array( $data ) ) {
+		if ( !$data || !isset( $data['_error'] ) ) {
 				wfDebug( __METHOD__ . " invalid WebP metadata" );
 
 				return self::METADATA_BAD;
@@ -230,24 +232,6 @@ class WebPHandler extends BitmapHandler {
 		];
 	}
 
-	public function getImageSize( $file, $path, $metadata = false ) {
-		if ( $file === null ) {
-			$metadata = self::getMetadata( $file, $path );
-		}
-		if ( $metadata === false && $file instanceof File ) {
-			$metadata = $file->getMetadata();
-		}
-
-		Wikimedia\suppressWarnings();
-		$metadata = unserialize( $metadata );
-		Wikimedia\restoreWarnings();
-
-		if ( $metadata == false ) {
-			return false;
-		}
-		return [ $metadata['width'], $metadata['height'] ];
-	}
-
 	/**
 	 * @param File $file
 	 * @return bool True, not all browsers support WebP
@@ -272,12 +256,9 @@ class WebPHandler extends BitmapHandler {
 	 * @return bool
 	 */
 	public function isAnimatedImage( $image ) {
-		$ser = $image->getMetadata();
-		if ( $ser ) {
-			$metadata = unserialize( $ser );
-			if ( isset( $metadata['animated'] ) && $metadata['animated'] === true ) {
-				return true;
-			}
+		$metadata = $image->getMetadataArray();
+		if ( isset( $metadata['animated'] ) && $metadata['animated'] === true ) {
+			return true;
 		}
 
 		return false;

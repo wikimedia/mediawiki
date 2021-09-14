@@ -114,7 +114,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 
 		if ( $skins ) {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped skin names are valid
 			$radioButtons = $this->parent->getRadioElements( [
 				'var' => 'wgDefaultSkin',
 				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
@@ -124,15 +123,12 @@ class WebInstallerOptions extends WebInstallerPage {
 
 			foreach ( $skins as $skin => $info ) {
 				if ( isset( $info['screenshots'] ) ) {
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped skin names are valid
 					$screenshotText = $this->makeScreenshotsLink( $skin, $info['screenshots'] );
 				} else {
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$screenshotText = htmlspecialchars( $skin );
 				}
 				$skinHtml .=
 					'<div class="config-skins-item">' .
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped screenshotText is safe
 					$this->parent->getCheckBox( [
 						'var' => "skin-$skin",
 						'rawtext' => $screenshotText,
@@ -179,7 +175,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				foreach ( $extByType[$type] as $ext => $info ) {
 					$urlText = '';
 					if ( isset( $info['url'] ) ) {
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 						$urlText = ' ' . Html::element( 'a', [ 'href' => $info['url'] ], '(more information)' );
 					}
 					$attribs = [
@@ -202,7 +197,6 @@ class WebInstallerOptions extends WebInstallerPage {
 						// extension/skin that is required
 						if ( isset( $dependencyMap[$ext]['extensions'] ) ) {
 							foreach ( $dependencyMap[$ext]['extensions'] as $name ) {
-								// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 								$links[] = Html::element(
 									'a',
 									[ 'href' => "#config_ext-$name" ],
@@ -211,8 +205,8 @@ class WebInstallerOptions extends WebInstallerPage {
 							}
 						}
 						if ( isset( $dependencyMap[$ext]['skins'] ) ) {
+							// @phan-suppress-next-line PhanTypeMismatchForeach Phan internal bug
 							foreach ( $dependencyMap[$ext]['skins'] as $name ) {
-								// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 								$links[] = Html::element(
 									'a',
 									[ 'href' => "#config_skin-$name" ],
@@ -221,13 +215,13 @@ class WebInstallerOptions extends WebInstallerPage {
 							}
 						}
 
+						// @phan-suppress-next-line SecurityCheck-XSS
 						$text = wfMessage( 'config-extensions-requires' )
 							->rawParams( $ext, $wgLang->commaList( $links ) )
 							->escaped();
 					} else {
 						$text = $ext;
 					}
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$extHtml .= $this->parent->getCheckBox( [
 						'var' => "ext-$ext",
 						'rawtext' => $text,
@@ -242,7 +236,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->addHTML( $extHtml );
 			// Push the dependency map to the client side
 			$this->addHTML( Html::inlineScript(
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 				'var extDependencyMap = ' . Xml::encodeJsVar( $dependencyMap )
 			) );
 		}
@@ -259,7 +252,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->addHTML(
 			# Uploading
 			$this->getFieldsetStart( 'config-upload-settings' ) .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
@@ -267,7 +259,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-upload-help' )
 			] ) .
 			'<div id="uploadwrapper" style="' . $uploadwrapperStyle . '">' .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
@@ -275,7 +266,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
 			] ) .
 			'</div>' .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextBox( [
 				'var' => '_Logo',
 				'label' => 'config-logo',
@@ -284,7 +274,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			] )
 		);
 		$this->addHTML(
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getCheckBox( [
 				'var' => 'wgUseInstantCommons',
 				'label' => 'config-instantcommons',
@@ -328,7 +317,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			] ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
 			"<div id=\"config-memcachewrapper\" style=\"$hidden\">" .
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint cannot track the helpbox from the rest
 			$this->parent->getTextArea( [
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',

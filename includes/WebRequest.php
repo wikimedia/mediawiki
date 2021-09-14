@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
@@ -189,11 +190,13 @@ class WebRequest {
 
 			global $wgVariantArticlePath;
 			if ( $wgVariantArticlePath ) {
+				$services = MediaWikiServices::getInstance();
 				$router->validateRoute( $wgVariantArticlePath, 'wgVariantArticlePath' );
 				$router->add( $wgVariantArticlePath,
 					[ 'variant' => '$2' ],
-					[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->
-					getVariants() ]
+					[ '$2' => $services->getLanguageConverterFactory()
+						->getLanguageConverter( $services->getContentLanguage() )
+						->getVariants() ]
 				);
 			}
 
@@ -372,11 +375,6 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		// T18019: title interpolation on API queries is useless and sometimes harmful
-		if ( defined( 'MW_API' ) ) {
-			return;
-		}
-
 		$matches = self::getPathInfo( 'title' );
 		foreach ( $matches as $key => $val ) {
 			$this->data[$key] = $this->queryAndPathParams[$key] = $val;
@@ -466,16 +464,16 @@ class WebRequest {
 	}
 
 	/**
-	 * Fetch a scalar from the input without normalization, or return $default
-	 * if it's not set.
+	 * Fetch a string WITHOUT any Unicode or line break normalization. This is a fast alternative
+	 * for values that are known to be simple, e.g. pure ASCII. When reading user input, use
+	 * {@see getText} instead.
 	 *
-	 * Unlike self::getVal(), this does not perform any normalization on the
-	 * input value.
+	 * Array values are discarded for security reasons. Use {@see getArray} or {@see getIntArray}.
 	 *
 	 * @since 1.28
 	 * @param string $name
 	 * @param string|null $default
-	 * @return string|null
+	 * @return string|null The value, or $default if none set
 	 */
 	public function getRawVal( $name, $default = null ) {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
@@ -484,33 +482,54 @@ class WebRequest {
 		} else {
 			$val = $default;
 		}
-		if ( $val === null ) {
-			return $val;
-		} else {
-			return (string)$val;
-		}
+
+		return $val === null ? null : (string)$val;
 	}
 
 	/**
-	 * Fetch a scalar from the input or return $default if it's not set.
-	 * Returns a string. Arrays are discarded. Useful for
-	 * non-freeform text inputs (e.g. predefined internal text keys
-	 * selected by a drop-down menu). For freeform input, see getText().
+	 * Fetch a text string and partially normalized it.
+	 *
+	 * Use of this method is discouraged. It doesn't normalize line breaks and defaults to null
+	 * instead of the empty string. Instead:
+	 * - Use {@see getText} when reading user input or form fields that are expected to contain
+	 *   non-ASCII characters.
+	 * - Use {@see getRawVal} when reading ASCII strings, such as parameters used to select
+	 *   predefined behaviour in the software.
+	 *
+	 * Array values are discarded for security reasons. Use {@see getArray} or {@see getIntArray}.
 	 *
 	 * @param string $name
-	 * @param string|null $default Optional default (or null)
-	 * @return string|null
+	 * @param string|null $default
+	 * @return string|null The input value, or $default if none set
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
 		if ( is_array( $val ) ) {
 			$val = $default;
 		}
-		if ( $val === null ) {
-			return $val;
-		} else {
-			return (string)$val;
-		}
+
+		return $val === null ? null : (string)$val;
+	}
+
+	/**
+	 * Fetch a text string and return it in normalized form.
+	 *
+	 * This normalizes Unicode sequences (via {@see getGPCVal}) and line breaks.
+	 *
+	 * This should be used for all user input and form fields that are expected to contain non-ASCII
+	 * characters, especially if the value will be stored or compared against stored values. Without
+	 * normalization, logically identically values might not match when they are typed on different
+	 * OS' or keyboards.
+	 *
+	 * Array values are discarded for security reasons. Use {@see getArray} or {@see getIntArray}.
+	 *
+	 * @param string $name
+	 * @param string $default
+	 * @return string The normalized input value, or $default if none set
+	 */
+	public function getText( $name, $default = '' ) {
+		$val = $this->getVal( $name, $default );
+		return str_replace( "\r\n", "\n", $val );
 	}
 
 	/**
@@ -659,21 +678,6 @@ class WebRequest {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, absence false
 		return $this->getRawVal( $name, null ) !== null;
-	}
-
-	/**
-	 * Fetch a text string from the given array or return $default if it's not
-	 * set. Carriage returns are stripped from the text. This should generally
-	 * be used for form "<textarea>" and "<input>" fields, and for
-	 * user-supplied freeform text input.
-	 *
-	 * @param string $name
-	 * @param string $default Optional
-	 * @return string
-	 */
-	public function getText( $name, $default = '' ) {
-		$val = $this->getVal( $name, $default );
-		return str_replace( "\r\n", "\n", $val );
 	}
 
 	/**
@@ -1003,18 +1007,20 @@ class WebRequest {
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
 	 *
-	 * @param User $user User to get option for
+	 * @param UserIdentity $user UserIdentity to get option for
 	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
 	 * @param string $optionname To specify an option other than rclimit to pull from.
 	 * @return int[] First element is limit, second is offset
 	 */
-	public function getLimitOffsetForUser( User $user, $deflimit = 50, $optionname = 'rclimit' ) {
+	public function getLimitOffsetForUser( UserIdentity $user, $deflimit = 50, $optionname = 'rclimit' ) {
 		$limit = $this->getInt( 'limit', 0 );
 		if ( $limit < 0 ) {
 			$limit = 0;
 		}
 		if ( ( $limit == 0 ) && ( $optionname != '' ) ) {
-			$limit = $user->getIntOption( $optionname );
+			$limit = MediaWikiServices::getInstance()
+				->getUserOptionsLookup()
+				->getIntOption( $user, $optionname );
 		}
 		if ( $limit <= 0 ) {
 			$limit = $deflimit;
@@ -1038,8 +1044,7 @@ class WebRequest {
 	 * @return string|null String or null if no such file.
 	 */
 	public function getFileTempname( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getTempName();
+		return $this->getUpload( $key )->getTempName();
 	}
 
 	/**
@@ -1049,8 +1054,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getUploadError( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getError();
+		return $this->getUpload( $key )->getError();
 	}
 
 	/**
@@ -1065,8 +1069,7 @@ class WebRequest {
 	 * @return string|null String or null if no such file.
 	 */
 	public function getFileName( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getName();
+		return $this->getUpload( $key )->getName();
 	}
 
 	/**
@@ -1166,10 +1169,10 @@ class WebRequest {
 	 * been dropped, this function now returns true unconditionally.
 	 *
 	 * @deprecated since 1.35
-	 * @param array $extWhitelist
+	 * @param array $extList
 	 * @return bool
 	 */
-	public function checkUrlExtension( $extWhitelist = [] ) {
+	public function checkUrlExtension( $extList = [] ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return true;
 	}

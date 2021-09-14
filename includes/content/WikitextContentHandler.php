@@ -23,6 +23,8 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Transform\PreloadTransformParams;
+use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
@@ -188,4 +190,80 @@ class WikitextContentHandler extends TextContentHandler {
 		return parent::serializeContent( $content, $format );
 	}
 
+	public function preSaveTransform(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): Content {
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pstParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPST(
+				$content,
+				$pstParams
+			);
+		}
+
+		'@phan-var WikitextContent $content';
+
+		$text = $content->getText();
+
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$pst = $parser->preSaveTransform(
+			$text,
+			$pstParams->getPage(),
+			$pstParams->getUser(),
+			$pstParams->getParserOptions()
+		);
+
+		if ( $text === $pst ) {
+			return $content;
+		}
+
+		$contentClass = $this->getContentClass();
+		$ret = new $contentClass( $pst );
+		$ret->setPreSaveTransformFlags( $parser->getOutput()->getAllFlags() );
+		return $ret;
+	}
+
+	/**
+	 * Returns a Content object with preload transformations applied (or this
+	 * object if no transformations apply).
+	 *
+	 * @param Content $content
+	 * @param PreloadTransformParams $pltParams
+	 *
+	 * @return Content
+	 */
+	public function preloadTransform(
+		Content $content,
+		PreloadTransformParams $pltParams
+	): Content {
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pltParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPLT(
+				$content,
+				$pltParams
+			);
+		}
+
+		'@phan-var WikitextContent $content';
+
+		$text = $content->getText();
+		$plt = MediaWikiServices::getInstance()->getParser()->getPreloadText(
+			$text,
+			$pltParams->getPage(),
+			$pltParams->getParserOptions(),
+			$pltParams->getParams()
+		);
+
+		$contentClass = $this->getContentClass();
+		return new $contentClass( $plt );
+	}
 }

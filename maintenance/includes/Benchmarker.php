@@ -26,7 +26,6 @@
  * @ingroup Benchmark
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\RunningStat;
 
 // @codeCoverageIgnoreStart
@@ -40,17 +39,14 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 abstract class Benchmarker extends Maintenance {
 	protected $defaultCount = 100;
-	private $lang;
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'count', 'How many times to run a benchmark', false, true );
+		$this->addOption( 'count', "How many times to run a benchmark. Default: {$this->defaultCount}", false, true );
 		$this->addOption( 'verbose', 'Verbose logging of resource usage', false, false, 'v' );
 	}
 
 	public function bench( array $benchs ) {
-		$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-
 		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );
 		$verbose = $this->hasOption( 'verbose' );
@@ -160,7 +156,7 @@ abstract class Benchmarker extends Maintenance {
 		] as $key => $label ) {
 			$ret .= sprintf( "%' 20s: %s\n",
 				$label,
-				$this->lang->formatSize( $res['usage'][$key] )
+				$this->formatSize( $res['usage'][$key] )
 			);
 		}
 
@@ -170,15 +166,38 @@ abstract class Benchmarker extends Maintenance {
 	protected function verboseRun( $iteration ) {
 		$this->output( sprintf( "#%3d - memory: %-10s - peak: %-10s\n",
 			$iteration,
-			$this->lang->formatSize( memory_get_usage( true ) ),
-			$this->lang->formatSize( memory_get_peak_usage( true ) )
+			$this->formatSize( memory_get_usage( true ) ),
+			$this->formatSize( memory_get_peak_usage( true ) )
 		) );
+	}
+
+	/**
+	 * Format an amount of bytes into short human-readable string.
+	 *
+	 * This is simplified version of Language::formatSize() to avoid pulling
+	 * all the general MediaWiki services, which can significantly influence
+	 * measured memory use.
+	 *
+	 * @param int|float $bytes
+	 * @return string Formatted in using IEC bytes (multiples of 1024)
+	 */
+	private function formatSize( $bytes ): string {
+		if ( $bytes >= ( 1024 ** 3 ) ) {
+			return number_format( $bytes / ( 1024 ** 3 ), 2 ) . ' GiB';
+		}
+		if ( $bytes >= ( 1024 ** 2 ) ) {
+			return number_format( $bytes / ( 1024 ** 2 ), 2 ) . ' MiB';
+		}
+		if ( $bytes >= 1024 ) {
+			return number_format( $bytes / 1024, 1 ) . ' KiB';
+		}
+		return $bytes . ' B';
 	}
 
 	/**
 	 * @since 1.32
 	 * @param string $file Path to file (maybe compressed with gzip)
-	 * @return string Contents of file
+	 * @return string|false Contents of file, or false if file not found
 	 */
 	protected function loadFile( $file ) {
 		$content = file_get_contents( $file );

@@ -36,7 +36,7 @@ class InitSiteStats extends Maintenance {
 		$this->addDescription( 'Re-initialise the site statistics tables' );
 		$this->addOption( 'update', 'Update the existing statistics' );
 		$this->addOption( 'active', 'Also update active users count' );
-		$this->addOption( 'use-master', 'Count using the master database' );
+		$this->addOption( 'use-master', 'Count using the primary database' );
 	}
 
 	public function execute() {
@@ -70,7 +70,7 @@ class InitSiteStats extends Maintenance {
 
 		if ( $this->hasOption( 'active' ) ) {
 			$this->output( "\nCounting and updating active users..." );
-			$active = SiteStatsUpdate::cacheUpdate( $this->getDB( DB_MASTER ) );
+			$active = SiteStatsUpdate::cacheUpdate( $this->getDB( DB_PRIMARY ) );
 			$this->output( "{$active}\n" );
 		}
 

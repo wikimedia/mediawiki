@@ -39,14 +39,14 @@ class SiteStatsInit {
 
 	/**
 	 * @param bool|IDatabase $database
-	 * - bool: Whether to use the master DB
+	 * - bool: Whether to use the primary DB
 	 * - IDatabase: Database connection to use
 	 */
 	public function __construct( $database = false ) {
 		if ( $database instanceof IDatabase ) {
 			$this->dbr = $database;
 		} elseif ( $database ) {
-			$this->dbr = self::getDB( DB_MASTER );
+			$this->dbr = self::getDB( DB_PRIMARY );
 		} else {
 			$this->dbr = self::getDB( DB_REPLICA, 'vslow' );
 		}
@@ -126,7 +126,7 @@ class SiteStatsInit {
 	 * for the original initStats, but without output.
 	 *
 	 * @param IDatabase|bool $database
-	 * - bool: Whether to use the master DB
+	 * - bool: Whether to use the primary DB
 	 * - IDatabase: Database connection to use
 	 * @param array $options Array of options, may contain the following values
 	 * - activeUsers bool: Whether to update the number of active users (default: false)
@@ -147,7 +147,7 @@ class SiteStatsInit {
 
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
-			SiteStatsUpdate::cacheUpdate( self::getDB( DB_MASTER ) );
+			SiteStatsUpdate::cacheUpdate( self::getDB( DB_PRIMARY ) );
 		}
 	}
 
@@ -155,9 +155,9 @@ class SiteStatsInit {
 	 * Insert a dummy row with all zeroes if no row is present
 	 */
 	public static function doPlaceholderInit() {
-		$dbw = self::getDB( DB_MASTER );
-		$exists = $dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
-		if ( $exists === false ) {
+		$dbw = self::getDB( DB_PRIMARY );
+		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
+		if ( !$exists ) {
 			$dbw->insert(
 				'site_stats',
 				[ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ),
@@ -172,15 +172,15 @@ class SiteStatsInit {
 	 */
 	public function refresh() {
 		$set = [
-			'ss_total_edits' => $this->edits === null ? $this->edits() : $this->edits,
-			'ss_good_articles' => $this->articles === null ? $this->articles() : $this->articles,
-			'ss_total_pages' => $this->pages === null ? $this->pages() : $this->pages,
-			'ss_users' => $this->users === null ? $this->users() : $this->users,
-			'ss_images' => $this->files === null ? $this->files() : $this->files,
+			'ss_total_edits' => $this->edits ?? $this->edits(),
+			'ss_good_articles' => $this->articles ?? $this->articles(),
+			'ss_total_pages' => $this->pages ?? $this->pages(),
+			'ss_users' => $this->users ?? $this->users(),
+			'ss_images' => $this->files ?? $this->files(),
 		];
 		$row = [ 'ss_row_id' => 1 ] + $set;
 
-		self::getDB( DB_MASTER )->upsert(
+		self::getDB( DB_PRIMARY )->upsert(
 			'site_stats',
 			$row,
 			'ss_row_id',

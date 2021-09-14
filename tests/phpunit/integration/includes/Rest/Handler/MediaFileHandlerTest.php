@@ -23,7 +23,8 @@ class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 
 	private function newHandler() {
 		return new MediaFileHandler(
-			$this->makeMockRepoGroup()
+			$this->makeMockRepoGroup( [ __CLASS__ . '.jpg' ] ),
+			$this->getServiceContainer()->getPageStore()
 		);
 	}
 
@@ -45,7 +46,8 @@ class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 		$this->assertFile(
 			[
 				'title' => $title,
-				'file_description_url' => 'https://example.com/wiki/File:' . $title,
+				// File repo mocks will end up calling File namespace ns6
+				'file_description_url' => 'https://example.com/wiki/ns6:' . $title,
 				'latest' => [
 					'timestamp' => '2020-01-02T03:04:05Z',
 					'user' => [

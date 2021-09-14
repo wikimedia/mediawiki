@@ -6,7 +6,6 @@ use ChangeTags;
 use DeferredUpdates;
 use FormatJson;
 use HashConfig;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
 
@@ -20,7 +19,7 @@ use RecentChange;
  * @see RevertedTagUpdateTest for non-DB tests
  */
 class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(
@@ -69,7 +68,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -105,7 +104,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// try to run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -117,7 +116,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$rc->reallyMarkPatrolled();
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 1 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -148,7 +147,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// ensure all deferred updates are ran and try to run the job
 		DeferredUpdates::doUpdates();
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -164,7 +163,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser()
 		)->value['revision-record']->getId();
 		DeferredUpdates::doUpdates();
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 		$this->verifyRevertedTags( [ $revertId1 ], $revertId2 );
@@ -176,7 +175,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Run the job.
 		// The job should notice that the revert is reverted and refuse to perform
 		// the update.
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -215,7 +214,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -272,7 +271,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// try to run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -280,11 +279,11 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// simulate the approval of the edit
-		$manager = MediaWikiServices::getInstance()->getRevertedTagUpdateManager();
+		$manager = $this->getServiceContainer()->getRevertedTagUpdateManager();
 		$manager->approveRevertedTagForRevision( $revertRevId );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -340,7 +339,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -355,7 +354,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array
 	 */
-	private function setupEditsOnPage( int $editCount ) : array {
+	private function setupEditsOnPage( int $editCount ): array {
 		$wikiPage = $this->getExistingTestPage();
 		$pageTitle = $wikiPage->getTitle()->getDBkey();
 		$revIds = [];
@@ -373,7 +372,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @param array $revisionIds
 	 */
 	private function verifyNoRevertedTags( array $revisionIds ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertNotContains(
 				'mw-reverted',
@@ -393,7 +392,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		array $revisionIds,
 		int $revertRevId
 	) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		// for each reverted revision
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertContains(

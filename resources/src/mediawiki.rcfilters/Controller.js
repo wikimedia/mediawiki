@@ -315,7 +315,7 @@ Controller.prototype.isInitialized = function () {
  * Extracts information from the changes list DOM
  *
  * @param {jQuery} $root Root DOM to find children from
- * @param {boolean} [statusCode] Server response status code
+ * @param {number} [statusCode] Server response status code
  * @return {Object} Information about changes list
  * @return {Object|string} return.changes Changes list, or 'NO_RESULTS' if there are no results
  *   (either normally or as an error)
@@ -691,7 +691,6 @@ Controller.prototype._doLiveUpdate = function () {
  * @private
  */
 Controller.prototype._shouldCheckForNewChanges = function () {
-	// eslint-disable-next-line compat/compat
 	return !document.hidden &&
 		!this.filtersModel.hasConflict() &&
 		!this.changesListModel.getNewChangesExist() &&

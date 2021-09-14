@@ -4,12 +4,18 @@ namespace MediaWiki\Page;
 
 use DBAccessObjectUtils;
 use EmptyIterator;
+use InvalidArgumentException;
 use Iterator;
+use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
 use NamespaceInfo;
+use NullStatsdDataFactory;
 use stdClass;
+use TitleParser;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -31,6 +37,15 @@ class PageStore implements PageLookup {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var TitleParser */
+	private $titleParser;
+
+	/** @var LinkCache|null */
+	private $linkCache;
+
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
+
 	/** @var string|false */
 	private $wikiId;
 
@@ -38,7 +53,6 @@ class PageStore implements PageLookup {
 	 * @internal for use by service wiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'LanguageCode',
 		'PageLanguageUseDB',
 	];
 
@@ -46,12 +60,18 @@ class PageStore implements PageLookup {
 	 * @param ServiceOptions $options
 	 * @param ILoadBalancer $dbLoadBalancer
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleParser $titleParser
+	 * @param ?LinkCache $linkCache
+	 * @param ?StatsdDataFactoryInterface $stats
 	 * @param false|string $wikiId
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILoadBalancer $dbLoadBalancer,
 		NamespaceInfo $namespaceInfo,
+		TitleParser $titleParser,
+		?LinkCache $linkCache,
+		?StatsdDataFactoryInterface $stats,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -59,7 +79,24 @@ class PageStore implements PageLookup {
 		$this->options = $options;
 		$this->dbLoadBalancer = $dbLoadBalancer;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->titleParser = $titleParser;
 		$this->wikiId = $wikiId;
+		$this->linkCache = $linkCache;
+		$this->stats = $stats ?: new NullStatsdDataFactory();
+
+		if ( $wikiId !== WikiAwareEntity::LOCAL && $linkCache ) {
+			// LinkCache currently doesn't support cross-wiki PageReferences.
+			// Once it does, this check can go away. At that point, LinkCache should
+			// probably also no longer be optional.
+			throw new InvalidArgumentException( "Can't use LinkCache with pages from $wikiId" );
+		}
+	}
+
+	/**
+	 * @param string $metric
+	 */
+	private function incrementStats( string $metric ) {
+		$this->stats->increment( "PageStore.{$metric}" );
 	}
 
 	/**
@@ -82,9 +119,9 @@ class PageStore implements PageLookup {
 			$ns = NS_FILE;
 		}
 
-		Assert::parameter( $ns >= 0, '$link', 'must not be virtual' );
+		Assert::parameter( $ns >= 0, '$link', 'namespace must not be virtual' );
 
-		$page = $this->getPageByName( $ns, $link->getDBkey() );
+		$page = $this->getPageByName( $ns, $link->getDBkey(), $queryFlags );
 
 		if ( !$page ) {
 			$page = new PageIdentityValue( 0, $ns, $link->getDBkey(), $this->wikiId );
@@ -114,7 +151,133 @@ class PageStore implements PageLookup {
 			'page_title' => $dbKey,
 		];
 
-		return $this->loadPageFromConditions( $conds, $queryFlags );
+		if ( $this->linkCache ) {
+			return $this->getPageByNameViaLinkCache( $namespace, $dbKey, $queryFlags );
+		} else {
+			return $this->loadPageFromConditions( $conds, $queryFlags );
+		}
+	}
+
+	/**
+	 * @param int $namespace
+	 * @param string $dbKey
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	private function getPageByNameViaLinkCache(
+		int $namespace,
+		string $dbKey,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord {
+		$conds = [
+			'page_namespace' => $namespace,
+			'page_title' => $dbKey,
+		];
+
+		if ( $queryFlags === self::READ_NORMAL && $this->linkCache->isBadLink( $conds ) ) {
+			$this->incrementStats( "LinkCache.hit.bad.early" );
+			return null;
+		}
+
+		$caller = __METHOD__;
+		$hitOrMiss = 'hit';
+
+		// Try to get the row from LinkCache, providing a callback to fetch it if it's not cached.
+		// When getGoodLinkRow() returns, LinkCache should have an entry for the row, good or bad.
+		$row = $this->linkCache->getGoodLinkRow(
+			$namespace,
+			$dbKey,
+			function ( IDatabase $dbr, $ns, $dbkey, array $options )
+				use ( $conds, $caller, &$hitOrMiss )
+			{
+				$hitOrMiss = 'miss';
+				$row = $this->newSelectQueryBuilder( $dbr )
+					->fields( $this->getSelectFields() )
+					->conds( $conds )
+					->options( $options )
+					->caller( $caller )
+					->fetchRow();
+
+				return $row;
+			},
+			$queryFlags
+		);
+
+		if ( $row ) {
+			try {
+				$page = $this->newPageRecordFromRow( $row );
+
+				// We were able to use the row we got from link cache.
+				$this->incrementStats( "LinkCache.{$hitOrMiss}.good" );
+			} catch ( InvalidArgumentException $e ) {
+				// The cached row was incomplete or corrupt,
+				// just keep going and load from the database.
+				$page = $this->loadPageFromConditions( $conds, $queryFlags );
+
+				if ( $page ) {
+					// PageSelectQueryBuilder should have added the full row to the LinkCache now.
+					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.loaded" );
+				} else {
+					// If we get here, an incomplete row was cached, but we failed to
+					// load the full row from the database. This should only happen
+					// if the page was deleted under out feet, which should be very rare.
+					// Update the LinkCache to reflect the new situation.
+					$this->linkCache->addBadLinkObj( $conds );
+					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.missing" );
+				}
+			}
+		} else {
+			$this->incrementStats( "LinkCache.{$hitOrMiss}.bad.late" );
+			$page = null;
+		}
+
+		return $page;
+	}
+
+	/**
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ProperPageIdentity|null
+	 */
+	public function getPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ProperPageIdentity {
+		try {
+			$title = $this->titleParser->parseTitle( $text, $defaultNamespace );
+			return $this->getPageForLink( $title, $queryFlags );
+		} catch ( MalformedTitleException | InvalidArgumentException $e ) {
+			// Note that even some well-formed links are still invalid parameters
+			// for getPageForLink(), e.g. interwiki links or special pages.
+			return null;
+		}
+	}
+
+	/**
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	public function getExistingPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord {
+		$pageIdentity = $this->getPageByText( $text, $defaultNamespace, $queryFlags );
+		if ( !$pageIdentity ) {
+			return null;
+		}
+		return $this->getPageByReference( $pageIdentity, $queryFlags );
 	}
 
 	/**
@@ -133,33 +296,39 @@ class PageStore implements PageLookup {
 			'page_id' => $pageId,
 		];
 
+		// XXX: no caching needed?
+
 		return $this->loadPageFromConditions( $conds, $queryFlags );
 	}
 
 	/**
-	 * @param PageIdentity $page
+	 * @param PageReference $page
 	 * @param int $queryFlags
 	 *
 	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
 	 */
-	public function getPageByIdentity(
-		PageIdentity $page,
+	public function getPageByReference(
+		PageReference $page,
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord {
-		Assert::parameter( $page->canExist(), '$page', 'Mut be a proper page' );
-
 		$page->assertWiki( $this->wikiId );
+		Assert::parameter( $page->getNamespace() >= 0, '$page', 'namespace must not be virtual' );
 
 		if ( $page instanceof ExistingPageRecord && $queryFlags === self::READ_NORMAL ) {
 			return $page;
 		}
 
-		if ( !$page->exists() ) {
-			return null;
+		if ( $page instanceof PageIdentity ) {
+			Assert::parameter( $page->canExist(), '$page', 'Must be a proper page' );
+
+			if ( $page->exists() ) {
+				// if we have a page ID, use it
+				$id = $page->getId( $this->wikiId );
+				return $this->getPageById( $id, $queryFlags );
+			}
 		}
 
-		$id = $page->getId( $this->wikiId );
-		return $this->getPageById( $id );
+		return $this->getPageByName( $page->getNamespace(), $page->getDBkey(), $queryFlags );
 	}
 
 	/**
@@ -176,6 +345,7 @@ class PageStore implements PageLookup {
 			->conds( $conds )
 			->caller( __METHOD__ );
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $queryBuilder->fetchPageRecord();
 	}
 
@@ -187,10 +357,6 @@ class PageStore implements PageLookup {
 	 * @return ExistingPageRecord
 	 */
 	public function newPageRecordFromRow( stdClass $row ): ExistingPageRecord {
-		if ( empty( $row->page_lang ) ) {
-			$row->page_lang = $this->options->get( 'LanguageCode' );
-		}
-
 		return new PageStoreRecord(
 			$row,
 			$this->wikiId
@@ -220,6 +386,12 @@ class PageStore implements PageLookup {
 			$fields[] = 'page_lang';
 		}
 
+		// Since we are putting rows into LinkCache, we need to include all fields
+		// that LinkCache needs.
+		$fields = array_unique(
+			array_merge( $fields, LinkCache::getSelectFields() )
+		);
+
 		return $fields;
 	}
 
@@ -240,14 +412,14 @@ class PageStore implements PageLookup {
 			$db = $this->getDBConnectionRef( $mode );
 		}
 
-		$queryBuilder = new PageSelectQueryBuilder( $db, $this );
+		$queryBuilder = new PageSelectQueryBuilder( $db, $this, $this->linkCache );
 		$queryBuilder->options( $options );
 
 		return $queryBuilder;
 	}
 
 	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
+	 * @param int $mode DB_PRIMARY or DB_REPLICA
 	 * @return IDatabase
 	 */
 	private function getDBConnectionRef( int $mode = DB_REPLICA ): IDatabase {

@@ -41,7 +41,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	$type = $args[0]; // e.g. "DB" or "mwstore"
 	$location = $args[1]; // e.g. "cluster12" or "global-swift"
-	$dbw = wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_PRIMARY );
 
 	$maxID = (int)( $options['e'] ?? $dbw->selectField( 'text', 'MAX(old_id)', '', $fname ) );
 	$minID = (int)( $options['s'] ?? 1 );
@@ -51,7 +51,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 function moveToExternal( $type, $location, $maxID, $minID = 1 ) {
 	$fname = 'moveToExternal';
-	$dbw = wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_PRIMARY );
 	$dbr = wfGetDB( DB_REPLICA );
 
 	$count = $maxID - $minID + 1;

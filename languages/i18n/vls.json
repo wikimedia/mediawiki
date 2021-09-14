@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"DasRakel",
+			"MinecraftAustralia",
 			"Tbc",
 			"לערי ריינהארט"
 		]
@@ -95,10 +96,12 @@
 	"privacy": "Privacybeleid",
 	"viewsourceold": "Brontekst bekykn",
 	"viewsourcelink": "Brontekst bekykn",
+	"editsectionhint": "Deelpagina bewerken: $1",
 	"site-rss-feed": "$1 RSS-feed",
 	"site-atom-feed": "$1 Atom-feed",
 	"red-link-title": "$1 (Blad bestoat nie)",
 	"nstab-special": "Specioal blad",
+	"mainpage-nstab": "Hoofdpagina",
 	"viewsource": "Brontekst bekykn",
 	"logout": "Ofmeldn",
 	"search-result-size": "$1 ({{PLURAL:$2|1 woord|$2 woordn}})",

@@ -6,10 +6,17 @@ use MediaWiki\MediaWikiServices;
  * Abstract class to support upload tests
  */
 abstract class ApiUploadTestCase extends ApiTestCase {
+
+	/**
+	 * @since 1.37
+	 * @var array Used to fake $_FILES in tests and given to FauxRequest
+	 */
+	protected $requestDataFiles = [];
+
 	/**
 	 * Fixture -- run before every test
 	 */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -115,7 +122,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[$fieldName] = [
+		$this->requestDataFiles[$fieldName] = [
 			'name' => $fileName,
 			'type' => $type,
 			'tmp_name' => $tmpName,
@@ -139,7 +146,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[$fieldName] = [
+		$this->requestDataFiles[$fieldName] = [
 			'name' => $fileName,
 			'type' => $type,
 			'tmp_name' => $tmpName,
@@ -148,10 +155,17 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 		];
 	}
 
+	/** @inheritDoc */
+	protected function buildFauxRequest( $params, $session ) {
+		$request = parent::buildFauxRequest( $params, $session );
+		$request->setUploadData( $this->requestDataFiles );
+		return $request;
+	}
+
 	/**
 	 * Remove traces of previous fake uploads
 	 */
 	public function clearFakeUploads() {
-		$_FILES = [];
+		$this->requestDataFiles = [];
 	}
 }

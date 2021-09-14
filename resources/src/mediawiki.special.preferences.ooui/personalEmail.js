@@ -17,7 +17,7 @@
 		allowEmailFromNewUsers = OO.ui.infuse( $allowEmailFromNewUsers );
 
 		function toggleDisabled() {
-			allowEmailFromNewUsers.setDisabled( !allowEmail.isSelected() );
+			allowEmailFromNewUsers.setDisabled( allowEmail.isDisabled() || !allowEmail.isSelected() );
 		}
 
 		allowEmail.on( 'change', toggleDisabled );

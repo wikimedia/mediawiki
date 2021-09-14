@@ -113,7 +113,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		if(this.options.handle && !overrideHandle) {
 			var validHandle = false;
 
-			$(this.options.handle, currentItem).find("*").andSelf().each(function() { if(this == event.target) validHandle = true; });
+			$(this.options.handle, currentItem).find("*").addBack().each(function() { if(this == event.target) validHandle = true; });
 			if(!validHandle) return false;
 		}
 
@@ -540,13 +540,13 @@ $.widget("ui.sortable", $.ui.mouse, {
 				for (var j = cur.length - 1; j >= 0; j--){
 					var inst = $.data(cur[j], this.widgetName);
 					if(inst && inst != this && !inst.options.disabled) {
-						queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element) : $(inst.options.items, inst.element).not(".ui-sortable-helper").not('.ui-sortable-placeholder'), inst]);
+						queries.push([typeof inst.options.items === 'function' ? inst.options.items.call(inst.element) : $(inst.options.items, inst.element).not(".ui-sortable-helper").not('.ui-sortable-placeholder'), inst]);
 					}
 				};
 			};
 		}
 
-		queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-sortable-helper").not('.ui-sortable-placeholder'), this]);
+		queries.push([typeof this.options.items === 'function' ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-sortable-helper").not('.ui-sortable-placeholder'), this]);
 
 		for (var i = queries.length - 1; i >= 0; i--){
 			queries[i][0].each(function() {
@@ -577,7 +577,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		this.items = [];
 		this.containers = [this];
 		var items = this.items;
-		var queries = [[$.isFunction(this.options.items) ? this.options.items.call(this.element[0], event, { item: this.currentItem }) : $(this.options.items, this.element), this]];
+		var queries = [[typeof this.options.items === 'function' ? this.options.items.call(this.element[0], event, { item: this.currentItem }) : $(this.options.items, this.element), this]];
 		var connectWith = this._connectWith();
 
 		if(connectWith && this.ready) { //Shouldn't be run the first time through due to massive slow-down
@@ -586,7 +586,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 				for (var j = cur.length - 1; j >= 0; j--){
 					var inst = $.data(cur[j], this.widgetName);
 					if(inst && inst != this && !inst.options.disabled) {
-						queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element[0], event, { item: this.currentItem }) : $(inst.options.items, inst.element), inst]);
+						queries.push([typeof inst.options.items === 'function' ? inst.options.items.call(inst.element[0], event, { item: this.currentItem }) : $(inst.options.items, inst.element), inst]);
 						this.containers.push(inst);
 					}
 				};
@@ -778,7 +778,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 	_createHelper: function(event) {
 
 		var o = this.options;
-		var helper = $.isFunction(o.helper) ? $(o.helper.apply(this.element[0], [event, this.currentItem])) : (o.helper == 'clone' ? this.currentItem.clone() : this.currentItem);
+		var helper = typeof o.helper === 'function' ? $(o.helper.apply(this.element[0], [event, this.currentItem])) : (o.helper == 'clone' ? this.currentItem.clone() : this.currentItem);
 
 		if(!helper.parents('body').length) //Add the helper to the DOM if that didn't happen already
 			$(o.appendTo != 'parent' ? o.appendTo : this.currentItem[0].parentNode)[0].appendChild(helper[0]);
@@ -797,7 +797,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		if (typeof obj == 'string') {
 			obj = obj.split(' ');
 		}
-		if ($.isArray(obj)) {
+		if (Array.isArray(obj)) {
 			obj = {left: +obj[0], top: +obj[1] || 0};
 		}
 		if ('left' in obj) {

@@ -10,6 +10,7 @@
 			"Schu",
 			"Shirayuki",
 			"Suisui",
+			"UsagiNeko",
 			"Whym",
 			"Yusuke1109",
 			"ネイ"
@@ -396,6 +397,8 @@
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
 	"exif-urgency-other": "利用者定義の優先度 ($1)",
+	"exif-projectiontype": "投影方式",
+	"exif-projectiontype-equirectangular": "正距円筒図法",
 	"exif-usepanoramaviewer": "パノラマビューワーを使用するか",
 	"exif-usepanoramaviewer-true": "はい",
 	"exif-usepanoramaviewer-false": "いいえ",

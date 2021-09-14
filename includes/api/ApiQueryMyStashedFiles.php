@@ -35,7 +35,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 	public function execute() {
 		$user = $this->getUser();
 
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			$this->dieWithError( 'apierror-mustbeloggedin-uploadstash', 'stashnotloggedin' );
 		}
 
@@ -61,7 +61,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', 'us_id' );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$this->addFieldsIf(
 			[
 				'us_size',

@@ -209,6 +209,8 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			'ar_sha1' => $slots->computeSha1(),
 		];
 
+		$row = $protoRow;
+
 		yield 'mismatching wiki ID' => [
 			new PageIdentityValue(
 				$title->getArticleID(),
@@ -218,24 +220,10 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			),
 			$user,
 			$comment,
-			'not a row',
+			(object)$row,
 			$slots,
 			'acmewiki',
 			PreconditionException::class
-		];
-
-		yield 'not a row' => [
-			new PageIdentityValue(
-				$title->getArticleID(),
-				$title->getNamespace(),
-				$title->getDBkey(),
-				'acmewiki'
-			),
-			$user,
-			$comment,
-			'not a row',
-			$slots,
-			'acmewiki'
 		];
 
 		$row = $protoRow;

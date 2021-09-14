@@ -10,7 +10,7 @@ class RedisBagOStuffTest extends MediaWikiUnitTestCase {
 	/** @var RedisBagOStuff */
 	private $cache;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$cache = $this->getMockBuilder( RedisBagOStuff::class )

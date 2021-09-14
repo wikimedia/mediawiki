@@ -264,11 +264,11 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function createManualTables() {
-		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual', 'revision' );
+		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual' );
 	}
 
 	/**
-	 * Insert update keys into table to prevent running unneded updates.
+	 * Insert update keys into table to prevent running unneeded updates.
 	 * @stable to override
 	 *
 	 * @return Status

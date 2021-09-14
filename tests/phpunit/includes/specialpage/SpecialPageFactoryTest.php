@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -129,6 +130,30 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getFactory()->getTitleForAlias( 'Specialpages/Foo' );
 		$this->assertEquals( 'Spezialseiten/Foo', $title->getText() );
 		$this->assertEquals( NS_SPECIAL, $title->getNamespace() );
+	}
+
+	public function provideExecutePath() {
+		yield [ 'BlankPage', 'intentionallyblankpage' ];
+
+		$path = new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReferenceValue::LOCAL );
+		yield [ $path, 'intentionallyblankpage' ];
+	}
+
+	/**
+	 * @dataProvider provideExecutePath
+	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::executePAth
+	 */
+	public function testExecutePath( $path, $expected ) {
+		$this->setContentLang( 'qqx' );
+
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest() );
+
+		$output = new OutputPage( $context );
+		$context->setOutput( $output );
+
+		$this->getFactory()->executePath( $path, $context );
+		$this->assertStringContainsString( $expected, $output->getHTML() );
 	}
 
 	/**

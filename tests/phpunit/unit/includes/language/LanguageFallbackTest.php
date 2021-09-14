@@ -31,7 +31,7 @@ class LanguageFallbackTest extends MediaWikiUnitTestCase {
 		return $mockLangNameUtils;
 	}
 
-	private function getCallee( array $options = [] ) : LanguageFallback {
+	private function getCallee( array $options = [] ): LanguageFallback {
 		return new LanguageFallback(
 			$options['siteLangCode'] ?? 'en',
 			$this->getMockLocalisationCache(

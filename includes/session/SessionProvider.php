@@ -27,7 +27,7 @@ use Config;
 use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use Psr\Log\LoggerAwareInterface;
+use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
@@ -78,7 +78,7 @@ use WebRequest;
  * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
-abstract class SessionProvider implements SessionProviderInterface, LoggerAwareInterface {
+abstract class SessionProvider implements SessionProviderInterface {
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -95,6 +95,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserNameUtils */
+	protected $userNameUtils;
+
 	/** @var int Session priority. Used for the default newSessionInfo(), but
 	 * could be used by subclasses too.
 	 */
@@ -102,32 +105,105 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * @stable to call
-	 * @note To fully initialize a SessionProvider, the setLogger(),
-	 *  setConfig(), setManager() and setHookContainer() methods must be
-	 *  called (and should be called in that order). Failure to do so is
-	 *  liable to cause things to fail unexpectedly.
 	 */
 	public function __construct() {
 		$this->priority = SessionInfo::MIN_PRIORITY + 10;
 	}
 
+	/**
+	 * Initialise with dependencies of a SessionProvider
+	 *
+	 * @since 1.37
+	 * @internal In production code SessionManager will initialize the
+	 * SessionProvider, in tests SessionProviderTestTrait must be used.
+	 *
+	 * @param LoggerInterface $logger
+	 * @param Config $config
+	 * @param SessionManager $manager
+	 * @param HookContainer $hookContainer
+	 * @param UserNameUtils $userNameUtils
+	 */
+	public function init(
+		LoggerInterface $logger,
+		Config $config,
+		SessionManager $manager,
+		HookContainer $hookContainer,
+		UserNameUtils $userNameUtils
+	) {
+		$this->logger = $logger;
+		$this->config = $config;
+		$this->manager = $manager;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userNameUtils = $userNameUtils;
+		$this->postInitSetup();
+	}
+
+	/**
+	 * A provider can override this to do any necessary setup after init()
+	 * is called.
+	 *
+	 * @since 1.37
+	 * @stable to override
+	 */
+	protected function postInitSetup() {
+	}
+
+	/**
+	 * Sets a logger instance on the object.
+	 *
+	 * @deprecated since 1.37. For extension-defined session providers
+	 * that were using this method to trigger other work, please override
+	 * SessionProvider::postInitSetup instead. If your extension
+	 * was using this to explicitly change the logger of an existing
+	 * SessionProvider object, please file a report on phabricator
+	 * - there is no non-deprecated way to do this anymore.
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->logger = $logger;
 	}
 
 	/**
 	 * Set configuration
+	 *
+	 * @deprecated since 1.37. For extension-defined session providers
+	 * that were using this method to trigger other work, please override
+	 * SessionProvider::postInitSetup instead. If your extension
+	 * was using this to explicitly change the Config of an existing
+	 * SessionProvider object, please file a report on phabricator
+	 * - there is no non-deprecated way to do this anymore.
 	 * @param Config $config
 	 */
 	public function setConfig( Config $config ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->config = $config;
 	}
 
 	/**
+	 * Get the config
+	 *
+	 * @since 1.37
+	 * @return Config
+	 */
+	protected function getConfig() {
+		return $this->config;
+	}
+
+	/**
 	 * Set the session manager
+	 *
+	 * @deprecated since 1.37. For extension-defined session providers
+	 * that were using this method to trigger other work, please override
+	 * SessionProvider::postInitSetup instead. If your extension
+	 * was using this to explicitly change the SessionManager of an existing
+	 * SessionProvider object, please file a report on phabricator
+	 * - there is no non-deprecated way to do this anymore.
 	 * @param SessionManager $manager
 	 */
 	public function setManager( SessionManager $manager ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->manager = $manager;
 	}
 
@@ -141,9 +217,16 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * @internal
+	 * @deprecated since 1.37. For extension-defined session providers
+	 * that were using this method to trigger other work, please override
+	 * SessionProvider::postInitSetup instead. If your extension
+	 * was using this to explicitly change the HookContainer of an existing
+	 * SessionProvider object, please file a report on phabricator
+	 * - there is no non-deprecated way to do this anymore.
 	 * @param HookContainer $hookContainer
 	 */
 	public function setHookContainer( $hookContainer ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -153,7 +236,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 *
 	 * @return HookContainer
 	 */
-	protected function getHookContainer() : HookContainer {
+	protected function getHookContainer(): HookContainer {
 		return $this->hookContainer;
 	}
 
@@ -165,7 +248,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * @since 1.35
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		return $this->hookRunner;
 	}
 
@@ -401,7 +484,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * If the provider is capable of returning a SessionInfo with a verified
 	 * UserInfo for the named user in some manner other than by validating
 	 * against $user->getToken(), steps must be taken to prevent that from
-	 * occurring in the future. This might add the username to a blacklist, or
+	 * occurring in the future. This might add the username to a list, or
 	 * it might just delete whatever authentication credentials would allow
 	 * such a session in the first place (e.g. remove all OAuth grants or
 	 * delete record of the SSL client certificate).
@@ -575,7 +658,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * the stored data fails.
 	 *
 	 * @param string $data
-	 * @param string|null $key Defaults to $this->config->get( 'SecretKey' )
+	 * @param string|null $key Defaults to $this->getConfig()->get( 'SecretKey' )
 	 * @return string
 	 */
 	final protected function hashToSessionId( $data, $key = null ) {
@@ -590,7 +673,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 			);
 		}
 
-		$hash = \MWCryptHash::hmac( "$this\n$data", $key ?: $this->config->get( 'SecretKey' ), false );
+		$hash = \MWCryptHash::hmac( "$this\n$data", $key ?: $this->getConfig()->get( 'SecretKey' ), false );
 		if ( strlen( $hash ) < 32 ) {
 			// Should never happen, even md5 is 128 bits
 			// @codeCoverageIgnoreStart

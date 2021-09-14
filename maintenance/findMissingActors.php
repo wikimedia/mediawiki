@@ -60,25 +60,15 @@ class FindMissingActors extends Maintenance {
 	 */
 	private $actorNormalization;
 
-	private const TABLES = [
-		// 'rev_actor' => [ 'revision', 'rev_actor', 'rev_id' ], // not yet used in 1.35
-		'revactor_actor' => [ 'revision_actor_temp', 'revactor_actor', 'revactor_rev' ],
-		'ar_actor' => [ 'archive', 'ar_actor', 'ar_id' ],
-		'ipb_by_actor' => [ 'ipblocks', 'ipb_by_actor', 'ipb_id' ], // no index on ipb_by_actor!
-		'img_actor' => [ 'image', 'img_actor', 'img_name' ],
-		'oi_actor' => [ 'oldimage', 'oi_actor', 'oi_archive_name' ], // no index on oi_archive_name!
-		'fa_actor' => [ 'filearchive', 'fa_actor', 'fa_id' ],
-		'rc_actor' => [ 'recentchanges', 'rc_actor', 'rc_id' ],
-		'log_actor' => [ 'logging', 'log_actor', 'log_id' ],
-	];
+	/** @var array|null */
+	private $tables;
 
 	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Find and fix invalid actor IDs.' );
-		$this->addOption( 'field', 'The name of a database field to process. '
-			. 'Possible values: ' . implode( ', ', array_keys( self::TABLES ) ),
-			 true, true );
+		$this->addOption( 'field', 'The name of a database field to process',
+			true, true );
 		$this->addOption( 'skip', 'A comma-separated list of actor IDs to skip.',
 			false, true );
 		$this->addOption( 'overwrite-with', 'Replace missing actors with this user. '
@@ -86,7 +76,7 @@ class FindMissingActors extends Maintenance {
 			. 'system user (per $wgReservedUsernames) or locally registered user. '
 			. 'If not given, invalid actors will only be listed, not fixed. '
 			. 'You will be prompted for confirmation before data is written. ',
-			 false, true );
+			false, true );
 
 		$this->setBatchSize( 1000 );
 	}
@@ -106,6 +96,43 @@ class FindMissingActors extends Maintenance {
 		$this->lbFactory = $lbFactory ?? $this->lbFactory ?? $services->getDBLoadBalancerFactory();
 		$this->actorNormalization = $actorNormalization ?? $this->actorNormalization ??
 			$services->getActorNormalization();
+	}
+
+	/**
+	 * @return array
+	 */
+	private function getTables() {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( !$this->tables ) {
+			$tables = [
+				'ar_actor' => [ 'archive', 'ar_actor', 'ar_id' ],
+				'ipb_by_actor' => [ 'ipblocks', 'ipb_by_actor', 'ipb_id' ], // no index on ipb_by_actor!
+				'img_actor' => [ 'image', 'img_actor', 'img_name' ],
+				'oi_actor' => [ 'oldimage', 'oi_actor', 'oi_archive_name' ], // no index on oi_archive_name!
+				'fa_actor' => [ 'filearchive', 'fa_actor', 'fa_id' ],
+				'rc_actor' => [ 'recentchanges', 'rc_actor', 'rc_id' ],
+				'log_actor' => [ 'logging', 'log_actor', 'log_id' ],
+			];
+
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+				$tables['revactor_actor'] = [ 'revision_actor_temp', 'revactor_actor', 'revactor_rev' ];
+			}
+			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+				$tables['rev_actor'] = [ 'revision', 'rev_actor', 'rev_id' ];
+			}
+			$this->tables = $tables;
+		}
+		return $this->tables;
+	}
+
+	/**
+	 * @param string $field
+	 * @return array|null
+	 */
+	private function getTableInfo( $field ) {
+		$tables = $this->getTables();
+		return $tables[$field] ?? null;
 	}
 
 	/**
@@ -142,7 +169,7 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown user: '$name'" );
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
 		if ( !$actorId ) {
@@ -153,14 +180,11 @@ class FindMissingActors extends Maintenance {
 		return $actorId;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function execute() {
 		$this->initializeServices();
 
 		$field = $this->getOption( 'field' );
-		if ( !isset( self::TABLES[$field] ) ) {
+		if ( !$this->getTableInfo( $field ) ) {
 			$this->fatalError( "Unknown field: $field.\n" );
 		}
 
@@ -195,7 +219,7 @@ class FindMissingActors extends Maintenance {
 	 * @return array a list of row IDs, identifying rows in which the actor ID needs to be replaced.
 	 */
 	private function findBadActors( $field, $skip ) {
-		[ $table, $actorField, $idField ] = self::TABLES[$field];
+		[ $table, $actorField, $idField ] = $this->getTableInfo( $field );
 		$this->output( "Finding invalid actor IDs in $table.$actorField...\n" );
 
 		$dbr = $this->loadBalancer->getConnectionRef(
@@ -269,12 +293,12 @@ class FindMissingActors extends Maintenance {
 	 * @return int
 	 */
 	private function overwriteActorIDs( $field, array $ids, int $overwrite ) {
-		[ $table, $actorField, $idField ] = self::TABLES[$field];
+		[ $table, $actorField, $idField ] = $this->getTableInfo( $field );
 
 		$count = count( $ids );
 		$this->output( "OVERWRITING $count actor IDs in $table.$actorField with $overwrite...\n" );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$dbw->update( $table, [ $actorField => $overwrite ], [ $idField => $ids ], __METHOD__ );
 

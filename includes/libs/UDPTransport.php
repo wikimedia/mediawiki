@@ -31,7 +31,7 @@ use Wikimedia\IPUtils;
  * @since 1.25
  */
 class UDPTransport {
-	// Limit to 64KB
+	// Limit to 64 KiB
 	public const MAX_PAYLOAD_SIZE = 65507;
 	private $host, $port, $prefix, $domain;
 
@@ -78,7 +78,7 @@ class UDPTransport {
 	/**
 	 * @param string $text
 	 */
-	public function emit( $text ) : void {
+	public function emit( $text ): void {
 		// Clean it up for the multiplexer
 		if ( $this->prefix !== false ) {
 			$text = preg_replace( '/^/m', $this->prefix . ' ', $text );

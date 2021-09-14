@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected static $testingPageId;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
@@ -30,7 +30,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->replace(
 			'interwiki',
 			[ 'iw_prefix' ],
@@ -200,7 +200,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = new WikiPage( $title );
-		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$wikiPage->doUserEditContent(
+			new WikitextContent( '[[Category:Foo]]' ),
+			$this->getTestSysop()->getUser(),
+			'added category'
+		);
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -210,7 +214,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ [ 'Foo', '[[:Testing]] added to category' ] ]
 		);
 
-		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'replaced category' );
+		$wikiPage->doUserEditContent(
+			new WikitextContent( '[[Category:Bar]]' ),
+			$this->getTestSysop()->getUser(),
+			'replaced category'
+		);
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -240,11 +248,19 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$templatePage = new WikiPage( $templateTitle );
 
 		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
-		$wikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$wikiPage->doUserEditContent(
+			new WikitextContent( '{{TestingTemplate}}' ),
+			$this->getTestSysop()->getUser(),
+			'added template'
+		);
 		$this->runAllRelatedJobs();
 
 		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
-		$otherWikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$otherWikiPage->doUserEditContent(
+			new WikitextContent( '{{TestingTemplate}}' ),
+			$this->getTestSysop()->getUser(),
+			'added template'
+		);
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
@@ -254,7 +270,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[]
 		);
 
-		$templatePage->doEditContent( new WikitextContent( '[[Category:Baz]]' ), 'added category' );
+		$templatePage->doUserEditContent(
+			new WikitextContent( '[[Category:Baz]]' ),
+			$this->getTestSysop()->getUser(),
+			'added category'
+		);
 		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(

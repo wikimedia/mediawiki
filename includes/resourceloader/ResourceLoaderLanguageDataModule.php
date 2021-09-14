@@ -37,7 +37,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	 * @param string $langCode
 	 * @return array
 	 */
-	public static function getData( $langCode ) : array {
+	public static function getData( $langCode ): array {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $langCode );
 		return [

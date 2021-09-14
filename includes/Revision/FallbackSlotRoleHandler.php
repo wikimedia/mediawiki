@@ -23,6 +23,7 @@
 namespace MediaWiki\Revision;
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * A SlotRoleHandler for providing basic functionality for undefined slot roles.
@@ -50,12 +51,12 @@ class FallbackSlotRoleHandler extends SlotRoleHandler {
 
 	/**
 	 * @param string $model
-	 * @param LinkTarget $page
+	 * @param PageIdentity $page
 	 *
 	 * @return bool Always false, to prevent undefined slots from being used for
 	 *         arbitrary content.
 	 */
-	public function isAllowedModel( $model, LinkTarget $page ) {
+	public function isAllowedModel( $model, PageIdentity $page ) {
 		return false;
 	}
 

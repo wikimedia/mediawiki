@@ -67,7 +67,7 @@ class SelfRedirectConstraint implements IEditConstraint {
 		$this->title = $title;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( !$this->allowSelfRedirect
 			&& $this->newContent->isRedirect()
 			&& $this->newContent->getRedirectTarget()->equals( $this->title )
@@ -83,7 +83,7 @@ class SelfRedirectConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			$statusValue->fatal( 'selfredirect' );

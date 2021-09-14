@@ -56,13 +56,12 @@ TEXT
 
 	/**
 	 * @return bool
-	 * @throws Exception
 	 */
 	public function execute() {
 		global $IP;
 		$frm = new ForeignResourceManager(
-			 "{$IP}/resources/lib/foreign-resources.yaml",
-			 "{$IP}/resources/lib",
+			"{$IP}/resources/lib/foreign-resources.yaml",
+			"{$IP}/resources/lib",
 			function ( $text ) {
 				$this->output( $text );
 			},
@@ -78,7 +77,12 @@ TEXT
 
 		$action = $this->getArg( 0 );
 		$module = $this->getArg( 1, 'all' );
-		return $frm->run( $action, $module );
+
+		try {
+			return $frm->run( $action, $module );
+		} catch ( Exception $e ) {
+			$this->fatalError( "Error: {$e->getMessage()}" );
+		}
 	}
 }
 

@@ -9,7 +9,7 @@
  */
 class ApiLogoutTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgRequest;
 
 		parent::setUp();

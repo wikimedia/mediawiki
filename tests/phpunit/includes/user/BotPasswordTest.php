@@ -17,7 +17,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 	/** @var string */
 	private $testUserName;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -34,16 +34,16 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->testUserName = $this->testUser->getUser()->getName();
 
 		$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock1->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( true ) );
-		$mock1->expects( $this->any() )->method( 'lookupUserNames' )
-			->will( $this->returnValue( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] ) );
+		$mock1->method( 'isAttached' )
+			->willReturn( true );
+		$mock1->method( 'lookupUserNames' )
+			->willReturn( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] );
 		$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
 
 		$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock2->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( false ) );
-		$mock2->expects( $this->any() )->method( 'lookupUserNames' )
+		$mock2->method( 'isAttached' )
+			->willReturn( false );
+		$mock2->method( 'lookupUserNames' )
 			->will( $this->returnArgument( 0 ) );
 		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 
@@ -55,15 +55,13 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 				return $mock2;
 			} ],
 		] );
-
-		CentralIdLookup::resetCache();
 	}
 
 	public function addDBData() {
 		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
 			[ 'bp_user' => [ 42, 43 ], 'bp_app_id' => 'BotPassword' ],
@@ -196,7 +194,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( InvalidPassword::class, $password );
 
 		$bp = TestingAccessWrapper::newFromObject( BotPassword::newFromCentralId( 42, 'BotPassword' ) );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'bot_passwords',
 			[ 'bp_password' => 'garbage' ],
@@ -314,10 +312,10 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		// Failed restriction
 		$request = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getIP' ] )
+			->onlyMethods( [ 'getIP' ] )
 			->getMock();
-		$request->expects( $this->any() )->method( 'getIP' )
-			->will( $this->returnValue( '10.0.0.1' ) );
+		$request->method( 'getIP' )
+			->willReturn( '10.0.0.1' );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', $request );
 		$this->assertEquals( Status::newFatal( 'botpasswords-restriction-failed' ), $status );
 

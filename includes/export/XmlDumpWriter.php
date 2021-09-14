@@ -297,6 +297,7 @@ class XmlDumpWriter {
 	 * @return SqlBlobStore
 	 */
 	private function getBlobStore() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return MediaWikiServices::getInstance()->getBlobStore();
 	}
 
@@ -374,6 +375,7 @@ class XmlDumpWriter {
 		} else {
 			if ( $rev->getComment()->text != '' ) {
 				$out .= "      "
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped getComment is polluted by truncate
 					. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
 					. "\n";
 			}
@@ -589,7 +591,7 @@ class XmlDumpWriter {
 		if ( $row->log_deleted & LogPage::DELETED_USER ) {
 			$out .= "    " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$out .= $this->writeContributor( $row->log_user, $row->user_name, "    " );
+			$out .= $this->writeContributor( $row->actor_user, $row->actor_name, "    " );
 		}
 
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
@@ -597,6 +599,7 @@ class XmlDumpWriter {
 		} else {
 			$comment = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
 			if ( $comment != '' ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped CommentStore is polluted by truncate
 				$out .= "    " . Xml::elementClean( 'comment', null, strval( $comment ) ) . "\n";
 			}
 		}
@@ -695,14 +698,21 @@ class XmlDumpWriter {
 		} else {
 			$contents = '';
 		}
-		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
+		$uploader = $file->getUploader( File::FOR_PUBLIC );
+		if ( $uploader ) {
+			$uploader = $this->writeContributor( $uploader->getId(), $uploader->getName() );
 		} else {
-			$comment = Xml::elementClean( 'comment', null, strval( $file->getDescription() ) );
+			$uploader = Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
+		}
+		$comment = $file->getDescription( File::FOR_PUBLIC );
+		if ( $comment ) {
+			$comment = Xml::elementClean( 'comment', null, $comment );
+		} else {
+			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
 		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
-			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
+			$uploader .
 			"      " . $comment . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
 			$archiveName .

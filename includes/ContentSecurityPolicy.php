@@ -111,8 +111,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Get the name of the HTTP header to use.
-	 *
 	 * @param int $reportOnly Either self::REPORT_ONLY_MODE or self::FULL_MODE
 	 * @return string Name of http header
 	 * @throws UnexpectedValueException
@@ -243,8 +241,8 @@ class ContentSecurityPolicy {
 			|| !in_array( 'data:', $defaultSrc )
 			|| !in_array( 'blob:', $defaultSrc )
 		) {
-			// A future todo might be to make the whitelist options only
-			// add all the whitelisted sites to the header, instead of
+			// A future todo might be to make the allow options only
+			// add all the allowed sites to the header, instead of
 			// allowing all (Assuming there is a small number of sites).
 			// For now, the external image feature disables the limits
 			// CSP puts on external images.
@@ -362,8 +360,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Get additional script sources
-	 *
 	 * @return array Additional sources for loading scripts from
 	 */
 	private function getAdditionalSelfUrlsScript() {
@@ -506,7 +502,7 @@ class ContentSecurityPolicy {
 	/**
 	 * Should we set nonce attribute
 	 *
-	 * @param Config $config Configuration object
+	 * @param Config $config
 	 * @return bool
 	 */
 	public static function isNonceRequired( Config $config ) {
@@ -558,8 +554,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Add an additional default src
-	 *
 	 * If possible you should use a more specific source type then default.
 	 *
 	 * So for example, if an extension added a special page that loaded something
@@ -574,8 +568,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Add an additional CSS src
-	 *
 	 * So for example, if an extension added a special page that loaded external CSS
 	 * it might call $this->getOutput()->getCSP()->addStyleSrc( '*.example.com' );
 	 *
@@ -588,8 +580,6 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Add an additional script src
-	 *
 	 * So for example, if an extension added a special page that loaded something
 	 * it might call $this->getOutput()->getCSP()->addScriptSrc( '*.example.com' );
 	 *

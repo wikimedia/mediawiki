@@ -123,7 +123,7 @@ class BitmapMetadataHandler {
 	 *
 	 * This function is generally called by the media handlers' getMetadata()
 	 *
-	 * @return array Metadata array
+	 * @return array
 	 */
 	public function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
@@ -166,6 +166,9 @@ class BitmapMetadataHandler {
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 
+		if ( isset( $seg['SOF'] ) ) {
+			$meta->addMetadata( [ 'SOF' => $seg['SOF'] ] );
+		}
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
 			$meta->addMetadata( [ 'JPEGFileComment' => $seg['COM'] ], 'native' );
 		}

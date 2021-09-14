@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -54,7 +55,7 @@ class CleanupSpam extends Maintenance {
 			$this->fatalError( "Invalid username specified in 'spambot_username' message: $username" );
 		}
 		// Hack: Grant bot rights so we don't flood RecentChanges
-		$user->addGroup( 'bot' );
+		MediaWikiServices::getInstance()->getUserGroupManager()->addUserToGroup( $user, 'bot' );
 		$wgUser = $user;
 
 		$spec = $this->getArg( 0 );
@@ -132,10 +133,10 @@ class CleanupSpam extends Maintenance {
 	 * @param int $id
 	 * @param string $domain
 	 * @param string $protocol
-	 * @param User $actingUser
+	 * @param Authority $performer
 	 * @throws MWException
 	 */
-	private function cleanupArticle( $id, $domain, $protocol, User $actingUser ) {
+	private function cleanupArticle( $id, $domain, $protocol, Authority $performer ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
@@ -165,7 +166,7 @@ class CleanupSpam extends Maintenance {
 			// This happens e.g. when a link comes from a template rather than the page itself
 			$this->output( "False match\n" );
 		} else {
-			$dbw = $this->getDB( DB_MASTER );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			if ( $rev ) {
@@ -173,19 +174,19 @@ class CleanupSpam extends Maintenance {
 				$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 				$this->output( "reverting\n" );
-				$page->doEditContent(
+				$page->doUserEditContent(
 					$content,
+					$performer,
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE | EDIT_FORCE_BOT,
-					$rev->getId(),
-					$actingUser
+					$rev->getId()
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
 				$page->doDeleteArticleReal(
 					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
-					$actingUser
+					$performer->getUser()
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
@@ -194,12 +195,11 @@ class CleanupSpam extends Maintenance {
 				$content = $handler->makeEmptyContent();
 
 				$this->output( "blanking\n" );
-				$page->doEditContent(
+				$page->doUserEditContent(
 					$content,
+					$performer,
 					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text(),
-					EDIT_UPDATE | EDIT_FORCE_BOT,
-					false,
-					$actingUser
+					EDIT_UPDATE | EDIT_FORCE_BOT
 				);
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );

@@ -22,5 +22,5 @@ interface BeforePageDisplayHook {
 	 * @param Skin $skin
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onBeforePageDisplay( $out, $skin ) : void;
+	public function onBeforePageDisplay( $out, $skin ): void;
 }

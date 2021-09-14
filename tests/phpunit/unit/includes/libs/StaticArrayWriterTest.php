@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2018 Kunal Mehta <legoktm@member.fsf.org>
+ * Copyright (C) 2018 Kunal Mehta <legoktm@debian.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,6 +57,37 @@ return [
 		'these' => 'do too',
 	],
 ];
+
+PHP;
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function testWriteClass() {
+		$data = [
+			'foo' => 'bar',
+			'baz' => 'rawr',
+		];
+		$writer = new StaticArrayWriter();
+		$actual = $writer->writeClass( $data, [
+			'header' => "Header\nWith\nNewlines",
+			'namespace' => 'Example\\Foo',
+			'class' => 'Bar',
+			'const' => 'THING',
+		] );
+		$expected = <<<PHP
+<?php
+// Header
+// With
+// Newlines
+
+namespace Example\Foo;
+
+class Bar {
+	public const THING = [
+		'foo' => 'bar',
+		'baz' => 'rawr',
+	];
+}
 
 PHP;
 		$this->assertSame( $expected, $actual );

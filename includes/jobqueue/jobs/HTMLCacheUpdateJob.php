@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 
 /**
  * Job to purge the HTML/file cache for all pages that link to or use another page or file
@@ -51,12 +52,14 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	/**
-	 * @param Title $title Title to purge backlink pages from
+	 * @param PageReference $page Page to purge backlink pages from
 	 * @param string $table Backlink table name
 	 * @param array $params Additional job parameters
+	 *
 	 * @return HTMLCacheUpdateJob
 	 */
-	public static function newForBacklinks( Title $title, $table, $params = [] ) {
+	public static function newForBacklinks( PageReference $page, $table, $params = [] ) {
+		$title = Title::castFromPageReference( $page );
 		return new self(
 			$title,
 			[
@@ -133,7 +136,7 @@ class HTMLCacheUpdateJob extends Job {
 		$config = $services->getMainConfig();
 
 		$lbFactory = $services->getDBLoadBalancerFactory();
-		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.

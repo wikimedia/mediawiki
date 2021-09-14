@@ -9,3 +9,6 @@
 .selector { /*@embed*/ background-image: url(simple-ltr.gif); }
 
 .selector { /*@embed*/ background-image: url(simple-ltr.gif); }
+
+/* Complex test for T288943 */
+.selector-ltr[ data-foo='bar' ]:empty { border-left: 10px none; border-right: 0 none; }

@@ -7,7 +7,7 @@ use MediaWiki\Logger\LegacyLogger;
  * @group GlobalFunctions
  */
 class GlobalTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$readOnlyFile = $this->getNewTempFile();
@@ -260,58 +260,9 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::wfNegotiateType
-	 */
-	public function testNegotiateType() {
-		$this->hideDeprecated( 'wfNegotiateType' );
-
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.5,
-					'text/*' => 0.2 ],
-				[ 'text/html' => 1.0 ] ) );
-		$this->assertEquals(
-			'application/xhtml+xml',
-			wfNegotiateType(
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.5,
-					'text/*' => 0.2 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'text/html' => 1.0,
-					'text/plain' => 0.5,
-					'text/*' => 0.5,
-					'application/xhtml+xml' => 0.2 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'text/*' => 1.0,
-					'image/*' => 0.7,
-					'*/*' => 0.3 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertNull(
-			wfNegotiateType(
-				[ 'text/*' => 1.0 ],
-				[ 'application/xhtml+xml' => 1.0 ] ) );
-	}
-
-	/**
 	 * @covers ::wfDebug
-	 * @covers ::wfDebugMem
 	 */
 	public function testDebugFunctionTest() {
-		$this->hideDeprecated( 'wfDebugMem' );
-
 		$debugLogFile = $this->getNewTempFile();
 
 		$this->setMwGlobals( [
@@ -332,20 +283,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			" 05This has böth UTF and control chars \n",
 			file_get_contents( $debugLogFile )
-		);
-
-		unlink( $debugLogFile );
-		wfDebugMem();
-		$this->assertGreaterThan(
-			1000,
-			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
-		);
-
-		unlink( $debugLogFile );
-		wfDebugMem( true );
-		$this->assertGreaterThan(
-			1000000,
-			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
 
 		unlink( $debugLogFile );
@@ -493,8 +430,9 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @group medium
 	 * @covers ::wfMerge
 	 */
-	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText,
-							   $expectedMergeAttemptResult ) {
+	public function testMerge(
+		$old, $mine, $yours, $expectedMergeResult, $expectedText, $expectedMergeAttemptResult
+	) {
 		$this->markTestSkippedIfNoDiff3();
 
 		$mergedText = null;

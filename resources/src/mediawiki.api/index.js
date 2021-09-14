@@ -1,10 +1,62 @@
 ( function () {
+	var defaultOptions;
 
 	/**
+	 * Client library for the action API. See mw.Rest for the REST API.
+	 *
+	 * See also <https://www.mediawiki.org/wiki/API:Main_page>.
+	 *
+	 * Interact with the API of a particular MediaWiki site. mw.Api objects represent the API of
+	 * one particular MediaWiki site.
+	 *
+	 *     var api = new mw.Api();
+	 *     api.get( {
+	 *         action: 'query',
+	 *         meta: 'userinfo'
+	 *     } ).done( function ( data ) {
+	 *         console.log( data );
+	 *     } );
+	 *
+	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
+	 *
+	 *     var api = new mw.Api();
+	 *     api.get( {
+	 *         action: 'query',
+	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
+	 *     } ).done( function ( data ) {
+	 *         console.log( data );
+	 *     } );
+	 *
+	 * Since MW 1.26, boolean values for API parameters can be specified natively. Parameter
+	 * values set to `false` or `undefined` will be omitted from the request, as required by
+	 * the API.
+	 *
 	 * @class mw.Api
+	 * @constructor
+	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
+	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
+	mw.Api = function ( options ) {
+		var defaults = $.extend( {}, options ),
+			setsUrl = options && options.ajax && options.ajax.url !== undefined;
+
+		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
+		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
+
+		// Force a string if we got a mw.Uri object
+		if ( setsUrl ) {
+			defaults.ajax.url = String( defaults.ajax.url );
+		}
+		if ( defaults.useUS === undefined ) {
+			defaults.useUS = !setsUrl;
+		}
+
+		this.defaults = defaults;
+		this.requests = [];
+	};
 
 	/**
+	 * @private
 	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
 	 *     `options` to mw.Api constructor.
 	 * @property {Object} defaultOptions.parameters Default query parameters for API requests.
@@ -12,22 +64,21 @@
 	 * @property {boolean} defaultOptions.useUS Whether to use U+001F when joining multi-valued
 	 *     parameters (since 1.28). Default is true if ajax.url is not set, false otherwise for
 	 *     compatibility.
-	 * @private
 	 */
-	var defaultOptions = {
-			parameters: {
-				action: 'query',
-				format: 'json'
-			},
-			ajax: {
-				url: mw.util.wikiScript( 'api' ),
-				timeout: 30 * 1000, // 30 seconds
-				dataType: 'json'
-			}
+	defaultOptions = {
+		parameters: {
+			action: 'query',
+			format: 'json'
 		},
+		ajax: {
+			url: mw.util.wikiScript( 'api' ),
+			timeout: 30 * 1000, // 30 seconds
+			dataType: 'json'
+		}
+	};
 
-		// Keyed by ajax url and symbolic name for the individual request
-		promises = {};
+	// Keyed by ajax url and symbolic name for the individual request
+	var promises = {};
 
 	function mapLegacyToken( action ) {
 		// Legacy types for backward-compatibility with API action=tokens.
@@ -62,54 +113,6 @@
 			.promise( { abort: function () {} } );
 	} );
 
-	/**
-	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
-	 * mw.Api objects represent the API of a particular MediaWiki server.
-	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: 'userinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
-	 *
-	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
-	 *
-	 *     var api = new mw.Api();
-	 *     api.get( {
-	 *         action: 'query',
-	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done( function ( data ) {
-	 *         console.log( data );
-	 *     } );
-	 *
-	 * Since MW 1.26, boolean values for a parameter can be specified directly. If the value is
-	 * `false` or `undefined`, the parameter will be omitted from the request, as required by the API.
-	 *
-	 * @constructor
-	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
-	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
-	 */
-	mw.Api = function ( options ) {
-		var defaults = $.extend( {}, options ),
-			setsUrl = options && options.ajax && options.ajax.url !== undefined;
-
-		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
-		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
-
-		// Force a string if we got a mw.Uri object
-		if ( setsUrl ) {
-			defaults.ajax.url = String( defaults.ajax.url );
-		}
-		if ( defaults.useUS === undefined ) {
-			defaults.useUS = !setsUrl;
-		}
-
-		this.defaults = defaults;
-		this.requests = [];
-	};
-
 	mw.Api.prototype = {
 		/**
 		 * Abort all unfinished requests issued by this Api object.
@@ -125,7 +128,7 @@
 		},
 
 		/**
-		 * Perform API get request
+		 * Perform API get request. See #ajax for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -138,7 +141,7 @@
 		},
 
 		/**
-		 * Perform API post request
+		 * Perform API post request. See #ajax for details.
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
@@ -181,10 +184,31 @@
 		/**
 		 * Perform the API call.
 		 *
-		 * @param {Object} parameters
-		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} Done: API response data and the jqXHR object.
-		 *  Fail: Error code
+		 * @param {Object} parameters Parameters to the API. See also #defaultOptions.parameters.
+		 * @param {Object} [ajaxOptions] Parameters to pass to jQuery.ajax. See also
+		 *   #defaultOptions.ajax.
+		 * @return {jQuery.Promise} A promise that settles when the API response is processed.
+		 *   Has an 'abort' method which can be used to abort the request.
+		 *
+		 *   - On success, resolves to `( result, jqXHR )` where `result` is the parsed API response.
+		 *   - On an API error, rejects with `( code, result, result, jqXHR )` where `code` is the
+		 *     [API error code](https://www.mediawiki.org/wiki/API:Errors_and_warnings), and `result`
+		 *     is as above. When there are multiple errors, the code from the first one will be used.
+		 *     If there is no error code, "unknown" is used.
+		 *   - On other types of errors, rejects with `( 'http', details )` where `details` is an object
+		 *     with three fields: `xhr` (the jqXHR object), `textStatus`, and `exception`.
+		 *     The meaning of the last two fields is as follows:
+		 *     - When the request is aborted (the abort method of the promise is called), textStatus
+		 *       and exception are both set to "abort".
+		 *     - On a network timeout, textStatus and exception are both set to "timeout".
+		 *     - On a network error, textStatus is "error" and exception is the empty string.
+		 *     - When the HTTP response code is anything other than 2xx or 304 (the API does not
+		 *       use such response codes but some intermediate layer might), textStatus is "error"
+		 *       and exception is the HTTP status text (the text following the status code in the
+		 *       first line of the server response). For HTTP/2, `exception` is always an empty string.
+		 *     - When the response is not valid JSON but the previous error conditions aren't met,
+		 *       textStatus is "parsererror" and exception is the exception object thrown by
+		 *       `JSON.parse`.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token, requestIndex,

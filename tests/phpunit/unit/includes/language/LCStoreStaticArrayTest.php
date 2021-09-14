@@ -9,13 +9,13 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 	private $dir;
 	private $file;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->dir = sys_get_temp_dir() . '/lcstore-array';
 		$this->file = $this->dir . '/en.l10n.php';
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		Wikimedia\AtEase\AtEase::quietCall( 'unlink', $this->file );
 		Wikimedia\AtEase\AtEase::quietCall( 'rmdir', $this->dir );
 		parent::tearDown();

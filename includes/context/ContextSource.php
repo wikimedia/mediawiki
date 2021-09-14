@@ -20,6 +20,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Session\CsrfTokenSet;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -207,5 +208,15 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function exportSession() {
 		return $this->getContext()->exportSession();
+	}
+
+	/**
+	 * Get a repository to obtain and match CSRF tokens.
+	 *
+	 * @return CsrfTokenSet
+	 * @since 1.37
+	 */
+	public function getCsrfTokenSet(): CsrfTokenSet {
+		return $this->getContext()->getCsrfTokenSet();
 	}
 }

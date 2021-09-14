@@ -247,13 +247,12 @@
 		 * @return {boolean}
 		 */
 		function hasFileAPI() {
-			// eslint-disable-next-line compat/compat
 			return window.FileReader !== undefined;
 		}
 
 		/**
 		 * Check if this is a recognizable image type...
-		 * Also excludes files over 10M to avoid going insane on memory usage.
+		 * Also excludes files over 10 MiB to avoid going insane on memory usage.
 		 *
 		 * TODO: Is there a way we can ask the browser what's supported in `<img>`s?
 		 *
@@ -301,7 +300,6 @@
 		 * @param {Function} callbackBinary
 		 */
 		function fetchPreview( file, callback, callbackBinary ) {
-			// eslint-disable-next-line compat/compat
 			var reader = new FileReader();
 			if ( callbackBinary && 'readAsBinaryString' in reader ) {
 				// To fetch JPEG metadata we need a binary string; start there.
@@ -589,8 +587,7 @@
 				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
 			},
 
-			message: mw.msg( 'editwarning-warning' ),
-			namespace: 'uploadwarning'
+			message: mw.msg( 'editwarning-warning' )
 		} );
 
 		$uploadForm.on( 'submit', function () {

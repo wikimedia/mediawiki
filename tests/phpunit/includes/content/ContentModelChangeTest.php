@@ -18,7 +18,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 	use MockServiceDependenciesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(
@@ -79,12 +79,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testInvalidContent() {
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
 		$wikipage = $this->getExistingTestPage( 'PageWithTextThatIsNotValidJSON' );
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( $invalidJSON, $wikipage->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_UPDATE | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'wikitext',
@@ -164,12 +163,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testContentModelCanBeUsedOn() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( 'Text', $wikipage->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'Ensure a revision exists',
-			EDIT_UPDATE | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'wikitext',
@@ -214,12 +212,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$wikipage = WikiPage::factory( $title );
 
 		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			$dummyContent,
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_NEW | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_NEW | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'testing',
@@ -280,7 +277,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			'Sanity check: `ExistingPage` should be wikitext'
 		);
 
-		$performer = $this->mockRegisteredAuthority( function (
+		$performer = $this->mockRegisteredAuthority( static function (
 			string $permission,
 			PageIdentity $page,
 			PermissionStatus $status
@@ -333,11 +330,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCheckPermissionsThrottle() {
 		$mock = $this->getMockBuilder( User::class )
-			->setMethods( [ 'pingLimiter' ] )
+			->onlyMethods( [ 'pingLimiter' ] )
 			->getMock();
 		$mock->expects( $this->once() )
 			->method( 'pingLimiter' )
-			->with( $this->equalTo( 'editcontentmodel' ) )
+			->with( 'editcontentmodel' )
 			->willReturn( true );
 
 		$change = $this->newContentModelChange(

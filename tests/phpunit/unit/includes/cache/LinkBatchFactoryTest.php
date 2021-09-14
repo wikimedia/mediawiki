@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -23,6 +25,13 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 		return 1;
 	}
 
+	protected function getOverriddenMockValueForParam( ReflectionParameter $param ) {
+		if ( $param->getName() === 'initialItems' ) {
+			return [ [] ];
+		}
+		return [];
+	}
+
 	public function testNewLinkBatch() {
 		$factory = new LinkBatchFactory(
 			$this->createMock( LinkCache::class ),
@@ -34,7 +43,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 
 		$linkBatch = $factory->newLinkBatch( [
 			new TitleValue( NS_MAIN, 'Foo' ),
-			new TitleValue( NS_TALK, 'Bar' ),
+			new PageReferenceValue( NS_TALK, 'Bar', PageReference::LOCAL ),
 		] );
 
 		$this->assertFalse( $linkBatch->isEmpty() );

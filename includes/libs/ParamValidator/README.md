@@ -15,9 +15,9 @@ use Wikimedia\ParamValidator\SimpleCallbacks as ParamValidatorCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 // We assume these are available from your environment in some manner.
-/* @var Wikimedia\ObjectFactory $objectFactory */
+/** @var Wikimedia\ObjectFactory $objectFactory */
 $objectFactory = ...;
-/* @var Wikimedia\Message\MessageFormatterFactory $messageFormatterFactory */
+/** @var Wikimedia\Message\MessageFormatterFactory $messageFormatterFactory */
 $messageFormatterFactory = ...;
 
 $validator = new ParamValidator(

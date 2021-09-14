@@ -27,7 +27,7 @@
  * @ingroup Exception
  * @note Don't use this in a situation where MessageCache is not functional.
  */
-class LocalizedException extends Exception implements ILocalizedException {
+class LocalizedException extends AbstractLocalizedException {
 	/** @var string|array|MessageSpecifier */
 	protected $messageSpec;
 

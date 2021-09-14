@@ -14,7 +14,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $reqFromGlobals;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->reqFromGlobals = new RequestFromGlobals();
 	}
@@ -24,7 +24,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetMethod( $serverVars, $expected ) {
 		$this->setServerVars( $serverVars );
-		$this->assertEquals( $this->reqFromGlobals->getMethod(), $expected );
+		$this->assertEquals( $expected, $this->reqFromGlobals->getMethod() );
 	}
 
 	public static function provideGetMethod() {
@@ -47,7 +47,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'REQUEST_URI' => '/test.php'
 		] );
 
-		$this->assertEquals( $this->reqFromGlobals->getUri(), '/test.php' );
+		$this->assertEquals( '/test.php', $this->reqFromGlobals->getUri() );
 	}
 
 	public function testGetUri2() {
@@ -55,7 +55,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'REQUEST_URI' => ':8434/test.php/page/1:1',
 		] );
 
-		$this->assertEquals( $this->reqFromGlobals->getUri(), '/test.php/page/1:1' );
+		$this->assertEquals( '/test.php/page/1:1', $this->reqFromGlobals->getUri() );
 	}
 
 	public function testGetUri3() {
@@ -64,8 +64,8 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$this->assertEquals(
-			$this->reqFromGlobals->getUri(),
-			'/w/rest.php/sandbox.semantic-mediawiki.org:8142/v3/page/html/Berlin'
+			'/w/rest.php/sandbox.semantic-mediawiki.org:8142/v3/page/html/Berlin',
+			$this->reqFromGlobals->getUri()
 		);
 	}
 
@@ -74,7 +74,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetProtocolVersion( $serverVars, $expected ) {
 		$this->setServerVars( $serverVars );
-		$this->assertEquals( $this->reqFromGlobals->getProtocolVersion(), $expected );
+		$this->assertEquals( $expected, $this->reqFromGlobals->getProtocolVersion() );
 	}
 
 	public static function provideGetProtocolVersion() {
@@ -112,8 +112,8 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 		$cacheControl = 'private, must-revalidate, max-age=0';
 		$this->setServerVars( [ 'HTTP_CACHE_CONTROL' => $cacheControl ] );
 
-		$this->assertSame( $this->reqFromGlobals->getHeader( 'Cache-Control' ), [ $cacheControl ] );
-		$this->assertSame( $this->reqFromGlobals->getHeader( 'cache-control' ), [ $cacheControl ] );
+		$this->assertSame( [ $cacheControl ], $this->reqFromGlobals->getHeader( 'Cache-Control' ) );
+		$this->assertSame( [ $cacheControl ], $this->reqFromGlobals->getHeader( 'cache-control' ) );
 	}
 
 	public function testGetBody() {
@@ -122,7 +122,9 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'HTTP_ACCEPT' => 'text/html'
 		] );
 
-		$this->assertEquals( $this->reqFromGlobals->getBody(), '' );
+		// FIXME assertSame fails here
+		// phpcs:ignore MediaWiki.PHPUnit.AssertEquals
+		$this->assertEquals( '', $this->reqFromGlobals->getBody() );
 	}
 
 	public function testGetServerParams() {
@@ -141,7 +143,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 
 		$diffs = array_diff_assoc( $expectedServerParams, $serverVars );
 
-		$this->assertEquals( count( $diffs ), 2 );
+		$this->assertCount( 2, $diffs );
 		$this->assertArrayHasKey( 'REQUEST_TIME_FLOAT', $diffs );
 		$this->assertArrayHasKey( 'REQUEST_TIME', $diffs );
 	}
@@ -151,7 +153,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'testcookie' => true
 		];
 
-		$this->assertEquals( $this->reqFromGlobals->getCookieParams(), [ 'testcookie' => true ] );
+		$this->assertEquals( [ 'testcookie' => true ], $this->reqFromGlobals->getCookieParams() );
 	}
 
 	public function testGetQueryParams() {
@@ -163,7 +165,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 		];
 		$_GET = $query;
 
-		$this->assertEquals( $this->reqFromGlobals->getQueryParams(), $query );
+		$this->assertEquals( $query, $this->reqFromGlobals->getQueryParams() );
 	}
 
 	public function testGetUploadedFiles() {
@@ -177,24 +179,27 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		$this->assertEquals( $this->reqFromGlobals->getUploadedFiles(), [
-			'file' => new UploadedFile(
-				'/tmp/foobar',
-				20, UPLOAD_ERR_OK,
-				'Foo.txt',
-				'text/plain'
-			)
-		] );
+		$this->assertEquals(
+			[
+				'file' => new UploadedFile(
+					'/tmp/foobar',
+					20, UPLOAD_ERR_OK,
+					'Foo.txt',
+					'text/plain'
+				)
+			],
+			$this->reqFromGlobals->getUploadedFiles()
+		);
 	}
 
 	public function testGetPostParams() {
 		$form = [
-				'token' => '983yh4edji',
-				'action' => 'login'
+			'token' => '983yh4edji',
+			'action' => 'login'
 		];
 		$_POST = $form;
 
-		$this->assertEquals( $this->reqFromGlobals->getPostParams(), $form );
+		$this->assertEquals( $form, $this->reqFromGlobals->getPostParams() );
 	}
 
 	protected function setServerVars( $vars ) {

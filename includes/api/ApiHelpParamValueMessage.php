@@ -118,7 +118,7 @@ class ApiHelpParamValueMessage extends Message {
 		$msg->interface = $this->interface;
 		$msg->language = $this->language;
 		$msg->useDatabase = $this->useDatabase;
-		$msg->title = $this->title;
+		$msg->contextPage = $this->contextPage;
 		return $msg->fetchMessage();
 	}
 

@@ -24,8 +24,7 @@ class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( ILoadBalancer::class )
 			->disableOriginalConstructor()->getMock();
 
-		$mock->expects( $this->any() )
-			->method( 'getLocalDomainID' )
+		$mock->method( 'getLocalDomainID' )
 			->willReturn( $localDomain );
 
 		return $mock;
@@ -42,11 +41,11 @@ class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$localDomain = $lbFactory->getLocalDomainID();
 
-		$mock->expects( $this->any() )->method( 'getLocalDomainID' )->willReturn( $localDomain );
+		$mock->method( 'getLocalDomainID' )->willReturn( $localDomain );
 
 		$mock->expects( $this->once() )
 			->method( 'getMainLB' )
-			->with( $this->equalTo( $expectedWiki ) )
+			->with( $expectedWiki )
 			->willReturnCallback( function ( $domain ) use ( $localDomain ) {
 				return $this->getMockLoadBalancer( $localDomain );
 			} );

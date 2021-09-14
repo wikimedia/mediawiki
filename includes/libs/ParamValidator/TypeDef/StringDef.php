@@ -90,7 +90,7 @@ class StringDef extends TypeDef {
 		return $value;
 	}
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
 		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [

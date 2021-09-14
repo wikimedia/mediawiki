@@ -38,10 +38,9 @@ class WikitextContent extends TextContent {
 	private $redirectTargetAndText = null;
 
 	/**
-	 * @var bool Tracks if the parser set the user-signature flag when creating this content, which
-	 *   would make it expire faster in ApiStashEdit.
+	 * @var string[] flags set by PST
 	 */
-	private $hadSignature = false;
+	private $preSaveTransformFlags = [];
 
 	/**
 	 * @var string|null Stack trace of the previous parse
@@ -140,53 +139,6 @@ class WikitextContent extends TextContent {
 		$text .= $this->getText();
 
 		return new static( $text );
-	}
-
-	/**
-	 * Returns a Content object with pre-save transformations applied using
-	 * Parser::preSaveTransform().
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 *
-	 * @return Content
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		$text = $this->getText();
-
-		$parser = MediaWikiServices::getInstance()->getParser();
-		$pst = $parser->preSaveTransform( $text, $title, $user, $popts );
-
-		if ( $text === $pst ) {
-			return $this;
-		}
-
-		$ret = new static( $pst );
-
-		if ( $parser->getOutput()->getFlag( 'user-signature' ) ) {
-			$ret->hadSignature = true;
-		}
-
-		return $ret;
-	}
-
-	/**
-	 * Returns a Content object with preload transformations applied (or this
-	 * object if no transformations apply).
-	 *
-	 * @param Title $title
-	 * @param ParserOptions $popts
-	 * @param array $params
-	 *
-	 * @return Content
-	 */
-	public function preloadTransform( Title $title, ParserOptions $popts, $params = [] ) {
-		$text = $this->getText();
-		$plt = MediaWikiServices::getInstance()->getParser()
-			->getPreloadText( $text, $title, $popts, $params );
-
-		return new static( $plt );
 	}
 
 	/**
@@ -389,7 +341,7 @@ class WikitextContent extends TextContent {
 		}
 
 		// Pass along user-signature flag
-		if ( $this->hadSignature ) {
+		if ( in_array( 'user-signature', $this->preSaveTransformFlags ) ) {
 			$output->setFlag( 'user-signature' );
 		}
 	}
@@ -398,6 +350,7 @@ class WikitextContent extends TextContent {
 	 * @throws MWException
 	 */
 	protected function getHtml() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new MWException(
 			"getHtml() not implemented for wikitext. "
 				. "Use getParserOutput()->getText()."
@@ -417,4 +370,12 @@ class WikitextContent extends TextContent {
 		return $word->match( $this->getText() );
 	}
 
+	/**
+	 * Records flags set by preSaveTransform
+	 * @internal for use by WikitextContentHandler
+	 * @param string[] $flags
+	 */
+	public function setPreSaveTransformFlags( array $flags ) {
+		$this->preSaveTransformFlags = $flags;
+	}
 }

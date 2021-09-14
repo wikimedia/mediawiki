@@ -22,7 +22,7 @@ interface GetNewMessagesAlertHook {
 	 *   messages, this should be populated with an alert message to that effect.
 	 * @param array $newtalks Empty array if the user has no new messages, or an array
 	 *   containing links and revisions if there are new messages. (See
-	 *   User::getNewMessageLinks.)
+	 *   Skin::getNewtalks().)
 	 * @param User $user User who is loading the page
 	 * @param OutputPage $out To check what type of page the user is on
 	 * @return bool|void True or no return value to continue or false to abort

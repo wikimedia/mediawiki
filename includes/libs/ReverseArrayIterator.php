@@ -51,27 +51,27 @@ class ReverseArrayIterator implements Iterator, Countable {
 		$this->rewind();
 	}
 
-	 public function current() {
+	public function current() {
 		return current( $this->array );
-	 }
+	}
 
-	 public function key() {
+	public function key() {
 		return key( $this->array );
-	 }
+	}
 
-	 public function next() {
+	public function next() {
 		prev( $this->array );
-	 }
+	}
 
-	 public function rewind() {
+	public function rewind() {
 		end( $this->array );
-	 }
+	}
 
-	 public function valid() {
+	public function valid() {
 		return key( $this->array ) !== null;
-	 }
+	}
 
-	 public function count() {
+	public function count() {
 		return count( $this->array );
-	 }
+	}
 }

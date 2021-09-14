@@ -20,11 +20,13 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -36,8 +38,39 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 * @param RevisionStore $revisionStore
+	 * @param NameTableStore $changeTagDefStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore,
+		RevisionStore $revisionStore,
+		NameTableStore $changeTagDefStore,
+		LinkBatchFactory $linkBatchFactory
+	) {
 		parent::__construct( $query, $moduleName, 'dr' );
+		$this->commentStore = $commentStore;
+		$this->revisionStore = $revisionStore;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function execute() {
@@ -48,9 +81,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$user = $this->getUser();
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 		$params = $this->extractRequestParams( false );
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_parentid = isset( $prop['parentid'] );
 		$fld_revid = isset( $prop['revid'] );
 		$fld_user = isset( $prop['user'] );
@@ -77,7 +109,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getTitles();
+		$titles = $pageSet->getPages();
 
 		// This module operates in three modes:
 		// 'revs': List deleted revs for certain titles (1)
@@ -109,8 +141,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$arQuery = $revisionStore->getArchiveQueryInfo();
+		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 		$this->addTables( $arQuery['tables'] );
 		$this->addFields( $arQuery['fields'] );
 		$this->addJoinConds( $arQuery['joins'] );
@@ -125,9 +156,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {
-				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
@@ -168,8 +198,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		// We need a custom WHERE clause that matches all titles.
 		if ( $mode == 'revs' ) {
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $titles );
+			$lb = $this->linkBatchFactory->newLinkBatch( $titles );
 			$where = $lb->constructSet( 'ar', $db );
 			$this->addWhere( $where );
 		} elseif ( $mode == 'all' ) {
@@ -191,19 +220,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( $params['user'] !== null ) {
-			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['user'], false );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( $actorQuery['conds'] );
+			// We already join on actor due to getArchiveQueryInfo()
+			$this->addWhereFld( 'actor_name', $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			// Here there's no chance of using ar_usertext_timestamp.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['excludeuser'] );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
@@ -330,7 +350,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					RevisionRecord::DELETED_COMMENT,
 					$user
 				) ) {
-					$comment = $commentStore->getComment( 'ar_comment', $row )->text;
+					$comment = $this->commentStore->getComment( 'ar_comment', $row )->text;
 					if ( $fld_comment ) {
 						$rev['comment'] = $comment;
 					}
@@ -375,7 +395,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$user
 				) ) {
 					ApiResult::setContentValue( $rev, 'text',
-						$revisionStore->newRevisionFromArchiveRow( $row )
+						$this->revisionStore->newRevisionFromArchiveRow( $row )
 							->getContent( SlotRecord::MAIN )->serialize() );
 				}
 			}
@@ -470,12 +490,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'prop' => [
 				ApiBase::PARAM_DFLT => 'user|comment',

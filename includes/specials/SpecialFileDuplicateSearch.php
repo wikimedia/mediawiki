@@ -25,7 +25,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Searches the database for files of the requested hash, comparing this with the
@@ -33,13 +32,21 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup SpecialPage
  */
-class SpecialFileDuplicateSearch extends QueryPage {
-	protected $hash = '', $filename = '';
+class SpecialFileDuplicateSearch extends SpecialPage {
+	/**
+	 * @var string The form input hash
+	 */
+	private $hash = '';
+
+	/**
+	 * @var string The form input filename
+	 */
+	private $filename = '';
 
 	/**
 	 * @var File selected reference file, if present
 	 */
-	protected $file = null;
+	private $file = null;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -57,38 +64,19 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param RepoGroup $repoGroup
 	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param ILoadBalancer $loadBalancer
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,
 		SearchEngineFactory $searchEngineFactory,
-		ILoadBalancer $loadBalancer,
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'FileDuplicateSearch' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->repoGroup = $repoGroup;
 		$this->searchEngineFactory = $searchEngineFactory;
-		$this->setDBLoadBalancer( $loadBalancer );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
-	}
-
-	public function isSyndicated() {
-		return false;
-	}
-
-	public function isCacheable() {
-		return false;
-	}
-
-	public function isCached() {
-		return false;
-	}
-
-	protected function linkParameters() {
-		return [ 'filename' => $this->filename ];
 	}
 
 	/**
@@ -105,30 +93,15 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 */
 	private function showList( $dupes ) {
 		$html = [];
-		$html[] = $this->openList( 0 );
+		$html[] = "<ol class='special'>";
 
 		foreach ( $dupes as $dupe ) {
-			$line = $this->formatResult( null, $dupe );
+			$line = $this->formatResult( $dupe );
 			$html[] = "<li>" . $line . "</li>";
 		}
-		$html[] = $this->closeList();
+		$html[] = '</ol>';
 
 		$this->getOutput()->addHTML( implode( "\n", $html ) );
-	}
-
-	public function getQueryInfo() {
-		$imgQuery = LocalFile::getQueryInfo();
-		return [
-			'tables' => $imgQuery['tables'],
-			'fields' => [
-				'title' => 'img_name',
-				'value' => 'img_sha1',
-				'img_user_text' => $imgQuery['fields']['img_user_text'],
-				'img_timestamp'
-			],
-			'conds' => [ 'img_sha1' => $this->hash ],
-			'join_conds' => $imgQuery['joins'],
-		];
 	}
 
 	public function execute( $par ) {
@@ -225,9 +198,11 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );
 			if ( $file->isLocal() ) {
-				$userName = $file->getUser( 'text' );
-				$batch->add( NS_USER, $userName );
-				$batch->add( NS_USER_TALK, $userName );
+				$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
+				if ( $uploader ) {
+					$batch->add( NS_USER, $uploader->getName() );
+					$batch->add( NS_USER_TALK, $uploader->getName() );
+				}
 			}
 		}
 
@@ -235,12 +210,10 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	}
 
 	/**
-	 * @param Skin $skin
 	 * @param File $result
 	 * @return string HTML
-	 * @suppress PhanParamSignatureMismatch Called here, not from parent
 	 */
-	public function formatResult( $skin, $result ) {
+	private function formatResult( $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
 		$text = $this->languageConverter->convert( $nt->getText() );
@@ -249,15 +222,17 @@ class SpecialFileDuplicateSearch extends QueryPage {
 			$text
 		);
 
-		$userText = $result->getUser( 'text' );
-		if ( $result->isLocal() ) {
-			$userId = $result->getUser( 'id' );
-			$user = Linker::userLink( $userId, $userText );
+		$uploader = $result->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
+		if ( $result->isLocal() && $uploader ) {
+			$user = Linker::userLink( $uploader->getId(), $uploader->getName() );
 			$user .= '<span style="white-space: nowrap;">';
-			$user .= Linker::userToolLinks( $userId, $userText );
+			$user .= Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
 			$user .= '</span>';
+		} elseif ( $uploader ) {
+			$user = htmlspecialchars( $uploader->getName() );
 		} else {
-			$user = htmlspecialchars( $userText );
+			$user = '<span class="history-deleted">'
+				. $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		}
 
 		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(

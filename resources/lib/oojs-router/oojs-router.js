@@ -1,12 +1,12 @@
 /*!
- * OOjs Router v0.2.0
+ * OOjs Router v0.3.0
  * https://www.mediawiki.org/wiki/OOjs_Router
  *
- * Copyright 2011-2019 OOjs Team and other contributors.
+ * Copyright 2011-2021 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-02-06T21:26:01Z
+ * Date: 2021-09-09T23:45:47Z
  */
 ( function ( $ ) {
 

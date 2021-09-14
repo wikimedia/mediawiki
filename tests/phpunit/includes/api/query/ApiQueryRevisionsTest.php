@@ -16,8 +16,9 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 		$title = Title::newFromText( $pageName );
 		$page = WikiPage::factory( $title );
 
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( 'Some text', $page->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'inserting content'
 		);
 

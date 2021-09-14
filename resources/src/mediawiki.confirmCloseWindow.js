@@ -24,7 +24,9 @@
 	 * @method confirmCloseWindow
 	 * @member mw
 	 * @param {Object} [options]
-	 * @param {string} [options.namespace] Namespace for the event registration
+	 * @param {string} [options.namespace] Optional jQuery event namespace, to allow loosely coupled
+	 *  external code to release your trigger. For example, the VisualEditor extension can use this
+	 *  remove the trigger registered by mediawiki.action.edit, without strong runtime coupling.
 	 * @param {string} [options.message]
 	 * @param {string} options.message.return The string message to show in the confirm dialog.
 	 * @param {Function} [options.test]
@@ -32,9 +34,7 @@
 	 * @return {Object} An object of functions to work with this module
 	 */
 	mw.confirmCloseWindow = function ( options ) {
-		var savedUnloadHandler,
-			mainEventName = 'beforeunload',
-			showEventName = 'pageshow',
+		var beforeunloadEvent = 'beforeunload',
 			message;
 
 		options = $.extend( {
@@ -43,8 +43,7 @@
 		}, options );
 
 		if ( options.namespace ) {
-			mainEventName += '.' + options.namespace;
-			showEventName += '.' + options.namespace;
+			beforeunloadEvent += '.' + options.namespace;
 		}
 
 		if ( typeof options.message === 'function' ) {
@@ -53,40 +52,29 @@
 			message = options.message;
 		}
 
-		$( window ).on( mainEventName, function () {
+		/**
+		 * @ignore
+		 * @see <https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event>
+		 * @return {string|undefined}
+		 */
+		function onBeforeunload() {
 			if ( options.test() ) {
-				// remove the handler while the alert is showing - otherwise breaks caching in Firefox (3?).
-				// but if they continue working on this page, immediately re-register this handler
-				savedUnloadHandler = window.onbeforeunload;
-				window.onbeforeunload = null;
-				setTimeout( function () {
-					window.onbeforeunload = savedUnloadHandler;
-				}, 1 );
-
 				// show an alert with this message
 				return message;
 			}
-		} ).on( showEventName, function () {
-			// Re-add onbeforeunload handler
-			if ( !window.onbeforeunload && savedUnloadHandler ) {
-				window.onbeforeunload = savedUnloadHandler;
-			}
-		} );
+		}
 
-		/**
-		 * Return the object with functions to release and manually trigger the confirm alert
-		 *
-		 * @ignore
-		 */
+		$( window ).on( beforeunloadEvent, onBeforeunload );
+
 		return {
 			/**
-			 * Remove all event listeners and don't show an alert anymore, if the user wants to leave
+			 * Remove the event listener and don't show an alert anymore, if the user wants to leave
 			 * the page.
 			 *
 			 * @ignore
 			 */
 			release: function () {
-				$( window ).off( mainEventName + ' ' + showEventName );
+				$( window ).off( beforeunloadEvent, onBeforeunload );
 			},
 			/**
 			 * Trigger the module's function manually: Check, if options.test() returns true and show

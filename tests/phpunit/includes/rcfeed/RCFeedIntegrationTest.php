@@ -10,7 +10,7 @@
  * @covers RCFeed
  */
 class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgCanonicalServer' => 'https://example.org',
@@ -26,7 +26,7 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNotify() {
 		$feed = $this->getMockBuilder( RCFeedEngine::class )
 			->setConstructorArgs( [ [ 'formatter' => JSONRCFeedFormatter::class ] ] )
-			->setMethods( [ 'send' ] )
+			->onlyMethods( [ 'send' ] )
 			->getMock();
 
 		$feed->method( 'send' )

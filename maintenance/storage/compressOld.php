@@ -141,7 +141,7 @@ class CompressOld extends Maintenance {
 	private function compressOldPages( $start = 0, $extdb = '' ) {
 		$chunksize = 50;
 		$this->output( "Starting from old_id $start...\n" );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		do {
 			$res = $dbw->select(
 				'text',
@@ -182,7 +182,7 @@ class CompressOld extends Maintenance {
 			# print "Already compressed row {$row->old_id}\n";
 			return false;
 		}
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$flags = $row->old_flags ? "{$row->old_flags},gzip" : "gzip";
 		$compress = gzdeflate( $row->old_text );
 
@@ -228,7 +228,7 @@ class CompressOld extends Maintenance {
 		$endDate, $extdb = "", $maxPageId = false
 	) {
 		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		# Set up external storage
 		if ( $extdb != '' ) {

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -59,7 +60,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$this->output( "Populating ar_rev_id...\n" );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		self::checkMysqlAutoIncrementBug( $dbw );
 
 		// Quick exit if there are no rows needing updates.
@@ -169,9 +170,6 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				[ 'rev_timestamp' => self::$dummyRev['rev_timestamp'] ],
 				$fname
 			);
-			if ( !is_array( $revIds ) ) {
-				throw new UnexpectedValueException( 'Failed to insert dummy revisions' );
-			}
 			if ( count( $revIds ) !== count( $arIds ) ) {
 				throw new UnexpectedValueException(
 					'Tried to insert ' . count( $arIds ) . ' dummy revisions, but found '
@@ -242,17 +240,17 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			// Make a title and revision and insert them
 			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-			$updater = $page->newPageUpdater(
-				User::newSystemUser( 'Maintenance script', [ 'steal' => true ] )
-			);
-			$updater->setContent(
-				'main',
-				ContentHandler::makeContent( "Content for dummy rev", $title )
-			);
-			$updater->saveRevision(
-				CommentStoreComment::newUnsavedComment( 'dummy rev summary' ),
-				EDIT_NEW | EDIT_SUPPRESS_RC
-			);
+			$page->newPageUpdater(
+				User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] )
+			)
+				->setContent(
+					SlotRecord::MAIN,
+					ContentHandler::makeContent( "Content for dummy rev", $title )
+				)
+				->saveRevision(
+					CommentStoreComment::newUnsavedComment( 'dummy rev summary' ),
+					EDIT_NEW | EDIT_SUPPRESS_RC
+				);
 
 			// get the revision row just inserted
 			$rev = $dbw->selectRow(

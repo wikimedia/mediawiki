@@ -48,7 +48,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	/**
 	 * Constructor. Parameters are:
 	 *   - writeFactory: ObjectFactory::getObjectFromSpec array yielding BagOStuff.
-	 *      This object will be used for writes (e.g. the master DB).
+	 *      This object will be used for writes (e.g. the primary DB).
 	 *   - readFactory: ObjectFactory::getObjectFromSpec array yielding BagOStuff.
 	 *      This object will be used for reads (e.g. a replica DB).
 	 *   - sessionConsistencyWindow: Seconds to read from the master source for a key
@@ -146,7 +146,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
+	public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' ) {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
 			self::ARG0_KEY,
@@ -167,7 +167,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
@@ -196,7 +197,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
 			self::ARG0_KEYMAP,
-			self::RES_KEYMAP,
+			self::RES_NONKEY,
 			func_get_args()
 		);
 	}

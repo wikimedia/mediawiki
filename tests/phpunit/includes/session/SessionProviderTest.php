@@ -3,7 +3,9 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
+use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -12,18 +14,32 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\SessionProvider
  */
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
 
 	public function testBasics() {
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setConfig' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setLogger' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setManager' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setHookContainer' );
+
 		$manager = new SessionManager();
-		$logger = new \TestLogger();
+		$logger = new TestLogger();
 		$config = new \HashConfig();
 		$hookContainer = $this->createHookContainer();
+		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
+		$this->initProvider( $provider, $logger, $config, $manager, $hookContainer, $userNameUtils );
+		$this->assertSame( $logger, $priv->logger );
+		$this->assertSame( $config, $priv->getConfig() );
+		$this->assertSame( $manager, $priv->manager );
+		$this->assertSame( $manager, $provider->getManager() );
+		$this->assertSame( $hookContainer, $priv->getHookContainer() );
+		$this->assertSame( $userNameUtils, $priv->userNameUtils );
 		$provider->setConfig( $config );
-		$this->assertSame( $config, $priv->config );
+		$this->assertSame( $config, $priv->getConfig() );
 		$provider->setLogger( $logger );
 		$this->assertSame( $logger, $priv->logger );
 		$provider->setManager( $manager );
@@ -64,13 +80,13 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager();
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'persistsSessionId' )
-			->will( $this->returnValue( $persistId ) );
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( $persistUser ) );
-		$provider->setManager( $manager );
+		$provider->method( 'persistsSessionId' )
+			->willReturn( $persistId );
+		$provider->method( 'canChangeUser' )
+			->willReturn( $persistUser );
+		$this->initProvider( $provider, null, null, $manager );
 
 		if ( $ok ) {
 			$info = $provider->newSessionInfo();
@@ -123,17 +139,17 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testImmutableSessions() {
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( true ) );
+		$provider->method( 'canChangeUser' )
+			->willReturn( true );
 		$provider->preventSessionsForUser( 'Foo' );
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( false ) );
+		$provider->method( 'canChangeUser' )
+			->willReturn( false );
 		try {
 			$provider->preventSessionsForUser( 'Foo' );
 			$this->fail( 'Expected exception not thrown' );
@@ -153,7 +169,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class,
 			[], 'MockSessionProvider' );
-		$provider->setConfig( $config );
+		$this->initProvider( $provider, null, $config );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->assertSame( 'eoq8cb1mg7j30ui5qolafps4hg29k5bb', $priv->hashToSessionId( 'foobar' ) );

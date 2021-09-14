@@ -357,11 +357,11 @@
 			}
 		],
 		"indexes": [
-			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
-			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
-			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
 			{
-				"name": "change_tag_tag_id_id",
+				"name": "ct_tag_id_id",
 				"comment": "Covering index, so we can pull all the info only out of the index.",
 				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
 				"unique": false
@@ -2398,6 +2398,14 @@
 				],
 				"unique": false,
 				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "oi_timestamp",
+				"comment": "Used by Special:ListFiles",
+				"columns": [
+					"oi_timestamp"
+				],
+				"unique": false
 			}
 		]
 	},
@@ -2419,6 +2427,16 @@
 				"name": "exptime",
 				"type": "mwtimestamp",
 				"options": { "notnull": true }
+			},
+			{
+				"name": "modtoken",
+				"type": "string",
+				"options": { "notnull": true, "length": 17, "default": "00000000000000000" }
+			},
+			{
+				"name": "flags",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true, "default": null }
 			}
 		],
 		"indexes": [
@@ -3336,7 +3354,7 @@
 				"options": { "notnull": true, "length": 255 }
 			},
 			{
-				"name": " page_restrictions",
+				"name": "page_restrictions",
 				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
 				"type": "blob",
 				"options": { "notnull": false, "length": 255 }
@@ -3410,7 +3428,7 @@
 		],
 		"indexes": [
 			{
-				"name": "name_title",
+				"name": "page_name_title",
 				"columns": [ "page_namespace", "page_title" ],
 				"comment": "The title index. Care must be taken to always specify a namespace when by title, so that the index is used. Even listing all known namespaces with IN() is better than omitting page_namespace from the WHERE clause.",
 				"unique": true
@@ -3435,5 +3453,263 @@
 			}
 		],
 		"pk": [ "page_id" ]
+	},
+	{
+		"name": "user",
+		"comment": "The user table contains basic account information, authentication keys, etc. Some multi-wiki sites may share a single central user table between separate wikis using the $wgSharedDB setting. Note that even when an external authentication plugin is in use, user table entries still need to be created to store preferences and to key tracking information in the other tables",
+		"columns": [
+			{
+				"name": "user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "user_name",
+				"comment": "Usernames must be unique, must not be in the form of an IP address. They should not allow slashes or case conflicts. Spaces are allowed, and are not converted to underscores like in page titles.",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_real_name",
+				"comment": "Optional 'real name' to be displayed in credit listings",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_password",
+				"comment": "Password hashes",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpassword",
+				"comment": "When using 'mail me a new password', a random password is generated and the hash stored here. The previous password is left in place until someone actually logs in with the new password, at which point the hash is moved to user_password and the old password is invalidated.",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpass_time",
+				"comment": "Timestamp of the last time when a new password was sent, for throttling and expiring purposes. Emailed passwords will expire $wgNewPasswordExpiry (a week) after being set. If user_newpass_time is NULL (eg. created by mail) it doesn't expire.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email",
+				"comment": "User email. Non public info.",
+				"type": "text",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_touched",
+				"comment": "If the browser sends an If-Modified-Since header, a 304 response is suppressed if the value in this field for the current user is later than the value in the IMS header. That is, this field is an invalidation timestamp for the browser cache of logged-in users. Among other things, it is used to prevent pages generated for a previously logged in user from being displayed after a session expiry followed by a fresh login.",
+				"type": "mwtimestamp",
+				"options": { "notnull": true, "length": 14 }
+			},
+			{
+				"name": "user_token",
+				"comment": "A pseudorandomly generated value that is stored in a cookie when the 'remember password' feature is used (previously, a hash of the password was used, but this was vulnerable to cookie-stealing attacks)",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_authenticated",
+				"comment": "Initially NULL; when a user's e-mail address has been validated by returning with a mailed token, this is set to the current timestamp.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email_token",
+				"comment": "Randomly generated token created when the e-mail address is set and a confirmation test mail sent.",
+				"type": "binary",
+				"options": { "notnull": false, "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_token_expires",
+				"comment": "Expiration date for the user_email_token.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_registration",
+				"comment": "Timestamp of account registration. Accounts predating this schema addition may contain NULL.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_editcount",
+				"comment": "Count of edits and edit-like actions. Not intended to be an accurate copy of 'COUNT(*) WHERE rev_actor refers to a user's actor_id'. May contain NULL for old accounts if batch-update scripts haven't been run, as well as listing deleted edits and other myriad ways it could be out of sync. Meant primarily for heuristic checks to give an impression of whether the account has been used much.",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "user_password_expires",
+				"comment": "Expiration date for user password.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			}
+		],
+		"indexes": [
+			{ "name": "user_name", "columns": [ "user_name" ], "unique": true },
+			{ "name": "user_email_token", "columns": [ "user_email_token" ], "unique": false },
+			{ "name": "user_email", "columns": [ "user_email" ], "unique": false, "options": { "lengths": [ 50, null, null ] } }
+		],
+		"pk": [ "user_id" ]
+	},
+	{
+		"name": "revision",
+		"comment": "Every edit of a page creates also a revision row. This stores metadata about the revision, and a reference to the text storage backend.",
+		"columns": [
+			{
+				"name": "rev_id",
+				"comment": "Unique ID to identify each revision",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "rev_page",
+				"comment": "Key to page_id. This should never be invalid",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "rev_comment_id",
+				"comment": "Key to comment.comment_id. Comment summarizing the change",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "rev_actor",
+				"comment": "Key to actor.actor_id of the user or IP who made this edit",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "rev_timestamp",
+				"comment": "Timestamp of when revision was created",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "rev_minor_edit",
+				"comment": "Records whether the user marked the 'minor edit' checkbox. Many automated edits are marked as minor",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "rev_deleted",
+				"comment": "Restrictions on who can access this revision",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "rev_len",
+				"comment": "Length of this revision in bytes",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false }
+			},
+			{
+				"name": "rev_parent_id",
+				"comment": "Key to revision.rev_id. This field is used to add support for a tree structure (The Adjacency List Model)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false }
+			},
+			{
+				"name": "rev_sha1",
+				"comment": "SHA-1 text content hash in base-36",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "rev_page_id",
+				"columns": [ "rev_page", "rev_id" ],
+				"comment": "The index is proposed for removal, do not use it in new code: T163532. Used for ordering revisions within a page by rev_id, which is usually incorrect, since rev_timestamp is normally the correct order. It can also be used by dumpBackup.php, if a page and rev_id range is specified.",
+				"unique": false
+			},
+			{
+				"name": "rev_timestamp",
+				"columns": [ "rev_timestamp" ],
+				"comment": "Used by ApiQueryAllRevisions",
+				"unique": false
+			},
+			{
+				"name": "rev_page_timestamp",
+				"columns": [ "rev_page", "rev_timestamp" ],
+				"comment": "History index",
+				"unique": false
+			},
+			{
+				"name": "rev_actor_timestamp",
+				"columns": [ "rev_actor", "rev_timestamp", "rev_id" ],
+				"comment": "User contributions index",
+				"unique": false
+			},
+			{
+				"name": "rev_page_actor_timestamp",
+				"columns": [ "rev_page", "rev_actor", "rev_timestamp" ],
+				"comment": "Credits index. This is scanned in order to compile credits lists for pages, in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified",
+				"unique": false
+			}
+		],
+		"pk": [ "rev_id" ]
+	},
+	{
+		"name": "searchindex",
+		"comment": "search backend, this is actively used in MySQL but created and not used in Postgres while there are plans to use it in the future (T220450). This table must be MyISAM in MySQL; InnoDB does not support the needed fulltext index.",
+		"columns": [
+			{
+				"name": "si_page",
+				"comment": "Key to page_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "si_title",
+				"comment": "Munged version of title",
+				"type": "string",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "si_text",
+				"comment": "Munged version of body text",
+				"type": "text",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "si_page",
+				"columns": [ "si_page" ],
+				"unique": true
+			},
+			{
+				"name": "si_title",
+				"columns": [ "si_title" ],
+				"unique": false,
+				"flags": [
+					"fulltext"
+				]
+			},
+			{
+				"name": "si_text",
+				"columns": [ "si_text" ],
+				"fulltext": true,
+				"unique": false,
+				"flags": [
+					"fulltext"
+				]
+			}
+		],
+		"pk": [],
+		"table_options": [
+			"ENGINE=MyISAM",
+			"DEFAULT CHARSET=utf8"
+		]
 	}
 ]

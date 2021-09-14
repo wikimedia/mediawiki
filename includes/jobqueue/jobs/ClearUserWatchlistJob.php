@@ -40,11 +40,11 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		$batchSize = $wgUpdateRowsPerQuery;
 
 		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
 
 		// Wait before lock to try to reduce time waiting in the lock.
-		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up before lock' );
 			return false;
 		}
@@ -57,7 +57,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 			return false;
 		}
 
-		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up within lock' );
 			return false;
 		}
@@ -89,7 +89,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 
 		// Commit changes and remove lock before inserting next job.
 		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbf->commitMasterChanges( __METHOD__ );
+		$lbf->commitPrimaryChanges( __METHOD__ );
 		unset( $scopedLock );
 
 		if ( count( $watchlistIds ) === (int)$batchSize ) {

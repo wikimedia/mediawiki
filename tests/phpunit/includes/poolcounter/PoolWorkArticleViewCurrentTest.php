@@ -81,4 +81,29 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
 	}
 
+	/**
+	 * Test that cache miss is not cached in-process, so pool work can fetch
+	 * a parse cached by other pool work after waiting for a lock. See T277829
+	 */
+	public function testFetchAfterMissWithLock() {
+		$bag = new HashBagOStuff();
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$this->installParserCache( $bag );
+		$work1 = $this->newPoolWorkArticleView( $page, null, $options );
+		$this->assertFalse( $work1->getCachedWork() );
+
+		// Pretend we're in another process with another ParserCache,
+		// but share the backend store
+		$this->installParserCache( $bag );
+		$work2 = $this->newPoolWorkArticleView( $page, null, $options );
+		$this->assertTrue( $work2->execute() );
+
+		// The parser output cached but $work2 should now be also visible to $work1
+		$work1->getCachedWork();
+		$this->assertInstanceOf( ParserOutput::class, $work1->getParserOutput() );
+		$this->assertSame( $work2->getParserOutput()->getText(), $work1->getParserOutput()->getText() );
+	}
+
 }

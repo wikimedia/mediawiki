@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Permissions;
 
+use MediaWiki\Block\Block;
 use StatusValue;
 
 /**
@@ -32,6 +33,33 @@ use StatusValue;
  * @since 1.36
  */
 class PermissionStatus extends StatusValue {
+
+	/** @var ?Block */
+	private $block = null;
+
+	/**
+	 * Returns the user block that contributed to permissions being denied,
+	 * if such a block was provided via setBlock().
+	 *
+	 * This is intended to be used to provide additional information to the user that
+	 * allows them to determine the reason for them being denied an action.
+	 *
+	 * @since 1.37
+	 *
+	 * @return ?Block
+	 */
+	public function getBlock(): ?Block {
+		return $this->block;
+	}
+
+	/**
+	 * @since 1.37
+	 * @internal
+	 * @param Block $block
+	 */
+	public function setBlock( Block $block ): void {
+		$this->block = $block;
+	}
 
 	/**
 	 * @return static

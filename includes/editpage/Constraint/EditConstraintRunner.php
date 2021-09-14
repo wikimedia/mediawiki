@@ -83,7 +83,7 @@ class EditConstraintRunner {
 	 *
 	 * @return bool
 	 */
-	public function checkConstraints() : bool {
+	public function checkConstraints(): bool {
 		foreach ( $this->constraints as $constraint ) {
 			$result = $constraint->checkConstraint();
 			if ( $result !== IEditConstraint::CONSTRAINT_PASSED ) {
@@ -116,7 +116,7 @@ class EditConstraintRunner {
 	 * @param IEditConstraint $constraint
 	 * @return string
 	 */
-	private function getConstraintName( IEditConstraint $constraint ) : string {
+	private function getConstraintName( IEditConstraint $constraint ): string {
 		// Used for debug logging
 		$fullClassName = explode( '\\', get_class( $constraint ) );
 		$constraintName = end( $fullClassName );
@@ -135,7 +135,7 @@ class EditConstraintRunner {
 	 *
 	 * @return IEditConstraint
 	 */
-	public function getFailedConstraint() : IEditConstraint {
+	public function getFailedConstraint(): IEditConstraint {
 		Assert::precondition(
 			$this->failedConstraint !== false,
 			'getFailedConstraint called with no failed constraint'

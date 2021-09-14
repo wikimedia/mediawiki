@@ -30,5 +30,5 @@ interface ResourceLoaderTestModulesHook {
 	 * @param ResourceLoader $rl
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ) : void;
+	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ): void;
 }

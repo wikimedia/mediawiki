@@ -5,9 +5,10 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 
@@ -33,6 +34,35 @@ class McrUndoAction extends FormAction {
 
 	/** @var RevisionRecord|null */
 	protected $curRev = null;
+
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var RevisionRenderer */
+	private $revisionRenderer;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param RevisionLookup $revisionLookup
+	 * @param RevisionRenderer $revisionRenderer
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		ReadOnlyMode $readOnlyMode,
+		RevisionLookup $revisionLookup,
+		RevisionRenderer $revisionRenderer
+	) {
+		parent::__construct( $page, $context );
+		$this->readOnlyMode = $readOnlyMode;
+		$this->revisionLookup = $revisionLookup;
+		$this->revisionRenderer = $revisionRenderer;
+	}
 
 	public function getName() {
 		return 'mcrundo';
@@ -61,10 +91,10 @@ class McrUndoAction extends FormAction {
 
 		// IP warning headers copied from EditPage
 		// (should more be copied?)
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			$out->wrapWikiMsg(
 				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
-				[ 'readonlywarning', wfReadOnlyReason() ]
+				[ 'readonlywarning', $this->readOnlyMode->getReason() ]
 			);
 		} elseif ( $this->context->getUser()->isAnon() ) {
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
@@ -112,10 +142,8 @@ class McrUndoAction extends FormAction {
 
 		$this->initFromParameters();
 
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-
-		$undoRev = $revisionLookup->getRevisionById( $this->undo );
-		$oldRev = $revisionLookup->getRevisionById( $this->undoafter );
+		$undoRev = $this->revisionLookup->getRevisionById( $this->undo );
+		$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
 
 		if ( $undoRev === null || $oldRev === null ||
 			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
@@ -131,10 +159,8 @@ class McrUndoAction extends FormAction {
 	 * @return MutableRevisionRecord
 	 */
 	private function getNewRevision() {
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-
-		$undoRev = $revisionLookup->getRevisionById( $this->undo );
-		$oldRev = $revisionLookup->getRevisionById( $this->undoafter );
+		$undoRev = $this->revisionLookup->getRevisionById( $this->undo );
+		$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
 		$curRev = $this->curRev;
 
 		$isLatest = $curRev->getId() === $undoRev->getId();
@@ -266,7 +292,7 @@ class McrUndoAction extends FormAction {
 			$parserOptions->setIsSectionPreview( false );
 			$parserOptions->enableLimitReport();
 
-			$parserOutput = MediaWikiServices::getInstance()->getRevisionRenderer()
+			$parserOutput = $this->revisionRenderer
 				->getRenderedRevision( $rev, $parserOptions, $this->context->getUser() )
 				->getRevisionParserOutput();
 			$previewHTML = $parserOutput->getText( [ 'enableSectionEditLinks' => false ] );
@@ -323,8 +349,6 @@ class McrUndoAction extends FormAction {
 
 		$newRev = $this->getNewRevision();
 		if ( !$newRev->hasSameContent( $curRev ) ) {
-			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-
 			// Copy new slots into the PageUpdater, and remove any removed slots.
 			// TODO: This interface is awful, there should be a way to just pass $newRev.
 			// TODO: MCR: test this once we can store multiple slots
@@ -339,8 +363,8 @@ class McrUndoAction extends FormAction {
 
 			// The revision we revert to is specified by the undoafter param.
 			// $oldRev is not null, we check this and more in getNewRevision()
-			$oldRev = $revisionStore->getRevisionById( $this->undoafter );
-			$oldestRevertedRev = $revisionStore->getNextRevision( $oldRev );
+			$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
+			$oldestRevertedRev = $this->revisionLookup->getNextRevision( $oldRev );
 			if ( $oldestRevertedRev ) {
 				$updater->markAsRevert(
 					EditResult::REVERT_UNDO,
@@ -382,7 +406,6 @@ class McrUndoAction extends FormAction {
 		$ret = [
 			'diff' => [
 				'type' => 'info',
-				'vertical-label' => true,
 				'raw' => true,
 				'default' => function () {
 					return $this->generateDiffOrPreview();

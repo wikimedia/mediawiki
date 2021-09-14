@@ -69,8 +69,7 @@ trait SerializationTestTrait {
 				$serializationFormat['serializer'],
 				$serializationFormat['deserializer']
 			);
-			foreach ( $serializationUtils->getTestInstances()
-					  as $testCaseName => $testInstance ) {
+			foreach ( $serializationUtils->getTestInstances() as $testCaseName => $testInstance ) {
 				$expected = $serializationUtils->getStoredSerializedInstance( $className, $testCaseName );
 
 				if ( $expected->data === null ) {

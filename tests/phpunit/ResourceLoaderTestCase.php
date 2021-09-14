@@ -48,7 +48,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 		] );
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->setConstructorArgs( [ $resourceLoader, $request ] )
-			->setMethods( [ 'getDirection' ] )
+			->onlyMethods( [ 'getDirection' ] )
 			->getMock();
 		$ctx->method( 'getDirection' )->willReturn( $options['dir'] );
 		return $ctx;
@@ -59,10 +59,24 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For ResourceLoader::inDebugMode since it doesn't have context
 			'ResourceLoaderDebug' => true,
 
+			// For ResourceLoaderModule
+			'ResourceLoaderValidateJS' => false,
+
+			// For ResourceLoaderWikiModule
+			'MaxRedirects' => 1,
+
+			// For ResourceLoaderSkinModule
+			'Logos' => false,
+			'Logo' => '/logo.png',
+			'ResourceBasePath' => '/w',
+			'ParserEnableLegacyMediaDOM' => true,
+
 			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
 			'LoadScript' => '/w/load.php',
+			'EnableJavaScriptTest' => false,
+			'ResourceLoaderEnableJSProfiler' => false,
 
 			// For ResourceLoader::respond() - TODO: Inject somehow T32956
 			'UseFileCache' => false,
@@ -73,9 +87,11 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 		return new HashConfig( self::getSettings() );
 	}
 
-	protected function setUp() : void {
-		parent::setUp();
-
+	/**
+	 * The annotation causes this to be called immediately before setUp()
+	 * @before
+	 */
+	final protected function mediaWikiResourceLoaderSetUp(): void {
 		ResourceLoader::clearCache();
 
 		$globals = [];

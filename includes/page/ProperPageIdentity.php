@@ -66,10 +66,19 @@ interface ProperPageIdentity extends PageIdentity {
 	public function getId( $wikiId = self::LOCAL ): int;
 
 	/**
+	 * Get the page title in DB key form.
+	 *
+	 * This should always return a valid DB key.
+	 *
+	 * @return string
+	 */
+	public function getDBkey(): string;
+
+	/**
 	 * Always true.
 	 * Implementations must ensure that no "improper" instances can be created.
 	 *
-	 * @return bool
+	 * @return true
 	 */
 	public function canExist(): bool;
 

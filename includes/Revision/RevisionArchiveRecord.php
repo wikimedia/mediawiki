@@ -27,6 +27,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MWTimestamp;
+use stdClass;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -49,10 +50,10 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param \stdClass $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
+	 * @param stdClass $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param false|string $wikiId Relevant wiki or self::LOCAL for the current one.
@@ -61,12 +62,11 @@ class RevisionArchiveRecord extends RevisionRecord {
 		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
-		$row,
+		stdClass $row,
 		RevisionSlots $slots,
 		$wikiId = self::LOCAL
 	) {
 		parent::__construct( $page, $slots, $wikiId );
-		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		$timestamp = MWTimestamp::convert( TS_MW, $row->ar_timestamp );
 		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );

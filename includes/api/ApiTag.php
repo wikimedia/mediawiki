@@ -19,7 +19,9 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup API
@@ -29,12 +31,30 @@ class ApiTag extends ApiBase {
 
 	use ApiBlockInfoTrait;
 
-	/** @var \MediaWiki\Revision\RevisionStore */
+	/** @var IDatabase */
+	private $dbr;
+
+	/** @var RevisionStore */
 	private $revisionStore;
 
-	public function execute() {
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore
+	) {
+		parent::__construct( $main, $action );
+		$this->dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
+		$this->revisionStore = $revisionStore;
+	}
 
+	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
 
@@ -78,9 +98,8 @@ class ApiTag extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
-	protected static function validateLogId( $logid ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$result = $dbr->selectField( 'logging', 'log_id', [ 'log_id' => $logid ],
+	protected function validateLogId( $logid ) {
+		$result = $this->dbr->selectField( 'logging', 'log_id', [ 'log_id' => $logid ],
 			__METHOD__ );
 		return (bool)$result;
 	}
@@ -124,7 +143,7 @@ class ApiTag extends ApiBase {
 				}
 				break;
 			case 'logid':
-				$valid = self::validateLogId( $id );
+				$valid = $this->validateLogId( $id );
 				break;
 		}
 

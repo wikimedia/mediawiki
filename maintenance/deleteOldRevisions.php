@@ -44,7 +44,7 @@ class DeleteOldRevisions extends Maintenance {
 
 	private function doDelete( $delete = false, $args = [] ) {
 		# Data should come off the master, wrapped in a transaction
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$pageConds = [];

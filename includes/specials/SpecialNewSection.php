@@ -51,10 +51,11 @@ class SpecialNewSection extends RedirectSpecialPage {
 	private function showForm() {
 		$form = HTMLForm::factory( 'ooui', [
 			'page' => [
-				'type' => 'text',
+				'type' => 'title',
 				'name' => 'page',
 				'label-message' => 'newsection-page',
 				'required' => true,
+				'creatable' => true,
 			],
 		], $this->getContext(), 'newsection' );
 		$form->setSubmitTextMsg( 'newsection-submit' );
@@ -64,11 +65,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 
 	public function onFormSubmit( $formData ) {
 		$title = $formData['page'];
-		try {
-			$page = Title::newFromTextThrow( $title );
-		} catch ( MalformedTitleException $e ) {
-			return Status::newFatal( $e->getMessageObject() );
-		}
+		$page = Title::newFromTextThrow( $title );
 		$query = [ 'action' => 'edit', 'section' => 'new' ];
 		$url = $page->getFullUrlForRedirect( $query );
 		$this->getOutput()->redirect( $url );

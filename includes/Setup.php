@@ -9,10 +9,10 @@
  * - The entry point SHOULD do these:
  *    - define the 'MW_ENTRY_POINT' constant.
  *    - display an error if MW_CONFIG_CALLBACK is not defined and the
- *      the file specified in MW_CONFIG_FILE (or the $IP/LocalSettings.php default)
+ *      file specified in MW_CONFIG_FILE (or the $IP/LocalSettings.php default)
  *      does not exist. The error should either be sent before and instead
  *      of the Setup.php inclusion, or (if it needs classes and dependencies
- *      from core) the erorr can be displayed via a MW_CONFIG_CALLBACK,
+ *      from core) the error can be displayed via a MW_CONFIG_CALLBACK,
  *      which must then abort the process to prevent the rest of Setup.php
  *      from executing.
  *
@@ -21,13 +21,16 @@
  * - load autoloaders, constants, default settings, and global functions,
  * - load the site configuration (e.g. LocalSettings.php),
  * - load the enabled extensions (via ExtensionRegistry),
- * - expand any dynamic site configuration defaults and shortcuts
+ * - trivial expansion of site configuration defaults and shortcuts
+ *   (no calls to MediaWikiServices or other parts of MediaWiki),
  * - initialization of:
  *   - PHP run-time (setlocale, memory limit, default date timezone)
  *   - the debug logger (MWDebug)
  *   - the service container (MediaWikiServices)
  *   - the exception handler (MWExceptionHandler)
  *   - the session manager (SessionManager)
+ * - complex expansion of site configuration defaults (those that require
+ *   calling into MediaWikiServices, global functions, or other classes.).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,8 +54,6 @@ use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
@@ -123,7 +124,6 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	);
 	echo $message;
 	trigger_error( $message, E_USER_ERROR );
-	die( 1 );
 }
 
 HeaderCallback::register();
@@ -246,8 +246,39 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
-// Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
+if ( $wgMainWANCache === false ) {
+	// Create a WAN cache from $wgMainCacheType
+	$wgMainWANCache = 'mediawiki-main-default';
+	$wgWANObjectCaches[$wgMainWANCache] = [
+		'class'    => WANObjectCache::class,
+		'cacheId'  => $wgMainCacheType,
+	];
+}
+
+// Back-compat
+if ( isset( $wgFileBlacklist ) ) {
+	$wgProhibitedFileExtensions = array_merge( $wgProhibitedFileExtensions, $wgFileBlacklist );
+} else {
+	$wgFileBlacklist = $wgProhibitedFileExtensions;
+}
+if ( isset( $wgMimeTypeBlacklist ) ) {
+	$wgMimeTypeExclusions = array_merge( $wgMimeTypeExclusions, $wgMimeTypeBlacklist );
+} else {
+	$wgMimeTypeBlacklist = $wgMimeTypeExclusions;
+}
+if ( isset( $wgEnableUserEmailBlacklist ) ) {
+	$wgEnableUserEmailMuteList = $wgEnableUserEmailBlacklist;
+} else {
+	$wgEnableUserEmailBlacklist = $wgEnableUserEmailMuteList;
+}
+if ( isset( $wgShortPagesNamespaceBlacklist ) ) {
+	$wgShortPagesNamespaceExclusions = $wgShortPagesNamespaceBlacklist;
+} else {
+	$wgShortPagesNamespaceBlacklist = $wgShortPagesNamespaceExclusions;
+}
+
+// Prohibited file extensions shouldn't appear on the "allowed" list
+$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgProhibitedFileExtensions ) );
 
 // Fix path to icon images after they were moved in 1.24
 if ( $wgRightsIcon ) {
@@ -331,7 +362,9 @@ if ( !$wgLocalFileRepo ) {
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'deletedDir' => $wgDeletedDirectory,
-		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
+		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0,
+		'updateCompatibleMetadata' => $wgUpdateCompatibleMetadata,
+		'reserializeMetadata' => $wgUpdateCompatibleMetadata,
 	];
 }
 
@@ -448,6 +481,22 @@ if ( $wgEnableEmail ) {
 	$wgUseEnotif = false;
 	$wgUserEmailUseReplyTo = false;
 	$wgUsersNotifiedOnAllChanges = [];
+}
+
+if ( $wgLocaltimezone === null ) {
+	// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
+	// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
+	$wgLocaltimezone = date_default_timezone_get();
+}
+date_default_timezone_set( $wgLocaltimezone );
+if ( $wgLocalTZoffset === null ) {
+	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
+}
+// The part after the System| is ignored, but rest of MW fills it out as the local offset.
+$wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
+
+if ( !$wgDBerrorLogTZ ) {
+	$wgDBerrorLogTZ = $wgLocaltimezone;
 }
 
 /**
@@ -570,6 +619,8 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 MWDebug::setup();
 
 // Enable the global service locator.
+// Trivial expansion of site configuration should go before this point.
+// Any non-trivial expansion that requires calling into MediaWikiServices or other parts of MW.
 MediaWikiServices::allowGlobalInstance();
 
 // Define a constant that indicates that the bootstrapping of the service locator
@@ -578,9 +629,10 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
 
-// T30798: $wgServer must be explicitly set
-// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
+// Non-trivial validation of: $wgServer
+// The FatalError page only renders cleanly after MWExceptionHandler is installed.
 if ( $wgServer === false ) {
+	// T30798: $wgServer must be explicitly set
 	throw new FatalError(
 		'$wgServer must be set in LocalSettings.php. ' .
 		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
@@ -588,11 +640,14 @@ if ( $wgServer === false ) {
 	);
 }
 
+// Non-trivial expansion of: $wgCanonicalServer, $wgServerName.
+// These require calling global functions.
+// Also here are other settings that further depend on these two.
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
+$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
-// Set server name
 $serverParts = wfParseUrl( $wgCanonicalServer );
 if ( $wgServerName !== false ) {
 	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '
@@ -601,9 +656,7 @@ if ( $wgServerName !== false ) {
 $wgServerName = $serverParts['host'];
 unset( $serverParts );
 
-// Set defaults for configuration variables
-// that are derived from the server name by default
-// Note: $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
+// $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
 if ( !$wgEmergencyContact ) {
 	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 }
@@ -614,26 +667,17 @@ if ( !$wgNoReplyAddress ) {
 	$wgNoReplyAddress = $wgPasswordSender;
 }
 
+// Non-trivial expansion of: $wgSecureLogin
+// (due to calling wfWarn).
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports '
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
-$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
-
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
 	$wgTmpDirectory = wfTempDir();
-}
-
-if ( $wgMainWANCache === false ) {
-	// Setup a WAN cache from $wgMainCacheType
-	$wgMainWANCache = 'mediawiki-main-default';
-	$wgWANObjectCaches[$wgMainWANCache] = [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType,
-	];
 }
 
 if ( $wgSharedDB && $wgSharedTables ) {
@@ -651,51 +695,12 @@ if ( $wgSharedDB && $wgSharedTables ) {
 }
 
 // Raise the memory limit if it's too low
-// Note, this makes use of wfDebug, and thus should not be before
-// MWDebug::init() is called.
+// NOTE: This use wfDebug, and must remain after the MWDebug::setup() call.
 wfMemoryLimit( $wgMemoryLimit );
-
-/**
- * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
- * that happens whenever you use a date function without the timezone being
- * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
- */
-if ( $wgLocaltimezone === null ) {
-	Wikimedia\suppressWarnings();
-	$wgLocaltimezone = date_default_timezone_get();
-	Wikimedia\restoreWarnings();
-}
-
-date_default_timezone_set( $wgLocaltimezone );
-if ( $wgLocalTZoffset === null ) {
-	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
-}
-// The part after the System| is ignored, but rest of MW fills it
-// out as the local offset.
-$wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
-
-if ( !$wgDBerrorLogTZ ) {
-	$wgDBerrorLogTZ = $wgLocaltimezone;
-}
 
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
-// Set user IP/agent information for agent session consistency purposes
-$cpPosInfo = LBFactory::getCPInfoFromCookieValue(
-	// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
-	$wgRequest->getCookie( 'cpPosIndex', '' ),
-	// Mitigate broken client-side cookie expiration handling (T190082)
-	time() - ChronologyProtector::POSITION_COOKIE_TTL
-);
-MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
-	'IPAddress' => $wgRequest->getIP(),
-	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
-	'ChronologyProtection' => $wgRequest->getHeader( 'MediaWiki-Chronology-Protection' ),
-	'ChronologyPositionIndex' => $wgRequest->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
-	'ChronologyClientId' => $cpPosInfo['clientId']
-		?? $wgRequest->getHeader( 'MediaWiki-Chronology-Client-Id' )
-] );
-unset( $cpPosInfo );
+
 // Make sure that object caching does not undermine the ChronologyProtector improvements
 if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 	// The user is pinned to the primary DC, meaning that they made recent changes which should
@@ -726,8 +731,18 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();
 
-// Now that variant lists may be available...
-$wgRequest->interpolateTitle();
+// Now that variant lists may be available, parse any action paths and article paths
+// as query parameters.
+//
+// Skip title interpolation on API queries where it is useless and sometimes harmful (T18019).
+//
+// Optimization: Skip on load.php and all other entrypoints besides index.php to save time.
+//
+// TODO: Figure out if this can be safely done after everything else in Setup.php (e.g. any
+// hooks or other state that would miss this?). If so, move to wfIndexMain or MediaWiki::run.
+if ( MW_ENTRY_POINT === 'index' ) {
+	$wgRequest->interpolateTitle();
+}
 
 /**
  * @var MediaWiki\Session\SessionId|null The persistent session ID (if any) loaded at startup

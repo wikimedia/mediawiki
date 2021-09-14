@@ -19,9 +19,11 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -50,6 +52,9 @@ class ApiStashEdit extends ApiBase {
 	/** @var IBufferingStatsdDataFactory */
 	private $statsdDataFactory;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -57,6 +62,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param PageEditStash $pageEditStash
 	 * @param RevisionLookup $revisionLookup
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -64,7 +70,8 @@ class ApiStashEdit extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory,
 		PageEditStash $pageEditStash,
 		RevisionLookup $revisionLookup,
-		IBufferingStatsdDataFactory $statsdDataFactory
+		IBufferingStatsdDataFactory $statsdDataFactory,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( $main, $action );
 
@@ -72,6 +79,7 @@ class ApiStashEdit extends ApiBase {
 		$this->pageEditStash = $pageEditStash;
 		$this->revisionLookup = $revisionLookup;
 		$this->statsdDataFactory = $statsdDataFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function execute() {
@@ -84,6 +92,7 @@ class ApiStashEdit extends ApiBase {
 
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $title );
 
 		if ( !$this->contentHandlerFactory
 			->getContentHandler( $params['contentmodel'] )
@@ -119,7 +128,7 @@ class ApiStashEdit extends ApiBase {
 		$textContent = ContentHandler::makeContent(
 			$text, $title, $params['contentmodel'], $params['contentformat'] );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->exists() ) {
 			// Page exists: get the merged content with the proposed change
 			$baseRev = $this->revisionLookup->getRevisionByPageId(
@@ -204,13 +213,13 @@ class ApiStashEdit extends ApiBase {
 	/**
 	 * @param WikiPage $page
 	 * @param Content $content Edit content
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $summary Edit summary
 	 * @return string ApiStashEdit::ERROR_* constant
 	 * @since 1.25
 	 * @deprecated Since 1.34
 	 */
-	public function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
+	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
 		return $this->pageEditStash->parseAndCache( $page, $content, $user, $summary ?? '' );
 	}
 

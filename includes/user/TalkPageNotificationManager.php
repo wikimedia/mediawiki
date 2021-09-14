@@ -80,7 +80,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return bool whether the user has new messages
 	 */
-	public function userHasNewMessages( UserIdentity $user ) : bool {
+	public function userHasNewMessages( UserIdentity $user ): bool {
 		$userKey = $this->getCacheKey( $user );
 
 		// Load the newtalk status if it is unloaded
@@ -107,7 +107,7 @@ class TalkPageNotificationManager {
 	public function setUserHasNewMessages(
 		UserIdentity $user,
 		RevisionRecord $curRev = null
-	) : void {
+	): void {
 		if ( $this->isTalkDisabled( $user ) ) {
 			return;
 		}
@@ -121,7 +121,7 @@ class TalkPageNotificationManager {
 	 * Remove the new messages status
 	 * @param UserIdentity $user
 	 */
-	public function removeUserHasNewMessages( UserIdentity $user ) : void {
+	public function removeUserHasNewMessages( UserIdentity $user ): void {
 		if ( $this->isTalkDisabled( $user ) ) {
 			return;
 		}
@@ -140,7 +140,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return string|null
 	 */
-	public function getLatestSeenMessageTimestamp( UserIdentity $user ) : ?string {
+	public function getLatestSeenMessageTimestamp( UserIdentity $user ): ?string {
 		$userKey = $this->getCacheKey( $user );
 		// Don't use self::userHasNewMessages here to avoid an extra DB query
 		// in case the value is not cached already
@@ -160,8 +160,8 @@ class TalkPageNotificationManager {
 			__METHOD__
 		);
 		if ( $timestamp ) {
-			// TODO: Once passing 'null' as Revision setUserHasNewMessages is removed,
-			// null $timestamp would mean no new messages, so negatives can be cached too.
+			// TODO: Now that User::setNewTalk() was removed, it should be possible to
+			// cache *not* having a new message as well (if $timestamp is null).
 			$this->userMessagesCache[$userKey] = true;
 		}
 		return $timestamp !== null ? MWTimestamp::convert( TS_MW, $timestamp ) : null;
@@ -172,7 +172,7 @@ class TalkPageNotificationManager {
 	 * @internal There should be no need to call this other than from User::clearInstanceCache
 	 * @param UserIdentity $user
 	 */
-	public function clearInstanceCache( UserIdentity $user ) : void {
+	public function clearInstanceCache( UserIdentity $user ): void {
 		$userKey = $this->getCacheKey( $user );
 		$this->userMessagesCache[$userKey] = null;
 	}
@@ -182,7 +182,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	private function isTalkDisabled( UserIdentity $user ) : bool {
+	private function isTalkDisabled( UserIdentity $user ): bool {
 		return !$user->isRegistered() && $this->disableAnonTalk;
 	}
 
@@ -191,7 +191,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return bool True if the user has new messages
 	 */
-	private function dbCheckNewUserMessages( UserIdentity $user ) : bool {
+	private function dbCheckNewUserMessages( UserIdentity $user ): bool {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		list( $field, $id ) = $this->getQueryFieldAndId( $user );
 		$ok = $dbr->selectField(
@@ -213,7 +213,7 @@ class TalkPageNotificationManager {
 	private function dbUpdateNewUserMessages(
 		UserIdentity $user,
 		RevisionRecord $curRev = null
-	) : bool {
+	): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -226,7 +226,7 @@ class TalkPageNotificationManager {
 		}
 
 		// Mark the user as having new messages since this revision
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		list( $field, $id ) = $this->getQueryFieldAndId( $user );
 		$dbw->insert(
 			'user_newtalk',
@@ -245,11 +245,11 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return bool True if successful, false otherwise
 	 */
-	private function dbDeleteNewUserMessages( UserIdentity $user ) : bool {
+	private function dbDeleteNewUserMessages( UserIdentity $user ): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		list( $field, $id ) = $this->getQueryFieldAndId( $user );
 		$dbw->delete(
 			'user_newtalk',
@@ -264,7 +264,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return array ( string $field, string|int $id )
 	 */
-	private function getQueryFieldAndId( UserIdentity $user ) : array {
+	private function getQueryFieldAndId( UserIdentity $user ): array {
 		if ( $user->isRegistered() ) {
 			$field = 'user_id';
 			$id = $user->getId();
@@ -280,7 +280,7 @@ class TalkPageNotificationManager {
 	 * @param UserIdentity $user
 	 * @return string
 	 */
-	private function getCacheKey( UserIdentity $user ) : string {
+	private function getCacheKey( UserIdentity $user ): string {
 		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
 	}
 }

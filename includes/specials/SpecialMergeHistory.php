@@ -110,7 +110,7 @@ class SpecialMergeHistory extends SpecialPage {
 	 */
 	private function loadRequestParams() {
 		$request = $this->getRequest();
-		$this->mAction = $request->getVal( 'action' );
+		$this->mAction = $request->getRawVal( 'action' );
 		$this->mTarget = $request->getVal( 'target' );
 		$this->mDest = $request->getVal( 'dest' );
 		$this->mSubmitted = $request->getBool( 'submitted' );
@@ -333,7 +333,8 @@ class SpecialMergeHistory extends SpecialPage {
 			[ 'oldid' => $revRecord->getId() ]
 		);
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
+			$class = Linker::getRevisionDeletedClass( $revRecord );
+			$pageLink = '<span class=" ' . $class . '">' . $pageLink . '</span>';
 		}
 
 		# Last link
@@ -410,9 +411,8 @@ class SpecialMergeHistory extends SpecialPage {
 		);
 
 		// In some cases the target page will be deleted
-		$append = $targetTitle->exists( Title::READ_LATEST )
-			? ''
-			: $this->msg( 'mergehistory-source-deleted', $targetLink );
+		$append = ( $mergeStatus->getValue() === 'source-deleted' )
+			? $this->msg( 'mergehistory-source-deleted', $targetTitle->getPrefixedText() ) : '';
 
 		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
 			->rawParams( $targetLink )

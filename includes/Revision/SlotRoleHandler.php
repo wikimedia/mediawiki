@@ -120,7 +120,7 @@ class SlotRoleHandler {
 	 * @return bool Is this a handler for a derived slot?
 	 * @since 1.36
 	 */
-	public function isDerived() : bool {
+	public function isDerived(): bool {
 		return $this->derived;
 	}
 
@@ -164,11 +164,11 @@ class SlotRoleHandler {
 	 *       are not guaranteed to comply with the return value.
 	 *
 	 * @param string $model
-	 * @param LinkTarget $page
+	 * @param PageIdentity $page
 	 *
 	 * @return bool
 	 */
-	public function isAllowedModel( $model, LinkTarget $page ) {
+	public function isAllowedModel( $model, PageIdentity $page ) {
 		return ( $model === $this->contentModel );
 	}
 

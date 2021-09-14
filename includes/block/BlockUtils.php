@@ -22,10 +22,11 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserNameUtils;
 use Status;
-use User;
 use Wikimedia\IPUtils;
 
 /**
@@ -45,8 +46,11 @@ class BlockUtils {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
 
 	/**
 	 * @internal Only for use by ServiceWiring
@@ -57,37 +61,40 @@ class BlockUtils {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		UserFactory $userFactory
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->userFactory = $userFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
 	 * From an existing block, get the target and the type of target.
 	 *
 	 * Note that, except for null, it is always safe to treat the target
-	 * as a string; for User objects this will return User::__toString()
-	 * which in turn gives User::getName().
+	 * as a string; for UserIdentityValue objects this will return
+	 * UserIdentityValue::__toString() which in turn gives
+	 * UserIdentityValue::getName().
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
 	 * @param string|UserIdentity|null $target
-	 * @return array [ User|String|null, int|null ]
+	 * @return array [ UserIdentity|String|null, int|null ]
 	 */
-	public function parseBlockTarget( $target ) : array {
+	public function parseBlockTarget( $target ): array {
 		// We may have been through this before
 		if ( $target instanceof UserIdentity ) {
-			$userObj = $this->userFactory->newFromUserIdentity( $target );
 			if ( IPUtils::isValid( $target->getName() ) ) {
-				return [ $userObj, AbstractBlock::TYPE_IP ];
+				return [ $target, AbstractBlock::TYPE_IP ];
 			} else {
-				return [ $userObj, AbstractBlock::TYPE_USER ];
+				return [ $target, AbstractBlock::TYPE_USER ];
 			}
 		} elseif ( $target === null ) {
 			return [ null, null ];
@@ -96,18 +103,13 @@ class BlockUtils {
 		$target = trim( $target );
 
 		if ( IPUtils::isValid( $target ) ) {
-			// We can still create a User if it's an IP address, but we need to turn
-			// off validation checking (which would exclude IP addresses)
 			return [
-				$this->userFactory->newFromName(
-					IPUtils::sanitizeIP( $target ),
-					UserFactory::RIGOR_NONE
-				),
+				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $target ) ),
 				AbstractBlock::TYPE_IP
 			];
 
 		} elseif ( IPUtils::isValidRange( $target ) ) {
-			// Can't create a User from an IP range
+			// Can't create a UserIdentity from an IP range
 			return [ IPUtils::sanitizeRange( $target ), AbstractBlock::TYPE_RANGE ];
 		}
 
@@ -118,18 +120,29 @@ class BlockUtils {
 			$target = explode( '/', $target )[0];
 		}
 
-		$userObj = $this->userFactory->newFromName( $target );
-		if ( $userObj instanceof User ) {
-			// Note that since numbers are valid usernames, a $target of "12345" will be
-			// considered a User.  If you want to pass a block ID, prepend a hash "#12345",
-			// since hash characters are not valid in usernames or titles generally.
-			return [ $userObj, AbstractBlock::TYPE_USER ];
-		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
+		if ( preg_match( '/^#\d+$/', $target ) ) {
 			// Autoblock reference in the form "#12345"
 			return [ substr( $target, 1 ), AbstractBlock::TYPE_AUTO ];
-		} else {
-			return [ null, null ];
 		}
+
+		$userFromDB = $this->userIdentityLookup->getUserIdentityByName( $target );
+		if ( $userFromDB instanceof UserIdentity ) {
+			// Note that since numbers are valid usernames, a $target of "12345" will be
+			// considered a UserIdentity. If you want to pass a block ID, prepend a hash "#12345",
+			// since hash characters are not valid in usernames or titles generally.
+			return [ $userFromDB, AbstractBlock::TYPE_USER ];
+		}
+
+		// TODO: figure out if it makes sense to have users that do not exist in the DB here
+		$canonicalName = $this->userNameUtils->getCanonical( $target );
+		if ( $canonicalName ) {
+			return [
+				new UserIdentityValue( 0, $canonicalName ),
+				AbstractBlock::TYPE_USER
+			];
+		}
+
+		return [ null, null ];
 	}
 
 	/**
@@ -139,14 +152,14 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	public function validateTarget( $value ) : Status {
+	public function validateTarget( $value ): Status {
 		list( $target, $type ) = $this->parseBlockTarget( $value );
 
 		$status = Status::newGood( $target );
 
 		switch ( $type ) {
 			case AbstractBlock::TYPE_USER:
-				if ( $target->isAnon() ) {
+				if ( !$target->isRegistered() ) {
 					$status->fatal(
 						'nosuchusershort',
 						wfEscapeWikiText( $target->getName() )
@@ -186,7 +199,7 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	private function validateIPv4Range( int $range ) : Status {
+	private function validateIPv4Range( int $range ): Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 
@@ -210,7 +223,7 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	private function validateIPv6Range( int $range ) : Status {
+	private function validateIPv6Range( int $range ): Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 

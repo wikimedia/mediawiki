@@ -103,7 +103,7 @@ TEXT
 	 * @return bool
 	 */
 	protected function doPopulate( array $data, $force ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( !$force ) {
 			$row = $dbw->selectRow(

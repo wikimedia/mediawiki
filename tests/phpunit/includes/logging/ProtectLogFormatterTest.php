@@ -205,7 +205,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User changed protection level for ProtectPage ' .
+					'text' => 'User changed protection settings for ProtectPage ' .
 						'[Edit=Allow only administrators] ' .
 						'(indefinite) [Move=Allow only administrators] (indefinite)',
 					'api' => [
@@ -257,7 +257,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User changed protection level for ProtectPage ' .
+					'text' => 'User changed protection settings for ProtectPage ' .
 						'[Edit=Allow only administrators] (indefinite) ' .
 						'[Move=Allow only administrators] (indefinite) [cascading]',
 					'api' => [
@@ -296,7 +296,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'legacy' => true,
-					'text' => 'User changed protection level for ProtectPage ' .
+					'text' => 'User changed protection settings for ProtectPage ' .
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
@@ -320,7 +320,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'legacy' => true,
-					'text' => 'User changed protection level for ProtectPage ' .
+					'text' => 'User changed protection settings for ProtectPage ' .
 						'[edit=sysop] (indefinite)[move=sysop] (indefinite) [cascading]',
 					'api' => [
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',

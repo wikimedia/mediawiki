@@ -1,19 +1,29 @@
 <?php
 
 /**
+ * TODO convert to unit test, no integration is needed
+ *
  * @covers ApiOpenSearch
  */
 class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	public function testGetAllowedParams() {
 		$config = $this->replaceSearchEngineConfig();
-		$config->expects( $this->any() )
-			->method( 'getSearchTypes' )
-			->will( $this->returnValue( [ 'the one ring' ] ) );
+		$config->method( 'getSearchTypes' )
+			->willReturn( [ 'the one ring' ] );
 
-		$api = $this->createApi();
-		$engine = $this->replaceSearchEngine();
-		$engine->expects( $this->any() )
-			->method( 'getProfiles' )
+		list( $engine, $engineFactory ) = $this->replaceSearchEngine();
+
+		$ctx = new RequestContext();
+		$apiMain = new ApiMain( $ctx );
+		$api = new ApiOpenSearch(
+			$apiMain,
+			'opensearch',
+			$this->getServiceContainer()->getLinkBatchFactory(),
+			$config,
+			$engineFactory
+		);
+
+		$engine->method( 'getProfiles' )
 			->will( $this->returnValueMap( [
 				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
 					[
@@ -51,17 +61,10 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		$engineFactory = $this->getMockBuilder( SearchEngineFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$engineFactory->expects( $this->any() )
-			->method( 'create' )
-			->will( $this->returnValue( $engine ) );
+		$engineFactory->method( 'create' )
+			->willReturn( $engine );
 		$this->setService( 'SearchEngineFactory', $engineFactory );
 
-		return $engine;
-	}
-
-	private function createApi() {
-		$ctx = new RequestContext();
-		$apiMain = new ApiMain( $ctx );
-		return new ApiOpenSearch( $apiMain, 'opensearch', '' );
+		return [ $engine, $engineFactory ];
 	}
 }

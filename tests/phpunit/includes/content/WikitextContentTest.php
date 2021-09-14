@@ -37,72 +37,6 @@ more stuff
 		];
 	}
 
-	public static function dataGetSecondaryDataUpdates() {
-		return [
-			[ "WikitextContentTest_testGetSecondaryDataUpdates_1",
-				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
-				[
-					LinksUpdate::class => [
-						'mRecursive' => true,
-						'mLinks' => []
-					]
-				]
-			],
-			[ "WikitextContentTest_testGetSecondaryDataUpdates_2",
-				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
-				[
-					LinksUpdate::class => [
-						'mRecursive' => true,
-						'mLinks' => [
-							[ 'World_test_21344' => 0 ]
-						]
-					]
-				]
-			],
-			// TODO: more...?
-		];
-	}
-
-	/**
-	 * @dataProvider dataGetSecondaryDataUpdates
-	 * @group Database
-	 * @covers WikitextContent::getSecondaryDataUpdates
-	 */
-	public function testGetSecondaryDataUpdates( $title, $model, $text, $expectedStuff ) {
-		$ns = $this->getDefaultWikitextNS();
-		$title = Title::newFromText( $title, $ns );
-
-		$content = ContentHandler::makeContent( $text, $title, $model );
-
-		$page = WikiPage::factory( $title );
-		$page->doEditContent( $content, '' );
-
-		$updates = $content->getSecondaryDataUpdates( $title );
-
-		// make updates accessible by class name
-		foreach ( $updates as $update ) {
-			$class = get_class( $update );
-			$updates[$class] = $update;
-		}
-
-		foreach ( $expectedStuff as $class => $fieldValues ) {
-			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
-
-			$update = $updates[$class];
-
-			foreach ( $fieldValues as $field => $value ) {
-				$v = $update->$field; # if the field doesn't exist, just crash and burn
-				$this->assertEquals(
-					$value,
-					$v,
-					"unexpected value for field $field in instance of $class"
-				);
-			}
-		}
-
-		$page->doDeleteArticleReal( '', $this->getTestSysop()->getUser() );
-	}
-
 	public static function dataGetSection() {
 		return [
 			[ self::$sections,
@@ -209,19 +143,6 @@ just a test"
 			[ // rtrim
 				" Foo \n ",
 				" Foo",
-			],
-		];
-	}
-
-	public static function dataPreloadTransform() {
-		return [
-			[
-				'hello this is ~~~',
-				"hello this is ~~~",
-			],
-			[
-				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
-				'hello \'\'this\'\' is bar',
 			],
 		];
 	}
@@ -448,10 +369,11 @@ just a test"
 	}
 
 	/**
-	 * @covers WikitextContent::preSaveTransform
 	 * @covers WikitextContent::fillParserOutput
 	 */
 	public function testHadSignature() {
+		$this->hideDeprecated( 'AbstractContent::preSaveTransform' );
+
 		$titleObj = Title::newFromText( __CLASS__ );
 
 		$content = new WikitextContent( '~~~~' );

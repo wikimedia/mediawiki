@@ -61,7 +61,7 @@ class ActivityUpdateJob extends Job {
 	protected function updateWatchlistNotification() {
 		$casTimestamp = $this->params['notifTime'] ?? $this->params['curTime'];
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'watchlist',
 			[
 				'wl_notificationtimestamp' => $dbw->timestampOrNull( $this->params['notifTime'] )

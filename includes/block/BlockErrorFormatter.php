@@ -22,9 +22,10 @@ namespace MediaWiki\Block;
 
 use CommentStoreComment;
 use Language;
-use MediaWiki\User\UserFactory;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 use Message;
+use TitleFormatter;
 
 /**
  * A service class for getting formatted information about a block.
@@ -34,14 +35,16 @@ use Message;
  */
 class BlockErrorFormatter {
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var TitleFormatter */
+	private $titleFormatter;
 
 	/**
-	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
-	public function __construct( UserFactory $userFactory ) {
-		$this->userFactory = $userFactory;
+	public function __construct(
+		TitleFormatter $titleFormatter
+	) {
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -49,14 +52,14 @@ class BlockErrorFormatter {
 	 * block features. Message parameters are formatted for the specified user and
 	 * language.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return Message
 	 */
 	public function getMessage(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language,
 		$ip
@@ -69,22 +72,21 @@ class BlockErrorFormatter {
 	/**
 	 * Get a standard set of block details for building a block error message.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @return mixed[]
 	 *  - identifier: Information for looking up the block
 	 *  - targetName: The target, as a string
 	 *  - blockerName: The blocker, as a string
-	 *  - blockerId: ID of the blocker; 0 if a foreign user
 	 *  - reason: Reason for the block
 	 *  - expiry: Expiry time
 	 *  - timestamp: Time the block was created
 	 */
-	private function getBlockErrorInfo( AbstractBlock $block ) {
+	private function getBlockErrorInfo( Block $block ) {
+		$blocker = $block->getBlocker();
 		return [
 			'identifier' => $block->getIdentifier(),
-			'targetName' => (string)$block->getTarget(),
-			'blockerName' => $block->getByName(),
-			'blockerId' => $block->getBy(),
+			'targetName' => $block->getTargetName(),
+			'blockerName' => $blocker ? $blocker->getName() : '',
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
@@ -96,13 +98,13 @@ class BlockErrorFormatter {
 	 * formatted for a specified user and language.
 	 *
 	 * @since 1.35
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @return mixed[] See getBlockErrorInfo
 	 */
 	private function getFormattedBlockErrorInfo(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language
 	) {
@@ -128,7 +130,7 @@ class BlockErrorFormatter {
 	private function formatBlockReason( CommentStoreComment $reason, Language $language ) {
 		if ( $reason->text === '' ) {
 			$message = new Message( 'blockednoreason', [], $language );
-			return $message->text();
+			return $message->plain();
 		}
 		return $reason->message->inLanguage( $language )->plain();
 	}
@@ -138,33 +140,43 @@ class BlockErrorFormatter {
 	 * the message translation, because the blocker may not be a local user, in which
 	 * case their page cannot be linked.
 	 *
-	 * @param string $blockerName Formatted blocker name
-	 * @param int $blockerId
+	 * @param ?UserIdentity $blocker
 	 * @param Language $language
 	 * @return string Link to the blocker's page; blocker's name if not a local user
 	 */
-	private function formatBlockerLink( $blockerName, $blockerId, Language $language ) {
-		if ( $blockerId === 0 ) {
-			// Foreign user
-			return $blockerName;
+	private function formatBlockerLink( ?UserIdentity $blocker, Language $language ) {
+		if ( !$blocker ) {
+			// TODO should we say something? This is just matching the code before
+			// the refactoring in late July 2021
+			return '';
 		}
 
-		$blocker = $this->userFactory->newFromId( (int)$blockerId );
-		$blockerUserpage = $blocker->getUserPage();
-		$blockerText = $language->embedBidi( $blockerUserpage->getText() );
-		return "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
+		if ( $blocker->getId() === 0 ) {
+			// Foreign user
+			// TODO what about blocks placed by IPs? Shouldn't we check based on
+			// $blocker's wiki instead? This is just matching the code before the
+			// refactoring in late July 2021.
+			return $language->embedBidi( $blocker->getName() );
+		}
+
+		$blockerUserpage = PageReferenceValue::localReference( NS_USER, $blocker->getName() );
+		$blockerText = $language->embedBidi(
+			$this->titleFormatter->getText( $blockerUserpage )
+		);
+		$prefixedText = $this->titleFormatter->getPrefixedText( $blockerUserpage );
+		return "[[{$prefixedText}|{$blockerText}]]";
 	}
 
 	/**
 	 * Determine the block error message key by examining the block.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @return string Message key
 	 */
-	private function getBlockErrorMessageKey( AbstractBlock $block ) {
+	private function getBlockErrorMessageKey( Block $block ) {
 		$key = 'blockedtext';
 		if ( $block instanceof DatabaseBlock ) {
-			if ( $block->getType() === AbstractBlock::TYPE_AUTO ) {
+			if ( $block->getType() === Block::TYPE_AUTO ) {
 				$key = 'autoblockedtext';
 			} elseif ( !$block->isSitewide() ) {
 				$key = 'blockedtext-partial';
@@ -181,7 +193,7 @@ class BlockErrorFormatter {
 	 * Get the formatted parameters needed to build the block error messages handled by
 	 * getBlockErrorMessageKey.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
@@ -196,7 +208,7 @@ class BlockErrorFormatter {
 	 *  - timestamp: Time the block was created, in the specified language
 	 */
 	private function getBlockErrorMessageParams(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language,
 		$ip
@@ -206,8 +218,7 @@ class BlockErrorFormatter {
 		// Add params that are specific to the standard block errors
 		$info['ip'] = $ip;
 		$info['blockerLink'] = $this->formatBlockerLink(
-			$info['blockerName'],
-			$info['blockerId'],
+			$block->getBlocker(),
 			$language
 		);
 

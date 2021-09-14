@@ -41,7 +41,7 @@ class MissingCommentConstraint implements IEditConstraint {
 		$this->userComment = $userComment;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( $this->userComment == '' ) {
 			// TODO this was == in EditPage, can it be === ?
 			return self::CONSTRAINT_FAILED;
@@ -49,7 +49,7 @@ class MissingCommentConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->userComment == '' ) {
 			$statusValue->fatal( 'missingcommenttext' );

@@ -4,7 +4,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\AssertionFailedError;
 
 /**
@@ -12,7 +15,7 @@ use PHPUnit\Framework\AssertionFailedError;
  * @group Database
  */
 class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
-	use MediaWikiCoversValidator;
+	use DummyServicesTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -21,8 +24,10 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_newtalk';
 	}
 
-	private function editUserTalk( User $user, string $text ) : RevisionRecord {
-		$userTalk = $user->getTalkPage();
+	private function editUserTalk( UserIdentity $user, string $text ): RevisionRecord {
+		// UserIdentity doesn't have getUserPage/getTalkPage, but we can easily recreate
+		// it, and its easier than needing to depend on a full user object
+		$userTalk = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$status = $this->editPage(
 			$userTalk->getPrefixedText(),
 			$text,
@@ -36,7 +41,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getManager(
 		bool $disableAnonTalk = false,
-		ReadOnlyMode $readOnlyMode = null,
+		bool $isReadOnly = false,
 		RevisionLookup $revisionLookup = null
 	) {
 		$services = MediaWikiServices::getInstance();
@@ -48,12 +53,24 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 				] )
 			),
 			$services->getDBLoadBalancer(),
-			$readOnlyMode ?? $services->getReadOnlyMode(),
+			$this->getDummyReadOnlyMode( $isReadOnly ),
 			$revisionLookup ?? $services->getRevisionLookup()
 		);
 	}
 
-	private function doTestUserHasNewMessages( User $user ) {
+	public function provideUserHasNewMessages() {
+		yield 'Registered user' => [ UserIdentityValue::newRegistered( 123, 'MyName' ) ];
+		yield 'Anonymous user' => [ UserIdentityValue::newAnonymous( '1.2.3.4' ) ];
+	}
+
+	/**
+	 * @dataProvider provideUserHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
+	 */
+	private function testUserHasNewMessages( UserIdentity $user ) {
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->userHasNewMessages( $user ),
 			'Should be false before updated' );
@@ -81,29 +98,9 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
 	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
-	 */
-	public function testUserHasNewMessagesRegistered() {
-		$this->doTestUserHasNewMessages( $this->getTestUser()->getUser() );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
-	 */
-	public function testUserHasNewMessagesAnon() {
-		$this->doTestUserHasNewMessages( User::newFromName( 'testUserHasNewMessagesAnon' ) );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
 	 */
 	public function testUserHasNewMessagesDisabledAnon() {
-		$user = User::newFromName( 'testUserHasNewMessagesAnon' );
+		$user = new UserIdentityValue( 0, '1.2.3.4' );
 		$revRecord = $this->editUserTalk( $user, __METHOD__ );
 		$manager = $this->getManager( true );
 		$this->assertFalse( $manager->userHasNewMessages( $user ),
@@ -155,7 +152,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 					'RevisionLookup::getPreviousRevision called with wrong rev ' . $rev->getId()
 				);
 			} );
-		$manager = $this->getManager( false, null, $mockRevLookup );
+		$manager = $this->getManager( false, false, $mockRevLookup );
 		$manager->setUserHasNewMessages( $user, $thirdRev );
 		$this->assertSame( $veryOldTimestamp, $manager->getLatestSeenMessageTimestamp( $user ) );
 		$manager->setUserHasNewMessages( $user, $secondRev );
@@ -180,10 +177,8 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	public function testDoesNotCrashOnReadOnly() {
 		$user = $this->getTestUser()->getUser();
 		$this->editUserTalk( $user, __METHOD__ );
-		$mockReadOnly = $this->createMock( ReadOnlyMode::class );
-		$mockReadOnly->method( 'isReadOnly' )->willReturn( true );
 
-		$manager = $this->getManager( false, $mockReadOnly );
+		$manager = $this->getManager( false, true );
 		$this->assertTrue( $manager->userHasNewMessages( $user ) );
 		$manager->removeUserHasNewMessages( $user );
 		$this->assertFalse( $manager->userHasNewMessages( $user ) );

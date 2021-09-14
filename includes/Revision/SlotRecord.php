@@ -70,9 +70,15 @@ class SlotRecord {
 	public static function newWithSuppressedContent( SlotRecord $slot ) {
 		$row = $slot->row;
 
-		return new SlotRecord( $row, static function () {
-			throw new SuppressedDataException( 'Content suppressed!' );
-		} );
+		return new SlotRecord(
+			$row,
+			/**
+			 * @return never
+			 */
+			static function () {
+				throw new SuppressedDataException( 'Content suppressed!' );
+			}
+		);
 	}
 
 	/**
@@ -146,9 +152,7 @@ class SlotRecord {
 	 * @param bool $derived
 	 * @return SlotRecord An incomplete proto-slot object, to be used with newSaved() later.
 	 */
-	public static function newUnsaved( $role, Content $content, bool $derived = false ) {
-		Assert::parameterType( 'string', $role, '$role' );
-
+	public static function newUnsaved( string $role, Content $content, bool $derived = false ) {
 		$row = [
 			'slot_id' => null, // not yet known
 			'slot_revision_id' => null, // not yet known
@@ -182,16 +186,11 @@ class SlotRecord {
 	 * @return SlotRecord If the state of $protoSlot is inappropriate for saving a new revision.
 	 */
 	public static function newSaved(
-		$revisionId,
-		$contentId,
-		$contentAddress,
+		int $revisionId,
+		?int $contentId,
+		string $contentAddress,
 		SlotRecord $protoSlot
 	) {
-		Assert::parameterType( 'integer', $revisionId, '$revisionId' );
-		// TODO once migration is over $contentId must be an integer
-		Assert::parameterType( 'integer|null', $contentId, '$contentId' );
-		Assert::parameterType( 'string', $contentAddress, '$contentAddress' );
-
 		if ( $protoSlot->hasRevision() && $protoSlot->getRevision() !== $revisionId ) {
 			throw new LogicException(
 				"Mismatching revision ID $revisionId: "
@@ -256,8 +255,7 @@ class SlotRecord {
 	 *        their hash does not contribute to the revision hash, and updates are not included
 	 *        in revision history.
 	 */
-	public function __construct( $row, $content, bool $derived = false ) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
+	public function __construct( \stdClass $row, $content, bool $derived = false ) {
 		Assert::parameterType( 'Content|callable', $content, '$content' );
 
 		Assert::parameter(
@@ -347,7 +345,10 @@ class SlotRecord {
 		if ( !isset( $this->row->$name ) ) {
 			// distinguish between unknown and uninitialized fields
 			if ( property_exists( $this->row, $name ) ) {
-				throw new IncompleteRevisionException( 'Uninitialized field: ' . $name );
+				throw new IncompleteRevisionException(
+					'Uninitialized field: {name}',
+					[ 'name' => $name ]
+				);
 			} else {
 				throw new OutOfBoundsException( 'No such field: ' . $name );
 			}
@@ -371,7 +372,7 @@ class SlotRecord {
 	 *
 	 * @throws OutOfBoundsException
 	 * @throws IncompleteRevisionException
-	 * @return string Returns the string value
+	 * @return string
 	 */
 	private function getStringField( $name ) {
 		return strval( $this->getField( $name ) );
@@ -384,7 +385,7 @@ class SlotRecord {
 	 *
 	 * @throws OutOfBoundsException
 	 * @throws IncompleteRevisionException
-	 * @return int Returns the int value
+	 * @return int
 	 */
 	private function getIntField( $name ) {
 		return intval( $this->getField( $name ) );
@@ -621,7 +622,7 @@ class SlotRecord {
 	/**
 	 * Get the base 36 SHA-1 value for a string of text
 	 *
-	 * MCR migration note: this replaces Revision::base36Sha1
+	 * MCR migration note: this replaced Revision::base36Sha1
 	 *
 	 * @param string $blob
 	 * @return string
@@ -680,7 +681,7 @@ class SlotRecord {
 	 * @return bool Is this a derived slot?
 	 * @since 1.36
 	 */
-	public function isDerived() : bool {
+	public function isDerived(): bool {
 		return $this->derived;
 	}
 

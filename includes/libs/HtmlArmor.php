@@ -17,7 +17,7 @@
  *
  * @file
  * @license GPL-2.0-or-later
- * @author Kunal Mehta <legoktm@member.fsf.org>
+ * @author Kunal Mehta <legoktm@debian.org>
  */
 
 /**

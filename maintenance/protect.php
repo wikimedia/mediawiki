@@ -56,7 +56,7 @@ class Protect extends Maintenance {
 		}
 
 		if ( $userName === false ) {
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $userName );
 		}
@@ -75,7 +75,7 @@ class Protect extends Maintenance {
 		}
 
 		# un/protect the article
-		$this->output( "Updating protection status... " );
+		$this->output( "Updating protection status..." );
 
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
 		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );

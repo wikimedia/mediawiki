@@ -162,14 +162,13 @@ class AllMessagesTablePager extends TablePager {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided
 		$dbr = $dbr ?? wfGetDB( DB_REPLICA );
-
 		$res = $dbr->select( 'page',
 			[ 'page_namespace', 'page_title' ],
 			[ 'page_namespace' => [ NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ] ],
 			__METHOD__,
-			[ 'USE INDEX' => 'name_title' ]
+			[ 'USE INDEX' => 'page_name_title' ]
 		);
-		$xNames = array_flip( $messageNames );
+		$xNames = array_fill_keys( $messageNames, true );
 
 		$pageFlags = $talkFlags = [];
 
@@ -274,7 +273,7 @@ class AllMessagesTablePager extends TablePager {
 
 	/**
 	 * @param string $field
-	 * @param string $value
+	 * @param string|null $value
 	 * @return string HTML
 	 */
 	public function formatValue( $field, $value ) {

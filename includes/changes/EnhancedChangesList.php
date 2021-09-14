@@ -41,23 +41,11 @@ class EnhancedChangesList extends ChangesList {
 	protected $templateParser;
 
 	/**
-	 * @param IContextSource|Skin $obj
-	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param IContextSource $context
+	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 * @throws MWException
 	 */
-	public function __construct( $obj, array $filterGroups = [] ) {
-		if ( $obj instanceof Skin ) {
-			// @todo: deprecate constructing with Skin
-			$context = $obj->getContext();
-		} else {
-			if ( !$obj instanceof IContextSource ) {
-				throw new MWException( 'EnhancedChangesList must be constructed with a '
-					. 'context source or skin.' );
-			}
-
-			$context = $obj;
-		}
-
+	public function __construct( $context, array $filterGroups = [] ) {
 		parent::__construct( $context, $filterGroups );
 
 		// message is set by the parent ChangesList class
@@ -74,21 +62,15 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	public function beginRecentChangesList() {
-		$this->rc_cache = [];
-		$this->rcMoveIndex = 0;
-		$this->rcCacheIndex = 0;
-		$this->lastdate = '';
-		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.icon',
-			'mediawiki.interface.helpers.styles',
-			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		] );
 		$this->getOutput()->addModules( [
 			'jquery.makeCollapsible',
 		] );
 
+		parent::beginRecentChangesList();
 		return '<div class="mw-changeslist" aria-live="polite">';
 	}
 

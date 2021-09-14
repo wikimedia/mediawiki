@@ -13,7 +13,7 @@ use User;
  */
 interface UserGetRightsHook {
 	/**
-	 * This hook is called in User::getRights().
+	 * This hook is called in PermissionManager::getUserPermissions().
 	 *
 	 * @since 1.35
 	 *

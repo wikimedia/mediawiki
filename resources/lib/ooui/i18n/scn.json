@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Gazeb",
 			"Gloria sah",
 			"Gmelfi",
@@ -9,5 +10,6 @@
 	},
 	"ooui-outline-control-move-down": "Sposta di sutta",
 	"ooui-outline-control-move-up": "Sposta di supra",
-	"ooui-toolbar-more": "Àutri cosi"
+	"ooui-toolbar-more": "Àutri cosi",
+	"ooui-field-help": "Aiutu"
 }

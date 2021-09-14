@@ -13,10 +13,9 @@ class UserArrayFromResultTest extends \MediaWikiUnitTestCase {
 		$resultWrapper = $resultWrapper->getMock();
 		$resultWrapper->expects( $this->atLeastOnce() )
 			->method( 'current' )
-			->will( $this->returnValue( $row ) );
-		$resultWrapper->expects( $this->any() )
-			->method( 'numRows' )
-			->will( $this->returnValue( $numRows ) );
+			->willReturn( $row );
+		$resultWrapper->method( 'numRows' )
+			->willReturn( $numRows );
 
 		return $resultWrapper;
 	}

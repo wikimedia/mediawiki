@@ -6,7 +6,6 @@ use ChangeTags;
 use CommentStoreComment;
 use IDatabase;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -51,12 +50,12 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/** @var IDatabase */
 	private $dbw;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->revisionStore = $services->getRevisionStore();
-		$this->dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$this->dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 
 		$this->wikiPage = $this->getExistingTestPage( self::PAGE_NAME );
 		$this->revisions = [];
@@ -102,7 +101,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function getLatestTestRevision() : RevisionRecord {
+	private function getLatestTestRevision(): RevisionRecord {
 		if ( $this->latestTestRevision !== null ) {
 			return $this->latestTestRevision;
 		}
@@ -127,7 +126,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	private function insertRevisionToTestPage(
 		string $content,
 		string $timestamp
-	) : RevisionRecord {
+	): RevisionRecord {
 		$revisionRecord = $this->getNewRevisionForTestPage( $content );
 		$revisionRecord->setUser( $this->getTestUser()->getUser() );
 		$revisionRecord->setTimestamp( $timestamp );
@@ -149,7 +148,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getNewRevisionForTestPage(
 		string $content
-	) : MutableRevisionRecord {
+	): MutableRevisionRecord {
 		$parentRevision = $this->getLatestTestRevision();
 
 		$revision = new MutableRevisionRecord( $this->wikiPage->getTitle() );
@@ -163,7 +162,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		return $revision;
 	}
 
-	public function provideManualReverts() : array {
+	public function provideManualReverts(): array {
 		return [
 			'reverting a single edit' => [
 				self::CONTENT_A,
@@ -183,7 +182,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideManualReverts
 	 * @covers \MediaWiki\Storage\EditResultBuilder::detectManualRevert
-	 * @covers \MediaWiki\Storage\EditResultBuilder::findIdenticalRevision
 	 *
 	 * @param string $content
 	 * @param string $expectedOriginalRevKey
@@ -275,7 +273,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideNotManualReverts() : array {
+	public function provideNotManualReverts(): array {
 		return [
 			'edit not changing anything' => [
 				self::CONTENT_B,
@@ -295,7 +293,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideNotManualReverts
 	 * @covers \MediaWiki\Storage\EditResultBuilder::detectManualRevert
-	 * @covers \MediaWiki\Storage\EditResultBuilder::findIdenticalRevision
 	 *
 	 * @param string $content
 	 * @param int $searchRadius
@@ -339,16 +336,14 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	 * @return EditResultBuilder
 	 */
 	private function getEditResultBuilder( int $manualRevertSearchRadius = 15 ) {
-		$services = MediaWikiServices::getInstance();
 		$options = new ServiceOptions(
 			EditResultBuilder::CONSTRUCTOR_OPTIONS,
 			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
 		);
 
 		return new EditResultBuilder(
-			$services->getRevisionStore(),
+			$this->getServiceContainer()->getRevisionStore(),
 			ChangeTags::listSoftwareDefinedTags(),
-			$services->getDBLoadBalancer(),
 			$options
 		);
 	}

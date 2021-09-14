@@ -28,6 +28,7 @@ use Language;
 use LinkBatch;
 use LinkCache;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 use TitleFormatter;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -77,10 +78,11 @@ class LinkBatchFactory {
 	}
 
 	/**
-	 * @param iterable|LinkTarget[] $initialItems Initial items to be added to the batch
+	 * @param iterable<LinkTarget>|iterable<PageReference> $initialItems items to be added
+	 *
 	 * @return LinkBatch
 	 */
-	public function newLinkBatch( iterable $initialItems = [] ) : LinkBatch {
+	public function newLinkBatch( iterable $initialItems = [] ): LinkBatch {
 		$batch = new LinkBatch(
 			[],
 			$this->linkCache,

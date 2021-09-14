@@ -4,6 +4,7 @@ namespace MediaWiki\Site;
 
 use FormatJson;
 use Http;
+use InvalidArgumentException;
 use UtfNormal\Validator;
 
 /**
@@ -34,6 +35,9 @@ use UtfNormal\Validator;
  */
 class MediaWikiPageNameNormalizer {
 
+	public const FOLLOW_REDIRECT = 1;
+	public const NOFOLLOW_REDIRECT = 2;
+
 	/**
 	 * @var Http
 	 */
@@ -52,8 +56,9 @@ class MediaWikiPageNameNormalizer {
 
 	/**
 	 * Returns the normalized form of the given page title, using the
-	 * normalization rules of the given site. If the given title is a redirect,
-	 * the redirect will be resolved and the redirect target is returned.
+	 * normalization rules of the given site. If $followRedirect is set to self::FOLLOW_REDIRECT (default)
+	 * and the given title is a redirect, the redirect will be resolved and
+	 * the redirect target is returned.
 	 * Only titles of existing pages will be returned.
 	 *
 	 * @note This actually makes an API request to the remote site, so beware
@@ -62,19 +67,30 @@ class MediaWikiPageNameNormalizer {
 	 * @see Site::normalizePageName
 	 *
 	 * @since 1.27
+	 * @since 1.37 Added $followRedirect
 	 *
 	 * @param string $pageName
 	 * @param string $apiUrl
+	 * @param int $followRedirect either self::FOLLOW_REDIRECT or self::NOFOLLOW_REDIRECT
 	 *
 	 * @return string|false The normalized form of the title,
 	 * or false to indicate an invalid title, a missing page,
 	 * or some other kind of error.
 	 * @throws \MWException
+	 * @throws InvalidArgumentException
 	 */
-	public function normalizePageName( $pageName, $apiUrl ) {
+	public function normalizePageName( $pageName, $apiUrl, $followRedirect = self::FOLLOW_REDIRECT ) {
 		// Check if we have strings as arguments.
 		if ( !is_string( $pageName ) ) {
 			throw new \MWException( '$pageName must be a string' );
+		}
+
+		if ( $followRedirect === self::FOLLOW_REDIRECT ) {
+			$redirects = true;
+		} elseif ( $followRedirect === self::NOFOLLOW_REDIRECT ) {
+			$redirects = false;
+		} else {
+			throw new InvalidArgumentException( '$followRedirect is not properly set: ' . $followRedirect );
 		}
 
 		// Go on call the external site
@@ -88,7 +104,7 @@ class MediaWikiPageNameNormalizer {
 		$args = [
 			'action' => 'query',
 			'prop' => 'info',
-			'redirects' => true,
+			'redirects' => $redirects,
 			'converttitles' => true,
 			'format' => 'json',
 			'titles' => $pageName,

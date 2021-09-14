@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.3
+ * OOUI v0.42.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-03-12T21:47:58Z
+ * Date: 2021-08-19T04:45:01Z
  */
 /* stylelint-disable selector-no-vendor-prefix */
 /* stylelint-enable selector-no-vendor-prefix */
@@ -56,7 +56,6 @@
   border-radius: 3px;
   border: 1px solid transparent;
   -webkit-transition: border-color 250ms;
-  -moz-transition: border-color 250ms;
   transition: border-color 250ms;
 }
 .oo-ui-toolGroup-empty {
@@ -136,9 +135,7 @@
   border-color: rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -158,9 +155,7 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-progressive {
   background-color: #cde7f4;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   border: 1px solid #a6cee1;
 }
@@ -169,9 +164,7 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-progressive.oo-ui-tool-active.oo-ui-widget-enabled {
   background-color: #cde7f4;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #b0d9ee), color-stop(100%, #eaf4fa));
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   border: 1px solid #a6cee1;
 }
@@ -180,9 +173,7 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-destructive {
   background-color: #ebebeb;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fafafa), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
-  background-image: -moz-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   border: 1px solid #ccc;
 }
@@ -310,9 +301,7 @@
 }
 .oo-ui-popupToolGroup-active.oo-ui-widget-enabled {
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -320,9 +309,7 @@
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive {
   background-color: #cde7f4;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #eaf4fa), color-stop(100%, #b0d9ee));
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
-  background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   border: 1px solid #a6cee1;
 }
@@ -331,17 +318,13 @@
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active.oo-ui-widget-enabled {
   background-color: #cde7f4;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #b0d9ee), color-stop(100%, #eaf4fa));
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
-  background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   border: 1px solid #a6cee1;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive {
   background-color: #ebebeb;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fafafa), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
-  background-image: -moz-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   border: 1px solid #ccc;
 }
@@ -385,7 +368,6 @@
 /* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -404,9 +386,7 @@
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f1f7fb), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
-  background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
 }
 .oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -542,9 +522,7 @@
 }
 .oo-ui-toolbar-bar {
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #f1f7fb));
   background-image: -webkit-linear-gradient(top, #fff 0, #f1f7fb 100%);
-  background-image: -moz-linear-gradient(top, #fff 0, #f1f7fb 100%);
   background-image: linear-gradient(to bottom, #fff 0, #f1f7fb 100%);
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {

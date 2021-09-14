@@ -6,8 +6,11 @@
  * Represents files in a repository.
  */
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Base code for files.
@@ -60,10 +63,10 @@ use Wikimedia\AtEase\AtEase;
  * @stable to extend
  * @ingroup FileAbstraction
  */
-abstract class File implements IDBAccessObject {
+abstract class File implements IDBAccessObject, MediaHandlerState {
 	use ProtectedHookAccessorTrait;
 
-	// Bitfield values akin to the Revision deletion constants
+	// Bitfield values akin to the revision deletion constants
 	public const DELETED_FILE = 1;
 	public const DELETED_COMMENT = 2;
 	public const DELETED_USER = 4;
@@ -167,6 +170,9 @@ abstract class File implements IDBAccessObject {
 	/** @var array Cache of tmp filepaths pointing to generated bucket thumbnails, keyed by width */
 	protected $tmpBucketedThumbCache = [];
 
+	/** @var array */
+	private $handlerState = [];
+
 	/**
 	 * Call this constructor from child classes.
 	 *
@@ -191,13 +197,22 @@ abstract class File implements IDBAccessObject {
 	 * Given a string or Title object return either a
 	 * valid Title object with namespace NS_FILE or null
 	 *
-	 * @param Title|string $title
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param string|bool $exception Use 'exception' to throw an error on bad titles
 	 * @throws MWException
 	 * @return Title|null
 	 */
 	public static function normalizeTitle( $title, $exception = false ) {
 		$ret = $title;
+
+		if ( !$ret instanceof Title ) {
+			if ( $ret instanceof PageIdentity ) {
+				$ret = Title::castFromPageIdentity( $ret );
+			} elseif ( $ret instanceof LinkTarget ) {
+				$ret = Title::castFromLinkTarget( $ret );
+			}
+		}
+
 		if ( $ret instanceof Title ) {
 			# Normalize NS_MEDIA -> NS_FILE
 			if ( $ret->getNamespace() === NS_MEDIA ) {
@@ -592,12 +607,21 @@ abstract class File implements IDBAccessObject {
 	 * Returns ID or name of user who uploaded the file
 	 * STUB
 	 *
-	 * @stable to override
+	 * @deprecated since 1.37. Use and override ::getUploader instead.
 	 * @param string $type 'text' or 'id'
 	 * @return string|int
 	 */
 	public function getUser( $type = 'text' ) {
-		return null;
+		wfDeprecated( __METHOD__, '1.37' );
+		$user = $this->getUploader( self::RAW ) ?? User::newFromName( 'Unknown user' );
+		if ( $type === 'object' ) {
+			return User::newFromIdentity( $user );
+		} elseif ( $type === 'text' ) {
+			return $user->getName();
+		} elseif ( $type === 'id' ) {
+			return $user->getId();
+		}
+		throw new MWException( "Unknown type '$type'." );
 	}
 
 	/**
@@ -716,11 +740,54 @@ abstract class File implements IDBAccessObject {
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @stable to override
+	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItem()
 	 * @return string|false
 	 */
 	public function getMetadata() {
 		return false;
+	}
+
+	public function getHandlerState( string $key ) {
+		return $this->handlerState[$key] ?? null;
+	}
+
+	public function setHandlerState( string $key, $value ) {
+		$this->handlerState[$key] = $value;
+	}
+
+	/**
+	 * Get the unserialized handler-specific metadata
+	 * STUB
+	 * @since 1.37
+	 * @return array
+	 */
+	public function getMetadataArray(): array {
+		return [];
+	}
+
+	/**
+	 * Get a specific element of the unserialized handler-specific metadata.
+	 *
+	 * @since 1.37
+	 * @param string $itemName
+	 * @return mixed
+	 */
+	public function getMetadataItem( string $itemName ) {
+		$items = $this->getMetadataItems( [ $itemName ] );
+		return $items[$itemName] ?? null;
+	}
+
+	/**
+	 * Get multiple elements of the unserialized handler-specific metadata.
+	 *
+	 * @since 1.37
+	 * @param string[] $itemNames
+	 * @return array
+	 */
+	public function getMetadataItems( array $itemNames ): array {
+		return array_intersect_key(
+			$this->getMetadataArray(),
+			array_fill_keys( $itemNames, true ) );
 	}
 
 	/**
@@ -742,17 +809,12 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * get versioned metadata
 	 *
-	 * @param array|string $metadata Array or string of (serialized) metadata
+	 * @param array $metadata Array of unserialized metadata
 	 * @param int $version Version number.
 	 * @return array Array containing metadata, or what was passed to it on fail
-	 *   (unserializing if not array)
 	 */
 	public function convertMetadataVersion( $metadata, $version ) {
 		$handler = $this->getHandler();
-		if ( !is_array( $metadata ) ) {
-			// Just to make the return type consistent
-			$metadata = unserialize( $metadata );
-		}
 		if ( $handler ) {
 			return $handler->convertMetadataVersion( $metadata, $version );
 		} else {
@@ -1399,7 +1461,7 @@ abstract class File implements IDBAccessObject {
 
 		// Thumbnailing a very large file could result in network saturation if
 		// everyone does it at once.
-		if ( $this->getSize() >= 1e7 ) { // 10MB
+		if ( $this->getSize() >= 1e7 ) { // 10 MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $this->getName() ),
 				[
 					'doWork' => function () {
@@ -1900,6 +1962,7 @@ abstract class File implements IDBAccessObject {
 
 	/**
 	 * @throws MWException
+	 * @return never
 	 */
 	protected function readOnlyError() {
 		throw new MWException( static::class . ': write operations are not supported' );
@@ -2043,14 +2106,14 @@ abstract class File implements IDBAccessObject {
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
 	 * @param string $reason
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param bool $suppress Hide content from sysops?
 	 * @return Status
 	 * STUB
 	 * Overridden by LocalFile
 	 * @stable to override
 	 */
-	public function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, UserIdentity $user, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -2128,11 +2191,13 @@ abstract class File implements IDBAccessObject {
 	 * @note Use getWidth()/getHeight() instead of this method unless you have a
 	 *  a good reason. This method skips all caches.
 	 *
-	 * @stable to override
+	 * @deprecated since 1.37
+	 *
 	 * @param string $filePath The path to the file (e.g. From getLocalRefPath() )
 	 * @return array|false The width, followed by height, with optionally more things after
 	 */
 	protected function getImageSize( $filePath ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( !$this->getHandler() ) {
 			return false;
 		}
@@ -2202,6 +2267,25 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
+	 * Get the identity of the file uploader.
+	 *
+	 * @note if the file does not exist, this will return null regardless of the permissions.
+	 *
+	 * @stable to override
+	 * @since 1.37
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
+	 * @return UserIdentity|null
+	 */
+	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+		return null;
+	}
+
+	/**
 	 * Get description of file revision
 	 * STUB
 	 *
@@ -2210,11 +2294,11 @@ abstract class File implements IDBAccessObject {
 	 *   File::FOR_PUBLIC       to be displayed to all users
 	 *   File::FOR_THIS_USER    to be displayed to the given user
 	 *   File::RAW              get the description regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
 	 *   passed to the $audience parameter
 	 * @return null|string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		return null;
 	}
 
@@ -2246,7 +2330,7 @@ abstract class File implements IDBAccessObject {
 	 * Get the SHA-1 base 36 hash of the file
 	 *
 	 * @stable to override
-	 * @return string
+	 * @return string|false
 	 */
 	public function getSha1() {
 		$this->assertRepoDefined();
@@ -2276,10 +2360,10 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		return true;
 	}
 
@@ -2290,17 +2374,7 @@ abstract class File implements IDBAccessObject {
 	public function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
-			$metadata = $this->getMetadata();
-
-			if ( is_string( $metadata ) ) {
-				$metadata = AtEase::quietCall( 'unserialize', $metadata );
-			}
-
-			if ( !is_array( $metadata ) ) {
-				$metadata = [];
-			}
-
-			return $handler->getContentHeaders( $metadata );
+			return $handler->getContentHeaders( $this->getMetadataArray() );
 		}
 
 		return [];

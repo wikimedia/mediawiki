@@ -27,20 +27,31 @@
  */
 class ApiQueryPageProps extends ApiQueryBase {
 
-	private $params;
+	/** @var PageProps */
+	private $pageProps;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param PageProps $pageProps
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		PageProps $pageProps
+	) {
 		parent::__construct( $query, $moduleName, 'pp' );
+		$this->pageProps = $pageProps;
 	}
 
 	public function execute() {
 		# Only operate on existing pages
-		$pages = $this->getPageSet()->getGoodTitles();
+		$pages = $this->getPageSet()->getGoodPages();
 
-		$this->params = $this->extractRequestParams();
-		if ( $this->params['continue'] ) {
-			$continueValue = (int)$this->params['continue'];
-			$this->dieContinueUsageIf( strval( $continueValue ) !== $this->params['continue'] );
+		$params = $this->extractRequestParams();
+		if ( $params['continue'] ) {
+			$continueValue = (int)$params['continue'];
+			$this->dieContinueUsageIf( strval( $continueValue ) !== $params['continue'] );
 			$filteredPages = [];
 			foreach ( $pages as $id => $page ) {
 				if ( $id >= $continueValue ) {
@@ -55,19 +66,17 @@ class ApiQueryPageProps extends ApiQueryBase {
 			return;
 		}
 
-		$pageProps = PageProps::getInstance();
-		$result = $this->getResult();
-		if ( $this->params['prop'] ) {
-			$propnames = $this->params['prop'];
-			$properties = $pageProps->getProperties( $pages, $propnames );
+		if ( $params['prop'] ) {
+			$properties = $this->pageProps->getProperties( $pages, $params['prop'] );
 		} else {
-			$properties = $pageProps->getAllProperties( $pages );
+			$properties = $this->pageProps->getAllProperties( $pages );
 		}
 
 		ksort( $properties );
 
-		foreach ( $properties as $page => $props ) {
-			if ( !$this->addPageProps( $result, $page, $props ) ) {
+		$result = $this->getResult();
+		foreach ( $properties as $pageid => $props ) {
+			if ( !$this->addPageProps( $result, $pageid, $props ) ) {
 				break;
 			}
 		}

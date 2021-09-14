@@ -128,7 +128,7 @@
 		 *
 		 * @param {File} file
 		 * @param {Object} data Other upload options, see action=upload API docs for more
-		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5MB)
+		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5 MiB)
 		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
 		 * @return {jQuery.Promise}
 		 */
@@ -408,7 +408,7 @@
 		 * @see #method-uploadToStash
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]
-		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5MB)
+		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5 MiB)
 		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.finishUpload Call this function to finish the upload.

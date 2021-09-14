@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Tests RevisionStore
@@ -30,9 +31,12 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return MockObject|ILoadBalancer
 	 */
 	private function installMockLoadBalancer( IDatabase $db ) {
-		$lb = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnectionRef', 'getLocalDomainID' ] );
+		$lb = $this->createNoOpMock(
+			ILoadBalancer::class,
+			[ 'getConnectionRef', 'getLocalDomainID', 'reuseConnection' ]
+		);
 
-		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_MASTER );
+		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_PRIMARY );
 		$lb->method( 'getConnectionRef' )->willReturn( $dbRef );
 		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
 
@@ -75,7 +79,8 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			'page_links_updated' => MWTimestamp::now(),
 			'page_latest' => 23948576,
 			'page_len' => 2323,
-			'page_content_model' => CONTENT_MODEL_WIKITEXT
+			'page_content_model' => CONTENT_MODEL_WIKITEXT,
+			'page_restrictions' => ''
 		] );
 	}
 
@@ -268,7 +273,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 				if ( $callCounter < 3 ) {
 					$this->assertSame( DB_REPLICA, $masterOrReplica );
 				} else {
-					$this->assertSame( DB_MASTER, $masterOrReplica );
+					$this->assertSame( DB_PRIMARY, $masterOrReplica );
 				}
 				return $db;
 			} );
@@ -302,4 +307,42 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
 	}
 
+	public function provideIsRevisionRow() {
+		yield 'invalid row type' => [
+			'row' => new class() {
+			},
+			'expect' => false,
+		];
+		yield 'invalid row' => [
+			'row' => (object)[ 'blabla' => 'bla' ],
+			'expect' => false,
+		];
+		yield 'valid row' => [
+			'row' => (object)[
+				'rev_id' => 321,
+				'rev_page' => 123,
+				'rev_timestamp' => ConvertibleTimestamp::now(),
+				'rev_minor_edit' => 0,
+				'rev_deleted' => 0,
+				'rev_len' => 10,
+				'rev_parent_id' => 123,
+				'rev_sha1' => 'abc',
+				'rev_comment_text' => 'blabla',
+				'rev_comment_data' => 'blablabla',
+				'rev_comment_cid' => 1,
+				'rev_actor' => 1,
+				'rev_user' => 1,
+				'rev_user_text' => 'alala',
+			],
+			'expect' => true,
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::isRevisionRow
+	 * @dataProvider provideIsRevisionRow
+	 */
+	public function testIsRevisionRow( $row, bool $expect ) {
+		$this->assertSame( $expect, $this->getRevisionStore()->isRevisionRow( $row ) );
+	}
 }

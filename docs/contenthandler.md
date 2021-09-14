@@ -21,8 +21,8 @@ A page's content model is available using the `Title::getContentModel()` method.
 * Pages in `NS_MEDIAWIKI` and `NS_USER` default to the CSS or JavaScript model if they end in .css or .js, respectively. Pages in `NS_MEDIAWIKI` default to the wikitext model otherwise.
 * Otherwise, the wikitext model is used.
 
-Note that is currently no mechanism to convert a page from one content model to another, and there is no guarantee that revisions of a page will all have the same content model. Use `Revision::getContentModel()`to find it.
-
+Note that there is no guarantee that revisions of a page will all have the same content model. To find the content model of the slot of a revision, use `SlotRecord::getModel()` -
+the content model of the main slot can for now be assumed to be the content model for the overall revision.
 
 ## Architecture
 
@@ -33,9 +33,10 @@ Two class hierarchies are used to provide the functionality associated with the 
 
 The most important function of ContentHandler is to act as a factory for the appropriate implementation of Content. These `Content` objects are to be used by MediaWiki everywhere, instead of passing page content around as text. All manipulation and analysis of page content must be done via the appropriate methods of the Content object.
 
-For each content model, a subclass of ContentHandler has to be registered with `$wgContentHandlers`. The ContentHandler object for a given content model can be obtained using `ContentHandler::getForModelID( $id )`. Also `Title`, `WikiPage` and `Revision` now have `getContentHandler()` methods for convenience.
+For each content model, a subclass of ContentHandler has to be registered with `$wgContentHandlers`. The ContentHandler object for a given content model can be obtained using `ContentHandler::getForModelID( $id )`. Also `Title` and `WikiPage` now have `getContentHandler()` methods for convenience.
 
-`ContentHandler` objects are singletons that provide functionality specific to the content type, but not directly acting on the content of some page. `ContentHandler::makeEmptyContent()` and `ContentHandler::unserializeContent()` can be used to create a Content object of the appropriate type. However, it is recommended to instead use `WikiPage::getContent()` resp. `Revision::getContent()` to get a page's content as a Content object. These two methods should be the ONLY way in which page content is accessed.
+`ContentHandler` objects are singletons that provide functionality specific to the content type, but not directly acting on the content of some page. `ContentHandler::makeEmptyContent()` and `ContentHandler::unserializeContent()` can be used to create a Content object of the appropriate type. However, it is recommended to instead use `WikiPage::getContent()` resp. `RevisionRecord::getContent()` to get a page's content as a Content object. These two methods should be the ONLY way in which page content is accessed.
+For `WikiPage::getContent()` the content of the main slot is returned, other slots can be retrieved by using `RevisionRecord::getContent()` and specifying the slot.
 
 Another important function of ContentHandler objects is to define custom action handlers for a content model, see `ContentHandler::getActionOverrides()`. This is similar to what `WikiPage::getActionOverrides()` was already doing.
 
@@ -66,7 +67,7 @@ The ContentHandler facility is introduced in a way that should allow all existin
 
 Most importantly, the following functions have been deprecated:
 
-* `Revisions::getText()` is deprecated in favor of `Revisions::getContent()`
+* `Revision::getText()` was deprecated in favor of `Revision::getContent()` (though the Revision class was later fully removed as part of the migration to Multi-Content Revisions (MCR), see [documentation of mediawiki.org][mediawiki.org/wiki/Multi-Content_Revisions].
 * `WikiPage::getText()` is deprecated in favor of `WikiPage::getContent()`
 
 Also, the old `Article::getContent()` (which returns text) is superceded by `Article::getContentObject()`. However, both methods should be avoided since they do not provide clean access to the page's actual content. For instance, they may return a system message for non-existing pages. Use `WikiPage::getContent()` instead.
@@ -78,9 +79,9 @@ For rendering page content, `Content::getParserOutput()` should be used instead 
 Besides some functions, some hooks have also been replaced by new versions (see hooks.txt for details). These hooks will now trigger a warning when used:
 
 * `ArticleAfterFetchContent` was replaced by `ArticleAfterFetchContentObject`, later replaced by `ArticleRevisionViewCustom`
-* `ArticleInsertComplete` was replaced by `PageContentInsertComplete`
+* `ArticleInsertComplete` was replaced by `PageContentInsertComplete`, later replaced by `PageSaveComplete`
 * `ArticleSave` was replaced by `PageContentSave`
-* `ArticleSaveComplete` was replaced by `PageContentSaveComplete`
+* `ArticleSaveComplete` was replaced by `PageContentSaveComplete`, later replaced by `PageSaveComplete`
 * `ArticleViewCustom` was replaced by `ArticleContentViewCustom`, which was later removed entirely
 * `EditFilterMerged` was replaced by `EditFilterMergedContent`
 * `EditPageGetDiffText` was replaced by `EditPageGetDiffContent`
@@ -89,7 +90,7 @@ Besides some functions, some hooks have also been replaced by new versions (see 
 
 ## Database Storage
 
-Page content is stored in the database using the same mechanism as before. Non-text content is serialized first. The appropriate serialization and deserialization is handled by the Revision class.
+Page content is stored in the database using the same mechanism as before. Non-text content is serialized first.
 
 Each revision's content model and serialization format is stored in the revision table (resp. in the archive table, if the revision was deleted). The page's (current) content model (that is, the content model of the latest revision) is also stored in the page table.
 

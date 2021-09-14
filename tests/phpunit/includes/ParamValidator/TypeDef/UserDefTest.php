@@ -4,7 +4,11 @@ namespace MediaWiki\ParamValidator\TypeDef;
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
+use RequestContext;
 use User;
+use WebRequest;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -114,11 +118,18 @@ class UserDefTest extends TypeDefTestCase {
 				$ex,
 				[ UserDef::PARAM_ALLOWED_USER_TYPES => $types ],
 			];
-			if ( $type === 'ip' ) {
-				$obj = $userFactory->newAnonymous( $expect );
-			} elseif ( $type === 'interwiki' || $type === 'cidr' ) {
-				$obj = $userFactory->newFromAnyId( 0, $expect, null );
+			if ( $type === 'ip'
+				|| $type === 'interwiki'
+				|| $type === 'cidr'
+			) {
+				// For all of these the UserIdentity returned will be a
+				// UserIdentityValue object since the name and id are both
+				// known (id is 0 for all)
+				$obj = UserIdentityValue::newAnonymous( $expect );
 			} else {
+				// Creating from name, not a UserIdentityValue (yet) since
+				// UserDef does not check for the relevant user id itself,
+				// but relies on the loading in User::getId() instead
 				$obj = $userFactory->newFromName( $expect );
 			}
 
@@ -368,6 +379,99 @@ class UserDefTest extends TypeDefTestCase {
 				],
 			],
 		];
+	}
+
+	private function assertUserIdentity( $actual, $expectId, $expectName ) {
+		// Can't use UserIdentity::equals() since that only checks the name
+		$this->assertInstanceOf( UserIdentity::class, $actual );
+		$this->assertSame( $expectId, $actual->getId() );
+		$this->assertSame( $expectName, $actual->getName() );
+	}
+
+	public function testProcessUser_id0() {
+		// User created by id, when that id is 0, falls back to context ip
+		// User::getRequest() will use RequestContext::getMain()
+		// Use try-finally so that we don't interfere with other tests
+		$oldRequest = RequestContext::getMain()->getRequest();
+		try {
+			$mockRequest = $this->createMock( WebRequest::class );
+			$mockRequest->method( 'getIP' )->willReturn( '200.1.2.3' );
+			RequestContext::getMain()->setRequest( $mockRequest );
+			$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+			$res = $userDef->validate(
+				'', // $name, unused here
+				'#0',
+				[
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+					UserDef::PARAM_RETURN_OBJECT => true,
+				], // $settings
+				[] // $options, unused here
+			);
+			$this->assertUserIdentity( $res, 0, '200.1.2.3' );
+		} finally {
+			RequestContext::getMain()->setRequest( $oldRequest );
+		}
+	}
+
+	public function testProcessUser_missingId() {
+		// User created by id, does not exist, falls back to "Unknown user"
+		$dbr = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnectionRef( DB_REPLICA );
+
+		$maxUserId = (int)$dbr->selectField(
+			'user',
+			'MAX(user_id)',
+			'',
+			__METHOD__
+		);
+		$missingId = $maxUserId + 1;
+
+		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+		$res = $userDef->validate(
+			'', // $name, unused here
+			"#$missingId",
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			], // $settings
+			[] // $options, unused here
+		);
+		$this->assertUserIdentity( $res, $missingId, "Unknown user" );
+	}
+
+	public function testProcessUser_missingName() {
+		// Created by name, does not exist
+		// Already in the canonical form
+		$dbr = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnectionRef( DB_REPLICA );
+
+		$userName = 'UserDefTest-processUser-missing';
+		$dbRes = $dbr->select(
+			'user',
+			'user_id',
+			[ 'user_name' => $userName ],
+			__METHOD__
+		);
+		$this->assertSame(
+			0,
+			$dbRes->numRows(),
+			'Sanity: testing for a user that does not exist'
+		);
+
+		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+		$res = $userDef->validate(
+			'', // $name, unused here
+			$userName,
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			], // $settings
+			[] // $options, unused here
+		);
+
+		$this->assertUserIdentity( $res, 0, $userName );
 	}
 
 }

@@ -63,7 +63,7 @@ To start the daemon manually, use something like:
 	memcached -d -l 127.0.0.1 -p 11211 -m 64
 
 (to run in daemon mode, accessible only via loopback interface,
-on port 11211, using up to 64MB of memory)
+on port 11211, using up to 64 MiB of memory)
 
 In your LocalSettings.php file, set:
 

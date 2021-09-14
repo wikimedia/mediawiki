@@ -113,6 +113,7 @@ class FormatMetadata extends ContextSource {
 		unset( $tags['AuthorsPosition'] );
 		unset( $tags['LocationCreated'] );
 		unset( $tags['LocationShown'] );
+		unset( $tags['GPSAltitudeRef'] );
 
 		foreach ( $tags as $tag => &$vals ) {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
@@ -901,6 +902,7 @@ class FormatMetadata extends ContextSource {
 									'iimcategory',
 									$val
 								);
+								break;
 							default:
 								$val = $this->literal( $val );
 						}
@@ -1840,7 +1842,7 @@ class FormatMetadata extends ContextSource {
 			$maxCacheTime
 		);
 
-		$visible = array_flip( self::getVisibleFields() );
+		$visible = array_fill_keys( self::getVisibleFields(), true );
 		foreach ( $extendedMetadata as $key => $value ) {
 			if ( !isset( $visible[strtolower( $key )] ) ) {
 				$extendedMetadata[$key]['hidden'] = '';

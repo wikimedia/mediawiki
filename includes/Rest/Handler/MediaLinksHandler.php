@@ -3,12 +3,12 @@
 namespace MediaWiki\Rest\Handler;
 
 use MediaFileTrait;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use Title;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -28,31 +28,39 @@ class MediaLinksHandler extends SimpleHandler {
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var PageLookup */
+	private $pageLookup;
+
 	/**
-	 * @var Title|bool|null
+	 * @var ExistingPageRecord|false|null
 	 */
-	private $title = null;
+	private $page = false;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RepoGroup $repoGroup
+	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		PageLookup $pageLookup
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->repoGroup = $repoGroup;
+		$this->pageLookup = $pageLookup;
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	private function getTitle() {
-		if ( $this->title === null ) {
-			$this->title = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
+	private function getPage(): ?ExistingPageRecord {
+		if ( $this->page === false ) {
+			$this->page = $this->pageLookup->getExistingPageByText(
+					$this->getValidatedParams()['title']
+				);
 		}
-		return $this->title;
+		return $this->page;
 	}
 
 	/**
@@ -61,15 +69,15 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title ) {
-		$titleObj = Title::newFromText( $title );
-		if ( !$titleObj || !$titleObj->getArticleID() ) {
+		$page = $this->getPage();
+		if ( !$page ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
 				404
 			);
 		}
 
-		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
 				403
@@ -77,7 +85,7 @@ class MediaLinksHandler extends SimpleHandler {
 		}
 
 		// @todo: add continuation if too many links are found
-		$results = $this->getDbResults( $titleObj->getArticleID() );
+		$results = $this->getDbResults( $page->getId() );
 		if ( count( $results ) > self::MAX_NUM_LINKS ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-media-too-many-links' )
@@ -115,12 +123,11 @@ class MediaLinksHandler extends SimpleHandler {
 	private function processDbResults( $results ) {
 		// Using "private" here means an equivalent of the Action API's "anon-public-user-private"
 		// caching model would be necessary, if caching is ever added to this endpoint.
-		// TODO: make RepoGroup::findFiles take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
-		$findTitles = array_map( static function ( $title ) use ( $user ) {
+		$performer = $this->getAuthority();
+		$findTitles = array_map( static function ( $title ) use ( $performer ) {
 			return [
 				'title' => $title,
-				'private' => $user,
+				'private' => $performer,
 			];
 		}, $results );
 
@@ -137,7 +144,7 @@ class MediaLinksHandler extends SimpleHandler {
 		];
 		$response = [];
 		foreach ( $files as $file ) {
-			$response[] = $this->getFileInfo( $file, $user, $transforms );
+			$response[] = $this->getFileInfo( $file, $performer, $transforms );
 		}
 
 		$response = [
@@ -166,13 +173,13 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	protected function getETag(): ?string {
-		$title = $this->getTitle();
-		if ( !$title || !$title->getArticleID() ) {
+		$page = $this->getPage();
+		if ( !$page ) {
 			return null;
 		}
 
 		// XXX: use hash of the rendered HTML?
-		return '"' . $title->getLatestRevID() . '@' . wfTimestamp( TS_MW, $title->getTouched() ) . '"';
+		return '"' . $page->getLatest() . '@' . wfTimestamp( TS_MW, $page->getTouched() ) . '"';
 	}
 
 	/**
@@ -180,19 +187,18 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	protected function getLastModified(): ?string {
-		$title = $this->getTitle();
-		if ( !$title || !$title->getArticleID() ) {
+		$page = $this->getPage();
+		if ( !$page ) {
 			return null;
 		}
 
-		return $title->getTouched();
+		return $page->getTouched();
 	}
 
 	/**
 	 * @return bool
 	 */
 	protected function hasRepresentation() {
-		$title = $this->getTitle();
-		return $title ? $title->exists() : false;
+		return (bool)$this->getPage();
 	}
 }

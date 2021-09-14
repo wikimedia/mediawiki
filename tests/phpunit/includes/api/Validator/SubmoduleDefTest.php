@@ -24,7 +24,7 @@ class SubmoduleDefTest extends TypeDefTestCase {
 
 	private function mockApi() {
 		$api = $this->getMockBuilder( MockApi::class )
-			->setMethods( [ 'getModuleManager' ] )
+			->onlyMethods( [ 'getModuleManager' ] )
 			->getMock();
 		$w = TestingAccessWrapper::newFromObject( $api );
 		$w->mModuleName = 'testmod';
@@ -39,15 +39,15 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		] );
 
 		$dep = $this->getMockBuilder( MockApi::class )
-			->setMethods( [ 'isDeprecated' ] )
+			->onlyMethods( [ 'isDeprecated' ] )
 			->getMock();
 		$dep->method( 'isDeprecated' )->willReturn( true );
 		$int = $this->getMockBuilder( MockApi::class )
-			->setMethods( [ 'isInternal' ] )
+			->onlyMethods( [ 'isInternal' ] )
 			->getMock();
 		$int->method( 'isInternal' )->willReturn( true );
 		$depint = $this->getMockBuilder( MockApi::class )
-			->setMethods( [ 'isDeprecated', 'isInternal' ] )
+			->onlyMethods( [ 'isDeprecated', 'isInternal' ] )
 			->getMock();
 		$depint->method( 'isDeprecated' )->willReturn( true );
 		$depint->method( 'isInternal' )->willReturn( true );

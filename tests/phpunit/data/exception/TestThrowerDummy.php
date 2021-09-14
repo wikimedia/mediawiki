@@ -17,7 +17,7 @@ class TestThrowerDummy {
 		throw new Exception( 'Quux failed' );
 	}
 
-	public static function getFile() : string {
+	public static function getFile(): string {
 		return __FILE__;
 	}
 }

@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
+use Wikimedia\ScopedCallback;
 
 /**
  * DB accessible external objects.
@@ -113,7 +114,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @inheritDoc
 	 */
 	public function store( $location, $data ) {
-		$dbw = $this->getMaster( $location );
+		$dbw = $this->getPrimary( $location );
 		$dbw->insert(
 			$this->getTable( $dbw, $location ),
 			[ 'blob_text' => $data ],
@@ -182,16 +183,17 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Get a master database connection for the specified cluster
+	 * Get a primary database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
 	 * @return MaintainableDBConnRef
+	 * @since 1.37
 	 */
-	public function getMaster( $cluster ) {
+	public function getPrimary( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
 
 		return $lb->getMaintenanceConnectionRef(
-			DB_MASTER,
+			DB_PRIMARY,
 			[],
 			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
 			$lb::CONN_TRX_AUTOCOMMIT
@@ -199,7 +201,17 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * @param array $server Master DB server configuration array for LoadBalancer
+	 * @deprecated since 1.37; please use getPrimary() instead.
+	 * @param string $cluster Cluster name
+	 * @return MaintainableDBConnRef
+	 */
+	public function getMaster( $cluster ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimary( $cluster );
+	}
+
+	/**
+	 * @param array $server Primary DB server configuration array for LoadBalancer
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
@@ -256,7 +268,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		static $supportedTypes = [ 'mysql', 'sqlite' ];
 
-		$dbw = $this->getMaster( $cluster );
+		$dbw = $this->getPrimary( $cluster );
 		if ( !in_array( $dbw->getType(), $supportedTypes, true ) ) {
 			throw new DBUnexpectedError( $dbw, "RDBMS type '{$dbw->getType()}' not supported." );
 		}
@@ -302,12 +314,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$cacheID = "$cacheID@{$this->dbDomain}";
 
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
-			$this->logger->debug( "ExternalStoreDB::fetchBlob cache hit on $cacheID" );
+			$this->logger->debug( __METHOD__ . ": cache hit on $cacheID" );
 
 			return $externalBlobCache[$cacheID];
 		}
 
-		$this->logger->debug( "ExternalStoreDB::fetchBlob cache miss on $cacheID" );
+		$this->logger->debug( __METHOD__ . ": cache miss on $cacheID" );
 
 		$dbr = $this->getReplica( $cluster );
 		$ret = $dbr->selectField(
@@ -317,17 +329,19 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__
 		);
 		if ( $ret === false ) {
-			$this->logger->info( "ExternalStoreDB::fetchBlob master fallback on $cacheID" );
-			// Try the master
-			$dbw = $this->getMaster( $cluster );
+			// Try the primary DB
+			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
+			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
+			$dbw = $this->getPrimary( $cluster );
 			$ret = $dbw->selectField(
 				$this->getTable( $dbw, $cluster ),
 				'blob_text',
 				[ 'blob_id' => $id ],
 				__METHOD__
 			);
+			ScopedCallback::consume( $scope );
 			if ( $ret === false ) {
-				$this->logger->error( "ExternalStoreDB::fetchBlob master failed to find $cacheID" );
+				$this->logger->warning( __METHOD__ . ": primary DB failed to find $cacheID" );
 			}
 		}
 		if ( $itemID !== false && $ret !== false ) {
@@ -362,26 +376,28 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$this->mergeBatchResult( $ret, $ids, $res );
 		}
 		if ( $ids ) {
+			// Try the primary
 			$this->logger->info(
-				__METHOD__ . ": master fallback on '$cluster' for: " .
+				__METHOD__ . ": primary fallback on '$cluster' for: " .
 				implode( ',', array_keys( $ids ) )
 			);
-			// Try the master
-			$dbw = $this->getMaster( $cluster );
+			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
+			$dbw = $this->getPrimary( $cluster );
 			$res = $dbw->select(
 				$this->getTable( $dbr, $cluster ),
 				[ 'blob_id', 'blob_text' ],
 				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
+			ScopedCallback::consume( $scope );
 			if ( $res === false ) {
-				$this->logger->error( __METHOD__ . ": master failed on '$cluster'" );
+				$this->logger->error( __METHOD__ . ": primary failed on '$cluster'" );
 			} else {
 				$this->mergeBatchResult( $ret, $ids, $res );
 			}
 		}
 		if ( $ids ) {
 			$this->logger->error(
-				__METHOD__ . ": master on '$cluster' failed locating items: " .
+				__METHOD__ . ": primary on '$cluster' failed locating items: " .
 				implode( ',', array_keys( $ids ) )
 			);
 		}
@@ -390,7 +406,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Helper function for self::batchFetchBlobs for merging master/replica DB results
+	 * Helper function for self::batchFetchBlobs for merging primary/replica DB results
 	 * @param array &$ret Current self::batchFetchBlobs return value
 	 * @param array &$ids Map from blob_id to requested itemIDs
 	 * @param mixed $res DB result from Database::select

@@ -65,7 +65,7 @@ class ResetUserTokens extends Maintenance {
 			}
 			$this->output( "\n" );
 			$this->output( "Abort with control-c in the next five seconds "
-				. "(skip this countdown with --nowarn) ... " );
+				. "(skip this countdown with --nowarn) ..." );
 			$this->countDown( 5 );
 		}
 

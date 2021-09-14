@@ -10,7 +10,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 	 */
 	protected $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// cli tool setup
@@ -24,19 +24,20 @@ class DjVuTest extends MediaWikiMediaTestCase {
 		$this->handler = new DjVuHandler();
 	}
 
-	public function testGetImageSize() {
-		$this->assertSame(
-			[ 2480, 3508, 'DjVu', 'width="2480" height="3508"' ],
-			$this->handler->getImageSize( null, $this->filePath . '/LoremIpsum.djvu' ),
-			'Test file LoremIpsum.djvu should have a size of 2480 * 3508'
-		);
+	public function testGetSizeAndMetadata() {
+		$info = $this->handler->getSizeAndMetadata(
+			new TrivialMediaHandlerState, $this->filePath . '/LoremIpsum.djvu' );
+		$this->assertSame( 2480, $info['width'] );
+		$this->assertSame( 3508, $info['height'] );
+		$this->assertIsString( $info['metadata']['xml'] );
 	}
 
 	public function testInvalidFile() {
 		$this->assertEquals(
-			'a:1:{s:5:"error";s:25:"Error extracting metadata";}',
-			$this->handler->getMetadata( null, $this->filePath . '/some-nonexistent-file' ),
-			'Getting metadata for an inexistent file should return false'
+			[ 'metadata' => [ 'error' => 'Error extracting metadata' ] ],
+			$this->handler->getSizeAndMetadata(
+				new TrivialMediaHandlerState, $this->filePath . '/some-nonexistent-file' ),
+			'Getting metadata for a nonexistent file should return false'
 		);
 	}
 

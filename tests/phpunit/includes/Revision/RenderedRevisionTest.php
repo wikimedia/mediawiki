@@ -33,7 +33,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	/** @var callable */
 	private $combinerCallback;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->combinerCallback = function ( RenderedRevision $rr, array $hints = [] ) {
@@ -123,7 +123,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		/** @var MockObject|RevisionRecord $mock */
 		$mock = $this->getMockBuilder( $class )
 			->disableOriginalConstructor()
-			->setMethods( [
+			->onlyMethods( [
 				'getId',
 				'getPageId',
 				'getPageAsLinkTarget',
@@ -486,7 +486,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	public function testNoHtml() {
 		/** @var MockObject|Content $mockContent */
 		$mockContent = $this->getMockBuilder( WikitextContent::class )
-			->setMethods( [ 'getParserOutput' ] )
+			->onlyMethods( [ 'getParserOutput' ] )
 			->setConstructorArgs( [ 'Whatever' ] )
 			->getMock();
 		$mockContent->method( 'getParserOutput' )

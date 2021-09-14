@@ -23,6 +23,7 @@ use MediaWiki\Auth\Throttler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -68,15 +69,17 @@ class BotPassword implements IDBAccessObject {
 	/** @var string[] */
 	private $grants;
 
-	/** @var int */
-	private $flags = self::READ_NORMAL;
+	/** @var int Defaults to {@see READ_NORMAL} */
+	private $flags;
 
 	/**
+	 * @internal only public for construction in BotPasswordStore
+	 *
 	 * @param stdClass $row bot_passwords database row
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */
-	private function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
+	public function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
 		$this->isSaved = $isSaved;
 		$this->flags = $flags;
 
@@ -89,31 +92,26 @@ class BotPassword implements IDBAccessObject {
 
 	/**
 	 * Get a database connection for the bot passwords database
-	 * @param int $db Index of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param int $db Index of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
 	 * @return IDatabase
 	 */
 	public static function getDB( $db ) {
-		global $wgBotPasswordsCluster, $wgBotPasswordsDatabase;
-
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $wgBotPasswordsCluster
-			? $lbFactory->getExternalLB( $wgBotPasswordsCluster )
-			: $lbFactory->getMainLB( $wgBotPasswordsDatabase );
-		return $lb->getConnectionRef( $db, [], $wgBotPasswordsDatabase );
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getDatabase( $db );
 	}
 
 	/**
 	 * Load a BotPassword from the database
-	 * @param User $user
+	 * @param UserIdentity $userIdentity
 	 * @param string $appId
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
-	public static function newFromUser( User $user, $appId, $flags = self::READ_NORMAL ) {
-		$centralId = CentralIdLookup::factory()->centralIdFromLocalUser(
-			$user, CentralIdLookup::AUDIENCE_RAW, $flags
-		);
-		return $centralId ? self::newFromCentralId( $centralId, $appId, $flags ) : null;
+	public static function newFromUser( UserIdentity $userIdentity, $appId, $flags = self::READ_NORMAL ) {
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getByUser( $userIdentity, (string)$appId, (int)$flags );
 	}
 
 	/**
@@ -124,28 +122,15 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newFromCentralId( $centralId, $appId, $flags = self::READ_NORMAL ) {
-		global $wgEnableBotPasswords;
-
-		if ( !$wgEnableBotPasswords ) {
-			return null;
-		}
-
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = self::getDB( $index );
-		$row = $db->selectRow(
-			'bot_passwords',
-			[ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ],
-			[ 'bp_user' => $centralId, 'bp_app_id' => $appId ],
-			__METHOD__,
-			$options
-		);
-		return $row ? new self( $row, true, $flags ) : null;
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getByCentralId( (int)$centralId, (string)$appId, (int)$flags );
 	}
 
 	/**
 	 * Create an unsaved BotPassword
 	 * @param array $data Data to use to create the bot password. Keys are:
-	 *  - user: (User) User object to create the password for. Overrides username and centralId.
+	 *  - user: (UserIdentity) UserIdentity to create the password for. Overrides username and centralId.
 	 *  - username: (string) Username to create the password for. Overrides centralId.
 	 *  - centralId: (int) User central ID to create the password for.
 	 *  - appId: (string, required) App ID for the password.
@@ -155,47 +140,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newUnsaved( array $data, $flags = self::READ_NORMAL ) {
-		if ( isset( $data['user'] ) && ( !$data['user'] instanceof User ) ) {
-			return null;
-		}
-
-		$row = (object)[
-			'bp_user' => 0,
-			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
-			'bp_token' => '**unsaved**',
-			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
-			'bp_grants' => $data['grants'] ?? [],
-		];
-
-		if (
-			$row->bp_app_id === '' ||
-			strlen( $row->bp_app_id ) > self::APPID_MAXLENGTH ||
-			!$row->bp_restrictions instanceof MWRestrictions ||
-			!is_array( $row->bp_grants )
-		) {
-			return null;
-		}
-
-		$row->bp_restrictions = $row->bp_restrictions->toJson();
-		$row->bp_grants = FormatJson::encode( $row->bp_grants );
-
-		if ( isset( $data['user'] ) ) {
-			// Must be a User object, already checked above
-			$row->bp_user = CentralIdLookup::factory()->centralIdFromLocalUser(
-				$data['user'], CentralIdLookup::AUDIENCE_RAW, $flags
-			);
-		} elseif ( isset( $data['username'] ) ) {
-			$row->bp_user = CentralIdLookup::factory()->centralIdFromName(
-				$data['username'], CentralIdLookup::AUDIENCE_RAW, $flags
-			);
-		} elseif ( isset( $data['centralId'] ) ) {
-			$row->bp_user = $data['centralId'];
-		}
-		if ( !$row->bp_user ) {
-			return null;
-		}
-
-		return new self( $row, false, $flags );
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->newUnsavedBotPassword( $data, (int)$flags );
 	}
 
 	/**
@@ -300,60 +247,23 @@ class BotPassword implements IDBAccessObject {
 			);
 		}
 
-		$conds = [
-			'bp_user' => $this->centralId,
-			'bp_app_id' => $this->appId,
-		];
-
-		$res = Status::newGood();
-
-		$restrictions = $this->restrictions->toJson();
-
-		if ( strlen( $restrictions ) > self::RESTRICTIONS_MAXLENGTH ) {
-			$res->fatal( 'botpasswords-toolong-restrictions' );
-		}
-
-		$grants = FormatJson::encode( $this->grants );
-
-		if ( strlen( $grants ) > self::GRANTS_MAXLENGTH ) {
-			$res->fatal( 'botpasswords-toolong-grants' );
-		}
-
-		if ( !$res->isGood() ) {
-			return $res;
-		}
-
-		$fields = [
-			'bp_token' => MWCryptRand::generateHex( User::TOKEN_LENGTH ),
-			'bp_restrictions' => $restrictions,
-			'bp_grants' => $grants,
-		];
-
-		if ( $password !== null ) {
-			$fields['bp_password'] = $password->toString();
-		} elseif ( $operation === 'insert' ) {
-			$fields['bp_password'] = PasswordFactory::newInvalidPassword()->toString();
-		}
-
-		$dbw = self::getDB( DB_MASTER );
-
+		$store = MediaWikiServices::getInstance()->getBotPasswordStore();
 		if ( $operation === 'insert' ) {
-			$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
+			$statusValue = $store->insertBotPassword( $this, $password );
 		} else {
 			// Must be update, already checked above
-			$dbw->update( 'bot_passwords', $fields, $conds, __METHOD__ );
+			$statusValue = $store->updateBotPassword( $this, $password );
 		}
 
-		$ok = (bool)$dbw->affectedRows();
-		if ( $ok ) {
-			$this->token = $dbw->selectField( 'bot_passwords', 'bp_token', $conds, __METHOD__ );
+		if ( $statusValue->isGood() ) {
+			$this->token = $statusValue->getValue();
 			$this->isSaved = true;
-
-			return $res;
+			return Status::newGood();
 		}
 
-		// Messages: botpasswords-insert-failed, botpasswords-update-failed
-		return Status::newFatal( "botpasswords-{$operation}-failed", $this->appId );
+		// Action failed, status will have code botpasswords-insert-failed or
+		// botpasswords-update-failed depending on which action we tried
+		return Status::wrap( $statusValue );
 	}
 
 	/**
@@ -361,16 +271,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function delete() {
-		$dbw = self::getDB( DB_MASTER );
-		$dbw->delete(
-			'bot_passwords',
-			[
-				'bp_user' => $this->centralId,
-				'bp_app_id' => $this->appId,
-			],
-			__METHOD__
-		);
-		$ok = (bool)$dbw->affectedRows();
+		$ok = MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->deleteBotPassword( $this );
 		if ( $ok ) {
 			$this->token = '**unsaved**';
 			$this->isSaved = false;
@@ -384,28 +287,29 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public static function invalidateAllPasswordsForUser( $username ) {
-		$centralId = CentralIdLookup::factory()->centralIdFromName(
-			$username, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
-		);
-		return $centralId && self::invalidateAllPasswordsForCentralId( $centralId );
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->invalidateUserPasswords( (string)$username );
 	}
 
 	/**
 	 * Invalidate all passwords for a user, by central ID
 	 *
-	 * Currently unused outside of this class, should be combined with invalidateAllPasswordsForUser
+	 * @deprecated since 1.37
 	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public static function invalidateAllPasswordsForCentralId( $centralId ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		global $wgEnableBotPasswords;
 
 		if ( !$wgEnableBotPasswords ) {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->update(
 			'bot_passwords',
 			[ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ],
@@ -421,28 +325,29 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Whether any passwords were removed
 	 */
 	public static function removeAllPasswordsForUser( $username ) {
-		$centralId = CentralIdLookup::factory()->centralIdFromName(
-			$username, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
-		);
-		return $centralId && self::removeAllPasswordsForCentralId( $centralId );
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->removeUserPasswords( (string)$username );
 	}
 
 	/**
 	 * Remove all passwords for a user, by central ID
 	 *
-	 * Currently unused outside of this class, should be combined with removeAllPasswordsForUser
+	 * @deprecated since 1.37
 	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were removed
 	 */
 	public static function removeAllPasswordsForCentralId( $centralId ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		global $wgEnableBotPasswords;
 
 		if ( !$wgEnableBotPasswords ) {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
 			[ 'bp_user' => $centralId ],

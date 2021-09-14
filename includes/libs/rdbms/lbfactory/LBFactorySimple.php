@@ -26,7 +26,7 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 
 /**
- * A simple single-master LBFactory that gets its configuration from the b/c globals
+ * A simple single-primary DB LBFactory that gets its configuration from the b/c globals
  */
 class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */
@@ -38,7 +38,7 @@ class LBFactorySimple extends LBFactory {
 	private $loadMonitorConfig;
 
 	/** @var array[] Map of (server index => server config map) */
-	private $mainServers = [];
+	private $mainServers;
 	/** @var array[][] Map of (cluster => server index => server config map) */
 	private $externalServersByCluster = [];
 
@@ -74,7 +74,7 @@ class LBFactorySimple extends LBFactory {
 		}
 	}
 
-	public function newMainLB( $domain = false, $owner = null ) {
+	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
 		return $this->newLoadBalancer(
 			self::CLUSTER_MAIN_DEFAULT,
 			$this->mainServers,
@@ -82,7 +82,7 @@ class LBFactorySimple extends LBFactory {
 		);
 	}
 
-	public function getMainLB( $domain = false ) {
+	public function getMainLB( $domain = false ): ILoadBalancer {
 		if ( $this->mainLB === null ) {
 			$this->mainLB = $this->newMainLB( $domain, $this->getOwnershipId() );
 		}
@@ -90,7 +90,7 @@ class LBFactorySimple extends LBFactory {
 		return $this->mainLB;
 	}
 
-	public function newExternalLB( $cluster, $owner = null ) {
+	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
 		if ( !isset( $this->externalServersByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'." );
 		}
@@ -102,7 +102,7 @@ class LBFactorySimple extends LBFactory {
 		);
 	}
 
-	public function getExternalLB( $cluster ) {
+	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB(
 				$cluster,
@@ -113,11 +113,11 @@ class LBFactorySimple extends LBFactory {
 		return $this->externalLBs[$cluster];
 	}
 
-	public function getAllMainLBs() {
+	public function getAllMainLBs(): array {
 		return [ self::CLUSTER_MAIN_DEFAULT => $this->getMainLB() ];
 	}
 
-	public function getAllExternalLBs() {
+	public function getAllExternalLBs(): array {
 		$lbs = [];
 		foreach ( array_keys( $this->externalServersByCluster ) as $cluster ) {
 			$lbs[$cluster] = $this->getExternalLB( $cluster );

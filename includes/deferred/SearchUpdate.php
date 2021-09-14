@@ -24,6 +24,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageStore;
 
 /**
  * Database independent search index updater
@@ -34,30 +37,22 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var int Page id being updated */
 	private $id = 0;
 
-	/** @var Title Title we're updating */
-	private $title;
+	/** @var PageIdentity The page we're updating */
+	private $page;
 
 	/** @var Content|null Content of the page (not text) */
 	private $content;
 
-	/** @var WikiPage */
-	private $page;
+	/** @var ExistingPageRecord|null */
+	private $latestPage = null;
 
 	/**
 	 * @param int $id Page id to update
-	 * @param Title $title Title of page to update
+	 * @param PageIdentity $page Page to update
 	 * @param Content|null $c Content of the page to update.
 	 */
-	public function __construct( $id, $title, $c = null ) {
-		if ( is_string( $title ) ) {
-			wfDeprecated( __METHOD__ . " with a string for the title", '1.34' );
-			$this->title = Title::newFromText( $title );
-			if ( $this->title === null ) {
-				throw new InvalidArgumentException( "Cannot construct the title: $title" );
-			}
-		} else {
-			$this->title = $title;
-		}
+	public function __construct( $id, $page, $c = null ) {
+		$this->page = $page;
 
 		$this->id = $id;
 		// is_string() check is back-compat for ApprovedRevs
@@ -176,21 +171,21 @@ class SearchUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * Get WikiPage for the SearchUpdate $id using WikiPage::READ_LATEST
-	 * and ensure using the same WikiPage object if there are multiple
+	 * Get ExistingPageRecord for the SearchUpdate $id using PageStore::READ_LATEST
+	 * and ensure using the same ExistingPageRecord object if there are multiple
 	 * SearchEngine types.
 	 *
 	 * Returns null if a page has been deleted or is not found.
 	 *
-	 * @return WikiPage|null
+	 * @return ExistingPageRecord|null
 	 */
 	private function getLatestPage() {
-		if ( !isset( $this->page ) ) {
-			$this->page = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromID( $this->id, WikiPage::READ_LATEST );
+		if ( !isset( $this->latestPage ) ) {
+			$this->latestPage = MediaWikiServices::getInstance()->getPageStore()
+				->getPageById( $this->id, PageStore::READ_LATEST );
 		}
 
-		return $this->page;
+		return $this->latestPage;
 	}
 
 	/**
@@ -202,8 +197,8 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	private function getNormalizedTitle( SearchEngine $search ) {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$ns = $this->title->getNamespace();
-		$title = $this->title->getText();
+		$ns = $this->page->getNamespace();
+		$title = str_replace( '_', ' ', $this->page->getDBkey() );
 
 		$lc = $search->legalSearchChars() . '&#;';
 		$t = $contLang->normalizeForSearch( $title );

@@ -24,7 +24,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->db->delete( 'ipblocks', '*', __METHOD__ );
 		parent::tearDown();
 	}
@@ -38,7 +38,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$page->target = $target;
 		$page->block = new DatabaseBlock( [
 			'address' => '1.2.3.4',
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 		] );
 
 		$fields = $page->getFields();
@@ -76,7 +76,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		if ( !empty( $options['block'] ) ) {
 			$block = new DatabaseBlock( [
 				'address' => $target,
-				'by' => $performer->getId(),
+				'by' => $performer,
 				'hideName' => true,
 			] );
 			MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
@@ -137,7 +137,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		// Blocker must be different user for unblock self to be disallowed
 		$blocker = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
-			'by' => $blocker->getId(),
+			'by' => $blocker,
 			'address' => $performer,
 		] );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );

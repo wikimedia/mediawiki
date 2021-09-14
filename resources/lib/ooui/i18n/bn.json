@@ -33,8 +33,8 @@
 	"ooui-selectfile-button-select-multiple": "ফাইলসমূহ নির্বাচন করুন",
 	"ooui-selectfile-not-supported": "চিত্র নির্বাচন সমর্থিত নয়",
 	"ooui-selectfile-placeholder": "কোন ফাইল নির্বাচিত হয়নি",
-	"ooui-selectfile-dragdrop-placeholder": "এখানে ফাইল ছাড়ুন",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "এখানে ফাইল ছাড়ুন",
+	"ooui-selectfile-dragdrop-placeholder": "এখানে ফাইল দিন",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "এখানে ফাইল দিন",
 	"ooui-popup-widget-close-button-aria-label": "বন্ধ করুন",
 	"ooui-field-help": "সাহায্য"
 }

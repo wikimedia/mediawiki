@@ -91,7 +91,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * @coversNothing
 	 */
 	public function testWithoutDB() {
-		self::overrideMwServices();
+		$this->overrideMwServices();
 
 		$services = MediaWikiServices::getInstance();
 		$services->disableService( 'DBLoadBalancer' );

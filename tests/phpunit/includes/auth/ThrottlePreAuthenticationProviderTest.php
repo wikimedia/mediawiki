@@ -2,8 +2,11 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\MediaWikiServices;
+use HashConfig;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWikiIntegrationTestCase;
 use stdClass;
+use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -11,11 +14,13 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
-class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	public function testConstructor() {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			'AccountCreationThrottle' => [ [
 				'count' => 123,
 				'seconds' => 86400,
@@ -25,7 +30,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 				'seconds' => 300,
 			] ],
 		] );
-		$provider->setConfig( $config );
+		$this->initProvider( $provider, $config );
 		$this->assertSame( [
 			'accountCreationThrottle' => [ [ 'count' => 123, 'seconds' => 86400 ] ],
 			'passwordAttemptThrottle' => [ [ 'count' => 5, 'seconds' => 300 ] ]
@@ -44,7 +49,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [ [ 'count' => 11, 'seconds' => 100 ] ],
 		] );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$config = new \HashConfig( [
+		$config = new HashConfig( [
 			'AccountCreationThrottle' => [ [
 				'count' => 123,
 				'seconds' => 86400,
@@ -54,7 +59,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 				'seconds' => 300,
 			] ],
 		] );
-		$provider->setConfig( $config );
+		$this->initProvider( $provider, $config );
 		$this->assertSame( [
 			'accountCreationThrottle' => [ [ 'count' => 43, 'seconds' => 10000 ] ],
 			'passwordAttemptThrottle' => [ [ 'count' => 11, 'seconds' => 100 ] ],
@@ -63,10 +68,11 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 		$cache = new \HashBagOStuff();
 		$provider = new ThrottlePreAuthenticationProvider( [ 'cache' => $cache ] );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$provider->setConfig( new \HashConfig( [
+		$config = new HashConfig( [
 			'AccountCreationThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
 			'PasswordAttemptThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
-		] ) );
+		] );
+		$this->initProvider( $provider, $config );
 		$accountCreationThrottle = TestingAccessWrapper::newFromObject(
 			$providerPriv->accountCreationThrottle );
 		$this->assertSame( $cache, $accountCreationThrottle->cache );
@@ -81,12 +87,15 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setConfig( new \HashConfig( [
-			'AccountCreationThrottle' => null,
-			'PasswordAttemptThrottle' => null,
-		] ) );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+		$this->initProvider(
+			$provider,
+			new HashConfig( [
+				'AccountCreationThrottle' => null,
+				'PasswordAttemptThrottle' => null,
+			] ),
+			null,
+			$this->getServiceContainer()->getAuthManager()
+		);
 
 		$this->assertEquals(
 			\StatusValue::newGood(),
@@ -113,22 +122,25 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'accountCreationThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setConfig( new \HashConfig( [
-			'AccountCreationThrottle' => null,
-			'PasswordAttemptThrottle' => null,
-		] ) );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
-		$provider->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		$this->initProvider(
+			$provider,
+			new HashConfig( [
+				'AccountCreationThrottle' => null,
+				'PasswordAttemptThrottle' => null,
+			] ),
+			null,
+			$this->getServiceContainer()->getAuthManager(),
+			$this->getServiceContainer()->getHookContainer()
+		);
 
 		$user = \User::newFromName( 'RandomUser' );
 		$creator = \User::newFromName( $creatorname );
 		if ( $hook ) {
 			$mock = $this->getMockBuilder( stdClass::class )
-				->setMethods( [ 'onExemptFromAccountCreationThrottle' ] )
+				->addMethods( [ 'onExemptFromAccountCreationThrottle' ] )
 				->getMock();
-			$mock->expects( $this->any() )->method( 'onExemptFromAccountCreationThrottle' )
-				->will( $this->returnValue( false ) );
+			$mock->method( 'onExemptFromAccountCreationThrottle' )
+				->willReturn( false );
 			$this->mergeMwGlobalArrayValue( 'wgHooks', [
 				'ExemptFromAccountCreationThrottle' => [ $mock ],
 			] );
@@ -164,12 +176,15 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setConfig( new \HashConfig( [
-			'AccountCreationThrottle' => null,
-			'PasswordAttemptThrottle' => null,
-		] ) );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+		$this->initProvider(
+			$provider,
+			new HashConfig( [
+				'AccountCreationThrottle' => null,
+				'PasswordAttemptThrottle' => null,
+			] ),
+			null,
+			$this->getServiceContainer()->getAuthManager()
+		);
 
 		$req = new UsernameAuthenticationRequest;
 		$req->username = 'SomeUser';
@@ -210,12 +225,15 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->setLogger( new \TestLogger );
-		$provider->setConfig( new \HashConfig( [
-			'AccountCreationThrottle' => null,
-			'PasswordAttemptThrottle' => null,
-		] ) );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+		$this->initProvider(
+			$provider,
+			new HashConfig( [
+				'AccountCreationThrottle' => null,
+				'PasswordAttemptThrottle' => null,
+			] ),
+			null,
+			$this->getServiceContainer()->getAuthManager()
+		);
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
 
@@ -223,13 +241,16 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$logger = new \TestLogger( true );
-		$provider->setLogger( $logger );
-		$provider->setConfig( new \HashConfig( [
-			'AccountCreationThrottle' => null,
-			'PasswordAttemptThrottle' => null,
-		] ) );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+		$logger = new TestLogger( true );
+		$this->initProvider(
+			$provider,
+			new HashConfig( [
+				'AccountCreationThrottle' => null,
+				'PasswordAttemptThrottle' => null,
+			] ),
+			$logger,
+			$this->getServiceContainer()->getAuthManager()
+		);
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
 		$this->assertSame( [

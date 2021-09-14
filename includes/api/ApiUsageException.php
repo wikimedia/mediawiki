@@ -26,7 +26,7 @@
  * @newable
  * @ingroup API
  */
-class ApiUsageException extends MWException implements ILocalizedException {
+class ApiUsageException extends AbstractLocalizedException {
 
 	protected $modulePath;
 	protected $status;
@@ -126,7 +126,7 @@ class ApiUsageException extends MWException implements ILocalizedException {
 		return get_class( $this ) . ": {$enMsg->getApiCode()}: {$text} "
 			. "in {$this->getFile()}:{$this->getLine()}\n"
 			. "Stack trace:\n{$this->getTraceAsString()}"
-			. $this->getPrevious() ? "\n\nNext {$this->getPrevious()}" : "";
+			. ( $this->getPrevious() ? "\n\nNext {$this->getPrevious()}" : "" );
 	}
 
 }

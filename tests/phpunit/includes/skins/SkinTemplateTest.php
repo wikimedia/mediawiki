@@ -30,7 +30,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	public function makeListItemProvider() {
 		return [
 			[
-				'<li class="class" title="itemtitle"><a href="url" title="title">text</a></li>',
+				'<li class="class mw-list-item" title="itemtitle"><a href="url" title="title">text</a></li>',
 				'',
 				[
 					'class' => 'class',
@@ -55,8 +55,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
 			->willReturn( $isSyndicated );
-		$mock->expects( $this->any() )
-			->method( 'getHTML' )
+		$mock->method( 'getHTML' )
 			->willReturn( $html );
 		return $mock;
 	}
@@ -86,6 +85,88 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function provideGetFooterIcons() {
+		return [
+			// Test case 1
+			[
+				[
+					'wgFooterIcons' => [],
+				],
+				[],
+				'Empty list'
+			],
+			// Test case 2
+			[
+				[
+					'wgFooterIcons' => [
+						'poweredby' => [
+							'mediawiki' => [
+								'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
+								'url' => 'https://www.mediawiki.org/',
+								'alt' => 'Powered by MediaWiki',
+								'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
+									' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+							]
+						]
+					],
+				],
+				[
+					'poweredby' => [
+						[
+							'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
+							'url' => 'https://www.mediawiki.org/',
+							'alt' => 'Powered by MediaWiki',
+							'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
+								' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+							'width' => 88,
+							'height' => 31,
+						]
+					]
+				],
+				'Width and height are hardcoded if not provided'
+			],
+			// Test case 3
+			[
+				[
+					'wgFooterIcons' => [
+						'copyright' => [
+							'copyright' => [],
+						],
+					],
+				],
+				[],
+				'Empty arrays are filtered out'
+			],
+			// Test case 4
+			[
+				[
+					'wgFooterIcons' => [
+						'copyright' => [
+							'copyright' => [
+								'alt' => 'Wikimedia Foundation',
+								'url' => 'https://wikimediafoundation.org'
+							],
+						],
+					],
+				],
+				[],
+				'Icons with no icon are filtered out'
+			]
+		];
+	}
+
+	/**
+	 * @covers SkinTemplate::getFooterIcons
+	 * @dataProvider provideGetFooterIcons
+	 */
+	public function testGetFooterIcons( $globals, $expected, $msg ) {
+		$this->setMwGlobals( $globals );
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
+		$icons = $wrapper->getFooterIcons();
+
+		$this->assertEquals( $expected, $icons, $msg );
+	}
+
 	/**
 	 * @covers Skin::getDefaultModules
 	 * @dataProvider provideGetDefaultModules
@@ -106,13 +187,13 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinTemplate::insertNotificationsIntoPersonalTools
+	 * @covers SkinTemplate::injectLegacyMenusIntoPersonalTools
 	 * @dataProvider provideContentNavigation
 	 *
 	 * @param array $contentNavigation
 	 * @param array $expected
 	 */
-	public function testInsertNotificationsIntoPersonalTools(
+	public function testInjectLegacyMenusIntoPersonalTools(
 		array $contentNavigation,
 		array $expected
 	) {
@@ -120,11 +201,11 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals(
 			$expected,
-			$wrapper->insertNotificationsIntoPersonalTools( $contentNavigation )
+			$wrapper->injectLegacyMenusIntoPersonalTools( $contentNavigation )
 		);
 	}
 
-	public function provideContentNavigation() : array {
+	public function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [
 				'contentNavigation' => [
@@ -179,7 +260,46 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 					'item 2' => [],
 					'item 3' => []
 				]
+			],
+			'userpage set, notification defined, user interface preferences set' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					],
+					'user-interface-preferences' => [
+						'uls' => [],
+					],
+				],
+				'expected' => [
+					'uls' => [],
+					'item 1' => [],
+					'userpage' => [],
+					'notification 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'no userpage, no notifications, no user-interface-preferences' => [
+				'contentNavigation' => [
+					'user-menu' => [
+						'item 1' => [],
+						'item 2' => [],
+						'item 3' => []
+					],
+				],
+				'expected' => [
+					'item 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
 			]
 		];
 	}
+
 }

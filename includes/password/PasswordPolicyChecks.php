@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\CommonPasswords\CommonPasswords;
 
 /**
@@ -39,11 +39,11 @@ class PasswordPolicyChecks {
 	/**
 	 * Check password is longer than minimum, not fatal.
 	 * @param int $policyVal minimal length
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 * @return Status error if $password is shorter than $policyVal
 	 */
-	public static function checkMinimalPasswordLength( $policyVal, User $user, $password ) {
+	public static function checkMinimalPasswordLength( $policyVal, UserIdentity $user, $password ) {
 		$status = Status::newGood();
 		if ( $policyVal > strlen( $password ) ) {
 			$status->error( 'passwordtooshort', $policyVal );
@@ -56,11 +56,11 @@ class PasswordPolicyChecks {
 	 * Intended for locking out users with passwords too short to trust, requiring them
 	 * to recover their account by some other means.
 	 * @param int $policyVal minimal length
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 * @return Status fatal if $password is shorter than $policyVal
 	 */
-	public static function checkMinimumPasswordLengthToLogin( $policyVal, User $user, $password ) {
+	public static function checkMinimumPasswordLengthToLogin( $policyVal, UserIdentity $user, $password ) {
 		$status = Status::newGood();
 		if ( $policyVal > strlen( $password ) ) {
 			$status->fatal( 'passwordtooshort', $policyVal );
@@ -72,11 +72,11 @@ class PasswordPolicyChecks {
 	 * Check password is shorter than maximum, fatal.
 	 * Intended for preventing DoS attacks when using a more expensive password hash like PBKDF2.
 	 * @param int $policyVal maximum length
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 * @return Status fatal if $password is shorter than $policyVal
 	 */
-	public static function checkMaximalPasswordLength( $policyVal, User $user, $password ) {
+	public static function checkMaximalPasswordLength( $policyVal, UserIdentity $user, $password ) {
 		$status = Status::newGood();
 		if ( $policyVal < strlen( $password ) ) {
 			$status->fatal( 'passwordtoolong', $policyVal );
@@ -85,34 +85,15 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check if username and password are a (case-insensitive) match.
-	 * @param bool $policyVal true to force compliance.
-	 * @param User $user
-	 * @param string $password
-	 * @return Status error if username and password match, and policy is true
-	 */
-	public static function checkPasswordCannotMatchUsername( $policyVal, User $user, $password ) {
-		$status = Status::newGood();
-		$username = $user->getName();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if (
-			$policyVal && hash_equals( $contLang->lc( $username ), $contLang->lc( $password ) )
-		) {
-			$status->error( 'password-name-match' );
-		}
-		return $status;
-	}
-
-	/**
 	 * Check if password is a (case-insensitive) substring within the username.
 	 * @param bool $policyVal true to force compliance.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 * @return Status error if password is a substring within username, and policy is true
 	 */
 	public static function checkPasswordCannotBeSubstringInUsername(
 		$policyVal,
-		User $user,
+		UserIdentity $user,
 		$password
 	) {
 		$status = Status::newGood();
@@ -126,11 +107,11 @@ class PasswordPolicyChecks {
 	/**
 	 * Check if username and password are on a list of past MediaWiki default passwords.
 	 * @param bool $policyVal true to force compliance.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 * @return Status error if username and password match, and policy is true
 	 */
-	public static function checkPasswordCannotMatchDefaults( $policyVal, User $user, $password ) {
+	public static function checkPasswordCannotMatchDefaults( $policyVal, UserIdentity $user, $password ) {
 		static $blockedLogins = [
 			// r75589
 			'Useruser' => 'Passpass',
@@ -165,14 +146,14 @@ class PasswordPolicyChecks {
 	 * 0.000001 false positive ratio).
 	 *
 	 * @param bool $policyVal Whether to apply this policy
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $password
 	 *
 	 * @since 1.33
 	 *
 	 * @return Status
 	 */
-	public static function checkPasswordNotInCommonList( $policyVal, User $user, $password ) {
+	public static function checkPasswordNotInCommonList( $policyVal, UserIdentity $user, $password ) {
 		$status = Status::newGood();
 		if ( $policyVal && CommonPasswords::isCommon( $password ) ) {
 			$status->error( 'passwordincommonlist' );

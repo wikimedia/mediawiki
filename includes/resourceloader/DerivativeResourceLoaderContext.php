@@ -55,7 +55,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->context = $context;
 	}
 
-	public function getModules() : array {
+	public function getModules(): array {
 		if ( $this->modules === self::INHERIT_VALUE ) {
 			return $this->context->getModules();
 		}
@@ -70,7 +70,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->modules = $modules;
 	}
 
-	public function getLanguage() : string {
+	public function getLanguage(): string {
 		if ( $this->language === self::INHERIT_VALUE ) {
 			return $this->context->getLanguage();
 		}
@@ -84,7 +84,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getDirection() : string {
+	public function getDirection(): string {
 		if ( $this->direction === self::INHERIT_VALUE ) {
 			return $this->context->getDirection();
 		}
@@ -100,7 +100,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getSkin() : string {
+	public function getSkin(): string {
 		if ( $this->skin === self::INHERIT_VALUE ) {
 			return $this->context->getSkin();
 		}
@@ -112,14 +112,14 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getUser() : ?string {
+	public function getUser(): ?string {
 		if ( $this->user === self::INHERIT_VALUE ) {
 			return $this->context->getUser();
 		}
 		return $this->user;
 	}
 
-	public function getUserObj() : User {
+	public function getUserObj(): User {
 		if ( $this->userObj === self::INHERIT_VALUE ) {
 			return $this->context->getUserObj();
 		}
@@ -144,7 +144,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->userObj = null;
 	}
 
-	public function getDebug() : int {
+	public function getDebug(): int {
 		if ( $this->debug === self::INHERIT_VALUE ) {
 			return $this->context->getDebug();
 		}
@@ -156,7 +156,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getOnly() : ?string {
+	public function getOnly(): ?string {
 		if ( $this->only === self::INHERIT_VALUE ) {
 			return $this->context->getOnly();
 		}
@@ -171,7 +171,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getVersion() : ?string {
+	public function getVersion(): ?string {
 		if ( $this->version === self::INHERIT_VALUE ) {
 			return $this->context->getVersion();
 		}
@@ -186,7 +186,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 	}
 
-	public function getRaw() : bool {
+	public function getRaw(): bool {
 		if ( $this->raw === self::INHERIT_VALUE ) {
 			return $this->context->getRaw();
 		}
@@ -197,11 +197,11 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->raw = $raw;
 	}
 
-	public function getRequest() : WebRequest {
+	public function getRequest(): WebRequest {
 		return $this->context->getRequest();
 	}
 
-	public function getResourceLoader() : ResourceLoader {
+	public function getResourceLoader(): ResourceLoader {
 		return $this->context->getResourceLoader();
 	}
 

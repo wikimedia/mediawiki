@@ -30,7 +30,7 @@ class TestSetup {
 		global $wgMainStash, $wgChronologyProtectorStash;
 		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
-		global $wgLocaltimezone, $wgLocalisationCacheConf;
+		global $wgLocaltimezone, $wgLocalTZOffset, $wgLocalisationCacheConf;
 		global $wgSearchType;
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
@@ -78,6 +78,7 @@ class TestSetup {
 
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
+		$wgLocalTZOffset = 0;
 
 		$wgLocalisationCacheConf['class'] = TestLocalisationCache::class;
 		$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
@@ -107,12 +108,18 @@ class TestSetup {
 			'primaryauth' => [
 				[
 					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+					'services' => [
+						'DBLoadBalancer',
+					],
 					'args' => [ [
 						'authoritative' => false,
 					] ],
 				],
 				[
 					'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+					'services' => [
+						'DBLoadBalancer',
+					],
 					'args' => [ [
 						'authoritative' => true,
 					] ],

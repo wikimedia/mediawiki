@@ -492,7 +492,6 @@
 	"previewconflict": "Kout je sa ap montre tèks ki nan bwat modifikasyon anwo pou ou wè l jan l ap parèt lè ou deside pou ou pibliye l.",
 	"session_fail_preview": "'''Ekskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou sanble pèdi kèk enfòmasyon koneksyon sou kont ou an, sou sesyon ou an. Eseye yon fwa ankò. Si li pa mache, eseye [[Special:UserLogout|dekonekte ou]], apre w ap konekte ou ankò.'''",
 	"session_fail_preview_html": "'''Eskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou pèdi yon pati nan enfomasyon sou sesyon ou an.'''\n\n''Bouton pou fè kout je an kache pou anpeche atak pa JavaScript paske {{SITENAME}} pèmèt HTML brit la''\n\n'''Si ou panse ke modifikasyon ou an bon toutbon, ou mèt eseye anko. Si sistèm an pa aksepte toujou, eseye [[Special:UserLogout|dekonekte ou]], epi rekonekte w ankò.'''",
-	"token_suffix_mismatch": "'''Modifikasyon ou fè a pa t aksepte paske navigatè ou a melanje karaktè ponktyasyon yo nan idantifyan pou tèks sa. Modifikasyon pa aksepte pou li pa jenere kèk pwoblèm nan tèks ki te nan paj la. Pwoblèm sa kapab rive lè w ap pase pa yon sèvè pwoksi (proxy) ki gen erè ladan l.'''",
 	"editing": "Modifikasyon pou $1",
 	"editingsection": "Modifikasyon pou $1 (seksyon)",
 	"editingcomment": "Modifikasyon pou $1 (nouvo seksyon)",

@@ -96,7 +96,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 */
@@ -115,7 +115,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return bool True if this RevisionRecord is known to have same content as $rec.
 	 *         False if the content is different (or not known to be the same).
 	 */
-	public function hasSameContent( RevisionRecord $rec ) {
+	public function hasSameContent( RevisionRecord $rec ): bool {
 		if ( $rec === $this ) {
 			return true;
 		}
@@ -145,18 +145,18 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * Note that for mutable Content objects, each call to this method will return a
 	 * fresh clone.
 	 *
-	 * MCR migration note: this replaces Revision::getContent
+	 * MCR migration note: this replaced Revision::getContent
 	 *
 	 * @param string $role The role name of the desired slot
 	 * @param int $audience
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @return Content|null The content of the given slot, or null if access is forbidden.
 	 */
-	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): ?Content {
 		// XXX: throwing an exception would be nicer, but would a further
-		// departure from the signature of Revision::getContent(), and thus
-		// more complex and error prone refactoring.
+		// departure from the old signature of Revision::getContent() when it existed,
+		// and thus result in more complex and error prone refactoring.
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
 			return null;
 		}
@@ -177,7 +177,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return SlotRecord The slot meta-data. If access to the slot's content is forbidden,
 	 *         calling getContent() on the SlotRecord will throw an exception.
 	 */
-	public function getSlot( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getSlot( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): SlotRecord {
 		$slot = $this->mSlots->getSlot( $role );
 
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
@@ -194,7 +194,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return bool
 	 */
-	public function hasSlot( $role ) {
+	public function hasSlot( $role ): bool {
 		return $this->mSlots->hasSlot( $role );
 	}
 
@@ -204,7 +204,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return string[]
 	 */
-	public function getSlotRoles() {
+	public function getSlotRoles(): array {
 		return $this->mSlots->getSlotRoles();
 	}
 
@@ -219,7 +219,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getSlots() {
+	public function getSlots(): RevisionSlots {
 		return $this->mSlots;
 	}
 
@@ -237,7 +237,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getOriginalSlots() {
+	public function getOriginalSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getOriginalSlots() );
 	}
 
@@ -252,7 +252,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getInheritedSlots() {
+	public function getInheritedSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getInheritedSlots() );
 	}
 
@@ -262,7 +262,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return RevisionSlots
 	 * @since 1.36
 	 */
-	public function getPrimarySlots() : RevisionSlots {
+	public function getPrimarySlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getPrimarySlots() );
 	}
 
@@ -271,7 +271,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
 	 *
-	 * MCR migration note: this replaces Revision::getId
+	 * MCR migration note: this replaced Revision::getId
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int|null
@@ -289,7 +289,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @note As of MW 1.31, the database schema allows the parent ID to be
 	 * NULL to indicate that it is unknown.
 	 *
-	 * MCR migration note: this replaces Revision::getParentId
+	 * MCR migration note: this replaced Revision::getParentId
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int|null
@@ -304,7 +304,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * May be calculated on the fly if not known, which may in the worst
 	 * case may involve loading all content.
 	 *
-	 * MCR migration note: this replaces Revision::getSize
+	 * MCR migration note: this replaced Revision::getSize
 	 *
 	 * @throws RevisionAccessException if the size was unknown and could not be calculated.
 	 * @return int
@@ -317,7 +317,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * May be calculated on the fly if not known, which may in the worst
 	 * case may involve loading all content.
 	 *
-	 * MCR migration note: this replaces Revision::getSha1
+	 * MCR migration note: this replaced Revision::getSha1
 	 *
 	 * @throws RevisionAccessException if the hash was unknown and could not be calculated.
 	 * @return string
@@ -327,7 +327,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	/**
 	 * Get the page ID. If the page does not yet exist, the page ID is 0.
 	 *
-	 * MCR migration note: this replaces Revision::getPage
+	 * MCR migration note: this replaced Revision::getPage
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int
@@ -361,13 +361,13 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	/**
 	 * Returns the page this revision belongs to.
 	 *
-	 * MCR migration note: this replaces Revision::getTitle
+	 * MCR migration note: this replaced Revision::getTitle
 	 *
 	 * @since 1.36
 	 *
 	 * @return PageIdentity
 	 */
-	public function getPage() {
+	public function getPage(): PageIdentity {
 		return $this->mPage;
 	}
 
@@ -377,7 +377,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * returned. Depending on the concrete subclass, null may also be returned if the user is
 	 * not yet specified.
 	 *
-	 * MCR migration note: this replaces Revision::getUser
+	 * MCR migration note: this replaced Revision::getUser
 	 *
 	 * @param int $audience One of:
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
@@ -400,7 +400,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * this will return null. Depending on the concrete subclass, null may also be returned
 	 * if the comment is not yet specified.
 	 *
-	 * MCR migration note: this replaces Revision::getComment
+	 * MCR migration note: this replaced Revision::getComment
 	 *
 	 * @param int $audience One of:
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
@@ -419,7 +419,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isMinor
+	 * MCR migration note: this replaced Revision::isMinor
 	 *
 	 * @return bool
 	 */
@@ -428,7 +428,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isDeleted
+	 * MCR migration note: this replaced Revision::isDeleted
 	 *
 	 * @param int $field One of DELETED_* bitfield constants
 	 *
@@ -441,7 +441,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	/**
 	 * Get the deletion bitfield of the revision
 	 *
-	 * MCR migration note: this replaces Revision::getVisibility
+	 * MCR migration note: this replaced Revision::getVisibility
 	 *
 	 * @return int
 	 */
@@ -450,7 +450,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::getTimestamp.
+	 * MCR migration note: this replaced Revision::getTimestamp.
 	 *
 	 * May return null if the timestamp was not specified.
 	 *
@@ -463,7 +463,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	/**
 	 * Check that the given audience has access to the given field.
 	 *
-	 * MCR migration note: this corresponds to Revision::userCan
+	 * MCR migration note: this corresponded to Revision::userCan
 	 *
 	 * @param int $field One of self::DELETED_TEXT,
 	 *        self::DELETED_COMMENT,
@@ -498,7 +498,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * Determine if the give authority is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
 	 *
-	 * MCR migration note: this corresponds to Revision::userCan
+	 * MCR migration note: this corresponded to Revision::userCan
 	 *
 	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
@@ -515,7 +515,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * field of this revision, if it's marked as deleted. This is used
 	 * by various classes to avoid duplication.
 	 *
-	 * MCR migration note: this replaces Revision::userCanBitfield
+	 * MCR migration note: this replaced Revision::userCanBitfield
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,

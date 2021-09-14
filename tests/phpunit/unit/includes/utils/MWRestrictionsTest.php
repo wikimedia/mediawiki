@@ -4,7 +4,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	protected static $restrictionsForChecks;
 
-	public static function setUpBeforeClass() : void {
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		self::$restrictionsForChecks = MWRestrictions::newFromArray( [
 			'IPAddresses' => [
@@ -181,25 +181,23 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 		$ret = [];
 
 		$mockBuilder = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getIP' ] );
+			->onlyMethods( [ 'getIP' ] );
 
 		foreach ( self::provideCheckIP() as $checkIP ) {
 			$ok = [];
 			$request = $mockBuilder->getMock();
 
-			$request->expects( $this->any() )->method( 'getIP' )
-				->will( $this->returnValue( $checkIP[0] ) );
+			$request->method( 'getIP' )
+				->willReturn( $checkIP[0] );
 			$ok['ip'] = $checkIP[1];
 
 			/* If we ever add more restrictions, add nested for loops here:
 			 *  foreach ( self::provideCheckFoo() as $checkFoo ) {
-			 *      $request->expects( $this->any() )->method( 'getFoo' )
-			 *          ->will( $this->returnValue( $checkFoo[0] );
+			 *      $request->method( 'getFoo' )->willReturn( $checkFoo[0] );
 			 *      $ok['foo'] = $checkFoo[1];
 			 *
 			 *      foreach ( self::provideCheckBar() as $checkBar ) {
-			 *          $request->expects( $this->any() )->method( 'getBar' )
-			 *              ->will( $this->returnValue( $checkBar[0] );
+			 *          $request->method( 'getBar' )->willReturn( $checkBar[0] );
 			 *          $ok['bar'] = $checkBar[1];
 			 *
 			 *          // etc.

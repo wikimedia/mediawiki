@@ -105,7 +105,7 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		$this->collation = Collation::singleton();
+		$this->collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
 		$this->languageConverter = MediaWikiServices::getInstance()
 			->getLanguageConverterFactory()->getLanguageConverter();
 		unset( $this->query['title'] );
@@ -153,7 +153,7 @@ class CategoryViewer extends ContextSource {
 			'dir' => $lang->getDir()
 		];
 		# put a div around the headings which are in the user language
-		$r = Html::openElement( 'div', $attribs ) . $r . '</div>';
+		$r = Html::rawElement( 'div', $attribs, $r );
 
 		return $r;
 	}
@@ -223,7 +223,11 @@ class CategoryViewer extends ContextSource {
 			$link = $linkRenderer->makeLink( $title, $html );
 		}
 		if ( $isRedirect ) {
-			$link = '<span class="redirect-in-category">' . $link . '</span>';
+			$link = Html::rawElement(
+				'span',
+				[ 'class' => 'redirect-in-category' ],
+				$link
+			);
 		}
 
 		return $link;
@@ -429,13 +433,13 @@ class CategoryViewer extends ContextSource {
 
 		if ( $rescnt > 0 ) {
 			# Showing subcategories
-			$r .= "<div id=\"mw-subcategories\">\n";
-			$r .= '<h2>' . $this->msg( 'subcategories' )->parse() . "</h2>\n";
+			$r .= Html::openElement( 'div', [ 'id' => 'mw-subcategories' ] ) . "\n";
+			$r .= Html::rawElement( 'h2', [], $this->msg( 'subcategories' )->parse() ) . "\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'subcat' );
 			$r .= $this->formatList( $this->children, $this->children_start_char );
 			$r .= $this->getSectionPagingLinks( 'subcat' );
-			$r .= "\n</div>";
+			$r .= "\n" . Html::closeElement( 'div' );
 		}
 		return $r;
 	}
@@ -459,13 +463,17 @@ class CategoryViewer extends ContextSource {
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
 
 		if ( $rescnt > 0 ) {
-			$r = "<div id=\"mw-pages\">\n";
-			$r .= '<h2>' . $this->msg( 'category_header' )->rawParams( $name )->parse() . "</h2>\n";
+			$r .= Html::openElement( 'div', [ 'id' => 'mw-pages' ] ) . "\n";
+			$r .= Html::rawElement(
+				'h2',
+				[],
+				$this->msg( 'category_header' )->rawParams( $name )->parse()
+			) . "\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'page' );
 			$r .= $this->formatList( $this->articles, $this->articles_start_char );
 			$r .= $this->getSectionPagingLinks( 'page' );
-			$r .= "\n</div>";
+			$r .= "\n" . Html::closeElement( 'div' );
 		}
 		return $r;
 	}
@@ -482,10 +490,12 @@ class CategoryViewer extends ContextSource {
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
 		if ( $rescnt > 0 ) {
-			$r .= "<div id=\"mw-category-media\">\n";
-			$r .= '<h2>' .
-				$this->msg( 'category-media-header' )->rawParams( $name )->parse() .
-				"</h2>\n";
+			$r .= Html::openElement( 'div', [ 'id' => 'mw-category-media' ] ) . "\n";
+			$r .= Html::rawElement(
+				'h2',
+				[],
+				$this->msg( 'category-media-header' )->rawParams( $name )->parse()
+			) . "\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'file' );
 			if ( $this->showGallery ) {
@@ -494,7 +504,7 @@ class CategoryViewer extends ContextSource {
 				$r .= $this->formatList( $this->imgsNoGallery, $this->imgsNoGallery_start_char );
 			}
 			$r .= $this->getSectionPagingLinks( 'file' );
-			$r .= "\n</div>";
+			$r .= "\n" . Html::closeElement( 'div' );
 		}
 		return $r;
 	}
@@ -594,12 +604,19 @@ class CategoryViewer extends ContextSource {
 			# Change space to non-breaking space to keep headers aligned
 			$h3char = $char === ' ' ? "\u{00A0}" : htmlspecialchars( $char );
 
-			$ret .= '<div class="mw-category-group"><h3>' . $h3char;
-			$ret .= "</h3>\n";
-
-			$ret .= '<ul><li>';
-			$ret .= implode( "</li>\n<li>", $articles );
-			$ret .= '</li></ul></div>';
+			$ret .= Html::openELement( 'div', [ 'class' => 'mw-category-group' ] );
+			$ret .= Html::rawElement( 'h3', [], $h3char ) . "\n";
+			$ret .= Html::openElement( 'ul' );
+			$ret .= implode(
+				"\n",
+				array_map(
+					static function ( $article ) {
+						return Html::rawElement( 'li', [], $article );
+					},
+					$articles
+				)
+			);
+			$ret .= Html::closeElement( 'ul' ) . Html::closeElement( 'div' );
 
 		}
 

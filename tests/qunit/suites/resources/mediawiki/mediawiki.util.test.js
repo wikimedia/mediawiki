@@ -210,10 +210,10 @@
 		assert.strictEqual( href, '/wiki/Sandbox', 'title with empty query string' );
 
 		href = util.getUrl( '#Fragment' );
-		assert.strictEqual( href, '/wiki/#Fragment', 'empty title with fragment' );
+		assert.strictEqual( href, '#Fragment', 'empty title with fragment' );
 
 		href = util.getUrl( '#Fragment', { action: 'edit' } );
-		assert.strictEqual( href, '/w/index.php?action=edit#Fragment', 'empty title with query string and fragment' );
+		assert.strictEqual( href, '#Fragment', 'empty title with query string and fragment' );
 
 		mw.util.setOptionsForTest( { FragmentMode: [ 'legacy' ] } );
 		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
@@ -227,12 +227,12 @@
 		assert.strictEqual( href, '/w/index.php?title=Foo:%2523&action=edit#Fragment', 'title containing %23 (#), fragment, and a query string' );
 
 		mw.util.setOptionsForTest( { FragmentMode: [ 'legacy' ] } );
-		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
-		assert.strictEqual( href, '/w/index.php?action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
+		href = util.getUrl( 'Sandbox#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
+		assert.strictEqual( href, '/w/index.php?title=Sandbox&action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
 
 		mw.util.setOptionsForTest( { FragmentMode: [ 'html5' ] } );
-		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
-		assert.strictEqual( href, '/w/index.php?action=edit#+&=:;@$-_.!*/[]<>\'§', 'fragment with various characters' );
+		href = util.getUrl( 'Sandbox#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
+		assert.strictEqual( href, '/w/index.php?title=Sandbox&action=edit#+&=:;@$-_.!*/[]<>\'§', 'fragment with various characters' );
 	} );
 
 	QUnit.test( 'wikiScript', function ( assert ) {
