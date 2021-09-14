@@ -18,6 +18,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
@@ -36,13 +37,18 @@ class DeleteAction extends FormlessAction {
 	/** @var LinkRenderer */
 	private $linkRenderer;
 
+	/** @var BacklinkCacheFactory */
+	private $backlinkCacheFactory;
+
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct( Page $page, IContextSource $context = null ) {
 		parent::__construct( $page, $context );
-		$this->watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$this->watchlistManager = $services->getWatchlistManager();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->backlinkCacheFactory = $services->getBacklinkCacheFactory();
 	}
 
 	public function getName() {
@@ -227,7 +233,7 @@ class DeleteAction extends FormlessAction {
 		$outputPage->addModules( 'mediawiki.action.delete' );
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 
-		$backlinkCache = $title->getBacklinkCache();
+		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $title );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->addHtml(
 				Html::warningBox(
