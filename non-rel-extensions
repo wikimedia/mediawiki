@@ -74,6 +74,7 @@ extensions/EmbedVideo
 extensions/PageForms
 extensions/PageSchemas
 extensions/MintyDocs
+extensions/DiscordNotifications
 
 # main
 extensions/LinkTitles
