@@ -32,6 +32,7 @@ skins/pivot
 skins/liberty
 extensions/MatomoAnalytics
 extensions/PollNY
+extensions/VoteNY
 extensions/ApprovedRevs
 extensions/Purge
 extensions/RottenLinks
