@@ -641,7 +641,6 @@ $wgAutoloadLocalClasses = [
 	'ILanguageConverter' => __DIR__ . '/includes/language/ILanguageConverter.php',
 	'ILocalizedException' => __DIR__ . '/includes/exception/ILocalizedException.php',
 	'IMaintainableDatabase' => __DIR__ . '/includes/libs/rdbms/database/IMaintainableDatabase.php',
-	'IP' => __DIR__ . '/includes/compat/IP.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
 	'IRCColourfulRCFeedFormatter' => __DIR__ . '/includes/rcfeed/IRCColourfulRCFeedFormatter.php',
 	'ISearchResultSet' => __DIR__ . '/includes/search/ISearchResultSet.php',
