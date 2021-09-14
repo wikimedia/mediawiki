@@ -13,9 +13,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use WANObjectCache;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -47,17 +46,12 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param DBConnRef $db
 	 * @return LoadBalancer
 	 */
 	private function getMockLoadBalancer( $db ) {
-		$mock = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->method( 'getConnectionRef' )
-			->willReturnCallback( static function ( $i ) use ( $mock, $db ) {
-				return new MaintainableDBConnRef( $mock, $db, $i );
-			} );
+		$mock = $this->createMock( LoadBalancer::class );
+		$mock->method( 'getConnectionRef' )->willReturn( $db );
 		return $mock;
 	}
 
@@ -65,7 +59,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	 * @param null $insertCalls
 	 * @param null $selectCalls
 	 *
-	 * @return MockObject|IDatabase
+	 * @return MockObject&DBConnRef
 	 */
 	private function getProxyDb( $insertCalls = null, $selectCalls = null ) {
 		$proxiedMethods = [
@@ -82,9 +76,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'rollback' => null,
 			'commit' => null,
 		];
-		$mock = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->createMock( DBConnRef::class );
 		foreach ( $proxiedMethods as $method => $count ) {
 			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
 				->method( $method )
@@ -404,8 +396,6 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$lb->method( 'getConnectionRef' )
 			->willReturn( $db );
-		$lb->method( 'resolveDomainID' )
-			->willReturnArgument( 0 );
 
 		// Two instances hitting the real database using separate caches.
 		$store1 = new NameTableStore(
