@@ -25,6 +25,7 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 	public function provideInterwiki() {
 		return [
 			'local title' => [ [ 'interwiki' => false ], 'SomeTitle', true ],
+			'interwiki title, default' => [ [], 'unittest_foo:SomeTitle', false ],
 			'interwiki title, disallowed' => [ [ 'interwiki' => false ],
 				'unittest_foo:SomeTitle', false ],
 			'interwiki title, allowed' => [ [ 'interwiki' => true ],
@@ -48,12 +49,6 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$field = new HTMLTitleTextField( [ 'fieldname' => 'foo', 'interwiki' => true, 'relative' => true ] );
 		$field->validate( 'SomeTitle', [ 'foo' => 'SomeTitle' ] );
-	}
-
-	public function testInterwiki_deprecation() {
-		$this->expectError();
-		$field = new HTMLTitleTextField( [ 'fieldname' => 'foo' ] );
-		$field->validate( 'unittest_foo:SomeTitle', [ 'foo' => 'SomeTitle' ] );
 	}
 
 	protected function setupInterwikiTable() {
