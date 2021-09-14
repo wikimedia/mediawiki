@@ -907,8 +907,6 @@
 	"restoreprefs": "ټولې تلواليزې امستنې پرځای کول (په ټولو برخو کې)",
 	"prefs-editing": "سمېدنې کې دی",
 	"searchresultshead": "پلټل",
-	"stub-threshold-sample-link": "مخبېلگه",
-	"stub-threshold-disabled": "ناچارن",
 	"recentchangesdays": "د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:",
 	"recentchangesdays-max": "حد اکثر $1 {{PLURAL:$1|ورځ|ورځې}}",
 	"recentchangescount": "د هغو سمونو شمېر چې په تلواليزه بڼه ښکاره بايد شي:",

@@ -911,8 +911,6 @@
 	"restoreprefs": "بارلىق كۆڭۈلدىكى تەڭشەكنى ئەسلىگە كەلتۈر (بارلىق بۆلەكلەردە)",
 	"prefs-editing": "تەھرىرلەش",
 	"searchresultshead": "ئىزدە",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :",
-	"stub-threshold-disabled": "چەكلەنگەن",
 	"recentchangesdays": "يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:",
 	"recentchangesdays-max": "ئەڭ چوڭ $1 {{PLURAL:$1|كۈن|كۈن}}",
 	"recentchangescount": "كۆرسىتىدىغان تەھرىرنىڭ كۆڭۈلدىكى سانى:",

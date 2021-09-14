@@ -766,8 +766,6 @@
 	"restoreprefs": "Prziwrōć wszyjske wychodne preferyncyje (we wszyjskich sekcyjach)",
 	"prefs-editing": "Edycyjŏ",
 	"searchresultshead": "Sznupańy",
-	"stub-threshold": "Maksymalny rozmjar artikla uoznaczanygo kej <a href=\"#\" class=\"stub\">stub (kůnsek)</a>",
-	"stub-threshold-disabled": "Uodymkńynte",
 	"recentchangesdays": "Liczba dńůw do pokazańo we půmjyńanych na uostatku:",
 	"recentchangesdays-max": "(maksymalńy $1 {{PLURAL:$1|dźyń|dńi}})",
 	"recentchangescount": "Liczba pozycyji na liśće půmjyńanych na uostatku, we historyje zajtůw a zajtach rejerůw:",

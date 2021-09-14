@@ -668,8 +668,6 @@
 	"restoreprefs": "All Standardinstellungen wedderhalen",
 	"prefs-editing": "Grött vun’t Textfeld",
 	"searchresultshead": "Söökresultaten",
-	"stub-threshold": "Grött ünner de Lenken op <a href=\"#\" class=\"stub\">Stubbens un lütte Sieden</a> farvlich kenntekent warrn schöölt (in Bytes):",
-	"stub-threshold-disabled": "Utstellt",
 	"recentchangesdays": "Daag, de de List vun de „Ne’esten Ännern“ wiesen schall:",
 	"recentchangesdays-max": "(Maximal $1 {{PLURAL:$1|Dag|Daag}})",
 	"recentchangescount": "Antall Ännern, de wiest warrt:",

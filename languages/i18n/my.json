@@ -847,8 +847,6 @@
 	"restoreprefs": "မူလအပြင်အဆင်အားလုံးသို့ ပြန်ပြောင်းရန် (အပိုင်းအားလုံးတွင်)",
 	"prefs-editing": "တည်းဖြတ်ခြင်း",
 	"searchresultshead": "ရှာဖွေရန်",
-	"stub-threshold-sample-link": "နမူနာ",
-	"stub-threshold-disabled": "ပိတ်ထားသည်",
 	"recentchangesdays": "လတ်တလောအပြောင်းအလဲများကို ပြရန်နေ့များ -",
 	"recentchangesdays-max": "အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}",
 	"recentchangescount": "လတ်တလော အပြောင်းအလဲများ၊ စာမျက်နှာ ရာဇဝင်များနှင့် မှတ်တမ်းများတွင် ပုံသေအားဖြင့် ပြသရန် တည်းဖြတ်မှုအရေအတွက် -",

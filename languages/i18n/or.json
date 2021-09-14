@@ -915,8 +915,6 @@
 	"restoreprefs": "(ସମସ୍ତ ସ୍ଥାନରେ) ଆରମ୍ଭରୁ ଥିବା ମୂଳ ସଜାଣିକୁ ଫେରିଯିବେ",
 	"prefs-editing": "ସମ୍ପାଦନା",
 	"searchresultshead": "ଖୋଜନ୍ତୁ",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">ଅସମ୍ପୂର୍ଣ ପୃଷ୍ଠା ଲିଙ୍କ</a> ସଜାଣି (ବାଇଟ) ପାଇଁ ସୀମା:",
-	"stub-threshold-disabled": "ଅଚଳ କରିଦିଆଯାଇଛି",
 	"recentchangesdays": "ନଗଦ ବଦଳରେ ଦେଖାଇବା ପାଇଁ ବାକିଥିବା ଦିନ:",
 	"recentchangesdays-max": "ସବୁଠାରୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|ଦିନ|ଦିନ}}",
 	"recentchangescount": "ଆପେଆପେ ଦେଖାଯାଉଥିବା ବଦଳର ସଂଖ୍ୟା:",

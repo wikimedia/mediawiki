@@ -832,8 +832,6 @@
 	"restoreprefs": "Обновити вшыткы штандартны наставлїня (у вшыткых секціях)",
 	"prefs-editing": "Едітованя",
 	"searchresultshead": "Гляданя",
-	"stub-threshold": "Поріг про форматованя одказу як одказів на ''stub'' ($1):",
-	"stub-threshold-disabled": "Выпнуте",
 	"recentchangesdays": "За кілько днїв вказовати новы едітованя",
 	"recentchangesdays-max": "(максімум $1 {{PLURAL:$1|день|днї|днїв}})",
 	"recentchangescount": "Чісло імпліцітно зображованых едітовань:",

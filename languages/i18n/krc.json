@@ -795,8 +795,6 @@
 	"restoreprefs": "Тынгылау бла джарашдырыуланы ызына къайтар",
 	"prefs-editing": "Тюрлендириу",
 	"searchresultshead": "Излеу",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">Стаблагъа джибериуню</a> формат этер ючюн марда (байтлада):",
-	"stub-threshold-disabled": "Джукъланыбды",
 	"recentchangesdays": "Ахыр тюрлениуледе кёргюзюллюк кюнле:",
 	"recentchangesdays-max": "(максимум $1 {{PLURAL:$1|1=кюн|кюн}})",
 	"recentchangescount": "Тынгылау бла кёргюзюллюк тюрлениулени саны:",

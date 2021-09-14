@@ -504,7 +504,6 @@
 	"restoreprefs": "Ibalik ang tanang default settings",
 	"prefs-editing": "Nagausab",
 	"searchresultshead": "Pangitaa",
-	"stub-threshold": "Threshold para sa <a href=\"#\" class=\"stub\">stub link</a> formatting (bytes):",
 	"recentchangesdays": "Mga adlaw nga ipakita sa bag-ong giusab:",
 	"recentchangesdays-max": "Maximum $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}",
 	"recentchangescount": "Numero sa mga pag-usab nga ipakita isip default:",
