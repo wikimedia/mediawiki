@@ -5,10 +5,8 @@ namespace MediaWiki\ParamValidator\TypeDef;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
-use RequestContext;
-use User;
-use WebRequest;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -16,15 +14,44 @@ use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
+ * @TODO convert to a unit test, all dependencies are injected
+ *
  * @covers MediaWiki\ParamValidator\TypeDef\UserDef
  */
 class UserDefTest extends TypeDefTestCase {
 
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		// The UserIdentityLookup that we have knows about 5 users, with ids
+		// 1 through 5 and names starting with the first 5 letters of the alphabet:
+		$namesToIds = [
+			'Adam Smith' => 1,
+			'Becca' => 2,
+			'Charlie' => 3,
+			'Danny' => 4,
+			'Emma' => 5,
+		];
+		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
+		$userIdentityLookup->method( 'getUserIdentityByName' )->willReturnCallback(
+			static function ( $name, $flags ) use ( $namesToIds ) {
+				if ( isset( $namesToIds[$name] ) ) {
+					return new UserIdentityValue( $namesToIds[$name], $name );
+				}
+				return null;
+			}
+		);
+		$userIdentityLookup->method( 'getUserIdentityByUserId' )->willReturnCallback(
+			static function ( $id, $flags ) use ( $namesToIds ) {
+				$idsToNames = array_flip( $namesToIds );
+				if ( isset( $idsToNames[$id] ) ) {
+					return new UserIdentityValue( $id, $idsToNames[$id] );
+				}
+				return null;
+			}
+		);
 		return new UserDef(
 			$callbacks,
-			MediaWikiServices::getInstance()->getUserFactory(),
-			MediaWikiServices::getInstance()->getTitleFactory(),
+			$userIdentityLookup,
+			MediaWikiServices::getInstance()->getTitleParser(),
 			MediaWikiServices::getInstance()->getUserNameUtils()
 		);
 	}
@@ -46,13 +73,11 @@ class UserDefTest extends TypeDefTestCase {
 				'iw_trans' => 0,
 			],
 		] );
-		// UserFactory holds UserNameUtils holds
-		// TitleParser (aka _MediaWikiTitleCodec) holds InterwikiLookup
+		// UserNameUtils holds TitleParser (aka _MediaWikiTitleCodec) holds InterwikiLookup
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 	}
 
 	protected function tearDown(): void {
@@ -63,7 +88,6 @@ class UserDefTest extends TypeDefTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 
 		parent::tearDown();
 	}
@@ -71,8 +95,8 @@ class UserDefTest extends TypeDefTestCase {
 	public function provideValidate() {
 		// General tests of string inputs
 		$data = [
-			'Basic' => [ 'name', 'Some user', 'Some user' ],
-			'Normalized' => [ 'name', 'some_user', 'Some user' ],
+			'Basic' => [ 'name', 'Adam Smith', 'Adam Smith' ],
+			'Normalized' => [ 'name', 'adam_Smith', 'Adam Smith' ],
 			'External' => [ 'interwiki', 'm>some_user', 'm>some_user' ],
 			'IPv4' => [ 'ip', '192.168.0.1', '192.168.0.1' ],
 			'IPv4, normalized' => [ 'ip', '192.168.000.001', '192.168.0.1' ],
@@ -88,12 +112,11 @@ class UserDefTest extends TypeDefTestCase {
 			'Bad username' => [ '', '[[Foo]]', null ],
 			'No namespaces' => [ '', 'Talk:Foo', null ],
 			'No namespaces (2)' => [ '', 'Help:Foo', null ],
-			'No namespaces (except User is ok)' => [ 'name', 'User:some_user', 'Some user' ],
+			'No namespaces (except User is ok)' => [ 'name', 'User:Adam_Smith', 'Adam Smith' ],
 			'No namespaces (except User is ok) (IPv6)' => [ 'ip', 'User:::1', '0:0:0:0:0:0:0:1' ],
 			'No interwiki prefixes' => [ '', 'interwiki:Foo', null ],
 			'No fragment in IP' => [ '', '192.168.0.256#', null ],
 		];
-		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		foreach ( $data as $key => [ $type, $input, $expect ] ) {
 			$ex = new ValidationException(
 				DataMessageValue::new( 'paramvalidator-baduser', [], 'baduser' ),
@@ -127,18 +150,18 @@ class UserDefTest extends TypeDefTestCase {
 				// known (id is 0 for all)
 				$obj = UserIdentityValue::newAnonymous( $expect );
 			} else {
-				// Creating from name, not a UserIdentityValue (yet) since
-				// UserDef does not check for the relevant user id itself,
-				// but relies on the loading in User::getId() instead
-				$obj = $userFactory->newFromName( $expect );
+				// Creating from name, we are only testing for "Adam Smith"
+				// so the id will be 1
+				$obj = new UserIdentityValue( 1, $expect );
 			}
 
 			yield "$key, returning object" => [ $input, $obj, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		}
 
 		// Test input by user ID
-		// We can't test not returning object here, because we don't have a test
-		// database and there's no "UserFactory" (yet) to inject a mock of.
+		// Since this user isn't in our mock UserIdentityLookup, the name is "Unknown user"
+		// and the id is switched to just 0. We cover the case of existing ids in
+		// testProcessUser()
 		$input = '#1234';
 		$ex = new ValidationException(
 			DataMessageValue::new( 'paramvalidator-baduser', [], 'baduser' ),
@@ -147,13 +170,13 @@ class UserDefTest extends TypeDefTestCase {
 		yield 'User ID' => [ $input, $ex, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		yield 'User ID, with \'id\' allowed, returning object' => [
 			$input,
-			User::newFromId( 1234 ),
+			new UserIdentityValue( 0, "Unknown user" ),
 			[ UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ], UserDef::PARAM_RETURN_OBJECT => true ],
 		];
 
 		// Tests for T232672 (consistent treatment of whitespace and BIDI characters)
 		$data = [
-			'name' => [ 'Foo', [ 1 ], 'Foo' ],
+			'name' => [ 'Emma', [ 1 ], 'Emma' ],
 			'interwiki' => [ 'm>some_user', [ 1, 2, 6 ], null ],
 			'ip (v4)' => [ '192.168.0.1', [ 1, 3, 4 ], '192.168.0.1' ],
 			'ip (v6)' => [ '2001:DB8:0:0:0:0:0:0', [ 2, 5, 6 ], '2001:DB8:0:0:0:0:0:0' ],
@@ -388,45 +411,12 @@ class UserDefTest extends TypeDefTestCase {
 		$this->assertSame( $expectName, $actual->getName() );
 	}
 
-	public function testProcessUser_id0() {
-		// User created by id, when that id is 0, falls back to context ip
-		// User::getRequest() will use RequestContext::getMain()
-		// Use try-finally so that we don't interfere with other tests
-		$oldRequest = RequestContext::getMain()->getRequest();
-		try {
-			$mockRequest = $this->createMock( WebRequest::class );
-			$mockRequest->method( 'getIP' )->willReturn( '200.1.2.3' );
-			RequestContext::getMain()->setRequest( $mockRequest );
-			$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
-			$res = $userDef->validate(
-				'', // $name, unused here
-				'#0',
-				[
-					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
-					UserDef::PARAM_RETURN_OBJECT => true,
-				], // $settings
-				[] // $options, unused here
-			);
-			$this->assertUserIdentity( $res, 0, '200.1.2.3' );
-		} finally {
-			RequestContext::getMain()->setRequest( $oldRequest );
-		}
-	}
-
-	public function testProcessUser_missingId() {
+	/**
+	 * @dataProvider provideMissingId
+	 */
+	public function testProcessUser_missingId( $missingId ) {
 		// User created by id, does not exist, falls back to "Unknown user"
-		$dbr = MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getConnectionRef( DB_REPLICA );
-
-		$maxUserId = (int)$dbr->selectField(
-			'user',
-			'MAX(user_id)',
-			'',
-			__METHOD__
-		);
-		$missingId = $maxUserId + 1;
-
+		// See our mock UserIdentityLookup for which ids and names exist
 		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
 		$res = $userDef->validate(
 			'', // $name, unused here
@@ -437,28 +427,37 @@ class UserDefTest extends TypeDefTestCase {
 			], // $settings
 			[] // $options, unused here
 		);
-		$this->assertUserIdentity( $res, $missingId, "Unknown user" );
+		// Even though we created with $missingId, the resulting UserIdentity has
+		// an id of 0 because the user does not exist
+		$this->assertUserIdentity( $res, 0, "Unknown user" );
+	}
+
+	public function provideMissingId() {
+		yield "0 no longer matches request ip" => [ 0 ];
+		yield "Id with no user" => [ 6 ];
+	}
+
+	public function testProcessUser_validId() {
+		// User created by id, does exist
+		// See our mock UserIdentityLookup for which ids and names exist
+		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+		$res = $userDef->validate(
+			'', // $name, unused here
+			"#5",
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			], // $settings
+			[] // $options, unused here
+		);
+		$this->assertUserIdentity( $res, 5, 'Emma' );
 	}
 
 	public function testProcessUser_missingName() {
 		// Created by name, does not exist
 		// Already in the canonical form
-		$dbr = MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getConnectionRef( DB_REPLICA );
-
+		// See our mock UserIdentityLookup for which ids and names exist
 		$userName = 'UserDefTest-processUser-missing';
-		$dbRes = $dbr->select(
-			'user',
-			'user_id',
-			[ 'user_name' => $userName ],
-			__METHOD__
-		);
-		$this->assertSame(
-			0,
-			$dbRes->numRows(),
-			'Sanity: testing for a user that does not exist'
-		);
 
 		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
 		$res = $userDef->validate(

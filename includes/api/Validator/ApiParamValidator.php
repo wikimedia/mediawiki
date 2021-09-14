@@ -80,7 +80,7 @@ class ApiParamValidator {
 		],
 		'user' => [
 			'class' => UserDef::class,
-			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
+			'services' => [ 'UserIdentityLookup', 'TitleParser', 'UserNameUtils' ]
 		],
 		'upload' => [ 'class' => UploadDef::class ],
 	];
