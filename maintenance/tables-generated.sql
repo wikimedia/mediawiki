@@ -893,4 +893,4 @@ CREATE TABLE /*_*/searchindex (
   UNIQUE INDEX si_page (si_page),
   FULLTEXT INDEX si_title (si_title),
   FULLTEXT INDEX si_text (si_text)
-) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
