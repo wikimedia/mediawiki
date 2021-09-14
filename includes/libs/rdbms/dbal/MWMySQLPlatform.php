@@ -2,10 +2,9 @@
 
 namespace Wikimedia\Rdbms;
 
-/**
- * @suppress PhanRedefinedExtendedClass
- */
-class MWMySQLPlatform extends MWMySQLPlatformCompat {
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+
+class MWMySQLPlatform extends MySQLPlatform {
 
 	/**
 	 * @inheritDoc

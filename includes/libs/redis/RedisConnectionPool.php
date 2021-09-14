@@ -97,6 +97,8 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				throw new InvalidArgumentException(
 					__CLASS__ . ': configured serializer "igbinary" not available' );
 			}
+			// (T282133) Phan CI image's php-redis has lost IGBINARY support somehow
+			// @phan-suppress-next-line PhanUndeclaredConstantOfClass
 			$this->serializer = Redis::SERIALIZER_IGBINARY;
 		} elseif ( $options['serializer'] === 'none' ) {
 			$this->serializer = Redis::SERIALIZER_NONE;
