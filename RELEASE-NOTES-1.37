@@ -470,6 +470,9 @@ because of Phabricator reports.
 * The LESS mixin `.box-shadow()` (from mediawiki.mixins.less), deprecated since
   1.36, was removed. Use CSS property `box-shadow` unprefixed for all basic
   supported browsers instead.
+* The LESS mixin `.flex()` now no longer tries to support the 2009 version of
+  the Flexbox specification; support for the 2012 and modern standard versions
+  remains unchanged.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki(), deprecated in 1.33, now emits deprecation warnings.
