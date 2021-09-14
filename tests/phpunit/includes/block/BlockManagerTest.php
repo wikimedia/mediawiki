@@ -5,7 +5,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
-use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -19,14 +19,14 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var User */
 	protected $user;
 
-	/** @var int */
-	protected $sysopId;
+	/** @var User */
+	protected $sysopUser;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->user = $this->getTestUser()->getUser();
-		$this->sysopId = $this->getTestSysop()->getUser()->getId();
+		$this->sysopUser = $this->getTestSysop()->getUser();
 		$this->blockManagerConfig = [
 			'wgApplyIpBlocksToXff' => true,
 			'wgCookieSetOnAutoblock' => true,
@@ -49,7 +49,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	private function getBlockManagerConstructorArgs( $overrideConfig ) {
 		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		$this->setMwGlobals( $blockManagerConfig );
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
 		$services = MediaWikiServices::getInstance();
 		return [
 			new LoggedServiceOptions(
@@ -58,7 +57,8 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 				$services->getMainConfig()
 			),
 			$services->getPermissionManager(),
-			$logger,
+			$services->getUserFactory(),
+			new NullLogger(),
 			$services->getHookContainer()
 		];
 	}
@@ -133,7 +133,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopId,
+			'by' => $this->sysopUser,
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 
@@ -165,7 +165,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopId,
+			'by' => $this->sysopUser,
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 
@@ -283,7 +283,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 		$blockManager = $this->getMockBuilder( BlockManager::class )
 			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
-			->setMethods( [ 'checkHost' ] )
+			->onlyMethods( [ 'checkHost' ] )
 			->getMock();
 		$blockManager->method( 'checkHost' )
 			->will( $this->returnValueMap( [ [
@@ -391,13 +391,13 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$block->method( 'getId' )
 			->willReturn( $blockId );
 
 		$autoblock = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getParentBlockId', 'getType' ] )
+			->onlyMethods( [ 'getParentBlockId', 'getType' ] )
 			->getMock();
 		$autoblock->method( 'getParentBlockId' )
 			->willReturn( $blockId );
@@ -424,7 +424,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$response = $request->response();
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock', 'getRequest' ] )
+			->onlyMethods( [ 'getBlock', 'getRequest' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $options['block'] );
@@ -522,7 +522,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getTrackableBlock( $blockId ) {
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getType', 'getId' ] )
+			->onlyMethods( [ 'getType', 'getId' ] )
 			->getMock();
 		$block->method( 'getType' )
 			->willReturn( DatabaseBlock::TYPE_IP );
@@ -604,7 +604,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testShouldTrackBlockWithCookie( $options, $expected ) {
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getType', 'isAutoblocking' ] )
+			->onlyMethods( [ 'getType', 'isAutoblocking' ] )
 			->getMock();
 		$block->method( 'getType' )
 			->willReturn( $options['type'] );
@@ -778,7 +778,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$block->method( 'getId' )
 			->willReturn( $options['blockId'] );

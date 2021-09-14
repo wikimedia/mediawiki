@@ -30,7 +30,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use MWTimestamp;
-use Wikimedia\Assert\Assert;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
@@ -103,7 +102,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * @stable to call.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 *
 	 * @throws MWException
@@ -120,9 +119,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $parentId
 	 * @return self
 	 */
-	public function setParentId( $parentId ) {
-		Assert::parameterType( 'integer', $parentId, '$parentId' );
-
+	public function setParentId( int $parentId ) {
 		$this->mParentId = $parentId;
 
 		return $this;
@@ -246,9 +243,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param string $sha1 SHA1 hash as a base36 string.
 	 * @return self
 	 */
-	public function setSha1( $sha1 ) {
-		Assert::parameterType( 'string', $sha1, '$sha1' );
-
+	public function setSha1( string $sha1 ) {
 		$this->mSha1 = $sha1;
 
 		return $this;
@@ -264,9 +259,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $size nominal size in bogo-bytes
 	 * @return self
 	 */
-	public function setSize( $size ) {
-		Assert::parameterType( 'integer', $size, '$size' );
-
+	public function setSize( int $size ) {
 		$this->mSize = $size;
 
 		return $this;
@@ -276,9 +269,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $visibility
 	 * @return self
 	 */
-	public function setVisibility( $visibility ) {
-		Assert::parameterType( 'integer', $visibility, '$visibility' );
-
+	public function setVisibility( int $visibility ) {
 		$this->mDeleted = $visibility;
 
 		return $this;
@@ -288,9 +279,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param string $timestamp A timestamp understood by MWTimestamp
 	 * @return self
 	 */
-	public function setTimestamp( $timestamp ) {
-		Assert::parameterType( 'string', $timestamp, '$timestamp' );
-
+	public function setTimestamp( string $timestamp ) {
 		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
 
 		return $this;
@@ -300,9 +289,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param bool $minorEdit
 	 * @return self
 	 */
-	public function setMinorEdit( $minorEdit ) {
-		Assert::parameterType( 'boolean', $minorEdit, '$minorEdit' );
-
+	public function setMinorEdit( bool $minorEdit ) {
 		$this->mMinorEdit = $minorEdit;
 
 		return $this;
@@ -311,7 +298,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Set the revision ID.
 	 *
-	 * MCR migration note: this replaces Revision::setId()
+	 * MCR migration note: this replaced Revision::setId
 	 *
 	 * @warning Use this with care, especially when preparing a revision for insertion
 	 *          into the database! The revision ID should only be fixed in special cases
@@ -320,9 +307,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $id
 	 * @return self
 	 */
-	public function setId( $id ) {
-		Assert::parameterType( 'integer', $id, '$id' );
-
+	public function setId( int $id ) {
 		$this->mId = $id;
 
 		return $this;
@@ -344,9 +329,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $pageId
 	 * @return self
 	 */
-	public function setPageId( $pageId ) {
-		Assert::parameterType( 'integer', $pageId, '$pageId' );
-
+	public function setPageId( int $pageId ) {
 		$pageIdBasedOnPage = $this->getArticleId( $this->mPage );
 		if ( $pageIdBasedOnPage && $pageIdBasedOnPage !== $this->getArticleId( $this->mPage ) ) {
 			throw new InvalidArgumentException(
@@ -362,7 +345,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns the nominal size of this revision.
 	 *
-	 * MCR migration note: this replaces Revision::getSize
+	 * MCR migration note: this replaced Revision::getSize
 	 *
 	 * @return int The nominal size, may be computed on the fly if not yet known.
 	 */
@@ -378,7 +361,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns the base36 sha1 of this revision.
 	 *
-	 * MCR migration note: this replaces Revision::getSha1
+	 * MCR migration note: this replaced Revision::getSha1
 	 *
 	 * @return string The revision hash, may be computed on the fly if not yet known.
 	 */
@@ -397,8 +380,10 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @return MutableRevisionSlots
 	 */
-	public function getSlots() {
+	public function getSlots(): RevisionSlots {
 		// Overwritten just guarantee the more narrow return type.
+		// TODO Update return typehint once full return type covariance is allowed (PHP 7.4+, T278139)
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return parent::getSlots();
 	}
 

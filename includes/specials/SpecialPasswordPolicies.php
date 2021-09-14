@@ -30,16 +30,8 @@
  */
 class SpecialPasswordPolicies extends SpecialPage {
 
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/**
-	 * @param NamespaceInfo $nsInfo
-	 */
-	public function __construct( NamespaceInfo $nsInfo ) {
+	public function __construct() {
 		parent::__construct( 'PasswordPolicies' );
-
-		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -93,9 +85,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $group )
-				?: Title::newFromText(
-					$this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $group
-				);
+				?: Title::makeTitle( NS_PROJECT, $group );
 
 			$grouppage = $linkRenderer->makeLink(
 				$grouppageLocalizedTitle,

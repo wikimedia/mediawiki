@@ -385,8 +385,8 @@ abstract class Handler {
 	 * the database.
 	 *
 	 * This should return true for routes that may require synchronous database writes.
-	 * Modules that do not need such writes should also not rely on master database access,
-	 * since only read queries are needed and each master DB is a single point of failure.
+	 * Modules that do not need such writes should also not rely on primary database access,
+	 * since only read queries are needed and each primary DB is a single point of failure.
 	 *
 	 * @stable to override
 	 *

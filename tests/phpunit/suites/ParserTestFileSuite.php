@@ -44,13 +44,13 @@ class ParserTestFileSuite extends TestSuite {
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$this->ptTeardownScope = $this->ptRunner->addArticles(
 			$this->ptFileInfo[ 'articles']
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}

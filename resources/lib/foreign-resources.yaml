@@ -93,6 +93,15 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
+fetch-polyfill:
+  type: tar
+  src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
+  integrity: sha384-MKKGEwKprHZSo8G05laATm+iES1Lbsp/Dy7riDibahMr2TyJS7HClsxKjcGk+3FJ
+  dest:
+    package/dist/fetch.umd.js:
+    package/LICENSE:
+    package/README.md:
+
 jquery:
   type: multi-file
   files:
@@ -212,18 +221,18 @@ mustache:
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-5.0.0.tgz
-  integrity: sha384-otTlw6PtjKOqRQCEpsKOR7LuxE673tqlgfl/aIH33tR8JuPAJ7vB+Gvr4JNWw6FO
+  src: https://registry.npmjs.org/oojs/-/oojs-6.0.0.tgz
+  integrity: sha384-J4GtN11YFt6zOVI6/SjOZ7gXzdYweZJorgUCr5SSV9vBTcth9V5JaZ83tI2jTvI2
   dest:
-    package/dist/oojs.jquery.js:
+    package/dist/oojs.js:
     package/AUTHORS.txt:
     package/LICENSE-MIT:
     package/README.md:
 
 oojs-router:
   type: tar
-  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.2.0.tgz
-  integrity: sha384-VngYqdQ3vTDMXbm4e4FUZCCGos7fB0Jkr9V+kBL5MElprK1h0yQZOzBNnMHtSJS/
+  src: https://registry.npmjs.org/oojs-router/-/oojs-router-0.3.0.tgz
+  integrity: sha384-FeAuFD6G2sGGXCWvxncx9QOTEAoq5VQdNWkXEhvi4XAoOSqe8RGms5JgmL8Fl8FB
   dest:
     package/dist/oojs-router.js:
     package/LICENSE:
@@ -232,8 +241,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.41.3.tgz
-  integrity: sha384-CJne9s3GeljOvBIZL5z3Kjma0T6F2HEH1aboRV6ZDEcTqciLg7zZGiKmfCjKKqDC
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.42.0.tgz
+  integrity: sha384-tu/8BxaO7ZZItJFfcc8QYeLwD/dvLevmNPcBbwWc6GSNO1vUkG25+v68mfydCFJG
 
   dest:
     # Main stuff
@@ -292,11 +301,11 @@ qunitjs:
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: http://code.jquery.com/qunit/qunit-2.10.0.js
-      integrity: sha256-X1fQXHSYGxa4V2bqkEAQW0DQGSxJrKveasahr959o28=
+      src: https://code.jquery.com/qunit/qunit-2.16.0.js
+      integrity: sha256-lICrUxRopy6OGP/GNqW+v7FTK14pcJXy5ytnZ2g8cKA=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.10.0.css
-      integrity: sha256-0qVb1rgTvRqgmXb5us49Z/TADxRfGlAWvjxUqrgCnYQ=
+      src: https://code.jquery.com/qunit/qunit-2.16.0.css
+      integrity: sha256-NiFdVPdwYxHNq6bJlYDGZn5uAu7Aaz/a8NPa6X1fMS4=
 
 sinonjs:
   type: file
@@ -328,11 +337,13 @@ vuex:
 
 wvui:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.1.0.tgz
-  integrity: sha512-jNbALEl4xkcGwguiOSNvUE7S01IL2Np8C+mKXhGax3ycVVzwNLdNkmw3Is7wWdtatgjb2dXxL2L2Jd5sllqu0g==
+  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.3.0.tgz
+  integrity: sha512-RiVvKReEn7KtvPzYghLr+e5FOYh71BWzaT1/uG/A2d8D6QM+0U5arF0MKJnB6drNvkQZPM/YcWu/IbV3zItcOA==
 
   dest:
-    package/readme.md:
+    package/README.md:
     package/LICENSE:
     package/dist/commonjs2/wvui.commonjs2.js:
     package/dist/commonjs2/wvui.css:
+    package/dist/commonjs2/wvui-search.commonjs2.js:
+    package/dist/commonjs2/wvui-search.css:

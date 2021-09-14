@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (贛語（繁體）‎)
+/** Traditional Gan script (贛語（繁體）)
  *
  * To improve a translation please visit https://translatewiki.net
  *

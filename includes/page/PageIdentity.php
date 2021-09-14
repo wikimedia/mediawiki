@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use MediaWiki\DAO\WikiAwareEntity;
 use RuntimeException;
 use Wikimedia\Assert\PreconditionException;
 
@@ -62,20 +61,7 @@ use Wikimedia\Assert\PreconditionException;
  *
  * @since 1.36
  */
-interface PageIdentity extends WikiAwareEntity {
-
-	/**
-	 * Get the ID of the wiki this page belongs to.
-	 *
-	 * @note When getId() would throw, the behavior of this method is undefined.
-	 * This is necessary to allow the Title class to implement this interface.
-	 *
-	 * @see RevisionRecord::getWikiId()
-	 *
-	 * @return string|false The wiki's logical name,
-	 *         or self::LOCAL to indicate the local wiki.
-	 */
-	public function getWikiId();
+interface PageIdentity extends PageReference {
 
 	/**
 	 * Returns the page ID.
@@ -143,50 +129,5 @@ interface PageIdentity extends WikiAwareEntity {
 	 * @return bool
 	 */
 	public function exists(): bool;
-
-	/**
-	 * Returns the page's namespace number.
-	 *
-	 * The value returned by this method should represent a valid namespace,
-	 * but this cannot be guaranteed in all cases.
-	 *
-	 * @note When getId() would throw, the behavior of this method is undefined.
-	 * This is necessary to allow the Title class to implement this interface.
-	 *
-	 * @return int
-	 */
-	public function getNamespace(): int;
-
-	/**
-	 * Get the page title in DB key form.
-	 *
-	 * @note When getId() would throw, the behavior of this method is undefined.
-	 * This is necessary to allow the Title class to implement this interface.
-	 *
-	 * @return string
-	 */
-	public function getDBkey(): string;
-
-	/**
-	 * Checks whether the given PageIdentity refers to the same page as this PageIdentity.
-	 *
-	 * Two PageIdentity instances are considered to refer to the same page if
-	 * the page exists, they belong to the same wiki, and have the same ID;
-	 * or the page does not exist, they belong to the same wiki, and have the
-	 * same namespace and DB key.
-	 *
-	 * @param PageIdentity $other
-	 *
-	 * @return bool
-	 */
-	public function isSamePageAs( PageIdentity $other );
-
-	/**
-	 * Returns an informative human readable representation of the page identity,
-	 * for use in logging and debugging.
-	 *
-	 * @return string
-	 */
-	public function __toString(): string;
 
 }

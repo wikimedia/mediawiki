@@ -107,11 +107,9 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			] ),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getTitleFactory(),
-
 			$parserCacheFactory,
-			$this->getServiceContainer()->getWikiPageFactory(),
-			$idGenerator
+			$idGenerator,
+			$this->getServiceContainer()->getPageStore()
 		);
 
 		if ( $parsoid !== null ) {

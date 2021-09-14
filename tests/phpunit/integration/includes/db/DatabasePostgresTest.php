@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		if ( !$this->db instanceof DatabasePostgres ) {
 			$this->markTestSkipped( 'Not PostgreSQL' );

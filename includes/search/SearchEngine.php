@@ -419,7 +419,6 @@ abstract class SearchEngine {
 
 			foreach ( $allkeywords as $kw ) {
 				if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
-					$extractedNamespace = null;
 					$parsed = substr( $query, strlen( $kw ) );
 					$allQuery = true;
 					break;
@@ -619,8 +618,10 @@ abstract class SearchEngine {
 		$results = $this->completionSearchBackendOverfetch( $search );
 		$fallbackLimit = 1 + $this->limit - $results->getSize();
 		if ( $fallbackLimit > 0 ) {
-			$fallbackSearches = MediaWikiServices::getInstance()->getContentLanguage()->
-				autoConvertToAllVariants( $search );
+			$services = MediaWikiServices::getInstance();
+			$fallbackSearches = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() )
+				->autoConvertToAllVariants( $search );
 			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {
@@ -870,7 +871,7 @@ abstract class SearchEngine {
 	 * @since 1.35
 	 * @return HookContainer
 	 */
-	protected function getHookContainer() : HookContainer {
+	protected function getHookContainer(): HookContainer {
 		if ( !$this->hookContainer ) {
 			// This shouldn't be hit in core, but it is needed for CirrusSearch
 			// which commonly creates a CirrusSearch object without cirrus being
@@ -888,7 +889,7 @@ abstract class SearchEngine {
 	 * @since 1.35
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		if ( !$this->hookRunner ) {
 			$this->hookRunner = new HookRunner( $this->getHookContainer() );
 		}

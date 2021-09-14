@@ -4,13 +4,13 @@
  * @covers WebPHandler
  */
 class WebPHandlerTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// Allocated file for testing
 		$this->tempFileName = tempnam( wfTempDir(), 'WEBP' );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		unlink( $this->tempFileName );
 		parent::tearDown();
 	}
@@ -106,22 +106,71 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTestGetImageSize
+	 * @dataProvider provideTestGetSizeAndMetadata
 	 */
-	public function testGetImageSize( $path, $expectedResult ) {
+	public function testGetSizeAndMetadata( $path, $expectedResult ) {
 		$handler = new WebPHandler();
-		$this->assertEquals( $expectedResult, $handler->getImageSize( null, $path ) );
+		$this->assertEquals( $expectedResult, $handler->getSizeAndMetadata( null, $path ) );
 	}
 
-	public function provideTestGetImageSize() {
+	public function provideTestGetSizeAndMetadata() {
 		return [
 			// Public domain files from https://developers.google.com/speed/webp/gallery2
-			[ __DIR__ . '/../../data/media/2_webp_a.webp', [ 386, 395 ] ],
-			[ __DIR__ . '/../../data/media/2_webp_ll.webp', [ 386, 395 ] ],
-			[ __DIR__ . '/../../data/media/webp_animated.webp', [ 300, 225 ] ],
+			[
+				__DIR__ . '/../../data/media/2_webp_a.webp',
+				[
+					'width' => 386,
+					'height' => 395,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => true,
+						'width' => 386,
+						'height' => 395,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 1,
+						],
+					],
+				]
+			],
+			[
+				__DIR__ . '/../../data/media/2_webp_ll.webp',
+				[
+					'width' => 386,
+					'height' => 395,
+					'metadata' => [
+						'compression' => 'lossless',
+						'width' => 386,
+						'height' => 395,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 1,
+						],
+					],
+				]
+			],
+			[
+				__DIR__ . '/../../data/media/webp_animated.webp',
+				[
+					'width' => 300,
+					'height' => 225,
+					'metadata' => [
+						'compression' => 'unknown',
+						'animated' => true,
+						'transparency' => true,
+						'width' => 300,
+						'height' => 225,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 1,
+						],
+					],
+				]
+			],
 
 			// Error cases
-			[ __FILE__, false ],
+			[
+				__FILE__,
+				[ 'metadata' => [ '_error' => '0' ] ],
+			],
 		];
 	}
 

@@ -39,7 +39,7 @@ class LockManagerGroupFactory {
 	 *   the current wiki's domain).
 	 * @return LockManagerGroup
 	 */
-	public function getLockManagerGroup( $domain = false ) : LockManagerGroup {
+	public function getLockManagerGroup( $domain = false ): LockManagerGroup {
 		if ( $domain === false || $domain === null ) {
 			$domain = $this->defaultDomain;
 		}

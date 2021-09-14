@@ -31,15 +31,8 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/**
-	 * @param NamespaceInfo $nsInfo
-	 */
-	public function __construct( NamespaceInfo $nsInfo ) {
+	public function __construct() {
 		parent::__construct( 'Statistics' );
-		$this->nsInfo = $nsInfo;
 	}
 
 	public function execute( $par ) {
@@ -131,10 +124,13 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( 'statistics-header-pages' )
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
-				$this->formatRow( $linkRenderer->makeKnownLink(
-					$specialAllPagesTitle,
-					$this->msg( 'statistics-articles' )->text(),
-					[], [ 'hideredirects' => 1 ] ),
+				$this->formatRow(
+					$this->getConfig()->get( 'MiserMode' )
+						? $this->msg( 'statistics-articles' )->escaped()
+						: $linkRenderer->makeKnownLink(
+							$specialAllPagesTitle,
+							$this->msg( 'statistics-articles' )->text(),
+							[], [ 'hideredirects' => 1 ] ),
 					$this->getLanguage()->formatNum( $this->good ),
 					[ 'class' => 'mw-statistics-articles' ],
 					'statistics-articles-desc' ) .
@@ -209,9 +205,7 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
 			$linkTarget = UserGroupMembership::getGroupPage( $group )
-				?: Title::newFromText(
-					$this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $group
-				);
+				?: Title::makeTitleSafe( NS_PROJECT, $group );
 
 			if ( $linkTarget ) {
 				$grouppage = $linkRenderer->makeLink(

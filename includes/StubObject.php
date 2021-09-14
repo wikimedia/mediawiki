@@ -150,6 +150,50 @@ class StubObject {
 	}
 
 	/**
+	 * Wrapper for __get(), similar to _call() above
+	 *
+	 * @param string $name Name of the property to get
+	 * @return mixed
+	 */
+	public function _get( $name ) {
+		$this->_unstub( "__get($name)", 5 );
+		return $GLOBALS[$this->global]->$name;
+	}
+
+	/**
+	 * Function called by PHP if no property with that name exists in this
+	 * object.
+	 *
+	 * @param string $name Name of the property to get
+	 * @return mixed
+	 */
+	public function __get( $name ) {
+		return $this->_get( $name );
+	}
+
+	/**
+	 * Wrapper for __set(), similar to _call() above
+	 *
+	 * @param string $name Name of the property to set
+	 * @param mixed $value New property value
+	 */
+	public function _set( $name, $value ) {
+		$this->_unstub( "__set($name)", 5 );
+		$GLOBALS[$this->global]->$name = $value;
+	}
+
+	/**
+	 * Function called by PHP if no property with that name exists in this
+	 * object.
+	 *
+	 * @param string $name Name of the property to set
+	 * @param mixed $value New property value
+	 */
+	public function __set( $name, $value ) {
+		$this->_set( $name, $value );
+	}
+
+	/**
 	 * This function creates a new object of the real class and replace it in
 	 * the global variable.
 	 * This is public, for the convenience of external callers wishing to access

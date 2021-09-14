@@ -11,7 +11,7 @@ class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	/** @var LanguageConverterFactory */
 	private $factory;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->factory = new LanguageConverterFactory( false, false, false, static function () {
 			$language = MediaWikiServices::getInstance()->getContentLanguage();
@@ -23,7 +23,7 @@ class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @param string $code code of converter
 	 * @return ILanguageConverter
 	 */
-	private function getLanguageConverter( $code ) : ILanguageConverter {
+	private function getLanguageConverter( $code ): ILanguageConverter {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $code );
 		return $this->factory->getLanguageConverter( $language );

@@ -8,7 +8,7 @@ use ResourceLoaderContext;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "SkinPageReadyConfig" to register handlers implementing this interface.
  *
- * @stable for implementation
+ * @stable to implement
  */
 interface SkinPageReadyConfigHook {
 	/**
@@ -22,5 +22,5 @@ interface SkinPageReadyConfigHook {
 	public function onSkinPageReadyConfig(
 		ResourceLoaderContext $context,
 		array &$config
-	) : void;
+	): void;
 }

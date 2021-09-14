@@ -10,7 +10,7 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 
 	private $dataDir;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->dataDir = __DIR__ . '/../../data/registration';
 	}

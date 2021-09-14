@@ -25,7 +25,7 @@ interface PageMoveCompleteHook {
 	 * @param int $pageid Database ID of the page that's been moved
 	 * @param int $redirid Database ID of the created redirect
 	 * @param string $reason Reason for the move
-	 * @param RevisionRecord $revision Revision created by the move
+	 * @param RevisionRecord $revision RevisionRecord created by the move
 	 * @return bool|void True or no return value to continue or false stop other hook handlers,
 	 *     doesn't abort the move itself
 	 */

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -43,39 +44,39 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
-	 * @param ActorMigration $actorMigration
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( 'AutoblockList' );
 
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -137,9 +138,9 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
-			$this->actorMigration,
 			$this->commentStore,
-			$this->blockUtils
+			$this->blockUtils,
+			$this->blockActionInfo
 		);
 	}
 

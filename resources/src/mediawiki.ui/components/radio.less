@@ -5,8 +5,6 @@
 //
 // Styling radios in a way that works cross browser is a tricky problem to solve.
 // In MediaWiki UI put a radio and label inside a mw-ui-radio div.
-// This renders in all browsers except IE 6-8 which do not support the :checked selector;
-// these are kept backwards-compatible using the `:not( #noop )` selector.
 // You should give the radio and label matching "id" and "for" attributes, respectively.
 //
 // Markup:
@@ -31,11 +29,10 @@
 	vertical-align: middle;
 }
 
-// We use the not selector to cancel out styling on IE 8 and below.
-// We also disable this styling on JavaScript disabled devices. This fixes the issue with
+// We disable this styling on JavaScript disabled devices. This fixes the issue with
 // Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
 // more capable browsers with unstyled radio buttons.
-.client-js .mw-ui-radio:not( #noop ) {
+.client-js .mw-ui-radio {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
 	line-height: @size-input-binary;
@@ -52,7 +49,6 @@
 		height: @size-input-binary;
 		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
-		margin: 0;
 		// Hide `input[ type=radio ]` and instead style the label that follows
 		// Support: VoiceOver. Use `opacity` so that VoiceOver can still identify the radio
 		opacity: 0;

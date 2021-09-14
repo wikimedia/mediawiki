@@ -19,7 +19,7 @@ interface SkinPreloadExistenceHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Title[] &$titles Array of Title objects
+	 * @param Title[] &$titles
 	 * @param Skin $skin
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

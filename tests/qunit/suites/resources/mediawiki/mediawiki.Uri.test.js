@@ -240,9 +240,12 @@
 			foo: 'quux',
 			pif: 'paf'
 		} );
-		assert.strictEqual( uri.toString().indexOf( 'foo=quux' ) !== -1, true, 'extend query arguments' );
-		assert.strictEqual( uri.toString().indexOf( 'foo=bar' ) !== -1, false, 'extend query arguments' );
-		assert.strictEqual( uri.toString().indexOf( 'pif=paf' ) !== -1, true, 'extend query arguments' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'foo=quux' ) !== -1, 'extend query arguments' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.notOk( uri.toString().indexOf( 'foo=bar' ) !== -1, 'extend query arguments' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'pif=paf' ) !== -1, 'extend query arguments' );
 	} );
 
 	QUnit.test( '.getQueryString()', function ( assert ) {
@@ -358,8 +361,10 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		assert.strictEqual( uri.toString().indexOf( 'm=bar' ) !== -1, true, 'toString preserves other values' );
-		assert.strictEqual( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, true, 'toString parameter includes all values of an array query parameter' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'm=bar' ) !== -1, 'toString preserves other values' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
@@ -371,8 +376,10 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		assert.strictEqual( uri.toString().indexOf( 'm=foo&m=bar' ) !== -1, true, 'toString preserves other values' );
-		assert.strictEqual( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, true, 'toString parameter includes all values of an array query parameter' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'm=foo&m=bar' ) !== -1, 'toString preserves other values' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=foo&m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		// Remove query values
@@ -482,10 +489,14 @@
 		assert.strictEqual( uri.getHostPort(), 'www.example.com:81', 'hostport equal to host:port' );
 
 		queryString = uri.getQueryString();
-		assert.strictEqual( queryString.indexOf( 'q1=0' ) !== -1, true, 'query param with numbers' );
-		assert.strictEqual( queryString.indexOf( 'test1' ) !== -1, true, 'query param with null value is included' );
-		assert.strictEqual( queryString.indexOf( 'test1=' ) !== -1, false, 'query param with null value does not generate equals sign' );
-		assert.strictEqual( queryString.indexOf( 'test2=value+%28escaped%29' ) !== -1, true, 'query param is url escaped' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( queryString.indexOf( 'q1=0' ) !== -1, 'query param with numbers' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( queryString.indexOf( 'test1' ) !== -1, 'query param with null value is included' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.notOk( queryString.indexOf( 'test1=' ) !== -1, 'query param with null value does not generate equals sign' );
+		// eslint-disable-next-line qunit/no-ok-equality
+		assert.ok( queryString.indexOf( 'test2=value+%28escaped%29' ) !== -1, 'query param is url escaped' );
 
 		relativePath = uri.getRelativePath();
 		assert.ok( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );

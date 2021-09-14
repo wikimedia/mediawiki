@@ -22,7 +22,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Class representing a row of the 'filearchive' table
@@ -31,6 +33,12 @@ use MediaWiki\Revision\RevisionRecord;
  * @ingroup FileAbstraction
  */
 class ArchivedFile {
+
+	// Audience options for ::getDescription() and ::getUploader()
+	public const FOR_PUBLIC = 1;
+	public const FOR_THIS_USER = 2;
+	public const RAW = 3;
+
 	/** @var int Filearchive row ID */
 	private $id;
 
@@ -55,7 +63,7 @@ class ArchivedFile {
 	/** @var int Height */
 	private $height;
 
-	/** @var string Metadata string */
+	/** @var string */
 	private $metadata;
 
 	/** @var string MIME type */
@@ -67,7 +75,7 @@ class ArchivedFile {
 	/** @var string Upload description */
 	private $description;
 
-	/** @var User|null Uploader */
+	/** @var UserIdentity|null Uploader */
 	private $user;
 
 	/** @var string Time of upload */
@@ -224,6 +232,11 @@ class ArchivedFile {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new archivedfile object.
+	 *
+	 * Since 1.34, fa_user and fa_user_text have not been present in the
+	 * database, but they continue to be available in query results as an
+	 * alias.
+	 *
 	 * @since 1.31
 	 * @stable to override
 	 * @return array[] With three keys:
@@ -233,9 +246,11 @@ class ArchivedFile {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'fa_description' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'fa_user' );
 		return [
-			'tables' => [ 'filearchive' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'filearchive',
+				'filearchive_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'fa_id',
 				'fa_name',
@@ -254,8 +269,13 @@ class ArchivedFile {
 				'fa_deleted',
 				'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 				'fa_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'fa_actor',
+				'fa_user' => 'filearchive_actor.actor_user',
+				'fa_user_text' => 'filearchive_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'filearchive_actor' => [ 'JOIN', 'actor_id=fa_actor' ]
+			] + $commentQuery['joins'],
 		];
 	}
 
@@ -498,16 +518,18 @@ class ArchivedFile {
 	 * @note Prior to MediaWiki 1.23, this method always
 	 *   returned the user id, and was inconsistent with
 	 *   the rest of the file classes.
+	 * @deprecated since 1.37. Use ::getUploader instead.
 	 * @param string $type 'text', 'id', or 'object'
 	 * @return int|string|User|null
 	 * @throws MWException
 	 * @since 1.31 added 'object'
 	 */
 	public function getUser( $type = 'text' ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->load();
 
 		if ( $type === 'object' ) {
-			return $this->user;
+			return $this->user ? User::newFromIdentity( $this->user ) : null;
 		} elseif ( $type === 'text' ) {
 			return $this->user ? $this->user->getName() : '';
 		} elseif ( $type === 'id' ) {
@@ -518,14 +540,45 @@ class ArchivedFile {
 	}
 
 	/**
+	 * @since 1.37
+	 * @stable to override
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
+	 * @return UserIdentity|null
+	 */
+	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+		$this->load();
+		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( File::DELETED_USER ) ) {
+			return null;
+		} elseif ( $audience === self::FOR_THIS_USER && !$this->userCan( File::DELETED_USER, $performer ) ) {
+			return null;
+		} else {
+			return $this->user;
+		}
+	}
+
+	/**
 	 * Return upload description.
 	 *
-	 * @return string|int
+	 * @since 1.37 the method takes $audience and $performer parameters.
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
+	 * @return string
 	 */
-	public function getDescription() {
+	public function getDescription( int $audience = self::FOR_PUBLIC, Authority $performer = null ): string {
 		$this->load();
-		if ( $this->isDeleted( File::DELETED_COMMENT ) ) {
-			return 0;
+		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( File::DELETED_COMMENT ) ) {
+			return '';
+		} elseif ( $audience === self::FOR_THIS_USER && !$this->userCan( File::DELETED_COMMENT, $performer ) ) {
+			return '';
 		} else {
 			return $this->description;
 		}
@@ -534,29 +587,34 @@ class ArchivedFile {
 	/**
 	 * Return the user ID of the uploader.
 	 *
+	 * @deprecated since 1.37. Use ::getUploader with self::RAW audience.
 	 * @return int
 	 */
 	public function getRawUser() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getUser( 'id' );
 	}
 
 	/**
 	 * Return the user name of the uploader.
 	 *
+	 * @deprecated since 1.37. Use ::getUploader with self::RAW audience.
 	 * @return string
 	 */
 	public function getRawUserText() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getUser( 'text' );
 	}
 
 	/**
 	 * Return upload description.
 	 *
+	 * @deprecated since 1.37. Use ::getDescription with self::RAW audience.
 	 * @return string
 	 */
 	public function getRawDescription() {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->load();
-
 		return $this->description;
 	}
 
@@ -586,17 +644,17 @@ class ArchivedFile {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		$this->load();
 		$title = $this->getTitle();
 
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
 			$field,
-			$user,
+			$performer,
 			$title ?: null
 		);
 	}

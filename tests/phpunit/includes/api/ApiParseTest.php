@@ -132,7 +132,7 @@ class ApiParseTest extends ApiTestCase {
 	 * Set up an interwiki entry for testing.
 	 */
 	protected function setupInterwiki() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'interwiki',
 			[
@@ -159,7 +159,7 @@ class ApiParseTest extends ApiTestCase {
 		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ), [] );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
-				->setMethods( [ 'getDefaultModules' ] )
+				->onlyMethods( [ 'getDefaultModules' ] )
 				->getMock();
 			$skin->expects( $this->once() )->method( 'getDefaultModules' )
 				->willReturn( [

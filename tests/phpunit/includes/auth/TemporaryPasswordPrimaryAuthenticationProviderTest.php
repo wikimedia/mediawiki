@@ -3,17 +3,21 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * TODO clean up and reduce duplication
+ *
  * @group AuthManager
  * @group Database
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
  */
 class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
 
 	private $manager = null;
 	private $config = null;
@@ -54,24 +58,30 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,
 				$mwServices->getBlockManager(),
-				$mwServices->getBlockErrorFormatter()
+				$mwServices->getWatchlistManager(),
+				$mwServices->getDBLoadBalancer(),
+				$mwServices->getContentLanguage(),
+				$mwServices->getLanguageConverterFactory(),
+				$mwServices->getBotPasswordStore(),
+				$mwServices->getUserFactory(),
+				$mwServices->getUserIdentityLookup(),
+				$mwServices->getUserOptionsManager()
 			);
 		}
 		$this->validity = \Status::newGood();
 
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
-			->setMethods( $mockedMethods )
-			->setConstructorArgs( [ $params ] )
+			->onlyMethods( $mockedMethods )
+			->setConstructorArgs( [ $mwServices->getDBLoadBalancer(), $params ] )
 			->getMock();
-		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
+		$provider->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$provider->setConfig( $config );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setManager( $this->manager );
-		$provider->setHookContainer( $hookContainer );
+		$this->initProvider(
+			$provider, $config, null, $this->manager, null, $this->getServiceContainer()->getUserNameUtils()
+		);
 
 		return $provider;
 	}
@@ -90,7 +100,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public function testBasics() {
-		$provider = new TemporaryPasswordPrimaryAuthenticationProvider();
+		$provider = $this->getProvider();
 
 		$this->assertSame(
 			PrimaryAuthenticationProvider::TYPE_CREATE,
@@ -116,29 +126,36 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			'AllowRequiringEmailForResets' => false,
 		] );
 
-		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
-		$p->setConfig( $config );
-		$this->assertSame( false, $p->emailEnabled );
-		$this->assertSame( 100, $p->newPasswordExpiry );
-		$this->assertSame( 101, $p->passwordReminderResendTime );
+		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
+			$this->getServiceContainer()->getDBLoadBalancer()
+		);
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
+		$this->initProvider( $provider, $config );
+		$this->assertSame( false, $providerPriv->emailEnabled );
+		$this->assertSame( 100, $providerPriv->newPasswordExpiry );
+		$this->assertSame( 101, $providerPriv->passwordReminderResendTime );
 
-		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider( [
-			'emailEnabled' => true,
-			'newPasswordExpiry' => 42,
-			'passwordReminderResendTime' => 43,
-			'allowRequiringEmailForResets' => true,
-		] ) );
-		$p->setConfig( $config );
-		$this->assertSame( true, $p->emailEnabled );
-		$this->assertSame( 42, $p->newPasswordExpiry );
-		$this->assertSame( 43, $p->passwordReminderResendTime );
-		$this->assertSame( true, $p->allowRequiringEmail );
+		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			[
+				'emailEnabled' => true,
+				'newPasswordExpiry' => 42,
+				'passwordReminderResendTime' => 43,
+				'allowRequiringEmailForResets' => true,
+			]
+		);
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
+		$this->initProvider( $provider, $config );
+		$this->assertSame( true, $providerPriv->emailEnabled );
+		$this->assertSame( 42, $providerPriv->newPasswordExpiry );
+		$this->assertSame( 43, $providerPriv->passwordReminderResendTime );
+		$this->assertSame( true, $providerPriv->allowRequiringEmail );
 	}
 
 	public function testTestUserCanAuthenticate() {
 		$user = self::getMutableTestUser()->getUser();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory = new \PasswordFactory( $config->get( 'PasswordConfig' ), 'A' );
@@ -249,7 +266,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$password = 'TemporaryPassword';
 		$hash = ':A:' . md5( $password );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'user',
 			[ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ],
@@ -425,7 +442,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$oldpass = 'OldTempPassword';
 		$newpass = 'NewTempPassword';
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $cuser ] );
 		$cb = new ScopedCallback( static function () use ( $dbw, $cuser, $oldHash ) {
 			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $cuser ] );
@@ -518,7 +535,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	public function testProviderChangeAuthenticationDataEmail() {
 		$user = self::getMutableTestUser()->getUser();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'user',
 			[ 'user_newpass_time' => $dbw->timestamp( time() - 5 * 3600 ) ],

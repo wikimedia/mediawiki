@@ -114,6 +114,14 @@ class ParserCache {
 	private $wikiPageFactory;
 
 	/**
+	 * @var BagOStuff small in-process cache to store metadata.
+	 * It's needed multiple times during the request, for example
+	 * to build a PoolWorkArticleView key, and then to fetch the
+	 * actual ParserCache entry.
+	 */
+	private $metadataProcCache;
+
+	/**
 	 * @note Temporary feature flag, remove before 1.36 is released.
 	 * @var bool
 	 */
@@ -154,19 +162,6 @@ class ParserCache {
 		WikiPageFactory $wikiPageFactory,
 		$useJson = false
 	) {
-		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
-			// It seems on some page views, the same entry is retreived twice from the ParserCache.
-			// This shouldn't happen but use a process-cache and log duplicate fetches to mitigate
-			// this and figure out why. (T269593)
-			$cache = new CachedBagOStuff( $cache, [
-				'logger' => $logger,
-				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
-				'reportDupes' => true,
-				// Each ParserCache entry uses 2 keys, one for metadata and one for parser output.
-				// So, cache at most 4 different parser outputs in memory. The number was chosen ad hoc.
-				'maxKeys' => 8
-			] );
-		}
 		$this->name = $name;
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
@@ -178,6 +173,7 @@ class ParserCache {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->readJson = $useJson;
 		$this->writeJson = $useJson;
+		$this->metadataProcCache = new HashBagOStuff( [ 'maxKeys' => 2 ] );
 	}
 
 	/**
@@ -186,36 +182,16 @@ class ParserCache {
 	 */
 	public function deleteOptionsKey( PageRecord $page ) {
 		$page->assertWiki( PageRecord::LOCAL );
-		$this->cache->delete( $this->makeMetadataKey( $page ) );
-	}
-
-	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $page
-	 * is just the main wikitext. The E-Tag has to be unique to the whole
-	 * page, even if the article itself is the same, so it uses the
-	 * complete set of user options. We don't want to use the preference
-	 * of a different user on a message just because it wasn't used in
-	 * $page. For example give a Chinese interface to a user with
-	 * English preferences. That's why we take into account *all* user
-	 * options. (r70809 CR)
-	 *
-	 * @deprecated since 1.36
-	 * @param PageRecord $page
-	 * @param ParserOptions $popts
-	 * @return string
-	 */
-	public function getETag( PageRecord $page, $popts ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$page->assertWiki( PageRecord::LOCAL );
-		return 'W/"' . $this->makeParserOutputKey( $page, $popts )
-			. "--" . $page->getTouched() . '"';
+		$key = $this->makeMetadataKey( $page );
+		$this->metadataProcCache->delete( $key );
+		$this->cache->delete( $key );
 	}
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param PageRecord $page
 	 * @param ParserOptions $popts
-	 * @return ParserOutput|bool False on failure
+	 * @return ParserOutput|false
 	 */
 	public function getDirty( PageRecord $page, $popts ) {
 		$page->assertWiki( PageRecord::LOCAL );
@@ -232,55 +208,6 @@ class ParserCache {
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
 		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
-	}
-
-	/**
-	 * Generates a key for caching the given page considering
-	 * the given parser options.
-	 *
-	 * @note Which parser options influence the cache key
-	 * is controlled via ParserOutput::recordOption() or
-	 * ParserOptions::addExtraKey().
-	 *
-	 * @note Used by Article to provide a unique id for the PoolCounter.
-	 * It would be preferable to have this code in get()
-	 * instead of having Article looking in our internals.
-	 *
-	 * @param PageRecord $page
-	 * @param ParserOptions $popts
-	 * @param int|bool $useOutdated One of the USE constants. For backwards
-	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
-	 *  boolean true is treated as USE_ANYTHING.
-	 * @return bool|mixed|string
-	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
-	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
-	 */
-	public function getKey( PageRecord $page, $popts, $useOutdated = self::USE_ANYTHING ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$page->assertWiki( PageRecord::LOCAL );
-
-		if ( is_bool( $useOutdated ) ) {
-			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
-		}
-
-		if ( $popts instanceof User ) {
-			$this->logger->warning(
-				"Use of outdated prototype ParserCache::getKey( &\$wikiPage, &\$user )\n"
-			);
-			$popts = ParserOptions::newFromUser( $popts );
-		}
-
-		$metadata = $this->getMetadata( $page, $useOutdated );
-		if ( !$metadata ) {
-			if ( $useOutdated < self::USE_ANYTHING ) {
-				return false;
-			}
-			$usedOptions = ParserOptions::allCacheVaryingOptions();
-		} else {
-			$usedOptions = $metadata->getUsedOptions();
-		}
-
-		return $this->makeParserOutputKey( $page, $popts, $usedOptions );
 	}
 
 	/**
@@ -303,10 +230,19 @@ class ParserCache {
 		$page->assertWiki( PageRecord::LOCAL );
 
 		$pageKey = $this->makeMetadataKey( $page );
-		$metadata = $this->cache->get(
-			$pageKey,
-			BagOStuff::READ_VERIFIED
-		);
+		$metadata = $this->metadataProcCache->get( $pageKey );
+		if ( !$metadata ) {
+			$metadata = $this->cache->get(
+				$pageKey,
+				BagOStuff::READ_VERIFIED
+			);
+		}
+
+		if ( $metadata === false ) {
+			$this->incrementStats( $page, "miss.absent.metadata" );
+			$this->logger->debug( 'ParserOutput metadata cache miss', [ 'name' => $this->name ] );
+			return null;
+		}
 
 		// NOTE: If the value wasn't serialized to JSON when being stored,
 		//       we may already have a ParserOutput object here. This used
@@ -372,7 +308,7 @@ class ParserCache {
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
 		$pageid = $page->getId( PageRecord::LOCAL );
 		// TODO: remove the split T263581
-		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
+		$renderkey = (int)( $wgRequest->getRawVal( 'action' ) == 'render' );
 		$title = $this->titleFactory->castFromPageIdentity( $page );
 		$hash = $options->optionsHash( $usedOptions, $title );
 
@@ -387,7 +323,7 @@ class ParserCache {
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
-	 * @return ParserOutput|bool False on failure
+	 * @return ParserOutput|false
 	 */
 	public function get( PageRecord $page, $popts, $useOutdated = false ) {
 		$page->assertWiki( PageRecord::LOCAL );
@@ -565,7 +501,9 @@ class ParserCache {
 			BagOStuff::WRITE_ALLOW_SEGMENTS
 		);
 
-		// ...and its pointer
+		// ...and its pointer to the local cache.
+		$this->metadataProcCache->set( $pageKey, $metadataData, $expire );
+		// ...and to the global cache.
 		$this->cache->set( $pageKey, $metadataData, $expire );
 
 		$title = $this->titleFactory->castFromPageIdentity( $page );

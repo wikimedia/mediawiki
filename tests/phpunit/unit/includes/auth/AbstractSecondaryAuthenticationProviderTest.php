@@ -65,14 +65,14 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		}
 
 		$provider = $this->getMockBuilder( AbstractSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'providerChangeAuthenticationData' ] )
+			->onlyMethods( [ 'providerChangeAuthenticationData' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->once() )->method( 'getAuthenticationRequests' )
 			->with(
 				$this->identicalTo( AuthManager::ACTION_REMOVE ),
 				$this->identicalTo( [ 'username' => 'UTSysop' ] )
 			)
-			->will( $this->returnValue( $reqs ) );
+			->willReturn( $reqs );
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
 			->will( $this->returnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );

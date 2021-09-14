@@ -3,6 +3,8 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -13,14 +15,12 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use TextContent;
-use Title;
-use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * @since 1.36
+ * @internal for use by core REST infrastructure
  */
 class PageContentHelper {
 	private const MAX_AGE_200 = 5;
@@ -34,8 +34,8 @@ class PageContentHelper {
 	/** @var TitleFormatter */
 	protected $titleFormatter;
 
-	/** @var TitleFactory */
-	protected $titleFactory;
+	/** @var PageLookup */
+	protected $pageLookup;
 
 	/** @var Authority|null */
 	protected $authority = null;
@@ -43,28 +43,28 @@ class PageContentHelper {
 	/** @var string[] */
 	protected $parameters = null;
 
-	/** @var RevisionRecord|bool|null */
-	protected $targetRevision = null;
+	/** @var RevisionRecord|false|null */
+	protected $targetRevision = false;
 
-	/** @var Title|bool|null */
-	protected $titleObject = null;
+	/** @var ExistingPageRecord|false|null */
+	protected $pageRecord = false;
 
 	/**
 	 * @param Config $config
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
-	 * @param TitleFactory $titleFactory
+	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory
+		PageLookup $pageLookup
 	) {
 		$this->config = $config;
 		$this->revisionLookup = $revisionLookup;
 		$this->titleFormatter = $titleFormatter;
-		$this->titleFactory = $titleFactory;
+		$this->pageLookup = $pageLookup;
 	}
 
 	/**
@@ -77,36 +77,38 @@ class PageContentHelper {
 	}
 
 	/**
-	 * @return string|null Title text or null if unable to retrieve title
+	 * @return string|null title text or null if unable to retrieve title
 	 */
 	public function getTitleText(): ?string {
 		return $this->parameters['title'] ?? null;
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	public function getTitle() {
-		if ( $this->titleObject === null ) {
+	public function getPage(): ?ExistingPageRecord {
+		if ( $this->pageRecord === false ) {
 			$titleText = $this->getTitleText();
-			$this->titleObject =
-				$this->titleFactory->newFromText( $titleText ) ?? false;
+			if ( !$titleText ) {
+				return null;
+			}
+			$this->pageRecord = $this->pageLookup->getExistingPageByText( $titleText );
 		}
-		return $this->titleObject;
+		return $this->pageRecord;
 	}
 
 	/**
 	 * Returns the target revision. No permission checks are applied.
 	 *
-	 * @return RevisionRecord|bool latest revision or false if unable to retrieve revision
+	 * @return RevisionRecord|null latest revision or null if unable to retrieve revision
 	 */
-	public function getTargetRevision() {
-		if ( $this->targetRevision === null ) {
-			$title = $this->getTitle();
-			if ( $title && $title->getArticleID() ) {
-				$this->targetRevision = $this->revisionLookup->getRevisionByTitle( $title );
+	public function getTargetRevision(): ?RevisionRecord {
+		if ( $this->targetRevision === false ) {
+			$page = $this->getPage();
+			if ( $page ) {
+				$this->targetRevision = $this->revisionLookup->getRevisionByTitle( $page );
 			} else {
-				$this->targetRevision = false;
+				$this->targetRevision = null;
 			}
 		}
 		return $this->targetRevision;
@@ -119,7 +121,7 @@ class PageContentHelper {
 
 	/**
 	 * @return TextContent
-	 * @throws LocalizedHttpException slot content is not TextContent or Revision/Slot is inaccessible
+	 * @throws LocalizedHttpException slot content is not TextContent or RevisionRecord/Slot is inaccessible
 	 */
 	public function getContent(): TextContent {
 		$revision = $this->getTargetRevision();
@@ -160,9 +162,8 @@ class PageContentHelper {
 	 * @return bool
 	 */
 	public function isAccessible(): bool {
-		$title = $this->getTitle();
-		return $title && $title->getArticleID()
-			&& $this->authority->probablyCan( 'read', $title );
+		$page = $this->getPage();
+		return $page && $this->authority->probablyCan( 'read', $page );
 	}
 
 	/**
@@ -203,25 +204,26 @@ class PageContentHelper {
 	 * @return bool
 	 */
 	public function hasContent(): bool {
-		$title = $this->getTitle();
-		return $title && $title->getArticleID();
+		return (bool)$this->getPage();
 	}
 
 	/**
 	 * @return array
 	 */
 	public function constructMetadata(): array {
-		$titleObject = $this->getTitle();
+		$page = $this->getPage();
 		$revision = $this->getTargetRevision();
 		return [
-			'id' => $titleObject->getArticleID(),
-			'key' => $this->titleFormatter->getPrefixedDBkey( $titleObject ),
-			'title' => $this->titleFormatter->getPrefixedText( $titleObject ),
+			'id' => $page->getId(),
+			'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
+			'title' => $this->titleFormatter->getPrefixedText( $page ),
 			'latest' => [
 				'id' => $revision->getId(),
 				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() )
 			],
-			'content_model' => $titleObject->getContentModel(),
+			'content_model' => $this->getTargetRevision()
+				->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
+				->getModel(),
 			'license' => [
 				'url' => $this->config->get( 'RightsUrl' ),
 				'title' => $this->config->get( 'RightsText' )
@@ -272,7 +274,7 @@ class PageContentHelper {
 			);
 		}
 
-		if ( !$this->authority->authorizeRead( 'read', $this->getTitle() ) ) {
+		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),
 				403

@@ -35,7 +35,7 @@ class ParserPreloadTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $title;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$services = MediaWikiServices::getInstance();
 

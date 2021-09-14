@@ -46,8 +46,13 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		$this->hasAccessibleSharedCache = $info['hasSharedCache'];
 	}
 
+	public function getPrimaryDB() {
+		return $this->getDBLoadBalancer()->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
+	}
+
 	public function getMasterDB() {
-		return $this->getDBLoadBalancer()->getConnectionRef( DB_MASTER, [], $this->dbDomain );
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryDB();
 	}
 
 	public function getReplicaDB() {

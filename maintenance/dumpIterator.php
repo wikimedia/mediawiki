@@ -26,6 +26,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -79,7 +80,10 @@ abstract class DumpIterator extends Maintenance {
 			$this->fatalError( "Sorry, I don't support dump filenames yet. "
 				. "Use - and provide it on stdin on the meantime." );
 		}
-		$importer = new WikiImporter( $source, $this->getConfig() );
+
+		$importer = MediaWikiServices::getInstance()
+			->getWikiImporterFactory()
+			->getWikiImporter( $source );
 
 		$importer->setRevisionCallback(
 			[ $this, 'handleRevision' ] );

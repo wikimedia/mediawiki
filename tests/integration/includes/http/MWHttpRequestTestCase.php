@@ -11,7 +11,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	/** @var HttpRequestFactory */
 	private $factory;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->oldHttpEngine = Http::$httpEngine;
 		Http::$httpEngine = static::$httpEngine;
@@ -31,7 +31,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		Http::$httpEngine = $this->oldHttpEngine;
 		parent::tearDown();
 	}
@@ -128,7 +128,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $status->isGood() );
 		$headers = array_change_key_case( $request->getResponseHeaders(), CASE_LOWER );
 		$this->assertArrayHasKey( 'foo', $headers );
-		$this->assertSame( $request->getResponseHeader( 'Foo' ), 'bar' );
+		$this->assertSame( 'bar', $request->getResponseHeader( 'Foo' ) );
 	}
 
 	public function testSetHeader() {
@@ -143,7 +143,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$request = $this->factory->create( 'http://httpbin.org/status/418' );
 		$status = $request->execute();
 		$this->assertFalse( $status->isOK() );
-		$this->assertSame( $request->getStatus(), 418 );
+		$this->assertSame( 418, $request->getStatus() );
 	}
 
 	public function testSetUserAgent() {

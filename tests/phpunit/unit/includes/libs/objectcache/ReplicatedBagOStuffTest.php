@@ -8,7 +8,7 @@ class ReplicatedBagOStuffTest extends \MediaWikiUnitTestCase {
 	/** @var ReplicatedBagOStuff */
 	private $cache;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->writeCache = new HashBagOStuff();

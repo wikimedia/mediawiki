@@ -20,8 +20,6 @@
 
 namespace Wikimedia\UUID;
 
-use BagOStuff;
-use EmptyBagOStuff;
 use InvalidArgumentException;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
@@ -34,8 +32,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.35
  */
 class GlobalIdGenerator {
-	/** @var BagOStuff Server-local persistent cache instance */
-	protected $srvCache;
 	/** @var callable Callback for running shell commands */
 	protected $shellCallback;
 
@@ -60,7 +56,8 @@ class GlobalIdGenerator {
 	/** @var array Cached file handles */
 	protected $fileHandles = []; // cached file handles
 
-	public const QUICK_VOLATILE = 1; // use an APC like in-memory counter if available
+	/** @var int B/C constant (deprecated since 1.36) */
+	public const QUICK_VOLATILE = 1;
 
 	/**
 	 * Avoid using __CLASS__ so namespace separators aren't interpreted
@@ -81,10 +78,16 @@ class GlobalIdGenerator {
 
 	/**
 	 * @param string $tempDirectory A writable temporary directory
-	 * @param BagOStuff $srvCache A server-local APC-like cache instance
 	 * @param callback $shellCallback A callback that takes a shell command and returns the output
 	 */
-	public function __construct( $tempDirectory, BagOStuff $srvCache, callable $shellCallback ) {
+	public function __construct( $tempDirectory, $shellCallback ) {
+		if ( func_num_args() >= 3 && !is_callable( $shellCallback ) ) {
+			trigger_error(
+				__CLASS__ . ' with a BagOStuff instance was deprecated in MediaWiki 1.37.',
+				E_USER_DEPRECATED
+			);
+			$shellCallback = func_get_arg( 2 );
+		}
 		if ( !strlen( $tempDirectory ) ) {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
@@ -96,7 +99,6 @@ class GlobalIdGenerator {
 		$this->lockFile128 = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-128';
 		$this->lockFileUUID = $tempDirectory . '/' . self::FILE_PREFIX . '-UUID-128';
 
-		$this->srvCache = $srvCache;
 		$this->shellCallback = $shellCallback;
 	}
 
@@ -115,8 +117,7 @@ class GlobalIdGenerator {
 	 * @return string Number
 	 * @throws RuntimeException
 	 */
-	public function newTimestampedUID88( $base = 10 ) {
-		Assert::parameterType( 'integer', $base, '$base' );
+	public function newTimestampedUID88( int $base = 10 ) {
 		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
@@ -162,8 +163,7 @@ class GlobalIdGenerator {
 	 * @return string Number
 	 * @throws RuntimeException
 	 */
-	public function newTimestampedUID128( $base = 10 ) {
-		Assert::parameterType( 'integer', $base, '$base' );
+	public function newTimestampedUID128( int $base = 10 ) {
 		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
@@ -373,55 +373,39 @@ class GlobalIdGenerator {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
 		}
 
-		$counter = null; // post-increment persistent counter value
-
-		// Use APC/etc if requested, available, and not in CLI mode;
-		// Counter values would not survive across script instances in CLI mode.
-		if (
-			( $flags & self::QUICK_VOLATILE ) &&
-			!( $this->srvCache instanceof EmptyBagOStuff )
-		) {
-			$cache = $this->srvCache;
-			$counter = $cache->incrWithInit( $bucket, $cache::TTL_INDEFINITE, $count, $count );
-			if ( $counter === false ) {
-				throw new RuntimeException( 'Unable to set value to ' . get_class( $cache ) );
-			}
+		$path = $this->tmpDir . '/' . self::FILE_PREFIX . '-' . rawurlencode( $bucket ) . '-48';
+		// Get the UID lock file handle
+		if ( isset( $this->fileHandles[$path] ) ) {
+			$handle = $this->fileHandles[$path];
+		} else {
+			$handle = fopen( $path, 'cb+' );
+			$this->fileHandles[$path] = $handle ?: null; // cache
 		}
-
-		// Note: use of fmod() avoids "division by zero" on 32 bit machines
-		if ( $counter === null ) {
-			$path = $this->tmpDir . '/' . self::FILE_PREFIX . '-' . rawurlencode( $bucket ) . '-48';
-			// Get the UID lock file handle
-			if ( isset( $this->fileHandles[$path] ) ) {
-				$handle = $this->fileHandles[$path];
-			} else {
-				$handle = fopen( $path, 'cb+' );
-				$this->fileHandles[$path] = $handle ?: null; // cache
-			}
-			// Acquire the UID lock file
-			if ( $handle === false ) {
-				throw new RuntimeException( "Could not open '{$path}'." );
-			}
-			if ( !flock( $handle, LOCK_EX ) ) {
-				fclose( $handle );
-				throw new RuntimeException( "Could not acquire '{$path}'." );
-			}
-			// Fetch the counter value and increment it...
-			rewind( $handle );
-			$counter = floor( (float)trim( fgets( $handle ) ) ) + $count; // fetch as float
-			// Write back the new counter value
-			ftruncate( $handle, 0 );
-			rewind( $handle );
-			fwrite( $handle, fmod( $counter, 2 ** 48 ) ); // warp-around as needed
-			fflush( $handle );
-			// Release the UID lock file
-			flock( $handle, LOCK_UN );
+		// Acquire the UID lock file
+		if ( $handle === false ) {
+			throw new RuntimeException( "Could not open '{$path}'." );
 		}
+		if ( !flock( $handle, LOCK_EX ) ) {
+			fclose( $handle );
+			throw new RuntimeException( "Could not acquire '{$path}'." );
+		}
+		// Fetch the counter value and increment it...
+		rewind( $handle );
+		$counter = floor( (float)trim( fgets( $handle ) ) ) + $count; // fetch as float
+		// Write back the new counter value
+		ftruncate( $handle, 0 );
+		rewind( $handle );
+		// Use fmod() to avoid "division by zero" on 32 bit machines
+		fwrite( $handle, fmod( $counter, 2 ** 48 ) ); // warp-around as needed
+		fflush( $handle );
+		// Release the UID lock file
+		flock( $handle, LOCK_UN );
 
 		$ids = [];
 		$divisor = 2 ** $bits;
 		$currentId = floor( $counter - $count ); // pre-increment counter value
 		for ( $i = 0; $i < $count; ++$i ) {
+			// Use fmod() to avoid "division by zero" on 32 bit machines
 			$ids[] = fmod( ++$currentId, $divisor );
 		}
 
@@ -740,6 +724,7 @@ class GlobalIdGenerator {
 	}
 
 	public function __destruct() {
+		// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 		array_map( 'fclose', array_filter( $this->fileHandles ) );
 	}
 }

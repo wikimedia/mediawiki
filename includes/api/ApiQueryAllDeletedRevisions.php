@@ -23,10 +23,14 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -35,12 +39,50 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param RevisionStore $revisionStore
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ParserFactory $parserFactory
+	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param NameTableStore $changeTagDefStore
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ContentTransformer $contentTransformer
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'adr' );
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		RevisionStore $revisionStore,
+		IContentHandlerFactory $contentHandlerFactory,
+		ParserFactory $parserFactory,
+		SlotRoleRegistry $slotRoleRegistry,
+		NameTableStore $changeTagDefStore,
+		NamespaceInfo $namespaceInfo,
+		ContentTransformer $contentTransformer
+	) {
+		parent::__construct(
+			$query,
+			$moduleName,
+			'adr',
+			$revisionStore,
+			$contentHandlerFactory,
+			$parserFactory,
+			$slotRoleRegistry,
+			$contentTransformer
+		);
+		$this->revisionStore = $revisionStore;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	/**
@@ -51,8 +93,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$services = MediaWikiServices::getInstance();
-		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -111,7 +151,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$arQuery = $revisionStore->getArchiveQueryInfo();
+			$arQuery = $this->revisionStore->getArchiveQueryInfo();
 			$this->addTables( $arQuery['tables'] );
 			$this->addJoinConds( $arQuery['joins'] );
 			$this->addFields( $arQuery['fields'] );
@@ -125,6 +165,10 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			} else {
 				$this->addFields( [ 'ar_timestamp', 'ar_rev_id', 'ar_id' ] );
 			}
+			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
+				$this->addTables( 'actor' );
+				$this->addJoinConds( [ 'actor' => 'actor_id=ar_actor' ] );
+			}
 		}
 
 		if ( $this->fld_tags ) {
@@ -136,9 +180,8 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = $services->getChangeTagDefStore();
 			try {
-				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
@@ -160,8 +203,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$miser_ns = null;
 
 		if ( $mode == 'all' ) {
-			$namespaces = $params['namespace'] ??
-				$services->getNamespaceInfo()->getValidNamespaces();
+			$namespaces = $params['namespace'] ?? $this->namespaceInfo->getValidNamespaces();
 			$this->addWhereFld( 'ar_namespace', $namespaces );
 
 			// For from/to/prefix, we have to consider the potential
@@ -227,19 +269,13 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['user'] !== null ) {
-			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['user'], false );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( $actorQuery['conds'] );
+			// We could get the actor ID from the ActorStore, but it's probably
+			// uncached at this point, and the non-generator case needs an actor
+			// join anyway so adding this join here is normally free. This should
+			// use the ar_actor_timestamp index.
+			$this->addWhereFld( 'actor_name',  $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			// Here there's no chance of using ar_usertext_timestamp.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['excludeuser'] );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
@@ -358,7 +394,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->ar_rev_id;
 				}
 			} else {
-				$revision = $revisionStore->newRevisionFromArchiveRow( $row );
+				$revision = $this->revisionStore->newRevisionFromArchiveRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
@@ -407,7 +443,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -441,7 +476,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'nonuseronly' ] ],
 			],
 			'tag' => null,

@@ -213,7 +213,7 @@
 	"config-admin-error-password": "Error interno al establecer una contraseña para el administrador \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Contraseña de administración de wiki inválida: $1",
 	"config-admin-error-bademail": "Has escrito una dirección de correo electrónico no válida.",
-	"config-subscribe": "Suscribirse a la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios de versiones].",
+	"config-subscribe": "Suscribirse a la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lista de correo de anuncios de versiones].",
 	"config-subscribe-help": "Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.\nTe recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.",
 	"config-subscribe-noemail": "Has intentado suscribirte a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.\nProporciona una dirección de correo electrónico si quieres suscribirte a la lista de correo.",
 	"config-pingback": "Compartir datos sobre esta instalación con los desarrolladores de MediaWiki.",
@@ -318,7 +318,7 @@
 	"config-install-updates": "Evitar ejecutar actualizaciones innecesarias",
 	"config-install-updates-failed": "<strong>Error:</strong> falló la inserción de claves de actualización en las tablas con el siguiente error: $1",
 	"config-install-sysop": "Creando la cuenta de usuario del administrador",
-	"config-install-subscribe-fail": "No se ha podido suscribir a mediawiki-announce: $1",
+	"config-install-subscribe-fail": "No se ha podido suscribir a mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL no está instalado y <code>allow_url_fopen</code> no está disponible.",
 	"config-install-mainpage": "Creando página principal con contenido predeterminado",
 	"config-install-mainpage-exists": "La página principal ya existe, se omite",
@@ -340,5 +340,5 @@
 	"config-extension-not-found": "No se encontró el archivo de registro para la extensión \"$1\"",
 	"config-extension-dependency": "Error de dependencia al instalar la extensión \"$1\": $2",
 	"mainpagetext": "<strong>MediaWiki se ha instalado.</strong>",
-	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki a tu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprende a combatir el spam en tu wiki]"
+	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki a tu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprende a combatir el spam en tu wiki]"
 }

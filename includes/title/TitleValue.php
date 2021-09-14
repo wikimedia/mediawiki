@@ -21,7 +21,7 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
@@ -104,27 +104,41 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
-	 * Constructs a TitleValue from a local PageIdentity.
+	 * Constructs a TitleValue from a local PageReference.
 	 *
-	 * @note PageIdentities from another wiki are not supported, this method will
-	 *       throw if $page->getWikiId() doesn't return false.
+	 * @note The PageReference may belong to another wiki. In that case, the resulting TitleValue
+	 *       is also logically bound to that other wiki. No attempt is made to map the
+	 *       PageReference wiki ID to an interwiki prefix for the TitleValue.
 	 *
 	 * @since 1.36
 	 *
-	 * @param PageIdentity $page
+	 * @param PageReference $page
 	 *
-	 * @throws InvalidArgumentException if $page does not belong to the local wiki.
 	 * @return TitleValue
 	 */
-	public static function newFromPage( PageIdentity $page ) : TitleValue {
-		if ( $page->getWikiId() ) {
-			// TODO: we could allow "foreign" PageIdentities by providing an interwiki prefix,
-			// but the exact semantics seem unclear. For instance, would the interwiki prefix
-			// be valid in the context of the local wiki, or the wiki indicated by getWikiId()?
-			throw new InvalidArgumentException( 'Not a local PageIdentity: ' . $page );
+	public static function newFromPage( PageReference $page ): TitleValue {
+		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
+	}
+
+	/**
+	 * Casts a PageReference to a LinkTarget.
+	 * If $page is null, null is returned.
+	 * If $page is also an instance of LinkTarget, $page is returned unchanged.
+	 *
+	 * @see newFromPage()
+	 *
+	 * @since 1.37
+	 *
+	 * @param ?PageReference $page
+	 *
+	 * @return ?LinkTarget
+	 */
+	public static function castPageToLinkTarget( ?PageReference $page ): ?LinkTarget {
+		if ( !$page || $page instanceof LinkTarget ) {
+			return $page;
 		}
 
-		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
+		return self::newFromPage( $page );
 	}
 
 	/**

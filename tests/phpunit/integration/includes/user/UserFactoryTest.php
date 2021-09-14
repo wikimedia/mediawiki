@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
@@ -15,7 +14,7 @@ use Wikimedia\IPUtils;
 class UserFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private function getUserFactory() {
-		return MediaWikiServices::getInstance()->getUserFactory();
+		return $this->getServiceContainer()->getUserFactory();
 	}
 
 	public function testNewFromName() {

@@ -47,7 +47,7 @@ if ( isset( $options['d'] ) ) {
 		MediaWikiServices::resetGlobalInstance();
 	}
 	if ( $d > 1 ) {
-		wfGetDB( DB_MASTER )->setFlag( DBO_DEBUG );
+		wfGetDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
 		wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
 	}
 }
@@ -80,6 +80,7 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		readline_write_history( $__historyFile );
 	}
 	try {
+		// @phan-suppress-next-line SecurityCheck-RCE
 		$__val = eval( $__line . ";" );
 	} catch ( Exception $__e ) {
 		fwrite( STDERR, "Caught exception " . get_class( $__e ) .

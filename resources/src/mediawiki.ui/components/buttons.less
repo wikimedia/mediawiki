@@ -27,6 +27,28 @@
 	.mw-ui-button();
 	.mw-ui-button-states();
 
+	&.mw-ui-icon-element {
+		&:not( .mw-ui-icon-with-label-desktop ) {
+			// stylelint-disable-next-line declaration-no-important
+			color: transparent !important;
+
+			span {
+				.mixin-screen-reader-text();
+			}
+		}
+
+		@media all and ( max-width: @width-breakpoint-desktop ) {
+			&.mw-ui-icon-with-label-desktop {
+				// stylelint-disable-next-line declaration-no-important
+				color: transparent !important;
+			}
+
+			span {
+				.mixin-screen-reader-text();
+			}
+		}
+	}
+
 	// Styling for specific button types
 	// -----------------------------------------
 
@@ -58,27 +80,33 @@
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
 		color: @color-base;
-		min-height: 32px;
 		border-color: transparent;
 		font-weight: bold;
 
+		&:not( .mw-ui-icon-element ) {
+			min-height: 32px;
+		}
+
+		// If a sibling element is a checklist, the state should also apply to the button.
+		input[ type='checkbox' ]:hover + &,
 		&:hover {
-			background-color: @colorGray15;
-			color: @color-base--hover;
+			background-color: @background-color-quiet--hover;
+			color: @color-base;
 			border-color: transparent;
-			box-shadow: none;
 		}
 
-		&:active {
-			background-color: @colorGray14;
-			color: @color-base--active;
-			border-color: @colorGray7;
-		}
-
+		input[ type='checkbox' ]:focus + &,
 		&:focus {
-			background-color: transparent;
 			color: @color-base;
 			border-color: @border-color-base--focus;
+			box-shadow: @box-shadow-primary--focus;
+		}
+
+		input[ type='checkbox' ]:active + &,
+		&:active {
+			background-color: @background-color-quiet--active;
+			color: @color-base--active;
+			border-color: @colorGray7;
 			box-shadow: none;
 		}
 
@@ -107,19 +135,27 @@
 
 		&.mw-ui-quiet {
 			color: @color-primary;
+			background-color: transparent;
+			border-color: transparent;
 
+			input[ type='checkbox' ]:hover + &,
 			&:hover {
-				background-color: transparent;
+				background-color: @background-color-primary--hover;
+				border-color: transparent;
 				color: @color-primary--hover;
 			}
 
-			&:active {
-				color: @color-primary--active;
+			input[ type='checkbox' ]:focus + &,
+			&:focus {
+				color: @color-primary--focus;
+				border-color: @color-primary--focus;
 			}
 
-			&:focus {
-				background-color: transparent;
-				color: @color-primary--focus;
+			input[ type='checkbox' ]:active + &,
+			&:active {
+				color: @color-base--inverted;
+				background-color: @color-primary--active;
+				border-color: @color-primary--active;
 			}
 		}
 	}
@@ -141,19 +177,27 @@
 
 		&.mw-ui-quiet {
 			color: @color-destructive;
+			background-color: transparent;
+			border-color: transparent;
 
+			input[ type='checkbox' ]:hover + &,
 			&:hover {
-				background-color: transparent;
+				background-color: @background-color-destructive--hover;
+				border-color: transparent;
 				color: @color-destructive--hover;
 			}
 
-			&:active {
-				color: @color-destructive--active;
+			input[ type='checkbox' ]:focus + &,
+			&:focus {
+				color: @color-destructive;
+				border-color: @color-destructive--focus;
 			}
 
-			&:focus {
-				background-color: transparent;
-				color: @color-destructive;
+			input[ type='checkbox' ]:active + &,
+			&:active {
+				color: @color-base--inverted;
+				background-color: @color-destructive--active;
+				border-color: @color-destructive--active;
 			}
 		}
 	}
@@ -196,15 +240,6 @@
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
-	}
-}
-
-input.mw-ui-button,
-button.mw-ui-button {
-	// Buttons in Firefox have extra height
-	&::-moz-focus-inner {
-		margin-top: -1px;
-		margin-bottom: -1px;
 	}
 }
 

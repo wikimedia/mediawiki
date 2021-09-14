@@ -26,6 +26,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -63,7 +64,7 @@ class WantedFilesPage extends WantedQueryPage {
 		# category would be used on main namespace pages, for those tricky wikipedia
 		# admins who like to do {{#ifeq:{{NAMESPACE}}|foo|bar|....}}.
 		$catMessage = $this->msg( 'broken-file-category' )
-			->title( Title::newFromText( "Wanted Files", NS_MAIN ) )
+			->page( PageReferenceValue::localReference( NS_MAIN, "Wanted Files" ) )
 			->inContentLanguage();
 
 		if ( !$catMessage->isDisabled() ) {

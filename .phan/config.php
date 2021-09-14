@@ -40,6 +40,8 @@ $cfg['exclude_file_list'] = array_merge(
 	[
 		// This file has invalid PHP syntax
 		'vendor/squizlabs/php_codesniffer/src/Standards/PSR2/Tests/Methods/MethodDeclarationUnitTest.inc',
+		// This file implements a polyfill for the JsonUnserializable class
+		'vendor/php-parallel-lint/php-parallel-lint/src/polyfill.php'
 	]
 );
 
@@ -95,6 +97,7 @@ $cfg['null_casts_as_any_type'] = true;
 $cfg['scalar_implicit_cast'] = true;
 $cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
 $cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
+$cfg['suppress_issue_types'][] = 'PhanCompatibleAccessMethodOnTraitDefinition'; // T289813
 
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility

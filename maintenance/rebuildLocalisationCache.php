@@ -76,7 +76,7 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		# This script needs to be run to build the inital l10n cache. But if
+		# This script needs to be run to build the initial l10n cache. But if
 		# $wgLanguageCode is not 'en', it won't be able to run because there is
 		# no l10n cache. Break the cycle by forcing $wgLanguageCode = 'en'.
 		global $wgLanguageCode;
@@ -165,7 +165,7 @@ class RebuildLocalisationCache extends Maintenance {
 				mt_srand( getmypid() );
 
 				$this->doRebuild( $codes, $lc, $force );
-				exit( 0 );
+				return;
 			} elseif ( $pid === -1 ) {
 				// Fork failed or one thread, do it serialized
 				$numRebuilt += $this->doRebuild( $codes, $lc, $force );
@@ -200,7 +200,7 @@ class RebuildLocalisationCache extends Maintenance {
 			}
 		}
 		if ( $parentStatus ) {
-			exit( $parentStatus );
+			$this->fatalError( 'Failed.', $parentStatus );
 		}
 	}
 

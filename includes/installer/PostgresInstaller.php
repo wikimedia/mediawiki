@@ -168,7 +168,6 @@ class PostgresInstaller extends DatabaseInstaller {
 				'password' => $password,
 				'dbname' => $dbName,
 				'schema' => $schema,
-				'keywordTableMap' => [ 'user' => 'mwuser' ],
 			] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
@@ -196,6 +195,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
 			$conn->commit( __METHOD__ );
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$this->pgConns[$type] = $conn;
 		}
 
@@ -492,7 +492,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$dbName = $this->getVar( 'wgDBname' );
 
-		$exists = $conn->selectField( '"pg_catalog"."pg_database"', '1',
+		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_database"', '1',
 			[ 'datname' => $dbName ], __METHOD__ );
 		if ( !$exists ) {
 			$safedb = $conn->addIdentifierQuotes( $dbName );
@@ -670,7 +670,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		 */
 		$conn = $status->value;
 
-		$exists = $conn->selectField( '"pg_catalog"."pg_language"', '1',
+		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_language"', '1',
 			[ 'lanname' => 'plpgsql' ], __METHOD__ );
 		if ( $exists ) {
 			// Already exists, nothing to do
@@ -679,7 +679,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// plpgsql is not installed, but if we have a pg_pltemplate table, we
 		// should be able to create it
-		$exists = $conn->selectField(
+		$exists = (bool)$conn->selectField(
 			[ '"pg_catalog"."pg_class"', '"pg_catalog"."pg_namespace"' ],
 			'1',
 			[
@@ -690,7 +690,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			__METHOD__ );
 		if ( $exists ) {
 			try {
-				$conn->query( 'CREATE LANGUAGE plpgsql' );
+				$conn->query( 'CREATE LANGUAGE plpgsql', __METHOD__ );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
 			}

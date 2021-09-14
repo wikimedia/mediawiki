@@ -36,23 +36,14 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		// values before PHPUnit checks; first call uses both defaults, third call
 		// uses the default of 1 for the second parameter
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'pingLimiter' ] )
+			->onlyMethods( [ 'pingLimiter' ] )
 			->getMock();
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )
 			->withConsecutive(
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( 1 ),
-				],
-				[
-					$this->equalTo( 'linkpurge' ),
-					$this->equalTo( 0 ),
-				],
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( 1 )
-				]
+				[ 'edit', 1 ],
+				[ 'linkpurge', 0 ],
+				[ 'editcontentmodel', 1 ]
 			)
 			->will(
 				$this->onConsecutiveCalls(
@@ -76,23 +67,14 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		// values before PHPUnit checks; first call uses both defaults, third call
 		// uses the default of 1 for the second parameter
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'pingLimiter' ] )
+			->onlyMethods( [ 'pingLimiter' ] )
 			->getMock();
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )
 			->withConsecutive(
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( 1 ),
-				],
-				[
-					$this->equalTo( 'linkpurge' ),
-					$this->equalTo( 0 ),
-				],
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( 1 )
-				]
+				[ 'edit', 1 ],
+				[ 'linkpurge', 0 ],
+				[ 'editcontentmodel', 1 ]
 			)
 			->will(
 				$this->onConsecutiveCalls(

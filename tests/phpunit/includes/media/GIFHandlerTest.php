@@ -8,26 +8,25 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/** @var GIFHandler */
 	protected $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->handler = new GIFHandler();
 	}
 
 	/**
-	 * @return string Value of GIFHandler::BROKEN_FILE
+	 * @return array Unserialized metadata array for GIFHandler::BROKEN_FILE
 	 */
-	private function brokenFile() : string {
-		$const = new ReflectionClassConstant( GIFHandler::class, 'BROKEN_FILE' );
-		return $const->getValue();
+	private function brokenFile(): array {
+		return [ '_error' => 0 ];
 	}
 
 	/**
-	 * @covers GIFHandler::getMetadata
+	 * @covers GIFHandler::getSizeAndMetadata
 	 */
 	public function testInvalidFile() {
-		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
-		$this->assertEquals( $this->brokenFile(), $res );
+		$res = $this->handler->getSizeAndMetadata( null, $this->filePath . '/README' );
+		$this->assertEquals( $this->brokenFile(), $res['metadata'] );
 	}
 
 	/**
@@ -36,7 +35,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideIsAnimated
 	 * @covers GIFHandler::isAnimatedImage
 	 */
-	public function testIsAnimanted( $filename, $expected ) {
+	public function testIsAnimated( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
 		$actual = $this->handler->isAnimatedImage( $file );
 		$this->assertEquals( $expected, $actual );
@@ -71,20 +70,21 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @param string $metadata Serialized metadata
 	 * @param int $expected One of the class constants of GIFHandler
-	 * @dataProvider provideIsMetadataValid
-	 * @covers GIFHandler::isMetadataValid
+	 * @dataProvider provideIsFileMetadataValid
+	 * @covers GIFHandler::isFileMetadataValid
 	 */
-	public function testIsMetadataValid( $metadata, $expected ) {
-		$actual = $this->handler->isMetadataValid( null, $metadata );
+	public function testIsFileMetadataValid( $metadata, $expected ) {
+		$file = $this->getMockFileWithMetadata( $metadata );
+		$actual = $this->handler->isFileMetadataValid( $file );
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideIsMetadataValid() {
+	public function provideIsFileMetadataValid() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
-			[ $this->brokenFile(), GIFHandler::METADATA_GOOD ],
+			[ '0', GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
-			[ null, GIFHandler::METADATA_BAD ],
+			[ 'a:0:{}', GIFHandler::METADATA_BAD ],
 			[ 'Something invalid!', GIFHandler::METADATA_BAD ],
 			[
 				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}',
@@ -96,26 +96,61 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @param string $filename
-	 * @param string $expected Serialized array
-	 * @dataProvider provideGetMetadata
-	 * @covers GIFHandler::getMetadata
+	 * @param array $expected Unserialized metadata
+	 * @dataProvider provideGetSizeAndMetadata
+	 * @covers GIFHandler::getSizeAndMetadata
 	 */
-	public function testGetMetadata( $filename, $expected ) {
+	public function testGetSizeAndMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/gif' );
-		$actual = $this->handler->getMetadata( $file, "$this->filePath/$filename" );
-		$this->assertEquals( unserialize( $expected ), unserialize( $actual ) );
+		$actual = $this->handler->getSizeAndMetadata( $file, "$this->filePath/$filename" );
+		$this->assertEquals( $expected, $actual );
 	}
 
-	public static function provideGetMetadata() {
+	public static function provideGetSizeAndMetadata() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'nonanimated.gif',
-				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}'
+				[
+					'width' => 45,
+					'height' => 30,
+					'bits' => 1,
+					'metadata' => [
+						'frameCount' => 1,
+						'looped' => false,
+						'duration' => 0.1,
+						'metadata' => [
+							'GIFFileComment' => [ 'GIF test file ⁕ Created with GIMP' ],
+							'_MW_GIF_VERSION' => 1,
+						],
+					],
+				]
 			],
 			[
 				'animated-xmp.gif',
-				'a:4:{s:10:"frameCount";i:4;s:6:"looped";b:1;s:8:"duration";d:2.399999999999999911182158029987476766109466552734375;s:8:"metadata";a:5:{s:6:"Artist";s:7:"Bawolff";s:16:"ImageDescription";a:2:{s:9:"x-default";s:18:"A file to test GIF";s:5:"_type";s:4:"lang";}s:15:"SublocationDest";s:13:"The interwebs";s:14:"GIFFileComment";a:1:{i:0;s:16:"GIƒ·test·file";}s:15:"_MW_GIF_VERSION";i:1;}}'
+				[
+					'width' => 45,
+					'height' => 30,
+					'bits' => 1,
+					'metadata' => [
+						'frameCount' => 4,
+						'looped' => true,
+						'duration' => 2.4,
+						'metadata' => [
+							'Artist' => 'Bawolff',
+							'ImageDescription' => [
+								'x-default' => 'A file to test GIF',
+								'_type' => 'lang',
+							],
+							'SublocationDest' => 'The interwebs',
+							'GIFFileComment' => [
+								0 => 'GIƒ·test·file',
+							],
+							'_MW_GIF_VERSION' => 1,
+						],
+					],
+				],
+
 			],
 		];
 		// phpcs:enable

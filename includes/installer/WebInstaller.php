@@ -654,7 +654,7 @@ class WebInstaller extends Installer {
 		$html = ( $text instanceof HtmlArmor ) ?
 			HtmlArmor::getHtml( $text ) :
 			$this->parse( $text, true );
-		$icon = ( $icon == false ) ?
+		$icon = ( !$icon ) ?
 			'images/info-32.png' :
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
@@ -1037,12 +1037,12 @@ class WebInstaller extends Installer {
 	 */
 	public function showStatusBox( $status ) {
 		if ( !$status->isGood() ) {
-			$text = $status->getWikiText();
+			$html = $status->getHTML();
 
 			if ( $status->isOK() ) {
-				$box = Html::warningBox( $text, 'config-warning-box' );
+				$box = Html::warningBox( $html, 'config-warning-box' );
 			} else {
-				$box = Html::errorBox( $text, '', 'config-error-box' );
+				$box = Html::errorBox( $html, '', 'config-error-box' );
 			}
 
 			$this->output->addHTML( $box );
@@ -1199,8 +1199,6 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Actually output LocalSettings.php for download
-	 *
-	 * @suppress SecurityCheck-XSS
 	 */
 	private function outputLS() {
 		$this->request->response()->header( 'Content-type: application/x-httpd-php' );

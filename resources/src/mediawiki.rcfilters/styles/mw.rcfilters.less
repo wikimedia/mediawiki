@@ -100,8 +100,7 @@
 		display: none;
 	}
 
-	/* stylelint-disable-next-line selector-class-pattern */
-	.errorbox {
+	.mw-recentchangeslinked-errorbox {
 		display: none;
 	}
 
@@ -121,7 +120,7 @@
 		&:before,
 		&:after {
 			content: '';
-			background-color: @colorGray7;
+			background-color: @color-primary;
 			display: block;
 			float: left;
 			width: @rcfilters-spinner-size;
@@ -173,6 +172,7 @@
 		// The 20em should match the min-width we are setting up
 		// for the .mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton
 		// in mw.rcfilters.ui.WatchlistTopSectionWidget.less
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		width: ~'calc( 100% - 20em )';
 	}
 }
@@ -205,19 +205,6 @@
 	20% {
 		opacity: 0.87;
 		-webkit-transform: scale( 1 );
-	}
-}
-
-@-moz-keyframes rcfiltersBouncedelay {
-	0%,
-	50%,
-	100% {
-		-moz-transform: scale( 0.625 );
-	}
-
-	20% {
-		opacity: 0.87;
-		-moz-transform: scale( 1 );
 	}
 }
 

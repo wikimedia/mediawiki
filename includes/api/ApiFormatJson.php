@@ -120,7 +120,7 @@ class ApiFormatJson extends ApiFormatBase {
 			return parent::getAllowedParams();
 		}
 
-		$ret = parent::getAllowedParams() + [
+		return parent::getAllowedParams() + [
 			'callback' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
 			],
@@ -136,8 +136,8 @@ class ApiFormatJson extends ApiFormatBase {
 				ApiBase::PARAM_TYPE => [ '1', '2', 'latest' ],
 				ApiBase::PARAM_DFLT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-formatversion',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];
-		return $ret;
 	}
 }

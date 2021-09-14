@@ -10,7 +10,7 @@ use Psr\Log\NullLogger;
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'change_tag';
@@ -51,7 +51,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 		$page = WikiPage::factory( $title );
 		$tags = ChangeTags::getTags(
-			$services->getDBLoadBalancer()->getConnection( DB_MASTER ),
+			$services->getDBLoadBalancer()->getConnection( DB_PRIMARY ),
 			null,
 			$page->getLatest()
 		);

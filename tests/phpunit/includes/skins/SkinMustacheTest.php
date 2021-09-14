@@ -84,8 +84,8 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinMustache::getTemplateData
-	 * @covers SkinMustache::buildSearchProps
+	 * @covers SkinTemplate::getTemplateData
+	 * @covers SkinTemplate::buildSearchProps
 	 */
 	public function testGetTemplateData() {
 		$config = new HashConfig();

@@ -98,7 +98,7 @@ $.widget("ui.dialog", {
 				.addClass( uiDialogClasses + options.dialogClass )
 				.css({
 					display: "none",
-					outline: 0, // TODO: move to stylesheet
+					outline: "none", // TODO: move to stylesheet
 					zIndex: options.zIndex
 				})
 				// setting tabIndex makes the div focusable
@@ -124,7 +124,7 @@ $.widget("ui.dialog", {
 			uiDialogTitlebar = ( this.uiDialogTitlebar = $( "<div>" ) )
 				.addClass( "ui-dialog-titlebar  ui-widget-header  " +
 					"ui-corner-all  ui-helper-clearfix" )
-				.bind( "mousedown", function() {
+				.on( "mousedown", function() {
 					// Dialog isn't getting focus when dragging (#8063)
 					uiDialog.focus();
 				})
@@ -370,7 +370,7 @@ $.widget("ui.dialog", {
 		if ( hasButtons ) {
 			$.each( buttons, function( name, props ) {
 				var button, click;
-				props = $.isFunction( props ) ?
+				props = typeof props === 'function' ?
 					{ click: props, text: name } :
 					props;
 				// Default to a non-submitting button
@@ -712,7 +712,7 @@ $.extend( $.ui.dialog.overlay, {
 			setTimeout(function() {
 				// handle $(el).dialog().dialog('close') (see #4065)
 				if ( $.ui.dialog.overlay.instances.length ) {
-					$( document ).bind( $.ui.dialog.overlay.events, function( event ) {
+					$( document ).on( $.ui.dialog.overlay.events, function( event ) {
 						// stop events if the z-index of the target is < the z-index of the overlay
 						// we cannot return true when we don't want to cancel the event (#3523)
 						if ( $( event.target ).zIndex() < $.ui.dialog.overlay.maxZ ) {
@@ -723,13 +723,13 @@ $.extend( $.ui.dialog.overlay, {
 			}, 1 );
 
 			// handle window resize
-			$( window ).bind( "resize.dialog-overlay", $.ui.dialog.overlay.resize );
+			$( window ).on( "resize.dialog-overlay", $.ui.dialog.overlay.resize );
 		}
 
 		var $el = ( this.oldInstances.pop() || $( "<div>" ).addClass( "ui-widget-overlay" ) );
 
 		// allow closing by pressing the escape key
-		$( document ).bind( "keydown.dialog-overlay", function( event ) {
+		$( document ).on( "keydown.dialog-overlay", function( event ) {
 			var instances = $.ui.dialog.overlay.instances;
 			// only react to the event if we're the top overlay
 			if ( instances.length !== 0 && instances[ instances.length - 1 ] === $el &&
@@ -763,7 +763,7 @@ $.extend( $.ui.dialog.overlay, {
 		}
 
 		if ( this.instances.length === 0 ) {
-			$( [ document, window ] ).unbind( ".dialog-overlay" );
+			$( [ document, window ] ).off( ".dialog-overlay" );
 		}
 
 		$el.height( 0 ).width( 0 ).remove();

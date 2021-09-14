@@ -54,7 +54,7 @@ class SkinFactory {
 	 *
 	 * @var string[]
 	 */
-	private $skipSkins = [];
+	private $skipSkins;
 
 	/**
 	 * @internal For ServiceWiring only

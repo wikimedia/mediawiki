@@ -220,7 +220,7 @@ class FSFile {
 	 * fairly neatly.
 	 *
 	 * @param string $path
-	 * @return bool|string False on failure
+	 * @return false|string False on failure
 	 */
 	public static function getSha1Base36FromPath( $path ) {
 		$fsFile = new self( $path );

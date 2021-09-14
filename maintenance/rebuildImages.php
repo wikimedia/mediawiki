@@ -69,11 +69,6 @@ class ImageBuilder extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-
-		global $wgUpdateCompatibleMetadata;
-		// make sure to update old, but compatible img_metadata fields.
-		$wgUpdateCompatibleMetadata = true;
-
 		$this->addDescription( 'Script to update image metadata records' );
 
 		$this->addOption( 'missing', 'Check for files without associated database record' );
@@ -81,7 +76,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	public function execute() {
-		$this->dbw = $this->getDB( DB_MASTER );
+		$this->dbw = $this->getDB( DB_PRIMARY );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
@@ -100,7 +95,11 @@ class ImageBuilder extends Maintenance {
 	 */
 	private function getRepo() {
 		if ( $this->repo === null ) {
-			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()
+				->newCustomLocalRepo( [
+					// make sure to update old, but compatible img_metadata fields.
+					'updateCompatibleMetadata' => true
+				] );
 		}
 
 		return $this->repo;
@@ -244,7 +243,7 @@ class ImageBuilder extends Maintenance {
 			$pageText = SpecialUpload::getInitialPageText(
 				'(recovered file, missing upload log entry)'
 			);
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 			$status = $file->recordUpload3(
 				'',
 				'(recovered file, missing upload log entry)',

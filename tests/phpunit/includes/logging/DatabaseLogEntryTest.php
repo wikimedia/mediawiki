@@ -1,10 +1,13 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// These services cache their joins
@@ -12,7 +15,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
 		parent::tearDown();
@@ -65,7 +68,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				'logging',
 				'user',
 				'comment_log_comment' => 'comment',
-				'actor_log_user' => 'actor'
+				'logging_actor' => 'actor'
 			],
 			'fields' => [
 				'log_id',
@@ -82,15 +85,15 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				'log_comment_text' => 'comment_log_comment.comment_text',
 				'log_comment_data' => 'comment_log_comment.comment_data',
 				'log_comment_cid' => 'comment_log_comment.comment_id',
-				'log_user' => 'actor_log_user.actor_user',
-				'log_user_text' => 'actor_log_user.actor_name',
-				'log_actor' => 'log_actor',
+				'log_user' => 'logging_actor.actor_user',
+				'log_user_text' => 'logging_actor.actor_name',
+				'log_actor',
 			],
 			'options' => [],
 			'join_conds' => [
-				'user' => [ 'LEFT JOIN', 'user_id=actor_log_user.actor_user' ],
+				'user' => [ 'LEFT JOIN', 'user_id=logging_actor.actor_user' ],
 				'comment_log_comment' => [ 'JOIN', 'comment_log_comment.comment_id = log_comment_id' ],
-				'actor_log_user' => [ 'JOIN', 'actor_log_user.actor_id = log_actor' ],
+				'logging_actor' => [ 'JOIN', 'actor_id=log_actor' ],
 			],
 		];
 		return [
@@ -123,5 +126,39 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				[ 'type' => 'foobarize', 'comment' => 'test!' ]
 			],
 		];
+	}
+
+	public function provideGetPerformerIdentity() {
+		yield 'registered actor' => [
+			'actor_row_fields' => [
+				'user_id' => 42,
+				'log_user_text' => 'Testing',
+				'log_actor' => 24,
+			],
+			UserIdentityValue::newRegistered( 42, 'Testing' ),
+		];
+		yield 'anon actor' => [
+			'actor_row_fields' => [
+				'log_user_text' => '127.0.0.1',
+				'log_actor' => 24,
+			],
+			UserIdentityValue::newAnonymous( '127.0.0.1' ),
+		];
+		yield 'unknown actor' => [
+			'actor_row_fields' => [],
+			new UserIdentityValue( 0, ActorStore::UNKNOWN_USER_NAME ),
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetPerformerIdentity
+	 * @covers DatabaseLogEntry::getPerformerIdentity
+	 */
+	public function testGetPerformer( array $actorRowFields, UserIdentity $expected ) {
+		$logEntry = DatabaseLogEntry::newFromRow( [
+			'log_id' => 1,
+		] + $actorRowFields );
+		$performer = $logEntry->getPerformerIdentity();
+		$this->assertTrue( $expected->equals( $performer ) );
 	}
 }

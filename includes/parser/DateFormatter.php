@@ -82,9 +82,6 @@ class DateFormatter {
 	/** e.g. 2001-01-15 */
 	private const ISO = 4;
 
-	/** The highest ID that is a valid user preference */
-	private const LASTPREF = 4;
-
 	/** e.g. 2001, 15 January */
 	private const YDM = 5;
 

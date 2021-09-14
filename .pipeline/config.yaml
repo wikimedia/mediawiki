@@ -20,9 +20,17 @@ pipelines:
           excludes:
             - .git
             - node_modules
+
       - name: publish
         publish:
           image:
             id: "${build.imageID}"
             name: mediawiki
             tags: [ "${setup.branch}" ]
+
+      - name: update-train-versions
+        trigger:
+          name: update-train-versions
+          parameters:
+            TRAIN_VERSION: "${setup.branch}"
+            IMAGE_TAG: "${publish.imageTag}"

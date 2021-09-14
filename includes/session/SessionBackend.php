@@ -131,7 +131,7 @@ final class SessionBackend {
 	private $delaySave = 0;
 
 	/** @var bool */
-	private $usePhpSessionHandling = true;
+	private $usePhpSessionHandling;
 	/** @var bool */
 	private $checkPHPSessionRecursionGuard = false;
 

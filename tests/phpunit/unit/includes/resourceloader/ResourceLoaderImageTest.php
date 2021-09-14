@@ -8,7 +8,7 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
 	private $imagesPath;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->imagesPath = __DIR__ . '/../../../data/resourceloader';
 	}
@@ -75,13 +75,13 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
 	public function testGetExtension() {
 		$image = $this->getTestImage( 'def' );
-		$this->assertEquals( $image->getExtension(), 'svg' );
-		$this->assertEquals( $image->getExtension( 'original' ), 'svg' );
-		$this->assertEquals( $image->getExtension( 'rasterized' ), 'png' );
+		$this->assertSame( 'svg', $image->getExtension() );
+		$this->assertSame( 'svg', $image->getExtension( 'original' ) );
+		$this->assertSame( 'png', $image->getExtension( 'rasterized' ) );
 		$image = $this->getTestImage( 'abc' );
-		$this->assertEquals( $image->getExtension(), 'gif' );
-		$this->assertEquals( $image->getExtension( 'original' ), 'gif' );
-		$this->assertEquals( $image->getExtension( 'rasterized' ), 'gif' );
+		$this->assertSame( 'gif', $image->getExtension() );
+		$this->assertSame( 'gif', $image->getExtension( 'original' ) );
+		$this->assertSame( 'gif', $image->getExtension( 'rasterized' ) );
 	}
 
 	public function testGetImageData() {
@@ -96,7 +96,7 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 			$dataConstructive
 		);
 		// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
-		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), 'RASTERIZESTUB' );
+		$this->assertSame( 'RASTERIZESTUB', $image->getImageData( $context, null, 'rasterized' ) );
 
 		$image = $this->getTestImage( 'abc' );
 		$data = file_get_contents( $this->imagesPath . '/abc.gif' );
@@ -128,7 +128,7 @@ class ResourceLoaderImageTestable extends ResourceLoaderImage {
 		return 'RASTERIZESTUB';
 	}
 
-	protected function getLangFallbacks( string $code ) : array {
+	protected function getLangFallbacks( string $code ): array {
 		return $this->mockFallbacks[$code] ?? [];
 	}
 }

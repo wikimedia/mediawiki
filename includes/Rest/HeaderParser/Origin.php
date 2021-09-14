@@ -25,7 +25,7 @@ class Origin extends HeaderParserBase {
 	 * @param string[] $headerList
 	 * @return self
 	 */
-	public static function parseHeaderList( array $headerList ) : self {
+	public static function parseHeaderList( array $headerList ): self {
 		$parser = new self( $headerList );
 		$parser->execute();
 		return $parser;

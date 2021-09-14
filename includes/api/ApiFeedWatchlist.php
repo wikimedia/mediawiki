@@ -20,8 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This action allows users to get their watchlist items in RSS/Atom formats.
  * When executed, it performs a nested call to the API to get the needed data,
@@ -33,6 +31,23 @@ class ApiFeedWatchlist extends ApiBase {
 
 	private $watchlistModule = null;
 	private $linkToSections = false;
+
+	/** @var Parser */
+	private $parser;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param Parser $parser
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		Parser $parser
+	) {
+		parent::__construct( $main, $action );
+		$this->parser = $parser;
+	}
 
 	/**
 	 * This module uses a custom feed wrapper printer.
@@ -212,8 +227,7 @@ class ApiFeedWatchlist extends ApiBase {
 		if ( $this->linkToSections && $comment !== null &&
 			preg_match( '!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment, $matches )
 		) {
-			$titleUrl .= MediaWikiServices::getInstance()->getParser()
-				->guessSectionNameFromWikiText( $matches[ 2 ] );
+			$titleUrl .= $this->parser->guessSectionNameFromWikiText( $matches[ 2 ] );
 		}
 
 		$timestamp = $info['timestamp'];

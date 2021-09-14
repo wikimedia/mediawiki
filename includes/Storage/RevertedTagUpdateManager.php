@@ -63,7 +63,7 @@ class RevertedTagUpdateManager {
 	 *
 	 * @return bool Whether the update was enqueued successfully
 	 */
-	public function approveRevertedTagForRevision( int $revertRevisionId ) : bool {
+	public function approveRevertedTagForRevision( int $revertRevisionId ): bool {
 		$editResult = $this->editResultCache->get( $revertRevisionId );
 		if ( $editResult === null ) {
 			return false;

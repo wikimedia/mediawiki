@@ -23,6 +23,9 @@
  * @since 1.19
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -34,11 +37,13 @@ use Wikimedia\Rdbms\IDatabase;
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public static function newFromId( $id, IDatabase $db ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}
 
 	public static function getSelectQueryData() {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}
@@ -63,21 +68,25 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->row->rc_log_action;
 	}
 
-	protected function getPerformerUser(): User {
+	public function getPerformerIdentity(): UserIdentity {
 		if ( !$this->performer ) {
-			$actorId = isset( $this->row->rc_actor ) ? (int)$this->row->rc_actor : 0;
-			$userId = (int)$this->row->rc_user;
-			if ( $actorId !== 0 ) {
-				$this->performer = User::newFromActorId( $actorId );
-			} elseif ( $userId !== 0 ) {
-				$this->performer = User::newFromId( $userId );
-			} else {
-				$userText = $this->row->rc_user_text;
-				// Might be an IP, don't validate the username
-				$this->performer = User::newFromName( $userText, false );
+			$actorStore = MediaWikiServices::getInstance()->getActorStore();
+			try {
+				$this->performer = $actorStore->newActorFromRowFields(
+					$this->row->rc_user ?? 0,
+					$this->row->rc_user_text,
+					$this->row->rc_actor ?? null
+				);
+			} catch ( InvalidArgumentException $e ) {
+				LoggerFactory::getInstance( 'logentry' )->warning(
+					'Failed to instantiate RC log entry performer', [
+						'exception' => $e,
+						'log_id' => $this->getId()
+					]
+				);
+				$this->performer = $actorStore->getUnknownActor();
 			}
 		}
-
 		return $this->performer;
 	}
 

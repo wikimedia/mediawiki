@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Jose77",
+			"MinecraftAustralia",
 			"Rotemliss",
 			"Sioneholof"
 		]
@@ -73,10 +74,12 @@
 	"youhavenewmessagesmulti": "Fai tohi foou a koe he $1",
 	"editsection": "fakahakohako",
 	"editold": "fakahakohako",
+	"editlink": "fakahakohako",
 	"editsectionhint": "Hiki e vala e: $1",
 	"red-link-title": "$1 (nakai fai lau pihia i i loto e)",
 	"nstab-main": "Lau",
 	"nstab-user": "Lau he tagata",
+	"nstab-category": "Vahega",
 	"mainpage-nstab": "Matapatu Lau",
 	"viewsource": "Kitekite ke mouaga",
 	"yourname": "Matahigoa he tagata:",
@@ -89,6 +92,7 @@
 	"userlogout": "Hu mai ki tua",
 	"notloggedin": "Ai la hu ki loto",
 	"createaccount": "Talaga e poko",
+	"loginlanguagelabel": "Vagahau: $1",
 	"pt-login": "Hu ki loto",
 	"pt-login-button": "Hu ki loto",
 	"pt-createaccount": "Talaga e poko",
@@ -111,6 +115,9 @@
 	"email": "Meli hila",
 	"recentchanges": "Hikihikiaga mogoia",
 	"hist": "Liu onoono atu ki tua",
+	"minoreditletter": "m",
+	"newpageletter": "N",
+	"boteditletter": "b",
 	"recentchangeslinked": "Falu hikihiki",
 	"recentchangeslinked-feed": "Falu hikihiki",
 	"recentchangeslinked-toolbox": "Falu hikihiki",
@@ -120,6 +127,8 @@
 	"filedesc": "Fakakatoakatoa",
 	"fileuploadsummary": "Fakakatoakatoa:",
 	"watchthisupload": "Onoono e lau e",
+	"imgfile": "fakatai",
+	"file-anchor-link": "Fakatai",
 	"filehist-deleteone": "tamate",
 	"filedelete-submit": "Tamate",
 	"randompage": "Lau fifili",

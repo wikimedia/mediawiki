@@ -70,7 +70,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 	/** @inheritDoc */
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		# Sneak a single revision into place
 		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
@@ -100,7 +100,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			// Note: sha1 has been in XML dumps since 2012. If you have an
 			// older dump, the duplicate detection here won't work.
 			if ( $importableRevision->getSha1Base36() !== false ) {
-				$prior = $dbw->selectField( 'revision', '1',
+				$prior = (bool)$dbw->selectField( 'revision', '1',
 					[ 'rev_page' => $pageId,
 					'rev_timestamp' => $dbw->timestamp( $importableRevision->getTimestamp() ),
 					'rev_sha1' => $importableRevision->getSha1Base36() ],

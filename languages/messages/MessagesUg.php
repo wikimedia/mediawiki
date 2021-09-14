@@ -1,5 +1,5 @@
 <?php
-/** Uighur (Uyghurche‎ / ئۇيغۇرچە)
+/** Uighur (Uyghurche / ئۇيغۇرچە)
  *
  * To improve a translation please visit https://translatewiki.net
  *

@@ -13,7 +13,7 @@ use MediaWiki\Revision\SlotRecord;
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed = array_unique(
 			array_merge( $this->tablesUsed, [ 'watchlist', 'recentchanges', 'page' ] )
@@ -33,48 +33,42 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	private function doPageEdit( User $user, LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
-			$summary,
-			0,
-			false,
-			$user
+			$user,
+			$summary
 		);
 	}
 
 	private function doMinorPageEdit( User $user, LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
+			$user,
 			$summary,
-			EDIT_MINOR,
-			false,
-			$user
+			EDIT_MINOR
 		);
 	}
 
 	private function doBotPageEdit( User $user, LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
+			$user,
 			$summary,
-			EDIT_FORCE_BOT,
-			false,
-			$user
+			EDIT_FORCE_BOT
 		);
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
-			$summary,
-			0,
-			false,
-			User::newFromId( 0 )
+			User::newFromId( 0 ),
+			$summary
 		);
 	}
 
@@ -207,7 +201,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		// not checking values of all keys of the actual item, so removing unwanted keys from comparison
 		$actualItemsOnlyComparedValues = array_map(
 			static function ( array $item ) use ( $keysUsedInValueComparison ) {
-				return array_intersect_key( $item, array_flip( $keysUsedInValueComparison ) );
+				return array_intersect_key( $item,
+					array_fill_keys( $keysUsedInValueComparison, true ) );
 			},
 			$actualItems
 		);
@@ -1056,7 +1051,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$title = Title::newFromLinkTarget( $target );
 
 		$rc = new RecentChange;
-		$rc->mTitle = $title;
 		$rc->mAttribs = [
 			'rc_timestamp' => wfTimestamp( TS_MW ),
 			'rc_namespace' => $title->getNamespace(),

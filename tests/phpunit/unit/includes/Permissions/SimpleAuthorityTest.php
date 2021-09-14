@@ -139,4 +139,11 @@ class SimpleAuthorityTest extends MediaWikiUnitTestCase {
 		$authority->isAllowedAll();
 	}
 
+	public function testGetBlock() {
+		$actor = new UserIdentityValue( 12, 'Test' );
+		$authority = new SimpleAuthority( $actor, [] );
+
+		$this->assertNull( $authority->getBlock() );
+	}
+
 }

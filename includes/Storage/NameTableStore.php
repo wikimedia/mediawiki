@@ -48,7 +48,7 @@ class NameTableStore {
 	private $tableCache = null;
 
 	/** @var bool|string */
-	private $domain = false;
+	private $domain;
 
 	/** @var int */
 	private $cacheTTL;
@@ -60,9 +60,9 @@ class NameTableStore {
 	/** @var string */
 	private $nameField;
 	/** @var null|callable */
-	private $normalizationCallback = null;
+	private $normalizationCallback;
 	/** @var null|callable */
-	private $insertCallback = null;
+	private $insertCallback;
 
 	/**
 	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
@@ -106,7 +106,7 @@ class NameTableStore {
 	}
 
 	/**
-	 * @param int $index A database index, like DB_MASTER or DB_REPLICA
+	 * @param int $index A database index, like DB_PRIMARY or DB_REPLICA
 	 * @param int $flags Database connection flags
 	 *
 	 * @return IDatabase
@@ -159,8 +159,7 @@ class NameTableStore {
 	 * @throws NameTableAccessException
 	 * @return int
 	 */
-	public function acquireId( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	public function acquireId( string $name ) {
 		$name = $this->normalizeName( $name );
 
 		$table = $this->getTableFromCachesOrReplica();
@@ -168,14 +167,14 @@ class NameTableStore {
 		if ( $searchResult === false ) {
 			$id = $this->store( $name );
 			if ( $id === null ) {
-				// RACE: $name was already in the db, probably just inserted, so load from master.
+				// RACE: $name was already in the db, probably just inserted, so load from primary DB.
 				// Use DBO_TRX to avoid missing inserts due to other threads or REPEATABLE-READs.
 				$table = $this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 
 				$searchResult = array_search( $name, $table, true );
 				if ( $searchResult === false ) {
-					// Insert failed due to IGNORE flag, but DB_MASTER didn't give us the data
-					$m = "No insert possible but master didn't give us a record for " .
+					// Insert failed due to IGNORE flag, but DB_PRIMARY didn't give us the data
+					$m = "No insert possible but primary DB didn't give us a record for " .
 						"'{$name}' in '{$this->table}'";
 					$this->logger->error( $m );
 					throw new NameTableAccessException( $m );
@@ -200,7 +199,7 @@ class NameTableStore {
 				$searchResult = $id;
 
 				// As store returned an ID we know we inserted so delete from WAN cache
-				$dbw = $this->getDBConnection( DB_MASTER );
+				$dbw = $this->getDBConnection( DB_PRIMARY );
 				$dbw->onTransactionPreCommitOrIdle( function () {
 					$this->cache->delete( $this->getCacheKey() );
 				}, __METHOD__ );
@@ -212,7 +211,7 @@ class NameTableStore {
 	}
 
 	/**
-	 * Reloads the name table from the master database, and purges the WAN cache entry.
+	 * Reloads the name table from the primary database, and purges the WAN cache entry.
 	 *
 	 * @note This should only be called in situations where the local cache has been detected
 	 * to be out of sync with the database. There should be no reason to call this method
@@ -230,7 +229,7 @@ class NameTableStore {
 			$connFlags = 0;
 		}
 
-		$dbw = $this->getDBConnection( DB_MASTER, $connFlags );
+		$dbw = $this->getDBConnection( DB_PRIMARY, $connFlags );
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
 			$this->cache->reap( $this->getCacheKey(), INF );
@@ -249,8 +248,7 @@ class NameTableStore {
 	 * @throws NameTableAccessException The name does not exist
 	 * @return int Id
 	 */
-	public function getId( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	public function getId( string $name ) {
 		$name = $this->normalizeName( $name );
 
 		$table = $this->getTableFromCachesOrReplica();
@@ -268,15 +266,13 @@ class NameTableStore {
 	 * If the id doesn't exist this will throw.
 	 * This should be used in cases where we believe the id already exists.
 	 *
-	 * Note: Calls to this method will result in a master select for non existing IDs.
+	 * Note: Calls to this method will result in a primary DB select for non existing IDs.
 	 *
 	 * @param int $id
 	 * @throws NameTableAccessException The id does not exist
 	 * @return string name
 	 */
-	public function getName( $id ) {
-		Assert::parameterType( 'integer', $id, '$id' );
-
+	public function getName( int $id ) {
 		$table = $this->getTableFromCachesOrReplica();
 		if ( array_key_exists( $id, $table ) ) {
 			return $table[$id];
@@ -294,12 +290,12 @@ class NameTableStore {
 					// Use the old value
 					return $oldValue;
 				}
-				// Regenerate from replica DB, and master DB if needed
-				foreach ( [ DB_REPLICA, DB_MASTER ] as $source ) {
-					// Log a fallback to master
-					if ( $source === DB_MASTER ) {
+				// Regenerate from replica DB, and primary DB if needed
+				foreach ( [ DB_REPLICA, DB_PRIMARY ] as $source ) {
+					// Log a fallback to primary
+					if ( $source === DB_PRIMARY ) {
 						$this->logger->info(
-							$fname . ' falling back to master select from ' .
+							$fname . ' falling back to primary select from ' .
 							$this->table . ' with id ' . $id
 						);
 					}
@@ -394,12 +390,11 @@ class NameTableStore {
 	 * @param string $name
 	 * @return int|null int if we know the ID, null if we don't
 	 */
-	private function store( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	private function store( string $name ) {
 		Assert::parameter( $name !== '', '$name', 'should not be an empty string' );
 		// Note: this is only called internally so normalization of $name has already occurred.
 
-		$dbw = $this->getDBConnection( DB_MASTER );
+		$dbw = $this->getDBConnection( DB_PRIMARY );
 
 		$id = null;
 		$dbw->doAtomicSection(

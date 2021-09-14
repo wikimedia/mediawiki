@@ -13,7 +13,7 @@
  */
 class ApiDeleteTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
@@ -66,10 +66,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'logid', $apiResult['delete'] );
 
 		// Run the jobs
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		$this->assertFalse( Title::newFromText( $name )->exists( Title::READ_LATEST ) );
 	}
@@ -126,7 +123,7 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( 'custom tag', $dbw->selectField(
 			[ 'change_tag', 'logging', 'change_tag_def' ],
 			'ctd_name',
@@ -192,10 +189,11 @@ class ApiDeleteTest extends ApiTestCase {
 	public function testDeleteWatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$user = self::$users['sysop']->getUser();
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );
-		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
+		$this->assertFalse( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -206,8 +204,8 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$title = Title::newFromText( $name );
 		$this->assertFalse( $title->exists() );
-		$this->assertTrue( $user->isWatched( $title ) );
-		$this->assertTrue( $user->isTempWatched( $title ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
 
 	public function testDeleteUnwatch() {
@@ -216,8 +214,9 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );
-		$user->addWatch( Title::newFromText( $name ) );
-		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+		$watchlistManager->addWatch( $user,  Title::newFromText( $name ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -226,6 +225,6 @@ class ApiDeleteTest extends ApiTestCase {
 		] );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
-		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
+		$this->assertFalse( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 	}
 }

@@ -29,7 +29,7 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 	 */
 	protected $validator;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->validator = new ExtensionJsonValidator( [ $this, 'markTestSkipped' ] );
@@ -46,7 +46,7 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 		$allThings = ExtensionRegistry::getInstance()->getAllThings();
 
 		foreach ( $allThings as $thing ) {
-			 yield [ $thing['path'] ];
+			yield [ $thing['path'] ];
 		}
 	}
 

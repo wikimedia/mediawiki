@@ -1081,7 +1081,12 @@
 								.appendTo( $result );
 						}
 						if ( /^text\/mediawiki-api-prettyprint-wrapped(?:;|$)/.test( ct ) ) {
-							data = JSON.parse( data );
+							try {
+								data = JSON.parse( data );
+							} catch ( e ) {
+								// API response is not JSON but e.g. an Xdebug error, show as HTML
+								data = { modules: {}, html: data };
+							}
 							if ( data.modules.length ) {
 								mw.loader.load( data.modules );
 							}

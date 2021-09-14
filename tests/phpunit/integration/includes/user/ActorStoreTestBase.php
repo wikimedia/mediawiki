@@ -41,7 +41,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	 * @param string|false $wikiId
 	 * @return ActorStore
 	 */
-	protected function getStore( $wikiId = UserIdentity::LOCAL ) : ActorStore {
+	protected function getStore( $wikiId = UserIdentity::LOCAL ): ActorStore {
 		return $this->getServiceContainer()->getActorStoreFactory()->getActorStore( $wikiId );
 	}
 
@@ -59,7 +59,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			->getDBLoadBalancerFactory()
 			->getMainLB( $wikiId );
 		$foreignLB->setDomainAliases( [ $wikiId => $dbLoadBalancer->getLocalDomainID() ] );
-		$foreignDB = $foreignLB->getConnectionRef( DB_MASTER );
+		$foreignDB = $foreignLB->getConnectionRef( DB_PRIMARY );
 
 		$store = new ActorStore(
 			$dbLoadBalancer,

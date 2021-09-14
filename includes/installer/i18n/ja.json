@@ -196,10 +196,10 @@
 	"config-admin-error-password": "管理者「<nowiki>$1</nowiki>」のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>",
 	"config-admin-error-password-invalid": "無効なWiki管理者パスワードです: $1",
 	"config-admin-error-bademail": "無効なメールアドレスを入力しました。",
-	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。",
+	"config-subscribe": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ リリース告知のメーリングリスト]を購読する。",
 	"config-subscribe-help": "これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。\nこのメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。",
 	"config-subscribe-noemail": "メールアドレスなしでリリースアナウンスのメーリングリストを購読しようとしています。\nメーリングリストを購読する場合にはメールアドレスを入力してください。",
-	"config-pingback": "このインストールに関するデータをMediaWikiの開発者と共有する。",
+	"config-pingback": "このインストールに関するデータをMediaWikiの開発者と共有する。[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement プライバシーポリシー]。",
 	"config-pingback-help": "もし下記のオプションを有効にした場合、MediaWiki は定期的にこの MediaWiki インスタンスに関する基本データとともに https://www.mediawiki.org を呼び出します。このデータは例えばシステムのタイプ、PHPのバージョンと選択したデータベースのバックエンドなどを含んでいます。ウィキメディア財団は MediaWiki 開発者とこの情報を共有し、将来の開発に役立たせます。ご使用のシステムに送るデータは次のとおりです。\n<pre>$1</pre>",
 	"config-almost-done": "これでほぼ終わりました!\n残りの設定を飛ばして、ウィキを今すぐインストールできます。",
 	"config-optional-continue": "私にもっと質問してください。",
@@ -301,7 +301,7 @@
 	"config-install-updates": "不要な更新を実行するのを防ぐ",
 	"config-install-updates-failed": "<strong>エラー:</strong> 更新キーをテーブルに挿入する際に失敗しました。以下のエラーが起こっています: $1",
 	"config-install-sysop": "管理者アカウントの作成",
-	"config-install-subscribe-fail": "mediawiki-announce を購読できませんでした: $1",
+	"config-install-subscribe-fail": "mediawiki-announce を購読できませんでした[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL がインストールされていないため、<code>allow_url_fopen</code> を利用できません。",
 	"config-install-mainpage": "メインページを既定の内容で作成",
 	"config-install-mainpage-exists": "メインページはすでに存在するためスキップします",
@@ -322,5 +322,5 @@
 	"config-extension-not-found": "拡張機能「$1」の登録ファイルは見つかりませんでした",
 	"config-extension-dependency": "拡張機能「$1」のインストール中に依存関係エラーが発生しました: $2",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
-	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki をご使用の言語へ翻訳]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ご使用のウィキでスパムと戦う方法を学ぶ]"
+	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki をご使用の言語へ翻訳]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ご使用のウィキでスパムと戦う方法を学ぶ]"
 }

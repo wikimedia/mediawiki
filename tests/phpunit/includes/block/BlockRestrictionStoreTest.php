@@ -19,13 +19,13 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	/** @var BlockRestrictionStore */
 	protected $blockRestrictionStore;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->resetTables();
 		parent::tearDown();
 	}
@@ -587,7 +587,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,
 			'enableAutoblock' => true,

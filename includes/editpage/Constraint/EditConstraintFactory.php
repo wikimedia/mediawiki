@@ -124,7 +124,7 @@ class EditConstraintFactory {
 		IContextSource $context,
 		string $summary,
 		bool $minorEdit
-	) : EditFilterMergedContentHookConstraint {
+	): EditFilterMergedContentHookConstraint {
 		return new EditFilterMergedContentHookConstraint(
 			$this->hookContainer,
 			$content,
@@ -142,7 +142,7 @@ class EditConstraintFactory {
 	public function newPageSizeConstraint(
 		int $contentSize,
 		string $type
-	) : PageSizeConstraint {
+	): PageSizeConstraint {
 		return new PageSizeConstraint(
 			$this->options->get( 'MaxArticleSize' ),
 			$contentSize,
@@ -153,7 +153,7 @@ class EditConstraintFactory {
 	/**
 	 * @return ReadOnlyConstraint
 	 */
-	public function newReadOnlyConstraint() : ReadOnlyConstraint {
+	public function newReadOnlyConstraint(): ReadOnlyConstraint {
 		return new ReadOnlyConstraint(
 			$this->readOnlyMode
 		);
@@ -169,7 +169,7 @@ class EditConstraintFactory {
 		string $input,
 		UserIdentity $user,
 		Title $title
-	) : SimpleAntiSpamConstraint {
+	): SimpleAntiSpamConstraint {
 		return new SimpleAntiSpamConstraint(
 			$this->loggerFactory->getLogger( 'SimpleAntiSpam' ),
 			$input,
@@ -194,7 +194,7 @@ class EditConstraintFactory {
 		string $text,
 		string $reqIP,
 		Title $title
-	) : SpamRegexConstraint {
+	): SpamRegexConstraint {
 		return new SpamRegexConstraint(
 			$this->loggerFactory->getLogger( 'SpamRegex' ),
 			$this->spamRegexChecker,
@@ -215,7 +215,7 @@ class EditConstraintFactory {
 	public function newUserBlockConstraint(
 		LinkTarget $title,
 		User $user
-	) : UserBlockConstraint {
+	): UserBlockConstraint {
 		return new UserBlockConstraint(
 			$this->permissionManager,
 			$title,

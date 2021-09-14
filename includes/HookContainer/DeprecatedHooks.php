@@ -35,48 +35,30 @@ class DeprecatedHooks {
 	 */
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
-		'ArticleEditUpdates' => [ 'deprecatedVersion' => '1.35' ],
-		'ArticleRevisionUndeleted' => [ 'deprecatedVersion' => '1.35' ],
-		'ArticleRollbackComplete' => [ 'deprecatedVersion' => '1.35' ],
-		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'BaseTemplateToolbox' => [ 'deprecatedVersion' => '1.35' ],
-		'BeforeHttpsRedirect' => [ 'deprecatedVersion' => '1.35' ],
+		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35' ],
 		'BeforeParserFetchTemplateAndtitle' => [ 'deprecatedVersion' => '1.36' ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
-		'CanIPUseHTTPS' => [ 'deprecatedVersion' => '1.35' ],
-		'DiffRevisionTools' => [ 'deprecatedVersion => 1.35' ],
-		'DiffViewHeader' => [ 'deprecatedVersion' => '1.35' ],
+		'BeforeResetNotificationTimestamp' => [ 'deprecatedVersion' => '1.37' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
-		'HistoryRevisionTools' => [ 'deprecatedVersion => 1.35' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
+		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'NewRevisionFromEditComplete' => [ 'deprecatedVersion' => '1.35' ],
-		'PageContentInsertComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'PageContentSaveComplete' => [ 'deprecatedVersion' => '1.35' ],
-		'ParserFetchTemplate' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserSectionCreate' => [ 'deprecatedVersion' => '1.35' ],
+		'ParserTestTables' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'ResourceLoaderTestModules' => [ 'deprecatedVersion' => '1.33' ],
-		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
-		'SecondaryDataUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink' => [ 'deprecatedVersion' => '1.35' ],
-		'SkinTemplateOutputPageBeforeExec' => [ 'deprecatedVersion' => '1.35' ],
-		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
-		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
-		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
-		'TitleArrayFromResult' => [ 'deprecatedVersion' => '1.36' ],
-		'TitleMoveComplete' => [ 'deprecatedVersion' => '1.35' ],
-		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35' ],
-		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
-		'UserRequiresHTTPS' => [ 'deprecatedVersion' => '1.35' ],
-		'UserRetrieveNewTalks' => [ 'deprecatedVersion' => '1.35' ],
+		'UserLoadFromDatabase' => [ 'deprecatedVersion' => '1.37' ],
+		'UserLoadOptions' => [ 'deprecatedVersion' => '1.37' ],
+		'UserResetAllOptions' => [ 'deprecatedVersion' => '1.37' ],
+		'UserSaveOptions' => [ 'deprecatedVersion' => '1.37' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
 		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
+		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 	];
 
 	/**
@@ -112,7 +94,7 @@ class DeprecatedHooks {
 	 */
 	public function markDeprecated( string $hook, string $version,
 		?string $component = null, bool $silent = false
-	) : void {
+	): void {
 		if ( isset( $this->deprecatedHooks[$hook] ) ) {
 			throw new InvalidArgumentException(
 				"Cannot mark hook '$hook' deprecated with version $version. " .
@@ -135,7 +117,7 @@ class DeprecatedHooks {
 	 * @param string $hook Hook name
 	 * @return bool
 	 */
-	public function isHookDeprecated( string $hook ) : bool {
+	public function isHookDeprecated( string $hook ): bool {
 		return isset( $this->deprecatedHooks[$hook] );
 	}
 
@@ -144,7 +126,7 @@ class DeprecatedHooks {
 	 * @param string|null $hook (optional) Hook name
 	 * @return array|null Value array from $this->deprecatedHooks for a specific hook or all hooks
 	 */
-	public function getDeprecationInfo( ?string $hook = null ) : ?array {
+	public function getDeprecationInfo( ?string $hook = null ): ?array {
 		if ( !$hook ) {
 			return $this->deprecatedHooks;
 		}

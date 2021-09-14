@@ -198,7 +198,7 @@ TEXT
 		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		// Fix the bad data, using different logic for the various tables
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		switch ( $table ) {
 			case 'page':
 			case 'redirect':

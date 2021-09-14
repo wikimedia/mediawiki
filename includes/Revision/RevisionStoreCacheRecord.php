@@ -47,7 +47,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 *
 	 * @param callable $callback Callback for loading data.
 	 *        Signature: function ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
@@ -112,7 +112,8 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 			$this->mUser = $freshUser;
 		} else {
 			throw new RevisionAccessException(
-				'Unable to load fresh row for rev_id: ' . $this->mId
+				'Unable to load fresh row for rev_id: {rev_id}',
+				[ 'rev_id' => $this->mId ]
 			);
 		}
 	}

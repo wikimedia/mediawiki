@@ -82,9 +82,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	abstract protected function logAuthResult( $success, $status = null );
 
-	public function __construct( $name ) {
+	public function __construct( $name, $restriction = '' ) {
 		global $wgUseMediaWikiUIEverywhere;
-		parent::__construct( $name );
+		parent::__construct( $name, $restriction );
 
 		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
 		$wgUseMediaWikiUIEverywhere = true;
@@ -106,7 +106,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$request = $this->getRequest();
 
 		$this->mPosted = $request->wasPosted();
-		$this->mAction = $request->getVal( 'action' );
+		$this->mAction = $request->getRawVal( 'action' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
 			|| $request->getBool( 'wpFromhttp', false );
 		$this->mStickHTTPS = $this->getConfig()->get( 'ForceHTTPS' )
@@ -264,8 +264,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 * reauthenticate for security reasons.
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
-			 ( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
-			 $this->getUser()->isRegistered()
+			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
+			$this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
 			return;
@@ -281,9 +281,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'warning' ) => $this->mEntryError,
 				] + $this->getRequest()->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $wgSecureLogin && !$this->mFromHTTP &&
-				 wfCanIPUseHTTPS( $this->getRequest()->getIP() )
-			) {
+			if ( $wgSecureLogin && !$this->mFromHTTP ) {
 				// Avoid infinite redirect
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
@@ -1094,13 +1092,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return bool
 	 */
 	private function showCreateAccountLink() {
-		if ( $this->isSignup() ) {
-			return true;
-		} elseif ( $this->getContext()->getAuthority()->isAllowed( 'createaccount' ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		return $this->isSignup() ||
+			$this->getContext()->getAuthority()->isAllowed( 'createaccount' );
 	}
 
 	protected function getTokenName() {

@@ -21,14 +21,83 @@
 
 /**
  * @ingroup Parser
+ *
  * @property PPDPart_Hash[] $parts
+ * @property int $startPos
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
-class PPDStackElement_Hash extends PPDStackElement {
+class PPDStackElement_Hash {
+	/**
+	 * @var string Opening character (\n for heading)
+	 */
+	public $open;
+
+	/**
+	 * @var string Matching closing character
+	 */
+	public $close;
+
+	/**
+	 * @var string Saved prefix that may affect later processing,
+	 *  e.g. to differentiate `-{{{{` and `{{{{` after later seeing `}}}`.
+	 */
+	public $savedPrefix = '';
+
+	/**
+	 * @var int Number of opening characters found (number of "=" for heading)
+	 */
+	public $count;
+
+	/**
+	 * @var PPDPart_Hash[] Array of PPDPart objects describing pipe-separated parts.
+	 */
+	public $parts;
+
+	/**
+	 * @var bool True if the open char appeared at the start of the input line.
+	 *  Not set for headings.
+	 */
+	public $lineStart;
+
+	/** @var string */
+	public $partClass = PPDPart_Hash::class;
 
 	public function __construct( $data = [] ) {
-		$this->partClass = PPDPart_Hash::class;
-		parent::__construct( $data );
+		$class = $this->partClass;
+		$this->parts = [ new $class ];
+
+		foreach ( $data as $name => $value ) {
+			$this->$name = $value;
+		}
+	}
+
+	public function &getAccum() {
+		return $this->parts[count( $this->parts ) - 1]->out;
+	}
+
+	public function addPart( $s = '' ) {
+		$class = $this->partClass;
+		$this->parts[] = new $class( $s );
+	}
+
+	/**
+	 * @return PPDPart_Hash
+	 */
+	public function getCurrentPart() {
+		return $this->parts[count( $this->parts ) - 1];
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getFlags() {
+		$partCount = count( $this->parts );
+		$findPipe = $this->open != "\n" && $this->open != '[';
+		return [
+			'findPipe' => $findPipe,
+			'findEquals' => $findPipe && $partCount > 1 && !isset( $this->parts[$partCount - 1]->eqpos ),
+			'inHeading' => $this->open == "\n",
+		];
 	}
 
 	/**
@@ -36,7 +105,6 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 *
 	 * @param int|bool $openingCount
 	 * @return array
-	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {

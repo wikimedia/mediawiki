@@ -39,6 +39,7 @@
 		margin: 0;
 		display: block;
 		/* Ensure the textarea is not higher than browser's viewport on small screens */
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		max-height: 100vh;
 		/* But don't let it collapse into nothingness on really tiny screens */
 		min-height: 5em;
@@ -97,4 +98,13 @@
 	.templatesUsed .mw-redirect {
 		font-style: italic;
 	}
+}
+
+.editOptions {
+	background-color: #eaecf0;
+	color: #202122;
+	border: 1px solid #c8ccd1;
+	border-top: 0;
+	padding: 1em 1em 1.5em 1em;
+	margin-bottom: 2em;
 }

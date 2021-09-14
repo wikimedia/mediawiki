@@ -63,16 +63,58 @@ interface PageLookup extends IDBAccessObject {
 	): ?ExistingPageRecord;
 
 	/**
+	 * Returns a PageIdentity for a given user provided page name text.
+	 * Returns null if the title is not a valid name of a proper page,
+	 * e.g if it is a special page, an interwiki link, a relative section line, or simply invalid.
+	 *
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ProperPageIdentity|null
+	 */
+	public function getPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ProperPageIdentity;
+
+	/**
+	 * Returns an ExistingPageRecord for a given user provided page name text.
+	 *
+	 * Returns null if the page does not exist or if title is not a valid name of a proper page,
+	 * e.g if it is a special page, an interwiki link, a relative section line, or simply invalid.
+	 *
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	public function getExistingPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord;
+
+	/**
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
 	 *
-	 * @param PageIdentity $page
+	 * The PageReference must refer to a proper page - that is, it must not refer to a special page.
+	 *
+	 * @param PageReference $page
 	 * @param int $queryFlags
 	 *
 	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
+	 * @throws InvalidArgumentException if $page does not refer to a proper page.
 	 */
-	public function getPageByIdentity(
-		PageIdentity $page,
+	public function getPageByReference(
+		PageReference $page,
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord;
 

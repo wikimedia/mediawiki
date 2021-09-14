@@ -21,6 +21,7 @@
 /**
  * @ingroup Profiler
  * @since 1.33
+ * @see $wgProfiler
  */
 class ProfilerExcimer extends Profiler {
 	/** @var ExcimerProfiler */

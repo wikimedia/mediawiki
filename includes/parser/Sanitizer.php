@@ -25,7 +25,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Tokenizer\Tokenizer as RemexTokenizer;
 
 /**
  * HTML sanitizer for MediaWiki
@@ -201,14 +202,14 @@ class Sanitizer {
 			$vars = [ 'htmlpairsStatic', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
 				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelementsStatic' ];
 			foreach ( $vars as $var ) {
-				$$var = array_flip( $$var );
+				$$var = array_fill_keys( $$var, true );
 			}
 			$staticInitialised = $globalContext;
 		}
 
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
-		$extratags = array_flip( $extratags );
-		$removetags = array_flip( $removetags );
+		$extratags = array_fill_keys( $extratags, true );
+		$removetags = array_fill_keys( $removetags, true );
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
 
@@ -415,7 +416,7 @@ class Sanitizer {
 			// Calling this function with a sequential array is
 			// deprecated.  For now just convert it.
 			wfDeprecated( __METHOD__ . ' with sequential array', '1.35' );
-			$allowed = array_flip( $allowed );
+			$allowed = array_fill_keys( $allowed, true );
 		}
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
@@ -1335,7 +1336,10 @@ class Sanitizer {
 		// For lookup efficiency flip each attributes array so the keys are
 		// the valid attributes.
 		$merge = static function ( $a, $b, $c = [] ) {
-			return array_merge( $a, array_flip( $b ), array_flip( $c ) );
+			return array_merge(
+				$a,
+				array_fill_keys( $b, true ),
+				array_fill_keys( $c, true ) );
 		};
 		$common = $merge( [], [
 			# HTML
@@ -1551,6 +1555,9 @@ class Sanitizer {
 			// So we don't bother including $common attributes that have no purpose.
 			'meta' => $merge( [], [ 'itemprop', 'content' ] ),
 			'link' => $merge( [], [ 'itemprop', 'href', 'title' ] ),
+
+			# HTML 5 section 4.3.5
+			'aside' => $common,
 		];
 
 		return $allowed;
@@ -1570,7 +1577,7 @@ class Sanitizer {
 	public static function stripAllTags( $html ) {
 		// Use RemexHtml to tokenize $html and extract the text
 		$handler = new RemexStripTagHandler;
-		$tokenizer = new RemexHtml\Tokenizer\Tokenizer( $handler, $html, [
+		$tokenizer = new RemexTokenizer( $handler, $html, [
 			'ignoreErrors' => true,
 			// don't ignore char refs, we want them to be decoded
 			'ignoreNulls' => true,

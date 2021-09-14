@@ -232,6 +232,7 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * Wrap some XHTML text in an anchor tag with the given attributes
+	 * or, fallback to a span in the absence thereof.
 	 *
 	 * @param array $linkAttribs
 	 * @param string $contents
@@ -241,7 +242,12 @@ abstract class MediaTransformOutput {
 		if ( $linkAttribs ) {
 			return Xml::tags( 'a', $linkAttribs, $contents );
 		} else {
-			return $contents;
+			global $wgParserEnableLegacyMediaDOM;
+			if ( $wgParserEnableLegacyMediaDOM ) {
+				return $contents;
+			} else {
+				return Xml::tags( 'span', null, $contents );
+			}
 		}
 	}
 
@@ -269,8 +275,13 @@ abstract class MediaTransformOutput {
 
 		$attribs = [
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
-			'class' => 'image',
 		];
+
+		global $wgParserEnableLegacyMediaDOM;
+		if ( $wgParserEnableLegacyMediaDOM ) {
+			$attribs['class'] = 'image';
+		}
+
 		if ( $title ) {
 			$attribs['title'] = $title;
 		}

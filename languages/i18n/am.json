@@ -1335,7 +1335,6 @@
 	"ipblocklist-submit": "ይፈለግ",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|ሌላ ማገጃ|ሌሎች ማገጃዎች}}",
 	"infiniteblock": "መቸም ይማያልቅ",
-	"expiringblock": "በ$1 $2 እ.ኤ.አ. ያልቃል",
 	"anononlyblock": "ያልገቡት የቁ.# ብቻ",
 	"noautoblockblock": "የቀጥታ ማገጃ እንዳይሠራ ተደረገ",
 	"createaccountblock": "ስም ከማውጣት ተከለከለ",

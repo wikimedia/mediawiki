@@ -23,7 +23,6 @@
 namespace MediaWiki\Page;
 
 use MergeHistory;
-use Title;
 
 /**
  * @since 1.35
@@ -31,14 +30,14 @@ use Title;
 interface MergeHistoryFactory {
 
 	/**
-	 * @param Title $source
-	 * @param Title $destination
+	 * @param PageIdentity $source
+	 * @param PageIdentity $destination
 	 * @param string|null $timestamp
 	 * @return MergeHistory
 	 */
 	public function newMergeHistory(
-		Title $source,
-		Title $destination,
+		PageIdentity $source,
+		PageIdentity $destination,
 		string $timestamp = null
-	) : MergeHistory;
+	): MergeHistory;
 }

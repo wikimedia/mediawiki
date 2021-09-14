@@ -284,11 +284,10 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory()
 			] )
-			->setMethods( [ 'getSearchEngine' ] )
+			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
-		$search->expects( $this->any() )
-			->method( 'getSearchEngine' )
-			->will( $this->returnValue( $mockSearchEngine ) );
+		$search->method( 'getSearchEngine' )
+			->willReturn( $mockSearchEngine );
 
 		$search->getContext()->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
 		$search->getContext()->setLanguage( 'en' );
@@ -303,24 +302,21 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockSearchEngine( SpecialSearchTestMockResultSet $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
-			->setMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
+			->onlyMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
 			->getMock();
 
-		$mock->expects( $this->any() )
-			->method( 'searchText' )
-			->will( $this->returnValue( $results ) );
+		$mock->method( 'searchText' )
+			->willReturn( $results );
 
 		$nearMatcherMock = $this->getMockBuilder( SearchNearMatcher::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getNearMatch' ] )
+			->onlyMethods( [ 'getNearMatch' ] )
 			->getMock();
 
-		$nearMatcherMock->expects( $this->any() )
-			->method( 'getNearMatch' )
+		$nearMatcherMock->method( 'getNearMatch' )
 			->willReturn( $results->getFirstResult() );
 
-		$mock->expects( $this->any() )
-			->method( 'getNearMatcher' )
+		$mock->method( 'getNearMatcher' )
 			->willReturn( $nearMatcherMock );
 
 		$mock->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
@@ -395,11 +391,10 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory()
 			] )
-			->setMethods( [ 'getSearchEngine' ] )
+			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
-		$search->expects( $this->any() )
-			->method( 'getSearchEngine' )
-			->will( $this->returnValue( $mockSearchEngine ) );
+		$search->method( 'getSearchEngine' )
+			->willReturn( $mockSearchEngine );
 
 		// set up a mock user with 'search-match-redirect' set to true
 		$context = new RequestContext;

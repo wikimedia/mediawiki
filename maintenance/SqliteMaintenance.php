@@ -54,7 +54,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnection( DB_PRIMARY );
 		if ( !( $dbw instanceof DatabaseSqlite ) ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 
@@ -110,7 +110,7 @@ class SqliteMaintenance extends Maintenance {
 		$this->output( "Backing up database:\n   Locking..." );
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $dbw->getDbFilePath();
-		$this->output( "   Copying database file $ourFile to $fileName... " );
+		$this->output( "   Copying database file $ourFile to $fileName..." );
 		Wikimedia\suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
 			$err = error_get_last();

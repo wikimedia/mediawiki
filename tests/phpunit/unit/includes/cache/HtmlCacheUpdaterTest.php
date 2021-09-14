@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @group Cache
  * @covers HtmlCacheUpdater
@@ -9,8 +11,10 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 	public function testGetCdnUrls() {
 		$htmlCache = new HtmlCacheUpdater(
 			$this->createHookContainer(),
+			$this->createTitleFactory(),
 			0, false, 86400 );
 		$title = $this->createMock( Title::class );
+		$title->method( 'canExist' )->willReturn( true );
 		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=Example' . ( $query !== '' ? "&$query" : '' );
 		} ) );
@@ -32,6 +36,7 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 		);
 
 		$title = $this->createMock( Title::class );
+		$title->method( 'canExist' )->willReturn( true );
 		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=User:Example/foo.js' . ( $query !== '' ? "&$query" : '' );
 		} ) );
@@ -47,6 +52,7 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 		);
 
 		$title = $this->createMock( Title::class );
+		$title->method( 'canExist' )->willReturn( true );
 		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=MediaWiki:Example.js' . ( $query !== '' ? "&$query" : '' );
 		} ) );
@@ -60,5 +66,16 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 			$htmlCache->getUrls( $title ),
 			'all urls for a site js page'
 		);
+	}
+
+	/**
+	 * @return MockObject|TitleFactory
+	 */
+	private function createTitleFactory() {
+		$factory = $this->createNoOpMock( TitleFactory::class, [ 'castFromPageReference' ] );
+
+		$factory->method( 'castFromPageReference' )->willReturnArgument( 0 );
+
+		return $factory;
 	}
 }

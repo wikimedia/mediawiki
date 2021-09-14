@@ -14,7 +14,7 @@ use EditPage;
  */
 interface EditPage__attemptSaveHook {
 	/**
-	 * This hook is called before an article is saved, before WikiPage::doEditContent() is called.
+	 * This hook is called before an article is saved, before WikiPage::doUserEditContent() is called.
 	 *
 	 * @since 1.35
 	 *

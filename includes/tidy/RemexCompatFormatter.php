@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tidy;
 
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\HtmlFormatter;
-use RemexHtml\Serializer\SerializerNode;
 use Sanitizer;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
 /**
  * @internal
@@ -17,7 +17,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 		'tr' => true,
 	];
 
-	/* @var ?callable */
+	/** @var ?callable */
 	private $textProcessor;
 
 	public function __construct( $options = [] ) {

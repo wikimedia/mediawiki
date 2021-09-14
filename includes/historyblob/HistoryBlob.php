@@ -59,7 +59,7 @@ interface HistoryBlob {
 	public function setText( $text );
 
 	/**
-	 * Get default text. This is called from Revision::getRevisionText()
+	 * Get default text.
 	 *
 	 * @return string
 	 */

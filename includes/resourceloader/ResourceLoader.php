@@ -359,42 +359,6 @@ class ResourceLoader implements LoggerAwareInterface {
 
 			// Attach module
 			$this->moduleInfos[$name] = $info;
-
-			// Last-minute changes
-			// Apply custom skin-defined styles to existing modules.
-			if ( $this->isFileModule( $name ) ) {
-				foreach ( $this->moduleSkinStyles as $skinName => $skinStyles ) {
-					// If this module already defines skinStyles for this skin, ignore ResourceModuleSkinStyles.
-					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
-						continue;
-					}
-
-					// If $name is preceded with a '+', the defined style files will be added to 'default'
-					// skinStyles, otherwise 'default' will be ignored as it normally would be.
-					if ( isset( $skinStyles[$name] ) ) {
-						$paths = (array)$skinStyles[$name];
-						$styleFiles = [];
-					} elseif ( isset( $skinStyles['+' . $name] ) ) {
-						$paths = (array)$skinStyles['+' . $name];
-						$styleFiles = isset( $this->moduleInfos[$name]['skinStyles']['default'] ) ?
-							(array)$this->moduleInfos[$name]['skinStyles']['default'] :
-							[];
-					} else {
-						continue;
-					}
-
-					// Add new file paths, remapping them to refer to our directories and not use settings
-					// from the module we're modifying, which come from the base definition.
-					list( $localBasePath, $remoteBasePath ) =
-						ResourceLoaderFileModule::extractBasePaths( $skinStyles );
-
-					foreach ( $paths as $path ) {
-						$styleFiles[] = new ResourceLoaderFilePath( $path, $localBasePath, $remoteBasePath );
-					}
-
-					$this->moduleInfos[$name]['skinStyles'][$skinName] = $styleFiles;
-				}
-			}
 		}
 	}
 
@@ -402,7 +366,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring only
 	 * @codeCoverageIgnore
 	 */
-	public function registerTestModules() : void {
+	public function registerTestModules(): void {
 		global $IP;
 
 		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
@@ -538,6 +502,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				[ $this, 'loadModuleDependenciesInternal' ],
 				[ $this, 'saveModuleDependenciesInternal' ]
 			);
+			$object->setSkinStylesOverride( $this->moduleSkinStyles );
 			$this->modules[$name] = $object;
 		}
 
@@ -598,7 +563,8 @@ class ResourceLoader implements LoggerAwareInterface {
 						// avoid duplicate write request slams (T124649)
 						// the lock must be specific to the current wiki (T247028)
 						continue;
-					} elseif ( $update === null ) {
+					}
+					if ( $update === null ) {
 						$entitiesUnreg[] = $entity;
 					} elseif ( $update === '*' ) {
 						$entitiesRenew[] = $entity;
@@ -613,26 +579,6 @@ class ResourceLoader implements LoggerAwareInterface {
 				$this->depStore->renew( self::RL_DEP_STORE_PREFIX, $entitiesRenew, $ttl );
 			} );
 		}
-	}
-
-	/**
-	 * Whether the module is a ResourceLoaderFileModule or subclass thereof.
-	 *
-	 * @param string $name Module name
-	 * @return bool
-	 */
-	protected function isFileModule( $name ) {
-		if ( !isset( $this->moduleInfos[$name] ) ) {
-			return false;
-		}
-		$info = $this->moduleInfos[$name];
-		return !isset( $info['factory'] ) && (
-			// The implied default for 'class' is ResourceLoaderFileModule
-			!isset( $info['class'] ) ||
-			// Explicit default
-			$info['class'] === ResourceLoaderFileModule::class ||
-			is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
-		);
 	}
 
 	/**
@@ -796,14 +742,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
-	 * @param string[]|null $modules
+	 * @param string[] $modules
 	 * @return string Hash
 	 */
-	public function makeVersionQuery( ResourceLoaderContext $context, array $modules = null ) {
-		if ( $modules === null ) {
-			wfDeprecated( __METHOD__ . ' without $modules', '1.34' );
-			$modules = $context->getModules();
-		}
+	public function makeVersionQuery( ResourceLoaderContext $context, array $modules ) {
 		// As of MediaWiki 1.28, the server and client use the same algorithm for combining
 		// version hashes. There is no technical reason for this to be same, and for years the
 		// implementations differed. If getCombinedVersion in PHP (used for StartupModule and
@@ -940,6 +882,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		$this->errors = [];
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $response;
 	}
 
@@ -965,7 +908,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected function sendResponseHeaders(
 		ResourceLoaderContext $context, $etag, $errors, array $extra = []
-	) : void {
+	): void {
 		HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
@@ -1239,6 +1182,7 @@ MESSAGE;
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
+							// @phan-suppress-next-line SecurityCheck-XSS
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
 							$content['templates'] ?? []
 						);
@@ -1250,12 +1194,12 @@ MESSAGE;
 				} else {
 					// In debug mode, separate each response by a new line.
 					// For example, between 'mw.loader.implement();' statements.
-					$strContent = $this->ensureNewline( $strContent );
+					$strContent = self::ensureNewline( $strContent );
 				}
 
 				if ( $context->getOnly() === 'scripts' ) {
 					// Use a linebreak between module scripts (T162719)
-					$out .= $this->ensureNewline( $strContent );
+					$out .= self::ensureNewline( $strContent );
 				} else {
 					$out .= $strContent;
 				}
@@ -1286,7 +1230,7 @@ MESSAGE;
 					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
 				// Use a linebreak between module script and state script (T162719)
-				$out = $this->ensureNewline( $out ) . $stateScript;
+				$out = self::ensureNewline( $out ) . $stateScript;
 			}
 		} elseif ( $states ) {
 			$this->errors[] = 'Problematic modules: '
@@ -1298,10 +1242,11 @@ MESSAGE;
 
 	/**
 	 * Ensure the string is either empty or ends in a line break
+	 * @internal
 	 * @param string $str
 	 * @return string
 	 */
-	private function ensureNewline( $str ) {
+	public static function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
 		if ( $end === false || $end === '' || $end === "\n" ) {
 			return $str;
@@ -1350,9 +1295,13 @@ MESSAGE;
 			if ( $scripts->value === '' ) {
 				$scripts = null;
 			} elseif ( $context->getDebug() ) {
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
-				$scripts = new XmlJsCode( 'function($,jQuery,require,module){' . $scripts->value . '}' );
+				// @phan-suppress-next-line SecurityCheck-XSS
+				$scripts = new XmlJsCode(
+					'function($,jQuery,require,module){' . self::ensureNewline( $scripts->value ) . '}'
+				);
 			}
 		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
 			$files = $scripts['files'];
@@ -1360,11 +1309,14 @@ MESSAGE;
 				// $file is changed (by reference) from a descriptor array to the content of the file
 				// All of these essentially do $file = $file['content'];, some just have wrapping around it
 				if ( $file['type'] === 'script' ) {
+					// Ensure that the script has a newline at the end to close any comment in the
+					// last line.
+					$content = self::ensureNewline( $file['content'] );
 					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
 					if ( $context->getDebug() ) {
-						$file = new XmlJsCode( "function ( require, module ) {\n{$file['content']}\n}" );
+						$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
 					} else {
-						$file = new XmlJsCode( 'function(require,module){' . $file['content'] . '}' );
+						$file = new XmlJsCode( 'function(require,module){' . $content . '}' );
 					}
 				} else {
 					$file = $file['content'];
@@ -1508,7 +1460,7 @@ MESSAGE;
 	 *
 	 * @param array &$array
 	 */
-	private static function trimArray( array &$array ) : void {
+	private static function trimArray( array &$array ): void {
 		$i = count( $array );
 		while ( $i-- ) {
 			if ( $array[$i] === null
@@ -1912,7 +1864,7 @@ MESSAGE;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
-		if ( !class_exists( 'Less_Parser' ) ) {
+		if ( !class_exists( Less_Parser::class ) ) {
 			throw new MWException( 'MediaWiki requires the less.php parser' );
 		}
 
@@ -1937,7 +1889,7 @@ MESSAGE;
 	 */
 	public static function getSiteConfigSettings(
 		ResourceLoaderContext $context, Config $conf
-	) : array {
+	): array {
 		// Namespace related preparation
 		// - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
 		// - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.

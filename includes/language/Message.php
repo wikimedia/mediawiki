@@ -21,6 +21,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 
 /**
  * The Message class deals with fetching and processing of interface message
@@ -188,20 +190,14 @@ class Message implements MessageSpecifier, Serializable {
 	protected $parameters = [];
 
 	/**
-	 * @var string
-	 * @deprecated
-	 */
-	protected $format = 'parse';
-
-	/**
 	 * @var bool Whether database can be used.
 	 */
 	protected $useDatabase = true;
 
 	/**
-	 * @var Title Title object to use as context.
+	 * @var ?PageReference page object to use as context.
 	 */
-	protected $title = null;
+	protected $contextPage = null;
 
 	/**
 	 * @var Content Content object representing the message.
@@ -264,13 +260,12 @@ class Message implements MessageSpecifier, Serializable {
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
-			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
 			// Optimisation: Avoid cost of TitleFormatter on serialize,
 			// and especially cost of TitleParser (via Title::newFromText)
 			// on retrieval.
-			'titlevalue' => ( $this->title
-				? [ 0 => $this->title->getNamespace(), 1 => $this->title->getDBkey() ]
+			'titlevalue' => ( $this->contextPage
+				? [ 0 => $this->contextPage->getNamespace(), 1 => $this->contextPage->getDBkey() ]
 				: null
 			),
 		] );
@@ -291,7 +286,6 @@ class Message implements MessageSpecifier, Serializable {
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
 		$this->parameters = $data['parameters'];
-		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
 		$this->language = $data['language']
 			? MediaWikiServices::getInstance()->getLanguageFactory()
@@ -300,11 +294,16 @@ class Message implements MessageSpecifier, Serializable {
 
 		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
 		if ( isset( $data['titlevalue'] ) ) {
-			$this->title = Title::makeTitle( $data['titlevalue'][0], $data['titlevalue'][1] );
+			$this->contextPage = new PageReferenceValue(
+				$data['titlevalue'][0],
+				$data['titlevalue'][1],
+				PageReference::LOCAL
+			);
 		} elseif ( isset( $data['titlestr'] ) ) {
-			$this->title = Title::newFromText( $data['titlestr'] );
+			// TODO: figure out what's needed to remove this codepath
+			$this->contextPage = Title::newFromText( $data['titlestr'] );
 		} else {
-			$this->title = null; // Explicit for sanity
+			$this->contextPage = null; // Explicit for sanity
 		}
 	}
 
@@ -748,7 +747,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->inLanguage( $context->getLanguage() );
-		$this->title( $context->getTitle() );
+		$this->page( $context->getTitle() );
 		$this->interface = true;
 
 		return $this;
@@ -845,13 +844,27 @@ class Message implements MessageSpecifier, Serializable {
 	 * Set the Title object to use as context when transforming the message
 	 *
 	 * @since 1.18
+	 * @deprecated since 1.37. Use ::page instead
 	 *
 	 * @param Title $title
 	 *
 	 * @return Message $this
 	 */
 	public function title( $title ) {
-		$this->title = $title;
+		return $this->page( $title );
+	}
+
+	/**
+	 * Set the page object to use as context when transforming the message
+	 *
+	 * @since 1.37
+	 *
+	 * @param ?PageReference $page
+	 *
+	 * @return Message $this
+	 */
+	public function page( ?PageReference $page ) {
+		$this->contextPage = $page;
 		return $this;
 	}
 
@@ -872,15 +885,10 @@ class Message implements MessageSpecifier, Serializable {
 	 * Returns the message formatted a certain way.
 	 *
 	 * @since 1.17
-	 * @param string|null $format One of the FORMAT_* constants. Null means use whatever was used
-	 *   the last time (deprecated since 1.36).
+	 * @param string $format One of the FORMAT_* constants.
 	 * @return string Text or HTML
 	 */
-	public function toString( $format = null ) {
-		if ( $format === null ) {
-			wfDeprecated( __METHOD__ . ' with implicit format', '1.36' );
-			$format = $this->format;
-		}
+	public function toString( string $format ): string {
 		return $this->format( $format );
 	}
 
@@ -891,7 +899,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Text or HTML
 	 * @suppress SecurityCheck-DoubleEscaped phan false positive
 	 */
-	private function format( string $format ) : string {
+	private function format( string $format ): string {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
@@ -971,7 +979,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Parsed HTML.
 	 */
 	public function parse() {
-		$this->format = self::FORMAT_PARSE;
 		return $this->format( self::FORMAT_PARSE );
 	}
 
@@ -983,7 +990,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Unescaped message text.
 	 */
 	public function text() {
-		$this->format = self::FORMAT_TEXT;
 		return $this->format( self::FORMAT_TEXT );
 	}
 
@@ -995,7 +1001,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Unescaped untransformed message text.
 	 */
 	public function plain() {
-		$this->format = self::FORMAT_PLAIN;
 		return $this->format( self::FORMAT_PLAIN );
 	}
 
@@ -1007,7 +1012,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string HTML
 	 */
 	public function parseAsBlock() {
-		$this->format = self::FORMAT_BLOCK_PARSE;
 		return $this->format( self::FORMAT_BLOCK_PARSE );
 	}
 
@@ -1020,7 +1024,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Escaped message text.
 	 */
 	public function escaped() {
-		$this->format = self::FORMAT_ESCAPED;
 		return $this->format( self::FORMAT_ESCAPED );
 	}
 
@@ -1296,13 +1299,12 @@ class Message implements MessageSpecifier, Serializable {
 			$msg->interface = $this->interface;
 			$msg->language = $this->language;
 			$msg->useDatabase = $this->useDatabase;
-			$msg->title = $this->title;
+			$msg->contextPage = $this->contextPage;
 
 			// DWIM
 			if ( $format === 'block-parse' ) {
 				$format = 'parse';
 			}
-			$msg->format = $format;
 
 			// Message objects should not be before parameters because
 			// then they'll get double escaped. If the message needs to be
@@ -1325,7 +1327,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected function parseText( $string ) {
 		$out = MediaWikiServices::getInstance()->getMessageCache()->parse(
 			$string,
-			$this->title,
+			$this->contextPage,
 			/*linestart*/true,
 			$this->interface,
 			$this->getLanguage()
@@ -1357,7 +1359,7 @@ class Message implements MessageSpecifier, Serializable {
 			$string,
 			$this->interface,
 			$this->getLanguage(),
-			$this->title
+			$this->contextPage
 		);
 	}
 

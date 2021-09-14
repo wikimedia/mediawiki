@@ -30,7 +30,7 @@ use MediaWiki\Page\PageIdentity;
  * Service for looking up page revisions.
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionLookup
@@ -41,7 +41,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromId
+	 * MCR migration note: this replaced Revision::newFromId
 	 *
 	 * $flags include:
 	 *
@@ -59,7 +59,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * that's attached to a given link target. If not attached
 	 * to that link target, will return null.
 	 *
-	 * MCR migration note: this replaces Revision::newFromTitle
+	 * MCR migration note: this replaced Revision::newFromTitle
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
@@ -73,7 +73,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * that's attached to a given page ID.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromPageId
+	 * MCR migration note: this replaced Revision::newFromPageId
 	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
@@ -87,13 +87,13 @@ interface RevisionLookup extends IDBAccessObject {
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 * MCR migration note: this replaced Revision::loadFromTimestamp
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      RevisionLookup::READ_LATEST: Select the data from the master
-	 *      RevisionLookup::READ_LOCKING: Select & lock the data from the master
+	 *      RevisionLookup::READ_LATEST: Select the data from the primary DB
+	 *      RevisionLookup::READ_LOCKING: Select & lock the data from the primary DB
 	 *      Default: RevisionLookup::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
@@ -106,11 +106,11 @@ interface RevisionLookup extends IDBAccessObject {
 	/**
 	 * Get previous revision for this title
 	 *
-	 * MCR migration note: this replaces Revision::getPrevious
+	 * MCR migration note: this replaced Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -119,11 +119,11 @@ interface RevisionLookup extends IDBAccessObject {
 	/**
 	 * Get next revision for this title
 	 *
-	 * MCR migration note: this replaces Revision::getNext
+	 * MCR migration note: this replaced Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -132,7 +132,7 @@ interface RevisionLookup extends IDBAccessObject {
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row.
 	 *
-	 * MCR migration note: this replaces Revision::getTimestampFromId
+	 * MCR migration note: this replaced Revision::getTimestampFromId
 	 *
 	 * @param int $id
 	 * @param int $flags
@@ -147,7 +147,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * This method allows for the use of caching, though accessing anything that normally
 	 * requires permission checks (aside from the text) will trigger a small DB lookup.
 	 *
-	 * MCR migration note: this replaces Revision::newKnownCurrent
+	 * MCR migration note: this replaced Revision::newKnownCurrent
 	 *
 	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page

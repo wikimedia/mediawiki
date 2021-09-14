@@ -9,7 +9,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers \MediaWiki\Rest\CorsUtils
@@ -18,6 +18,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 	private function createServiceOptions( array $options = [] ) {
 		$defaults = [
+			'AllowedCorsHeaders' => [],
 			'AllowCrossOrigin' => false,
 			'RestAllowCrossOriginCookieAuth' => false,
 			'CanonicalServer' => 'https://example.com',
@@ -32,9 +33,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider provideAuthorizeAllowOrigin
 	 */
 	public function testAuthorizeAllowOrigin( bool $isRegistered, bool $needsWriteAccess, string $origin ) {
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
@@ -101,9 +100,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testAuthorizeDisallowOrigin() {
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'isRegistered' )
-			->willReturn( false );
+		$user = new UserIdentityValue( 0, __CLASS__ );
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
@@ -138,7 +135,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
 			$this->createMock( ResponseFactory::class ),
-			$this->createMock( UserIdentity::class )
+			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
@@ -153,7 +150,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 				'AllowCrossOrigin' => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
-			$this->createMock( UserIdentity::class )
+			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
@@ -177,9 +174,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	 * @param string $isRegistered
 	 */
 	public function testModifyResponseAllowTrustedOriginCookieAuth( string $requestMethod, bool $isRegistered ) {
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
@@ -236,9 +231,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		string $requestMethod,
 		bool $isRegistered
 	) {
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
@@ -301,7 +294,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
 			$responseFactory,
-			$this->createMock( UserIdentity::class )
+			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$methods = [ 'POST' ];
@@ -311,5 +304,27 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Methods' ) );
 		$this->assertSame( $methods, $response->getHeader( 'Access-Control-Allow-Methods' ) );
+	}
+
+	public function testCreatePreflightResponse_allow_headers() {
+		$responseFactory = $this->createMock( ResponseFactory::class );
+		$responseFactory->method( 'createNoContent' )
+			->willReturn( new Response() );
+
+		$cors = new CorsUtils(
+			$this->createServiceOptions( [
+				'AllowedCorsHeaders' => [ 'Authorization', 'BlaHeader', ],
+			] ),
+			$responseFactory,
+			new UserIdentityValue( 0, __CLASS__ )
+		);
+
+		$methods = [ 'POST' ];
+		$response = $cors->createPreflightResponse( $methods );
+		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
+		$header = $response->getHeader( 'Access-Control-Allow-Headers' );
+		$this->assertContains( 'Authorization', $header );
+		$this->assertContains( 'Content-Type', $header );
+		$this->assertSame( count( $header ), count( array_unique( $header ) ) );
 	}
 }

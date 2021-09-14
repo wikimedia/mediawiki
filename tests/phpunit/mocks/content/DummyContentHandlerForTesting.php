@@ -6,6 +6,10 @@ class DummyContentHandlerForTesting extends ContentHandler {
 		parent::__construct( $dataModel, $formats );
 	}
 
+	protected function getContentClass() {
+		return DummyContentForTesting::class;
+	}
+
 	/**
 	 * @see ContentHandler::serializeContent
 	 *
@@ -38,5 +42,9 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 */
 	public function makeEmptyContent() {
 		return new DummyContentForTesting( '' );
+	}
+
+	public function generateHTMLOnEdit(): bool {
+		return false;
 	}
 }

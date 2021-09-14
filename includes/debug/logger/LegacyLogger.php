@@ -69,7 +69,7 @@ class LegacyLogger extends AbstractLogger {
 	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
 	 * These are the same values that Monolog uses
 	 *
-	 * @var array $levelMapping
+	 * @var array
 	 */
 	protected static $levelMapping = [
 		LogLevel::DEBUG => self::LEVEL_DEBUG,
@@ -177,7 +177,7 @@ class LegacyLogger extends AbstractLogger {
 				$context['sql'],
 				$context['method'],
 				$context['runtime'],
-				$context['db_host']
+				$context['db_server']
 			);
 		}
 

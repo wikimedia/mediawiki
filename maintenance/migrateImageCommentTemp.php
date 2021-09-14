@@ -37,14 +37,6 @@ class MigrateImageCommentTemp extends LoggedUpdateMaintenance {
 		);
 	}
 
-	/**
-	 * Sets whether a run of this maintenance script has the force parameter set
-	 * @param bool $forced
-	 */
-	public function setForce( $forced = true ) {
-		$this->mOptions['force'] = $forced;
-	}
-
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
@@ -52,7 +44,7 @@ class MigrateImageCommentTemp extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->fieldExists( 'image', 'img_description_id', __METHOD__ ) ) {
 			$this->output( "Run update.php to create img_description_id.\n" );
 			return false;

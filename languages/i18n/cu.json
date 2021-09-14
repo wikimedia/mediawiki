@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bugoslav",
 			"DannyS712",
 			"Krinkle",
 			"Matěj Suchánek",
+			"NR Deblocked",
 			"Omnipaedista",
 			"Svetko",
 			"Vvs-dm",
@@ -133,6 +135,7 @@
 	"talk": "бєсѣда",
 	"views": "поꙁьрѣниꙗ",
 	"toolbox": "орѫдиꙗ",
+	"cactions": "вѧщє",
 	"imagepage": "дѣла страницѧ поꙁьрѣниѥ",
 	"templatepage": "обраꙁьца страницѧ поꙁьрѣниѥ",
 	"viewhelppage": "помощи страницѧ поꙁьрѣниѥ",
@@ -669,7 +672,9 @@
 	"tooltip-search": "ищи {{{grammar:genitive|{{SITENAME}}}}} страницѧ",
 	"tooltip-search-go": "прѣиди къ страницѧ съ симь имєньмь ащє жє та страница ѥстъ",
 	"tooltip-search-fulltext": "исканиѥ страницѧ ижє сѥ напьсаниѥ дрьжатъ",
+	"tooltip-p-cactions": "Ⰱⱁⰾⱐⱎⰵ ⱁⱂⱌⰹⰻ",
 	"tooltip-p-logo": "главьна страница",
+	"tooltip-p-personal": "​Меню​ пользователѧ",
 	"tooltip-n-mainpage": "виждь главьнѫ страницѫ",
 	"tooltip-n-mainpage-description": "виждь главьнѫ страницѫ",
 	"tooltip-n-recentchanges": "послѣдьн҄ь мѣнъ каталогъ",
@@ -795,6 +800,7 @@
 	"special-characters-group-thai": "таиска аꙁъбоукꙑ",
 	"special-characters-group-lao": "лаосьска аꙁъбоукꙑ",
 	"special-characters-group-khmer": "къмєрьска аꙁъбоукꙑ",
+	"special-characters-group-runes": "​Рꙋны​",
 	"mw-widgets-titleinput-description-new-page": "страницѧ ю нѣстъ",
 	"mw-widgets-titleinput-description-redirect": "прѣнаправлѥниѥ къ ⁖ $1 ⁖"
 }

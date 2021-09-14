@@ -53,15 +53,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @stable to override
 	 */
 	public function validateParam( $name, $value ) {
-		if ( in_array( $name, [ 'width', 'height' ] ) ) {
-			if ( $value <= 0 ) {
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			return false;
-		}
+		return in_array( $name, [ 'width', 'height' ] ) && $value > 0;
 	}
 
 	/**
@@ -229,16 +221,29 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function getImageSize( $image, $path ) {
 		Wikimedia\suppressWarnings();
 		$gis = getimagesize( $path );
 		Wikimedia\restoreWarnings();
 
 		return $gis;
+	}
+
+	public function getSizeAndMetadata( $state, $path ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$gis = @getimagesize( $path );
+		if ( $gis ) {
+			$info = [
+				'width' => $gis[0],
+				'height' => $gis[1],
+			];
+			if ( isset( $gis['bits'] ) ) {
+				$info['bits'] = $gis['bits'];
+			}
+		} else {
+			$info = [];
+		}
+		return $info;
 	}
 
 	/**

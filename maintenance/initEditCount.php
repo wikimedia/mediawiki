@@ -38,7 +38,7 @@ class InitEditCount extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		// Autodetect mode...
 		if ( $this->hasOption( 'background' ) ) {

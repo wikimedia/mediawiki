@@ -112,13 +112,13 @@ CREATE TABLE /*_*/change_tag (
   ct_params BLOB DEFAULT NULL, ct_tag_id INTEGER UNSIGNED NOT NULL
 );
 
-CREATE UNIQUE INDEX change_tag_rc_tag_id ON /*_*/change_tag (ct_rc_id, ct_tag_id);
+CREATE UNIQUE INDEX ct_rc_tag_id ON /*_*/change_tag (ct_rc_id, ct_tag_id);
 
-CREATE UNIQUE INDEX change_tag_log_tag_id ON /*_*/change_tag (ct_log_id, ct_tag_id);
+CREATE UNIQUE INDEX ct_log_tag_id ON /*_*/change_tag (ct_log_id, ct_tag_id);
 
-CREATE UNIQUE INDEX change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id, ct_tag_id);
+CREATE UNIQUE INDEX ct_rev_tag_id ON /*_*/change_tag (ct_rev_id, ct_tag_id);
 
-CREATE INDEX change_tag_tag_id_id ON /*_*/change_tag (
+CREATE INDEX ct_tag_id_id ON /*_*/change_tag (
   ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
 );
 
@@ -673,11 +673,15 @@ CREATE INDEX oi_name_archive_name ON /*_*/oldimage (oi_name, oi_archive_name);
 
 CREATE INDEX oi_sha1 ON /*_*/oldimage (oi_sha1);
 
+CREATE INDEX oi_timestamp ON /*_*/oldimage (oi_timestamp);
+
 
 CREATE TABLE /*_*/objectcache (
   keyname BLOB DEFAULT '' NOT NULL,
   value BLOB DEFAULT NULL,
   exptime BLOB NOT NULL,
+  modtoken VARCHAR(17) DEFAULT '00000000000000000' NOT NULL,
+  flags INTEGER UNSIGNED DEFAULT NULL,
   PRIMARY KEY(keyname)
 );
 
@@ -828,7 +832,7 @@ CREATE TABLE /*_*/page (
   page_lang BLOB DEFAULT NULL
 );
 
-CREATE UNIQUE INDEX name_title ON /*_*/page (page_namespace, page_title);
+CREATE UNIQUE INDEX page_name_title ON /*_*/page (page_namespace, page_title);
 
 CREATE INDEX page_random ON /*_*/page (page_random);
 
@@ -838,3 +842,64 @@ CREATE INDEX page_redirect_namespace_len ON /*_*/page (
   page_is_redirect, page_namespace,
   page_len
 );
+
+
+CREATE TABLE /*_*/user (
+  user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  user_name BLOB DEFAULT '' NOT NULL,
+  user_real_name BLOB DEFAULT '' NOT NULL,
+  user_password BLOB NOT NULL, user_newpassword BLOB NOT NULL,
+  user_newpass_time BLOB DEFAULT NULL,
+  user_email CLOB NOT NULL, user_touched BLOB NOT NULL,
+  user_token BLOB DEFAULT '' NOT NULL,
+  user_email_authenticated BLOB DEFAULT NULL,
+  user_email_token BLOB DEFAULT NULL,
+  user_email_token_expires BLOB DEFAULT NULL,
+  user_registration BLOB DEFAULT NULL,
+  user_editcount INTEGER DEFAULT NULL,
+  user_password_expires BLOB DEFAULT NULL
+);
+
+CREATE UNIQUE INDEX user_name ON /*_*/user (user_name);
+
+CREATE INDEX user_email_token ON /*_*/user (user_email_token);
+
+CREATE INDEX user_email ON /*_*/user (user_email);
+
+
+CREATE TABLE /*_*/revision (
+  rev_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  rev_page INTEGER UNSIGNED NOT NULL,
+  rev_comment_id BIGINT UNSIGNED DEFAULT 0 NOT NULL,
+  rev_actor BIGINT UNSIGNED DEFAULT 0 NOT NULL,
+  rev_timestamp BLOB NOT NULL, rev_minor_edit SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rev_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rev_len INTEGER UNSIGNED DEFAULT NULL,
+  rev_parent_id INTEGER UNSIGNED DEFAULT NULL,
+  rev_sha1 BLOB DEFAULT '' NOT NULL
+);
+
+CREATE INDEX rev_page_id ON /*_*/revision (rev_page, rev_id);
+
+CREATE INDEX rev_timestamp ON /*_*/revision (rev_timestamp);
+
+CREATE INDEX rev_page_timestamp ON /*_*/revision (rev_page, rev_timestamp);
+
+CREATE INDEX rev_actor_timestamp ON /*_*/revision (rev_actor, rev_timestamp, rev_id);
+
+CREATE INDEX rev_page_actor_timestamp ON /*_*/revision (
+  rev_page, rev_actor, rev_timestamp
+);
+
+
+CREATE TABLE /*_*/searchindex (
+  si_page INTEGER UNSIGNED NOT NULL,
+  si_title VARCHAR(255) DEFAULT '' NOT NULL,
+  si_text CLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
+
+CREATE INDEX si_title ON /*_*/searchindex (si_title);
+
+CREATE INDEX si_text ON /*_*/searchindex (si_text);

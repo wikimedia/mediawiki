@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -34,7 +35,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 
 	/**
 	 * @param IContextSource $context
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 * @param HookContainer $hookContainer
@@ -44,7 +45,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 	 */
 	public function __construct(
 		IContextSource $context,
-		Title $title,
+		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
@@ -54,7 +55,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 	) {
 		parent::__construct(
 			$context,
-			$title,
+			$page,
 			$ids,
 			$lbFactory,
 			$hookContainer,
@@ -87,8 +88,8 @@ class RevDelArchiveList extends RevDelRevisionList {
 		$tables = $arQuery['tables'];
 		$fields = $arQuery['fields'];
 		$conds = [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
+			'ar_namespace' => $this->getPage()->getNamespace(),
+			'ar_title' => $this->getPage()->getDBkey(),
 			'ar_timestamp' => $timestamps,
 		];
 		$join_conds = $arQuery['joins'];

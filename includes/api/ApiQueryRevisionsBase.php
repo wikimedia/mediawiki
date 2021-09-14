@@ -21,11 +21,14 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -58,6 +61,54 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_roles = false,
 		$fld_parsetree = false;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var ParserFactory */
+	private $parserFactory;
+
+	/** @var SlotRoleRegistry */
+	private $slotRoleRegistry;
+
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
+	/**
+	 * @since 1.37 Support injection of services
+	 * @stable to call
+	 * @param ApiQuery $queryModule
+	 * @param string $moduleName
+	 * @param string $paramPrefix
+	 * @param RevisionStore|null $revisionStore
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @param ParserFactory|null $parserFactory
+	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param ContentTransformer|null $contentTransformer
+	 */
+	public function __construct(
+		ApiQuery $queryModule,
+		$moduleName,
+		$paramPrefix = '',
+		RevisionStore $revisionStore = null,
+		IContentHandlerFactory $contentHandlerFactory = null,
+		ParserFactory $parserFactory = null,
+		SlotRoleRegistry $slotRoleRegistry = null,
+		ContentTransformer $contentTransformer = null
+	) {
+		parent::__construct( $queryModule, $moduleName, $paramPrefix );
+		// This class is part of the stable interface and
+		// therefor fallback to global state, if services are not provided
+		$services = MediaWikiServices::getInstance();
+		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
+		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
+		$this->parserFactory = $parserFactory ?? $services->getParserFactory();
+		$this->slotRoleRegistry = $slotRoleRegistry ?? $services->getSlotRoleRegistry();
+		$this->contentTransformer = $contentTransformer ?? $services->getContentTransformer();
+	}
+
 	public function execute() {
 		$this->run();
 	}
@@ -78,7 +129,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param array $params
 	 */
 	protected function parseParameters( $params ) {
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_flags = isset( $prop['flags'] );
@@ -144,8 +195,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			// DifferenceEngine returns a rather ambiguous empty
 			// string if that's not the case
 			if ( $params['diffto'] != 0 ) {
-				$difftoRev = MediaWikiServices::getInstance()->getRevisionStore()
-					->getRevisionById( $params['diffto'] );
+				$difftoRev = $this->revisionStore->getRevisionById( $params['diffto'] );
 				if ( !$difftoRev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $params['diffto'] ] );
 				}
@@ -250,7 +300,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_USER );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
@@ -286,7 +336,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_sha1 ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['sha1hidden'] = true;
 				$anyHidden = true;
 			}
@@ -326,7 +376,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_COMMENT );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
@@ -455,7 +505,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_slotsha1 ) {
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['sha1hidden'] = true;
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
@@ -473,7 +523,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$content = null;
 		if ( $this->fetchContent ) {
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['texthidden'] = true;
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
@@ -514,7 +564,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				'@phan-var WikitextContent $content';
 				$t = $content->getText(); # note: don't set $text
 
-				$parser = MediaWikiServices::getInstance()->getParser();
+				$parser = $this->parserFactory->create();
 				$parser->startExternalParse(
 					$title,
 					ParserOptions::newFromContext( $this->getContext() ),
@@ -551,7 +601,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'@phan-var WikitextContent $content';
 					$text = $content->getText();
 
-					$text = MediaWikiServices::getInstance()->getParser()->preprocess(
+					$text = $this->parserFactory->create()->preprocess(
 						$text,
 						$title,
 						ParserOptions::newFromContext( $this->getContext() )
@@ -611,8 +661,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat
-						&& !$this->getContentHandlerFactory()
-							->getContentHandler( $model )
+						&& !$this->contentHandlerFactory->getContentHandler( $model )
 							->isSupportedFormat( $this->contentFormat )
 					) {
 						$name = wfEscapeWikiText( $title->getPrefixedText() );
@@ -629,7 +678,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 						if ( $this->difftotextpst ) {
 							$popts = ParserOptions::newFromContext( $this->getContext() );
-							$difftocontent = $difftocontent->preSaveTransform( $title, $this->getUser(), $popts );
+							$difftocontent = $this->contentTransformer->preSaveTransform(
+								$difftocontent,
+								$title,
+								$this->getUser(),
+								$popts
+							);
 						}
 
 						$engine = $handler->createDifferenceEngine( $context );
@@ -675,7 +729,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @throws MWException
 	 */
 	public function getAllowedParams() {
-		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
+		$slotRoles = $this->slotRoleRegistry->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
 
 		return [
@@ -769,14 +823,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];
-	}
-
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }

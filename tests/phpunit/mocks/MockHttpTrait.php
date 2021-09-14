@@ -51,6 +51,8 @@ trait MockHttpTrait {
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
 	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
+	 *        Array of MultiHttpClient or GuzzleHttp\Client mocks is supported, but not an array
+	 *        that contains the mix of the two.
 	 *        If null is given, any call to create(), createMultiClient() or createGuzzleClient()
 	 *        will cause the test to fail.
 	 */
@@ -70,6 +72,9 @@ trait MockHttpTrait {
 	 *        or a callable producing such an MWHttpRequest,
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
+	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
+	 *        Array of MultiHttpClient or GuzzleHttp\Client mocks is supported, but not an array
+	 *        that contains the mix of the two.
 	 *        If null or a MultiHttpClient is given instead of a MWHttpRequest,
 	 *        a call to create() will cause the test to fail.
 	 *
@@ -93,20 +98,20 @@ trait MockHttpTrait {
 			->onlyMethods( [ 'create', 'createMultiClient', 'createGuzzleClient' ] )
 			->getMock();
 
-		if ( $request instanceof MultiHttpClient ) {
-			$mockHttpRequestFactory->method( 'createMultiClient' )
-				->willReturn( $request );
-		} else {
-			$mockHttpRequestFactory->method( 'createMultiClient' )
-				->willReturn( $this->createNoOpMock( MultiHttpClient::class ) );
-		}
-
-		if ( $request instanceof GuzzleHttp\Client ) {
-			$mockHttpRequestFactory->method( 'createGuzzleClient' )
-				->willReturn( $request );
-		} else {
-			$mockHttpRequestFactory->method( 'createGuzzleClient' )
-				->willReturn( $this->createNoOpMock( GuzzleHttp\Client::class ) );
+		foreach ( [
+			MultiHttpClient::class => 'createMultiClient',
+			GuzzleHttp\Client::class => 'createGuzzleClient'
+		] as $class => $method ) {
+			if ( $request instanceof $class ) {
+				$mockHttpRequestFactory->method( $method )
+					->willReturn( $request );
+			} elseif ( $this->isArrayOfClass( $class, $request ) ) {
+				$mockHttpRequestFactory->method( $method )
+					->willReturnOnConsecutiveCalls( ...$request );
+			} else {
+				$mockHttpRequestFactory->method( $method )
+					->willReturn( $this->createNoOpMock( $class ) );
+			}
 		}
 
 		if ( $request === null ) {
@@ -136,18 +141,44 @@ trait MockHttpTrait {
 	}
 
 	/**
+	 * Check whether $array is an array where all elements are instances of $class.
+	 *
+	 * @internal to the trait
+	 * @param string $class
+	 * @param mixed $array
+	 * @return bool
+	 */
+	private function isArrayOfClass( string $class, $array ): bool {
+		if ( !is_array( $array ) || !count( $array ) ) {
+			return false;
+		}
+		foreach ( $array as $item ) {
+			if ( !$item instanceof $class ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Constructs a fake MWHTTPRequest. The request also represents the desired response.
 	 *
 	 * @note Not all methods on MWHTTPRequest are mocked, calling other methods will
 	 *       cause the test to fail.
 	 *
 	 * @param string $body The response body.
-	 * @param int $statusCode The response status code. Use 0 to indicate an internal error.
+	 * @param int|StatusValue $responseStatus The response status code. Use 0 to indicate an internal error.
+	 *        Alternatively, you can provide a configured StatusValue with status code as a value and
+	 *        whatever warnings or errors you want.
 	 * @param string[] $headers Any response headers.
 	 *
 	 * @return MWHttpRequest
 	 */
-	private function makeFakeHttpRequest( $body = 'Lorem Ipsum', $statusCode = 200, $headers = [] ) {
+	private function makeFakeHttpRequest(
+		$body = 'Lorem Ipsum',
+		$responseStatus = 200,
+		$headers = []
+	) {
 		$mockHttpRequest = $this->createNoOpMock(
 			MWHttpRequest::class,
 			[ 'execute', 'setCallback', 'isRedirect', 'getFinalUrl',
@@ -156,6 +187,7 @@ trait MockHttpTrait {
 			]
 		);
 
+		$statusCode = $responseStatus instanceof StatusValue ? $responseStatus->getValue() : $responseStatus;
 		$mockHttpRequest->method( 'isRedirect' )->willReturn(
 			$statusCode >= 300 && $statusCode < 400
 		);
@@ -176,25 +208,48 @@ trait MockHttpTrait {
 			}
 		);
 
-		$status = Status::newGood( $statusCode );
+		if ( is_int( $responseStatus ) ) {
+			$statusObject = Status::newGood( $statusCode );
 
-		if ( $statusCode === 0 ) {
-			$status->fatal( 'http-internal-error' );
+			if ( $statusCode === 0 ) {
+				$statusObject->fatal( 'http-internal-error' );
+			} elseif ( $statusCode >= 400 ) {
+				$statusObject->fatal( "http-bad-status", $statusCode, $body );
+			}
+		} else {
+			$statusObject = Status::wrap( $responseStatus );
 		}
 
 		$mockHttpRequest->method( 'getContent' )->willReturn( $body );
 		$mockHttpRequest->method( 'getStatus' )->willReturn( $statusCode );
 
 		$mockHttpRequest->method( 'execute' )->willReturnCallback(
-			function () use ( &$dataCallback, $body, $status ) {
+			function () use ( &$dataCallback, $body, $statusObject ) {
 				if ( $dataCallback ) {
 					$dataCallback( $this, $body );
 				}
-				return $status;
+				return $statusObject;
 			}
 		);
 
 		return $mockHttpRequest;
+	}
+
+	/**
+	 * Construct a fake HTTP request that will result in an HTTP timeout.
+	 *
+	 * @see self::makeFakeHttpRequest
+	 * @param string $body
+	 * @param string $requestUrl
+	 * @return MWHttpRequest
+	 */
+	private function makeFakeTimeoutRequest(
+		string $body = 'HTTP Timeout',
+		string $requestUrl = 'https://dummy.org'
+	) {
+		$responseStatus = StatusValue::newGood( 504 );
+		$responseStatus->fatal( 'http-timed-out', $requestUrl );
+		return $this->makeFakeHttpRequest( $body, $responseStatus, [] );
 	}
 
 	/**

@@ -8,7 +8,7 @@ use Wikimedia\ObjectFactory;
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$skinFactory = new SkinFactory(
@@ -159,11 +159,24 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$ctx = $this->getResourceLoaderContext();
 		$this->assertEquals(
 			"/* eslint-disable */\nmw.foo()\n" .
+			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n",
+			$module->getScript( $ctx ),
+			'scripts with newline at the end are concatenated without a newline'
+		);
+
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'scripts' => [ 'script-nosemi-nonl.js', 'script-comment-nonl.js' ],
+		] );
+		$module->setName( 'testing' );
+		$ctx = $this->getResourceLoaderContext();
+		$this->assertEquals(
+			"/* eslint-disable */\nmw.foo()" .
 			"\n" .
-			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n" .
+			"/* eslint-disable */\nmw.foo()\n// mw.bar();" .
 			"\n",
 			$module->getScript( $ctx ),
-			'scripts are concatenated with a new-line'
+			'scripts without newline at the end are concatenated with a newline'
 		);
 	}
 
@@ -219,6 +232,40 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	private static function stripNoflip( $css ) {
 		return str_replace( '/*@noflip*/ ', '', $css );
+	}
+
+	/**
+	 * Confirm that 'ResourceModuleSkinStyles' skin attributes get injected
+	 * into the module, and have their file contents read correctly from their
+	 * own (out-of-module) directories.
+	 *
+	 * @covers ResourceLoader
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testInjectSkinStyles() {
+		$moduleDir = __DIR__ . '/../../data/resourceloader';
+		$skinDir = __DIR__ . '/../../data/resourceloader/myskin';
+		$rl = new ResourceLoader( new HashConfig( self::getSettings() ) );
+		$rl->setModuleSkinStyles( [
+			'fakeskin' => [
+				'localBasePath' => $skinDir,
+				'testing' => [
+					'override.css',
+				],
+			],
+		] );
+		$rl->register( 'testing', [
+			'localBasePath' => $moduleDir,
+			'styles' => [ 'simple.css' ],
+		] );
+		$ctx = $this->getResourceLoaderContext( [ 'skin' => 'fakeskin' ], $rl );
+
+		$module = $rl->getModule( 'testing' );
+		$this->assertInstanceOf( ResourceLoaderFileModule::class, $module );
+		$this->assertEquals(
+			[ 'all' => ".example { color: blue; }\n\n.override { line-height: 2; }\n" ],
+			$module->getStyles( $ctx )
+		);
 	}
 
 	/**
@@ -305,8 +352,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
 	 *
-	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
-	 * skin attributes.
+	 * The use of ResourceLoaderFilePath objects resembles the way that ResourceLoader::getModule()
+	 * injects additional files when 'ResourceModuleSkinStyles' or 'OOUIThemePaths' skin attributes
+	 * apply to a given module.
 	 *
 	 * @covers ResourceLoaderFilePath::getLocalBasePath
 	 * @covers ResourceLoaderFilePath::getRemoteBasePath
@@ -526,8 +574,10 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$context = $this->getResourceLoaderContext();
 
 		$moduleA = new ResourceLoaderFileTestModule( $a );
+		$moduleA->setConfig( $context->getResourceLoader()->getConfig() );
 		$versionA = $moduleA->getVersionHash( $context );
 		$moduleB = new ResourceLoaderFileTestModule( $b );
+		$moduleB->setConfig( $context->getResourceLoader()->getConfig() );
 		$versionB = $moduleB->getVersionHash( $context );
 
 		$this->assertSame(
@@ -855,6 +905,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	public function testGetScriptPackageFiles( $moduleDefinition, $expected, $contextOptions = [] ) {
 		$module = new ResourceLoaderFileModule( $moduleDefinition );
 		$context = $this->getResourceLoaderContext( $contextOptions );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		if ( isset( $moduleDefinition['name'] ) ) {
 			$module->setName( $moduleDefinition['name'] );
 		}

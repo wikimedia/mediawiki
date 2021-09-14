@@ -23,7 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Static accessor class for site_stats and related things
@@ -56,10 +56,10 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
+		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_MASTER ) );
+			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
 		if ( !self::isRowSane( $row ) ) {
@@ -76,7 +76,7 @@ class SiteStats {
 				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_MASTER ) );
+			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
 		if ( !self::isRowSane( $row ) ) {
@@ -295,7 +295,7 @@ class SiteStats {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private static function getLB() {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();

@@ -19,7 +19,7 @@ class BaseDumpTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $dump = null;
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->dump !== null ) {
 			$this->dump->close();
 		}

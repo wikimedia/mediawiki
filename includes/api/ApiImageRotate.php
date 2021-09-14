@@ -18,13 +18,36 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 
 /**
  * @ingroup API
  */
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var TempFSFileFactory */
+	private $tempFSFileFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param RepoGroup $repoGroup
+	 * @param TempFSFileFactory $tempFSFileFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		RepoGroup $repoGroup,
+		TempFSFileFactory $tempFSFileFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->repoGroup = $repoGroup;
+		$this->tempFSFileFactory = $tempFSFileFactory;
+	}
 
 	public function execute() {
 		$this->useTransactionalTimeLimit();
@@ -61,9 +84,7 @@ class ApiImageRotate extends ApiBase {
 				}
 			}
 
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile(
-				$title, [ 'latest' => true ]
-			);
+			$file = $this->repoGroup->findFile( $title, [ 'latest' => true ] );
 			if ( !$file ) {
 				$r['result'] = 'Failure';
 				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
@@ -95,8 +116,7 @@ class ApiImageRotate extends ApiBase {
 				continue;
 			}
 			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
-			$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
-				->newTempFSFile( 'rotate_', $ext );
+			$tmpFile = $this->tempFSFileFactory->newTempFSFile( 'rotate_', $ext );
 			$dstPath = $tmpFile->getPath();
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			$err = $handler->rotate( $file, [
@@ -116,7 +136,7 @@ class ApiImageRotate extends ApiBase {
 					0,
 					false,
 					false,
-					$this->getUser(),
+					$this->getAuthority(),
 					$params['tags'] ?: []
 				);
 				if ( $status->isGood() ) {

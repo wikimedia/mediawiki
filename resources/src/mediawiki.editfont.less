@@ -15,9 +15,13 @@
 .mw-editfont-monospace,
 .mw-editfont-sans-serif,
 .mw-editfont-serif {
+	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 13px;
 	/* Standardize tab width when in edit areas */
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	-moz-tab-size: 4;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	tab-size: 4;
 
 	/* For OOUI TextInputWidget, the parent <div> element uses normal font size, and only
@@ -27,6 +31,8 @@
 		font-size: inherit;
 
 		> .oo-ui-inputWidget-input {
+			/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
+			/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 			font-size: 13px;
 		}
 

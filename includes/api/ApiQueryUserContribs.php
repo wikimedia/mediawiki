@@ -20,12 +20,14 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -35,22 +37,54 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class ApiQueryUserContribs extends ApiQueryBase {
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
+	 * @param RevisionStore $revisionStore
+	 * @param NameTableStore $changeTagDefStore
+	 * @param ActorMigration $actorMigration
+	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		UserIdentityLookup $userIdentityLookup
+		CommentStore $commentStore,
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils,
+		RevisionStore $revisionStore,
+		NameTableStore $changeTagDefStore,
+		ActorMigration $actorMigration
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
+		$this->commentStore = $commentStore;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
+		$this->revisionStore = $revisionStore;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->actorMigration = $actorMigration;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
-
-	/** @var CommentStore */
-	private $commentStore;
 
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
@@ -60,9 +94,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$this->commentStore = CommentStore::getStore();
-
-		$prop = array_flip( $this->params['prop'] );
+		$prop = array_fill_keys( $this->params['prop'], true );
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_comment = isset( $prop['comment'] );
@@ -111,7 +143,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						->newSelectQueryBuilder()
 						->caller( $fname )
 						->limit( $limit )
-						->userNamePrefix( $this->params['userprefix'] )
+						->whereUserNamePrefix( $this->params['userprefix'] )
 						->where( $from ? [ "actor_name $from" ] : [] )
 						->orderByName( $sort )
 						->fetchUserIdentities();
@@ -160,7 +192,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
-				->userIds( $ids )
+				->whereUserIds( $ids )
 				->orderByUserId( $sort )
 				->where( $from ? [ "actor_id $from" ] : [] )
 				->fetchUserIdentities();
@@ -181,10 +213,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					);
 				}
 
-				if ( User::isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
+				if ( $this->userNameUtils->isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
 					$names[$u] = null;
 				} else {
-					$name = User::getCanonicalName( $u, 'valid' );
+					$name = $this->userNameUtils->getCanonical( $u );
 					if ( $name === false ) {
 						$encParamName = $this->encodeParamName( 'user' );
 						$this->dieWithError(
@@ -210,7 +242,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
-				->userNames( array_keys( $names ) )
+				->whereUserNames( array_keys( $names ) )
 				->where( $from ? [ "actor_id $from" ] : [] )
 				->orderByName( $sort )
 				->fetchUserIdentities();
@@ -247,8 +279,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						$revIds[] = $row->rev_parent_id;
 					}
 				}
-				$this->parentLens = MediaWikiServices::getInstance()->getRevisionStore()
-					->getRevisionSizes( $revIds );
+				$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
 			}
 
 			foreach ( $res as $row ) {
@@ -278,33 +309,42 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * @param int $limit
 	 */
 	private function prepareQuery( array $users, $limit ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo( [ 'page' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
+		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 
-		$revWhere = ActorMigration::newMigration()->getWhere( $db, 'rev_user', $users );
-		$orderUserField = 'rev_actor';
-		$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
-		$tsField = 'revactor_timestamp';
-		$idField = 'revactor_rev';
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
+			$orderUserField = 'rev_actor';
+			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
+			$tsField = 'revactor_timestamp';
+			$idField = 'revactor_rev';
 
-		// T221511: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor`
-		// before `revision_actor_temp` and filesorting is somehow better than querying $limit+1 rows
-		// from `revision_actor_temp`. Tell it not to reorder the query (and also reorder it ourselves
-		// because as generated by RevisionStore it'll have `revision` first rather than
-		// `revision_actor_temp`). But not when uctag is used, as it seems as likely to be harmed as
-		// helped in that case, and not when there's only one User because in that case it fetches
-		// the one `actor` row as a constant and doesn't filesort.
-		if ( count( $users ) > 1 && !isset( $this->params['tag'] ) ) {
-			$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
-			unset( $revQuery['joins']['temp_rev_user'] );
-			$this->addOption( 'STRAIGHT_JOIN' );
-			// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
-			// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
-			// `revision_actor_temp` to the start.
-			$revQuery['tables'] =
-				[ 'temp_rev_user' => $revQuery['tables']['temp_rev_user'] ] + $revQuery['tables'];
+			// T221511: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor`
+			// before `revision_actor_temp` and filesorting is somehow better than querying $limit+1 rows
+			// from `revision_actor_temp`. Tell it not to reorder the query (and also reorder it ourselves
+			// because as generated by RevisionStore it'll have `revision` first rather than
+			// `revision_actor_temp`). But not when uctag is used, as it seems as likely to be harmed as
+			// helped in that case, and not when there's only one User because in that case it fetches
+			// the one `actor` row as a constant and doesn't filesort.
+			if ( count( $users ) > 1 && !isset( $this->params['tag'] ) ) {
+				$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
+				unset( $revQuery['joins']['temp_rev_user'] );
+				$this->addOption( 'STRAIGHT_JOIN' );
+				// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
+				// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
+				// `revision_actor_temp` to the start.
+				$revQuery['tables'] =
+					[ 'temp_rev_user' => $revQuery['tables']['temp_rev_user'] ] + $revQuery['tables'];
+			}
+		} else /* SCHEMA_COMPAT_READ_NEW */ {
+			$orderUserField = 'rev_actor';
+			$userField = $this->orderBy === 'actor' ? 'rev_actor' : 'actor_name';
+			$tsField = 'rev_timestamp';
+			$idField = 'rev_id';
 		}
 
 		$this->addTables( $revQuery['tables'] );
@@ -376,7 +416,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$show[] = 'top';
 		}
 		if ( $show !== null ) {
-			$show = array_flip( $show );
+			$show = array_fill_keys( $show, true );
 
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
@@ -441,9 +481,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ $idField . ' = ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {
-				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $this->params['tag'] ) );
+				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $this->params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );

@@ -1,5 +1,5 @@
 <?php
-/** Kurdish (Latin script) (Kurdî (latînî)‎)
+/** Kurdish (Latin script) (Kurdî (latînî))
  *
  * To improve a translation please visit https://translatewiki.net
  *

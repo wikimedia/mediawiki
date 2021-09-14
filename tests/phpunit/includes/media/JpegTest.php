@@ -5,8 +5,10 @@
  * @covers JpegHandler
  */
 class JpegTest extends MediaWikiMediaTestCase {
+	/** @var JpegHandler */
+	private $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
@@ -17,18 +19,27 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 	public function testInvalidFile() {
 		$file = $this->dataFile( 'README', 'image/jpeg' );
-		$res = $this->handler->getMetadata( $file, $this->filePath . 'README' );
-		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
+		$res = $this->handler->getSizeAndMetadataWithFallback( $file, $this->filePath . 'README' );
+		$this->assertEquals( [ '_error' => ExifBitmapHandler::BROKEN_FILE ], $res['metadata'] );
 	}
 
 	public function testJpegMetadataExtraction() {
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
-		$res = $this->handler->getMetadata( $file, $this->filePath . 'test.jpg' );
-		// phpcs:ignore Generic.Files.LineLength
-		$expected = 'a:7:{s:16:"ImageDescription";s:9:"Test file";s:11:"XResolution";s:4:"72/1";s:11:"YResolution";s:4:"72/1";s:14:"ResolutionUnit";i:2;s:16:"YCbCrPositioning";i:1;s:15:"JPEGFileComment";a:1:{i:0;s:17:"Created with GIMP";}s:22:"MEDIAWIKI_EXIF_VERSION";i:2;}';
+		$res = $this->handler->getSizeAndMetadataWithFallback( $file, $this->filePath . 'test.jpg' );
+		$expected = [
+			'ImageDescription' => 'Test file',
+			'XResolution' => '72/1',
+			'YResolution' => '72/1',
+			'ResolutionUnit' => 2,
+			'YCbCrPositioning' => 1,
+			'JPEGFileComment' => [
+				0 => 'Created with GIMP',
+			],
+			'MEDIAWIKI_EXIF_VERSION' => 2,
+		];
 
 		// Unserialize in case serialization format ever changes.
-		$this->assertEquals( unserialize( $expected ), unserialize( $res ) );
+		$this->assertEquals( $expected, $res['metadata'] );
 	}
 
 	/**

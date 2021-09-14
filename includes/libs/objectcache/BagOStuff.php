@@ -51,7 +51,7 @@ use Wikimedia\ScopedCallback;
  * among datacenters.
  *
  * Subclasses should override the default "segmentationSize" field with an appropriate value.
- * The value should not be larger than what the storage backend (by default) supports. It also
+ * The value should not be larger than what the backing store (by default) supports. It also
  * should be roughly informed by common performance bottlenecks (e.g. values over a certain size
  * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
  * the maximum size and chunk count (indirectly) of values.
@@ -176,7 +176,7 @@ abstract class BagOStuff implements
 	 * @since 1.35
 	 * @return LoggerInterface
 	 */
-	public function getLogger() : LoggerInterface {
+	public function getLogger(): LoggerInterface {
 		return $this->logger;
 	}
 
@@ -309,17 +309,18 @@ abstract class BagOStuff implements
 	abstract public function changeTTL( $key, $exptime = 0, $flags = 0 );
 
 	/**
-	 * Acquire an advisory lock on a key string
-	 *
-	 * Note that if reentry is enabled, duplicate calls ignore $expiry
+	 * Acquire an advisory lock on a key string, exclusive to the caller
 	 *
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
-	 * @param int $expiry Lock expiry [optional]; 1 day maximum
-	 * @param string $rclass Allow reentry if set and the current lock used this value
+	 * @param int $exptime Lock time-to-live in seconds; 1 day maximum [optional]
+	 * @param string $rclass If this thread already holds the lock, and the lock was acquired
+	 *  using the same value for this parameter, then return true and use reference counting so
+	 *  that only the unlock() call from the outermost lock() caller actually releases the lock
+	 *  (note that only the outermost time-to-live is used) [optional]
 	 * @return bool Success
 	 */
-	abstract public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' );
+	abstract public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' );
 
 	/**
 	 * Release an advisory lock on a key string
@@ -352,18 +353,7 @@ abstract class BagOStuff implements
 			return null;
 		}
 
-		$lSince = $this->getCurrentTime(); // lock timestamp
-
-		return new ScopedCallback( function () use ( $key, $lSince, $expiry ) {
-			$latency = 0.050; // latency skew (err towards keeping lock present)
-			$age = ( $this->getCurrentTime() - $lSince + $latency );
-			if ( ( $age + $latency ) >= $expiry ) {
-				$this->logger->warning(
-					"Lock for {key} held too long ({age} sec).",
-					[ 'key' => $key, 'age' => $age ]
-				);
-				return; // expired; it's not "safe" to delete the key
-			}
+		return new ScopedCallback( function () use ( $key, $expiry ) {
 			$this->unlock( $key );
 		} );
 	}
@@ -376,12 +366,15 @@ abstract class BagOStuff implements
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
 	 * @param int $limit Maximum number of keys to delete [default: INF]
+	 * @param string|null $tag Tag to purge a single shard only.
+	 *  This is only supported when server tags are used in configuration.
 	 * @return bool Success; false if unimplemented
 	 */
 	abstract public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	);
 
 	/**
@@ -686,8 +679,8 @@ abstract class BagOStuff implements
 		}
 
 		$key = '';
-		foreach ( $components as $component ) {
-			if ( $key !== '' ) {
+		foreach ( $components as $i => $component ) {
+			if ( $i > 0 ) {
 				$key .= ':';
 			}
 			// Escape delimiter (":") and escape ("%") characters

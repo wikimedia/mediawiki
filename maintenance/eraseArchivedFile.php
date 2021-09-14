@@ -58,7 +58,7 @@ class EraseArchivedFile extends Maintenance {
 			$afile = false;
 		} else {
 			// specified version
-			$dbw = $this->getDB( DB_MASTER );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$fileQuery = ArchivedFile::getQueryInfo();
 			$row = $dbw->selectRow( $fileQuery['tables'], $fileQuery['fields'],
 				[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $filekey ],
@@ -89,7 +89,7 @@ class EraseArchivedFile extends Maintenance {
 	}
 
 	protected function scrubAllVersions( $name ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$fileQuery = ArchivedFile::getQueryInfo();
 		$res = $dbw->select( $fileQuery['tables'], $fileQuery['fields'],
 			[ 'fa_name' => $name, 'fa_storage_group' => 'deleted' ],

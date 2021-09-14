@@ -139,7 +139,7 @@ class ResourceLoaderImage {
 	 *
 	 * @return string[]
 	 */
-	public function getVariants() : array {
+	public function getVariants(): array {
 		return array_keys( $this->variants );
 	}
 
@@ -148,7 +148,7 @@ class ResourceLoaderImage {
 	 * @param string $lang
 	 * @return string[]
 	 */
-	protected function getLangFallbacks( string $lang ) : array {
+	protected function getLangFallbacks( string $lang ): array {
 		return MediaWikiServices::getInstance()
 			->getLanguageFallback()
 			->getAll( $lang, LanguageFallback::STRICT );
@@ -325,7 +325,7 @@ class ResourceLoaderImage {
 	 *
 	 * @param ResourceLoaderContext $context Image context
 	 */
-	public function sendResponseHeaders( ResourceLoaderContext $context ) : void {
+	public function sendResponseHeaders( ResourceLoaderContext $context ): void {
 		$format = $context->getFormat();
 		$mime = $this->getMimeType( $format );
 		$filename = $this->getName() . '.' . $this->getExtension( $format );

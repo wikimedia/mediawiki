@@ -59,7 +59,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		// Make sure the delete button, if explicitly specified, is sane
-		// @phan-suppress-next-line PhanTypeMismatchDimFetch Phan is very confused
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [
@@ -170,7 +169,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( $field->skipLoadData( $subrequest ) ) {
 					continue;
-				} elseif ( !empty( $field->mParams['disabled'] ) ) {
+				}
+				if ( !empty( $field->mParams['disabled'] ) ) {
 					$row[$fieldname] = $field->getDefault();
 				} else {
 					$row[$fieldname] = $field->loadDataFromRequest( $subrequest );
@@ -186,9 +186,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
-				} else {
-					$row[$fieldname] = $field->getDefault();
 				}
+				$row[$fieldname] = $field->getDefault();
 			}
 			$ret[] = $row;
 		}
@@ -206,9 +205,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
 					continue;
-				} else {
-					$row[$fieldname] = $field->getDefault();
 				}
+				$row[$fieldname] = $field->getDefault();
 			}
 			$ret = [ $row ];
 		}
@@ -357,7 +355,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @param string $key Array key indicating to which field the delete button belongs
 	 * @return HTMLFormField
 	 */
-	protected function getDeleteButtonHtml( $key ) : HTMLFormField {
+	protected function getDeleteButtonHtml( $key ): HTMLFormField {
 		$name = "{$this->mName}[$key][delete]";
 		$label = $this->mParams['delete-button-message'] ?? 'htmlform-cloner-delete';
 		$field = HTMLForm::loadInputFromParameters( $name, [
@@ -372,7 +370,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $field;
 	}
 
-	protected function getCreateButtonHtml() : HTMLFormField {
+	protected function getCreateButtonHtml(): HTMLFormField {
 		$name = "{$this->mName}[create]";
 		$label = $this->mParams['create-button-message'] ?? 'htmlform-cloner-create';
 		return HTMLForm::loadInputFromParameters( $name, [

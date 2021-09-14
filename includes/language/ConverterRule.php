@@ -137,7 +137,7 @@ class ConverterRule {
 			// allow syntaxes like "-{zh-hans;zh-hant|XXXX}-"
 			$variantFlags = array_intersect( array_keys( $flags ), $this->mConverter->getVariants() );
 			if ( $variantFlags ) {
-				$variantFlags = array_flip( $variantFlags );
+				$variantFlags = array_fill_keys( $variantFlags, true );
 				$flags = [];
 			}
 		}

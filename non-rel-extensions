@@ -32,6 +32,7 @@ skins/pivot
 skins/liberty
 extensions/MatomoAnalytics
 extensions/PollNY
+extensions/VoteNY
 extensions/ApprovedRevs
 extensions/Purge
 extensions/RottenLinks
@@ -75,6 +76,7 @@ extensions/PageForms
 extensions/PageSchemas
 extensions/MintyDocs
 extensions/EmbedSpotify
+extensions/DiscordNotifications
 
 # main
 extensions/LinkTitles

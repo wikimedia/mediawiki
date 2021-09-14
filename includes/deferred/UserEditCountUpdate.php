@@ -21,25 +21,30 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
  * Handles increment the edit count for a given set of users
  */
 class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var array[] Map of (user ID => ('increment': int, 'instances': User[])) */
+	/**
+	 * We need to keep a single copy of the relevant UserIdentity to be able to pass to UserEditTracker
+	 *
+	 * @var array[] Map of (user ID => ('increment': int, 'object': UserIdentity))
+	 */
 	private $infoByUser;
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int $increment
 	 */
-	public function __construct( User $user, $increment ) {
+	public function __construct( UserIdentity $user, $increment ) {
 		if ( !$user->getId() ) {
 			throw new RuntimeException( "Got user ID of zero" );
 		}
 		$this->infoByUser = [
-			$user->getId() => [ 'increment' => $increment, 'instances' => [ $user ] ]
+			$user->getId() => [ 'increment' => $increment, 'object' => $user ]
 		];
 	}
 
@@ -50,28 +55,28 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		foreach ( $update->infoByUser as $userId => $info ) {
 			if ( !isset( $this->infoByUser[$userId] ) ) {
-				$this->infoByUser[$userId] = [ 'increment' => 0, 'instances' => [] ];
+				// Object will be filled in below
+				$this->infoByUser[$userId] = [ 'increment' => 0 ];
 			}
 			// Merge the increment amount
 			$this->infoByUser[$userId]['increment'] += $info['increment'];
-			// Merge the list of User instances to update in doUpdate()
-			foreach ( $info['instances'] as $user ) {
-				if ( !in_array( $user, $this->infoByUser[$userId]['instances'], true ) ) {
-					$this->infoByUser[$userId]['instances'][] = $user;
-				}
-			}
+			// Always use the UserIdentity from the other update in case we don't
+			// already have info for the user
+			$this->infoByUser[$userId]['object'] = $info['object'];
 		}
 	}
 
 	/**
-	 * Purges the list of URLs passed to the constructor.
+	 * Commits the provided user edit count increments to the database
 	 */
 	public function doUpdate() {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_MASTER );
+		$mwServices = MediaWikiServices::getInstance();
+		$lb = $mwServices->getDBLoadBalancer();
+		$dbw = $lb->getConnectionRef( DB_PRIMARY );
+		$editTracker = $mwServices->getUserEditTracker();
 		$fname = __METHOD__;
 
-		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {
+		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname, $editTracker ) {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->update(
 					'user',
@@ -79,35 +84,23 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
 					$fname
 				);
-				/** @var User[] $affectedInstances */
-				$affectedInstances = $info['instances'];
+				/** @var UserIdentity $targetUserIdentity */
+				$targetUserIdentity = $info['object'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
 					// The user_editcount is probably NULL (e.g. not initialized).
 					// Since this update runs after the new revisions were committed,
 					// wait for the replica DB to catch up so they will be counted.
 					$dbr = $lb->getConnectionRef( DB_REPLICA );
-					// If $dbr is actually the master DB, then clearing the snapshot
-					// is harmless and waitForMasterPos() will just no-op.
+					// If $dbr is actually the primary DB, then clearing the snapshot
+					// is harmless and waitForPrimaryPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
-					$lb->waitForMasterPos( $dbr );
-					$affectedInstances[0]->initEditCountInternal( $dbr );
+					$lb->waitForPrimaryPos( $dbr );
+					$editTracker->initializeUserEditCount( $targetUserIdentity );
 				}
-				$newCount = (int)$dbw->selectField(
-					'user',
-					'user_editcount',
-					[ 'user_id' => $userId ],
-					$fname
-				);
 
-				// Update the edit count in the instance caches. This is mostly useful
-				// for maintenance scripts, where deferred updates might run immediately
-				// and user instances might be reused for a long time.
-				foreach ( $affectedInstances as $affectedInstance ) {
-					$affectedInstance->setEditCountInternal( $newCount );
-				}
-				// Clear the edit count in user cache too
-				$affectedInstances[0]->invalidateCache();
+				// Clear the edit count in the UserEditTracker cache.
+				$editTracker->clearUserEditCache( $targetUserIdentity );
 			}
 		} ) )->doUpdate();
 	}

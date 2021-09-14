@@ -44,7 +44,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'sandbox' ) );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {

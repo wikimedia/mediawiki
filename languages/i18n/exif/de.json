@@ -11,6 +11,7 @@
 			"Soued031",
 			"Tobi 406",
 			"Umherirrender",
+			"Umlaut",
 			"W (aka Wuzur)"
 		]
 	},
@@ -392,5 +393,6 @@
 	"exif-fullpanoheightpixels": "Panorama volle Höhe",
 	"exif-croppedarealeftpixels": "Panorama Beschnitt links",
 	"exif-croppedareatoppixels": "Panorama Beschnitt oben",
+	"exif-initialcameradolly": "Erste Kamerafahrt",
 	"exif-stitchingsoftware": "Stitching-Software"
 }

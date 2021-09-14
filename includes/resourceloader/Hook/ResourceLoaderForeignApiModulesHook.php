@@ -24,5 +24,5 @@ interface ResourceLoaderForeignApiModulesHook {
 	 * @param ResourceLoaderContext|null $context
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderForeignApiModules( &$dependencies, $context ) : void;
+	public function onResourceLoaderForeignApiModules( &$dependencies, $context ): void;
 }

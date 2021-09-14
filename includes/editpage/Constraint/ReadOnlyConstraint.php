@@ -45,14 +45,14 @@ class ReadOnlyConstraint implements IEditConstraint {
 		$this->readOnlyMode = $readOnlyMode;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		$this->result = $this->readOnlyMode->isReadOnly() ?
 			self::CONSTRAINT_FAILED :
 			self::CONSTRAINT_PASSED;
 		return $this->result;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {

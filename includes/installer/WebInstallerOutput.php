@@ -148,6 +148,7 @@ class WebInstallerOutput {
 				'mw-config/config.css',
 			],
 		] );
+		$module->setConfig( $resourceLoader->getConfig() );
 
 		// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
 		$styles = ResourceLoader::makeCombinedStyles(

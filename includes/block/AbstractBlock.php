@@ -34,7 +34,7 @@ use User;
  * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
-abstract class AbstractBlock {
+abstract class AbstractBlock implements Block {
 	/** @var CommentStoreComment */
 	protected $reason;
 
@@ -42,7 +42,7 @@ abstract class AbstractBlock {
 	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
 	 * @var string
 	 */
-	public $mTimestamp;
+	public $mTimestamp = '';
 
 	/**
 	 * @deprecated since 1.34. Use getExpiry and setExpiry instead.
@@ -68,7 +68,7 @@ abstract class AbstractBlock {
 	/** @var bool */
 	protected $isHardblock;
 
-	/** @var User|string|null */
+	/** @var UserIdentity|string|null */
 	protected $target;
 
 	/**
@@ -79,14 +79,6 @@ abstract class AbstractBlock {
 
 	/** @var bool */
 	protected $isSitewide = true;
-
-	# TYPE constants
-	# Do not introduce negative constants without changing BlockUser command object.
-	public const TYPE_USER = 1;
-	public const TYPE_IP = 2;
-	public const TYPE_RANGE = 3;
-	public const TYPE_AUTO = 4;
-	public const TYPE_ID = 5;
 
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
@@ -134,18 +126,9 @@ abstract class AbstractBlock {
 	 * Get the block ID
 	 * @return int|null
 	 */
-	public function getId() {
+	public function getId(): ?int {
 		return null;
 	}
-
-	/**
-	 * Get the information that identifies this block, such that a user could
-	 * look up everything that can be found about this block. May be an ID,
-	 * array of IDs, type, etc.
-	 *
-	 * @return mixed Identifying information
-	 */
-	abstract public function getIdentifier();
 
 	/**
 	 * Get the reason given for creating the block, as a string.
@@ -168,7 +151,7 @@ abstract class AbstractBlock {
 	 * @since 1.35
 	 * @return CommentStoreComment
 	 */
-	public function getReasonComment() {
+	public function getReasonComment(): CommentStoreComment {
 		return $this->reason;
 	}
 
@@ -211,7 +194,7 @@ abstract class AbstractBlock {
 	 * @param null|bool $x
 	 * @return bool
 	 */
-	public function isSitewide( $x = null ) {
+	public function isSitewide( $x = null ): bool {
 		return wfSetVar( $this->isSitewide, $x );
 	}
 
@@ -224,7 +207,7 @@ abstract class AbstractBlock {
 	 * @param null|bool $x Value to set (if null, just get the property value)
 	 * @return bool Value of the property
 	 */
-	public function isCreateAccountBlocked( $x = null ) {
+	public function isCreateAccountBlocked( $x = null ): bool {
 		return wfSetVar( $this->blockCreateAccount, $x );
 	}
 
@@ -263,7 +246,7 @@ abstract class AbstractBlock {
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	public function isHardblock( $x = null ) {
+	public function isHardblock( $x = null ): bool {
 		wfSetVar( $this->isHardblock, $x );
 
 		return $this->getType() == self::TYPE_USER
@@ -273,7 +256,7 @@ abstract class AbstractBlock {
 
 	/**
 	 * Determine whether the block prevents a given right. A right
-	 * may be blacklisted or whitelisted, or determined from a
+	 * may be allowed or disallowed by default, or determined from a
 	 * property on the block object. For certain rights, the property
 	 * may be overridden according to global configs.
 	 *
@@ -288,10 +271,6 @@ abstract class AbstractBlock {
 
 		$res = null;
 		switch ( $right ) {
-			case 'edit':
-				// TODO: fix this case to return proper value
-				$res = true;
-				break;
 			case 'createaccount':
 				$res = $this->isCreateAccountBlocked();
 				break;
@@ -299,7 +278,7 @@ abstract class AbstractBlock {
 				$res = $this->isEmailBlocked();
 				break;
 			case 'upload':
-				// Until T6995 is completed
+				// Sitewide blocks always block upload. This may be overridden in a subclass.
 				$res = $this->isSitewide();
 				break;
 			case 'read':
@@ -321,29 +300,10 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * From an existing block, get the target and the type of target.
-	 * Note that, except for null, it is always safe to treat the target
-	 * as a string; for User objects this will return User::__toString()
-	 * which in turn gives User::getName().
-	 *
-	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
-	 *
-	 * @deprecated since 1.36. Use BlockUtils service instead.
-	 * @param string|UserIdentity|null $target
-	 * @return array [ User|string|null, int|null ]
-	 */
-	public static function parseTarget( $target ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getBlockUtils()
-			->parseBlockTarget( $target );
-	}
-
-	/**
 	 * Get the type of target for this particular block.
 	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
-	public function getType() {
+	public function getType(): ?int {
 		return $this->type;
 	}
 
@@ -354,21 +314,66 @@ abstract class AbstractBlock {
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
+	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
+	 *             together with getType()
+	 *
 	 * @return array [ User|String|null, int|null ]
 	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
 	public function getTargetAndType() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return [ $this->getTarget(), $this->getType() ];
 	}
 
 	/**
-	 * Get the target for this particular block.  Note that for autoblocks,
+	 * Get the target for this particular block. Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
+	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
+	 *             together with getType()
 	 * @return User|string|null
 	 */
 	public function getTarget() {
-		return $this->target;
+		wfDeprecated( __METHOD__, '1.37' );
+		if ( $this->target instanceof UserIdentity ) {
+			return MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromUserIdentity( $this->target );
+		} else {
+			return $this->target;
+		}
+	}
+
+	/**
+	 * @since 1.37
+	 * @return ?UserIdentity
+	 */
+	public function getTargetUserIdentity(): ?UserIdentity {
+		return $this->target instanceof UserIdentity ? $this->target : null;
+	}
+
+	/**
+	 * @since 1.37
+	 * @return string
+	 */
+	public function getTargetName(): string {
+		return $this->target instanceof UserIdentity
+			? $this->target->getName()
+			: (string)$this->target;
+	}
+
+	/**
+	 * @param UserIdentity|string $target
+	 *
+	 * @return bool
+	 * @since 1.37
+	 */
+	public function isBlocking( $target ): bool {
+		$targetName = $target instanceof UserIdentity
+			? $target->getName()
+			: (string)$target;
+
+		return $targetName === $this->getTargetName();
 	}
 
 	/**
@@ -377,7 +382,7 @@ abstract class AbstractBlock {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function getExpiry() {
+	public function getExpiry(): string {
 		return $this->mExpiry;
 	}
 
@@ -388,7 +393,8 @@ abstract class AbstractBlock {
 	 * @param string $expiry
 	 */
 	public function setExpiry( $expiry ) {
-		$this->mExpiry = $expiry;
+		// Force string so getExpiry() return typehint doesn't break things
+		$this->mExpiry = (string)$expiry;
 	}
 
 	/**
@@ -397,7 +403,7 @@ abstract class AbstractBlock {
 	 * @since 1.33
 	 * @return string
 	 */
-	public function getTimestamp() {
+	public function getTimestamp(): string {
 		return $this->mTimestamp;
 	}
 
@@ -408,7 +414,8 @@ abstract class AbstractBlock {
 	 * @param string $timestamp
 	 */
 	public function setTimestamp( $timestamp ) {
-		$this->mTimestamp = $timestamp;
+		// Force string so getExpiry() return typehint doesn't break things
+		$this->mTimestamp = (string)$timestamp;
 	}
 
 	/**
@@ -476,8 +483,11 @@ abstract class AbstractBlock {
 	 */
 	public function appliesToUsertalk( Title $usertalk = null ) {
 		if ( !$usertalk ) {
-			if ( $this->target instanceof User ) {
-				$usertalk = $this->target->getTalkPage();
+			if ( $this->target instanceof UserIdentity ) {
+				$usertalk = Title::makeTitle(
+					NS_USER_TALK,
+					$this->target->getName()
+				);
 			} else {
 				throw new InvalidArgumentException(
 					'$usertalk must be provided if block target is not a user/IP'

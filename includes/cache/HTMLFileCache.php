@@ -21,7 +21,9 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Page view caching in the file system.
@@ -36,20 +38,19 @@ class HTMLFileCache extends FileCacheBase {
 	public const MODE_REBUILD = 2; // background cache rebuild mode
 
 	/**
-	 * @param Title|string $title Title object or prefixed DB key string
+	 * @param PageIdentity|string $page PageIdentity object or prefixed DB key string
 	 * @param string $action
+	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $title, $action ) {
+	public function __construct( $page, $action ) {
 		parent::__construct();
 
 		if ( !in_array( $action, self::cacheablePageActions() ) ) {
 			throw new InvalidArgumentException( 'Invalid file cache type given.' );
 		}
 
-		$this->mKey = ( $title instanceof Title )
-			? $title->getPrefixedDBkey()
-			: (string)$title;
+		$this->mKey = CacheKeyHelper::getKeyForPage( $page );
 		$this->mType = (string)$action;
 		$this->mExt = 'html';
 	}
@@ -220,17 +221,17 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Clear the file caches for a page for all actions
 	 *
-	 * @param Title|string $title Title or prefixed DB key
+	 * @param PageIdentity|string $page PageIdentity object or prefixed DB key string
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
-	public static function clearFileCache( $title ) {
+	public static function clearFileCache( $page ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( !$config->get( 'UseFileCache' ) ) {
 			return false;
 		}
 
 		foreach ( self::cacheablePageActions() as $type ) {
-			$fc = new self( $title, $type );
+			$fc = new self( $page, $type );
 			$fc->clearCache();
 		}
 

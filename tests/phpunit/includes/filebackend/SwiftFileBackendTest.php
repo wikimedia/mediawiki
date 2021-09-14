@@ -16,7 +16,7 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var TestingAccessWrapper|SwiftFileBackend */
 	private $backend;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->backend = TestingAccessWrapper::newFromObject(
@@ -24,7 +24,8 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 				'name'             => 'local-swift-testing',
 				'class'            => SwiftFileBackend::class,
 				'wikiId'           => 'unit-testing',
-				'lockManager'      => LockManagerGroup::singleton()->get( 'fsLockManager' ),
+				'lockManager'      => $this->getServiceContainer()->getLockManagerGroupFactory()
+							->getLockManagerGroup()->get( 'fsLockManager' ),
 				'swiftAuthUrl'     => 'http://127.0.0.1:8080/auth', // unused
 				'swiftUser'        => 'test:tester',
 				'swiftKey'         => 'testing',
@@ -98,6 +99,36 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 					'content-duration' => 35.6363,
 					'content-custom' => 'hello',
 					'x-content-custom' => 'hello'
+				]
+			],
+			[
+				[
+					'x-delete-at' => 'non numeric',
+					'x-delete-after' => 'non numeric',
+					'x-content-custom' => 'hello'
+				],
+				[
+					'x-content-custom' => 'hello'
+				]
+			],
+			[
+				[
+					'x-delete-at' => '12345',
+					'x-delete-after' => '12345'
+				],
+				[
+					'x-delete-at' => '12345',
+					'x-delete-after' => '12345'
+				]
+			],
+			[
+				[
+					'x-delete-at' => 12345,
+					'x-delete-after' => 12345
+				],
+				[
+					'x-delete-at' => 12345,
+					'x-delete-after' => 12345
 				]
 			]
 		];

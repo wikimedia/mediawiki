@@ -36,6 +36,8 @@ p,
 pre,
 td {
 	margin: 0 20px 20px 20px;
+	/* TODO: re-evaluate this */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 11px;
 	line-height: 140%;
 }
@@ -48,11 +50,15 @@ td {
 .nav {
 	padding-left: 10px;
 	padding-bottom: 10px;
+	/* TODO: re-evaluate this */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 11px;
 	margin-bottom: 16px;
 }
 
 #menu p {
+	/* TODO: re-evaluate this */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 11px;
 }
 

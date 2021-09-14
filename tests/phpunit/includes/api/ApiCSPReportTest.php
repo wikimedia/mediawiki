@@ -86,7 +86,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
 		$postBody = json_encode( [ 'csp-report' => $cspReport ] );
 		$req = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getRawInput' ] )
+			->onlyMethods( [ 'getRawInput' ] )
 			->setConstructorArgs( [ $params, /* $wasPosted */ true ] )
 			->getMock();
 		$req->method( 'getRawInput' )->willReturn( $postBody );
@@ -97,7 +97,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
 		$api = $this->getMockBuilder( ApiCSPReport::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
+			->onlyMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
 			->getMock();
 		$api->method( 'getParameter' )->will( $this->returnCallback(
 			static function ( $key ) use ( $req ) {

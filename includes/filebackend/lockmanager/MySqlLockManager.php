@@ -70,9 +70,7 @@ class MySqlLockManager extends DBLockManager {
 		if ( $type == self::LOCK_SH ) { // reader locks
 			# Bail if there are any existing writers...
 			if ( count( $checkEXKeys ) ) {
-				$blocked = $db->selectField(
-					'filelocks_exclusive',
-					'1',
+				$blocked = (bool)$db->selectField( 'filelocks_exclusive', '1',
 					[ 'fle_key' => $checkEXKeys ],
 					__METHOD__
 				);
@@ -86,9 +84,7 @@ class MySqlLockManager extends DBLockManager {
 			# Bail if there are any existing writers...
 			# This may detect readers, but the safe check for them is below.
 			# Note: if two writers come at the same time, both bail :)
-			$blocked = $db->selectField(
-				'filelocks_shared',
-				'1',
+			$blocked = (bool)$db->selectField( 'filelocks_shared', '1',
 				[ 'fls_key' => $keys, "fls_session != $encSession" ],
 				__METHOD__
 			);
@@ -101,9 +97,7 @@ class MySqlLockManager extends DBLockManager {
 				# Block new readers/writers...
 				$db->insert( 'filelocks_exclusive', $data, __METHOD__ );
 				# Bail if there are any existing readers...
-				$blocked = $db->selectField(
-					'filelocks_shared',
-					'1',
+				$blocked = (bool)$db->selectField( 'filelocks_shared', '1',
 					[ 'fls_key' => $keys, "fls_session != $encSession" ],
 					__METHOD__
 				);

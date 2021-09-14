@@ -59,7 +59,6 @@ class PatrolLogFormatter extends LogFormatter {
 			$revlink = htmlspecialchars( $revision );
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS one if branch is for plain text
 		$params[3] = Message::rawParam( $revlink );
 
 		return $params;

@@ -17,13 +17,13 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 
 	private $obLevel;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->obLevel = ob_get_level();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$obLevel = ob_get_level();
 
 		while ( ob_get_level() > $this->obLevel ) {

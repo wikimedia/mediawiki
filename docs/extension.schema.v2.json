@@ -5,7 +5,10 @@
 	"additionalProperties": false,
 	"patternProperties": {
 		"^@": {
-			"type": "string",
+			"type": [
+				"string",
+				"array"
+			],
 			"description": "Arbitrary notes, ignored by the parser."
 		}
 	},
@@ -234,13 +237,6 @@
 										"type": "string"
 									}
 								},
-								"loaderScripts": {
-									"type": ["string", "array"],
-									"description": "Scripts to include in the startup module",
-									"items": {
-										"type": "string"
-									}
-								},
 								"dependencies": {
 									"type": ["string", "array"],
 									"description": "Modules which must be loaded before this module",
@@ -287,7 +283,7 @@
 								},
 								"position": {
 									"type": "string",
-									"description": "Position on the page to load this module at",
+									"description": "Position on the page to load this module at (unused since MediaWiki 1.29)",
 									"enum": [
 										"bottom",
 										"top"
@@ -337,7 +333,7 @@
 								},
 								"position": {
 									"type": "string",
-									"description": "Position on the page to load this module at",
+									"description": "Position on the page to load this module at (unused since MediaWiki 1.29)",
 									"enum": [
 										"bottom",
 										"top"
@@ -405,6 +401,8 @@
 									"type": "object"
 								},
 								"position": {
+									"type": "string",
+									"description": "Position on the page to load this module at (unused since MediaWiki 1.29)",
 									"enum": [
 										"top",
 										"bottom"
@@ -992,6 +990,18 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
+						"localBasePath": {
+							"type": "string",
+							"description": "Base path to prepend to all local paths, relative to current directory"
+						},
+						"remoteExtPath": {
+							"type": "string",
+							"description": "Base path to prepend to all remote paths, relative to $wgExtensionAssetsPath"
+						},
+						"remoteSkinPath": {
+							"type": "string",
+							"description": "Base path to prepend to all remote paths, relative to $wgStylePath"
+						},
 						"scripts": {
 							"type": "string",
 							"description": "Path to script file."

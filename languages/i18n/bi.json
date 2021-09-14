@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Iketsi",
+			"MinecraftAustralia",
 			"Sotiale",
 			"Ushanka"
 		]
@@ -52,6 +53,7 @@
 	"aug": "Ogis",
 	"oct": "Okt",
 	"dec": "Des",
+	"pagecategories": "{{PLURAL:$1|Grup|Grups}}",
 	"mypage": "Pej blong mi",
 	"mytalk": "Tingting blong",
 	"and": "&#32;mo",
@@ -76,6 +78,7 @@
 	"nstab-main": "Atikel",
 	"nstab-special": "Spesel pej",
 	"nstab-project": "Projek pej",
+	"nstab-category": "Grup",
 	"mainpage-nstab": "Nambawan Pej",
 	"createacct-benefit-body2": "{{PLURAL:$1|pej|pejs}}",
 	"loginlanguagelabel": "Toktok: $1",

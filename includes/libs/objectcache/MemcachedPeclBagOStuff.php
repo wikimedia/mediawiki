@@ -196,7 +196,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$casToken = $res['cas'];
 			} else {
 				$result = false;
-				$casToken = null;
 			}
 		} else {
 			$result = $client->get( $routeKey );
@@ -366,10 +365,15 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		// https://github.com/php-memcached-dev/php-memcached/blob/master/php_memcached.c#L1852
 		if ( $this->fieldHasFlags( $flags, self::WRITE_BACKGROUND ) ) {
 			$client = $this->acquireAsyncClient();
-			$result = $client->setMulti( $dataByRouteKey, $exptime );
+			// Ignore "failed to set" warning from php-memcached 3.x (T251450)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$result = @$client->setMulti( $dataByRouteKey, $exptime );
 			$this->releaseAsyncClient( $client );
 		} else {
-			$result = $this->acquireSyncClient()->setMulti( $dataByRouteKey, $exptime );
+			$client = $this->acquireSyncClient();
+			// Ignore "failed to set" warning from php-memcached 3.x (T251450)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$result = @$client->setMulti( $dataByRouteKey, $exptime );
 		}
 
 		return $this->checkResult( false, $result );

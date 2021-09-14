@@ -32,7 +32,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const PAGE_NAME = 'McrUndoTestPage';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Clean up these tables after each test
@@ -58,7 +58,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		RequestContext $context,
 		Article $article,
 		array $params
-	) : McrUndoAction {
+	): McrUndoAction {
 		$request = new FauxRequest( $params );
 		$request->setVal( 'wpSave', '' );
 		$context->setRequest( $request );
@@ -67,7 +67,16 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$context->setOutput( $outputPage );
 		$context->setUser( $this->getTestSysop()->getUser() );
 
-		return new class( $article, $context ) extends McrUndoAction {
+		$revisionRenderer = $this->getServiceContainer()->getRevisionRenderer();
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
+		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
+		return new class(
+			$article,
+			$context,
+			$readOnlyMode,
+			$revisionLookup,
+			$revisionRenderer
+		) extends McrUndoAction {
 			public function show() {
 				// Instead of trying to actually display anything, just initialize the class.
 				$this->checkCanExecute( $this->getUser() );
@@ -81,7 +90,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array
 	 */
-	private function setUpPageForTesting( array $revisions ) : array {
+	private function setUpPageForTesting( array $revisions ): array {
 		$this->getExistingTestPage( self::PAGE_NAME );
 		$revisionIds = [];
 		foreach ( $revisions as $revisionContent ) {
@@ -360,13 +369,12 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$wikiPage = new WikiPage( Title::newFromText( self::PAGE_NAME ) );
-		$wikiPage->doEditContent(
+		$wikiPage->doUserEditContent(
 			new WikitextContent( $newContent ),
+			$this->getTestSysop()->getUser(),
 			'',
 			0,
 			$revisionIds[$undoafterIndex],
-			$this->getTestSysop()->getUser(),
-			null,
 			[],
 			$revisionIds[$undoIndex]
 		);

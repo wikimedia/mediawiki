@@ -467,7 +467,7 @@ class LogFormatter {
 				$element = $this->plaintext ? $element->text() : $element->escaped();
 			}
 			if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
-				$element = $this->styleRestricedElement( $element );
+				$element = $this->styleRestrictedElement( $element );
 			}
 		} else {
 			$sep = $this->msg( 'word-separator' );
@@ -708,7 +708,7 @@ class LogFormatter {
 			$performerIdentity = $this->entry->getPerformerIdentity();
 			$element = $this->makeUserLink( $performerIdentity );
 			if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
-				$element = $this->styleRestricedElement( $element );
+				$element = $this->styleRestrictedElement( $element );
 			}
 		} else {
 			$element = $this->getRestrictedElement( 'rev-deleted-user' );
@@ -728,7 +728,7 @@ class LogFormatter {
 			// No hard coded spaces thanx
 			$element = ltrim( $comment );
 			if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
-				$element = $this->styleRestricedElement( $element );
+				$element = $this->styleRestrictedElement( $element );
 			}
 		} else {
 			$element = $this->getRestrictedElement( 'rev-deleted-comment' );
@@ -759,13 +759,24 @@ class LogFormatter {
 	 * @param string $content
 	 * @return string HTML or wiki text
 	 */
-	protected function styleRestricedElement( $content ) {
+	protected function styleRestrictedElement( $content ) {
 		if ( $this->plaintext ) {
 			return $content;
 		}
 		$attribs = [ 'class' => 'history-deleted' ];
 
 		return Html::rawElement( 'span', $attribs, $content );
+	}
+
+	/**
+	 * Helper method for styling restricted element.
+	 * @deprecated since 1.37, use ::styleRestrictedElement instead
+	 * @param string $content
+	 * @return string HTML or wiki text
+	 */
+	protected function styleRestricedElement( $content ) {
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->styleRestrictedElement( $content );
 	}
 
 	/**

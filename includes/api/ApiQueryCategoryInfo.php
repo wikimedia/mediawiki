@@ -40,7 +40,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		}
 		$categories = $alltitles[NS_CATEGORY];
 
-		$titles = $this->getPageSet()->getGoodAndMissingTitles();
+		$titles = $this->getPageSet()->getGoodAndMissingPages();
 		$cattitles = [];
 		foreach ( $categories as $c ) {
 			/** @var Title $t */

@@ -33,11 +33,11 @@ declare( strict_types = 1 );
  * @since 1.24
  */
 class LayeredParameterizedPassword extends ParameterizedPassword {
-	protected function getDelimiter() : string {
+	protected function getDelimiter(): string {
 		return '!';
 	}
 
-	protected function getDefaultParams() : array {
+	protected function getDefaultParams(): array {
 		$params = [];
 
 		foreach ( $this->config['types'] as $type ) {
@@ -55,7 +55,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		return $params;
 	}
 
-	public function crypt( string $password ) : void {
+	public function crypt( string $password ): void {
 		$lastHash = $password;
 		foreach ( $this->config['types'] as $i => $type ) {
 			// Construct pseudo-hash based on params and arguments

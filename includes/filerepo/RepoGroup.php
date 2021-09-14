@@ -21,7 +21,9 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Prioritized list of file repositories
@@ -53,28 +55,38 @@ class RepoGroup {
 	/** Maximum number of cache items */
 	private const MAX_CACHE_SIZE = 500;
 
+	/** @var MimeAnalyzer */
+	private $mimeAnalyzer;
+
 	/**
-	 * @deprecated since 1.34, use MediaWikiServices::getRepoGroup
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 * Use MediaWikiServices::getRepoGroup instead
+	 *
 	 * @return RepoGroup
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
 	/**
-	 * @deprecated since 1.34, use MediaWikiTestCase::overrideMwServices() or similar. This will
-	 * cause bugs if you don't reset all other services that depend on this one at the same time.
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 * Use MediaWikiTestCase::overrideMwServices() or similar. This will cause bugs if you
+	 * don't reset all other services that depend on this one at the same time.
 	 */
 	public static function destroySingleton() {
+		wfDeprecated( __METHOD__, '1.34' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 	}
 
 	/**
-	 * @deprecated since 1.34, use MediaWikiTestCase::setService, this can mess up state of other
-	 *   tests
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 * Use MediaWikiTestCase::setService, this can mess up state of other tests
+	 *
 	 * @param RepoGroup $instance
 	 */
 	public static function setSingleton( $instance ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		$services = MediaWikiServices::getInstance();
 		$services->disableService( 'RepoGroup' );
 		$services->redefineService( 'RepoGroup',
@@ -94,29 +106,38 @@ class RepoGroup {
 	 *   giving the class name. The entire array is passed to the repository
 	 *   constructor as the first parameter.
 	 * @param WANObjectCache $wanCache
+	 * @param MimeAnalyzer $mimeAnalyzer
 	 */
-	public function __construct( $localInfo, $foreignInfo, $wanCache ) {
+	public function __construct(
+		$localInfo,
+		$foreignInfo,
+		WANObjectCache $wanCache,
+		MimeAnalyzer $mimeAnalyzer
+	) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
 		$this->cache = new MapCacheLRU( self::MAX_CACHE_SIZE );
 		$this->wanCache = $wanCache;
+		$this->mimeAnalyzer = $mimeAnalyzer;
 	}
 
 	/**
 	 * Search repositories for an image.
 	 *
-	 * @param Title|string $title Title object or string
+	 * @param PageIdentity|LinkTarget|string $title The file to find
 	 * @param array $options Associative array of options:
 	 *   time:           requested time for an archived image, or false for the
 	 *                   current version. An image object will be returned which was
 	 *                   created at the specified time.
 	 *   ignoreRedirect: If true, do not follow file redirects
-	 *   private:        If true, return restricted (deleted) files if the current
-	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found.
+	 *   private:        If Authority object, return restricted (deleted) files if the
+	 *                   performer is allowed to view them. Otherwise, such files will not
+	 *                   be found. Authority is only accepted since 1.37, User was required
+	 *                   before.
 	 *   latest:         If true, load from the latest available data into File objects
-	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool,latest?:bool} $options
-	 * @return File|bool False if title is not found
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool|MediaWiki\Permissions\Authority,latest?:bool} $options
+	 * @return File|false False if title is not found
 	 */
 	public function findFile( $title, $options = [] ) {
 		if ( !is_array( $options ) ) {
@@ -189,7 +210,7 @@ class RepoGroup {
 	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
 	 *       The search title uses the input titles; the other is the final post-redirect title.
 	 *       All titles are returned as string DB keys and the inner array is associative.
-	 * @return array Map of (file name => File objects) for matches
+	 * @return array Map of (file name => File objects) for matches or (search title => (title,timestamp))
 	 */
 	public function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
@@ -223,13 +244,15 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
-	 * @param Title $title
-	 * @return bool|Title
+	 * @param PageIdentity|LinkTarget|string $title
+	 * @return Title|false
 	 */
-	public function checkRedirect( Title $title ) {
+	public function checkRedirect( $title ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
+
+		$title = File::normalizeTitle( $title );
 
 		$redir = $this->localRepo->checkRedirect( $title );
 		if ( $redir ) {
@@ -252,7 +275,7 @@ class RepoGroup {
 	 *
 	 * @param string $hash Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile()
-	 * @return File|bool File object or false if it is not found
+	 * @return File|false File object or false if it is not found
 	 */
 	public function findFileFromKey( $hash, $options = [] ) {
 		if ( !$this->reposInitialised ) {
@@ -295,7 +318,7 @@ class RepoGroup {
 	/**
 	 * Find all instances of files with this keys
 	 *
-	 * @param array $hashes Base 36 SHA-1 hashes
+	 * @param string[] $hashes Base 36 SHA-1 hashes
 	 * @return File[][]
 	 */
 	public function findBySha1s( array $hashes ) {
@@ -318,7 +341,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance with a given key.
 	 * @param string|int $index
-	 * @return bool|FileRepo
+	 * @return FileRepo|false
 	 */
 	public function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
@@ -333,7 +356,7 @@ class RepoGroup {
 	/**
 	 * Get the repo instance by its name
 	 * @param string $name
-	 * @return FileRepo|bool
+	 * @return FileRepo|false
 	 */
 	public function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {
@@ -355,10 +378,8 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	public function getLocalRepo() {
-		/** @var LocalRepo $repo */
-		$repo = $this->getRepo( 'local' );
-
-		return $repo;
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->getRepo( 'local' );
 	}
 
 	/**
@@ -410,6 +431,17 @@ class RepoGroup {
 	}
 
 	/**
+	 * Create a local repo with the specified option overrides.
+	 *
+	 * @param array $info
+	 * @return LocalRepo
+	 */
+	public function newCustomLocalRepo( $info = [] ) {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->newRepo( $info + $this->localInfo );
+	}
+
+	/**
 	 * Create a repo class based on an info structure
 	 * @param array $info
 	 * @return FileRepo
@@ -455,7 +487,7 @@ class RepoGroup {
 
 			return $repo->getFileProps( $fileName );
 		} else {
-			$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+			$mwProps = new MWFileProps( $this->mimeAnalyzer );
 
 			return $mwProps->getPropsFromPath( $fileName, true );
 		}
@@ -463,11 +495,13 @@ class RepoGroup {
 
 	/**
 	 * Clear RepoGroup process cache used for finding a file
-	 * @param Title|null $title Title of the file or null to clear all files
+	 * @param PageIdentity|string|null $title File page or file name, or null to clear all files
 	 */
-	public function clearCache( Title $title = null ) {
+	public function clearCache( $title = null ) {
 		if ( $title == null ) {
 			$this->cache->clear();
+		} elseif ( is_string( $title ) ) {
+			$this->cache->clear( $title );
 		} else {
 			$this->cache->clear( $title->getDBkey() );
 		}

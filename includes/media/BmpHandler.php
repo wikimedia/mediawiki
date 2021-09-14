@@ -51,14 +51,14 @@ class BmpHandler extends BitmapHandler {
 	/**
 	 * Get width and height from the bmp header.
 	 *
-	 * @param File|FSFile $image
+	 * @param MediaHandlerState $state
 	 * @param string $filename
-	 * @return array|false
+	 * @return array
 	 */
-	public function getImageSize( $image, $filename ) {
+	public function getSizeAndMetadata( $state, $filename ) {
 		$f = fopen( $filename, 'rb' );
 		if ( !$f ) {
-			return false;
+			return [];
 		}
 		$header = fread( $f, 54 );
 		fclose( $f );
@@ -72,9 +72,12 @@ class BmpHandler extends BitmapHandler {
 			$w = wfUnpack( 'V', $w, 4 );
 			$h = wfUnpack( 'V', $h, 4 );
 		} catch ( Exception $e ) {
-			return false;
+			return [];
 		}
 
-		return [ $w[1], $h[1] ];
+		return [
+			'width' => $w[1],
+			'height' => $h[1]
+		];
 	}
 }

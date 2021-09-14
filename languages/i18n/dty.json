@@ -1238,7 +1238,6 @@
 	"import-interwiki-history": "यै पामैकोलागि सबै इतिहास संशोधनहरू प्रतिलिपि गद्या",
 	"import-noarticle": "आयात गद्दाकी लाई पानाहरू नाइथिन्",
 	"import-error-edit": "तमलाई सम्पादन गद्या अनुमति नभयाको पानो \"$1\" आयात गरिएन ।",
-	"import-error-create": "तमलाई नयाँ बनाउने अनुमति नभयाको पानो \"$1\" आयात गरिएन ।",
 	"importlogpage": "आयात लग",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|संशोधन|संशोधनहरू}} आयात भयो",
 	"tooltip-pt-userpage": "{{GENDER:|तमरो प्रयोगकर्ता}} पान्नो",

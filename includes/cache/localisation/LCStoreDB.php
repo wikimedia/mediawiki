@@ -21,6 +21,7 @@
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\ScopedCallback;
 
 /**
  * LCStore implementation which uses the standard DB functions to store data.
@@ -87,28 +88,24 @@ class LCStoreDB implements LCStore {
 			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$oldSilenced = $trxProfiler->setSilenced( true );
+		$scope = Profiler::instance()->getTransactionProfiler()->silenceForScope();
+		$dbw = $this->getWriteConnection();
+		$dbw->startAtomic( __METHOD__ );
 		try {
-			$dbw = $this->getWriteConnection();
-			$dbw->startAtomic( __METHOD__ );
-			try {
-				$dbw->delete( 'l10n_cache', [ 'lc_lang' => $this->code ], __METHOD__ );
-				foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
-					$dbw->insert( 'l10n_cache', $rows, __METHOD__ );
-				}
-				$this->writesDone = true;
-			} catch ( DBQueryError $e ) {
-				if ( $dbw->wasReadOnlyError() ) {
-					$this->readOnly = true; // just avoid site down time
-				} else {
-					throw $e;
-				}
+			$dbw->delete( 'l10n_cache', [ 'lc_lang' => $this->code ], __METHOD__ );
+			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
+				$dbw->insert( 'l10n_cache', $rows, __METHOD__ );
 			}
-			$dbw->endAtomic( __METHOD__ );
-		} finally {
-			$trxProfiler->setSilenced( $oldSilenced );
+			$this->writesDone = true;
+		} catch ( DBQueryError $e ) {
+			if ( $dbw->wasReadOnlyError() ) {
+				$this->readOnly = true; // just avoid site down time
+			} else {
+				throw $e;
+			}
 		}
+		$dbw->endAtomic( __METHOD__ );
+		ScopedCallback::consume( $scope );
 
 		$this->code = null;
 		$this->batch = [];
@@ -141,7 +138,7 @@ class LCStoreDB implements LCStore {
 					throw new MWException( __CLASS__ . ': failed to obtain a DB connection' );
 				}
 			} else {
-				$this->dbw = wfGetDB( DB_MASTER );
+				$this->dbw = wfGetDB( DB_PRIMARY );
 			}
 		}
 

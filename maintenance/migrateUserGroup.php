@@ -41,7 +41,7 @@ class MigrateUserGroup extends Maintenance {
 		$count = 0;
 		$oldGroup = $this->getArg( 0 );
 		$newGroup = $this->getArg( 1 );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
 			[ 'ug_group' => $oldGroup ], __FUNCTION__ );

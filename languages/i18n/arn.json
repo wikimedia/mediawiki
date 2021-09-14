@@ -519,7 +519,6 @@
 	"block-expiry": "Afi",
 	"ipblocklist": "Katrütulelu kellufe",
 	"ipblocklist-submit": "Kintun",
-	"expiringblock": "afi $1 - $2",
 	"blocklink": "Katrütukun",
 	"unblocklink": "katrüntukulan",
 	"change-blocklink": "kalekünun katrüntukun",

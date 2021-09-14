@@ -65,9 +65,13 @@ class RunJobs extends Maintenance {
 			if ( $procs < 1 || $procs > 1000 ) {
 				$this->fatalError( "Invalid argument to --procs" );
 			} elseif ( $procs != 1 ) {
-				$fc = new ForkController( $procs );
-				if ( $fc->start() != 'child' ) {
-					exit( 0 );
+				try {
+					$fc = new ForkController( $procs );
+					if ( $fc->start() != 'child' ) {
+						return;
+					}
+				} catch ( MWException $e ) {
+					$this->fatalError( $e->getMessage() );
 				}
 			}
 		}

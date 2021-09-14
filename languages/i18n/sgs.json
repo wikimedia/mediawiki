@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"DannyS712",
 			"Fitoschido",
 			"Hugo.arg",
@@ -1388,7 +1389,7 @@
 	"anoncontribs": "Kūriejē",
 	"contribsub2": "Nauduotuojė $1 ($2)",
 	"nocontribs": "Vagol esamus nūstatīmus nieka nerast.",
-	"uctop": " vielībs",
+	"uctop": "vielībs",
 	"month": "Nug mienėsė (ėr onkstiau):",
 	"year": "Nug metu (ėr onkstiau):",
 	"sp-contributions-blocklog": "Bluokavėmu istuorėjė",
@@ -1474,7 +1475,6 @@
 	"ipblocklist-localblock": "Ožgīnėms vėituo",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Kėts ožgīnėms|Kėtė ožgīnėmā}}",
 	"infiniteblock": "neribuotā",
-	"expiringblock": "beng vēktė $1 $2",
 	"anononlyblock": "vėn anuonėmā",
 	"noautoblockblock": "savaimėšks ožgīnėms nevēk",
 	"createaccountblock": "paskīrū dėrbėms ožgints īr",

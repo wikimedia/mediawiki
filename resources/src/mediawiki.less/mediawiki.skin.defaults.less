@@ -37,9 +37,41 @@
 // Minimum available screen width at which a device can be considered a desktop.
 @width-breakpoint-desktop: 1000px;
 
+// Wider desktop breakpoint
+// @since 1.37
+@width-breakpoint-desktop-wide: 1200px;
+
+// == Size properties beyond Box Model ==
+// These are the center point for skin sizing.
+// Note that these are recommended to be set in relative units like `em` in order to let users
+// override with own browser font size preference.
+// Font size
+@font-size-base: 1em;
+
+// Line Heights
+@line-height-base: 1.6;
+@line-height-heading: 1.3;
+// Form input labels for buttons, dropdowns, but also text input values.
+// Note that there are binary inputs in skins like Vector, that receive a different treatment
+// with name `*-input-binary`.
+@line-height-label: 1.5;
+
 // == Colors ==
 // Background Colors
 @background-color-base: #fff;
+
+// Colors
+@color-link: #0645ad;
+@color-link--visited: #0b0080;
+@color-link--active: #faa700;
+@color-link-stub: #723;
+// Link colors for new or missing articles, also known as “Red links”.
+// https://www.wikidata.org/wiki/Q13417974#sitelinks-wikipedia
+@color-link-new: #d33;
+@color-link-new--visited: #a55858;
+@color-link-external: #36b;
+@color-link-external--visited: #636; // See T5112.
+@color-link-external--active: #b63;
 
 // == Box Model properties ==
 // Border Styles

@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -35,6 +36,30 @@ class ApiOpenSearch extends ApiBase {
 
 	/** @var array list of api allowed params */
 	private $allowedParams = null;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param SearchEngineConfig $searchEngineConfig
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		LinkBatchFactory $linkBatchFactory,
+		SearchEngineConfig $searchEngineConfig,
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->linkBatchFactory = $linkBatchFactory;
+		// Services needed in SearchApi trait
+		$this->searchEngineConfig = $searchEngineConfig;
+		$this->searchEngineFactory = $searchEngineFactory;
+	}
 
 	/**
 	 * Get the output format
@@ -137,8 +162,7 @@ class ApiOpenSearch extends ApiBase {
 		if ( $resolveRedir ) {
 			// Query for redirects
 			$redirects = [];
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $titles );
+			$lb = $this->linkBatchFactory->newLinkBatch( $titles );
 			if ( !$lb->isEmpty() ) {
 				$db = $this->getDB();
 				$res = $db->select(

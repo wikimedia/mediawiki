@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
@@ -37,8 +36,8 @@ class DatabasePostgres extends Database {
 	private $coreSchema;
 	/** @var string */
 	private $tempSchema;
-	/** @var string[] Map of (reserved table name => alternate table name) */
-	private $keywordTableMap = [];
+	/** @var null|string[] Map of (reserved table name => alternate table name) */
+	private $keywordTableMap;
 	/** @var float|string */
 	private $numericVersion;
 
@@ -48,11 +47,20 @@ class DatabasePostgres extends Database {
 	/**
 	 * @see Database::__construct()
 	 * @param array $params Additional parameters include:
+	 *   - port: A port to append to the hostname
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
+	 *   This is is deprecated since 1.37. Reserved identifiers should be quoted where necessary,
 	 */
 	public function __construct( array $params ) {
 		$this->port = intval( $params['port'] ?? null );
-		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
+
+		if ( isset( $params['keywordTableMap'] ) ) {
+			wfDeprecatedMsg( 'Passing keywordTableMap parameter to ' .
+				'DatabasePostgres::__construct() is deprecated', '1.37'
+			);
+
+			$this->keywordTableMap = $params['keywordTableMap'];
+		}
 
 		parent::__construct( $params );
 	}
@@ -65,21 +73,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	public function hasConstraint( $name ) {
-		foreach ( $this->getCoreSchemas() as $schema ) {
-			$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
-				"WHERE c.connamespace = n.oid AND conname = " .
-				$this->addQuotes( $name ) . " AND n.nspname = " .
-				$this->addQuotes( $schema );
-			$res = $this->doQuery( $sql );
-			if ( $res && $this->numRows( $res ) ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw $this->newExceptionAfterConnectError(
 				"Postgres functions missing, have you compiled PHP with the --with-pgsql\n" .
@@ -90,14 +84,10 @@ class DatabasePostgres extends Database {
 
 		$this->close( __METHOD__ );
 
-		$this->server = $server;
-		$this->user = $user;
-		$this->password = $password;
-
 		$connectVars = [
 			// A database must be specified in order to connect to Postgres. If $dbName is not
 			// specified, then use the standard "postgres" database that should exist by default.
-			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
+			'dbname' => strlen( $db ) ? $db : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
@@ -145,7 +135,7 @@ class DatabasePostgres extends Database {
 				);
 			}
 			$this->determineCoreSchema( $schema );
-			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
+			$this->currentDomain = new DatabaseDomain( $db, $schema, $tablePrefix );
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -169,9 +159,9 @@ class DatabasePostgres extends Database {
 			// Postgres doesn't support selectDB in the same way MySQL does.
 			// So if the DB name doesn't match the open connection, open a new one
 			$this->open(
-				$this->server,
-				$this->user,
-				$this->password,
+				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_USER],
+				$this->connectionParams[self::CONN_PASSWORD],
 				$domain->getDatabase(),
 				$domain->getSchema(),
 				$domain->getTablePrefix()
@@ -207,7 +197,7 @@ class DatabasePostgres extends Database {
 
 	/**
 	 * @param string $sql
-	 * @return bool|mixed|resource
+	 * @return bool|IResultWrapper
 	 */
 	public function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
@@ -225,7 +215,8 @@ class DatabasePostgres extends Database {
 			return false;
 		}
 
-		return $this->lastResultHandle;
+		return $this->lastResultHandle ?
+			new PostgresResultWrapper( $this, $this->getBindingHandle(), $this->lastResultHandle ) : false;
 	}
 
 	protected function dumpError() {
@@ -249,78 +240,6 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	public function freeResult( $res ) {
-		AtEase::suppressWarnings();
-		$ok = pg_free_result( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-		if ( !$ok ) {
-			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
-		}
-	}
-
-	public function fetchObject( $res ) {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_object( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-		# @todo FIXME: HACK HACK HACK HACK debug
-
-		# @todo hashar: not sure if the following test really trigger if the object
-		#          fetching failed.
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $row;
-	}
-
-	public function fetchRow( $res ) {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_array( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $row;
-	}
-
-	public function numRows( $res ) {
-		if ( $res === false ) {
-			return 0;
-		}
-
-		AtEase::suppressWarnings();
-		$n = pg_num_rows( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $n;
-	}
-
-	public function numFields( $res ) {
-		return pg_num_fields( ResultWrapper::unwrap( $res ) );
-	}
-
-	public function fieldName( $res, $n ) {
-		return pg_field_name( ResultWrapper::unwrap( $res ), $n );
-	}
-
 	public function insertId() {
 		$res = $this->query(
 			"SELECT lastval()",
@@ -330,10 +249,6 @@ class DatabasePostgres extends Database {
 		$row = $this->fetchRow( $res );
 
 		return $row[0] === null ? null : (int)$row[0];
-	}
-
-	public function dataSeek( $res, $row ) {
-		return pg_result_seek( ResultWrapper::unwrap( $res ), $row );
 	}
 
 	public function lastError() {
@@ -664,17 +579,17 @@ __INDEXATTR__;
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
-		// Replace reserved words with better ones
-		$name = $this->remappedTableName( $name );
-
 		return parent::tableName( $name, $format );
 	}
 
 	/**
 	 * @param string $name
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
+	 * @deprecated since 1.37. Reserved identifiers should be quoted where necessary
 	 */
 	public function remappedTableName( $name ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		return $this->keywordTableMap[$name] ?? $name;
 	}
 
@@ -1232,12 +1147,16 @@ SQL;
 
 	/**
 	 * pg_field_type() wrapper
-	 * @param ResultWrapper|resource $res ResultWrapper or PostgreSQL query result resource
+	 *
+	 * @deprecated since 1.37
+	 *
+	 * @param PostgresResultWrapper $res ResultWrapper or PostgreSQL query result resource
 	 * @param int $index Field number, starting from 0
 	 * @return string
 	 */
 	public function fieldType( $res, $index ) {
-		return pg_field_type( ResultWrapper::unwrap( $res ), $index );
+		wfDeprecated( __METHOD__, '1.37' );
+		return pg_field_type( $res->getInternalResult(), $index );
 	}
 
 	public function encodeBlob( $b ) {
@@ -1369,65 +1288,65 @@ SQL;
 		return true;
 	}
 
-	public function lockIsFree( $lockName, $method ) {
-		if ( !parent::lockIsFree( $lockName, $method ) ) {
-			return false; // already held
-		}
+	public function doLockIsFree( string $lockName, string $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
 		$res = $this->query(
 			"SELECT (CASE(pg_try_advisory_lock($key))
-			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus",
+			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked",
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $this->fetchObject( $res );
 
-		return ( $row->lockstatus === 't' );
+		return ( $row->unlocked === 't' );
 	}
 
-	public function lock( $lockName, $method, $timeout = 5 ) {
+	public function doLock( string $lockName, string $method, int $timeout ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
+		$acquired = null;
 		$loop = new WaitConditionLoop(
-			function () use ( $lockName, $key, $timeout, $method ) {
+			function () use ( $lockName, $key, $timeout, $method, &$acquired ) {
 				$res = $this->query(
-					"SELECT pg_try_advisory_lock($key) AS lockstatus",
+					"SELECT (CASE WHEN pg_try_advisory_lock($key) " .
+						"THEN EXTRACT(epoch from clock_timestamp()) " .
+						"ELSE NULL " .
+					"END) AS acquired",
 					$method,
 					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 				);
 				$row = $this->fetchObject( $res );
-				if ( $row->lockstatus === 't' ) {
-					parent::lock( $lockName, $method, $timeout ); // record
-					return true;
+
+				if ( $row->acquired !== null ) {
+					$acquired = (float)$row->acquired;
+
+					return WaitConditionLoop::CONDITION_REACHED;
 				}
 
 				return WaitConditionLoop::CONDITION_CONTINUE;
 			},
 			$timeout
 		);
+		$loop->invoke();
 
-		return ( $loop->invoke() === $loop::CONDITION_REACHED );
+		return $acquired;
 	}
 
-	public function unlock( $lockName, $method ) {
+	public function doUnlock( string $lockName, string $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
 		$result = $this->query(
-			"SELECT pg_advisory_unlock($key) as lockstatus",
+			"SELECT pg_advisory_unlock($key) AS released",
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 		);
 		$row = $this->fetchObject( $result );
 
-		if ( $row->lockstatus === 't' ) {
-			parent::unlock( $lockName, $method ); // record
-			return true;
-		}
-
-		$this->queryLogger->debug( __METHOD__ . " failed to release lock" );
-
-		return false;
+		return ( $row->released === 't' );
 	}
 
 	public function serverIsReadOnly() {

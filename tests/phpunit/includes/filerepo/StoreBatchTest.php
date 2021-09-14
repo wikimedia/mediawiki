@@ -11,7 +11,7 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 	/** @var FileRepo */
 	protected $repo;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgFileBackends;
 		parent::setUp();
 
@@ -25,7 +25,8 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 					$useConfig = $conf;
 				}
 			}
-			$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
+			$useConfig['lockManager'] = $this->getServiceContainer()->getLockManagerGroupFactory()
+				->getLockManagerGroup()->get( $useConfig['lockManager'] );
 			unset( $useConfig['fileJournal'] );
 			$useConfig['name'] = 'local-testing'; // swap name
 			$class = $useConfig['class'];
@@ -51,7 +52,7 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 		$this->createdFiles = [];
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		// Delete files
 		$this->repo->cleanupBatch( $this->createdFiles );
 		parent::tearDown();
@@ -88,8 +89,8 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 	private function storecohort( $fn, $infn, $otherfn, $fromrepo ) {
 		$f = $this->storeit( $fn, $infn, 0 );
 		$this->assertTrue( $f->isOK(), 'failed to store a new file' );
-		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 0, $f->failCount, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 1, $f->successCount, "counts wrong {$f->successCount} {$f->failCount}" );
 		if ( $fromrepo ) {
 			$f = $this->storeit( "Other-$fn", $infn, FileRepo::OVERWRITE );
 			$infn = $f->value;
@@ -97,18 +98,18 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 		// This should work because we're allowed to overwrite
 		$f = $this->storeit( $fn, $infn, FileRepo::OVERWRITE );
 		$this->assertTrue( $f->isOK(), 'We should be allowed to overwrite' );
-		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 0, $f->failCount, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 1, $f->successCount, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should fail because we're overwriting.
 		$f = $this->storeit( $fn, $infn, 0 );
 		$this->assertFalse( $f->isOK(), 'We should not be allowed to overwrite' );
-		$this->assertEquals( $f->failCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 1, $f->failCount, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 0, $f->successCount, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should succeed because we're overwriting the same content.
 		$f = $this->storeit( $fn, $infn, FileRepo::OVERWRITE_SAME );
 		$this->assertTrue( $f->isOK(), 'We should be able to overwrite the same content' );
-		$this->assertEquals( $f->failCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 0, $f->failCount, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 1, $f->successCount, "counts wrong {$f->successCount} {$f->failCount}" );
 		// This should fail because we're overwriting different content.
 		if ( $fromrepo ) {
 			$f = $this->storeit( "Other-$fn", $otherfn, FileRepo::OVERWRITE );
@@ -116,8 +117,8 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 		}
 		$f = $this->storeit( $fn, $otherfn, FileRepo::OVERWRITE_SAME );
 		$this->assertFalse( $f->isOK(), 'We should not be allowed to overwrite different content' );
-		$this->assertEquals( $f->failCount, 1, "counts wrong {$f->successCount} {$f->failCount}" );
-		$this->assertEquals( $f->successCount, 0, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 1, $f->failCount, "counts wrong {$f->successCount} {$f->failCount}" );
+		$this->assertSame( 0, $f->successCount, "counts wrong {$f->successCount} {$f->failCount}" );
 	}
 
 	/**

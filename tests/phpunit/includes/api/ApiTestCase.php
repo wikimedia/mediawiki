@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\SessionManager;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Util\Test;
@@ -15,13 +16,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgServer;
 
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
-
-		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
 
 		self::$users = [
 			'sysop' => static::getTestSysop(),
@@ -29,14 +28,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		];
 
 		$this->setRequest( new FauxRequest( [] ) );
-		$this->setMwGlobals( [
-			'wgUser' => self::$users['sysop']->getUser(),
-		] );
 
 		$this->apiContext = new ApiTestContext();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		// Avoid leaking session over tests
 		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
 
@@ -49,7 +45,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param array $params
 	 * @param array|null $session
 	 * @param bool $appendModule
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 * @param string|null $tokenType Set to a string like 'csrf' to send an
 	 *   appropriate token
 	 * @return array List of:
@@ -60,9 +56,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @throws ApiUsageException
 	 */
 	protected function doApiRequest( array $params, array $session = null,
-		$appendModule = false, User $user = null, $tokenType = null
+		$appendModule = false, Authority $performer = null, $tokenType = null
 	) {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		if ( $session === null ) {
 			// re-use existing global session by default
@@ -78,18 +74,12 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		// set up global environment
-		if ( $user ) {
-			$wgUser = $user;
-
-			// Only $contextUser should be used, $wgUser is set for anything that still
-			// tries to read it
-			$contextUser = $user;
+		if ( $performer ) {
+			$legacyUser = $this->getServiceContainer()->getUserFactory()->newFromAuthority( $performer );
+			$contextUser = $legacyUser;
 		} else {
-			// Fallback, eventually should be removed. Once no tests write to $wgUser
-			// directly or via `setMwGlobals`, this should always be a reference
-			// to `self::$users['sysop']->getUser()` (which is set as the value of
-			// $wgUser in ::setUp) and should be replaced with using that.
-			$contextUser = $wgUser;
+			$contextUser = self::$users['sysop']->getUser();
+			$performer = $contextUser;
 		}
 
 		$sessionObj->setUser( $contextUser );
@@ -98,20 +88,21 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 				$tokenType = ( new ApiMain() )->getModuleManager()
 					->getModule( $params['action'], 'action' )->needsToken();
 			}
-			$params['token'] = ApiQueryTokens::getToken(
-				$contextUser,
-				$sessionObj,
-				ApiQueryTokens::getTokenTypeSalts()[$tokenType]
-			)->toString();
+			if ( $tokenType !== false ) {
+				$params['token'] = ApiQueryTokens::getToken(
+					$contextUser,
+					$sessionObj,
+					ApiQueryTokens::getTokenTypeSalts()[$tokenType]
+				)->toString();
+			}
 		}
 
-		$wgRequest = new FauxRequest( $params, true, $sessionObj );
+		$wgRequest = $this->buildFauxRequest( $params, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
-		RequestContext::getMain()->setUser( $contextUser );
-		MediaWiki\Auth\AuthManager::resetCache();
+		RequestContext::getMain()->setAuthority( $performer );
 
 		// set up local environment
-		$context = $this->apiContext->newTestContext( $wgRequest, $contextUser );
+		$context = $this->apiContext->newTestContext( $wgRequest, $performer );
 
 		$module = new ApiMain( $context, true );
 
@@ -133,32 +124,29 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @since 1.37
+	 * @param array $params
+	 * @param MediaWiki\Session\Session|array|null $session
+	 * @return FauxRequest
+	 */
+	protected function buildFauxRequest( $params, $session ) {
+		return new FauxRequest( $params, true, $session );
+	}
+
+	/**
 	 * Convenience function to access the token parameter of doApiRequest()
 	 * more succinctly.
 	 *
 	 * @param array $params Key-value API params
 	 * @param array|null $session Session array
-	 * @param User|null $user A User object for the context
+	 * @param Authority|null $performer A User object for the context
 	 * @param string $tokenType Which token type to pass
 	 * @return array Result of the API call
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
-		User $user = null, $tokenType = 'auto'
+		Authority $performer = null, $tokenType = 'auto'
 	) {
-		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
-	}
-
-	protected function getTokenList( TestUser $user, $session = null ) {
-		$data = $this->doApiRequest( [
-			'action' => 'tokens',
-			'type' => 'edit|delete|protect|move|block|unblock|watch'
-		], $session, false, $user->getUser() );
-
-		if ( !array_key_exists( 'tokens', $data[0] ) ) {
-			throw new MWException( 'Api failed to return a token list' );
-		}
-
-		return $data[0]['tokens'];
+		return $this->doApiRequest( $params, $session, false, $performer, $tokenType );
 	}
 
 	protected static function getErrorFormatter() {
@@ -200,7 +188,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * ApiUsageException::newWithMessage()'s parameters.  This allows checking for an exception
 	 * whose text is given by a message key instead of text, so as not to hard-code the message's
 	 * text into test code.
-	 * @param string $msg
+	 * @param string|array|Message $msg
 	 * @param string|null $code
 	 * @param array|null $data
 	 * @param int $httpCode

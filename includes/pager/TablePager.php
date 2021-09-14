@@ -235,13 +235,7 @@ abstract class TablePager extends IndexPager {
 	 * @return array Array of attribute => value
 	 */
 	protected function getRowAttrs( $row ) {
-		$class = $this->getRowClass( $row );
-		if ( $class === '' ) {
-			// Return an empty array to avoid clutter in HTML like class=""
-			return [];
-		} else {
-			return [ 'class' => $this->getRowClass( $row ) ];
-		}
+		return [ 'class' => $this->getRowClass( $row ) ];
 	}
 
 	/**
@@ -405,7 +399,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get \<input type="hidden"\> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
-	 * blacklist, passed in the $blacklist parameter.
+	 * exclusion list, passed in the $noResubmit parameter.
 	 *
 	 * @param array $noResubmit Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment
@@ -471,7 +465,8 @@ abstract class TablePager extends IndexPager {
 	 * need more context.
 	 *
 	 * @param string $name The database field name
-	 * @param string $value The value retrieved from the database
+	 * @param string|null $value The value retrieved from the database, or null if
+	 *   the row doesn't contain this field
 	 */
 	abstract public function formatValue( $name, $value );
 

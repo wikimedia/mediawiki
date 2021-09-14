@@ -192,9 +192,9 @@ $.extend(Datepicker.prototype, {
 		this._attachments(input, inst);
 		input.addClass(this.markerClassName).keydown(this._doKeyDown).
 			keypress(this._doKeyPress).keyup(this._doKeyUp).
-			bind("setData.datepicker", function(event, key, value) {
+			on("setData.datepicker", function(event, key, value) {
 				inst.settings[key] = value;
-			}).bind("getData.datepicker", function(event, key) {
+			}).on("getData.datepicker", function(event, key) {
 				return this._get(inst, key);
 			});
 		this._autoSize(inst);
@@ -215,7 +215,7 @@ $.extend(Datepicker.prototype, {
 			inst.append = $('<span class="' + this._appendClass + '">' + appendText + '</span>');
 			input[isRTL ? 'before' : 'after'](inst.append);
 		}
-		input.unbind('focus', this._showDatepicker);
+		input.off('focus', this._showDatepicker);
 		if (inst.trigger)
 			inst.trigger.remove();
 		var showOn = this._get(inst, 'showOn');
@@ -276,9 +276,9 @@ $.extend(Datepicker.prototype, {
 		if (divSpan.hasClass(this.markerClassName))
 			return;
 		divSpan.addClass(this.markerClassName).append(inst.dpDiv).
-			bind("setData.datepicker", function(event, key, value){
+			on("setData.datepicker", function(event, key, value){
 				inst.settings[key] = value;
-			}).bind("getData.datepicker", function(event, key){
+			}).on("getData.datepicker", function(event, key){
 				return this._get(inst, key);
 			});
 		$.data(target, PROP_NAME, inst);
@@ -356,10 +356,10 @@ $.extend(Datepicker.prototype, {
 			inst.append.remove();
 			inst.trigger.remove();
 			$target.removeClass(this.markerClassName).
-				unbind('focus', this._showDatepicker).
-				unbind('keydown', this._doKeyDown).
-				unbind('keypress', this._doKeyPress).
-				unbind('keyup', this._doKeyUp);
+				off('focus', this._showDatepicker).
+				off('keydown', this._doKeyDown).
+				off('keypress', this._doKeyPress).
+				off('keyup', this._doKeyUp);
 		} else if (nodeName == 'div' || nodeName == 'span')
 			$target.removeClass(this.markerClassName).empty();
 	},
@@ -830,7 +830,7 @@ $.extend(Datepicker.prototype, {
 
 	/* Tidy up after a dialog display. */
 	_tidyDialog: function(inst) {
-		inst.dpDiv.removeClass(this._dialogClass).unbind('.ui-datepicker-calendar');
+		inst.dpDiv.removeClass(this._dialogClass).off('.ui-datepicker-calendar');
 	},
 
 	/* Close date picker if clicked elsewhere. */
@@ -1439,7 +1439,7 @@ $.extend(Datepicker.prototype, {
 					return false;
 				}
 			};
-			$(this).bind(this.getAttribute('data-event'), handler[this.getAttribute('data-handler')]);
+			$(this).on(this.getAttribute('data-event'), handler[this.getAttribute('data-handler')]);
 		});
 	},
 
@@ -1772,17 +1772,17 @@ $.extend(Datepicker.prototype, {
 
 /*
  * Bind hover events for datepicker elements.
- * Done via delegate so the binding only occurs once in the lifetime of the parent div.
+ * Done via .on() so the binding only occurs once in the lifetime of the parent div.
  * Global instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
  */
 function bindHover(dpDiv) {
 	var selector = 'button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a';
-	return dpDiv.delegate(selector, 'mouseout', function() {
+	return dpDiv.on('mouseout', selector, function() {
 			$(this).removeClass('ui-state-hover');
 			if (this.className.indexOf('ui-datepicker-prev') != -1) $(this).removeClass('ui-datepicker-prev-hover');
 			if (this.className.indexOf('ui-datepicker-next') != -1) $(this).removeClass('ui-datepicker-next-hover');
 		})
-		.delegate(selector, 'mouseover', function(){
+		.on('mouseover', selector, function(){
 			if (!$.datepicker._isDisabledDatepicker( instActive.inline ? dpDiv.parent()[0] : instActive.input[0])) {
 				$(this).parents('.ui-datepicker-calendar').find('a').removeClass('ui-state-hover');
 				$(this).addClass('ui-state-hover');

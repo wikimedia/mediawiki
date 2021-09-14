@@ -85,30 +85,12 @@ class MWFileProps {
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$info['metadata'] = $handler->getMetadata( $fsFile, $path );
-				// @phan-suppress-next-line PhanParamTooMany
-				$gis = $handler->getImageSize( $fsFile, $path, $info['metadata'] );
-				if ( is_array( $gis ) ) {
-					$info = $this->extractImageSizeInfo( $gis ) + $info;
+				$sizeAndMetadata = $handler->getSizeAndMetadataWithFallback( $fsFile, $path );
+				if ( $sizeAndMetadata ) {
+					$info = $sizeAndMetadata + $info;
 				}
 			}
 		}
-
-		return $info;
-	}
-
-	/**
-	 * Exract image size information
-	 *
-	 * @param array $gis
-	 * @return array
-	 */
-	private function extractImageSizeInfo( array $gis ) {
-		$info = [];
-		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
-		$info['width'] = $gis[0];
-		$info['height'] = $gis[1];
-		$info['bits'] = $gis['bits'] ?? 0;
 
 		return $info;
 	}
@@ -135,7 +117,7 @@ class MWFileProps {
 	 */
 	public function newPlaceholderProps() {
 		return FSFile::placeholderProps() + [
-			'metadata' => '',
+			'metadata' => [],
 			'width' => 0,
 			'height' => 0,
 			'bits' => 0,

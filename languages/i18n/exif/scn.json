@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Melos",
 			"Pippinu",
 			"Santu",
@@ -91,9 +92,9 @@
 	"exif-imageuniqueid": "ID unìvucu mmàggini",
 	"exif-gpsversionid": "Virsioni di l'etichetta GPS",
 	"exif-gpslatituderef": "Latitùtini Nord o Sud",
-	"exif-gpslatitude": "Latitùtini",
+	"exif-gpslatitude": "Latitùdini",
 	"exif-gpslongituderef": "Lungitùtini Est o Ovest",
-	"exif-gpslongitude": "Lungitùtini",
+	"exif-gpslongitude": "Loncitùdini",
 	"exif-gpsaltituderef": "Rifirimentu pi l'autitùtini",
 	"exif-gpsaltitude": "Autitùtini",
 	"exif-gpstimestamp": "Ura GPS (ruloggiu atòmicu)",
@@ -351,5 +352,9 @@
 	"exif-urgency-normal": "Nurmali ($1)",
 	"exif-urgency-low": "Vascia ($1)",
 	"exif-urgency-high": "Àuta ($1)",
-	"exif-urgency-other": "Difinuta di l'utenti ($1)"
+	"exif-urgency-other": "Difinuta di l'utenti ($1)",
+	"exif-usepanoramaviewer-true": "Sì",
+	"exif-usepanoramaviewer-false": "No",
+	"exif-exposurelockused-true": "Sì",
+	"exif-exposurelockused-false": "No"
 }

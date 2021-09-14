@@ -13,8 +13,8 @@
 	$( function () {
 		var blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
 			expiryWidget, editingWidget, editingRestrictionWidget, preventTalkPageEditWidget,
-			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget, data,
-			blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
+			pageRestrictionsWidget, namespaceRestrictionsWidget, actionRestrictionsWidget, createAccountWidget,
+			data, blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
 
 		function preserveSelectedStateOnDisable( widget ) {
 			var widgetWasSelected;
@@ -91,6 +91,14 @@
 				updatingBlockOptions = false;
 			}
 
+			if ( mw.config.get( 'wgEnablePartialActionBlocks' ) ) {
+				if ( editingIsSelected && isSitewide ) {
+					actionRestrictionsWidget.setDisabled( true );
+				} else {
+					actionRestrictionsWidget.setDisabled( false );
+				}
+			}
+
 		}
 
 		// This code is also loaded on the "block succeeded" page where there is no form,
@@ -120,6 +128,10 @@
 			editingRestrictionWidget = OO.ui.infuse( $( '#mw-input-wpEditingRestriction' ) );
 			pageRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpPageRestrictions' ) );
 			namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
+			if ( mw.config.get( 'wgEnablePartialActionBlocks' ) ) {
+				// TODO: Use an ID after T280837 is fixed
+				actionRestrictionsWidget = OO.ui.infuse( $( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' ) );
+			}
 			editingRestrictionWidget.on( 'change', updateBlockOptions );
 			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 

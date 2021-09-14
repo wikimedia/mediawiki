@@ -5,7 +5,7 @@
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
@@ -13,7 +13,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->oldWgServer = $GLOBALS['wgServer'];
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$_SERVER = $this->oldServer;
 		$GLOBALS['wgRequest'] = $this->oldWgRequest;
 		$GLOBALS['wgServer'] = $this->oldWgServer;
@@ -377,7 +377,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		// Stub this for wfGetServerUrl()
 		$GLOBALS['wgServer'] = '//wiki.test';
 		$req = $this->getMockBuilder( WebRequest::class )
-			->setMethods( [ 'getRequestURL', 'getProtocol' ] )
+			->onlyMethods( [ 'getRequestURL', 'getProtocol' ] )
 			->getMock();
 		$req->method( 'getRequestURL' )->willReturn( '/path' );
 		$req->method( 'getProtocol' )->willReturn( 'https' );

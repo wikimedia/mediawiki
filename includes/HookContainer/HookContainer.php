@@ -122,7 +122,7 @@ class HookContainer implements SalvageableService {
 	 * @return bool True if no handler aborted the hook
 	 * @throws UnexpectedValueException if handlers return an invalid value
 	 */
-	public function run( string $hook, array $args = [], array $options = [] ) : bool {
+	public function run( string $hook, array $args = [], array $options = [] ): bool {
 		$legacyHandlers = $this->getLegacyHandlers( $hook );
 		$options = array_merge(
 			$this->registry->getDeprecatedHooks()->getDeprecationInfo( $hook ) ?? [],
@@ -145,7 +145,7 @@ class HookContainer implements SalvageableService {
 				if ( is_string( $return ) ) {
 					wfDeprecatedMsg(
 						"Returning a string from a hook handler is deprecated since MediaWiki 1.35 ' .
-						 '(done by $functionName for $hook)",
+							'(done by $functionName for $hook)",
 						'1.35', false, false
 					);
 					throw new UnexpectedValueException( $return );
@@ -184,7 +184,7 @@ class HookContainer implements SalvageableService {
 	 * @throws MWException If not in testing mode.
 	 * @codeCoverageIgnore
 	 */
-	public function clear( string $hook ) : void {
+	public function clear( string $hook ): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( 'Cannot reset hooks in operation.' );
 		}
@@ -209,7 +209,7 @@ class HookContainer implements SalvageableService {
 	 *        Set true to remove all existing callbacks for the hook.
 	 * @return ScopedCallback
 	 */
-	public function scopedRegister( string $hook, $callback, bool $replace = false ) : ScopedCallback {
+	public function scopedRegister( string $hook, $callback, bool $replace = false ): ScopedCallback {
 		// Use a known key to register the handler, so we can later remove it
 		// from $this->dynamicHandlers using that key.
 		$id = 'TemporaryHook_' . $this->nextScopedRegisterId++;
@@ -345,7 +345,7 @@ class HookContainer implements SalvageableService {
 	 * @param string $hook Name of hook
 	 * @return bool Whether the hook has a handler registered to it
 	 */
-	public function isRegistered( string $hook ) : bool {
+	public function isRegistered( string $hook ): bool {
 		if ( $this->tombstones[$hook] ?? false ) {
 			// If a tombstone is set, we only care about dynamically registered hooks,
 			// and leave it to getLegacyHandlers() to handle the cut-off.
@@ -393,7 +393,7 @@ class HookContainer implements SalvageableService {
 	 * @param string $hook Name of hook
 	 * @return callable[]
 	 */
-	public function getLegacyHandlers( string $hook ) : array {
+	public function getLegacyHandlers( string $hook ): array {
 		if ( $this->tombstones[$hook] ?? false ) {
 			// If there is at least one tombstone set for the hook,
 			// ignore all handlers from the registry, and
@@ -415,7 +415,7 @@ class HookContainer implements SalvageableService {
 			// Return the part of $this->dynamicHandlers[$hook] after the TOMBSTONE
 			// marker, preserving keys.
 			$keys = array_slice( $keys, $i + 1 );
-			$handlers = array_intersect_key( $handlers, array_flip( $keys ) );
+			$handlers = array_intersect_key( $handlers, array_fill_keys( $keys, true ) );
 		} else {
 			// If no tombstone is set, just merge the two arrays.
 			$handlers = array_merge(
@@ -438,7 +438,7 @@ class HookContainer implements SalvageableService {
 	 *   - noServices: Do not allow hook handlers with service dependencies
 	 * @return array non-deprecated handler objects
 	 */
-	public function getHandlers( string $hook, array $options = [] ) : array {
+	public function getHandlers( string $hook, array $options = [] ): array {
 		if ( $this->tombstones[$hook] ?? false ) {
 			// There is at least one tombstone for the hook, so suppress all new-style hooks.
 			return [];

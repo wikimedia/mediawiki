@@ -97,7 +97,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 
 			for(var i = 0; i < n.length; i++) {
 
-				var handle = $.trim(n[i]), hname = 'ui-resizable-'+handle;
+				var handle = n[i].trim(), hname = 'ui-resizable-'+handle;
 				var axis = $('<div class="ui-resizable-handle ' + hname + '"></div>');
 
 				// Apply zIndex to all handles - see #7960
@@ -197,7 +197,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 
 		var _destroy = function(exp) {
 			$(exp).removeClass("ui-resizable ui-resizable-disabled ui-resizable-resizing")
-				.removeData("resizable").removeData("ui-resizable").unbind(".resizable").find('.ui-resizable-handle').remove();
+				.removeData("resizable").removeData("ui-resizable").off(".resizable").find('.ui-resizable-handle').remove();
 		};
 
 		//TODO: Unwrap at same DOM position

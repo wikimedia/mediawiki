@@ -328,7 +328,7 @@ class BlockLevelPass {
 					'/<('
 						. "\\/({$blockElems})|({$antiBlockElems})|"
 						// Never suppresses
-						. '\\/?(center|blockquote|div|hr|mw:)'
+						. '\\/?(center|blockquote|div|hr|mw:|aside|figure)'
 						. ')\\b/iS',
 					$t
 				);
@@ -503,7 +503,8 @@ class BlockLevelPass {
 						# We're nested in language converter markup, but there
 						# are no close tags left.  Abort!
 						break 2;
-					} elseif ( $m[0][0] === '-{' ) {
+					}
+					if ( $m[0][0] === '-{' ) {
 						$i = $m[0][1] + 1;
 						$lcLevel++;
 					} elseif ( $m[0][0] === '}-' ) {

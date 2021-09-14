@@ -60,7 +60,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  *   - d) When the queue is large and an LBFactory DB handle commits (EnqueueableDataUpdate only)
  *   - e) Upon the completion of Maintenance::execute() via Maintenance::shutdown()
  *
- * @see Maintenance::setLBFactoryTriggers()
+ * @see MWLBFactory::applyGlobalState()
  *
  * If DeferredUpdates::doUpdates() is currently running a deferred update, then the public
  * DeferredUpdates interface operates on the PRESEND/POSTSEND "sub"-queues that correspond to
@@ -378,13 +378,14 @@ class DeferredUpdates {
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
 		$httpMethod
-	) : ?Throwable {
+	): ?Throwable {
 		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
 
 		$updateId = spl_object_id( $update );
 		$logger->debug( __METHOD__ . ": started $type #$updateId" );
+		$startTime = microtime( true );
 		$e = null;
 		try {
 			self::attemptUpdate( $update, $lbFactory );
@@ -392,7 +393,8 @@ class DeferredUpdates {
 			return null;
 		} catch ( Throwable $e ) {
 		} finally {
-			$logger->debug( __METHOD__ . ": ended $type #$updateId" );
+			$executionTime = microtime( true ) - $startTime;
+			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $executionTime" );
 		}
 
 		MWExceptionHandler::logException( $e );
@@ -404,7 +406,7 @@ class DeferredUpdates {
 			]
 		);
 
-		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 
 		// Try to push the update as a job so it can run later if possible
 		if ( $update instanceof EnqueueableDataUpdate ) {
@@ -426,7 +428,7 @@ class DeferredUpdates {
 				]
 			);
 
-			$lbFactory->rollbackMasterChanges( __METHOD__ );
+			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 		}
 
 		return $e;
@@ -469,7 +471,7 @@ class DeferredUpdates {
 			]
 		);
 
-		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 	}
 
 	/**
@@ -505,14 +507,14 @@ class DeferredUpdates {
 
 		// Flush any pending changes left over from an implicit transaction round
 		if ( $useExplicitTrxRound ) {
-			$lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
+			$lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 		} else {
-			$lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
+			$lbFactory->commitPrimaryChanges( $fnameTrxOwner ); // new implicit round
 		}
-		// Run the update after any stale master view snapshots have been flushed
+		// Run the update after any stale primary DB view snapshots have been flushed
 		$update->doUpdate();
 		// Commit any pending changes from the explicit or implicit transaction round
-		$lbFactory->commitMasterChanges( $fnameTrxOwner );
+		$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
 	}
 
 	/**
@@ -526,7 +528,7 @@ class DeferredUpdates {
 
 		$connsBusy = false;
 		$lbFactory->forEachLB( static function ( LoadBalancer $lb ) use ( &$connsBusy ) {
-			$lb->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
+			$lb->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
 				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
 					$connsBusy = true;
 				}

@@ -9,18 +9,19 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 
 	protected $printerName = 'xml';
 
-	public static function setUpBeforeClass() : void {
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest.xsl' ) );
+		$user = self::getTestSysop()->getUser();
 		// phpcs:disable Generic.Files.LineLength
-		$page->doEditContent( new WikitextContent(
+		$page->doUserEditContent( new WikitextContent(
 			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />'
-		), 'Summary' );
+		), $user, 'Summary' );
 		// phpcs:enable
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest' ) );
-		$page->doEditContent( new WikitextContent( 'Bogus' ), 'Summary' );
+		$page->doUserEditContent( new WikitextContent( 'Bogus' ), $user, 'Summary' );
 		$page = WikiPage::factory( Title::newFromText( 'ApiFormatXmlTest' ) );
-		$page->doEditContent( new WikitextContent( 'Bogus' ), 'Summary' );
+		$page->doUserEditContent( new WikitextContent( 'Bogus' ), $user, 'Summary' );
 	}
 
 	public static function provideGeneralEncoding() {

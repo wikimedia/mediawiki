@@ -20,8 +20,12 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -55,17 +59,38 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 */
 	private $userEditTracker;
 
+	/**
+	 * @var UserOptionsLookup
+	 */
+	private $userOptionsLookup;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param TalkPageNotificationManager $talkPageNotificationManager
+	 * @param WatchedItemStore $watchedItemStore
+	 * @param UserEditTracker $userEditTracker
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserGroupManager $userGroupManager
+	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStore $watchedItemStore,
-		UserEditTracker $userEditTracker
+		UserEditTracker $userEditTracker,
+		UserOptionsLookup $userOptionsLookup,
+		UserGroupManager $userGroupManager
 	) {
 		parent::__construct( $query, $moduleName, 'ui' );
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userEditTracker = $userEditTracker;
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute() {
@@ -73,7 +98,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		if ( $this->params['prop'] !== null ) {
-			$this->prop = array_flip( $this->params['prop'] );
+			$this->prop = array_fill_keys( $this->params['prop'], true );
 		}
 
 		$r = $this->getCurrentUserInfo();
@@ -83,8 +108,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	/**
 	 * Get central user info
 	 * @param Config $config
-	 * @param User $user
-	 * @param string|null $attachedWiki
+	 * @param UserIdentity $user
+	 * @param string|false $attachedWiki
 	 * @return array Central user info
 	 *  - centralids: Array mapping non-local Central ID provider names to IDs
 	 *  - attachedlocal: Array mapping Central ID provider names to booleans
@@ -92,7 +117,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 *  - attachedwiki: Array mapping Central ID provider names to booleans
 	 *    indicating whether the user is attached to $attachedWiki.
 	 */
-	public static function getCentralUserInfo( Config $config, User $user, $attachedWiki = null ) {
+	public static function getCentralUserInfo(
+		Config $config,
+		UserIdentity $user,
+		$attachedWiki = UserIdentity::LOCAL
+	) {
 		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
 
 		$ret = [
@@ -107,8 +136,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		$name = $user->getName();
+		$centralIdLookupFactory = MediaWikiServices::getInstance()
+			->getCentralIdLookupFactory();
 		foreach ( $providerIds as $providerId ) {
-			$provider = CentralIdLookup::factory( $providerId );
+			$provider = $centralIdLookupFactory->getLookup( $providerId );
 			$ret['centralids'][$providerId] = $provider->centralIdFromName( $name );
 			$ret['attachedlocal'][$providerId] = $provider->isAttached( $user );
 			if ( $attachedWiki ) {
@@ -125,7 +156,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['id'] = $user->getId();
 		$vals['name'] = $user->getName();
 
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			$vals['anon'] = true;
 		}
 
@@ -141,13 +172,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
-			$vals['groups'] = $user->getEffectiveGroups();
+			$vals['groups'] = $this->userGroupManager->getUserEffectiveGroups( $user );
 			ApiResult::setArrayType( $vals['groups'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['groupmemberships'] ) ) {
-			$ugms = $user->getGroupMemberships();
+			$ugms = $this->userGroupManager->getUserGroupMemberships( $user );
 			$vals['groupmemberships'] = [];
 			foreach ( $ugms as $group => $ugm ) {
 				$vals['groupmemberships'][] = [
@@ -160,7 +191,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
-			$vals['implicitgroups'] = $user->getAutomaticGroups();
+			$vals['implicitgroups'] = $this->userGroupManager->getUserImplicitGroups( $user );
 			ApiResult::setArrayType( $vals['implicitgroups'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
@@ -172,7 +203,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
-			$vals['changeablegroups'] = $user->changeableGroups();
+			$vals['changeablegroups'] = $this->userGroupManager->getGroupsChangeableBy( $this->getAuthority() );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
@@ -180,15 +211,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['options'] ) ) {
-			$vals['options'] = $user->getOptions();
+			$vals['options'] = $this->userOptionsLookup->getOptions( $user );
 			$vals['options'][ApiResult::META_BC_BOOLS] = array_keys( $vals['options'] );
-		}
-
-		if ( isset( $this->prop['preferencestoken'] ) &&
-			!$this->lacksSameOriginSecurity() &&
-			$this->getAuthority()->isAllowed( 'editmyoptions' )
-		) {
-			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
 
 		if ( isset( $this->prop['editcount'] ) ) {
@@ -287,7 +311,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		// Find out which categories we belong to
 		$categories = [];
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			$categories[] = 'anon';
 		} else {
 			$categories[] = 'user';
@@ -295,11 +319,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( $user->isNewbie() ) {
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
-			if ( !$user->isAnon() ) {
+			if ( $user->isRegistered() ) {
 				$categories[] = 'newbie';
 			}
 		}
-		$categories = array_merge( $categories, $user->getGroups() );
+		$categories = array_merge( $categories, $this->userGroupManager->getUserGroups( $user ) );
 
 		// Now get the actual limits
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
@@ -348,7 +372,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'registrationdate',
 					'unreadcount',
 					'centralids',
-					'preferencestoken',
 					'latestcontrib',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
@@ -357,13 +380,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 						self::WL_UNREAD_LIMIT - 1,
 						self::WL_UNREAD_LIMIT . '+',
 					],
-				],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
-					'preferencestoken' => [
-						'apiwarn-deprecation-withreplacement',
-						$this->getModulePrefix() . "prop=preferencestoken",
-						'action=query&meta=tokens',
-					]
 				],
 			],
 			'attachedwiki' => null,

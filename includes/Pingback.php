@@ -89,7 +89,7 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @throws DBError If timestamp upsert fails
 	 */
-	public function run() : void {
+	public function run(): void {
 		if ( !$this->config->get( 'Pingback' ) ) {
 			// disabled
 			return;
@@ -118,7 +118,7 @@ class Pingback {
 	 *
 	 * @return bool
 	 */
-	private function wasRecentlySent() : bool {
+	private function wasRecentlySent(): bool {
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$timestamp = $dbr->selectField(
 			'updatelog',
@@ -144,14 +144,14 @@ class Pingback {
 	 *
 	 * @return bool Whether lock was acquired
 	 */
-	private function acquireLock() : bool {
+	private function acquireLock(): bool {
 		$cacheKey = $this->cache->makeKey( 'pingback', $this->key );
 		if ( !$this->cache->add( $cacheKey, 1, $this->cache::TTL_HOUR ) ) {
 			// throttled
 			return false;
 		}
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
 			// already in progress
 			return false;
@@ -166,7 +166,7 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @return array
 	 */
-	protected function getData() : array {
+	protected function getData(): array {
 		return [
 			'schema' => 'MediaWikiPingback',
 			'revision' => self::SCHEMA_REV,
@@ -187,7 +187,7 @@ class Pingback {
 	 * @param Config $config With `DBtype` set.
 	 * @return array
 	 */
-	public static function getSystemInfo( Config $config ) : array {
+	public static function getSystemInfo( Config $config ): array {
 		$event = [
 			'database' => $config->get( 'DBtype' ),
 			'MediaWiki' => MW_VERSION,
@@ -218,8 +218,8 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @return string 32-character hex string
 	 */
-	private function fetchOrInsertId() : string {
-		// We've already obtained a master connection for the lock, and plan to do a write.
+	private function fetchOrInsertId(): string {
+		// We've already obtained a primary connection for the lock, and plan to do a write.
 		// But, still prefer reading this immutable value from a replica to reduce load.
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$id = $dbr->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
@@ -227,7 +227,7 @@ class Pingback {
 			return $id;
 		}
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$id = $dbw->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 		if ( $id !== false ) {
 			return $id;
@@ -258,7 +258,7 @@ class Pingback {
 	 * @param array $data Pingback data as an associative array
 	 * @return bool
 	 */
-	private function postPingback( array $data ) : bool {
+	private function postPingback( array $data ): bool {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
@@ -271,8 +271,8 @@ class Pingback {
 	 *
 	 * @throws DBError If timestamp upsert fails
 	 */
-	private function markSent() : void {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+	private function markSent(): void {
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$timestamp = ConvertibleTimestamp::time();
 		$dbw->upsert(
 			'updatelog',
@@ -287,14 +287,14 @@ class Pingback {
 	 * Schedule a deferred callable that will check if a pingback should be
 	 * sent and (if so) proceed to send it.
 	 */
-	public static function schedulePingback() : void {
+	public static function schedulePingback(): void {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( !$config->get( 'Pingback' ) ) {
 			// Fault tolerance:
 			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
-			// feature making use of DeferredUpdates and DB_MASTER on most page views.
+			// feature making use of DeferredUpdates and DB_PRIMARY on most page views.
 			// In order for the wiki to remain available and readable even if DeferredUpdates
-			// or DB_MASTER have issues, allow this to be turned off completely. (T269516)
+			// or DB_PRIMARY have issues, allow this to be turned off completely. (T269516)
 			return;
 		}
 		DeferredUpdates::addCallableUpdate( static function () {

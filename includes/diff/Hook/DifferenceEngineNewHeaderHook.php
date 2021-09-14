@@ -23,7 +23,7 @@ interface DifferenceEngineNewHeaderHook {
 	 * @param string &$newHeader String containing the various #mw-diff-otitle[1-5] divs, which
 	 *   include things like revision author info, revision comment, RevisionDelete link and more
 	 * @param array $formattedRevisionTools Array containing revision tools, some of which may have
-	 *   been injected with the DiffRevisionTools hook
+	 *   been injected with the DiffTools hook
 	 * @param string $nextlink String containing the link to the next revision (if any); also
 	 *   included in $newHeader
 	 * @param string $rollback Rollback link to roll this revision back to the previous one, if any

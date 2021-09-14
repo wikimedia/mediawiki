@@ -55,10 +55,12 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 	public $singleBackend;
 	private static $backendToUse;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgFileBackends;
 		parent::setUp();
 		$tmpDir = $this->getNewTempDirectory();
+		$lockManagerGroup = $this->getServiceContainer()
+			->getLockManagerGroupFactory()->getLockManagerGroup();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
 				$this->singleBackend = self::$backendToUse;
@@ -81,7 +83,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ]
 					);
 				}
-				$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
+				$useConfig['lockManager'] = $lockManagerGroup->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
@@ -89,7 +91,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->singleBackend = new FSFileBackend( [
 				'name' => 'localtesting',
-				'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
+				'lockManager' => $lockManagerGroup->get( 'fsLockManager' ),
 				'wikiId' => wfWikiID(),
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 				'containerPaths' => [
@@ -99,7 +101,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->multiBackend = new FileBackendMultiWrite( [
 			'name' => 'localtesting',
-			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
+			'lockManager' => $lockManagerGroup->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
 			'wikiId' => 'testdb',
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),

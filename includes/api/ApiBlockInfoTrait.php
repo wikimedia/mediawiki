@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -28,7 +28,7 @@ trait ApiBlockInfoTrait {
 
 	/**
 	 * Get basic info about a given block
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param Language|null $language
 	 * @return array Array containing several keys:
 	 *  - blockid - ID of the block
@@ -41,17 +41,19 @@ trait ApiBlockInfoTrait {
 	 *  - systemblocktype - system block type, if any
 	 */
 	private function getBlockDetails(
-		AbstractBlock $block,
+		Block $block,
 		$language = null
 	) {
 		if ( $language === null ) {
 			$language = $this->getLanguage();
 		}
 
+		$blocker = $block->getBlocker();
+
 		$vals = [];
 		$vals['blockid'] = $block->getId();
-		$vals['blockedby'] = $block->getByName();
-		$vals['blockedbyid'] = $block->getBy();
+		$vals['blockedby'] = $blocker ? $blocker->getName() : '';
+		$vals['blockedbyid'] = $blocker ? $blocker->getId() : 0;
 		$vals['blockreason'] = $block->getReasonComment()
 			->message->inLanguage( $language )->plain();
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );

@@ -5,8 +5,6 @@
 //
 // Styling checkboxes in a way that works cross browser is a tricky problem to solve.
 // In MediaWiki UI put a checkbox and label inside a mw-ui-checkbox div.
-// This renders in all browsers except IE 6-8 which do not support the `:checked` selector;
-// these are kept backwards-compatible using the `:not( #noop )` selector.
 // You should give the checkbox and label matching `id` and `for` attributes, respectively.
 //
 // Markup:
@@ -27,17 +25,11 @@
 //   <label for="component-example-3-disabled-checked">Disabled checked checkbox</label>
 // </div>
 .mw-ui-checkbox {
-	display: inline-block;
-	line-height: @size-input-binary;
-	vertical-align: middle;
-}
-
-// We use the `:not` selector to cancel out styling on IE 8 and below
-// Note: This may be broken on older Opera Mini devices.
-.mw-ui-checkbox:not( #noop ) {
 	display: table;
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
+	line-height: @size-input-binary;
+	vertical-align: middle;
 
 	* {
 		// Reset font sizes, see T74727
@@ -53,7 +45,6 @@
 		height: @size-input-binary;
 		// Support: Firefox mobile to override user-agent stylesheet, see T73750
 		max-width: none;
-		margin: 0;
 		// Hide `input[type=checkbox]` and instead style the label that follows
 		// Support: VoiceOver. Use `opacity` so that VoiceOver can still identify the checkbox
 		opacity: 0;

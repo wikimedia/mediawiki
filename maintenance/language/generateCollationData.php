@@ -46,12 +46,6 @@ class GenerateCollationData extends Maintenance {
 
 	public $debugOutFile;
 
-	/**
-	 * Important tertiary weights from UTS #10 section 7.2
-	 */
-	private const NORMAL_UPPERCASE = 0x08;
-	private const NORMAL_HIRAGANA = 0x0E;
-
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'data-dir', 'A directory on the local filesystem ' .

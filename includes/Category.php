@@ -49,8 +49,13 @@ class Category {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	private function __construct() {
-		$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$services = MediaWikiServices::getInstance();
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->readOnlyMode = $services->getReadOnlyMode();
 	}
 
 	/**
@@ -321,7 +326,7 @@ class Category {
 	 * @return bool True on success, false on failure
 	 */
 	public function refreshCounts() {
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
@@ -332,7 +337,7 @@ class Category {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
 		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
@@ -457,7 +462,7 @@ class Category {
 	 * @since 1.34
 	 */
 	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$typeOccurances = $dbw->selectFieldValues(

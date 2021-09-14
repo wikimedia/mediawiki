@@ -27,6 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
 use MWCryptHash;
@@ -46,6 +47,9 @@ use Wikimedia\IPUtils;
 class BlockManager {
 	/** @var PermissionManager */
 	private $permissionManager;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -74,18 +78,21 @@ class BlockManager {
 	/**
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
+	 * @param UserFactory $userFactory
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		PermissionManager $permissionManager,
+		UserFactory $userFactory,
 		LoggerInterface $logger,
 		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
+		$this->userFactory = $userFactory;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -111,19 +118,24 @@ class BlockManager {
 	 * in practice by any IP address or cookie blocks.
 	 *
 	 * @internal This should only be called by User::getBlockedStatus
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param WebRequest|null $request The global request object if the user is the
 	 *  global user (cases #1 and #2), otherwise null (case #3). The IP address and
 	 *  information from the request header are needed to find some types of blocks.
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *  To improve performance, non-critical checks are done against replica DBs.
-	 *  Check when actually saving should be done against master.
+	 *  Check when actually saving should be done against primary.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
 	 *   a infinite recursion with autopromote. See T270145.
 	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
 	 */
-	public function getUserBlock( User $user, $request, $fromReplica, $disableIpBlockExemptChecking = false ) {
-		$fromMaster = !$fromReplica;
+	public function getUserBlock(
+		UserIdentity $user,
+		$request,
+		$fromReplica,
+		$disableIpBlockExemptChecking = false
+	) {
+		$fromPrimary = !$fromReplica;
 		$ip = null;
 
 		// If this is the global user, they may be affected by IP blocks (case #1),
@@ -142,8 +154,8 @@ class BlockManager {
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromMaster );
-			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromMaster );
+			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary );
+			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromPrimary );
 			$this->getCookieBlock( $blocks, $user, $request );
 
 		} else {
@@ -152,7 +164,7 @@ class BlockManager {
 			// and cookie blocks, so we only check for a user account block.
 			// Case #3: checking whether another user's account is blocked.
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
+			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromPrimary );
 
 		}
 
@@ -172,7 +184,8 @@ class BlockManager {
 			}
 		}
 
-		$this->hookRunner->onGetUserBlock( clone $user, $ip, $block );
+		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
+		$this->hookRunner->onGetUserBlock( clone $legacyUser, $ip, $block );
 
 		return $block;
 	}
@@ -198,10 +211,10 @@ class BlockManager {
 	 * @param AbstractBlock[] &$blocks Blocks found so far
 	 * @param WebRequest $request
 	 * @param bool $isAnon The user is logged out
-	 * @param bool $fromMaster
+	 * @param bool $fromPrimary
 	 * @return void
 	 */
-	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromMaster ) {
+	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromPrimary ) {
 		$ip = $request->getIP();
 
 		// Proxy blocking
@@ -241,7 +254,7 @@ class BlockManager {
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
+			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromPrimary );
 			$blocks = array_merge( $blocks, $xffblocks );
 		}
 	}

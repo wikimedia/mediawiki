@@ -33,6 +33,8 @@ class LoadBalancerSingle extends LoadBalancer {
 	private $db;
 
 	/**
+	 * You probably want to use {@link newFromConnection} instead.
+	 *
 	 * @param array $params An associative array with one member:
 	 *   - connection: An IDatabase connection object
 	 */

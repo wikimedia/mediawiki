@@ -34,5 +34,5 @@ interface MovePageFactory {
 	 * @param Title $to
 	 * @return MovePage
 	 */
-	public function newMovePage( Title $from, Title $to ) : MovePage;
+	public function newMovePage( Title $from, Title $to ): MovePage;
 }

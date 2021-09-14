@@ -20,6 +20,8 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 
 /**
  * Class to invalidate the CDN and HTMLFileCache entries associated with URLs/titles
@@ -80,17 +82,27 @@ class HtmlCacheUpdater {
 	 */
 	public const UNLESS_CACHE_MTIME_AFTER = 'unless-timestamp-exceeds';
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @param HookContainer $hookContainer
+	 * @param TitleFactory $titleFactory
 	 * @param int $reboundDelay $wgCdnReboundPurgeDelay
 	 * @param bool $useFileCache $wgUseFileCache
 	 * @param int $cdnMaxAge $wgCdnMaxAge
+	 *
 	 * @internal For use with MediaWikiServices->getHtmlCacheUpdater()
 	 */
-	public function __construct( HookContainer $hookContainer, $reboundDelay,
-		$useFileCache, $cdnMaxAge
+	public function __construct(
+		HookContainer $hookContainer,
+		TitleFactory $titleFactory,
+		$reboundDelay,
+		$useFileCache,
+		$cdnMaxAge
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->titleFactory = $titleFactory;
 		$this->reboundDelay = $reboundDelay;
 		$this->useFileCache = $useFileCache;
 		$this->cdnMaxAge = $cdnMaxAge;
@@ -139,16 +151,31 @@ class HtmlCacheUpdater {
 	 * All cacheable canonical URLs associated with the titles will be purged from CDN.
 	 * All cacheable actions associated with the titles will be purged from HTMLFileCache.
 	 *
-	 * @param Traversable|Title[]|Title $titles Title or iterator yielding Title instances
+	 * @param Traversable|PageReference[]|PageReference $pages PageReference or iterator yielding
+	 *        PageReference instances
 	 * @param int $flags Bit field of class PURGE_* constants
 	 *  [Default: HtmlCacheUpdater::PURGE_PRESEND]
 	 * @param mixed[] $unless Optional map of (HtmlCacheUpdater::UNLESS_* constant => value)
 	 */
-	public function purgeTitleUrls( $titles, $flags = self::PURGE_PRESEND, array $unless = [] ) {
-		$titles = $titles instanceof Title ? [ $titles ] : $titles;
+	public function purgeTitleUrls( $pages, $flags = self::PURGE_PRESEND, array $unless = [] ) {
+		$pages = is_iterable( $pages ) ? $pages : [ $pages ];
+		$pageIdentities = [];
+
+		foreach ( $pages as $page ) {
+			// TODO: We really only need to cast to PageIdentity. We could use a LinkBatch for that.
+			$title = $this->titleFactory->castFromPageReference( $page );
+
+			if ( $title->canExist() ) {
+				$pageIdentities[] = $title;
+			}
+		}
+
+		if ( !$pageIdentities ) {
+			return;
+		}
 
 		if ( $this->useFileCache ) {
-			$update = HtmlFileCacheUpdate::newFromTitles( $titles );
+			$update = HtmlFileCacheUpdate::newFromPages( $pageIdentities );
 			if ( $this->fieldHasFlag( $flags, self::PURGE_PRESEND ) ) {
 				DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 			} else {
@@ -159,9 +186,9 @@ class HtmlCacheUpdater {
 		$minFreshCacheMtime = $unless[self::UNLESS_CACHE_MTIME_AFTER] ?? null;
 		if ( !$minFreshCacheMtime || time() <= ( $minFreshCacheMtime + $this->cdnMaxAge ) ) {
 			$urls = [];
-			foreach ( $titles as $title ) {
-				/** @var Title $title */
-				$urls = array_merge( $urls, $this->getUrls( $title, $flags ) );
+			foreach ( $pageIdentities as $pi ) {
+				/** @var PageIdentity $pi */
+				$urls = array_merge( $urls, $this->getUrls( $pi, $flags ) );
 			}
 			$this->purgeUrls( $urls, $flags );
 		}
@@ -170,11 +197,17 @@ class HtmlCacheUpdater {
 	/**
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param int $flags Bit field of `PURGE_URLS_*` class constants (optional).
 	 * @return string[] URLs
 	 */
-	public function getUrls( Title $title, int $flags = 0 ) : array {
+	public function getUrls( PageReference $page, int $flags = 0 ): array {
+		$title = $this->titleFactory->castFromPageReference( $page );
+
+		if ( !$title->canExist() ) {
+			return [];
+		}
+
 		// These urls are affected both by direct revisions as well,
 		// as re-rendering of the same content during a LinksUpdate.
 		$urls = [

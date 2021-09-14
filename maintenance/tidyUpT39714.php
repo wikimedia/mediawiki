@@ -37,7 +37,7 @@ class TidyUpT39714 extends Maintenance {
 				// If there's only one type, the target title can be set to include it.
 				$logTitle = SpecialPage::getTitleFor( 'Log', $result->current()->log_type )->getText();
 				$this->output( 'Set log_title to "' . $logTitle . '" for log entry ' . $row->log_id . ".\n" );
-				$this->getDB( DB_MASTER )->update(
+				$this->getDB( DB_PRIMARY )->update(
 					'logging',
 					[ 'log_title' => $logTitle ],
 					[ 'log_id' => $row->log_id ],

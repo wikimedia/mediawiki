@@ -41,7 +41,7 @@ class LocalFileRestoreBatch {
 	private $all;
 
 	/** @var bool Whether to remove all settings for suppressed fields */
-	private $unsuppress = false;
+	private $unsuppress;
 
 	/**
 	 * @param LocalFile $file
@@ -97,10 +97,9 @@ class LocalFileRestoreBatch {
 
 		$lockOwnsTrx = $this->file->lock();
 
-		$dbw = $this->file->repo->getMasterDB();
+		$dbw = $this->file->repo->getPrimaryDB();
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
-		$actorMigration = ActorMigration::newMigration();
 
 		$status = $this->file->repo->newGood();
 
@@ -178,10 +177,17 @@ class LocalFileRestoreBatch {
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
-				// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
-				$props = MediaWikiServices::getInstance()->getRepoGroup()->getFileProps( $deletedUrl );
+				$this->file->loadFromFile( $deletedUrl );
+				$mime = $this->file->getMimeType();
+				list( $majorMime, $minorMime ) = File::splitMime( $mime );
+				$mediaInfo = [
+					'minor_mime' => $minorMime,
+					'major_mime' => $majorMime,
+					'media_type' => $this->file->getMediaType(),
+					'metadata' => $this->file->getMetadataForDb( $dbw )
+				];
 			} else {
-				$props = [
+				$mediaInfo = [
 					'minor_mime' => $row->fa_minor_mime,
 					'major_mime' => $row->fa_major_mime,
 					'media_type' => $row->fa_media_type,
@@ -190,25 +196,24 @@ class LocalFileRestoreBatch {
 			}
 
 			$comment = $commentStore->getComment( 'fa_description', $row );
-			$user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
 				$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
-				$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
 					'img_width' => $row->fa_width,
 					'img_height' => $row->fa_height,
-					'img_metadata' => $props['metadata'],
+					'img_metadata' => $mediaInfo['metadata'],
 					'img_bits' => $row->fa_bits,
-					'img_media_type' => $props['media_type'],
-					'img_major_mime' => $props['major_mime'],
-					'img_minor_mime' => $props['minor_mime'],
+					'img_media_type' => $mediaInfo['media_type'],
+					'img_major_mime' => $mediaInfo['major_mime'],
+					'img_minor_mime' => $mediaInfo['minor_mime'],
+					'img_actor' => $row->fa_actor,
 					'img_timestamp' => $row->fa_timestamp,
 					'img_sha1' => $sha1
-				] + $commentFields + $actorFields;
+				] + $commentFields;
 
 				// The live (current) version cannot be hidden!
 				if ( !$this->unsuppress && $row->fa_deleted ) {
@@ -240,15 +245,15 @@ class LocalFileRestoreBatch {
 					'oi_width' => $row->fa_width,
 					'oi_height' => $row->fa_height,
 					'oi_bits' => $row->fa_bits,
+					'oi_actor' => $row->fa_actor,
 					'oi_timestamp' => $row->fa_timestamp,
-					'oi_metadata' => $props['metadata'],
-					'oi_media_type' => $props['media_type'],
-					'oi_major_mime' => $props['major_mime'],
-					'oi_minor_mime' => $props['minor_mime'],
+					'oi_metadata' => $mediaInfo['metadata'],
+					'oi_media_type' => $mediaInfo['media_type'],
+					'oi_major_mime' => $mediaInfo['major_mime'],
+					'oi_minor_mime' => $mediaInfo['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
-				] + $commentStore->insert( $dbw, 'oi_description', $comment )
-				+ $actorMigration->getInsertValues( $dbw, 'oi_user', $user );
+				] + $commentStore->insert( $dbw, 'oi_description', $comment );
 			}
 
 			$deleteIds[] = $row->fa_id;

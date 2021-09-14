@@ -73,7 +73,7 @@ class ImportSiteScripts extends Maintenance {
 
 			$wikiPage = $wikiPageFactory->newFromTitle( $title );
 			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
-			$wikiPage->doEditContent( $content, "Importing from $url", 0, false, $user );
+			$wikiPage->doUserEditContent( $content, $user, "Importing from $url" );
 		}
 	}
 

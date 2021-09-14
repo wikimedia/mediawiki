@@ -31,7 +31,6 @@ use MediaWiki\User\UserIdentity;
 use RevisionDeleteUser;
 use Status;
 use TitleValue;
-use User;
 
 /**
  * Backend class for unblocking users
@@ -111,7 +110,7 @@ class UnblockUser {
 			$this->targetType === AbstractBlock::TYPE_AUTO &&
 			is_numeric( $this->target )
 		) {
-			// Needed, because AbstractBlock::parseTarget will strip the # from autoblocks.
+			// Needed, because BlockUtils::parseBlockTarget will strip the # from autoblocks.
 			$this->target = '#' . $this->target;
 		}
 		$this->block = DatabaseBlock::newFromTarget( $this->target );
@@ -125,21 +124,19 @@ class UnblockUser {
 	 *
 	 * @return Status
 	 */
-	public function unblock() : Status {
+	public function unblock(): Status {
 		$status = Status::newGood();
 
 		$basePermissionCheckResult = $this->blockPermissionChecker->checkBasePermissions(
 			$this->block instanceof DatabaseBlock && $this->block->getHideName()
 		);
 		if ( $basePermissionCheckResult !== true ) {
-			$status->fatal( $basePermissionCheckResult );
-			return $status;
+			return $status->fatal( $basePermissionCheckResult );
 		}
 
 		$blockPermissionCheckResult = $this->blockPermissionChecker->checkBlockPermissions();
 		if ( $blockPermissionCheckResult !== true ) {
-			$status->fatal( $blockPermissionCheckResult );
-			return $status;
+			return $status->fatal( $blockPermissionCheckResult );
 		}
 
 		if ( count( $this->tags ) !== 0 ) {
@@ -163,20 +160,18 @@ class UnblockUser {
 	 * @internal This is public to be called in a maintenance script.
 	 * @return Status
 	 */
-	public function unblockUnsafe() : Status {
+	public function unblockUnsafe(): Status {
 		$status = Status::newGood();
 
 		if ( $this->block === null ) {
-			$status->fatal( 'ipb_cant_unblock', $this->target );
-			return $status;
+			return $status->fatal( 'ipb_cant_unblock', $this->target );
 		}
 
 		if (
 			$this->block->getType() === AbstractBlock::TYPE_RANGE &&
 			$this->targetType === AbstractBlock::TYPE_IP
 		) {
-			$status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTarget() );
-			return $status;
+			return $status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTargetName() );
 		}
 
 		$denyReason = [ 'hookaborted' ];
@@ -190,17 +185,16 @@ class UnblockUser {
 
 		$deleteBlockStatus = $this->blockStore->deleteBlock( $this->block );
 		if ( !$deleteBlockStatus ) {
-			$status->fatal( 'ipb_cant_unblock', $this->block->getTarget() );
-			return $status;
+			return $status->fatal( 'ipb_cant_unblock', $this->block->getTargetName() );
 		}
 
 		$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );
 
 		// Unset _deleted fields as needed
-		if ( $this->block->getHideName() && $this->block->getTarget() instanceof User ) {
-			// Something is deeply FUBAR if this is not a User object, but who knows?
-			$id = $this->block->getTarget()->getId();
-			RevisionDeleteUser::unsuppressUserName( $this->block->getTarget(), $id );
+		$user = $this->block->getTargetUserIdentity();
+		if ( $this->block->getHideName() && $user ) {
+			$id = $user->getId();
+			RevisionDeleteUser::unsuppressUserName( $user->getName(), $id );
 		}
 
 		$this->log();
@@ -217,9 +211,7 @@ class UnblockUser {
 		if ( $this->block->getType() === DatabaseBlock::TYPE_AUTO ) {
 			$page = TitleValue::tryNew( NS_USER, '#' . $this->block->getId() );
 		} else {
-			$page = $this->block->getTarget() instanceof UserIdentity
-				? $this->block->getTarget()->getUserPage()
-				: TitleValue::tryNew( NS_USER, $this->block->getTarget() );
+			$page = TitleValue::tryNew( NS_USER, $this->block->getTargetName() );
 		}
 
 		$logEntry = new ManualLogEntry( 'block', 'unblock' );

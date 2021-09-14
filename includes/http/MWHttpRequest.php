@@ -224,17 +224,23 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function proxySetup() {
-		// If there is an explicit proxy set and proxies are not disabled, then use it
-		if ( $this->proxy && !$this->noProxy ) {
+		global $wgHTTPProxy, $wgLocalHTTPProxy;
+		// If proxies are disabled, clear any other proxy
+		if ( $this->noProxy ) {
+			$this->proxy = '';
 			return;
 		}
 
-		// Otherwise, fallback to $wgHTTPProxy if this is not a machine
-		// local URL and proxies are not disabled
-		if ( self::isLocalURL( $this->url ) || $this->noProxy ) {
-			$this->proxy = '';
+		// If there is an explicit proxy already set, use it
+		if ( $this->proxy ) {
+			return;
+		}
+
+		// Otherwise, fallback to $wgLocalHTTPProxy for local URLs
+		// or $wgHTTPProxy for everything else
+		if ( self::isLocalURL( $this->url ) ) {
+			$this->proxy = (string)$wgLocalHTTPProxy;
 		} else {
-			global $wgHTTPProxy;
 			$this->proxy = (string)$wgHTTPProxy;
 		}
 	}
@@ -442,7 +448,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			$this->parseHeader();
 		}
 
-		if ( ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) ) {
+		if ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) {
 			$this->status->setResult( true, (int)$this->respStatus );
 		} else {
 			list( $code, $message ) = explode( " ", $this->respStatus, 2 );

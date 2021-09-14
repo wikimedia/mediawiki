@@ -16,7 +16,7 @@ use MediaWiki\User\UserIdentityValue;
  */
 class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// FIXME: Acknowledge known non-fatal query (T248191)
 		$this->setMwGlobals( 'wgDBerrorLog', false );

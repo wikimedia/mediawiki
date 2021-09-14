@@ -127,6 +127,19 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Provide overrides for skinStyles to modules that support that.
+	 *
+	 * This MUST be called after self::setName().
+	 *
+	 * @since 1.37
+	 * @see $wgResourceModuleSkinStyles
+	 * @param array $moduleSkinStyles
+	 */
+	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
+		// Stub, only supported by FileModule currently.
+	}
+
+	/**
 	 * Inject the functions that load/save the indirect file path dependency list from storage
 	 *
 	 * @param callable $loadCallback Function of (module name, variant)
@@ -220,8 +233,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			// Ugh, fall back to default
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			throw new RuntimeException( 'Config accessed before it is set' );
 		}
 
 		return $this->config;
@@ -258,7 +270,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @internal For use only by ResourceLoader::getModule
 	 * @param HookContainer $hookContainer
 	 */
-	public function setHookContainer( HookContainer $hookContainer ) : void {
+	public function setHookContainer( HookContainer $hookContainer ): void {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -269,7 +281,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *   without notice.
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		return $this->hookRunner;
 	}
 
@@ -758,11 +770,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			// line break as separator which matches JavaScript native logic for implicitly
 			// ending statements even if a semi-colon is missing.
 			// Bugs: T29054, T162719.
-			if ( is_string( $scripts )
-				&& strlen( $scripts )
-				&& substr( $scripts, -1 ) !== "\n"
-			) {
-				$scripts .= "\n";
+			if ( is_string( $scripts ) ) {
+				$scripts = ResourceLoader::ensureNewline( $scripts );
 			}
 		}
 		$content['scripts'] = $scripts;
@@ -1037,7 +1046,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @internal For internal use only.
 	 * @param ResourceLoaderContext $context
-	 * @return string Vary string
+	 * @return string
 	 */
 	public static function getVary( ResourceLoaderContext $context ) {
 		return implode( '|', [

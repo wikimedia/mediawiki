@@ -1485,7 +1485,6 @@
 	"ipblocklist-localblock": "Sijaline blokiruind",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Toine blokiruind|Toižed blokiruindad}}",
 	"infiniteblock": "strokutoi blokiruind",
-	"expiringblock": "lopiše $1 $2",
 	"anononlyblock": "vaiše anonimad",
 	"noautoblockblock": "avtoblokiruind om sauptud",
 	"createaccountblock": "Uziden kävutajiden registriruind om blokiruidud",

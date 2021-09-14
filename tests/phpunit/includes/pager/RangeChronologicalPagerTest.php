@@ -50,7 +50,7 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 * Data provider in [ start, end, [ expected output has start condition, has end cond ] ] format
 	 */
 	public function getDateRangeCondProvider() {
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 
 		return [
 			[

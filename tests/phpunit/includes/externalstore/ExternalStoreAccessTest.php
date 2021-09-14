@@ -7,8 +7,6 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 
-	use MediaWikiCoversValidator;
-
 	public function testBasic() {
 		$active = [ 'memory' ];
 		$defaults = [ 'memory://cluster1', 'memory://cluster2' ];

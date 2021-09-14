@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Integration test that checks import success and
  * LinkCache integration.
@@ -17,7 +15,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private $importStreamSource;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$file = dirname( __DIR__ ) . '/../data/import/ImportLinkCacheIntegrationTest.xml';
@@ -46,14 +44,6 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 			$categoryLoremIpsum->getArticleID(),
 			$categoryLoremIpsum->getArticleID( Title::GAID_FOR_UPDATE )
 		);
-
-		$user = $this->getTestSysop()->getUser();
-
-		$page = new WikiPage( $loremIpsum );
-		$page->doDeleteArticleReal( 'import test: delete page', $user );
-
-		$page = new WikiPage( $categoryLoremIpsum );
-		$page->doDeleteArticleReal( 'import test: delete page', $user );
 	}
 
 	/**
@@ -79,10 +69,9 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function doImport( $importStreamSource ) {
-		$importer = new WikiImporter(
-			$importStreamSource->value,
-			MediaWikiServices::getInstance()->getMainConfig()
-		);
+		$importer = $this->getServiceContainer()
+			->getWikiImporterFactory()
+			->getWikiImporter( $importStreamSource->value );
 		$importer->setDebug( true );
 
 		$reporter = new ImportReporter(

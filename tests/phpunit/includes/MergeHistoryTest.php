@@ -78,20 +78,27 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MergeHistory::isValidMerge
 	 */
 	public function testIsValidMergeRevisionLimit() {
-		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
-
 		$limit = MergeHistory::REVISION_LIMIT;
-
 		$mh = $this->getMockBuilder( MergeHistory::class )
-			->setMethods( [ 'getRevisionCount' ] )
+			->onlyMethods( [ 'getRevisionCount' ] )
 			->setConstructorArgs( [
 				Title::newFromText( 'Test' ),
 				Title::newFromText( 'Test2' ),
+				null,
+				$this->getServiceContainer()->getDBLoadBalancer(),
+				$this->getServiceContainer()->getContentHandlerFactory(),
+				$this->getServiceContainer()->getRevisionStore(),
+				$this->getServiceContainer()->getWatchedItemStore(),
+				$this->getServiceContainer()->getSpamChecker(),
+				$this->getServiceContainer()->getHookContainer(),
+				$this->getServiceContainer()->getWikiPageFactory(),
+				$this->getServiceContainer()->getTitleFormatter(),
+				$this->getServiceContainer()->getTitleFactory(),
 			] )
 			->getMock();
 		$mh->expects( $this->once() )
 			->method( 'getRevisionCount' )
-			->will( $this->returnValue( $limit + 1 ) );
+			->willReturn( $limit + 1 );
 
 		$status = $mh->isValidMerge();
 		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-toobig' ) );
@@ -102,7 +109,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test user permission checking
-	 * @covers MergeHistory::checkPermissions
 	 * @covers MergeHistory::authorizeMerge
 	 * @covers MergeHistory::probablyCanMerge
 	 */
@@ -127,19 +133,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			);
 			$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
 		}
-
-		$this->filterDeprecated( '/MergeHistory::checkPermissions/' );
-		$status = $mh->checkPermissions(
-			$this->mockRegisteredUltimateAuthority(),
-			''
-		);
-		$this->assertTrue( $status->isOK() );
-
-		$status = $mh->checkPermissions(
-			$this->mockRegisteredAuthorityWithoutPermissions( [ 'mergehistory' ] ),
-			''
-		);
-		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
 	}
 
 	/**
@@ -155,7 +148,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 		$sysop = static::getTestSysop()->getUser();
 		$mh->merge( $sysop );
-		$this->assertEquals( $mh->getMergedRevisionCount(), 1 );
+		$this->assertSame( 1, $mh->getMergedRevisionCount() );
 	}
 
 	/**
@@ -215,43 +208,5 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$status = $mh->merge( static::getTestSysop()->getUser() );
 
 		$this->assertFalse( $title->exists() );
-	}
-
-	/**
-	 * Test the old and new constructors work (though the old is deprecated)
-	 * @covers MergeHistory::__construct
-	 */
-	public function testConstructor() {
-		$services = MediaWikiServices::getInstance();
-		$source = Title::newFromText( 'Merge1' );
-		$destination = Title::newFromText( 'Merge2' );
-		$timestamp = false;
-
-		// Old method: No dependencies injected
-		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
-		$mergeHistory = new MergeHistory( $source, $destination, $timestamp );
-		$this->assertInstanceOf(
-			MergeHistory::class,
-			$mergeHistory
-		);
-
-		// New method: all dependencies injected
-		$mergeHistory = new MergeHistory(
-			$source,
-			$destination,
-			$timestamp,
-			$services->getDBLoadBalancer(),
-			$services->getContentHandlerFactory(),
-			$services->getRevisionStore(),
-			$services->getWatchedItemStore(),
-			$services->getSpamChecker(),
-			$services->getHookContainer(),
-			$services->getWikiPageFactory(),
-			$services->getUserFactory()
-		);
-		$this->assertInstanceOf(
-			MergeHistory::class,
-			$mergeHistory
-		);
 	}
 }

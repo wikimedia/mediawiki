@@ -40,17 +40,14 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
+			->onlyMethods( [ 'getContentModel', 'setContentModel' ] )
 			->getMock();
 		$title->expects( $this->once() )
 			->method( 'getContentModel' )
 			->willReturn( 'differentStartingContentModel' );
 		$title->expects( $this->once() )
-			->method( '__clone' )
-			->will( $this->returnSelf() );
-		$title->expects( $this->once() )
 			->method( 'setContentModel' )
-			->with( $this->equalTo( $newContentModel ) );
+			->with( $newContentModel );
 
 		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] );
 		$constraint = new ContentModelChangeConstraint(
@@ -79,17 +76,14 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
+			->onlyMethods( [ 'getContentModel', 'setContentModel' ] )
 			->getMock();
 		$title->expects( $this->once() )
 			->method( 'getContentModel' )
 			->willReturn( 'differentStartingContentModel' );
 		$title->expects( $this->once() )
-			->method( '__clone' )
-			->will( $this->returnSelf() );
-		$title->expects( $this->once() )
 			->method( 'setContentModel' )
-			->with( $this->equalTo( $newContentModel ) );
+			->with( $newContentModel );
 
 		$performer = $this->mockRegisteredAuthority( function (
 			string $permission,

@@ -97,12 +97,10 @@ class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$dbSiteStore->expects( $this->any() )
-			->method( 'getSite' )
-			->will( $this->returnValue( $this->getTestSite() ) );
+		$dbSiteStore->method( 'getSite' )
+			->willReturn( $this->getTestSite() );
 
-		$dbSiteStore->expects( $this->any() )
-			->method( 'getSites' )
+		$dbSiteStore->method( 'getSites' )
 			->will( $this->returnCallback( function () {
 				$siteList = new SiteList();
 				$siteList->setSite( $this->getTestSite() );

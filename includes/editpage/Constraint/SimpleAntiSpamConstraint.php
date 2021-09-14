@@ -63,7 +63,7 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 		$this->title = $title;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( $this->input === '' ) {
 			return self::CONSTRAINT_PASSED;
 		}
@@ -78,7 +78,7 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 		return self::CONSTRAINT_FAILED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->input !== '' ) {
 			$statusValue->fatal( 'spamprotectionmatch', false );

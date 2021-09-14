@@ -81,7 +81,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			);
 		}
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$iwprefix = isset( $prop['iwprefix'] );
 		$iwtitle = isset( $prop['iwtitle'] );
 

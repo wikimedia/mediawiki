@@ -737,7 +737,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->fatal( 'bar' );
 
 		$messageLocalizer = $this->getMockBuilder( MessageLocalizer::class )
-			->setMethods( [ 'msg' ] )
+			->onlyMethods( [ 'msg' ] )
 			->getMockForAbstractClass();
 		$messageLocalizer->expects( $this->atLeastOnce() )
 			->method( 'msg' )

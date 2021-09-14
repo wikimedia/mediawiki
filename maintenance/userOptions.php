@@ -25,6 +25,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -43,9 +45,14 @@ The new option is NOT validated.' );
 		$this->addOption( 'usage', 'Report all options statistics or just one if you specify it' );
 		$this->addOption( 'old', 'The value to look for', false, true );
 		$this->addOption( 'new', 'New value to update users with', false, true );
+		$this->addOption( 'fromuserid', 'Start from this user ID when changing options',
+			false, true );
+		$this->addOption( 'touserid', 'Do not go beyond this user ID when changing options',
+			false, true );
 		$this->addOption( 'nowarn', 'Hides the 5 seconds warning' );
 		$this->addOption( 'dry', 'Do not save user settings back to database' );
 		$this->addArg( 'option name', 'Name of the option to change or provide statistics about', false );
+		$this->setBatchSize( 100 );
 	}
 
 	/**
@@ -137,6 +144,7 @@ The new option is NOT validated.' );
 	 */
 	private function updateOptions() {
 		$dryRun = $this->hasOption( 'dry' );
+		$settingWord = $dryRun ? 'Would set' : 'Setting';
 		$option = $this->getArg( 0 );
 		$from = $this->getOption( 'old' );
 		$to = $this->getOption( 'new' );
@@ -145,36 +153,46 @@ The new option is NOT validated.' );
 			$this->warn( $option, $from, $to );
 		}
 
-		// We list user by user_id from one of the replica DBs
-		// @todo: getting all users in one query does not scale
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		$dbr = wfGetDB( DB_REPLICA );
-		$result = $dbr->select( 'user',
-			[ 'user_id' ],
-			[],
-			__METHOD__
-		);
-
-		foreach ( $result as $id ) {
-			$user = User::newFromId( $id->user_id );
-
-			$curValue = $user->getOption( $option );
-			$username = $user->getName();
-
-			if ( $curValue == $from ) {
-				$this->output( "Setting {$option} for $username from '{$from}' to '{$to}'): " );
-
-				// Change value
-				$user->setOption( $option, $to );
-
-				// Will not save the settings if run with --dry
-				if ( !$dryRun ) {
-					$user->saveSettings();
-				}
-				$this->output( " OK\n" );
-			} else {
-				$this->output( "Not changing '$username' using <{$option}> = '$curValue'\n" );
-			}
+		// The fromuserid parameter is inclusive, but iterating is easier with an exclusive
+		// range so convert it.
+		$fromUserId = (int)$this->getOption( 'fromuserid', 1 ) - 1;
+		$toUserId = (int)$this->getOption( 'touserid', 0 ) ?: null;
+		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
+		$queryBuilderTemplate
+			->table( 'user' )
+			->join( 'user_properties', null, [
+				'user_id = up_user',
+				'up_property' => $option,
+			] )
+			->fields( [ 'user_id', 'user_name' ] )
+			// up_value is unindexed so this can be slow, but should be acceptable in a script
+			->where( [ 'up_value' => $from ] )
+			// need to order by ID so we can use ID ranges for query continuation
+			// also needed for the fromuserid / touserid parameters to work
+			->orderBy( 'user_id', SelectQueryBuilder::SORT_ASC )
+			->limit( $this->getBatchSize() )
+			->caller( __METHOD__ );
+		if ( $toUserId ) {
+			$queryBuilderTemplate->andWhere( "user_id <= $toUserId " );
 		}
+
+		do {
+			$queryBuilder = clone $queryBuilderTemplate;
+			$queryBuilder->andWhere( "user_id > $fromUserId" );
+			$result = $queryBuilder->fetchResultSet();
+			foreach ( $result as $row ) {
+				$this->output( "$settingWord {$option} for {$row->user_name} from '{$from}' to '{$to}'\n" );
+				$user = UserIdentityValue::newRegistered( $row->user_id, $row->user_name );
+				if ( !$dryRun ) {
+					$userOptionsManager->setOption( $user, $option, $to );
+					$userOptionsManager->saveOptions( $user );
+				}
+				$fromUserId = (int)$row->user_id;
+			}
+			$this->waitForReplication();
+		} while ( $result->numRows() );
 	}
 
 	/**

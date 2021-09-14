@@ -6,6 +6,7 @@
 			"Crt",
 			"Harriv",
 			"Linnea",
+			"MITO",
 			"Nedergard",
 			"Nike",
 			"Olli",
@@ -32,8 +33,11 @@
 	"ooui-dialog-process-retry": "Yritä uudelleen",
 	"ooui-dialog-process-continue": "Jatka",
 	"ooui-selectfile-button-select": "Valitse tiedosto",
+	"ooui-selectfile-button-select-multiple": "Valitse tiedostot",
 	"ooui-selectfile-not-supported": "Tiedoston valitsemista ei tueta",
 	"ooui-selectfile-placeholder": "Tiedostoa ei ole valittu",
 	"ooui-selectfile-dragdrop-placeholder": "Pudota tiedosto tähän",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Pudota tiedostot tähän",
+	"ooui-popup-widget-close-button-aria-label": "Sulje",
 	"ooui-field-help": "Ohje"
 }

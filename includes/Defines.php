@@ -31,9 +31,9 @@ use Wikimedia\Rdbms\IDatabase;
  * This replaces the $wgVersion global found in earlier versions. When updating,
  * remember to also bump the stand-alone duplicate of this in PHPVersionCheck.
  *
- * @since 1.35
+ * @since 1.35 (also backported to 1.33.3 and 1.34.1)
  */
-define( 'MW_VERSION', '1.36.1' );
+define( 'MW_VERSION', '1.37.0-beta' );
 
 /** @{
  * Obsolete IDatabase::makeList() constants
@@ -96,17 +96,6 @@ define( 'AV_NO_VIRUS', 0 );  # scan ok, no virus found
 define( 'AV_VIRUS_FOUND', 1 );  # virus found!
 define( 'AV_SCAN_ABORTED', -1 );  # scan aborted, the file is probably immune
 define( 'AV_SCAN_FAILED', false );  # scan failed (scanner not found or error in scanner)
-/** @} */
-
-/** @{
- * Anti-lock flags
- * Was used by $wgAntiLockFlags, which was removed with 1.25
- * Constants kept to not have warnings when used in LocalSettings
- */
-define( 'ALF_PRELOAD_LINKS', 1 ); // unused
-define( 'ALF_PRELOAD_EXISTENCE', 2 ); // unused
-define( 'ALF_NO_LINK_LOCK', 4 ); // unused
-define( 'ALF_NO_BLOCK_LOCK', 8 ); // unused
 /** @} */
 
 /** @{
@@ -263,16 +252,29 @@ define( 'SHELL_MAX_ARG_STRLEN', '100000' );
  *
  * - SCHEMA_COMPAT_WRITE_OLD: Whether information is written to the old schema.
  * - SCHEMA_COMPAT_READ_OLD: Whether information stored in the old schema is read.
- * - SCHEMA_COMPAT_WRITE_NEW: Whether information is written to the new schema.
- * - SCHEMA_COMPAT_READ_NEW: Whether information stored in the new schema is read.
+ * - SCHEMA_COMPAT_WRITE_TEMP: Whether information is written to a temporary
+ *   intermediate schema.
+ * - SCHEMA_COMPAT_READ_TEMP: Whether information is read from the temporary
+ *   intermediate schema.
+ * - SCHEMA_COMPAT_WRITE_NEW: Whether information is written to the new schema
+ * - SCHEMA_COMPAT_READ_NEW: Whether information is read from the new schema
  */
 define( 'SCHEMA_COMPAT_WRITE_OLD', 0x01 );
 define( 'SCHEMA_COMPAT_READ_OLD', 0x02 );
-define( 'SCHEMA_COMPAT_WRITE_NEW', 0x10 );
-define( 'SCHEMA_COMPAT_READ_NEW', 0x20 );
+define( 'SCHEMA_COMPAT_WRITE_TEMP', 0x10 );
+define( 'SCHEMA_COMPAT_READ_TEMP', 0x20 );
+define( 'SCHEMA_COMPAT_WRITE_NEW', 0x100 );
+define( 'SCHEMA_COMPAT_READ_NEW', 0x200 );
+define( 'SCHEMA_COMPAT_WRITE_MASK',
+	SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_WRITE_NEW );
+define( 'SCHEMA_COMPAT_READ_MASK',
+	SCHEMA_COMPAT_READ_OLD | SCHEMA_COMPAT_READ_TEMP | SCHEMA_COMPAT_READ_NEW );
 define( 'SCHEMA_COMPAT_WRITE_BOTH', SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_WRITE_NEW );
+define( 'SCHEMA_COMPAT_WRITE_OLD_AND_TEMP', SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_WRITE_TEMP );
+define( 'SCHEMA_COMPAT_WRITE_TEMP_AND_NEW', SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_WRITE_NEW );
 define( 'SCHEMA_COMPAT_READ_BOTH', SCHEMA_COMPAT_READ_OLD | SCHEMA_COMPAT_READ_NEW );
 define( 'SCHEMA_COMPAT_OLD', SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD );
+define( 'SCHEMA_COMPAT_TEMP', SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_READ_TEMP );
 define( 'SCHEMA_COMPAT_NEW', SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW );
 /** @} */
 

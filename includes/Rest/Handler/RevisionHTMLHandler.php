@@ -4,14 +4,13 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
-use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
-use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -36,21 +35,19 @@ class RevisionHTMLHandler extends SimpleHandler {
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory,
 		ParserCacheFactory $parserCacheFactory,
-		WikiPageFactory $wikiPageFactory,
-		GlobalIdGenerator $globalIdGenerator
+		GlobalIdGenerator $globalIdGenerator,
+		PageLookup $pageLookup
 	) {
 		$this->contentHelper = new RevisionContentHelper(
 			$config,
 			$revisionLookup,
 			$titleFormatter,
-			$titleFactory
+			$pageLookup
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getParserCache( 'parsoid' ),
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$wikiPageFactory,
 			$globalIdGenerator
 		);
 	}
@@ -58,11 +55,11 @@ class RevisionHTMLHandler extends SimpleHandler {
 	protected function postValidationSetup() {
 		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 
-		$title = $this->contentHelper->getTitle();
+		$page = $this->contentHelper->getPage();
 		$revision = $this->contentHelper->getTargetRevision();
 
-		if ( $title && $revision ) {
-			$this->htmlHelper->init( $title, $revision );
+		if ( $page && $revision ) {
+			$this->htmlHelper->init( $page, $revision );
 		}
 	}
 
@@ -73,12 +70,12 @@ class RevisionHTMLHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 
-		$titleObj = $this->contentHelper->getTitle();
+		$page = $this->contentHelper->getPage();
 		$revisionRecord = $this->contentHelper->getTargetRevision();
 
-		// The call to $this->contentHelper->getTitle() should not return null if
+		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $titleObj !== null, 'Title should be known' );
+		Assert::invariant( $page !== null, 'Page should be known' );
 
 		// The call to $this->contentHelper->getTargetRevision() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.

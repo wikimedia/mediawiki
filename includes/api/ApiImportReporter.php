@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+
 /**
  * Import reporter for the API
  * @ingroup API
@@ -28,31 +31,31 @@ class ApiImportReporter extends ImportReporter {
 	private $mResultArr = [];
 
 	/**
-	 * @param Title $title
+	 * @param ?PageIdentity $pageIdentity
 	 * @param ForeignTitle $foreignTitle
 	 * @param int $revisionCount
 	 * @param int $successCount
 	 * @param array $pageInfo
 	 * @return void
-	 * @suppress PhanParamSignatureMismatch
 	 */
-	public function reportPage( $title, $foreignTitle, $revisionCount, $successCount, $pageInfo ) {
+	public function reportPage( ?PageIdentity $pageIdentity, $foreignTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = [];
 
-		if ( $title === null ) {
+		if ( $pageIdentity === null ) {
 			# Invalid or non-importable title
 			$r['title'] = $pageInfo['title'];
 			$r['invalid'] = true;
 		} else {
-			ApiQueryBase::addTitleInfo( $r, $title );
+			$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
+			ApiQueryBase::addTitleInfo( $r, $titleFactory->castFromPageIdentity( $pageIdentity ) );
 			$r['revisions'] = (int)$successCount;
 		}
 
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging
-		parent::reportPage( $title, $foreignTitle, $revisionCount, $successCount, $pageInfo );
+		parent::reportPage( $pageIdentity, $foreignTitle, $revisionCount, $successCount, $pageInfo );
 	}
 
 	public function getData() {

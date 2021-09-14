@@ -25,6 +25,7 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 
@@ -35,8 +36,12 @@ use MediaWiki\User\UserNameUtils;
  */
 class SpecialUnblock extends SpecialPage {
 
+	/** @var UserIdentity|string|null */
 	protected $target;
+
+	/** @var int|null DatabaseBlock::TYPE_ constant */
 	protected $type;
+
 	protected $block;
 
 	/** @var UnblockUserFactory */
@@ -80,7 +85,7 @@ class SpecialUnblock extends SpecialPage {
 
 		list( $this->target, $this->type ) = $this->getTargetAndType( $par, $this->getRequest() );
 		$this->block = DatabaseBlock::newFromTarget( $this->target );
-		if ( $this->target instanceof User ) {
+		if ( $this->target instanceof UserIdentity ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
@@ -133,8 +138,8 @@ class SpecialUnblock extends SpecialPage {
 	 *
 	 * @param string|null $par Subpage parameter
 	 * @param WebRequest $request
-	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
-	 * @phan-return array{0:User|string|null,1:int|null}
+	 * @return array [ UserIdentity|string|null, DatabaseBlock::TYPE_ constant|null ]
+	 * @phan-return array{0:UserIdentity|string|null,1:int|null}
 	 */
 	private function getTargetAndType( ?string $par, WebRequest $request ) {
 		$possibleTargets = [
@@ -175,7 +180,8 @@ class SpecialUnblock extends SpecialPage {
 		];
 
 		if ( $this->block instanceof DatabaseBlock ) {
-			list( $target, $type ) = $this->block->getTargetAndType();
+			$type = $this->block->getType();
+			$targetName = $this->block->getTargetName();
 
 			# Autoblocks are logged as "autoblock #123 because the IP was recently used by
 			# User:Foo, and we've just got any block, auto or not, that applies to a target
@@ -185,26 +191,26 @@ class SpecialUnblock extends SpecialPage {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
 			} else {
-				$fields['Target']['default'] = $target;
+				$fields['Target']['default'] = $targetName;
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
 					case DatabaseBlock::TYPE_IP:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
-							$this->getSpecialPageFactory()->getTitleForAlias( 'Contributions/' . $target->getName() ),
-							$target->getName()
+							$this->getSpecialPageFactory()->getTitleForAlias( 'Contributions/' . $targetName ),
+							$targetName
 						);
 						$fields['Name']['raw'] = true;
 						break;
 					case DatabaseBlock::TYPE_USER:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
-							$target->getUserPage(),
-							$target->getName()
+							new TitleValue( NS_USER, $targetName ),
+							$targetName
 						);
 						$fields['Name']['raw'] = true;
 						break;
 
 					case DatabaseBlock::TYPE_RANGE:
-						$fields['Name']['default'] = $target;
+						$fields['Name']['default'] = $targetName;
 						break;
 
 					case DatabaseBlock::TYPE_AUTO:

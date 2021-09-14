@@ -13,23 +13,22 @@ use MediaWiki\User\UserOptionsLookup;
  * @covers MediaWiki\User\UserOptionsLookup
  */
 abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
-	use MediaWikiCoversValidator;
 
 	protected function getAnon(
 		string $name = 'anon'
-	) : UserIdentity {
+	): UserIdentity {
 		return new UserIdentityValue( 0, $name );
 	}
 
 	abstract protected function getLookup(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
-	) : UserOptionsLookup;
+	): UserOptionsLookup;
 
 	protected function getDefaultManager(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
-	) : DefaultOptionsLookup {
+	): DefaultOptionsLookup {
 		$lang = $this->createMock( Language::class );
 		$lang->method( 'getCode' )->willReturn( $langCode );
 		return new DefaultOptionsLookup(

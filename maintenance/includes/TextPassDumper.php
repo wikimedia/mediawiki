@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -142,7 +143,7 @@ TEXT
 		$this->addOption( 'spawn', 'Spawn a subprocess for loading text records, optionally specify ' .
 			'php[,mwscript] paths' );
 		$this->addOption( 'buffersize', 'Buffer size in bytes to use for reading the stub. ' .
-			'(Default: 512KB, Minimum: 4KB)', false, true );
+			'(Default: 512 KiB, Minimum: 4 KiB)', false, true );
 
 		if ( $args ) {
 			$this->loadWithArgv( $args );
@@ -157,7 +158,7 @@ TEXT
 	}
 
 	/**
-	 * @return SqlBlobStore
+	 * @return BlobStore
 	 */
 	private function getBlobStore() {
 		return MediaWikiServices::getInstance()->getBlobStore();
@@ -483,7 +484,7 @@ TEXT
 					'XML import parse failure',
 					xml_get_current_line_number( $parser ),
 					xml_get_current_column_number( $parser ),
-					$byte . ( $chunk === null ? null : ( '; "' . substr( $chunk, $byte - $offset, 16 ) . '"' ) ),
+					$byte . ( $chunk === false ? '' : ( '; "' . substr( $chunk, $byte - $offset, 16 ) . '"' ) ),
 					xml_error_string( xml_get_error_code( $parser ) ) )->escaped();
 
 				xml_parser_free( $parser );

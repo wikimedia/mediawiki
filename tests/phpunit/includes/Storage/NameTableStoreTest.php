@@ -25,7 +25,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'slot_roles';
 	}
@@ -54,8 +54,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getConnectionRef' )
+		$mock->method( 'getConnectionRef' )
 			->willReturnCallback( static function ( $i ) use ( $mock, $db ) {
 				return new MaintainableDBConnRef( $mock, $db, $i );
 			} );
@@ -388,7 +387,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 		$db = $this->getProxyDb( 2 );
 		$db->method( 'insert' )
-			->willReturnCallback( static function () use ( &$insertCalls, $db ) {
+			->willReturnCallback( static function () use ( &$insertCalls ) {
 				$insertCalls++;
 				switch ( $insertCalls ) {
 					case 1:
@@ -449,7 +448,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$this->db->onTransactionResolution(
 			static function () use ( $store1, &$quuxId ) {
 				$quuxId = $store1->acquireId( 'quux' );
-			}
+			},
+			__METHOD__
 		);
 
 		$store1->acquireId( 'foo' );

@@ -47,7 +47,7 @@ class RevisionItem extends RevisionItemBase {
 	 *
 	 * @return RevisionRecord
 	 */
-	protected function getRevisionRecord() : RevisionRecord {
+	protected function getRevisionRecord(): RevisionRecord {
 		return $this->revisionRecord;
 	}
 
@@ -111,7 +111,7 @@ class RevisionItem extends RevisionItemBase {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 		return $linkRenderer->makeKnownLink(
-			$this->list->title,
+			Title::castFromPageIdentity( $this->list->getPage() ),
 			$date,
 			[],
 			[
@@ -134,7 +134,7 @@ class RevisionItem extends RevisionItemBase {
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
 			return $linkRenderer->makeKnownLink(
-				$this->list->title,
+				$this->list->getPage(),
 				$this->list->msg( 'diff' )->text(),
 				[],
 				[
@@ -159,7 +159,8 @@ class RevisionItem extends RevisionItemBase {
 		$userlink = Linker::revUserLink( $this->getRevisionRecord() );
 		$comment = Linker::revComment( $this->getRevisionRecord() );
 		if ( $this->isDeleted() ) {
-			$revlink = "<span class=\"history-deleted\">$revlink</span>";
+			$class = Linker::getRevisionDeletedClass( $this->getRevisionRecord() );
+			$revlink = "<span class=\"$class\">$revlink</span>";
 		}
 		return "<li>$difflink $revlink $userlink $comment</li>";
 	}

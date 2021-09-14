@@ -45,22 +45,22 @@ interface UserIdentity extends WikiAwareEntity {
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
 	 *
 	 */
-	public function getId( $wikiId = self::LOCAL ) : int;
+	public function getId( $wikiId = self::LOCAL ): int;
 
 	/**
 	 * @since 1.31
 	 *
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
-	public function getName() : string;
+	public function getName(): string;
 
 	/**
 	 * @since 1.32
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) : bool;
+	public function equals( ?UserIdentity $user ): bool;
 
 	/**
 	 * @since 1.34
@@ -69,5 +69,5 @@ interface UserIdentity extends WikiAwareEntity {
 	 *   anonymous or has no local account (which can happen when importing). This must be
 	 *   equivalent to getId() != 0 and is provided for code readability.
 	 */
-	public function isRegistered() : bool;
+	public function isRegistered(): bool;
 }

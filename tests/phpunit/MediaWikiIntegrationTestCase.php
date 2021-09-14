@@ -1,11 +1,11 @@
 <?php
-// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
@@ -15,7 +15,6 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @since 1.18
@@ -26,7 +25,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Consider using MediaWikiUnitTestCase and mocking dependencies if your code uses dependency
  * injection and does not access any globals.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
@@ -80,7 +79,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected $tablesUsed = []; // tables with data
 
 	private static $useTemporaryTables = true;
-	private static $reuseDB = false;
 	private static $dbSetup = false;
 	private static $oldTablePrefix = '';
 
@@ -156,7 +154,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string|null $name
 	 * @param array $data
 	 * @param string $dataName
@@ -181,11 +179,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @stable for overriding
+	 * The annotation causes this to be called immediately before setUpBeforeClass()
+	 * @beforeClass
 	 */
-	public static function setUpBeforeClass() : void {
+	final public static function mediaWikiSetUpBeforeClass(): void {
 		global $IP;
-		parent::setUpBeforeClass();
 		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
 				echo "File \"$IP/LocalSettings.php\" could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
@@ -260,12 +258,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
-			$page->doEditContent(
+			$page->doUserEditContent(
 				ContentHandler::makeContent( 'UTContent', $title ),
+				$user,
 				'UTPageSummary',
-				EDIT_NEW | EDIT_SUPPRESS_RC,
-				false,
-				$user
+				EDIT_NEW | EDIT_SUPPRESS_RC
 			);
 		}
 
@@ -386,10 +383,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	public static function resetNonServiceCaches() {
 		global $wgRequest, $wgJobClasses;
 
+		$jobQueueFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
+
 		foreach ( $wgJobClasses as $type => $class ) {
-			JobQueueGroup::singleton()->get( $type )->delete();
+			$jobQueueFactory->makeJobQueueGroup()->get( $type )->delete();
 		}
-		JobQueueGroup::destroySingletons();
 
 		ObjectCache::clear();
 		DeferredUpdates::clearPendingUpdates();
@@ -405,7 +403,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
-	public function run( TestResult $result = null ) : TestResult {
+	public function run( TestResult $result = null ): TestResult {
 		$this->overrideMwServices();
 
 		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
@@ -419,10 +417,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// set up a DB connection for this test to use
 
 			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$this->db = $lb->getConnection( DB_MASTER );
+			$this->db = $lb->getConnection( DB_PRIMARY );
 
 			$this->checkDbIsSupported();
 
@@ -540,7 +537,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately before setUp()
 	 * @before
 	 */
-	protected function mediaWikiSetUp() {
+	final protected function mediaWikiSetUp(): void {
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
 		if ( strpos( $reflection->getFileName(), '/unit/' ) !== false ) {
@@ -566,19 +563,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 			// Check for unsafe queries
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'", __METHOD__ );
+				$this->db->query(
+					"SET sql_mode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY'",
+					__METHOD__ );
 			}
 		}
 
-		MWDebug::clearDeprecationFilters();
-
 		// Reset all caches between tests.
 		self::resetNonServiceCaches();
-
-		// XXX: reset maintenance triggers
-		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
 
 		// T46192 Do not attempt to send a real e-mail
 		$this->setTemporaryHook( 'AlternateUserMailer',
@@ -593,22 +585,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
 	}
 
-	private static function formatErrorLevel( $errorLevel ) {
-		switch ( gettype( $errorLevel ) ) {
-			case 'integer':
-				return '0x' . strtoupper( dechex( $errorLevel ) );
-			case 'NULL':
-				return 'null';
-			default:
-				throw new MWException( 'Unexpected error level type ' . gettype( $errorLevel ) );
-		}
-	}
-
 	/**
 	 * The annotation causes this to be called immediately after tearDown()
 	 * @after
 	 */
-	protected function mediaWikiTearDown() {
+	final protected function mediaWikiTearDown(): void {
 		global $wgRequest, $wgSQLMode;
 
 		$status = ob_get_status();
@@ -663,10 +644,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
-		MediaWiki\Auth\AuthManager::resetCache();
 
-		// If anything faked the time, reset it
-		ConvertibleTimestamp::setFakeTime( false );
 		// If anything changed the content language, we need to
 		// reset the SpecialPageFactory.
 		MediaWikiServices::getInstance()->resetServiceForTesting(
@@ -949,7 +927,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		Language::$mLangObjCache = [];
 	}
 
 	/**
@@ -1003,7 +980,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		Language::$mLangObjCache = [];
 
 		return $newInstance;
 	}
@@ -1143,6 +1119,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				return MediaWikiServices::getInstance()->getParser();
 			} );
 		}
+		ParserOptions::clearStaticCache();
 	}
 
 	/**
@@ -1360,7 +1337,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		$page = WikiPage::factory( $title );
-		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
+		$page->doUserEditContent( ContentHandler::makeContent( $text, $title ), $user, $comment );
 
 		return [
 			'title' => $title,
@@ -1382,7 +1359,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.27
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function addDBDataOnce() {
 	}
@@ -1395,7 +1372,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.18
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function addDBData() {
 	}
@@ -1406,20 +1383,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function addCoreDBData() {
 		SiteStatsInit::doPlaceholderInit();
 
-		User::resetIdByNameCache();
-
 		// Make sysop user
 		$user = static::getTestSysop()->getUser();
 
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
-			$page->doEditContent(
+			$page->doUserEditContent(
 				new WikitextContent( 'UTContent' ),
+				$user,
 				'UTPageSummary',
-				EDIT_NEW | EDIT_SUPPRESS_RC,
-				false,
-				$user
+				EDIT_NEW | EDIT_SUPPRESS_RC
 			);
 			// an edit always attempt to purge backlink links such as history
 			// pages. That is unnecessary.
@@ -1427,7 +1401,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// WikiPages::doEditUpdates randomly adds RC purges
 			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
 
-			// doEditContent() probably started the session via
+			// doUserEditContent() probably started the session via
 			// User::loadFromSession(). Close it now.
 			if ( session_id() !== '' ) {
 				session_write_close();
@@ -1476,9 +1450,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Setups a database with cloned tables using the given prefix.
 	 *
-	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
-	 * Otherwise, it will clone the tables and change the prefix.
-	 *
 	 * @param IMaintainableDatabase $db Database to use
 	 * @param string|null $prefix Prefix to use for test tables. If not given, the prefix is determined
 	 *        automatically for $db.
@@ -1490,11 +1461,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	) {
 		if ( $prefix === null ) {
 			$prefix = self::getTestPrefixFor( $db );
-		}
-
-		if ( !self::$useTemporaryTables && self::$reuseDB ) {
-			$db->tablePrefix( $prefix );
-			return false;
 		}
 
 		if ( !isset( $db->_originalTablePrefix ) ) {
@@ -1597,10 +1563,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Gets master database connections for all of the ExternalStoreDB
+	 * Gets primary database connections for all of the ExternalStoreDB
 	 * stores configured in $wgDefaultExternalStore.
 	 *
-	 * @return Database[] Array of Database master connections
+	 * @return Database[] Array of Database primary connections
 	 */
 	protected static function getExternalStoreDatabaseConnections() {
 		global $wgDefaultExternalStore;
@@ -1612,9 +1578,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
 				[ $proto, $cluster ] = explode( '://', $url, 2 );
-				// Avoid getMaster() because setupDatabaseWithTestPrefix()
+				// Avoid getPrimary() because setupDatabaseWithTestPrefix()
 				// requires Database instead of plain DBConnRef/IDatabase
-				$dbws[] = $externalStoreDB->getMaster( $cluster );
+				$dbws[] = $externalStoreDB->getPrimary( $cluster );
 			}
 		}
 
@@ -1672,7 +1638,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * by the 'scripts', even if the test is only interested in a subset of them, otherwise
 	 * the overrides may not be fully cleaned up, leading to errors later.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param IMaintainableDatabase $db The DB connection to use for the mock schema.
 	 *        May be used to check the current state of the schema, to determine what
 	 *        overrides are needed.
@@ -1688,7 +1654,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Undoes the specified schema overrides..
+	 * Undoes the specified schema overrides.
 	 * Called once per test class, just before addDataOnce().
 	 *
 	 * @param IMaintainableDatabase $db
@@ -1997,8 +1963,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// which gets deleted and re-created when setting up the secondary connection,
 			// causing "Error 17" when trying to copy the data. See T191863#4130112.
 			throw new RuntimeException(
-				'Setting up a secondary database connection with test data is currently not'
-				. 'with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
+				'Setting up a secondary database connection with test data is currently not supported'
+				. ' with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
 			);
 		}
 
@@ -2082,7 +2048,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$options + [ 'ORDER BY' => $fields ],
 			$join_conds
 		);
-		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
+		$this->assertNotFalse( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;
 
@@ -2091,7 +2057,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::stripStringKeys( $r );
 
 			$i += 1;
-			$this->assertNotEmpty( $r, "row #$i missing" );
+			$this->assertNotFalse( $r, "row #$i missing" );
 
 			$this->assertEquals( $expected, $r, "row #$i mismatches" );
 		}
@@ -2302,23 +2268,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Check if $extName is a loaded PHP extension, will skip the
-	 * test whenever it is not loaded.
-	 *
-	 * @since 1.21
-	 * @param string $extName
-	 * @return bool
-	 */
-	protected function checkPHPExtension( $extName ) {
-		$loaded = extension_loaded( $extName );
-		if ( !$loaded ) {
-			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
-		}
-
-		return $loaded;
-	}
-
-	/**
 	 * Skip the test if using the specified database type
 	 *
 	 * @param string $type Database type
@@ -2327,6 +2276,21 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function markTestSkippedIfDbType( $type ) {
 		if ( $this->db->getType() === $type ) {
 			$this->markTestSkipped( "The $type database type isn't supported for this test" );
+		}
+	}
+
+	/**
+	 * Skip the test if the specified extension is not loaded.
+	 *
+	 * @note Core tests should not depend on extensions, so this is mostly
+	 * useful when testing extensions that optionally depend on other extensions.
+	 *
+	 * @param string $extensionName
+	 * @since 1.37
+	 */
+	protected function markTestSkippedIfExtensionNotLoaded( string $extensionName ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( $extensionName ) ) {
+			$this->markTestSkipped( "Extension $extensionName is required for this test" );
 		}
 	}
 
@@ -2386,8 +2350,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @param User|null $user If null, static::getTestUser()->getUser() is used.
-	 * @return Status Object as returned by WikiPage::doEditContent()
+	 * @param Authority|null $performer If null, static::getTestUser()->getUser() is used.
+	 * @return Status Object as returned by WikiPage::doUserEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
@@ -2398,7 +2362,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$content,
 		$summary = '',
 		$defaultNs = NS_MAIN,
-		User $user = null
+		Authority $performer = null
 	) {
 		if ( !$this->needsDB() ) {
 			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
@@ -2415,20 +2379,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$page = WikiPage::factory( $title );
 		}
 
-		if ( $user === null ) {
-			$user = static::getTestUser()->getUser();
+		if ( $performer === null ) {
+			$performer = static::getTestUser()->getUser();
 		}
 
 		if ( is_string( $content ) ) {
 			$content = ContentHandler::makeContent( $content, $title );
 		}
 
-		return $page->doEditContent(
+		return $page->doUserEditContent(
 			$content,
-			$summary,
-			0,
-			false,
-			$user
+			$performer,
+			$summary
 		);
 	}
 
@@ -2457,6 +2419,59 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			'value' => $value,
 			'comment' => $comment,
 		] );
+	}
+
+	/**
+	 * Run jobs in the job queue and assert things about the result.
+	 *
+	 * Call this from a test to run jobs. If this is not called, the default
+	 * behaviour is to discard jobs.
+	 *
+	 * @param array $assertOptions An associative array with the following options:
+	 *    - minJobs: The minimum number of jobs expected to be run, default 1
+	 *    - numJobs: The exact number of jobs expected to be run. If set, this
+	 *      overrides minJobs.
+	 *    - complete: Assert that the runner finished with "none-ready", which
+	 *      means execution stopped because the queue was empty. Default true.
+	 *    - ignoreErrorsMatchingFormat: Allow job errors where the error message
+	 *      matches the given format.
+	 * @param array $runOptions Options to pass through to JobRunner::run()
+	 *
+	 * @since 1.37
+	 */
+	protected function runJobs( array $assertOptions = [], array $runOptions = [] ) {
+		$runner = $this->getServiceContainer()->getJobRunner();
+		$status = $runner->run( $runOptions );
+
+		$minJobs = $assertOptions['minJobs'] ?? 1;
+		$numJobs = $assertOptions['numJobs'] ?? null;
+		$complete = $assertOptions['complete'] ?? true;
+		$ignoreFormat = $assertOptions['ignoreErrorsMatchingFormat'] ?? false;
+
+		if ( $complete ) {
+			$this->assertSame( 'none-ready', $status['reached'] );
+		}
+		if ( $numJobs !== null ) {
+			$this->assertCount( $numJobs, $status['jobs'],
+				"Number of jobs executed must be exactly $numJobs" );
+		} else {
+			$this->assertGreaterThanOrEqual( $minJobs, count( $status['jobs'] ),
+				"Number of jobs executed must be at least $minJobs" );
+		}
+		foreach ( $status['jobs'] as $jobStatus ) {
+			if ( $ignoreFormat !== false ) {
+				$this->assertThat( $jobStatus['error'],
+					$this->logicalOr(
+						$this->matches( $ignoreFormat ),
+						$this->isNull()
+					),
+					"Error for job of type {$jobStatus['type']}"
+				);
+			} else {
+				$this->assertNull( $jobStatus['error'],
+					"Error for job of type {$jobStatus['type']}" );
+			}
+		}
 	}
 }
 

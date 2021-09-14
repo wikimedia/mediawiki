@@ -13,6 +13,8 @@
 	th,
 	td {
 		border: 1px solid #72777d;
+		/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
+		/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 		font-size: 16px;
 		padding: 0.5em 1em;
 	}
@@ -28,6 +30,7 @@
 		vertical-align: top;
 
 		span {
+			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 			position: sticky;
 			top: 0.5em;
 		}

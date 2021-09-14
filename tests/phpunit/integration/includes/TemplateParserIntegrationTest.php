@@ -11,7 +11,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 	private const DIR = __DIR__ . '/../../data/templates';
 	private const SECRET_KEY = 'foo';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -85,7 +85,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->never() )->method( 'compile' );
 
@@ -122,7 +122,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->once() )->method( 'compile' )
 			->willReturn( $store['val'] );
@@ -160,7 +160,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->once() )->method( 'compile' )
 			->willReturn( $store['val'] );

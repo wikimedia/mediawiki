@@ -44,10 +44,10 @@ class UnregisteredLocalFile extends File {
 	protected $mime;
 
 	/** @var array[]|bool[] Dimension data */
-	protected $dims;
+	protected $pageDims;
 
-	/** @var bool|string Handler-specific metadata which will be saved in the img_metadata field */
-	protected $metadata;
+	/** @var array|null */
+	protected $sizeAndMetadata;
 
 	/** @var MediaHandler */
 	public $handler;
@@ -103,7 +103,7 @@ class UnregisteredLocalFile extends File {
 		if ( $mime ) {
 			$this->mime = $mime;
 		}
-		$this->dims = [];
+		$this->pageDims = [];
 	}
 
 	/**
@@ -116,14 +116,22 @@ class UnregisteredLocalFile extends File {
 			$page = 1;
 		}
 
-		if ( !isset( $this->dims[$page] ) ) {
+		if ( !isset( $this->pageDims[$page] ) ) {
 			if ( !$this->getHandler() ) {
 				return false;
 			}
-			$this->dims[$page] = $this->handler->getPageDimensions( $this, $page );
+			if ( $this->getHandler()->isMultiPage( $this ) ) {
+				$this->pageDims[$page] = $this->handler->getPageDimensions( $this, $page );
+			} else {
+				$info = $this->getSizeAndMetadata();
+				return [
+					'width' => $info['width'],
+					'height' => $info['height']
+				];
+			}
 		}
 
-		return $this->dims[$page];
+		return $this->pageDims[$page];
 	}
 
 	/**
@@ -159,42 +167,37 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param string $filename
-	 * @return array|bool
-	 */
-	protected function getImageSize( $filename ) {
-		if ( !$this->getHandler() ) {
-			return false;
-		}
-
-		return $this->handler->getImageSize( $this, $this->getLocalRefPath() );
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getBitDepth() {
-		$gis = $this->getImageSize( $this->getLocalRefPath() );
-
-		if ( !$gis || !isset( $gis['bits'] ) ) {
-			return 0;
-		}
-		return $gis['bits'];
+		$info = $this->getSizeAndMetadata();
+		return $info['bits'] ?? 0;
 	}
 
 	/**
 	 * @return string|false
 	 */
 	public function getMetadata() {
-		if ( !isset( $this->metadata ) ) {
+		$info = $this->getSizeAndMetadata();
+		return $info['metadata'] ? serialize( $info['metadata'] ) : false;
+	}
+
+	public function getMetadataArray(): array {
+		$info = $this->getSizeAndMetadata();
+		return $info['metadata'];
+	}
+
+	private function getSizeAndMetadata() {
+		if ( $this->sizeAndMetadata === null ) {
 			if ( !$this->getHandler() ) {
-				$this->metadata = false;
+				$this->sizeAndMetadata = [ 'width' => 0, 'height' => 0, 'metadata' => [] ];
 			} else {
-				$this->metadata = $this->handler->getMetadata( $this, $this->getLocalRefPath() );
+				$this->sizeAndMetadata = $this->getHandler()->getSizeAndMetadataWithFallback(
+					$this, $this->getLocalRefPath() );
 			}
 		}
 
-		return $this->metadata;
+		return $this->sizeAndMetadata;
 	}
 
 	/**

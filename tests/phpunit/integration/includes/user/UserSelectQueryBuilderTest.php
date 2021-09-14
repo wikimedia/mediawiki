@@ -54,7 +54,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		$queryBuilder = $this->getStore()
 			->newSelectQueryBuilder()
 			->limit( $options['limit'] )
-			->userNamePrefix( $prefix )
+			->whereUserNamePrefix( $prefix )
 			->caller( __METHOD__ )
 			->orderByName( $options['sort'] ?? SelectQueryBuilder::SORT_ASC );
 		$actors = iterator_to_array( $queryBuilder->fetchUserIdentities() );
@@ -90,7 +90,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		$actors = iterator_to_array(
 			$this->getStore()
 				->newSelectQueryBuilder()
-				->userIds( $ids )
+				->whereUserIds( $ids )
 				->caller( __METHOD__ )
 				->orderByUserId( $options['sort'] ?? SelectQueryBuilder::SORT_ASC )
 				->fetchUserIdentities()
@@ -141,7 +141,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		$actors = iterator_to_array(
 			$this->getStore()
 				->newSelectQueryBuilder()
-				->userNames( $names )
+				->whereUserNames( $names )
 				->caller( __METHOD__ )
 				->orderByUserId( $options['sort'] ?? SelectQueryBuilder::SORT_ASC )
 				->fetchUserIdentities()
@@ -160,7 +160,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			new UserIdentityValue( 24, 'TestUser' ),
 			$this->getStore()
 				->newSelectQueryBuilder()
-				->userIds( 24 )
+				->whereUserIds( 24 )
 				->fetchUserIdentity()
 		);
 	}
@@ -204,7 +204,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			$this->getStore()
 				->newSelectQueryBuilder()
 				->limit( 100 )
-				->userNamePrefix( '' )
+				->whereUserNamePrefix( '' )
 				->anon()
 				->fetchUserIdentities()
 		);

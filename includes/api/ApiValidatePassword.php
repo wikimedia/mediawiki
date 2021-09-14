@@ -51,7 +51,7 @@ class ApiValidatePassword extends ApiBase {
 				);
 			}
 
-			if ( !$user->isAnon() || $this->authManager->userExists( $user->getName() ) ) {
+			if ( $user->isRegistered() || $this->authManager->userExists( $user->getName() ) ) {
 				$this->dieWithError( 'userexists' );
 			}
 

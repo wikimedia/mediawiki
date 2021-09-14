@@ -5,8 +5,8 @@ use MediaWiki\Block\BlockPermissionChecker;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -22,29 +22,18 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param bool $enableUserEmail
 	 * @param array $targetAndType
-	 * @param UserIdentity|MockObject $user
-	 * @param string[] $rights
+	 * @param Authority $performer
 	 * @return BlockPermissionChecker
 	 */
 	private function getBlockPermissionChecker(
 		bool $enableUserEmail,
 		array $targetAndType,
-		$user,
-		array $rights
+		Authority $performer
 	) {
 		$options = new ServiceOptions(
 			BlockPermissionChecker::CONSTRUCTOR_OPTIONS,
 			[ 'EnableUserEmail' => $enableUserEmail ]
 		);
-
-		// Make things simple: in the test cases when the UserFactory is needed,
-		// we expect to have the mock authority objects be based on mocks of full
-		// User objects instead of just UserIdentity, so performer->getUser() is a
-		// full user object, and have the factory just return that object
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->method( 'newFromUserIdentity' )
-			->with( $this->isInstanceOf( User::class ) )
-			->will( $this->returnArgument( 0 ) );
 
 		// We don't care about how BlockUtils::parseBlockTarget actually works, just
 		// override with whatever. Only used for a single call in the constructor
@@ -54,12 +43,9 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 			->method( 'parseBlockTarget' )
 			->willReturn( $targetAndType );
 
-		$performer = $this->mockUserAuthorityWithPermissions( $user, $rights );
-
 		return new BlockPermissionChecker(
 			$options,
 			$blockUtils,
-			$userFactory,
 			'foo', // input to BlockUtils::parseBlockTarget, not used
 			$performer
 		);
@@ -74,10 +60,10 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		// Mock DatabaseBlock instead of AbstractBlock because its easier
 		$block = $this->createNoOpMock(
 			DatabaseBlock::class,
-			[ 'isSitewide', 'getByName' ]
+			[ 'isSitewide', 'getBlocker' ]
 		);
 		$block->method( 'isSitewide' )->willReturn( $isSitewide );
-		$block->method( 'getByName' )->willReturn( $byName );
+		$block->method( 'getBlocker' )->willReturn( new UserIdentityValue( 7, $byName ) );
 		return $block;
 	}
 
@@ -94,12 +80,11 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideCheckBasePermissions
 	 */
 	public function testCheckBasePermissions( $rights, $checkHideuser, $expect ) {
-		$user = new UserIdentityValue( 4, 'admin' );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $rights );
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
 			[ null, null ], // $targetAndType, irrelevant
-			$user,
-			$rights
+			$performer
 		);
 		$this->assertSame(
 			$expect,
@@ -112,14 +97,10 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testNotBlockedPerformer() {
 		// checkBlockPermissions has an early return true if the performer has no block
-		$user = $this->createMock( User::class );
-		$user->method( 'getBlock' )->willReturn( null );
-
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
 			[ null, null ], // $targetAndType, irrelevant
-			$user,
-			[] // $rights, irrelevant
+			$this->mockRegisteredAuthorityWithoutPermissions( [] )
 		);
 		$this->assertTrue(
 			$blockPermissionChecker->checkBlockPermissions()
@@ -131,16 +112,13 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testPartialBlockedPerformer() {
 		// checkBlockPermissions has an early return true if the performer is not sitewide blocked
-		$user = $this->createMock( User::class );
-		$user->method( 'getBlock' )->willReturn(
-			$this->getBlock( false, '' )
-		);
+		$blocker = new UserIdentityValue( 1, 'blocker', UserIdentity::LOCAL );
+		$performer = $this->mockUserAuthorityWithBlock( $blocker, $this->getBlock( false, '' ) );
 
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
 			[ null, null ], // $targetAndType, irrelevant
-			$user,
-			[] // $rights, irrelevant
+			$performer
 		);
 		$this->assertTrue(
 			$blockPermissionChecker->checkBlockPermissions()
@@ -177,18 +155,17 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 			true, // sitewide
 			$blockedBy
 		);
-		$user = $this->createMock( User::class );
-		$user->method( 'getBlock' )->willReturn( $block );
-		$user->method( 'getId' )->willReturn( 1 );
-		$user->method( 'getName' )->willReturn( 'blocker' );
+		$rights = $unblockSelf ? [ 'unblockself' ] : [];
+
+		$blocker = new UserIdentityValue( 1, 'blocker', UserIdentity::LOCAL );
+		$performer = $this->mockUserAuthorityWithBlock( $blocker, $block, $rights );
 
 		$target = new UserIdentityValue( $targetUserId, $targetUserName );
 
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
 			[ $target, AbstractBlock::TYPE_USER ], // $targetAndType, irrelevant
-			$user,
-			$unblockSelf ? [ 'unblockself' ] : []
+			$performer
 		);
 		$this->assertSame(
 			$expect,
@@ -209,12 +186,11 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideCheckEmailPermissions
 	 */
 	public function testCheckEmailPermissionOkay( $enableEmail, $rights, $expect ) {
-		$user = new UserIdentityValue( 4, 'admin' );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $rights );
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			$enableEmail,
 			[ null, null ], // $targetAndType, irrelevant
-			$user,
-			$rights
+			$performer
 		);
 		$this->assertSame( $expect, $blockPermissionChecker->checkEmailPermissions() );
 	}

@@ -346,7 +346,6 @@ $dateFormats = [
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns'
 ];
 
-$capitalizeAllNouns = true;
 $bookstoreList = [
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
 	'amazon.de' => 'https://www.amazon.de/gp/search/field-isbn=$1',

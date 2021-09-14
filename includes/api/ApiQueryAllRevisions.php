@@ -20,9 +20,12 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 
 /**
  * Query module to enumerate all revisions.
@@ -32,12 +35,50 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param RevisionStore $revisionStore
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ParserFactory $parserFactory
+	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param ActorMigration $actorMigration
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ContentTransformer $contentTransformer
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'arv' );
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		RevisionStore $revisionStore,
+		IContentHandlerFactory $contentHandlerFactory,
+		ParserFactory $parserFactory,
+		SlotRoleRegistry $slotRoleRegistry,
+		ActorMigration $actorMigration,
+		NamespaceInfo $namespaceInfo,
+		ContentTransformer $contentTransformer
+	) {
+		parent::__construct(
+			$query,
+			$moduleName,
+			'arv',
+			$revisionStore,
+			$contentHandlerFactory,
+			$parserFactory,
+			$slotRoleRegistry,
+			$contentTransformer
+		);
+		$this->revisionStore = $revisionStore;
+		$this->actorMigration = $actorMigration;
+		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	/**
@@ -45,10 +86,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$services = MediaWikiServices::getInstance();
-		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -57,7 +98,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$tsField = 'rev_timestamp';
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
-		if ( $params['user'] !== null ) {
+		if ( $params['user'] !== null &&
+			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
+		) {
 			// The query is probably best done using the actor_timestamp index on
 			// revision_actor_temp. Use the denormalized fields from that table.
 			$tsField = 'revactor_timestamp';
@@ -72,7 +115,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $params['namespace'] !== null ) {
 			$params['namespace'] = array_unique( $params['namespace'] );
 			sort( $params['namespace'] );
-			if ( $params['namespace'] != $services->getNamespaceInfo()->getValidNamespaces() ) {
+			if ( $params['namespace'] != $this->namespaceInfo->getValidNamespaces() ) {
 				$needPageTable = true;
 				if ( $this->getConfig()->get( 'MiserMode' ) ) {
 					$miser_ns = $params['namespace'];
@@ -84,7 +127,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$revQuery = $revisionStore->getQueryInfo( [ 'page' ] );
+			$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
 			$revQuery = [
@@ -98,7 +141,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			}
 
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
-				$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
+				$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
 				$revQuery['tables'] += $actorQuery['tables'];
 				$revQuery['joins'] += $actorQuery['joins'];
 			}
@@ -144,12 +187,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['user'] !== null ) {
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'rev_user', $params['user'] );
+			$actorQuery = $this->actorMigration->getWhere( $db, 'rev_user', $params['user'] );
 			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'rev_user', $params['excludeuser'] );
+			$actorQuery = $this->actorMigration->getWhere( $db, 'rev_user', $params['excludeuser'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
@@ -227,7 +268,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->rev_id;
 				}
 			} else {
-				$revision = $revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
+				$revision = $this->revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->rev_page] ) ) {

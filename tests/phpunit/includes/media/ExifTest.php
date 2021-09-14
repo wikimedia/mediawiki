@@ -9,7 +9,7 @@ class ExifTest extends MediaWikiIntegrationTestCase {
 	/** @var string */
 	protected $mediaPath;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

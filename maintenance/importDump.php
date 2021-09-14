@@ -218,7 +218,7 @@ TEXT
 			if ( !$this->dryRun ) {
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
-				$dbw = $this->getDB( DB_MASTER );
+				$dbw = $this->getDB( DB_PRIMARY );
 
 				return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
 			}
@@ -299,7 +299,9 @@ TEXT
 		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );
-		$importer = new WikiImporter( $source, $this->getConfig() );
+		$importer = MediaWikiServices::getInstance()
+			->getWikiImporterFactory()
+			->getWikiImporter( $source );
 
 		// Updating statistics require a lot of time so disable it
 		$importer->disableStatisticsUpdate();
@@ -321,7 +323,6 @@ TEXT
 			if ( !$statusRootPage->isGood() ) {
 				// Die here so that it doesn't print "Done!"
 				$this->fatalError( $statusRootPage->getMessage( false, false, 'en' )->text() );
-				return false;
 			}
 		}
 		if ( $this->hasOption( 'skip-to' ) ) {

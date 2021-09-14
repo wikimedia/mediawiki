@@ -117,7 +117,7 @@ abstract class Password {
 	 *
 	 * @return string Password type
 	 */
-	final public function getType() : string {
+	final public function getType(): string {
 		return $this->config['type'];
 	}
 
@@ -126,7 +126,7 @@ abstract class Password {
 	 *
 	 * @return bool
 	 */
-	protected function isSupported() : bool {
+	protected function isSupported(): bool {
 		return true;
 	}
 
@@ -137,7 +137,7 @@ abstract class Password {
 	 * @param string|null $hash The hash, with the :<TYPE>: prefix stripped
 	 * @throws PasswordError If there is an error in parsing the hash
 	 */
-	protected function parseHash( ?string $hash ) : void {
+	protected function parseHash( ?string $hash ): void {
 	}
 
 	/**
@@ -145,7 +145,7 @@ abstract class Password {
 	 *
 	 * @return bool True if needs update, false otherwise
 	 */
-	abstract public function needsUpdate() : bool;
+	abstract public function needsUpdate(): bool;
 
 	/**
 	 * Checks whether the given password matches the hash stored in this object.
@@ -153,7 +153,7 @@ abstract class Password {
 	 * @param string $password Password to check
 	 * @return bool
 	 */
-	public function verify( string $password ) : bool {
+	public function verify( string $password ): bool {
 		// No need to use the factory because we're definitely making
 		// an object of the same type.
 		$obj = clone $this;
@@ -174,7 +174,7 @@ abstract class Password {
 	 * @return string
 	 * @throws PasswordError if password cannot be serialized to fit a tinyblob.
 	 */
-	public function toString() : string {
+	public function toString(): string {
 		$result = ':' . $this->config['type'] . ':' . $this->hash;
 		$this->assertIsSafeSize( $result );
 		return $result;
@@ -190,7 +190,7 @@ abstract class Password {
 	 * @param string $hash The hash in question.
 	 * @throws PasswordError If hash does not fit in DB.
 	 */
-	final protected function assertIsSafeSize( string $hash ) : void {
+	final protected function assertIsSafeSize( string $hash ): void {
 		if ( strlen( $hash ) > self::MAX_HASH_SIZE ) {
 			throw new PasswordError( "Password hash is too big" );
 		}
@@ -205,5 +205,5 @@ abstract class Password {
 	 * @param string $password Password to hash
 	 * @throws PasswordError If an internal error occurs in hashing
 	 */
-	abstract public function crypt( string $password ) : void;
+	abstract public function crypt( string $password ): void;
 }

@@ -1,5 +1,5 @@
 /**
- * WikimediaUI Base v0.18.0
+ * WikimediaUI Base v0.19.0
  * Wikimedia Foundation user interface base variables
  * https://gerrit.wikimedia.org/g/wikimedia-ui-base/
  *
@@ -72,6 +72,7 @@
 @background-color-base:           @wmui-color-base100;
 @background-color-base--hover:    @wmui-color-base80;
 @background-color-base--disabled: @wmui-color-base80;
+@background-color-base--read-only: @wmui-color-base90;
 @background-color-code:           @wmui-color-base90;
 // 'Framed' UI elements (Framed Buttons, Dropdowns, ToggleSwitches…)
 @background-color-framed:         @wmui-color-base90;
@@ -111,6 +112,7 @@
 @color-base--subtle:              @wmui-color-base30;
 @color-base--disabled:            @wmui-color-base30;
 @color-filled--disabled:          @color-base--inverted;
+@color-accessory:                 @wmui-color-base20;
 @color-placeholder:               @wmui-color-base30;
 // Primary 'Progressive' Color, Background Color and states
 @background-color-primary:        @wmui-color-accent90;
@@ -151,6 +153,11 @@
 
 
 // == Positioning ==
+// Positioning Model
+// Use `px` unit to prevent pixel rounding error when using `@size-input-binary / 4`.
+// Works with different sizes on mobile and desktop as it negatively offsets from outside.
+@position-offset-input-radio-focus: -4px;
+
 // Z-Index
 @z-index-base:                    0;
 @z-index-overlay:                 101;
@@ -160,6 +167,7 @@
 // `@*size` variables are used for `*width` & `*height` properties.
 @min-size-base:                   32px; // Values used for `min-*` are defined in `px`, see T130691.
 @size-base:                       32px;
+@size-full:                       100%;
 
 @min-size-icon:                   20px;
 @size-icon:                       20px;
@@ -190,6 +198,7 @@
 @border-color-base--active:       @wmui-color-base30;
 @border-color-base--focus:        @color-primary--focus;
 @border-color-base--disabled:     @wmui-color-base70;
+
 @border-color-filled--disabled:   @color-filled--disabled;
 // Border Colors primary buttons
 @border-color-primary:            @color-primary;
@@ -220,6 +229,7 @@
 // Border Radius
 @border-radius-base:              2px;
 @border-radius-circle:            50%;
+@border-radius-input-radio:       @border-radius-circle;
 
 // Paddings
 @padding-base:                    @padding-vertical-base @padding-horizontal-base;
@@ -228,6 +238,8 @@
 // Must be < `8` as it cuts off scripts like Burmese. Directly connected to `line-height` further down.
 @padding-vertical-base:           5px;
 @padding-horizontal-input-text:   8px;
+// Menu items don't have a border. So add it to padding.
+@padding-vertical-menu:           @padding-vertical-base + @border-width-base;
 
 // Box Shadows
 // Base `box-shadow` set to `transparent` for transition purpose.

@@ -143,6 +143,7 @@ class UploadedFileStream implements StreamInterface {
 	}
 
 	public function write( $string ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		$this->checkOpen();
 		throw new RuntimeException( 'Stream is read-only' );
 	}

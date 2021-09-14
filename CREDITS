@@ -1,5 +1,5 @@
 {{int:version-credits-summary}} <!--
-MediaWiki 1.36 is a collaborative project released under the
+MediaWiki 1.37 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
@@ -8,7 +8,6 @@ The following list can be found parsed under Special:Version/Credits -->
 == Contributors ==
 <!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
-* [[mw:User:ST47]]
 * 4shadoww
 * aalekhN
 * Aaron Ball
@@ -54,6 +53,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Alexander Mashin
 * Alexander Monk
 * Alexander Sigachov
+* Alexander Vorwerk
 * Alexandre Emsenhuber
 * Alexia E. Smith
 * AlQaholic007
@@ -891,7 +891,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Yuriy Shnitkovskiy
 * Yusuke Matsubara
 * Yuvi Panda
-* Zabe
 * Zachary Hauri
 * Zak Greant
 * Željko Filipin

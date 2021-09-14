@@ -21,7 +21,7 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 
 /**
  * A title formatter service for MediaWiki.
@@ -49,9 +49,9 @@ interface TitleFormatter {
 	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' );
 
 	/**
-	 * Returns the title text formatted for display, without namespace of fragment.
+	 * Returns the title text formatted for display, without namespace or fragment.
 	 *
-	 * @param LinkTarget|PageIdentity $title The title to format
+	 * @param LinkTarget|PageReference $title The title to format
 	 *
 	 * @return string
 	 */
@@ -60,7 +60,7 @@ interface TitleFormatter {
 	/**
 	 * Returns the title formatted for display, including the namespace name.
 	 *
-	 * @param LinkTarget|PageIdentity $title The title to format
+	 * @param LinkTarget|PageReference $title The title to format
 	 *
 	 * @return string
 	 */
@@ -72,7 +72,7 @@ interface TitleFormatter {
 	 *
 	 * @since 1.27
 	 *
-	 * @param LinkTarget|PageIdentity $target
+	 * @param LinkTarget|PageReference $target
 	 *
 	 * @return string
 	 */
@@ -81,7 +81,7 @@ interface TitleFormatter {
 	/**
 	 * Returns the title formatted for display, with namespace and fragment.
 	 *
-	 * @param LinkTarget|PageIdentity $title The title to format
+	 * @param LinkTarget|PageReference $title The title to format
 	 *
 	 * @return string
 	 */

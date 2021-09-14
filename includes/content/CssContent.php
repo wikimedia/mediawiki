@@ -25,8 +25,6 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Content object for CSS pages.
  *
@@ -50,34 +48,6 @@ class CssContent extends TextContent {
 	}
 
 	/**
-	 * Returns a Content object with pre-save transformations applied using
-	 * Parser::preSaveTransform().
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 *
-	 * @return CssContent
-	 *
-	 * @see TextContent::preSaveTransform
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		// @todo Make pre-save transformation optional for script pages (T34858)
-
-		if ( !MediaWikiServices::getInstance()->getUserOptionsLookup()->getBoolOption( $user, 'pst-cssjs' ) ) {
-			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
-			$popts = clone $popts;
-			$popts->setPreSaveTransform( false );
-		}
-
-		$text = $this->getText();
-		$pst = MediaWikiServices::getInstance()->getParser()
-			->preSaveTransform( $text, $title, $user, $popts );
-
-		return new static( $pst );
-	}
-
-	/**
 	 * @return string CSS wrapped in a <pre> tag.
 	 */
 	protected function getHtml() {
@@ -96,6 +66,7 @@ class CssContent extends TextContent {
 			return $this;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->getContentHandler()->makeRedirectContent( $target );
 	}
 

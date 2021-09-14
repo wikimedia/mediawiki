@@ -26,6 +26,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -55,23 +56,17 @@ class LogEventsList extends ContextSource {
 	private $hookRunner;
 
 	/**
-	 * The first two parameters used to be $skin and $out, but now only a context
-	 * is needed, that's why there's a second unused parameter.
+	 * @stable to call. As of the 1.36 release, there is no factory for this class, and it is
+	 *         instantiated directly by several extensions. The constructor needs to retain
+	 *         backwards compatibility until a factory has been introduced.
 	 *
-	 * @param IContextSource|Skin $context Context to use; formerly it was
-	 *   a Skin object. Use of Skin is deprecated.
-	 * @param LinkRenderer|null $linkRenderer previously unused
+	 * @param IContextSource $context
+	 * @param LinkRenderer|null $linkRenderer
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
 	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
 	public function __construct( $context, $linkRenderer = null, $flags = 0 ) {
-		if ( $context instanceof IContextSource ) {
-			$this->setContext( $context );
-		} else {
-			// Old parameters, $context should be a Skin object
-			$this->setContext( $context->getContext() );
-		}
-
+		$this->setContext( $context );
 		$this->flags = $flags;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		if ( $linkRenderer instanceof LinkRenderer ) {
@@ -97,7 +92,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param array|string $types
 	 * @param string $user
-	 * @param string $page
+	 * @param string|PageReference $page
 	 * @param bool $pattern
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
@@ -156,7 +151,7 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['tagfilter'] = [
 			'type' => 'tagfilter',
 			'name' => 'tagfilter',
-			'label-raw' => $this->msg( 'tag-filter' )->parse(),
+			'label-message' => 'tag-filter',
 		];
 
 		// Filter links
@@ -177,7 +172,7 @@ class LogEventsList extends ContextSource {
 		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
-			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
+			->setSubmitTextMsg( 'logeventslist-submit' )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'log' );
 
@@ -263,10 +258,10 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string|PageReference $page
 	 * @return array Form descriptor
 	 */
-	private function getTitleInputDesc( $title ) {
+	private function getTitleInputDesc( $page ) {
 		return [
 			'class' => HTMLTitleTextField::class,
 			'label-message' => 'speciallogtitlelabel',
@@ -520,12 +515,12 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User $user User to check
+	 * @param Authority $performer User to check
 	 * @return bool
 	 */
-	public static function userCan( $row, $field, User $user ) {
-		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
-			self::userCanViewLogType( $row->log_type, $user );
+	public static function userCan( $row, $field, Authority $performer ) {
+		return self::userCanBitfield( $row->log_deleted, $field, $performer ) &&
+			self::userCanViewLogType( $row->log_type, $performer );
 	}
 
 	/**
@@ -579,7 +574,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param OutputPage|string &$out
 	 * @param string|array $types Log types to show
-	 * @param string|Title $page The page title to show log entries for
+	 * @param string|PageReference $page The page title to show log entries for
 	 * @param string $user The user who made the log entries
 	 * @param array $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
@@ -595,7 +590,7 @@ class LogEventsList extends ContextSource {
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
-	 * - useMaster boolean Use master DB
+	 * - useMaster boolean Use primary DB
 	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
 	 * @return int Number of total log items (not limited by $lim)
 	 */
@@ -669,8 +664,9 @@ class LogEventsList extends ContextSource {
 		}
 
 		if ( $param['useMaster'] ) {
-			$pager->mDb = wfGetDB( DB_MASTER );
+			$pager->mDb = wfGetDB( DB_PRIMARY );
 		}
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
@@ -715,12 +711,19 @@ class LogEventsList extends ContextSource {
 				$context->msg( 'logempty' )->parse() );
 		}
 
+		if ( $page instanceof PageReference ) {
+			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+			$pageName = $titleFormatter->getPrefixedDBkey( $page );
+		} elseif ( $page != '' ) {
+			$pageName = $page;
+		} else {
+			$pageName = null;
+		}
+
 		if ( $numRows > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = [];
-			if ( $page instanceof Title ) {
-				$urlParam['page'] = $page->getPrefixedDBkey();
-			} elseif ( $page != '' ) {
-				$urlParam['page'] = $page;
+			if ( $pageName ) {
+				$urlParam['page'] = $pageName;
 			}
 
 			if ( $user != '' ) {
@@ -759,7 +762,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
-		if ( Hooks::runner()->onLogEventsListShowLogExtract( $s, $types, $page, $user, $param ) ) {
+		if ( Hooks::runner()->onLogEventsListShowLogExtract( $s, $types, $pageName, $user, $param ) ) {
 			// $out can be either an OutputPage object or a String-by-reference
 			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );

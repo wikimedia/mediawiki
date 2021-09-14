@@ -69,8 +69,6 @@ class EditResult implements JsonSerializable {
 	private $revertTags;
 
 	/**
-	 * EditResult constructor.
-	 *
 	 * @param bool $isNew
 	 * @param bool|int $originalRevisionId
 	 * @param int|null $revertMethod
@@ -146,7 +144,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return int|null
 	 */
-	public function getNewestRevertedRevisionId() : ?int {
+	public function getNewestRevertedRevisionId(): ?int {
 		return $this->newestRevertedRevId;
 	}
 
@@ -159,7 +157,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return int|null
 	 */
-	public function getOldestRevertedRevisionId() : ?int {
+	public function getOldestRevertedRevisionId(): ?int {
 		return $this->oldestRevertedRevId;
 	}
 
@@ -169,7 +167,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return int
 	 */
-	public function getUndidRevId() : int {
+	public function getUndidRevId(): int {
 		if ( $this->getRevertMethod() !== self::REVERT_UNDO ) {
 			return 0;
 		}
@@ -196,7 +194,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return bool
 	 */
-	public function isNew() : bool {
+	public function isNew(): bool {
 		return $this->isNew;
 	}
 
@@ -217,7 +215,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return bool
 	 */
-	public function isRevert() : bool {
+	public function isRevert(): bool {
 		return !$this->isNew() && $this->getOldestRevertedRevisionId();
 	}
 
@@ -231,7 +229,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return int|null
 	 */
-	public function getRevertMethod() : ?int {
+	public function getRevertMethod(): ?int {
 		return $this->revertMethod;
 	}
 
@@ -241,7 +239,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return bool
 	 */
-	public function isExactRevert() : bool {
+	public function isExactRevert(): bool {
 		return $this->isExactRevert;
 	}
 
@@ -251,7 +249,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return bool
 	 */
-	public function isNullEdit() : bool {
+	public function isNullEdit(): bool {
 		return $this->isNullEdit;
 	}
 
@@ -260,7 +258,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @return string[]
 	 */
-	public function getRevertTags() : array {
+	public function getRevertTags(): array {
 		return $this->revertTags;
 	}
 

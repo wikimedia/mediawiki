@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -11,7 +10,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgServer' => 'http://acme.test',
@@ -217,11 +216,10 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 			array $preProcessed = [] ) {
 		$dumpScript =
 			$this->getMockBuilder( CategoryChangesAsRdf::class )
-				->setMethods( [ $iterator, 'getCategoryLinksIterator' ] )
+				->onlyMethods( [ $iterator, 'getCategoryLinksIterator' ] )
 				->getMock();
 
-		$dumpScript->expects( $this->any() )
-			->method( 'getCategoryLinksIterator' )
+		$dumpScript->method( 'getCategoryLinksIterator' )
 			->willReturnCallback( [ $this, 'getCategoryLinksIterator' ] );
 
 		$dumpScript->expects( $this->once() )
@@ -279,7 +277,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$output = fopen( "php://memory", "w+b" );
 
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'categoryMembershipChange'
 		] );
 

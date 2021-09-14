@@ -54,7 +54,7 @@ abstract class ParameterizedPassword extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	protected function parseHash( ?string $hash ) : void {
+	protected function parseHash( ?string $hash ): void {
 		parent::parseHash( $hash );
 
 		if ( $hash === null ) {
@@ -83,11 +83,11 @@ abstract class ParameterizedPassword extends Password {
 		}
 	}
 
-	public function needsUpdate() : bool {
+	public function needsUpdate(): bool {
 		return $this->params !== $this->getDefaultParams();
 	}
 
-	public function toString() : string {
+	public function toString(): string {
 		$str = ':' . $this->config['type'] . ':';
 
 		if ( count( $this->params ) || count( $this->args ) ) {
@@ -105,7 +105,7 @@ abstract class ParameterizedPassword extends Password {
 	 *
 	 * @return string
 	 */
-	abstract protected function getDelimiter() : string;
+	abstract protected function getDelimiter(): string;
 
 	/**
 	 * Return an ordered array of default parameters for this password hash
@@ -122,5 +122,5 @@ abstract class ParameterizedPassword extends Password {
 	 *
 	 * @return array
 	 */
-	abstract protected function getDefaultParams() : array;
+	abstract protected function getDefaultParams(): array;
 }

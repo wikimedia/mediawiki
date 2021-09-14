@@ -11,7 +11,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 				'directory' => '/',
 				'timeout' => 0.1,
 			] ] )
-			->setMethods( [ 'fetchAllFromEtcd' ] )
+			->onlyMethods( [ 'fetchAllFromEtcd' ] )
 			->getMock();
 	}
 
@@ -93,7 +93,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	 */
 	public function testConstructCacheObj() {
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get' ] )
+			->onlyMethods( [ 'get' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )
 			->willReturn( [
@@ -168,7 +168,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheMiss() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		// .. misses cache
 		$cache->expects( $this->once() )->method( 'get' )
@@ -194,7 +194,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheMissBackendError() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		// .. misses cache
 		$cache->expects( $this->once() )->method( 'get' )
@@ -220,7 +220,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheMissWithoutLock() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->exactly( 2 ) )->method( 'get' )
 			->will( $this->onConsecutiveCalls(
@@ -252,7 +252,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheHit() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )
 			// .. hits cache
@@ -278,7 +278,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadProcessCacheHit() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )
 			// .. hits cache
@@ -305,7 +305,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheExpiredLockFetchSucceeded() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )->willReturn(
 			// .. stale cache
@@ -335,7 +335,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheExpiredLockFetchFails() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )->willReturn(
 			// .. stale cache
@@ -365,7 +365,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	public function testLoadCacheExpiredNoLock() {
 		// Create cache mock
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'get', 'lock' ] )
+			->onlyMethods( [ 'get', 'lock' ] )
 			->getMock();
 		$cache->expects( $this->once() )->method( 'get' )
 			// .. hits cache (expired value)

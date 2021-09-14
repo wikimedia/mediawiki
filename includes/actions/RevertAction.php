@@ -23,8 +23,6 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * File reversion user interface
  * WikiPage must contain getFile method: \WikiFilePage
@@ -33,6 +31,30 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Actions
  */
 class RevertAction extends FormAction {
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param Language $contentLanguage
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		Language $contentLanguage,
+		RepoGroup $repoGroup
+	) {
+		parent::__construct( $page, $context );
+		$this->contentLanguage = $contentLanguage;
+		$this->repoGroup = $repoGroup;
+	}
+
 	/**
 	 * @var OldLocalFile
 	 */
@@ -60,7 +82,7 @@ class RevertAction extends FormAction {
 			throw new ErrorPageError( 'internalerror', 'unexpected', [ 'oldimage', $oldimage ] );
 		}
 
-		$this->oldFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+		$this->oldFile = $this->repoGroup->getLocalRepo()
 			->newFromArchiveName( $this->getTitle(), $oldimage );
 
 		if ( !$this->oldFile->exists() ) {
@@ -88,7 +110,7 @@ class RevertAction extends FormAction {
 		$userTime = $lang->userTime( $timestamp, $user );
 		$siteTs = MWTimestamp::getLocalInstance( $timestamp );
 		$ts = $siteTs->format( 'YmdHis' );
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->contentLanguage;
 		$siteDate = $contLang->date( $ts, false, false );
 		$siteTime = $contLang->time( $ts, false, false );
 		$tzMsg = $siteTs->getTimezoneMessage()->inContentLanguage()->text();
@@ -96,7 +118,6 @@ class RevertAction extends FormAction {
 		return [
 			'intro' => [
 				'type' => 'info',
-				'vertical-label' => true,
 				'raw' => true,
 				'default' => $this->msg( 'filerevert-intro',
 					$this->getTitle()->getText(), $userDate, $userTime,
@@ -183,7 +204,7 @@ class RevertAction extends FormAction {
 	 * @since 1.35
 	 * @return File
 	 */
-	private function getFile() : File {
+	private function getFile(): File {
 		/** @var \WikiFilePage $wikiPage */
 		$wikiPage = $this->getWikiPage();
 		// @phan-suppress-next-line PhanUndeclaredMethod

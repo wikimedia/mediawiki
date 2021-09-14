@@ -8,6 +8,10 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Base class for objects that allow access to other wiki's databases using
  * the foreign database access mechanism implemented by LBFactoryMulti.
  *
+ * Avoid extending this class; instead, inject a load balancer (factory) and,
+ * if needed, DB domain into your class as constructor arguments,
+ * then call {@link ILoadBalancer::getConnectionRef()} directly.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,11 +28,11 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.21
+ * @deprecated since 1.37
  *
  * @file
  * @ingroup Database
  *
- * @stable to extend
  * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
@@ -40,11 +44,11 @@ abstract class DBAccessBase implements IDBAccessObject {
 	protected $dbDomain = false;
 
 	/**
-	 * @stable to call
-	 *
 	 * @param string|bool $dbDomain The target wiki's DB domain
 	 */
 	public function __construct( $dbDomain = false ) {
+		wfDeprecated( __CLASS__, '1.37' );
+
 		$this->dbDomain = $dbDomain;
 		$this->lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 			->getMainLB( $dbDomain );

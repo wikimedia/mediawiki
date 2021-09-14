@@ -95,7 +95,7 @@ abstract class ChangesListFilterGroup {
 	/**
 	 * Associative array of filters, as ChangesListFilter objects, with filter name as key
 	 *
-	 * @var array
+	 * @var ChangesListFilter[]
 	 */
 	protected $filters;
 
@@ -354,7 +354,7 @@ abstract class ChangesListFilterGroup {
 			);
 		}
 
-		usort( $this->filters, static function ( $a, $b ) {
+		usort( $this->filters, static function ( ChangesListFilter $a, ChangesListFilter $b ) {
 			return $b->getPriority() <=> $a->getPriority();
 		} );
 

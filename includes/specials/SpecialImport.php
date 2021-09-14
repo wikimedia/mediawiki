@@ -38,12 +38,21 @@ class SpecialImport extends SpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var WikiImporterFactory */
+	private $wikiImporterFactory;
+
 	/**
 	 * @param PermissionManager $permManager
+	 * @param WikiImporterFactory $wikiImporterFactory
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct(
+		PermissionManager $permManager,
+		WikiImporterFactory $wikiImporterFactory
+	) {
 		parent::__construct( 'Import', 'import' );
+
 		$this->permManager = $permManager;
+		$this->wikiImporterFactory = $wikiImporterFactory;
 	}
 
 	public function doesWrites() {
@@ -98,7 +107,7 @@ class SpecialImport extends SpecialPage {
 		$this->checkReadOnly();
 
 		$request = $this->getRequest();
-		if ( $request->wasPosted() && $request->getVal( 'action' ) == 'submit' ) {
+		if ( $request->wasPosted() && $request->getRawVal( 'action' ) == 'submit' ) {
 			$this->doImport();
 		}
 		$this->showForm();
@@ -190,7 +199,7 @@ class SpecialImport extends SpecialPage {
 					->plain()
 			);
 		} else {
-			$importer = new WikiImporter( $source->value, $this->getConfig() );
+			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value );
 			if ( $namespace !== null ) {
 				$importer->setTargetNamespace( $namespace );
 			} elseif ( $rootpage !== null ) {
@@ -336,7 +345,7 @@ class SpecialImport extends SpecialPage {
 			$htmlForm = HTMLForm::factory( 'ooui', $uploadFormDescriptor, $this->getContext() );
 			$htmlForm->setAction( $action );
 			$htmlForm->setId( 'mw-import-upload-form' );
-			$htmlForm->setWrapperLegend( $this->msg( 'import-upload' )->text() );
+			$htmlForm->setWrapperLegendMsg( 'import-upload' );
 			$htmlForm->setSubmitTextMsg( 'uploadbtn' );
 			$htmlForm->prepareForm()->displayForm( false );
 
@@ -445,7 +454,7 @@ class SpecialImport extends SpecialPage {
 			$htmlForm = HTMLForm::factory( 'ooui', $interwikiFormDescriptor, $this->getContext() );
 			$htmlForm->setAction( $action );
 			$htmlForm->setId( 'mw-import-interwiki-form' );
-			$htmlForm->setWrapperLegend( $this->msg( 'importinterwiki' )->text() );
+			$htmlForm->setWrapperLegendMsg( 'importinterwiki' );
 			$htmlForm->setSubmitTextMsg( 'import-interwiki-submit' );
 			$htmlForm->prepareForm()->displayForm( false );
 		}

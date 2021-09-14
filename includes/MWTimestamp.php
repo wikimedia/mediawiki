@@ -24,6 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserTimeCorrection;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -82,62 +83,21 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @return DateInterval Offset that was applied to the timestamp
 	 */
 	public function offsetForUser( UserIdentity $user ) {
-		global $wgLocalTZoffset;
-
 		$option = MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getOption( $user, 'timecorrection' );
 
-		$data = explode( '|', $option, 3 );
-
-		// First handle the case of an actual timezone being specified.
-		if ( $data[0] == 'ZoneInfo' ) {
-			try {
-				$tz = new DateTimeZone( $data[2] );
-			} catch ( Exception $e ) {
-				$tz = false;
-			}
-
-			if ( $tz ) {
-				$this->timestamp->setTimezone( $tz );
-				return new DateInterval( 'P0Y' );
-			}
-
-			$data[0] = 'Offset';
+		$value = new UserTimeCorrection(
+			$option,
+			$this->timestamp,
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalTZoffset' )
+		);
+		$tz = $value->getTimeZone();
+		if ( $tz ) {
+			$this->timestamp->setTimezone( $tz );
+			return new DateInterval( 'P0Y' );
 		}
-
-		$diff = 0;
-		// If $option is in fact a pipe-separated value, check the
-		// first value.
-		if ( $data[0] == 'System' ) {
-			// First value is System, so use the system offset.
-			if ( $wgLocalTZoffset !== null ) {
-				$diff = $wgLocalTZoffset;
-			}
-		} elseif ( $data[0] == 'Offset' ) {
-			// First value is Offset, so use the specified offset
-			$diff = (int)$data[1];
-		} else {
-			// $option actually isn't a pipe separated value, but instead
-			// a comma separated value. Isn't MediaWiki fun?
-			$data = explode( ':', $option );
-			if ( count( $data ) >= 2 ) {
-				// Combination hours and minutes.
-				$diff = abs( (int)$data[0] ) * 60 + (int)$data[1];
-				if ( (int)$data[0] < 0 ) {
-					$diff *= -1;
-				}
-			} else {
-				// Just hours.
-				$diff = (int)$data[0] * 60;
-			}
-		}
-
-		$interval = new DateInterval( 'PT' . abs( $diff ) . 'M' );
-		if ( $diff < 1 ) {
-			$interval->invert = 1;
-		}
-
+		$interval = $value->getTimeOffsetInterval();
 		$this->timestamp->add( $interval );
 		return $interval;
 	}

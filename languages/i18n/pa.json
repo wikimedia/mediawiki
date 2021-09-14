@@ -1640,7 +1640,6 @@
 	"ipblocklist-localblock": "ਸਥਾਨਕ ਪਾਬੰਦੀ",
 	"ipblocklist-otherblocks": "ਹੋਰ {{PLURAL:$1|ਪਾਬੰਦੀ|ਪਾਬੰਦੀਆਂ}}",
 	"infiniteblock": "ਬੇਅੰਤ",
-	"expiringblock": "ਮਿਆਦ ਖ਼ਤਮ $1 ਨੂੰ $2 ’ਤੇ",
 	"anononlyblock": "anon. ਹੀ",
 	"noautoblockblock": "ਖ਼ੁਦ ਪਾਬੰਦੀ ਲਾਉਣੀ ਬੰਦ ਕੀਤੀ ਹੋਈ ਹੈ",
 	"createaccountblock": "ਖਾਤਾ ਬਣਾਉਣਾ ’ਤੇ ਪਾਬੰਦੀ ਹੈ",

@@ -297,7 +297,7 @@ class SearchSqlite extends SearchDatabase {
 		}
 		// @todo find a method to do it in a single request,
 		// couldn't do it so far due to typelessness of FTS3 tables.
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->delete( 'searchindex', [ 'rowid' => $id ], __METHOD__ );
 		$dbw->insert( 'searchindex',
 			[
@@ -319,7 +319,7 @@ class SearchSqlite extends SearchDatabase {
 			return;
 		}
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $title ],
 			[ 'rowid' => $id ],

@@ -21,24 +21,27 @@
 namespace MediaWiki\Preferences;
 
 use CentralIdLookup;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 class MultiUsernameFilter implements Filter {
 	/**
 	 * @var CentralIdLookup|null
 	 */
 	private $lookup;
-	/** @var CentralIdLookup|int User querying central usernames or one of the audience constants */
-	private $userOrAudience;
+	/** @var Authority|int User querying central usernames or one of the audience constants */
+	private $authorityOrAudience;
 
 	/**
 	 * @param CentralIdLookup|null $lookup
-	 * @param int $userOrAudience
+	 * @param Authority|int $authorityOrAudience
 	 */
-	public function __construct( CentralIdLookup $lookup = null,
-		$userOrAudience = CentralIdLookup::AUDIENCE_PUBLIC
+	public function __construct(
+		CentralIdLookup $lookup = null,
+		$authorityOrAudience = CentralIdLookup::AUDIENCE_PUBLIC
 	) {
 		$this->lookup = $lookup;
-		$this->userOrAudience = $userOrAudience;
+		$this->authorityOrAudience = $authorityOrAudience;
 	}
 
 	/**
@@ -48,7 +51,7 @@ class MultiUsernameFilter implements Filter {
 		$names = trim( $names );
 		if ( $names !== '' ) {
 			$names = preg_split( '/\n/', $names, -1, PREG_SPLIT_NO_EMPTY );
-			$ids = $this->getLookup()->centralIdsFromNames( $names, $this->userOrAudience );
+			$ids = $this->getLookup()->centralIdsFromNames( $names, $this->authorityOrAudience );
 			if ( $ids ) {
 				return implode( "\n", $ids );
 			}
@@ -62,7 +65,7 @@ class MultiUsernameFilter implements Filter {
 	 */
 	public function filterForForm( $value ) {
 		$ids = self::splitIds( $value );
-		$names = $ids ? $this->getLookup()->namesFromCentralIds( $ids, $this->userOrAudience ) : [];
+		$names = $ids ? $this->getLookup()->namesFromCentralIds( $ids, $this->authorityOrAudience ) : [];
 		return implode( "\n", $names );
 	}
 
@@ -80,7 +83,7 @@ class MultiUsernameFilter implements Filter {
 	 * @return CentralIdLookup
 	 */
 	private function getLookup() {
-		$this->lookup = $this->lookup ?? CentralIdLookup::factory();
+		$this->lookup = $this->lookup ?? MediaWikiServices::getInstance()->getCentralIdLookup();
 		return $this->lookup;
 	}
 }

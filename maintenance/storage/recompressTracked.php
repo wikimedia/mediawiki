@@ -26,7 +26,6 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
 require __DIR__ . '/../CommandLineInc.php';
@@ -165,10 +164,10 @@ class RecompressTracked {
 	 * previous part of this batch process.
 	 */
 	private function syncDBs() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
-		$pos = $dbw->getMasterPos();
-		$dbr->masterPosWait( $pos, 100000 );
+		$pos = $dbw->getPrimaryPos();
+		$dbr->primaryPosWait( $pos, 100000 );
 	}
 
 	/**
@@ -231,7 +230,8 @@ class RecompressTracked {
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
 			if ( $cmdOption == 'child-id' ) {
 				continue;
-			} elseif ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
+			}
+			if ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );
 			} elseif ( $this->$classOption ) {
 				$cmd .= " --$cmdOption";
@@ -576,7 +576,7 @@ class RecompressTracked {
 			$this->critical( "Internal error: can't call moveTextRow() in --copy-only mode" );
 			exit( 1 );
 		}
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->begin( __METHOD__ );
 		$dbw->update( 'text',
 			[ // set
@@ -650,18 +650,6 @@ class RecompressTracked {
 		}
 
 		return $cluster;
-	}
-
-	/**
-	 * Gets a DB master connection for the given external cluster name
-	 * @param string $cluster
-	 * @return IMaintainableDatabase
-	 */
-	private function getExtDB( $cluster ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $lbFactory->getExternalLB( $cluster );
-
-		return $lb->getMaintenanceConnectionRef( DB_MASTER );
 	}
 
 	/**
@@ -790,7 +778,7 @@ class CgzCopyTransaction {
 		 *
 		 * We do a locking read to prevent closer-run race conditions.
 		 */
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->begin( __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',
 			[ 'bt_text_id', 'bt_moved' ],
@@ -825,7 +813,7 @@ class CgzCopyTransaction {
 		// Insert the data into the destination cluster
 		$targetCluster = $this->parent->getTargetCluster();
 		$store = $this->parent->store;
-		$targetDB = $store->getMaster( $targetCluster );
+		$targetDB = $store->getPrimary( $targetCluster );
 		$targetDB->clearFlag( DBO_TRX ); // we manage the transactions
 		$targetDB->begin( __METHOD__ );
 		$baseUrl = $this->parent->store->store( $targetCluster, serialize( $this->cgz ) );

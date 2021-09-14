@@ -35,7 +35,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$lastProp = null;
 		$lastPageValue = 0;

@@ -12,7 +12,6 @@
 	},
 	"rules": {
 		"max-len": "off",
-		"no-jquery/no-global-selector": "off",
-		"no-shadow": "error"
+		"no-jquery/no-global-selector": "off"
 	}
 }

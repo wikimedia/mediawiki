@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiQuerySiteinfoTest extends ApiTestCase {
 	private $originalRegistryLoaded = null;
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->originalRegistryLoaded !== null ) {
 			$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
 			$reg->loaded = $this->originalRegistryLoaded;
@@ -163,16 +163,19 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider interwikiMapProvider
 	 */
 	public function testInterwikiMap( $filter ) {
-		global $wgServer, $wgScriptPath;
+		$this->setMwGlobals( [
+			'wgServer' => 'https://local.example',
+			'wgScriptPath' => '/w',
+		] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'interwiki',
 			[
 				[
 					'iw_prefix' => 'self',
-					'iw_url' => "$wgServer$wgScriptPath/index.php?title=$1",
-					'iw_api' => "$wgServer$wgScriptPath/api.php",
+					'iw_url' => 'https://local.example/w/index.php?title=$1',
+					'iw_api' => 'https://local.example/w/api.php',
 					'iw_wikiid' => 'somedbname',
 					'iw_local' => true,
 					'iw_trans' => true,
@@ -208,7 +211,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		if ( $filter === null || $filter === '!local' ) {
 			$expected[] = [
 				'prefix' => 'foreign',
-				'url' => wfExpandUrl( '//foreign.example/wiki/$1', PROTO_CURRENT ),
+				'url' => 'http://foreign.example/wiki/$1',
 				'protorel' => true,
 			];
 		}
@@ -222,10 +225,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 				'extralanglink' => true,
 				'linktext' => 'Self!',
 				'sitename' => 'Circular logic',
-				'url' => "$wgServer$wgScriptPath/index.php?title=$1",
+				'url' => 'https://local.example/w/index.php?title=$1',
 				'protorel' => false,
 				'wikiid' => 'somedbname',
-				'api' => "$wgServer$wgScriptPath/api.php",
+				'api' => 'https://local.example/w/api.php',
 			];
 		}
 
@@ -360,17 +363,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testFileExtensions() {
-		global $wgFileExtensions;
-
 		// Add duplicate
-		$this->setMwGlobals( 'wgFileExtensions', array_merge( $wgFileExtensions, [ 'png' ] ) );
+		$this->setMwGlobals( 'wgFileExtensions', [ 'png', 'gif', 'jpg', 'png' ] );
 
-		$expected = array_map(
-			static function ( $val ) {
-				return [ 'ext' => $val ];
-			},
-			array_unique( $wgFileExtensions )
-		);
+		$expected = [ [ 'ext' => 'png' ], [ 'ext' => 'gif' ], [ 'ext' => 'jpg' ] ];
 
 		$this->assertSame( $expected, $this->doQuery( 'fileextensions' ) );
 	}
@@ -688,13 +684,14 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testContinuation() {
-		// Use $wgUrlProtocols to forge the size of the API query
-		global $wgAPIMaxResultSize, $wgUrlProtocols;
-
+		// Use $wgUrlProtocols as easy example for forging the
+		// size of the API response
 		$protocol = 'foo://';
+		$size = strlen( $protocol );
+		$protocols = [ $protocol ];
 
-		$this->setMwGlobals( 'wgUrlProtocols', [ $protocol ] );
-		$this->setMwGlobals( 'wgAPIMaxResultSize', strlen( $protocol ) );
+		$this->setMwGlobals( 'wgUrlProtocols', $protocols );
+		$this->setMwGlobals( 'wgAPIMaxResultSize', $size );
 
 		$res = $this->doApiRequest( [
 			'action' => 'query',
@@ -703,12 +700,12 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		] );
 
 		$this->assertSame(
-			wfMessage( 'apiwarn-truncatedresult', Message::numParam( $wgAPIMaxResultSize ) )
+			wfMessage( 'apiwarn-truncatedresult', Message::numParam( $size ) )
 				->text(),
 			$res[0]['warnings']['result']['warnings']
 		);
 
-		$this->assertSame( $wgUrlProtocols, $res[0]['query']['protocols'] );
+		$this->assertSame( $protocols, $res[0]['query']['protocols'] );
 		$this->assertArrayNotHasKey( 'languages', $res[0] );
 		$this->assertTrue( $res[0]['batchcomplete'], 'batchcomplete should be true' );
 		$this->assertSame( [ 'siprop' => 'languages', 'continue' => '-||' ], $res[0]['continue'] );

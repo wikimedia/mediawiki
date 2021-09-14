@@ -18,13 +18,13 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $goodTrxFname );
+				$lbFactory->commitPrimaryChanges( $goodTrxFname );
 				++$goodCalls;
 			} );
 		$goodUpdate->expects( $this->once() )
@@ -32,19 +32,19 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturn( [ $goodUpdate ] );
 
 		$revision = $this->getMockBuilder( MutableRevisionRecord::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -81,13 +81,13 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $goodTrxFname );
+				$lbFactory->commitPrimaryChanges( $goodTrxFname );
 				++$goodCalls;
 			} );
 		$goodUpdate->expects( $this->once() )
@@ -95,7 +95,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$badCalls = 0;
 		$badUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$badTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$badUpdate->expects( $this->once() )
@@ -103,26 +103,26 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$badUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$badCalls, $lbFactory, $badTrxFname ) {
 				// Update can commit since it owns the transaction
-				$lbFactory->commitMasterChanges( $badTrxFname );
+				$lbFactory->commitPrimaryChanges( $badTrxFname );
 				++$badCalls;
 				throw new LogicException( 'We have a problem' );
 			} );
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturn( [ $goodUpdate, $badUpdate ] );
 
 		$revision = $this->getMockBuilder( MutableRevisionRecord::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 		$goodCalls = 0;
 
@@ -156,7 +156,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $badCalls );
 
 		// Run the RefreshLinksJob
-		$this->runJobs();
+		$this->runJobs( [ 'ignoreErrorsMatchingFormat' => 'Revision %d is not current' ] );
 
 		$queue->flushCaches();
 		$this->assertSame( 0, $queue->getSize() );
@@ -172,7 +172,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$fname = __METHOD__;
-		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$dbw->setFlag( DBO_TRX, $dbw::REMEMBER_PRIOR ); // make queries trigger TRX
 		$reset = new ScopedCallback( [ $dbw, 'restoreFlags' ] );
 
@@ -187,7 +187,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate' ] )
+			->onlyMethods( [ 'doUpdate' ] )
 			->getMock();
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls ) {
@@ -196,7 +196,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturnCallback( static function () use ( $dbw, $fname, $goodUpdate ) {
@@ -219,13 +219,5 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$update->doUpdate();
 
 		$this->assertSame( 1, $goodCalls );
-	}
-
-	private function runJobs() {
-		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
 	}
 }

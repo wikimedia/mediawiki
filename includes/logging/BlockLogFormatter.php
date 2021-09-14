@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats block log entries.
  *
@@ -56,6 +58,7 @@ class BlockLogFormatter extends LogFormatter {
 			// in English to help visitors from other wikis.
 			// The lrm is needed to make sure that the number
 			// is shown on the correct side of the tooltip text.
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$durationTooltip = '&lrm;' . htmlspecialchars( $params[4] );
 			$blockExpiry = $this->context->getLanguage()->translateBlockExpiry(
 				$params[4],
@@ -63,7 +66,6 @@ class BlockLogFormatter extends LogFormatter {
 				wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
 			);
 			if ( $this->plaintext ) {
-				// @phan-suppress-next-line SecurityCheck-XSS Plain text
 				$params[4] = Message::rawParam( $blockExpiry );
 			} else {
 				$params[4] = Message::rawParam(
@@ -93,6 +95,11 @@ class BlockLogFormatter extends LogFormatter {
 					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
 				}, $namespaces );
 
+				$actions = $params[6]['actions'] ?? [];
+				$actions = array_map( function ( $actions ) {
+					return $this->msg( 'ipb-action-' . $actions )->text();
+				}, $actions );
+
 				$restrictions = [];
 				if ( $pages ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
@@ -105,8 +112,14 @@ class BlockLogFormatter extends LogFormatter {
 						->numParams( count( $namespaces ) )
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
 				}
+				$enablePartialActionBlocks = MediaWikiServices::getInstance()
+					->getMainConfig()->get( 'EnablePartialActionBlocks' );
+				if ( $actions && $enablePartialActionBlocks ) {
+					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
+						->numParams( count( $actions ) )
+						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->text();
+				}
 
-				// @phan-suppress-next-line SecurityCheck-XSS the restrictions contains raw params, false positive
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
 			}
 		}
@@ -198,7 +211,7 @@ class BlockLogFormatter extends LogFormatter {
 	/**
 	 * Translate a block log flag if possible
 	 *
-	 * @param int $flag Flag to translate
+	 * @param string $flag Flag to translate
 	 * @param Language $lang Language object to use
 	 * @return string
 	 */

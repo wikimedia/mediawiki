@@ -61,7 +61,7 @@ class EditCLI extends Maintenance {
 		$slot = $this->getOption( 'slot', SlotRecord::MAIN );
 
 		if ( $userName === false ) {
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $userName );
 		}
@@ -99,7 +99,7 @@ class EditCLI extends Maintenance {
 		}
 
 		# Do the edit
-		$this->output( "Saving... " );
+		$this->output( "Saving..." );
 		$updater = $page->newPageUpdater( $user );
 
 		$flags = ( $minor ? EDIT_MINOR : 0 ) |
@@ -118,15 +118,13 @@ class EditCLI extends Maintenance {
 
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );
-			$exit = 0;
 		} else {
 			$this->output( "failed\n" );
-			$exit = 1;
 		}
 		if ( !$status->isGood() ) {
 			$this->output( $status->getMessage( false, false, 'en' )->text() . "\n" );
 		}
-		exit( $exit );
+		return $status->isOK();
 	}
 }
 

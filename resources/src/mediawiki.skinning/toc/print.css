@@ -1,5 +1,36 @@
 /* Hide the complete TOC on print when the TOC is hidden. */
-/* stylelint-disable-next-line selector-class-pattern */
+/* stylelint-disable selector-class-pattern */
 .toctogglecheckbox:checked + .toctitle {
 	display: none;
+}
+
+.toc {
+	background-color: #f9f9f9;
+	border: 1pt solid #aaa;
+	padding: 5px;
+	display: table;
+}
+
+/* Separate columns for `.tocnumber` and `.toctext` */
+.tocnumber,
+.toctext {
+	display: table-cell;
+}
+
+/* Space between those columns */
+.tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-ltr .tocnumber {
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-rtl .tocnumber {
+	padding-left: 0.5em;
+	padding-right: 0;
 }

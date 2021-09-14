@@ -69,8 +69,7 @@
 		// saving.
 		allowCloseWindow = mw.confirmCloseWindow( {
 			test: isPrefsChanged,
-			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) ),
-			namespace: 'prefswarning'
+			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) )
 		} );
 		$( '#mw-prefs-form' ).on( 'submit', allowCloseWindow.release );
 		restoreButton.on( 'click', function () {

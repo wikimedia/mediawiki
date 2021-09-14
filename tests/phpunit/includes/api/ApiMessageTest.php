@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -17,10 +18,9 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 		$msg2 = TestingAccessWrapper::newFromObject( $msg2 );
 		$this->assertSame( $msg->interface, $msg2->interface, 'interface' );
 		$this->assertSame( $msg->useDatabase, $msg2->useDatabase, 'useDatabase' );
-		$this->assertSame( $msg->format, $msg2->format, 'format' );
 		$this->assertSame(
-			$msg->title ? $msg->title->getFullText() : null,
-			$msg2->title ? $msg2->title->getFullText() : null,
+			$msg->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,
+			$msg2->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,
 			'title'
 		);
 	}
@@ -81,7 +81,10 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testApiMessage() {
 		$msg = new Message( [ 'foo', 'bar' ], [ 'baz' ] );
-		$msg->inLanguage( 'de' )->title( Title::newMainPage() );
+		$msg->inLanguage( 'de' )
+			->page(
+				PageReferenceValue::localReference( NS_MAIN, 'Main_Page' )
+			);
 		$msg2 = new ApiMessage( $msg, 'code', [ 'data' ] );
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'code', $msg2->getApiCode() );
@@ -120,7 +123,9 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testApiRawMessage() {
 		$msg = new RawMessage( 'foo', [ 'baz' ] );
-		$msg->inLanguage( 'de' )->title( Title::newMainPage() );
+		$msg->inLanguage( 'de' )->page(
+			PageReferenceValue::localReference( NS_MAIN, 'Main_Page' )
+		);
 		$msg2 = new ApiRawMessage( $msg, 'code', [ 'data' ] );
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'code', $msg2->getApiCode() );

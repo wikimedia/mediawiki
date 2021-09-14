@@ -217,10 +217,10 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$params = [
 			PHP_BINARY,
 			__DIR__
-				 . DIRECTORY_SEPARATOR
-				 . 'bin'
-				 . DIRECTORY_SEPARATOR
-				 . $fileName
+				. DIRECTORY_SEPARATOR
+				. 'bin'
+				. DIRECTORY_SEPARATOR
+				. $fileName
 		];
 		$params = array_merge( $params, $args );
 

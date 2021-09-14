@@ -139,7 +139,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		# Attempt to connect to the database as a privileged user
 		# This will vomit up an error if there are permissions problems
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		# Check to see whether the database server meets the minimum requirements
 		/** @var DatabaseInstaller $dbInstallerClass */
@@ -162,7 +162,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		if ( !$this->hasOption( 'quick' ) ) {
 			$this->output( "Abort with control-c in the next five seconds "
-				. "(skip this countdown with --quick) ... " );
+				. "(skip this countdown with --quick) ..." );
 			$this->countDown( 5 );
 		}
 

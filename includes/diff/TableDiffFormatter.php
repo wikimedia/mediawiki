@@ -32,6 +32,16 @@
  */
 class TableDiffFormatter extends DiffFormatter {
 
+	/**
+	 * Constants for diff sides. Note: these are also used for context lines.
+	 */
+	private const SIDE_LEFT = 'left';
+	private const SIDE_RIGHT = 'right';
+	private const SIDE_CLASSES = [
+		self::SIDE_LEFT => 'diff-left',
+		self::SIDE_RIGHT => 'diff-right'
+	];
+
 	public function __construct() {
 		$this->leadingContextLines = 2;
 		$this->trailingContextLines = 2;
@@ -103,7 +113,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function addedLine( $line ) {
-		return $this->wrapLine( '+', 'diff-addedline', $line );
+		return $this->wrapLine( '+', [ 'diff-addedline', $this->getClassForSide( self::SIDE_RIGHT ) ], $line );
 	}
 
 	/**
@@ -114,23 +124,24 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function deletedLine( $line ) {
-		return $this->wrapLine( '−', 'diff-deletedline', $line );
+		return $this->wrapLine( '−', [ 'diff-deletedline', $this->getClassForSide( self::SIDE_LEFT ) ], $line );
 	}
 
 	/**
 	 * HTML-escape parameter before calling this
 	 *
 	 * @param string $line
+	 * @param string $side self::SIDE_LEFT or self::SIDE_RIGHT
 	 *
 	 * @return string
 	 */
-	protected function contextLine( $line ) {
-		return $this->wrapLine( '', 'diff-context', $line );
+	protected function contextLine( $line, string $side ) {
+		return $this->wrapLine( '', [ 'diff-context', $this->getClassForSide( $side ) ], $line );
 	}
 
 	/**
 	 * @param string $marker
-	 * @param string $class Unused
+	 * @param string|string[] $class A single class or a list of classes
 	 * @param string $line
 	 *
 	 * @return string
@@ -153,10 +164,11 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
+	 * @param string $side self::SIDE_LEFT or self::SIDE_RIGHT
 	 * @return string
 	 */
-	protected function emptyLine() {
-		return Html::element( 'td', [ 'colspan' => '2' ] );
+	protected function emptyLine( string $side ) {
+		return Html::element( 'td', [ 'colspan' => '2', 'class' => $this->getClassForSide( $side ) ] );
 	}
 
 	/**
@@ -170,7 +182,7 @@ class TableDiffFormatter extends DiffFormatter {
 				Html::rawElement(
 					'tr',
 					[],
-					$this->emptyLine() .
+					$this->emptyLine( self::SIDE_LEFT ) .
 					$this->addedLine(
 						Html::element(
 							'ins',
@@ -202,7 +214,7 @@ class TableDiffFormatter extends DiffFormatter {
 							$line
 						)
 					) .
-					$this->emptyLine()
+					$this->emptyLine( self::SIDE_RIGHT )
 				) .
 				"\n"
 			);
@@ -220,8 +232,8 @@ class TableDiffFormatter extends DiffFormatter {
 				Html::rawElement(
 					'tr',
 					[],
-					$this->contextLine( htmlspecialchars( $line ) ) .
-					$this->contextLine( htmlspecialchars( $line ) )
+					$this->contextLine( htmlspecialchars( $line ), self::SIDE_LEFT ) .
+					$this->contextLine( htmlspecialchars( $line ), self::SIDE_RIGHT )
 				) .
 				"\n"
 			);
@@ -246,8 +258,8 @@ class TableDiffFormatter extends DiffFormatter {
 		$nadd = count( $add );
 		$n = max( $ndel, $nadd );
 		for ( $i = 0; $i < $n; $i++ ) {
-			$delLine = $i < $ndel ? $this->deletedLine( $del[$i] ) : $this->emptyLine();
-			$addLine = $i < $nadd ? $this->addedLine( $add[$i] ) : $this->emptyLine();
+			$delLine = $i < $ndel ? $this->deletedLine( $del[$i] ) : $this->emptyLine( self::SIDE_LEFT );
+			$addLine = $i < $nadd ? $this->addedLine( $add[$i] ) : $this->emptyLine( self::SIDE_RIGHT );
 			$this->writeOutput(
 				Html::rawElement(
 					'tr',
@@ -259,4 +271,17 @@ class TableDiffFormatter extends DiffFormatter {
 		}
 	}
 
+	/**
+	 * Get a class for the given diff side, or throw if the side is invalid.
+	 *
+	 * @param string $side self::SIDE_LEFT or self::SIDE_RIGHT
+	 * @return string
+	 * @throws InvalidArgumentException
+	 */
+	private function getClassForSide( string $side ): string {
+		if ( !isset( self::SIDE_CLASSES[$side] ) ) {
+			throw new InvalidArgumentException( "Invalid diff side: $side" );
+		}
+		return self::SIDE_CLASSES[$side];
+	}
 }

@@ -13,7 +13,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		self::$users['WatchedItemStoreIntegrationTestUser']
 			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );
@@ -285,10 +285,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		$this->assertEquals(
 			$initialVisitingWatchers,

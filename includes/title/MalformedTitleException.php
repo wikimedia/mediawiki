@@ -24,15 +24,19 @@
  * @since 1.23
  */
 class MalformedTitleException extends Exception implements ILocalizedException {
-	private $titleText = null;
-	private $errorMessage = null;
-	private $errorMessageParameters = [];
+
+	/** @var string|null */
+	private $titleText;
+	/** @var string */
+	private $errorMessage;
+	/** @var array */
+	private $errorMessageParameters;
 
 	/**
 	 * @stable to call
 	 * @param string $errorMessage Localisation message describing the error (since MW 1.26)
 	 * @param string|null $titleText The invalid title text (since MW 1.26)
-	 * @param string[] $errorMessageParameters Additional parameters for the error message.
+	 * @param array $errorMessageParameters Additional parameters for the error message.
 	 * $titleText will be appended if it's not null. (since MW 1.26)
 	 */
 	public function __construct(
@@ -69,7 +73,7 @@ class MalformedTitleException extends Exception implements ILocalizedException {
 
 	/**
 	 * @since 1.26
-	 * @return string[]
+	 * @return array
 	 */
 	public function getErrorMessageParameters() {
 		return $this->errorMessageParameters;

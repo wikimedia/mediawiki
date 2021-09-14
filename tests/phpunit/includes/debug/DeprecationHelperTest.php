@@ -13,7 +13,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 	/** @var TestDeprecatedSubclass */
 	private $testSubclass;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->testClass = new TestDeprecatedClass();
 		$this->testSubclass = new TestDeprecatedSubclass();
@@ -44,9 +44,46 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'protectedNonDeprecated', E_USER_ERROR,
 				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
 			[ 'privateNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
 			[ 'nonExistent', E_USER_NOTICE, 'Undefined property: TestDeprecatedClass::$nonExistent' ],
 		];
+	}
+
+	public function testDeprecateDynamicPropertyAccess() {
+		$testObject = new class extends TestDeprecatedClass {
+			public function __construct() {
+				parent::__construct();
+				$this->deprecateDynamicPropertiesAccess( '1.23' );
+			}
+		};
+		$this->assertDeprecationWarningIssued( static function () use ( $testObject ) {
+			$testObject->dynamic_property = 'bla';
+		} );
+	}
+
+	public function testDynamicPropertyNullCoalesce() {
+		$testObject = new TestDeprecatedClass();
+		$this->assertSame( 'bla', $testObject->dynamic_property ?? 'bla' );
+	}
+
+	public function testDynamicPropertyNullCoalesceDeprecated() {
+		$testObject = new class extends TestDeprecatedClass {
+			public function __construct() {
+				parent::__construct();
+				$this->deprecateDynamicPropertiesAccess( '1.23' );
+			}
+		};
+		$this->assertDeprecationWarningIssued( function () use ( $testObject ) {
+			$this->assertSame( 'bla', $testObject->dynamic_property ?? 'bla' );
+		} );
+	}
+
+	public function testDynamicPropertyOnMockObject() {
+		$testObject = $this->getMockBuilder( TestDeprecatedClass::class )
+			->enableProxyingToOriginalMethods()
+			->getMock();
+		$testObject->blabla = 'test';
+		$this->assertSame( 'test', $testObject->blabla );
 	}
 
 	/**
@@ -77,11 +114,11 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'privateDeprecated', null, null ],
 			[ 'fallbackDeprecated', null, null ],
 			[ 'fallbackGetterOnly', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
+				'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
 			[ 'protectedNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
 			[ 'privateNonDeprecated', E_USER_ERROR,
-			  'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
 			[ 'nonExistent', null, null ],
 		];
 	}

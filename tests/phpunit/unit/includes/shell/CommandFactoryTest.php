@@ -28,7 +28,7 @@ class CommandFactoryTest extends MediaWikiUnitTestCase {
 			public function __construct() {
 			}
 
-			public function isEnabled() {
+			public function isEnabled( ?string $service = null ): bool {
 				return false;
 			}
 

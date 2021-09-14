@@ -37,11 +37,6 @@ class ChangesList extends ContextSource {
 
 	public const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
-	/**
-	 * @var Skin
-	 */
-	public $skin;
-
 	protected $watchlist = false;
 	protected $lastdate;
 	protected $message;
@@ -62,22 +57,16 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
-	 * @var array
+	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups;
 
 	/**
-	 * @param Skin|IContextSource $obj
-	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param IContextSource $context
+	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
-	public function __construct( $obj, array $filterGroups = [] ) {
-		if ( $obj instanceof IContextSource ) {
-			$this->setContext( $obj );
-			$this->skin = $obj->getSkin();
-		} else {
-			$this->setContext( $obj->getContext() );
-			$this->skin = $obj;
-		}
+	public function __construct( $context, array $filterGroups = [] ) {
+		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
@@ -248,11 +237,9 @@ class ChangesList extends ContextSource {
 			( $nsInfo->isTalk( $rc->mAttribs['rc_namespace'] ) ? 'talk' : 'subject' )
 		);
 
-		if ( $this->filterGroups !== null ) {
-			foreach ( $this->filterGroups as $filterGroup ) {
-				foreach ( $filterGroup->getFilters() as $filter ) {
-					$filter->applyCssClassIfNeeded( $this, $rc, $classes );
-				}
+		foreach ( $this->filterGroups as $filterGroup ) {
+			foreach ( $filterGroup->getFilters() as $filter ) {
+				$filter->applyCssClassIfNeeded( $this, $rc, $classes );
 			}
 		}
 
@@ -421,7 +408,7 @@ class ChangesList extends ContextSource {
 	 * @param Authority $performer
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
-	 *   the Title associated with the Revision
+	 *   the Title associated with the RevisionRecord
 	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
 	 * @return string HTML
 	 */
@@ -444,7 +431,8 @@ class ChangesList extends ContextSource {
 			$link = htmlspecialchars( $date );
 		}
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
+			$deletedClass = Linker::getRevisionDeletedClass( $rev );
+			$link = "<span class=\"$deletedClass mw-changeslist-date\">$link</span>";
 		}
 		return $link;
 	}
@@ -560,7 +548,11 @@ class ChangesList extends ContextSource {
 			$params
 		);
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
-			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
+			$class = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$class .= ' mw-history-suppressed';
+			}
+			$articlelink = '<span class="' . $class . '">' . $articlelink . '</span>';
 		}
 		# To allow for boldening pages watched by this user
 		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
@@ -655,7 +647,11 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' .
+			$deletedClass = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass = ' mw-history-suppressed';
+			}
+			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
@@ -694,7 +690,11 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertComment( $rc ) {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
-			return ' <span class="history-deleted comment">' .
+			$deletedClass = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass .= ' mw-history-suppressed';
+			}
+			return ' <span class="' . $deletedClass . ' comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
@@ -733,7 +733,6 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	public static function isDeleted( $rc, $field ) {
-		// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfBitwiseOp false positive
 		return ( $rc->mAttribs['rc_deleted'] & $field ) == $field;
 	}
 

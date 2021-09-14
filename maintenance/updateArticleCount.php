@@ -37,14 +37,14 @@ class UpdateArticleCount extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Count of the number of articles and update the site statistics table' );
 		$this->addOption( 'update', 'Update the site_stats table with the new count' );
-		$this->addOption( 'use-master', 'Count using the master database' );
+		$this->addOption( 'use-master', 'Count using the primary database' );
 	}
 
 	public function execute() {
 		$this->output( "Counting articles..." );
 
 		if ( $this->hasOption( 'use-master' ) ) {
-			$dbr = $this->getDB( DB_MASTER );
+			$dbr = $this->getDB( DB_PRIMARY );
 		} else {
 			$dbr = $this->getDB( DB_REPLICA, 'vslow' );
 		}
@@ -53,8 +53,8 @@ class UpdateArticleCount extends Maintenance {
 
 		$this->output( "found {$result}.\n" );
 		if ( $this->hasOption( 'update' ) ) {
-			$this->output( "Updating site statistics table... " );
-			$dbw = $this->getDB( DB_MASTER );
+			$this->output( "Updating site statistics table..." );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$dbw->update(
 				'site_stats',
 				[ 'ss_good_articles' => $result ],

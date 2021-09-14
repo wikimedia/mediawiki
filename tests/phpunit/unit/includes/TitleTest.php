@@ -20,8 +20,15 @@
  */
 namespace MediaWiki\Tests\Unit;
 
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
+use TitleValue;
 
 /**
  * @covers Title
@@ -61,6 +68,555 @@ class TitleTest extends MediaWikiUnitTestCase {
 		// Already checked false above, try with true now
 		$title = Title::makeTitle( NS_MEDIAWIKI, 'Conversiontable/foo' );
 		$this->assertTrue( $title->isConversionTable() );
+	}
+
+	/**
+	 * @covers Title::legalChars
+	 */
+	public function testLegalChars() {
+		$titlechars = Title::legalChars();
+
+		foreach ( range( 1, 255 ) as $num ) {
+			$chr = chr( $num );
+			if ( strpos( "#[]{}<>|", $chr ) !== false || preg_match( "/[\\x00-\\x1f\\x7f]/", $chr ) ) {
+				$this->assertFalse(
+					(bool)preg_match( "/[$titlechars]/", $chr ),
+					"chr($num) = $chr is not a valid titlechar"
+				);
+			} else {
+				$this->assertTrue(
+					(bool)preg_match( "/[$titlechars]/", $chr ),
+					"chr($num) = $chr is a valid titlechar"
+				);
+			}
+		}
+	}
+
+	public function provideConvertByteClassToUnicodeClass() {
+		return [
+			[
+				' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+',
+				' %!"$&\'()*,\\-./0-9:;=?@A-Z\\\\\\^_`a-z~+\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTYf-\\xFF+',
+				'QWERTYf-\\x7F+\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTY\\x66-\\xFD+',
+				'QWERTYf-\\x7F+\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTYf-y+',
+				'QWERTYf-y+',
+			],
+			[
+				'QWERTYf-\\x80+',
+				'QWERTYf-\\x7F+\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTY\\x66-\\x80+\\x23',
+				'QWERTYf-\\x7F+#\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTY\\x66-\\x80+\\xD3',
+				'QWERTYf-\\x7F+\\u0080-\\uFFFF',
+			],
+			[
+				'\\\\\\x99',
+				'\\\\\\u0080-\\uFFFF',
+			],
+			[
+				'-\\x99',
+				'\\-\\u0080-\\uFFFF',
+			],
+			[
+				'QWERTY\\-\\x99',
+				'QWERTY\\-\\u0080-\\uFFFF',
+			],
+			[
+				'\\\\x99',
+				'\\\\x99',
+			],
+			[
+				'A-\\x9F',
+				'A-\\x7F\\u0080-\\uFFFF',
+			],
+			[
+				'\\x66-\\x77QWERTY\\x88-\\x91FXZ',
+				'f-wQWERTYFXZ\\u0080-\\uFFFF',
+			],
+			[
+				'\\x66-\\x99QWERTY\\xAA-\\xEEFXZ',
+				'f-\\x7FQWERTYFXZ\\u0080-\\uFFFF',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideConvertByteClassToUnicodeClass
+	 * @covers Title::convertByteClassToUnicodeClass
+	 */
+	public function testConvertByteClassToUnicodeClass( $byteClass, $unicodeClass ) {
+		$this->assertEquals( $unicodeClass, Title::convertByteClassToUnicodeClass( $byteClass ) );
+	}
+
+	public static function provideNewFromTitleValue() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Foo' ) ],
+			[ new TitleValue( NS_MAIN, 'Foo', 'bar' ) ],
+			[ new TitleValue( NS_USER, 'Hansi_Maier' ) ],
+		];
+	}
+
+	/**
+	 * @covers Title::newFromTitleValue
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromTitleValue( TitleValue $value ) {
+		$title = Title::newFromTitleValue( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::newFromLinkTarget
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromLinkTarget( LinkTarget $value ) {
+		$title = Title::newFromLinkTarget( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::newFromLinkTarget
+	 */
+	public function testNewFromLinkTarget_clone() {
+		$title = Title::makeTitle( NS_MAIN, 'Example' );
+		$this->assertSame( $title, Title::newFromLinkTarget( $title ) );
+
+		// The Title::NEW_CLONE flag should ensure that a fresh instance is returned.
+		$clone = Title::newFromLinkTarget( $title, Title::NEW_CLONE );
+		$this->assertNotSame( $title, $clone );
+		$this->assertTrue( $clone->equals( $title ) );
+	}
+
+	public function provideCastFromLinkTarget() {
+		return array_merge( [ [ null ] ], $this->provideNewFromTitleValue() );
+	}
+
+	/**
+	 * @covers Title::castFromLinkTarget
+	 * @dataProvider provideCastFromLinkTarget
+	 */
+	public function testCastFromLinkTarget( $value ) {
+		$title = Title::castFromLinkTarget( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} else {
+			$dbkey = str_replace( ' ', '_', $value->getText() );
+			$this->assertSame( $dbkey, $title->getDBkey() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getFragment(), $title->getFragment() );
+		}
+	}
+
+	public function provideDataForTestSetAndGetFragment() {
+		return [
+			[ '#fragment', 'fragment' ],
+			[ '#fragment_frag', 'fragment frag' ],
+			[ 'fragment', 'fragment' ],
+			[ 'fragment_frag', 'fragment frag' ],
+		];
+	}
+
+	/**
+	 * @covers Title::getFragment
+	 * @covers Title::setFragment
+	 * @covers Title::normalizeFragment
+	 * @dataProvider provideDataForTestSetAndGetFragment
+	 */
+	public function testSetAndGetFragment( string $fragment, $expected ) {
+		$title = Title::makeTitle( NS_MAIN, 'Title' );
+		$title->setFragment( $fragment );
+		$this->assertSame( $expected, $title->getFragment() );
+	}
+
+	public function provideTitleWithOrWithoutFragments() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Title', 'fragment' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Title' ), false ],
+			[ Title::makeTitle( NS_HELP, '' ), false ],
+		];
+	}
+
+	/**
+	 * @covers Title::hasFragment
+	 * @dataProvider provideTitleWithOrWithoutFragments
+	 */
+	public function testHasFragment( Title $title, $expected ) {
+		$this->assertSame( $expected, $title->hasFragment() );
+	}
+
+	public function provideCompare() {
+		yield 'Title == Title' => [
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			0
+		];
+		yield 'Title > Title, name' => [
+			Title::makeTitle( NS_MAIN, 'Ax' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			1
+		];
+		yield 'Title < Title, name' => [
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Ax' ),
+			-1
+		];
+		yield 'Title > Title, ns' => [
+			Title::makeTitle( NS_TALK, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			1
+		];
+		yield 'Title < Title, ns' => [
+			Title::makeTitle( NS_SPECIAL, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			-1
+		];
+		yield 'LinkTarget == PageReference' => [
+			new TitleValue( NS_MAIN, 'Aa' ),
+			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			0
+		];
+		yield 'Title > PageReference, name' => [
+			Title::makeTitle( NS_TALK, 'Aa' ),
+			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			1
+		];
+		yield 'LinkTarget < Title, ns' => [
+			new TitleValue( NS_SPECIAL, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			-2
+		];
+	}
+
+	/**
+	 * @dataProvider provideCompare
+	 * @covers Title::compare
+	 */
+	public function testCompare( $a, $b, $expected ) {
+		if ( $expected > 0 ) {
+			$this->assertGreaterThan( 0, Title::compare( $a, $b ) );
+		} elseif ( $expected < 0 ) {
+			$this->assertLessThan( 0, Title::compare( $a, $b ) );
+		} else {
+			$this->assertSame( 0, Title::compare( $a, $b ) );
+		}
+	}
+
+	public function provideCastFromPageIdentity() {
+		yield [ null ];
+
+		$fake = $this->createMock( PageIdentity::class );
+		$fake->method( 'getId' )->willReturn( 7 );
+		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$fake->method( 'getDBkey' )->willReturn( 'Test' );
+
+		yield [ $fake ];
+
+		$fake = $this->createMock( Title::class );
+		$fake->method( 'getId' )->willReturn( 7 );
+		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$fake->method( 'getDBkey' )->willReturn( 'Test' );
+
+		yield [ $fake ];
+	}
+
+	/**
+	 * @covers Title::castFromPageIdentity
+	 * @dataProvider provideCastFromPageIdentity
+	 */
+	public function testCastFromPageIdentity( ?PageIdentity $value ) {
+		$title = Title::castFromPageIdentity( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} elseif ( $value instanceof Title ) {
+			$this->assertSame( $value, $title );
+		} else {
+			$this->assertSame( $value->getId(), $title->getArticleID() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
+		}
+	}
+
+	public function provideCastFromPageReference() {
+		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
+	}
+
+	/**
+	 * @covers Title::castFromPageReference
+	 * @dataProvider provideCastFromPageIdentity
+	 * @dataProvider provideCastFromPageReference
+	 */
+	public function testCastFromPageReference( ?PageReference $value ) {
+		$title = Title::castFromPageReference( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} elseif ( $value instanceof Title ) {
+			$this->assertSame( $value, $title );
+		} else {
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
+		}
+	}
+
+	public function provideCreateFragmentTitle() {
+		return [
+			[ NS_MAIN, 'Test', 'foo' ],
+			[ NS_TALK, 'Test', 'foo', '' ],
+			[ NS_CATEGORY, 'Test', 'foo', 'bar' ],
+			[ NS_MAIN, 'Test1', '', 'interwiki', 'baz' ]
+		];
+	}
+
+	/**
+	 * @covers Title::createFragmentTarget
+	 * @dataProvider provideCreateFragmentTitle
+	 */
+	public function testCreateFragmentTitle( $namespace, $title, $fragment ) {
+		$title = Title::makeTitle( $namespace, $title );
+		$fragmentTitle = $title->createFragmentTarget( $fragment );
+
+		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
+		$this->assertEquals( $title->getText(), $fragmentTitle->getText() );
+		$this->assertEquals( $title->getInterwiki(), $fragmentTitle->getInterwiki() );
+		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
+	}
+
+	public function provideEquals() {
+		/**
+		 * @TODO Don't construct Title object with ::newFromText() in provider.
+		 * This might hit a real DB as the fake DB is not available when providers run.
+		 */
+		yield '(newFromText) same text' => [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Main Page' ),
+			true
+		];
+		yield '(newFromText) different text' => [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Not The Main Page' ),
+			false
+		];
+		yield '(newFromText) different namespace, same text' => [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Project:Main Page' ),
+			false
+		];
+		yield '(newFromText) namespace alias' => [
+			Title::newFromText( 'File:Example.png' ),
+			Title::newFromText( 'Image:Example.png' ),
+			true
+		];
+		yield '(newFromText) same special page' => [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Version' ),
+			true
+		];
+		yield '(newFromText) different special page' => [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Recentchanges' ),
+			false
+		];
+		yield '(newFromText) compare special and normal page' => [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Main Page' ),
+			false
+		];
+		yield '(makeTitle) same text' => [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield '(makeTitle) different text' => [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Bar', '', '' ),
+			false
+		];
+		yield '(makeTitle) different namespace, same text' => [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_TALK, 'Foo', '', '' ),
+			false
+		];
+		yield '(makeTitle) same fragment' => [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			true
+		];
+		yield '(makeTitle) different fragment (ignored)' => [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Baz', '' ),
+			true
+		];
+		yield '(makeTitle) fragment vs no fragment (ignored)' => [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield '(makeTitle) same interwiki' => [
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			true
+		];
+		yield '(makeTitle) different interwiki' => [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			false
+		];
+
+		// Wrong type
+		yield '(makeTitle vs PageIdentityValue) name text' => [
+			Title::makeTitle( NS_MAIN, 'Foo' ),
+			new PageIdentityValue( 0, NS_MAIN, 'Foo', PageIdentity::LOCAL ),
+			false
+		];
+		yield '(makeTitle vs TitleValue) name text' => [
+			Title::makeTitle( NS_MAIN, 'Foo' ),
+			new TitleValue( NS_MAIN, 'Foo' ),
+			false
+		];
+		yield '(makeTitle vs UserIdentityValue) name text' => [
+			Title::makeTitle( NS_MAIN, 'Foo' ),
+			new UserIdentityValue( 7, 'Foo' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::equals
+	 * @dataProvider provideEquals
+	 */
+	public function testEquals( Title $firstValue, $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->equals( $secondValue )
+		);
+	}
+
+	public function provideIsSamePageAs() {
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 1 );
+		yield '(PageIdentityValue) same text, title has ID 0' => [
+			$title,
+			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			true
+		];
+
+		$title = Title::makeTitle( 1, 'Bar_Baz' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) same text, PageIdentityValue has ID 0' => [
+			$title,
+			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			true
+		];
+
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different text, both IDs are 0' => [
+			$title,
+			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different namespace' => [
+			$title,
+			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo', '' );
+		$title->resetArticleID( 1 );
+		yield '(PageIdentityValue) different wiki, different ID' => [
+			$title,
+			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo', '' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different wiki, both IDs are 0' => [
+			$title,
+			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::isSamePageAs
+	 * @dataProvider provideIsSamePageAs
+	 */
+	public function testIsSamePageAs( Title $firstValue, $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->isSamePageAs( $secondValue )
+		);
+	}
+
+	public function provideIsSameLinkAs() {
+		yield 'same text' => [
+			Title::makeTitle( 0, 'Foo' ),
+			new TitleValue( 0, 'Foo' ),
+			true
+		];
+		yield 'same namespace' => [
+			Title::makeTitle( 1, 'Bar_Baz' ),
+			new TitleValue( 1, 'Bar_Baz' ),
+			true
+		];
+		yield 'same text, different namespace' => [
+			Title::makeTitle( 0, 'Foo' ),
+			new TitleValue( 1, 'Foo' ),
+			false
+		];
+		yield 'different text' => [
+			Title::makeTitle( 0, 'Foo' ),
+			new TitleValue( 0, 'Foozz' ),
+			false
+		];
+		yield 'different fragment' => [
+			Title::makeTitle( 0, 'Foo', '' ),
+			new TitleValue( 0, 'Foo', 'Bar' ),
+			false
+		];
+		yield 'different interwiki' => [
+			Title::makeTitle( 0, 'Foo', '', 'bar' ),
+			new TitleValue( 0, 'Foo', '', '' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::isSameLinkAs
+	 * @dataProvider provideIsSameLinkAs
+	 */
+	public function testIsSameLinkAs( Title $firstValue, $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->isSameLinkAs( $secondValue )
+		);
 	}
 
 }

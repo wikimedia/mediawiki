@@ -13,7 +13,7 @@ use MediaWiki\MediaWikiServices;
  */
 class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'page';

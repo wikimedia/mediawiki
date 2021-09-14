@@ -200,7 +200,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 					$record['channel'] : $this->prefix;
 				$text = preg_replace( '/^/m', "{$leader} ", $text );
 
-				// Limit to 64KB
+				// Limit to 64 KiB
 				if ( strlen( $text ) > 65506 ) {
 					$text = substr( $text, 0, 65506 );
 				}

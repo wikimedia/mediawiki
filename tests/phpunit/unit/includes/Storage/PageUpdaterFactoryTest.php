@@ -1,0 +1,86 @@
+<?php
+
+namespace MediaWiki\Tests\Unit\Storage;
+
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
+use MediaWiki\User\UserIdentityValue;
+use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
+use WikiPage;
+
+/**
+ * @covers \MediaWiki\Storage\PageUpdaterFactory
+ */
+class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
+	use MockServiceDependenciesTrait;
+
+	private function getPageUpdaterFactory() {
+		$config = [
+			'ArticleCountMethod' => null,
+			'RCWatchCategoryMembership' => null,
+			'PageCreationLog' => null,
+			'UseAutomaticEditSummaries' => null,
+			'ManualRevertSearchRadius' => null,
+			'UseRCPatrol' => null,
+		];
+
+		$lb = $this->createNoOpMock( LoadBalancer::class );
+		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
+		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
+
+		return $this->newServiceInstance(
+			PageUpdaterFactory::class,
+			[
+				'loadbalancerFactory' => $lbFactory,
+				'options' => new ServiceOptions(
+					PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
+					$config
+				),
+				'softwareTags' => [],
+			]
+		);
+	}
+
+	public function testNewDerivedPageDataUpdater() {
+		$page = $this->createNoOpMock( WikiPage::class );
+
+		$factory = $this->getPageUpdaterFactory();
+		$derivedPageDataUpdater = $factory->newDerivedPageDataUpdater( $page );
+
+		$this->assertInstanceOf( DerivedPageDataUpdater::class, $derivedPageDataUpdater );
+	}
+
+	public function testNewPageUpdater() {
+		$page = $this->createNoOpMock( WikiPage::class, [ 'canExist' ] );
+		$page->method( 'canExist' )->willReturn( true );
+
+		$user = new UserIdentityValue( 0, 'Dummy' );
+
+		$factory = $this->getPageUpdaterFactory();
+		$pageUpdater = $factory->newPageUpdater( $page, $user );
+
+		$this->assertInstanceOf( PageUpdater::class, $pageUpdater );
+	}
+
+	public function testNewPageUpdaterForDerivedPageDataUpdater() {
+		$page = $this->createNoOpMock( WikiPage::class, [ 'canExist' ] );
+		$page->method( 'canExist' )->willReturn( true );
+
+		$user = new UserIdentityValue( 0, 'Dummy' );
+
+		$factory = $this->getPageUpdaterFactory();
+		$derivedPageDataUpdater = $factory->newDerivedPageDataUpdater( $page );
+		$pageUpdater = $factory->newPageUpdaterForDerivedPageDataUpdater(
+			$page,
+			$user,
+			$derivedPageDataUpdater
+		);
+
+		$this->assertInstanceOf( PageUpdater::class, $pageUpdater );
+	}
+}

@@ -41,7 +41,7 @@ class PNGMetadataExtractor {
 	private static $textChunks;
 
 	public const VERSION = 1;
-	private const MAX_CHUNK_SIZE = 3145728; // 3 megabytes
+	private const MAX_CHUNK_SIZE = 3145728; // 3 mebibytes
 
 	public static function getMetadata( $filename ) {
 		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
@@ -78,6 +78,8 @@ class PNGMetadataExtractor {
 		$loopCount = 1;
 		$text = [];
 		$duration = 0.0;
+		$width = 0;
+		$height = 0;
 		$bitDepth = 0;
 		$colorType = 'unknown';
 
@@ -94,33 +96,35 @@ class PNGMetadataExtractor {
 		}
 
 		// Check for the PNG header
-		$buf = fread( $fh, 8 );
+		$buf = self::read( $fh, 8 );
 		if ( $buf != self::$pngSig ) {
 			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
 		// Read chunks
 		while ( !feof( $fh ) ) {
-			$buf = fread( $fh, 4 );
-			if ( !$buf || strlen( $buf ) < 4 ) {
-				throw new Exception( __METHOD__ . ": Read error" );
-			}
+			$buf = self::read( $fh, 4 );
 			$chunk_size = unpack( "N", $buf )[1];
 
-			if ( $chunk_size < 0 ) {
-				throw new Exception( __METHOD__ . ": Chunk size too big for unpack" );
+			if ( $chunk_size < 0 || $chunk_size > self::MAX_CHUNK_SIZE ) {
+				wfDebug( __METHOD__ . ': Chunk size of ' . $chunk_size .
+					' too big, skipping. Max size is: ' . self::MAX_CHUNK_SIZE );
+				if ( fseek( $fh, 4 + $chunk_size + self::$crcSize, SEEK_CUR ) !== 0 ) {
+					throw new Exception( __METHOD__ . ': seek error' );
+				}
+				continue;
 			}
 
-			$chunk_type = fread( $fh, 4 );
-			if ( !$chunk_type || strlen( $chunk_type ) < 4 ) {
-				throw new Exception( __METHOD__ . ": Read error" );
+			$chunk_type = self::read( $fh, 4 );
+			$buf = self::read( $fh, $chunk_size );
+			$crc = self::read( $fh, self::$crcSize );
+			$computed = crc32( $chunk_type . $buf );
+			if ( pack( 'N', $computed ) !== $crc ) {
+				wfDebug( __METHOD__ . ': chunk has invalid CRC, skipping' );
+				continue;
 			}
 
 			if ( $chunk_type == "IHDR" ) {
-				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf || strlen( $buf ) < $chunk_size ) {
-					throw new Exception( __METHOD__ . ": Read error" );
-				}
 				$width = unpack( 'N', substr( $buf, 0, 4 ) )[1];
 				$height = unpack( 'N', substr( $buf, 4, 4 ) )[1];
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
@@ -147,22 +151,19 @@ class PNGMetadataExtractor {
 						break;
 				}
 			} elseif ( $chunk_type == "acTL" ) {
-				$buf = fread( $fh, $chunk_size );
-				if ( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
-					throw new Exception( __METHOD__ . ": Read error" );
+				if ( $chunk_size < 4 ) {
+					wfDebug( __METHOD__ . ": acTL chunk too small" );
+					continue;
 				}
 
 				$actl = unpack( "Nframes/Nplays", $buf );
 				$frameCount = $actl['frames'];
 				$loopCount = $actl['plays'];
 			} elseif ( $chunk_type == "fcTL" ) {
-				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf || strlen( $buf ) < $chunk_size ) {
-					throw new Exception( __METHOD__ . ": Read error" );
-				}
 				$buf = substr( $buf, 20 );
 				if ( strlen( $buf ) < 4 ) {
-					throw new Exception( __METHOD__ . ": Read error" );
+					wfDebug( __METHOD__ . ": fcTL chunk too small" );
+					continue;
 				}
 
 				$fctldur = unpack( "ndelay_num/ndelay_den", $buf );
@@ -174,7 +175,6 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type == "iTXt" ) {
 				// Extracts iTXt chunks, uncompressing if necessary.
-				$buf = self::read( $fh, $chunk_size );
 				$items = [];
 				if ( preg_match(
 					'/^([^\x00]{1,79})\x00(\x00|\x01)\x00([^\x00]*)(.)[^\x00]*\x00(.*)$/Ds',
@@ -189,7 +189,6 @@ class PNGMetadataExtractor {
 					$items[1] = strtolower( $items[1] );
 					if ( !isset( self::$textChunks[$items[1]] ) ) {
 						// Only extract textual chunks on our list.
-						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -209,13 +208,11 @@ class PNGMetadataExtractor {
 							if ( $items[5] === false ) {
 								// decompression failed
 								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] );
-								fseek( $fh, self::$crcSize, SEEK_CUR );
 								continue;
 							}
 						} else {
 							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
 								. " or potentially invalid compression method" );
-							fseek( $fh, self::$crcSize, SEEK_CUR );
 							continue;
 						}
 					}
@@ -224,26 +221,25 @@ class PNGMetadataExtractor {
 					$text[$finalKeyword]['_type'] = 'lang';
 				} else {
 					// Error reading iTXt chunk
-					throw new Exception( __METHOD__ . ": Read error on iTXt chunk" );
+					wfDebug( __METHOD__ . ": Invalid iTXt chunk" );
 				}
 			} elseif ( $chunk_type == 'tEXt' ) {
-				$buf = self::read( $fh, $chunk_size );
-
 				// In case there is no \x00 which will make explode fail.
 				if ( strpos( $buf, "\x00" ) === false ) {
-					throw new Exception( __METHOD__ . ": Read error on tEXt chunk" );
+					wfDebug( __METHOD__ . ": Invalid tEXt chunk: no null byte" );
+					continue;
 				}
 
 				list( $keyword, $content ) = explode( "\x00", $buf, 2 );
-				if ( $keyword === '' || $content === '' ) {
-					throw new Exception( __METHOD__ . ": Read error on tEXt chunk" );
+				if ( $keyword === '' ) {
+					wfDebug( __METHOD__ . ": Empty tEXt keyword" );
+					continue;
 				}
 
 				// Theoretically should be case-sensitive, but in practise...
 				$keyword = strtolower( $keyword );
 				if ( !isset( self::$textChunks[$keyword] ) ) {
 					// Don't recognize chunk, so skip.
-					fseek( $fh, self::$crcSize, SEEK_CUR );
 					continue;
 				}
 				Wikimedia\suppressWarnings();
@@ -251,7 +247,8 @@ class PNGMetadataExtractor {
 				Wikimedia\restoreWarnings();
 
 				if ( $content === false ) {
-					throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
+					wfDebug( __METHOD__ . ": Read error (error with iconv)" );
+					continue;
 				}
 
 				$finalKeyword = self::$textChunks[$keyword];
@@ -259,30 +256,28 @@ class PNGMetadataExtractor {
 				$text[$finalKeyword]['_type'] = 'lang';
 			} elseif ( $chunk_type == 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
-					$buf = self::read( $fh, $chunk_size );
-
 					// In case there is no \x00 which will make explode fail.
 					if ( strpos( $buf, "\x00" ) === false ) {
-						throw new Exception( __METHOD__ . ": Read error on zTXt chunk" );
+						wfDebug( __METHOD__ . ": No null byte in zTXt chunk" );
+						continue;
 					}
 
 					list( $keyword, $postKeyword ) = explode( "\x00", $buf, 2 );
 					if ( $keyword === '' || $postKeyword === '' ) {
-						throw new Exception( __METHOD__ . ": Read error on zTXt chunk" );
+						wfDebug( __METHOD__ . ": Empty zTXt chunk" );
+						continue;
 					}
 					// Theoretically should be case-sensitive, but in practise...
 					$keyword = strtolower( $keyword );
 
 					if ( !isset( self::$textChunks[$keyword] ) ) {
 						// Don't recognize chunk, so skip.
-						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 					$compression = substr( $postKeyword, 0, 1 );
 					$content = substr( $postKeyword, 1 );
 					if ( $compression !== "\x00" ) {
 						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping." );
-						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -293,7 +288,6 @@ class PNGMetadataExtractor {
 					if ( $content === false ) {
 						// decompression failed
 						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword );
-						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -302,7 +296,8 @@ class PNGMetadataExtractor {
 					Wikimedia\restoreWarnings();
 
 					if ( $content === false ) {
-						throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
+						wfDebug( __METHOD__ . ": iconv error in zTXt chunk" );
+						continue;
 					}
 
 					$finalKeyword = self::$textChunks[$keyword];
@@ -310,16 +305,12 @@ class PNGMetadataExtractor {
 					$text[$finalKeyword]['_type'] = 'lang';
 				} else {
 					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );
-					fseek( $fh, $chunk_size, SEEK_CUR );
 				}
 			} elseif ( $chunk_type == 'tIME' ) {
 				// last mod timestamp.
 				if ( $chunk_size !== 7 ) {
-					throw new Exception( __METHOD__ . ": tIME wrong size" );
-				}
-				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf || strlen( $buf ) < $chunk_size ) {
-					throw new Exception( __METHOD__ . ": Read error" );
+					wfDebug( __METHOD__ . ": tIME wrong size" );
+					continue;
 				}
 
 				// Note: spec says this should be UTC.
@@ -336,12 +327,8 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type == 'pHYs' ) {
 				// how big pixels are (dots per meter).
 				if ( $chunk_size !== 9 ) {
-					throw new Exception( __METHOD__ . ": pHYs wrong size" );
-				}
-
-				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf || strlen( $buf ) < $chunk_size ) {
-					throw new Exception( __METHOD__ . ": Read error" );
+					wfDebug( __METHOD__ . ": pHYs wrong size" );
+					continue;
 				}
 
 				$dim = unpack( "Nwidth/Nheight/Cunit", $buf );
@@ -361,10 +348,7 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type == "IEND" ) {
 				break;
-			} else {
-				fseek( $fh, $chunk_size, SEEK_CUR );
 			}
-			fseek( $fh, self::$crcSize, SEEK_CUR );
 		}
 		fclose( $fh );
 
@@ -400,6 +384,8 @@ class PNGMetadataExtractor {
 		}
 
 		return [
+			'width' => $width,
+			'height' => $height,
 			'frameCount' => $frameCount,
 			'loopCount' => $loopCount,
 			'duration' => $duration,
@@ -418,11 +404,17 @@ class PNGMetadataExtractor {
 	 * @return string The chunk.
 	 */
 	private static function read( $fh, $size ) {
-		if ( $size > self::MAX_CHUNK_SIZE ) {
-			throw new Exception( __METHOD__ . ': Chunk size of ' . $size .
-				' too big. Max size is: ' . self::MAX_CHUNK_SIZE );
+		if ( $size === 0 ) {
+			return '';
 		}
 
-		return fread( $fh, $size );
+		$result = fread( $fh, $size );
+		if ( $result === false ) {
+			throw new Exception( __METHOD__ . ': read error' );
+		}
+		if ( strlen( $result ) < $size ) {
+			throw new Exception( __METHOD__ . ': unexpected end of file' );
+		}
+		return $result;
 	}
 }

@@ -23,7 +23,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * @ingroup API
@@ -31,6 +34,24 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 class ApiUserrights extends ApiBase {
 
 	private $mUser = null;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param UserGroupManager|null $userGroupManager
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		UserGroupManager $userGroupManager = null
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		// This class is extended and therefor fallback to global state - T285797
+		$this->userGroupManager = $userGroupManager ?? MediaWikiServices::getInstance()->getUserGroupManager();
+	}
 
 	/**
 	 * Get a UserrightsPage object, or subclass.
@@ -45,7 +66,7 @@ class ApiUserrights extends ApiBase {
 	 * @return array
 	 */
 	protected function getAllGroups() {
-		return User::getAllGroups();
+		return $this->userGroupManager->listAllGroups();
 	}
 
 	public function execute() {
@@ -54,7 +75,7 @@ class ApiUserrights extends ApiBase {
 		// Deny if the user is blocked and doesn't have the full 'userrights' permission.
 		// This matches what Special:UserRights does for the web UI.
 		if ( !$this->getAuthority()->isAllowed( 'userrights' ) ) {
-			$block = $pUser->getBlock();
+			$block = $pUser->getBlock( Authority::READ_LATEST );
 			if ( $block && $block->isSitewide() ) {
 				$this->dieBlocked( $block );
 			}
@@ -173,7 +194,6 @@ class ApiUserrights extends ApiBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'userid' => [
 				ApiBase::PARAM_TYPE => 'integer',

@@ -99,16 +99,16 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$emptyString = $db->addQuotes( '' );
 
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getGoodAndMissingTitles();
+		$titles = $pageSet->getGoodAndMissingPages();
 		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
 
 		// Add in special pages, they can theoretically have backlinks too.
 		// (although currently they only do for prop=redirects)
-		foreach ( $pageSet->getSpecialTitles() as $id => $title ) {
+		foreach ( $pageSet->getSpecialPages() as $id => $title ) {
 			$titles[] = $title;
 			$map[$title->getNamespace()][$title->getDBkey()] = $id;
 		}
@@ -249,7 +249,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		if ( $params['show'] !== null ) {
 			// prop=redirects only
-			$show = array_flip( $params['show'] );
+			$show = array_fill_keys( $params['show'], true );
 			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
 				isset( $show['redirect'] ) && isset( $show['!redirect'] )
 			) {

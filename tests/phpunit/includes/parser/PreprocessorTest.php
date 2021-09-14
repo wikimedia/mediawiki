@@ -25,7 +25,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	/** @var Preprocessor */
 	protected $preprocessor;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );

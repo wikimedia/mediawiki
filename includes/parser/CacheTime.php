@@ -116,6 +116,10 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 	 *
 	 * Avoid using 0 if at all possible. Consider JavaScript for highly dynamic content.
 	 *
+	 * NOTE: Beware that reducing the TTL for reasons that do not relate to "dynamic content",
+	 * may have the side-effect of incurring more RefreshLinksJob executions.
+	 * See also WikiPage::triggerOpportunisticLinksUpdate.
+	 *
 	 * @param int $seconds
 	 */
 	public function updateCacheExpiry( $seconds ) {

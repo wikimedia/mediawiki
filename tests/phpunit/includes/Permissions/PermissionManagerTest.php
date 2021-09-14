@@ -6,13 +6,16 @@ use Action;
 use ContentHandler;
 use FauxRequest;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use RequestContext;
 use stdClass;
@@ -51,7 +54,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$localZone = 'UTC';
@@ -236,22 +239,25 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->overrideUserPermissions( $this->user, [ "edit", "bogus" ] );
+		$this->overrideUserPermissions( $this->user, [ "edit", "bogus", 'createpage' ] );
 
-		$this->title->mCascadeSources = [
-			Title::makeTitle( NS_MAIN, "Bogus" ),
-			Title::makeTitle( NS_MAIN, "UnBogus" )
-		];
-		$this->title->mCascadingRestrictions = [
-			"bogus" => [ 'bogus', "sysop", "protect", "" ]
-		];
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+			'cascade_sources' => [
+				[
+					Title::makeTitle( NS_MAIN, "Bogus" ),
+					Title::makeTitle( NS_MAIN, "UnBogus" )
+				], [
+					"bogus" => [ 'bogus', "sysop", "protect", "" ],
+				]
+			],
+		] ];
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$this->assertFalse( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [
-			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
-			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
 			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ] ],
 			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
@@ -275,24 +281,29 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$expectedPermErrors,
 		$expectedUserCan
 	) {
-		$this->setTitle( $namespace, "test page" );
-		$this->title->mTitleProtection['permission'] = '';
-		$this->title->mTitleProtection['user'] = $this->user->getId();
-		$this->title->mTitleProtection['expiry'] = 'infinity';
-		$this->title->mTitleProtection['reason'] = 'test';
-		$this->title->mCascadeRestriction = false;
-		$this->title->mRestrictionsLoaded = true;
+		$this->setTitle( $namespace, "Test page" );
 
-		if ( isset( $titleOverrides['protectedPermission' ] ) ) {
-			$this->title->mTitleProtection['permission'] = $titleOverrides['protectedPermission'];
-		}
-		if ( isset( $titleOverrides['interwiki'] ) ) {
-			$this->title->mInterwiki = $titleOverrides['interwiki'];
-		}
+		$this->overrideUserPermissions( $this->user, $userPerms );
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$this->overrideUserPermissions( $this->user, $userPerms );
+		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+			'create_protection' => [
+				'permission' => $titleOverrides['protectedPermission'] ?? '',
+				'user' => $this->user->getId(),
+				'expiry' => 'infinity',
+				'reason' => 'test',
+			],
+			'has_cascading' => false,
+			// XXX This is bogus, restrictions won't be empty if there's create protection
+			'restrictions' => [],
+		] ];
+
+		if ( isset( $titleOverrides['interwiki'] ) ) {
+			$this->title->mInterwiki = $titleOverrides['interwiki'];
+		}
 
 		$this->assertEquals(
 			$expectedPermErrors,
@@ -380,6 +391,36 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'expected permission errors' => [ [ 'immobile-target-page' ] ],
 			'user can' => false,
 		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [],
+			'action' => 'edit',
+			'user permissions' => [ 'createpage', 'edit' ],
+			'expected permission errors' => [ [ 'titleprotected', 'Useruser', 'test' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [],
+			'action' => 'edit',
+			'user permissions' => [ 'edit' ],
+			'expected permission errors' => [ [ 'nocreate-loggedin' ] ],
+			'user can' => false,
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
+	 */
+	public function testEditActionPermissionWithExistingPage() {
+		$title = $this->getExistingTestPage( 'test page' )->getTitle();
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$this->overrideUserPermissions( $this->user, [ 'edit' ] );
+
+		$this->assertEmpty( $permissionManager->getPermissionErrors( 'edit', $this->user, $title ) );
+		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $title ) );
 	}
 
 	/**
@@ -389,6 +430,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	public function testCheckUserBlockActions( $block, $restriction, $expected ) {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => false,
+			'wgEnablePartialActionBlocks' => true,
 		] );
 
 		if ( $restriction ) {
@@ -398,7 +440,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $block );
@@ -439,7 +481,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Sitewide autoblock' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'auto' => true,
 				] ),
 				false,
@@ -455,7 +497,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Sitewide block' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 				] ),
 				false,
 				[
@@ -470,7 +512,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Partial block without restriction against this page' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
 				false,
@@ -486,7 +528,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Partial block with restriction against this page' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
 				true,
@@ -496,6 +538,24 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					'rollback' => true,
 					'patrol' => true,
 					'upload' => false,
+					'purge' => false,
+				]
+			],
+			'Partial block with action restriction against uploading' => [
+				( new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
+					'sitewide' => false,
+				] ) )->setRestrictions( [
+					new ActionRestriction( 0, 1 )
+				] ),
+				false,
+				[
+					'edit' => false,
+					'move-target' => false,
+					'rollback' => false,
+					'patrol' => false,
+					'upload' => true,
 					'purge' => false,
 				]
 			],
@@ -538,10 +598,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => false,
 		] );
-
 		$block = new $blockType( array_merge( [
 			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
+			'by' => $this->user,
 			'reason' => 'Test reason',
 			'timestamp' => '20000101000000',
 			'expiry' => 0,
@@ -554,12 +613,12 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $block );
 
-		$this->overrideUserPermissions( $user, [ 'edit' ] );
+		$this->overrideUserPermissions( $user, [ 'edit', 'createpage' ] );
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$errors = $permissionManager->getPermissionErrors(
@@ -657,14 +716,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testCheckUserBlockActionPermission() {
 		$tester = $this->getMockBuilder( Action::class )
-					   ->disableOriginalConstructor()
-					   ->getMock();
+			->disableOriginalConstructor()
+			->getMock();
 		$tester->method( 'getName' )
-			   ->willReturn( 'tester' );
+			->willReturn( 'tester' );
 		$tester->method( 'getRestriction' )
-			   ->willReturn( 'test' );
+			->willReturn( 'test' );
 		$tester->method( 'requiresUnblock' )
-			   ->willReturn( false );
+			->willReturn( false );
 
 		$this->setMwGlobals( [
 			'wgActions' => [
@@ -678,12 +737,12 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
 				'address' => '127.0.8.1',
-				'by' => $this->user->getId(),
+				'by' => $this->user,
 			] ) );
 
 		$this->assertCount( 1, MediaWikiServices::getInstance()->getPermissionManager()
@@ -906,7 +965,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		// Add a Session that limits rights. We're mocking a stdClass because the Session
 		// class is final, and thus not mockable.
 		$mock = $this->getMockBuilder( stdClass::class )
-			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
+			->addMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
 		$mock->method( 'getSessionId' )->willReturn(
@@ -914,7 +973,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 		$session = TestUtils::getDummySession( $mock );
 		$mockRequest = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getSession' ] )
+			->onlyMethods( [ 'getSession' ] )
 			->getMock();
 		$mockRequest->method( 'getSession' )->willReturn( $session );
 		$userWrapper->mRequest = $mockRequest;
@@ -1229,10 +1288,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$page = Title::newFromText( 'ExistentRedirect3' );
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getEffectiveGroups' ] )
-			->getMock();
-		$user->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
+		$user = $this->getTestUser()->getUser();
 
 		$this->assertFalse( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
 

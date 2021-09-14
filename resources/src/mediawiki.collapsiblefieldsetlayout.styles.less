@@ -1,0 +1,61 @@
+@import 'mediawiki.mixins.less';
+
+// OOUIHTMLForm styles
+@ooui-font-size-browser: 16; // assumed browser default of `16px`
+@ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
+
+@ooui-spacing-small: 8 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.57142857em`≈`8px`
+@ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.8571429em`≈`12px`
+
+.client-js .mw-collapsibleFieldsetLayout.mw-collapsible .oo-ui-fieldsetLayout-header {
+	// Push legend up when JS is on, to increase clickable area.
+	margin-top: -@ooui-spacing-small;
+	margin-bottom: @ooui-spacing-small;
+	// Add `padding-top` to make up for negative `margin` above.
+	padding: @ooui-spacing-small;
+	// Make space for toggle icon defined below.
+	padding-left: 24 / @ooui-font-size-browser / @ooui-font-size-base;
+
+	.oo-ui-labelElement-label {
+		margin-bottom: 0;
+	}
+}
+
+// Trigger only when collapsible & JS is available via `.mw-collapsed`.
+.client-js .mw-collapsibleFieldsetLayout.mw-collapsed .oo-ui-fieldsetLayout-header {
+	min-height: 30px;
+	// Negative margin to match the reduced distance on the top caused by the previous rule.
+	margin-bottom: -@ooui-spacing-medium;
+}
+
+.mw-collapsibleFieldsetLayout.mw-collapsible {
+	.oo-ui-fieldsetLayout-header {
+		max-width: none;
+	}
+
+	.mw-collapsible-toggle .oo-ui-iconElement-icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		// Special case: Reduce to `16px` icon size here.
+		min-width: 16px;
+		width: 16 / @ooui-font-size-browser / @ooui-font-size-base;
+		margin-right: 0.5em;
+	}
+
+	// When expanded: only 'collapse' icon visible
+	.mw-collapsible-toggle .oo-ui-icon-expand {
+		display: none;
+	}
+
+	// When collapsed: only 'expand' icon visible
+	&.mw-collapsed {
+		.mw-collapsible-toggle .oo-ui-icon-expand {
+			display: inline-block;
+		}
+
+		.mw-collapsible-toggle .oo-ui-icon-collapse {
+			display: none;
+		}
+	}
+}

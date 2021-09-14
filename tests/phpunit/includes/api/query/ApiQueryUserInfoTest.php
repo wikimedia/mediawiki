@@ -49,9 +49,4 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		$queryTimestamp = $apiResult[0]['query']['userinfo']['latestcontrib'];
 		$this->assertSame( $revisionTimestamp, $queryTimestamp );
 	}
-
-	public function tearDown(): void {
-		parent::tearDown();
-		MWTimestamp::setFakeTime( false );
-	}
 }

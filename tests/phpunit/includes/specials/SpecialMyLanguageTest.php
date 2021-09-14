@@ -18,12 +18,12 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 		foreach ( $titles as $title ) {
 			$page = WikiPage::factory( Title::newFromText( $title ) );
 			if ( $page->getId() == 0 ) {
-				$page->doEditContent(
+				$page->doUserEditContent(
 					new WikitextContent( 'UTContent' ),
+					User::newFromName( 'UTSysop' ),
 					'UTPageSummary',
-					EDIT_NEW,
-					false,
-					User::newFromName( 'UTSysop' ) );
+					EDIT_NEW
+				);
 			}
 		}
 	}

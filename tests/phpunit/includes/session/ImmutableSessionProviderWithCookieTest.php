@@ -3,6 +3,8 @@
 namespace MediaWiki\Session;
 
 use MediaWikiIntegrationTestCase;
+use Psr\Log\NullLogger;
+use TestLogger;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -12,8 +14,9 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\ImmutableSessionProviderWithCookie
  */
 class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
 
-	private function getProvider( $name, $prefix = null, $forceHTTPS = false ) {
+	private function getProvider( $name, $prefix = null, $forceHTTPS = false, $logger = null ) {
 		$config = new \HashConfig();
 		$config->set( 'CookiePrefix', 'wgCookiePrefix' );
 		$config->set( 'ForceHTTPS', $forceHTTPS );
@@ -29,10 +32,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ $params ] )
 			->getMockForAbstractClass();
-		$provider->setLogger( new \TestLogger() );
-		$provider->setConfig( $config );
-		$provider->setManager( new SessionManager() );
-		$provider->setHookContainer( $this->createHookContainer() );
+		$this->initProvider( $provider, $logger ?? new TestLogger(), $config, new SessionManager() );
 
 		return $provider;
 	}
@@ -161,17 +161,17 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 	protected function getSentRequest() {
 		$sentResponse = $this->getMockBuilder( \FauxResponse::class )
-			->setMethods( [ 'headersSent', 'setCookie', 'header' ] )
+			->onlyMethods( [ 'headersSent', 'setCookie', 'header' ] )
 			->getMock();
-		$sentResponse->expects( $this->any() )->method( 'headersSent' )
-			->will( $this->returnValue( true ) );
+		$sentResponse->method( 'headersSent' )
+			->willReturn( true );
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
 		$sentRequest = $this->getMockBuilder( \FauxRequest::class )
-			->setMethods( [ 'response' ] )->getMock();
-		$sentRequest->expects( $this->any() )->method( 'response' )
-			->will( $this->returnValue( $sentResponse ) );
+			->onlyMethods( [ 'response' ] )->getMock();
+		$sentRequest->method( 'response' )
+			->willReturn( $sentResponse );
 		return $sentRequest;
 	}
 
@@ -188,8 +188,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			'wgForceHTTPS' => $forceHTTPS,
 		] );
 
-		$provider = $this->getProvider( 'session', null, $forceHTTPS );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider = $this->getProvider( 'session', null, $forceHTTPS, new NullLogger() );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$priv->sessionCookieOptions = [
 			'prefix' => 'x',
@@ -213,7 +212,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 				'idIsSafe' => true,
 			] ),
 			new TestBagOStuff(),
-			new \Psr\Log\NullLogger(),
+			new NullLogger(),
 			$this->createHookContainer(),
 			10
 		);
@@ -284,8 +283,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testUnpersistSession() {
-		$provider = $this->getProvider( 'session', '' );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider = $this->getProvider( 'session', '', false, new NullLogger() );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		// No cookie

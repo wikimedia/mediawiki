@@ -108,7 +108,7 @@ class LanguageConverterFactory {
 	 * @param string $code code for which class name should be provided
 	 * @return string
 	 */
-	private function classFromCode( string $code ) : string {
+	private function classFromCode( string $code ): string {
 		$code = mb_strtolower( $code );
 		return $this->converterClasses[$code] ?? $this->defaultConverterClass;
 	}
@@ -118,11 +118,11 @@ class LanguageConverterFactory {
 	 *
 	 * @param Language|null $language for which a LanguageConverter should be provided.
 	 * If null then LanguageConverter provided for current content language as returned
-	 * by the callback provided to the constructor..
+	 * by the callback provided to the constructor.
 	 *
 	 * @return ILanguageConverter
 	 */
-	public function getLanguageConverter( $language = null ) : ILanguageConverter {
+	public function getLanguageConverter( $language = null ): ILanguageConverter {
 		$lang = $language ?? ( $this->defaultLanguage )();
 		if ( isset( $this->cache[$lang->getCode()] ) ) {
 			return $this->cache[$lang->getCode()];

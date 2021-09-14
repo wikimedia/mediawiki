@@ -146,7 +146,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		// MediaWikiIntegrationTestCase leaves its test DB hanging around.
 		// we want to make sure we have a clean instance, so tear down any
 		// existing test DB.  This has no effect if no test DB exists.
@@ -160,7 +160,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		$this->ptTeardownScope = $teardown;
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}

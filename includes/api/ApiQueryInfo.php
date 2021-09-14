@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
@@ -31,14 +32,16 @@ use MediaWiki\Permissions\PermissionStatus;
  */
 class ApiQueryInfo extends ApiQueryBase {
 
-	/** @var Language */
-	private $contentLanguage;
+	/** @var ILanguageConverter */
+	private $languageConverter;
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 	/** @var TitleFactory */
 	private $titleFactory;
+	/** @var TitleFormatter */
+	private $titleFormatter;
 	/** @var WatchedItemStore */
 	private $watchedItemStore;
 
@@ -54,6 +57,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 *    given page titles.
 	 */
 	private $fld_linkclasses = false;
+
+	/**
+	 * @var bool Whether to include the name of the associated page
+	 */
+	private $fld_associatedpage = false;
 
 	private $params;
 
@@ -84,8 +92,6 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $showZeroWatchers = false;
 
-	private $tokenFunctions;
-
 	private $countTestedActions = 0;
 
 	/**
@@ -95,7 +101,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleFactory $titleFactory
+	 * @param TitleFormatter $titleFormatter
 	 * @param WatchedItemStore $watchedItemStore
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -104,13 +112,16 @@ class ApiQueryInfo extends ApiQueryBase {
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,
 		TitleFactory $titleFactory,
-		WatchedItemStore $watchedItemStore
+		TitleFormatter $titleFormatter,
+		WatchedItemStore $watchedItemStore,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
-		$this->contentLanguage = $contentLanguage;
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleFactory = $titleFactory;
+		$this->titleFormatter = $titleFormatter;
 		$this->watchedItemStore = $watchedItemStore;
 	}
 
@@ -135,203 +146,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
-	/**
-	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func( User $user )
-	 * it should return a token or false (permission denied)
-	 * @deprecated since 1.24
-	 * @return array [ tokenname => function ]
-	 */
-	protected function getTokenFunctions() {
-		// Don't call the hooks twice
-		if ( isset( $this->tokenFunctions ) ) {
-			return $this->tokenFunctions;
-		}
-
-		// If we're in a mode that breaks the same-origin policy, no tokens can
-		// be obtained
-		if ( $this->lacksSameOriginSecurity() ) {
-			return [];
-		}
-
-		$this->tokenFunctions = [
-			'edit' => [ self::class, 'getEditToken' ],
-			'delete' => [ self::class, 'getDeleteToken' ],
-			'protect' => [ self::class, 'getProtectToken' ],
-			'move' => [ self::class, 'getMoveToken' ],
-			'block' => [ self::class, 'getBlockToken' ],
-			'unblock' => [ self::class, 'getUnblockToken' ],
-			'email' => [ self::class, 'getEmailToken' ],
-			'import' => [ self::class, 'getImportToken' ],
-			'watch' => [ self::class, 'getWatchToken' ],
-		];
-
-		return $this->tokenFunctions;
-	}
-
-	/** @var string[] */
-	protected static $cachedTokens = [];
-
-	/**
-	 * @deprecated since 1.24
-	 */
-	public static function resetTokenCache() {
-		self::$cachedTokens = [];
-	}
-
-	/**
-	 * Temporary method until the token methods are removed entirely
-	 *
-	 * Only for the tokens that all use User::getEditToken
-	 *
-	 * @param User $user
-	 * @param string $right Right needed (edit/delete/block/etc.)
-	 * @return string|false
-	 */
-	private static function getUserToken( User $user, string $right ) {
-		if ( !$user->isAllowed( $right ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['edit'] ) ) {
-			self::$cachedTokens['edit'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['edit'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getEditToken( User $user ) {
-		return self::getUserToken( $user, 'edit' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getDeleteToken( User $user ) {
-		return self::getUserToken( $user, 'delete' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getProtectToken( User $user ) {
-		return self::getUserToken( $user, 'protect' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getMoveToken( User $user ) {
-		return self::getUserToken( $user, 'move' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getBlockToken( User $user ) {
-		return self::getUserToken( $user, 'block' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getUnblockToken( User $user ) {
-		// Currently, this is exactly the same as the block token
-		return self::getBlockToken( $user );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getEmailToken( User $user ) {
-		if ( !$user->canSendEmail() || $user->isBlockedFromEmailuser() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['email'] ) ) {
-			self::$cachedTokens['email'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['email'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getImportToken( User $user ) {
-		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['import'] ) ) {
-			self::$cachedTokens['import'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['import'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getWatchToken( User $user ) {
-		if ( !$user->isRegistered() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['watch'] ) ) {
-			self::$cachedTokens['watch'] = $user->getEditToken( 'watch' );
-		}
-
-		return self::$cachedTokens['watch'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getOptionsToken( User $user ) {
-		if ( !$user->isRegistered() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['options'] ) ) {
-			self::$cachedTokens['options'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['options'];
-	}
-
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		if ( $this->params['prop'] !== null ) {
-			$prop = array_flip( $this->params['prop'] );
+			$prop = array_fill_keys( $this->params['prop'], true );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
 			$this->fld_watchers = isset( $prop['watchers'] );
@@ -345,6 +163,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 			$this->fld_varianttitles = isset( $prop['varianttitles'] );
 			$this->fld_linkclasses = isset( $prop['linkclasses'] );
+			$this->fld_associatedpage = isset( $prop['associatedpage'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -464,19 +283,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->params['token'] !== null ) {
-			$tokenFunctions = $this->getTokenFunctions();
-			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
-			foreach ( $this->params['token'] as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $this->getUser() );
-				if ( $val === false ) {
-					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
-				} else {
-					$pageInfo[$t . 'token'] = $val;
-				}
-			}
-		}
-
 		if ( $this->fld_protection ) {
 			$pageInfo['protection'] = [];
 			if ( isset( $this->protections[$ns][$dbkey] ) ) {
@@ -535,6 +341,12 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_subjectid && isset( $this->subjectids[$ns][$dbkey] ) ) {
 			$pageInfo['subjectid'] = $this->subjectids[$ns][$dbkey];
+		}
+
+		if ( $this->fld_associatedpage && $ns >= NS_MAIN ) {
+			$pageInfo['associatedpage'] = $this->titleFormatter->getPrefixedText(
+				$this->namespaceInfo->getAssociatedPage( $title )
+			);
 		}
 
 		if ( $this->fld_url ) {
@@ -881,11 +693,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private function getAllVariants( $text, $ns = NS_MAIN ) {
 		$result = [];
-		$contLang = $this->contentLanguage;
-		foreach ( $contLang->getVariants() as $variant ) {
-			$convertTitle = $contLang->autoConvert( $text, $variant );
+		foreach ( $this->languageConverter->getVariants() as $variant ) {
+			$convertTitle = $this->languageConverter->autoConvert( $text, $variant );
 			if ( $ns !== NS_MAIN ) {
-				$convertNs = $contLang->convertNamespace( $ns, $variant );
+				$convertNs = $this->languageConverter->convertNamespace( $ns, $variant );
 				$convertTitle = $convertNs . ':' . $convertTitle;
 			}
 			$result[$variant] = $convertTitle;
@@ -900,7 +711,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private function getWatchedInfo() {
 		$user = $this->getUser();
 
-		if ( $user->isAnon() || count( $this->everything ) == 0
+		if ( !$user->isRegistered() || count( $this->everything ) == 0
 			|| !$this->getAuthority()->isAllowed( 'viewmywatchlist' )
 		) {
 			return;
@@ -1031,6 +842,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'protection',
 			'talkid',
 			'subjectid',
+			'associatedpage',
 			'url',
 			'preload',
 			'displaytitle',
@@ -1042,10 +854,6 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// testactions also depends on the current user
 		if ( $params['testactions'] ) {
-			return 'private';
-		}
-
-		if ( $params['token'] !== null ) {
 			return 'private';
 		}
 
@@ -1064,6 +872,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'visitingwatchers', # private
 					'notificationtimestamp', # private
 					'subjectid',
+					'associatedpage',
 					'url',
 					'readable', # private
 					'preload',
@@ -1091,11 +900,6 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
 				ApiBase::PARAM_DFLT => 'boolean',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-			],
-			'token' => [
-				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

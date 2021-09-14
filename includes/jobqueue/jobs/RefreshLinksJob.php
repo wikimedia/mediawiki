@@ -21,7 +21,9 @@
  * @ingroup JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 
@@ -44,8 +46,8 @@ class RefreshLinksJob extends Job {
 	/** @var int How many seconds to wait for replica DBs to catch up */
 	private const LAG_WAIT_TIMEOUT = 15;
 
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'refreshLinks', $title, $params );
+	public function __construct( PageIdentity $page, array $params ) {
+		parent::__construct( 'refreshLinks', $page, $params );
 		// Avoid the overhead of de-duplication when it would be pointless
 		$this->removeDuplicates = (
 			// Ranges rarely will line up
@@ -61,24 +63,24 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $params
 	 * @return RefreshLinksJob
 	 */
-	public static function newPrioritized( Title $title, array $params ) {
-		$job = new self( $title, $params );
+	public static function newPrioritized( PageIdentity $page, array $params ) {
+		$job = new self( $page, $params );
 		$job->command = 'refreshLinksPrioritized';
 
 		return $job;
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $params
 	 * @return RefreshLinksJob
 	 */
-	public static function newDynamic( Title $title, array $params ) {
-		$job = new self( $title, $params );
+	public static function newDynamic( PageIdentity $page, array $params ) {
+		$job = new self( $page, $params );
 		$job->command = 'refreshLinksDynamic';
 
 		return $job;
@@ -90,7 +92,7 @@ class RefreshLinksJob extends Job {
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
 			$services = MediaWikiServices::getInstance();
-			// When the base job branches, wait for the replica DBs to catch up to the master.
+			// When the base job branches, wait for the replica DBs to catch up to the primary.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $this->params['range'] ) ) {
@@ -138,10 +140,10 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 * @return bool
 	 */
-	protected function runForTitle( Title $title ) {
+	protected function runForTitle( PageIdentity $pageIdentity ) {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$renderer = $services->getRevisionRenderer();
@@ -149,15 +151,32 @@ class RefreshLinksJob extends Job {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
-		// Load the page from the master DB
-		$page = $services->getWikiPageFactory()->newFromTitle( $title );
+		// Load the page from the primary DB
+		$page = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
 		$page->loadPageData( WikiPage::READ_LATEST );
+
+		if ( !$page->exists() ) {
+			// Probably due to concurrent deletion or renaming of the page
+			$logger = LoggerFactory::getInstance( 'RefreshLinksJob' );
+			$logger->notice(
+				'The page does not exist. Perhaps it was deleted?',
+				[
+					'page_title' => $this->title->getPrefixedDBkey(),
+					'job_params' => $this->getParams(),
+					'job_metadata' => $this->getMetadata()
+				]
+			);
+
+			// nothing to do
+			$stats->increment( 'refreshlinks.rev_not_found' );
+			return false;
+		}
 
 		// Serialize link update job by page ID so they see each others' changes.
 		// The page ID and latest revision ID will be queried again after the lock
 		// is acquired to bail if they are changed from that of loadPageData() above.
 		// Serialize links updates by page ID so they see each others' changes
-		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
 		if ( $scopedLock === null ) {
@@ -175,10 +194,10 @@ class RefreshLinksJob extends Job {
 		}
 
 		// Parse during a fresh transaction round for better read consistency
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
 		$options = $this->getDataUpdateOptions();
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		if ( !$output ) {
 			return false; // raced out?
@@ -188,7 +207,7 @@ class RefreshLinksJob extends Job {
 		$options['known-revision-output'] = $output;
 		// Execute corresponding DataUpdates immediately
 		$page->doSecondaryDataUpdates( $options );
-		InfoAction::invalidateCache( $title );
+		InfoAction::invalidateCache( $page );
 
 		// Commit any writes here in case this method is called in a loop.
 		// In that case, the scoped lock will fail to be acquired.

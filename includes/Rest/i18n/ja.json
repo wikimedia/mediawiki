@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
+			"Afaz",
 			"Hzy980512",
 			"Omotecho",
 			"Shirayuki"
@@ -15,7 +16,7 @@
 	"rest-nonexistent-revision": "指定された版 ($1) は存在しません",
 	"rest-nonexistent-user": "指定したユーザー「$1」は存在しません",
 	"rest-invalid-user": "指定した利用者名（$1）は無効です",
-	"rest-permission-denied-anon": "匿名ユーザーはアクセスできません",
+	"rest-permission-denied-anon": "匿名利用者はアクセスできません",
 	"rest-permission-denied-title": "ユーザーはタイトル（$1）の読み取り権限を持っていません",
 	"rest-permission-denied-revision": "ユーザーはリクエストした版（$1）にアクセスできません",
 	"rest-resource-limit-exceeded": "リクエストの処理中にリソースの上限に達しました。",

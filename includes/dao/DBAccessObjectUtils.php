@@ -40,21 +40,21 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	 * Get an appropriate DB index, options, and fallback DB index for a query
 	 *
 	 * The fallback DB index and options are to be used if the entity is not found
-	 * with the initial DB index, typically querying the master DB to avoid lag
+	 * with the initial DB index, typically querying the primary DB to avoid lag
 	 *
 	 * @param int $bitfield Bitfield of IDBAccessObject::READ_* constants
 	 * @return array List of DB indexes and options in this order:
-	 *   - DB_MASTER or DB_REPLICA constant for the initial query
+	 *   - DB_PRIMARY or DB_REPLICA constant for the initial query
 	 *   - SELECT options array for the initial query
-	 *   - DB_MASTER constant for the fallback query; null if no fallback should happen
+	 *   - DB_PRIMARY constant for the fallback query; null if no fallback should happen
 	 *   - SELECT options array for the fallback query; empty if no fallback should happen
 	 */
 	public static function getDBOptions( $bitfield ) {
 		if ( self::hasFlags( $bitfield, self::READ_LATEST_IMMUTABLE ) ) {
 			$index = DB_REPLICA; // override READ_LATEST if set
-			$fallbackIndex = DB_MASTER;
+			$fallbackIndex = DB_PRIMARY;
 		} elseif ( self::hasFlags( $bitfield, self::READ_LATEST ) ) {
-			$index = DB_MASTER;
+			$index = DB_PRIMARY;
 			$fallbackIndex = null;
 		} else {
 			$index = DB_REPLICA;

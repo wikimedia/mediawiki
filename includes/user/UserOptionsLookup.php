@@ -47,7 +47,10 @@ abstract class UserOptionsLookup implements IDBAccessObject {
 	 * @param string $opt Name of option to retrieve
 	 * @return mixed|null Default option value
 	 */
-	abstract public function getDefaultOption( string $opt );
+	public function getDefaultOption( string $opt ) {
+		$defaultOptions = $this->getDefaultOptions();
+		return $defaultOptions[$opt] ?? null;
+	}
 
 	/**
 	 * Get the user's current setting for a given option.

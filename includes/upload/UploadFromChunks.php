@@ -83,18 +83,6 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * @inheritDoc
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28 Use tryStashFile() instead
-	 */
-	public function stashFile( User $user = null ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		$this->verifyChunk();
-		return parent::stashFile( $user );
-	}
-
-	/**
 	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user
@@ -134,6 +122,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->getChunkStatus();
 
 		$metadata = $this->stash->getMetadata( $key );
+		// @phan-suppress-next-line SecurityCheckMulti,SecurityCheck-PathTraversal
 		$this->initializePathInfo( $name,
 			$this->getRealPath( $metadata['us_path'] ),
 			$metadata['us_size'],
@@ -277,7 +266,7 @@ class UploadFromChunks extends UploadFromFile {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() );
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$dbw->update(
 			'uploadstash',
 			[
@@ -294,9 +283,9 @@ class UploadFromChunks extends UploadFromFile {
 	 * Get the chunk db state and populate update relevant local values
 	 */
 	private function getChunkStatus() {
-		// get Master db to avoid race conditions.
+		// get primary db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$row = $dbw->selectRow(
 			'uploadstash',
 			[

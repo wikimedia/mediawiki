@@ -155,6 +155,20 @@ class SpecialPagesWithProp extends QueryPage {
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	protected function linkParameters() {
+		$params = [
+			'reverse' => $this->reverse,
+			'sortbyvalue' => $this->sortByValue,
+		];
+		if ( $this->ns !== null ) {
+			$params['namespace'] = $this->ns;
+		}
+		return $params;
+	}
+
 	public function getQueryInfo() {
 		$query = [
 			'tables' => [ 'page_props', 'page' ],

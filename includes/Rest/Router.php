@@ -80,10 +80,18 @@ class Router {
 	 * @param HookContainer $hookContainer
 	 * @internal
 	 */
-	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
-		BagOStuff $cacheBag, ResponseFactory $responseFactory,
-		BasicAuthorizerInterface $basicAuth, Authority $authority,
-		ObjectFactory $objectFactory, Validator $restValidator, HookContainer $hookContainer
+	public function __construct(
+		$routeFiles,
+		$extraRoutes,
+		$baseUrl,
+		$rootPath,
+		BagOStuff $cacheBag,
+		ResponseFactory $responseFactory,
+		BasicAuthorizerInterface $basicAuth,
+		Authority $authority,
+		ObjectFactory $objectFactory,
+		Validator $restValidator,
+		HookContainer $hookContainer
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -331,7 +339,7 @@ class Router {
 	 * @param string $relPath
 	 * @return array
 	 */
-	private function getAllowedMethods( string $relPath ) : array {
+	private function getAllowedMethods( string $relPath ): array {
 		// Check for 405 wrong method
 		$allowed = [];
 		foreach ( $this->getMatchers() as $allowedMethod => $allowedMatcher ) {
@@ -407,7 +415,7 @@ class Router {
 	 * @param CorsUtils $cors
 	 * @return self
 	 */
-	public function setCors( CorsUtils $cors ) : self {
+	public function setCors( CorsUtils $cors ): self {
 		$this->cors = $cors;
 
 		return $this;

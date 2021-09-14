@@ -71,6 +71,9 @@
 		"noWikiText": {
 			"file": "../wikimediaui/images/icons/noWikiText.svg"
 		},
+		"ocr": {
+			"file": "../wikimediaui/images/icons/ocr.svg"
+		},
 		"outline": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/outline-ltr.svg",

@@ -126,22 +126,29 @@ return [
 		),
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'es6-promise' => [
-		'deprecated' => 'Use "es6-polyfills" instead.',
-		'dependencies' => [ 'es6-polyfills' ],
+	'es6-polyfills' => [
+		'scripts' => [
+			'resources/lib/promise-polyfill/promise-polyfill.js',
+			'resources/src/es6-polyfills/array-find-polyfill.js',
+			'resources/src/es6-polyfills/array-findIndex-polyfill.js',
+			'resources/src/es6-polyfills/array-includes-polyfill.js',
+		],
+		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'es6-polyfills' => [
-		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
-		'skipFunction' => 'resources/src/skip-Promise.js',
+	'fetch-polyfill' => [
+		'scripts' => 'resources/lib/fetch-polyfill/fetch.umd.js',
+		'skipFunction' => 'resources/src/skip-fetch.js',
 		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [ 'es6-polyfills' ]
 	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
 		'packageFiles' => [
 			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
 			'mediawiki.base.js',
-			'mediawiki.errorLogger.js',
+			'log.js',
+			'errorLogger.js',
 
 			// (not this though)
 			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
@@ -599,7 +606,7 @@ return [
 		],
 		'dependencies' => [
 			'vue',
-			'es6-promise',
+			'es6-polyfills',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -611,6 +618,20 @@ return [
 		],
 		'styles' => [
 			'resources/lib/wvui/wvui.css',
+		],
+		'dependencies' => [
+			'vue'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	'wvui-search' => [
+		'packageFiles' => [
+			'resources/src/wvui/wvui-search.js',
+			'resources/lib/wvui/wvui-search.commonjs2.js',
+		],
+		'styles' => [
+			'resources/lib/wvui/wvui-search.css',
 		],
 		'dependencies' => [
 			'vue'
@@ -694,6 +715,11 @@ return [
 			'oojs-ui-core',
 		],
 	],
+	'mediawiki.diff' => [
+		'scripts' => [
+			'resources/src/mediawiki.diff.styles/diff.js',
+		]
+	],
 	'mediawiki.diff.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.diff.styles/diff.less',
@@ -710,7 +736,7 @@ return [
 			'feedback.js',
 			'FeedbackDialog.js',
 		],
-		'styles' => 'feedback.css',
+		'styles' => 'feedback.less',
 		'dependencies' => [
 			'mediawiki.messagePoster',
 			'mediawiki.Title',
@@ -829,7 +855,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
-		'styles' => 'resources/src/mediawiki.htmlform.ooui.styles.less',
+		'styles' => [
+			'resources/src/mediawiki.collapsiblefieldsetlayout.styles.less',
+			'resources/src/mediawiki.htmlform.ooui.styles.less'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.icon' => [
@@ -1122,6 +1151,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.viewport' => [
+		'deprecated' => 'Deprecated since MediaWiki 1.37. Use MutationObserver or InterSectionObserver instead.',
 		'scripts' => 'resources/src/mediawiki.viewport.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1158,7 +1188,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.visibleTimeout' => [
-		'scripts' => 'resources/src/mediawiki.visibleTimeout.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.visibleTimeout",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.visibleTimeout",
+		'packageFiles' => [
+			'visibleTimeout.js'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -1435,6 +1469,7 @@ return [
 		'dependencies' => [
 			'mediawiki.util',
 			'mediawiki.language',
+			'mediawiki.String',
 			'user.options',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1497,6 +1532,7 @@ return [
 			'special-characters-group-lao',
 			'special-characters-group-khmer',
 			'special-characters-group-canadianaboriginal',
+			'special-characters-group-runes',
 			'special-characters-title-endash',
 			'special-characters-title-emdash',
 			'special-characters-title-minus'
@@ -1525,7 +1561,7 @@ return [
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.page.gallery.styles/gallery.less',
-			'resources/src/mediawiki.page.gallery.styles/print.css' => [ 'media' => 'print' ],
+			'resources/src/mediawiki.page.gallery.styles/print.less' => [ 'media' => 'print' ],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1994,7 +2030,7 @@ return [
 	// - .. are never loaded when viewing or editing wiki pages.
 	// - .. are only used by logged-in users.
 	// - .. depend on oojs-ui-core.
-	// - .. contain UI intialisation code (e.g. no public module exports, because
+	// - .. contain UI initialisation code (e.g. no public module exports, because
 	//      requiring or depending on this bundle is awkward)
 	'mediawiki.misc-authed-ooui' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-ooui",
@@ -2019,7 +2055,7 @@ return [
 	// - .. are only used by logged-in users when a non-default preference was enabled.
 	// - .. may be loaded in the critical path for those users on page views.
 	// - .. do NOT depend on OOUI.
-	// - .. contain only UI intialisation code (e.g. no public exports)
+	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-pref' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-pref",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-pref",
@@ -2036,7 +2072,7 @@ return [
 	// - .. are only loaded for a privileged subset of logged-in users.
 	// - .. may be loaded in the critical path on page views.
 	// - .. do NOT depend on OOUI or other "large" modules.
-	// - .. contain only UI intialisation code (e.g. no public exports)
+	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-curate' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-curate",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-curate",
@@ -2201,7 +2237,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.special.search.styles' => [
-		'styles' => 'resources/src/mediawiki.special.search.styles.css',
+		'styles' => 'resources/src/mediawiki.special.search.styles.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.unwatchedPages' => [
@@ -2257,7 +2293,7 @@ return [
 	],
 	'mediawiki.special.userlogin.login.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.special.userlogin.login.styles/login.css',
+			'resources/src/mediawiki.special.userlogin.login.styles/login.less',
 		],
 	],
 	'mediawiki.special.createaccount' => [
@@ -2340,17 +2376,6 @@ return [
 			'resources/src/mediawiki.skinning/commonPrint.less' => [ 'media' => 'print' ]
 		],
 	],
-	'mediawiki.legacy.protect' => [
-		'deprecated' => "Please use mediawiki.action.protect",
-		'localBasePath' => "$IP/resources/src/mediawiki.legacy",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.legacy",
-		'packageFiles' => [
-			'protect.js',
-			[ 'name' => 'config.json', 'config' => [ 'CascadingRestrictionLevels' ] ],
-		],
-		'dependencies' => 'jquery.lengthLimit',
-		'messages' => [ 'protect-unchain-permissions' ]
-	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
@@ -2417,9 +2442,7 @@ return [
 	],
 	'mediawiki.ui.icon' => [
 		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui/components/icons.less',
-			],
+			'default' => 'resources/src/mediawiki.ui/components/icons-2.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2844,7 +2867,7 @@ return [
 	/* OOjs */
 	'oojs' => [
 		'scripts' => [
-			'resources/lib/oojs/oojs.jquery.js',
+			'resources/lib/oojs/oojs.js',
 			'resources/src/oojs-global.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],

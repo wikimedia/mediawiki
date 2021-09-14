@@ -22,7 +22,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Class to represent a file in the oldimage table
@@ -117,6 +119,11 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new oldlocalfile object.
+	 *
+	 * Since 1.34, oi_user and oi_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * @since 1.31
 	 * @stable to override
 	 *
@@ -129,9 +136,11 @@ class OldLocalFile extends LocalFile {
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'oi_description' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'oi_user' );
 		$ret = [
-			'tables' => [ 'oldimage' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'oldimage',
+				'oldimage_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'oi_name',
 				'oi_archive_name',
@@ -145,8 +154,13 @@ class OldLocalFile extends LocalFile {
 				'oi_timestamp',
 				'oi_deleted',
 				'oi_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'oi_actor',
+				'oi_user' => 'oldimage_actor.actor_user',
+				'oi_user_text' => 'oldimage_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'oldimage_actor' => [ 'JOIN', 'actor_id=oi_actor' ]
+			] + $commentQuery['joins'],
 		];
 
 		if ( in_array( 'omit-nonlazy', $options, true ) ) {
@@ -177,6 +191,15 @@ class OldLocalFile extends LocalFile {
 		if ( $time === null && $archiveName === null ) {
 			throw new MWException( __METHOD__ . ': must specify at least one of $time or $archiveName' );
 		}
+	}
+
+	public function loadFromRow( $row, $prefix = 'img_' ) {
+		$this->archive_name = $row->{"{$prefix}archive_name"};
+		$this->deleted = $row->{"{$prefix}deleted"};
+		$row = clone $row;
+		unset( $row->{"{$prefix}archive_name"} );
+		unset( $row->{"{$prefix}deleted"} );
+		parent::loadFromRow( $row, $prefix );
 	}
 
 	/**
@@ -221,7 +244,7 @@ class OldLocalFile extends LocalFile {
 		$this->dataLoaded = true;
 
 		$dbr = ( $flags & self::READ_LATEST )
-			? $this->repo->getMasterDB()
+			? $this->repo->getPrimaryDB()
 			: $this->repo->getReplicaDB();
 
 		$conds = [ 'oi_name' => $this->getName() ];
@@ -270,8 +293,8 @@ class OldLocalFile extends LocalFile {
 			$fileQuery['joins']
 		);
 
-		if ( !$row ) { // fallback to master
-			$dbr = $this->repo->getMasterDB();
+		if ( !$row ) { // fallback to primary DB
+			$dbr = $this->repo->getPrimaryDB();
 			$row = $dbr->selectRow(
 				$fileQuery['tables'],
 				$fileQuery['fields'],
@@ -332,7 +355,7 @@ class OldLocalFile extends LocalFile {
 			return;
 		}
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
@@ -345,13 +368,19 @@ class OldLocalFile extends LocalFile {
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata' => $this->metadata,
+				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_sha1' => $this->sha1,
 			], [
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $this->archive_name ],
 			__METHOD__
 		);
+	}
+
+	protected function reserializeMetadata() {
+		// TODO: implement this and make it possible to hit it from refreshImageMetadata.php
+		// It can be hit from action=purge but that's not very useful if the
+		// goal is to reserialize the whole oldimage table.
 	}
 
 	/**
@@ -380,16 +409,16 @@ class OldLocalFile extends LocalFile {
 	 * field of this image file, if it's marked as deleted.
 	 *
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		$this->load();
 
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
 			$field,
-			$user
+			$performer
 		);
 	}
 
@@ -399,10 +428,10 @@ class OldLocalFile extends LocalFile {
 	 * @param string $srcPath File system path of the source file
 	 * @param string $timestamp
 	 * @param string $comment
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return Status
 	 */
-	public function uploadOld( $srcPath, $timestamp, $comment, $user ) {
+	public function uploadOld( $srcPath, $timestamp, $comment, UserIdentity $user ) {
 		$this->lock();
 
 		$archiveName = $this->getArchiveName();
@@ -428,21 +457,24 @@ class OldLocalFile extends LocalFile {
 	 * @param string $archiveName The archive name of the file
 	 * @param string $timestamp
 	 * @param string $comment Upload comment
-	 * @param User $user User who did this upload
+	 * @param UserIdentity $user User who did this upload
 	 * @return bool
 	 */
 	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
-		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
-		$props = $this->repo->getFileProps( $dstPath );
+		$services = MediaWikiServices::getInstance();
+		$mwProps = new MWFileProps( $services->getMimeAnalyzer() );
+		$props = $mwProps->getPropsFromPath( $srcPath, true );
 		if ( !$props['fileExists'] ) {
 			return false;
 		}
+		$this->setProps( $props );
 
-		$commentFields = MediaWikiServices::getInstance()->getCommentStore()
+		$commentFields = $services->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
-		$actorFields = ActorMigration::newMigration()->getInsertValues( $dbw, 'oi_user', $user );
+		$actorId = $services->getActorNormalization()
+			->acquireActorId( $user, $dbw );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),
@@ -451,13 +483,14 @@ class OldLocalFile extends LocalFile {
 				'oi_width' => intval( $props['width'] ),
 				'oi_height' => intval( $props['height'] ),
 				'oi_bits' => $props['bits'],
+				'oi_actor' => $actorId,
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
-				'oi_metadata' => $props['metadata'],
+				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_media_type' => $props['media_type'],
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			] + $commentFields + $actorFields, __METHOD__
+			] + $commentFields, __METHOD__
 		);
 
 		return true;

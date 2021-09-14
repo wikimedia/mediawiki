@@ -26,7 +26,7 @@
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\MySQLMasterPos;
+use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\TestingAccessWrapper;
 
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
@@ -40,7 +40,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		/** @var IDatabase $db */
@@ -100,10 +100,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	private function getMockForViews() : IMaintainableDatabase {
+	private function getMockForViews(): IMaintainableDatabase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'fetchRow', 'query', 'getDBname' ] )
+			->onlyMethods( [ 'fetchRow', 'query', 'getDBname' ] )
 			->getMock();
 
 		$db->method( 'query' )
@@ -139,10 +139,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 */
 	public function testBinLogName() {
-		$pos = new MySQLMasterPos( "db1052.2424/4643", 1 );
+		$pos = new MySQLPrimaryPos( "db1052.2424/4643", 1 );
 
 		$this->assertEquals( "db1052", $pos->getLogName() );
 		$this->assertEquals( "db1052.2424", $pos->getLogFile() );
@@ -151,10 +151,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideComparePositions
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 */
 	public function testHasReached(
-		MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match, $hetero
+		MySQLPrimaryPos $lowerPos, MySQLPrimaryPos $higherPos, $match, $hetero
 	) {
 		if ( $match ) {
 			$this->assertTrue( $lowerPos->channelsMatch( $higherPos ) );
@@ -182,94 +182,94 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		return [
 			// Binlog style
 			[
-				new MySQLMasterPos( 'db1034-bin.000976/843431247', $now ),
-				new MySQLMasterPos( 'db1034-bin.000976/843431248', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/843431247', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/843431248', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
-				new MySQLMasterPos( 'db1034-bin.000976/1000', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/999', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/1000', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
-				new MySQLMasterPos( 'db1035-bin.000976/1000', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/999', $now ),
+				new MySQLPrimaryPos( 'db1035-bin.000976/1000', $now ),
 				false,
 				false
 			],
 			// MySQL GTID style
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-23', $now ),
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-24', $now ),
+				new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-23', $now ),
+				new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-24', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-99', $now ),
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
+				new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-99', $now ),
+				new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-99', $now ),
-				new MySQLMasterPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
+				new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-99', $now ),
+				new MySQLPrimaryPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
 				false,
 				false
 			],
 			// MariaDB GTID style
 			[
-				new MySQLMasterPos( '255-11-23', $now ),
-				new MySQLMasterPos( '255-11-24', $now ),
+				new MySQLPrimaryPos( '255-11-23', $now ),
+				new MySQLPrimaryPos( '255-11-24', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-99', $now ),
-				new MySQLMasterPos( '255-11-100', $now ),
+				new MySQLPrimaryPos( '255-11-99', $now ),
+				new MySQLPrimaryPos( '255-11-100', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-999', $now ),
-				new MySQLMasterPos( '254-11-1000', $now ),
+				new MySQLPrimaryPos( '255-11-999', $now ),
+				new MySQLPrimaryPos( '254-11-1000', $now ),
 				false,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-23,256-12-50', $now ),
-				new MySQLMasterPos( '255-11-24', $now ),
+				new MySQLPrimaryPos( '255-11-23,256-12-50', $now ),
+				new MySQLPrimaryPos( '255-11-24', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-99,256-12-50,257-12-50', $now ),
-				new MySQLMasterPos( '255-11-1000', $now ),
+				new MySQLPrimaryPos( '255-11-99,256-12-50,257-12-50', $now ),
+				new MySQLPrimaryPos( '255-11-1000', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-23,256-12-50', $now ),
-				new MySQLMasterPos( '255-11-24,155-52-63', $now ),
+				new MySQLPrimaryPos( '255-11-23,256-12-50', $now ),
+				new MySQLPrimaryPos( '255-11-24,155-52-63', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-99,256-12-50,257-12-50', $now ),
-				new MySQLMasterPos( '255-11-1000,256-12-51', $now ),
+				new MySQLPrimaryPos( '255-11-99,256-12-50,257-12-50', $now ),
+				new MySQLPrimaryPos( '255-11-1000,256-12-51', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '255-11-99,256-12-50', $now ),
-				new MySQLMasterPos( '255-13-1000,256-14-49', $now ),
+				new MySQLPrimaryPos( '255-11-99,256-12-50', $now ),
+				new MySQLPrimaryPos( '255-13-1000,256-14-49', $now ),
 				true,
 				true
 			],
 			[
-				new MySQLMasterPos( '253-11-999,255-11-999', $now ),
-				new MySQLMasterPos( '254-11-1000', $now ),
+				new MySQLPrimaryPos( '253-11-999,255-11-999', $now ),
+				new MySQLPrimaryPos( '254-11-1000', $now ),
 				false,
 				false
 			],
@@ -278,13 +278,13 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideChannelPositions
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 */
-	public function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
+	public function testChannelsMatch( MySQLPrimaryPos $pos1, MySQLPrimaryPos $pos2, $matches ) {
 		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
 		$this->assertEquals( $matches, $pos2->channelsMatch( $pos1 ) );
 
-		$roundtripPos = new MySQLMasterPos( (string)$pos1, 1 );
+		$roundtripPos = new MySQLPrimaryPos( (string)$pos1, 1 );
 		$this->assertEquals( (string)$pos1, (string)$roundtripPos );
 	}
 
@@ -293,23 +293,23 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		return [
 			[
-				new MySQLMasterPos( 'db1034-bin.000876/44', $now ),
-				new MySQLMasterPos( 'db1034-bin.000976/74', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000876/44', $now ),
+				new MySQLPrimaryPos( 'db1034-bin.000976/74', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1052-bin.000976/999', $now ),
-				new MySQLMasterPos( 'db1052-bin.000976/1000', $now ),
+				new MySQLPrimaryPos( 'db1052-bin.000976/999', $now ),
+				new MySQLPrimaryPos( 'db1052-bin.000976/1000', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1066-bin.000976/9999', $now ),
-				new MySQLMasterPos( 'db1035-bin.000976/10000', $now ),
+				new MySQLPrimaryPos( 'db1066-bin.000976/9999', $now ),
+				new MySQLPrimaryPos( 'db1035-bin.000976/10000', $now ),
 				false
 			],
 			[
-				new MySQLMasterPos( 'db1066-bin.000976/9999', $now ),
-				new MySQLMasterPos( 'trump2016.000976/10000', $now ),
+				new MySQLPrimaryPos( 'db1066-bin.000976/9999', $now ),
+				new MySQLPrimaryPos( 'trump2016.000976/10000', $now ),
 				false
 			],
 		];
@@ -317,33 +317,33 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideCommonDomainGTIDs
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 */
-	public function testGetRelevantActiveGTIDs( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
-		$this->assertEquals( $gtids, MySQLMasterPos::getRelevantActiveGTIDs( $pos, $ref ) );
+	public function testGetRelevantActiveGTIDs( MySQLPrimaryPos $pos, MySQLPrimaryPos $ref, $gtids ) {
+		$this->assertEquals( $gtids, MySQLPrimaryPos::getRelevantActiveGTIDs( $pos, $ref ) );
 	}
 
 	public static function provideCommonDomainGTIDs() {
 		return [
 			[
-				new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ),
-				new MySQLMasterPos( '255-11-1000', 1 ),
+				new MySQLPrimaryPos( '255-13-99,256-12-50,257-14-50', 1 ),
+				new MySQLPrimaryPos( '255-11-1000', 1 ),
 				[ '255-13-99' ]
 			],
 			[
-				( new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ) )
+				( new MySQLPrimaryPos( '255-13-99,256-12-50,257-14-50', 1 ) )
 					->setActiveDomain( 257 ),
-				new MySQLMasterPos( '255-11-1000,257-14-30', 1 ),
+				new MySQLPrimaryPos( '255-11-1000,257-14-30', 1 ),
 				[ '257-14-50' ]
 			],
 			[
-				new MySQLMasterPos(
+				new MySQLPrimaryPos(
 					'2E11FA47-71CA-11E1-9E33-C80AA9429562:1-5,' .
 					'3E11FA47-71CA-11E1-9E33-C80AA9429562:20-99,' .
 					'7E11FA47-71CA-11E1-9E33-C80AA9429562:1-30',
 					1
 				),
-				new MySQLMasterPos(
+				new MySQLPrimaryPos(
 					'1E11FA47-71CA-11E1-9E33-C80AA9429562:30-100,' .
 					'3E11FA47-71CA-11E1-9E33-C80AA9429562:30-66',
 					1
@@ -361,14 +361,14 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [
-				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getMasterServerInfo' ] )
+			->onlyMethods( [
+				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getPrimaryServerInfo' ] )
 			->getMock();
 
 		$db->method( 'getLagDetectionMethod' )
 			->willReturn( 'pt-heartbeat' );
 
-		$db->method( 'getMasterServerInfo' )
+		$db->method( 'getPrimaryServerInfo' )
 			->willReturn( [ 'serverId' => 172, 'asOf' => time() ] );
 
 		$db->setLBInfo( 'replica', true );
@@ -400,14 +400,14 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideGtidData
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getPrimaryPos
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [
+			->onlyMethods( [
 				'useGTIDs',
 				'getServerGTIDs',
 				'getServerRoleStatus',
@@ -439,9 +439,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			$this->assertFalse( $db->getReplicaPos() );
 		}
 		if ( is_array( $mGTIDs ) ) {
-			$this->assertEquals( $mGTIDs, $db->getMasterPos()->getGTIDs() );
+			$this->assertEquals( $mGTIDs, $db->getPrimaryPos()->getGTIDs() );
 		} else {
-			$this->assertFalse( $db->getMasterPos() );
+			$this->assertFalse( $db->getPrimaryPos() );
 		}
 	}
 
@@ -554,15 +554,15 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 */
 	public function testSerialize() {
-		$pos = new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', 53636363 );
+		$pos = new MySQLPrimaryPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', 53636363 );
 		$roundtripPos = unserialize( serialize( $pos ) );
 
 		$this->assertEquals( $pos, $roundtripPos );
 
-		$pos = new MySQLMasterPos( '255-11-23', 53636363 );
+		$pos = new MySQLPrimaryPos( '255-11-23', 53636363 );
 		$roundtripPos = unserialize( serialize( $pos ) );
 
 		$this->assertEquals( $pos, $roundtripPos );
@@ -575,7 +575,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getReplicationSafetyInfo' ] )
+			->onlyMethods( [ 'getReplicationSafetyInfo' ] )
 			->getMock();
 		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
 		$dbw = TestingAccessWrapper::newFromObject( $db );
@@ -668,7 +668,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testBuildIntegerCast() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		/** @var IDatabase $db */
@@ -682,7 +682,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {
@@ -716,7 +716,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {

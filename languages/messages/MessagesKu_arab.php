@@ -1,5 +1,5 @@
 <?php
-/** كوردي (عەرەبی)‏ (كوردي (عەرەبی)‏)
+/** كوردي (عەرەبی) (كوردي (عەرەبی))
  *
  * To improve a translation please visit https://translatewiki.net
  *

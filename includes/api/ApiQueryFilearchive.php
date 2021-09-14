@@ -33,18 +33,30 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class ApiQueryFilearchive extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var CommentStore */
+	private $commentStore;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore
+	) {
 		parent::__construct( $query, $moduleName, 'fa' );
+		$this->commentStore = $commentStore;
 	}
 
 	public function execute() {
 		$user = $this->getUser();
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 
 		$params = $this->extractRequestParams();
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_user = isset( $prop['user'] );
@@ -162,7 +174,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_description &&
 				RevisionRecord::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
 			) {
-				$file['description'] = $commentStore->getComment( 'fa_description', $row )->text;
+				$file['description'] = $this->commentStore->getComment( 'fa_description', $row )->text;
 				if ( isset( $prop['parseddescription'] ) ) {
 					$file['parseddescription'] = Linker::formatComment(
 						$file['description'], $title );

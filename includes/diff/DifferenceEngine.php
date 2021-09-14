@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -228,9 +227,6 @@ class DifferenceEngine extends ContextSource {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
@@ -272,8 +268,7 @@ class DifferenceEngine extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->contentHandlerFactory = $services->getContentHandlerFactory();
 		$this->revisionStore = $services->getRevisionStore();
-		$this->hookContainer = $services->getHookContainer();
-		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
@@ -665,23 +660,6 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$this->hookRunner->onDifferenceEngineViewHeader( $this );
 
-			// DiffViewHeader hook is hard deprecated since 1.35
-			if ( $this->hookContainer->isRegistered( 'DiffViewHeader' ) ) {
-				// Only create the Revision object if needed
-				// If old or new are falsey, use null
-				$legacyOldRev = $this->mOldRevisionRecord ?
-					new Revision( $this->mOldRevisionRecord ) :
-					null;
-				$legacyNewRev = $this->mNewRevisionRecord ?
-					new Revision( $this->mNewRevisionRecord ) :
-					null;
-				$this->hookRunner->onDiffViewHeader(
-					$this,
-					$legacyOldRev,
-					$legacyNewRev
-				);
-			}
-
 			if ( !$this->mOldPage || !$this->mNewPage ) {
 				// XXX say something to the user?
 				$samePage = false;
@@ -801,23 +779,6 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldRevisionRecord ?: null,
 			$user
 		);
-
-		# Hook deprecated since 1.35
-		if ( $this->hookContainer->isRegistered( 'DiffRevisionTools' ) ) {
-			# Only create the Revision objects if they are needed
-			$legacyOldRev = $this->mOldRevisionRecord ?
-				new Revision( $this->mOldRevisionRecord ) :
-				null;
-			$legacyNewRev = $this->mNewRevisionRecord ?
-				new Revision( $this->mNewRevisionRecord ) :
-				null;
-			$this->hookRunner->onDiffRevisionTools(
-				$legacyNewRev,
-				$revisionTools,
-				$legacyOldRev,
-				$user
-			);
-		}
 
 		$formattedRevisionTools = [];
 		// Put each one in parentheses (poor man's button)
@@ -960,7 +921,7 @@ class DifferenceEngine extends ContextSource {
 				__METHOD__
 			);
 
-			if ( $change && !$change->getPerformer()->equals( $user ) ) {
+			if ( $change && !$change->getPerformerIdentity()->equals( $user ) ) {
 				$rcid = $change->getAttribute( 'rc_id' );
 			} else {
 				// None found or the page has been created by the current user.
@@ -1016,9 +977,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function renderNewRevision() {
 		if ( $this->isContentOverridden ) {
-			// The code below only works with a Revision object. We could construct a fake revision
-			// (here or in setContent), but since this does not seem needed at the moment,
-			// we'll just fail for now.
+			// The code below only works with a RevisionRecord object. We could construct a
+			// fake RevisionRecord (here or in setContent), but since this does not seem
+			// needed at the moment, we'll just fail for now.
 			throw new LogicException(
 				__METHOD__
 				. ' is not supported after calling setContent(). Use setRevisions() instead.'
@@ -1098,7 +1059,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$revRecord->getId() ) {
 			// WikiPage::getParserOutput wants a revision ID. Passing 0 will incorrectly show
 			// the current revision, so fail instead. If need be, WikiPage::getParserOutput
-			// could be made to accept a Revision or RevisionRecord instead of the id.
+			// could be made to accept a RevisionRecord instead of the id.
 			return false;
 		}
 
@@ -1140,6 +1101,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function showDiffStyle() {
 		if ( !$this->isSlotDiffRenderer ) {
+			$this->getOutput()->addModules( 'mediawiki.diff' );
 			$this->getOutput()->addModuleStyles( [
 				'mediawiki.interface.helpers.styles',
 				'mediawiki.diff.styles'
@@ -1756,18 +1718,13 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get a header for a specified revision.
 	 *
-	 * @param Revision|RevisionRecord $rev (passing a Revision is deprecated since 1.35)
+	 * @param RevisionRecord $rev
 	 * @param string $complete 'complete' to get the header wrapped depending
 	 *        the visibility of the revision and a link to edit the page.
 	 *
 	 * @return string HTML fragment
 	 */
-	public function getRevisionHeader( $rev, $complete = '' ) {
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$rev = $rev->getRevisionRecord();
-		}
-
+	public function getRevisionHeader( RevisionRecord $rev, $complete = '' ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
@@ -1809,7 +1766,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
-					[ 'class' => 'history-deleted' ],
+					[ 'class' => Linker::getRevisionDeletedClass( $rev ) ],
 					$header
 				);
 			}
@@ -1865,10 +1822,13 @@ class DifferenceEngine extends ContextSource {
 				$multiColspan = 2;
 			}
 			if ( $otitle || $ntitle ) {
+				// FIXME Hardcoding values from TableDiffFormatter.
+				$leftClass = 'diff-left';
+				$rightClass = 'diff-right';
 				$header .= "
 				<tr class=\"diff-title\" lang=\"{$userLang}\">
-				<td colspan=\"$colspan\" class=\"diff-otitle\">{$otitle}</td>
-				<td colspan=\"$colspan\" class=\"diff-ntitle\">{$ntitle}</td>
+				<td colspan=\"$colspan\" class=\"diff-otitle {$leftClass}\">{$otitle}</td>
+				<td colspan=\"$colspan\" class=\"diff-ntitle {$rightClass}\">{$ntitle}</td>
 				</tr>";
 			}
 		}
@@ -2014,7 +1974,7 @@ class DifferenceEngine extends ContextSource {
 	 * by the request context); if oldid is 0, then compare the revision in newid to the
 	 * immediately previous one.
 	 *
-	 * If oldid is false, leave the corresponding revision object set to false. This can
+	 * If oldid is false, leave the corresponding RevisionRecord object set to false. This can
 	 * happen with 'diff=prev' pointing to a non-existent revision, and is also used directly
 	 * by the API.
 	 *
@@ -2032,7 +1992,7 @@ class DifferenceEngine extends ContextSource {
 
 		$this->loadRevisionIds();
 
-		// Load the new revision object
+		// Load the new RevisionRecord object
 		if ( $this->mNewid ) {
 			$this->mNewRevisionRecord = $this->revisionStore->getRevisionById( $this->mNewid );
 		} else {
@@ -2053,7 +2013,7 @@ class DifferenceEngine extends ContextSource {
 			$this->mNewPage = null;
 		}
 
-		// Load the old revision object
+		// Load the old RevisionRecord object
 		$this->mOldRevisionRecord = false;
 		if ( $this->mOldid ) {
 			$this->mOldRevisionRecord = $this->revisionStore->getRevisionById( $this->mOldid );
