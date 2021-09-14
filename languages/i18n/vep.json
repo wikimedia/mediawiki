@@ -686,8 +686,6 @@
 	"restoreprefs": "Endištada kaik augotižjärgendused (kaikiš sekcijoiš)",
 	"prefs-editing": "Redaktiruind",
 	"searchresultshead": "Ecind",
-	"stub-threshold": "Nägutesen märitamižen künduz <a href=\"#\" class=\"stub\">kosketust otetile</a> (baitoiš)",
-	"stub-threshold-disabled": "Ei ole kävutamas",
 	"recentchangesdays": "Päiväd veresiden toižetusidenke, lugumär:",
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|päiv|päiväd}})",
 	"recentchangescount": "Redakcijoiden lugu, kudamb pidab ozutada augotižjärgendusen mödhe:",

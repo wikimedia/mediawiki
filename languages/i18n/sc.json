@@ -709,8 +709,6 @@
 	"restoreprefs": "Restàura totus is sèberos predefinidos (in totus is setziones)",
 	"prefs-editing": "Casella de modìfica",
 	"searchresultshead": "Chirca",
-	"stub-threshold": "Valore mìnimu pro is <a href=\"#\" class=\"stub\">ligòngios a is abotzos</a>, in bytes:",
-	"stub-threshold-disabled": "Disativadu",
 	"recentchangesdays": "Dies de ammustrare in ùrtimas mudàntzias:",
 	"recentchangesdays-max": "Màssimu $1 {{PLURAL:$1|die|dies}}",
 	"recentchangescount": "Nùmeru de acontzos de amostare pro definidura:",

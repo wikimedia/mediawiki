@@ -752,8 +752,6 @@
 	"restoreprefs": "Restituir tut las preferenzas da standard (en tut las secziuns)",
 	"prefs-editing": "Modifitgar",
 	"searchresultshead": "Tschertga",
-	"stub-threshold": "Limita per la formataziun sco <a href=\"#\" class=\"stub\">colliaziun a stubs</a>, en bytes:",
-	"stub-threshold-disabled": "Deactivà",
 	"recentchangesdays": "Dumber da dis che duain vegnir mussads en las ultimas midadas:",
 	"recentchangesdays-max": "Maximalmain $1 {{PLURAL:$1|di|dis}}",
 	"recentchangescount": "Dumber da modificaziuns che duai vegnir mussà sco standard:",

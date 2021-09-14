@@ -893,8 +893,6 @@
 	"restoreprefs": "پهکین پیش‌ پرزین تنظیمانء واتر بکن (مان پهکین بهران)",
 	"prefs-editing": "ٹگلݔنگ",
 	"searchresultshead": "گردگ",
-	"stub-threshold": "سرحد په  <a href=\"#\" class=\"stub\">چنڈ لینک</a> فرمت (بایت):",
-	"stub-threshold-disabled": "نافعال",
 	"recentchangesdays": "روچ ان به پیش دارگ ته نوکیت تغییرات:",
 	"recentchangesdays-max": "(حداکثر $1 {{PLURAL:$1|روچ|روچ}})",
 	"recentchangescount": "تعداد اصلاحات به پیش دارگ به طور پیش فرض :",

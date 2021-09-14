@@ -839,8 +839,6 @@
 	"restoreprefs": "Igbalik an ngatanan ngada nga aada-nga-daan nga settings (ha ngatanan nga mga bahin)",
 	"prefs-editing": "Ginliliwat",
 	"searchresultshead": "Bilnga",
-	"stub-threshold-sample-link": "pananglitan",
-	"stub-threshold-disabled": "Waray ginpagana",
 	"recentchangesdays": "Kadamo hin adlaw nga igpapakita an mga kabag-ohan:",
 	"recentchangesdays-max": "Pinakadamo $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}",
 	"recentchangescount": "Ihap han mga pagliwat nga igpapakita ha mga kabag-ohan, mga kaagi hin pakli, ngan ha mga talaa, nga ginpasingada:",

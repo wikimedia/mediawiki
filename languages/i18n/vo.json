@@ -667,7 +667,6 @@
 	"restoreprefs": "Geikön lü paramets kösömik valik",
 	"prefs-editing": "Redakam",
 	"searchresultshead": "Suk",
-	"stub-threshold": "Soliad pro fomätam <a href=\"#\" class=\"stub\">sidayümas</a> (jöläts):",
 	"recentchangesdays": "Dels ad pajonön in votükams nulik:",
 	"recentchangesdays-max": "(maxum: {{PLURAL:$1|del|dels}} $1)",
 	"recentchangescount": "Num kösömik redakamas ad pajonön:",

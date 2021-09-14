@@ -817,8 +817,6 @@
 	"restoreprefs": "Alle Standardinstellunge wiederhearstelle (in alle Abschnitte)",
 	"prefs-editing": "Beoorbeite",
 	"searchresultshead": "Such",
-	"stub-threshold": "Linkformatierung <a href=\"#\" class=\"stub\">klen Seite</a> (in Bytes):",
-	"stub-threshold-disabled": "Deaktiviert",
 	"recentchangesdays": "Oonzoohl von der standardmässich inbezochne Tooche:",
 	"recentchangesdays-max": "Maximal $1 {{PLURAL:$1|Tooch|Tooche}}",
 	"recentchangescount": "Oonzoohl von der standardmässich oongezeichte Beoorbeitunge:",

@@ -845,8 +845,6 @@
 	"restoreprefs": "Turnêr a mèter al j impustasiòun ed partèinsa (in tót al sesiòun)",
 	"prefs-editing": "Caşèla 'd mudéfica",
 	"searchresultshead": "Sērca",
-	"stub-threshold": "Pôrta per i colegamèint a j abòs ($1):",
-	"stub-threshold-disabled": "Bluchê",
 	"recentchangesdays": "Nómer di dé da fêr vèder int al j ûltmi mudéfichi:",
 	"recentchangesdays-max": "Mâsim $1 {{PLURAL:$1|dé}}",
 	"recentchangescount": "Nómer ed mudéfichi da fêr vèder per default:",

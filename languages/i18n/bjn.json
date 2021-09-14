@@ -761,8 +761,6 @@
 	"restoreprefs": "Bulikakan samunyaan sesetélan bawaan (di sabarataan seksi)",
 	"prefs-editing": "Pambabakan",
 	"searchresultshead": "Gagai",
-	"stub-threshold": "Ambang watas gasan pormat tautan rintisan ($1):",
-	"stub-threshold-disabled": "Kada kawa-akan",
 	"recentchangesdays": "Jumlah hari nang manampaiakan paubahan pahanyarnya:",
 	"recentchangesdays-max": "Paling lawas $1 {{PLURAL:$1|hari|hahari}}",
 	"recentchangescount": "Rikinan babakan standar gasan ditampaiakan di paubahan pahanyarnya, riwayat halaman, wan di halaman log:",

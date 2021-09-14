@@ -762,8 +762,6 @@
 	"restoreprefs": "Balekna kabeh setelan gawane (nang kabeh bagiyan)",
 	"prefs-editing": "Panyuntingan",
 	"searchresultshead": "Goleti",
-	"stub-threshold": "Ambang wates kanggo format <a href=\"#\" class=\"stub\">pranala rintisan</a> (bita):",
-	"stub-threshold-disabled": "Dinonaktifna",
 	"recentchangesdays": "Jumlah dina sing ditidokna nang Owahan anyar:",
 	"recentchangesdays-max": "Maksimum $1 {{PLURAL:$1|dina|dina}}",
 	"recentchangescount": "Standar jumlah suntingan sing ditampilna:",

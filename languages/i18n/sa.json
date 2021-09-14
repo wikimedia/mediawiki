@@ -896,8 +896,6 @@
 	"restoreprefs": "मूलव्यवस्थापनानुगुणं (default settings) सर्वे विकल्पाः भवन्तु (सर्वेषु विभागेषु)",
 	"prefs-editing": "सम्पादनम्",
 	"searchresultshead": "अन्वेषणम्",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">stub link</a> इत्यस्य प्रारूपणस्य (formatting) कृते प्रारम्भिकसोपानम् (अष्टकानि) :",
-	"stub-threshold-disabled": "निष्क्रियः",
 	"recentchangesdays": "नूतनपरिवर्तनेषु प्रदर्शनीयानि दिनानि :",
 	"recentchangesdays-max": "$1 अधिकतम{{PLURAL:$1|दिनं|दिनानि}}",
 	"recentchangescount": "फलकेषु सामान्यतया यानि परिवर्तनानि अभवन्, तेषां सङ्ख्या :",

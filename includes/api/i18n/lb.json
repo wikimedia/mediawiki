@@ -245,7 +245,6 @@
 	"apiwarn-invalidcategory": "\"$1\" ass keng Kategorie.",
 	"apiwarn-invalidtitle": "\"$1\" ass kee valabelen Titel",
 	"apiwarn-notfile": "\"$1\" ass kee Fichier.",
-	"apiwarn-tokennotallowed": "Aktioun \"$1\" ass net erlaabt fir den aktuelle Benotzer.",
 	"apiwarn-validationfailed-badpref": "keng valabel Astellung",
 	"api-feed-error-title": "Feeler ($1)"
 }

@@ -653,8 +653,6 @@
 	"restoreprefs": "Ἐπανιστάναι ἁπάσας τὰς προκαθωρισμένας ῥυθμίσεις",
 	"prefs-editing": "Τὸ μεταγράφειν",
 	"searchresultshead": "Ζητεῖν",
-	"stub-threshold": "Ἄνω φράγμα διὰ τοῦς <a href=\"#\" class=\"stub\">συνδέσμους πρὸς λείμματα</a> (δυφία):",
-	"stub-threshold-disabled": "Ἀπενεργηθέν",
 	"recentchangesdays": "Αἱ ἡμέραι αἱ δεικτέαι ἐν ταῖς προσφάτοις ἀλλαγαῖς:",
 	"recentchangesdays-max": "(τὸ μέγιστον $1 {{PLURAL:$1|ἡμέρα|ἡμέραι}})",
 	"recentchangescount": "Δεικτέος προκαθωρισμένως ἀριθμὸς μεταγραφῶν:",

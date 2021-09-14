@@ -622,8 +622,6 @@
 	"restoreprefs": "Baştağı köylänmälärne kire qaytaru",
 	"prefs-editing": "Üzgärtü",
 	"searchresultshead": "Ezläw",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">Yasalma sıltamalarnıñ</a> bizäleşe buyınça çikläwlär (baytlarda):",
-	"stub-threshold-disabled": "Yabılğan",
 	"recentchangesdays": "Soñğı üzgärtülärne kürsätüçe könnär sanı:",
 	"recentchangesdays-max": "( $1 {{PLURAL:$1|könnän}} dä artıq bulmasqa tieş)",
 	"recentchangescount": "Töp bularaq qullanuçı üzgärtülär sanı:",

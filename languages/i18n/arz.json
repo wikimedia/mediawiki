@@ -767,8 +767,6 @@
 	"restoreprefs": "استرجع التظبيطات الاصليه",
 	"prefs-editing": "تعديل",
 	"searchresultshead": "تدوير",
-	"stub-threshold": "الحد لتنسيق لينك البذرة ($1):",
-	"stub-threshold-disabled": "معطل",
 	"recentchangesdays": "عدد الأيام المعروضة فى اخرالتغييرات:",
 	"recentchangesdays-max": "(الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}})",
 	"recentchangescount": "عدد التعديلات اللى بتظهر اوتوماتيكى فى اخر التغييرات, تواريخ الصفحه, و فى السجلات, :",

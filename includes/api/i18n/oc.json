@@ -186,7 +186,6 @@
 	"apiwarn-invalidcategory": "« $1 » es pas una categoria.",
 	"apiwarn-invalidtitle": "« $1 » es pas un títol valid.",
 	"apiwarn-notfile": "« $1 » es pas un fichièr.",
-	"apiwarn-tokennotallowed": "L'accion « $1 » es pas autorizada per l'utilizaire actual.",
 	"apiwarn-validationfailed-badpref": "pas una preferéncia valida.",
 	"apiwarn-wgdebugapi": "<strong>Avertiment de seguretat :</strong> <var>$wgDebugAPI</var> es activat.",
 	"api-feed-error-title": "Error ($1)",

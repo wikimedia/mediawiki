@@ -816,8 +816,6 @@
 	"restoreprefs": "Tukuy kikinmanta allinkachinakunata kutichimuy (tukuy rakirikunapi)",
 	"prefs-editing": "Llamk'apusqa",
 	"searchresultshead": "Maskay",
-	"stub-threshold": "Kay hatun kaykamam <a href=\"#\" class=\"stub\">t'una qillqasqa t'inki</a> nisqa kachun (byte):",
-	"stub-threshold-disabled": "Ama nisqa",
 	"recentchangesdays": "Ñaqha hukchasqakunapi rikuchina p'unchawkuna:",
 	"recentchangesdays-max": "Ama $1-manta aswan {{PLURAL:$1|p'unchawkuna}} kachunchu",
 	"recentchangescount": "Rikuchina hukchasqakunap yupaynin, kikinmanta:",

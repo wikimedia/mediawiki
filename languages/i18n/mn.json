@@ -848,8 +848,6 @@
 	"restoreprefs": "Бүх тохиргоог анхны байдалд оруулах (хэсэг бүрт)",
 	"prefs-editing": "Засварлах",
 	"searchresultshead": "Хайлт",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">Түүхий холбоосийг</a> форматлах босго （байт）:",
-	"stub-threshold-disabled": "Идэвхигүйжүүлсэн",
 	"recentchangesdays": "Сүүлийн өөрчлөлтүүдэд үзүүлэх өдрийн тоо:",
 	"recentchangesdays-max": "Хамгийн ихдээ $1 өдөр",
 	"recentchangescount": "Үзүүлэх засварын тоо (анхны байдалд):",
