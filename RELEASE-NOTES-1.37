@@ -788,6 +788,12 @@ because of Phabricator reports.
   - LinkRendererFactory::createForUser - calling ::create is now sufficient
   - ParserOptions::setStubThreshold and ::getStubThreshold - no replacement.
   - User::getStubThreshold - no replacement.
+* The following LESS mediawiki.mixins have been deprecated:
+  - .box-sizing()
+  - .transform()
+  - .transform-origin()
+  - .transition()
+  - .transition-transform()
 * …
 
 === Other changes in 1.37 ===

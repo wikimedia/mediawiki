@@ -67,23 +67,27 @@
 	}
 }
 
+// Deprecated in MW v1.37.0, use unprefixed `transform:` now.
 .transform( @value ) {
 	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
 	-ms-transform: @value; // IE 9
 	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
+// Deprecated in MW v1.37.0, use unprefixed `transform-origin:` now.
 .transform-origin( @value ) {
 	-webkit-transform-origin: @value; // Chrome 4-35, Safari 3.1-8.0, iOS 3.2-8.4, Op 15-22, Android 2.1-4.4.4
 	-ms-transform-origin: @value; // IE 9
 	transform-origin: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
+// Deprecated in MW v1.37.0, use unprefixed `transition:` now.
 .transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	transition: @value; // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+, iOS 7+, Android 4.4+
 }
 
+// Deprecated in MW v1.37.0, use unprefixed `transition: transform` now.
 // Provide a hardware accelerated transform transition
 // We can't use `.transition()` because WebKit requires `-webkit-` prefix before `transform`
 // Example usage: `.transition-transform( 1s, opacity 2s );`
@@ -96,6 +100,7 @@
 	transition: transform @arguments; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 12.1+, iOS 9.2+, Android 36+
 }
 
+// Deprecated in MW v1.37.0, use unprefixed `box-sizing:` now.
 .box-sizing( @value ) {
 	-moz-box-sizing: @value; // Firefox 4-28,
 	box-sizing: @value; // Chrome 10+, Firefox 29+, IE 8+, Safari 5.1+, Opera 10+, iOS 5+, Android 4+
