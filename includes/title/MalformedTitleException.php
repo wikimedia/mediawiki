@@ -23,7 +23,7 @@
  * @newable
  * @since 1.23
  */
-class MalformedTitleException extends AbstractLocalizedException {
+class MalformedTitleException extends Exception implements ILocalizedException {
 
 	/** @var string|null */
 	private $titleText;
