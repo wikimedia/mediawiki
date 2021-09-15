@@ -1287,10 +1287,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertSame( $value, $ret );
 		$this->assertSame( $value, $cache->get( $key, $curTTL ), 'Value was populated' );
-		$this->assertEqualsWithDelta( 1.0, $curTTL, 0.01, 'Value has reduced logical TTL' );
+		$this->assertEqualsWithDelta( 30.0, $curTTL, 0.01, 'Value has reduced logical TTL' );
 		$this->assertSame( 1, $calls, 'Value was generated' );
 
-		$mockWallClock += 2; // low logical TTL expired
+		$mockWallClock += 32; // low logical TTL expired
 
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertSame( $value, $ret );
@@ -2027,6 +2027,13 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written (no walltime)." );
 
 		$key = wfRandomString();
+		$cache->get( $key );
+		$now += 15;
+		$opts = [ 'lag' => 300, 'since' => $now ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written (auto-walltime)." );
+
+		$key = wfRandomString();
 		$opts = [ 'lag' => 0, 'since' => $now - 300, 'walltime' => 0.1 ];
 		$cache->set( $key, $v, 30, $opts );
 		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
@@ -2037,14 +2044,21 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $v, $cache->get( $key ), "Trx-lagged value written (no walltime)." );
 
 		$key = wfRandomString();
+		$cache->get( $key );
+		$now += 15;
+		$opts = [ 'lag' => 0, 'since' => $now - 300 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value not written (auto-walltime)." );
+
+		$key = wfRandomString();
 		$opts = [ 'lag' => 5, 'since' => $now - 5, 'walltime' => 0.1 ];
 		$cache->set( $key, $v, 30, $opts );
 		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
 
 		$key = wfRandomString();
-		$opts = [ 'lag' => 5, 'since' => $now - 5 ];
+		$opts = [ 'lag' => 3, 'since' => $now - 3 ];
 		$cache->set( $key, $v, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Lagged value not written (no walltime)." );
+		$this->assertSame( $v, $cache->get( $key ), "Lagged value written (no walltime)." );
 	}
 
 	/**
