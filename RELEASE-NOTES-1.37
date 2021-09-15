@@ -831,6 +831,8 @@ because of Phabricator reports.
   - SpecialRandomredirect.php -> SpecialRandomRedirect.php
   - SpecialRandomrootpage.php -> SpecialRandomRootPage.php
 * The stub threshold feature has been removed. See T284917.
+* Skin::getPoweredBy and Skin::getCopyrightIcon are deprecated.
+* The SkinGetPoweredBy hook is deprecated.
 * …
 
 == Compatibility ==
