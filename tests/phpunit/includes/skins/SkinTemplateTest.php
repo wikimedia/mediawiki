@@ -205,6 +205,126 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function provideGetSectionsData(): array {
+		$END_SUBSECTION = [
+			'is-last-item' => true,
+		];
+		$NOT_END_SUBSECTION = [
+			'is-last-item' => false,
+		];
+		$WITH_SUBSECTIONS = [
+			'has-subsections' => true,
+		];
+		$WITHOUT_SUBSECTIONS = [
+			'has-subsections' => false,
+		];
+		// byteoffset and fromtitle are redacted from this test.
+		$SECTION_1 = [
+			'toclevel' => 1,
+			'line' => 'Section 1',
+			'anchor' => 'section_1',
+		];
+		$SECTION_1_1 = [
+			'toclevel' => 2,
+			'line' => 'Section 1.1',
+			'anchor' => 'section_1_1',
+		];
+		$SECTION_1_2 = [
+			'toclevel' => 2,
+			'line' => 'Section 1.2',
+			'anchor' => 'section_1_2',
+		];
+		$SECTION_1_2_1 = [
+			'toclevel' => 3,
+			'line' => 'Section 1.2.1',
+			'anchor' => 'section_1_2_1',
+		];
+		$SECTION_1_3 = [
+			'toclevel' => 2,
+			'line' => 'Section 1.3',
+			'anchor' => 'section_1_3',
+		];
+		$SECTION_2 = [
+			'toclevel' => 1,
+			'line' => 'Section 2',
+			'anchor' => 'section_2',
+		];
+
+		return [
+			[
+				// sections data
+				[],
+				[]
+			],
+			[
+				[
+					$SECTION_1,
+					$SECTION_2,
+				],
+				[
+					$SECTION_1 + $NOT_END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+				]
+			],
+			[
+				[
+					$SECTION_1,
+					$SECTION_1_1,
+					$SECTION_2,
+				],
+				[
+					$SECTION_1 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
+					$SECTION_1_1 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+				]
+			],
+			[
+				[
+					$SECTION_1,
+					$SECTION_1_1,
+					$SECTION_1_2,
+					$SECTION_1_2_1,
+					$SECTION_1_3,
+					$SECTION_2,
+				],
+				[
+					$SECTION_1 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
+					$SECTION_1_1 + $NOT_END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_1_2 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
+					$SECTION_1_2_1 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_1_3 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+				]
+			]
+		];
+	}
+
+	/**
+	 * @covers Skin::getSectionsData
+	 * @dataProvider provideGetSectionsData
+	 *
+	 * @param array $sectionsData
+	 * @param array $expected
+	 */
+	public function testGetSectionsData( $sectionsData, $expected ) {
+		$skin = new SkinTemplate();
+		$context = new DerivativeContext( $skin->getContext() );
+		$mock = $this->createMock( OutputPage::class );
+		$mock->expects( $this->any() )
+			->method( 'getSections' )
+			->willReturn( $sectionsData );
+
+		$reflectionMethod = new ReflectionMethod( Skin::class, 'getSectionsData' );
+		$reflectionMethod->setAccessible( true );
+
+		$context->setOutput( $mock );
+		$skin->setContext( $context );
+		$data = $reflectionMethod->invoke(
+			$skin
+		);
+		$this->assertEquals( $data, $expected );
+	}
+
 	public function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [

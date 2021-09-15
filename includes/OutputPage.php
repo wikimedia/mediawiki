@@ -104,6 +104,11 @@ class OutputPage extends ContextSource {
 	private $mPrintable = false;
 
 	/**
+	 * @var array sections from ParserOutput
+	 */
+	private $mSections = [];
+
+	/**
 	 * @var array Contains the page subtitle. Special pages usually have some
 	 *   links here. Don't confuse with site subtitle added by skins.
 	 */
@@ -1881,9 +1886,27 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Adds sections to OutputPage from ParserOutput
+	 * @param array $sections
+	 * @internal For use by Article.php
+	 */
+	public function setSections( array $sections ) {
+		$this->mSections = $sections;
+	}
+
+	/**
+	 * @internal For usage in Skin::getSectionsData() only.
+	 * @return array Array of sections.
+	 *   Empty if OutputPage::setSections() has not been called.
+	 */
+	public function getSections(): array {
+		return $this->mSections;
+	}
+
+	/**
 	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
 	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
-	 * and so on.
+	 * and so on.  It does *not* include section information.
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
@@ -1893,13 +1916,18 @@ class OutputPage extends ContextSource {
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->setIndicators( $parserOutput->getIndicators() );
+
+		// FIXME: Best practice is for OutputPage to be an accumulator, as
+		// addParserOutputMetadata() may be called multiple times, but the
+		// following lines overwrite any previous data.  These should
+		// be migrated to an injection pattern.
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
+		$this->mNoGallery = $parserOutput->getNoGallery();
 
 		if ( !$parserOutput->isCacheable() ) {
 			$this->enableClientCache( false );
 		}
-		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
@@ -1969,6 +1997,9 @@ class OutputPage extends ContextSource {
 		}
 
 		// Include parser limit report
+		// FIXME: This should append, rather than overwrite, or else this
+		// data should be injected into the OutputPage like is done for the
+		// other page-level things (like OutputPage::setSections()).
 		if ( !$this->limitReportJSData ) {
 			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
 		}
