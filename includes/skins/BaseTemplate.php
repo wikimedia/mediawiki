@@ -33,6 +33,56 @@ use Wikimedia\WrappedStringList;
 abstract class BaseTemplate extends QuickTemplate {
 
 	/**
+	 * @internal for usage by BaseTemplate or SkinTemplate.
+	 * @param Config $config
+	 * @return string
+	 */
+	public static function getCopyrightIconHTML( Config $config ): string {
+		$out = '';
+		$footerIcons = $config->get( 'FooterIcons' );
+		if (
+			isset( $footerIcons['copyright']['copyright'] ) &&
+			$footerIcons['copyright']['copyright']
+		) {
+			$out = $footerIcons['copyright']['copyright'];
+		} elseif ( $config->get( 'RightsIcon' ) ) {
+			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
+			$url = $config->get( 'RightsUrl' );
+			if ( $url ) {
+				$out .= '<a href="' . htmlspecialchars( $url ) . '">';
+			}
+			$text = htmlspecialchars( $config->get( 'RightsText' ) );
+			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
+			if ( $url ) {
+				$out .= '</a>';
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * @internal for usage by BaseTemplate or SkinTemplate.
+	 * @param Config $config
+	 * @return string of HTML
+	 */
+	public static function getPoweredByHTML( Config $config ): string {
+		$resourceBasePath = $config->get( 'ResourceBasePath' );
+		$url1 = htmlspecialchars(
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
+		);
+		$url1_5 = htmlspecialchars(
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_132x47.png"
+		);
+		$url2 = htmlspecialchars(
+			"$resourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
+		);
+		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
+			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
+			. 'height="31" width="88" alt="Powered by MediaWiki" loading="lazy" /></a>';
+		return $text;
+	}
+
+	/**
 	 * Get a Message object with its context set
 	 *
 	 * @param string $name Message name
