@@ -99,18 +99,6 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get an instance of this class.
-	 *
-	 * @return LinkCache
-	 * @deprecated since 1.28, hard deprecated since 1.37
-	 * Use MediaWikiServices::getLinkCache instead
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getLinkCache();
-	}
-
-	/**
 	 * General accessor to get/set whether the primary DB should be used
 	 *
 	 * This used to also set the FOR UPDATE option (locking the rows read
