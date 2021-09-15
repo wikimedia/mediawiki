@@ -933,6 +933,7 @@
 	"rev-deleted-event": "(logboekregel verwijderd)",
 	"rev-deleted-user-contribs": "[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]",
 	"rev-deleted-text-permission": "Deze paginaversie is <strong>verwijderd</strong>.\nMeer gegevens zijn te vinden in het [{{fullurl:{{#Special:Log}}/delete|page=$1}} verwijderingslogboek].",
+	"rev-suppressed-text": "Deze paginaversie is <strong>verborgen</strong>.",
 	"rev-suppressed-text-permission": "Deze paginaversie is <strong>onderdrukt</strong>. Meer gegevens zijn te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page=$1}} logboek onderdrukte versies].",
 	"rev-deleted-text-unhide": "Deze paginaversie is '''verwijderd'''.\nEr kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].\nAls u wilt kunt u [$1 deze versie bekijken].",
 	"rev-suppressed-text-unhide": "Deze paginaversie is '''onderdrukt'''.\nEr kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].\nAls u wilt kunt u [$1 deze versie bekijken].",

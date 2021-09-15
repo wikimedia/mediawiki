@@ -3022,6 +3022,7 @@
 	"tooltip-search": "搜尋 {{SITENAME}}",
 	"tooltip-search-go": "若與此名稱相符的頁面存在，前往該頁面",
 	"tooltip-search-fulltext": "搜尋使用此文字的頁面",
+	"tooltip-p-cactions": "更多選項",
 	"tooltip-p-logo": "前往首頁",
 	"tooltip-p-personal": "使用者選單",
 	"tooltip-n-mainpage": "前往首頁",

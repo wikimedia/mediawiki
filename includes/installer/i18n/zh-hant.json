@@ -298,6 +298,7 @@
 	"config-install-subscribe-fail": "無法訂閱 [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]：$1",
 	"config-install-subscribe-notpossible": "未安裝 cURL，因此無法使用 <code>allow_url_fopen</code> 設定項目。",
 	"config-install-subscribe-alreadysubscribed": "您已訂閱 mediawiki-announce。[https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ 檢視或變更您的訂閱設定]。",
+	"config-install-subscribe-alreadypending": "已提交 mediawiki-announce 的訂閱申請。請回覆先前已傳送的確認郵件。",
 	"config-install-mainpage": "正在使用預設的內容建立首頁",
 	"config-install-mainpage-exists": "首頁已存在，略過中",
 	"config-install-extension-tables": "正在建立已啟用擴充功能的資料表",

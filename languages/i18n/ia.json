@@ -839,6 +839,7 @@
 	"rev-deleted-event": "(detalios de registro removite)",
 	"rev-deleted-user-contribs": "[nomine de usator o adresse IP removite - modification celate ab contributiones]",
 	"rev-deleted-text-permission": "Iste version del pagina ha essite <strong>delite</strong>.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page=$1}} registro de deletiones].",
+	"rev-suppressed-text": "Iste version del pagina ha essite <strong>supprimite</strong>.",
 	"rev-suppressed-text-permission": "Iste version del pagina ha essite <strong>supprimite</strong>.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page=$1}} registro de suppressiones].",
 	"rev-deleted-text-unhide": "Iste version del pagina ha essite '''delite'''.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].\nTu pote totevia [$1 vider iste version] si tu vole.",
 	"rev-suppressed-text-unhide": "Iste version del pagina ha essite '''supprimite'''.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].\nTu pote totevia [$1 vider iste version] si tu vole.",

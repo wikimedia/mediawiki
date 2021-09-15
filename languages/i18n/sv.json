@@ -912,6 +912,7 @@
 	"rev-deleted-event": "(loggdetaljer borttagna)",
 	"rev-deleted-user-contribs": "[användarnamn eller IP-adress har tagits bort - redigeringen visas ej bland bidragen]",
 	"rev-deleted-text-permission": "Denna version av sidan har <strong>raderats</strong>.\nMer information finns i [{{fullurl:{{#Special:Log}}/delete|page=$1}} raderingsloggen].",
+	"rev-suppressed-text": "Denna sidversion har <strong>censurerats</strong>.",
 	"rev-suppressed-text-permission": "Denna version av sidan har <strong>censurerats</strong>.\nMer information finns i [{{fullurl:{{#Special:Log}}/suppress|page=$1}} censurloggen].",
 	"rev-deleted-text-unhide": "Den här versionen av sidan har '''raderats'''.\nDet kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].\nDu kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 	"rev-suppressed-text-unhide": "Den här versionen av sidan har blivit '''undanhållen'''.\nDet kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].\nDu kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",

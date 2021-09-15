@@ -901,6 +901,7 @@
 	"rev-deleted-event": "(lokitiedot poistettu)",
 	"rev-deleted-user-contribs": "[käyttäjänimi tai IP-osoite poistettu – muokkaus on piilotettu muokkausluettelosta]",
 	"rev-deleted-text-permission": "Tämä versio sivusta on <strong>poistettu</strong>.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page=$1}} poistolokista].",
+	"rev-suppressed-text": "Tämän sivun versio on <strong>häivytetty</strong>.",
 	"rev-suppressed-text-permission": "Tämä versio sivusta on <strong>häivytetty</strong>.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page=$1}}  häivytyslokista].",
 	"rev-deleted-text-unhide": "Tämä versio sivusta on '''poistettu'''.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].\nVoit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 	"rev-suppressed-text-unhide": "Tämä versio sivusta on '''häivytetty'''.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].\nVoit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
