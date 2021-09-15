@@ -161,6 +161,9 @@ class WANObjectCache implements
 	/** @var float Max tolerable bytes/second to spend on a cache write stampede for a key */
 	private $keyHighUplinkBps;
 
+	/** @var array<int,array> List of (key, UNIX timestamp) tuples for get() cache misses */
+	private $missLog;
+
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
 	/** @var mixed[] Temporary warm-up cache */
@@ -173,14 +176,14 @@ class WANObjectCache implements
 
 	/** Max expected seconds to pass between delete() and DB commit finishing */
 	private const MAX_COMMIT_DELAY = 3;
-	/** Max expected seconds of combined lag from replication and view snapshots */
+	/** Max expected seconds of combined lag from replication and "view snapshots" */
 	private const MAX_READ_LAG = 7;
 	/** Seconds to tombstone keys on delete() and treat as volatile after invalidation */
 	public const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
 
 	/** Consider regeneration if the key will expire within this many seconds */
 	private const LOW_TTL = 30;
-	/** Max TTL, in seconds, to store keys when a data sourced is lagged */
+	/** Max TTL, in seconds, to store keys when a data source has high replication lag */
 	public const TTL_LAGGED = 30;
 
 	/** Expected time-till-refresh, in seconds, if the key is accessed once per second */
@@ -234,8 +237,10 @@ class WANObjectCache implements
 	/** Max millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
 	private const RECENT_SET_HIGH_MS = 100;
 
-	/** Consider value generation slow if it takes more than this many seconds */
-	private const GENERATION_SLOW_SEC = 3;
+	/** Consider value generation somewhat high if it takes this many seconds or more */
+	private const GENERATION_HIGH_SEC = 0.2;
+	/** Consider value generation slow if it takes this many seconds or more */
+	private const GENERATION_SLOW_SEC = 3.0;
 
 	/** Key to the tombstone entry timestamp */
 	private const PURGE_TIME = 0;
@@ -360,6 +365,8 @@ class WANObjectCache implements
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
 
+		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
+
 		$this->cache->registerWrapperInfoForStats(
 			'WANCache',
 			'wanobjectcache',
@@ -449,6 +456,13 @@ class WANObjectCache implements
 
 		$curTTL = $metadata[self::KEY_CUR_TTL];
 		$info = $legacyInfo ? $metadata[self::KEY_AS_OF] : $metadata;
+
+		if ( $curTTL === null || $curTTL <= 0 ) {
+			// Log the timestamp in case a corresponding set() call does not provide "walltime"
+			reset( $this->missLog );
+			unset( $this->missLog[key( $this->missLog )] );
+			$this->missLog[] = [ $key, $this->getCurrentTime() ];
+		}
 
 		return $value;
 	}
@@ -716,8 +730,8 @@ class WANObjectCache implements
 	 * the changes do not replicate to the other WAN sites. In that case, delete()
 	 * should be used instead. This method is intended for use on cache misses.
 	 *
-	 * If the data was read from a snapshot-isolated transactions (e.g. the default
-	 * REPEATABLE-READ in innoDB), use 'since' to avoid the following race condition:
+	 * If data was read using "view snapshots" (e.g. innodb REPEATABLE-READ),
+	 * use 'since' to avoid the following race condition:
 	 *   - a) T1 starts
 	 *   - b) T2 updates a row, calls delete(), and commits
 	 *   - c) The HOLDOFF_TTL passes, expiring the delete() tombstone
@@ -746,19 +760,21 @@ class WANObjectCache implements
 	 * @endcode
 	 *
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param mixed $value
+	 * @param mixed $value Value to set for the cache key
 	 * @param int $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param array $opts Options map:
-	 *   - lag: Seconds of replica DB lag. Typically, this is either the replica DB lag
-	 *      before the data was read or, if applicable, the replica DB lag before
-	 *      the snapshot-isolated transaction the data was read from started.
-	 *      Use false to indicate that replication is not running.
+	 *   - lag: Highest seconds of replication lag potentially affecting reads used to generate
+	 *      the value. This should not be affected by the duration of transaction "view snapshots"
+	 *      (e.g. innodb REPEATABLE-READ) nor the time elapsed since the first read (though both
+	 *      increase staleness). For reads using view snapshots, only the replication lag during
+	 *      snapshot initialization matters. Use false if replication is stopped/broken on a
+	 *      replica server involved in the reads.
 	 *      Default: 0 seconds
-	 *   - since: UNIX timestamp of the data in $value. Typically, this is either
-	 *      the current time the data was read or (if applicable) the time when
-	 *      the snapshot-isolated transaction the data was read from started.
+	 *   - since: UNIX timestamp indicative of the highest possible staleness caused by the
+	 *      duration of transaction "view snapshots" (e.g. innodb REPEATABLE-READ) and the time
+	 *      elapsed since the first read. This should not be affected by replication lag.
 	 *      Default: 0 seconds
 	 *   - pending: Whether this data is possibly from an uncommitted write transaction.
 	 *      Generally, other threads should not see values from the future and
@@ -771,7 +787,7 @@ class WANObjectCache implements
 	 *      Default: WANObjectCache::TSE_NONE
 	 *   - staleTTL: Seconds to keep the key around if it is stale. The get()/getMulti()
 	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
-	 *      will call the regeneration callback in such cases, passing in the old value
+	 *      will call the generation callback in such cases, passing in the old value
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
@@ -789,73 +805,79 @@ class WANObjectCache implements
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
 		$now = $this->getCurrentTime();
-		$lag = $opts['lag'] ?? 0;
-		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
-		$pending = $opts['pending'] ?? false;
+		$dataReplicaLag = $opts['lag'] ?? 0;
+		$dataSnapshotLag = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
+		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;
+		$dataPendingCommit = $opts['pending'] ?? null;
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
 		$creating = $opts['creating'] ?? false;
 		$version = $opts['version'] ?? null;
-		$walltime = $opts['walltime'] ?? null;
+		$walltime = $opts['walltime'] ?? $this->timeSinceLoggedMiss( $key, $now );
 
 		if ( $ttl < 0 ) {
 			return true; // not cacheable
 		}
 
-		// Do not cache potentially uncommitted data as it might get rolled back
-		if ( $pending ) {
-			$this->logger->info(
-				'Rejected set() for {cachekey} due to pending writes.',
-				[ 'cachekey' => $key ]
-			);
-
-			return true; // no-op the write for being unsafe
-		}
-
-		// Check if there is a risk of caching (stale) data that predates the last delete()
-		// tombstone due to the tombstone having expired. If so, then the behavior should depend
-		// on whether the problem is specific to this regeneration attempt or systemically affects
-		// attempts to regenerate this key. For systemic cases, the cache writes should set a low
-		// TTL so that the value at least remains cacheable. For non-systemic cases, the cache
-		// write can simply be rejected.
-		if ( $age > self::MAX_READ_LAG ) {
-			// Case A: high snapshot lag
-			if ( $walltime === null ) {
-				// Case A0: high snapshot lag without regeneration wall time info.
-				// Probably systemic; use a low TTL to avoid stampedes/uncacheability.
-				$mitigated = 'snapshot lag';
-				$mitigationTTL = self::TTL_SECOND;
-			} elseif ( ( $age - $walltime ) > self::MAX_READ_LAG ) {
-				// Case A1: value regeneration during an already long-running transaction.
-				// Probably non-systemic; rely on a less problematic regeneration attempt.
-				$mitigated = 'snapshot lag (late regeneration)';
+		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
+		// the TTL when the data has a "since" time so far in the past that a delete() tombstone,
+		// made after that time, could have already expired (the key is no longer write-holed).
+		// The mitigation TTL depends on whether this data lag is assumed to systemically effect
+		// regeneration attempts in the near future. The TTL also reflects regeneration wall time.
+		if ( $dataPendingCommit ) {
+			// Case A: data comes from an uncommitted write transaction
+			$mitigated = 'pending writes';
+			// Data might never be committed; rely on a less problematic regeneration attempt
+			$mitigationTTL = self::TTL_UNCACHEABLE;
+		} elseif ( $dataSnapshotLag > self::MAX_READ_LAG ) {
+			// Case B: high snapshot lag
+			$pregenSnapshotLag = ( $walltime !== null ) ? ( $dataSnapshotLag - $walltime ) : 0;
+			if ( ( $pregenSnapshotLag + self::GENERATION_HIGH_SEC ) > self::MAX_READ_LAG ) {
+				// Case B1: generation started when transaction duration was already long
+				$mitigated = 'snapshot lag (late generation)';
+				// Probably non-systemic; rely on a less problematic regeneration attempt
 				$mitigationTTL = self::TTL_UNCACHEABLE;
 			} else {
-				// Case A2: value regeneration takes a long time.
-				// Probably systemic; use a low TTL to avoid stampedes/uncacheability.
-				$mitigated = 'snapshot lag (high regeneration time)';
-				$mitigationTTL = self::TTL_SECOND;
+				// Case B2: slow generation made transaction duration long
+				$mitigated = 'snapshot lag (high generation time)';
+				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
+				$mitigationTTL = self::LOW_TTL;
 			}
-		} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
-			// Case B: high replication lag without high snapshot lag
-			// Probably systemic; use a low TTL to avoid stampedes/uncacheability
+		} elseif ( $dataReplicaLag === false || $dataReplicaLag > self::MAX_READ_LAG ) {
+			// Case C: low/medium snapshot lag with high replication lag
 			$mitigated = 'replication lag';
+			// Probably systemic; use a low TTL to avoid stampedes/uncacheability
 			$mitigationTTL = self::TTL_LAGGED;
-		} elseif ( ( $lag + $age ) > self::MAX_READ_LAG ) {
-			// Case C: medium length request with medium replication lag
-			// Probably non-systemic; rely on a less problematic regeneration attempt
-			$mitigated = 'read lag';
-			$mitigationTTL = self::TTL_UNCACHEABLE;
+		} elseif ( $dataCombinedLag > self::MAX_READ_LAG ) {
+			$pregenCombinedLag = ( $walltime !== null ) ? ( $dataCombinedLag - $walltime ) : 0;
+			// Case D: medium snapshot lag with medium replication lag
+			if ( ( $pregenCombinedLag + self::GENERATION_HIGH_SEC ) > self::MAX_READ_LAG ) {
+				// Case D1: generation started when read lag was too high
+				$mitigated = 'read lag (late generation)';
+				// Probably non-systemic; rely on a less problematic regeneration attempt
+				$mitigationTTL = self::TTL_UNCACHEABLE;
+			} else {
+				// Case D2: slow generation made read lag too high
+				$mitigated = 'read lag (high generation time)';
+				// Probably systemic; use a low TTL to avoid stampedes/uncacheability
+				$mitigationTTL = self::LOW_TTL;
+			}
 		} else {
-			// New value generated with recent enough data
+			// Case E: new value generated with recent data
 			$mitigated = null;
+			// Nothing to mitigate
 			$mitigationTTL = null;
 		}
 
 		if ( $mitigationTTL === self::TTL_UNCACHEABLE ) {
 			$this->logger->warning(
 				"Rejected set() for {cachekey} due to $mitigated.",
-				[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age, 'walltime' => $walltime ]
+				[
+					'cachekey' => $key,
+					'lag' => $dataReplicaLag,
+					'age' => $dataSnapshotLag,
+					'walltime' => $walltime
+				]
 			);
 
 			return true; // no-op the write for being unsafe
@@ -865,18 +887,23 @@ class WANObjectCache implements
 		$logicalTTL = null;
 
 		if ( $mitigationTTL !== null ) {
-			// New value generated from data that is old enough to be risky
+			// New value was generated from data that is old enough to be risky
 			if ( $lockTSE >= 0 ) {
-				// Value will have the normal expiry but will be seen as stale sooner
+				// Persist the value as long as normal, but make it count as stale sooner
 				$logicalTTL = min( $ttl ?: INF, $mitigationTTL );
 			} else {
-				// Value expires sooner (leaving enough TTL for preemptive refresh)
-				$ttl = min( $ttl ?: INF, max( $mitigationTTL, self::LOW_TTL ) );
+				// Persist the value for a shorter duration
+				$ttl = min( $ttl ?: INF, $mitigationTTL );
 			}
 
 			$this->logger->warning(
 				"Lowered set() TTL for {cachekey} due to $mitigated.",
-				[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age, 'walltime' => $walltime ]
+				[
+					'cachekey' => $key,
+					'lag' => $dataReplicaLag,
+					'age' => $dataSnapshotLag,
+					'walltime' => $walltime
+				]
 			);
 		}
 
@@ -2074,7 +2101,7 @@ class WANObjectCache implements
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
 	 * @param int $ttl Seconds to live for key updates
-	 * @param callable $callback Callback the yields entity regeneration callbacks
+	 * @param callable $callback Callback the yields entity generation callbacks
 	 * @param array $opts Options map
 	 * @return mixed[] Map of (cache key => value) in the same order as $keyedIds
 	 * @since 1.28
@@ -2122,7 +2149,7 @@ class WANObjectCache implements
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
 	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
 	 *        for all entity IDs in $ids and it takes the following arguments:
-	 *          - $ids: list of entity IDs that require cache regeneration
+	 *          - $ids: list of entity IDs that require value generation
 	 *          - &$ttls: reference to the (entity ID => new TTL) map (alterable)
 	 *          - &$setOpts: reference to the new value set() options (alterable)
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
@@ -2175,7 +2202,7 @@ class WANObjectCache implements
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
 	 * @param int $ttl Seconds to live for key updates
-	 * @param callable $callback Callback the yields entity regeneration callbacks
+	 * @param callable $callback Callback the yields entity generation callbacks
 	 * @param array $opts Options map
 	 * @return mixed[] Map of (cache key => value) in the same order as $keyedIds
 	 * @since 1.30
@@ -2192,7 +2219,7 @@ class WANObjectCache implements
 		$this->warmupCache = $this->fetchWrappedValuesForWarmupCache( $keysByIdGet, $checkKeys );
 		$this->warmupKeyMisses = 0;
 
-		// IDs of entities known to be in need of regeneration
+		// IDs of entities known to be in need of generation
 		$idsRegen = [];
 
 		// Find out which keys are missing/deleted/stale
@@ -2206,7 +2233,7 @@ class WANObjectCache implements
 			}
 		}
 
-		// Run the callback to populate the regeneration value map for all required IDs
+		// Run the callback to populate the generation value map for all required IDs
 		$newSetOpts = [];
 		$newTTLsById = array_fill_keys( $idsRegen, $ttl );
 		$newValsById = $idsRegen ? $callback( $idsRegen, $newTTLsById, $newSetOpts ) : [];
@@ -3089,6 +3116,21 @@ class WANObjectCache implements
 		$wrappedBySisterKey += array_fill_keys( $sisterKeys, false );
 
 		return $wrappedBySisterKey;
+	}
+
+	/**
+	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
+	 * @param float $now Current UNIX timestamp
+	 * @return float|null Seconds since the last logged get() miss for this key, or, null
+	 */
+	private function timeSinceLoggedMiss( $key, $now ) {
+		for ( end( $this->missLog ); $miss = current( $this->missLog ); prev( $this->missLog ) ) {
+			if ( $miss[0] === $key ) {
+				return ( $now - $miss[1] );
+			}
+		}
+
+		return null;
 	}
 
 	/**
