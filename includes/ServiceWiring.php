@@ -1531,14 +1531,16 @@ return [
 			if ( is_array( $skin ) ) {
 				$spec = $skin;
 				$displayName = $skin['displayname'] ?? $name;
+				$skippable = $skin['skippable'] ?? false;
 			} else {
 				$displayName = $skin;
+				$skippable = false;
 				$spec = [
 					'name' => $name,
 					'class' => "Skin$skin"
 				];
 			}
-			$factory->register( $name, $displayName, $spec );
+			$factory->register( $name, $displayName, $spec, $skippable );
 		}
 
 		// Register a hidden "fallback" skin
@@ -1551,7 +1553,7 @@ return [
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
 			]
-		] );
+		], true );
 		// Register a hidden skin for api output
 		$factory->register( 'apioutput', 'ApiOutput', [
 			'class' => SkinApi::class,
@@ -1562,7 +1564,7 @@ return [
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
 			]
-		] );
+		], true );
 
 		return $factory;
 	},

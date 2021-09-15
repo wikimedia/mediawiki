@@ -79,9 +79,11 @@ class SkinFactory {
 	 *     available.
 	 * @param array|callable $spec Callback that takes the skin name as an argument, or
 	 *     object factory spec specifying how to create the skin
+	 * @param bool $skippable whether the skin is skippable and should be hidden
+	 *   in preferences.
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
-	public function register( $name, $displayName, $spec ) {
+	public function register( $name, $displayName, $spec, $skippable = false ) {
 		if ( !is_callable( $spec ) ) {
 			if ( is_array( $spec ) ) {
 				if ( !isset( $spec['args'] ) ) {
@@ -96,6 +98,10 @@ class SkinFactory {
 		}
 		$this->factoryFunctions[$name] = $spec;
 		$this->displayNames[$name] = $displayName;
+		// Register as hidden if necessary.
+		if ( $skippable ) {
+			$this->skipSkins[] = $name;
+		}
 	}
 
 	/**
@@ -138,10 +144,6 @@ class SkinFactory {
 	 */
 	public function getAllowedSkins() {
 		$skins = $this->getInstalledSkins();
-
-		// Internal skins not intended for general use
-		unset( $skins['fallback'] );
-		unset( $skins['apioutput'] );
 
 		foreach ( $this->skipSkins as $skip ) {
 			unset( $skins[$skip] );
