@@ -1528,3 +1528,8 @@
 	url = https://github.com/NessunKim/mediawiki-embed-spotify
 	branch = master
 	ignore = dirty
+[submodule "skins/Evelution"]
+	path = skins/Evelution
+	url = https://github.com/AWikia/SkinEvelution
+	branch = main
+	ignore = dirty
