@@ -205,6 +205,7 @@ trait DummyServicesTrait {
 	 * @param array $options Supported keys:
 	 *    - validInterwikis: array of interwiki info to pass to getDummyInterwikiLookup
 	 *    - throwMockExceptions: boolean, see above
+	 *    - any of the options passed to getDummyNamespaceInfo (the same $options is passed on)
 	 *
 	 * @return MediaWikiTitleCodec
 	 */
@@ -215,13 +216,10 @@ trait DummyServicesTrait {
 		];
 		$config = $options + $baseConfig;
 
-		$namespaceInfo = $this->getDummyNamespaceInfo();
+		$namespaceInfo = $this->getDummyNamespaceInfo( $options );
 
 		/** @var Language|MockObject $language */
-		$language = $this->createNoOpMock(
-			Language::class,
-			[ 'ucfirst', 'lc', 'getNsIndex', 'needsGenderDistinction', 'getNsText' ]
-		);
+		$language = $this->createMock( Language::class );
 		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
 		$language->method( 'lc' )->willReturnCallback(
 			static function ( $str, $first ) {
@@ -263,7 +261,7 @@ trait DummyServicesTrait {
 		$language->method( 'needsGenderDistinction' )->willReturn( false );
 
 		/** @var GenderCache|MockObject $genderCache */
-		$genderCache = $this->createNoOpMock( GenderCache::class );
+		$genderCache = $this->createMock( GenderCache::class );
 
 		$interwikiLookup = $this->getDummyInterwikiLookup( $config['validInterwikis'] );
 
@@ -361,10 +359,17 @@ trait DummyServicesTrait {
 	}
 
 	/**
-	 * @param array $options Valid keys are any of the configuration options passed, plus
-	 *   'logger' (defaults to a NullLogger), 'validInterwikis' (defaults to 'interwiki'),
-	 *   and 'textFormatter' (defaults to a mock where the 'format' method (the only one
-	 *   used by UserNameUtils) just returns the key of the MessageValue provided)
+	 * @param array $options Supported keys:
+	 *   - any of the configuration options used in the ServiceOptions
+	 *   - logger: logger to use, defaults to a NullLogger
+	 *   - textFormatter: ITextFormatter to use, defaults to a mock where the 'format' method
+	 *     (the only one used by UserNameUtils) just returns the key of the MessageValue provided)
+	 *   - titleParser: TitleParser to use, otherwise we will use getDummyTitleParser()
+	 *   - any of the options passed to getDummyTitleParser (the same $options is passed on if
+	 *     no titleParser is provided) (we change the default for "validInterwikis" to be
+	 *     [ 'interwiki' ] instead of an empty array if not provided)
+	 *   - hookContainer: specific HookContainer to use, default to creating an empty one via
+	 *     $this->createHookContainer()
 	 * @return UserNameUtils
 	 */
 	private function getDummyUserNameUtils( array $options = [] ) {
@@ -385,7 +390,7 @@ trait DummyServicesTrait {
 		// create a mock in each test. Note that the actual Language::ucfirst is a bit
 		// more complicated than this, but since the tests are all in English the plain
 		// php `ucfirst` should be enough.
-		$contentLang = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
+		$contentLang = $this->createMock( Language::class, [ 'ucfirst' ] );
 		$contentLang->method( 'ucfirst' )
 			->willReturnCallback( static function ( $str ) {
 				return ucfirst( $str );
@@ -404,16 +409,21 @@ trait DummyServicesTrait {
 				);
 		}
 
-		// The TitleParser from DummyServicesTrait::getDummyTitleParser is really a
-		// MediaWikiTitleCodec object, and by passing `throwMockExceptions` we replace
-		// the actual creation of `MalformedTitleException`s with mocks - see
-		// MediaWikiTitleCodec::overrideCreateMalformedTitleExceptionCallback()
-		// The UserNameUtils code doesn't care about the message in the exception,
-		// just whether it is thrown.
-		$titleParser = $this->getDummyTitleParser( [
-			'validInterwikis' => ( $options['validInterwikis'] ?? [ 'interwiki' ] ),
-			'throwMockExceptions' => true,
-		] );
+		$titleParser = $options['titleParser'] ?? false;
+		if ( !$titleParser ) {
+			// The TitleParser from DummyServicesTrait::getDummyTitleParser is really a
+			// MediaWikiTitleCodec object, and by passing `throwMockExceptions` we replace
+			// the actual creation of `MalformedTitleException`s with mocks - see
+			// MediaWikiTitleCodec::overrideCreateMalformedTitleExceptionCallback()
+			// The UserNameUtils code doesn't care about the message in the exception,
+			// just whether it is thrown.
+			$titleParser = $this->getDummyTitleParser(
+				$options + [
+					'validInterwikis' => [ 'interwiki' ],
+					'throwMockExceptions' => true
+				]
+			);
+		}
 
 		return new UserNameUtils(
 			$serviceOptions,
@@ -421,7 +431,7 @@ trait DummyServicesTrait {
 			$logger,
 			$titleParser,
 			$textFormatter,
-			$this->createHookContainer()
+			$options['hookContainer'] ?? $this->createHookContainer()
 		);
 	}
 
