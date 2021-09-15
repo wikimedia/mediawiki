@@ -26,6 +26,7 @@
 	"exif-copyright": "မူပိုင်ခွင့်ပိုင်ရှင်",
 	"exif-exifversion": "Exif ဗားရှင်း",
 	"exif-colorspace": "အရောင်နေရာ",
+	"exif-componentsconfiguration": "အစိတ်ပိုင်းတခုချင်းစီ၏ အဓိပ္ပာယ်",
 	"exif-pixelxdimension": "ပုံအကျယ်",
 	"exif-pixelydimension": "ပုံအမြင့်",
 	"exif-usercomment": "အသုံးပြုသူ မှတ်ချက်များ",
@@ -45,6 +46,7 @@
 	"exif-subjectarea": "အရာဝတ္ထု ဧရိယာ",
 	"exif-flashenergy": "ဖလက်ရှ် စွမ်းအင်",
 	"exif-subjectlocation": "အရာဝတ္ထု တည်နေရာ",
+	"exif-sensingmethod": "အာရုံခံနည်းလမ်း",
 	"exif-filesource": "ဖိုင်ရင်းမြစ်",
 	"exif-scenetype": "ရှုခင်းအမျိုးအစား",
 	"exif-exposuremode": "ရိုက်ကူးရေးပုံစံ",
@@ -59,6 +61,7 @@
 	"exif-gpsaltitude": "အမြင့်",
 	"exif-gpstimestamp": "ဂျီပီအက်စ်အချိန် (အက်တော့မစ် နာရီ)",
 	"exif-gpssatellites": "အတိုင်းအတာအတွက်သုံးသောဂြိုလ်တုများ",
+	"exif-gpsstatus": "လက်ခံသူ အခြေနေ",
 	"exif-gpsmeasuremode": "တိုင်းတာရေးပုံစံ",
 	"exif-gpsdop": "အတိုင်းအတာ တိကျမှု",
 	"exif-gpsspeedref": "အမြန်နှုန်း ယူနစ်",
@@ -76,6 +79,7 @@
 	"exif-iimcategory": "ကဏ္ဍ",
 	"exif-serialnumber": "ကင်မရာ၏ ဆီရီယယ်နံပါတ်",
 	"exif-cameraownername": "ကင်မရာပိုင်ရှင်",
+	"exif-datetimemetadata": "မေတာဒေတာ နောက်ဆုံးပြင်ဆင်သည့်ရက်စွဲ",
 	"exif-copyrighted": "မူပိုင်ခွင့် အခြေအနေ",
 	"exif-copyrightowner": "မူပိုင်ခွင့်ပိုင်ရှင်",
 	"exif-webstatement": "အွန်လိုင်းမူပိုင်ခွင့်ထုတ်ပြန်ချက်",
@@ -171,5 +175,9 @@
 	"exif-urgency-low": "နိမ့် ($1)",
 	"exif-urgency-high": "မြင့် ($1)",
 	"exif-firstphotodate": "ပထမဆုံးဓါတ်ပုံရက်စွဲ",
-	"exif-lastphotodate": "နောက်ဆုံးဓါတ်ပုံရက်စွဲ"
+	"exif-lastphotodate": "နောက်ဆုံးဓါတ်ပုံရက်စွဲ",
+	"exif-usepanoramaviewer-true": "လုပ်မည်",
+	"exif-usepanoramaviewer-false": "မလုပ်ပါ",
+	"exif-exposurelockused-true": "လုပ်မည်",
+	"exif-exposurelockused-false": "မလုပ်ပါ"
 }

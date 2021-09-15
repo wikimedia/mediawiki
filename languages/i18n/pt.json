@@ -918,6 +918,7 @@
 	"rev-deleted-event": "(registos de detalhes eliminados)",
 	"rev-deleted-user-contribs": "[nome de utilizador ou IP removido do histórico – edição ocultada das contribuições públicas]",
 	"rev-deleted-text-permission": "Esta revisão de página foi <strong>eliminada</strong>.\nEncontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page=$1}} registo de eliminações].",
+	"rev-suppressed-text": "Esta revisão da página foi <strong>suprimida</strong>.",
 	"rev-suppressed-text-permission": "Esta revisão de página foi <strong>suprimida</strong>.\nPode consultar os detalhes no [{{fullurl:{{#Special:Log}}/suppress|page=$1}} registo de supressões].",
 	"rev-deleted-text-unhide": "Esta revisão de página foi <strong>eliminada</strong>.\nEncontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].\nPode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
 	"rev-suppressed-text-unhide": "Esta revisão de página foi <strong>suprimida</strong>.\nEncontrará detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].\nPode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",

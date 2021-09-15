@@ -840,6 +840,7 @@
 	"rev-deleted-event": "(podrobnosti dnevnika so odstranjene)",
 	"rev-deleted-user-contribs": "[uporabniško ime ali IP-naslov odstranjen – urejanje skrito v prispevkih]",
 	"rev-deleted-text-permission": "Ta redakcija strani je bila <strong>izbrisana</strong>.\nPodrobnosti so na voljo v [{{fullurl:{{#Special:Log}}/delete|page=$1}} dnevniku brisanja].",
+	"rev-suppressed-text": "Ta redakcija strani je bila <strong>zatrta</strong>.",
 	"rev-suppressed-text-permission": "Ta redakcija strani je bila <strong>zatrta</strong>.\nPodrobnosti so navedene v [{{fullurl:{{#Special:Log}}/suppress|page=$1}} dnevniku zatrtij].",
 	"rev-deleted-text-unhide": "Ta sprememba je bila '''izbrisana'''.\nPodrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].\nŠe vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 	"rev-suppressed-text-unhide": "Ta sprememba je bila <strong>zatrta</strong>.\nPodrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zatrtij].\nŠe vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",

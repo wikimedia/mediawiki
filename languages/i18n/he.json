@@ -872,6 +872,7 @@
 	"rev-deleted-event": "(פעולת היומן הוסתרה)",
 	"rev-deleted-user-contribs": "[שם המשתמש או כתובת ה־IP הוסתרו – העריכה הוסתרה מדף התרומות]",
 	"rev-deleted-text-permission": "גרסה זו של הדף <strong>הוסתרה</strong>.\nניתן למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page=$1}} יומן המחיקות].",
+	"rev-suppressed-text": "גרסת הדף הזאת <strong>הועלמה</strong>.",
 	"rev-suppressed-text-permission": "גרסה זו של הדף <strong>הועלמה</strong>.\nניתן למצוא פרטים ב[{{fullurl:{{#Special:Log}}/suppress|page=$1}} יומן ההעלמות].",
 	"rev-deleted-text-unhide": "גרסה זו של הדף <strong>הוסתרה</strong>.\nניתן למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].\nעדיין באפשרותך [$1 לצפות בגרסה הזאת] אם ברצונך להמשיך.",
 	"rev-suppressed-text-unhide": "גרסה זו של הדף <strong>הועלמה</strong>.\nניתן למצוא פרטים ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן ההעלמות].\nעדיין באפשרותך [$1 לצפות בגרסה הזאת] אם ברצונך להמשיך.",
