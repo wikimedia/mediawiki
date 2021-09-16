@@ -111,6 +111,9 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 		if ( $paramType->getName() === 'bool' ) {
 			return false;
 		}
+		if ( $paramType->getName() === 'int' ) {
+			return 42;
+		}
 		return $this->createNoOpMock( $paramType->getName() );
 	}
 }

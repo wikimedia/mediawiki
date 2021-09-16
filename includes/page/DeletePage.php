@@ -294,7 +294,6 @@ class DeletePage {
 		$status = Status::newGood();
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
-		// TODO: Deprecate and replace hook (remove &$error, improve typehints)
 		if ( !$this->hookRunner->onArticleDelete(
 			$this->page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
 		) {
@@ -302,6 +301,12 @@ class DeletePage {
 				// Hook aborted but didn't set a fatal status
 				$status->fatal( 'delete-hook-aborted' );
 			}
+			return $status;
+		}
+
+		$hookRes = $this->hookRunner->onPageDelete( $this->page, $this->deleter, $reason, $status, $this->suppress );
+		if ( !$hookRes && !$status->isGood() ) {
+			// Note: as per the PageDeleteHook documentation, `return false` is ignored if $status is good.
 			return $status;
 		}
 
@@ -460,13 +465,21 @@ class DeletePage {
 			$this->doDeleteUpdates( $revisionRecord );
 
 			$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
-			// TODO Replace hook (replace typehints)
 			$this->hookRunner->onArticleDeleteComplete(
 				$wikiPageBeforeDelete,
 				$legacyDeleter,
 				$reason,
 				$id,
 				$content,
+				$logEntry,
+				$archivedRevisionCount
+			);
+			$this->hookRunner->onPageDeleteComplete(
+				$wikiPageBeforeDelete,
+				$this->deleter,
+				$reason,
+				$id,
+				$revisionRecord,
 				$logEntry,
 				$archivedRevisionCount
 			);

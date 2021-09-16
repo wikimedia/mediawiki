@@ -450,8 +450,8 @@ because of Phabricator reports.
   warnings since 1.36, is no longer supported. You can instead use the explicit
   formatting methods directly, such as Message::text() and Message::escaped().
 * Article::getContentObject(), deprecated since 1.32, was removed.
-* Article::delete(), Article::confirmDelete() and ImagePage::delete() now emit
-  deprecation warnings. The logic responsible for building the form is being
+* Article::delete(), Article::confirmDelete() and ImagePage::delete() were
+  removed. The logic responsible for building the form is being
   moved to DeleteAction, while the actual deletion logic will be moved to a
   separate service.
 * WikiImporter::debugRevisionHandler(), unused and for debug only, was removed.
@@ -780,6 +780,8 @@ because of Phabricator reports.
   - LinkRendererFactory::createForUser() - calling ::create() is now sufficient
   - ParserOptions::setStubThreshold() and ::getStubThreshold() - no replacement.
   - User::getStubThreshold() - no replacement.
+* The ArticleDelete and ArticleDeleteComplete hooks were deprecated. Use
+  PageDelete and PageDeleteComplete instead.
 * The following LESS mediawiki.mixins have been deprecated:
   - .box-sizing()
   - .transform()
