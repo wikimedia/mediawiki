@@ -1373,11 +1373,6 @@ return [
 			'mediawiki.confirmCloseWindow',
 			'user.options',
 		],
-		'messages' => [
-			'editwarning-warning',
-			// editwarning-warning uses {{int:prefs-editing}}
-			'prefs-editing'
-		],
 	],
 	'mediawiki.action.view.filepage' => [
 		'styles' => [
@@ -2178,9 +2173,6 @@ return [
 		'messages' => [
 			'prefs-tabs-navigation-hint',
 			'prefs-signature-highlight-error',
-			'prefswarning-warning',
-			'saveprefs',
-			'savedprefs',
 		],
 		'dependencies' => [
 			'mediawiki.language',
@@ -2270,9 +2262,6 @@ return [
 			'size-megabytes',
 			'size-gigabytes',
 			'largefileserver',
-			'editwarning-warning',
-			// editwarning-warning uses {{int:prefs-editing}}
-			'prefs-editing',
 		],
 		'dependencies' => [
 			'mediawiki.special',
