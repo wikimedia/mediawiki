@@ -74,6 +74,7 @@ because of Phabricator reports.
 
 === Breaking changes in 1.38 ===
 * LinkCache::singleton(), deprecated since 1.28, has been removed.
+* MessageCache::singleton(), deprecated since 1.34, has been removed.
 * …
 
 === Deprecations in 1.38 ===
