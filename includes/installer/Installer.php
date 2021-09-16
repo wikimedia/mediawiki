@@ -446,7 +446,7 @@ abstract class Installer {
 	 * @throws MWException
 	 */
 	public function resetMediaWikiServices( Config $installerConfig = null, $serviceOverrides = [] ) {
-		global $wgUser, $wgObjectCaches, $wgLang;
+		global $wgObjectCaches, $wgLang;
 
 		$serviceOverrides += [
 			// Disable interwiki lookup, to avoid database access during parses
@@ -482,7 +482,7 @@ abstract class Installer {
 		// Note that this will reset the context's language,
 		// so set the user before setting the language.
 		$user = User::newFromId( 0 );
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		RequestContext::getMain()->setUser( $user );
 

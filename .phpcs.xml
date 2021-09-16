@@ -15,7 +15,6 @@
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
-		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgVersion" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
@@ -177,6 +176,7 @@
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
+		<exclude-pattern>*/includes/StubGlobalUser\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubUserLang\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">

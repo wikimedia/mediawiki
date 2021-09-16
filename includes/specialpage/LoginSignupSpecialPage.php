@@ -484,7 +484,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * reflected in the current request.
 	 */
 	protected function setSessionUserForCurrentRequest() {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		$context = RequestContext::getMain();
 		$localContext = $this->getContext();
@@ -495,7 +495,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$user = $context->getRequest()->getSession()->getUser();
 
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 		$context->setUser( $user );
 
 		$wgLang = $context->getLanguage();

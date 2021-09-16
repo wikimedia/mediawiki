@@ -579,7 +579,7 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 
 		$importSessionFunc = static function ( User $user, array $params ) {
-			global $wgRequest, $wgUser;
+			global $wgRequest;
 
 			$context = RequestContext::getMain();
 
@@ -608,7 +608,7 @@ class RequestContext implements IContextSource, MutableContext {
 			// and caught (leaving the main context in a mixed state), there is no risk
 			// of the User object being attached to the wrong IP, headers, or session.
 			$context->setUser( $user );
-			$wgUser = $context->getUser(); // b/c
+			StubGlobalUser::setUser( $context->getUser() ); // b/c
 			if ( $session && MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
 				session_id( $session->getId() );
 				AtEase::quietCall( 'session_start' );
