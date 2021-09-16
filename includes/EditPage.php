@@ -55,6 +55,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -1674,15 +1675,15 @@ class EditPage implements IEditObject {
 	 * @return Status
 	 */
 	public function attemptSave( &$resultDetails = false ) {
-		// TODO: MCR:
-		// * treat $this->minoredit like $this->markAsBot and check isAllowed( 'minoredit' )!
-		// * add $this->autopatrol like $this->markAsBot and check isAllowed( 'autopatrol' )!
-		// This is needed since PageUpdater no longer checks these rights!
-
 		// Allow bots to exempt some edits from bot flagging
 		$markAsBot = $this->markAsBot
-			&& $this->permManager->userHasRight( $this->context->getUser(), 'bot' );
-		$status = $this->internalAttemptSave( $resultDetails, $markAsBot );
+			&& $this->context->getAuthority()->isAllowed( 'bot' );
+
+		// Allow trusted users to mark some edits as minor
+		$markAsMinor = $this->minoredit && !$this->isNew
+			&& $this->context->getAuthority()->isAllowed( 'minoredit' );
+
+		$status = $this->internalAttemptSave( $resultDetails, $markAsBot, $markAsMinor );
 
 		$this->getHookRunner()->onEditPage__attemptSave_after( $this, $status, $resultDetails );
 
@@ -1893,6 +1894,7 @@ class EditPage implements IEditObject {
 	 *     revision is a redirect.
 	 * @param bool $markAsBot True if edit is being made under the bot right
 	 *     and the bot wishes the edit to be marked as such.
+	 * @param bool $markAsMinor True if edit should be marked as minor.
 	 *
 	 * @return Status Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
@@ -1904,7 +1906,9 @@ class EditPage implements IEditObject {
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	public function internalAttemptSave( &$result, $markAsBot = false ) {
+	public function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
+		global $wgUseNPPatrol, $wgUseRCPatrol;
+
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
 			$status = Status::newFatal( 'hookaborted' );
@@ -2051,7 +2055,33 @@ class EditPage implements IEditObject {
 		$this->page->loadPageData( 'fromdbmaster' );
 		$new = !$this->page->exists();
 
+		$flags = EDIT_AUTOSUMMARY |
+			( $new ? EDIT_NEW : EDIT_UPDATE ) |
+			( $markAsMinor ? EDIT_MINOR : 0 ) |
+			( $markAsBot ? EDIT_FORCE_BOT : 0 );
+
 		if ( $new ) {
+			$content = $textbox_content;
+
+			$result['sectionanchor'] = '';
+			if ( $this->section == 'new' ) {
+				if ( $this->sectiontitle !== '' ) {
+					// Insert the section title above the content.
+					$content = $content->addSectionHeader( $this->sectiontitle );
+				} elseif ( $this->summary !== '' ) {
+					// Insert the section title above the content.
+					$content = $content->addSectionHeader( $this->summary );
+				}
+
+				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
+				$this->summary = $newSectionSummary;
+				$result['sectionanchor'] = $anchor;
+			}
+
+			$pageUpdater = $this->page->newPageUpdater( $user );
+			$pageUpdater->setContent( SlotRecord::MAIN, $content );
+			$pageUpdater->prepareUpdate( $flags );
+
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
 			$constraintRunner = new EditConstraintRunner();
@@ -2073,10 +2103,10 @@ class EditPage implements IEditObject {
 
 			$constraintRunner->addConstraint(
 				$constraintFactory->newEditFilterMergedContentHookConstraint(
-					$textbox_content,
+					$content,
 					$this->context,
 					$this->summary,
-					$this->minoredit
+					$markAsMinor
 				)
 			);
 
@@ -2087,23 +2117,6 @@ class EditPage implements IEditObject {
 				return Status::wrap( $failed->getLegacyStatus() );
 			}
 			// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
-
-			$content = $textbox_content;
-
-			$result['sectionanchor'] = '';
-			if ( $this->section == 'new' ) {
-				if ( $this->sectiontitle !== '' ) {
-					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->sectiontitle );
-				} elseif ( $this->summary !== '' ) {
-					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->summary );
-				}
-
-				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
-				$this->summary = $newSectionSummary;
-				$result['sectionanchor'] = $anchor;
-			}
 		} else { # not $new
 
 			# Article exists. Check for edit conflict.
@@ -2227,6 +2240,10 @@ class EditPage implements IEditObject {
 				return Status::newGood( self::AS_CONFLICT_DETECTED )->setOK( false );
 			}
 
+			$pageUpdater = $this->page->newPageUpdater( $user );
+			$pageUpdater->setContent( SlotRecord::MAIN, $content );
+			$pageUpdater->prepareUpdate( $flags );
+
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
 			$constraintRunner = new EditConstraintRunner();
@@ -2235,7 +2252,7 @@ class EditPage implements IEditObject {
 					$content,
 					$this->context,
 					$this->summary,
-					$this->minoredit
+					$markAsMinor
 				)
 			);
 
@@ -2326,28 +2343,33 @@ class EditPage implements IEditObject {
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
-		$flags = EDIT_AUTOSUMMARY |
-			( $new ? EDIT_NEW : EDIT_UPDATE ) |
-			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
-			( $markAsBot ? EDIT_FORCE_BOT : 0 );
-
-		$isUndo = false;
-		if ( $this->undidRev ) {
+		if ( $this->undidRev && $this->isUndoClean( $content ) ) {
 			// As the user can change the edit's content before saving, we only mark
 			// "clean" undos as reverts. This is to avoid abuse by marking irrelevant
 			// edits as undos.
-			$isUndo = $this->isUndoClean( $content );
+			$pageUpdater
+				->setOriginalRevisionId( $this->undoAfter ?: false )
+				->markAsRevert(
+					EditResult::REVERT_UNDO,
+					$this->undidRev,
+					$this->undoAfter ?: null
+				);
 		}
 
-		$doEditStatus = $this->page->doUserEditContent(
-			$content,
-			$user,
-			$this->summary,
-			$flags,
-			$isUndo && $this->undoAfter ? $this->undoAfter : false,
-			$this->changeTags,
-			$isUndo ? $this->undidRev : 0
-		);
+		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->page->exists() );
+		if ( $needsPatrol && $this->context->getAuthority()
+				->authorizeWrite( 'autopatrol', $this->getTitle() )
+		) {
+			$pageUpdater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
+		}
+
+		$pageUpdater
+			->addTags( $this->changeTags )
+			->saveRevision(
+				CommentStoreComment::newUnsavedComment( trim( $this->summary ) ),
+				$flags
+			);
+		$doEditStatus = $pageUpdater->getStatus();
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
