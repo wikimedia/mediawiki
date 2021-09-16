@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Factory service for WikiExporter instances.
  *
  * @author Zabe
- * @since 1.37
+ * @since 1.38
  */
 class WikiExporterFactory {
 	/** @var HookContainer */

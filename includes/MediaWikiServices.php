@@ -1748,7 +1748,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.37
+	 * @since 1.38
 	 * @return WikiExporterFactory
 	 */
 	public function getWikiExporterFactory(): WikiExporterFactory {
