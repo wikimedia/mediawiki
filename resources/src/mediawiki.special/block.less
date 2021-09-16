@@ -8,18 +8,26 @@
 
 @ooui-spacing-radio-label: 26 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.85714286em`≈`26px`.
 
-.mw-block-editing-restriction.oo-ui-fieldLayout {
-	margin-left: @ooui-spacing-radio-label;
-	margin-top: 8px;
+// Affects sitewide/partial radio, partial action checkboxes, and block detail checkboxes
+.mw-block-editing-restriction.oo-ui-fieldLayout,
+.mw-block-action-restriction .oo-ui-checkboxMultioptionWidget,
+.mw-block-restriction.oo-ui-labelElement {
+	margin-top: 12px;
 }
 
-.mw-block-restriction.oo-ui-fieldLayout.oo-ui-labelElement {
-	margin-left: 2 * @ooui-spacing-radio-label;
-	margin-top: 8px;
-
+.mw-block-restriction.oo-ui-fieldLayout {
 	.oo-ui-tagMultiselectWidget,
 	.oo-ui-textInputWidget {
 		max-width: 50em - 2 * @ooui-spacing-radio-label;
+	}
+}
+
+.mw-block-partial-restriction.oo-ui-fieldLayout {
+	margin-left: @ooui-spacing-radio-label;
+
+	// Match spacing of partial action checkboxes to block detail checkboxes
+	.oo-ui-checkboxMultioptionWidget {
+		padding: 0;
 	}
 }
 
