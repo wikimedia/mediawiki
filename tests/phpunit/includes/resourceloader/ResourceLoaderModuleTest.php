@@ -6,7 +6,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderModule::getVersionHash
 	 */
 	public function testGetVersionHash() {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 
 		$baseParams = [
 			'scripts' => [ 'foo.js', 'bar.js' ],
@@ -67,8 +67,20 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @covers ResourceLoaderModule::getVersionHash
 	 */
+	public function testGetVersionHash_length() {
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
+		$module = new ResourceLoaderTestModule( [
+			'script' => 'foo();'
+		] );
+		$version = $module->getVersionHash( $context );
+		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $version ), 'Hash length' );
+	}
+
+	/**
+	 * @covers ResourceLoaderModule::getVersionHash
+	 */
 	public function testGetVersionHash_parentDefinition() {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$module = $this->getMockBuilder( ResourceLoaderModule::class )
 			->onlyMethods( [ 'getDefinitionSummary' ] )->getMock();
 		$module->method( 'getDefinitionSummary' )->willReturn( [ 'a' => 'summary' ] );

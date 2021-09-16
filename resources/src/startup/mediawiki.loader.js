@@ -328,6 +328,8 @@
 	}
 
 	/**
+	 * See also `ResourceLoader.php#makeVersionQuery` on the server.
+	 *
 	 * @private
 	 * @param {string[]} modules List of module names
 	 * @return {string} Hash of concatenated version hashes.
