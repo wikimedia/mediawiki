@@ -831,8 +831,11 @@ because of Phabricator reports.
   - SpecialRandomredirect.php -> SpecialRandomRedirect.php
   - SpecialRandomrootpage.php -> SpecialRandomRootPage.php
 * The stub threshold feature has been removed. See T284917.
-* Skin::getPoweredBy and Skin::getCopyrightIcon are deprecated.
-* The SkinGetPoweredBy hook is deprecated.
+* Skin::getPoweredBy and Skin::getCopyrightIcon have been deprecated as they are
+  only designed for use by skins extended BaseTemplate. You can move calls to
+  instead use BaseTemplate::getPoweredByHTML() and ::getCopyrightIconHTML()
+  respectively.
+* The SkinGetPoweredBy hook is deprecated. No replacement is provided.
 * HTMLTitleTextField didn't support interwiki titles well previously.
   Starting with 1.37, HTMLTitleTextField has a new parameter, 'interwiki',
   which can be used to control acceptance of interwiki titles. To provide

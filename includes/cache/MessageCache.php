@@ -128,20 +128,6 @@ class MessageCache implements LoggerAwareInterface {
 	private $hookRunner;
 
 	/**
-	 * Get the singleton instance of this class
-	 *
-	 * @deprecated in 1.34, hard depreacted in 1.37
-	 * Inject an instance of this class instead of using global state
-	 *
-	 * @since 1.18
-	 * @return MessageCache
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getMessageCache();
-	}
-
-	/**
 	 * Normalize message key input
 	 *
 	 * @param string $key Input message key to be normalized
