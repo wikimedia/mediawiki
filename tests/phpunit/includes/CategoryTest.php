@@ -101,6 +101,8 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Category:Example' );
 		$category = Category::newFromTitle( $title );
 		$this->assertSame( 'Example', $category->getName() );
+		$this->assertTrue( $title->isSamePageAs( $category->getPage() ) );
+		$this->assertTrue( $title->isSamePageAs( $category->getTitle() ) );
 	}
 
 	/**
