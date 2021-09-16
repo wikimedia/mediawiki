@@ -286,31 +286,39 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the URL or URLs to load for this module's JS in debug mode.
-	 * The default behavior is to return a load.php?only=scripts URL for
-	 * the module, but file-based modules will want to override this to
-	 * load the files directly.
+	 * Get the URLs to load this module's JS code in debug mode.
 	 *
-	 * This function is called only when 1) we're in debug mode, 2) there
-	 * is no only= parameter and 3) supportsURLLoading() returns true.
-	 * #2 is important to prevent an infinite loop, therefore this function
-	 * MUST return either an only= URL or a non-load.php URL.
+	 * The default behavior is to return a `load.php?only=scripts` URL for
+	 * the module. File-based modules may override this to load underlying
+	 * files directly.
+	 *
+	 * This function must only be called when:
+	 *
+	 * 1. We're in debug mode,
+	 * 2. there is no `only=` parameter and,
+	 * 3. self::supportsURLLoading() returns true.
+	 *
+	 * Point 2 is prevents an infinite loop, therefore this function
+	 * MUST return either an URL with an `only=` query, or a non-load.php URL.
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext $context
 	 * @return string[]
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
-		$resourceLoader = $context->getResourceLoader();
+		$rl = $context->getResourceLoader();
 		$derivative = new DerivativeResourceLoaderContext( $context );
 		$derivative->setModules( [ $this->getName() ] );
 		$derivative->setOnly( 'scripts' );
 		$derivative->setDebug( true );
 
-		$url = $resourceLoader->createLoaderURL(
+		$url = $rl->createLoaderURL(
 			$this->getSource(),
 			$derivative
 		);
+
+		// Expand debug URL in case we are another wiki's module source (T255367)
+		$url = $rl->expandUrl( $this->getConfig()->get( 'Server' ), $url );
 
 		return [ $url ];
 	}

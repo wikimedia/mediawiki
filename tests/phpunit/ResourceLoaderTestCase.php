@@ -71,6 +71,8 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'ResourceBasePath' => '/w',
 			'ParserEnableLegacyMediaDOM' => true,
 
+			// For ResourceLoader::expandUrl()
+			'Server' => 'https://example.org',
 			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
