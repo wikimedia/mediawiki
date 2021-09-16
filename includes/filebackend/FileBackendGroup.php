@@ -25,7 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -72,26 +71,6 @@ class FileBackendGroup {
 		'LocalFileRepo',
 		'fallbackWikiId',
 	];
-
-	/**
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * inject the service instead
-	 *
-	 * @return FileBackendGroup
-	 */
-	public static function singleton(): FileBackendGroup {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getFileBackendGroup();
-	}
-
-	/**
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * test framework should reset services between tests instead
-	 */
-	public static function destroySingleton() {
-		wfDeprecated( __METHOD__, '1.35' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
-	}
 
 	/**
 	 * @param ServiceOptions $options

@@ -1,12 +1,9 @@
 <?php
 
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @coversDefaultClass FileBackendGroup
- * @covers ::singleton
- * @covers ::destroySingleton
  */
 class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	use FileBackendGroupTestTrait;
@@ -16,7 +13,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getLockManagerGroupFactory( $domain ): LockManagerGroupFactory {
-		return MediaWikiServices::getInstance()->getLockManagerGroupFactory();
+		return $this->getServiceContainer()->getLockManagerGroupFactory();
 	}
 
 	private function newObj( array $options = [] ): FileBackendGroup {
@@ -46,7 +43,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->resetServices();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$services->resetServiceForTesting( 'FileBackendGroup' );
 
 		$obj = $services->getFileBackendGroup();
