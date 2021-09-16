@@ -11,8 +11,9 @@ use WikiPage;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "ArticleDeleteComplete" to register handlers implementing this interface.
  *
- * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.37, use PageDeleteCompleteHook instead. The new hook uses more modern typehints and replaces
+ * the Content object with a RevisionRecord.
  */
 interface ArticleDeleteCompleteHook {
 	/**
