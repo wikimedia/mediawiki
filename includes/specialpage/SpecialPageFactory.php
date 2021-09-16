@@ -756,6 +756,7 @@ class SpecialPageFactory {
 			'class' => \SpecialExport::class,
 			'services' => [
 				'DBLoadBalancer',
+				'WikiExporterFactory',
 			]
 		],
 		'Import' => [
