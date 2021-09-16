@@ -27,8 +27,8 @@
  * @defgroup Dump Dump
  */
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -101,6 +101,9 @@ class WikiExporter {
 
 	/**
 	 * @param IDatabase $db
+	 * @param HookContainer $hookContainer
+	 * @param RevisionStore $revisionStore
+	 * @param TitleParser $titleParser
 	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
 	 *   - offset: non-inclusive offset at which to start the query
@@ -112,20 +115,24 @@ class WikiExporter {
 	 */
 	public function __construct(
 		$db,
+		HookContainer $hookContainer,
+		RevisionStore $revisionStore,
+		TitleParser $titleParser,
 		$history = self::CURRENT,
 		$text = self::TEXT,
 		$limitNamespaces = null
 	) {
 		$this->db = $db;
 		$this->history = $history;
+		// TODO: add a $hookContainer parameter to XmlDumpWriter so that we can inject
+		// and then be able to convert the factory test to a unit test
 		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
 		$this->limitNamespaces = $limitNamespaces;
-		$services = MediaWikiServices::getInstance();
-		$this->hookRunner = new HookRunner( $services->getHookContainer() );
-		$this->revisionStore = $services->getRevisionStore();
-		$this->titleParser = $services->getTitleParser();
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->revisionStore = $revisionStore;
+		$this->titleParser = $titleParser;
 	}
 
 	/**

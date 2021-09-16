@@ -45,6 +45,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\HookContainer;
@@ -1744,6 +1745,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchlistManager(): WatchlistManager {
 		return $this->getService( 'WatchlistManager' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return WikiExporterFactory
+	 */
+	public function getWikiExporterFactory(): WikiExporterFactory {
+		return $this->getService( 'WikiExporterFactory' );
 	}
 
 	/**

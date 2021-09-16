@@ -292,7 +292,13 @@ abstract class BackupDumper extends Maintenance {
 		$this->initProgress( $history );
 
 		$db = $this->backupDb();
-		$exporter = new WikiExporter( $db, $history, $text, $this->limitNamespaces );
+		$services = MediaWikiServices::getInstance();
+		$exporter = $services->getWikiExporterFactory()->getWikiExporter(
+			$db,
+			$history,
+			$text,
+			$this->limitNamespaces
+		);
 		$exporter->setSchemaVersion( $this->schemaVersion );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
