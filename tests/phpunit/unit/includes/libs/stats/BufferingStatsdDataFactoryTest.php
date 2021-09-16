@@ -16,8 +16,8 @@ class BufferingStatsdDataFactoryTest extends PHPUnit\Framework\TestCase {
 
 		// Unreasonable and may change, here to self-document current behaviour
 		yield [ '__double__under__', 'double_under' ];
-		yield [ '.:!:.paamayim.:!:.nekudotayim.:!:.', 'paamayim..nekudotayim' ];
-		yield [ 'first----.!!.!!.-second', 'first...second' ];
+		yield [ '.:!:.paamayim.:!:.nekudotayim.:!:.', 'paamayim._.nekudotayim' ];
+		yield [ 'first----.!!.!!.-second', 'first_._._._second' ];
 	}
 
 	/**
