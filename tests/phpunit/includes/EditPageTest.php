@@ -110,7 +110,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * editRevId: revision ID of the edit's base revision (optional)
 	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
 	 *              * wpSectionTitle: the section to edit
-	 *              * wpMinorEdit: mark as minor edit
+	 *              * wpMinoredit: mark as minor edit
 	 *              * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 *                  Set to null to skip the check.
@@ -185,12 +185,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
-		$bot = isset( $edit['bot'] ) ? (bool)$edit['bot'] : false;
-
 		// this is where the edit happens!
 		// Note: don't want to use EditPage::AttemptSave, because it messes with $wgOut
 		// and throws exceptions like PermissionsError
-		$status = $ep->internalAttemptSave( $result, $bot );
+		$status = $ep->attemptSave( $result );
 
 		if ( $expectedCode !== null ) {
 			// check edit code
@@ -402,6 +400,63 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected successful update with given text" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
 		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
+	}
+
+	/**
+	 * @covers EditPage
+	 */
+	public function testUpdateNoMinor() {
+		$user = $this->getTestUser()->getUser();
+		$anon = new User(); // anon
+
+		// Test that page creation can never be minor
+		$edit = [
+			'wpTextbox1' => 'testing',
+			'wpSummary' => 'first update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $user, $edit,
+			EditPage::AS_SUCCESS_NEW_ARTICLE, 'testing', "expected successful update" );
+
+		$this->assertFalse(
+			$page->getRevisionRecord()->isMinor(),
+			'page creation should not be minor'
+		);
+
+		// Test that anons can't make an update minor
+		$this->forceRevisionDate( $page, '20120101000000' );
+
+		$edit = [
+			'wpTextbox1' => 'testing 2',
+			'wpSummary' => 'second update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $anon, $edit,
+			EditPage::AS_SUCCESS_UPDATE, 'testing 2', "expected successful update" );
+
+		$this->assertFalse(
+			$page->getRevisionRecord()->isMinor(),
+			'anon edit should not be minor'
+		);
+
+		// Test that users can make an update minor
+		$this->forceRevisionDate( $page, '20120102000000' );
+
+		$edit = [
+			'wpTextbox1' => 'testing 3',
+			'wpSummary' => 'third update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $user, $edit,
+			EditPage::AS_SUCCESS_UPDATE, 'testing 3', "expected successful update" );
+
+		$this->assertTrue(
+			$page->getRevisionRecord()->isMinor(),
+			'users can make edits minor'
+		);
 	}
 
 	/**
