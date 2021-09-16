@@ -1609,6 +1609,7 @@ $wgAutoloadLocalClasses = [
 	'StringPrefixSearch' => __DIR__ . '/includes/search/StringPrefixSearch.php',
 	'StringUtils' => __DIR__ . '/includes/libs/StringUtils.php',
 	'StripState' => __DIR__ . '/includes/parser/StripState.php',
+	'StubGlobalUser' => __DIR__ . '/includes/StubGlobalUser.php',
 	'StubObject' => __DIR__ . '/includes/StubObject.php',
 	'StubUserLang' => __DIR__ . '/includes/StubUserLang.php',
 	'SubmitAction' => __DIR__ . '/includes/actions/SubmitAction.php',

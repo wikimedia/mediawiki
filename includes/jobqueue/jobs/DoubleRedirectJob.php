@@ -169,6 +169,7 @@ class DoubleRedirectJob extends Job {
 		}
 
 		// Save it
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgUser;
 		$oldUser = $wgUser;
 		$wgUser = $user;

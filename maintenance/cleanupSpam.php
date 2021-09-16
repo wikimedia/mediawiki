@@ -47,7 +47,7 @@ class CleanupSpam extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgLocalDatabases, $wgUser;
+		global $IP, $wgLocalDatabases;
 
 		$username = wfMessage( 'spambot_username' )->text();
 		$user = User::newSystemUser( $username );
@@ -56,7 +56,7 @@ class CleanupSpam extends Maintenance {
 		}
 		// Hack: Grant bot rights so we don't flood RecentChanges
 		MediaWikiServices::getInstance()->getUserGroupManager()->addUserToGroup( $user, 'bot' );
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		$spec = $this->getArg( 0 );
 

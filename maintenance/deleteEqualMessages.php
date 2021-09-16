@@ -174,8 +174,7 @@ class DeleteEqualMessages extends Maintenance {
 		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
-		global $wgUser;
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		// Hide deletions from RecentChanges
 		$userGroupManager = $services->getUserGroupManager();

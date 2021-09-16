@@ -820,7 +820,10 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
  * @deprecated since 1.35, use an available context source when possible, or, as a backup,
  * RequestContext::getMain()
  */
-$wgUser = RequestContext::getMain()->getUser(); // BackCompat
+$wgUser = new StubGlobalUser( RequestContext::getMain()->getUser() ); // BackCompat
+register_shutdown_function( static function () {
+	StubGlobalUser::$destructorDeprecationDisarmed = true;
+} );
 
 /**
  * @var Language|StubUserLang $wgLang
