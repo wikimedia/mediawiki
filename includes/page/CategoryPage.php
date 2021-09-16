@@ -104,7 +104,7 @@ class CategoryPage extends Article {
 		unset( $reqArray["to"] );
 
 		$viewer = new $this->mCategoryViewerClass(
-			$this->getContext()->getTitle(),
+			$this->getPage(),
 			$this->getContext(),
 			$from,
 			$until,

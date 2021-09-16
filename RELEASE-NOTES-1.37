@@ -175,6 +175,8 @@ because of Phabricator reports.
 * (T284044) Added language support for Carpathian Romani (rmc).
 * (T286460) Added language support for Gun (guw, Gungbe).
 * (T287345) Added language support for Baoulé (bci).
+* (T290126) Added language support for Kildin Sami (sjd).
+* (T290408) Added language support for Pite Sami (sje).
 * (T25216) Started the renaming of the language code for Norman from nrm to
   nrf.
 
@@ -639,6 +641,7 @@ because of Phabricator reports.
   use getPerformerIdentity() instead.
 * ContentHandler::cleanupHandlersCache(), deprecated since 1.35, now emits
   deprecation warnings.
+* Category::getTitle() was deprecated in favor of Category::getPage()
 * File::getUser method was hard deprecated, along with overrides in LocalFile
   and ForeignApiFile in favor of ::getUploader.
 * SpecialBlock::checkUnblockSelf(), deprecated in 1.36, now emits deprecation
@@ -828,6 +831,8 @@ because of Phabricator reports.
   - SpecialRandomredirect.php -> SpecialRandomRedirect.php
   - SpecialRandomrootpage.php -> SpecialRandomRootPage.php
 * The stub threshold feature has been removed. See T284917.
+* Skin::getPoweredBy and Skin::getCopyrightIcon are deprecated.
+* The SkinGetPoweredBy hook is deprecated.
 * …
 
 == Compatibility ==

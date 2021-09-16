@@ -935,55 +935,22 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @deprecated 1.37
 	 * @return null|string
 	 */
 	protected function getCopyrightIcon() {
-		$out = '';
-		$config = $this->getConfig();
-
-		$footerIcons = $config->get( 'FooterIcons' );
-		if (
-			isset( $footerIcons['copyright']['copyright'] ) &&
-			$footerIcons['copyright']['copyright']
-		) {
-			$out = $footerIcons['copyright']['copyright'];
-		} elseif ( $config->get( 'RightsIcon' ) ) {
-			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
-			$url = $config->get( 'RightsUrl' );
-
-			if ( $url ) {
-				$out .= '<a href="' . htmlspecialchars( $url ) . '">';
-			}
-
-			$text = htmlspecialchars( $config->get( 'RightsText' ) );
-			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
-
-			if ( $url ) {
-				$out .= '</a>';
-			}
-		}
-
-		return $out;
+		wfDeprecated( __METHOD__, '1.37' );
+		return BaseTemplate::getCopyrightIconHTML( $this->getConfig() );
 	}
 
 	/**
 	 * Gets the powered by MediaWiki icon.
+	 * @deprecated 1.37
 	 * @return string
 	 */
 	protected function getPoweredBy() {
-		$resourceBasePath = $this->getConfig()->get( 'ResourceBasePath' );
-		$url1 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
-		);
-		$url1_5 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_132x47.png"
-		);
-		$url2 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
-		);
-		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
-			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
-			. 'height="31" width="88" alt="Powered by MediaWiki" loading="lazy" /></a>';
+		wfDeprecated( __METHOD__, '1.37' );
+		$text = BaseTemplate::getPoweredByHTML( $this->getConfig() );
 		$this->getHookRunner()->onSkinGetPoweredBy( $text, $this );
 		return $text;
 	}
