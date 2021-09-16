@@ -348,18 +348,11 @@ class RollbackPage {
 			}
 		}
 
-		$updater->setOriginalRevisionId( $targetRevision->getId() );
-		$oldestRevertedRevision = $this->revisionStore->getNextRevision(
-			$targetRevision,
-			RevisionStore::READ_LATEST
+		$updater->markAsRevert(
+			EditResult::REVERT_ROLLBACK,
+			$currentRevision->getId(),
+			$targetRevision->getId()
 		);
-		if ( $oldestRevertedRevision !== null ) {
-			$updater->markAsRevert(
-				EditResult::REVERT_ROLLBACK,
-				$oldestRevertedRevision->getId(),
-				$currentRevision->getId()
-			);
-		}
 
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same

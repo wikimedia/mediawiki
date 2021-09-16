@@ -1940,42 +1940,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $performer, $slotsUpdate )
-			->setContent( SlotRecord::MAIN, $content );
-
-		$revisionStore = $this->getRevisionStore();
-		$originalRevision = $originalRevId ? $revisionStore->getRevisionById( $originalRevId ) : null;
-		if ( $originalRevision && $undidRevId !== 0 ) {
-			// Mark it as a revert if it's an undo
-			$oldestRevertedRev = $revisionStore->getNextRevision( $originalRevision );
-			if ( $oldestRevertedRev ) {
-				$updater->markAsRevert(
-					EditResult::REVERT_UNDO,
-					$oldestRevertedRev->getId(),
-					$undidRevId
-				);
-			} else {
-				// We can't find the oldest reverted revision for some reason
-				$updater->markAsRevert( EditResult::REVERT_UNDO, $undidRevId );
-			}
-		} elseif ( $undidRevId !== 0 ) {
-			// It's an undo, but the original revision is not specified, fall back to just
-			// marking it as an undo with one revision undone.
-			$updater->markAsRevert( EditResult::REVERT_UNDO, $undidRevId );
-			// Try finding the original revision ID by assuming it's the one before the edit
-			// that is being undone. If the bet fails, $originalRevision is ignored anyway, so
-			// no damage is done.
-			$undidRevision = $revisionStore->getRevisionById( $undidRevId );
-			if ( $undidRevision ) {
-				$originalRevision = $revisionStore->getPreviousRevision( $undidRevision );
-			}
-		}
-
-		// Make sure original revision's content is the same as the new content and save the
-		// original revision ID.
-		if ( $originalRevision &&
-			$originalRevision->getContent( SlotRecord::MAIN )->equals( $content )
-		) {
-			$updater->setOriginalRevisionId( $originalRevision->getId() );
+				->setContent( SlotRecord::MAIN, $content )
+			->setOriginalRevisionId( $originalRevId );
+		if ( $undidRevId ) {
+			$updater->markAsRevert(
+				EditResult::REVERT_UNDO,
+				$undidRevId,
+				$originalRevId ?: null
+			);
 		}
 
 		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->exists() );

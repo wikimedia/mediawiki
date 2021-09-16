@@ -329,8 +329,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Perform a rollback
 		$updater = $page->newPageUpdater( $this->getTestSysop()->getUser() );
 		$updater->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
-		$updater->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId2 );
-		$updater->setOriginalRevisionId( $revId1 );
+		$updater->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId1 );
 		$summary = CommentStoreComment::newUnsavedComment( 'revert' );
 		$updater->saveRevision( $summary );
 

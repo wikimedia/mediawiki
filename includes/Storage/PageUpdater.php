@@ -501,39 +501,34 @@ class PageUpdater {
 	 * This is used with rollbacks and with dummy "null" revisions which are created to record
 	 * things like page moves.
 	 *
-	 * TODO This value was passed to the PageContentSaveComplete and NewRevisionFromEditComplete
-	 * hooks, but those were removed - where is it used now?.
-	 *
 	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
 	 * is known to be repeated or restored by this update.
 	 * @return $this
 	 */
 	public function setOriginalRevisionId( $originalRevId ) {
-		$this->editResultBuilder->setOriginalRevisionId( $originalRevId );
+		$this->editResultBuilder->setOriginalRevision( $originalRevId );
 		return $this;
 	}
 
 	/**
 	 * Marks this edit as a revert and applies relevant information.
 	 * Will also cause the PageUpdater to add a relevant change tag when saving the edit.
-	 * Will do nothing if $oldestRevertedRevId is 0.
 	 *
 	 * @param int $revertMethod The method used to make the revert:
 	 *        REVERT_UNDO, REVERT_ROLLBACK or REVERT_MANUAL
-	 * @param int $oldestRevertedRevId The ID of the oldest revision that was reverted.
-	 * @param int $newestRevertedRevId The ID of the newest revision that was reverted. This
-	 *        parameter is optional, default value is $oldestRevertedRevId
+	 * @param int $newestRevertedRevId the revision ID of the latest reverted revision.
+	 * @param int|null $revertAfterRevId the revision ID after which revisions
+	 *   are being reverted. Defaults to the revision before the $newestRevertedRevId.
 	 * @return $this
-	 *
 	 * @see EditResultBuilder::markAsRevert()
 	 */
 	public function markAsRevert(
 		int $revertMethod,
-		int $oldestRevertedRevId,
-		int $newestRevertedRevId = 0
+		int $newestRevertedRevId,
+		int $revertAfterRevId = null
 	) {
 		$this->editResultBuilder->markAsRevert(
-			$revertMethod, $oldestRevertedRevId, $newestRevertedRevId
+			$revertMethod, $newestRevertedRevId, $revertAfterRevId
 		);
 		return $this;
 	}
@@ -1211,7 +1206,7 @@ class PageUpdater {
 		// would confuse EditResultBuilder.
 		if ( !$changed ) {
 			// This is a null edit, ensure original revision ID is set properly
-			$this->editResultBuilder->setOriginalRevisionId( $oldid );
+			$this->editResultBuilder->setOriginalRevision( $oldRev );
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
 
