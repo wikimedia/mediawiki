@@ -2606,6 +2606,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * return value.  Callers must decide for themselves how to deal with this.  $safetyMargin
 	 * is provided as an unreliable but situationally useful help for some common cases.
 	 *
+	 * @deprecated since 1.37 Use DeletePage::isBatchedDelete instead.
+	 *
 	 * @param int $safetyMargin Added to the revision count when checking for batching
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
@@ -2627,6 +2629,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.35 Signature changed, user moved to second parameter to prepare for requiring
 	 *             a user to be passed
 	 * @since 1.36 User second parameter is required
+	 * @deprecated since 1.37 Use DeletePage instead. Calling ::deleteIfAllowed and letting DeletePage handle
+	 * permission checks is preferred over doing permission checks yourself and then calling ::deleteUnsafe.
+	 * Note that DeletePage returns a good status with false value in case of scheduled deletion, instead of
+	 * a status with a warning. Also, the new method doesn't have an $error parameter, since any error is
+	 * added to the returned Status.
 	 *
 	 * @param string $reason Delete reason for deletion log
 	 * @param UserIdentity $deleter The deleting user
@@ -2659,6 +2666,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->setTags( $tags ?: [] )
 			->setLogSubtype( $logsubtype )
 			->forceImmediate( $immediate )
+			->keepLegacyHookErrorsSeparate()
 			->deleteUnsafe( $reason );
 		$error = $deletePage->getLegacyHookErrors();
 		if ( $status->isGood() && $status->value === false ) {
@@ -2676,6 +2684,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Deletions can often be completed inline without involving the job queue.
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
+	 * @deprecated since 1.37 No external caller besides DeletePageJob should use this.
+	 *
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param UserIdentity $deleter
@@ -2734,6 +2744,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * Do some database updates after deletion
 	 *
+	 * @deprecated since 1.37 With no replacement.
+	 *
 	 * @param int $id The page_id value of the page being deleted
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
@@ -2749,6 +2761,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		RevisionRecord $revRecord = null,
 		UserIdentity $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( !$revRecord ) {
 			throw new BadMethodCallException( __METHOD__ . ' now requires a RevisionRecord' );
 		}
@@ -3165,11 +3178,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
 	 *
+	 * @deprecated since 1.37 With no replacement.
+	 *
 	 * @param RevisionRecord|Content|null $rev The revision being deleted. Also accepts a Content
 	 *       object for backwards compatibility.
 	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( $rev = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$user = new UserIdentityValue( 0, 'Legacy code hater' );
 		$services = MediaWikiServices::getInstance();
 		$deletePage = $services->getDeletePageFactory()->newDeletePage(

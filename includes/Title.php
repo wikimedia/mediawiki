@@ -3426,6 +3426,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
+	 * @deprecated since 1.37 External callers shouldn't need to know about this.
 	 *
 	 * @return bool
 	 */
