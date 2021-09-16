@@ -918,6 +918,7 @@
 	"rev-deleted-event": "(запис журналу вилучений)",
 	"rev-deleted-user-contribs": "[ім'я користувача або IP-адреса вилучені — редагування приховане з внеску]",
 	"rev-deleted-text-permission": "Ця версія сторінки <strong>вилучена</strong>.\nДеталі наведені у [{{fullurl:{{#Special:Log}}/delete|page=$1}} журналі вилучень].",
+	"rev-suppressed-text": "Цю версію сторінки <strong>придушено</strong>.",
 	"rev-suppressed-text-permission": "Цю версію сторінки було <strong>приховано</strong>.\nДетальніше можна подивитися у [{{fullurl:{{#Special:Log}}/suppress|page=$1}} журналі приховування].",
 	"rev-deleted-text-unhide": "Ця версія сторінки була <strong>вилучена</strong>.\nПодробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].\nВи все ще можете [$1 переглянути цю версію], якщо забажаєте.",
 	"rev-suppressed-text-unhide": "Ця версія сторінки була <strong>прихована</strong>.\nПодробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].\nВи все ще можете [$1 переглянути цю версію], якщо забажаєте.",
