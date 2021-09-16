@@ -3200,6 +3200,7 @@
 	"tags-source-extension": "Defineret af programmellet",
 	"tags-source-manual": "Anvendt manuelt af brugere og robotter",
 	"tags-source-none": "Anvendes ikke længere",
+	"tags-hidden": "(skjult)",
 	"tags-edit": "redigér",
 	"tags-delete": "slet",
 	"tags-activate": "aktiver",

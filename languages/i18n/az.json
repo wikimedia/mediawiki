@@ -163,7 +163,7 @@
 	"category_header": "\"$1\" kateqoriyasındakı məqalələr",
 	"subcategories": "Alt kateqoriyalar",
 	"category-media-header": "\"$1\" kateqoriyasındakı fayllar",
-	"category-empty": "\"Bu kateqoriya hal-hazırda boşdur.\"",
+	"category-empty": "<em>Bu kateqoriya hal-hazırda boşdur.</em>",
 	"hidden-categories": "{{PLURAL:$1|Gizli kateqoriya|Gizli kateqoriyalar}}",
 	"hidden-category-category": "Gizli kateqoriyalar",
 	"category-subcat-count": "{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı altkateqoriyadan ibarətdir.|Cəmi $2 kateqoriyadan {{PLURAL:$1|altkateqoriya|$1 altkateqoriya}} göstərilmişdir.}}",
