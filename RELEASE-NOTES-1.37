@@ -833,6 +833,12 @@ because of Phabricator reports.
 * The stub threshold feature has been removed. See T284917.
 * Skin::getPoweredBy and Skin::getCopyrightIcon are deprecated.
 * The SkinGetPoweredBy hook is deprecated.
+* HTMLTitleTextField didn't support interwiki titles well previously.
+  Starting with 1.37, HTMLTitleTextField has a new parameter, 'interwiki',
+  which can be used to control acceptance of interwiki titles. To provide
+  a transitional period, the default value ('interwiki' => null) ensures
+  MW will have the same behavior as before (logging a deprecation warning).
+  In 1.38, the default behavior will change to "interwiki links aren't allowed".
 * …
 
 == Compatibility ==
