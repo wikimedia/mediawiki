@@ -40,6 +40,9 @@
 				document.createTextNode( '\n' )
 			);
 		} );
+		if ( newList.length ) {
+			mw.hook( 'wikipage.indicators' ).fire( $( newList ) );
+		}
 		$( '.mw-indicators' ).empty().append( newList );
 
 		if ( response.parse.displaytitle ) {
