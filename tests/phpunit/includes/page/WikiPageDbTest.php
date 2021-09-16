@@ -700,6 +700,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteUpdates
 	 */
 	public function testDoDeleteUpdates() {
+		$this->hideDeprecated( 'WikiPage::doDeleteUpdates' );
 		$user = $this->getTestUser()->getUserIdentity();
 		$page = $this->createPage(
 			__METHOD__,
@@ -789,6 +790,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetDeletionUpdates() {
+		$this->hideDeprecated( 'WikiPage::getDeletionUpdates' );
 		$m1 = $this->defineMockContentModelForUpdateTesting( 'M1' );
 
 		$mainContent1 = $this->createMockContent( $m1, 'main 1' );

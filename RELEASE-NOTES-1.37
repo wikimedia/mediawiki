@@ -730,6 +730,16 @@ because of Phabricator reports.
   ::whereUserNamePrefix().
 * Manually constructing a MovePage object, deprecated in 1.34, now emits
   deprecation warnings. Use MovePageFactory instead.
+* The following deletion-related methods were deprecated:
+  - WikiPage::doDeleteArticleReal() (soft) - use DeletePage
+  - WikiPage::doDeleteArticleBatched() (soft) - no replacement
+  - WikiPage::isBatchedDelete() (soft) - use DeletePage
+  - WikiPage::doDeleteUpdates() (hard) - no replacement
+  - WikiPage::getDeletionUpdates() (hard) - no replacement
+  - Title::isBigDeletion (soft) - no replacement
+* Relying on PermissionManager or Authority to check for big deletions
+  was deprecated. This is now automatically checked if you use
+  DeletePage::deleteIfAllowed(). (T288759)
 * The userCan hook now emits deprecation warnings. Use the
   getUserPermissionsErrors or getUserPermissionsErrorsExpensive hooks instead.
 * Parser::$mUser public access, and the methods ParserOptions::getUser() and
