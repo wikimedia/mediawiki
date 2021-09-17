@@ -632,7 +632,6 @@
 	"search-suggest": "¿Quiso decir: $1?",
 	"prefs-help-watchlist-token2": "Esta es la clave secreta del suministro web de su lista de seguimiento.\nCualquiera que la conozca podrá consultar la lista, así que no la comparta.\n[[Special:ResetTokens|Puede restablecerla si lo necesita]].",
 	"savedprefs": "Se han guardado sus preferencias.",
-	"prefswarning-warning": "Ha hecho cambios en sus preferencias que todavía no se han guardado. Si sale de esta página sin pulsar en «$1» no se actualizarán las preferencias.",
 	"prefs-tabs-navigation-hint": "Sugerencia: Puede utilizar las teclas de flecha izquierda y derecha para navegar entre las pestañas de la lista de pestañas.",
 	"userrights-no-interwiki": "No tiene permiso para editar permisos de usuario en otros wikis.",
 	"newuserlogpage": "Altas de usuarios",

@@ -748,7 +748,6 @@
 	"invalid-content-data": "Nevalida kontenajo",
 	"content-not-allowed-here": "La kontenajo \"$1\" ne permisesas en la pagino [[:$2]], en la segmento \"$3\"",
 	"confirmleave-warning": "Omna modifikuri quin vu facis povos perdesar, se vu abandonos ca pagino nun.",
-	"editwarning-warning": "Omna modifikuri quin vu facis povas perdesar se vu abandonos ca pagino.\n\nSe vu facis 'login', vu povas eliminar ca avizo en la seciono \"{{int:prefs-editing}}\" de vua preferaji.",
 	"editpage-invalidcontentmodel-title": "Kontenajo-modelo ne aceptata",
 	"editpage-invalidcontentmodel-text": "La konteno-modelo $1 ne aceptesas.",
 	"editpage-notsupportedcontentformat-title": "Formato di kontenajo ne aceptata",

@@ -735,7 +735,6 @@
 	"edit-already-exists": "Faqja nuk mundej të hapet.\nAjo tanimë ekziston.",
 	"defaultmessagetext": "Teksti i porosisë së parazgjedhur",
 	"invalid-content-data": "Të pavlefshme të dhënave e përmbajtjes",
-	"editwarning-warning": "Braktisja e kësaj faqeje mund të shkaktojë humbjen e çfarëdo ndryshimesh që keni bërë.\nNëse jeni i futur në llogarinë tuaj, mund ta çaktivizoni këtë sinjalizim te pjesa \"{{int:prefs-editing}}\" e parapëlqimeve tuaja.",
 	"editpage-invalidcontentmodel-title": "Modeli i përmbajtjes nuk mbështetet",
 	"editpage-invalidcontentmodel-text": "Modeli i përmbajtjes \"$1\" nuk mbështetet.",
 	"editpage-notsupportedcontentformat-title": "Formati i përmbajtjes nuk mbështetet",

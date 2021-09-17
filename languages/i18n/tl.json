@@ -684,7 +684,6 @@
 	"postedit-confirmation-published": "Nailathala na ang iyong pagbabago.",
 	"edit-already-exists": "Hindi makalikha ng isang bagong pahina.\nUmiiral na ito.",
 	"defaultmessagetext": "Nakatakdang teksto ng mensahe",
-	"editwarning-warning": "Ang paglisan mula sa pahinang ito ay maaaring makasanhi sa iyo ng pagkawala ng anumang mga pagbabagong ginawa mo.\nKung nakalagda ka, maaari mong huwag paganahin ang babalang ito sa loob ng seksyong \"May binabago\" ng mga nais mo.",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "purong teksto",
 	"expensive-parserfunction-warning": "Babala: Naglalaman ang pahinang ito ng napakaraming mamahaling mga tawag na pantungkulin.\n\nDapat na mayroon itong mas mababa sa $2 {{PLURAL:$2|tawag|mga tawag}}, mayroon {{PLURAL:$1|ngayong $1 isang tawag|ngayong $1 mga tawag}}.",

@@ -382,6 +382,7 @@
 	"searchall": "puoh",
 	"search-showingresults": "{{PLURAL:$4|Puáđud <strong>$1</strong> enâmusmeereest <strong>$3</strong>|Puátuseh <strong>$1 – $2</strong> enâmusmeereest <strong>$3</strong>}}",
 	"search-nonefound": "Táin ucâmáin ij kavnuu mihheen",
+	"powersearch-toggleall": "Valjii puoh",
 	"preferences": "Asâttâsah",
 	"mypreferences": "Asâttâsah",
 	"prefs-user-pages": "Kevtteesiijđoh",
@@ -417,6 +418,7 @@
 	"group-user": "Kevtteeh",
 	"group-bot": "Boteh",
 	"group-sysop": "Haldâšeijeeh",
+	"group-all": "(puohah)",
 	"group-user-member": "{{GENDER:$1|kevttee}}",
 	"group-sysop-member": "{{GENDER:$1|haldâšeijee}}",
 	"grouppage-user": "{{ns:project}}:Kevtteeh",
@@ -608,6 +610,7 @@
 	"all-logs-page": "Puoh almoliih lokih",
 	"alllogstext": "Taat lii ovtâstittum lokij čáittu.\nPuávtáh raijiđ listo valjiimáin lokitiijpâ, kevttee teikâ siijđo, moos nubástittem kuáská. Majemuuh láá heerkih puustavstuárudâhân.",
 	"logempty": "Iä tábáhtusah loggas.",
+	"checkbox-all": "Puoh",
 	"allpages": "Puoh siijđoh",
 	"nextpage": "Čuávuvâš sijđo ($1)",
 	"prevpage": "Oovdeb sijđo ($1)",
@@ -704,6 +707,7 @@
 	"move-subpages": "Sirde vyelisiijđoid (enâmustáá $1)",
 	"movelogpage": "Sirdoloki",
 	"export": "Tuálvu siijđoid",
+	"allmessages-filter-all": "Puoh",
 	"allmessages-language": "Kielâ:",
 	"thumbnail-more": "Styereed",
 	"import-upload-filename": "Tiätuvuárkkánommâ:",
@@ -872,5 +876,6 @@
 	"duration-days": "$1 {{PLURAL:$1|peivi|peeivi}}",
 	"pagelang-language": "Kielâ",
 	"mediastatistics-header-unknown": "Tubdâmettum",
-	"randomrootpage": "Säti váldusiijđo"
+	"randomrootpage": "Säti váldusiijđo",
+	"log-action-filter-all": "Puoh"
 }

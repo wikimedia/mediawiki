@@ -443,7 +443,6 @@
 	"edit-conflict": "Ebikyusidwamu bireesewo okusobagana.",
 	"edit-no-change": "Sisitemu ekubaze nga atalina ky'agikozeko, olw'okubanga ebiri ku lupapula obirese nga bwe wabisanze.",
 	"edit-already-exists": "Olupapula lw'ogeza okukolawo weruli, lwakolebwawo dda.<br />\nTekisobose kuddamu n'ate oulukolawo.",
-	"editwarning-warning": "Bw'ova ku lupapula luno kiyinza okuleetera enkyukakyuka z'olukozeko okuvawo.<br />\nBw'oba nga okola oyingidde mu sisitemu, okulabula kuno oyinza okukusirisa nga weyambisa<br />\nebiri mu kitundu ekya \"Kukyusa\" eky'omu \"Nteekateeka yange\".",
 	"expensive-parserfunction-warning": "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />\n<br />\nTerukkirizibwa kubaako {{PLURAL:$2|kiragiro ky'ekibekebera ngoberera y'amateeka g'empandika ekisukka|biragiro by'ekikebera mpandika y'amateeka g'empandika ebisukka}} mu $2. Kakano ebiragiro ebyo luliko {{PLURAL:$1|kimu|$1}}.",
 	"expensive-parserfunction-category": "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
 	"post-expand-template-inclusion-warning": "'''Kulabula:''' Entiba ez'okunonebwa ziyitiridde obungi.<br />\nEzimu zijjakulebwayo.",
