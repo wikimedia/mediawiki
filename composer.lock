@@ -3929,11 +3929,11 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.7.1",
+            "version": "v0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "c661cd41a8ecd20609a12abe082cb66de47692c3"
+                "reference": "5f9f5b58ddce0a2ddd4c8b34ff3b3bc199c5d904"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "^2.5",
@@ -4007,7 +4007,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2021-07-29T18:05:59+00:00"
+            "time": "2021-09-07T18:16:06+00:00"
         },
         {
             "name": "wikimedia/timestamp",
