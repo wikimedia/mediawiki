@@ -436,7 +436,6 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ArticleRevisionViewCustomHook,
 	\MediaWiki\Page\Hook\ArticleShowPatrolFooterHook,
 	\MediaWiki\Page\Hook\ArticleUndeleteHook,
-	\MediaWiki\Page\Hook\ArticleUndeleteLogEntryHook,
 	\MediaWiki\Page\Hook\ArticleViewFooterHook,
 	\MediaWiki\Page\Hook\ArticleViewHeaderHook,
 	\MediaWiki\Page\Hook\ArticleViewRedirectHook,
@@ -823,13 +822,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ArticleUndelete',
 			[ $title, $create, $comment, $oldPageId, $restoredPages ]
-		);
-	}
-
-	public function onArticleUndeleteLogEntry( $pageArchive, &$logEntry, $user ) {
-		return $this->container->run(
-			'ArticleUndeleteLogEntry',
-			[ $pageArchive, &$logEntry, $user ]
 		);
 	}
 
