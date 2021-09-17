@@ -792,6 +792,7 @@ because of Phabricator reports.
   - User::getStubThreshold() - no replacement.
 * The ArticleDelete and ArticleDeleteComplete hooks were deprecated. Use
   PageDelete and PageDeleteComplete instead.
+* The ArticleUndeleteLogEntry hook was deprecated without replacement.
 * The following LESS mediawiki.mixins have been deprecated:
   - .box-sizing()
   - .transform()
