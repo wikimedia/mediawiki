@@ -10,7 +10,7 @@ use User;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "ArticleUndeleteLogEntry" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.37
  * @ingroup Hooks
  */
 interface ArticleUndeleteLogEntryHook {
