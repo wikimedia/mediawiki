@@ -5,14 +5,18 @@ namespace MediaWiki\HookContainer;
 use Article;
 use Config;
 use IContextSource;
+use ManualLogEntry;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
 use SpecialPage;
+use StatusValue;
 use Title;
 
 /**
@@ -449,6 +453,8 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ImagePageShowTOCHook,
 	\MediaWiki\Page\Hook\IsFileCacheableHook,
 	\MediaWiki\Page\Hook\OpportunisticLinksUpdateHook,
+	\MediaWiki\Page\Hook\PageDeleteCompleteHook,
+	\MediaWiki\Page\Hook\PageDeleteHook,
 	\MediaWiki\Page\Hook\PageDeletionDataUpdatesHook,
 	\MediaWiki\Page\Hook\PageViewUpdatesHook,
 	\MediaWiki\Page\Hook\RevisionFromEditCompleteHook,
@@ -2705,6 +2711,34 @@ class HookRunner implements
 			'PageContentSave',
 			[ $wikiPage, $user, $content, &$summary, $isminor, $iswatch,
 				$section, $flags, $status ]
+		);
+	}
+
+	public function onPageDelete(
+		ProperPageIdentity $page,
+		Authority $deleter,
+		string $reason,
+		StatusValue $status,
+		bool $suppress
+	) {
+		return $this->container->run(
+			'PageDelete',
+			[ $page, $deleter, $reason, $status, $suppress ]
+		);
+	}
+
+	public function onPageDeleteComplete(
+		ProperPageIdentity $page,
+		Authority $deleter,
+		string $reason,
+		int $pageID,
+		RevisionRecord $deletedRev,
+		ManualLogEntry $logEntry,
+		int $archivedRevisionCount
+	) {
+		return $this->container->run(
+			'PageDeleteComplete',
+			[ $page, $deleter, $reason, $pageID, $deletedRev, $logEntry, $archivedRevisionCount ]
 		);
 	}
 

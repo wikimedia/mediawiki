@@ -75,6 +75,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		// NOTE: The following could be avoided if the relevant methods were return-typehinted
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'select' )->willReturn( $this->createMock( IResultWrapper::class ) );
+		$db->method( 'selectRowCount' )->willReturn( 42 );
 		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lbFactory = $this->createMock( LBFactory::class );
