@@ -51,15 +51,10 @@ class TemplateParser {
 
 	/**
 	 * @param string|null $templateDir
-	 * @param BagOStuff|null|true $cache Read-write cache
-	 *  If set to true, caching is disabled (deprecated since 1.35).
+	 * @param BagOStuff|null $cache Read-write cache
 	 */
-	public function __construct( $templateDir = null, $cache = null ) {
+	public function __construct( $templateDir = null, ?BagOStuff $cache = null ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
-		if ( $cache === true ) {
-			wfDeprecated( __CLASS__ . ' with $forceRecompile', '1.35' );
-			$cache = new EmptyBagOStuff();
-		}
 		$this->cache = $cache ?: ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		// Do not add more flags here without discussion.

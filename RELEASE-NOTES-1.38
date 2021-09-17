@@ -81,8 +81,11 @@ because of Phabricator reports.
   1.34, have been removed.
 * FileBackendGroup::singleton() and ::destroySingletons(), both deprecated since
   1.35, have been removed.
+* TemplateParser used to support disabling the cache with a boolean parameter
+  in its constructor. This was deprecated in 1.35 and has now been removed.
 * The signature of PageUpdater::markAsRevert method was changed. It has never
   been used outside of MediaWiki core.
+* …
 
 === Deprecations in 1.38 ===
 * …
