@@ -43,12 +43,13 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revB3'] = $this->addPage( 'B', 'B 3' );
 		self::$repl['revB4'] = $this->addPage( 'B', 'B 4' );
 		self::$repl['pageB'] = Title::newFromText( 'ApiComparePagesTest B' )->getArticleID();
-		foreach ( [
+		$updateTimestamps = [
 			self::$repl['revB1'] => '20010101011101',
 			self::$repl['revB2'] => '20020202022202',
 			self::$repl['revB3'] => '20030303033303',
 			self::$repl['revB4'] => '20040404044404',
-		] as $id => $ts ) {
+		];
+		foreach ( $updateTimestamps as $id => $ts ) {
 			$this->db->update(
 				'revision',
 				[ 'rev_timestamp' => $this->db->timestamp( $ts ) ],
@@ -203,7 +204,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'totitle' => 'ApiComparePagesTest B',
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">A </del>4</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">B </ins>4</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">A </del>4</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">B </ins>4</div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -224,7 +225,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'totitle' => 'ApiComparePagesTest B',
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">A </del>4</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">B </ins>4</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">A </del>4</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">B </ins>4</div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -245,7 +246,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'totitle' => 'ApiComparePagesTest A',
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>A <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>A <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>A <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>A <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -267,7 +268,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'toarchive' => true,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">A </del>2</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">C </ins>2</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">A </del>2</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">C </ins>2</div></td></tr>' . "\n",
 					]
 				],
 				false, true
@@ -292,7 +293,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'tocommenthidden' => true,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">A </del>2</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">B </ins>2</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">A </del>2</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">B </ins>2</div></td></tr>' . "\n",
 					]
 				],
 				false, true
@@ -310,7 +311,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -326,7 +327,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -342,7 +343,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text</div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -359,7 +360,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">Test</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">Test</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -376,7 +377,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -393,7 +394,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -410,7 +411,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest C</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest C</ins></div></td></tr>' . "\n",
 					]
 				],
 				false, true
@@ -430,11 +431,11 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker"></td><td class="diff-context diff-left"><div>== Section 1 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-right"><div>== Section 1 ==</div></td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n"
-							. '<tr><td class="diff-marker"></td><td class="diff-context diff-left"><br/></td><td class="diff-marker"></td><td class="diff-context diff-right"><br/></td></tr>' . "\n"
-							. '<tr><td class="diff-marker"></td><td class="diff-context diff-left"><div>== Section 2 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-right"><div>== Section 2 ==</div></td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From text?</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">F 1.2</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><div>== Section 1 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><div>== Section 1 ==</div></td></tr>' . "\n"
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n"
+							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><br/></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><br/></td></tr>' . "\n"
+							. '<tr><td class="diff-marker"></td><td class="diff-context diff-side-deleted"><div>== Section 2 ==</div></td><td class="diff-marker"></td><td class="diff-context diff-side-added"><div>== Section 2 ==</div></td></tr>' . "\n"
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From text?</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">F 1.2</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -467,10 +468,10 @@ class ApiComparePagesTest extends ApiTestCase {
 						'tosuppressed' => true,
 						'totimestamp' => '2003-03-03T03:33:03Z',
 						'next' => '{{REPL:revB4}}',
-						'diffsize' => 441,
+						'diffsize' => 454,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>B <del class="diffchange diffchange-inline">1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>B <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>B <del class="diffchange diffchange-inline">1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>B <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -507,10 +508,10 @@ class ApiComparePagesTest extends ApiTestCase {
 						'totimestamp' => '2003-03-03T03:33:03Z',
 						'prev' => '{{REPL:revB1}}',
 						'next' => '{{REPL:revB4}}',
-						'diffsize' => 441,
+						'diffsize' => 454,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>B <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>B <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>B <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>B <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
 					]
 				],
 				false, true
@@ -535,10 +536,10 @@ class ApiComparePagesTest extends ApiTestCase {
 						'fromcomment' => 'Test for ApiComparePagesTest: B 1',
 						'fromparsedcomment' => 'Test for ApiComparePagesTest: B 1',
 						'fromtimestamp' => '2001-01-01T01:11:01Z',
-						'diffsize' => 464,
+						'diffsize' => 477,
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">B 1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To text {{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">B 1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To text {{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -616,7 +617,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'next' => '{{REPL:revA2}}',
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div> </div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">A 1</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div> </div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">A 1</ins></div></td></tr>' . "\n",
 					],
 				],
 			],
@@ -660,7 +661,7 @@ class ApiComparePagesTest extends ApiTestCase {
 						'bodies' => [
 							'main' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 								. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-								. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>A <del class="diffchange diffchange-inline">1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>A <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
+								. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>A <del class="diffchange diffchange-inline">1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>A <ins class="diffchange diffchange-inline">3</ins></div></td></tr>' . "\n",
 						],
 					],
 				],
@@ -679,7 +680,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -694,7 +695,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">{{subst:PAGENAME}}</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -710,7 +711,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text</div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text</div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -726,7 +727,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">Test</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">Test</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -742,7 +743,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -758,7 +759,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
 			],
@@ -774,7 +775,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest C</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest C</ins></div></td></tr>' . "\n",
 					]
 				],
 				false, true
@@ -791,8 +792,8 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>== Section <del class="diffchange diffchange-inline">1 </del>==</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>== Section <ins class="diffchange diffchange-inline">2 </ins>==</div></td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>== Section <del class="diffchange diffchange-inline">1 </del>==</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>== Section <ins class="diffchange diffchange-inline">2 </ins>==</div></td></tr>' . "\n"
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n",
 						'fromid' => '{{REPL:pageF}}',
 						'fromrevid' => '{{REPL:revF1}}',
 						'fromns' => '0',
@@ -822,7 +823,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					'compare' => [
 						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1">Line 1:</td>' . "\n"
 							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
-							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-left"><div>B <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-right"><div>B <ins class="diffchange diffchange-inline">4</ins></div></td></tr>' . "\n",
+							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div>B <del class="diffchange diffchange-inline">2</del></div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div>B <ins class="diffchange diffchange-inline">4</ins></div></td></tr>' . "\n",
 						'fromid' => '{{REPL:pageB}}',
 						'fromrevid' => '{{REPL:revB2}}',
 						'fromns' => 0,

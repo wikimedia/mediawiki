@@ -23,10 +23,10 @@
 				return;
 			}
 
-			if ( $( textNode ).closest( '.diff-left' ).length !== 0 ) {
-				side = 'left';
-			} else if ( $( textNode ).closest( '.diff-right' ).length !== 0 ) {
-				side = 'right';
+			if ( $( textNode ).closest( '.diff-side-deleted' ).length !== 0 ) {
+				side = 'deleted';
+			} else if ( $( textNode ).closest( '.diff-side-added' ).length !== 0 ) {
+				side = 'added';
 			} else {
 				// Not inside the diff, ignore.
 				return;
