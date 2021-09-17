@@ -11,13 +11,11 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWgLockManagers() {
-		$this->hideDeprecated( 'LockManagerGroup::singleton' );
-		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers',
 			[ [ 'name' => 'a', 'class' => 'b' ], [ 'name' => 'c', 'class' => 'd' ] ] );
-		LockManagerGroup::destroySingletons();
+		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
-		$lmg = LockManagerGroup::singleton();
+		$lmg = $this->getServiceContainer()->getLockManagerGroupFactory()->getLockManagerGroup();
 		$domain = WikiMap::getCurrentWikiDbDomain()->getId();
 
 		$this->assertSame(
@@ -29,45 +27,29 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSingletonFalse() {
-		$this->hideDeprecated( 'LockManagerGroup::singleton' );
-		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers', [ [ 'name' => 'a', 'class' => 'b' ] ] );
-		LockManagerGroup::destroySingletons();
+		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
 		$this->assertSame(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
-			LockManagerGroup::singleton( false )->config( 'a' )['domain']
+			$this->getServiceContainer()
+				->getLockManagerGroupFactory()
+				->getLockManagerGroup( false )
+				->config( 'a' )['domain']
 		);
 	}
 
 	public function testSingletonNull() {
-		$this->hideDeprecated( 'LockManagerGroup::singleton' );
-		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
 		$this->setMwGlobals( 'wgLockManagers', [ [ 'name' => 'a', 'class' => 'b' ] ] );
-		LockManagerGroup::destroySingletons();
+		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
 		$this->assertSame(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
-			LockManagerGroup::singleton( null )->config( 'a' )['domain']
+			$this->getServiceContainer()
+				->getLockManagerGroupFactory()
+				->getLockManagerGroup( null )
+				->config( 'a' )['domain']
 		);
-	}
-
-	public function testDestroySingletons() {
-		$this->hideDeprecated( 'LockManagerGroup::singleton' );
-		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
-		$instance = LockManagerGroup::singleton();
-		$this->assertSame( $instance, LockManagerGroup::singleton() );
-		LockManagerGroup::destroySingletons();
-		$this->assertNotSame( $instance, LockManagerGroup::singleton() );
-	}
-
-	public function testDestroySingletonsNamedDomain() {
-		$this->hideDeprecated( 'LockManagerGroup::singleton' );
-		$this->hideDeprecated( 'LockManagerGroup::destroySingletons' );
-		$instance = LockManagerGroup::singleton( 'domain' );
-		$this->assertSame( $instance, LockManagerGroup::singleton( 'domain' ) );
-		LockManagerGroup::destroySingletons();
-		$this->assertNotSame( $instance, LockManagerGroup::singleton( 'domain' ) );
 	}
 
 	public function testGetDBLockManager() {
