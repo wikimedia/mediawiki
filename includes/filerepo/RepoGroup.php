@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 
 /**
@@ -57,44 +56,6 @@ class RepoGroup {
 
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
-
-	/**
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use MediaWikiServices::getRepoGroup instead
-	 *
-	 * @return RepoGroup
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getRepoGroup();
-	}
-
-	/**
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use MediaWikiTestCase::overrideMwServices() or similar. This will cause bugs if you
-	 * don't reset all other services that depend on this one at the same time.
-	 */
-	public static function destroySingleton() {
-		wfDeprecated( __METHOD__, '1.34' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
-	}
-
-	/**
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use MediaWikiTestCase::setService, this can mess up state of other tests
-	 *
-	 * @param RepoGroup $instance
-	 */
-	public static function setSingleton( $instance ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$services = MediaWikiServices::getInstance();
-		$services->disableService( 'RepoGroup' );
-		$services->redefineService( 'RepoGroup',
-			static function () use ( $instance ) {
-				return $instance;
-			}
-		);
-	}
 
 	/**
 	 * Construct a group of file repositories. Do not call this -- use
