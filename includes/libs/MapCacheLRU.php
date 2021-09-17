@@ -141,11 +141,13 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	 */
 	public function has( $key, $maxAge = INF ) {
 		// Optimization: Forego type check because array_key_exists does it already (T275673)
-		if ( !array_key_exists( $key, $this->cache ) ) {
-			return false;
-		}
-
-		return ( $maxAge <= 0 || $this->getAge( $key ) <= $maxAge );
+		return array_key_exists( $key, $this->cache )
+			&& (
+				// Optimization: Avoid expensive getAge/getCurrentTime for common case (T275673)
+				$maxAge === INF
+				|| $maxAge <= 0
+				|| $this->getAge( $key ) <= $maxAge
+			);
 	}
 
 	/**
@@ -211,12 +213,14 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	public function hasField( $key, $field, $maxAge = INF ) {
 		$value = $this->get( $key );
 
-		// Optimization: Forego type check because array_key_exists does it already (T275673)
-		if ( !is_array( $value ) || !array_key_exists( $field, $value ) ) {
-			return false;
-		}
-
-		return ( $maxAge <= 0 || $this->getAge( $key, $field ) <= $maxAge );
+		return is_array( $value )
+			// Optimization: Forego $field type check because array_key_exists does it already (T275673)
+			&& array_key_exists( $field, $value )
+			&& (
+				$maxAge === INF
+				|| $maxAge <= 0
+				|| $this->getAge( $key, $field ) <= $maxAge
+			);
 	}
 
 	/**
