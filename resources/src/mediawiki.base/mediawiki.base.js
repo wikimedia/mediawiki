@@ -95,7 +95,6 @@ function Message( map, key, parameters ) {
 	this.map = map;
 	this.key = key;
 	this.parameters = parameters || [];
-	return this;
 }
 
 Message.prototype = {
