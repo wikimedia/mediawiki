@@ -415,7 +415,6 @@
 	"recreate-moveddeleted-warn": "<strong>Gwarnyans: Yth esowgh ow taswul folen a veu diles kyns.</strong>\n\nY tal dhywgh prederi mars yw gwiw pesya golegi an folen ma.\nOttomma kovnoten-dhilea ha kovnoten-waya an folen ma:",
 	"moveddeleted-notice": "Diles veu an folen ma.\nA-woles yma kovnotennow dhilea, difres ha gwaya an folen.",
 	"log-fulllog": "Gweles an govnoten dhien",
-	"editwarning-warning": "Mar kesowgh an folen ma, hwi a allsa kelli chanjyow gwrys genowgh.\nMars owgh hwi omgelmys, hwi a yll diallosegi an gwarnyans ma yn tregh \"{{int:prefs-editing}}\" agas dewisyow.",
 	"content-model-wikitext": "wikitekst",
 	"undo-success": "Y hyllir diswul an chanj-ma.\nCheckyewgh mar pleg an kehevelyans a-woles rag gwirya bos hemma an pyth a vynnowgh, hag ena gwithewgh an chanjyow a-woles rag gorfenna diswul an chanj.",
 	"undo-summary": "Amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]]) diswrys",

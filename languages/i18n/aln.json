@@ -446,7 +446,6 @@
 	"edit-conflict": "Konflikt në redaktim.",
 	"edit-no-change": "Redaktimi juaj është anashkaluar pasi që asnjë ndryshim nuk u bë në tekst.",
 	"edit-already-exists": "Faqja nuk mundej të hapet.\nAjo tanimë ekziston.",
-	"editwarning-warning": "Duke e lënë këtë faqe mund të bëjë që ju të humbni ndonjë ndryshim që keni bërë. Nëse ju jeni regjistruar, ju mund ta çaktivizoni këtë paralajmërim në \"Tue redaktue\" seksionin e preferencave tuaja.",
 	"expensive-parserfunction-warning": "Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.\n\nDuhet të ketë më pakë se $2, {{PLURAL:$2|kërkesë|kërkesa}}, kurse tani {{PLURAL:$1|është $1 kërkesë|janë $1 kërkesa}}.",
 	"expensive-parserfunction-category": "Faqe me shumë shprehje të kushtueshmë për analizë gramatikore",
 	"post-expand-template-inclusion-warning": "Vini re: Stampa e përfshirë është shumë e madhe.\nDisa stampa s'do të përfshihen.",

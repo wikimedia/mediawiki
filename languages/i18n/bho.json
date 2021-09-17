@@ -713,7 +713,6 @@
 	"invalid-content-data": "अवैध सामग्री डाटा",
 	"content-not-allowed-here": "पन्ना [[:$2]] पर \"$1\" सामग्री डाले के इजाजत नइखे।",
 	"confirmleave-warning": "एह पन्ना के छोड़ के हटले पर राउर कइल कौनों बदलाव गायब हो सके ला।",
-	"editwarning-warning": "ए पन्ना के छोड़ के हटला पर आपके द्वारा कइल बदलाव गायब हो सके लें।\nअगर आप लॉगिन कइले बानी तब ए चेतावनी के अपनी सेटिंग में \"{{int:prefs-editing}}\" खंड में जा के बंद कर सकत बानीं।",
 	"editpage-invalidcontentmodel-title": "सामग्री मॉडल सपोर्टेड नइखे",
 	"editpage-invalidcontentmodel-text": "सामग्री मॉडल \"$1\" सपोर्टेड नइखे।",
 	"editpage-notsupportedcontentformat-title": "सामग्री के फॉरमैट सपोर्टेड नइखे।",

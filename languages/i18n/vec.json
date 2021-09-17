@@ -719,7 +719,6 @@
 	"content-failed-to-parse": "Inposibiłe anałixare $2 pa'l modèl $1: $3",
 	"invalid-content-data": "Dati contegnui nó vałidi",
 	"content-not-allowed-here": "Contegnùo in \"$1\" no'l xe consentìo inte Ƚa pàgina [[:$2]] ne el slot $3",
-	"editwarning-warning": "Se te vè via da sta pàgina te podarisi pèrdare tute ƚe modìfeghe che te ghe fato.\nSe te sì logà, te poi disabilitar sto avixo in te ƚa sesion \"{{int:prefs-editing}}\" de ƚe to prefarense.",
 	"slot-name-main": "Prinçipałe",
 	"content-model-wikitext": "wikitesto",
 	"content-model-text": "testo normal",

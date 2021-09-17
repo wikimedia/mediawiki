@@ -349,7 +349,6 @@
 	"nocreate-loggedin": "Cha nel kied ayd duillagyn noa y chroo er {{SITENAME}}.",
 	"permissionserrorstext-withaction": "Cha nel kiart ayd $2, er {{PLURAL:$1|y fa|y fa|y fa|ny faghyn}} heese:",
 	"recreate-moveddeleted-warn": "'''Raaue: T’ou aachroo duillag as eh er ve scrysst hannah hene.'''\n\nBy chair dhyt smooinagh vel eh kiart goll er oai lesh reaghey yn duillag shoh.<br />\nTa lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
-	"editwarning-warning": "My faagys oo y duillag, hed caghlaaghyn erbee er coayl, foddee.\nMy t'ou uss loggalt stiagh, foddee oo lhiettal y raaue shoh 'sy tosheeaghtyn ayd, 'sy rheynn \"Reaghey\".",
 	"viewpagelogs": "Jeeagh er ny lioaryn cooishyn son y duillag shoh",
 	"currentrev": "Aavriwnys roie",
 	"currentrev-asof": "Aavriwnys s'noa er $1",

@@ -612,7 +612,6 @@
 	"defaultmessagetext": "ਮੂਲ ਸੁਨੇਹਾ ਲਿਖਤ",
 	"invalid-content-data": "ਗ਼ਲਤ ਸਮੱਗਰੀ",
 	"content-not-allowed-here": "\"$1\" ਸਮੱਗਰੀ ਨੂੰ [[:$2]] ਉੱਤੇ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ",
-	"editwarning-warning": "ਇਹ ਸਫ਼ਾ ਛੱਡਣ ਕਰਕੇ ਤੁਹਾਡੇ ਵੱਲੋਂ ਕੀਤੀਆਂ ਸੋਧਾਂ ਗੁੰਮ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਦਾਖ਼ਲਾ ਲਿਆ ਹੋਇਆ ਹੈ ਤਾਂ ਤੁਸੀਂ ਇਸ ਚਿਤਾਵਨੀ ਨੂੰ ਆਪਣੀਆਂ ਪਸੰਦਾਂ ਦੇ \"ਸੰਪਾਦਨ\" ਭਾਗ ਵਿਚ ਜਾ ਕੇ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।",
 	"content-model-wikitext": "ਵਿਕੀਲਿਖਤ",
 	"content-model-text": "ਆਮ ਲਿਖਤ",
 	"content-model-javascript": "ਜਾਵਾਸਕਰਿਪਟ",

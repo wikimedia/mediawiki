@@ -592,7 +592,6 @@
 	"content-failed-to-parse": "Manam atinichu $2 samiqta $1 kikinchapaq kuskiyta: $3",
 	"invalid-content-data": "Samiqmanta willaykunaqa manam allinchu",
 	"content-not-allowed-here": "\"$1\" nisqa samiqqa [[:$2]] sutiyuq p'anqapi manam saqillasqachu",
-	"editwarning-warning": "Kay p'anqata saqispaykiqa lliw rurarqusqayki hukchasqakunatachá chinkachiykiman.\nYaykusqa kaspaykiqa, kay yuyampayta hark'ayta atinki allinkachinaykikunapi \"Llamk'apusqa\" rakipi.",
 	"editpage-notsupportedcontentformat-title": "Samiqpa rikch'ayninqa manam q'imisqachu",
 	"content-model-wikitext": "wiki qillqa",
 	"content-model-text": "qillqalla",

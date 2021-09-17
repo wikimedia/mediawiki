@@ -1275,7 +1275,6 @@
 	"ipb-unblock-addr": "Debloccar $1",
 	"ipb-blocklist-contribs": "Contributiones de {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 remane",
-	"block-prevent-edit": "Modification",
 	"block-reason": "Rason:",
 	"ipblocklist": "Usatores blocat",
 	"blocklist-target": "Cible",

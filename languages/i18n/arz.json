@@ -567,7 +567,6 @@
 	"defaultmessagetext": "النص الاوتوماتيكى",
 	"content-failed-to-parse": "فشل ف تحليل $2 محتوى لـ $1 موديل: $3",
 	"invalid-content-data": "بيانات المحتوى غلط",
-	"editwarning-warning": "لو سيبت الصفحه دى ممكن يخلّيك تضيّع اى تغييرات عملتها.\nلو انت مسجّل دخولك, ممكن تعطّل التحذير ده من الجزء بتاع \"{{int:prefs-editing}}\" فى تفضيلاتك.",
 	"content-model-wikitext": "ويكى تكست",
 	"content-model-text": "كلام عادى",
 	"content-model-javascript": "جاڤاسكربت",

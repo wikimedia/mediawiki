@@ -607,7 +607,6 @@
 	"content-failed-to-parse": "Не вдало ся проаналізовати $2 як тіп $1: $3",
 	"invalid-content-data": "Неприпустны даны",
 	"content-not-allowed-here": "Обсяг «$1» недозволеный на сторінцї [[:$2]]",
-	"editwarning-warning": "Зохаблїнём той стрінкы ся можуть вшыткы учінены зміны стратити.\nКідь сьте приголошеный, можете тото варованя выпнути на картї „{{int:prefs-editing}}“ в хосновательскім інтерфейсї.",
 	"editpage-invalidcontentmodel-title": "Непідпорованый модел обсягу",
 	"editpage-notsupportedcontentformat-title": "Непідпорованый формат обсягу",
 	"slot-name-main": "Головна",
