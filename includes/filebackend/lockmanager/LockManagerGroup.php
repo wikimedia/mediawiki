@@ -21,7 +21,6 @@
  * @ingroup LockManager
  */
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -68,29 +67,6 @@ class LockManagerGroup {
 				'instance' => null
 			];
 		}
-	}
-
-	/**
-	 * @deprecated since 1.34, hard deprecated since 1.37, use LockManagerGroupFactory
-	 *
-	 * @param bool|string $domain Domain (usually wiki ID). Default: false.
-	 * @return LockManagerGroup
-	 */
-	public static function singleton( $domain = false ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getLockManagerGroupFactory()
-			->getLockManagerGroup( $domain );
-	}
-
-	/**
-	 * Destroy the singleton instances
-	 *
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use resetServiceForTesting() on LockManagerGroupFactory
-	 */
-	public static function destroySingletons() {
-		wfDeprecated( __METHOD__, '1.34' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'LockManagerGroupFactory' );
 	}
 
 	/**
