@@ -940,7 +940,7 @@ abstract class Skin extends ContextSource {
 	 */
 	protected function getCopyrightIcon() {
 		wfDeprecated( __METHOD__, '1.37' );
-		return BaseTemplate::getCopyrightIconHTML( $this->getConfig() );
+		return BaseTemplate::getCopyrightIconHTML( $this->getConfig(), $this );
 	}
 
 	/**

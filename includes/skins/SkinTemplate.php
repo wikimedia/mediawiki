@@ -379,8 +379,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'credits', $footerData['info']['credits'] ?? false );
 		$tpl->set( 'numberofwatchingusers', false );
 
-		$tpl->set( 'copyrightico', BaseTemplate::getCopyrightIconHTML( $this->getConfig() ) );
-		$poweredBy = BaseTemplate::getPoweredByHTML( $this->getConfig() );
+		$tpl->set( 'copyrightico', BaseTemplate::getCopyrightIconHTML( $config, $this ) );
+		$poweredBy = BaseTemplate::getPoweredByHTML( $config );
 		// Run deprecated hook.
 		$this->getHookRunner()->onSkinGetPoweredBy( $poweredBy, $this );
 		$tpl->set( 'poweredbyico', $poweredBy );
