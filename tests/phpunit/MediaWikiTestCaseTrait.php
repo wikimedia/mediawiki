@@ -227,17 +227,17 @@ trait MediaWikiTestCaseTrait {
 	 * @before
 	 */
 	protected function phpErrorFilterSetUp() {
-		$this->originalPhpErrorFilter = intval( ini_get( 'error_reporting' ) );
+		$this->originalPhpErrorFilter = error_reporting();
 	}
 
 	/**
 	 * @after
 	 */
 	protected function phpErrorFilterTearDown() {
-		$phpErrorFilter = intval( ini_get( 'error_reporting' ) );
+		$phpErrorFilter = error_reporting();
 
 		if ( $phpErrorFilter !== $this->originalPhpErrorFilter ) {
-			ini_set( 'error_reporting', $this->originalPhpErrorFilter );
+			error_reporting( $this->originalPhpErrorFilter );
 			$message = "PHP error_reporting setting found dirty."
 				. " Did you forget AtEase::restoreWarnings?";
 			$this->fail( $message );
