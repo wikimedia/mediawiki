@@ -1774,7 +1774,6 @@ class ParserOutput extends CacheTime {
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->mIndexPolicy = $jsonData['IndexPolicy'];
 		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
-		$this->mExtensionData = $jsonData['ExtensionData'];
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mParseStartTime = $jsonData['ParseStartTime'];
