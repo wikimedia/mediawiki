@@ -21118,13 +21118,13 @@ language=zh variant=zh-tw
 
 XA XB XC YA YB YC FOO BAR BAT 012345
 !! html/php
-<p>大陆：XA；台灣：YA；
+<p>大陆：XA；臺灣：YA；
 
-大陆：XC；台灣：YC；
-</p><p>FOO⇒台灣：BAR；FOO⇒大陆：BAT；
-</p><p>0⇒台灣：1；
+大陆：XC；臺灣：YC；
+</p><p>FOO⇒臺灣：BAR；FOO⇒大陆：BAT；
+</p><p>0⇒臺灣：1；
 
-4⇒台灣：5；
+4⇒臺灣：5；
 </p><p>XA YB YC YA YB YC BAR BAR BAT 013355
 </p>
 !! html/parsoid
@@ -21150,7 +21150,7 @@ language=zh variant=zh-cn
 -{N|sr-ec}-
 !! html/php
 <p>大陆
-</p><p>台灣
+</p><p>臺灣
 </p><p>српски (ћирилица)
 </p>
 !! html/parsoid
