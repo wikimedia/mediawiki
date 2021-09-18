@@ -46,6 +46,9 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.38 ===
+* Added a deleteUserEmail maintenance script - This file enables the deletion
+  of a given user's associated email address. It can be helpful for
+  privacy-preserving operations.
 * …
 
 === External library changes in 1.38 ===
