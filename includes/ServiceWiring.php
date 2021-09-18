@@ -102,6 +102,8 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
@@ -600,6 +602,24 @@ return [
 			static function ( $command ) {
 				return wfShellExec( $command );
 			}
+		);
+	},
+
+	'GrantsInfo' => static function ( MediaWikiServices $services ): GrantsInfo {
+		return new GrantsInfo(
+			new ServiceOptions(
+				GrantsInfo::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+	},
+
+	'GrantsLocalization' => static function ( MediaWikiServices $services ): GrantsLocalization {
+		return new GrantsLocalization(
+			$services->getGrantsInfo(),
+			$services->getLinkRenderer(),
+			$services->getLanguageFactory(),
+			$services->getContentLanguage()
 		);
 	},
 
