@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
 use CommentStoreComment;
-use IDatabase;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -14,6 +13,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
+use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
 use WikitextContent;
 

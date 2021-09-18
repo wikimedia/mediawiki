@@ -3,7 +3,6 @@ namespace MediaWiki\Tests\Page;
 
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
@@ -11,6 +10,7 @@ use MediaWikiUnitTestCase;
 use NamespaceInfo;
 use TitleParser;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @covers \MediaWiki\Page\PageStoreFactory
