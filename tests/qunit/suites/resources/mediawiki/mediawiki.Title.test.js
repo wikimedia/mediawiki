@@ -354,6 +354,11 @@
 		}, 'Throw error on empty string' );
 	} );
 
+	QUnit.test( 'phpCharToUpper', function ( assert ) {
+		assert.strictEqual( mw.Title.phpCharToUpper( '' ), '', 'Empty string' );
+		assert.strictEqual( mw.Title.phpCharToUpper( '\uD801\uDC38' ), '\uD801\uDC10', 'U+10438 (DESERET SMALL LETTER H) 𐐸 -> U+10410 (DESERET CAPITAL LETTER H) 𐐐' );
+	} );
+
 	QUnit.test( 'Case-sensivity', function ( assert ) {
 		var title;
 
@@ -368,6 +373,12 @@
 
 		title = new mw.Title( 'ǆ (digraph)' );
 		assert.strictEqual( title.toString(), 'ǅ_(digraph)', 'Uppercasing matches PHP behaviour (ǆ -> ǅ, not Ǆ)' );
+
+		// U+10438 (DESERET SMALL LETTER H) U+10443 (DESERET SMALL LETTER ETH)
+		// gets changed to
+		// U+10410 (DESERET CAPITAL LETTER H) U+10443 (DESERET SMALL LETTER ETH)
+		title = new mw.Title( '\uD801\uDC38\uD801\uDC1B' );
+		assert.strictEqual( title.toString(), '\uD801\uDC10\uD801\uDC1B', 'Uppercase of U+10438 (DESERET SMALL LETTER H)' );
 
 		// $wgCapitalLinks = false;
 		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15 ] );
