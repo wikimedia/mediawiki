@@ -6,7 +6,6 @@ use ExternalStoreAccess;
 use ExternalStoreFactory;
 use HashBagOStuff;
 use InvalidArgumentException;
-use LoadBalancer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
@@ -14,6 +13,7 @@ use MediaWikiIntegrationTestCase;
 use TitleValue;
 use WANObjectCache;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @covers \MediaWiki\Storage\SqlBlobStore

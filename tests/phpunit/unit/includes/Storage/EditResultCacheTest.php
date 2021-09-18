@@ -4,11 +4,11 @@ namespace MediaWiki\Tests\Storage;
 
 use BagOStuff;
 use FormatJson;
-use IDatabase;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

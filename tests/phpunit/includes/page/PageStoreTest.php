@@ -2,10 +2,8 @@
 namespace MediaWiki\Tests\Page;
 
 use Exception;
-use IDatabase;
 use InvalidArgumentException;
 use LinkCacheTestTrait;
-use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentity;
@@ -17,6 +15,8 @@ use MockTitleTrait;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @group Database
