@@ -828,7 +828,8 @@ Title.prototype = {
 		) {
 			return this.title;
 		}
-		return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
+		var firstChar = mwString.charAt( this.title, 0 );
+		return mw.Title.phpCharToUpper( firstChar ) + this.title.slice( firstChar.length );
 	},
 
 	/**
