@@ -1296,12 +1296,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$seenTimestamps = $this->getPageSeenTimestamps( $user );
-		if (
-			$seenTimestamps &&
-			$seenTimestamps->get( $this->getPageSeenKey( $target ) ) >= $timestamp
-		) {
-			// If a reset job did not yet run, then the "seen" timestamp will be higher
-			return null;
+		if ( $seenTimestamps ) {
+			$seenKey = $this->getPageSeenKey( $target );
+			if ( isset( $seenTimestamps[$seenKey] ) && $seenTimestamps[$seenKey] >= $timestamp ) {
+				// If a reset job did not yet run, then the "seen" timestamp will be higher
+				return null;
+			}
 		}
 
 		return $timestamp;
@@ -1458,9 +1458,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				if ( !$current ) {
 					$value = new MapCacheLRU( 300 );
 				} elseif ( is_array( $current ) ) {
-					// Forwards compatibility for T282105
 					$value = MapCacheLRU::newFromArray( $current, 300 );
 				} else {
+					// Backwards compatibility for T282105
 					$value = $current;
 				}
 				$subKey = $this->getPageSeenKey( $title );
@@ -1468,16 +1468,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				if ( $seenTime > $value->get( $subKey ) ) {
 					// Revision is newer than the last one seen
 					$value->set( $subKey, $seenTime );
-					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
+
+					$this->latestUpdateCache->set( $key, $value->toArray(), BagOStuff::TTL_PROC_LONG );
 				} elseif ( $seenTime === false ) {
 					// Revision does not exist
 					$value->set( $subKey, wfTimestamp( TS_MW ) );
-					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key,
+						$value->toArray(),
+						BagOStuff::TTL_PROC_LONG );
 				} else {
 					return false; // nothing to update
 				}
 
-				return $value;
+				return $value->toArray();
 			},
 			BagOStuff::TTL_HOUR
 		);
@@ -1503,7 +1506,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @return MapCacheLRU|null The map contains prefixed title keys and TS_MW values
+	 * @return array|null The map contains prefixed title keys and TS_MW values
 	 */
 	private function getPageSeenTimestamps( UserIdentity $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
@@ -1515,9 +1518,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				return $this->stash->get( $key ) ?: null;
 			}
 		);
-		if ( is_array( $cache ) ) {
-			// Forwards compatibility for T282105
-			$cache = MapCacheLRU::newFromArray( $cache, 300 );
+		// Backwards compatibility for T282105
+		if ( $cache instanceof MapCacheLRU ) {
+			$cache = $cache->toArray();
 		}
 		return $cache;
 	}

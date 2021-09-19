@@ -3192,6 +3192,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$oldMap->set( '0:Title', '20090101000000' );
 		$newMap = new MapCacheLRU( 300 );
 		$newMap->set( '0:Title', '20110101000000' );
+		$wrongKeyMap = new MapCacheLRU( 300 );
+		$wrongKeyMap->set( '0:Wrong', '20110101000000' );
 		// Arrays are used for stash values after T282105. We test forwards and
 		// backwards compatibility. The MapCacheLRU cases can be removed after
 		// deployment of T282105 has finished.
@@ -3223,7 +3225,15 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'new array' => [
 				$newMap,
 				false
-			]
+			],
+			'wrong key MapCacheLRU' => [
+				$wrongKeyMap,
+				true
+			],
+			'wrong key array' => [
+				$wrongKeyMap->toArray(),
+				true
+			],
 		];
 	}
 
@@ -3244,5 +3254,45 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$result = $store->getLatestNotificationTimestamp(
 			'20100101000000', $user, $title );
 		$this->assertSame( $expectNonNull, $result !== null );
+	}
+
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testResetNotificationTimestamp_stashItemTypeCheck( $testPageFactory ) {
+		$user = new UserIdentityValue( 1, 'MockUser' );
+		$oldid = 22;
+		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
+		$stash = new HashBagOStuff;
+		$mockCache = $this->getMockCache();
+		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockRevisionLookup = $this->getMockRevisionLookup(
+			[
+				'getTimestampFromId' => static function () {
+					return '00000000000000';
+				},
+				'getRevisionByTitle' => static function () {
+					return null;
+				},
+				'getRevisionById' => static function ( $id ) use ( $mockRevision ) {
+					return $mockRevision;
+				},
+				'getNextRevision' => static function ( RevisionRecord $rev ) use ( $mockNextRevision ) {
+					return $mockNextRevision;
+				},
+			]
+		);
+		$store = $this->newWatchedItemStore( [
+			'cache' => $mockCache,
+			'revisionLookup' => $mockRevisionLookup,
+			'stash' => $stash,
+			'queueGroup' => $this->getMockJobQueueGroup( false ),
+		] );
+		$store->resetNotificationTimestamp( $user,
+			$title,
+			'force',
+			$oldid );
+		$this->assertIsArray( $stash->get( 'global:watchlist-recent-updates::1' ) );
 	}
 }
