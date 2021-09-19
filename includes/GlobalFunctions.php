@@ -1654,33 +1654,6 @@ function wfClearOutputBuffers() {
 }
 
 /**
- * Checks if a given MIME type matches any of the keys in the given
- * array. Basic wildcards are accepted in the array keys.
- *
- * Returns the matching MIME type (or wildcard) if a match, otherwise
- * NULL if no match.
- *
- * @param string $type
- * @param array $avail
- * @return string
- * @internal
- */
-function mimeTypeMatch( $type, $avail ) {
-	if ( array_key_exists( $type, $avail ) ) {
-		return $type;
-	} else {
-		$mainType = explode( '/', $type )[0];
-		if ( array_key_exists( "$mainType/*", $avail ) ) {
-			return "$mainType/*";
-		} elseif ( array_key_exists( '*/*', $avail ) ) {
-			return '*/*';
-		} else {
-			return null;
-		}
-	}
-}
-
-/**
  * Get a timestamp string in one of various formats
  *
  * @param mixed $outputtype A timestamp in one of the supported formats, the
