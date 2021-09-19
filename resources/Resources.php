@@ -770,6 +770,7 @@ return [
 	],
 	'mediawiki.feedlink' => [
 		'styles' => 'resources/src/mediawiki.feedlink/feedlink.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.filewarning' => [
 		'scripts' => 'resources/src/mediawiki.filewarning/filewarning.js',
