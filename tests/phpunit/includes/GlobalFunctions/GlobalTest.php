@@ -235,31 +235,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::mimeTypeMatch
-	 */
-	public function testMimeTypeMatch() {
-		$this->assertEquals(
-			'text/html',
-			mimeTypeMatch( 'text/html',
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.3 ] ) );
-		$this->assertEquals(
-			'text/*',
-			mimeTypeMatch( 'text/html',
-				[ 'image/*' => 1.0,
-					'text/*' => 0.5 ] ) );
-		$this->assertEquals(
-			'*/*',
-			mimeTypeMatch( 'text/html',
-				[ '*/*' => 1.0 ] ) );
-		$this->assertNull(
-			mimeTypeMatch( 'text/html',
-				[ 'image/png' => 1.0,
-					'image/svg+xml' => 0.5 ] ) );
-	}
-
-	/**
 	 * @covers ::wfDebug
 	 */
 	public function testDebugFunctionTest() {
