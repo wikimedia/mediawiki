@@ -30,12 +30,12 @@ abstract class UserArray implements Iterator {
 	 * moving towards deprecation.
 	 *
 	 * @param IResultWrapper $res
-	 * @return UserArrayFromResult
+	 * @return UserArrayFromResult|ArrayIterator
 	 */
 	public static function newFromResult( $res ) {
 		$userArray = null;
 		if ( !Hooks::runner()->onUserArrayFromResult( $userArray, $res ) ) {
-			return null;
+			return new ArrayIterator( [] );
 		}
 		return $userArray ?? new UserArrayFromResult( $res );
 	}
