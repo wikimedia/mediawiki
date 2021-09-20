@@ -18,12 +18,10 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 		onDropdownChange,
 		api,
 		$link,
-		$li,
 		expiryOptions = [];
 
 	config = config || {};
 	$link = config.$link;
-	$li = config.$li;
 
 	WatchlistExpiryWidget.parent.call( this, config );
 
@@ -113,14 +111,6 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 
 					updateWatchLink( $link, 'unwatch', 'idle', watchResponse.expiry );
 
-					if ( typeof $li !== 'undefined' ) {
-						if ( value === 'infinite' ) {
-							$li.removeClass( 'mw-watchlink-temp' );
-						} else {
-							$li.addClass( 'mw-watchlink-temp' );
-						}
-					}
-
 					// Update the "Watch this page" checkbox on action=edit when the
 					// page is watched or unwatched via the tab.
 					if ( document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
@@ -143,8 +133,6 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 
 		expiryDropdown.on( 'change', onDropdownChange );
 		this.$element.append( dropdownLabel.$element, expiryDropdown.$element );
-	} else if ( typeof $li !== 'undefined' ) {
-		$li.removeClass( 'mw-watchlink-temp' );
 	}
 }
 
