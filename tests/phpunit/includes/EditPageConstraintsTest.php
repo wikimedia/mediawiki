@@ -91,7 +91,9 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$page->clear();
 
 			// sanity check
-			$currentText = ContentHandler::getContentText( $page->getContent() );
+			$content = $page->getContent();
+			$this->assertInstanceOf( TextContent::class, $content );
+			$currentText = $content->getText();
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.

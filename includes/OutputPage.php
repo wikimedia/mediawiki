@@ -2979,7 +2979,7 @@ class OutputPage extends ContextSource {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
 						$content = $callback( $title );
 						if ( $content !== null ) {
-							$text = ContentHandler::getContentText( $content );
+							$text = ( $content instanceof TextContent ) ? $content->getText() : '';
 							if ( strpos( $text, '</script>' ) !== false ) {
 								// Proactively replace this so that we can display a message
 								// to the user, instead of letting it go to Html::inlineScript(),

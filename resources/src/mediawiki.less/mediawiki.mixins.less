@@ -135,21 +135,13 @@
 }
 
 .flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
-	// For 2009/2012 spec alignment consistency with current default
-	-webkit-box-pack: justify; // iOS 6-, Safari 3.1-6
-	-moz-box-pack: justify; // Firefox 21-
+	// 2012 spec alignment to current spec
 	-ms-flex-pack: justify; // IE 10 (2012 spec)
-	justify-content: space-between; // Current default
-
-	// 2009 spec only supports 'flexible' as opposed to grow (flexPositive)
-	// and shrink (flexNegative); default to grow value
-	-webkit-box-flex: @grow; // iOS 6-, Safari 3.1-6
-	-moz-box-flex: @grow; // Firefox 21-
+	// Current spec
+	justify-content: space-between;
 	width: @width; // Fallback for flex-basis
 	-ms-flex: @grow @shrink @width; // IE 10
 	flex: @grow @shrink @width;
-	-webkit-box-ordinal-group: @order; // iOS 6-, Safari 3.1-6
-	-moz-box-ordinal-group: @order; // Firefox 21-
 	-ms-flex-order: @order; // IE 10
 	order: @order;
 }
