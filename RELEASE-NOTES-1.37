@@ -467,6 +467,9 @@ because of Phabricator reports.
 * The Skin::bottomScripts() method is deprecated. Please instead use
   OutputPage::getBottomScripts().
 * LinksUpdate::getTriggeringUser() now returns ?UserIdentity instead of ?User.
+* The LESS mixin `.box-shadow()` (from mediawiki.mixins.less), deprecated since
+  1.36, was removed. Use CSS property `box-shadow` unprefixed for all basic
+  supported browsers instead.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki(), deprecated in 1.33, now emits deprecation warnings.
