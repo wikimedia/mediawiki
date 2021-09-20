@@ -405,58 +405,39 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideEquals() {
-		/**
-		 * @TODO Don't construct Title object with ::newFromText() in provider.
-		 * This might hit a real DB as the fake DB is not available when providers run.
-		 */
-		yield '(newFromText) same text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Main Page' ),
-			true
-		];
-		yield '(newFromText) different text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Not The Main Page' ),
-			false
-		];
-		yield '(newFromText) different namespace, same text' => [
-			Title::newFromText( 'Main Page' ),
-			Title::newFromText( 'Project:Main Page' ),
-			false
-		];
-		yield '(newFromText) namespace alias' => [
-			Title::newFromText( 'File:Example.png' ),
-			Title::newFromText( 'Image:Example.png' ),
-			true
-		];
-		yield '(newFromText) same special page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Special:Version' ),
-			true
-		];
-		yield '(newFromText) different special page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Special:Recentchanges' ),
-			false
-		];
-		yield '(newFromText) compare special and normal page' => [
-			Title::newFromText( 'Special:Version' ),
-			Title::newFromText( 'Main Page' ),
-			false
-		];
 		yield '(makeTitle) same text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Main Page' ),
+			Title::makeTitle( NS_MAIN, 'Main Page' ),
 			true
 		];
 		yield '(makeTitle) different text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_MAIN, 'Bar', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Main Page' ),
+			Title::makeTitle( NS_MAIN, 'Not The Main Page' ),
 			false
 		];
 		yield '(makeTitle) different namespace, same text' => [
-			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
-			Title::makeTitle( NS_TALK, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Main Page' ),
+			Title::makeTitle( NS_PROJECT, 'Main Page' ),
+			false
+		];
+		yield '(makeTitle) namespace alias' => [
+			Title::makeTitle( NS_FILE, 'Example.png' ),
+			Title::makeTitle( NS_FILE, 'Example.png' ),
+			true
+		];
+		yield '(makeTitle) same special page' => [
+			Title::makeTitle( NS_SPECIAL, 'Version' ),
+			Title::makeTitle( NS_SPECIAL, 'Version' ),
+			true
+		];
+		yield '(makeTitle) different special page' => [
+			Title::makeTitle( NS_SPECIAL, 'Version' ),
+			Title::makeTitle( NS_SPECIAL, 'Recentchanges' ),
+			false
+		];
+		yield '(makeTitle) compare special and normal page' => [
+			Title::makeTitle( NS_SPECIAL, 'Version' ),
+			Title::makeTitle( NS_MAIN, 'Main Page' ),
 			false
 		];
 		yield '(makeTitle) same fragment' => [
@@ -511,67 +492,6 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertSame(
 			$expectedSame,
 			$firstValue->equals( $secondValue )
-		);
-	}
-
-	public function provideIsSamePageAs() {
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 1 );
-		yield '(PageIdentityValue) same text, title has ID 0' => [
-			$title,
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
-			true
-		];
-
-		$title = Title::makeTitle( 1, 'Bar_Baz' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) same text, PageIdentityValue has ID 0' => [
-			$title,
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
-			true
-		];
-
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different text, both IDs are 0' => [
-			$title,
-			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different namespace' => [
-			$title,
-			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo', '' );
-		$title->resetArticleID( 1 );
-		yield '(PageIdentityValue) different wiki, different ID' => [
-			$title,
-			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
-			false
-		];
-
-		$title = Title::makeTitle( 0, 'Foo', '' );
-		$title->resetArticleID( 0 );
-		yield '(PageIdentityValue) different wiki, both IDs are 0' => [
-			$title,
-			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
-			false
-		];
-	}
-
-	/**
-	 * @covers Title::isSamePageAs
-	 * @dataProvider provideIsSamePageAs
-	 */
-	public function testIsSamePageAs( Title $firstValue, $secondValue, $expectedSame ) {
-		$this->assertSame(
-			$expectedSame,
-			$firstValue->isSamePageAs( $secondValue )
 		);
 	}
 
