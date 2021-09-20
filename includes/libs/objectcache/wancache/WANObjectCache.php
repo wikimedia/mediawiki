@@ -1931,7 +1931,7 @@ class WANObjectCache implements
 				if (
 					!$this->cache->add( $cooloffSisterKey, 1, self::COOLOFF_TTL ) &&
 					// Don't treat failures due to I/O errors as the key being in cool-off
-					$this->cache->getLastError() === BagOStuff::ERR_NONE
+					$this->cache->getLastError() === self::ERR_NONE
 				) {
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
@@ -2509,11 +2509,11 @@ class WANObjectCache implements
 	final public function getLastError() {
 		$code = $this->cache->getLastError();
 		switch ( $code ) {
-			case BagOStuff::ERR_NONE:
+			case self::ERR_NONE:
 				return self::ERR_NONE;
-			case BagOStuff::ERR_NO_RESPONSE:
+			case self::ERR_NO_RESPONSE:
 				return self::ERR_NO_RESPONSE;
-			case BagOStuff::ERR_UNREACHABLE:
+			case self::ERR_UNREACHABLE:
 				return self::ERR_UNREACHABLE;
 			default:
 				return self::ERR_UNEXPECTED;
@@ -3067,7 +3067,6 @@ class WANObjectCache implements
 
 		$keysMissing = [];
 		if ( $pcTTL > 0 && $this->callbackDepth == 0 ) {
-			$version = $opts['version'] ?? null;
 			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
 			foreach ( $keys as $key => $id ) {
 				if ( !$pCache->has( $key, $pcTTL ) ) {
