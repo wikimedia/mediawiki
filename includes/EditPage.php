@@ -897,7 +897,7 @@ class EditPage implements IEditObject {
 			$name = $this->mTitle->getSkinFromConfigSubpage();
 			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 			$skins = array_merge(
-				array_keys( $skinFactory->getSkinNames() ),
+				array_keys( $skinFactory->getInstalledSkins() ),
 				[ 'common' ]
 			);
 			return !in_array( $name, $skins )

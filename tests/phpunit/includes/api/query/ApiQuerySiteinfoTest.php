@@ -580,7 +580,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$data = $this->doQuery( 'skins', $code !== null ? [ 'siinlanguagecode' => $code ] : [] );
 		$services = MediaWikiServices::getInstance();
 		$skinFactory = $services->getSkinFactory();
-		$skinNames = $skinFactory->getSkinNames();
+		$skinNames = $skinFactory->getInstalledSkins();
 		$expectedAllowed = $skinFactory->getAllowedSkins();
 		$expectedDefault = Skin::normalizeKey( 'default' );
 		$languageNameUtils = $services->getLanguageNameUtils();

@@ -878,7 +878,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [];
 		$allowed = $this->skinFactory->getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
-		$skinNames = $this->skinFactory->getSkinNames();
+		$skinNames = $this->skinFactory->getInstalledSkins();
 
 		foreach ( $skinNames as $name => $displayName ) {
 			$msg = $this->msg( "skinname-{$name}" );
