@@ -56,4 +56,12 @@ mw.rcfilters = {
 	}
 };
 
+// This used to be the `main` script for the mediawiki.rcfilters.filters.dm module,
+// and the mediawiki.rcfilters.filters.ui module had a `main` script mw.rcfilters.init.js
+// that file depends on mw.rcfilters being defined in this one, because module dependencies
+// get executed before those that depend on them. The two scripts should probably be merged,
+// but for now this simply `require()`s mw.rcfilters.init.js so that the setup code there can
+// be run
+require( './mw.rcfilters.init.js' );
+
 module.exports = mw.rcfilters;
