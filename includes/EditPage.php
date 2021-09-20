@@ -4616,9 +4616,9 @@ class EditPage implements IEditObject {
 		}
 
 		$out = $this->context->getOutput();
-		$lang = $this->context->getLanguage();
 		$maxArticleSize = $this->context->getConfig()->get( 'MaxArticleSize' );
 		if ( $this->tooBig || $this->contentLength > $maxArticleSize * 1024 ) {
+			$lang = $this->context->getLanguage();
 			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				[
 					'longpageerror',
@@ -4629,8 +4629,9 @@ class EditPage implements IEditObject {
 		} else {
 			$longPageHint = $this->context->msg( 'longpage-hint' );
 			if ( !$longPageHint->isDisabled() ) {
-				$msgText = trim( $longPageHint->params( $lang->formatSize( $this->contentLength ),
-					$this->contentLength )->text() );
+				$msgText = trim( $longPageHint->sizeParams( $this->contentLength )
+					->params( $this->contentLength ) // Keep this unformatted for math inside message
+					->text() );
 				if ( $msgText !== '' && $msgText !== '-' ) {
 					$out->addWikiTextAsInterface( "<div id='mw-edit-longpage-hint'>\n$msgText\n</div>" );
 				}
