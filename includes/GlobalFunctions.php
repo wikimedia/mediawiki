@@ -1094,6 +1094,8 @@ function wfIncrStats( $key, $count = 1 ) {
 /**
  * Check whether the wiki is in read-only mode.
  *
+ * @deprecated since 1.38, use ReadOnlyMode::isReadOnly() instead
+ *
  * @return bool
  */
 function wfReadOnly() {
@@ -1106,6 +1108,8 @@ function wfReadOnly() {
  *
  * This checks wfConfiguredReadOnlyReason() and the main load balancer
  * for replica DB lag. This may result in DB connection being made.
+ *
+ * @deprecated since 1.38, use ReadOnlyMode::getReason() instead
  *
  * @return string|bool String when in read-only mode; false otherwise
  */
