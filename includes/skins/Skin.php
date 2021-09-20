@@ -2456,12 +2456,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @since 1.35
+	 * @since 1.38
 	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
 	 *  and decorate the resulting input
-	 * @return string of HTML input
+	 * @return array attributes of HTML input
 	 */
-	final public function makeSearchInput( $attrs = [] ) {
+	protected function getSearchInputAttributes( $attrs = [] ) {
 		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
 		$realAttrs = [
 			'type' => 'search',
@@ -2472,8 +2472,17 @@ abstract class Skin extends ContextSource {
 			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
 		];
 
-		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
-		return Html::element( 'input', $realAttrs );
+		return array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
+	}
+
+	/**
+	 * @since 1.35
+	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
+	 *  and decorate the resulting input
+	 * @return string of HTML input
+	 */
+	final public function makeSearchInput( $attrs = [] ) {
+		return Html::element( 'input', $this->getSearchInputAttributes( $attrs ) );
 	}
 
 	/**
