@@ -10,7 +10,6 @@
 
 ( function () {
 	var uploadWarning, uploadTemplatePreview,
-		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file,
 		$license = $( '#wpLicense' );
 
@@ -22,9 +21,6 @@
 		timeoutID: false,
 
 		checkNow: function ( fname ) {
-			if ( !ajaxUploadDestCheck ) {
-				return;
-			}
 			if ( this.timeoutID ) {
 				clearTimeout( this.timeoutID );
 			}
@@ -34,7 +30,7 @@
 
 		timeout: function () {
 			var $spinnerDestCheck, title;
-			if ( !ajaxUploadDestCheck || this.nameToCheck.trim() === '' ) {
+			if ( this.nameToCheck.trim() === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
@@ -132,23 +128,20 @@
 	};
 
 	$( function () {
-		// AJAX wpDestFile warnings
-		if ( ajaxUploadDestCheck ) {
-			// Insert an event handler that fetches upload warnings when wpDestFile
-			// has been changed
-			$( '#wpDestFile' ).on( 'change', function () {
-				uploadWarning.checkNow( $( this ).val() );
-			} );
-			// Insert a row where the warnings will be displayed just below the
-			// wpDestFile row
-			$( '#mw-htmlform-description tbody' ).append(
-				$( '<tr>' ).append(
-					$( '<td>' )
-						.attr( 'id', 'wpDestFile-warning' )
-						.attr( 'colspan', 2 )
-				)
-			);
-		}
+		// Insert an event handler that fetches upload warnings when wpDestFile
+		// has been changed
+		$( '#wpDestFile' ).on( 'change', function () {
+			uploadWarning.checkNow( $( this ).val() );
+		} );
+		// Insert a row where the warnings will be displayed just below the
+		// wpDestFile row
+		$( '#mw-htmlform-description tbody' ).append(
+			$( '<tr>' ).append(
+				$( '<td>' )
+					.attr( 'id', 'wpDestFile-warning' )
+					.attr( 'colspan', 2 )
+			)
+		);
 
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
 			// License selector check

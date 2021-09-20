@@ -19,6 +19,7 @@ Some specific notes for MediaWiki 1.38 upgrades are below:
 For notes on 1.36.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.38 ===
+* Deprecate $wgAjaxUploadDestCheck, act as always-true
 * …
 
 ==== New configuration ====
