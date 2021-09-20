@@ -52,7 +52,7 @@ class SkinFallback extends SkinMustache {
 		$defaultSkin = $config->get( 'DefaultSkin' );
 		$installedSkins = $this->findInstalledSkins();
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$enabledSkins = $skinFactory->getSkinNames();
+		$enabledSkins = $skinFactory->getInstalledSkins();
 		$enabledSkins = array_change_key_case( $enabledSkins, CASE_LOWER );
 
 		if ( $installedSkins ) {
@@ -116,7 +116,7 @@ class SkinFallback extends SkinMustache {
 		$data = parent::getTemplateData();
 		// If the default skin isn't configured correctly, append a warning to the
 		// subtitle to alert a sysadmin.
-		if ( !isset( $skinFactory->getSkinNames()[$config->get( 'DefaultSkin' )] ) ) {
+		if ( !isset( $skinFactory->getInstalledSkins()[$config->get( 'DefaultSkin' )] ) ) {
 			$data['html-fallback-warning'] = Html::warningBox( $this->buildHelpfulInformationMessage() );
 		}
 		return $data;
