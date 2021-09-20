@@ -3747,7 +3747,7 @@
 	"feedback-thanks": "感謝！您的意見回饋已發佈到頁面 \"[$2 $1]\"。",
 	"feedback-thanks-title": "感謝您！",
 	"feedback-useragent": "使用者代理：",
-	"searchsuggest-search": "搜尋{{SITENAME}}",
+	"searchsuggest-search": "在{{SITENAME}}搜尋",
 	"searchsuggest-containing": "搜尋包含此內容的頁面：",
 	"search-match-redirect-label": "搜尋時導向到完全符合的結果",
 	"search-match-redirect-help": "選擇以在頁面標題與您搜尋的內容符合時將您重定導向到該頁面",

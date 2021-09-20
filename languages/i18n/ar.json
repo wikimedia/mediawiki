@@ -2670,6 +2670,7 @@
 	"ipb-blocklist-contribs": "مساهمات {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "يتبقى $1",
 	"block-actions": "أفعال لمنعها:",
+	"block-details": "تفاصيل المنع:",
 	"block-expiry": "مدة المنع:",
 	"block-options": "خيارات إضافية:",
 	"block-reason": "السبب:",

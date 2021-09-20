@@ -2660,7 +2660,7 @@
 	"ipb-hardblock": "Deze blokkade ook toepassen op aangemelde gebruikers die van dit IP-adres gebruik maken",
 	"ipbcreateaccount": "Accounts aanmaken",
 	"ipbemailban": "E-mail versturen",
-	"ipbenableautoblock": "Automatisch het laatste IP-adres van deze gebruiker blokkeren, en alle volgende IP-adressen waarvandaan degene probeert te bewerken",
+	"ipbenableautoblock": "Automatisch het laatste IP-adres van deze gebruiker blokkeren, en alle volgende IP-adressen waarvandaan degene probeert te bewerken, voor de duur van $1",
 	"ipbsubmit": "Deze gebruiker blokkeren",
 	"ipbother": "Andere duur:",
 	"ipboptions": "2 uur:2 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbepaald:infinite",

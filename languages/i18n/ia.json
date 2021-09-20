@@ -2565,7 +2565,7 @@
 	"ipb-hardblock": "Applicar le blocada al usatores que ha aperite session ab iste adresse IP",
 	"ipbcreateaccount": "Creation de contos",
 	"ipbemailban": "Inviar e-mail",
-	"ipbenableautoblock": "Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne IPs successive desde le quales ille/-a tenta facer modificationes",
+	"ipbenableautoblock": "Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne adresses IPs successive desde le quales iste usator tenta facer modificationes, pro un periodo de $1",
 	"ipbsubmit": "Blocar iste usator",
 	"ipbother": "Altere durata:",
 	"ipboptions": "2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite",
