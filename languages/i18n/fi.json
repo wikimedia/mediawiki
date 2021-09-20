@@ -2659,6 +2659,7 @@
 	"ipb-blocklist-contribs": "Käyttäjän {{GENDER:$1|$1}} muokkaukset",
 	"ipb-blocklist-duration-left": "$1 jäljellä",
 	"block-actions": "Estä seuraavat toiminnot:",
+	"block-details": "Eston tiedot:",
 	"block-expiry": "Vanhentuu:",
 	"block-options": "Lisävalinnat:",
 	"block-reason": "Syy:",

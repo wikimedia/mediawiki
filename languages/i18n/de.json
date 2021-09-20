@@ -2669,7 +2669,7 @@
 	"ipb-hardblock": "Sperre anwenden auf angemeldete Benutzer unter deren IP-Adresse",
 	"ipbcreateaccount": "Erstellen von Benutzerkonten",
 	"ipbemailban": "Versenden von E-Mails",
-	"ipbenableautoblock": "Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzerkonten versucht",
+	"ipbenableautoblock": "Sperre für einen Zeitraum von $1 die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzerkonten versucht",
 	"ipbsubmit": "IP-Adresse/Benutzer sperren",
 	"ipbother": "Andere Dauer (englisch):",
 	"ipboptions": "2 Stunden:2 hours,1 Tag:1 day,3 Tagen:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monaten:3 months,6 Monaten:6 months,1 Jahr:1 year,unbeschränkt:infinite",
