@@ -256,7 +256,7 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit ||
-			( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' )	)
+			( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( $config->get( 'EnotifUserTalk' )
 				&& $isUserTalkPage
