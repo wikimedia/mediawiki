@@ -972,20 +972,49 @@ class SkinTemplate extends Skin {
 	 */
 	private function buildSearchProps(): array {
 		$config = $this->getConfig();
+		$searchButtonAttributes = [
+			'class' => 'searchButton'
+		];
+		$fallbackButtonAttributes = [
+			'class' => 'searchButton mw-fallbackSearchButton'
+		];
+		$buttonAttributes = [
+			'type' => 'submit',
+		];
 
 		$props = [
 			'form-action' => $config->get( 'Script' ),
 			'html-button-search-fallback' => $this->makeSearchButton(
 				'fulltext',
-				[ 'id' => 'mw-searchButton', 'class' => 'searchButton mw-fallbackSearchButton' ]
+				$fallbackButtonAttributes + [
+					'id' => 'mw-searchButton',
+				]
 			),
 			'html-button-search' => $this->makeSearchButton(
 				'go',
-				[ 'id' => 'searchButton', 'class' => 'searchButton' ]
+				$searchButtonAttributes + [
+					'id' => 'searchButton',
+				]
 			),
 			'html-input' => $this->makeSearchInput( [ 'id' => 'searchInput' ] ),
 			'msg-search' => $this->msg( 'search' )->text(),
 			'page-title' => $this->getSearchPageTitle()->getPrefixedDBkey(),
+			// @since 1.38
+			'html-button-go-attributes' => Html::expandAttributes(
+				$searchButtonAttributes + $buttonAttributes + [
+					'name' => 'go',
+				] + Linker::tooltipAndAccesskeyAttribs( 'search-go' )
+			),
+			// @since 1.38
+			'html-button-fulltext-attributes' => Html::expandAttributes(
+				$fallbackButtonAttributes + $buttonAttributes + [
+					'name' => 'fulltext'
+				] + Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' )
+			),
+			// @since 1.38
+			'html-input-attributes' => Html::expandAttributes(
+				$this->getSearchInputAttributes( [] )
+			),
 		];
 
 		return $props;
