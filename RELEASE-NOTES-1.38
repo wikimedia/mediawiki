@@ -92,6 +92,8 @@ because of Phabricator reports.
 === Deprecations in 1.38 ===
 * The MWGrants class is deprecated in favor of the new GrantsInfo and
   GrantsLocalization services.
+* The global functions wfReadOnly() and wfReadOnlyReason() have been
+  deprecated in favor of the ReadOnlyMode service.
 * …
 
 === Other changes in 1.38 ===
