@@ -25,6 +25,7 @@
 namespace MediaWiki\EditPage;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use Sanitizer;
 use Title;
@@ -69,24 +70,25 @@ class TextboxBuilder {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @return string[]
 	 */
-	public function getTextboxProtectionCSSClasses( Title $title ) {
+	public function getTextboxProtectionCSSClasses( PageIdentity $page ) {
 		$classes = []; // Textarea CSS
-		if ( $title->isProtected( 'edit' ) &&
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getNamespaceRestrictionLevels( $title->getNamespace() ) !== [ '' ]
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getRestrictionStore()->isProtected( $page, 'edit' ) &&
+			$services->getPermissionManager()
+				->getNamespaceRestrictionLevels( $page->getNamespace() ) !== [ '' ]
 		) {
 			# Is the title semi-protected?
-			if ( $title->isSemiProtected() ) {
+			if ( $services->getRestrictionStore()->isSemiProtected( $page ) ) {
 				$classes[] = 'mw-textarea-sprotected';
 			} else {
 				# Then it must be protected based on static groups (regular)
 				$classes[] = 'mw-textarea-protected';
 			}
 			# Is the title cascade-protected?
-			if ( $title->isCascadeProtected() ) {
+			if ( $services->getRestrictionStore()->isCascadeProtected( $page ) ) {
 				$classes[] = 'mw-textarea-cprotected';
 			}
 		}
@@ -98,10 +100,12 @@ class TextboxBuilder {
 	 * @param string $name
 	 * @param mixed[] $customAttribs
 	 * @param UserIdentity $user
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @return mixed[]
 	 */
-	public function buildTextboxAttribs( $name, array $customAttribs, UserIdentity $user, Title $title ) {
+	public function buildTextboxAttribs(
+		$name, array $customAttribs, UserIdentity $user, PageIdentity $page
+	) {
 		$attribs = $customAttribs + [
 				'accesskey' => ',',
 				'id' => $name,
@@ -129,6 +133,7 @@ class TextboxBuilder {
 			$attribs['class'] = $class;
 		}
 
+		$title = Title::castFromPageIdentity( $page );
 		$pageLang = $title->getPageLanguage();
 		$attribs['lang'] = $pageLang->getHtmlCode();
 		$attribs['dir'] = $pageLang->getDir();
