@@ -193,6 +193,9 @@ class PageUpdater {
 	 */
 	private $flags = 0;
 
+	/** @var string[] */
+	private $softwareTags = [];
+
 	/**
 	 * @param UserIdentity $author
 	 * @param WikiPage $wikiPage
@@ -253,6 +256,7 @@ class PageUpdater {
 				]
 			)
 		);
+		$this->softwareTags = $softwareTags;
 	}
 
 	/**
@@ -607,6 +611,21 @@ class PageUpdater {
 	public function addTags( array $tags ) {
 		Assert::parameterElementType( 'string', $tags, '$tags' );
 		foreach ( $tags as $tag ) {
+			$this->addTag( $tag );
+		}
+		return $this;
+	}
+
+	/**
+	 * Sets software tag to this update. If the tag is not defined in the
+	 * current software tags, it's ignored.
+	 *
+	 * @since 1.38
+	 * @param string $tag
+	 * @return $this
+	 */
+	public function addSoftwareTag( string $tag ): self {
+		if ( in_array( $tag, $this->softwareTags ) ) {
 			$this->addTag( $tag );
 		}
 		return $this;
