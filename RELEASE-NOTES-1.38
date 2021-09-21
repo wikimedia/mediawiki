@@ -52,6 +52,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ===== Changed development-only external libraries =====
+* Updated doctrine/dbal for PHP < 7.3 from 2.10.4 to 2.13.3.
 * …
 
 ==== Removed external libraries ====
