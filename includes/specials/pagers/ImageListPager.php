@@ -455,15 +455,7 @@ class ImageListPager extends TablePager {
 	/**
 	 * @param string $field
 	 * @param string|null $value
-	 * @return Message|string|int The return type depends on the value of $field:
-	 *   - thumb: string
-	 *   - img_timestamp: string
-	 *   - img_name: string
-	 *   - img_actor: string
-	 *   - img_size: string
-	 *   - img_description: string
-	 *   - count: int
-	 *   - top: Message
+	 * @return string
 	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
@@ -542,7 +534,7 @@ class ImageListPager extends TablePager {
 				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;
 				return Linker::formatComment( $value );
 			case 'count':
-				return $this->getLanguage()->formatNum( intval( $value ) + 1 );
+				return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
