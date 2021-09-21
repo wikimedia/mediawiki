@@ -61,7 +61,7 @@
 		"wikimedia/object-factory": "3.0.2",
 		"wikimedia/parsoid": "^0.14.0-a14@alpha",
 		"wikimedia/php-session-serializer": "2.0.0",
-		"wikimedia/purtle": "1.0.7",
+		"wikimedia/purtle": "1.0.8",
 		"wikimedia/relpath": "3.0.0",
 		"wikimedia/remex-html": "2.3.2",
 		"wikimedia/request-timeout": "1.1.0",

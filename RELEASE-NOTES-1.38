@@ -48,6 +48,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Changed external libraries ====
+* Updated wikimedia/purtle from 1.0.7 to 1.0.8
 * …
 
 ===== Changed development-only external libraries =====
