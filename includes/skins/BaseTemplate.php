@@ -35,16 +35,16 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * @internal for usage by BaseTemplate or SkinTemplate.
 	 * @param Config $config
+	 * @param Skin $skin
 	 * @return string
 	 */
-	public static function getCopyrightIconHTML( Config $config ): string {
+	public static function getCopyrightIconHTML( Config $config, Skin $skin ): string {
 		$out = '';
 		$footerIcons = $config->get( 'FooterIcons' );
-		if (
-			isset( $footerIcons['copyright']['copyright'] ) &&
-			$footerIcons['copyright']['copyright']
-		) {
-			$out = $footerIcons['copyright']['copyright'];
+		$copyright = $footerIcons['copyright']['copyright'] ?? null;
+		// T291325: $wgFooterIcons['copyright']['copyright'] can return an array.
+		if ( $copyright !== null ) {
+			$out = $skin->makeFooterIcon( $copyright );
 		} elseif ( $config->get( 'RightsIcon' ) ) {
 			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
 			$url = $config->get( 'RightsUrl' );
