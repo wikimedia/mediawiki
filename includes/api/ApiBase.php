@@ -244,7 +244,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get the module manager, or null if this module has no sub-modules
 	 * @since 1.21
 	 * @stable to override
-	 * @return ApiModuleManager
+	 * @return ApiModuleManager|null
 	 */
 	public function getModuleManager() {
 		return null;
@@ -258,7 +258,7 @@ abstract class ApiBase extends ContextSource {
 	 * formats. This should be used only when there is a fundamental
 	 * requirement for a specific format.
 	 * @stable to override
-	 * @return mixed Instance of a derived class of ApiFormatBase, or null
+	 * @return ApiFormatBase|null Instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
 		return null;
