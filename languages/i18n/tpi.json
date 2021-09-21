@@ -6,6 +6,7 @@
 			"Iketsi",
 			"MinecraftAustralia",
 			"Tacsipacsi",
+			"Tok Pisin",
 			"Wantok",
 			"Wytukaze",
 			"לערי ריינהארט",
@@ -137,7 +138,7 @@
 	"personaltools": "Ol pes bilong mi",
 	"talk": "Toktok",
 	"views": "Ol lukluk",
-	"toolbox": "Sipesol bokis",
+	"toolbox": "Ol tul:",
 	"imagepage": "Lukim pes bilong fail",
 	"mediawikipage": "Lukim pes bilong toksave",
 	"templatepage": "Lukim templet pes",
@@ -206,6 +207,8 @@
 	"createaccountmail": "Long e-mel",
 	"mailmypassword": "E-mel nupela paswot",
 	"loginlanguagelabel": "Tokples: $1",
+	"pt-login": "Log in",
+	"pt-createaccount": "Meikim akount",
 	"changepassword": "Senis paswot",
 	"summary": "Liklik toksave bilong senis:",
 	"subject": "Nem bilong pes (o hap bilong pes):",
@@ -595,6 +598,6 @@
 	"compare-page2": "Pes 2",
 	"htmlform-selectorother-other": "Narapela",
 	"rightsnone": "i nogat wanpela",
-	"searchsuggest-search": "Painim",
+	"searchsuggest-search": "Painim long {{SITENAME}}",
 	"expand_templates_ok": "OK"
 }
