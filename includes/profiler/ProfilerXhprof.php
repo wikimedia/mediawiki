@@ -69,7 +69,7 @@ class ProfilerXhprof extends Profiler {
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
-		// Background for the 'running' option at T180183 and T247332.
+		// See T180183 and T247332 for why we need the 'running' option.
 		if ( empty( $params['running'] ) ) {
 			$flags = $params['flags'] ?? 0;
 			$options = isset( $params['exclude'] )
