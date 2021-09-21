@@ -57,8 +57,8 @@ class LocalSettingsGenerator {
 			[
 				'wgServer', 'wgScriptPath',
 				'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
-				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
-				'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
+				'wgLanguageCode', 'wgLocaltimezone', 'wgEnableEmail', 'wgEnableUserEmail',
+				'wgDiff3', 'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
@@ -400,13 +400,16 @@ ${serverSetting}
 ## localise the wiki.
 {$locale}\$wgShellLocale = \"{$this->values['wgShellLocale']}\";
 
+# Site language code, should be one of the list in ./languages/data/Names.php
+\$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
+
+# Time zone
+\$wgLocaltimezone = \"{$this->values['wgLocaltimezone']}\";
+
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
 ## be publicly accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
-
-# Site language code, should be one of the list in ./languages/data/Names.php
-\$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
 
