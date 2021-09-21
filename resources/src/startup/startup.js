@@ -11,9 +11,8 @@
  *
  * Capabilities required for modern run-time:
  * - ECMAScript 5
- * - DOM Level 4 & Selectors API Level 1
- * - HTML5 & Web Storage
- * - DOM Level 2 Events
+ * - DOM Level 4 (including Selectors API)
+ * - HTML5 (including Web Storage API)
  *
  * Browsers we support in our modern run-time (Grade A):
  * - Chrome 13+
@@ -52,10 +51,9 @@ function isCompatible( ua ) {
 	return !!(
 		// https://caniuse.com/#feat=es5
 		// https://caniuse.com/#feat=use-strict
-		// https://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
 		( function () {
 			'use strict';
-			return !this && Function.prototype.bind && window.JSON;
+			return !this && Function.prototype.bind;
 		}() ) &&
 
 		// https://caniuse.com/#feat=queryselector
@@ -65,9 +63,6 @@ function isCompatible( ua ) {
 		// https://developer.blackberry.com/html5/apis/v1_0/localstorage.html
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
-
-		// https://caniuse.com/#feat=addeventlistener
-		'addEventListener' in window &&
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't
 		// want to support in the modern run-time.
