@@ -169,10 +169,13 @@ ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
 
-// Set the configured locale on all requests for consistency
-// This must be after LocalSettings.php (and is informed by the installer).
-putenv( "LC_ALL=$wgShellLocale" );
-setlocale( LC_ALL, $wgShellLocale );
+// Set an appropriate locale (T291234)
+// setlocale() will return the locale name actually set.
+// The putenv() is meant to propagate the choice of locale to shell commands
+// so that they will interpret UTF-8 correctly. If you have a problem with a
+// shell command and need to send a special locale, you can override the locale
+// with Command::environment().
+putenv( "LC_ALL=" . setlocale( LC_ALL, 'C.UTF-8', 'C' ) );
 
 /**
  * Expand dynamic defaults and shortcuts

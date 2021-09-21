@@ -33,6 +33,11 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Removed configuration ====
+* $wgShellLocale - This setting has been removed as it was a flawed solution
+  to the problem of locale dependence, MediaWiki will now always set a locale
+  of C.UTF-8 or C and works around the remaining problems of the C locale by
+  not using escapeshellarg. This follows the direction of PHP 8.0, which sets
+  a locale of C by default instead of respecting LC_CTYPE.
 * …
 
 === New user-facing features in 1.38 ===

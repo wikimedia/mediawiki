@@ -28,7 +28,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Shell\Shell;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -144,7 +143,6 @@ abstract class Installer {
 		'envCheckGit',
 		'envCheckServer',
 		'envCheckPath',
-		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
@@ -191,7 +189,6 @@ abstract class Installer {
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
-		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
@@ -1008,87 +1005,6 @@ abstract class Installer {
 			$this->getVar( 'wgServer' ),
 			$this->getVar( 'wgScriptPath' )
 		);
-		return true;
-	}
-
-	/**
-	 * Environment check for preferred locale in shell
-	 * @return bool
-	 */
-	protected function envCheckShellLocale() {
-		$os = php_uname( 's' );
-		$supported = [ 'Linux', 'SunOS', 'HP-UX', 'Darwin' ]; # Tested these
-
-		if ( !in_array( $os, $supported ) ) {
-			return true;
-		}
-
-		if ( Shell::isDisabled() ) {
-			return true;
-		}
-
-		# Get a list of available locales.
-		$result = Shell::command( '/usr/bin/locale', '-a' )->execute();
-
-		if ( $result->getExitCode() != 0 ) {
-			return true;
-		}
-
-		$lines = $result->getStdout();
-		$lines = array_map( 'trim', explode( "\n", $lines ) );
-		$candidatesByLocale = [];
-		$candidatesByLang = [];
-		foreach ( $lines as $line ) {
-			if ( $line === '' ) {
-				continue;
-			}
-
-			if ( !preg_match( '/^([a-zA-Z]+)(_[a-zA-Z]+|)\.(utf8|UTF-8)(@[a-zA-Z_]*|)$/i', $line, $m ) ) {
-				continue;
-			}
-
-			list( , $lang, , , ) = $m;
-
-			$candidatesByLocale[$m[0]] = $m;
-			$candidatesByLang[$lang][] = $m;
-		}
-
-		# Try the current value of LANG.
-		if ( isset( $candidatesByLocale[getenv( 'LANG' )] ) ) {
-			$this->setVar( 'wgShellLocale', getenv( 'LANG' ) );
-
-			return true;
-		}
-
-		# Try the most common ones.
-		$commonLocales = [ 'C.UTF-8', 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' ];
-		foreach ( $commonLocales as $commonLocale ) {
-			if ( isset( $candidatesByLocale[$commonLocale] ) ) {
-				$this->setVar( 'wgShellLocale', $commonLocale );
-
-				return true;
-			}
-		}
-
-		# Is there an available locale in the Wiki's language?
-		$wikiLang = $this->getVar( 'wgLanguageCode' );
-
-		if ( isset( $candidatesByLang[$wikiLang] ) ) {
-			$m = reset( $candidatesByLang[$wikiLang] );
-			$this->setVar( 'wgShellLocale', $m[0] );
-
-			return true;
-		}
-
-		# Are there any at all?
-		if ( count( $candidatesByLocale ) ) {
-			$m = reset( $candidatesByLocale );
-			$this->setVar( 'wgShellLocale', $m[0] );
-
-			return true;
-		}
-
-		# Give up.
 		return true;
 	}
 

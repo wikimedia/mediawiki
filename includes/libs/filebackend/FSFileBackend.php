@@ -41,6 +41,7 @@
  * @ingroup FileBackend
  */
 
+use Shellbox\Shellbox;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -822,9 +823,9 @@ class FSFileBackend extends FileBackendStore {
 		// inode are unaffected since it writes to a new inode, and (c) new threads reading
 		// the file will either totally see the old version or totally see the new version
 		$fsStagePath = $this->makeStagingPath( $fsDstPath );
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
-		$encStage = escapeshellarg( $this->cleanPathSlashes( $fsStagePath ) );
-		$encDst = escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsSrcPath ) );
+		$encStage = Shellbox::escape( $this->cleanPathSlashes( $fsStagePath ) );
+		$encDst = Shellbox::escape( $this->cleanPathSlashes( $fsDstPath ) );
 		if ( $this->os === 'Windows' ) {
 			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/copy
 			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
@@ -854,8 +855,8 @@ class FSFileBackend extends FileBackendStore {
 	private function makeMoveCommand( $fsSrcPath, $fsDstPath, $ignoreMissing = false ) {
 		// https://manpages.debian.org/buster/coreutils/mv.1.en.html
 		// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
-		$encDst = escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsSrcPath ) );
+		$encDst = Shellbox::escape( $this->cleanPathSlashes( $fsDstPath ) );
 		if ( $this->os === 'Windows' ) {
 			$writeCmd = "MOVE /Y $encSrc $encDst 2>&1";
 			$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
@@ -875,7 +876,7 @@ class FSFileBackend extends FileBackendStore {
 	private function makeUnlinkCommand( $fsPath, $ignoreMissing = false ) {
 		// https://manpages.debian.org/buster/coreutils/rm.1.en.html
 		// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsPath ) );
 		if ( $this->os === 'Windows' ) {
 			$writeCmd = "DEL /Q $encSrc 2>&1";
 			$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;

@@ -1870,11 +1870,12 @@ function wfStringToBool( $val ) {
 }
 
 /**
- * Version of escapeshellarg() that works better on Windows.
+ * Locale-independent version of escapeshellarg()
  *
  * Originally, this fixed the incorrect use of single quotes on Windows
  * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
- * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
+ * PHP 5.2.6+ (https://bugs.php.net/bug.php?id=54391). The second bug is still
+ * open as of 2021.
  *
  * @param string|string[] ...$args strings to escape and glue together,
  *  or a single array of strings parameter
