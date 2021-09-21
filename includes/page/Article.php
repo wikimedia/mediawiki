@@ -502,6 +502,9 @@ class Article implements Page {
 		$this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
 
+		if ( $this->viewIsRenderAction ) {
+			$poOptions += [ 'absoluteURLs' => true ];
+		}
 		$continue =
 			$this->generateContentOutput( $user, $parserOptions, $oldid, $outputPage, $poOptions );
 
