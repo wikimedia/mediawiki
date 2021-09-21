@@ -165,7 +165,7 @@ class LocalFile extends File {
 	/** @var bool Whether the row was scheduled to upgrade on load */
 	private $upgrading;
 
-	/** @var bool True if the image row is locked */
+	/** @var int If >= 1 the image row is locked */
 	private $locked;
 
 	/** @var bool True if the image row is locked with a lock initiated transaction */
