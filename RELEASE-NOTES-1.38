@@ -83,6 +83,7 @@ because of Phabricator reports.
   1.35, have been removed.
 * TemplateParser used to support disabling the cache with a boolean parameter
   in its constructor. This was deprecated in 1.35 and has now been removed.
+* The ArticleUndeleteLogEntry hook, deprecated in 1.37, was removed.
 * The global function mimeTypeMatch() has been removed without a deprecation
   process.
 * The signature of PageUpdater::markAsRevert method was changed. It has never

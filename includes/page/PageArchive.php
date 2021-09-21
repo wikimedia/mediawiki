@@ -513,9 +513,6 @@ class PageArchive {
 			],
 		] );
 
-		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
-		$this->hookRunner->onArticleUndeleteLogEntry( $this, $logEntry, $legacyUser );
-
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
