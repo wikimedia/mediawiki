@@ -1086,6 +1086,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Languages\\LanguageNameUtils' => __DIR__ . '/includes/language/LanguageNameUtils.php',
 	'MediaWiki\\Parser\\ParserCacheFactory' => __DIR__ . '/includes/parser/ParserCacheFactory.php',
 	'MediaWiki\\Parser\\ParserCacheMetadata' => __DIR__ . '/includes/parser/ParserCacheMetadata.php',
+	'MediaWiki\\Parser\\ParserObserver' => __DIR__ . '/includes/parser/ParserObserver.php',
 	'MediaWiki\\Parser\\RevisionOutputCache' => __DIR__ . '/includes/parser/RevisionOutputCache.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',

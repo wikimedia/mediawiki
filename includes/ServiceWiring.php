@@ -102,6 +102,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1940,6 +1941,10 @@ return [
 			WebRequest::getRequestId(),
 			$services->getBacklinkCacheFactory()
 		);
+	},
+
+	'_ParserObserver' => static function ( MediaWikiServices $services ): ParserObserver {
+		return new ParserObserver( LoggerFactory::getInstance( 'DuplicateParse' ) );
 	},
 
 	'_SqlBlobStore' => static function ( MediaWikiServices $services ): SqlBlobStore {
