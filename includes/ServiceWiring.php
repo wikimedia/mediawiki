@@ -1795,8 +1795,7 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
-			$services->getLinkBatchFactory(),
-			$services->getTitleFactory()
+			$services->getLinkBatchFactory()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

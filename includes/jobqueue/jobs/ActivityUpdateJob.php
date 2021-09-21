@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 
 /**
  * Job for updating user activity like "last viewed" timestamps
@@ -34,10 +35,18 @@ use MediaWiki\Linker\LinkTarget;
  * @since 1.26
  */
 class ActivityUpdateJob extends Job {
-	public function __construct( LinkTarget $title, array $params ) {
-		$title = Title::newFromLinkTarget( $title );
+	/**
+	 * @param LinkTarget|PageReference $title
+	 * @param array $params
+	 */
+	public function __construct( $title, array $params ) {
+		// If we know its a PageReference, we could just pass that to the parent
+		// constructor, but its simpler to just extract namespace and dbkey, and
+		// that works for both LinkTarget and PageReference
+		$params['namespace'] = $title->getNamespace();
+		$params['title'] = $title->getDBkey();
 
-		parent::__construct( 'activityUpdateJob', $title, $params );
+		parent::__construct( 'activityUpdateJob', $params );
 
 		static $required = [ 'type', 'userid', 'notifTime', 'curTime' ];
 		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );

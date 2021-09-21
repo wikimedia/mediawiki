@@ -114,9 +114,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private $linkBatchFactory;
 
-	/** @var TitleFactory */
-	private $titleFactory;
-
 	/**
 	 * @var string|null Maximum configured relative expiry.
 	 */
@@ -135,7 +132,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -146,8 +142,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		LinkBatchFactory $linkBatchFactory,
-		TitleFactory $titleFactory
+		LinkBatchFactory $linkBatchFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -167,7 +162,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->titleFactory = $titleFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -1482,19 +1476,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		);
 
 		// If the page is watched by the user (or may be watched), update the timestamp
-		// ActivityUpdateJob requires a LinkTarget, and creates a Title object from that,
-		// to pass to Job, which only needs a PageReference. TODO clean that up, T291531.
-		// If we already have a LinkTarget, we still convert to a Title object so that
-		// the Title::newFromLinkTarget() call in ActivityUpdateJob doesn't break things
-		// in unit tests
-		if ( $title instanceof LinkTarget ) {
-			$titleObj = $this->titleFactory->castFromLinkTarget( $title );
-		} else {
-			// instanceof PageIdentity
-			$titleObj = $this->titleFactory->castFromPageIdentity( $title );
-		}
+		// ActivityUpdateJob accepts both LinkTarget and PageReference
 		$job = new ActivityUpdateJob(
-			$titleObj,
+			$title,
 			[
 				'type'      => 'updateWatchlistNotification',
 				'userid'    => $user->getId(),
