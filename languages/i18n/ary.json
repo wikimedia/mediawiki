@@ -1364,7 +1364,7 @@
 	"emailccsubject": "copie rissala dyalk l  $1: $2",
 	"emailsent": "لإيمايل تصيفط",
 	"emailsenttext": "L-Imayl dyalek ṫṣifet mezyan.",
-	"emailuserfooter": "هاد لإيميل {{GENDER:$1|تسيفط}} من $1 ل{{GENDER:$2|$2}} بلوظيفة د \"{{int:emailuser}}\" ف{{SITENAME}}. إيلا {{GENDER:$2|نتا|نتي}} جاوبتي على هاد لإيميل، فراه لعنوان د لإيميل ديالك غادي يتصيفط مباشرة {{GENDER:$1|للمرسل الأصلي|للمرسلة الأصلية}}، وغادي {{GENDER:$2|يخليه يشوفو|يخليها تشوفو}} نيشان.",
+	"emailuserfooter": "هاد لإيميل {{GENDER:$1|تسيفط}} من $1 ل{{GENDER:$2|$2}} ب خاصية د \"{{int:emailuser}}\" ف {{SITENAME}}. إيلا {{GENDER:$2|نتا|نتي}} جاوبتي على هاد لإيميل، فراه لعنوان د لإيميل ديالك غادي يتصيفط مباشرة {{GENDER:$1|للمرسل الأصلي|للمرسلة الأصلية}}، وغادي {{GENDER:$2|يخليه يشوفو|يخليها تشوفو}} نيشان.",
 	"usermessage-summary": "Ĥella waḫed l-meṣaj sistém.",
 	"usermessage-editor": "مراسل النظام",
 	"watchlist": "ليستة ديال تتبع",

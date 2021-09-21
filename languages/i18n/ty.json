@@ -5,7 +5,8 @@
 			"Sab",
 			"Sainte-Rose (on ty.wikipedia.org)",
 			"TMg",
-			"Tahitoa (on ty.wikipedia.org)"
+			"Tahitoa (on ty.wikipedia.org)",
+			"Tok Pisin"
 		]
 	},
 	"sunday": "tāpati",
@@ -60,6 +61,7 @@
 	"dec": "nō tītema",
 	"about": "Nō",
 	"article": "Parau pāpa’i",
+	"mytalk": "A'oraa",
 	"navigation": "Arata’i",
 	"help": "Tauturu",
 	"search": "Roromā’imi",
@@ -69,6 +71,7 @@
 	"edit": "Fa’ahuru ’ē",
 	"delete": "Fa’a’ore",
 	"protect": "Pāruru",
+	"talkpagelinktext": "a'oraa",
 	"specialpage": "’Api ta’a ’ē",
 	"talk": "Paraparaura’a",
 	"jumptonavigation": "arata’i",
@@ -92,6 +95,7 @@
 	"nstab-category": "Huru",
 	"mainpage-nstab": "Fa’ari’ira’a",
 	"loginlanguagelabel": "Reo: $1",
+	"content-model-wikitext": "wikitext",
 	"history-feed-title": "Parau tuatāpapa",
 	"prefs-rc": "Te mau fa’ahuru-’ē-ra’a ’āpī",
 	"prefs-files": "Te mau putu’ite",
