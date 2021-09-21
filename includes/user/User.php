@@ -1972,8 +1972,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * If user is blocked, return the name of the user who placed the block
 	 * @return string Name of blocker
+	 * @deprecated since 1.38
+	 * Hard deprecated since 1.38.
 	 */
 	public function blockedBy() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
@@ -1992,8 +1995,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * If user is blocked, return the ID for the block
 	 * @return int|false
+	 * @deprecated since 1.38
+	 * Hard deprecated since 1.38.
 	 */
 	public function getBlockId() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->getBlockedStatus();
 		return ( $this->mBlock ? $this->mBlock->getId() : false );
 	}

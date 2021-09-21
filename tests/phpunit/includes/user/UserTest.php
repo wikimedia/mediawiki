@@ -1296,6 +1296,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isBlockedFrom
 	 */
 	public function testBlockInstanceCache() {
+		$this->hideDeprecated( 'User::blockedBy' );
+		$this->hideDeprecated( 'User::getBlockId' );
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
