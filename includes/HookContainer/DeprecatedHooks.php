@@ -38,7 +38,6 @@ class DeprecatedHooks {
 		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35' ],
 		'BeforeParserFetchTemplateAndtitle' => [ 'deprecatedVersion' => '1.36' ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
-		'BeforeResetNotificationTimestamp' => [ 'deprecatedVersion' => '1.37' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
