@@ -1088,7 +1088,7 @@
 	"recentchangescount": "Numărul modificărilor afișate implicit în schimbările recente, istoricul paginilor și loguri:",
 	"prefs-help-recentchangescount": "Număr maxim: 1000",
 	"prefs-help-watchlist-token2": "Aceasta este cheia secretă pentru fluxul web al listei dumneavoastră de pagini urmărite.\nOricine o cunoaște vă va putea citi lista de pagini urmărite, așa că n-o partajați cu nimeni. Dacă doriți, \n[[Special:ResetTokens|o puteți reseta]].",
-	"prefs-help-tokenmanagement": "Puteți vedea și reseta cheia secretă pentru contul dvs. care poate accesa fluxul Web al paginii dvs. de urmărire. Oricine știe cheia va putea să vă citească lista de urmărire, deci nu o împărtășiți.",
+	"prefs-help-tokenmanagement": "Puteți vedea și reseta cheia secretă pentru contul dvs. care poate accesa fluxul Web al listei dvs. de urmărire. Oricine știe cheia va putea să vă citească lista de urmărire, deci nu o împărtășiți.",
 	"prefs-user-downloaddata-label": "Datele contului:",
 	"prefs-user-downloaddata-info": "Datele contului meu din acest proiect",
 	"savedprefs": "Preferințele dumneavoastră au fost salvate.",

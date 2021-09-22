@@ -2867,6 +2867,7 @@
 	"mcrundofailed": "還原失敗",
 	"semicolon-separator": "；",
 	"comma-separator": "、",
+	"colon-separator": "：",
 	"word-separator": "",
 	"parentheses": "（$1）",
 	"parentheses-start": "（",
