@@ -109,7 +109,7 @@ class PermissionManager {
 	private $userCache;
 
 	/** @var string[][] Cached user rights */
-	private $usersRights = null;
+	private $usersRights = [];
 
 	/**
 	 * Temporary user rights, valid for the current request only.
@@ -1478,7 +1478,7 @@ class PermissionManager {
 			$rightsCacheKey = $this->getRightsCacheKey( $user );
 			unset( $this->usersRights[ $rightsCacheKey ] );
 		} else {
-			$this->usersRights = null;
+			$this->usersRights = [];
 		}
 	}
 
