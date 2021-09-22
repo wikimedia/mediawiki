@@ -1316,7 +1316,7 @@ class ParserTestRunner {
 			Wikimedia\restoreWarnings();
 
 			// Reset context to the restored globals
-			$context->setUser( $GLOBALS['wgUser'] );
+			$context->setUser( StubGlobalUser::getRealUser( $GLOBALS['wgUser'] ) );
 			$context->setSkin( $oldSkin );
 			$context->setOutput( $GLOBALS['wgOut'] );
 		};

@@ -16,18 +16,35 @@ class BaseTemplateTest extends MediaWikiUnitTestCase {
 				'',
 				'Returns empty string when no configuration'
 			],
+			// When $wgFooterIcons['copyright']['copyright'] returns an array (T291325)
 			[
 				[
 					'FooterIcons' => [
 						'copyright' => [
-							'copyright' => '<img src="footer-copyright.png">'
+							'copyright' => [
+								'src' => 'footer-copyright.png',
+								'url' => 'https://t.ui',
+								'alt' => 'Alt text',
+							]
 						]
 					],
 					'RightsIcon' => 'copyright.png',
 					'RightsUrl' => 'https://',
 					'RightsText' => 'copyright'
 				],
-				'<img src="footer-copyright.png">',
+				'<a href="https://t.ui"><img src="footer-copyright.png" alt="Alt text" width="88" height="31" /></a>',
+				'Reads from FooterIcons first'
+			],
+			// When $wgFooterIcons['copyright']['copyright'] returns a string (T291325)
+			[
+				[
+					'FooterIcons' => [
+						'copyright' => [
+							'copyright' => 'footer-copyright.png'
+						]
+					]
+				],
+				'<img src="footer-copyright.png" width="88" height="31" />',
 				'Reads from FooterIcons first'
 			],
 			[
@@ -58,8 +75,10 @@ class BaseTemplateTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetCopyrightIconHTML
 	 */
 	public function testGetCopyrightIconHTML( $globals, $expected, $msg ) {
+		$mockSkin = $this->createMock( Skin::class );
+		$mockSkin->method( 'makeFooterIcon' )->willReturn( $expected );
 		$hashConfig = new HashConfig( $globals );
-		$icon = BaseTemplate::getCopyrightIconHTML( $hashConfig );
+		$icon = BaseTemplate::getCopyrightIconHTML( $hashConfig, $mockSkin );
 		$this->assertEquals( $expected, $icon, $msg );
 	}
 }

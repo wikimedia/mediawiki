@@ -41,7 +41,6 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser;
 		$services = MediaWikiServices::getInstance();
 
 		$this->output( "Checking existence of old default messages..." );
@@ -86,7 +85,7 @@ class DeleteDefaultMessages extends Maintenance {
 		}
 		$userGroupManager = $services->getUserGroupManager();
 		$userGroupManager->addUserToGroup( $user, 'bot' );
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		// Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );

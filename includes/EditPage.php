@@ -4335,7 +4335,7 @@ class EditPage implements IEditObject {
 			// (if it's a valid option) rather than the current value for watchlistExpiry.
 			// See also above in $this->importFormData().
 			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
-			if ( $this->preview && in_array( $expiryFromRequest, $expiryOptions['options'] ) ) {
+			if ( ( $this->preview || $this->diff ) && in_array( $expiryFromRequest, $expiryOptions['options'] ) ) {
 				$expiryOptions['default'] = $expiryFromRequest;
 			}
 			// Reformat the options to match what DropdownInputWidget wants.

@@ -49,8 +49,6 @@ class EditCLI extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		$userName = $this->getOption( 'user', false );
 		$summary = $this->getOption( 'summary', '' );
 		$remove = $this->hasOption( 'remove' );
@@ -71,7 +69,7 @@ class EditCLI extends Maintenance {
 		if ( $user->isAnon() ) {
 			$user->addToDatabase();
 		}
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		$title = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$title ) {

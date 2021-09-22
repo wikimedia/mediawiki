@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
 use Message;
+use RawMessage;
 use ResourceLoaderWikiModule;
 use SearchUpdate;
 use SiteStatsUpdate;
@@ -40,7 +41,6 @@ use WikiPage;
 /**
  * @since 1.37
  * @package MediaWiki\Page
- * @unstable
  */
 class DeletePage {
 	/**
@@ -94,6 +94,8 @@ class DeletePage {
 
 	/** @var string|array */
 	private $legacyHookErrors = '';
+	/** @var bool */
+	private $mergeLegacyHookErrors = true;
 
 	/** @var BacklinkCacheFactory */
 	private $backlinkCacheFactory;
@@ -154,6 +156,15 @@ class DeletePage {
 	 */
 	public function getLegacyHookErrors() {
 		return $this->legacyHookErrors;
+	}
+
+	/**
+	 * @internal BC method for use by WikiPage::doDeleteArticleReal only.
+	 * @return self
+	 */
+	public function keepLegacyHookErrorsSeparate(): self {
+		$this->mergeLegacyHookErrors = false;
+		return $this;
 	}
 
 	/**
@@ -243,6 +254,9 @@ class DeletePage {
 		return $status;
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function isBigDeletion(): bool {
 		$revLimit = $this->options->get( 'DeleteRevisionsLimit' );
 		if ( !$revLimit ) {
@@ -294,10 +308,17 @@ class DeletePage {
 		$status = Status::newGood();
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
-		// TODO: Deprecate and replace hook (remove &$error, improve typehints)
 		if ( !$this->hookRunner->onArticleDelete(
 			$this->page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
 		) {
+			if ( $this->mergeLegacyHookErrors ) {
+				if ( is_string( $this->legacyHookErrors ) ) {
+					$this->legacyHookErrors = [ $this->legacyHookErrors ];
+				}
+				foreach ( $this->legacyHookErrors as $legacyError ) {
+					$status->fatal( new RawMessage( $legacyError ) );
+				}
+			}
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
 				$status->fatal( 'delete-hook-aborted' );
@@ -305,11 +326,19 @@ class DeletePage {
 			return $status;
 		}
 
+		// Use a new Status in case a hook handler put something here without aborting.
+		$status = Status::newGood();
+		$hookRes = $this->hookRunner->onPageDelete( $this->page, $this->deleter, $reason, $status, $this->suppress );
+		if ( !$hookRes && !$status->isGood() ) {
+			// Note: as per the PageDeleteHook documentation, `return false` is ignored if $status is good.
+			return $status;
+		}
+
 		return $this->deleteInternal( $reason );
 	}
 
 	/**
-	 * @private Public for BC only
+	 * @internal The only external caller allowed is DeletePageJob.
 	 * Back-end article deletion
 	 *
 	 * Only invokes batching via the job queue if necessary per DeleteRevisionsBatchSize.
@@ -387,7 +416,6 @@ class DeletePage {
 			$dbw->startAtomic( __METHOD__ );
 		}
 
-		// If done archiving, also delete the article.
 		if ( !$done ) {
 			$dbw->endAtomic( __METHOD__ );
 
@@ -406,76 +434,85 @@ class DeletePage {
 			$job = new DeletePageJob( $jobParams );
 			$this->jobQueueGroup->push( $job );
 			$status->value = false;
-		} else {
-			// Get archivedRevisionCount by db query, because there's no better alternative.
-			// Jobs cannot pass a count of archived revisions to the next job, because additional
-			// deletion operations can be started while the first is running.  Jobs from each
-			// gracefully interleave, but would not know about each other's count.  Deduplication
-			// in the job queue to avoid simultaneous deletion operations would add overhead.
-			// Number of archived revisions cannot be known beforehand, because edits can be made
-			// while deletion operations are being processed, changing the number of archivals.
-			$archivedRevisionCount = $dbw->selectRowCount(
-				'archive',
-				'*',
-				[
-					'ar_namespace' => $title->getNamespace(),
-					'ar_title' => $title->getDBkey(),
-					'ar_page_id' => $id
-				], __METHOD__
-			);
-
-			// Clone the title and wikiPage, so we have the information we need when
-			// we log and run the ArticleDeleteComplete hook.
-			$logTitle = clone $title;
-			$wikiPageBeforeDelete = clone $this->page;
-
-			// Now that it's safely backed up, delete it
-			$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-
-			// Log the deletion, if the page was suppressed, put it in the suppression log instead
-			$logtype = $this->suppress ? 'suppress' : 'delete';
-
-			$logEntry = new ManualLogEntry( $logtype, $this->logSubtype );
-			$logEntry->setPerformer( $this->deleter->getUser() );
-			$logEntry->setTarget( $logTitle );
-			$logEntry->setComment( $reason );
-			$logEntry->addTags( $this->tags );
-			if ( !$this->isDeletePageUnitTest ) {
-				// TODO: Remove conditional once ManualLogEntry is servicified (T253717)
-				$logid = $logEntry->insert();
-
-				$dbw->onTransactionPreCommitOrIdle(
-					static function () use ( $logEntry, $logid ) {
-						// T58776: avoid deadlocks (especially from FileDeleteForm)
-						$logEntry->publish( $logid );
-					},
-					__METHOD__
-				);
-			} else {
-				$logid = 42;
-			}
-
-			$dbw->endAtomic( __METHOD__ );
-
-			$this->doDeleteUpdates( $revisionRecord );
-
-			$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
-			// TODO Replace hook (replace typehints)
-			$this->hookRunner->onArticleDeleteComplete(
-				$wikiPageBeforeDelete,
-				$legacyDeleter,
-				$reason,
-				$id,
-				$content,
-				$logEntry,
-				$archivedRevisionCount
-			);
-			$status->value = $logid;
-
-			// Show log excerpt on 404 pages rather than just a link
-			$key = $this->recentDeletesCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-			$this->recentDeletesCache->set( $key, 1, BagOStuff::TTL_DAY );
+			return $status;
 		}
+
+		// Get archivedRevisionCount by db query, because there's no better alternative.
+		// Jobs cannot pass a count of archived revisions to the next job, because additional
+		// deletion operations can be started while the first is running.  Jobs from each
+		// gracefully interleave, but would not know about each other's count.  Deduplication
+		// in the job queue to avoid simultaneous deletion operations would add overhead.
+		// Number of archived revisions cannot be known beforehand, because edits can be made
+		// while deletion operations are being processed, changing the number of archivals.
+		$archivedRevisionCount = $dbw->selectRowCount(
+			'archive',
+			'*',
+			[
+				'ar_namespace' => $title->getNamespace(),
+				'ar_title' => $title->getDBkey(),
+				'ar_page_id' => $id
+			], __METHOD__
+		);
+
+		// Clone the title and wikiPage, so we have the information we need when
+		// we log and run the ArticleDeleteComplete hook.
+		$logTitle = clone $title;
+		$wikiPageBeforeDelete = clone $this->page;
+
+		// Now that it's safely backed up, delete it
+		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+
+		// Log the deletion, if the page was suppressed, put it in the suppression log instead
+		$logtype = $this->suppress ? 'suppress' : 'delete';
+
+		$logEntry = new ManualLogEntry( $logtype, $this->logSubtype );
+		$logEntry->setPerformer( $this->deleter->getUser() );
+		$logEntry->setTarget( $logTitle );
+		$logEntry->setComment( $reason );
+		$logEntry->addTags( $this->tags );
+		if ( !$this->isDeletePageUnitTest ) {
+			// TODO: Remove conditional once ManualLogEntry is servicified (T253717)
+			$logid = $logEntry->insert();
+
+			$dbw->onTransactionPreCommitOrIdle(
+				static function () use ( $logEntry, $logid ) {
+					// T58776: avoid deadlocks (especially from FileDeleteForm)
+					$logEntry->publish( $logid );
+				},
+				__METHOD__
+			);
+		} else {
+			$logid = 42;
+		}
+
+		$dbw->endAtomic( __METHOD__ );
+
+		$this->doDeleteUpdates( $revisionRecord );
+
+		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
+		$this->hookRunner->onArticleDeleteComplete(
+			$wikiPageBeforeDelete,
+			$legacyDeleter,
+			$reason,
+			$id,
+			$content,
+			$logEntry,
+			$archivedRevisionCount
+		);
+		$this->hookRunner->onPageDeleteComplete(
+			$wikiPageBeforeDelete,
+			$this->deleter,
+			$reason,
+			$id,
+			$revisionRecord,
+			$logEntry,
+			$archivedRevisionCount
+		);
+		$status->value = $logid;
+
+		// Show log excerpt on 404 pages rather than just a link
+		$key = $this->recentDeletesCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+		$this->recentDeletesCache->set( $key, 1, BagOStuff::TTL_DAY );
 
 		return $status;
 	}

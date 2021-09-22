@@ -4,7 +4,7 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.37 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.37 is an beta-quality release branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.37 ==
@@ -18,7 +18,6 @@ Some specific notes for MediaWiki 1.37 upgrades are below:
   may cause older bots and scripts to fail. Most queries are trivially
   updateable to using new methods. See the Action API changes section below
   for more information.
-* …
 
 For notes on 1.36.x and older releases, see HISTORY.
 
@@ -26,87 +25,80 @@ For notes on 1.36.x and older releases, see HISTORY.
 * (T242768) The PasswordCannotMatchUsername password policy has been removed,
   please use PasswordCannotBeSubstringInUsername instead. If you have not
   customised your password policies, there will be nothing to do here.
-* …
 
 ==== New configuration ====
 * $wgBrowserFormatDetection - This setting allows the enabling or disabling
-of automatic detection of possible phone numbers in a webpage in Safari on iOS.
-* …
+  of automatic detection of possible phone numbers in a webpage in iOS Safari.
 
 ==== Changed configuration ====
-* $wgContentHandlerTextFallback - This setting, which defines how to
-  react if a plain text version of a non-text Content object is
-  requested using ContentHandler::getContentText(), is deprecated.
-* $wgActions was reworked to support injecting dependencies into
-  Action subclasses. Previously, $wgActions was an array where the
-  keys were the names of actions, and the values had the following
-  impacts (for a given key 'Foo')
+* $wgContentHandlerTextFallback - This migration setting, which defines how to
+  react if a plain text version of a non-text Content object is requested using
+  ContentHandler::getContentText(), is deprecated.
+* $wgActions – This setting lets sysadmins over-ride which actions can be used.
+  It has been re-worked to support injecting dependencies into Action sub-
+  classes as part of wider work on dependency injection. Previously, $wgActions
+  was an array where the keys were the names of actions, and the values had the
+  following impacts (for a given key 'Foo'):
   - `true`: use the class 'FooAction' unless for a specific page
-      WikiPage::getActionOverrides() wants to override that action
-  - a string: use the class with that name, and do not allow overriding
-      on a per-page basis
+    WikiPage::getActionOverrides() wants to override that action
+  - a string: use the class with that name, and do not allow over-riding on a
+    per-page basis
   - `false`: the action is disabled
-  - a callable: use the Action instance returned by invoking that
-      callback, and do not allow overriding on a per-page basis
-  - an object: use that specific Action instance, and do not allow
-      overriding on a per-page basis.
-  As part of T253078, values can now be arrays that are not callables,
-  which are treated as ObjectFactory specs, allowing for services to
-  be injected. Additionally, the distinction between values that allow
-  per-page overrides and those that do not was removed - all actions
-  can now be overridden on a per-page basis using
-  WikiPage::getActionOverrides().
-* $wgShellboxUrl is deprecated, use $wgShellboxUrls as a mapping of
+  - a callable: use the Action instance returned by invoking that callback, and
+    do not allow overriding on a per-page basis
+  - an object: use that specific Action instance, and do not allow overr-iding
+    on a per-page basis.
+  As part of T253078, values can now be arrays that are not callables, which are
+  treated as ObjectFactory specs, allowing for services to be injected.
+  Additionally, the distinction between values that allow per-page overrides and
+  those that do not was removed - all actions can now be overridden on a per-
+  page basis using WikiPage::getActionOverrides().
+* $wgShellboxUrl – This setting, new in 1.36 to configure the novel Shellbox
+  encapsulation system, is now deprecated; use $wgShellboxUrls as a mapping of
   service => URL instead.
-* $wgIncludejQueryMigrate Default value for this configuration has changed
-  from true to false. This may break gadgets that depended on methods removed
-  in jQuery 3. See T280944 for more information.
-* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
-  form of JavaScript, 'application/javascript', as well as previous MIME types.
+* $wgIncludejQueryMigrate – This setting, introduced in 1.29 to on whether to
+  provide a migration layer for jQuery, has now switched its default value from
+  true to false. This may break gadgets that depended on methods that were
+  removed in jQuery 3 in 2017. See T280944 for more information.
 * A number of settings have been renamed. The former configuration variable
   names are deprecated, but will be used as the fall back if they are still set,
-  and remain temporarily available for extensions which try to read them:
+  and remain temporarily available for extensions which might try to read them:
   - $wgFileBlacklist is now $wgProhibitedFileExtensions
   - $wgMimeTypeBlacklist is now $wgMimeTypeExclusions
   - $wgEnableUserEmailBlacklist is now $wgEnableUserEmailMuteList
   - $wgShortPagesNamespaceBlacklist is now $wgShortPagesNamespaceExclusions
-* $wgFragmentMode - Default value of this variable has changed from legacy-first
-  to html5-first: both the HTML5 anchor and the legacy percent-encoding-style
-  anchor will still be generated for section titles, but references to them will
-  use the HTML5 version, resulting in human-readable fragments.
-* …
+* $wgMimeTypeExclusions - As well as being renamed, this configuration array now
+  also prohibits the RFC 4329 form of JavaScript, 'application/javascript', as
+  well as previous MIME types.
+* $wgFragmentMode - This setting, which determines the encoding of section IDs,
+  has now switched its default value from legacy-first to html5-first: both the
+  HTML5 anchor and the legacy percent-encoding-style anchor will still be
+  generated for section titles, but references to them will use the HTML5
+  version, resulting in human-readable fragments.
 
 ==== Removed configuration ====
 * $wgLegacyJavaScriptGlobals, deprecated in 1.36.
+* (T274695) $wgAjaxEditStash, deprecated in 1.36.
 * $wgShowDBErrorBacktrace, deprecated and non-functional since 1.32.
 * $wgShowSQLErrors, deprecated and non-functional since 1.32.
-* $wgLangObjCacheSize - The LanguageFactory service now always retains
-  at most 10 objects in its LRU-cache.
-* (T274695) $wgAjaxEditStash, deprecated in 1.36.
-* $wgDjvuToXML, without deprecation because it is obsolete and abandoned
-  upstream. Use $wgDjvuDump instead.
-* …
+* $wgLangObjCacheSize, without deprecation; the LanguageFactory service now
+  always retains at most 10 objects in its LRU-cache.
+* $wgDjvuToXML, without deprecation; the tool it enables is obsolete and
+  abandoned upstream. Use $wgDjvuDump to use that tool instead.
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
-* Media files uploaded server side using the importImages.php maintenance
-  script now have the "mw-server-side-upload" change tag.
-* …
 
 === New developer features in 1.37 ===
-* …
 
 === External library changes in 1.37 ===
-* …
 
 ==== New external libraries ====
 * Added symfony/polyfill-php80 1.23.1.
 * Added whatwg-fetch 3.6.2.
 * Added wikimedia/normalized-exception 1.0.1.
-* …
 
 ===== New development-only external libraries =====
-* …
 
 ==== Changed external libraries ====
 * Updated OOjs from v5.0.0 to v6.0.0
@@ -122,27 +114,24 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
 * Updated wikimedia/shellbox from v1.0.4 to v2.0.0.
 * Updated wikimedia/wait-condition-loop from v2.0.1 to v2.0.2.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated qunit from 2.10.0 to 2.16.0.
-* …
 
 ==== Removed external libraries ====
 * The pimple/pimple development-only library has been removed.
-* …
 
 === Bug fixes in 1.37 ===
-* …
 
 === Action API changes in 1.37 ===
-* (T280806) The API methods for fetching tokens which were deprecated
-  in MediaWiki 1.24 have been removed. action=query&meta=tokens&type=
-  should be used instead. Please note some token types no longer exist,
-  and you should just use type=csrf for those instead.
+* (T280806) The API methods for fetching tokens which were deprecated in
+  MediaWiki 1.24 have been removed. action=query&meta=tokens&type= should be
+  used instead. Please note some token types no longer exist, and you should
+  just use type=csrf for those instead.
   - action=query&prop=info&intoken ->
       action=query&meta=tokens&type=csrf
-  - action=tokens&type= -> action=query&meta=tokens&type=
+  - action=tokens&type= ->
+      action=query&meta=tokens&type=
   - action=query&list=recentchanges&rctoken ->
       action=query&meta=tokens&type=csrf
   - action=query&prop=revisions&rvtoken=rollback ->
@@ -151,10 +140,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
       action=query&meta=tokens&type=csrf
   - action=query&list=users&ustoken=userrights ->
       action=query&meta=tokens&type=userrights
-* …
 
 === Action API internal changes in 1.37 ===
-* …
 
 === Languages updated in 1.37 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -181,99 +168,99 @@ because of Phabricator reports.
   nrf.
 
 === Breaking changes in 1.37 ===
-* The Revision class, hard deprecated in 1.35, was removed entirely. As
-  part of this, the following hooks that included a Revision object
+* The Revision class, emitting deprecation warnings since 1.35, was removed
+  entirely. As part of this, the following hooks that included a Revision object
   were removed:
-  - ArticleRevisionUndeleted - use RevisionUndeleted
-  - ArticleRollbackComplete - use RollbackComplete
-  - DiffRevisionTools - use DiffTools
-  - DiffViewHeader - use DifferenceEngineViewHeader
-  - HistoryRevisionTools - use HistoryTools
-  - NewRevisionFromEditComplete - use RevisionFromEditComplete
-  - PageContentInsertComplete - use PageSaveComplete
-  - PageContentSaveComplete - use PageSaveComplete
-  - ParserFetchTemplate - use BeforeParserFetchTemplateRevisionRecord
-  - RevisionInsertComplete - use RevisionRecordInserted
-  - TitleMoveComplete - use PageMoveComplete
-  - TitleMoveCompleting - use PageMoveCompleting
-  - UndeleteShowRevision - no replacement
-  - UserRetrieveNewTalks - no replacement
-  and the following methods and variables have been removed
-  - Article::$mRevision
-  - Article::getRevisionFetched()
-  - ContribsPager::tryToCreateValidRevision()
-  - EditPage::$mBaseRevision
-  - EditPage::getBaseRevision()
-  - LinksUpdate::getRevision()
-  - LinksUpdate::setRevision()
-  - PageArchive::getArchivedRevision()
-  - PageArchive::getPreviousRevision()
-  - PageArchive::getRevision()
-  - Parser::$mRevisionObject
-  - Parser::fetchCurrentRevisionOfTitle()
-  - Parser::getRevisionObject()
-  - Parser::statelessFetchRevision()
-  - ParserOptions::getCurrentRevisionCallback()
-  - ParserOptions::setCurrentRevisionCallback()
-  - Title::countAuthorsBetween()
-  - Title::getFirstRevision()
-  - User::getNewMessageLinks()
-  - User::getNewMessageRevisionId()
-  - User::setNewtalk()
-  - WikiPage::getOldestRevision()
-  - WikiPage::getRevision()
-  - WikiPage::getUndoContent()
-  - WikiPage::updateIfNewerOn()
-  and the following methods no longer accept Revision objects as parameters:
-  - CategoryMembershipChange::__construct()
-  - ContentHandler::getUndoContent()
-  - DerivedPageDataUpdater::prepareUpdate()
-  - DifferenceEngine::getRevisionHeader()
-  - Linker::buildRollbackLink()
-  - Linker::generateRollback()
-  - Linker::getRevDeleteLink()
-  - Linker::getRollbackEditCount()
-  - Linker::revComment()
-  - Linker::revUserLink()
-  - Linker::revUserTools()
-  - WikiPage::doDeleteUpdates()
-  - WikiPage::doEditUpdates()
-  - WikiPage::hasDifferencesOutsideMainSlot()
-  - WikiPage::onArticleEdit()
-  - WikiPage::prepareContentForEdit()
-  - WikiPage::updateRevisionOn()
+    - ArticleRevisionUndeleted - use RevisionUndeleted
+    - ArticleRollbackComplete - use RollbackComplete
+    - DiffRevisionTools - use DiffTools
+    - DiffViewHeader - use DifferenceEngineViewHeader
+    - HistoryRevisionTools - use HistoryTools
+    - NewRevisionFromEditComplete - use RevisionFromEditComplete
+    - PageContentInsertComplete - use PageSaveComplete
+    - PageContentSaveComplete - use PageSaveComplete
+    - ParserFetchTemplate - use BeforeParserFetchTemplateRevisionRecord
+    - RevisionInsertComplete - use RevisionRecordInserted
+    - TitleMoveComplete - use PageMoveComplete
+    - TitleMoveCompleting - use PageMoveCompleting
+    - UndeleteShowRevision - no replacement
+    - UserRetrieveNewTalks - no replacement
+  … the following methods and variables have been removed:
+    - Article::$mRevision
+    - Article::getRevisionFetched()
+    - ContribsPager::tryToCreateValidRevision()
+    - EditPage::$mBaseRevision
+    - EditPage::getBaseRevision()
+    - LinksUpdate::getRevision()
+    - LinksUpdate::setRevision()
+    - PageArchive::getArchivedRevision()
+    - PageArchive::getPreviousRevision()
+    - PageArchive::getRevision()
+    - Parser::$mRevisionObject
+    - Parser::fetchCurrentRevisionOfTitle()
+    - Parser::getRevisionObject()
+    - Parser::statelessFetchRevision()
+    - ParserOptions::getCurrentRevisionCallback()
+    - ParserOptions::setCurrentRevisionCallback()
+    - Title::countAuthorsBetween()
+    - Title::getFirstRevision()
+    - User::getNewMessageLinks()
+    - User::getNewMessageRevisionId()
+    - User::setNewtalk()
+    - WikiPage::getOldestRevision()
+    - WikiPage::getRevision()
+    - WikiPage::getUndoContent()
+    - WikiPage::updateIfNewerOn()
+  … and the following methods no longer accept Revision objects as parameters:
+    - CategoryMembershipChange::__construct()
+    - ContentHandler::getUndoContent()
+    - DerivedPageDataUpdater::prepareUpdate()
+    - DifferenceEngine::getRevisionHeader()
+    - Linker::buildRollbackLink()
+    - Linker::generateRollback()
+    - Linker::getRevDeleteLink()
+    - Linker::getRollbackEditCount()
+    - Linker::revComment()
+    - Linker::revUserLink()
+    - Linker::revUserTools()
+    - WikiPage::doDeleteUpdates()
+    - WikiPage::doEditUpdates()
+    - WikiPage::hasDifferencesOutsideMainSlot()
+    - WikiPage::onArticleEdit()
+    - WikiPage::prepareContentForEdit()
+    - WikiPage::updateRevisionOn()
   The following methods return arrays that formerly included a 'revision'
   key that would emit deprecation warnings when accessed and return a
   Revision object. The Revision object has been removed from the arrays,
   and the 'revision-record' key should be used to get the relevant
   RevisionRecord instead:
-  - PageUpdater::doCreate()
-  - PageUpdater::doModify()
-  - Parser::statelessFetchTemplate()
-  - WikiPage::doEditContent()
-  The ParserOptions `templateCallback` option is a callback that is called
-  in Parser::fetchTemplateAndTitle() and should return an array - the
+    - PageUpdater::doCreate()
+    - PageUpdater::doModify()
+    - Parser::statelessFetchTemplate()
+    - WikiPage::doEditContent()
+  Finally, the ParserOptions `templateCallback` option is a callback that is
+  called in Parser::fetchTemplateAndTitle() and should return an array - the
   'revision' key to that array used to be a Revision object and was used if
-  no 'revision-record' was returned - it is now ignored.
+  no 'revision-record' was returned - is now ignored.
 * Previously, the classes RevisionTestModifyableContent and
-  RevisionTestModifyableContentHandler were loaded for use in tests, but
-  were only used within the tests for the since-removed Revision class. This
-  content and content handler class were removed without deprecation.
-* WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
-  Use HOLDOFF_TTL_NONE instead.
-* ResourceLoader::makeVersionQuery without $modules parameter, deprecated
-  since 1.34, is no longer supported.
+  RevisionTestModifyableContentHandler were loaded for use in tests, but were
+  only used within the tests for the since-removed Revision class. This content
+  and content handler class were removed without deprecation.
+* WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed. Use
+  WANObjectCache::HOLDOFF_TTL_NONE instead.
+* Calling ResourceLoader::makeVersionQuery() without $modules parameter,
+  deprecated since MediaWiki 1.34, is no longer supported.
 * LocalFile::recordUpload2(), deprecated since 1.35, was removed.
-* The following methods and fields in the Language class, deprecated since
-  1.35, have been removed:
-   - classFromCode()
-   - clearCaches()
-   - convertTitle()
-   - findVariantLink()
-   - mConverter
-   - updateConversionTable()
-* The following methods in the Parser class have been removed after having
-  been deprecated in 1.35:
+* The following methods and fields in the Language class, deprecated since 1.35,
+  have been removed:
+   - ::classFromCode()
+   - ::clearCaches()
+   - ::convertTitle()
+   - ::findVariantLink()
+   - ::$mConverter
+   - ::updateConversionTable()
+* The following methods in the Parser class have been removed after having been
+  deprecated in 1.35:
    - fetchTemplate()
    - Title()
 * (T273354) When an edit is prevented by an 'EditFilterMergedContent' hook
@@ -282,73 +269,74 @@ because of Phabricator reports.
   Use WatchlistManager::clearTitleUserNotification() instead.
 * User::getNewtalk() which had been deprecated in 1.35 has been removed. Use
   TalkPageNotificationManager::userHasNewMessages() instead.
-* Autopromote class, deprecated since 1.35, was removed. Use
+* The Autopromote class, deprecated since 1.35, was removed. Use
   UserGroupManager instead.
-* The following classes, hard-deprecated since 1.36, have been removed:
-  CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
+* The CachedAction, SpecialCachedPage, CacheHelper, and ICacheHelper classes,
+  all emitting deprecation warnings since 1.36, have been removed.
 * The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS, deprecated
   in 1.35, were removed.
 * The TitleArrayFromResult hook, deprecated in 1.36, was removed.
 * The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
-  "es6-polyfills" directly intead.
+  the "es6-polyfills" module directly intead.
 * The deprecated "mediawiki.legacy.protect" ResourceLoader module, deprecated
   since 1.36, has been removed. Use "mediawiki.action.protect" instead.
-* AuthenticationProvider interface doesn't extend LoggerAwareInterface.
-  So AuthenticationProvider can't be typehinted as LoggerAwareInterface.
-* User::getGrantName(), hard deprecated since 1.36, has been removed.
-  Use MWGrants::grantName instead.
-* SessionProvider class doesn't extend LoggerAwareInterface.
-  So SessionProvider can't be typehinted as LoggerAwareInterface.
+* The AuthenticationProvider interface and the SessionProvider class no longer
+  extend the PSR LoggerAwareInterface concept, so they can't be typehinted as
+  LoggerAwareInterface.
+* User::getGrantName(), emitting deprecation warnings since 1.36, has been
+  removed. Use MWGrants::grantName() instead.
 * The following ApiBase methods, deprecated since 1.35, have been removed:
   - ApiBase::explodeMultiValue
   - ApiBase::parseMultiValue
   - ApiBase::validateLimit
   - ApiBase::validateTimestamp
-* User::idCacheByName public static field was removed without deprecation.
-  instead of using it, get a UserIdentity by name from UserIdentityLookup.
-* IDatabase::upsert() and IDatabase::replace() only accept a single unique key.
-  Previously, a warning was issued if there were multiple unique keys provided.
+* The User::idCacheByName() public static field was removed without deprecation.
+  Instead of using it, get a UserIdentity by name from the UserIdentityLookup
+  service.
+* IDatabase::upsert() and IDatabase::replace() now only accept a single unique
+  key. Previously, a warning was issued if there were multiple unique keys
+  provided.
 * The MediaWiki:Autoblock_whitelist block exemption control was moved in 1.36 to
   MediaWiki:Block-autoblock-exemptionlist. The backward-compatibility of reading
   the old MediaWiki:Autoblock_whitelist page has now been dropped.
-* The following overridable methods in File hierarchy has changed signatures:
-  - File::deleteFile - now accepts UserIdentity instead of User
-  - File::getDescription - now accepts Authority instead of User
-  - File::userCan - now accepts Authority instead of User
-  - LocalFile::deleteOldFile - now accepts UserIdentity instead of User
+* The following overridable methods in File hierarchy have changed signatures:
+  - File::deleteFile() - now accepts UserIdentity instead of User
+  - File::getDescription() - now accepts Authority instead of User
+  - File::userCan() - now accepts Authority instead of User
+  - LocalFile::deleteOldFile() - now accepts UserIdentity instead of User
 * The following global methods, each deprecated since 1.36, have been removed:
-  - wfAppendToArrayIfNotDefault
-  - wfAcceptToPrefs
-  - wfConfiguredReadOnlyReason
-  - wfDebugMem
-  - wfGetPrecompiledData
-  - wfNegotiateType
-* The following deprecated methods of Title class have been removed:
-  - nameOf, deprecated in 1.36
-  - getPreviousRevisionID, deprecated in 1.34
-  - getNextRevisionID, deprecated in 1.34
-  - getEarliestRevTime, deprecated in 1.35
-* UploadBase::stashFile, deprecated since 1.28, was removed.
+  - wfAppendToArrayIfNotDefault()
+  - wfAcceptToPrefs()
+  - wfConfiguredReadOnlyReason()
+  - wfDebugMem()
+  - wfGetPrecompiledData()
+  - wfNegotiateType()
+* The following deprecated methods of the Title class have been removed:
+  - ::nameOf(), deprecated in 1.36
+  - ::getPreviousRevisionID(), deprecated in 1.34
+  - ::getNextRevisionID(), deprecated in 1.34
+  - ::getEarliestRevTime(), deprecated in 1.35
+* UploadBase::stashFile(), deprecated since 1.28, was removed.
 * wfGetRusage(), deprecated since 1.35, has been removed.
 * The following CLI options were removed from tests/phpunit.php:
-  - use-filebackend
-  - use-jobqueue
-  - use-bagostuff
+    - use-filebackend
+    - use-jobqueue
+    - use-bagostuff
   The following options (inherited from Maintenance) were also removed:
-  - conf
-  - dbuser
-  - dbpass
-  - dbdefaultgroup
-  - globals
-  - memory-limit
-  - profiler
-  - server
+    - conf
+    - dbuser
+    - dbpass
+    - dbdefaultgroup
+    - globals
+    - memory-limit
+    - profiler
+    - server
   The following options were changed to environment variables:
-  - wiki => PHPUNIT_WIKI
-  - use-normal-tables => PHPUNIT_USE_NORMAL_TABLES
-  - use-filebackend => PHPUNIT_USE_FILEBACKEND
-  - use-bagostuff => PHPUNIT_USE_BAGOSTUFF
-  - use-jobqueue => PHPUNIT_USE_JOBQUEUE
+    - wiki => PHPUNIT_WIKI
+    - use-normal-tables => PHPUNIT_USE_NORMAL_TABLES
+    - use-filebackend => PHPUNIT_USE_FILEBACKEND
+    - use-bagostuff => PHPUNIT_USE_BAGOSTUFF
+    - use-jobqueue => PHPUNIT_USE_JOBQUEUE
   This is so that we can use the default PHPUnit entry point (T90875).
 * The PHPUNIT_REUSE_DB / --reuse-db option was removed from the phpunit.php
   runner. It had been broken for at least three years already. The original use
@@ -358,21 +346,23 @@ because of Phabricator reports.
   PHPUnit hooks were removed. MediaWikiHooksPHPUnitExtension was also removed.
 * EntryPoint::getTextFormatters() was made private without a deprecation period;
   it had no known external callers.
-* DatabaseBlock::chooseBlock, deprecated since 1.35, was removed.
-* SpecialPageFactory::getRestrictedPages, deprecated since 1.36, was removed.
-* SpecialBlock::validateTarget, deprecated since 1.36, was removed.
+* DatabaseBlock::chooseBlock(), deprecated since 1.35, was removed.
+* SpecialPageFactory::getRestrictedPages(), deprecated since 1.36, was removed.
+* SpecialBlock::validateTarget(), deprecated since 1.36, was removed.
 * The PatchFileLocation trait was removed without deprecation.
-* ActorMigrationBase::getExistingActorId and ::getNewActorId, hard deprecated
-  since 1.36, were removed.
-* Hook handlers implementing MediaWikiServicesHook are prohibited from having
-  services injected. This is because by definition, this hook runs before the
-  service container is fully initialized.
+* ActorMigrationBase::getExistingActorId() and ::getNewActorId(), emitting
+  deprecation warnings since 1.36, were removed.
+* Hook handlers implementing the MediaWikiServicesHook hook are now prohibited
+  from having services injected. This is because by definition, this hook runs
+  before the service container is fully initialized.
 * The protected property LocalFile::$metadata was removed without deprecation.
-* WatchedItem::getUser, hard deprecated since 1.36, has been removed.
-* AuthManager::singleton, hard deprecated since 1.36, has been removed.
+* WatchedItem::getUser(), emitting deprecation warnings since 1.36, has been
+  removed.
+* AuthManager::singleton(), emitting deprecation warnings since 1.36, has been
+  removed.
 * The AugmentPageProps class was removed without deprecation. It had no known
   uses.
-* Html::infobox, deprecated since 1.36, was removed.
+* Html::infobox(), deprecated since 1.36, was removed.
 * ParserOptions::__construct() now requires that the first parameter is a
   UserIdentity object - passing `null` used to fallback to the global
   $wgUser but was deprecated since 1.36.
@@ -385,18 +375,18 @@ because of Phabricator reports.
 * The SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook, deprecated in 1.35,
   was removed entirely.
 * The SkinTemplateToolboxEndHook, deprecated in 1.35, was removed entirely.
-* The following methods of RevisionStore class, formerly hard deprecated,
-  were removed:
-  - ::newMutableRevisionFromArray,
-  - ::loadRevisionFromPageId,
-  - ::loadRevisionFromTitle,
-  - ::loadRevisionFromTimestamp,
-  - ::listRevisionSizes
-* LogEntry::getPerformer, deprecated since 1.36, was removed along with methods
-  in subclasses: DatabaseLogEntry, ManualLogEntry, RCDatabaseLogEntry.
-* Skin::getRelevantUser now returns an instance of UserIdentity, not necessarily
-  a User object. There is no known usages in MediaWiki ecosystem that were not
-  satisfied with UserIdentity.
+* The following methods of RevisionStore class, formerly emitting deprecation
+  warnings, were removed:
+  - ::newMutableRevisionFromArray()
+  - ::loadRevisionFromPageId()
+  - ::loadRevisionFromTitle()
+  - ::loadRevisionFromTimestamp()
+  - ::listRevisionSizes()
+* LogEntry::getPerformer(), deprecated since 1.36, was removed along with
+  methods in sub-classes: DatabaseLogEntry, ManualLogEntry, RCDatabaseLogEntry.
+* Skin::getRelevantUser() now returns an instance of UserIdentity, and not
+  necessarily a User object. There is no known usages in MediaWiki ecosystem
+  that were not satisfied with UserIdentity.
 * Direct construction of MergeHistory class, deprecated since 1.35, is no longer
   supported. Use MergeHistoryFactory instead. MergeHistory::checkPermissions,
   deprecated since 1.36, was removed.
@@ -411,24 +401,26 @@ because of Phabricator reports.
   or skins that rely on the global $wgUser variable (which has been
   deprecated since 1.35) should instead retrieve the acting user from the
   relevant context source.
-* SkinTemplate::makeArticleUrlDetails, deprecated since 1.35, was removed.
-* Skin::makeNSUrl, deprecated since 1.35, was removed.
+* SkinTemplate::makeArticleUrlDetails(), deprecated since 1.35, was removed.
+* Skin::makeNSUrl(), deprecated since 1.35, was removed.
 * Skin::getRevisionId(), deprecated since 1.34, was removed. Use
   OutputPage::getRevisionId() instead.
 * Skin::isRevisionCurrent(), deprecated since 1.34, was removed. Use
   OutputPage::isRevisionCurrent() instead.
 * AbstractBlock::parseTarget(), deprecated since 1.36, was removed.
-* ArticleEditUpdates hook, deprecated since 1.35, was removed.
-* @stable to extend class CentralIdLookup has following changes:
-  - Protected ::checkAudience method now returns Authority instead of User.
-  - A number of it's @stable to override methods now accept Authority instead
-    of User as $audience parameter.
-  - A number of methods now accept UserIdentity instead of User parameter.
-  - ::localUserFromCentralId method now returns UserIdentity and not necessarily
-    a User object.
+* The ArticleEditUpdates hook, deprecated since 1.35, was removed.
+* The `@stable to extend` class CentralIdLookup has following changes:
+  - The protected ::checkAudience() method now returns an Authority instead of a
+    User instance.
+  - A number of its `@stable to override` methods now accept an Authority
+    instead of a User instance as the $audience parameter.
+  - A number of methods now accept a UserIdentity instead of their User
+    parameter.
+  - The ::localUserFromCentralId() method now returns UserIdentity and not
+    necessarily a User object.
   All extensions that extend this class or use this method were updated to be
   ready to the new behavior.
-* WatchedItemStoreInterface::enqueueWatchlistExpiryJob, deprecated since 1.36,
+* WatchedItemStoreInterface::enqueueWatchlistExpiryJob(), deprecated since 1.36,
   was removed.
 * ResultWrapper is now abstract. It cannot be directly constructed (T286694).
 * The SecondaryDataUpdates hook, deprecated in 1.32, was removed entirely.
@@ -443,62 +435,68 @@ because of Phabricator reports.
   parameters are no longer supported.
 * SpecialMute::getTarget(), unused outside of the SpecialMute class, was
   made private.
-* The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use
-  skin registration instead.
+* The Skin::setupSkinUserCss() method, deprecated in 1.32, was removed. Please
+  use skin registration instead.
 * The ResourceLoaderSkinModule `legacy`, `content` and `content-thumbnails`
   features were deprecated. Skins should instead select from the features
   listed on [[mw:Manual:ResourceLoaderSkinModule]].
-* ParserCache::getKey and ::getEtag, deprecated since 1.36, were removed.
+* ParserCache::getKey() and ::getEtag(), deprecated since 1.36, were removed.
 * The BaseTemplateToolbox hook, deprecated since 1.35, was removed.
 * Previously a capitalize-all-nouns class was added to the body element of
   languages where nouns must be capitalized. This class is no longer added to
   the body tag and must be provided by skins.
 * The SkinTemplateOutputPageBeforeExec hook, deprecated since 1.35, was removed.
-* Calling Message::toString() without a parameter, hard-deprecated since 1.36,
-  is not longer supported. You can instead use the explicit formatting methods
-  directly, such as Message::text() and Message::escaped().
-* Article::getContentObject, deprecated since 1.32, was removed.
+* Calling Message::toString() without a parameter, which triggered deprecation
+  warnings since 1.36, is no longer supported. You can instead use the explicit
+  formatting methods directly, such as Message::text() and Message::escaped().
+* Article::getContentObject(), deprecated since 1.32, was removed.
 * Article::delete(), Article::confirmDelete() and ImagePage::delete() were
-  hard-deprecated. The logic responsible for building the form is being moved to
-  DeleteAction, while the actual deletion logic will be moved to a separate
-  service.
-* WikiImporter::debugRevisionHandler, unused and for debug only, was removed.
-* Content::preloadTransform was hard-deprecated since 1.37,
-  use ContentTransformer::preloadTransform instead. Extensions defining
-  a content model should override ContentHandler::preloadTransform.
-* Constructing WikiPage objects from Title instances that cannot exist,
-  hard-deprecated in 1.36, now throws an exception. Additionally, WikiPage
-  now implements ProperPageIdentity, rather than just PageIdentity.
-* Content::preSaveTransform was hard-deprecated since 1.37,
-  use ContentTransformer::preSaveTransform instead. Extensions defining
-  a content model should override ContentHandler::preSaveTransform.
-* Skin::bottomScripts is deprecated. Use OutputPage::getBottomScripts instead.
-* LinksUpdate::getTriggeringUser now returns ?UserIdentity instead of ?User.
-* …
+  removed. The logic responsible for building the form is being
+  moved to DeleteAction, while the actual deletion logic will be moved to a
+  separate service.
+* WikiImporter::debugRevisionHandler(), unused and for debug only, was removed.
+* Content::preloadTransform() now emits deprecation warnings. Instead, please
+  use ContentTransformer::preloadTransform(). Extensions defining a content
+  model should override ContentHandler::preloadTransform().
+* Content::preSaveTransform() now emits deprecation warnings. Instead, please
+  use ContentTransformer::preSaveTransform() instead. Extensions defining
+  a content model should override ContentHandler::preSaveTransform().
+* Constructing WikiPage objects from Title instances that cannot exist, emitting
+  deprecation warnings since 1.36, now throws an exception. Additionally,
+  WikiPage now implements ProperPageIdentity, rather than just PageIdentity.
+* The Skin::bottomScripts() method is deprecated. Please instead use
+  OutputPage::getBottomScripts().
+* LinksUpdate::getTriggeringUser() now returns ?UserIdentity instead of ?User.
+* The LESS mixin `.box-shadow()` (from mediawiki.mixins.less), deprecated since
+  1.36, was removed. Use CSS property `box-shadow` unprefixed for all basic
+  supported browsers instead.
+* The LESS mixin `.flex()` now no longer tries to support the 2009 version of
+  the Flexbox specification; support for the 2012 and modern standard versions
+  remains unchanged.
 
 === Deprecations in 1.37 ===
-* JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
-* In AbstractBlock, the getTargetAndType() and getTarget() methods are
-  hard deprecated. Instead use getTargetName() and getTargetUserIdentity()
-  together with getType().
-* Deprecated passing UserIdentity to
-  WatchlistManager::clearAllUserNotifications() and
-  WatchlistManager::clearTitleUserNotifications(). Pass Authority instead.
-* Deprecated passing LinkTarget to
-  WatchlistManager::clearTitleUserNotifications() and
+* JobQueue::getWiki(), deprecated in 1.33, now emits deprecation warnings.
+* AbstractBlock::getTargetAndType() and ::getTarget() now emit deprecation
+  warnings. Use ::getTargetName() and ::getTargetUserIdentity() together with
+  ::getType().
+* Passing a UserIdentity to WatchlistManager::clearAllUserNotifications() and
+  WatchlistManager::clearTitleUserNotifications() is now deprecated. Pass an
+  Authority instead.
+* Passing LinkTarget to WatchlistManager::clearTitleUserNotifications() and
   WatchlistManager::getTitleNotificationTimestamp(). Pass PageIdentity instead.
-* Deprecated User::isWatched(), User::isTempWatched(), User::addWatch(), and
-  User::removeWatch(). Use corresponding methods in WatchlistManager instead.
-* Deprecated WatchAction::doWatchOrUnwatch(). Use WatchlistManager::setWatch()
-  instead.
-* Deprecated WatchAction::doWatch() and WatchAction::doUnwatch(). Use
-  WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
-* WatchAction::getWatchToken is hard deprecated. Instead use
-  CsrfTokenSet::getToken
+* The User class methods ::isWatched(), ::isTempWatched(), ::removeWatch(), and
+  ::addWatch() have been deprecated. Use corresponding methods in
+  WatchlistManager instead.
+* Multiple WatchAction methods have been deprecated in lieu of WatchlistManager:
+   - ::doWatchOrUnwatch() use WatchlistManager::setWatch()
+   - ::doWatch() -> WatchlistManager::addWatch()
+   - ::doUnwatch() -> WatchlistManager::removeWatch()
+* WatchAction::getWatchToken() now emits deprecation warnings. Instead use
+  CsrfTokenSet::getToken().
 * Action::getHookContainer() has been marked as internal. Actions that require
   access to a hook container should have one injected instead.
-* The getTitle() and setTitle() methods in Parser have been deprecated.
-  Use getPage() and setPage() instead.
+* The ::getTitle() and ::setTitle() methods in Parser have been deprecated.
+  Use ::getPage() and ::setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 * Methods and classes related to the primary database, previously referred to as
@@ -541,41 +539,40 @@ because of Phabricator reports.
       ::forEachOpenPrimaryConnection()
   - ILoadBalancer::waitForMasterPos() -> ::waitForPrimaryPos()
   - Database::assertIsWritableMaster() -> ::assertIsWritablePrimary()
-  - RevDelList::reloadFromMaster -> ::reloadFromPrimary()
-  - ExternalStoreDB::getMaster -> ::getPrimary()
+  - RevDelList::reloadFromMaster() -> ::reloadFromPrimary()
+  - ExternalStoreDB::getMaster() -> ::getPrimary()
   - DatabaseMysqlBase::getMasterServerInfo() -> ::getPrimaryServerInfo()
   - MWExceptionHandler::rollbackMasterChangesAndLog() ->
       ::rollbackPrimaryChangesAndLog()
+* wfGetLB(), deprecated since 1.27, now emits deprecation warnings.
+* wfLocalFile(), deprecated since 1.34, now emits deprecation warnings.
+* wfFindFile(), deprecated since 1.34, now emits deprecation warnings.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
-* AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
-  ::setHookContainer() were soft deprecated. Use ::init() to inject
-  dependencies or override ::postInitSetup() to do any custom
-  post-initialization configuration.
 * The following methods in ApiPageSet have been deprecated:
-   - getTitles(), use getTargets() instead.
-   - getGoodTitles(), use getGoodPages() instead.
-   - getMissingTitles(), use getMissingPages() instead.
-   - getGoodAndMissingTitles(), use getGoodAndMissingPages() instead.
-   - getRedirectTitles(), use getRedirectTargets() instead.
-   - getSpecialTitles(), use getSpecialPages() instead.
-* The following functions from the User class, deprecated in 1.35, now emit
+   - ::getTitles(), use ::getTargets() instead.
+   - ::getGoodTitles(), use ::getGoodPages() instead.
+   - ::getMissingTitles(), use ::getMissingPages() instead.
+   - ::getGoodAndMissingTitles(), use ::getGoodAndMissingPages() instead.
+   - ::getRedirectTitles(), use ::getRedirectTargets() instead.
+   - ::getSpecialTitles(), use ::getSpecialPages() instead.
+* The following methods from the User class, deprecated in 1.35, now each emit
   deprecation warnings:
-   - getOptions
-   - isIP
-   - isUsableName
-   - isCreatableName
-   - getCanonicalName
-   - addAutopromoteOnceGroups
-   - getEffectiveGroups
-   - getAutomaticGroups
-   - getFormerGroups
-   - getIntOption
-   - getBoolOption
+   - ::getOptions()
+   - ::isIP()
+   - ::isUsableName()
+   - ::isCreatableName()
+   - ::getCanonicalName()
+   - ::addAutopromoteOnceGroups()
+   - ::getEffectiveGroups()
+   - ::getAutomaticGroups()
+   - ::getFormerGroups()
+   - ::getIntOption()
+   - ::getBoolOption()
 * The following methods in User were deprecated:
-  - ::idFromName - use UserIdentityLookup::getUserIdentityByName instead.
-  - ::resetIdByNameCache - in tests, reset service container. No replacement
+  - ::idFromName() - use UserIdentityLookup::getUserIdentityByName() instead.
+  - ::resetIdByNameCache() - in tests, reset service container. No replacement
     needed in production code.
 * Use of ActorMigration for any table except revision, deprecated in 1.34, now
   emits deprecation warnings. Instead of getInsertValues(), use
@@ -591,113 +588,105 @@ because of Phabricator reports.
   1.34, now emit deprecation warnings.
 * HtmlFileCacheUpdate::newFromTitles() is now deprecated and emitting warnings.
   Use newFromPages() instead.
-* SessionProvider ::setLogger(), ::setManager(), ::setConfig(),
-  ::setHookContainer() were soft deprecated. Use ::init() to inject
-  dependencies or override ::postInitSetup() to do any custom
-  post-initialization configuration.
-* User->isLoggedIn(), deprecated since 1.36, now emits deprecation warnings. Use
-  the method it wraps, User->isRegistered(), instead.
+* SessionProvider ::setLogger(), ::setManager(), ::setConfig(), and
+  ::setHookContainer() were deprecated. Use ::init() to inject dependencies, or
+  override ::postInitSetup() to do any custom post-initialization configuration.
+* AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
+  and ::setHookContainer() now emit deprecation warnings. Use ::init() to inject
+  dependencies, or override ::postInitSetup() to do any custom post-
+  initialization configuration.
+* User::isLoggedIn(), deprecated since 1.36, now emits deprecation warnings. Use
+  the method it wraps, User::isRegistered(), instead.
 * FileBackendGroup::singleton() and ::destroySingletons(), deprecated since
   1.35, now emit deprecation warnings.
-* The first parameter of User::getBlock should now be an integer using the
+* The first parameter of User::getBlock() should now be an integer using the
   Authority::FOR_XXX constants. Providing a boolean is deprecated.
 * ApiBase::addBlockInfoToStatus() is deprecated for use by extensions. It is now
   marked as @internal and may be deleted in the future.
   It should not be necessary to call this method, Authority should be providing
   all relevant information via a PermissionStatus object.
-* JobQueueGroup::singleton was deprecated - use
-  MediaWikiServices::getJobQueueGroup instead.
-* JobQueueGroup::destroySingletons was deprecated. JobQueueGroups are now
+* JobQueueGroup::singleton() was deprecated - use
+  MediaWikiServices::getJobQueueGroup() instead.
+* JobQueueGroup::destroySingletons() was deprecated. JobQueueGroups are now
   automatically destroyed after tests.
-* LinkCache::addGoodLinkObj() has been soft deprecated, since it is prone to
+* LinkCache::addGoodLinkObj() has been deprecated, since it is prone to
   corrupting the cache with invalid information. Use addGoodLinkObjFromRow()
   instead. PHPUnit tests must use LinkCacheTestTrait::addGoodLinkObject().
-* SessionProvider ::setLogger(), ::setManager(), ::setConfig(),
-  ::setHookContainer() were hard deprecated. Use ::init() to inject
-  dependencies or override ::postInitSetup() to do any custom
-  post-initialization configuration.
-* ContentHandler::getContentText() is now soft deprecated.
-  Use Content::getText() instead.
+* ContentHandler::getContentText() is now deprecated. Use Content::getText()
+  instead.
 * LinkCache::addLinkObj() has been deprecated, use PageStore::getPageForLink()
   instead.
-* MediaWiki\User\UserNamePrefixSearch::search() previously accepted as
-  its first parameter either the string 'public' or a UserIdentity object,
-  to filter results for. It now expects an Authority object instead of
-  UserIdentity, and providing just a UserIdentity is hard deprecated.
-* wfLocalFile(), deprecated since 1.34, now emits deprecation warnings.
-* wfFindFile(), deprecated since 1.34, now emits deprecation warnings.
+* MediaWiki\User\UserNamePrefixSearch::search() previously accepted as its first
+  parameter either the string 'public' or a UserIdentity object, to filter
+  results for. It now expects an Authority object instead of UserIdentity, and
+  providing just a UserIdentity will now trigger a deprecation warning.
 * User::getRights(), deprecated since 1.34, now emits deprecation warnings.
-* User::changeableGroups and ::changeableByGroup were hard deprecated, use
-  corresponding methods in UserGroupManager instead.
+* User::changeableGroups() and ::changeableByGroup() now emit deprecation
+  warnings, use corresponding methods in UserGroupManager instead.
 * User::incEditCount() was deprecated in favor of the new method
   UserEditTracker::incrementUserEditCount().
-* RepoGroup::singleton(), ::destroySingleton() and ::setSingleton(),
-  deprecated since 1.34, now emit deprecation warnings.
-* AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
-  ::setHookContainer() were hard deprecated. Use ::init() to inject
-  dependencies or override ::postInitSetup() to do any custom
-  post-initialization configuration.
-* RecentChange::getPerformer(), hard-deprecated since 1.37,
-  use getPerformerIdentity() instead.
+* RepoGroup::singleton(), ::destroySingleton() and ::setSingleton(), deprecated
+  since 1.34, now emit deprecation warnings.
+* RecentChange::getPerformer(), deprecated since 1.36, now emits deprecation
+  warnings. Use ::getPerformerIdentity() instead.
 * ContentHandler::cleanupHandlersCache(), deprecated since 1.35, now emits
   deprecation warnings.
 * Category::getTitle() was deprecated in favor of Category::getPage()
-* File::getUser method was hard deprecated, along with overrides in LocalFile
-  and ForeignApiFile in favor of ::getUploader.
+* File::getUser() method now emits deprecation warnings, along with its over-
+  rides in LocalFile and ForeignApiFile in favor of ::getUploader().
 * SpecialBlock::checkUnblockSelf(), deprecated in 1.36, now emits deprecation
   warnings.
 * (T284179) The mediawiki.viewport ResourceLoader module is deprecated. You can
   now just use MutationObserver or InterSectionObserver directly, which are
   widely available in all supported JavaScript browsers.
-* The following constructor options of DatabaseBlock class,
-  hard deprecated since 1.37:
-  - 'byText' property with blocker's name,
-    use 'by' property with UserIdentity value instead.
-  - 'by' property with blocker's ID,
-    use 'by' property with UserIdentity value instead.
+* The following constructor options of DatabaseBlock class will now trigger
+  deprecation warnings:
+    - the 'byText' property with blocker's name,
+    - the 'by' property with blocker's ID,
+  For both of these, use the 'by' property with UserIdentity value instead.
 * The BeforeResetNotificationTimestamp hook was deprecated.
-* ArchivedFile::getUser, ::getRawUser, ::getRawUserText were deprecated in
-  favor of ::getUploader. ::getRawDescription was deprecated in favor of
-  ::getDescription with RAW audience parameter.
+* ArchivedFile::getUser() ::getRawUser() ::getRawUserText() were deprecated in
+  favor of ::getUploader.() ::getRawDescription() was deprecated in favor of
+  ::getDescription() with RAW audience parameter.
 * When calling LocalFile::newFromRow() or LocalFile::loadFromRow(), passing
-  extra fields not requested by ::getQueryInfo() is hard deprecated. This is
-  to warn callers that deprefixing and automatic assignment of such fields will
-  not be done in a future version.
-* JobSpecification::getTitle was deprecated without providing a replacement.
-  It wasn't used and job given the purpose of JobSpecification class it's
-  not needed.
-* The protected method File::getImageSize() is deprecated.
+  extra fields not requested by ::getQueryInfo() will now trigger deprecation
+  warnings. This is to warn callers that deprefixing and automatic assignment of
+  such fields will not be done in a future version.
+* JobSpecification::getTitle() was deprecated without providing a replacement.
+  It wasn't used and job given the purpose of JobSpecification class it is not
+  needed.
+* The protected method File::getImageSize() is now deprecated.
 * BacklinkCache::get() was deprecated, use
   BacklinkCacheFactory::getBacklinkCache() instead.
-* Title::getBacklinkCache() was hard deprecated. Use ::getBacklinkCache()
-  method in the BacklinkCacheFactory service.
-* MediaHandler::getImageSize(), ::getMetadata() and ::isMetadataValid were
-  deprecated and should no longer be overridden. Instead, subclasses should
+* Title::getBacklinkCache() now emits deprecation warnings. Instead, use the
+  ::getBacklinkCache() method in the BacklinkCacheFactory service.
+* MediaHandler::getImageSize(), ::getMetadata(), and ::isMetadataValid() were
+  deprecated and should no longer be overridden. Instead, sub-classes should
   override getSizeAndMetadata().
 * Deprecated File::getMetadata(). Instead use ::getMetadataArray(),
   ::getMetadataItem() and ::getMetadataItems().
-* Message::title was deprecated, use Message::page instead.
-* BaseTemplate::getAfterPortlet, BaseTemplate::renderAfterPortlet and the
+* Message::title() has been deprecated; use Message::page() instead.
+* BaseTemplate::getAfterPortlet(), BaseTemplate::renderAfterPortlet(), and the
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
-* LocalFile::getHistory hook is deprecated.
+* The LocalFile::getHistory() hook is deprecated.
 * Calling WikiPage::prepareContentForEdit() without a UserIdentity is now
   deprecated.
-* User::getEditTokenObject, ::getEditToken, ::matchEditToken were deprecated.
-  Use CsrfTokenRepository, which is available via IContextSource, instead.
-  ::matchEditTokenNoSuffix was deprecated without replacement.
+* User::getEditTokenObject(), ::getEditToken(), and ::matchEditToken() were each
+  deprecated. Use CsrfTokenRepository, which is available via IContextSource,
+  instead. ::matchEditTokenNoSuffix() was deprecated without replacement.
   It was introduced to be able to provide custom error message if the token
   was submitted, but ending slashes were stripped by some ASCII mangling proxy.
-  Use matchToken instead, such proxies are much less common now and there's
+  Use ::matchToken() instead, such proxies are much less common now and there's
   not much benefit in customising the error message.
-* ContentHandler::getForTitle(), deprecated since 1.35, now emits
-  deprecation warnings.
+* ContentHandler::getForTitle(), deprecated since 1.35, now emits deprecation
+  warnings.
 * User::listOptionKinds(), deprecated since 1.35, now emits deprecation
   warnings.
 * WikiPage::doEditContent(), deprecated since 1.32, now emits deprecation
   warnings.
-* CentralIdLookup::factory and ::factoryNonLocal were hard-deprecated,
-  obtain an instance from MediaWikiServices instead.
+* CentralIdLookup::factory() and ::factoryNonLocal() now emit deprecation
+  warnings; obtain an instance from MediaWikiServices instead.
 * The class RandomPage was renamed to SpecialRandomPage. The class RandomPage
   is now deprecated.
 * BotPassword::invalidateAllPasswordsForCentralId() was deprecated.
@@ -709,102 +698,119 @@ because of Phabricator reports.
   ::fieldName(), ::freeResult() and ::dataSeek() are deprecated. Use the
   corresponding methods in IResultWrapper instead.
 * ResultWrapper::unwrap(), DatabaseMysqlBase::fieldType() and
-  DatabasePostgres::fieldType() are hard-deprecated.
-* Subclasses implementing Database::doQuery() should return either boolean or
-  an IResultWrapper. To do otherwise is hard-deprecated.
+  DatabasePostgres::fieldType() each now emit deprecation warnings.
+* Sub-classes implementing Database::doQuery() should return either boolean or
+  an IResultWrapper. To do otherwise will now trigger a deprecation warning.
 * User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
   now emit deprecation warnings.
-* wfGetLB(), deprecated since 1.27, now emits deprecation warnings.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:
-  - isMovable()
-  - isSubject()
-  - getTalk()
-  - getSubject()
-  - getAssociated()
-  - equals()
-  - subjectEquals()
-  - hasTalkNamespace()
-  - wantSignatures()
-  - isWatchable()
-  - getSubjectNamespaces()
-  - getTalkNamespaces()
-  - isCapitalized()
-  - hasGenderDistinction()
-  - isNonincludable()
-  - getNamespaceContentModel()
-  - getRestrictionLevels()
-  - getCategoryLinkType()
+  - ::isMovable()
+  - ::isSubject()
+  - ::getTalk()
+  - ::getSubject()
+  - ::getAssociated()
+  - ::equals()
+  - ::subjectEquals()
+  - ::hasTalkNamespace()
+  - ::wantSignatures()
+  - ::isWatchable()
+  - ::getSubjectNamespaces()
+  - ::getTalkNamespaces()
+  - ::isCapitalized()
+  - ::hasGenderDistinction()
+  - ::isNonincludable()
+  - ::getNamespaceContentModel()
+  - ::getRestrictionLevels()
+  - ::getCategoryLinkType()
 * LogFormatter::styleRestricedElement() has been deprecated in favor of
   LogFormatter::styleRestrictedElement()
-* The following hooks were deprecated:
+* The following hooks related to user preferences were deprecated:
   - UserLoadOptions: use LoadUserOptions instead.
   - UserSaveOptions: use SaveUserOptions instead.
   - UserResetAllOptions: no replacement was provided, the hook is not used.
-* Title::isNamespaceProtected, deprecated in 1.34, is now hard-deprecated.
-* UserSelectQueryBuilder::userIds(), ::userNames(), and ::userNamePrefix()
-  has been deprecated in favor of ::whereUserIds(), ::whereUserNames(),
-  and ::whereUserNamePrefix()
-* Manually constructing a MovePage object, deprecated in 1.34,
-  is now hard deprecated. Use MovePageFactory instead.
-* userCan hook has been hard deprecated. Use getUserPermissionsErrors or
-  getUserPermissionsErrorsExpensive instead.
-* Parser::mUser public access, Parser::getUser and ParserOptions::getUser were
-  hard deprecated.
+* Title::isNamespaceProtected(), deprecated in 1.34, now emits deprecation
+  warnings.
+* UserSelectQueryBuilder::userIds(), ::userNames(), and ::userNamePrefix() has
+  been deprecated in favor of ::whereUserIds(), ::whereUserNames(), and
+  ::whereUserNamePrefix().
+* Manually constructing a MovePage object, deprecated in 1.34, now emits
+  deprecation warnings. Use MovePageFactory instead.
+* The following deletion-related methods were deprecated:
+  - WikiPage::doDeleteArticleReal() (soft) - use DeletePage
+  - WikiPage::doDeleteArticleBatched() (soft) - no replacement
+  - WikiPage::isBatchedDelete() (soft) - use DeletePage
+  - WikiPage::doDeleteUpdates() (hard) - no replacement
+  - WikiPage::getDeletionUpdates() (hard) - no replacement
+  - Title::isBigDeletion (soft) - no replacement
+* Relying on PermissionManager or Authority to check for big deletions
+  was deprecated. This is now automatically checked if you use
+  DeletePage::deleteIfAllowed(). (T288759)
+* The userCan hook now emits deprecation warnings. Use the
+  getUserPermissionsErrors or getUserPermissionsErrorsExpensive hooks instead.
+* Parser::$mUser public access, and the methods ParserOptions::getUser() and
+  Parser::getUser() each now emit deprecation warnings.
 * The following methods in the Title class have been deprecated in favor of the
   corresponding methods in the new RestrictionStore service (with different
   names where indicated):
-  - areCascadeProtectionSourcesLoaded()
-  - areRestrictionsCascading()
-  - areRestrictionsLoaded()
-  - getAllRestrictions()
-  - getCascadeProtectionSources()
-  - getFilteredRestrictionTypes()
-      -> listAllRestrictionTypes()
-  - getRestrictionExpiry()
-  - getRestrictionTypes()
-      -> listApplicableRestrictionTypes()
-  - getRestrictions()
-  - isCascadeProtected()
-  - isProtected()
-  - isSemiProtected()
-  - loadRestrictionsFromRows()
+  - ::areCascadeProtectionSourcesLoaded()
+  - ::areRestrictionsCascading()
+  - ::areRestrictionsLoaded()
+  - ::getAllRestrictions()
+  - ::getCascadeProtectionSources()
+  - ::getFilteredRestrictionTypes()
+      -> ::listAllRestrictionTypes()
+  - ::getRestrictionExpiry()
+  - ::getRestrictionTypes()
+      -> ::listApplicableRestrictionTypes()
+  - ::getRestrictions()
+  - ::isCascadeProtected()
+  - ::isProtected()
+  - ::isSemiProtected()
+  - ::loadRestrictionsFromRows()
 * The following Title methods have been deprecated with no direct public
   replacement:
-  - deleteTitleProtection()
-  - getTitleProtection()
-  - flushRestrictions()
-  - loadRestrictions()
-* User::isAllowUsertalk was hard deprecated. Use User::getBlock and
-  AbstractBlock::isUsertalkEditAllowed instead.
+  - ::deleteTitleProtection()
+  - ::getTitleProtection()
+  - ::flushRestrictions()
+  - ::loadRestrictions()
+* User::isAllowUsertalk() now emits deprecation warnings. Use User::getBlock()
+  and AbstractBlock::isUsertalkEditAllowed() instead.
 * Classes used by Preprocessor_DOM have been merged with classes used by
   Preprocessor_Hash, as Preprocessor_DOM was removed in 1.35.
    - PPDPart has been merged into PPDPart_Hash
    - PPDStack has been merged into PPDStack_Hash
    - PPDStackElement has been merged into PPDStackElement_Hash
-* Collation::singleton and ::factory were deprecated, obtain an CollationFactory
-  instance from MediaWikiServices instead.
-* Title::getDefaultNamespace() has been deprecated to be removed because
-  there are no callers/consumers.
-* With removal of the stub threshold feature the following methods have been
-  hard deprecated:
-  - LinkRenderer::setStubThreshold and ::getStubThreshold - no replacement.
-  - LinkRendererFactory::createForUser - calling ::create is now sufficient
-  - ParserOptions::setStubThreshold and ::getStubThreshold - no replacement.
-  - User::getStubThreshold - no replacement.
+* By default, the global variable $wgUser is now an instance of the new class
+  StubGlobalUser rather than User, and the first time it is used it will emit
+  deprecation warnings (the $wgUser variable was deprecated in 1.35). For
+  extensions that read from this variable, please use a relevant ContextSource
+  instead, falling back to RequestContext::getMain() if none is available.
+* Collation::singleton() and ::factory() were deprecated; obtain an instance of
+  the CollationFactory from MediaWikiServices instead.
+* Title::getDefaultNamespace() has been deprecated to be removed because there
+  are no known callers/consumers.
+* With removal of the stub threshold feature, the following methods now emit
+  deprecation warnings:
+  - LinkRenderer::setStubThreshold() and ::getStubThreshold() - no replacement.
+  - LinkRendererFactory::createForUser() - calling ::create() is now sufficient
+  - ParserOptions::setStubThreshold() and ::getStubThreshold() - no replacement.
+  - User::getStubThreshold() - no replacement.
+* The ArticleDelete and ArticleDeleteComplete hooks were deprecated. Use
+  PageDelete and PageDeleteComplete instead.
+* The ArticleUndeleteLogEntry hook was deprecated without replacement.
 * The following LESS mediawiki.mixins have been deprecated:
   - .box-sizing()
   - .transform()
   - .transform-origin()
   - .transition()
   - .transition-transform()
-* …
 
 === Other changes in 1.37 ===
-* WatchlistManager::addWatch and WatchlistManager::addWatchIgnoringRights(),
+* WatchlistManager::addWatch() and WatchlistManager::addWatchIgnoringRights(),
   which replace User::addWatch(), now call the WatchArticle and
   WatchArticleComplete hooks.
-* WatchlistManager::removeWatch and
+* WatchlistManager::removeWatch() and
   WatchlistManager::removeWatchIgnoringRights(), which replace
   User::removeWatch(), now call the UnwatchArticle and UnwatchArticleComplete
   hooks.
@@ -815,25 +821,35 @@ because of Phabricator reports.
   class. A provider can override postInitSetup() to do any custom
   post-initialization configuration.
 * The protected getConfig() method was added to the SessionProvider class.
-  Use SessionProvider::getConfig to get a config.
+  Use SessionProvider::getConfig() to get a config.
 * The DBAccessBase class is deprecated. Classes that used to extend it
   should get a load balancer (factory) injected in the constructor instead.
-* ActorNormalization::acquireActorId now requires IDatabase parameter.
+* ActorNormalization::acquireActorId() now requires IDatabase parameter.
   Not providing one emitted deprecation warnings since 1.36.
 * Anti-lock constants ALF_PRELOAD_LINK, ALF_NO_BLOCK_LOCK, ALF_NO_LINK_LOCK
   and ALF_PRELOAD_EXISTENCE have been removed. They're unused since 1.25.
-* CSS class 'mw-htmlform-field-autoinfuse' used by some forms has been
-  renamed to 'mw-htmlform-autoinfuse'. (T278036)
-* User::newFromRow does not accept pre-loaded user preferences under
+* (T278036) CSS class 'mw-htmlform-field-autoinfuse' used by some forms has been
+  renamed to 'mw-htmlform-autoinfuse'.
+* User::newFromRow() does not accept pre-loaded user preferences under
   $data['user_properties'] anymore. This optimization was not used.
 * The following files change the letter case of the file names:
   - SpecialRandompage.php -> SpecialRandomPage.php
   - SpecialRandomredirect.php -> SpecialRandomRedirect.php
   - SpecialRandomrootpage.php -> SpecialRandomRootPage.php
-* The stub threshold feature has been removed. See T284917.
-* Skin::getPoweredBy and Skin::getCopyrightIcon are deprecated.
-* The SkinGetPoweredBy hook is deprecated.
-* …
+* Media files which are uploaded server side using the importImages.php
+  maintenance script will now have the "mw-server-side-upload" change tag.
+* (T284917) The stub threshold feature has been removed.
+* Skin::getPoweredBy() and Skin::getCopyrightIcon() have been deprecated as they
+  are only designed for use by skins extended BaseTemplate. You can move calls
+  to instead use BaseTemplate::getPoweredByHTML() and ::getCopyrightIconHTML()
+  respectively.
+* The SkinGetPoweredBy hook is deprecated. No replacement is provided.
+* HTMLTitleTextField didn't support interwiki titles well previously.
+  Starting with 1.37, HTMLTitleTextField has a new parameter, 'interwiki',
+  which can be used to control acceptance of interwiki titles. To provide
+  a transitional period, the default value ('interwiki' => null) ensures
+  MW will have the same behavior as before (logging a deprecation warning).
+  In 1.38, the default behavior will change to "interwiki links aren't allowed".
 
 == Compatibility ==
 

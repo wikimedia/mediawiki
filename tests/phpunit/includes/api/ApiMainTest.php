@@ -101,8 +101,15 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testSuppressedLogin() {
+		// Testing some logic that changes the global $wgUser
+		// ApiMain will be setting it to a StubGlobalUser object, it should already
+		// be one but in case its a full User object we will wrap the comparisons
+		// in StubGlobalUser::getRealUser() which will return the inner User object
+		// for a StubGlobalUser, or the actual User object if given a user.
+
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgUser;
-		$origUser = $wgUser;
+		$origUser = StubGlobalUser::getRealUser( $wgUser );
 
 		$api = $this->getNonInternalApiMain( [
 			'action' => 'query',
@@ -114,7 +121,7 @@ class ApiMainTest extends ApiTestCase {
 		$api->execute();
 		ob_end_clean();
 
-		$this->assertNotSame( $origUser, $wgUser );
+		$this->assertNotSame( $origUser, StubGlobalUser::getRealUser( $wgUser ) );
 		$this->assertSame( 'true', $api->getContext()->getRequest()->response()
 			->getHeader( 'MediaWiki-Login-Suppressed' ) );
 	}

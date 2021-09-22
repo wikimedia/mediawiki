@@ -1130,6 +1130,7 @@ class PermissionManager {
 				&& !$this->userCan( 'bigdelete', $user, $title )
 				&& $title->isBigDeletion()
 			) {
+				// NOTE: This check is deprecated since 1.37, see T288759
 				$errors[] = [
 					'delete-toobig',
 					$wgLang->formatNum( $this->options->get( 'DeleteRevisionsLimit' ) )

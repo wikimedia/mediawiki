@@ -3,6 +3,7 @@
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -2544,6 +2545,67 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ Title::makeTitle( NS_HELP, 'Test', 'frag' ), 'Help:Test#frag' ],
 			[ Title::makeTitle( NS_TALK, 'Test', 'frag', 'phab' ), 'phab:Talk:Test#frag' ],
 		];
+	}
+
+	public function provideIsSamePageAs() {
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 1 );
+		yield '(PageIdentityValue) same text, title has ID 0' => [
+			$title,
+			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			true
+		];
+
+		$title = Title::makeTitle( 1, 'Bar_Baz' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) same text, PageIdentityValue has ID 0' => [
+			$title,
+			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			true
+		];
+
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different text, both IDs are 0' => [
+			$title,
+			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different namespace' => [
+			$title,
+			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo', '' );
+		$title->resetArticleID( 1 );
+		yield '(PageIdentityValue) different wiki, different ID' => [
+			$title,
+			new PageIdentityValue( 1, 0, 'Foo', 'bar' ),
+			false
+		];
+
+		$title = Title::makeTitle( 0, 'Foo', '' );
+		$title->resetArticleID( 0 );
+		yield '(PageIdentityValue) different wiki, both IDs are 0' => [
+			$title,
+			new PageIdentityValue( 0, 0, 'Foo', 'bar' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::isSamePageAs
+	 * @dataProvider provideIsSamePageAs
+	 */
+	public function testIsSamePageAs( Title $firstValue, $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->isSamePageAs( $secondValue )
+		);
 	}
 
 }

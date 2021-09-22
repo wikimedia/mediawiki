@@ -214,14 +214,12 @@ class PPFuzzTest {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		$user = new PPFuzzUser;
 		$user->mName = 'Fuzz';
 		$user->mFrom = 'name';
 		$user->ppfz_test = $this;
 
-		$wgUser = $user;
+		StubGlobalUser::setUser( $user );
 
 		$options = ParserOptions::newFromUser( $user );
 		$options->setTemplateCallback( [ $this, 'templateHook' ] );

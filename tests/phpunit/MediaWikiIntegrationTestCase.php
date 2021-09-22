@@ -259,7 +259,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
 			$page->doUserEditContent(
-				ContentHandler::makeContent( 'UTContent', $title ),
+				ContentHandler::makeContent(
+					'UTContent',
+					$title,
+					// Regardless of how the wiki is configure or what extensions are present,
+					// force this page to be a wikitext one.
+					CONTENT_MODEL_WIKITEXT
+				),
 				$user,
 				'UTPageSummary',
 				EDIT_NEW | EDIT_SUPPRESS_RC
@@ -1863,11 +1869,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( in_array( 'user', $tablesUsed ) ) {
 				TestUserRegistry::clear();
 
-				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
-				// @todo Should we start setting $wgUser to something nondeterministic
+				// Reset context user, which is probably 127.0.0.1, as its loaded
+				// data is probably not valid. This used to manipulate $wgUser but
+				// since that is deprecated tests are more likely to be relying on
+				// RequestContext::getMain() instead.
+				// @todo Should we start setting the user to something nondeterministic
 				//  to encourage tests to be updated to not depend on it?
-				global $wgUser;
-				$wgUser->clearInstanceCache( $wgUser->mFrom );
+				$user = RequestContext::getMain()->getUser();
+				$user->clearInstanceCache( $user->mFrom );
 			}
 
 			$this->truncateTables( $tablesUsed, $db );
