@@ -1146,39 +1146,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Gets the link to the wiki's privacy policy page.
-	 *
-	 * @deprecated since 1.36, use self::footerLink();
-	 * @return string HTML
-	 */
-	public function privacyLink() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->footerLink( 'privacy', 'privacypage' );
-	}
-
-	/**
-	 * Gets the link to the wiki's about page.
-	 *
-	 * @deprecated since 1.36, use self::footerLink();
-	 * @return string HTML
-	 */
-	public function aboutLink() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->footerLink( 'aboutsite', 'aboutpage' );
-	}
-
-	/**
-	 * Gets the link to the wiki's general disclaimers page.
-	 *
-	 * @deprecated since 1.36, use self::footerLink();
-	 * @return string HTML
-	 */
-	public function disclaimerLink() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->footerLink( 'disclaimers', 'disclaimerpage' );
-	}
-
-	/**
 	 * Return URL options for the 'edit page' link.
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
@@ -1278,20 +1245,6 @@ abstract class Skin extends ContextSource {
 	 */
 	public static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
 		$title = SpecialPage::getSafeTitleFor( $name, $subpage );
-		return $title->getLocalURL( $urlaction );
-	}
-
-	/**
-	 * @param string $name
-	 * @param string|array $urlaction
-	 * @return string
-	 * @deprecated since 1.36. Use Title methods directly.
-	 */
-	public static function makeUrl( $name, $urlaction = '' ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$title = Title::newFromText( $name );
-		self::checkTitle( $title, $name );
 		return $title->getLocalURL( $urlaction );
 	}
 
@@ -2101,41 +2054,6 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $toolbox;
-	}
-
-	/**
-	 * Get the suggested HTML for page status indicators: icons (or short text snippets) usually
-	 * displayed in the top-right corner of the page, outside of the main content.
-	 *
-	 * Your skin may implement this differently, for example by handling some indicator names
-	 * specially with a different UI. However, it is recommended to use a `<div class="mw-indicator"
-	 * id="mw-indicator-<id>" />` as a wrapper element for each indicator, for better compatibility
-	 * with extensions and user scripts.
-	 *
-	 * The raw data is available in `$this->data['indicators']` as an associative array (keys:
-	 * identifiers, values: contents) internally ordered by keys.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.36.
-	 * @param array $indicators
-	 * @return string HTML
-	 */
-	final public function getIndicatorsHTML( $indicators ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$out = "<div class=\"mw-indicators mw-body-content\">\n";
-		foreach ( $this->getIndicatorsData( $indicators ) as $indicatorData ) {
-			$out .= Html::rawElement(
-				'div',
-				[
-					'id' => $indicatorData['id'],
-					'class' => $indicatorData['class']
-				],
-				$indicatorData['html']
-			) . "\n";
-		}
-		$out .= "</div>\n";
-		return $out;
 	}
 
 	/**
