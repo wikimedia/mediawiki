@@ -44,7 +44,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	private $filename = '';
 
 	/**
-	 * @var File selected reference file, if present
+	 * @var File|null selected reference file, if present
 	 */
 	private $file = null;
 

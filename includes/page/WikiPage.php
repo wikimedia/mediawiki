@@ -134,7 +134,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	protected $mDataLoadedFrom = self::READ_NONE;
 
 	/**
-	 * @var RevisionRecord
+	 * @var RevisionRecord|null
 	 */
 	private $mLastRevision = null;
 

@@ -40,7 +40,7 @@ abstract class ApiQueryBase extends ApiBase {
 	private $mQueryModule, $mDb;
 
 	/**
-	 * @var SelectQueryBuilder
+	 * @var SelectQueryBuilder|null
 	 */
 	private $queryBuilder;
 

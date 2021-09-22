@@ -19,7 +19,7 @@ use Wikimedia\AtEase\AtEase;
  */
 class UploadedFileStream implements StreamInterface {
 
-	/** @var resource File handle */
+	/** @var resource|null File handle */
 	private $fp;
 
 	/** @var int|false|null File size. False if not set yet. */

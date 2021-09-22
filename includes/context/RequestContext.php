@@ -72,7 +72,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $authority;
 
 	/**
-	 * @var Language
+	 * @var Language|null
 	 */
 	private $lang;
 
@@ -92,7 +92,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $config;
 
 	/**
-	 * @var RequestContext
+	 * @var RequestContext|null
 	 */
 	private static $instance = null;
 

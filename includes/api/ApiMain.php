@@ -446,7 +446,7 @@ class ApiMain extends ApiBase {
 		]
 	];
 
-	/** @var ApiFormatBase */
+	/** @var ApiFormatBase|null */
 	private $mPrinter;
 
 	/** @var ApiModuleManager */

@@ -51,7 +51,7 @@ class HashRing implements Serializable {
 
 	/** @var array[] Non-empty position-ordered list of (position, location name) */
 	protected $baseRing;
-	/** @var array[] Non-empty position-ordered list of (position, location name) */
+	/** @var array[]|null Non-empty position-ordered list of (position, location name) */
 	protected $liveRing;
 
 	/** @var integer Overall number of node groups per server */

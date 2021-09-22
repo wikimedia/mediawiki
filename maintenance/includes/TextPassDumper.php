@@ -79,12 +79,12 @@ class TextPassDumper extends BackupDumper {
 	protected $spawnProc = false;
 
 	/**
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $spawnWrite;
 
 	/**
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $spawnRead;
 

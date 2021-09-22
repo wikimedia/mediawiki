@@ -27,7 +27,7 @@ use Wikimedia\Minify\CSSMin;
  * @since 1.25
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
-	/** @var array */
+	/** @var array|null */
 	protected $definition;
 
 	/**

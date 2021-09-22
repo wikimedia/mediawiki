@@ -34,7 +34,7 @@ class ClassCollector {
 	protected $classes;
 
 	/**
-	 * @var array Token from token_get_all() that started an expect sequence
+	 * @var array|null Token from token_get_all() that started an expect sequence
 	 */
 	protected $startToken;
 
@@ -44,7 +44,7 @@ class ClassCollector {
 	protected $tokens;
 
 	/**
-	 * @var array Class alias with target/name fields
+	 * @var array|null Class alias with target/name fields
 	 */
 	protected $alias;
 
