@@ -3,12 +3,9 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -113,20 +110,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $expiryEnabled;
 
 	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
 	 * @var LinkBatchFactory
 	 */
 	private $linkBatchFactory;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
 
 	/**
 	 * @var string|null Maximum configured relative expiry.
@@ -145,10 +131,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
-	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param UserFactory $userFactory
-	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -159,10 +142,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		HookContainer $hookContainer,
-		LinkBatchFactory $linkBatchFactory,
-		UserFactory $userFactory,
-		TitleFactory $titleFactory
+		LinkBatchFactory $linkBatchFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -181,10 +161,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
-		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->userFactory = $userFactory;
-		$this->titleFactory = $titleFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -1451,26 +1428,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		// Hook expects User and Title, not UserIdentity and LinkTarget|PageIdentity
-		$userObj = $this->userFactory->newFromUserIdentity( $user );
-		if ( $title instanceof LinkTarget ) {
-			$titleObj = $this->titleFactory->castFromLinkTarget( $title );
-		} else {
-			// instanceof PageIdentity
-			$titleObj = $this->titleFactory->castFromPageIdentity( $title );
-		}
-		if ( !$this->hookRunner->onBeforeResetNotificationTimestamp(
-			$userObj, $titleObj, $force, $oldid )
-		) {
-			return false;
-		}
-		if ( !$userObj->equals( $user ) ) {
-			$user = $userObj;
-		}
-		if ( !$titleObj->equals( $title ) ) {
-			$title = $titleObj;
-		}
-
 		$item = null;
 		if ( $force != 'force' ) {
 			$item = $this->loadWatchedItem( $user, $title );
@@ -1519,8 +1476,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		);
 
 		// If the page is watched by the user (or may be watched), update the timestamp
+		// ActivityUpdateJob accepts both LinkTarget and PageReference
 		$job = new ActivityUpdateJob(
-			$titleObj,
+			$title,
 			[
 				'type'      => 'updateWatchlistNotification',
 				'userid'    => $user->getId(),
