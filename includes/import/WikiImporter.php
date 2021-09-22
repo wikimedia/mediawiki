@@ -53,16 +53,16 @@ class WikiImporter {
 	/** @var callable */
 	private $mUploadCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mRevisionCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mPageCallback;
 
 	/** @var callable|null */
 	private $mSiteInfoCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mPageOutCallback;
 
 	/** @var callable|null */
@@ -284,8 +284,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
@@ -299,8 +299,8 @@ class WikiImporter {
 	 * with the original title form (in case it's been overridden into a
 	 * local namespace), and a count of revisions.
 	 *
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
@@ -310,8 +310,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page revision is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
