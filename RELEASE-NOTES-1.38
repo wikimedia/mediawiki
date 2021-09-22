@@ -90,6 +90,9 @@ because of Phabricator reports.
   process.
 * The signature of PageUpdater::markAsRevert method was changed. It has never
   been used outside of MediaWiki core.
+* If you want to use interwiki titles with HTMLTitleTextField, you now need
+  to pass 'interwiki' => true. In 1.37, the default behavior was to let
+  interwiki title through by default, logging a deprecation warning.
 * …
 
 === Deprecations in 1.38 ===
