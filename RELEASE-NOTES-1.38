@@ -102,6 +102,8 @@ because of Phabricator reports.
   deprecated in favor of the ReadOnlyMode service.
 * Skin::getSkinStylePath has been hard deprecated. Direct string path
   should be used instead.
+* SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
+  deprecation warnings.
 * …
 
 === Other changes in 1.38 ===

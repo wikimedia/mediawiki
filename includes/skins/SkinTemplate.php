@@ -463,10 +463,12 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Get the HTML for the p-personal list
-	 * @deprecated since 1.35, use SkinTemplate::makePersonalToolsList()
+	 * @deprecated since 1.35, hard deprecated since 1.38
+	 * Use SkinTemplate::makePersonalToolsList() instead
 	 * @return string
 	 */
 	public function getPersonalToolsList() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->makePersonalToolsList();
 	}
 
