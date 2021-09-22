@@ -180,7 +180,7 @@ class LogEventsList extends ContextSource {
 		if ( isset( $extraInputsString ) ) {
 			$htmlForm->addFooterText( Html::rawElement(
 				'div',
-				null,
+				[],
 				$extraInputsString
 			) );
 		}

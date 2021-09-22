@@ -132,7 +132,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		$caption = $this->customCaptions[$iwPrefix] ??
 			$this->specialSearch->msg( 'search-interwiki-default', $parsed['host'] )->escaped();
 
-		$searchLink = Html::rawElement( 'em', null,
+		$searchLink = Html::rawElement( 'em', [],
 			Html::rawElement( 'a', [ 'href' => $href, 'target' => '_blank' ], $caption )
 		);
 
