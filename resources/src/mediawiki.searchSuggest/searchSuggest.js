@@ -385,7 +385,8 @@
 			$region: $searchRegion
 		} );
 
-		$searchInput.closest( 'form' )
+		var $searchForm = $searchInput.closest( 'form' );
+		$searchForm
 			// track the form submit event
 			.on( 'submit', function () {
 				var context = $searchInput.data( 'suggestionsContext' );
@@ -398,9 +399,19 @@
 						context.data.$textbox.val()
 					)
 				} );
-			} )
-			// If the form includes any fallback fulltext search buttons, remove them
-			.find( '.mw-fallbackSearchButton' ).remove();
+			} );
+
+		// Check to see if the fulltext search button is placed before the go search button
+		if ( $searchForm.find( '.mw-fallbackSearchButton ~ .searchButton' ).length ) {
+			// Submitting the form with enter should always trigger "search within pages"
+			// for JavaScript capable browsers.
+			// If it is, remove the "full text search" fallback button.
+			// In skins, where the the "full text search" button
+			// precedes the "search by title" button, e.g. Vector this is done for
+			// non-JavaScript support. If the "search by title" button is first,
+			// and two search buttons are shown e.g. MonoBook no change is needed.
+			$searchForm.find( '.mw-fallbackSearchButton' ).remove();
+		}
 	} );
 
 }() );
