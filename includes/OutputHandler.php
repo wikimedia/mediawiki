@@ -41,13 +41,13 @@ class OutputHandler {
 	public static function handle( $s, $phase ) {
 		global $wgDisableOutputCompression, $wgMangleFlashPolicy;
 
-		$logger = LoggerFactory::getInstance( 'output' );
-		$entry = defined( 'MW_ENTRY_POINT' ) ? MW_ENTRY_POINT : 'unknown';
-		$size = strlen( $s );
-
+		// Don't send headers if output is being discarded (T278579)
 		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
-			// Don't send headers if output is being discarded (T278579)
-			$logger->debug( __METHOD__ . " entrypoint=$entry; size=$size; phase=$phase" );
+			$logger = LoggerFactory::getInstance( 'output' );
+			$logger->debug( __METHOD__ . " entrypoint={entry}; size={size}; phase=$phase", [
+				'entry' => MW_ENTRY_POINT,
+				'size' => strlen( $s ),
+			] );
 
 			return $s;
 		}
@@ -87,8 +87,6 @@ class OutputHandler {
 		) {
 			self::emitContentLength( strlen( $s ) );
 		}
-
-		$logger->debug( __METHOD__ . " entrypoint=$entry; size=$size; phase=$phase" );
 
 		return $s;
 	}
