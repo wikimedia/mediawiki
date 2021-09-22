@@ -100,6 +100,8 @@ because of Phabricator reports.
   GrantsLocalization services.
 * The global functions wfReadOnly() and wfReadOnlyReason() have been
   deprecated in favor of the ReadOnlyMode service.
+* Skin::getSkinStylePath has been hard deprecated. Direct string path
+  should be used instead.
 * …
 
 === Other changes in 1.38 ===

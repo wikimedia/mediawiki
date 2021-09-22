@@ -448,11 +448,21 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @param string $field
 	 */
 	protected function dropDefault( $table, $field ) {
+		$updateKey = "$table-$field-dropDefault";
+
+		if ( $this->updateRowExists( $updateKey ) ) {
+			return;
+		}
+
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== false ) {
-			$this->output( "Removing '$table.$field' default value\n" );
+			$this->output( "Removing '$table.$field' default value.\n" );
 			$table = $this->db->tableName( $table );
-			$this->db->query( "ALTER TABLE $table ALTER COLUMN $field DROP DEFAULT", __METHOD__ );
+			$ret = $this->db->query( "ALTER TABLE $table ALTER COLUMN $field DROP DEFAULT", __METHOD__ );
+
+			if ( $ret ) {
+				$this->insertUpdateRow( $updateKey );
+			}
 		}
 	}
 
@@ -467,7 +477,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function setDefault( $table, $field, $default ) {
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== $default ) {
-			$this->output( "Changing '$table.$field' default value\n" );
+			$this->output( "Changing '$table.$field' default value.\n" );
 			$table = $this->db->tableName( $table );
 			$this->db->query(
 				"ALTER TABLE $table ALTER COLUMN $field SET DEFAULT "

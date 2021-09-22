@@ -1227,6 +1227,8 @@ abstract class Skin extends ContextSource {
 	 * @throws MWException
 	 */
 	public function getSkinStylePath( $name ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		if ( $this->stylename === null ) {
 			$class = static::class;
 			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
