@@ -145,6 +145,13 @@
 	}
 }
 
+// Highlight section header when linking to a section, e.g. Special:Preferences#mw-prefsection-editing-preview.
+.oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+	width: 100%;
+	background-color: #eaf3ff;
+	outline: 4px solid #eaf3ff;
+}
+
 /* Make the "Basic information" section more compact */
 /* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
 #mw-htmlform-info {
