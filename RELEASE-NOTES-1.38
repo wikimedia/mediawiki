@@ -99,7 +99,12 @@ because of Phabricator reports.
   include Skin::privacyLink(), aboutLink(), disclaimerLink(), makeUrl()
   getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink(),
   makeVariablesScript(), getAllowedSkins(), getSkinNames() and
-  mainPageLink().
+  mainPageLink(). Use Skin::footerLink for footer links instead of
+  privacyLink, aboutLink and disclaimerLink. For others use
+  Skin::getIndicatorsData, ResourceLoaderSkinModule::getAvailableLogos,
+  Skin::prepareSubtitle,  Skin::getSearchPageTitle,
+  ResourceLoader::makeInlineScript(), SkinFactory::getAllowedSkins
+  or SkinFactory::getInstalledSkins().
 * …
 
 === Deprecations in 1.38 ===
