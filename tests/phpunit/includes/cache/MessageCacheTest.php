@@ -74,11 +74,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$wikiPage = new WikiPage( $title );
 		$content = ContentHandler::makeContent( $content, $title );
 
-		$updater = $wikiPage->newPageUpdater( $this->getTestSysop()->getUser() );
-		$updater->setContent(
-			SlotRecord::MAIN,
-			$content
-		);
+		$updater = $wikiPage->newPageUpdater( $this->getTestSysop()->getUser() )
+			->setContent( SlotRecord::MAIN, $content );
 		$summary = CommentStoreComment::newUnsavedComment( "$lang translation test case" );
 		$inserted = $updater->saveRevision( $summary );
 

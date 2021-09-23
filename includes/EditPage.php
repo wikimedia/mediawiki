@@ -2078,8 +2078,8 @@ class EditPage implements IEditObject {
 				$result['sectionanchor'] = $anchor;
 			}
 
-			$pageUpdater = $this->page->newPageUpdater( $user );
-			$pageUpdater->setContent( SlotRecord::MAIN, $content );
+			$pageUpdater = $this->page->newPageUpdater( $user )
+				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
@@ -2240,8 +2240,8 @@ class EditPage implements IEditObject {
 				return Status::newGood( self::AS_CONFLICT_DETECTED )->setOK( false );
 			}
 
-			$pageUpdater = $this->page->newPageUpdater( $user );
-			$pageUpdater->setContent( SlotRecord::MAIN, $content );
+			$pageUpdater = $this->page->newPageUpdater( $user )
+				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)

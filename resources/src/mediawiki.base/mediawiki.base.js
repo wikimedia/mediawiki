@@ -95,7 +95,6 @@ function Message( map, key, parameters ) {
 	this.map = map;
 	this.key = key;
 	this.parameters = parameters || [];
-	return this;
 }
 
 Message.prototype = {
@@ -644,6 +643,16 @@ mw.html = {
 	Raw: function ( value ) {
 		this.value = value;
 	}
+};
+
+/**
+ * Get the names of all registered ResourceLoader modules.
+ *
+ * @member mw.loader
+ * @return {string[]}
+ */
+mw.loader.getModuleNames = function () {
+	return Object.keys( mw.loader.moduleRegistry );
 };
 
 /**
