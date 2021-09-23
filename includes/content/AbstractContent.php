@@ -535,24 +535,30 @@ abstract class AbstractContent implements Content {
 			$options = ParserOptions::newCanonical( 'canonical' );
 		}
 
-		$po = new ParserOutput();
-		$options->registerWatcher( [ $po, 'recordOption' ] );
+		$output = new ParserOutput();
+		$options->registerWatcher( [ $output, 'recordOption' ] );
 
 		if ( Hooks::runner()->onContentGetParserOutput(
-			$this, $title, $revId, $options, $generateHtml, $po )
+			$this, $title, $revId, $options, $generateHtml, $output )
 		) {
 			// Save and restore the old value, just in case something is reusing
 			// the ParserOptions object in some weird way.
 			$oldRedir = $options->getRedirectTarget();
 			$options->setRedirectTarget( $this->getRedirectTarget() );
-			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $output );
+			MediaWikiServices::getInstance()->get( '_ParserObserver' )->notifyParse(
+				$title,
+				$revId,
+				$options,
+				$output
+			);
 			$options->setRedirectTarget( $oldRedir );
 		}
 
-		Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
+		Hooks::runner()->onContentAlterParserOutput( $this, $title, $output );
 		$options->registerWatcher( null );
 
-		return $po;
+		return $output;
 	}
 
 	/**

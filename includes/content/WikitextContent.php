@@ -25,7 +25,6 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -41,11 +40,6 @@ class WikitextContent extends TextContent {
 	 * @var string[] flags set by PST
 	 */
 	private $preSaveTransformFlags = [];
-
-	/**
-	 * @var string|null Stack trace of the previous parse
-	 */
-	private $previousParseStackTrace = null;
 
 	/**
 	 * @stable to call
@@ -300,28 +294,6 @@ class WikitextContent extends TextContent {
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		$stackTrace = ( new RuntimeException() )->getTraceAsString();
-		if ( $this->previousParseStackTrace ) {
-			// NOTE: there may be legitimate changes to re-parse the same WikiText content,
-			// e.g. if predicted revision ID for the REVISIONID magic word mismatched.
-			// But that should be rare.
-			$logger = LoggerFactory::getInstance( 'DuplicateParse' );
-			$logger->debug(
-				__METHOD__ . ': Possibly redundant parse!',
-				[
-					'title' => $title->getPrefixedDBkey(),
-					'rev' => $revId,
-					'options-hash' => $options->optionsHash(
-						ParserOptions::allCacheVaryingOptions(),
-						$title
-					),
-					'trace' => $stackTrace,
-					'previous-trace' => $this->previousParseStackTrace,
-				]
-			);
-		}
-		$this->previousParseStackTrace = $stackTrace;
-
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $text, $title, $options, true, true, $revId );
