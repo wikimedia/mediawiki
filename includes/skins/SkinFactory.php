@@ -161,4 +161,17 @@ class SkinFactory {
 	public function getInstalledSkins() {
 		return $this->displayNames;
 	}
+
+	/**
+	 * Return options provided for a given skin name
+	 *
+	 * @since 1.38
+	 * @param string $name Name of the skin you want options from
+	 * @return array Skin options passed into constructor
+	 */
+	public function getSkinOptions( string $name ): array {
+		$skin = $this->makeSkin( $name );
+		$options = $skin->getOptions();
+		return $options;
+	}
 }
