@@ -77,7 +77,7 @@
 		"zordius/lightncandy": "1.2.5"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.4",
+		"composer/spdx-licenses": "1.5.5",
 		"doctrine/dbal": "2.13.3||3.1.2",
 		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
