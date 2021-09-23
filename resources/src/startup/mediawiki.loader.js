@@ -11,7 +11,6 @@
 
 	var StringSet,
 		store,
-		loader,
 		hasOwn = Object.hasOwnProperty;
 
 	function defineFallbacks() {
@@ -351,7 +350,7 @@
 	 */
 	function allReady( modules ) {
 		for ( var i = 0; i < modules.length; i++ ) {
-			if ( loader.getState( modules[ i ] ) !== 'ready' ) {
+			if ( mw.loader.getState( modules[ i ] ) !== 'ready' ) {
 				return false;
 			}
 		}
@@ -381,7 +380,7 @@
 	 */
 	function anyFailed( modules ) {
 		for ( var i = 0; i < modules.length; i++ ) {
-			var state = loader.getState( modules[ i ] );
+			var state = mw.loader.getState( modules[ i ] );
 			if ( state === 'error' || state === 'missing' ) {
 				return modules[ i ];
 			}
@@ -697,7 +696,7 @@
 			var fileName = resolveRelativePath( moduleName, basePath );
 			if ( fileName === null ) {
 				// Not a relative path, so it's a module name
-				return loader.require( moduleName );
+				return mw.loader.require( moduleName );
 			}
 
 			if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
@@ -767,7 +766,7 @@
 		pendingRequests.push( function () {
 			// Keep in sync with execute()/runScript().
 			if ( moduleName !== 'jquery' ) {
-				window.require = loader.require;
+				window.require = mw.loader.require;
 				window.module = registry[ moduleName ].module;
 			}
 			addScript( src, function () {
@@ -884,7 +883,7 @@
 			}
 		} );
 
-		loader.work();
+		mw.loader.work();
 	}
 
 	/**
@@ -941,7 +940,7 @@
 					} else {
 						// Pass jQuery twice so that the signature of the closure which wraps
 						// the script can bind both '$' and 'jQuery'.
-						script( window.$, window.$, loader.require, registry[ module ].module );
+						script( window.$, window.$, mw.loader.require, registry[ module ].module );
 					}
 					markModuleReady();
 				} else if ( typeof script === 'object' && script !== null ) {
@@ -1256,7 +1255,7 @@
 							modules[ i ].length + 3; // '%7C'.length == 3
 
 					// If the url would become too long, create a new one, but don't create empty requests
-					if ( currReqModules.length && l + bytesAdded > loader.maxQueryLength ) {
+					if ( currReqModules.length && l + bytesAdded > mw.loader.maxQueryLength ) {
 						// Dispatch what we've got...
 						doRequest();
 						// .. and start again.
@@ -1372,9 +1371,7 @@
 
 	/* Public Members */
 
-	// We use a local variable `loader` so that its easier to access, but also need to set
-	// this as mw.loader so its exported - combine the two
-	mw.loader = loader = {
+	mw.loader = {
 		/**
 		 * The module registry is exposed as an aid for debugging and inspecting page
 		 * state; it is not a public interface for modifying the registry.
@@ -1426,7 +1423,7 @@
 				var module = queue[ q ];
 				// Only consider modules which are the initial 'registered' state,
 				// and ignore duplicates
-				if ( loader.getState( module ) === 'registered' &&
+				if ( mw.loader.getState( module ) === 'registered' &&
 					!batch.has( module )
 				) {
 					// Progress the state machine
@@ -1594,7 +1591,7 @@
 				version = split.version;
 			// Automatically register module
 			if ( !( name in registry ) ) {
-				loader.register( name );
+				mw.loader.register( name );
 			}
 			// Check for duplicate implementation
 			if ( registry[ name ].script !== undefined ) {
@@ -1671,7 +1668,7 @@
 		state: function ( states ) {
 			for ( var module in states ) {
 				if ( !( module in registry ) ) {
-					loader.register( module );
+					mw.loader.register( module );
 				}
 				setAndPropagate( module, states[ module ] );
 			}
@@ -1705,7 +1702,7 @@
 		 */
 		require: function ( moduleName ) {
 			// Only ready modules can be required
-			if ( loader.getState( moduleName ) !== 'ready' ) {
+			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
 				// Module may've forgotten to declare a dependency
 				throw new Error( 'Module "' + moduleName + '" is not loaded' );
 			}
@@ -1765,7 +1762,7 @@
 
 	// We use a local variable `store` so that its easier to access, but also need to set
 	// this in mw.loader so its exported - combine the two
-	loader.store = store = {
+	mw.loader.store = store = {
 		// Whether the store is in use on this page.
 		enabled: null,
 
