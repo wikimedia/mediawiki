@@ -17,6 +17,16 @@
 
 		tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
+		// Support: Chrome
+		// https://bugs.chromium.org/p/chromium/issues/detail?id=1252507
+		//
+		// Infusing the tabs above involves detaching all the tabs' content from the DOM momentarily,
+		// which causes the :target selector (used in mediawiki.special.preferences.styles.ooui.less)
+		// not to match anything inside the tabs in Chrome. Twiddling location.href makes it work.
+		//
+		// eslint-disable-next-line no-self-assign
+		location.href = location.href;
+
 		tabs.$element.addClass( 'mw-prefs-tabs-infused' );
 
 		function enhancePanel( panel ) {
