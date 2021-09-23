@@ -27,6 +27,9 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Changed configuration ====
+* $wgMaxImageArea - This setting may now be set to false to disable size
+  checking before scaling. Extensions can still override its value by
+  using the BitmapHandlerCheckImageArea hook.
 * …
 
 ==== Removed configuration ====
