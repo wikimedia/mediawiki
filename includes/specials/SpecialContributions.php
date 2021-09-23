@@ -235,8 +235,6 @@ class SpecialContributions extends IncludableSpecialPage {
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
 				$limit = $limits[ IP::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
 				$out->addWikiMsg( 'sp-contributions-outofrange', $limit );
-			} elseif ( !$pager->getNumRows() ) {
-				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
 				// @todo We just want a wiki ID here, not a "DB domain", but
 				// current status of MediaWiki conflates the two. See T235955.
@@ -247,21 +245,24 @@ class SpecialContributions extends IncludableSpecialPage {
 					$poolKey .= 'u:' . $this->getUser()->getId();
 				}
 				$work = new PoolCounterWorkViaCallback( 'SpecialContributions', $poolKey, [
-					'doWork' => function () use ( $pager, $out ) {
-						# Show a message about replica DB lag, if applicable
-						$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-						$lag = $lb->safeGetLag( $pager->getDatabase() );
-						if ( $lag > 0 ) {
-							$out->showLagWarning( $lag );
-						}
+					'doWork' => function () use ( $pager, $out, $target ) {
+						if ( !$pager->getNumRows() ) {
+							$out->addWikiMsg( 'nocontribs', $target );
+						} else {
+							# Show a message about replica DB lag, if applicable
+							$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
+							if ( $lag > 0 ) {
+								$out->showLagWarning( $lag );
+							}
 
-						$output = $pager->getBody();
-						if ( !$this->including() ) {
-							$output = '<p>' . $pager->getNavigationBar() . '</p>' .
-								$output .
-								'<p>' . $pager->getNavigationBar() . '</p>';
+							$output = $pager->getBody();
+							if ( !$this->including() ) {
+								$output = $pager->getNavigationBar() .
+									$output .
+									$pager->getNavigationBar();
+							}
+							$out->addHTML( $output );
 						}
-						$out->addHTML( $output );
 					},
 					'error' => function () use ( $out ) {
 						$msg = $this->getUser()->isAnon()
