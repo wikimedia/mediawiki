@@ -534,17 +534,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * URL to the default square logo (1x key)
-	 *
-	 * @deprecated since 1.36, please use ResourceLoaderSkinModule::getAvailableLogos
-	 * @return string
-	 */
-	protected function getLogo() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
-	}
-
-	/**
 	 * @return string HTML
 	 */
 	public function getCategoryLinks() {
@@ -814,16 +803,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.36 use Skin::prepareSubtitle instead
-	 * @param OutputPage|null $out Defaults to $this->getOutput() if left as null (unused)
-	 * @return string
-	 */
-	public function subPageSubtitle( $out ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->subPageSubtitleInternal();
-	}
-
-	/**
 	 * @return string
 	 */
 	private function subPageSubtitleInternal() {
@@ -877,17 +856,6 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $subpages;
-	}
-
-	/**
-	 * @deprecated since 1.36.
-	 * @return string
-	 */
-	protected function getSearchLink() {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$searchPage = $this->getSearchPageTitle();
-		return $searchPage->getLocalURL();
 	}
 
 	/**
@@ -1038,24 +1006,6 @@ abstract class Skin extends ContextSource {
 			}
 		}
 		return $html;
-	}
-
-	/**
-	 * Gets the link to the wiki's main page.
-	 *
-	 * @deprecated since 1.36
-	 * @return string
-	 */
-	public function mainPageLink() {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$s = $linkRenderer->makeKnownLink(
-			Title::newMainPage(),
-			$this->msg( 'mainpage' )->text()
-		);
-
-		return $s;
 	}
 
 	/**
