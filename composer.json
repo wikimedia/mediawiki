@@ -21,7 +21,7 @@
 	},
 	"prefer-stable": true,
 	"require": {
-		"composer/semver": "3.2.4",
+		"composer/semver": "3.2.5",
 		"cssjanus/cssjanus": "2.1.0",
 		"ext-ctype": "*",
 		"ext-dom": "*",
