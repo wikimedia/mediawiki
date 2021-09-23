@@ -315,7 +315,7 @@
 			link,
 			{
 				tagName: 'LI',
-				attributes: { id: 't-foo' },
+				attributes: { id: 't-foo', class: 'mw-list-item mw-list-item-js' },
 				contents: [
 					{
 						tagName: 'A',
@@ -343,7 +343,7 @@
 			link,
 			{
 				tagName: 'LI',
-				attributes: { id: 't-foo' },
+				attributes: { id: 't-foo', class: 'mw-list-item mw-list-item-js' },
 				contents: [
 					{
 						tagName: 'A',

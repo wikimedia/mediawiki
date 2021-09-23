@@ -1,7 +1,8 @@
 'use strict';
 
 var util,
-	config = require( './config.json' );
+	config = require( './config.json' ),
+	portletLinkOptions = require( './portletLinkOptions.json' );
 
 require( './jquery.accessKeyLabel.js' );
 
@@ -359,7 +360,22 @@ util = {
 		// Setup the anchor tag and set any the properties
 		link = document.createElement( 'a' );
 		link.href = href;
-		link.textContent = text;
+
+		var linkChild = document.createTextNode( text );
+		var i = portletLinkOptions[ 'text-wrapper' ].length;
+		// Wrap link using text-wrapper option if provided
+		// Iterate backward since the wrappers are declared from outer to inner,
+		// and we build it up from the inside out.
+		while ( i-- ) {
+			var wrapper = portletLinkOptions[ 'text-wrapper' ][ i ];
+			var wrapperElement = document.createElement( wrapper.tag );
+			if ( wrapper.attributes ) {
+				$( wrapperElement ).attr( wrapper.attributes );
+			}
+			wrapperElement.appendChild( linkChild );
+			linkChild = wrapperElement;
+		}
+		link.appendChild( linkChild );
 
 		if ( tooltip ) {
 			link.title = tooltip;
@@ -372,7 +388,8 @@ util = {
 		util.showPortlet( portletId );
 
 		item = $( '<li>' ).append( link )[ 0 ];
-
+		// mw-list-item-js distinguishes portlet links added via javascript and the server
+		item.className = 'mw-list-item mw-list-item-js';
 		if ( id ) {
 			item.id = id;
 		}
