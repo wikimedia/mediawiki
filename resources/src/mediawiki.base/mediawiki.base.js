@@ -646,6 +646,16 @@ mw.html = {
 };
 
 /**
+ * Get the names of all registered ResourceLoader modules.
+ *
+ * @member mw.loader
+ * @return {string[]}
+ */
+mw.loader.getModuleNames = function () {
+	return Object.keys( mw.loader.moduleRegistry );
+};
+
+/**
  * Execute a function after one or more modules are ready.
  *
  * Use this method if you need to dynamically control which modules are loaded
