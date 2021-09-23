@@ -1034,10 +1034,10 @@ interface IDatabase {
 	 * @code
 	 *     $sql = $db->makeList( [
 	 *         'rev_page' => $id,
-	 *         $db->makeList( [ 'rev_minor' => 1, 'rev_len' < 500 ], $db::LIST_OR ] )
+	 *         $db->makeList( [ 'rev_minor' => 1, 'rev_len < 500' ], $db::LIST_OR )
 	 *     ], $db::LIST_AND );
 	 * @endcode
-	 * This would set $sql to "rev_page = '$id' AND (rev_minor = '1' OR rev_len < '500')"
+	 * This would set $sql to "rev_page = '$id' AND (rev_minor = 1 OR rev_len < 500)"
 	 *
 	 * @param array $a Containing the data
 	 * @param int $mode IDatabase class constant:
