@@ -285,6 +285,12 @@ class SkinTemplate extends Skin {
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
 			'data-logos' => $this->getLogoData(),
+
+			// Boolean values
+			'is-anon' => $this->getUser()->isAnon(),
+			'is-article' => $this->getOutput()->isArticle(),
+			'is-mainpage' => $this->getTitle()->isMainPage(),
+			'is-specialpage' => $this->getTitle()->isSpecialPage(),
 		] + $this->getPortletsTemplateData() + $this->getFooterTemplateData();
 	}
 
