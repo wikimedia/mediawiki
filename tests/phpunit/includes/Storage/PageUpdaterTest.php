@@ -170,8 +170,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
 
 		// re-edit with same content - should be a "null-edit"
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, $content );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, $content );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'to to re-edit' );
 		$rev = $updater->saveRevision( $summary );
@@ -266,8 +266,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $rc, 'RecentChange' );
 
 		// re-edit
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 're-edit' );
 		$updater->saveRevision( $summary );
@@ -278,8 +278,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$topRevisionId = $updater->getNewRevision()->getId();
 
 		// perform a null edit
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 		$summary = CommentStoreComment::newUnsavedComment( 'null edit' );
 		$updater->saveRevision( $summary );
 
@@ -310,21 +310,21 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$summary = CommentStoreComment::newUnsavedComment( '1' );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
 		$updater->saveRevision( $summary );
 		$revId1 = $updater->getNewRevision()->getId();
 
 		$summary = CommentStoreComment::newUnsavedComment( '2' );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( '2' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( '2' ) );
 		$updater->saveRevision( $summary );
 		$revId2 = $updater->getNewRevision()->getId();
 
 		// Perform a rollback
-		$updater = $page->newPageUpdater( $this->getTestSysop()->getUser() );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( '1' ) );
-		$updater->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId1 );
+		$updater = $page->newPageUpdater( $this->getTestSysop()->getUser() )
+			->setContent( SlotRecord::MAIN, new TextContent( '1' ) )
+			->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId1 );
 		$summary = CommentStoreComment::newUnsavedComment( 'revert' );
 		$updater->saveRevision( $summary );
 
@@ -465,8 +465,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// start editing non-existing page
 		$page = WikiPage::factory( $title );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 
@@ -570,8 +570,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// update with EDIT_NEW flag should fail
 		$summary = CommentStoreComment::newUnsavedComment( 'create?!' );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 		$status = $updater->getStatus();
 
@@ -591,11 +591,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// start editing non-existing page
 		$page = WikiPage::factory( $title );
-		$updater = $page->newPageUpdater( $user );
 
 		// plain text content should fail in aux slot (the main slot doesn't care)
-		$updater->setContent( 'main', new TextContent( 'Main Content' ) );
-		$updater->setContent( 'aux', new TextContent( 'Aux Content' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( 'main', new TextContent( 'Main Content' ) )
+			->setContent( 'aux', new TextContent( 'Aux Content' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
 		$updater->saveRevision( $summary, EDIT_UPDATE );
@@ -648,8 +648,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Create page
 		$page = WikiPage::factory( $title );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', new TextContent( 'Content 1' ) );
+		$updater = $page->newPageUpdater( $user )
+			->setContent( 'main', new TextContent( 'Content 1' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 

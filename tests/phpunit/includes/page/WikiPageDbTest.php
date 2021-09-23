@@ -2057,8 +2057,8 @@ more stuff
 		$slotsUpdate = new revisionSlotsUpdate();
 		$slotsUpdate->modifyContent( SlotRecord::MAIN, $content );
 
-		$updater = $page->newPageUpdater( $user, $slotsUpdate );
-		$updater->setContent( SlotRecord::MAIN, $content );
+		$updater = $page->newPageUpdater( $user, $slotsUpdate )
+			->setContent( SlotRecord::MAIN, $content );
 		$revision = $updater->saveRevision(
 			CommentStoreComment::newUnsavedComment( 'test' ),
 			EDIT_NEW

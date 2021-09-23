@@ -62,8 +62,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 
-		$updater = $page->newPageUpdater( $performer );
-		$updater->setContent( 'main', $content );
+		$updater = $page->newPageUpdater( $performer )
+			->setContent( 'main', $content );
 
 		$updater->saveRevision( CommentStoreComment::newUnsavedComment( "testing" ) );
 		if ( !$updater->wasSuccessful() ) {
