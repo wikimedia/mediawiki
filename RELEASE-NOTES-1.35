@@ -29,6 +29,8 @@ THIS IS NOT A RELEASE YET
 * (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
 * (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
   table scan.
+* (T284419, CVE-2021-41800) SECURITY: fix PoolCounter protection of
+  Special:Contributions.
 
 == MediaWiki 1.35.3 ==
 
