@@ -97,7 +97,8 @@ because of Phabricator reports.
   interwiki title through by default, logging a deprecation warning.
 * Several Skin methods, hard deprecated in 1.36, have been removed. These
   include Skin::privacyLink(), aboutLink(), disclaimerLink(), makeUrl()
-  getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink() and
+  getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink(),
+  makeVariablesScript(), getAllowedSkins(), getSkinNames() and
   mainPageLink().
 * …
 
