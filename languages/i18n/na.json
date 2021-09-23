@@ -4,7 +4,8 @@
 			"Belgian man",
 			"CdaMVvWgS",
 			"MinecraftAustralia",
-			"Node ue"
+			"Node ue",
+			"Tok Pisin"
 		]
 	},
 	"sunday": "Tondak",
@@ -34,6 +35,7 @@
 	"showtoc": "oduwen",
 	"hidetoc": "ewewin",
 	"nstab-main": "Peij",
+	"nstab-image": "Tamnei",
 	"nstab-help": "Ipuok",
 	"mainpage-nstab": "Bwiema peij",
 	"error": "Dairinaiya",
@@ -55,6 +57,7 @@
 	"hist": "eka",
 	"hide": "witsit imin gogoro",
 	"show": "oduwen",
+	"file-anchor-link": "Tamnei",
 	"randompage": "Tamo peij",
 	"move": "Memori",
 	"allpagessubmit": "nuwa ko",
