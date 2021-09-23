@@ -249,15 +249,6 @@ class UserOptionsManager extends UserOptionsLookup {
 				}
 			}
 		}
-
-		// TODO: Deprecate passing full user to the hook
-		$this->hookRunner->onUserResetAllOptions(
-			$this->userFactory->newFromUserIdentity( $user ),
-			$newOptions,
-			$oldOptions,
-			$resetKinds
-		);
-
 		$this->modifiedOptions[$this->getCacheKey( $user )] = $newOptions;
 	}
 
@@ -427,53 +418,29 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		$userKey = $this->getCacheKey( $user );
 		$modifiedOptions = $this->modifiedOptions[$userKey] ?? [];
-		$originalOptions = $this->loadOriginalOptions( $user, self::READ_LATEST );
+		$originalOptions = $this->loadOriginalOptions( $user );
 		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions, $originalOptions ) ) {
 			return false;
 		}
 
-		// TODO: only needed for old hook.
-		$optionsToSave = array_merge( $originalOptions, $modifiedOptions );
-		// Allow hooks to abort, for instance to save to a global profile.
-		// Reset options to default state before saving.
-		if ( !$this->hookRunner->onUserSaveOptions(
-			$this->userFactory->newFromUserIdentity( $user ), $optionsToSave, $originalOptions )
-		) {
-			return false;
-		}
-
-		// Delete any rows that were in the DB but are not in $optionsToSave
-		$keysToDelete = array_keys(
-			array_diff_key( $this->optionsFromDb[$userKey], $optionsToSave )
-		);
-
-		// Update rows that have changed
-		$userId = $user->getId();
-		$rowsToInsert = []; // all the new preference rows
-		$rowsToPreserve = [];
-		foreach ( $optionsToSave as $key => $value ) {
+		$rowsToInsert = [];
+		$keysToDelete = [];
+		foreach ( $modifiedOptions as $key => $value ) {
 			// Don't store unchanged or default values
 			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key );
 			$oldValue = $this->optionsFromDb[$userKey][$key] ?? null;
-			if ( !$this->isValueEqual( $value, $defaultValue ) ) {
-				$row = [
-					'up_user' => $userId,
+			if ( $value === null || $this->isValueEqual( $value, $defaultValue ) ) {
+				$keysToDelete[] = $key;
+			} elseif ( !$this->isValueEqual( $value, $oldValue ) ) {
+				// Update by deleting and reinserting
+				$rowsToInsert[] = [
+					'up_user' => $user->getId(),
 					'up_property' => $key,
 					'up_value' => $value,
 				];
-				if ( !$this->isValueEqual( $value, $oldValue ) ) {
-					// Update by deleting and reinserting
-					$rowsToInsert[] = $row;
-					if ( $oldValue !== null ) {
-						$keysToDelete[] = $key;
-					}
-				} else {
-					// Preserve old value -- save the row for caching
-					$rowsToPreserve[] = $row;
+				if ( $oldValue !== null ) {
+					$keysToDelete[] = $key;
 				}
-			} elseif ( $oldValue !== null ) {
-				// Delete row that is being set to its default
-				$keysToDelete[] = $key;
 			}
 		}
 
@@ -487,7 +454,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			$dbw->delete(
 				'user_properties',
 				[
-					'up_user' => $userId,
+					'up_user' => $user->getId(),
 					'up_property' => $keysToDelete
 				],
 				__METHOD__
@@ -497,12 +464,6 @@ class UserOptionsManager extends UserOptionsLookup {
 			// Insert the new preference rows
 			$dbw->insert( 'user_properties', $rowsToInsert, __METHOD__, [ 'IGNORE' ] );
 		}
-
-		// We are storing these into the database, so that's what we will get if we fetch again
-		// So, set the just saved options to the cache, but don't prevent some other part of the
-		// code from locking the options again but saying READ_LATEST was used for caching.
-		$this->setOptionsFromDb( $user, self::READ_LATEST,
-			array_merge( $rowsToPreserve, $rowsToInsert ) );
 
 		// It's pretty cheap to recalculate new original later
 		// to apply whatever adjustments we apply when fetching from DB
@@ -669,10 +630,6 @@ class UserOptionsManager extends UserOptionsLookup {
 		// infinite recursion if the hook attempts to reload options
 		$this->originalOptionsCache[$userKey] = $options;
 		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
-		// TODO: Remove deprecated hook.
-		$this->hookRunner->onUserLoadOptions(
-			$this->userFactory->newFromUserIdentity( $user ), $options
-		);
 		$this->hookRunner->onLoadUserOptions( $user, $options );
 		$this->originalOptionsCache[$userKey] = $options;
 		return $options;
