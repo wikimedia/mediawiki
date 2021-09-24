@@ -9,6 +9,7 @@ THIS IS NOT A RELEASE YET
 * (T287526) Update wikimedia/minify to 2.2.4.
 * $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
   form of JavaScript, 'application/javascript', as well as previous MIME types.
+* The wikimedia/parsoid library has been upgraded from v0.13.0 to v0.13.1.
 
 == MediaWiki 1.36.1 ==
 
