@@ -27,7 +27,7 @@
  * @ingroup FileBackend
  */
 abstract class FSFileBackendList implements Iterator {
-	/** @var Iterator */
+	/** @var Iterator|null */
 	protected $iter;
 	/** @var string */
 	protected $lastError;

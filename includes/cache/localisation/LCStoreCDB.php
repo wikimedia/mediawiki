@@ -36,7 +36,7 @@ class LCStoreCDB implements LCStore {
 	/** @var Reader[]|false[] */
 	private $readers;
 
-	/** @var Writer */
+	/** @var Writer|null */
 	private $writer;
 
 	/** @var string Current language code */

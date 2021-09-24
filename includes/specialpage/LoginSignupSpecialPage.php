@@ -62,7 +62,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/** @var User FIXME another flag for passing data. */
 	protected $targetUser;
 
-	/** @var HTMLForm */
+	/** @var HTMLForm|null */
 	protected $authForm;
 
 	abstract protected function isSignup();

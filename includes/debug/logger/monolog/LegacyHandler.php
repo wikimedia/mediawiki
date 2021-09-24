@@ -62,7 +62,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 
 	/**
 	 * Log sink
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $sink;
 

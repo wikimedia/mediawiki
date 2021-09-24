@@ -192,7 +192,7 @@ class DifferenceEngine extends ContextSource {
 	/** @var bool Refresh the diff cache */
 	protected $mRefreshCache = false;
 
-	/** @var SlotDiffRenderer[] DifferenceEngine classes for the slots, keyed by role name. */
+	/** @var SlotDiffRenderer[]|null DifferenceEngine classes for the slots, keyed by role name. */
 	protected $slotDiffRenderers = null;
 
 	/**

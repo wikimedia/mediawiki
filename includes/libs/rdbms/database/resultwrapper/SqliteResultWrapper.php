@@ -7,9 +7,9 @@ use PDO;
 use PDOStatement;
 
 class SqliteResultWrapper extends ResultWrapper {
-	/** @var PDOStatement */
+	/** @var PDOStatement|null */
 	private $result;
-	/** @var ArrayIterator */
+	/** @var ArrayIterator|null */
 	private $rows;
 
 	/**

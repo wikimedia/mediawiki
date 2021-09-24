@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Static accessor class for site_stats and related things
  */
 class SiteStats {
-	/** @var stdClass */
+	/** @var stdClass|null */
 	private static $row;
 
 	/**

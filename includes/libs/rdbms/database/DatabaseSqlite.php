@@ -44,7 +44,7 @@ class DatabaseSqlite extends Database {
 	/** @var int The number of rows affected as an integer */
 	protected $lastAffectedRowCount;
 
-	/** @var PDO */
+	/** @var PDO|null */
 	protected $conn;
 
 	/** @var FSLockManager (hopefully on the same server as the DB) */

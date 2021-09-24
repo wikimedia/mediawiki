@@ -26,7 +26,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $preventClickjacking = false;
 
 	/**
-	 * @var File
+	 * @var File|null
 	 */
 	protected $mImg;
 

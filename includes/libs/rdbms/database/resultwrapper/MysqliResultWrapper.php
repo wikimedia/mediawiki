@@ -8,7 +8,7 @@ class MysqliResultWrapper extends ResultWrapper {
 	/** @var DatabaseMysqli */
 	private $db;
 
-	/** @var mysqli_result */
+	/** @var mysqli_result|null */
 	private $result;
 
 	/**

@@ -10,7 +10,7 @@ use stdClass;
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	/** @var stdClass[]|array[] */
+	/** @var stdClass[]|array[]|null */
 	protected $result;
 
 	/**
