@@ -753,6 +753,7 @@
 	"whatlinkshere-hideimages": "$1 Lahibali kpanjɔɣu soya",
 	"whatlinkshere-filters": "Tiɛrigu",
 	"ipboptions": "hawa dibaayi:2 hours,dahin yini:1 day,daba ata:3 days,bakɔi yini:1 week,bakɔi ayi:2 weeks,chiri yini:1 month,chira ata:3 months,chira ayobu:6 months,yuun yini:1 year,din ka yɛmbahinga:infinite",
+	"block-actions": "Bulɔku ŋmahanli",
 	"block-target": "ŋʋn so yuli,o bɛhagu shee kalinli",
 	"block-target-placeholder": "Ŋun su li yuli,1.1.1.42, or 1.1.1.42/16",
 	"infiniteblock": "Di ka tariga",
