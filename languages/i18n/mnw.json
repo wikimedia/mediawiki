@@ -1493,6 +1493,7 @@
 	"monthsall": "သီုဖအိုတ်",
 	"confirm_purge_button": "OK",
 	"confirm-watch-button": "OK",
+	"watchlist-expiry-options": "လမိုန်:infinite,၁ ပက်:1 week,၁ ဂိတု:1 month,၃ ဂိတု:3 months,၆ ဂိတု:6 months",
 	"confirm-unwatch-button": "OK",
 	"confirm-rollback-button": "OK",
 	"quotation-marks": "\"$1\"",
