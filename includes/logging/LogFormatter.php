@@ -94,11 +94,11 @@ class LogFormatter {
 	 * be included in page history or send to IRC feed. Links are replaced
 	 * with plaintext or with [[pagename]] kind of syntax, that is parsed
 	 * by page histories and IRC feeds.
-	 * @var string
+	 * @var bool
 	 */
 	protected $plaintext = false;
 
-	/** @var string */
+	/** @var bool */
 	protected $irctext = false;
 
 	/**
