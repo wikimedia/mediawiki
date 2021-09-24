@@ -300,3 +300,26 @@ figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
 		}
 	}
 }
+
+/* stylelint-disable selector-class-pattern */
+
+/**
+ * Avoid the need to calculate paddings individually
+ * https://stackoverflow.com/a/7310398
+ *
+ * FIXME: This would be better in mediawiki.page.gallery.styles,
+ * but let's wait until wgParserEnableLegacyMediaDOM is removed
+ */
+.mw-gallery-traditional .gallerybox .thumb {
+	&:before {
+		content: '';
+		vertical-align: middle;
+		display: inline-block;
+		height: 100%;
+	}
+
+	> * {
+		vertical-align: middle;
+		display: inline-block;
+	}
+}

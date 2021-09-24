@@ -176,13 +176,15 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						);
 					}
 
-					$thumbhtml = Html::rawElement( 'div', [
-						# Auto-margin centering for block-level elements. Needed
-						# now that we have video handlers since they may emit block-
-						# level elements as opposed to simple <img> tags. ref
-						# http://css-discuss.incutio.com/?page=CenteringBlockElement
-						'style' => "margin:{$vpad}px auto;",
-					], $thumbhtml );
+					if ( $enableLegacyMediaDOM ) {
+						$thumbhtml = Html::rawElement( 'div', [
+							# Auto-margin centering for block-level elements. Needed
+							# now that we have video handlers since they may emit block-
+							# level elements as opposed to simple <img> tags. ref
+							# http://css-discuss.incutio.com/?page=CenteringBlockElement
+							'style' => "margin:{$vpad}px auto;",
+						], $thumbhtml );
+					}
 
 					# Set both fixed width and min-height.
 					$width = $this->getThumbDivWidth( $thumb->getWidth() );
@@ -231,10 +233,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			# Can be safely removed if FF2 falls completely out of existence
 			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
 				. $gbWidth . '">'
-				. '<div style="width: ' . $gbWidth . '">'
+				. ( $enableLegacyMediaDOM ? '<div style="width: ' . $gbWidth . '">' : '' )
 				. $thumbhtml
 				. $galleryText
-				. "\n\t\t</div></li>";
+				. "\n\t\t"
+				. ( $enableLegacyMediaDOM ? '</div>' : '' )
+				. "</li>";
 		}
 		$output .= "\n</ul>";
 
