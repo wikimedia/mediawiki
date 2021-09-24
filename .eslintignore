@@ -21,5 +21,8 @@
 /**/i18n/**/*.json
 !/**/i18n/**/{en,qqq}.json
 
-# Default upload path
+# Ignore directories where MW may write internal files (T291674)
+# Ref $wgCacheDirectory (installer)
+# Ref $wgUploadDirectory (run-time default)
+/cache/
 /images/
