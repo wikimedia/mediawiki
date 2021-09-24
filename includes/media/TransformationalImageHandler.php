@@ -620,6 +620,11 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return (bool)$checkImageAreaHookResult;
 		}
 
+		if ( $wgMaxImageArea === false ) {
+			// Checking is disabled, fine to thumbnail
+			return true;
+		}
+
 		$srcWidth = $file->getWidth( $params['page'] );
 		$srcHeight = $file->getHeight( $params['page'] );
 

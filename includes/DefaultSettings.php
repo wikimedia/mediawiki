@@ -1403,8 +1403,14 @@ $wgMediaInTargetLanguage = true;
  * built-in image scalers, such as ImageMagick or GD. It is ignored for
  * JPEGs with ImageMagick, and when using the VipsScaler extension.
  *
+ * If set to false, MediaWiki will not check the size of the image before
+ * attempting to scale it. Extensions may still override this setting by
+ * using the BitmapHandlerCheckImageArea hook.
+ *
  * The default is 50 MB if decompressed to RGBA form, which corresponds to
  * 12.5 million pixels or 3500x3500.
+ *
+ * @var string|bool
  */
 $wgMaxImageArea = 1.25e7;
 
