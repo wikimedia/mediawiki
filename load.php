@@ -40,19 +40,21 @@ wfLoadMain();
 function wfLoadMain() {
 	global $wgRequest;
 
+	$services = MediaWikiServices::getInstance();
 	// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
 	// writes when getting database connections for ResourceLoader. (T192611)
-	MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->disableChronologyProtection();
+	$services->getDBLoadBalancerFactory()->disableChronologyProtection();
 
-	$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
+	$resourceLoader = $services->getResourceLoader();
 	$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
 
 	// Respond to ResourceLoader request
 	$resourceLoader->respond( $context );
 
 	// Append any visible profiling data in a manner appropriate for the Content-Type
-	Profiler::instance()->setAllowOutput();
-	Profiler::instance()->logDataPageOutputOnly();
+	$profiler = Profiler::instance();
+	$profiler->setAllowOutput();
+	$profiler->logDataPageOutputOnly();
 
 	$mediawiki = new MediaWiki();
 	$mediawiki->doPostOutputShutdown();

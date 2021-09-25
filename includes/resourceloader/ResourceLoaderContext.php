@@ -409,14 +409,17 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function getReqBase(): array {
 		$reqBase = [];
-		if ( $this->getLanguage() !== self::DEFAULT_LANG ) {
-			$reqBase['lang'] = $this->getLanguage();
+		$lang = $this->getLanguage();
+		if ( $lang !== self::DEFAULT_LANG ) {
+			$reqBase['lang'] = $lang;
 		}
-		if ( $this->getSkin() !== self::DEFAULT_SKIN ) {
-			$reqBase['skin'] = $this->getSkin();
+		$skin = $this->getSkin();
+		if ( $skin !== self::DEFAULT_SKIN ) {
+			$reqBase['skin'] = $skin;
 		}
-		if ( $this->getDebug() !== self::DEBUG_OFF ) {
-			$reqBase['debug'] = strval( $this->getDebug() );
+		$debug = $this->getDebug();
+		if ( $debug !== self::DEBUG_OFF ) {
+			$reqBase['debug'] = strval( $debug );
 		}
 		return $reqBase;
 	}
