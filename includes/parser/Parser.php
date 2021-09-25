@@ -4338,7 +4338,6 @@ class Parser {
 			}
 
 			# HTML IDs must be case-insensitively unique for IE compatibility (T12721).
-			# @todo FIXME: We may be changing them depending on the current locale.
 			$arrayKey = strtolower( $safeHeadline );
 			if ( $fallbackHeadline === false ) {
 				$fallbackArrayKey = false;
