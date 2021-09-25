@@ -22,8 +22,10 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
-* $wgBrowserFormatDetection - This setting allows the enabling or disabling
-of automatic detection of possible phone numbers in a webpage in Safari on iOS.
+* $wgBrowserFormatDetection – This setting allows overriding browsers' automatic
+  detection and handling of formats. It's initially used to prevent auto-linking
+  of possible telephone numbers in wiki pages' output in Safari on iOS; this can
+  be re-enabled if you wish, or locally extended for other browsers' quirks.
 * …
 
 ==== Changed configuration ====
@@ -33,6 +35,11 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Removed configuration ====
+* $wgShellLocale - This setting has been removed as it was a flawed solution
+  to the problem of locale dependence, MediaWiki will now always set a locale
+  of C.UTF-8 or C and works around the remaining problems of the C locale by
+  not using escapeshellarg. This follows the direction of PHP 8.0, which sets
+  a locale of C by default instead of respecting LC_CTYPE.
 * …
 
 === New user-facing features in 1.38 ===
@@ -52,6 +59,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 
 ==== Changed external libraries ====
 * Updated wikimedia/purtle from 1.0.7 to 1.0.8
+* Updated wikimedia/shellbox from 2.0.0 to 2.1.0
 * …
 
 ===== Changed development-only external libraries =====

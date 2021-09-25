@@ -180,15 +180,6 @@
 	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">
 		<exclude-pattern>*/tests/phpunit/*</exclude-pattern>
 	</rule>
-	<rule ref="MediaWiki.Usage.ForbiddenFunctions.escapeshellarg">
-		<!--
-			Continue to allow existing violations, but enable the sniff to prevent
-			any new occurrences.
-		-->
-		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
-		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
-		<exclude-pattern>*/includes/shell/Shell\.php</exclude-pattern>
-	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--
 			Continue to allow existing violations, but enable the sniff to prevent
