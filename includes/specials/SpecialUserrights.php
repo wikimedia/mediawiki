@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
@@ -56,21 +57,27 @@ class UserrightsPage extends SpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		UserGroupManagerFactory $userGroupManagerFactory = null,
 		UserNameUtils $userNameUtils = null,
-		UserNamePrefixSearch $userNamePrefixSearch = null
+		UserNamePrefixSearch $userNamePrefixSearch = null,
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
 		// This class is extended and therefore falls back to global state - T263207
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 
 		// TODO don't hard code false, use interwiki domains. See T14518
 		$this->userGroupManager = ( $userGroupManagerFactory ?? $services->getUserGroupManagerFactory() )
@@ -598,7 +605,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if ( $dbDomain == '' ) {
-			$user = User::newFromName( $name );
+			$user = $this->userFactory->newFromName( $name );
 		} else {
 			$user = UserRightsProxy::newFromName( $dbDomain, $name );
 		}
