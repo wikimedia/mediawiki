@@ -22,8 +22,10 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
-* $wgBrowserFormatDetection - This setting allows the enabling or disabling
-of automatic detection of possible phone numbers in a webpage in Safari on iOS.
+* $wgBrowserFormatDetection – This setting allows overriding browsers' automatic
+  detection and handling of formats. It's initially used to prevent auto-linking
+  of possible telephone numbers in wiki pages' output in Safari on iOS; this can
+  be re-enabled if you wish, or locally extended for other browsers' quirks.
 * …
 
 ==== Changed configuration ====
