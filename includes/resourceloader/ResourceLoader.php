@@ -1505,7 +1505,7 @@ MESSAGE;
 	) {
 		// Optimisation: Transform dependency names into indexes when possible
 		// to produce smaller output. They are expanded by mw.loader.register on
-		// the other end using resolveIndexedDependencies().
+		// the other end.
 		$index = [];
 		foreach ( $modules as $i => &$module ) {
 			// Build module name index
