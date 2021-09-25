@@ -511,6 +511,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'ActorNormalization',
+				'UserIdentityLookup',
 			]
 		],
 		'Watchlist' => [
