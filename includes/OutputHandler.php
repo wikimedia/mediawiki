@@ -35,7 +35,7 @@ class OutputHandler {
 	 */
 	public static function handle( $s, $phase ) {
 		global $wgDisableOutputCompression, $wgMangleFlashPolicy;
-		if ( $phase | PHP_OUTPUT_HANDLER_CLEAN ) {
+		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
 			// Don't send headers if output is being discarded (T278579)
 			return $s;
 		}
