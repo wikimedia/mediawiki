@@ -2662,12 +2662,18 @@ class EditPage implements IEditObject {
 		} else {
 			$out->setDisplayTitle( $displayTitle );
 		}
+
+		// Enclose the title with an element. This is used on live preview to update the
+		// preview of the display title.
+		$displayTitle = Html::rawElement( 'span', [ 'id' => 'firstHeadingTitle' ], $displayTitle );
+
 		$out->setPageTitle( $this->context->msg( $msg, $displayTitle ) );
 
 		$config = $this->context->getConfig();
 
-		# Transmit the name of the message to JavaScript for live preview
-		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
+		# Transmit the name of the message to JavaScript. This was added for live preview.
+		# Live preview doesn't use this anymore. The variable is still transmitted because
+		# other scripts uses this variable.
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
 		] );
