@@ -1959,7 +1959,6 @@ MESSAGE;
 			'wgDBname' => $conf->get( 'DBname' ),
 			'wgWikiID' => WikiMap::getCurrentWikiId(),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
-			'wgCommentByteLimit' => null,
 			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
 			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
 		];
