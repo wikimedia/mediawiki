@@ -121,6 +121,7 @@ because of Phabricator reports.
   to pass 'interwiki' => true. In 1.37, the default behavior was to let
   interwiki title through by default, logging a deprecation warning.
 * The `UndeleteForm::undelete` hook, deprecated in 1.37, was removed.
+* The `jquery.mw-jump` ResourceLoader module was removed.
 * Several Skin methods, hard deprecated in 1.36, have been removed. These
   include Skin::privacyLink(), aboutLink(), disclaimerLink(), makeUrl()
   getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink(),
