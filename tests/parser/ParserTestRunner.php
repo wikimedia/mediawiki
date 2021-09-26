@@ -1795,7 +1795,7 @@ class ParserTestRunner {
 		$newContent = ContentHandler::makeContent( $text, $title );
 
 		$page = WikiPage::factory( $title );
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 
 		if ( $page->exists() ) {
 			$content = $page->getContent( RevisionRecord::RAW );

@@ -2052,7 +2052,7 @@ class EditPage implements IEditObject {
 
 		# Load the page data from the primary DB. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->page->loadPageData( 'fromdbmaster' );
+		$this->page->loadPageData( WikiPage::READ_LATEST );
 		$new = !$this->page->exists();
 
 		$flags = EDIT_AUTOSUMMARY |

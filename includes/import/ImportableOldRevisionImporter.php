@@ -87,7 +87,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		Title::clearCaches();
 
 		$page = $this->wikiPageFactory->newFromTitle( $importableRevision->getTitle() );
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 		if ( !$page->exists() ) {
 			// must create the page...
 			$pageId = $page->insertOn( $dbw );

@@ -1638,7 +1638,7 @@ more stuff
 	 * @param callable $assertions
 	 */
 	public function testNewFromRow( $row, $assertions ) {
-		$page = WikiPage::newFromRow( $row, 'fromdb' );
+		$page = WikiPage::newFromRow( $row, WikiPage::READ_NORMAL );
 		$assertions( $page, $this );
 	}
 
