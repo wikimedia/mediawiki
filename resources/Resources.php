@@ -1002,10 +1002,16 @@ return [
 	],
 	'mediawiki.Upload.BookletLayout' => [
 		'scripts' => [
+			'resources/src/mediawiki.Upload.BookletLayout/mw.widgets.StashedFileWidget.js',
 			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.js',
 		],
 		'styles' => [
 			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.css',
+		],
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.Upload.BookletLayout/mw.widgets.StashedFileWidget.less',
+			],
 		],
 		'dependencies' => [
 			'oojs-ui-core',
@@ -1015,10 +1021,10 @@ return [
 			'oojs-ui.styles.icons-editing-advanced',
 			'moment',
 			'mediawiki.Title',
+			'mediawiki.api',
 			'mediawiki.user',
 			'mediawiki.Upload',
 			'mediawiki.jqueryMsg',
-			'mediawiki.widgets.StashedFileWidget'
 		],
 		'messages' => [
 			'upload-form-label-infoform-title',
@@ -2809,20 +2815,6 @@ return [
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.widgets.StashedFileWidget' => [
-		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.StashedFileWidget.js',
-		],
-		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.StashedFileWidget.less',
-			],
-		],
-		'dependencies' => [
-			'mediawiki.api',
-			'oojs-ui-core',
-		],
 	],
 	'mediawiki.watchstar.widgets' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.watchstar.widgets",

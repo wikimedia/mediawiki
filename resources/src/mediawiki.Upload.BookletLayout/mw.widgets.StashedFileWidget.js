@@ -1,8 +1,8 @@
 /*!
  * MediaWiki Widgets - StashedFileWidget class.
  *
- * @copyright 2011-2016 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
+ * @copyright 2011-2016 MediaWiki Widgets Team and others; see mediawiki.widgets/AUTHORS.txt
+ * @license The MIT License (MIT); see mediawiki.widgets/LICENSE.txt
  */
 ( function () {
 
