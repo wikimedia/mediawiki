@@ -1462,8 +1462,10 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'Create the page'
 		);
 
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$otherUser = $this->getNonLoggedInTestUser();
-		$otherUser->setOption( 'watchlisttoken', '1234567890' );
+		$userOptionsManager->setOption( $otherUser, 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
 		$this->watchPages( $otherUser, [ $target ] );
@@ -1490,8 +1492,10 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams_wrongToken() {
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$otherUser = $this->getNonLoggedInTestUser();
-		$otherUser->setOption( 'watchlisttoken', '1234567890' );
+		$userOptionsManager->setOption( $otherUser, 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
 		$this->expectException( ApiUsageException::class );

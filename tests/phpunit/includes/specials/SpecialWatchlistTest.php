@@ -114,8 +114,9 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		$fauxRequest = new FauxRequest( $inputParams, /* $wasPosted= */ false );
 		$user = $this->getTestUser()->getUser();
 
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		foreach ( $preferences as $key => $value ) {
-			$user->setOption( $key, $value );
+			$userOptionsManager->setOption( $user, $key, $value );
 		}
 
 		$context->setRequest( $fauxRequest );
