@@ -418,6 +418,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'RevisionFactory',
 				'NamespaceInfo',
+				'UserFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 			]
@@ -444,6 +445,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserOptionsLookup',
+				'UserFactory',
 			]
 		],
 		'Listgrouprights' => [
@@ -477,6 +479,7 @@ class SpecialPageFactory {
 				'UserGroupManagerFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'UserFactory',
 			]
 		],
 		'EditWatchlist' => [
