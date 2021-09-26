@@ -125,6 +125,8 @@ because of Phabricator reports.
   GrantsLocalization services.
 * The global functions wfReadOnly() and wfReadOnlyReason() have been
   deprecated in favor of the ReadOnlyMode service.
+* PageProps::getInstance() has been deprecated. Use
+  MediaWikiServices::getPageProps() instead.
 * Skin::getSkinStylePath has been hard deprecated. Direct string path
   should be used instead.
 * SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
