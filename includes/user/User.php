@@ -2621,9 +2621,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param string $oname The option to set
 	 * @param mixed $val New value to set
-	 * @deprecated since 1.35 Use UserOptionsManager::setOption instead
+	 * @deprecated since 1.35, hard deprecated since 1.38
+	 * Use UserOptionsManager::setOption instead
 	 */
 	public function setOption( $oname, $val ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getUserOptionsManager()
 			->setOption( $this, $oname, $val );
@@ -2674,7 +2676,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		$token = MWCryptRand::generateHex( 40 );
-		$this->setOption( $oname, $token );
+		MediaWikiServices::getInstance()
+			->getUserOptionsManager()
+			->setOption( $this, $oname, $token );
 		return $token;
 	}
 

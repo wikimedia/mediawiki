@@ -525,7 +525,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
-		$user->setOption( 'showrollbackconfirmation', $rollbackEnabled );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'showrollbackconfirmation',
+			$rollbackEnabled
+		);
 
 		$this->assertSame( 0, Title::newFromText( $title )->getArticleID() );
 		$pageData = $this->insertPage( $title );

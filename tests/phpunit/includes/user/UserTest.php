@@ -445,6 +445,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testOptions() {
 		$this->hideDeprecated( 'User::getBoolOption' );
 		$this->hideDeprecated( 'User::getIntOption' );
+		$this->hideDeprecated( 'User::setOption' );
 		$this->setMwGlobals( [
 			'wgMaxArticleSize' => 2,
 		] );
@@ -493,6 +494,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAnonOptions() {
 		global $wgDefaultUserOptions;
+		$this->hideDeprecated( 'User::setOption' );
 		$this->user->setOption( 'userjs-someoption', 'test' );
 		$this->assertSame( $wgDefaultUserOptions['rclimit'], $this->user->getOption( 'rclimit' ) );
 		$this->assertSame( 'test', $this->user->getOption( 'userjs-someoption' ) );
@@ -2243,7 +2245,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
-		$user->setOption( 'prefershttps', $preference );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			$preference
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -2267,7 +2273,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
-		$user->setOption( 'prefershttps', true );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			true
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -2287,7 +2297,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
-		$user->setOption( 'prefershttps', false );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			false
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );

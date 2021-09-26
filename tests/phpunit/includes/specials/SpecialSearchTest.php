@@ -164,8 +164,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		if ( $opt === null ) {
 			return $u;
 		}
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		foreach ( $opt as $name => $value ) {
-			$u->setOption( $name, $value );
+			$userOptionsManager->setOption( $u, $name, $value );
 		}
 
 		return $u;
