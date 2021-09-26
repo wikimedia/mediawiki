@@ -24,6 +24,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
@@ -52,6 +53,9 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
@@ -64,6 +68,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * @param CommentStore $commentStore
 	 * @param RevisionFactory $revisionFactory
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 */
@@ -73,6 +78,7 @@ class SpecialDeletedContributions extends SpecialPage {
 		CommentStore $commentStore,
 		RevisionFactory $revisionFactory,
 		NamespaceInfo $namespaceInfo,
+		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch
 	) {
@@ -82,6 +88,7 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->commentStore = $commentStore;
 		$this->revisionFactory = $revisionFactory;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 	}
@@ -127,7 +134,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			return;
 		}
 
-		$userObj = User::newFromName( $target, false );
+		$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
 		if ( !$userObj ) {
 			$this->getForm();
 

@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -68,6 +69,9 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var ContribsPager|null */
 	private $pager = null;
 
@@ -81,6 +85,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory = null,
@@ -91,7 +96,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		NamespaceInfo $namespaceInfo = null,
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null,
-		UserOptionsLookup $userOptionsLookup = null
+		UserOptionsLookup $userOptionsLookup = null,
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( 'Contributions' );
 		// This class is extended and therefore falls back to global state - T269521
@@ -105,6 +111,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
 	public function execute( $par ) {
@@ -186,7 +193,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$id = 0;
 		if ( ExternalUserNames::isExternal( $target ) ) {
-			$userObj = User::newFromName( $target, false );
+			$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
@@ -200,7 +207,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
-			$userObj = User::newFromName( $nt->getText(), false );
+			$userObj = $this->userFactory->newFromName( $nt->getText(), UserFactory::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
