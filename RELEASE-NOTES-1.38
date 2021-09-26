@@ -421,6 +421,8 @@ generic `mediawiki.pager.styles`.
 * Access to all public properties in LinksUpdate was deprecated.
 * The global function wfWikiID(), deprecated since 1.35, now emits
   deprecation warnings.
+* AbstractBlock::getBy() now takes a wikiId as a parameter and emits
+  deprecation warnings in case of cross-wiki accesses.
 * The `button` parameter for `bindUpdateAriaExpandedOnInput` and
   `updateAriaExpanded` in checkboxHack.js have been deprecated.
   `bindToggleOnSpaceEnter` has also been deprecated in favor of
