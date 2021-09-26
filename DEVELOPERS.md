@@ -103,16 +103,6 @@ services:
 
 Done! The wiki should now be available for you at <http://localhost:8080>.
 
-#### Re-install
-
-To empty the wiki database and re-install any time:
-
-* Remove or rename the `LocalSettings.php` file.
-* Delete the `cache/sqlite` directory.
-* Re-run the "Install MediaWiki database" command.
-
-You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker-compose exec mediawiki php maintenance/update.php`.
-
 ## Usage
 
 ### Running commands
@@ -260,6 +250,35 @@ XDEBUG_CONFIG=client_host=192.168.42.34 client_port=9000 log=/tmp/xdebug.log
 
 This shouldn't be necessary for basic use cases, but see [the Xdebug settings
 documentation](https://xdebug.org/docs/all_settings) for available settings.
+
+### Stop or recreate environment
+
+Stop the environment, perhaps to reduce load when working on something
+else. This preserves the containers, to be restarted later quickly with
+the `docker-compose up -d` command.
+
+```sh
+docker-compose stop
+```
+
+Destroy and re-create the environment. This will delete the containers,
+including any logs, caches, and other modifications you may have made
+via the shell.
+
+```sh
+docker-compose down
+docker-compose up -d
+```
+
+### Re-install the database
+
+To empty the wiki database and re-install it:
+
+* Remove or rename the `LocalSettings.php` file.
+* Delete the `cache/sqlite` directory.
+* Re-run the "Install MediaWiki database" command.
+
+You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker-compose exec mediawiki php maintenance/update.php`.
 
 ## Troubleshooting
 
