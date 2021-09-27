@@ -121,6 +121,7 @@
 	"talk": "Nütramkawün",
 	"views": "Adngelün",
 	"toolbox": "Küdawpeyüm",
+	"cactions": "Zoy peam",
 	"imagepage": "Adkintun ad wülngiñ",
 	"mediawikipage": "Adkintun werkün wülngiñ",
 	"templatepage": "Adkintun adtükupeyüm wülngiñ",
@@ -635,5 +636,5 @@
 	"tags-edit": "Wirin",
 	"htmlform-selectorother-other": "Kakelu",
 	"rightsnone": "chemnorume",
-	"searchsuggest-search": "Kintun"
+	"searchsuggest-search": "Kintun {{SITENAME}} mew"
 }
