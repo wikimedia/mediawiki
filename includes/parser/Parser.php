@@ -89,7 +89,6 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
-	use DeprecationHelper;
 
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
@@ -239,10 +238,9 @@ class Parser {
 	private $mTplDomCache;
 
 	/**
-	 * @var User
-	 * @todo Please change to mUserIdentity when getUser will be removed
+	 * @var UserIdentity
 	 */
-	private $mUser; # User object; only used when doing pre-save transform
+	private $mUser;
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -434,7 +432,6 @@ class Parser {
 		TitleFormatter $titleFormatter,
 		HttpRequestFactory $httpRequestFactory
 	) {
-		$this->deprecatePublicProperty( 'mUser', '1.35', __CLASS__ );
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
 			// removed in 1.36; use a ParserFactory instead.
@@ -983,11 +980,7 @@ class Parser {
 	 * @since 1.17
 	 */
 	public function setUser( ?UserIdentity $user ) {
-		if ( $user ) {
-			$this->mUser = $this->userFactory->newFromUserIdentity( $user );
-		} else {
-			$this->mUser = $user;
-		}
+		$this->mUser = $user;
 	}
 
 	/**
@@ -1166,31 +1159,13 @@ class Parser {
 	}
 
 	/**
-	 * Get a User object either from $this->mUser, if set, or from the
-	 * ParserOptions object otherwise
-	 * @deprecated since 1.36. Use ::getUserIdentity instead.
-	 * Hard deprecated since 1.37.
-	 * @return User
-	 * @since 1.17
-	 */
-	public function getUser() {
-		wfDeprecated( __METHOD__, '1.36' );
-		if ( $this->mUser !== null ) {
-			return $this->mUser;
-		}
-		return $this->mOptions->getUser();
-	}
-
-	/**
-	 * Get a User object either from $this->mUser, if set, or from the
-	 * ParserOptions object otherwise
+	 * Get a user either from the user set on Parser if it's set,
+	 * or from the ParserOptions object otherwise.
+	 *
 	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity {
-		if ( $this->mUser !== null ) {
-			return $this->mUser;
-		}
-		return $this->getOptions()->getUserIdentity();
+		return $this->mUser ?? $this->getOptions()->getUserIdentity();
 	}
 
 	/**
@@ -4531,7 +4506,7 @@ class Parser {
 	 *
 	 * @param string $text The text to transform
 	 * @param PageReference $page the current article
-	 * @param UserIdentity $user The User object describing the current user
+	 * @param UserIdentity $user the current user
 	 * @param ParserOptions $options Parsing options
 	 * @param bool $clearState Whether to clear the parser state first
 	 * @return string The altered wiki markup
