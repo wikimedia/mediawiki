@@ -61,6 +61,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
 * Updated wikimedia/purtle from 1.0.7 to 1.0.8
 * Updated wikimedia/shellbox from 2.0.0 to 2.1.0
 * …
