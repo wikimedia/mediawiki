@@ -506,7 +506,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideMakeTitleValueSafe
-	 * @covers IP::sanitizeIP
 	 */
 	public function testMakeTitleValueSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
@@ -521,7 +520,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::makeTitleSafe
 	 * @covers Title::makeName
 	 * @covers Title::secureAndSplit
-	 * @covers IP::sanitizeIP
 	 */
 	public function testMakeTitleSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
