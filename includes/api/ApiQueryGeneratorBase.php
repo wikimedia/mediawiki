@@ -78,7 +78,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	/**
 	 * Overridden to set the generator param if in generator mode
 	 * @param string $paramName Parameter name
-	 * @param string|array $paramValue Parameter value
+	 * @param int|string|array $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
 		if ( $this->mGeneratorPageSet !== null ) {
