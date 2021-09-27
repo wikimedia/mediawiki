@@ -411,7 +411,19 @@ class PageArchive {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
 		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
 		$up = new UndeletePage( $page, $user );
-		$ret = $up->undelete( $timestamps, $comment, $fileVersions, $unsuppress, $tags );
+		$status = $up->undelete( $timestamps, $comment, $fileVersions, $unsuppress, $tags );
+		// BC with old return format
+		if ( $status->isGood() ) {
+			$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
+			$restoredFiles = $status->getValue()[UndeletePage::FILES_RESTORED];
+			if ( $restoredRevs === 0 && $restoredFiles === 0 ) {
+				$ret = false;
+			} else {
+				$ret = [ $restoredRevs, $restoredFiles, $comment ];
+			}
+		} else {
+			$ret = false;
+		}
 		$this->fileStatus = $up->getFileStatus();
 		$this->revisionStatus = $up->getRevisionStatus();
 		return $ret;
