@@ -79,6 +79,7 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.39 ===
+* PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
 * …
 
 === Other changes in 1.39 ===

@@ -56,7 +56,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * set in setUp().
 	 */
 	public function testGetSingleProperty() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
@@ -68,7 +68,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * set in setUp(). Using Title[].
 	 */
 	public function testGetSinglePropertyMultiplePages() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
 		$titles = [
@@ -87,7 +87,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * set in setUp(). Using TitleArray.
 	 */
 	public function testGetSinglePropertyMultiplePagesTitleArray() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
 		$rows = [
@@ -108,7 +108,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * were set in setUp().
 	 */
 	public function testGetMultiplePropertiesMultiplePages() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
 		$titles = [
@@ -142,7 +142,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * subset of the retrieved properties.
 	 */
 	public function testGetAllProperties() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$result = $pageProps->getAllProperties( $this->title1 );
 		$this->assertArrayHasKey( $page1ID, $result, "Found properties" );
@@ -157,7 +157,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * set in setUp(). See getAllProperties() above for more information.
 	 */
 	public function testGetAllPropertiesMultiplePages() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
 		$titles = [
@@ -184,7 +184,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * of the property should be returned.
 	 */
 	public function testSingleCache() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$value1 = $pageProps->getProperties( $this->title1, "property1" );
 		$this->setProperty( $page1ID, "property1", "another value" );
@@ -200,7 +200,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * new value of the properties should be returned.
 	 */
 	public function testMultiCache() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$properties1 = $pageProps->getAllProperties( $this->title1 );
 		$this->setProperty( $page1ID, "property1", "another value" );
@@ -218,7 +218,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 * returned.
 	 */
 	public function testClearCache() {
-		$pageProps = PageProps::getInstance();
+		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$pageProps->getProperties( $this->title1, "property1" );
 		$new_value = "another value";
