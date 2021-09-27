@@ -99,6 +99,10 @@ because of Phabricator reports.
 * LinkCache::singleton(), deprecated since 1.28, has been removed.
 * RepoGroup::singleton(), ::destroySingletons() and setSingleton(), all
   deprecated since 1.34, have been removed.
+* The following methods from FileDeleteForm were removed:
+  - ::__construct (the class is no longer newable)
+  - ::execute()
+  Use FileDeleteAction instead.
 * MessageCache::singleton(), deprecated since 1.34, has been removed.
 * LockManagerGroup::singleton() and ::destroySingletons(), both deprecated since
   1.34, have been removed.

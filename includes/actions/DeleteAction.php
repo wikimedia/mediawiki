@@ -32,10 +32,10 @@ use MediaWiki\Watchlist\WatchlistManager;
 class DeleteAction extends FormlessAction {
 
 	/** @var WatchlistManager */
-	private $watchlistManager;
+	protected $watchlistManager;
 
 	/** @var LinkRenderer */
-	private $linkRenderer;
+	protected $linkRenderer;
 
 	/** @var BacklinkCacheFactory */
 	private $backlinkCacheFactory;
@@ -62,14 +62,10 @@ class DeleteAction extends FormlessAction {
 	public function show() {
 		$this->useTransactionalTimeLimit();
 		$this->addHelpLink( 'Help:Sysop deleting and undeleting' );
-		if ( $this->getArticle() instanceof ImagePage ) {
-			$this->tempDeleteFile();
-		} else {
-			$this->tempDeleteArticle();
-		}
+		$this->tempDelete();
 	}
 
-	private function tempDeleteArticle() {
+	protected function tempDelete() {
 		$article = $this->getArticle();
 		$title = $this->getTitle();
 		$context = $this->getContext();
@@ -193,29 +189,6 @@ class DeleteAction extends FormlessAction {
 		}
 
 		$this->tempConfirmDelete( $reason );
-	}
-
-	private function tempDeleteFile() {
-		$file = $this->getArticle()->getFile();
-		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
-			// Standard article deletion
-			$this->tempDeleteArticle();
-			return;
-		}
-		'@phan-var LocalFile $file';
-
-		$context = $this->getContext();
-		$services = MediaWikiServices::getInstance();
-		$deleter = new FileDeleteForm(
-			$file,
-			$context,
-			$services->getReadOnlyMode(),
-			$services->getRepoGroup(),
-			$services->getWatchlistManager(),
-			$this->linkRenderer,
-			$services->getUserOptionsLookup()
-		);
-		$deleter->execute();
 	}
 
 	/**

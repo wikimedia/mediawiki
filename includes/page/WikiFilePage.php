@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
@@ -131,9 +132,9 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @return bool|File
+	 * @return File
 	 */
-	public function getFile() {
+	public function getFile(): File {
 		$this->loadFile();
 		return $this->mFile;
 	}
@@ -266,5 +267,12 @@ class WikiFilePage extends WikiPage {
 	 */
 	public function getSourceURL() {
 		return $this->getFile()->getDescriptionUrl();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getActionOverrides() {
+		return [ 'delete' => FileDeleteAction::class ] + parent::getActionOverrides();
 	}
 }
