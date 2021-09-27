@@ -4,6 +4,7 @@ namespace MediaWiki\Page;
 
 use BadMethodCallException;
 use BagOStuff;
+use ChangeTags;
 use CommentStore;
 use Content;
 use DeferrableUpdate;
@@ -251,6 +252,9 @@ class DeletePage {
 		) {
 			$status->fatal( 'delete-toobig', Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) ) );
 		}
+		if ( $this->tags ) {
+			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $this->tags, $this->deleter ) );
+		}
 		return $status;
 	}
 
@@ -311,7 +315,7 @@ class DeletePage {
 		if ( !$this->hookRunner->onArticleDelete(
 			$this->page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
 		) {
-			if ( $this->mergeLegacyHookErrors ) {
+			if ( $this->mergeLegacyHookErrors && $this->legacyHookErrors !== '' ) {
 				if ( is_string( $this->legacyHookErrors ) ) {
 					$this->legacyHookErrors = [ $this->legacyHookErrors ];
 				}
