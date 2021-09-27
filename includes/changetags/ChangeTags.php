@@ -255,8 +255,8 @@ class ChangeTags {
 				// so extract the language from $msg and use that.
 				// The language doesn't really matter, but we need to set it to avoid requesting
 				// the user's language from session-less entry points (T227233)
-				->inLanguage( $msg->getLanguage() );
-
+				->inLanguage( $msg->getLanguage() )
+				->setInterfaceMessageFlag( true );
 		}
 		if ( $msg->isDisabled() ) {
 			// The message exists but is disabled, hide the tag.
