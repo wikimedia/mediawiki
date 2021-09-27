@@ -302,17 +302,15 @@ class ParserCache {
 		ParserOptions $options,
 		array $usedOptions = null
 	): string {
-		global $wgRequest;
 		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
-
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
 		$pageid = $page->getId( PageRecord::LOCAL );
-		// TODO: remove the split T263581
-		$renderkey = (int)( $wgRequest->getRawVal( 'action' ) == 'render' );
 		$title = $this->titleFactory->castFromPageIdentity( $page );
 		$hash = $options->optionsHash( $usedOptions, $title );
-
-		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
+		// Before T263581 ParserCache was split between normal page views
+		// and action=parse. -0 is left in the key to avoid invalidating the entire
+		// cache when removing the cache split.
+		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-0!{$hash}" );
 	}
 
 	/**

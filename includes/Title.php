@@ -25,7 +25,6 @@
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
@@ -2267,7 +2266,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return string
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
-		global $wgArticlePath, $wgScript, $wgServer, $wgRequest, $wgMainPageIsDomainRoot;
+		global $wgArticlePath, $wgScript, $wgMainPageIsDomainRoot;
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
@@ -2337,20 +2336,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				}
 			}
 			Hooks::runner()->onGetLocalURL__Internal( $this, $url, $query );
-
-			// @todo FIXME: This causes breakage in various places when we
-			// actually expected a local URL and end up with dupe prefixes.
-			if ( $wgRequest->getRawVal( 'action' ) == 'render' ) {
-				LoggerFactory::getInstance( 'T263581' )
-					->debug(
-						"Title::getLocalURL called from render action",
-						[
-							'title' => $this->getPrefixedDBkey(),
-							'exception' => new Exception()
-						]
-					);
-				$url = $wgServer . $url;
-			}
 		}
 
 		Hooks::runner()->onGetLocalURL( $this, $url, $query );
