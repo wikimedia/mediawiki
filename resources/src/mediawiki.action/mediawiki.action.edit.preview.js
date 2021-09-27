@@ -258,30 +258,36 @@
 				parseRequest = api.post( postData );
 			}
 
-			diffRequest = api.post( {
-				formatversion: 2,
-				action: 'query',
-				prop: 'revisions',
-				titles: mw.config.get( 'wgPageName' ),
-				rvdifftotext: $textbox.textSelection( 'getContents' ),
-				rvdifftotextpst: true,
-				rvprop: '',
-				rvsection: section === '' ? undefined : section,
+			var diffPar = {
+				action: 'compare',
+				toslots: 'main',
+				// Remove trailing whitespace for consistency with EditPage diffs.
+				// TODO trimEnd() when we can use that.
+				'totext-main': $textbox.textSelection( 'getContents' ).replace( /\s\s*$/, '' ),
+				'tocontentmodel-main': 'wikitext',
+				'fromcontentmodel-main': 'wikitext',
 				uselang: mw.config.get( 'wgUserLanguage' )
-			} );
+			};
+			if ( section ) {
+				diffPar.totitle = mw.config.get( 'wgPageName' );
+				diffPar[ 'tosection-main' ] = section;
+			}
+			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
+				diffPar.fromslots = 'main';
+				diffPar[ 'fromtext-main' ] = '';
+			} else {
+				diffPar.fromtitle = mw.config.get( 'wgPageName' );
+				if ( section ) {
+					diffPar[ 'fromsection-main' ] = section;
+				}
+			}
+			diffRequest = api.post( diffPar );
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml;
-				try {
-					diffHtml = response[ 0 ].query.pages[ 0 ]
-						.revisions[ 0 ].diff.body;
-					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
-					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
-				} catch ( err ) {
-					// "result.blah is undefined" error, ignore
-					mw.log.warn( err );
-				}
+				var diffHtml = response[ 0 ].compare[ '*' ];
+				$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
+				mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
 				$wikiDiff.show();
 			} );
 		} else {
