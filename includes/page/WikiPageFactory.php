@@ -50,7 +50,7 @@ class WikiPageFactory {
 	 *
 	 * @return WikiPage
 	 */
-	public function newFromTitle( PageIdentity $pageIdentity ) {
+	public function newFromTitle( PageIdentity $pageIdentity ): WikiPage {
 		if ( $pageIdentity instanceof WikiPage ) {
 			return $pageIdentity;
 		}

@@ -13,9 +13,9 @@ use Wikimedia\IPUtils;
  */
 class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @var Title
+	 * @var WikiPage
 	 */
-	private $pageTitle;
+	private $page;
 
 	/**
 	 * A logged out user who edited the page before it was archived.
@@ -90,11 +90,11 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		// Delete the page
 		$page->doDeleteArticleReal( 'Just a test deletion', $user );
 
-		$this->pageTitle = $page->getTitle();
+		$this->page = $page;
 	}
 
 	/**
-	 * @covers ::undeleteAsUser
+	 * @covers ::undelete
 	 * @covers ::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
@@ -123,8 +123,8 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$undeletePage = new UndeletePage( $this->pageTitle );
-		$undeletePage->undeleteAsUser( [], $this->getTestSysop()->getUser() );
+		$undeletePage = new UndeletePage( $this->page, $this->getTestSysop()->getUser() );
+		$undeletePage->undelete( [] );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();
