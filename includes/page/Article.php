@@ -1413,7 +1413,7 @@ class Article implements Page {
 			if ( $oldid ) {
 				// T251066: Try loading the revision from the archive table.
 				// Show link to view it if it exists and the user has permission to view it.
-				$pa = new PageArchive( $title, $this->getContext()->getConfig() );
+				$pa = new PageArchive( $title );
 				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
 				if ( $revRecord && $revRecord->userCan(
 					RevisionRecord::DELETED_TEXT,

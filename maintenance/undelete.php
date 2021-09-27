@@ -51,7 +51,7 @@ class Undelete extends Maintenance {
 		}
 		StubGlobalUser::setUser( $user );
 
-		$archive = new PageArchive( $title, RequestContext::getMain()->getConfig() );
+		$archive = new PageArchive( $title );
 		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
 		$archive->undeleteAsUser( [], $user, $reason );
 		$this->output( "done\n" );
