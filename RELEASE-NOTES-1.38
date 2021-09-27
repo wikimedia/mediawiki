@@ -118,6 +118,8 @@ because of Phabricator reports.
   Skin::prepareSubtitle,  Skin::getSearchPageTitle,
   ResourceLoader::makeInlineScript(), SkinFactory::getAllowedSkins
   or SkinFactory::getInstalledSkins().
+* Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
+  since 1.37, has been removed.
 * …
 
 === Deprecations in 1.38 ===

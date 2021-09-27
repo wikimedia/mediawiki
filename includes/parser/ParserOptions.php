@@ -1027,19 +1027,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Current user
-	 * @deprecated since 1.36. Use ::getUserIdentity instead.
-	 * Hard deprecated since 1.37.
-	 * @return User
-	 */
-	public function getUser() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromUserIdentity( $this->mUser );
-	}
-
-	/**
 	 * Get the identity of the user for whom the parse is made.
 	 * @since 1.36
 	 * @return UserIdentity
