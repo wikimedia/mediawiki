@@ -58,6 +58,7 @@ class DeprecatedHooks {
 		'UserSaveOptions' => [ 'deprecatedVersion' => '1.37' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
 		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
+		'UndeleteForm::undelete' => [ 'deprecatedVersion' => '1.37' ],
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],

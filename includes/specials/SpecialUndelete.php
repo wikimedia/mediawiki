@@ -494,6 +494,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$archive = new PageArchive( $this->mTargetObj );
+		// FIXME: This hook must be deprecated, passing PageArchive by ref is awful.
 		if ( !$this->getHookRunner()->onUndeleteForm__showRevision(
 			$archive, $this->mTargetObj )
 		) {
@@ -854,6 +855,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 
 		$archive = new PageArchive( $this->mTargetObj );
+		// FIXME: This hook must be deprecated, passing PageArchive by ref is awful.
 		$this->getHookRunner()->onUndeleteForm__showHistory( $archive, $this->mTargetObj );
 
 		$out->addHTML( Html::openElement( 'div', [ 'class' => 'mw-undelete-history' ] ) );
