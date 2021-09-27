@@ -553,7 +553,7 @@ class WikiImporter {
 		if ( !$this->disableStatisticsUpdate ) {
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
-			$page->loadPageData( 'fromdbmaster' );
+			$page->loadPageData( WikiPage::READ_LATEST );
 			$content = $page->getContent();
 			if ( $content === null ) {
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .

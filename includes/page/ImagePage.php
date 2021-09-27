@@ -1178,9 +1178,9 @@ EOT
 
 	/**
 	 * @see WikiFilePage::getFile
-	 * @return bool|File
+	 * @return File
 	 */
-	public function getFile() {
+	public function getFile(): File {
 		return $this->getPage()->getFile();
 	}
 
