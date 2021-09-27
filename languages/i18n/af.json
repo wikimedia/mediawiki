@@ -221,7 +221,6 @@
 	"talk": "Bespreking",
 	"views": "Weergawes",
 	"toolbox": "Gereedskap",
-	"cactions": "Meer",
 	"tool-link-userrights": "Verander {{GENDER:$1|gebruiker}} groepe",
 	"tool-link-userrights-readonly": "Kyk na {{GENDER:$1|gebruiker}} groepe",
 	"tool-link-emailuser": "E-pos die {{GENDER:$1|gebruiker}}",

@@ -889,7 +889,7 @@
 	"permissionserrorstext-withaction": "因为以下{{PLURAL:$1|原因}}，您没有权限$2：",
 	"contentmodelediterror": "您不能编辑此修订版本，因为它的内容模型是<code>$1</code>，这与当前页面<code>$2</code>的内容模型不同。",
 	"recreate-moveddeleted-warn": "<strong>警告：您正在重新创建曾经被删除的页面。</strong>\n\n您应该考虑继续编辑本页是否合适。\n这里提供本页的删除和移动日志以供参考：",
-	"moveddeleted-notice": "本页面不存在。\n下面提供本页的删除、保护和移动日志以供参考。",
+	"moveddeleted-notice": "本页面不存在。下面提供本页的删除、保护和移动日志以供参考。",
 	"moveddeleted-notice-recent": "对不起，此页面刚刚被删除（在最近24小时内）。\n页面的删除、保护和移动日志在下方提供以供参考。",
 	"log-fulllog": "查看完整日志",
 	"edit-hook-aborted": "编辑被hook指令取消。\n它没有给出任何解释。",
