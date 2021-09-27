@@ -314,7 +314,7 @@
 				);
 			},
 			{
-				all: '.mw-test-implement-a { float: right; }'
+				css: [ '.mw-test-implement-a { float: right; }' ]
 			}
 		);
 
@@ -380,67 +380,6 @@
 		);
 
 		mw.loader.load( 'test.implement.b' );
-	} );
-
-	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: text } ) (back-compat)', function ( assert ) {
-		var $element = $( '<div class="mw-test-implement-c"></div>' ).appendTo( '#qunit-fixture' );
-
-		assert.notEqual(
-			$element.css( 'float' ),
-			'right',
-			'style is clear'
-		);
-
-		mw.loader.implement(
-			'test.implement.c',
-			function () {
-				assert.strictEqual(
-					$element.css( 'float' ),
-					'right',
-					'style is applied'
-				);
-			},
-			{
-				all: '.mw-test-implement-c { float: right; }'
-			}
-		);
-
-		return mw.loader.using( 'test.implement.c' );
-	} );
-
-	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: [url, ..] } ) (back-compat)', function ( assert ) {
-		var $element = $( '<div class="mw-test-implement-d"></div>' ).appendTo( '#qunit-fixture' ),
-			$element2 = $( '<div class="mw-test-implement-d2"></div>' ).appendTo( '#qunit-fixture' ),
-			done = assert.async();
-
-		assert.notEqual(
-			$element.css( 'float' ),
-			'right',
-			'style is clear'
-		);
-		assert.notEqual(
-			$element2.css( 'text-align' ),
-			'center',
-			'style is clear'
-		);
-
-		mw.loader.implement(
-			'test.implement.d',
-			function () {
-				assertStyleAsync( assert, $element, 'float', 'right', function () {
-					assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (T42500)' );
-					done();
-				} );
-			},
-			{
-				all: [ urlStyleTest( '.mw-test-implement-d', 'float', 'right' ) ],
-				print: [ urlStyleTest( '.mw-test-implement-d2', 'text-align', 'center' ) ]
-			}
-		);
-
-		mw.loader.load( 'test.implement.d' );
 	} );
 
 	QUnit.test( '.implement( messages before script )', function ( assert ) {
@@ -522,7 +461,7 @@
 				);
 			},
 			{
-				all: '.mw-test-implement-e { float: right; }'
+				css: [ '.mw-test-implement-e { float: right; }' ]
 			}
 		);
 
@@ -536,7 +475,7 @@
 				);
 			},
 			{
-				all: '.mw-test-implement-e2 { float: left; }'
+				css: [ '.mw-test-implement-e2 { float: left; }' ]
 			}
 		);
 

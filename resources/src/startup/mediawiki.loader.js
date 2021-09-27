@@ -893,7 +893,7 @@
 	 * @param {string} module Module name to execute
 	 */
 	function execute( module ) {
-		var key, value, media, i, siteDeps, siteDepErr,
+		var value, i, siteDeps, siteDepErr,
 			cssPending = 0;
 
 		if ( registry[ module ].state !== 'loaded' ) {
@@ -1017,48 +1017,22 @@
 		};
 
 		// Process styles (see also mw.loader.implement)
-		// * back-compat: { <media>: css }
-		// * back-compat: { <media>: [url, ..] }
 		// * { "css": [css, ..] }
 		// * { "url": { <media>: [url, ..] } }
 		if ( registry[ module ].style ) {
-			for ( key in registry[ module ].style ) {
+			for ( var key in registry[ module ].style ) {
 				value = registry[ module ].style[ key ];
-				media = undefined;
 
-				if ( key !== 'url' && key !== 'css' ) {
-					// Backwards compatibility, key is a media-type
-					if ( typeof value === 'string' ) {
-						// back-compat: { <media>: css }
-						// Ignore 'media' because it isn't supported (nor was it used).
-						// Strings are pre-wrapped in "@media". The media-type was just ""
-						// (because it had to be set to something).
-						// This is one of the reasons why this format is no longer used.
-						addEmbeddedCSS( value, cssHandle() );
-					} else {
-						// back-compat: { <media>: [url, ..] }
-						media = key;
-						key = 'bc-url';
-					}
-				}
-
-				// Array of css strings in key 'css',
-				// or back-compat array of urls from media-type
-				if ( Array.isArray( value ) ) {
+				// Array of CSS strings under key 'css'
+				// { "css": [css, ..] }
+				if ( key === 'css' ) {
 					for ( i = 0; i < value.length; i++ ) {
-						if ( key === 'bc-url' ) {
-							// back-compat: { <media>: [url, ..] }
-							addLink( value[ i ], media, marker );
-						} else if ( key === 'css' ) {
-							// { "css": [css, ..] }
-							addEmbeddedCSS( value[ i ], cssHandle() );
-						}
+						addEmbeddedCSS( value[ i ], cssHandle() );
 					}
-				// Not an array, but a regular object
-				// Array of urls inside media-type key
-				} else if ( typeof value === 'object' ) {
-					// { "url": { <media>: [url, ..] } }
-					for ( media in value ) {
+				// Plain object with array of urls under a media-type key
+				// { "url": { <media>: [url, ..] } }
+				} else if ( key === 'url' ) {
+					for ( var media in value ) {
 						var urls = value[ media ];
 						for ( i = 0; i < urls.length; i++ ) {
 							addLink( urls[ i ], media, marker );
@@ -1572,11 +1546,6 @@
 		 *
 		 *     { "css": [css, ..] }
 		 *     { "url": { <media>: [url, ..] } }
-		 *
-		 * And for backwards compatibility (needs to be supported forever due to caching):
-		 *
-		 *     { <media>: css }
-		 *     { <media>: [url, ..] }
 		 *
 		 * The reason css strings are not concatenated anymore is T33676. We now check
 		 * whether it's safe to extend the stylesheet.
