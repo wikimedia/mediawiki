@@ -459,7 +459,6 @@ class UploadForm extends HTMLForm {
 			'wgCheckFileExtensions' => $config->get( 'CheckFileExtensions' ),
 			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgFileExtensions' => array_values( array_unique( $config->get( 'FileExtensions' ) ) ),
-			'wgCapitalizeUploads' => $this->nsInfo->isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		];

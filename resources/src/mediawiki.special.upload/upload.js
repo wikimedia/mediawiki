@@ -11,6 +11,7 @@
 ( function () {
 	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
+		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file,
 		$license = $( '#wpLicense' );
 
 	window.wgUploadWarningObj = uploadWarning = {
@@ -37,7 +38,7 @@
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
-			title = mw.Title.newFromText( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file );
+			title = mw.Title.newFromText( this.nameToCheck, NS_FILE );
 
 			( new mw.Api() ).get( {
 				formatversion: 2,
@@ -170,7 +171,7 @@
 		// so fallback to empty array.
 		mw.config.get( 'wgUploadSourceIds', [] ).forEach( function ( sourceId ) {
 			$( '#' + sourceId ).on( 'change', function () {
-				var path, slash, backslash, fname;
+				var path, slash, backslash, fname, title;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
 					return;
 				}
@@ -216,12 +217,13 @@
 					}
 				}
 
-				// Replace spaces by underscores
-				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed. Note fname may be empty string.
-				if ( fname && mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
+				// Replace spaces by underscores and capitalise first letter if needed.
+				title = mw.Title.makeTitle( NS_FILE, fname );
+				if ( !title ) {
+					// This happens on invalid characters like <, >, [, ]
+					return false;
 				}
+				fname = title.getMain();
 
 				// Output result
 				if ( $( '#wpDestFile' ).length ) {
