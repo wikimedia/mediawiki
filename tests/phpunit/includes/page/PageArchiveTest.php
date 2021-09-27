@@ -107,7 +107,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers PageArchive::undeleteAsUser
-	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.

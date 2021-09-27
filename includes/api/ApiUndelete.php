@@ -91,7 +91,7 @@ class ApiUndelete extends ApiBase {
 			$params['timestamps'][$i] = wfTimestamp( TS_MW, $ts );
 		}
 
-		$pa = new PageArchive( $titleObj, $this->getConfig() );
+		$pa = new PageArchive( $titleObj );
 		$retval = $pa->undeleteAsUser(
 			( $params['timestamps'] ?? [] ),
 			$user,
