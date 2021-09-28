@@ -22,6 +22,8 @@
 
 namespace MediaWiki;
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * @since 1.31
  */
@@ -39,8 +41,14 @@ class OutputHandler {
 	public static function handle( $s, $phase ) {
 		global $wgDisableOutputCompression, $wgMangleFlashPolicy;
 
-		if ( $phase | PHP_OUTPUT_HANDLER_CLEAN ) {
-			// Don't send headers if output is being discarded (T278579)
+		// Don't send headers if output is being discarded (T278579)
+		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
+			$logger = LoggerFactory::getInstance( 'output' );
+			$logger->debug( __METHOD__ . " entrypoint={entry}; size={size}; phase=$phase", [
+				'entry' => MW_ENTRY_POINT,
+				'size' => strlen( $s ),
+			] );
+
 			return $s;
 		}
 
@@ -65,7 +73,7 @@ class OutputHandler {
 			// Compression is not disabled by the application entry point
 			!defined( 'MW_NO_OUTPUT_COMPRESSION' ) &&
 			// Compression is not disabled by site configuration
-			$wgDisableOutputCompression
+			!$wgDisableOutputCompression
 		) {
 			$s = self::handleGzip( $s );
 		}

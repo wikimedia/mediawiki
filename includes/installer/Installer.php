@@ -172,6 +172,7 @@ abstract class Installer {
 		'wgSitename',
 		'wgPasswordSender',
 		'wgLanguageCode',
+		'wgLocaltimezone',
 		'wgRightsIcon',
 		'wgRightsText',
 		'wgRightsUrl',

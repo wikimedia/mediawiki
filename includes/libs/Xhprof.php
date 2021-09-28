@@ -25,33 +25,18 @@
  * This also supports using the Tideways profiler
  * <https://github.com/tideways/php-xhprof-extension>.
  *
+ * @internal For use by ProfilerXhprof
  * @since 1.28
  */
 class Xhprof {
-	/**
-	 * @var bool Whether XHProf is currently running.
-	 */
-	protected static $enabled;
 
 	/**
-	 * Start xhprof profiler
-	 * @return bool
-	 */
-	public static function isEnabled() {
-		return self::$enabled;
-	}
-
-	/**
-	 * Start xhprof profiler
+	 * Start profiler
+	 *
 	 * @param int $flags
 	 * @param array $options
-	 * @throws Exception
 	 */
 	public static function enable( $flags = 0, $options = [] ) {
-		if ( self::isEnabled() ) {
-			throw new Exception( 'Profiling is already enabled.' );
-		}
-
 		$args = [ $flags ];
 		if ( $options ) {
 			$args[] = $options;
@@ -65,25 +50,20 @@ class Xhprof {
 			],
 			$args
 		);
-		self::$enabled = true;
 	}
 
 	/**
-	 * Stop xhprof profiler
+	 * Stop profiler
 	 *
-	 * @return array|null xhprof data from the run, or null if xhprof was not running.
+	 * @return array Xhprof data since last enable call,
+	 *  or empty array if it was never enabled.
 	 */
 	public static function disable() {
-		if ( self::isEnabled() ) {
-			self::$enabled = false;
-			return self::callAny( [
-				'xhprof_disable',
-				'tideways_disable',
-				'tideways_xhprof_disable'
-			] );
-		} else {
-			return null;
-		}
+		return self::callAny( [
+			'xhprof_disable',
+			'tideways_disable',
+			'tideways_xhprof_disable'
+		] );
 	}
 
 	/**
