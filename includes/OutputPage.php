@@ -1025,7 +1025,7 @@ class OutputPage extends ContextSource {
 	public function getDisplayTitle() {
 		$html = $this->displayTitle;
 		if ( $html === null ) {
-			$html = $this->getTitle()->getPrefixedText();
+			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
 
 		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $html ) );

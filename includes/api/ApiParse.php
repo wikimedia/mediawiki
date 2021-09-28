@@ -554,7 +554,8 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
-				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
+				? $p_result->getDisplayTitle()
+				: htmlspecialchars( $titleObj->getPrefixedText(), ENT_NOQUOTES );
 		}
 
 		if ( isset( $prop['subtitle'] ) ) {

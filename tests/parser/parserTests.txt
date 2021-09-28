@@ -22701,6 +22701,56 @@ this is not the title
 !! end
 
 !! test
+Verify that displaytitle encodes & to &amp; (T291985)
+!! options
+showtitle
+title=[[Art&copy]]
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=true
+!! wikitext
+this is not the title
+{{DISPLAYTITLE:art&copy}}
+!! html/php
+art&amp;copy
+<p>this is not the title
+</p>
+!! end
+
+!! test
+Verify that displaytitle encodes &amp; to &amp; (T291985)
+!! options
+showtitle
+title=[[Art&copy]]
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=true
+!! wikitext
+this is not the title
+{{DISPLAYTITLE:art&amp;copy}}
+!! html/php
+art&amp;copy
+<p>this is not the title
+</p>
+!! end
+
+!! test
+Verify that without displaytitle the title encodes & to &amp; (T291985)
+!! options
+showtitle
+title=[[Art&copy]]
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=true
+!! wikitext
+this is not the title
+!! html/php
+Art&amp;copy
+<p>this is not the title
+</p>
+!! end
+
+!! test
 Page status indicators: Empty name is invalid
 !! options
 showindicators

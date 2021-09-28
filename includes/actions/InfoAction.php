@@ -358,7 +358,8 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-basic'] = [];
 
 		// Display title
-		$displayTitle = $pageProperties['displaytitle'] ?? $title->getPrefixedText();
+		$displayTitle = $pageProperties['displaytitle'] ??
+			htmlspecialchars( $title->getPrefixedText(), ENT_NOQUOTES );
 
 		$pageInfo['header-basic'][] = [
 			$this->msg( 'pageinfo-display-title' ),
