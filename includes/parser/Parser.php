@@ -914,8 +914,12 @@ class Parser {
 	 * @return mixed|string
 	 * @since 1.8
 	 */
-	public function preprocess( $text, ?PageReference $page,
-		ParserOptions $options, $revid = null, $frame = false
+	public function preprocess(
+		$text,
+		?PageReference $page,
+		ParserOptions $options,
+		$revid = null,
+		$frame = false
 	) {
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $page, $options, self::OT_PREPROCESS, true );
@@ -4512,8 +4516,12 @@ class Parser {
 	 * @return string The altered wiki markup
 	 * @since 1.3
 	 */
-	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
-		ParserOptions $options, $clearState = true
+	public function preSaveTransform(
+		$text,
+		PageReference $page,
+		UserIdentity $user,
+		ParserOptions $options,
+		$clearState = true
 	) {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
