@@ -296,12 +296,27 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return mixed
 	 */
 	protected function checkResult( $key, $result ) {
+		static $statusByCode = [
+			Memcached::RES_HOST_LOOKUP_FAILURE => self::ERR_UNREACHABLE,
+			Memcached::RES_SERVER_MARKED_DEAD => self::ERR_UNREACHABLE,
+			Memcached::RES_SERVER_TEMPORARILY_DISABLED => self::ERR_UNREACHABLE,
+			Memcached::RES_UNKNOWN_READ_FAILURE => self::ERR_NO_RESPONSE,
+			Memcached::RES_WRITE_FAILURE => self::ERR_NO_RESPONSE,
+			Memcached::RES_PARTIAL_READ => self::ERR_NO_RESPONSE,
+			// Hard-code values that only exist in recent versions of the PECL extension.
+			// https://github.com/JetBrains/phpstorm-stubs/blob/master/memcached/memcached.php
+			3 /* Memcached::RES_CONNECTION_FAILURE */ => self::ERR_UNREACHABLE,
+			27 /* Memcached::RES_FAIL_UNIX_SOCKET */ => self::ERR_UNREACHABLE,
+			6 /* Memcached::RES_READ_FAILURE */ => self::ERR_NO_RESPONSE
+		];
+
 		if ( $result !== false ) {
 			return $result;
 		}
 
 		$client = $this->syncClient;
-		switch ( $client->getResultCode() ) {
+		$code = $client->getResultCode();
+		switch ( $code ) {
 			case Memcached::RES_SUCCESS:
 				break;
 			case Memcached::RES_DATA_EXISTS:
@@ -322,7 +337,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 					$msg = "Memcached error: $msg";
 				}
 				$this->logger->error( $msg, $logCtx );
-				$this->setLastError( BagOStuff::ERR_UNEXPECTED );
+				$this->setLastError( $statusByCode[$code] ?? self::ERR_UNEXPECTED );
 		}
 		return $result;
 	}
