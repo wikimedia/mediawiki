@@ -332,6 +332,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook,
 	\MediaWiki\Hook\SpecialContributions__formatRow__flagsHook,
+	\MediaWiki\Hook\SpecialExportGetExtraPagesHook,
 	\MediaWiki\Hook\SpecialContributions__getForm__filtersHook,
 	\MediaWiki\Hook\SpecialListusersDefaultQueryHook,
 	\MediaWiki\Hook\SpecialListusersFormatRowHook,
@@ -3509,6 +3510,13 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialContributions::getForm::filters',
 			[ $sp, &$filters ]
+		);
+	}
+
+	public function onSpecialExportGetExtraPages( $inputPages, &$extraPages ) {
+		return $this->container->run(
+			'SpecialExportGetExtraPages',
+			[ $inputPages, &$extraPages ]
 		);
 	}
 
