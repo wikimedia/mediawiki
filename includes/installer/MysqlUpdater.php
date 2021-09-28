@@ -32,16 +32,6 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.28
-			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
-				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
-			[ 'doRevisionPageRevIndexNonUnique' ],
-			[ 'doNonUniquePlTlIl' ],
-			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
-			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
-				'patch-rename-ar_usertext_timestamp.sql' ],
-
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
@@ -304,27 +294,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		return false;
 	}
 
-	protected function doNonUniquePlTlIl() {
-		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
-		if ( is_array( $info ) && $info[0]->Non_unique ) {
-			$this->output( "...pl_namespace, tl_namespace, il_to indices are already non-UNIQUE.\n" );
-
-			return true;
-		}
-		if ( $this->skipSchema ) {
-			$this->output( "...skipping schema change (making pl_namespace, tl_namespace " .
-				"and il_to indices non-UNIQUE).\n" );
-
-			return false;
-		}
-
-		return $this->applyPatch(
-			'patch-pl-tl-il-nonunique.sql',
-			false,
-			'Making pl_namespace, tl_namespace and il_to indices non-UNIQUE'
-		);
-	}
-
 	protected function doLanguageLinksLengthSync() {
 		$sync = [
 			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
@@ -404,26 +373,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		return true;
-	}
-
-	protected function doRevisionPageRevIndexNonUnique() {
-		if ( !$this->doTable( 'revision' ) ) {
-			return true;
-		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id', __METHOD__ ) ) {
-			$this->output( "...rev_page_id index not found on revision.\n" );
-			return true;
-		}
-
-		if ( !$this->db->indexUnique( 'revision', 'rev_page_id', __METHOD__ ) ) {
-			$this->output( "...rev_page_id index already non-unique.\n" );
-			return true;
-		}
-
-		return $this->applyPatch(
-			'patch-revision-page-rev-index-nonunique.sql',
-			false,
-			'Making rev_page_id index non-unique'
-		);
 	}
 
 	public function getSchemaVars() {
