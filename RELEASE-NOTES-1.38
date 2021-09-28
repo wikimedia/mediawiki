@@ -86,11 +86,11 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 === Languages updated in 1.38 ===
-MediaWiki supports over 350 languages. Many localisations are updated regularly.
+MediaWiki supports over 400 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* …
+* (T291899) Added language support for Xiang Chinese (hsn).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
