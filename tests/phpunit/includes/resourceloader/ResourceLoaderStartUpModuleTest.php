@@ -468,6 +468,32 @@ mw.loader.register([
 ]);',
 			] ],
 			[ [
+				'msg' => 'noscript group omitted (T291735)',
+				'modules' => [
+					'test.not-noscript' => [
+						'class' => ResourceLoaderTestModule::class,
+					],
+					'test.noscript' => [
+						'class' => ResourceLoaderTestModule::class,
+						'group' => 'noscript',
+					],
+					'test.also-noscript' => [
+						'class' => ResourceLoaderTestModule::class,
+						'group' => 'noscript',
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "test.not-noscript",
+        ""
+    ]
+]);',
+			] ],
+			[ [
 				// This may seem like an edge case, but a plain MediaWiki core install
 				// with a few extensions installed is likely far more complex than this
 				// even, not to mention an install like Wikipedia.

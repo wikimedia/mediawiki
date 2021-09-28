@@ -203,6 +203,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
+			// Optimization: Exclude modules in the `noscript` group. These are only ever used
+			// directly by HTML without use of JavaScript (T291735).
+			if ( $module->getGroup() === 'noscript' ) {
+				continue;
+			}
+
 			try {
 				// The version should be formatted by ResourceLoader::makeHash and be of
 				// length ResourceLoader::HASH_LENGTH (or empty string).

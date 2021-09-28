@@ -3070,7 +3070,12 @@ class OutputPage extends ContextSource {
 					if ( $module ) {
 						$group = $module->getGroup();
 						if ( isset( $exemptGroups[$group] ) ) {
-							$exemptStates[$name] = 'ready';
+							// The `noscript` module is excluded from the client
+							// side registry, no need to set its state either.
+							// But we still output it. See T291735
+							if ( $group !== 'noscript' ) {
+								$exemptStates[$name] = 'ready';
+							}
 							if ( !$module->isKnownEmpty( $context ) ) {
 								// E.g. Don't output empty <styles>
 								$exemptGroups[$group][] = $name;

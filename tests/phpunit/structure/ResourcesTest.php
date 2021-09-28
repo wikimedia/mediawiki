@@ -37,8 +37,17 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testValidDependencies() {
 		$data = self::getAllModules();
-		$knownDeps = array_keys( $data['modules'] );
 		$illegalDeps = [ 'startup' ];
+		// Can't depend on modules in the `noscript` group, find all such module names
+		// to add to $ilegalDeps. See T291735
+		/** @var ResourceLoaderModule $module */
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			if ( $module->getGroup() === 'noscript' ) {
+				$illegalDeps[] = $moduleName;
+			}
+		}
+
+		$knownDeps = array_keys( $data['modules'] );
 
 		// Avoid an assert for each module to keep the test fast.
 		// Instead, perform a single assertion against everything at once.

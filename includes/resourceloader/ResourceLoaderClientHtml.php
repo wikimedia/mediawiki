@@ -180,9 +180,14 @@ class ResourceLoaderClientHtml {
 			// Stylesheet doesn't trigger mw.loader callback.
 			// Set "ready" state to allow script modules to depend on this module  (T87871).
 			// And to avoid duplicate requests at run-time from mw.loader.
-			$data['states'][$name] = 'ready';
-
+			//
+			// Optimization: Exclude state for "noscript" modules. Since these are also excluded
+			// from the startup registry, no need to send their states (T291735).
 			$group = $module->getGroup();
+			if ( $group !== 'noscript' ) {
+				$data['states'][$name] = 'ready';
+			}
+
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
 			if ( $module->shouldEmbedModule( $this->context ) ) {
 				// Avoid needless embed for private embeds we know are empty.
