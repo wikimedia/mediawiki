@@ -52,7 +52,8 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 			$mwServices->getContentHandlerFactory(),
 			$mwServices->getRollbackPageFactory(),
 			$mwServices->getUserOptionsLookup(),
-			$mwServices->getWatchlistManager()
+			$mwServices->getWatchlistManager(),
+			$mwServices->getCommentFormatter()
 		);
 	}
 

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -73,6 +74,9 @@ class ApiParse extends ApiBase {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -85,6 +89,7 @@ class ApiParse extends ApiBase {
 	 * @param Parser $parser
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ContentTransformer $contentTransformer
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -97,7 +102,8 @@ class ApiParse extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory,
 		Parser $parser,
 		WikiPageFactory $wikiPageFactory,
-		ContentTransformer $contentTransformer
+		ContentTransformer $contentTransformer,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -109,6 +115,7 @@ class ApiParse extends ApiBase {
 		$this->parser = $parser;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->contentTransformer = $contentTransformer;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	private function getPoolKey(): string {
@@ -792,7 +799,7 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * This mimicks the behavior of EditPage in formatting a summary
+	 * This mimics the behavior of EditPage in formatting a summary
 	 *
 	 * @param Title $title of the page being parsed
 	 * @param array $params The API parameters of the request
@@ -812,7 +819,7 @@ class ApiParse extends ApiBase {
 					->inContentLanguage()->text();
 			}
 		}
-		return Linker::formatComment( $summary, $title, $this->section === 'new' );
+		return $this->commentFormatter->format( $summary, $title, $this->section === 'new' );
 	}
 
 	private function formatLangLinks( $links ) {

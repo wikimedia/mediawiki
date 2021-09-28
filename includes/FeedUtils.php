@@ -68,9 +68,11 @@ class FeedUtils {
 	 *
 	 * @param stdClass $row Row from the recentchanges table, including fields as
 	 *  appropriate for CommentStore
+	 * @param string|null $formattedComment rc_comment in HTML format, or null
+	 *   to format it on demand.
 	 * @return string
 	 */
-	public static function formatDiff( $row ) {
+	public static function formatDiff( $row, $formattedComment = null ) {
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
@@ -78,18 +80,24 @@ class FeedUtils {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
 			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
 		}
-		return self::formatDiffRow( $titleObj,
+		if ( $row->rc_deleted & RevisionRecord::DELETED_COMMENT ) {
+			$formattedComment = wfMessage( 'rev-deleted-comment' )->escaped();
+		} elseif ( $formattedComment === null ) {
+			$formattedComment = Linker::formatComment(
+				CommentStore::getStore()->getComment( 'rc_comment', $row )->text );
+		}
+		return self::formatDiffRow2( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			$row->rc_deleted & RevisionRecord::DELETED_COMMENT
-				? wfMessage( 'rev-deleted-comment' )->escaped()
-				: CommentStore::getStore()->getComment( 'rc_comment', $row )->text,
+			$formattedComment,
 			$actiontext
 		);
 	}
 
 	/**
 	 * Really format a diff for the newsfeed
+	 *
+	 * @deprecated since 1.38 use formatDiffRow2
 	 *
 	 * @param Title $title
 	 * @param int $oldid Old revision's id
@@ -102,12 +110,33 @@ class FeedUtils {
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
 		$comment, $actiontext = ''
 	) {
+		$formattedComment = MediaWikiServices::getInstance()->getCommentFormatter()
+			->format( $comment );
+		return self::formatDiffRow2( $title, $oldid, $newid, $timestamp,
+			$formattedComment, $actiontext );
+	}
+
+	/**
+	 * Really really format a diff for the newsfeed. Same as formatDiffRow()
+	 * except with preformatted comments.
+	 *
+	 * @param Title $title
+	 * @param int $oldid Old revision's id
+	 * @param int $newid New revision's id
+	 * @param int $timestamp New revision's timestamp
+	 * @param string $formattedComment New revision's comment in HTML format
+	 * @param string $actiontext Text of the action; in case of log event
+	 * @return string
+	 */
+	public static function formatDiffRow2( $title, $oldid, $newid, $timestamp,
+		$formattedComment, $actiontext = ''
+	) {
 		global $wgFeedDiffCutoff;
 
 		// log entries
 		$unwrappedText = implode(
 			' ',
-			array_filter( [ $actiontext, Linker::formatComment( $comment ) ] )
+			array_filter( [ $actiontext, $formattedComment ] )
 		);
 		$completeText = Html::rawElement( 'p', [], $unwrappedText ) . "\n";
 

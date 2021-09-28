@@ -228,6 +228,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/auth
 	'MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
 
+	# tests/phpunit/unit/includes/CommentFormatter
+	'MediaWiki\Tests\Unit\CommentFormatter\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
+
 	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
 	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",
 

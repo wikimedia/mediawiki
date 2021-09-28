@@ -307,6 +307,13 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * @return int The current offset into the result. Valid during formatRow().
+	 */
+	public function getResultOffset() {
+		return $this->mResult->key();
+	}
+
+	/**
 	 * Set the offset from an other source than the request
 	 *
 	 * @param int|string $offset

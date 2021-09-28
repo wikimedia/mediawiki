@@ -805,6 +805,10 @@ because of Phabricator reports.
   - .transform-origin()
   - .transition()
   - .transition-transform()
+* The `UndeleteForm::undelete` hook was deprecated. A new hook was
+  introduced, `PageUndelete`, that provides handlers with more information and
+  is also called for non-UI requests. The capability of replacing the
+  PageArchive object has been removed, as that violates the laws of nature.
 
 === Other changes in 1.37 ===
 * WatchlistManager::addWatch() and WatchlistManager::addWatchIgnoringRights(),

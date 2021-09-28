@@ -7,6 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -41,6 +42,9 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -52,6 +56,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->commentStore = $services->getCommentStore();
 		$this->blockUtils = $services->getBlockUtils();
 		$this->blockActionInfo = $services->getBlockActionInfo();
+		$this->rowCommentFormatter = $services->getRowCommentFormatter();
 	}
 
 	private function getBlockListPager() {
@@ -64,7 +69,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			$this->specialPageFactory,
 			$this->commentStore,
 			$this->blockUtils,
-			$this->blockActionInfo
+			$this->blockActionInfo,
+			$this->rowCommentFormatter
 		);
 	}
 
@@ -229,6 +235,12 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::preprocessResults
 	 */
 	public function testPreprocessResults() {
+		$this->tablesUsed[] = 'ipblocks';
+		$this->tablesUsed[] = 'ipblocks_restrictions';
+		$this->tablesUsed[] = 'comment';
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'user';
+
 		// Test the Link Cache.
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$wrappedlinkCache = TestingAccessWrapper::newFromObject( $linkCache );
@@ -238,7 +250,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'User:127.0.0.1',
 			'User_talk:127.0.0.1',
 			$admin->getUserPage()->getPrefixedDBkey(),
-			$admin->getTalkPage()->getPrefixedDBkey()
+			$admin->getTalkPage()->getPrefixedDBkey(),
+			'Comment_link'
 		];
 
 		foreach ( $links as $link ) {
@@ -251,9 +264,11 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'ipb_by_text' => $admin->getName(),
 			'ipb_sitewide' => 1,
 			'ipb_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
+			'ipb_reason_text' => '[[Comment link]]',
+			'ipb_reason_data' => null,
 		];
 		$pager = $this->getBlockListPager();
-		$pager->preprocessResults( [ $row ] );
+		$pager->preprocessResults( new FakeResultWrapper( [ $row ] ) );
 
 		foreach ( $links as $link ) {
 			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ), "Bad link [[$link]]" );
@@ -265,9 +280,11 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'ipb_by' => $admin->getId(),
 			'ipb_by_text' => $admin->getName(),
 			'ipb_sitewide' => 1,
+			'ipb_reason_text' => '',
+			'ipb_reason_data' => null,
 		];
 		$pager = $this->getBlockListPager();
-		$pager->preprocessResults( [ $row ] );
+		$pager->preprocessResults( new FakeResultWrapper( [ $row ] ) );
 
 		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
 
@@ -291,7 +308,11 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		$result = $this->db->select( 'ipblocks', [ '*' ], [ 'ipb_id' => $block->getId() ] );
+		$result = $this->db->newSelectQueryBuilder()
+			->queryInfo( DatabaseBlock::getQueryInfo() )
+			->where( [ 'ipb_id' => $block->getId() ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$pager = $this->getBlockListPager();
 		$pager->preprocessResults( $result );
@@ -306,8 +327,5 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $page->getId(), $restriction->getTitle()->getArticleID() );
 		$this->assertEquals( $title->getDBkey(), $restriction->getTitle()->getDBkey() );
 		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
-
-		// Delete the block and the restrictions.
-		$blockStore->deleteBlock( $block );
 	}
 }

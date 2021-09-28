@@ -273,6 +273,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'RevisionStore',
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
@@ -288,6 +289,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryFilearchive::class,
 			'services' => [
 				'CommentStore',
+				'CommentFormatter',
 			],
 		],
 		'imageusage' => [
@@ -303,6 +305,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryLogEvents::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'ChangeTagDefStore',
 			],
 		],
@@ -323,6 +326,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryProtectedTitles::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter'
 			],
 		],
 		'querypage' => [
@@ -338,6 +342,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryRecentChanges::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'ChangeTagDefStore',
 				'SlotRoleStore',
 				'SlotRoleRegistry',

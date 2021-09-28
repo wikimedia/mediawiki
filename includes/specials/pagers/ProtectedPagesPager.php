@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -37,6 +38,12 @@ class ProtectedPagesPager extends TablePager {
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
+	/** @var string[] */
+	private $formattedComments = [];
+
 	/**
 	 * @param SpecialPage $form
 	 * @param array $conds
@@ -53,6 +60,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param UserCache $userCache
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 */
 	public function __construct(
 		$form,
@@ -69,7 +77,8 @@ class ProtectedPagesPager extends TablePager {
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		UserCache $userCache
+		UserCache $userCache,
+		RowCommentFormatter $rowCommentFormatter
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -86,6 +95,7 @@ class ProtectedPagesPager extends TablePager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->commentStore = $commentStore;
 		$this->userCache = $userCache;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
 
 	public function preprocessResults( $result ) {
@@ -113,6 +123,9 @@ class ProtectedPagesPager extends TablePager {
 		}
 
 		$lb->execute();
+
+		// Format the comments
+		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'log_comment' );
 	}
 
 	protected function getFieldNames() {
@@ -255,8 +268,7 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_COMMENT,
 						$this->getUser()
 					) ) {
-						$value = $this->commentStore->getComment( 'log_comment', $row )->text;
-						$formatted = Linker::formatComment( $value ?? '' );
+						$formatted = $this->formattedComments[$this->getResultOffset()];
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
 					}

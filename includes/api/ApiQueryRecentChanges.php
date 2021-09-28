@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -37,6 +38,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var RowCommentFormatter */
+	private $commentFormatter;
+
 	/** @var NameTableStore */
 	private $changeTagDefStore;
 
@@ -46,10 +50,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	private $formattedComments = [];
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param RowCommentFormatter $commentFormatter
 	 * @param NameTableStore $changeTagDefStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
@@ -58,12 +65,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
+		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry
 	) {
 		parent::__construct( $query, $moduleName, 'rc' );
 		$this->commentStore = $commentStore;
+		$this->commentFormatter = $commentFormatter;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
@@ -413,8 +422,18 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Perform the actual query. */
 		$res = $this->select( __METHOD__, [], $hookData );
 
+		// Do batch queries
 		if ( $this->fld_title && $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'rc' );
+		}
+		if ( $this->fld_parsedcomment ) {
+			$this->formattedComments = $this->commentFormatter->formatItems(
+				$this->commentFormatter->rows( $res )
+					->indexField( 'rc_id' )
+					->commentKey( 'rc_comment' )
+					->namespaceField( 'rc_namespace' )
+					->titleField( 'rc_title' )
+			);
 		}
 
 		$revids = [];
@@ -560,13 +579,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( RevisionRecord::userCanBitfield(
 				$row->rc_deleted, RevisionRecord::DELETED_COMMENT, $user
 			) ) {
-				$comment = $this->commentStore->getComment( 'rc_comment', $row )->text;
 				if ( $this->fld_comment ) {
-					$vals['comment'] = $comment;
+					$vals['comment'] = $this->commentStore->getComment( 'rc_comment', $row )->text;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
+					$vals['parsedcomment'] = $this->formattedComments[$row->rc_id];
 				}
 			}
 		}

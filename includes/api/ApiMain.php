@@ -132,6 +132,7 @@ class ApiMain extends ApiBase {
 				'Parser',
 				'WikiPageFactory',
 				'ContentTransformer',
+				'CommentFormatter',
 			]
 		],
 		'stashedit' => [
@@ -164,6 +165,7 @@ class ApiMain extends ApiBase {
 				'NamespaceInfo',
 				'ActorMigration',
 				'UserFactory',
+				'CommentFormatter',
 			]
 		],
 		'feedrecentchanges' => [
@@ -200,6 +202,7 @@ class ApiMain extends ApiBase {
 				'SlotRoleRegistry',
 				'ContentHandlerFactory',
 				'ContentTransformer',
+				'CommentFormatter',
 			]
 		],
 		'checktoken' => [

@@ -144,6 +144,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'CommentStore',
 				'UserCache',
+				'RowCommentFormatter',
 			]
 		],
 		'Protectedtitles' => [
@@ -380,6 +381,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'RowCommentFormatter',
 			],
 		],
 		'AutoblockList' => [
@@ -391,6 +393,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'RowCommentFormatter',
 			],
 		],
 		'ChangePassword' => [
@@ -445,6 +448,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserOptionsLookup',
+				'CommentFormatter',
 				'UserFactory',
 			]
 		],
