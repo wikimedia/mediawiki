@@ -181,14 +181,17 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoader::expandUrl
 	 * @covers ResourceLoaderFileModule
+	 * @covers ResourceLoaderModule
+	 * @covers ResourceLoader::createLoaderURL
+	 * @covers ResourceLoader::expandUrl
 	 */
-	public function testGetScriptURLsForDebug() {
+	public function testGetURLsForDebug() {
 		$ctx = $this->getResourceLoaderContext();
 		$module = new ResourceLoaderFileModule( [
 			'localBasePath' => __DIR__ . '/../../data/resourceloader',
 			'remoteBasePath' => '/w/something',
+			'styles' => [ 'simple.css' ],
 			'scripts' => [ 'script-comment.js' ],
 		] );
 		$module->setName( 'testing' );
@@ -198,7 +201,15 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			[
 				'https://example.org/w/something/script-comment.js'
 			],
-			$module->getScriptURLsForDebug( $ctx )
+			$module->getScriptURLsForDebug( $ctx ),
+			'script urls'
+		);
+		$this->assertEquals(
+			[ 'all' => [
+				'/w/something/simple.css'
+			] ],
+			$module->getStyleURLsForDebug( $ctx ),
+			'style urls'
 		);
 	}
 

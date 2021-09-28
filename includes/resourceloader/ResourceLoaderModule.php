@@ -295,7 +295,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * This function must only be called when:
 	 *
 	 * 1. We're in debug mode,
-	 * 2. there is no `only=` parameter and,
+	 * 2. There is no `only=` parameter and,
 	 * 3. self::supportsURLLoading() returns true.
 	 *
 	 * Point 2 is prevents an infinite loop, therefore this function
@@ -310,7 +310,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$derivative = new DerivativeResourceLoaderContext( $context );
 		$derivative->setModules( [ $this->getName() ] );
 		$derivative->setOnly( 'scripts' );
-		$derivative->setDebug( true );
 
 		$url = $rl->createLoaderURL(
 			$this->getSource(),
@@ -353,7 +352,15 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get the URL or URLs to load for this module's CSS in debug mode.
 	 * The default behavior is to return a load.php?only=styles URL for
 	 * the module, but file-based modules will want to override this to
-	 * load the files directly. See also getScriptURLsForDebug()
+	 * load the files directly
+	 *
+	 * This function must only be called when:
+	 *
+	 * 1. We're in debug mode,
+	 * 2. There is no `only=` parameter and,
+	 * 3. self::supportsURLLoading() returns true.
+	 *
+	 * See also getScriptURLsForDebug().
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext $context
@@ -364,7 +371,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$derivative = new DerivativeResourceLoaderContext( $context );
 		$derivative->setModules( [ $this->getName() ] );
 		$derivative->setOnly( 'styles' );
-		$derivative->setDebug( true );
 
 		$url = $resourceLoader->createLoaderURL(
 			$this->getSource(),

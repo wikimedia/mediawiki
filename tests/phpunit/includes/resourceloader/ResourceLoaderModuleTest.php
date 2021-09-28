@@ -100,6 +100,51 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoaderModule::getScriptURLsForDebug
+	 * @covers ResourceLoader
+	 * @covers ResourceLoaderModule::getScriptURLsForDebug
+	 */
+	public function testGetURLsForDebug() {
+		$module = new ResourceLoaderTestModule( [
+			'script' => 'foo();',
+			'styles' => '.foo { color: blue; }',
+		] );
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'true' ] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
+
+		$this->assertEquals(
+			[
+				'https://example.org/w/load.php?debug=1&lang=en&modules=&only=scripts'
+			],
+			$module->getScriptURLsForDebug( $context ),
+			'script urls debug=true'
+		);
+		$this->assertEquals(
+			[ 'all' => [
+				'/w/load.php?debug=1&lang=en&modules=&only=styles'
+			] ],
+			$module->getStyleURLsForDebug( $context ),
+			'style urls debug=true'
+		);
+
+		$context = $this->getResourceLoaderContext( [ 'debug' => '2' ] );
+		$this->assertEquals(
+			[
+				'https://example.org/w/load.php?debug=2&lang=en&modules=&only=scripts'
+			],
+			$module->getScriptURLsForDebug( $context ),
+			'script urls debug=2'
+		);
+		$this->assertEquals(
+			[ 'all' => [
+				'/w/load.php?debug=2&lang=en&modules=&only=styles'
+			] ],
+			$module->getStyleURLsForDebug( $context ),
+			'style urls debug=2'
+		);
+	}
+
+	/**
 	 * @covers ResourceLoaderModule::validateScriptFile
 	 */
 	public function testValidateScriptFile() {
