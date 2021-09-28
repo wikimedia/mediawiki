@@ -1976,12 +1976,6 @@ MESSAGE;
 			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			// @internal For mediawiki.Title
 			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
-			// @internal For mediawiki.cookie
-			'wgCookiePrefix' => $conf->get( 'CookiePrefix' ),
-			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
-			'wgCookiePath' => $conf->get( 'CookiePath' ),
-			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
-			// @internal For mediawiki.Title
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 		];
