@@ -146,6 +146,10 @@ because of Phabricator reports.
   should be used instead.
 * SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
   deprecation warnings.
+* The following methods from the User class were hard deprecated:
+   - ::blockedBy
+   - ::getBlockId
+
 * …
 
 === Other changes in 1.38 ===
