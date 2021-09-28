@@ -1103,6 +1103,7 @@
 	"userrights-expiry": "Bitiş tarixi:",
 	"userrights-expiry-existing": "Mövcud bitmə vaxtı: $3, $2",
 	"userrights-expiry-othertime": "Başqa vaxt:",
+	"userrights-expiry-options": "1 gün:1 day,1 həftə:1 week,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year",
 	"group": "Qrup:",
 	"group-user": "İstifadəçilər",
 	"group-autoconfirmed": "Avtotəsdiqlənmiş istifadəçilər",

@@ -5,6 +5,7 @@
 			"Alvaro Vidal-Abarca",
 			"BroOk",
 			"Cedric31",
+			"Galactic Thrasher",
 			"Jaumeortola",
 			"Martorell",
 			"McDutchie",
@@ -382,5 +383,5 @@
 	"exif-exposurelockused": "S'ha utilitzat el bloqueig d'exposició",
 	"exif-exposurelockused-true": "Sí",
 	"exif-exposurelockused-false": "No",
-	"exif-stitchingsoftware": "Programari de cosida"
+	"exif-stitchingsoftware": "Programari per cosir"
 }
