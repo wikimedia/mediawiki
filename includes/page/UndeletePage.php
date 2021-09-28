@@ -131,6 +131,21 @@ class UndeletePage {
 		$unsuppress = false,
 		$tags = null
 	): StatusValue {
+		$hookStatus = StatusValue::newGood();
+		$hookRes = $this->hookRunner->onPageUndelete(
+			$this->page,
+			$this->performer,
+			$comment,
+			$unsuppress,
+			$timestamps,
+			$fileVersions ?: [],
+			$hookStatus
+		);
+		if ( !$hookRes && !$hookStatus->isGood() ) {
+			// Note: as per the PageUndeleteHook documentation, `return false` is ignored if $status is good.
+			return $hookStatus;
+		}
+
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );

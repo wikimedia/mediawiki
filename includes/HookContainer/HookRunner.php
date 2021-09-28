@@ -454,6 +454,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\PageDeleteCompleteHook,
 	\MediaWiki\Page\Hook\PageDeleteHook,
 	\MediaWiki\Page\Hook\PageDeletionDataUpdatesHook,
+	\MediaWiki\Page\Hook\PageUndeleteHook,
 	\MediaWiki\Page\Hook\PageViewUpdatesHook,
 	\MediaWiki\Page\Hook\RevisionFromEditCompleteHook,
 	\MediaWiki\Page\Hook\RevisionUndeletedHook,
@@ -2728,6 +2729,21 @@ class HookRunner implements
 		return $this->container->run(
 			'PageDeletionDataUpdates',
 			[ $title, $revision, &$updates ]
+		);
+	}
+
+	public function onPageUndelete(
+		ProperPageIdentity $page,
+		Authority $performer,
+		string $reason,
+		bool $unsuppress,
+		array $timestamps,
+		array $fileVersions,
+		StatusValue $status
+	) {
+		return $this->container->run(
+			'PageUndelete',
+			[ $page, $performer, $reason, $unsuppress, $timestamps, $fileVersions, $status ]
 		);
 	}
 
