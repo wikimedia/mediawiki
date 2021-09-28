@@ -201,6 +201,7 @@ class Names {
 		'hr' => 'hrvatski', # Croatian
 		'hrx' => 'Hunsrik', # Riograndenser Hunsrückisch
 		'hsb' => 'hornjoserbsce', # Upper Sorbian
+		'hsn' => '湘语', # Xiang Chinese
 		'ht' => 'Kreyòl ayisyen', # Haitian Creole French
 		'hu' => 'magyar', # Hungarian
 		'hu-formal' => "magyar (formal)", # Hungarian formal address
