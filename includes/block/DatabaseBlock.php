@@ -1133,7 +1133,10 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return BlockRestrictionStore
 	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
-		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		// TODO: get rid of global state here
+		return MediaWikiServices::getInstance()
+			->getBlockRestrictionStoreFactory()
+			->getBlockRestrictionStore( $this->getWikiId() );
 	}
 
 	/**
