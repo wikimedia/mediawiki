@@ -791,6 +791,7 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 				'WikiPageFactory',
 				'SearchEngineFactory',
+				'UndeletePageFactory',
 			],
 		],
 		'Whatlinkshere' => [

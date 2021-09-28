@@ -322,6 +322,7 @@ class PageArchive {
 	 * @return Status|null
 	 */
 	public function getFileStatus() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->fileStatus;
 	}
 
@@ -330,6 +331,7 @@ class PageArchive {
 	 * @return Status|null
 	 */
 	public function getRevisionStatus() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->revisionStatus;
 	}
 }

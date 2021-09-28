@@ -247,6 +247,7 @@ class UndeletePage {
 		$restoreText = $restoreAll || $this->timestamps !== [];
 		$restoreFiles = $restoreAll || $this->fileVersions !== [];
 
+		$resStatus = StatusValue::newGood();
 		if ( $restoreFiles && $this->page->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
 			$img = $this->repoGroup->getLocalRepo()->newFile( $this->page );
@@ -256,6 +257,7 @@ class UndeletePage {
 				return $this->fileStatus;
 			}
 			$filesRestored = $this->fileStatus->successCount;
+			$resStatus->merge( $this->fileStatus );
 		} else {
 			$filesRestored = 0;
 		}
@@ -267,13 +269,19 @@ class UndeletePage {
 			}
 
 			$textRestored = $this->revisionStatus->getValue();
+			$resStatus->merge( $this->revisionStatus );
 		} else {
 			$textRestored = 0;
 		}
 
+		$resStatus->value = [
+			self::REVISIONS_RESTORED => $textRestored,
+			self::FILES_RESTORED => $filesRestored
+		];
+
 		if ( !$textRestored && !$filesRestored ) {
 			$this->logger->debug( "Undelete: nothing undeleted..." );
-			return StatusValue::newGood( [ self::REVISIONS_RESTORED => 0, self::FILES_RESTORED => 0 ] );
+			return $resStatus;
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
@@ -291,10 +299,7 @@ class UndeletePage {
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 
-		return StatusValue::newGood( [
-			self::REVISIONS_RESTORED => $textRestored,
-			self::FILES_RESTORED => $filesRestored
-		] );
+		return $resStatus;
 	}
 
 	/**
