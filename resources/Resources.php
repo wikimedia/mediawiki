@@ -1261,7 +1261,8 @@ return [
 				'name' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.parsedMessages.json',
 				'callback' => static function ( MessageLocalizer $messageLocalizer ) {
 					return [
-						'previewnote' => $messageLocalizer->msg( 'previewnote' )->parse(),
+						'previewnote' =>
+							$messageLocalizer->msg( 'previewnote' )->setInterfaceMessageFlag( true )->parse(),
 					];
 				},
 				// Use versionCallback to avoid calling the parser from version invalidation code.
