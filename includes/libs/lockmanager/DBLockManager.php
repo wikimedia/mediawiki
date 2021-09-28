@@ -160,6 +160,9 @@ abstract class DBLockManager extends QuorumLockManager {
 				$config['flags'] = ( $config['flags'] ?? 0 );
 				$config['flags'] &= ~( IDatabase::DBO_TRX | IDatabase::DBO_DEFAULT );
 				$db = Database::factory( $config['type'], $config );
+				if ( !$db ) {
+					throw new UnexpectedValueException( "No database connection for server called '$lockDb'." );
+				}
 			} else {
 				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}
