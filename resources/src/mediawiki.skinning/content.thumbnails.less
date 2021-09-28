@@ -8,26 +8,10 @@
 
 /* stylelint-disable selector-class-pattern */
 @import 'variables.less';
-@import 'content.thumbnails-layout.less';
-
-/* Images */
-/* @noflip */
-div.floatright,
-table.floatright {
-	margin: @margin-floatright;
-}
-
-/* @noflip */
-div.floatleft,
-table.floatleft {
-	margin: @margin-floatleft;
-}
 
 /* Thumbnails */
 div.thumb {
 	margin-bottom: @margin-bottom-thumb;
-	width: auto;
-	background-color: transparent;
 }
 
 div.thumbinner {
@@ -35,10 +19,6 @@ div.thumbinner {
 	padding: 3px;
 	background-color: @background-color-thumbinner;
 	font-size: @font-size-thumbinner;
-	text-align: center;
-	/* new block formatting context,
-	 * to clear background from floating content */
-	overflow: hidden;
 }
 
 .thumbimage {
@@ -47,12 +27,13 @@ div.thumbinner {
 }
 
 .thumbcaption {
-	border: 0;
-	line-height: @line-height-thumbcaption;
-	padding: 3px;
-	font-size: @font-size-thumbcaption;
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
-	text-align: left;
+	border: 0;
+	font-size: @font-size-thumbcaption;
+}
+
+.thumbborder {
+	border: @border-thumbborder;
 }
 
 .magnify {
@@ -79,16 +60,23 @@ div.thumbinner {
 	}
 }
 
-.thumbborder {
-	border: @border-thumbborder;
+/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+
+/* @noflip */
+.mw-content-ltr .thumbcaption {
+	text-align: left;
 }
 
-/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
 
 /* @noflip */
 .mw-content-ltr .magnify {
 	margin-left: 3px;
 	margin-right: 0;
+	float: right;
 }
 
 /* @noflip */
@@ -100,19 +88,10 @@ div.thumbinner {
 .mw-content-rtl .magnify {
 	margin-left: 0;
 	margin-right: 3px;
+	float: left;
 }
 
 /* @noflip */
 .mw-content-rtl .magnify a {
 	background-image: @background-image-magnify-rtl;
-}
-
-/* @noflip */
-div.tright {
-	margin: @margin-tright;
-}
-
-/* @noflip */
-div.tleft {
-	margin: @margin-tleft;
 }
