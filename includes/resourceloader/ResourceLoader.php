@@ -1124,7 +1124,9 @@ MESSAGE;
 			$states[$name] = 'missing';
 		}
 
-		$filter = $context->getOnly() === 'styles' ? 'minify-css' : 'minify-js';
+		$only = $context->getOnly();
+		$filter = $only === 'styles' ? 'minify-css' : 'minify-js';
+		$debug = (bool)$context->getDebug();
 
 		foreach ( $modules as $name => $module ) {
 			try {
@@ -1137,7 +1139,7 @@ MESSAGE;
 				}
 
 				// Append output
-				switch ( $context->getOnly() ) {
+				switch ( $only ) {
 					case 'scripts':
 						$scripts = $content['scripts'];
 						if ( is_string( $scripts ) ) {
@@ -1170,7 +1172,7 @@ MESSAGE;
 								// mw.loader.implement will use globalEval if scripts is a string.
 								// Minify manually here, because general response minification is
 								// not effective due it being a string literal, not a function.
-								if ( !$context->getDebug() ) {
+								if ( !$debug ) {
 									$scripts = self::filter( 'minify-js', $scripts ); // T107377
 								}
 							} else {
@@ -1189,7 +1191,7 @@ MESSAGE;
 						break;
 				}
 
-				if ( !$context->getDebug() ) {
+				if ( !$debug ) {
 					$strContent = self::filter( $filter, $strContent );
 				} else {
 					// In debug mode, separate each response by a new line.
@@ -1197,7 +1199,7 @@ MESSAGE;
 					$strContent = self::ensureNewline( $strContent );
 				}
 
-				if ( $context->getOnly() === 'scripts' ) {
+				if ( $only === 'scripts' ) {
 					// Use a linebreak between module scripts (T162719)
 					$out .= self::ensureNewline( $strContent );
 				} else {
@@ -1215,7 +1217,7 @@ MESSAGE;
 
 		// Update module states
 		if ( $context->shouldIncludeScripts() && !$context->getRaw() ) {
-			if ( $modules && $context->getOnly() === 'scripts' ) {
+			if ( $modules && $only === 'scripts' ) {
 				// Set the state of modules loaded as only scripts to ready as
 				// they don't have an mw.loader.implement wrapper that sets the state
 				foreach ( $modules as $name => $module ) {
@@ -1226,7 +1228,7 @@ MESSAGE;
 			// Set the state of modules we didn't respond to with mw.loader.implement
 			if ( $states ) {
 				$stateScript = self::makeLoaderStateScript( $context, $states );
-				if ( !$context->getDebug() ) {
+				if ( !$debug ) {
 					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
 				// Use a linebreak between module script and state script (T162719)
@@ -1291,10 +1293,11 @@ MESSAGE;
 	private static function makeLoaderImplementScript(
 		ResourceLoaderContext $context, $name, $scripts, $styles, $messages, $templates
 	) {
+		$debug = (bool)$context->getDebug();
 		if ( $scripts instanceof XmlJsCode ) {
 			if ( $scripts->value === '' ) {
 				$scripts = null;
-			} elseif ( $context->getDebug() ) {
+			} elseif ( $debug ) {
 				// @phan-suppress-next-line SecurityCheck-XSS
 				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
@@ -1313,7 +1316,7 @@ MESSAGE;
 					// last line.
 					$content = self::ensureNewline( $file['content'] );
 					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
-					if ( $context->getDebug() ) {
+					if ( $debug ) {
 						$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
 					} else {
 						$file = new XmlJsCode( 'function(require,module){' . $content . '}' );
@@ -1324,8 +1327,8 @@ MESSAGE;
 			}
 			$scripts = XmlJsCode::encodeObject( [
 				'main' => $scripts['main'],
-				'files' => XmlJsCode::encodeObject( $files, $context->getDebug() )
-			], $context->getDebug() );
+				'files' => XmlJsCode::encodeObject( $files, $debug )
+			], $debug );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
 		}
@@ -1342,7 +1345,7 @@ MESSAGE;
 		];
 		self::trimArray( $module );
 
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, $context->getDebug() );
+		return Xml::encodeJsCall( 'mw.loader.implement', $module, $debug );
 	}
 
 	/**
