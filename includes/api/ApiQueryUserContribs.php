@@ -276,7 +276,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$revIds = [];
 				foreach ( $res as $row ) {
 					if ( $row->rev_parent_id ) {
-						$revIds[] = $row->rev_parent_id;
+						$revIds[] = (int)$row->rev_parent_id;
 					}
 				}
 				$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
