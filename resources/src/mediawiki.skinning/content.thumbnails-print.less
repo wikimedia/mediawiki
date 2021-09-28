@@ -1,5 +1,7 @@
 /* stylelint-disable selector-class-pattern */
 
+@import 'variables.less';
+
 /* @noflip */
 table.floatright,
 div.floatright,
@@ -18,25 +20,25 @@ div.tleft {
 
 /* @noflip */
 div.tleft {
-	margin: 0.5em 1.4em 1.3em 0;
+	margin: @margin-tleft;
 }
 
 /* @noflip */
 div.tright {
-	margin: 0.5em 0 1.3em 1.4em;
+	margin: @margin-tright;
 }
 
 /* @noflip */
 table.floatright,
 div.floatright {
-	margin: 0 0 0.5em 0.5em;
+	margin: @margin-floatright;
 	border: 0;
 }
 
 /* @noflip */
 table.floatleft,
 div.floatleft {
-	margin: 0 0.5em 0.5em 0;
+	margin: @margin-floatleft;
 	border: 0;
 }
 
@@ -65,7 +67,7 @@ div.thumbinner {
 
 .thumbcaption {
 	text-align: left;
-	line-height: 1.4;
+	line-height: @line-height-thumbcaption;
 	padding: 3px;
 }
 
