@@ -735,9 +735,9 @@ Title.phpCharToUpper = function ( chr ) {
 	if ( !toUpperMap ) {
 		toUpperMap = require( './phpCharToUpper.json' );
 	}
-	if ( toUpperMap[ chr ] === '' ) {
+	if ( toUpperMap[ chr ] === 0 ) {
 		// Optimisation: When the override is to keep the character unchanged,
-		// we use an empty string in JSON. This reduces the data by 50%.
+		// we use 0 in JSON. This reduces the data by 50%.
 		return chr;
 	}
 	return toUpperMap[ chr ] || chr.toUpperCase();

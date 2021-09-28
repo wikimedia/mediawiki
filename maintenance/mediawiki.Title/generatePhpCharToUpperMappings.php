@@ -70,9 +70,9 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 			$jsUpper = $jsUpperChars[$i];
 			if ( $jsUpper !== $phpUpper ) {
 				if ( $char === $phpUpper ) {
-					// Optimisation: Use the empty string to signal "leave character unchanged".
+					// Optimisation: Use 0 to signal "leave character unchanged".
 					// Reduces the transfer size by ~50%. Reduces browser memory cost as well.
-					$data[$char] = '';
+					$data[$char] = 0;
 				} else {
 					$data[$char] = $phpUpper;
 				}
