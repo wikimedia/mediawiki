@@ -640,7 +640,7 @@
 	"tooltip-namespace_association": "Пуктэлэ та пусъетэз, быръем ним пространствоен герӟаськем вераськон яке предметной ним пространствоез озьы ик пыртыны вылысь",
 	"blanknamespace": "(Валтӥсез)",
 	"tool-link-contributions": "{{GENDER:$1|Викиавтор}} гожтэмъёсы",
-	"contributions-title": "$1 викиавтор гожтэмъёсы",
+	"contributions-title": "$1 викиавторлэн гожтэмъёсыз",
 	"mycontris": "Гожтэмъёс",
 	"anoncontribs": "Гожтэмъёс",
 	"contribsub2": "{{GENDER:$3|$1}} гожтэмъёсы ($2)",
