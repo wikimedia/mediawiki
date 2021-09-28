@@ -40,6 +40,7 @@ namespace MediaWiki\Languages\Data;
  * @ingroup Language
  */
 class Names {
+	/** @phpcs-require-sorted-array */
 	public static $names = [
 		'aa' => 'Qafár af', # Afar
 		'ab' => 'Аҧсшәа', # Abkhaz
@@ -121,8 +122,8 @@ class Names {
 		'cps' => 'Capiceño', # Capiznon
 		'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ', # Cree
 		'crh' => 'qırımtatarca', # Crimean Tatar (multiple scripts - defaults to Latin)
-		'crh-latn' => 'qırımtatarca (Latin)', # Crimean Tatar (Latin)
 		'crh-cyrl' => 'къырымтатарджа (Кирилл)', # Crimean Tatar (Cyrillic)
+		'crh-latn' => 'qırımtatarca (Latin)', # Crimean Tatar (Latin)
 		'cs' => 'čeština', # Czech
 		'csb' => 'kaszëbsczi', # Cassubian
 		'cu' => 'словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', # Old Church Slavonic (ancient language)
@@ -185,9 +186,9 @@ class Names {
 		'got' => '𐌲𐌿𐍄𐌹𐍃𐌺', # Gothic
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
+		'gu' => 'ગુજરાતી', # Gujarati
 		'guc' => 'wayuunaiki', # Wayuu
 		'guw' => 'gungbe', # Gun
-		'gu' => 'ગુજરાતી', # Gujarati
 		'gv' => 'Gaelg', # Manx
 		'ha' => 'Hausa', # Hausa
 		'hak' => '客家語/Hak-kâ-ngî', # Hakka
@@ -242,10 +243,10 @@ class Names {
 		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo (multiple scripts - defaults to Burmese script)
 		'kk' => 'қазақша', # Kazakh (multiple scripts - defaults to Cyrillic)
 		'kk-arab' => 'قازاقشا (تٴوتە)', # Kazakh Arabic
-		'kk-cyrl' => 'қазақша (кирил)', # Kazakh Cyrillic
-		'kk-latn' => 'qazaqşa (latın)', # Kazakh Latin
 		'kk-cn' => 'قازاقشا (جۇنگو)', # Kazakh (China)
+		'kk-cyrl' => 'қазақша (кирил)', # Kazakh Cyrillic
 		'kk-kz' => 'қазақша (Қазақстан)', # Kazakh (Kazakhstan)
+		'kk-latn' => 'qazaqşa (latın)', # Kazakh Latin
 		'kk-tr' => 'qazaqşa (Türkïya)', # Kazakh (Turkey)
 		'kl' => 'kalaallisut', # Inuktitut, Greenlandic/Greenlandic/Kalaallisut (kal)
 		'km' => 'ភាសាខ្មែរ', # Khmer, Central
@@ -263,8 +264,8 @@ class Names {
 		'ks-deva' => 'कॉशुर', # Kashmiri (Devanagari script)
 		'ksh' => 'Ripoarisch', # Ripuarian
 		'ku' => 'kurdî', # Kurdish (multiple scripts - defaults to Latin)
-		'ku-latn' => 'kurdî (latînî)', # Northern Kurdish (Latin script)
 		'ku-arab' => 'كوردي (عەرەبی)', # Northern Kurdish (Arabic script) (falls back to ckb)
+		'ku-latn' => 'kurdî (latînî)', # Northern Kurdish (Latin script)
 		'kum' => 'къумукъ', # Kumyk (Cyrillic, 'kum-latn' for Latin script)
 		'kv' => 'коми', # Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 		'kw' => 'kernowek', # Cornish
@@ -284,8 +285,8 @@ class Names {
 		'lmo' => 'lombard', # Lombard - T283423
 		'ln' => 'lingála', # Lingala
 		'lo' => 'ລາວ', # Laotian
-		'lrc' => 'لۊری شومالی', # Northern Luri
 		'loz' => 'Silozi', # Lozi
+		'lrc' => 'لۊری شومالی', # Northern Luri
 		'lt' => 'lietuvių', # Lithuanian
 		'ltg' => 'latgaļu', # Latgalian
 		'lus' => 'Mizo ţawng', # Mizo/Lushai
@@ -402,15 +403,15 @@ class Names {
 		'sgs' => 'žemaitėška', # Samogitian
 		'sh' => 'srpskohrvatski / српскохрватски', # Serbocroatian
 		'shi' => 'Taclḥit', # Tachelhit, Shilha (multiple scripts - defaults to Latin)
-		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
 		'shi-latn' => 'Taclḥit', # Tachelhit (Latin script)
+		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
 		'shn' => 'ၽႃႇသႃႇတႆး ', # Shan
 		'shy' => 'tacawit', # Shawiya (Multiple scripts - defaults to Latin)
 		'shy-latn' => 'tacawit', # Shawiya (Latin script) - T194047
 		'si' => 'සිංහල', # Sinhalese
+		'simple' => 'Simple English', # Simple English
 		'sjd' => 'кӣллт са̄мь кӣлл', # Kildin Sami
 		'sje' => 'bidumsámegiella', # Pite Sami
-		'simple' => 'Simple English', # Simple English
 		'sk' => 'slovenčina', # Slovak
 		'skr' => 'سرائیکی', # Saraiki (multiple scripts - defaults to Arabic)
 		'skr-arab' => 'سرائیکی', # Saraiki (Arabic script)
@@ -428,8 +429,8 @@ class Names {
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
-		'sty' => 'себертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
+		'sty' => 'себертатар', # Siberian Tatar
 		'su' => 'Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
