@@ -1987,9 +1987,6 @@ MESSAGE;
 			// @internal For mediawiki.Title
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
-			// @internal For mediawiki.ForeignUpload
-			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
-			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
 
 		Hooks::runner()->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
