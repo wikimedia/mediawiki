@@ -1043,7 +1043,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\UnblockUserHook' => __DIR__ . '/includes/specials/Hook/UnblockUserHook.php',
 	'MediaWiki\\Hook\\UndeleteForm__showHistoryHook' => __DIR__ . '/includes/specials/Hook/UndeleteForm__showHistoryHook.php',
 	'MediaWiki\\Hook\\UndeleteForm__showRevisionHook' => __DIR__ . '/includes/specials/Hook/UndeleteForm__showRevisionHook.php',
-	'MediaWiki\\Hook\\UndeleteForm__undeleteHook' => __DIR__ . '/includes/specials/Hook/UndeleteForm__undeleteHook.php',
 	'MediaWiki\\Hook\\UndeletePageToolLinksHook' => __DIR__ . '/includes/skins/Hook/UndeletePageToolLinksHook.php',
 	'MediaWiki\\Hook\\UnwatchArticleCompleteHook' => __DIR__ . '/includes/actions/Hook/UnwatchArticleCompleteHook.php',
 	'MediaWiki\\Hook\\UnwatchArticleHook' => __DIR__ . '/includes/actions/Hook/UnwatchArticleHook.php',

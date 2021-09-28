@@ -1351,7 +1351,6 @@ class SpecialUndelete extends SpecialPage {
 
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj );
-		$this->getHookRunner()->onUndeleteForm__undelete( $archive, $this->mTargetObj );
 		$ok = $archive->undeleteAsUser(
 			$this->mTargetTimestamp,
 			$this->getUser(),
