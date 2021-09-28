@@ -144,6 +144,8 @@ because of Phabricator reports.
 * User::setOption(), deprecated since 1.35, now emits deprecation warnings.
 * Skin::getSkinStylePath has been hard deprecated. Direct string path
   should be used instead.
+* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emit
+  deprecation warnings.
 * SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
   deprecation warnings.
 * The following methods from the User class were hard deprecated:

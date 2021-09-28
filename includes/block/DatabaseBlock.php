@@ -862,9 +862,11 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Purge expired blocks from the ipblocks table
 	 *
-	 * @deprecated since 1.36 Use DatabaseBlockStore::purgeExpiredBlocks instead.
+	 * @deprecated since 1.36, hard deprecated since 1.38
+	 * Use DatabaseBlockStore::purgeExpiredBlocks instead.
 	 */
 	public static function purgeExpired() {
+		wfDeprecated( __METHOD__, '1.36' );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->purgeExpiredBlocks();
 	}
 
