@@ -7,3 +7,12 @@ updates:
     time: "00:00"
   open-pull-requests-limit: 250
   target-branch: REL1_36
+- package-ecosystem: gitsubmodule
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "00:00"
+  open-pull-requests-limit: 250
+  target-branch: REL1_37
+  labels:
+    - "137exts"
