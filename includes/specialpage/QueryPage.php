@@ -299,7 +299,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Sometime we don't want to build rss / atom feeds.
+	 * Sometimes we don't want to build rss / atom feeds.
 	 *
 	 * @stable to override
 	 * @return bool
