@@ -180,13 +180,13 @@ class UpdateMediaWiki extends Maintenance {
 
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
 
-		// Avoid upgrading from versions older than 1.27
-		// Using an implicit marker (bot_passwords table didn't exist until 1.27)
+		// Avoid upgrading from versions older than 1.29
+		// Using an implicit marker (ct_id field didn't exist until 1.29)
 		// TODO: Use an explicit marker
 		// See T259771
-		if ( !$updater->tableExists( 'bot_passwords' ) ) {
+		if ( !$updater->getDB()->fieldExists( 'change_tag', 'ct_id' ) ) {
 			$this->fatalError(
-				"Can not upgrade from versions older than 1.27, please upgrade to that version or later first."
+				"Can not upgrade from versions older than 1.29, please upgrade to that version or later first."
 			);
 		}
 

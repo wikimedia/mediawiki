@@ -47,12 +47,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			// Introduced in 1.37.
 			[ 'renameTable', 'mwuser', 'user' ],
 
-			// 1.28
-			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
-				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
-			[ 'addPgField', 'change_tag', 'ct_id',
-				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
-
 			// 1.29
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
 			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
