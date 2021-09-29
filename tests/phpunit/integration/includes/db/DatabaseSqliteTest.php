@@ -344,8 +344,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		// Versions tested
 		$versions = [
-			'1.27',
-			'1.28',
 			'1.29',
 			'1.30',
 			'1.31',
