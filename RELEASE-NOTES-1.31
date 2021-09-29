@@ -3,6 +3,9 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.15 ===
+* (T283273) Make postgres IRC channel point to libera.chat.
+* (T289108) ExtensionProcessor: Remove loaderScripts from
+  extension.json schemas.
 
 == MediaWiki 1.31.15 ==
 
