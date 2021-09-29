@@ -4262,9 +4262,9 @@ class OutputPage extends ContextSource {
 			MWDebug::getDebugHTML( $skin ),
 			$this->getBottomScripts( $extraHtml ),
 			wfReportTime( $this->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog()
-			. Html::closeElement( 'body' )
-			. Html::closeElement( 'html' )
+			MWDebug::getHTMLDebugLog(),
+			Html::closeElement( 'body' ),
+			Html::closeElement( 'html' ),
 		];
 
 		return WrappedStringList::join( "\n", $tail );
