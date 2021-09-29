@@ -182,6 +182,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 					'serializeContent',
 					'unserializeContent',
 					'makeEmptyContent',
+					'getParserOutput',
 				]
 			)
 			->setConstructorArgs( [ 'NotText', [ 'application/frobnitz' ] ] )
@@ -189,6 +190,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		$mockHandler->method( 'isParserCacheSupported' )
 			->willReturn( false );
+		$mockHandler->method( 'getParserOutput' )
+			->willReturn( new ParserOutput( 'Structured Output' ) );
 
 		$this->setTemporaryHook(
 			'ContentHandlerForModelID',
@@ -199,8 +202,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		/** @var MockObject|Content $content */
 		$content = $this->createMock( Content::class );
-		$content->method( 'getParserOutput' )
-			->willReturn( new ParserOutput( 'Structured Output' ) );
 		$content->method( 'getModel' )
 			->willReturn( 'NotText' );
 		$content->expects( $this->never() )->method( 'getNativeData' );
