@@ -3187,7 +3187,7 @@
 	"pageinfo-recent-authors": "Уникальных авторов за последнее время",
 	"pageinfo-magic-words": "{{PLURAL:$1|1=Волшебное слово|Волшебные слова}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|1=Скрытая категория|Скрытых категорий}} ($1)",
-	"pageinfo-templates": "{{PLURAL:$1|1=Шаблон|Шаблонов}} ($1)",
+	"pageinfo-templates": "{{PLURAL:$1|1=Включенный шаблон|Включенных шаблонов}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|1=Включаемая страница|Включаемых страниц}} ($1)",
 	"pageinfo-toolboxlink": "Сведения о странице",
 	"pageinfo-redirectsto": "Перенаправление",

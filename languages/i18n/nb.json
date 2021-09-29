@@ -3,6 +3,7 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"4ing",
+			"Abuluntu",
 			"Audun",
 			"Boivie",
 			"Brik",
@@ -77,7 +78,7 @@
 	"tog-minordefault": "Merk i utgangspunktet alle redigeringer som mindre",
 	"tog-previewontop": "Vis forhåndsvisningen over redigeringsboksen",
 	"tog-previewonfirst": "Vis forhåndsvisning når du begynner å redigere",
-	"tog-enotifwatchlistpages": "Send meg en e-post når sider og filer på overvåkningslisten min blir endret",
+	"tog-enotifwatchlistpages": "Send meg en e-post når en side eller en fil på overvåkningslisten min blir endret",
 	"tog-enotifusertalkpages": "Send meg en e-post når brukerdiskusjonssiden min endres",
 	"tog-enotifminoredits": "Send meg e-post også ved mindre endringer av sider og filer",
 	"tog-enotifrevealaddr": "Vis min e-postadresse i utgående meldinger",
