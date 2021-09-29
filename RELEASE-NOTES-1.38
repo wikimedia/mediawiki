@@ -164,6 +164,8 @@ because of Phabricator reports.
   ContentHandler::fillParserOutput instead.
 * MessageContent class was hard-deprecated.
 * Message::content() was hard-deprecated.
+* The following methods from the ParserOutput class were hard deprecated:
+   - ::hideNewSection() - use ::setHideNewSection()
 * …
 
 === Other changes in 1.38 ===

@@ -553,7 +553,7 @@ EOF
 		// Skin Control  ------------
 		$a = new ParserOutput();
 		$a->setNewSection( true );
-		$a->hideNewSection( true );
+		$a->setHideNewSection( true );
 		$a->setNoGallery( true );
 		$a->addWrapperDivClass( 'foo' );
 
