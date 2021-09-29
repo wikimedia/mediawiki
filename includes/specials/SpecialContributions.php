@@ -349,7 +349,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$work->execute();
 			}
 
-			$out->preventClickjacking( $pager->getPreventClickjacking() );
+			$out->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
 			if ( IPUtils::isValidRange( $target ) && $pager->isQueryableRange( $target ) ) {

@@ -706,7 +706,7 @@ class ContribsPager extends RangeChronologicalPager {
 					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
 					$this->getAuthority()->probablyCan( 'edit', $page )
 				) {
-					$this->preventClickjacking();
+					$this->setPreventClickjacking( true );
 					$topmarktext .= ' ' . Linker::generateRollback(
 						$revRecord,
 						$this->getContext(),
@@ -878,8 +878,19 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.38, use ::setPreventClickjacking() instead
+	 */
 	protected function preventClickjacking() {
-		$this->preventClickjacking = true;
+		$this->setPreventClickjacking( true );
+	}
+
+	/**
+	 * @param bool $enable
+	 * @since 1.38
+	 */
+	protected function setPreventClickjacking( bool $enable ) {
+		$this->preventClickjacking = $enable;
 	}
 
 	/**

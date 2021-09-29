@@ -566,7 +566,7 @@ EOF
 		$b = new ParserOutput();
 		$b->setNoGallery( true );
 		$b->setEnableOOUI( true );
-		$b->preventClickjacking( true );
+		$b->setPreventClickjacking( true );
 		$a->addWrapperDivClass( 'bar' );
 
 		$b->setIndicator( 'zoo', 'Zoo!' );
@@ -580,7 +580,7 @@ EOF
 			'getHideNewSection' => true,
 			'getNoGallery' => true,
 			'getEnableOOUI' => true,
-			'preventClickjacking' => true,
+			'getPreventClickjacking' => true,
 			'getIndicators' => [
 				'foo' => 'Foo!',
 				'bar' => 'Barrr!',
