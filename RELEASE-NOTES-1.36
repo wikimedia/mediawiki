@@ -5,10 +5,27 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.36.1 ===
+* Don't access MWServices prematurely in Maintenence.php.
+* (T283394) Mark ApiClientLogin/ApiLogin as requiring write mode.
+* Installer: Fix foundation.wikimedia.org link in config-pingback-help.
+* (T283273) Make postgres IRC channel point to libera.chat.
+* composer.json: Promote and pin monolog/monolog to require from require-dev.
 * (T287526) JavaScriptMinifer: Recognize `...` as a single token.
 * (T287526) Update wikimedia/minify to 2.2.4.
+* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json 
+  schemas.
+* (T281549) Installer: Fix mediawiki-announce auto subscription code.
+* FormatJson: Optimize encode() for supported PHP versions.
+* (T290398) renameRestrictions.php: Update protected_titles as well.
+* (T290489) objectcache: Fix PHP warning for ReplicatedBagOStuff::setMulti.
 * $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
   form of JavaScript, 'application/javascript', as well as previous MIME types.
+* (T51097, T290273) resourceloader: Call getStyleFiles from
+  FileModule::getFileHashes.
+* (T277788) parser: Avoid calling ParserOptions::getOption() too many times.
+* (T291244) Unserialize objects in ParserCache->mExtensionData as objects.
+* MysqlUpdater: Add updatelog entries for dropDefault.
+* (T290776) Fix $phase check in OutputHandler.
 * The wikimedia/parsoid library has been upgraded from v0.13.0 to v0.13.1.
 
 == MediaWiki 1.36.1 ==
