@@ -90,6 +90,7 @@ MediaWiki supports over 400 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T292166) Updated namespace names for the Lombard language.
 * (T291899) Added language support for Xiang Chinese (hsn).
 
 === Breaking changes in 1.38 ===
