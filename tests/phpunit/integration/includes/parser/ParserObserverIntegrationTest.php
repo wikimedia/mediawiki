@@ -18,12 +18,12 @@ class ParserObserverIntegrationTest extends MediaWikiIntegrationTestCase {
 		$logger = new TestLogger( true );
 		$observer = new ParserObserver( $logger );
 		$this->setService( '_ParserObserver', $observer );
-
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		// Create a test page. Parse it twice if a duplicate is desired, or once otherwise.
 		$page = $this->getExistingTestPage();
-		$page->getContent()->getParserOutput( $page->getTitle() );
+		$contentRenderer->getParserOutput( $page->getContent(), $page->getTitle() );
 		if ( $duplicate ) {
-			$page->getContent()->getParserOutput( $page->getTitle() );
+			$contentRenderer->getParserOutput( $page->getContent(), $page->getTitle() );
 		}
 
 		$this->assertCount( $count, $logger->getBuffer() );

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\MediaWikiServices;
@@ -68,13 +69,20 @@ class ContentHandlerSanityTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideModels
 	 */
 	public function testGetParserOutput( string $model ) {
+		$this->filterDeprecated( '/Use of AbstractContent::getParserOutput was deprecated/' );
+
 		$handler = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( $model );
 
 		$title = $this->getExistingTestPage()->getTitle();
 		$content = $handler->makeEmptyContent();
-
 		$this->assertInstanceOf( ParserOutput::class, $content->getParserOutput( $title ) );
+
+		$gpoParams = new ContentParseParams( $title );
+		$this->assertInstanceOf(
+			ParserOutput::class,
+			$handler->getParserOutput( $content, $gpoParams )
+		);
 	}
 
 	/**

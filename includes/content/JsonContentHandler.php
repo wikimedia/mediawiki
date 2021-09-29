@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 
 /**
@@ -73,5 +74,29 @@ class JsonContentHandler extends CodeContentHandler {
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( JsonContent::normalizeLineEndings( $content->beautifyJSON() ) );
+	}
+
+	/**
+	 * Set the HTML and add the appropriate styles.
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		'@phan-var JsonContent $content';
+		// FIXME: WikiPage::doEditContent generates parser output before validation.
+		// As such, native data may be invalid (though output is discarded later in that case).
+		if ( $cpoParams->getGenerateHtml() && $content->isValid() ) {
+			$output->setText( $content->rootValueTable( $content->getData()->getValue() ) );
+			$output->addModuleStyles( 'mediawiki.content.json' );
+		} else {
+			$output->setText( '' );
+		}
 	}
 }

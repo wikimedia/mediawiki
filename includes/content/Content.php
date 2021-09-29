@@ -268,7 +268,8 @@ interface Content {
 	 * @note To control which options are used in the cache key for the
 	 *       generated parser output, implementations of this method
 	 *       may call ParserOutput::recordOption() on the output object.
-	 *
+	 * @deprecated since 1.38. Use ContentRenderer::getParserOutput
+	 * and override ContentHandler::fillParserOutput.
 	 * @param Title $title The page title to use as a context for rendering.
 	 * @param int|null $revId ID of the revision being rendered.
 	 *  See Parser::parse() for the ramifications. (default: null)

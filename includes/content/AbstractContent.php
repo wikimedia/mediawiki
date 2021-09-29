@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\MediaWikiServices;
@@ -517,10 +518,9 @@ abstract class AbstractContent implements Content {
 	 * Subclasses that override getParserOutput() itself should take care to call the
 	 * ContentGetParserOutput hook.
 	 *
-	 * @stable to override
-	 *
 	 * @since 1.24
-	 *
+	 * @deprecated since 1.38. Use ContentRenderer::getParserOutput instead.
+	 * Extensions defining a content model should override ContentHandler::fillParserOutput.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId Revision ID being rendered
 	 * @param ParserOptions|null $options
@@ -531,34 +531,47 @@ abstract class AbstractContent implements Content {
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		if ( $options === null ) {
-			$options = ParserOptions::newCanonical( 'canonical' );
+		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'getParserOutput'
+		);
+		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'fillParserOutput'
+		);
+
+		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
+			if ( $options === null ) {
+				$options = ParserOptions::newCanonical( 'canonical' );
+			}
+
+			$po = new ParserOutput();
+			$options->registerWatcher( [ $po, 'recordOption' ] );
+
+			if ( Hooks::runner()->onContentGetParserOutput(
+				$this, $title, $revId, $options, $generateHtml, $po )
+			) {
+				// Save and restore the old value, just in case something is reusing
+				// the ParserOptions object in some weird way.
+				$oldRedir = $options->getRedirectTarget();
+				$options->setRedirectTarget( $this->getRedirectTarget() );
+				$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+				$options->setRedirectTarget( $oldRedir );
+			}
+
+			Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
+			$options->registerWatcher( null );
+
+			return $po;
 		}
 
-		$output = new ParserOutput();
-		$options->registerWatcher( [ $output, 'recordOption' ] );
-
-		if ( Hooks::runner()->onContentGetParserOutput(
-			$this, $title, $revId, $options, $generateHtml, $output )
-		) {
-			// Save and restore the old value, just in case something is reusing
-			// the ParserOptions object in some weird way.
-			$oldRedir = $options->getRedirectTarget();
-			$options->setRedirectTarget( $this->getRedirectTarget() );
-			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $output );
-			MediaWikiServices::getInstance()->get( '_ParserObserver' )->notifyParse(
-				$title,
-				$revId,
-				$options,
-				$output
-			);
-			$options->setRedirectTarget( $oldRedir );
-		}
-
-		Hooks::runner()->onContentAlterParserOutput( $this, $title, $output );
-		$options->registerWatcher( null );
-
-		return $output;
+		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
+		return $this->getContentHandler()->getParserOutput(
+			$this,
+			$cpoParams
+		);
 	}
 
 	/**
@@ -571,10 +584,8 @@ abstract class AbstractContent implements Content {
 	 *
 	 * This placeholder implementation always throws an exception.
 	 *
-	 * @stable to override
-	 *
 	 * @since 1.24
-	 *
+	 * @deprecated since 1.37. Use ContentHandler::fillParserOutput instead.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId ID of the revision being rendered.
 	 *  See Parser::parse() for the ramifications.
@@ -587,7 +598,7 @@ abstract class AbstractContent implements Content {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
-		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
+		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
+		return $this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
 	}
 }

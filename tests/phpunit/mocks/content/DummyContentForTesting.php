@@ -91,33 +91,4 @@ class DummyContentForTesting extends AbstractContent {
 	public function isCountable( $hasLinks = null ) {
 		return false;
 	}
-
-	/**
-	 * @param Title $title
-	 * @param int|null $revId Unused.
-	 * @param null|ParserOptions $options
-	 * @param bool $generateHtml Whether to generate Html (default: true). If false, the result
-	 *  of calling getText() on the ParserOutput object returned by this method is undefined.
-	 *
-	 * @return ParserOutput
-	 */
-	public function getParserOutput( Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-		return new ParserOutput( $this->data );
-	}
-
-	/**
-	 * @see AbstractContent::fillParserOutput()
-	 *
-	 * @param Title $title Context title for parsing
-	 * @param int|null $revId Revision ID (for {{REVISIONID}})
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml Whether or not to generate HTML
-	 * @param ParserOutput &$output The output object to fill (reference).
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
-		$output = new ParserOutput( $this->data );
-	}
 }
