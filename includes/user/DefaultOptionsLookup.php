@@ -25,6 +25,7 @@ use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use NamespaceInfo;
 use Skin;
 use Wikimedia\Assert\Assert;
 
@@ -49,6 +50,9 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	/** @var Language */
 	private $contentLang;
 
+	/** @var NamespaceInfo */
+	protected $nsInfo;
+
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
 
@@ -59,16 +63,19 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
 	 * @param HookContainer $hookContainer
+	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contentLang,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		NamespaceInfo $nsInfo
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
 		$this->contentLang = $contentLang;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -92,8 +99,9 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
 		// since extensions may change the set of searchable namespaces depending
 		// on user groups/permissions.
-		foreach ( $this->serviceOptions->get( 'NamespacesToBeSearchedDefault' ) as $nsnum => $val ) {
-			$this->defaultOptions['searchNs' . $nsnum] = (bool)$val;
+		$nsSearchDefault = $this->serviceOptions->get( 'NamespacesToBeSearchedDefault' );
+		foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
+			$this->defaultOptions['searchNs' . $n] = ( $nsSearchDefault[$n] ?? false ) ? 1 : 0;
 		}
 		$this->defaultOptions['skin'] = Skin::normalizeKey( $this->serviceOptions->get( 'DefaultSkin' ) );
 
