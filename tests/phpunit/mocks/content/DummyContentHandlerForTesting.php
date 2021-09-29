@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\Renderer\ContentParseParams;
+
 class DummyContentHandlerForTesting extends ContentHandler {
 
 	public function __construct( $dataModel, $formats = [ DummyContentForTesting::MODEL_ID ] ) {
@@ -46,5 +48,22 @@ class DummyContentHandlerForTesting extends ContentHandler {
 
 	public function generateHTMLOnEdit(): bool {
 		return false;
+	}
+
+	/**
+	 * @see ContentHandler::fillParserOutput()
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+			'@phan-var DummyContentForTesting $content';
+			$output = new ParserOutput( $content->getNativeData() );
 	}
 }

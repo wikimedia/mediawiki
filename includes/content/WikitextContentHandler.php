@@ -23,6 +23,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -265,5 +266,49 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $plt );
+	}
+
+	/**
+	 * Returns a ParserOutput object resulting from parsing the content's text
+	 * using the global Parser service.
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		'@phan-var WikitextContent $content';
+		$services = MediaWikiServices::getInstance();
+		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		$parserOptions = $cpoParams->getParserOptions();
+		$revId = $cpoParams->getRevId();
+
+		list( $redir, $text ) = $content->getRedirectTargetAndText();
+		$output = $services->getParser()
+			->parse( $text, $title, $parserOptions, true, true, $revId );
+
+		// Add redirect indicator at the top
+		if ( $redir ) {
+			// Make sure to include the redirect link in pagelinks
+			$output->addLink( $redir );
+			if ( $cpoParams->getGenerateHtml() ) {
+				$chain = $content->getRedirectChain();
+				$output->setText(
+					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
+					$output->getRawText()
+				);
+				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );
+			}
+		}
+
+		// Pass along user-signature flag
+		if ( in_array( 'user-signature', $content->getPreSaveTransformFlags() ) ) {
+			$output->setFlag( 'user-signature' );
+		}
 	}
 }

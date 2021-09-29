@@ -68,6 +68,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
@@ -408,6 +409,10 @@ return [
 
 	'ContentModelStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		return $services->getNameTableStoreFactory()->getContentModels();
+	},
+
+	'ContentRenderer' => static function ( MediaWikiServices $services ): ContentRenderer {
+		return new ContentRenderer( $services->getContentHandlerFactory() );
 	},
 
 	'ContentTransformer' => static function ( MediaWikiServices $services ): ContentTransformer {

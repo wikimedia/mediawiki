@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MediaWikiServices;
 
@@ -100,5 +101,56 @@ class JavaScriptContentHandler extends CodeContentHandler {
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $pst );
+	}
+
+	/**
+	 * Fills the provided ParserOutput object with information derived from the content.
+	 * Unless $cpo->getGenerateHtml was false, this includes an HTML representation of the content.
+	 *
+	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
+	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
+	 *
+	 * Subclasses may override this to provide custom content processing..
+	 *
+	 * @stable to override
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		global $wgTextModelsToParse;
+		'@phan-var TextContent $content';
+		if ( in_array( $content->getModel(), $wgTextModelsToParse ) ) {
+			// parse just to get links etc into the database, HTML is replaced below.
+			$output = MediaWikiServices::getInstance()->getParser()
+				->parse(
+					$content->getText(),
+					$cpoParams->getPage(),
+					$cpoParams->getParserOptions(),
+					true,
+					true,
+					$cpoParams->getRevId()
+				);
+		}
+
+		if ( $cpoParams->getGenerateHtml() ) {
+			// Return JavaScript wrapped in a <pre> tag.
+			$html = Html::element(
+				'pre',
+				[ 'class' => 'mw-code mw-js', 'dir' => 'ltr' ],
+				"\n" . $content->getText() . "\n"
+			) . "\n";
+		} else {
+			$html = '';
+		}
+
+		$output->clearWrapperDivClass();
+		$output->setText( $html );
 	}
 }

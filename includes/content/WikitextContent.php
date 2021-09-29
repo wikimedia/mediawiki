@@ -144,7 +144,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return array List of two elements: Title|null and string.
 	 */
-	protected function getRedirectTargetAndText() {
+	public function getRedirectTargetAndText() {
 		global $wgMaxRedirects;
 
 		if ( $this->redirectTargetAndText !== null ) {
@@ -280,56 +280,6 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Returns a ParserOutput object resulting from parsing the content's text
-	 * using the global Parser service.
-	 *
-	 * @param Title $title
-	 * @param int|null $revId ID of the revision being rendered.
-	 *  See Parser::parse() for the ramifications. (default: null)
-	 * @param ParserOptions $options (default: null)
-	 * @param bool $generateHtml (default: true)
-	 * @param ParserOutput &$output ParserOutput representing the HTML form of the text,
-	 *           may be manipulated or replaced.
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-			ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		list( $redir, $text ) = $this->getRedirectTargetAndText();
-		$output = MediaWikiServices::getInstance()->getParser()
-			->parse( $text, $title, $options, true, true, $revId );
-
-		// Add redirect indicator at the top
-		if ( $redir ) {
-			// Make sure to include the redirect link in pagelinks
-			$output->addLink( $redir );
-			if ( $generateHtml ) {
-				$chain = $this->getRedirectChain();
-				$output->setText(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
-					$output->getRawText()
-				);
-				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );
-			}
-		}
-
-		// Pass along user-signature flag
-		if ( in_array( 'user-signature', $this->preSaveTransformFlags ) ) {
-			$output->setFlag( 'user-signature' );
-		}
-	}
-
-	/**
-	 * @throws MWException
-	 */
-	protected function getHtml() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException(
-			"getHtml() not implemented for wikitext. "
-				. "Use getParserOutput()->getText()."
-		);
-	}
-
-	/**
 	 * This implementation calls $word->match() on the this TextContent object's text.
 	 *
 	 * @param MagicWord $word
@@ -349,5 +299,14 @@ class WikitextContent extends TextContent {
 	 */
 	public function setPreSaveTransformFlags( array $flags ) {
 		$this->preSaveTransformFlags = $flags;
+	}
+
+	/**
+	 * Records flags set by preSaveTransform
+	 * @internal for use by WikitextContentHandler
+	 * @return string[]
+	 */
+	public function getPreSaveTransformFlags() {
+		return $this->preSaveTransformFlags;
 	}
 }

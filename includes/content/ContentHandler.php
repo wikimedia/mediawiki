@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -1607,6 +1608,116 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns a ParserOutput object containing information derived from this content.
+	 * Most importantly, unless $cpoParams->getGenerateHtml was false, the return value contains an
+	 * HTML representation of the content.
+	 *
+	 * Subclasses that want to control the parser output may override
+	 * fillParserOutput() instead.
+	 *
+	 *
+	 *
+	 * @since 1.38
+	 *
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @return ParserOutput Containing information derived from this content.
+	 */
+	public function getParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams
+	) {
+		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'getParserOutput'
+		);
+		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'fillParserOutput'
+		);
+		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
+			return $this->callDeprecatedContentGPO( $content, $cpoParams );
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		$parserOptions = $cpoParams->getParserOptions();
+
+		$po = new ParserOutput();
+		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
+		if ( Hooks::runner()->onContentGetParserOutput(
+			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
+		) {
+			// Save and restore the old value, just in case something is reusing
+			// the ParserOptions object in some weird way.
+			$oldRedir = $parserOptions->getRedirectTarget();
+			$parserOptions->setRedirectTarget( $content->getRedirectTarget() );
+			$this->fillParserOutput(
+				$content,
+				$cpoParams,
+				$po
+			);
+			MediaWikiServices::getInstance()->get( '_ParserObserver' )->notifyParse(
+				$title,
+				$cpoParams->getRevId(),
+				$parserOptions,
+				$po
+			);
+			$parserOptions->setRedirectTarget( $oldRedir );
+		}
+
+		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
+		$parserOptions->registerWatcher( null );
+
+		return $po;
+	}
+
+	/**
+	 * A temporary layer to move AbstractContent::fillParserOutput to ContentHandler::fillParserOutput
+	 *
+	 * @internal only core AbstractContent::fillParserOutput implementations need to call this.
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	public function fillParserOutputInternal(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		$this->fillParserOutput( $content, $cpoParams, $output );
+	}
+
+	/**
+	 * Fills the provided ParserOutput with information derived from the content.
+	 * Unless $generateHtml was false, this includes an HTML representation of the content.
+	 *
+	 * Subclasses are expected to override this method.
+	 *
+	 * This placeholder implementation always throws an exception.
+	 *
+	 * @stable to override
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 *
+	 * @throws MWException
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		// Subclasses must override fillParserOutput() to directly don't fail.
+		throw new MWException( 'Subclasses of ContentHandler must override fillParserOutput!' );
+	}
+
+	/**
 	 * Check if we need to provide content overrides deprecated Content method.
 	 *
 	 * @internal only core ContentHandler implementations need to call this.
@@ -1670,6 +1781,28 @@ abstract class ContentHandler {
 			$legacyTitle,
 			$params->getParserOptions(),
 			$params->getParams()
+		);
+	}
+
+	/**
+	 * If provided content overrides deprecated Content::getParserOutput,
+	 * call it and return.
+	 * @internal only core ContentHandler implementations need to call this.
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @return ParserOutput
+	 */
+	protected function callDeprecatedContentGPO(
+		Content $content,
+		ContentParseParams $cpoParams
+	) {
+		$services = MediaWikiServices::getInstance();
+		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		return $content->getParserOutput(
+			$legacyTitle,
+			$cpoParams->getRevId(),
+			$cpoParams->getParserOptions(),
+			$cpoParams->getGenerateHtml()
 		);
 	}
 }

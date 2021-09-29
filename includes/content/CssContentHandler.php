@@ -21,6 +21,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Minify\CSSMin;
@@ -98,5 +99,43 @@ class CssContentHandler extends CodeContentHandler {
 
 		$class = $this->getContentClass();
 		return new $class( $pst );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		global $wgTextModelsToParse;
+		'@phan-var CssContent $content';
+		if ( in_array( $content->getModel(), $wgTextModelsToParse ) ) {
+			// parse just to get links etc into the database, HTML is replaced below.
+			$output = MediaWikiServices::getInstance()->getParser()
+				->parse(
+					$content->getText(),
+					$cpoParams->getPage(),
+					$cpoParams->getParserOptions(),
+					true,
+					true,
+					$cpoParams->getRevId()
+				);
+		}
+
+		if ( $cpoParams->getGenerateHtml() ) {
+			// Return CSS wrapped in a <pre> tag.
+			$html = Html::element(
+				'pre',
+				[ 'class' => 'mw-code mw-css', 'dir' => 'ltr' ],
+				"\n" . $content->getText() . "\n"
+			) . "\n";
+		} else {
+			$html = '';
+		}
+
+		$output->clearWrapperDivClass();
+		$output->setText( $html );
 	}
 }

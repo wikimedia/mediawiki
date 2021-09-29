@@ -153,7 +153,11 @@ because of Phabricator reports.
 * The following methods from the User class were hard deprecated:
    - ::blockedBy
    - ::getBlockId
-
+* Content::getParserOutput() was deprecated.
+  Use ContentRenderer::getParserOutput and override
+  ContentHandler::fillParserOutput instead.
+* MessageContent class was hard-deprecated.
+* Message::content() was hard-deprecated.
 * …
 
 === Other changes in 1.38 ===

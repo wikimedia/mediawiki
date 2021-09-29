@@ -48,16 +48,6 @@ class CssContent extends TextContent {
 	}
 
 	/**
-	 * @return string CSS wrapped in a <pre> tag.
-	 */
-	protected function getHtml() {
-		return Html::element( 'pre',
-			[ 'class' => 'mw-code mw-css', 'dir' => 'ltr' ],
-			"\n" . $this->getText() . "\n"
-		) . "\n";
-	}
-
-	/**
 	 * @param Title $target
 	 * @return CssContent
 	 */
