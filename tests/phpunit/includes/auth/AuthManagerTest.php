@@ -751,7 +751,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		return [
 			[ 'zh', false, 'zh', 'zh' ],
 			[ 'zh', true, 'de', 'zh' ],
-			[ 'fr', true, 'de', null ],
+			[ 'fr', true, 'de', 'fr' ],
 		];
 	}
 
