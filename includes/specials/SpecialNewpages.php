@@ -380,7 +380,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			->setWrapperLegendMsg( 'newpages' )
 			->addFooterText( Html::rawElement(
 				'div',
-				null,
+				[],
 				$this->filterLinks()
 			) )
 			->show();

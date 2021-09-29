@@ -3843,8 +3843,8 @@ class EditPage implements IEditObject {
 				}
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 					$limitReport .= Html::openElement( 'tr' ) .
-						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null, $valueMsg->parse() ) .
+						Html::rawElement( 'th', [], $keyMsg->parse() ) .
+						Html::rawElement( 'td', [], $valueMsg->parse() ) .
 						Html::closeElement( 'tr' );
 				}
 			}

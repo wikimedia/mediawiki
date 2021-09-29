@@ -3116,7 +3116,7 @@ class OutputPage extends ContextSource {
 			$pieces[] = Html::element( 'meta', [ 'charset' => 'UTF-8' ] );
 		}
 
-		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
+		$pieces[] = Html::element( 'title', [], $this->getHTMLTitle() );
 		$pieces[] = $this->getRlClient()->getHeadHtml( $htmlAttribs['class'] ?? null );
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
