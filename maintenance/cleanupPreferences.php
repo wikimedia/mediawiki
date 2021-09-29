@@ -27,23 +27,19 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that removes bogus preferences from the database.
+ * Maintenance script that removes unused preferences from the database.
  *
  * @ingroup Maintenance
  */
 class CleanupPreferences extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription(
-			'Clean up hidden preferences, removed preferences, and normalizes values'
-		);
+		$this->addDescription( 'Clean up hidden preferences or removed preferences' );
 		$this->setBatchSize( 50 );
 		$this->addOption( 'dry-run', 'Print debug info instead of actually deleting' );
 		$this->addOption( 'hidden', 'Drop hidden preferences ($wgHiddenPrefs)' );
 		$this->addOption( 'unknown',
 			'Drop unknown preferences (not in $wgDefaultUserOptions or prefixed with "userjs-")' );
-		// TODO: actually implement this
-		// $this->addOption( 'bogus', 'Drop preferences that have invalid/unaccepted values' );
 	}
 
 	/**
@@ -53,19 +49,14 @@ class CleanupPreferences extends Maintenance {
 	 *   2) Drop preference keys that we don't know about. They could've been
 	 *      removed from core, provided by a now-disabled extension, or the result
 	 *      of a bug. We don't want them.
-	 *   3) TODO: Normalize accepted preference values. This is the biggest part of the work.
-	 *      For each preference we know about, iterate over it and if it's got a
-	 *      limited set of accepted values (so it's not text, basically), make sure
-	 *      all values are in that range. Drop ones that aren't.
 	 */
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$hidden = $this->hasOption( 'hidden' );
 		$unknown = $this->hasOption( 'unknown' );
-		$bogus = $this->hasOption( 'bogus' );
 
-		if ( !$hidden && !$unknown && !$bogus ) {
-			$this->output( "Did not select one of --hidden, --unknown or --bogus, exiting\n" );
+		if ( !$hidden && !$unknown ) {
+			$this->output( "Did not select one of --hidden, --unknown, exiting\n" );
 			return;
 		}
 
@@ -94,10 +85,6 @@ class CleanupPreferences extends Maintenance {
 			// Allow extensions to add to the where clause to prevent deletion of their own prefs.
 			$this->getHookRunner()->onDeleteUnknownPreferences( $where, $dbw );
 			$this->deleteByWhere( $dbw, 'Dropping unknown preferences', $where );
-		}
-
-		// Something something phase 3
-		if ( $bogus ) {
 		}
 	}
 
