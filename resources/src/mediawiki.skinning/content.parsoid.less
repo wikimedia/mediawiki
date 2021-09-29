@@ -2,8 +2,6 @@
  * Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser.
  */
 
-/* stylelint-disable selector-class-pattern */
-
 /*
  * Auto-numbered external links
  * Parsoid renders those as link without content, and lets CSS do the
@@ -17,22 +15,4 @@
 .mw-parser-output a[ rel~='mw:ExtLink' ]:empty:after {
 	content: '[' counter( mw-numbered-ext-link ) ']';
 	counter-increment: mw-numbered-ext-link;
-}
-
-/**
- * Avoid the need to calculate paddings individually
- * https://stackoverflow.com/a/7310398
- */
-.mw-gallery-traditional .gallerybox .thumb {
-	&:before {
-		content: '';
-		vertical-align: middle;
-		display: inline-block;
-		height: 100%;
-	}
-
-	> * {
-		vertical-align: middle;
-		display: inline-block;
-	}
 }
