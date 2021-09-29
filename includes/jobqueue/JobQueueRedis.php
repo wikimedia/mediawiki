@@ -447,7 +447,7 @@ LUA;
 		}
 		$params = $job->getRootJobParams();
 
-		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'], $job->getType() );
 
 		$conn = $this->getConnection();
 		try {
@@ -478,7 +478,7 @@ LUA;
 		$conn = $this->getConnection();
 		try {
 			// Get the last time this root job was enqueued
-			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'], $job->getType() ) );
 		} catch ( RedisException $e ) {
 			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
