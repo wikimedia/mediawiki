@@ -241,6 +241,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get the Database object in use
 	 *
+	 * @since 1.20
+	 *
 	 * @return IDatabase
 	 */
 	public function getDatabase() {
