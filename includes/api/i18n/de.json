@@ -1210,7 +1210,7 @@
 	"apierror-invalid-file-key": "Kein gültiger Dateischlüssel.",
 	"apierror-invalidmethod": "Ungültige HTTP-Methode. Ziehe in Erwägung, GET oder POST zu verwenden.",
 	"apierror-invalidsection": "Der Parameter <var>section</var> muss eine gültige Abschnittskennung oder <kbd>new</kbd> sein.",
-	"apierror-invalidtitle": "Ungültiger Titel \"$1\".",
+	"apierror-invalidtitle": "Ungültiger Titel „$1“.",
 	"apierror-invaliduser": "Ungültiger Benutzername „$1“.",
 	"apierror-invaliduserid": "Die Benutzerkennung <var>$1</var> ist nicht gültig.",
 	"apierror-maxbytes": "Der Parameter <var>$1</var> kann nicht länger sein als {{PLURAL:$2|ein Byte|$2 Bytes}}",

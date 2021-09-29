@@ -386,5 +386,6 @@
 	"exif-fullpanoheightpixels": "Panorama med full höjd",
 	"exif-croppedarealeftpixels": "Panorama med vänsterbeskärning",
 	"exif-croppedareatoppixels": "Panorama med beskuren topp",
-	"exif-initialcameradolly": "Ursprunglig kameraposition"
+	"exif-initialcameradolly": "Ursprunglig kameraposition",
+	"exif-stitchingsoftware": "Flätningsprogramvara"
 }
