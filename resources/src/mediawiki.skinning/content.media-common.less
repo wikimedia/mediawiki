@@ -12,7 +12,11 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	margin: 0;  // Maybe belongs in element.css for figure
 
 	> a {
-		border: 0;
+		// The addition of the class is needed for higher specificity
+		// than Vector's print styles
+		.mw-body-content & {
+			border: 0;
+		}
 	}
 
 	&.mw-halign-right {
@@ -63,13 +67,14 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	margin-bottom: @margin-bottom-thumb;
 	display: table;
 	text-align: center;
-	border: @border-thumbinner;
-	border-bottom: 0;  // No border to figcaption
 	border-collapse: collapse;
-	background-color: @background-color-thumbinner;
 
 	> a {
-		border: 0;
+		// The addition of the class is needed for higher specificity
+		// than Vector's print styles
+		.mw-body-content & {
+			border: 0;
+		}
 	}
 
 	// Defaults for page content language
@@ -134,8 +139,6 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		> audio,
 		> img,
 		> video {
-			border: @border-thumbimage;
-			background: @background-color-thumbimage;
 			margin: 3px;
 		}
 		/* Broken media get a span instead */
@@ -146,16 +149,13 @@ figure[ typeof~='mw:Audio/Frame' ] {
 			/* This is hardcoded in Linker::makeThumbLink2 for broken media */
 			width: 180px;
 			/* Styles the text of broken media */
-			font-size: @font-size-thumbinner;
+			font-size: @font-size-thumbinner-screen;
 		}
 	}
 
 	> figcaption {
 		display: table-caption;
 		caption-side: bottom;
-		border: @border-thumbinner;
-		border-top: 0;
-		background-color: @background-color-thumbinner;
 		line-height: @line-height-thumbcaption;
 
 		/**
@@ -180,11 +180,6 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		 */
 		word-break: break-word;
 
-		/* In mw-core the font-size is duplicated, 94% in thumbinner
-		 * and again 94% in thumbcaption. 88.4% for font size of the
-		 * caption results in the same behavior. */
-		font-size: 88.4%;  // @font-size-thumbinner * @font-size-thumbcaption
-
 		.mw-content-ltr & {
 			/* @noflip */
 			text-align: left;
@@ -197,66 +192,6 @@ figure[ typeof~='mw:Audio/Frame' ] {
 
 		/* taken from .thumbcaption, plus .thumbinner */
 		padding: 0 6px 6px 6px;
-	}
-}
-
-/* Magnify clip, not present for broken media */
-figure[ typeof~='mw:Image/Thumb' ]:not( [ typeof~='mw:Error' ] ),
-figure[ typeof~='mw:Video/Thumb' ]:not( [ typeof~='mw:Error' ] ),
-figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
-	> figcaption:before {
-		content: '';
-		width: 15px;
-		height: 11px;
-
-		.mw-content-ltr & {
-			/* @noflip */
-			margin-left: 3px;
-			/* @noflip */
-			float: right;
-		}
-
-		.mw-content-rtl & {
-			/* @noflip */
-			margin-right: 3px;
-			/* @noflip */
-			float: left;
-		}
-	}
-
-	> a {
-		display: inline-block;
-		position: relative;
-	}
-
-	> a:after {
-		content: '';
-		width: 15px;
-		height: 11px;
-		position: absolute;
-		bottom: -11px;
-
-		.mw-content-ltr & {
-			/* @noflip */
-			right: 6px;
-			/* @noflip */
-			background-image: @background-image-magnify-ltr;
-		}
-
-		.mw-content-rtl & {
-			/* @noflip */
-			left: 6px;
-			/* @noflip */
-			background-image: @background-image-magnify-rtl;
-		}
-	}
-}
-
-.mw-image-border > *:first-child {
-	> audio,
-	> img,
-	> video {
-		border: @border-thumbborder;
 	}
 }
 

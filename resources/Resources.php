@@ -97,7 +97,8 @@ return [
 		'skinStyles' => [
 			'default' => [
 				'resources/src/mediawiki.skinning/content.parsoid.less',
-				'resources/src/mediawiki.skinning/content.media.less',
+				'resources/src/mediawiki.skinning/content.media-common.less',
+				'resources/src/mediawiki.skinning/content.media-screen.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
