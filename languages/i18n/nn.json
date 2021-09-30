@@ -903,6 +903,7 @@
 	"searchrelated": "relatert",
 	"searchall": "alle",
 	"showingresults": "Nedanfor er opp til {{PLURAL:$1|<strong>eitt</strong>|<strong>$1</strong>}} resultat som byrjar med nummer <strong>$2</strong> vist{{PLURAL:$1||e}}.",
+	"showingresultsinrange": "Nedanfor er opp til {{PLURAL:$1|<strong>eitt</strong>|<strong>$1</strong>}} resultat frå nummer <strong>$2</strong> til og med #<strong>$3</strong> viste.",
 	"search-showingresults": "Resultat <strong>{{PLURAL:$4|$1|$1–$2}}</strong> av <strong>$3</strong>",
 	"search-nonefound": "Ingen resultat svarte til førespurnaden.",
 	"search-nonefound-thiswiki": "Det var ingen resultat som passa til spørjinga på denne nettstaden.",

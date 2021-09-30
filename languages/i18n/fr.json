@@ -1733,7 +1733,7 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
 	"rcfilters-exclude-button-off": "Exclure les sélectionnés",
 	"rcfilters-exclude-button-on": "Exclusion des sélectionnés",
-	"rcfilters-view-tags": "Modifications marquées",
+	"rcfilters-view-tags": "Modifications balisées",
 	"rcfilters-view-namespaces-tooltip": "Résultats du filtrage par espace de noms",
 	"rcfilters-view-tags-tooltip": "Résultats du filtrage par balise de modification",
 	"rcfilters-view-return-to-default-tooltip": "Retour au menu principal du filtre",
