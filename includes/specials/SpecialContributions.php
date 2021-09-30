@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\DateInputWidget;
 
 /**
