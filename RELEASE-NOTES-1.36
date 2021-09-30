@@ -2,7 +2,7 @@
 
 == MediaWiki 1.36.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.36 branch.
 
 === Changes since MediaWiki 1.36.1 ===
 * Don't access MWServices prematurely in Maintenence.php.
