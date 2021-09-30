@@ -1,6 +1,9 @@
 == MediaWiki 1.31.16 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.31 branch.
+
+This is intended to be the final release of the MediaWiki 1.31 branch,
+and as such, 1.31 is now considered End of Life.
 
 === Changes since MediaWiki 1.31.15 ===
 * (T283273) Make postgres IRC channel point to libera.chat.
