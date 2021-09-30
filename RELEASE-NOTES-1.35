@@ -9,6 +9,12 @@ declare 1.35 as supporting PHP 8.0.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
+== MediaWiki 1.35.5 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.35.4 ===
+
 == MediaWiki 1.35.4 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
