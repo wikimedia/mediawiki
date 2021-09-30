@@ -351,6 +351,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'1.33',
 			'1.34',
 			'1.35',
+			'1.36',
+			'1.37',
 		];
 
 		// Mismatches for these columns we can safely ignore
