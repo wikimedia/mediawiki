@@ -1043,7 +1043,7 @@
 	"badsiglinks": "İmzanızda bu vikidəki istifadəçi səhifənizə, müzakirə səhifənizə və ya töhfələrinizə keçid olmalıdır. Zəhmət olmasa keçid əlavə edin. Məsələn: <code>$1</code>.",
 	"badsigsubst": "İmza içərinizdə iç içə əvəz var (e.ə. <code>subst:</code> və ya <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "İmzanız çox uzundur. İmza $1 {{PLURAL:$1|simvoldan|simvoldan}} uzun olmamalıdır.",
-	"linter-pager-self-closed-tag-details": "Self-qapalı tag",
+	"linterror-self-closed-tag": "Self-qapalı tag",
 	"yourgender": "Hansı təsvir sizə daha uyğundur?",
 	"gender-unknown": "Proqram təminatı sizi nəzərdə tutarkən mümkün qədər gender-neytral sözlərdən istifadə edəcək.",
 	"gender-notknown": "Bilinmir",
