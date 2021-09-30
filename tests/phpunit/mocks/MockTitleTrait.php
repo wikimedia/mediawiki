@@ -5,6 +5,10 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStoreRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * Creates semi-sane Title mocks for tests.
+ * @stable to use since 1.41
+ */
 trait MockTitleTrait {
 
 	/** @var int */
