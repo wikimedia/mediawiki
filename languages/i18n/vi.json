@@ -1737,7 +1737,7 @@
 	"file-deleted-duplicate-notitle": "Một tập tin giống hệt như tập tin này đã từng bị xóa và tên bị xóa hẳn trước đây.\nBạn nên xin một người có quyền xem dữ liệu tập tin bị xóa hẳn xem lại trường hợp này trước khi tiếp tục tải nó lên lại.",
 	"uploadwarning": "Cảnh báo!",
 	"uploadwarning-text": "Xin hãy chỉnh sửa miêu tả tập tin ở dưới và thử lại.",
-	"uploadwarning-text-nostash": "Xin hãy tải lại tập tin lên, sửa đổi phần mô tả và thử lại.",
+	"uploadwarning-text-nostash": "Xin hãy tải lại tập tin lên, sửa đổi nội dung mô tả và thử lại.",
 	"savefile": "Lưu tập tin",
 	"uploaddisabled": "Chức năng tải lên đã bị khóa.",
 	"copyuploaddisabled": "Chức năng tải lên từ địa chỉ URL đã bị tắt.",
