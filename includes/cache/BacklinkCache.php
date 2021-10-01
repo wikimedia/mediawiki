@@ -397,7 +397,7 @@ class BacklinkCache {
 			return $this->partitionCache[$table][$wgUpdateRowsPerJob]['numRows'];
 		} else { // probably some sane limit
 			// Fetch the full title info, since the caller will likely need it next
-			$count = $this->getLinks( $table, false, false, $max )->count();
+			$count = iterator_count( $this->getLinkPages( $table, false, false, $max ) );
 			if ( $count < $max ) { // full count
 				$this->wanCache->set( $memcKey, $count, self::CACHE_EXPIRY );
 			}

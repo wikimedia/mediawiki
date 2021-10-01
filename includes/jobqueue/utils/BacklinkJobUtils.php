@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Class with Backlink related Job helper methods
@@ -113,13 +114,14 @@ class BacklinkJobUtils {
 		// Combine the first range (of size $bSize) backlinks into leaf jobs
 		if ( isset( $ranges[0] ) ) {
 			list( $start, $end ) = $ranges[0];
-			$iter = $backlinkCache->getLinks( $params['table'], $start, $end );
-			$titles = iterator_to_array( $iter );
-			/** @var Title[] $titleBatch */
-			foreach ( array_chunk( $titles, $cSize ) as $titleBatch ) {
+
+			$iter = $backlinkCache->getLinkPages( $params['table'], $start, $end );
+			$pageSources = iterator_to_array( $iter );
+			/** @var PageIdentity[] $pageBatch */
+			foreach ( array_chunk( $pageSources, $cSize ) as $pageBatch ) {
 				$pages = [];
-				foreach ( $titleBatch as $tl ) {
-					$pages[$tl->getArticleID()] = [ $tl->getNamespace(), $tl->getDBkey() ];
+				foreach ( $pageBatch as $page ) {
+					$pages[$page->getId()] = [ $page->getNamespace(), $page->getDBkey() ];
 				}
 				$jobs[] = new $class(
 					$title, // maintain parent job title
