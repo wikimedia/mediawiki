@@ -2,6 +2,40 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.38.
 
 = MediaWiki 1.36 =
 
+
+== MediaWiki 1.36.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.36 branch.
+
+=== Changes since MediaWiki 1.36.1 ===
+* Don't access MWServices prematurely in Maintenence.php.
+* (T283394) Mark ApiClientLogin/ApiLogin as requiring write mode.
+* Installer: Fix foundation.wikimedia.org link in config-pingback-help.
+* (T283273) Make postgres IRC channel point to libera.chat.
+* composer.json: Promote and pin monolog/monolog to require from require-dev.
+* (T287526) JavaScriptMinifer: Recognize `...` as a single token.
+* (T287526) Update wikimedia/minify to 2.2.4.
+* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json
+  schemas.
+* (T281549) Installer: Fix mediawiki-announce auto subscription code.
+* FormatJson: Optimize encode() for supported PHP versions.
+* (T290398) renameRestrictions.php: Update protected_titles as well.
+* (T290489) objectcache: Fix PHP warning for ReplicatedBagOStuff::setMulti.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
+* (T51097, T290273) resourceloader: Call getStyleFiles from
+  FileModule::getFileHashes.
+* (T277788) parser: Avoid calling ParserOptions::getOption() too many times.
+* (T291244) Unserialize objects in ParserCache->mExtensionData as objects.
+* MysqlUpdater: Add updatelog entries for dropDefault.
+* (T290776) Fix $phase check in OutputHandler.
+* The wikimedia/parsoid library has been upgraded from v0.13.0 to v0.13.1.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
+* (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
+  table scan.
+* (T284419, CVE-2021-41800) SECURITY: fix PoolCounter protection of
+  Special:Contributions.
+
 == MediaWiki 1.36.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.36 branch.
@@ -883,6 +917,29 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.35 =
+
+== MediaWiki 1.35.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.3 ===
+* (T283394) Mark ApiClientLogin/ApiLogin as requiring write mode.
+* (T283273) Make postgres IRC channel point to libera.chat.
+* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json
+  schemas.
+* (T281549) Installer: Fix mediawiki-announce auto subscription code.
+* FormatJson: Optimize encode() for supported PHP versions.
+* (T290398) renameRestrictions.php: Update protected_titles as well.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
+* (T51097, T290273) resourceloader: Call getStyleFiles from
+  FileModule::getFileHashes.
+* (T277788) parser: Avoid calling ParserOptions::getOption() too many times.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
+* (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
+  table scan.
+* (T284419, CVE-2021-41800) SECURITY: fix PoolCounter protection of
+  Special:Contributions.
 
 == MediaWiki 1.35.3 ==
 
@@ -4859,6 +4916,24 @@ because of Phabricator reports.
   recentchanges.rc_cur_time from the PostgreSQL schema.
 
 = MediaWiki 1.31 =
+
+== MediaWiki 1.31.16 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
+
+This is intended to be the final release of the MediaWiki 1.31 branch,
+and as such, 1.31 is now considered End of Life.
+
+=== Changes since MediaWiki 1.31.15 ===
+* (T283273) Make postgres IRC channel point to libera.chat.
+* (T289108) ExtensionProcessor: Remove loaderScripts from
+  extension.json schemas.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in
+  Special:Search.
+* (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
+  table scan.
+* (T284419, CVE-2021-41800) SECURITY: fix PoolCounter protection of
+  Special:Contributions.
 
 == MediaWiki 1.31.15 ==
 
