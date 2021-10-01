@@ -34,10 +34,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
-	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
-	protected static $daysPreferenceName = 'rcdays'; // Use general RecentChanges preference
-	protected static $collapsedPreferenceName = 'rcfilters-rc-collapsed';
-
 	private $watchlistFilterGroupDefinition;
 
 	/** @var WatchedItemStoreInterface */
@@ -972,4 +968,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function getLimitPreferenceName(): string {
 		return 'rcfilters-limit'; // Use RCFilters-specific preference
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getSavedQueriesPreferenceName(): string {
+		return 'rcfilters-saved-queries';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getDefaultDaysPreferenceName(): string {
+		return 'rcdays'; // Use general RecentChanges preference
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getCollapsedPreferenceName(): string {
+		return 'rcfilters-rc-collapsed';
+	}
+
 }

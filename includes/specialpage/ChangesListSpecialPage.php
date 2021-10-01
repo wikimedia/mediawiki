@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -41,24 +42,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Longer descriptions will be truncated.
 	 */
 	private const TAG_DESC_CHARACTER_LIMIT = 120;
-
-	/**
-	 * Preference name for saved queries. Subclasses that use saved queries should override this.
-	 * @var string
-	 */
-	protected static $savedQueriesPreferenceName;
-
-	/**
-	 * Preference name for 'days'. Subclasses should override this.
-	 * @var string
-	 */
-	protected static $daysPreferenceName;
-
-	/**
-	 * Preference name for collapsing the active filter display. Subclasses should override this.
-	 * @var string
-	 */
-	protected static $collapsedPreferenceName;
 
 	/** @var string */
 	protected $rcSubpage;
@@ -176,9 +159,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-newcomer-description',
 						'cssClassSuffix' => 'user-newcomer',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
-							return $performer && $performer->isRegistered() &&
-								$performer->getExperienceLevel() === 'newcomer';
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'newcomer';
 						}
 					],
 					[
@@ -187,9 +173,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-learner-description',
 						'cssClassSuffix' => 'user-learner',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
-							return $performer && $performer->isRegistered() &&
-								$performer->getExperienceLevel() === 'learner';
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'learner';
 						},
 					],
 					[
@@ -198,9 +187,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-experienced-description',
 						'cssClassSuffix' => 'user-experienced',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
-							return $performer && $performer->isRegistered() &&
-								$performer->getExperienceLevel() === 'experienced';
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'experienced';
 						},
 					]
 				],
@@ -721,7 +713,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		) {
 			// Get the saved queries data and parse it
 			$savedQueries = FormatJson::decode(
-				$this->getUser()->getOption( static::$savedQueriesPreferenceName ),
+				MediaWikiServices::getInstance()
+					->getUserOptionsLookup()
+					->getOption( $this->getUser(), $this->getSavedQueriesPreferenceName() ),
 				true
 			);
 
@@ -807,7 +801,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$out->addBodyClasses( 'mw-rcfilters-enabled' );
 			$collapsed = MediaWikiServices::getInstance()->getUserOptionsLookup()
-				->getBoolOption( $this->getUser(), static::$collapsedPreferenceName );
+				->getBoolOption( $this->getUser(), $this->getCollapsedPreferenceName() );
 			if ( $collapsed ) {
 				$out->addBodyClasses( 'mw-rcfilters-collapsed' );
 			}
@@ -830,7 +824,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				static::$savedQueriesPreferenceName
+				$this->getSavedQueriesPreferenceName()
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersLimitPreferenceName',
@@ -838,11 +832,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersDaysPreferenceName',
-				static::$daysPreferenceName
+				$this->getDefaultDaysPreferenceName()
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersCollapsedPreferenceName',
-				static::$collapsedPreferenceName
+				$this->getCollapsedPreferenceName()
 			);
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
@@ -1975,7 +1969,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Static method to check whether StructuredFilter UI is enabled for the given user
 	 *
 	 * @since 1.31
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return bool
 	 */
 	public static function checkStructuredFilterUiEnabled( $user ) {
@@ -1983,7 +1977,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
 			$user = func_get_arg( 1 );
 		}
-		return !$user->getOption( 'rcenhancedfilters-disable' );
+		return !MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $user, 'rcenhancedfilters-disable' );
 	}
 
 	/**
@@ -2008,7 +2004,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return float
 	 */
 	public function getDefaultDays() {
-		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
+		return floatval( MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $this->getUser(), $this->getDefaultDaysPreferenceName() ) );
 	}
 
 	/**
@@ -2018,6 +2016,30 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return string
 	 */
 	abstract protected function getLimitPreferenceName(): string;
+
+	/**
+	 * Preference name for saved queries.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	abstract protected function getSavedQueriesPreferenceName(): string;
+
+	/**
+	 * Preference name for 'days'.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	abstract protected function getDefaultDaysPreferenceName(): string;
+
+	/**
+	 * Preference name for collapsing the active filter display.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	abstract protected function getCollapsedPreferenceName(): string;
 
 	/**
 	 * @param array $namespaces
