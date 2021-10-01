@@ -374,7 +374,6 @@ class HookRunner implements
 	\MediaWiki\Hook\UnblockUserHook,
 	\MediaWiki\Hook\UndeleteForm__showHistoryHook,
 	\MediaWiki\Hook\UndeleteForm__showRevisionHook,
-	\MediaWiki\Hook\UndeleteForm__undeleteHook,
 	\MediaWiki\Hook\UndeletePageToolLinksHook,
 	\MediaWiki\Hook\UnitTestsAfterDatabaseSetupHook,
 	\MediaWiki\Hook\UnitTestsBeforeDatabaseTeardownHook,
@@ -3895,13 +3894,6 @@ class HookRunner implements
 	public function onUndeleteForm__showRevision( &$archive, $title ) {
 		return $this->container->run(
 			'UndeleteForm::showRevision',
-			[ &$archive, $title ]
-		);
-	}
-
-	public function onUndeleteForm__undelete( &$archive, $title ) {
-		return $this->container->run(
-			'UndeleteForm::undelete',
 			[ &$archive, $title ]
 		);
 	}
