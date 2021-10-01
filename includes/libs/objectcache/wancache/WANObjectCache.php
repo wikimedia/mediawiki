@@ -75,26 +75,35 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * sought outside WANObjectCache.
  *
  * @anchor wanobjectcache-deployment
- * ### Deploying %WANObjectCache
+ * ### Deploying WANObjectCache
  *
  * There are two supported ways to set up broadcasted operations:
  *
- *   - A) Set up mcrouter as the underlying cache backend, using a memcached BagOStuff class
- *        for the 'cache' parameter. The 'broadcastRoutingPrefix' parameter must be provided.
+ *   - A) Set up mcrouter as the cache backend, with a memcached BagOStuff class for the 'cache'
+ *        parameter, and a wildcard routing prefix for the 'broadcastRoutingPrefix' parameter.
  *        Configure mcrouter as follows:
- *          - 1) Use Route Prefixing based on region (datacenter) and cache cluster.
- *               See https://github.com/facebook/mcrouter/wiki/Routing-Prefix and
- *               https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup.
- *          - 2) To increase the consistency of delete() and touchCheckKey() during cache
- *               server membership changes, you can use the OperationSelectorRoute to
- *               configure 'set' and 'delete' operations to go to all servers in the cache
- *               cluster, instead of just one server determined by hashing.
- *               See https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles.
- *   - B) Set up dynomite as a cache middleware between the web servers and either memcached
- *        or redis and use it as the underlying cache backend, using a memcached BagOStuff
- *        class for the 'cache' parameter. This will broadcast all key setting operations,
- *        not just purges, which can be useful for cache warming. Writes are eventually
- *        consistent via the Dynamo replication model. See https://github.com/Netflix/dynomite.
+ *          - Define a "<datacenter>" pool of memcached servers for each datacenter.
+ *          - Define a "<datacenter>/wan" route to each datacenter, using "AllSyncRoute" for the
+ *            routes that go to the local datacenter pool and "AllAsyncRoute" for the routes that
+ *            go to remote datacenter pools. The child routes should use "HashRoute|<datacenter>".
+ *            This allows for the use of a wildcard route for 'broadcastRoutingPrefix'. See
+ *            https://github.com/facebook/mcrouter/wiki/Routing-Prefix and
+ *            https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup.
+ *          - In order to reroute operations from "down" servers to spare ("gutter") servers, use
+ *            "FailoverWithExptimeRoute" (failover_exptime=60) instead of "HashRoute|<datacenter>"
+ *            in the "AllSyncRoute"/"AllAsyncRoute" child routes.
+ *            The "gutter" pool is a set of memcached servers that only handle failover traffic.
+ *            Such servers should be carefully spread over different rows and racks. See
+ *            https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles#failoverroute
+ *          - In order to use an on-host cache tier, configure mcrouter to have an 'onhost' pool
+ *            (one local memcached service) and a "<datacenter>/<pool-with-onhost>" route
+ *            ("WarmUpRoute", with "cold" as the on-host pool, "warm" as the shared pool, and
+ *            exptime=10). This means that 'onHostRoutingPrefix' can be the warmup route. See
+ *            https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles
+ *   - B) Set up dynomite as the cache backend, using a memcached BagOStuff class for the 'cache'
+ *        parameter. Note that with this setup, all key setting operations will be broadcasted,
+ *        rather than just purges. Writes will be eventually consistent via the Dynamo replication
+ *        model. See https://github.com/Netflix/dynomite.
  *
  * Broadcasted operations like delete() and touchCheckKey() are intended to run
  * immediately in the local datacenter and asynchronously in remote datacenters.
