@@ -420,7 +420,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$max = mt_getrandmax();
 		if ( mt_rand( 0, $max ) < $max * $this->watchlistPurgeRate ) {
 			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
-			$this->queueGroup->push( new WatchlistExpiryJob() );
+			$this->queueGroup->lazyPush( new WatchlistExpiryJob() );
 		}
 	}
 
