@@ -3170,7 +3170,7 @@
 	"tag-mw-undo-description": "Uređivanja kojima su uklonjene prethodne izmjene",
 	"tag-mw-manual-revert": "uklanjanje ručnim načinom",
 	"tag-mw-manual-revert-description": "Uređivanja kojima se stranica ručno vraća u točno određeno prethodno stanje",
-	"tag-mw-reverted": "Uklonjeno uređivanje",
+	"tag-mw-reverted": "uklonjeno uređivanje",
 	"tag-mw-reverted-description": "Uređivanja koja su poslije uklonjena drugom izmjenom",
 	"tags-title": "Oznake",
 	"tags-intro": "Ova stranica sadržava popis oznaka s kojima programska oprema može označivati promjene te njihova značenja.",

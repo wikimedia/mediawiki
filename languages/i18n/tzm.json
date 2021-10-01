@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brahim-essaidi",
 			"Hakim1bal",
 			"Moha",
 			"Mohamed Belarhzali",
@@ -557,7 +558,7 @@
 	"special-characters-group-latin": "ⵜⴰⵍⴰⵜⵉⵏⵉⵜ",
 	"special-characters-group-ipa": "IPA",
 	"special-characters-group-greek": "ⵜⴰⵢⵓⵏⴰⵏⵉⵜ",
-	"special-characters-group-arabic": "ⵜⴰⵄⵔⴰⴱⵜ",
+	"special-characters-group-arabic": "ⵜⴰⵄⵕⴰⴱⵜ",
 	"special-characters-group-persian": "ⵜⴰⴼⴰⵔⵉⵙⵉⵜ",
 	"special-characters-group-hebrew": "ⵜⴰⵄⵉⴱⵔⵉⵜ",
 	"special-characters-group-bangla": "ⵜⴰⴱⵏⴳⴰⵍⵉⵜ",
