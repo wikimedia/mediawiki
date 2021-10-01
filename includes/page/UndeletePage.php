@@ -80,6 +80,14 @@ class UndeletePage {
 	private $fileStatus;
 	/** @var StatusValue|null */
 	private $revisionStatus;
+	/** @var string[] */
+	private $timestamps = [];
+	/** @var int[] */
+	private $fileVersions = [];
+	/** @var bool */
+	private $unsuppress = false;
+	/** @var string[] */
+	private $tags = [];
 
 	/**
 	 * @param ProperPageIdentity $page
@@ -103,6 +111,50 @@ class UndeletePage {
 	}
 
 	/**
+	 * Whether to remove all ar_deleted/fa_deleted restrictions of seletected revs.
+	 *
+	 * @param bool $unsuppress
+	 * @return self For chaining
+	 */
+	public function setUnsuppress( bool $unsuppress ): self {
+		$this->unsuppress = $unsuppress;
+		return $this;
+	}
+
+	/**
+	 * Change tags to add to log entry (the user should be able to add the specified tags before this is called)
+	 *
+	 * @param string[] $tags
+	 * @return self For chaining
+	 */
+	public function setTags( array $tags ): self {
+		$this->tags = $tags;
+		return $this;
+	}
+
+	/**
+	 * If you don't want to undelete all revisions, pass an array of timestamps to undelete.
+	 *
+	 * @param string[] $timestamps
+	 * @return self For chaining
+	 */
+	public function setUndeleteOnlyTimestamps( array $timestamps ): self {
+		$this->timestamps = $timestamps;
+		return $this;
+	}
+
+	/**
+	 * If you don't want to undelete all file versions, pass an array of versions to undelete.
+	 *
+	 * @param int[] $fileVersions
+	 * @return self For chaining
+	 */
+	public function setUndeleteOnlyFileVersions( array $fileVersions ): self {
+		$this->fileVersions = $fileVersions;
+		return $this;
+	}
+
+	/**
 	 * Restore the given (or all) text and file revisions for the page.
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
@@ -110,13 +162,7 @@ class UndeletePage {
 	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
 	 * (depending what operations are attempted).
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
-	 *   otherwise list the ones to undelete.
 	 * @param string $comment
-	 * @param array $fileVersions
-	 * @param bool $unsuppress
-	 * @param string|string[]|null $tags Change tags to add to log entry
-	 *   ($user should be able to add the specified tags before this is called)
 	 * @return StatusValue Good Status with the following value on success:
 	 *   [
 	 *     self::REVISIONS_RESTORED => number of text revisions restored,
@@ -124,40 +170,33 @@ class UndeletePage {
 	 *   ]
 	 *   Fatal Status on failure.
 	 */
-	public function undelete(
-		$timestamps,
-		$comment = '',
-		$fileVersions = [],
-		$unsuppress = false,
-		$tags = null
-	): StatusValue {
+	public function undelete( string $comment ): StatusValue {
 		$hookStatus = StatusValue::newGood();
 		$hookRes = $this->hookRunner->onPageUndelete(
 			$this->page,
 			$this->performer,
 			$comment,
-			$unsuppress,
-			$timestamps,
-			$fileVersions ?: [],
+			$this->unsuppress,
+			$this->timestamps,
+			$this->fileVersions,
 			$hookStatus
 		);
 		if ( !$hookRes && !$hookStatus->isGood() ) {
 			// Note: as per the PageUndeleteHook documentation, `return false` is ignored if $status is good.
 			return $hookStatus;
 		}
-
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
-		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
+		$restoreAll = $this->timestamps === [] && $this->fileVersions === [];
 
-		$restoreText = $restoreAll || !empty( $timestamps );
-		$restoreFiles = $restoreAll || !empty( $fileVersions );
+		$restoreText = $restoreAll || $this->timestamps !== [];
+		$restoreFiles = $restoreAll || $this->fileVersions !== [];
 
 		if ( $restoreFiles && $this->page->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
 			$img = $this->repoGroup->getLocalRepo()->newFile( $this->page );
 			$img->load( File::READ_LATEST );
-			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
+			$this->fileStatus = $img->restore( $this->fileVersions, $this->unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
 				return $this->fileStatus;
 			}
@@ -167,7 +206,7 @@ class UndeletePage {
 		}
 
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
+			$this->revisionStatus = $this->undeleteRevisions( $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return $this->revisionStatus;
 			}
@@ -186,7 +225,7 @@ class UndeletePage {
 		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->setTarget( $this->page );
 		$logEntry->setComment( $comment );
-		$logEntry->addTags( $tags );
+		$logEntry->addTags( $this->tags );
 		$logEntry->setParameters( [
 			':assoc:count' => [
 				'revisions' => $textRestored,
@@ -207,14 +246,11 @@ class UndeletePage {
 	 * This is the meaty bit -- It restores archived revisions of the given page
 	 * to the revision table.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
-	 *   otherwise list the ones to undelete.
-	 * @param bool $unsuppress Remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 * @param string $comment
 	 * @throws ReadOnlyError
 	 * @return StatusValue Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+	private function undeleteRevisions( string $comment ): StatusValue {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -222,14 +258,12 @@ class UndeletePage {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
-		$restoreAll = empty( $timestamps );
-
 		$oldWhere = [
 			'ar_namespace' => $this->page->getNamespace(),
 			'ar_title' => $this->page->getDBkey(),
 		];
-		if ( !$restoreAll ) {
-			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
+		if ( $this->timestamps ) {
+			$oldWhere['ar_timestamp'] = array_map( [ $dbw, 'timestamp' ], $this->timestamps );
 		}
 
 		$revisionStore = $this->revisionStore;
@@ -243,7 +277,6 @@ class UndeletePage {
 			$queryInfo['fields'],
 			$oldWhere,
 			__METHOD__,
-			/* options */
 			[ 'ORDER BY' => 'ar_timestamp' ],
 			$queryInfo['joins']
 		);
@@ -382,7 +415,7 @@ class UndeletePage {
 			// Check if a deleted revision will become the current revision...
 			if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
 				// Check the state of the newest to-be version...
-				if ( !$unsuppress
+				if ( !$this->unsuppress
 					&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
 				) {
 					$dbw->cancelAtomic( __METHOD__ );
@@ -405,7 +438,7 @@ class UndeletePage {
 					$this->page,
 					[
 						'page_id' => $pageId,
-						'deleted' => $unsuppress ? 0 : $row->ar_deleted
+						'deleted' => $this->unsuppress ? 0 : $row->ar_deleted
 					]
 				);
 
@@ -486,13 +519,15 @@ class UndeletePage {
 	}
 
 	/**
+	 * @internal BC method to be used by PageArchive only
 	 * @return Status|null
 	 */
-	public function getFileStatus() {
+	public function getFileStatus(): ?Status {
 		return $this->fileStatus;
 	}
 
 	/**
+	 * @internal BC methods to be used by PageArchive only
 	 * @return StatusValue|null
 	 */
 	public function getRevisionStatus(): ?StatusValue {

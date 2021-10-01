@@ -124,7 +124,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
 		// Restore the page
 		$undeletePage = new UndeletePage( $this->page, $this->getTestSysop()->getUser() );
-		$undeletePage->undelete( [] );
+		$undeletePage->undelete( '' );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();
