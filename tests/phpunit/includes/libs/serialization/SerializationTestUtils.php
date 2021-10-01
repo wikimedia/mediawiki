@@ -207,8 +207,14 @@ class SerializationTestUtils {
 		string $testCaseName,
 		string $version = null
 	) {
-		$version = $version ?: $this->getCurrentVersion();
-		$path = "{$this->serializedDataPath}/{$version}-{$class}-{$testCaseName}.{$this->ext}";
+		if ( $version ) {
+			$path = "$this->serializedDataPath/$version-$class-$testCaseName.$this->ext";
+		} else {
+			// Find the latest version we have saved.
+			$savedFiles = glob( "$this->serializedDataPath/?.??-$class-$testCaseName.$this->ext" );
+			sort( $savedFiles );
+			$path = $savedFiles[count( $savedFiles ) - 1];
+		}
 		return (object)[
 			'version' => $version,
 			'class' => $class,
