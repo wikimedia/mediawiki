@@ -167,6 +167,7 @@ because of Phabricator reports.
 * Message::content() was hard-deprecated.
 * The following methods from the ParserOutput class were hard deprecated:
    - ::hideNewSection() - use ::setHideNewSection()
+* Collation::singleton() and ::factory() were hard-deprecated.
 * …
 
 === Other changes in 1.38 ===
