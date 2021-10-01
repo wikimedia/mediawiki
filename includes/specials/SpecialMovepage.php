@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -102,45 +101,43 @@ class MovePageForm extends UnlistedSpecialPage {
 	private $watchlistManager;
 
 	/**
-	 * @param MovePageFactory|null $movePageFactory
-	 * @param PermissionManager|null $permManager
-	 * @param UserOptionsLookup|null $userOptionsLookup
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param LinkBatchFactory|null $linkBatchFactory
-	 * @param RepoGroup|null $repoGroup
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param SearchEngineFactory|null $searchEngineFactory
-	 * @param WatchlistManager|null $watchlistManager
+	 * @param MovePageFactory $movePageFactory
+	 * @param PermissionManager $permManager
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param ILoadBalancer $loadBalancer
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param NamespaceInfo $nsInfo
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param RepoGroup $repoGroup
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param WatchlistManager $watchlistManager
 	 */
 	public function __construct(
-		MovePageFactory $movePageFactory = null,
-		PermissionManager $permManager = null,
-		UserOptionsLookup $userOptionsLookup = null,
-		ILoadBalancer $loadBalancer = null,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		NamespaceInfo $nsInfo = null,
-		LinkBatchFactory $linkBatchFactory = null,
-		RepoGroup $repoGroup = null,
-		WikiPageFactory $wikiPageFactory = null,
-		SearchEngineFactory $searchEngineFactory = null,
-		WatchlistManager $watchlistManager = null
+		MovePageFactory $movePageFactory,
+		PermissionManager $permManager,
+		UserOptionsLookup $userOptionsLookup,
+		ILoadBalancer $loadBalancer,
+		IContentHandlerFactory $contentHandlerFactory,
+		NamespaceInfo $nsInfo,
+		LinkBatchFactory $linkBatchFactory,
+		RepoGroup $repoGroup,
+		WikiPageFactory $wikiPageFactory,
+		SearchEngineFactory $searchEngineFactory,
+		WatchlistManager $watchlistManager
 	) {
 		parent::__construct( 'Movepage' );
-		// This class is extended and therefor fallback to global state - T265945
-		$services = MediaWikiServices::getInstance();
-		$this->movePageFactory = $movePageFactory ?? $services->getMovePageFactory();
-		$this->permManager = $permManager ?? $services->getPermissionManager();
-		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
-		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
-		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
-		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
-		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
-		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
-		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
-		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
+		$this->movePageFactory = $movePageFactory;
+		$this->permManager = $permManager;
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->loadBalancer = $loadBalancer;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->nsInfo = $nsInfo;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->repoGroup = $repoGroup;
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->searchEngineFactory = $searchEngineFactory;
+		$this->watchlistManager = $watchlistManager;
 	}
 
 	public function doesWrites() {

@@ -586,10 +586,10 @@ class ContribsPager extends RangeChronologicalPager {
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
-				$parentRevIds[] = $row->rev_parent_id;
+				$parentRevIds[] = (int)$row->rev_parent_id;
 			}
 			if ( $this->revisionStore->isRevisionRow( $row ) ) {
-				$this->mParentLens[$row->rev_id] = $row->rev_len;
+				$this->mParentLens[(int)$row->rev_id] = $row->rev_len;
 				if ( $isIpRange ) {
 					// If this is an IP range, batch the IP's talk page
 					$linkBatch->add( NS_USER_TALK, $row->rev_user_text );
