@@ -36,6 +36,7 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( !self::$instance ) {
 			global $wgCategoryCollation;
 			self::$instance = self::factory( $wgCategoryCollation );
@@ -51,6 +52,7 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getCollationFactory()->makeCollation( $collationName );
 	}
 
