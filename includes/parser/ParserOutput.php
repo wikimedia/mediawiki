@@ -829,6 +829,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $internal The server to check against
 	 * @param string $url The url to check
 	 * @return bool
+	 * @internal
 	 */
 	public static function isLinkInternal( $internal, $url ) {
 		return (bool)preg_match( '/^' .
