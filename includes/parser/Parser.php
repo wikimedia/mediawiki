@@ -4135,7 +4135,7 @@ class Parser {
 		# Allow user to remove the "new section"
 		# link via __NONEWSECTIONLINK__
 		if ( isset( $this->mDoubleUnderscores['nonewsectionlink'] ) ) {
-			$this->mOutput->hideNewSection( true );
+			$this->mOutput->setHideNewSection( true );
 		}
 
 		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,

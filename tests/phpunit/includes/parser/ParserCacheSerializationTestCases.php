@@ -189,7 +189,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setTimestamp( MWTimestamp::convert( TS_MW, 987654321 ) );
 		$parserOutputWithMetadata->setLimitReportData( 'limit_report_key1', 'value1' );
 		$parserOutputWithMetadata->setEnableOOUI( true );
-		$parserOutputWithMetadata->hideNewSection( true );
+		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setFlag( 'test' );
 
