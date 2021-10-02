@@ -1055,7 +1055,9 @@ $wgFileBlacklist = [
  */
 $wgMimeTypeBlacklist = [
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'text/html', 'text/javascript', 'text/x-javascript', 'application/x-shellscript',
+	'text/html',
+	# Similarly with JavaScript itself
+	'application/javascript', 'text/javascript', 'text/x-javascript', 'application/x-shellscript',
 	# PHP scripts may execute arbitrary code on the server
 	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers

@@ -523,19 +523,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	private function getFileHashes( ResourceLoaderContext $context ) {
 		$files = [];
 
-		// Flatten style files into $files
-		$styles = self::collateFilePathListByOption( $this->styles, 'media', 'all' );
-		foreach ( $styles as $styleFiles ) {
-			$files = array_merge( $files, $styleFiles );
-		}
-
-		$skinFiles = self::collateFilePathListByOption(
-			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
-			'media',
-			'all'
-		);
-		foreach ( $skinFiles as $styleFiles ) {
-			$files = array_merge( $files, $styleFiles );
+		$styleFiles = $this->getStyleFiles( $context );
+		foreach ( $styleFiles as $paths ) {
+			$files = array_merge( $files, $paths );
 		}
 
 		// Extract file paths for package files

@@ -9,11 +9,34 @@ declare 1.35 as supporting PHP 8.0.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
-== MediaWiki 1.35.4 ==
+== MediaWiki 1.35.5 ==
 
 THIS IS NOT A RELEASE YET
 
+=== Changes since MediaWiki 1.35.4 ===
+
+== MediaWiki 1.35.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
 === Changes since MediaWiki 1.35.3 ===
+* (T283394) Mark ApiClientLogin/ApiLogin as requiring write mode.
+* (T283273) Make postgres IRC channel point to libera.chat.
+* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json
+  schemas.
+* (T281549) Installer: Fix mediawiki-announce auto subscription code.
+* FormatJson: Optimize encode() for supported PHP versions.
+* (T290398) renameRestrictions.php: Update protected_titles as well.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
+* (T51097, T290273) resourceloader: Call getStyleFiles from
+  FileModule::getFileHashes.
+* (T277788) parser: Avoid calling ParserOptions::getOption() too many times.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
+* (T290379, CVE-2021-41799) SECURITY: ApiQueryBacklinks can cause a full
+  table scan.
+* (T284419, CVE-2021-41800) SECURITY: fix PoolCounter protection of
+  Special:Contributions.
 
 == MediaWiki 1.35.3 ==
 

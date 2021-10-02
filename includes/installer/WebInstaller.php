@@ -1031,12 +1031,12 @@ class WebInstaller extends Installer {
 	 */
 	public function showStatusBox( $status ) {
 		if ( !$status->isGood() ) {
-			$text = $status->getWikiText();
+			$html = $status->getHTML();
 
 			if ( $status->isOK() ) {
-				$box = Html::warningBox( $text, 'config-warning-box' );
+				$box = Html::warningBox( $html, 'config-warning-box' );
 			} else {
-				$box = Html::errorBox( $text, '', 'config-error-box' );
+				$box = Html::errorBox( $html, '', 'config-error-box' );
 			}
 
 			$this->output->addHTML( $box );

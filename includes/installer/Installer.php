@@ -62,6 +62,12 @@ abstract class Installer {
 	public const MINIMUM_PCRE_VERSION = '7.2';
 
 	/**
+	 * URL to mediawiki-announce list summary page
+	 */
+	private const MEDIAWIKI_ANNOUNCE_URL =
+		'https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/';
+
+	/**
 	 * @var array
 	 */
 	protected $settings;
@@ -317,21 +323,6 @@ abstract class Installer {
 			'icon' => '',
 			'text' => '',
 		],
-	];
-
-	/**
-	 * URL to mediawiki-announce subscription
-	 */
-	protected $mediaWikiAnnounceUrl =
-		'https://lists.wikimedia.org/mailman/subscribe/mediawiki-announce';
-
-	/**
-	 * Supported language codes for Mailman
-	 */
-	protected $mediaWikiAnnounceLanguages = [
-		'ca', 'cs', 'da', 'de', 'en', 'es', 'et', 'eu', 'fi', 'fr', 'hr', 'hu',
-		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
-		'sl', 'sr', 'sv', 'tr', 'uk'
 	];
 
 	/**
@@ -795,7 +786,8 @@ abstract class Installer {
 				'ss_active_users' => 0,
 				'ss_images' => 0
 			],
-			__METHOD__, 'IGNORE'
+			__METHOD__,
+			'IGNORE'
 		);
 
 		return Status::newGood();
@@ -963,8 +955,6 @@ abstract class Installer {
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
 			$this->showMessage( 'config-imagemagick', $convert );
-
-			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
 		} else {
@@ -1041,8 +1031,7 @@ abstract class Installer {
 		}
 
 		# Get a list of available locales.
-		$result = Shell::command( '/usr/bin/locale', '-a' )
-			->execute();
+		$result = Shell::command( '/usr/bin/locale', '-a' )->execute();
 
 		if ( $result->getExitCode() != 0 ) {
 			return true;
@@ -1233,6 +1222,9 @@ abstract class Installer {
 		];
 
 		// it would be good to check other popular languages here, but it'll be slow.
+		// TODO no need to have a loop if there is going to only be one script type
+
+		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
 		Wikimedia\suppressWarnings();
 
@@ -1245,8 +1237,11 @@ abstract class Installer {
 				}
 
 				try {
-					$text = MediaWikiServices::getInstance()->getHttpRequestFactory()->
-						get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
+					$text = $httpRequestFactory->get(
+						$url . $file,
+						[ 'timeout' => 3 ],
+						__METHOD__
+					);
 				} catch ( Exception $e ) {
 					// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
 					// extension.
@@ -1785,14 +1780,11 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function doGenerateKeys( $keys ) {
-		$status = Status::newGood();
-
 		foreach ( $keys as $name => $length ) {
 			$secretKey = MWCryptRand::generateHex( $length );
 			$this->setVar( $name, $secretKey );
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
@@ -1835,42 +1827,66 @@ abstract class Installer {
 			$ssUpdate = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 			$ssUpdate->doUpdate();
 		}
-		$status = Status::newGood();
 
 		if ( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
-			$this->subscribeToMediaWikiAnnounce( $status );
+			return $this->subscribeToMediaWikiAnnounce();
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
-	 * @param Status $s
+	 * @return Status
 	 */
-	private function subscribeToMediaWikiAnnounce( Status $s ) {
-		$params = [
-			'email' => $this->getVar( '_AdminEmail' ),
-			'language' => 'en',
-			'digest' => 0
-		];
-
-		// Mailman doesn't support as many languages as we do, so check to make
-		// sure their selected language is available
-		$myLang = $this->getVar( '_UserLang' );
-		if ( in_array( $myLang, $this->mediaWikiAnnounceLanguages ) ) {
-			$myLang = $myLang == 'pt-br' ? 'pt_BR' : $myLang; // rewrite to Mailman's pt_BR
-			$params['language'] = $myLang;
+	private function subscribeToMediaWikiAnnounce() {
+		$status = Status::newGood();
+		$http = MediaWikiServices::getInstance()->getHttpRequestFactory();
+		if ( !$http->canMakeRequests() ) {
+			$status->warning( 'config-install-subscribe-fail',
+				wfMessage( 'config-install-subscribe-notpossible' ) );
+			return $status;
 		}
 
-		if ( MWHttpRequest::canMakeRequests() ) {
-			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-				[ 'method' => 'POST', 'postData' => $params ], __METHOD__ )->execute();
-			if ( !$res->isOK() ) {
-				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
-			}
+		// Create subscription request
+		$params = [ 'email' => $this->getVar( '_AdminEmail' ) ];
+		$req = $http->create( self::MEDIAWIKI_ANNOUNCE_URL . 'anonymous_subscribe',
+			[ 'method' => 'POST', 'postData' => $params ], __METHOD__ );
+
+		// Add headers needed to pass Django's CSRF checks
+		$token = str_repeat( 'a', 64 );
+		$req->setHeader( 'Referer', self::MEDIAWIKI_ANNOUNCE_URL );
+		$req->setHeader( 'Cookie', "csrftoken=$token" );
+		$req->setHeader( 'X-CSRFToken', $token );
+
+		// Send subscription request
+		$reqStatus = $req->execute();
+		if ( !$reqStatus->isOK() ) {
+			$status->warning( 'config-install-subscribe-fail',
+				Status::wrap( $reqStatus )->getMessage() );
+			return $status;
+		}
+
+		// Was the request submitted successfully?
+		// The status message is displayed after a redirect, using Django's messages
+		// framework, so load the list summary page and look for the expected text.
+		// (Though parsing the cookie set by the framework may be possible, it isn't
+		// simple, since the format of the cookie has changed between versions.)
+		$checkReq = $http->create( self::MEDIAWIKI_ANNOUNCE_URL, [], __METHOD__ );
+		$checkReq->setCookieJar( $req->getCookieJar() );
+		if ( !$checkReq->execute()->isOK() ) {
+			$status->warning( 'config-install-subscribe-possiblefail' );
+			return $status;
+		}
+		$html = $checkReq->getContent();
+		if ( strpos( $html, 'Please check your inbox for further instructions' ) !== false ) {
+			// Success
+		} elseif ( strpos( $html, 'Member already subscribed' ) !== false ) {
+			$status->warning( 'config-install-subscribe-alreadysubscribed' );
+		} elseif ( strpos( $html, 'Subscription request already pending' ) !== false ) {
+			$status->warning( 'config-install-subscribe-alreadypending' );
 		} else {
-			$s->warning( 'config-install-subscribe-notpossible' );
+			$status->warning( 'config-install-subscribe-possiblefail' );
 		}
+		return $status;
 	}
 
 	/**
@@ -1893,7 +1909,8 @@ abstract class Installer {
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$status = $page->doEditContent( $content,
+			$status = $page->doEditContent(
+				$content,
 				'',
 				EDIT_NEW,
 				false,

@@ -168,7 +168,7 @@
 	"config-admin-error-password": "Internal error when setting a password for the admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-password-invalid": "Invalid wiki admin password: $1",
 	"config-admin-error-bademail": "You have entered an invalid email address.",
-	"config-subscribe": "Subscribe to the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].",
+	"config-subscribe": "Subscribe to the [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release announcements mailing list].",
 	"config-subscribe-help": "This is a low-volume mailing list used for release announcements, including important security announcements.\nYou should subscribe to it and update your MediaWiki installation when new versions come out.",
 	"config-subscribe-noemail": "You tried to subscribe to the release announcements mailing list without providing an email address.\nPlease provide an email address if you wish to subscribe to the mailing list.",
 	"config-pingback": "Share data about this installation with MediaWiki developers. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Privacy policy].",
@@ -273,8 +273,11 @@
 	"config-install-updates": "Prevent running unneeded updates",
 	"config-install-updates-failed": "<strong>Error:</strong> Inserting update keys into tables failed with the following error: $1",
 	"config-install-sysop": "Creating administrator user account",
-	"config-install-subscribe-fail": "Unable to subscribe to mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Unable to subscribe to [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL is not installed and <code>allow_url_fopen</code> is not available.",
+	"config-install-subscribe-alreadysubscribed": "You are already subscribed to mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ View or change your subscription preferences].",
+	"config-install-subscribe-alreadypending": "A request to subscribe to mediawiki-announce had already been submitted. Please reply to the confirmation email that had previously been sent.",
+	"config-install-subscribe-possiblefail": "Your request to subscribe to mediawiki-announce might not have gone through. If you don't receive a confirmation email within a few minutes, go to [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] to try submitting your request again.",
 	"config-install-mainpage": "Creating main page with default content",
 	"config-install-mainpage-exists": "Main page already exists, skipping",
 	"config-install-extension-tables": "Creating tables for enabled extensions",
@@ -295,5 +298,5 @@
 	"config-extension-not-found": "Could not find the registration file for the extension \"$1\"",
 	"config-extension-dependency": "A dependency error was encountered while installing the extension \"$1\": $2",
 	"mainpagetext": "<strong>MediaWiki has been installed.</strong>",
-	"mainpagedocfooter": "Consult the [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] for information on using the wiki software.\n\n== Getting started ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
+	"mainpagedocfooter": "Consult the [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] for information on using the wiki software.\n\n== Getting started ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
 }
