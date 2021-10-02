@@ -476,9 +476,16 @@ class ApiEditPage extends ApiBase {
 		// and fetched revision remain the same before attempting to save.
 		$editRevId = $requestArray['editRevId'] ?? false;
 		$baseRev = $this->revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
-		$baseContentModel = $baseRev
-			? $baseRev->getContent( SlotRecord::MAIN )->getModel()
-			: $pageObj->getContentModel();
+		$baseContentModel = null;
+
+		if ( $baseRev ) {
+			$baseContent = $baseRev->getContent( SlotRecord::MAIN );
+			$baseContentModel = $baseContent ? $baseContent->getModel() : null;
+		}
+
+		if ( $baseContentModel === null ) {
+			$baseContentModel = $pageObj->getContentModel();
+		}
 
 		// However, allow the content models to possibly differ if we are intentionally
 		// changing them or we are doing an undo edit that is reverting content model change.
