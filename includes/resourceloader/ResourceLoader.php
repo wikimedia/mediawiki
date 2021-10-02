@@ -32,6 +32,7 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Minify\JavaScriptMinifier;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
 
@@ -778,7 +779,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// See https://bugs.php.net/bug.php?id=36514
 		ob_start();
 
-		$this->measureResponseTime( RequestContext::getMain()->getTiming() );
+		$responseTime = $this->measureResponseTime();
 
 		// Find out which modules are missing and instantiate the others
 		$modules = [];
@@ -886,13 +887,16 @@ class ResourceLoader implements LoggerAwareInterface {
 		echo $response;
 	}
 
-	protected function measureResponseTime( Timing $timing ) {
-		DeferredUpdates::addCallableUpdate( static function () use ( $timing ) {
-			$measure = $timing->measure( 'responseTime', 'requestStart', 'requestShutdown' );
-			if ( $measure !== false ) {
-				$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-				$stats->timing( 'resourceloader.responseTime', $measure['duration'] * 1000 );
-			}
+	/**
+	 * Send stats about the time used to build the response
+	 * @return ScopedCallback
+	 */
+	protected function measureResponseTime() {
+		$statStart = $_SERVER['REQUEST_TIME_FLOAT'];
+		return new ScopedCallback( static function () use ( $statStart ) {
+			$statTiming = microtime( true ) - $statStart;
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats->timing( 'resourceloader.responseTime', $statTiming * 1000 );
 		} );
 	}
 

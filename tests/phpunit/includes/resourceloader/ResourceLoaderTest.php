@@ -1241,10 +1241,7 @@ END
 		$stats->expects( $this->once() )->method( 'timing' )
 			->with( 'resourceloader.responseTime', $this->anything() );
 
-		$timing = new Timing();
-		$timing->mark( 'requestShutdown' );
 		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader );
-		$rl->measureResponseTime( $timing );
-		DeferredUpdates::doUpdates();
+		$rl->measureResponseTime();
 	}
 }
