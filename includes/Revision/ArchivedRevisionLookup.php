@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @since 1.38
+ * @note This class is currently tested in PageArchiveTest
  */
 class ArchivedRevisionLookup {
 

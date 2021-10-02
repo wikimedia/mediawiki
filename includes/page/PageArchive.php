@@ -23,12 +23,10 @@ use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.
- * @todo Refactor into an ArchivedRevisionLookup service (T290022)
  */
 class PageArchive {
 
@@ -41,17 +39,11 @@ class PageArchive {
 	/** @var Status|null */
 	protected $revisionStatus;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
 	/**
 	 * @param Title $title
 	 */
 	public function __construct( Title $title ) {
 		$this->title = $title;
-
-		$services = MediaWikiServices::getInstance();
-		$this->loadBalancer = $services->getDBLoadBalancer();
 	}
 
 	/**
@@ -160,6 +152,7 @@ class PageArchive {
 	 * List the revisions of the given page. Returns result wrapper with
 	 * various archive table fields.
 	 *
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::listRevisions
 	 * @return IResultWrapper|bool
 	 */
 	public function listRevisions() {
@@ -180,7 +173,8 @@ class PageArchive {
 			return null;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
 		$fileQuery = ArchivedFile::getQueryInfo();
 		return $dbr->select(
 			$fileQuery['tables'],
@@ -197,6 +191,7 @@ class PageArchive {
 	 *
 	 * @internal only for use in SpecialUndelete
 	 *
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getRevisionRecordByTimestamp
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
@@ -209,6 +204,7 @@ class PageArchive {
 	 * Return the archived revision with the given ID.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getArchivedRevisionRecord
 	 *
 	 * @param int $revId
 	 * @return RevisionRecord|null
@@ -226,6 +222,7 @@ class PageArchive {
 	 * unusual time issues.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getPreviousRevisionRecord
 	 *
 	 * @param string $timestamp
 	 * @return RevisionRecord|null Null when there is no previous revision
@@ -238,6 +235,7 @@ class PageArchive {
 	/**
 	 * Returns the ID of the latest deleted revision.
 	 *
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::getLastRevisionId
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId() {
@@ -249,6 +247,7 @@ class PageArchive {
 	 * Quick check if any archived revisions are present for the page.
 	 * This says nothing about whether the page currently exists in the page table or not.
 	 *
+	 * @deprecated since 1.38 Use ArchivedRevisionLookup::hasArchivedRevisions
 	 * @return bool
 	 */
 	public function isDeleted() {
