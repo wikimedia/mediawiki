@@ -8,6 +8,8 @@ use Wikimedia\IPUtils;
 
 /**
  * @group Database
+ * @covers \MediaWiki\Revision\ArchivedRevisionLookup
+ * @covers PageArchive::__construct
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
@@ -283,13 +285,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideGetTextFromRowThrowsInvalidArgumentException() {
-		yield 'missing ar_text_id field' => [ [] ];
-		yield 'ar_text_id is null' => [ [ 'ar_text_id' => null ] ];
-		yield 'ar_text_id is zero' => [ [ 'ar_text_id' => 0 ] ];
-		yield 'ar_text_id is "0"' => [ [ 'ar_text_id' => '0' ] ];
-	}
-
 	/**
 	 * @covers PageArchive::getLastRevisionId
 	 */
@@ -316,6 +311,22 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->pageId, $revRecord->getPageId() );
 
 		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp( '22991212115555' );
+		$this->assertNull( $revRecord );
+	}
+
+	/**
+	 * @covers PageArchive::getArchivedRevisionRecord
+	 */
+	public function testGetArchivedRevisionRecord() {
+		$revRecord = $this->archivedPage->getArchivedRevisionRecord(
+			$this->ipRev->getId()
+		);
+		$this->assertNotNull( $revRecord );
+		$this->assertSame( $this->pageId, $revRecord->getPageId() );
+
+		$revRecord = $this->archivedPage->getArchivedRevisionRecord(
+			$this->ipRev->getId() + 42
+		);
 		$this->assertNull( $revRecord );
 	}
 
