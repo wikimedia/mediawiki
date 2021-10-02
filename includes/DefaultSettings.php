@@ -5699,7 +5699,6 @@ $wgDefaultUserOptions = [
 	'nickname' => '',
 	'pst-cssjs' => 1,
 	'norollbackdiff' => 0,
-	'numberheadings' => 0,
 	'previewonfirst' => 0,
 	'previewontop' => 1,
 	'rcdays' => 7,

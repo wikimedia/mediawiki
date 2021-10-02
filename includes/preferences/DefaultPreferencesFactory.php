@@ -1032,12 +1032,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-showhiddencats'
 		];
 
-		$defaultPreferences['numberheadings'] = [
-			'type' => 'toggle',
-			'section' => 'rendering/advancedrendering',
-			'label-message' => 'tog-numberheadings',
-		];
-
 		if ( $user->isAllowed( 'rollback' ) ) {
 			$defaultPreferences['showrollbackconfirmation'] = [
 				'type' => 'toggle',
