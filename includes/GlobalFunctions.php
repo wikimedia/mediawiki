@@ -1062,16 +1062,13 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @todo Move logic to MediaWiki.php
  */
 function wfLogProfilingData() {
-	$context = RequestContext::getMain();
-
 	$profiler = Profiler::instance();
-	$profiler->setContext( $context );
 	$profiler->logData();
 
 	// Send out any buffered statsd metrics as needed
 	MediaWiki::emitBufferedStatsdData(
 		MediaWikiServices::getInstance()->getStatsdDataFactory(),
-		$context->getConfig()
+		MediaWikiServices::getInstance()->getMainConfig()
 	);
 }
 
