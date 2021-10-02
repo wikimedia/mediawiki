@@ -20,7 +20,6 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\UndeletePage;
-use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
@@ -164,8 +163,8 @@ class PageArchive {
 	 * @return IResultWrapper|bool
 	 */
 	public function listRevisions() {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->listRevisions();
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->listRevisions( $this->title );
 	}
 
 	/**
@@ -202,8 +201,8 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecordByTimestamp( $timestamp ) {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->getRevisionRecordByTimestamp( $timestamp );
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->getRevisionRecordByTimestamp( $this->title, $timestamp );
 	}
 
 	/**
@@ -215,8 +214,8 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	public function getArchivedRevisionRecord( int $revId ) {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->getArchivedRevisionRecord( $revId );
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->getArchivedRevisionRecord( $this->title, $revId );
 	}
 
 	/**
@@ -232,8 +231,8 @@ class PageArchive {
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
 	public function getPreviousRevisionRecord( string $timestamp ) {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->getPreviousRevisionRecord( $timestamp );
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->getPreviousRevisionRecord( $this->title, $timestamp );
 	}
 
 	/**
@@ -242,8 +241,8 @@ class PageArchive {
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId() {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->getLastRevisionId();
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->getLastRevisionId( $this->title );
 	}
 
 	/**
@@ -253,8 +252,8 @@ class PageArchive {
 	 * @return bool
 	 */
 	public function isDeleted() {
-		$lookup = new ArchivedRevisionLookup( $this->title );
-		return $lookup->isDeleted();
+		$lookup = MediaWikiServices::getInstance()->getArchivedRevisionLookup();
+		return $lookup->hasArchivedRevisions( $this->title );
 	}
 
 	/**

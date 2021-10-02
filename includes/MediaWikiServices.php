@@ -81,6 +81,7 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
@@ -606,6 +607,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getActorStoreFactory(): ActorStoreFactory {
 		return $this->getService( 'ActorStoreFactory' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return ArchivedRevisionLookup
+	 */
+	public function getArchivedRevisionLookup(): ArchivedRevisionLookup {
+		return $this->getService( 'ArchivedRevisionLookup' );
 	}
 
 	/**
