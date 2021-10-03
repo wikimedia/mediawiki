@@ -231,7 +231,7 @@ class TextContentHandler extends ContentHandler {
 		if ( $cpoParams->getGenerateHtml() ) {
 			// Temporary changes as getHtml() is deprecated, we are working on removing usage of it.
 			if ( method_exists( $content, 'getHtml' ) ) {
-				$method = new ReflectionMethod( 'TextContent', 'getHtml' );
+				$method = new ReflectionMethod( $content, 'getHtml' );
 				$method->setAccessible( true );
 				$html = $method->invoke( $content );
 			} else {
