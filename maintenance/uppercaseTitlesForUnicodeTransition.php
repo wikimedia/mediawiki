@@ -102,7 +102,10 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$this->addOption( 'tag', 'Change tag to apply when moving pages.', false, true );
 		$this->addOption( 'tables', 'Comma-separated list of database tables to process.', false, true );
 		$this->addOption(
-			'userlist', 'Filename to which to output usernames needing rename.', false, true
+			'userlist', 'Filename to which to output usernames needing rename. ' .
+			'This file can then be used directly by renameInvalidUsernames.php maintenance script',
+			false,
+			true
 		);
 		$this->setBatchSize( 1000 );
 	}
@@ -671,7 +674,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return;
 		}
 
-		$fh = fopen( $userlistFile, 'wb' );
+		$fh = fopen( $userlistFile, 'ab' );
 		if ( !$fh ) {
 			$this->error( "Could not open user list file $userlistFile" );
 			return;
@@ -683,32 +686,33 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		foreach ( $this->getLikeBatches( $db, 'user_name' ) as $like ) {
 			$cont = [];
 			while ( true ) {
-				$names = $db->selectFieldValues(
+				$rows = $db->select(
 					'user',
-					'user_name',
+					[ 'user_id', 'user_name' ],
 					array_merge( [ $like ], $cont ),
 					__METHOD__,
 					[ 'ORDER BY' => 'user_name', 'LIMIT' => $batchSize ]
 				);
-				if ( !$names ) {
+
+				if ( !$rows->numRows() ) {
 					break;
 				}
 
-				$last = end( $names );
-				$cont = [ 'user_name > ' . $db->addQuotes( $last ) ];
-				foreach ( $names as $name ) {
-					$char = mb_substr( $name, 0, 1 );
+				foreach ( $rows as $row ) {
+					$char = mb_substr( $row->user_name, 0, 1 );
 					if ( !array_key_exists( $char, $this->charmap ) ) {
 						$this->error(
-							"Query returned $name, but user name does not begin with a character in the charmap."
+							"Query returned $row->user_name, but user name does not " .
+							"begin with a character in the charmap."
 						);
 						continue;
 					}
-					$newName = $this->charmap[$char] . mb_substr( $name, 1 );
-					fprintf( $fh, "%s\t%s\n", $name, $newName );
+					$newName = $this->charmap[$char] . mb_substr( $row->user_name, 1 );
+					fprintf( $fh, "%s\t%s\t%s\n", WikiMap::getCurrentWikiId(), $row->user_id, $newName );
 					$count++;
+					$cont = [ 'user_name > ' . $db->addQuotes( $row->user_name ) ];
 				}
-				$this->output( "... at $last, $count names so far\n" );
+				$this->output( "... at $row->user_name, $count names so far\n" );
 			}
 		}
 
