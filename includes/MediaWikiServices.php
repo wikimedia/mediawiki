@@ -72,6 +72,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
+use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\GrantsInfo;
@@ -1660,6 +1661,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUnblockUserFactory(): UnblockUserFactory {
 		return $this->getService( 'UnblockUserFactory' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return UndeletePageFactory
+	 */
+	public function getUndeletePageFactory(): UndeletePageFactory {
+		return $this->getService( 'UndeletePageFactory' );
 	}
 
 	/**

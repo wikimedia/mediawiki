@@ -146,6 +146,8 @@ because of Phabricator reports.
 === Deprecations in 1.38 ===
 * The MWGrants class is deprecated in favor of the new GrantsInfo and
   GrantsLocalization services.
+* PageArchive::undeleteAsUser(), ::getFileStatus() and ::getRevisionStatus()
+  were deprecated. Use UndeletePage instead.
 * The global functions wfReadOnly() and wfReadOnlyReason() have been
   deprecated in favor of the ReadOnlyMode service.
 * PageProps::getInstance() has been deprecated. Use

@@ -104,6 +104,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
+use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserObserver;
@@ -1702,6 +1703,10 @@ return [
 		return $services->getService( '_UserBlockCommandFactory' );
 	},
 
+	'UndeletePageFactory' => static function ( MediaWikiServices $services ): UndeletePageFactory {
+		return $services->getService( '_PageCommandFactory' );
+	},
+
 	'UploadRevisionImporter' => static function ( MediaWikiServices $services ): UploadRevisionImporter {
 		return new ImportableUploadRevisionImporter(
 			$services->getMainConfig()->get( 'EnableUploads' ),
@@ -1978,7 +1983,8 @@ return [
 			ObjectCache::getInstance( 'db-replicated' ),
 			WikiMap::getCurrentWikiDbDomain()->getId(),
 			WebRequest::getRequestId(),
-			$services->getBacklinkCacheFactory()
+			$services->getBacklinkCacheFactory(),
+			LoggerFactory::getInstance( 'UndeletePage' )
 		);
 	},
 

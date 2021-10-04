@@ -388,6 +388,7 @@ class PageArchive {
 	 * (depending what operations are attempted).
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.38, use UndeletePage instead
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
@@ -408,9 +409,10 @@ class PageArchive {
 		$unsuppress = false,
 		$tags = null
 	) {
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
-		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
-		$up = new UndeletePage( $page, $user );
+		$services = MediaWikiServices::getInstance();
+		$page = $services->getWikiPageFactory()->newFromTitle( $this->title );
+		$user = $services->getUserFactory()->newFromUserIdentity( $user );
+		$up = $services->getUndeletePageFactory()->newUndeletePage( $page, $user );
 		if ( is_string( $tags ) ) {
 			$tags = [ $tags ];
 		} elseif ( $tags === null ) {
@@ -421,7 +423,7 @@ class PageArchive {
 			->setUndeleteOnlyFileVersions( $fileVersions ?: [] )
 			->setUnsuppress( $unsuppress )
 			->setTags( $tags ?: [] )
-			->undelete( $comment );
+			->undeleteUnsafe( $comment );
 		// BC with old return format
 		if ( $status->isGood() ) {
 			$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
@@ -440,6 +442,7 @@ class PageArchive {
 	}
 
 	/**
+	 * @deprecated since 1.38 The entrypoints in UndeletePage return a StatusValue
 	 * @return Status|null
 	 */
 	public function getFileStatus() {
@@ -447,6 +450,7 @@ class PageArchive {
 	}
 
 	/**
+	 * @deprecated since 1.38 The entrypoints in UndeletePage return a StatusValue
 	 * @return Status|null
 	 */
 	public function getRevisionStatus() {
