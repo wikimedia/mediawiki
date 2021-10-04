@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\TestingAccessWrapper;
 
@@ -73,15 +74,15 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( $title, NS_MEDIAWIKI );
 		$wikiPage = new WikiPage( $title );
 		$content = ContentHandler::makeContent( $content, $title );
-
-		$updater = $wikiPage->newPageUpdater( $this->getTestSysop()->getUser() )
-			->setContent( SlotRecord::MAIN, $content );
 		$summary = CommentStoreComment::newUnsavedComment( "$lang translation test case" );
-		$inserted = $updater->saveRevision( $summary );
+
+		$newRevision = $wikiPage->newPageUpdater( $this->getTestSysop()->getUser() )
+			->setContent( SlotRecord::MAIN, $content )
+			->saveRevision( $summary );
 
 		// sanity
-		$this->assertTrue( $updater->wasSuccessful(), 'Create page ' . $title->getPrefixedDBkey() );
-		return $inserted;
+		$this->assertNotNull( $newRevision, 'Create page ' . $title->getPrefixedDBkey() );
+		return $newRevision;
 	}
 
 	/**
