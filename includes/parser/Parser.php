@@ -1166,6 +1166,7 @@ class Parser {
 	 * Get a user either from the user set on Parser if it's set,
 	 * or from the ParserOptions object otherwise.
 	 *
+	 * @since 1.36
 	 * @return UserIdentity
 	 */
 	public function getUserIdentity(): UserIdentity {
