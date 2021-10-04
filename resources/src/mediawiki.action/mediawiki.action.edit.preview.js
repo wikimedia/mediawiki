@@ -260,32 +260,30 @@
 
 			var diffPar = {
 				action: 'compare',
+				fromtitle: mw.config.get( 'wgPageName' ),
+				totitle: mw.config.get( 'wgPageName' ),
 				toslots: 'main',
 				// Remove trailing whitespace for consistency with EditPage diffs.
 				// TODO trimEnd() when we can use that.
 				'totext-main': $textbox.textSelection( 'getContents' ).replace( /\s\s*$/, '' ),
 				'tocontentmodel-main': 'wikitext',
-				'fromcontentmodel-main': 'wikitext',
+				topst: true,
+				slots: 'main',
 				uselang: mw.config.get( 'wgUserLanguage' )
 			};
 			if ( section ) {
-				diffPar.totitle = mw.config.get( 'wgPageName' );
 				diffPar[ 'tosection-main' ] = section;
 			}
 			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
 				diffPar.fromslots = 'main';
+				diffPar[ 'fromcontentmodel-main' ] = 'wikitext';
 				diffPar[ 'fromtext-main' ] = '';
-			} else {
-				diffPar.fromtitle = mw.config.get( 'wgPageName' );
-				if ( section ) {
-					diffPar[ 'fromsection-main' ] = section;
-				}
 			}
 			diffRequest = api.post( diffPar );
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml = response[ 0 ].compare[ '*' ];
+				var diffHtml = response[ 0 ].compare.bodies.main;
 				$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 				mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
 				$wikiDiff.show();
