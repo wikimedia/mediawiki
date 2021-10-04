@@ -47,11 +47,6 @@ interface StorageAwareness {
 	/** Fallback disk-based SQL store */
 	public const QOS_EMULATION_SQL = 1;
 
-	/** Data is stored on remote hosts and accessed via the local area network */
-	public const QOS_LOCALITY_LAN = 1;
-	/** Data is stored on the local host and accessed via shared RAM, sockets, or filesystems */
-	public const QOS_LOCALITY_SRV = 2;
-
 	/** Data is never saved to begin with (blackhole store) */
 	public const QOS_DURABILITY_NONE = 1;
 	/** Data is lost at the end of the current web request or CLI script */
