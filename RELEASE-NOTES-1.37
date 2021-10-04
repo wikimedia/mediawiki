@@ -473,6 +473,9 @@ because of Phabricator reports.
 * The LESS mixin `.flex()` now no longer tries to support the 2009 version of
   the Flexbox specification; support for the 2012 and modern standard versions
   remains unchanged.
+* The StorageAwareness::ATTR_SYNCWRITES, StorageAwareness::QOS_SYNCWRITES_*,
+  StorageAwareness::ATTR_LOCALITY, and StorageAwareness::QOS_LOCALITY_*
+  constants were removed.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki(), deprecated in 1.33, now emits deprecation warnings.
