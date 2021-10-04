@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"JSantos",
 			"Joao Xavier",
 			"Malafaya"
 		]
@@ -11,6 +12,7 @@
 	"exif-orientation": "Orientizo",
 	"exif-xresolution": "Horizontala distingivo",
 	"exif-yresolution": "Vertikala distingivo",
+	"exif-stripoffsets": "Lokizo di informo pri imajo",
 	"exif-jpeginterchangeformatlength": "Bicoki* dil arkivo JPEG",
 	"exif-datetime": "Dio e horo di la modifiko dil arkivo",
 	"exif-make": "Fabrikanto di la fotografilo",
