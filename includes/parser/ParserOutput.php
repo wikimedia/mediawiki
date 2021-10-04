@@ -1081,7 +1081,7 @@ class ParserOutput extends CacheTime {
 	 * As per the contract of setDisplayTitle(), this is safe HTML,
 	 * ready to be served to the client.
 	 *
-	 * @return string HTML
+	 * @return string|false HTML
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
