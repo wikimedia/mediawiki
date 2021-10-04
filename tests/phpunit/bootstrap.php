@@ -69,6 +69,7 @@ wfRequireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 
 TestSetup::applyInitialConfig();
