@@ -206,7 +206,7 @@ class ImageHistoryList extends ContextSource {
 		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
 			$timeAndDate = $lang->userTimeAndDate( $timestamp, $user );
 			if ( $local ) {
-				$this->preventClickjacking();
+				$this->setPreventClickjacking( true );
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
 				$url = $linkRenderer->makeKnownLink(
@@ -324,8 +324,17 @@ class ImageHistoryList extends ContextSource {
 
 	/**
 	 * @param bool $enable
+	 * @deprecated since 1.38, use ::setPreventClickjacking() instead
 	 */
 	protected function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	/**
+	 * @param bool $enable
+	 * @since 1.38
+	 */
+	protected function setPreventClickjacking( bool $enable ) {
 		$this->preventClickjacking = $enable;
 	}
 

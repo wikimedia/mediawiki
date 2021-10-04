@@ -167,6 +167,14 @@ because of Phabricator reports.
 * Message::content() was hard-deprecated.
 * The following methods from the ParserOutput class were hard deprecated:
    - ::hideNewSection() - use ::setHideNewSection()
+   - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
+* The following methods were soft-deprecated; use ::setPreventClickjacking(..)
+  instead:
+   - OutputPage::preventClickjacking()
+   - OutputPage::allowClickjacking()
+   - ImageHistoryList::preventClickjacking()
+   - ImageHistoryPseudoPager::preventClickjacking()
+   - ContribsPager::preventClickjacking()
 * Collation::singleton() and ::factory() were hard-deprecated.
 * …
 
