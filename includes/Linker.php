@@ -20,6 +20,7 @@
  * @file
  */
 
+use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -1347,6 +1348,31 @@ class Linker {
 			return ' <span class="' . $class . ' mw-userlink">' . $link . '</span>';
 		}
 		return $link;
+	}
+
+	/**
+	 * Helper function to expand local links. Mostly used in action=render
+	 *
+	 * @since 1.38
+	 * @unstable
+	 *
+	 * @param string $html
+	 *
+	 * @return string HTML
+	 */
+	public static function expandLocalLinks( string $html ) {
+		$formatter = new HtmlFormatter( $html );
+		$doc = $formatter->getDoc();
+		$xpath = new DOMXPath( $doc );
+		$nodes = $xpath->query( '//a[@href]' );
+		/** @var DOMElement $node */
+		foreach ( $nodes as $node ) {
+			$node->setAttribute(
+				'href',
+				wfExpandUrl( $node->getAttribute( 'href' ), PROTO_RELATIVE )
+			);
+		}
+		return $formatter->getText( 'html' );
 	}
 
 	/**
