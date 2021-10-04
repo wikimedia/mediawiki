@@ -32,7 +32,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 
 		$factory->register( 'fallback', 'Fallback', static function () use ( $instance ) {
 			return $instance;
-		} );
+		}, true );
 
 		$this->assertSame( $instance, $factory->makeSkin( 'fallback' ) );
 	}
@@ -44,7 +44,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$factory = $this->createSkinFactory();
 		$factory->register( 'fallback', 'Fallback', [
 			'class' => SkinFallback::class
-		] );
+		], true );
 
 		$this->assertInstanceOf( SkinFallback::class, $factory->makeSkin( 'fallback' ) );
 	}
@@ -145,9 +145,9 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	public function testGetAllowedSkins() {
 		$sf = $this->createSkinFactory( null, [ 'quux' ] );
 		$sf->register( 'foo', 'Foo', [] );
-		$sf->register( 'apioutput', 'ApiOutput', [] );
+		$sf->register( 'apioutput', 'ApiOutput', [], true );
 		$sf->register( 'quux', 'Quux', [] );
-		$sf->register( 'fallback', 'Fallback', [] );
+		$sf->register( 'fallback', 'Fallback', [], true );
 		$sf->register( 'bar', 'Barbar', [] );
 
 		$this->assertEquals(
@@ -161,8 +161,8 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testGetAllowedSkinsEmpty() {
 		$sf = $this->createSkinFactory();
-		$sf->register( 'apioutput', 'ApiOutput', [] );
-		$sf->register( 'fallback', 'Fallback', [] );
+		$sf->register( 'apioutput', 'ApiOutput', [], true );
+		$sf->register( 'fallback', 'Fallback', [], true );
 
 		$this->assertEquals( [], $sf->getAllowedSkins() );
 	}
