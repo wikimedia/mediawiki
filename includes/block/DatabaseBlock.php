@@ -31,7 +31,6 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use stdClass;
@@ -1172,17 +1171,9 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Set the user who implemented (or will implement) this block
 	 *
-	 * @param UserIdentity|string $user Local user object or username string.
-	 *   Calling with string is deprecated since 1.36
+	 * @param UserIdentity $user
 	 */
 	public function setBlocker( $user ) {
-		if ( is_string( $user ) ) {
-			wfDeprecatedMsg( 'Calling ' . __METHOD__ . ' with string as $user', '1.36' );
-			$user = MediaWikiServices::getInstance()
-				->getUserFactory()
-				->newFromName( $user, UserFactory::RIGOR_NONE );
-		}
-
 		if ( !$user->isRegistered() &&
 			MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $user->getName() )
 		) {
