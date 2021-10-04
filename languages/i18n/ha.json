@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aliyu shaba",
 			"Amire80",
 			"Ammarpad",
 			"Anasskoko",
@@ -141,6 +142,8 @@
 	"faq": "Jerin tambayoyi",
 	"actions": "ayyuka",
 	"namespaces": "Sarari",
+	"variants": "Iri-Iri",
+	"navigation-heading": "Kewayawa Menu",
 	"errorpagetitle": "Tangarɗa",
 	"returnto": "Koma $1",
 	"tagline": "Daga {{SITENAME}}",
@@ -181,6 +184,7 @@
 	"copyright": "Bayannai sun samu a ƙarƙashin $1.",
 	"copyrightpage": "{{ns:project}}:Hakkin Mallaka",
 	"currentevents": "Labarai",
+	"currentevents-url": "Aikin:Taron Yanzun",
 	"disclaimers": "Hattara",
 	"disclaimerpage": "Project:Babban gargaɗi",
 	"edithelp": "Taimako kan gyara",
@@ -398,6 +402,7 @@
 	"rc-enhanced-expand": "Nuna ƙananan bayannai (ana buƙatar JavaScript)",
 	"rc-enhanced-hide": "Ɓoye ƙananan bayannai",
 	"recentchangeslinked": "Sauye-sauye masu dangantaka",
+	"recentchangeslinked-toolbox": "Canje-canje masu dangantaka",
 	"recentchangeslinked-title": "Bin sawun shafuna masu dangantaka da \"$1\"",
 	"recentchangeslinked-summary": "Ku sa sunan shafi domin kuga jerin sauye-sauyen da aka yi kan shafuna masu mahaɗi. Shafukan da ke cikin [[Special:Watchlist|jerin shafukan da kuke bin sawu]] an nuna su da <strong>gwaɓi</strong>.",
 	"recentchangeslinked-page": "Sunan shafi:",
@@ -429,6 +434,7 @@
 	"filedelete-comment": "Dalili:",
 	"filedelete-submit": "Soke",
 	"filedelete-reason-otherlist": "Wani dalili",
+	"randompage": "bazuwar Shafi",
 	"statistics": "Alƙalumma",
 	"brokenredirects-delete": "soke",
 	"withoutinterwiki-submit": "Nuna",

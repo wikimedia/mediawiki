@@ -2320,7 +2320,7 @@
 	"ipb-hardblock": "D'Spär op ageloggt Benotzer vun dëser IP-Adress uwenden",
 	"ipbcreateaccount": "Benotzerkont opmaachen",
 	"ipbemailban": "E-Maile verschécken",
-	"ipbenableautoblock": "Automatesch déi lescht IP-Adress spären déi vun dësem Benotzer benotzt gouf, an all IP-Adresse vun denen dëse Benotzer versicht Ännerungen ze maachen",
+	"ipbenableautoblock": "Automatesch déi lescht IP-Adress spären déi vun dësem Benotzer benotzt gouf, an all IP-Adresse vun deenen dëse Benotzer versicht Ännerungen ze maachen fir eng Dauer vu(n) $1",
 	"ipbsubmit": "Dës IP-Adress resp dëse Benotzer spären",
 	"ipbother": "Aner Dauer:",
 	"ipboptions": "2 Stonnen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite",
