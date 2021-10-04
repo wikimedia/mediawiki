@@ -1390,14 +1390,40 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Set the prevent-clickjacking flag
+	 *
+	 * @param bool $flag New flag value
+	 * @since 1.38
+	 */
+	public function setPreventClickjacking( bool $flag ) {
+		$this->mPreventClickjacking = $flag;
+	}
+
+	/**
+	 * Get the prevent-clickjacking flag
+	 *
+	 * @return bool Flag value
+	 * @since 1.38
+	 */
+	public function getPreventClickjacking(): bool {
+		return $this->mPreventClickjacking;
+	}
+
+	/**
 	 * Get or set the prevent-clickjacking flag
 	 *
 	 * @since 1.24
 	 * @param bool|null $flag New flag value, or null to leave it unchanged
 	 * @return bool Old flag value
+	 * @deprecated since 1.38:
+	 *   use ::setPreventClickjacking() or ::getPreventClickjacking()
 	 */
-	public function preventClickjacking( $flag = null ) {
-		return wfSetVar( $this->mPreventClickjacking, $flag );
+	public function preventClickjacking( $flag ) {
+		$old = $this->getPreventClickjacking();
+		if ( $flag !== null ) {
+			$this->setPreventClickjacking( $flag );
+		}
+		return $old;
 	}
 
 	/**
@@ -1559,7 +1585,7 @@ class ParserOutput extends CacheTime {
 		$this->mHideNewSection = $this->mHideNewSection || $source->getHideNewSection();
 		$this->mNoGallery = $this->mNoGallery || $source->getNoGallery();
 		$this->mEnableOOUI = $this->mEnableOOUI || $source->getEnableOOUI();
-		$this->mPreventClickjacking = $this->mPreventClickjacking || $source->preventClickjacking();
+		$this->mPreventClickjacking = $this->mPreventClickjacking || $source->getPreventClickjacking();
 
 		// TODO: we'll have to be smarter about this!
 		$this->mSections = array_merge( $this->mSections, $source->getSections() );

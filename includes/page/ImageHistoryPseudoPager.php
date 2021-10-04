@@ -144,7 +144,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			$s .= $list->endImageHistoryList( $navLink );
 
 			if ( $list->getPreventClickjacking() ) {
-				$this->preventClickjacking();
+				$this->setPreventClickjacking( true );
 			}
 		}
 		return $s;
@@ -241,8 +241,17 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param bool $enable
+	 * @deprecated since 1.38, use ::setPreventClickjacking()
 	 */
 	protected function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	/**
+	 * @param bool $enable
+	 * @since 1.38
+	 */
+	protected function setPreventClickjacking( bool $enable ) {
 		$this->preventClickjacking = $enable;
 	}
 

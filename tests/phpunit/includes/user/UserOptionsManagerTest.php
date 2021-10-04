@@ -59,13 +59,33 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\UserOptionsManager::getOption
 	 */
 	public function testGetOptionsExcludeDefaults() {
-		$manager = $this->getManager();
-		$manager->setOption( $this->getAnon( __METHOD__ ), 'new_option', 'new_value' );
-		$this->assertSame( [
+		$manager = $this->getManager( [ 'defaults' => [
+			'null_vs_false' => null,
+			'null_vs_string' => null,
+			'false_vs_int' => false,
+			'false_vs_string' => false,
+			'int_vs_string' => 0,
+			'true_vs_int' => true,
+			'true_vs_string' => true,
+		] ] );
+		$user = $this->getAnon( __METHOD__ );
+		$manager->setOption( $user, 'null_vs_false', false );
+		$manager->setOption( $user, 'null_vs_string', '' );
+		$manager->setOption( $user, 'false_vs_int', 0 );
+		$manager->setOption( $user, 'false_vs_string', '0' );
+		$manager->setOption( $user, 'int_vs_string', '0' );
+		$manager->setOption( $user, 'true_vs_int', 1 );
+		$manager->setOption( $user, 'true_vs_string', '1' );
+		$manager->setOption( $user, 'new_option', 'new_value' );
+		$expected = [
+			// Note that the old, relaxed array_diff-approach considered null equal to false and ""
+			'null_vs_false' => false,
+			'null_vs_string' => '',
 			'language' => 'en',
 			'variant' => 'en',
-			'new_option' => 'new_value'
-		], $manager->getOptions( $this->getAnon( __METHOD__ ), UserOptionsManager::EXCLUDE_DEFAULTS ) );
+			'new_option' => 'new_value',
+		];
+		$this->assertSame( $expected, $manager->getOptions( $user, UserOptionsManager::EXCLUDE_DEFAULTS ) );
 	}
 
 	/**

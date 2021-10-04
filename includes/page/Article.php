@@ -465,7 +465,7 @@ class Article implements Page {
 
 		$outputPage->setArticleFlag( true );
 		# Allow frames by default
-		$outputPage->allowClickjacking();
+		$outputPage->setPreventClickjacking( false );
 
 		$parserOptions = $this->getParserOptions();
 		$poOptions = [];
@@ -1108,7 +1108,7 @@ class Article implements Page {
 	 * desired, does nothing.
 	 *
 	 * Side effect: When the patrol link is build, this method will call
-	 * OutputPage::preventClickjacking() and load a JS module.
+	 * OutputPage::setPreventClickjacking(true) and load a JS module.
 	 *
 	 * @return bool
 	 */
@@ -1251,7 +1251,7 @@ class Article implements Page {
 			return false;
 		}
 
-		$outputPage->preventClickjacking();
+		$outputPage->setPreventClickjacking( true );
 		if ( $this->getContext()->getAuthority()->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 		}

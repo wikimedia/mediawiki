@@ -2442,8 +2442,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers OutputPage::preventClickjacking
-	 * @covers OutputPage::allowClickjacking
+	 * @covers OutputPage::setPreventClickjacking
 	 * @covers OutputPage::getPreventClickjacking
 	 * @covers OutputPage::addParserOutputMetadata
 	 * @covers OutputPage::addParserOutput
@@ -2452,26 +2451,26 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertTrue( $op->getPreventClickjacking() );
 
-		$op->allowClickjacking();
+		$op->setPreventClickjacking( false );
 		$this->assertFalse( $op->getPreventClickjacking() );
 
-		$op->preventClickjacking();
+		$op->setPreventClickjacking( true );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
-		$op->preventClickjacking( false );
+		$op->setPreventClickjacking( false );
 		$this->assertFalse( $op->getPreventClickjacking() );
 
-		$pOut1 = $this->createParserOutputStub( 'preventClickjacking', true );
+		$pOut1 = $this->createParserOutputStub( 'getPreventClickjacking', true );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
 		// The ParserOutput can't allow, only prevent
-		$pOut2 = $this->createParserOutputStub( 'preventClickjacking', false );
+		$pOut2 = $this->createParserOutputStub( 'getPreventClickjacking', false );
 		$op->addParserOutputMetadata( $pOut2 );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
 		// Reset to test with addParserOutput()
-		$op->allowClickjacking();
+		$op->setPreventClickjacking( false );
 		$this->assertFalse( $op->getPreventClickjacking() );
 
 		$op->addParserOutput( $pOut1 );
@@ -2484,7 +2483,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetFrameOptions
 	 * @covers OutputPage::getFrameOptions
-	 * @covers OutputPage::preventClickjacking
+	 * @covers OutputPage::setPreventClickjacking
 	 */
 	public function testGetFrameOptions(
 		$breakFrames, $preventClickjacking, $editPageFrameOptions, $expected
@@ -2493,7 +2492,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'BreakFrames' => $breakFrames,
 			'EditPageFrameOptions' => $editPageFrameOptions,
 		] );
-		$op->preventClickjacking( $preventClickjacking );
+		$op->setPreventClickjacking( $preventClickjacking );
 
 		$this->assertSame( $expected, $op->getFrameOptions() );
 	}

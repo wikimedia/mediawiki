@@ -52,7 +52,7 @@ class SpecialCategories extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Categories' );
-		$this->getOutput()->allowClickjacking();
+		$this->getOutput()->setPreventClickjacking( false );
 
 		$from = $this->getRequest()->getText( 'from', $par );
 

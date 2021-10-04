@@ -254,7 +254,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * @var bool Controls if anti-clickjacking / frame-breaking headers will
 	 * be sent. This should be done for pages where edit actions are possible.
-	 * Setters: $this->preventClickjacking() and $this->allowClickjacking().
+	 * Setter: $this->setPreventClickjacking()
 	 */
 	protected $mPreventClickjacking = true;
 
@@ -1905,7 +1905,7 @@ class OutputPage extends ContextSource {
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking
-			|| $parserOutput->preventClickjacking();
+			|| $parserOutput->getPreventClickjacking();
 		$scriptSrcs = $parserOutput->getExtraCSPScriptSrcs();
 		foreach ( $scriptSrcs as $src ) {
 			$this->getCSP()->addScriptSrc( $src );
@@ -2351,6 +2351,7 @@ class OutputPage extends ContextSource {
 	 * form on an ordinary view page, then you need to call this function.
 	 *
 	 * @param bool $enable
+	 * @deprecated since 1.38, use ::setPreventClickjacking( true )
 	 */
 	public function preventClickjacking( $enable = true ) {
 		$this->mPreventClickjacking = $enable;
@@ -2360,9 +2361,33 @@ class OutputPage extends ContextSource {
 	 * Turn off frame-breaking. Alias for $this->preventClickjacking(false).
 	 * This can be called from pages which do not contain any CSRF-protected
 	 * HTML form.
+	 *
+	 * @deprecated since 1.38, use ::setPreventClickjacking( false )
 	 */
 	public function allowClickjacking() {
 		$this->mPreventClickjacking = false;
+	}
+
+	/**
+	 * Set the prevent-clickjacking flag.
+	 *
+	 * If true, will cause an X-Frame-Options header appropriate for
+	 * edit pages to be sent. The header value is controlled by
+	 * $wgEditPageFrameOptions.  This is the default for special
+	 * pages. If you display a CSRF-protected form on an ordinary view
+	 * page, then you need to call this function.
+	 *
+	 * Setting this flag to false will turn off frame-breaking.  This
+	 * can be called from pages which do not contain any
+	 * CSRF-protected HTML form.
+	 *
+	 * @param bool $enable If true, will cause an X-Frame-Options header
+	 *  appropriate for edit pages to be sent.
+	 *
+	 * @since 1.38
+	 */
+	public function setPreventClickjacking( bool $enable ) {
+		$this->mPreventClickjacking = $enable;
 	}
 
 	/**

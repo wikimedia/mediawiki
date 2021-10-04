@@ -133,6 +133,8 @@ because of Phabricator reports.
   or SkinFactory::getInstalledSkins().
 * Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
   since 1.37, has been removed.
+* DatabaseBlock::setBlocker() no longer accepts a username as blocker, it
+  must always be a UserIdentity. This was deprecated since 1.36.
 * The following deprecated constructor options of DatabaseBlock class
   have been removed:
   - 'byText' property with blocker's name,
@@ -167,6 +169,14 @@ because of Phabricator reports.
 * Message::content() was hard-deprecated.
 * The following methods from the ParserOutput class were hard deprecated:
    - ::hideNewSection() - use ::setHideNewSection()
+   - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
+* The following methods were soft-deprecated; use ::setPreventClickjacking(..)
+  instead:
+   - OutputPage::preventClickjacking()
+   - OutputPage::allowClickjacking()
+   - ImageHistoryList::preventClickjacking()
+   - ImageHistoryPseudoPager::preventClickjacking()
+   - ContribsPager::preventClickjacking()
 * Collation::singleton() and ::factory() were hard-deprecated.
 * …
 
