@@ -8,7 +8,7 @@ use Wikimedia\Http\SetCookieCompat;
  */
 class SetCookieCompatTest extends TestCase {
 	public static function provideSetCookieEmulated() {
-		// Expected values are all copied from PHP 7.3
+		// Expected values are all copied from PHP 7.4
 		// phpcs:disable Generic.Files.LineLength.TooLong
 		return [
 			'unrecognised key' => [
@@ -118,6 +118,16 @@ class SetCookieCompatTest extends TestCase {
 				[
 					'headers' => [
 						'Set-Cookie: a=%25',
+					],
+					'returnValue' => true,
+					'errors' => [],
+				]
+			],
+			'encoded value with space' => [
+				true, 'a', 'b c', [],
+				[
+					'headers' => [
+						'Set-Cookie: a=b%20c',
 					],
 					'returnValue' => true,
 					'errors' => [],
