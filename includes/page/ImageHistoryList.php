@@ -125,7 +125,6 @@ class ImageHistoryList extends ContextSource {
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$uploader = $file->getUploader( File::FOR_THIS_USER, $user );
-		$description = $file->getDescription( File::FOR_THIS_USER, $user );
 
 		$local = $this->current->isLocal();
 		$row = $selected = '';
