@@ -4982,6 +4982,15 @@ $wgTidyConfig = [];
 $wgParserEnableLegacyMediaDOM = true;
 
 /**
+ * Temporary flag to ship the styles for the media HTML structure that replaces
+ * legacy, when $wgParserEnableLegacyMediaDOM is `false`.  This is configured
+ * separately so that it can continue to be served after the latter is disabled
+ * but still in the cache.
+ * @internal
+ */
+$wgUseContentMediaStyles = false;
+
+/**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.
  * THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
