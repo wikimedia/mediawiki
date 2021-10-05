@@ -248,6 +248,7 @@ class ApiMain extends ApiBase {
 				'RepoGroup',
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'DeletePageFactory',
 			]
 		],
 		'undelete' => [
