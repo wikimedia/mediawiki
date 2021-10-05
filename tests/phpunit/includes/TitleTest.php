@@ -1431,32 +1431,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideIsWatchable() {
-		return [
-			'User page is watchable' => [
-				Title::makeTitle( NS_USER, 'Jane' ), true
-			],
-			'Talk page is watchable' => [
-				Title::makeTitle( NS_TALK, 'Foo' ), true
-			],
-			'Special page is not watchable' => [
-				Title::makeTitle( NS_SPECIAL, 'Thing' ), false
-			],
-			'Virtual namespace is not watchable' => [
-				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
-			],
-			'Relative link is not watchable' => [
-				Title::makeTitle( NS_MAIN, '', 'Kittens' ), false
-			],
-			'Interwiki link is not watchable' => [
-				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
-			],
-			'Invalid title is not watchable' => [
-				Title::makeTitle( NS_MAIN, '<' ), false
-			]
-		];
-	}
-
 	public static function provideGetTalkPage_good() {
 		return [
 			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
@@ -1511,19 +1485,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCanHaveTalkPage( Title $title, $expected ) {
 		$actual = $title->canHaveTalkPage();
-		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
-	}
-
-	/**
-	 * @dataProvider provideIsWatchable
-	 * @covers Title::isWatchable
-	 *
-	 * @param Title $title
-	 * @param bool $expected
-	 */
-	public function testIsWatchable( Title $title, $expected ) {
-		$this->hideDeprecated( 'Title::isWatchable' );
-		$actual = $title->isWatchable();
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 

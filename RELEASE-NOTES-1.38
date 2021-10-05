@@ -141,6 +141,12 @@ because of Phabricator reports.
     use 'by' property with UserIdentity value instead.
   - 'by' property with blocker's ID,
     use 'by' property with UserIdentity value instead.
+* The following functions, hard deprecated since 1.37, have been removed:
+  - Title::isWatchable()
+  - WatchAction::doWatchOrUnwatch(), WatchAction::doWatch(),
+    WatchAction::doUnwatch(), WatchAction::getWatchToken()
+  - User::isWatched(), User::isTempWatched(), User::addWatch(),
+    User::removeWatch()
 * …
 
 === Deprecations in 1.38 ===
