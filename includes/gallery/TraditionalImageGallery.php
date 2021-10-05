@@ -188,9 +188,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 					# Set both fixed width and min-height.
 					$width = $this->getThumbDivWidth( $thumb->getWidth() );
+					$height = $this->getThumbPadding() + $this->mHeights;
 					$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
 						'class' => 'thumb',
-						'style' => "width: {$width}px;",
+						'style' => "width: {$width}px;" .
+							( !$enableLegacyMediaDOM && $this->mMode === 'traditional' ?
+								" height: {$height}px;" : '' ),
 					], $thumbhtml );
 
 					// Call parser transform hook
