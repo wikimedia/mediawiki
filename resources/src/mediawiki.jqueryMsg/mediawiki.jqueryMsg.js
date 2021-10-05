@@ -1442,11 +1442,11 @@ $.fn.msg = mw.jqueryMsg.getPlugin();
 
 // Replace the default message parser with jqueryMsg
 var oldParser = mw.Message.prototype.parser;
-mw.Message.prototype.parser = function () {
+mw.Message.prototype.parser = function ( format ) {
 	// Fall back to mw.msg's simple parser where possible
 	if (
 		// Plain text output always uses the simple parser
-		this.format === 'plain' ||
+		format === 'plain' ||
 		(
 			// jqueryMsg parser is needed for messages containing wikitext
 			!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
@@ -1456,17 +1456,17 @@ mw.Message.prototype.parser = function () {
 			} )
 		)
 	) {
-		return oldParser.apply( this );
+		return oldParser.call( this, format );
 	}
 
-	if ( !Object.prototype.hasOwnProperty.call( this.map, this.format ) ) {
-		this.map[ this.format ] = mw.jqueryMsg.getMessageFunction( {
+	if ( !Object.prototype.hasOwnProperty.call( this.map, format ) ) {
+		this.map[ format ] = mw.jqueryMsg.getMessageFunction( {
 			messages: this.map,
 			// For format 'escaped', escaping part is handled by mediawiki.js
-			format: this.format
+			format: format
 		} );
 	}
-	return this.map[ this.format ]( this.key, this.parameters );
+	return this.map[ format ]( this.key, this.parameters );
 };
 
 /**

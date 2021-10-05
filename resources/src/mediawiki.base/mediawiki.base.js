@@ -107,9 +107,11 @@ Message.prototype = {
 	 *
 	 * This function will not be called for nonexistent messages.
 	 *
+	 * @private For internal use by mediawiki.jqueryMsg only
+	 * @param {string} format
 	 * @return {string} Parsed message
 	 */
-	parser: function () {
+	parser: function ( format ) {
 		var text = this.map.get( this.key );
 		if (
 			mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
@@ -118,7 +120,7 @@ Message.prototype = {
 			text = '(' + this.key + '$*)';
 		}
 		text = mw.format.apply( null, [ text ].concat( this.parameters ) );
-		if ( this.format === 'parse' ) {
+		if ( format === 'parse' ) {
 			// We don't know how to parse anything, so escape it all
 			text = mw.html.escape( text );
 		}
@@ -160,11 +162,11 @@ Message.prototype = {
 		}
 
 		if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
-			return this.parser();
+			return this.parser( this.format );
 		}
 
-		// Format: 'escaped'
-		return mw.html.escape( this.parser() );
+		// Format: 'escaped' (including for any invalid format, default to safe escape)
+		return mw.html.escape( this.parser( 'escaped' ) );
 	},
 
 	/**
