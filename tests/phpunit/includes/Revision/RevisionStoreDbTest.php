@@ -2074,10 +2074,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function createRevisionStoreCacheRecord( $page, $store ) {
 		$user = MediaWikiIntegrationTestCase::getMutableTestUser()->getUser();
-		$updater = $page->newPageUpdater( $user )
-			->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) );
 		$summary = CommentStoreComment::newUnsavedComment( __METHOD__ );
-		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+		$rev = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) )
+			->saveRevision( $summary, EDIT_NEW );
 		return $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
 	}
 

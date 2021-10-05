@@ -59,11 +59,11 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	private function makeRevision( WikiPage $page, $text ) {
 		$user = $this->getTestUser()->getUser();
-		$updater = $page->newPageUpdater( $user )
+		$revision = $page->newPageUpdater( $user )
 			->setContent( SlotRecord::MAIN, new WikitextContent( $text ) )
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'testing' ) );
 
-		return $updater;
+		return $revision;
 	}
 
 	public function testDoWorkLoadRevision() {

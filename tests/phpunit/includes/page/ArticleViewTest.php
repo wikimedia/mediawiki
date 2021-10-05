@@ -50,8 +50,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 				$cont = new WikitextContent( $cont );
 			}
 
-			$u = $page->newPageUpdater( $user )->setContent( SlotRecord::MAIN, $cont );
-			$rev = $u->saveRevision( CommentStoreComment::newUnsavedComment( 'Rev ' . $key ) );
+			$rev = $page->newPageUpdater( $user )
+				->setContent( SlotRecord::MAIN, $cont )
+				->saveRevision( CommentStoreComment::newUnsavedComment( 'Rev ' . $key ) );
 
 			$revisions[ $key ] = $rev;
 			MWTimestamp::setFakeTime( ++$time );
