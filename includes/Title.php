@@ -1260,22 +1260,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Can this title be added to a user's watchlist?
-	 *
-	 * False for relative section links (with getText() === ''),
-	 * interwiki links (with getInterwiki() !== ''), and pages in NS_SPECIAL.
-	 *
-	 * @deprecated since 1.37, use WatchlistManager::isWatchable instead.
-	 *
-	 * @return bool
-	 */
-	public function isWatchable() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		return $watchlistManager->isWatchable( $this );
-	}
-
-	/**
 	 * Returns true if this is a special page.
 	 *
 	 * @return bool

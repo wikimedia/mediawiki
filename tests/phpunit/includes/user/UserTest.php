@@ -2059,49 +2059,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::isWatched
-	 * @covers User::isTempWatched
-	 * @covers User::addWatch
-	 * @covers User::removeWatch
-	 */
-	public function testWatchlist() {
-		$user = $this->user;
-		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
-
-		$this->hideDeprecated( 'User::isWatched' );
-		$this->hideDeprecated( 'User::isTempWatched' );
-		$this->hideDeprecated( 'User::addWatch' );
-		$this->hideDeprecated( 'User::removeWatch' );
-
-		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
-
-		$user->addWatch( $articleTitle );
-		$this->assertTrue( $user->isWatched( $articleTitle ), 'The article has been watched' );
-		$this->assertFalse(
-			$user->isTempWatched( $articleTitle ),
-			"The article hasn't been temporarily watched"
-		);
-
-		$user->removeWatch( $articleTitle );
-		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has been unwatched' );
-		$this->assertFalse(
-			$user->isTempWatched( $articleTitle ),
-			"The article hasn't been temporarily watched"
-		);
-
-		$user->addWatch( $articleTitle, true, '2 weeks' );
-		$this->assertTrue(
-			$user->isTempWatched( $articleTitle ), 'The article has been tempoarily watched'
-		);
-
-		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
-		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
-		// Assume no exceptions
-		$user->addWatch( $specialTitle );
-		$user->removeWatch( $specialTitle );
-	}
-
-	/**
 	 * @covers User::getName
 	 * @covers User::setName
 	 */

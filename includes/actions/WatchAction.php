@@ -20,9 +20,6 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -245,107 +242,6 @@ class WatchAction extends FormAction {
 			}
 		}
 		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText(), $expiryLabel );
-	}
-
-	/**
-	 * Watch or unwatch a page
-	 *
-	 * @param bool $watch Whether to watch or unwatch the page
-	 * @param PageIdentity $pageIdentity Page to watch/unwatch
-	 * @param Authority $performer who is watching/unwatching
-	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
-	 *   null will not create expiries, or leave them unchanged should they already exist.
-	 *
-	 * @return Status
-	 * @since 1.35 New $expiry parameter.
-	 * @since 1.22
-	 * @deprecated since 1.37, use WatchlistManager:setWatch() instead.
-	 */
-	public static function doWatchOrUnwatch(
-		$watch,
-		PageIdentity $pageIdentity,
-		Authority $performer,
-		string $expiry = null
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
-			$watch,
-			$performer,
-			$pageIdentity,
-			$expiry
-		) );
-	}
-
-	/**
-	 * Watch a page
-	 * @since 1.22 Returns Status, $checkRights parameter added
-	 * @param PageIdentity $pageIdentity Page to watch/unwatch
-	 * @param Authority $performer User who is watching/unwatching
-	 * @param bool $checkRights Passed through to $user->addWatch()
-	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
-	 *   null will not create expiries, or leave them unchanged should they already exist.
-	 * @return Status
-	 * @deprecated since 1.37, use WatchlistManager:addWatch() instead.
-	 */
-	public static function doWatch(
-		PageIdentity $pageIdentity,
-		Authority $performer,
-		$checkRights = User::CHECK_USER_RIGHTS,
-		?string $expiry = null
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		if ( $checkRights ) {
-			return Status::wrap( $watchlistManager->addWatch(
-				$performer,
-				$pageIdentity,
-				$expiry
-			) );
-		}
-		return Status::wrap( $watchlistManager->addWatchIgnoringRights(
-			$performer->getUser(),
-			$pageIdentity,
-			$expiry
-		) );
-	}
-
-	/**
-	 * Unwatch a page
-	 *
-	 * @param PageIdentity $pageIdentity Page to watch/unwatch
-	 * @param Authority $performer User who is watching/unwatching
-	 *
-	 * @return Status
-	 * @since 1.22 Returns Status
-	 * @deprecated since 1.37, use WatchlistManager:removeWatch() instead.
-	 */
-	public static function doUnwatch( PageIdentity $pageIdentity, Authority $performer ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch(
-			$performer,
-			$pageIdentity
-		) );
-	}
-
-	/**
-	 * Get token to watch (or unwatch) a page for a user
-	 *
-	 * @deprecated since 1.37, use CsrfTokenSet::getToken
-	 *
-	 * @param PageIdentity $page Title object of page to watch
-	 * @param User $user User for whom the action is going to be performed
-	 * @param string $action Optionally override the action to 'unwatch'
-	 * @return string Token
-	 * @since 1.18
-	 */
-	public static function getWatchToken( PageIdentity $page, User $user, $action = 'watch' ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( $action != 'unwatch' ) {
-			$action = 'watch';
-		}
-		// This must match ApiWatch and ResourceLoaderUserOptionsModule
-		return $user->getEditToken( $action );
 	}
 
 	public function doesWrites() {
