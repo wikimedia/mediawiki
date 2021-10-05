@@ -249,6 +249,7 @@ class ApiQuery extends ApiBase {
 				'UserFactory',
 				'UserGroupManager',
 				'GroupPermissionsLookup',
+				'ContentLanguage',
 			]
 		],
 		'backlinks' => [

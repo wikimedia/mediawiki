@@ -77,14 +77,10 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupRequest = function () {
-		var inputValue = this.value;
-
 		return this.api.get( {
 			action: 'query',
 			list: 'allusers',
-			// Prefix of list=allusers is case sensitive. Normalise first
-			// character to uppercase so that "fo" may yield "Foo".
-			auprefix: inputValue[ 0 ].toUpperCase() + inputValue.slice( 1 ),
+			auprefix: this.value,
 			aulimit: this.limit
 		} );
 	};

@@ -42,24 +42,30 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
+	/** @var Language */
+	private $contentLanguage;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param UserFactory $userFactory
 	 * @param UserGroupManager $userGroupManager
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param Language $contentLanguage
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
-		GroupPermissionsLookup $groupPermissionsLookup
+		GroupPermissionsLookup $groupPermissionsLookup,
+		Language $contentLanguage
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -69,6 +75,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * @return string
 	 */
 	private function getCanonicalUserName( $name ) {
+		$name = $this->contentLanguage->ucfirst( $name );
 		return strtr( $name, '_', ' ' );
 	}
 
