@@ -14,9 +14,7 @@
 				formatversion: 2,
 				action: 'query',
 				list: 'allusers',
-				// Prefix of list=allusers is case sensitive. Normalise first
-				// character to uppercase so that "fo" may yield "Foo".
-				auprefix: userInput[ 0 ].toUpperCase() + userInput.slice( 1 ),
+				auprefix: userInput,
 				aulimit: maxRows
 			} ).done( function ( data ) {
 				var users = data.query.allusers.map( function ( userObj ) {

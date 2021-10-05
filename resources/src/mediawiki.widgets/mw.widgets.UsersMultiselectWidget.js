@@ -138,9 +138,7 @@
 				this.api.get( {
 					action: 'query',
 					list: 'allusers',
-					// Prefix of list=allusers is case sensitive. Normalise first
-					// character to uppercase so that "fo" may yield "Foo".
-					auprefix: inputValue[ 0 ].toUpperCase() + inputValue.slice( 1 ),
+					auprefix: inputValue,
 					aulimit: this.limit
 				} ).done( function ( response ) {
 					var suggestions = response.query.allusers,
