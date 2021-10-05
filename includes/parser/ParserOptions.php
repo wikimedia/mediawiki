@@ -79,7 +79,6 @@ class ParserOptions {
 	 */
 	private static $initialCacheVaryingOptionsHash = [
 		'dateformat' => true,
-		'numberheadings' => true,
 		'thumbsize' => true,
 		'printable' => true,
 		'userlang' => true,
@@ -326,23 +325,6 @@ class ParserOptions {
 	public function setEnableImageWhitelist( $x ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->setOptionLegacy( 'enableImageWhitelist', $x );
-	}
-
-	/**
-	 * Automatically number headings?
-	 * @return bool
-	 */
-	public function getNumberHeadings() {
-		return $this->getOption( 'numberheadings' );
-	}
-
-	/**
-	 * Automatically number headings?
-	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
-	 */
-	public function setNumberHeadings( $x ) {
-		return $this->setOptionLegacy( 'numberheadings', $x );
 	}
 
 	/**
@@ -1223,7 +1205,6 @@ class ParserOptions {
 			'magicISBNLinks' => $wgEnableMagicLinks['ISBN'],
 			'magicPMIDLinks' => $wgEnableMagicLinks['PMID'],
 			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
-			'numberheadings' => $userOptionsLookup->getDefaultOption( 'numberheadings' ),
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];
@@ -1261,7 +1242,6 @@ class ParserOptions {
 		$this->mUser = $user;
 		$services = MediaWikiServices::getInstance();
 		$optionsLookup = $services->getUserOptionsLookup();
-		$this->options['numberheadings'] = $optionsLookup->getOption( $user, 'numberheadings' );
 		$this->options['thumbsize'] = $optionsLookup->getOption( $user, 'thumbsize' );
 		$this->options['userlang'] = $lang;
 	}
