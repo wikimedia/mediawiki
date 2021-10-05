@@ -1455,7 +1455,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stash->merge(
 			$this->getPageSeenTimestampsKey( $user ),
 			function ( $cache, $key, $current ) use ( $title, $seenTime ) {
-				$value = $current ?: new MapCacheLRU( 300 );
+				if ( !$current ) {
+					$value = new MapCacheLRU( 300 );
+				} elseif ( is_array( $current ) ) {
+					// Forwards compatibility for T282105
+					$value = MapCacheLRU::newFromArray( $current, 300 );
+				} else {
+					$value = $current;
+				}
 				$subKey = $this->getPageSeenKey( $title );
 
 				if ( $seenTime > $value->get( $subKey ) ) {
@@ -1501,13 +1508,18 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private function getPageSeenTimestamps( UserIdentity $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
 
-		return $this->latestUpdateCache->getWithSetCallback(
+		$cache = $this->latestUpdateCache->getWithSetCallback(
 			$key,
 			BagOStuff::TTL_PROC_LONG,
 			function () use ( $key ) {
 				return $this->stash->get( $key ) ?: null;
 			}
 		);
+		if ( is_array( $cache ) ) {
+			// Forwards compatibility for T282105
+			$cache = MapCacheLRU::newFromArray( $cache, 300 );
+		}
+		return $cache;
 	}
 
 	/**

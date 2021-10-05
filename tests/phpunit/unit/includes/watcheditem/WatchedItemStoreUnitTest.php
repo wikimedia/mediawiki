@@ -181,7 +181,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$mocks['lbFactory'] ??
 				$this->getMockLBFactory( $db ),
 			$mocks['queueGroup'] ?? $this->getMockJobQueueGroup(),
-			new HashBagOStuff(),
+			$mocks['stash'] ?? new HashBagOStuff(),
 			$mocks['cache'] ?? $this->getMockCache(),
 			$mocks['readOnlyMode'] ?? $this->getDummyReadOnlyMode( false ),
 			$nsInfo,
@@ -3184,5 +3184,65 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockCache = $this->getMockCache();
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 		$store->removeExpired( 2, true );
+	}
+
+	public static function provideGetLatestNotificationTimestamp() {
+		$emptyMap = new MapCacheLRU( 300 );
+		$oldMap = new MapCacheLRU( 300 );
+		$oldMap->set( '0:Title', '20090101000000' );
+		$newMap = new MapCacheLRU( 300 );
+		$newMap->set( '0:Title', '20110101000000' );
+		// Arrays are used for stash values after T282105. We test forwards and
+		// backwards compatibility. The MapCacheLRU cases can be removed after
+		// deployment of T282105 has finished.
+		return [
+			'empty cache' => [
+				null,
+				true
+			],
+			'empty MapCacheLRU' => [
+				$emptyMap,
+				true
+			],
+			'empty array' => [
+				$emptyMap->toArray(),
+				true
+			],
+			'old MapCacheLRU' => [
+				$oldMap,
+				true,
+			],
+			'old array' => [
+				$oldMap->toArray(),
+				true
+			],
+			'new MapCacheLRU' => [
+				$newMap,
+				false
+			],
+			'new array' => [
+				$newMap,
+				false
+			]
+		];
+	}
+
+	/** @dataProvider provideGetLatestNotificationTimestamp */
+	public function testGetLatestNotificationTimestamp( $cacheValue, $expectNonNull ) {
+		$user = new UserIdentityValue( 1, 'User' );
+		$title = new TitleValue( 0, 'Title' );
+		$stash = new HashBagOStuff;
+		$stash->set(
+			$stash->makeGlobalKey(
+				'watchlist-recent-updates',
+				WikiMap::getCurrentWikiId(),
+				$user->getId()
+			),
+			$cacheValue
+		);
+		$store = $this->newWatchedItemStore( [ 'stash' => $stash ] );
+		$result = $store->getLatestNotificationTimestamp(
+			'20100101000000', $user, $title );
+		$this->assertSame( $expectNonNull, $result !== null );
 	}
 }
