@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
@@ -231,7 +232,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$titleFormatter,
 			$linkCache,
 			$specialPageFactory,
-			$hookContainer
+			$hookContainer,
+			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, [ 'renderForComment' => false ] )
 		);
 		$this->assertSame(
 			'',

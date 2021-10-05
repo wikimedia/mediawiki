@@ -23,6 +23,7 @@ namespace MediaWiki\Linker;
 use Html;
 use HtmlArmor;
 use LinkCache;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReference;
@@ -41,6 +42,10 @@ use Wikimedia\Assert\Assert;
  */
 class LinkRenderer {
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'renderForComment',
+	];
+
 	/**
 	 * Whether to force the pretty article path
 	 *
@@ -54,6 +59,13 @@ class LinkRenderer {
 	 * @var string|bool|int
 	 */
 	private $expandUrls = false;
+
+	/**
+	 * Whether links are being rendered for comments.
+	 *
+	 * @var bool
+	 */
+	private $comment = false;
 
 	/**
 	 * @var TitleFormatter
@@ -75,17 +87,23 @@ class LinkRenderer {
 
 	/**
 	 * @internal For use by LinkRendererFactory
+	 *
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param HookContainer $hookContainer
+	 * @param ServiceOptions $options
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
 		SpecialPageFactory $specialPageFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ServiceOptions $options
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->comment = $options->get( 'renderForComment' );
+
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->specialPageFactory = $specialPageFactory;
@@ -118,6 +136,10 @@ class LinkRenderer {
 	 */
 	public function getExpandURLs() {
 		return $this->expandUrls;
+	}
+
+	public function isForComment(): bool {
+		return $this->comment;
 	}
 
 	/**
