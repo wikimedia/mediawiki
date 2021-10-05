@@ -256,10 +256,6 @@ return [
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.mw-jump' => [
-		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery.spinner/spinner.js',
 		'dependencies' => [ 'jquery.spinner.styles' ],

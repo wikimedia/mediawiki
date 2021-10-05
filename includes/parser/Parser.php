@@ -4344,16 +4344,6 @@ class Parser {
 				$refers[$fallbackArrayKey] = true;
 			}
 
-			# Don't number the heading if it is the only one (looks silly)
-			if ( count( $matches[3] ) > 1 && $this->mOptions->getNumberHeadings() ) {
-				# the two are different if the line contains a link
-				$headline = Html::element(
-					'span',
-					[ 'class' => 'mw-headline-number' ],
-					$numbering
-				) . ' ' . $headline;
-			}
-
 			if ( $enoughToc && ( !isset( $maxTocLevel ) || $toclevel < $maxTocLevel ) ) {
 				$toc .= Linker::tocLine(
 					$linkAnchor,
