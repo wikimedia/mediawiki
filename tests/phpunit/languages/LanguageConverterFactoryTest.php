@@ -250,8 +250,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'ps', 'pt', 'pt-br', 'qu', 'qug', 'rgn', 'rif', 'rm', 'rmy', 'rn', 'ro',
 			'roa-rup', 'roa-tara', 'ru', 'rue', 'rup', 'ruq', 'ruq-cyrl', 'ruq-latn',
 			'rw', 'sa', 'sah', 'sat', 'sc', 'scn', 'sco', 'sd', 'sdc', 'sdh', 'se',
-			'sei', 'ses', 'sg', 'sgs', 'sh', 'shi-tfng', 'shi-latn', 'shn', 'shy-latn',
-			'si', 'simple', 'sk', 'skr', 'skr-arab', 'sl', 'sli', 'sm', 'sma', 'sn',
+			'sei', 'ses', 'sg', 'sgs', 'sh-cyrl', 'sh-latn', 'shi-tfng', 'shi-latn', 'shn',
+			'shy-latn', 'si', 'simple', 'sk', 'skr', 'skr-arab', 'sl', 'sli', 'sm', 'sma', 'sn',
 			'so', 'sq', 'sr-ec', 'sr-el', 'srn', 'ss', 'st', 'sty', 'stq', 'su', 'sv',
 			'sw', 'szl', 'szy', 'ta', 'tay', 'tcy', 'te', 'tet', 'tg-cyrl', 'tg-latn',
 			'th', 'ti', 'tk', 'tl', 'tly-latn', 'tn', 'to', 'tpi', 'tr', 'tru', 'ts', 'tt',
@@ -360,6 +360,16 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'ku' => 'bidirectional',
 				'ku-arab' => 'bidirectional',
 				'ku-latn' => 'bidirectional'
+			]
+		];
+
+		yield 'sh' => [
+			'sh', 'sh-latn', 'ShConverter',
+			[ 'sh-latn', 'sh-cyrl' ],
+			[ 'sh-cyrl' => 'sh-latn' ],
+			[], [], [
+				'sh-latn' => 'bidirectional',
+				'sh-cyrl' => 'bidirectional'
 			]
 		];
 

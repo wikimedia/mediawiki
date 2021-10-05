@@ -30,6 +30,7 @@ use KkConverter;
 use KuConverter;
 use Language;
 use MediaWiki\StubObject\StubUserLang;
+use ShConverter;
 use ShiConverter;
 use SrConverter;
 use TgConverter;
@@ -72,6 +73,9 @@ class LanguageConverterFactory {
 		],
 		'shi' => [
 			'class' => ShiConverter::class,
+		],
+		'sh' => [
+			'class' => ShConverter::class,
 		],
 		'sr' => [
 			'class' => SrConverter::class,

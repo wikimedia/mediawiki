@@ -45,20 +45,6 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function provideTestAllPropsForSingleLanguage() {
 		yield [
-			'sh',
-			[
-				'code' => 'sh',
-				'bcp47' => 'sh',
-				'autonym' => 'srpskohrvatski / српскохрватски',
-				'name' => 'Serbo-Croatian',
-				'fallbacks' => [ 'bs', 'sr-el', 'sr-latn', 'hr' ],
-				'dir' => 'ltr',
-				'variants' => [ 'sh' ],
-				'variantnames' => [ 'sh' => 'srpskohrvatski / српскохрватски' ],
-			]
-		];
-
-		yield [
 			'sr',
 			[
 				'code' => 'sr',

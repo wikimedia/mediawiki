@@ -1,5 +1,5 @@
 <?php
-/** Serbo-Croatian (srpskohrvatski / српскохрватски)
+/** Serbo-Croatian (Cyrillic script) (српскохрватски (ћирилица))
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -9,4 +9,4 @@
  * @author Aca
  */
 
-$fallback = 'sh-latn, sh-cyrl, bs, sr-el, sr-latn, hr';
+$fallback = 'sh, sh-latn';
