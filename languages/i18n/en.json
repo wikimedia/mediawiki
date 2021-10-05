@@ -1069,7 +1069,7 @@
 	"prefs-skin": "Skin",
 	"prefs-skin-prefs": "Skin preferences",
 	"prefs-skin-responsive": "Enable responsive mode",
-	"prefs-help-skin-responsive": "Adapt skin to available viewport area. (May have no effect on some skins).",
+	"prefs-help-skin-responsive": "Adapt layout to screen size on mobile.",
 	"skin-preview": "Preview",
 	"datedefault": "No preference",
 	"prefs-labs": "Labs features",
