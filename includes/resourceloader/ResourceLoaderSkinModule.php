@@ -62,7 +62,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *
 	 * "content-media":
 	 *     Styles for thumbnails and floated elements.
-	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled.
+	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled,
+	 *     or $wgUseContentMediaStyles is enabled.
 	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
 	 * "content-links":
@@ -355,7 +356,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 						);
 					}
 				}
-				if ( $feature === 'content-media' && !$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ) {
+				if ( $feature === 'content-media' && (
+					!$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ||
+					$this->getConfig()->get( 'UseContentMediaStyles' )
+				) ) {
 					$featureFilePaths['screen'][] = new ResourceLoaderFilePath(
 						'resources/src/mediawiki.skinning/content.media.less',
 						$defaultLocalBasePath,
