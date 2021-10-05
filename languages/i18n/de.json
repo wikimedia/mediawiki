@@ -1114,7 +1114,7 @@
 	"prefs-skin": "Benutzeroberfläche",
 	"prefs-skin-prefs": "Einstellungen für die Benutzeroberfläche",
 	"prefs-skin-responsive": "Responsive Modus aktivieren",
-	"prefs-help-skin-responsive": "Skin an den verfügbaren Viewport-Bereich anpassen (kann bei einigen Skins keine Wirkung haben).",
+	"prefs-help-skin-responsive": "Anpassung des Layouts an die Bildschirmgröße auf dem Handy.",
 	"skin-preview": "Vorschau",
 	"datedefault": "Standard",
 	"prefs-labs": "Alpha-Funktionen",

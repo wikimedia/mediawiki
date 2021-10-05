@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AVIADOR",
+			"AVIADOR71",
 			"Adjen",
 			"Agabi10",
 			"Agusbou2015",
@@ -227,7 +228,7 @@
 	"config-profile-no-anon": "Creación de cuenta requerida",
 	"config-profile-fishbowl": "Solo editores autorizados",
 	"config-profile-private": "Wiki privado",
-	"config-profile-help": "Los wikis funcionan mejor cuando dejas que los edite tanta gente como sea posible.\nEn MediaWiki, es fácil revisar los cambios recientes y revertir los daños realizados por usuarios malintencionados o novatos.\nSin embargo, muchos han encontrado que MediaWiki es útil para una amplia variedad de funciones, y a veces no es fácil convencer a todos de los beneficios de la forma wiki.\nPor lo tanto tienes la elección.\n\nEl modelo <strong>{{int:config-profile-wiki}}</strong> permite que cualquiera pueda editar, sin siquiera iniciar sesión.\nUn wiki con <strong>{{int:config-profile-no-anon}}</strong> ofrece rendición de cuentas adicional, pero puede disuadir a colaboradores casuales.\n\nEl modelo <strong>{{int:config-profile-fishbowl}}</strong> permite editar a los usuarios autorizados, pero el público puede ver las páginas, incluyendo el historial.\nUn <strong>{{int:config-profile-private}}</strong> sólo permite ver páginas a los usuarios autorizados, el mismo grupo al que le está permitido editar.\n\nConfiguraciones más complejas de permisos de usuario están disponibles después de la instalación. Consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights la entrada correspondiente del manual].",
+	"config-profile-help": "Los wikis funcionan mejor cuando dejas que los edite tanta gente como sea posible.\nEn MediaWiki, es fácil revisar los cambios recientes y revertir los daños realizados por usuarios malintencionados o novatos.\nSin embargo, muchos han encontrado que MediaWiki es útil para una amplia variedad de funciones, y a veces no es fácil convencer a todos de los beneficios de la forma wiki.\nPor lo tanto, tú eliges.\n\nEl modelo <strong>{{int:config-profile-wiki}}</strong> permite que cualquiera pueda editar, sin siquiera iniciar sesión.\nUn wiki con <strong>{{int:config-profile-no-anon}}</strong> ofrece rendición de cuentas adicional, pero puede disuadir a colaboradores casuales.\n\nEl modelo <strong>{{int:config-profile-fishbowl}}</strong> permite editar a los usuarios autorizados, pero el público puede ver las páginas, incluyendo el historial.\nUn <strong>{{int:config-profile-private}}</strong> solamente permite ver páginas a los usuarios autorizados, el mismo grupo al que le está permitido editar.\n\nConfiguraciones más complejas de permisos de usuario están disponibles después de la instalación; consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights la entrada correspondiente del manual].",
 	"config-license": "Derechos de autor y licencia:",
 	"config-license-none": "Pie sin licencia",
 	"config-license-cc-by-sa": "Creative Commons Atribución-CompartirIgual",
