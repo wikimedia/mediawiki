@@ -4,6 +4,7 @@
 			"01miki10",
 			"Centerlink",
 			"Crt",
+			"MITO",
 			"Nedergard",
 			"Nike",
 			"Olli",
@@ -279,6 +280,7 @@
 	"exif-customrendered-3": "HDR (alkuperäinen tallennettu)",
 	"exif-customrendered-4": "Alkuperäinen (HDR:lle)",
 	"exif-customrendered-6": "Panoraama",
+	"exif-customrendered-8": "Muotokuva",
 	"exif-exposuremode-0": "Automaattinen valotus",
 	"exif-exposuremode-1": "Käsinsäädetty valotus",
 	"exif-exposuremode-2": "Automaattinen haarukointi",
@@ -364,5 +366,11 @@
 	"exif-urgency-normal": "Tavallinen ($1)",
 	"exif-urgency-low": "Matala ($1)",
 	"exif-urgency-high": "Korkea ($1)",
-	"exif-urgency-other": "Käyttäjän määrittelemä prioriteetti ($1)"
+	"exif-urgency-other": "Käyttäjän määrittelemä prioriteetti ($1)",
+	"exif-firstphotodate": "Ensimmäisen kuvan päiväys",
+	"exif-lastphotodate": "Viimeisimmän kuvan päiväys",
+	"exif-usepanoramaviewer-true": "Kyllä",
+	"exif-usepanoramaviewer-false": "Ei",
+	"exif-exposurelockused-true": "Kyllä",
+	"exif-exposurelockused-false": "Ei"
 }

@@ -2805,6 +2805,7 @@
 	"move-leave-redirect": "Kardi pagingsiran nuju kaca anyar",
 	"protectedpagemovewarning": "<strong>Paingetan:</strong> Kaca puniki kasaibin punika wantah sang anganggé antuk hak aksés prajuru sané prasida ngingsirang.\nManjingan log pinih anyar kasedia ring méten antuk anggitan:",
 	"semiprotectedpagemovewarning": "<strong>Cutetan:</strong> Kaca puniki kantun kasaibin, asapunika wantah sang anganggé sané kadaptar otomatis sané prasida ngingsirang.\nDaging cutetan sané ungkur kasedia ring sor antuk anggitan:",
+	"move-over-sharedrepo": "[[:$1]] sampun kasedia ring panyimpenan sareng. Ngingsirang berkas nuju murda puniki pacang numpuk berkas sareng.",
 	"file-exists-sharedrepo": "Aran berkas sané kapilih sampun kaanggén ring satunggil panyimpenan sarengan.\nDurus pilih aran liyané.",
 	"export": "Ékspor kaca",
 	"exportall": "Ékspor samian kaca",
