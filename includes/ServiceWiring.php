@@ -1070,7 +1070,8 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
-			$services->getWikiPageFactory()
+			$services->getWikiPageFactory(),
+			$services->getPageUpdaterFactory()
 		);
 	},
 
@@ -1912,7 +1913,8 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
-			$services->getWikiPageFactory()
+			$services->getWikiPageFactory(),
+			$services->getPageUpdaterFactory()
 		);
 	},
 
@@ -1986,7 +1988,8 @@ return [
 			WikiMap::getCurrentWikiDbDomain()->getId(),
 			WebRequest::getRequestId(),
 			$services->getBacklinkCacheFactory(),
-			LoggerFactory::getInstance( 'UndeletePage' )
+			LoggerFactory::getInstance( 'UndeletePage' ),
+			$services->getPageUpdaterFactory()
 		);
 	},
 
