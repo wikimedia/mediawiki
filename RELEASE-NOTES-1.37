@@ -280,6 +280,8 @@ because of Phabricator reports.
   the "es6-polyfills" module directly intead.
 * The deprecated "mediawiki.legacy.protect" ResourceLoader module, deprecated
   since 1.36, has been removed. Use "mediawiki.action.protect" instead.
+* The JavaScript alias $j for references to jQuery, deprecated since 1.23, has
+  been removed. Use $ instead.
 * The AuthenticationProvider interface and the SessionProvider class no longer
   extend the PSR LoggerAwareInterface concept, so they can't be typehinted as
   LoggerAwareInterface.

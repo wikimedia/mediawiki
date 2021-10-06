@@ -766,10 +766,6 @@ mw.user = {
 	tokens: new mw.Map()
 };
 
-// Alias $j to jQuery for backwards compatibility
-// @deprecated since 1.23 Use $ or jQuery instead
-mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
-
 // Process callbacks for modern browsers (Grade A) that require modules.
 queue = window.RLQ;
 // Replace temporary RLQ implementation from startup.js with the
