@@ -36,12 +36,12 @@ describe( 'Diff Compare with Variables', function () {
 	it( 'should compare revisions 1 and 4', async () => {
 		const compareRevisions = await wikiuser.action( 'compare', { fromrev: variables.revision1, torev: variables.revision4 } );
 
-		assert.match( compareRevisions.compare[ '*' ], /<td class=.diff-addedline.>.*\* Two/ );
+		assert.match( compareRevisions.compare[ '*' ], /<td class=.diff-addedline.*>.*\* Two/ );
 	} );
 
 	it( 'should compare revisions 3 and 4', async () => {
 		const compareRevisions = await wikiuser.action( 'compare', { fromrev: variables.revision3, torev: variables.revision4 } );
 
-		assert.match( compareRevisions.compare[ '*' ], /<td class=.diff-deletedline.>.*\* Three/ );
+		assert.match( compareRevisions.compare[ '*' ], /<td class=.diff-deletedline.*>.*\* Three/ );
 	} );
 } );
