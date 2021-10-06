@@ -4460,17 +4460,6 @@ $wgResourceLoaderDebug = false;
 $wgIncludeLegacyJavaScript = false;
 
 /**
- * Whether to load the jquery.migrate library.
- *
- * This provides jQuery 1.12 features that were removed in jQuery 3.0.
- * See also <https://jquery.com/upgrade-guide/3.0/> and
- * <https://phabricator.wikimedia.org/T280944>.
- *
- * @deprecated since 1.36
- */
-$wgIncludejQueryMigrate = false;
-
-/**
  * ResourceLoader will not generate URLs whose query string is more than
  * this many characters long, and will instead use multiple requests with
  * shorter query strings. Using multiple requests may degrade performance,
