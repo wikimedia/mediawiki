@@ -385,6 +385,9 @@
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
+			var alignStart, rtlDir;
+			rtlDir = $( '#wpTextbox1' ).attr( 'dir' ) === 'rtl';
+			alignStart = rtlDir ? 'right' : 'left';
 			$( '#wikiPreview' ).after(
 				$( '<div>' )
 					.hide()
@@ -394,7 +397,10 @@
 					// * diff-editfont-sans-serif
 					// * diff-editfont-serif
 					.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
-					// TODO: Set diff-contentalign-* classes
+					// The following classes are used here:
+					// * diff-contentalign-left
+					// * diff-contentalign-right
+					.addClass( 'diff-contentalign-' + alignStart )
 					.append(
 						$( '<table>' ).addClass( 'diff' ).append(
 							$( '<col>' ).addClass( 'diff-marker' ),
