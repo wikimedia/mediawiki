@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Alexmar983",
 			"Beta16",
 			"Daimona Eaytoy",
@@ -29,7 +30,7 @@
 	"apihelp-main-param-requestid": "Tutti i valori forniti saranno implementati nella risposta. Potrebbero venir utilizzati per distinguere le richieste.",
 	"apihelp-main-param-servedby": "Includi nel risultato il nome dell'host che ha servito la richiesta.",
 	"apihelp-main-param-curtimestamp": "Includi nel risultato il timestamp attuale.",
-	"apihelp-block-summary": "Blocca  un utente.",
+	"apihelp-block-summary": "Blocca un utente.",
 	"apihelp-block-param-user": "Utente da bloccare.",
 	"apihelp-block-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> invece.",
 	"apihelp-block-param-expiry": "Tempo di scadenza. Può essere relativo (ad esempio, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o assoluto (ad esempio <kbd>2014-09-18T12:34:56Z</kbd>). Se impostato a <kbd>infinite</kbd>, <kbd>indefinite</kbd> o <kbd>never</kbd>, il blocco non scadrà mai.",
