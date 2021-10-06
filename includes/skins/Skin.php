@@ -923,8 +923,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$mp = $this->msg( 'mainpage' )->escaped();
-		$mptitle = Title::newMainPage();
-		$url = ( is_object( $mptitle ) ? htmlspecialchars( $mptitle->getLocalURL() ) : '' );
+		$url = htmlspecialchars( Title::newMainPage()->getLocalURL() );
 
 		$logourl = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 		return "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
@@ -1115,7 +1114,6 @@ abstract class Skin extends ContextSource {
 	 */
 	public static function makeMainPageUrl( $urlaction = '' ) {
 		$title = Title::newMainPage();
-		self::checkTitle( $title, '' );
 
 		return $title->getLinkURL( $urlaction );
 	}
