@@ -334,7 +334,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
 				unset( $revQuery['joins']['temp_rev_user'] );
 				$this->addOption( 'STRAIGHT_JOIN' );
-				// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
+				// It isn't actually necessary to reorder $revQuery['tables'] as Database does the right thing
 				// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
 				// `revision_actor_temp` to the start.
 				$revQuery['tables'] =
