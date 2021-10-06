@@ -175,7 +175,19 @@ class JobQueueGroup {
 
 		$jobsByType = []; // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
-			$jobsByType[$job->getType()][] = $job;
+			$type = $job->getType();
+			if ( isset( $this->jobTypeConfiguration[$type] ) ) {
+				$jobsByType[$type][] = $job;
+			} else {
+				if (
+					isset( $this->jobTypeConfiguration['default']['typeAgnostic'] ) &&
+					$this->jobTypeConfiguration['default']['typeAgnostic']
+				) {
+					$jobsByType['default'][] = $job;
+				} else {
+					$jobsByType[$type][] = $job;
+				}
+			}
 		}
 
 		foreach ( $jobsByType as $type => $jobs ) {
