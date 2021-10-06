@@ -112,11 +112,11 @@ class RowCommentIterator extends IteratorIterator {
 		}
 		$row = parent::current();
 		$comment = $this->commentStore->getComment( $this->commentKey, $row );
-		$item = new CommentItem( $comment->text );
+		$item = new CommentItem( (string)$comment->text );
 		if ( $this->namespaceField && $this->titleField ) {
 			$item->selfLinkTarget( new TitleValue(
 				(int)$row->{$this->namespaceField},
-				$row->{$this->titleField}
+				(string)$row->{$this->titleField}
 			) );
 		}
 		return $item;
