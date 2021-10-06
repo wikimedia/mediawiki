@@ -5862,7 +5862,7 @@ $wgBlockDisablesLogin = false;
 /**
  * Flag to enable partial blocks against performing certain actions.
  *
- * @unstable Temporary feature flag, to be removed before the release of 1.37: T280532
+ * @unstable Temporary feature flag, to be removed before the release of 1.38: T280532
  * @var bool
  */
 $wgEnablePartialActionBlocks = false;
