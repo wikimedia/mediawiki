@@ -540,7 +540,7 @@ class MessageCache implements LoggerAwareInterface {
 		// `revision` first rather than `page`).
 		$revQuery['joins']['revision'] = $revQuery['joins']['page'];
 		unset( $revQuery['joins']['page'] );
-		// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
+		// It isn't actually necessary to reorder $revQuery['tables'] as Database does the right thing
 		// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
 		// `page` to the start.
 		$revQuery['tables'] = array_merge(
