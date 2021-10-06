@@ -1140,7 +1140,7 @@
 	"prefs-skin": "Tema",
 	"prefs-skin-prefs": "Preferências de tema",
 	"prefs-skin-responsive": "Ativar modo responsivo",
-	"prefs-help-skin-responsive": "Adaptar o tema à área visível disponível (pode não ter efeito em alguns temas).",
+	"prefs-help-skin-responsive": "Adaptar o layout ao tamanho da tela no celular.",
 	"skin-preview": "prever",
 	"datedefault": "Sem preferência",
 	"prefs-labs": "Características de laboratório",
