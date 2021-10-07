@@ -435,7 +435,7 @@ abstract class Maintenance {
 	protected function output( $out, $channel = null ) {
 		// This is sometimes called very early, before Setup.php is included.
 		if ( class_exists( MediaWikiServices::class ) ) {
-			// Try to periodically flush buffered metrics to avoid OOMs
+			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			if ( $stats->getDataCount() > 1000 ) {
 				MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
@@ -1229,7 +1229,12 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Call before shutdown to run any deferred updates
+	 * Call before exiting CLI process for the last DB commit, and flush
+	 * any remaining buffers and other deferred work.
+	 *
+	 * Equivalent to MediaWiki::restInPeace which handles shutdown for web requests,
+	 * and should perform the same operations and in the same order.
+	 *
 	 * @since 1.36
 	 */
 	public function shutdown() {
@@ -1241,11 +1246,23 @@ abstract class Maintenance {
 		) {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lbFactory->commitPrimaryChanges( get_class( $this ) );
-			// @TODO: make less assumptions about deferred updates being coupled to the DB
+
 			DeferredUpdates::doUpdates();
 		}
 
-		wfLogProfilingData();
+		// Handle external profiler outputs
+		// FIXME: Handle embedded outputs as well, such as ProfilerOutputText (T253547)
+		$profiler = Profiler::instance();
+		// FIXME: Make Profiler not need a WebRequest (T292269)
+		// This set/get call silences the Profiler::getContext warning.
+		// This is "safe" so long as Profiler.php only uses this to call WebRequest::getElapsedTime().
+		$profiler->setContext( RequestContext::getMain() );
+		$profiler->logData();
+
+		MediaWiki::emitBufferedStatsdData(
+			MediaWikiServices::getInstance()->getStatsdDataFactory(),
+			$this->getConfig()
+		);
 
 		if ( $lbFactory ) {
 			$lbFactory->commitPrimaryChanges( 'doMaintenance' );

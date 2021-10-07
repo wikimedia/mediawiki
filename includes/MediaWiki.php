@@ -1133,10 +1133,18 @@ class MediaWiki {
 		);
 
 		// Do any deferred jobs; preferring to run them now if a client will not wait on them
-		DeferredUpdates::doUpdates( 'run' );
+		DeferredUpdates::doUpdates();
 
-		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
+		// Handle external profiler outputs.
+		// Any embedded profiler outputs were already processed in outputResponsePayload().
+		$profiler = Profiler::instance();
+		$profiler->setContext( $this->context );
+		$profiler->logData();
+
+		self::emitBufferedStatsdData(
+			MediaWikiServices::getInstance()->getStatsdDataFactory(),
+			$this->config
+		);
 
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
@@ -1147,6 +1155,25 @@ class MediaWiki {
 
 	/**
 	 * Send out any buffered statsd data according to sampling rules
+	 *
+	 * For web requests, this is called once by MediaWiki::restInPeace(),
+	 * which is post-send (after the response is sent to the client).
+	 *
+	 * For maintenance scripts, especially long-running CLI scripts, it is called
+	 * more often, to avoid OOM, since we buffer stats (T181385), based on the
+	 * following heuristics:
+	 *
+	 * - Long-running scripts that involve database writes often use transactions
+	 *   to commit chunks of work. We flush from IDatabase::setTransactionListener,
+	 *   as wired up by MWLBFactory::applyGlobalState.
+	 *
+	 * - Long-running scripts that involve database writes but don't need any
+	 *   transactions will still periodically wait for replication to be
+	 *   graceful to the databases. We flush from ILBFactory::setWaitForReplicationListener
+	 *   as wired up by MWLBFactory::applyGlobalState.
+	 *
+	 * - Any other long-running scripts will probably report progress to stdout
+	 *   in some way. We also flush from Maintenance::output().
 	 *
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param Config $config
