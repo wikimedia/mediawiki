@@ -138,7 +138,7 @@
 			.addClass( 'previewnote' )
 			.append( $( '<h2>' )
 				.attr( 'id', 'mw-previewheader' )
-				.text( mw.message( 'preview' ).escaped() )
+				.text( mw.msg( 'preview' ) )
 			)
 			.append( $( '<div>' )
 				.addClass( 'warningbox' )
