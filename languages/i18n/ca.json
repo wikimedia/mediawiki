@@ -82,7 +82,6 @@
 	"tog-hidecategorization": "Amaga la categorització de les pàgines",
 	"tog-extendwatchlist": "Desplega la llista de seguiment per a mostrar tots els canvis afectats, no només els més recents",
 	"tog-usenewrc": "Agrupa els canvis per pàgina en canvis recents i llista de seguiment",
-	"tog-numberheadings": "Enumera automàticament els encapçalaments",
 	"tog-editondblclick": "Edita les pàgines amb un doble clic",
 	"tog-editsectiononrightclick": "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 	"tog-watchcreations": "Afegeix les pàgines que vagi creant i fitxers que carregui a la llista de seguiment",
