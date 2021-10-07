@@ -505,8 +505,10 @@
 
 			maxSize = getMaxUploadSize( 'file' );
 			if ( file.size > maxSize ) {
-				$error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' +
-					mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
+				$error = $( '<p>' )
+					.addClass( 'error mw-upload-source-error' )
+					.attr( 'id', 'wpSourceTypeFile-error' )
+					.text( mw.msg( 'largefileserver' ) );
 
 				$( '#wpUploadFile' ).after( $error );
 

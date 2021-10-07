@@ -14,7 +14,7 @@ var MarkSeenButtonWidget = function MwRcfiltersUiMarkSeenButtonWidget( controlle
 
 	// Parent
 	MarkSeenButtonWidget.parent.call( this, $.extend( {
-		label: mw.message( 'rcfilters-watchlist-markseen-button' ).text(),
+		label: mw.msg( 'rcfilters-watchlist-markseen-button' ),
 		icon: 'checkAll'
 	}, config ) );
 

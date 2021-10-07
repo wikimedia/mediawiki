@@ -2,7 +2,7 @@
  * JavaScript for Special:RevisionDelete
  */
 ( function () {
-	var colonSeparator = mw.message( 'colon-separator' ).text(),
+	var colonSeparator = mw.msg( 'colon-separator' ),
 		$wpRevDeleteReasonList = $( '#wpRevDeleteReasonList' ),
 		$wpReason = $( '#wpReason' ),
 		filterFunction = function ( input ) {

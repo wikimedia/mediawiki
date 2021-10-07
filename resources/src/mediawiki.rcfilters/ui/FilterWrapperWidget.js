@@ -134,10 +134,10 @@ FilterWrapperWidget.prototype.onShowNewChangesClick = function () {
 FilterWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
 	if ( newChangesExist ) {
 		this.showNewChangesLink.setLabel(
-			mw.message(
+			mw.msg(
 				'rcfilters-show-new-changes',
 				this.changesListModel.getNextFromFormatted()
-			).text()
+			)
 		);
 	}
 	this.showNewChangesLink.toggle( newChangesExist );

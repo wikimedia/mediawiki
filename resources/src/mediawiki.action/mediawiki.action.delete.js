@@ -3,7 +3,7 @@
  */
 ( function () {
 	$( function () {
-		var colonSeparator = mw.message( 'colon-separator' ).text(),
+		var colonSeparator = mw.msg( 'colon-separator' ),
 			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ).closest( '.oo-ui-widget' ) ),
 			reason = OO.ui.infuse( $( '#wpReason' ).closest( '.oo-ui-widget' ) ),
 			filterFunction = function ( input ) {

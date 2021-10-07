@@ -138,7 +138,7 @@
 			.addClass( 'previewnote' )
 			.append( $( '<h2>' )
 				.attr( 'id', 'mw-previewheader' )
-				.text( mw.message( 'preview' ).escaped() )
+				.text( mw.msg( 'preview' ) )
 			)
 			.append( $( '<div>' )
 				.addClass( 'warningbox' )
@@ -339,7 +339,7 @@
 			var $errorMsg = api.getErrorMessage( result );
 			$errorBox = $( '<div>' )
 				.addClass( 'errorbox' )
-				.append( $( '<strong>' ).text( mw.message( 'previewerrortext' ).text() ) )
+				.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
 				.append( $errorMsg );
 			$wikiDiff.hide();
 			$wikiPreview.hide().before( $errorBox );
