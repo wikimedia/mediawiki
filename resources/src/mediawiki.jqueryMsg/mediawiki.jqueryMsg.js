@@ -12,7 +12,7 @@
  */
 
 var slice = Array.prototype.slice,
-	charAt = require( 'mediawiki.String' ).charAt,
+	mwString = require( 'mediawiki.String' ),
 	parserDefaults = {
 		// Magic words and their expansions. Server-side data is added to this below.
 		magic: {
@@ -1351,8 +1351,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	int: function ( nodes ) {
 		var msg = textify( nodes[ 0 ] );
-		var firstChar = charAt( msg, 0 );
-		return mw.jqueryMsg.getMessageFunction()( firstChar.toLowerCase() + msg.slice( firstChar.length ) );
+		return mw.jqueryMsg.getMessageFunction()( mwString.lcFirst( msg ) );
 	},
 
 	/**
@@ -1419,8 +1418,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	lcfirst: function ( nodes ) {
 		var text = textify( nodes[ 0 ] );
-		var firstChar = charAt( text, 0 );
-		return firstChar.toLowerCase() + text.slice( firstChar.length );
+		return mwString.lcFirst( text );
 	},
 
 	/**
@@ -1431,8 +1429,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	ucfirst: function ( nodes ) {
 		var text = textify( nodes[ 0 ] );
-		var firstChar = charAt( text, 0 );
-		return firstChar.toUpperCase() + text.slice( firstChar.length );
+		return mwString.ucFirst( text );
 	}
 };
 
