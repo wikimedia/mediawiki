@@ -71,6 +71,28 @@
 		}
 	}
 
+	/**
+	 * Lowercase the first character. Support UTF-16 surrogates for characters outside of BMP.
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function lcFirst( string ) {
+		var firstChar = charAt( string, 0 );
+		return firstChar.toLowerCase() + string.slice( firstChar.length );
+	}
+
+	/**
+	 * Uppercase the first character. Support UTF-16 surrogates for characters outside of BMP.
+	 *
+	 * @param {string} string
+	 * @return {string}
+	 */
+	function ucFirst( string ) {
+		var firstChar = charAt( string, 0 );
+		return firstChar.toUpperCase() + string.slice( firstChar.length );
+	}
+
 	function trimLength( safeVal, newVal, length, lengthFn ) {
 		var startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
 			oldVal = safeVal;
@@ -207,6 +229,8 @@
 		byteLength: byteLength,
 		codePointLength: codePointLength,
 		charAt: charAt,
+		lcFirst: lcFirst,
+		ucFirst: ucFirst,
 		trimByteLength: trimByteLength,
 		trimCodePointLength: trimCodePointLength
 	};

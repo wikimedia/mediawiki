@@ -293,7 +293,7 @@
 				}
 				$thead.append( this );
 			} );
-			$table.find( ' > tbody' ).first().before( $thead );
+			$table.find( '> tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
 			$tfoot = $( '<tfoot>' );
