@@ -212,14 +212,6 @@ class ParserEditTests extends Maintenance {
 			'[U]pdate source file, copy actual to expected',
 			'[I]gnore' ];
 
-		if ( strpos( $testInfo['options'], ' tidy' ) === false ) {
-			if ( empty( $testInfo['isSubtest'] ) ) {
-				$specs[] = "Enable [T]idy";
-			}
-		} else {
-			$specs[] = 'Disable [T]idy';
-		}
-
 		if ( !empty( $testInfo['isSubtest'] ) ) {
 			$specs[] = 'Delete [s]ubtest';
 		}
@@ -448,9 +440,9 @@ class ParserEditTests extends Maintenance {
 
 	protected function switchTidy( $testInfo ) {
 		$resultSection = $testInfo['resultSection'];
-		if ( in_array( $resultSection, [ 'html/php', 'html/*', 'html', 'result' ] ) ) {
-			$newSection = 'html+tidy';
-		} elseif ( in_array( $resultSection, [ 'html/php+tidy', 'html+tidy' ] ) ) {
+		if ( in_array( $resultSection, [ 'html/php' ] ) ) {
+			$newSection = 'html/php';
+		} elseif ( in_array( $resultSection, [ 'html/*', 'html', 'result' ] ) ) {
 			$newSection = 'html';
 		} else {
 			print "Unrecognised result section name \"$resultSection\"";

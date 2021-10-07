@@ -150,6 +150,8 @@ because of Phabricator reports.
     WatchAction::doUnwatch(), WatchAction::getWatchToken()
   - User::isWatched(), User::isTempWatched(), User::addWatch(),
     User::removeWatch()
+* ParserOptions::setTidy() that had no effect and was deprecated since 1.35
+  has been removed.
 * …
 
 === Deprecations in 1.38 ===
