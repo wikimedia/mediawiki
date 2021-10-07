@@ -354,6 +354,7 @@ class ParserOutput extends CacheTime {
 	 *    the scheme-specific-part of the href is the (percent-encoded) value
 	 *    of the `data-mw-deduplicate` attribute.
 	 *  - absoluteURLs: (bool) use absolute URLs in all links. Default: false
+	 *  - includeLimitReport: (bool) render PP limit report in HTML. Default: false
 	 * @return string HTML
 	 * @return-taint escaped
 	 */
@@ -366,8 +367,13 @@ class ParserOutput extends CacheTime {
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
+			'includeLimitReport' => false,
 		];
 		$text = $this->getRawText();
+
+		if ( $options['includeLimitReport'] ) {
+			$text .= $this->renderLimitReport();
+		}
 
 		Hooks::runner()->onParserOutputPostCacheTransform( $this, $text, $options );
 
@@ -1601,6 +1607,79 @@ class ParserOutput extends CacheTime {
 		} else {
 			$this->mLimitReportJSData[$key] = $data;
 		}
+	}
+
+	private function renderLimitReport(): string {
+		$limitReportData = $this->getLimitReportData();
+		// If nothing set it, we can't get it.
+		if ( !$limitReportData ) {
+			return '';
+		}
+
+		$limitReport = "NewPP limit report\n";
+
+		if ( array_key_exists( 'cachereport-origin', $limitReportData ) ) {
+			$limitReport .= "Parsed by {$limitReportData['cachereport-origin']}\n";
+		}
+
+		if ( array_key_exists( 'cachereport-timestamp', $limitReportData ) ) {
+			$limitReport .= "Cached time: {$limitReportData['cachereport-timestamp']}\n";
+		}
+
+		if ( array_key_exists( 'cachereport-ttl', $limitReportData ) ) {
+			$limitReport .= "Cache expiry: {$limitReportData['cachereport-ttl']}\n";
+		}
+
+		if ( array_key_exists( 'cachereport-transientcontent', $limitReportData ) ) {
+			$transient = $limitReportData['cachereport-transientcontent'] ? 'true' : 'false';
+			$limitReport .= "Reduced expiry: $transient\n";
+		}
+
+		// TODO: flags should go into limit report too.
+		$limitReport .= 'Complications: [' . implode( ', ', $this->getAllFlags() ) . "]\n";
+
+		foreach ( $limitReportData as $key => $value ) {
+			if ( in_array( $key, [
+				'cachereport-origin',
+				'cachereport-timestamp',
+				'cachereport-ttl',
+				'cachereport-transientcontent',
+				'limitreport-timingprofile'
+			] ) ) {
+				// These keys are processed separately.
+				continue;
+			}
+			if ( Hooks::runner()->onParserLimitReportFormat(
+				$key, $value, $limitReport, false, false )
+			) {
+				$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
+				$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
+					->inLanguage( 'en' )->useDatabase( false );
+				if ( !$valueMsg->exists() ) {
+					$valueMsg = new RawMessage( '$1' );
+				}
+				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+					$valueMsg->params( $value );
+					$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+				}
+			}
+		}
+		// Since we're not really outputting HTML, decode the entities and
+		// then re-encode the things that need hiding inside HTML comments.
+		$limitReport = htmlspecialchars_decode( $limitReport );
+
+		// Sanitize for comment. Note '‐' in the replacement is U+2010,
+		// which looks much like the problematic '-'.
+		$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
+		$text = "\n<!-- \n$limitReport-->\n";
+
+		$profileReport = $limitReportData['limitreport-timingprofile'] ?? null;
+		if ( $profileReport ) {
+			$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
+			$text .= implode( "\n", $profileReport ) . "\n-->\n";
+		}
+
+		return $text;
 	}
 
 	/**

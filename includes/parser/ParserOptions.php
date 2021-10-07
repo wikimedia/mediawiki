@@ -476,20 +476,26 @@ class ParserOptions {
 	}
 
 	/**
+	 * @deprecated since 1.38. This does nothing now, to control limit reporting
+	 * please provide 'includeLimitReport' option to ParserOutput::getText.
+	 *
 	 * Enable limit report in an HTML comment on output
 	 * @return bool
 	 */
 	public function getEnableLimitReport() {
-		return $this->getOption( 'enableLimitReport' );
+		return false;
 	}
 
 	/**
+	 * @deprecated since 1.38. This does nothing now, to control limit reporting
+	 * please provide 'includeLimitReport' option to ParserOutput::getText.
+	 *
 	 * Enable limit report in an HTML comment on output
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 */
 	public function enableLimitReport( $x = true ) {
-		return $this->setOptionLegacy( 'enableLimitReport', $x );
+		return false;
 	}
 
 	/**
@@ -1006,8 +1012,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @param Language|null $lang
 	 */
@@ -1022,8 +1026,6 @@ class ParserOptions {
 
 	/**
 	 * Get a ParserOptions object for an anonymous user
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @since 1.27
 	 * @return ParserOptions
 	 */
@@ -1036,8 +1038,6 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @return ParserOptions
 	 */
@@ -1048,8 +1048,6 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a given user and language
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @param Language $lang
 	 * @return ParserOptions
@@ -1061,8 +1059,6 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a IContextSource object
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param IContextSource $context
 	 * @return ParserOptions
 	 */
@@ -1079,6 +1075,8 @@ class ParserOptions {
 	 * @since 1.30
 	 * @since 1.32 Added string and IContextSource as options for the first parameter
 	 * @since 1.36 UserIdentity is also allowed
+	 * @deprecated since 1.38. Use ::newFromContext, ::newFromAnon or ::newFromUserAndLang instead.
+	 *   Canonical ParserOptions are now exactly the same as non-canonical.
 	 * @param IContextSource|string|UserIdentity $context
 	 *  - If an IContextSource, the options are initialized based on the source's UserIdentity and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
@@ -1100,10 +1098,6 @@ class ParserOptions {
 				'$context must be an IContextSource, the string "canonical", or a UserIdentity'
 			);
 		}
-
-		foreach ( self::getCanonicalOverrides() as $k => $v ) {
-			$ret->setOption( $k, $v );
-		}
 		return $ret;
 	}
 
@@ -1122,9 +1116,8 @@ class ParserOptions {
 
 	/**
 	 * Get default option values
-	 * @warning If you change the default for an existing option (unless it's
-	 *  being overridden by self::getCanonicalOverrides()), all existing parser
-	 *  cache entries will be invalid. To avoid bugs, you'll need to handle
+	 * @warning If you change the default for an existing option, all existing
+	 *  parser cache entries will be invalid. To avoid bugs, you'll need to handle
 	 *  that somehow (e.g. with the RejectParserCacheValue hook) because
 	 *  MediaWiki won't do it for you.
 	 * @return array
@@ -1195,23 +1188,6 @@ class ParserOptions {
 			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
-		];
-	}
-
-	/**
-	 * Get "canonical" non-default option values
-	 * @see self::newCanonical
-	 * @warning If you change the override for an existing option, all existing
-	 *  parser cache entries will be invalid. To avoid bugs, you'll need to
-	 *  handle that somehow (e.g. with the RejectParserCacheValue hook) because
-	 *  MediaWiki won't do it for you.
-	 * @return array
-	 */
-	private static function getCanonicalOverrides() {
-		global $wgEnableParserLimitReporting;
-
-		return [
-			'enableLimitReport' => $wgEnableParserLimitReporting,
 		];
 	}
 
@@ -1382,7 +1358,7 @@ class ParserOptions {
 		}
 
 		$options = $this->options;
-		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$defaults = self::getDefaults();
 
 		// We only include used options with non-canonical values in the key
 		// so adding a new option doesn't invalidate the entire parser cache.
@@ -1435,7 +1411,7 @@ class ParserOptions {
 	 * @since 1.30
 	 */
 	public function isSafeToCache( array $usedOptions = null ) {
-		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions = $usedOptions ?? array_keys( $this->options );
 		foreach ( $usedOptions as $option ) {

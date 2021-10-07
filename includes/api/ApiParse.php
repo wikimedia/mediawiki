@@ -502,6 +502,7 @@ class ApiParse extends ApiBase {
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
 				'skin' => $skin,
+				'includeLimitReport' => !$params['disablepp'] && !$params['disablelimitreport']
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 			if ( $context ) {
@@ -717,7 +718,6 @@ class ApiParse extends ApiBase {
 	 * @return array [ ParserOptions, ScopedCallback, bool $suppressCache ]
 	 */
 	private function tweakParserOptions( ParserOptions $popts, Title $title, array $params ) {
-		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 

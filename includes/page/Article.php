@@ -511,6 +511,8 @@ class Article implements Page {
 		if ( $this->viewIsRenderAction ) {
 			$poOptions += [ 'absoluteURLs' => true ];
 		}
+		$poOptions += [ 'includeLimitReport' => true ];
+
 		$continue =
 			$this->generateContentOutput( $user, $parserOptions, $oldid, $outputPage, $poOptions );
 

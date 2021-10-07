@@ -273,6 +273,7 @@ abstract class ApiFormatBase extends ApiBase {
 				}
 
 				$header = $msg->parseAsBlock();
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$out->addHTML(
 					Html::rawElement( 'div', [ 'class' => 'api-pretty-header' ],
 						ApiHelp::fixHelpLinks( $header )
