@@ -41,7 +41,6 @@
 	"tog-hidecategorization": "Slēpt lapu kategorizēšanu",
 	"tog-extendwatchlist": "Izvērst uzraugāmo lapu sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)",
 	"tog-usenewrc": "Grupēt izmaiņas pēc lapas pēdējās izmaiņās un uzraugāmo lapu sarakstā",
-	"tog-numberheadings": "Automātiski numurēt virsrakstus",
 	"tog-editondblclick": "Atvērt lapu labošanai ar dubultklikšķi",
 	"tog-editsectiononrightclick": "Atvērt sadaļas labošanas lapu, uzklikšķinot ar labo peles pogu uz sadaļas virsraksta (izmanto ''JavaScript'')",
 	"tog-watchcreations": "Pievienot manis radītās lapas un manis augšuplādētos failus uzraugāmo lapu sarakstam",

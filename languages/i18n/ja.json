@@ -131,7 +131,6 @@
 	"tog-hidecategorization": "ページのカテゴリ追加・除去を表示しない",
 	"tog-extendwatchlist": "ウォッチリストを展開して最新のものだけでなく、すべての変更を表示します",
 	"tog-usenewrc": "最近の更新とウォッチリストで、複数の変更をページごとにまとめる",
-	"tog-numberheadings": "見出しに番号を自動的に振る",
 	"tog-editondblclick": "ダブルクリックでページを編集",
 	"tog-editsectiononrightclick": "節見出しの右クリックで節を編集できるようにする",
 	"tog-watchcreations": "自分が作成したページやアップロードしたファイルをウォッチリストに追加",

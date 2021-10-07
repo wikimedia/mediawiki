@@ -231,7 +231,6 @@
 	"tog-hidecategorization": "Ocultar la categorización de páginas",
 	"tog-extendwatchlist": "Mostrar todos los cambios en la lista de seguimiento, no solo los más recientes",
 	"tog-usenewrc": "Agrupar los cambios por página en cambios recientes y en la lista de seguimiento",
-	"tog-numberheadings": "Numerar automáticamente los encabezados",
 	"tog-editondblclick": "Editar páginas al hacer doble clic",
 	"tog-editsectiononrightclick": "Permitir las modificaciones de sección al hacer clic derecho en sus títulos",
 	"tog-watchcreations": "Añadir a mi lista de seguimiento las páginas que cree y los archivos que suba",
