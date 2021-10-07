@@ -158,6 +158,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\ObjectFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -980,6 +981,18 @@ return [
 
 	'MessageFormatterFactory' => static function ( MediaWikiServices $services ): IMessageFormatterFactory {
 		return new MessageFormatterFactory();
+	},
+
+	'MetricsFactory' => static function ( MediaWikiServices $services ): MetricsFactory {
+		$config = $services->getMainConfig();
+		return new MetricsFactory(
+			[
+				'prefix' => $config->get( 'MetricsPrefix' ),
+				'target' => $config->get( 'MetricsTarget' ),
+				'format' => $config->get( 'MetricsFormat' )
+			],
+			LoggerFactory::getInstance( 'Metrics' )
+		);
 	},
 
 	'MimeAnalyzer' => static function ( MediaWikiServices $services ): MimeAnalyzer {

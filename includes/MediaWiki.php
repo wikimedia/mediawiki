@@ -1146,6 +1146,9 @@ class MediaWiki {
 			$this->config
 		);
 
+		// Send metrics gathered by MetricsFactory
+		MediaWikiServices::getInstance()->getMetricsFactory()->flush();
+
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );

@@ -7551,6 +7551,41 @@ $wgStatsdMetricPrefix = 'MediaWiki';
 $wgStatsdSamplingRates = [];
 
 /**
+ * Metrics output format
+ *
+ * If null, metrics will not be rendered nor sent.
+ * Note: this only affects metrics instantiated by the MetricsFactory service
+ *
+ * @see Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
+ * @var string $wgMetricsFormat
+ * @since 1.38
+ */
+$wgMetricsFormat = null;
+
+/**
+ * Metrics output target URI e.g. udp://127.0.0.1:8125
+ *
+ * If null, metrics will not be sent.
+ * Note: this only affects metrics instantiated by the MetricsFactory service
+ *
+ * @var string $wgMetricsTarget
+ * @since 1.38
+ */
+$wgMetricsTarget = null;
+
+/**
+ * Metrics service name prefix
+ *
+ * Required.  Must not be zero-length.
+ * Defaults to: 'mediawiki'
+ * Note: this only affects metrics instantiated by the MetricsFactory service
+ *
+ * @var string $wgMetricsPrefix
+ * @since 1.38
+ */
+$wgMetricsPrefix = 'mediawiki';
+
+/**
  * InfoAction retrieves a list of transclusion links (both to and from).
  * This number puts a limit on that query in the case of highly transcluded
  * templates.
