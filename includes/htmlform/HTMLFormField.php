@@ -434,12 +434,6 @@ abstract class HTMLFormField {
 			$this->mDir = $params['dir'];
 		}
 
-		$validName = urlencode( $this->mName );
-		$validName = str_replace( [ '%5B', '%5D' ], [ '[', ']' ], $validName );
-		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
-			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
-		}
-
 		$this->mID = "mw-input-{$this->mName}";
 
 		if ( isset( $params['default'] ) ) {
@@ -447,14 +441,7 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $params['id'] ) ) {
-			$id = $params['id'];
-			$validId = urlencode( $id );
-
-			if ( $id != $validId ) {
-				throw new MWException( "Invalid id '$id' passed to " . __METHOD__ );
-			}
-
-			$this->mID = $id;
+			$this->mID = $params['id'];
 		}
 
 		if ( isset( $params['cssclass'] ) ) {
