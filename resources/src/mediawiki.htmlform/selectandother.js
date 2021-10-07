@@ -5,7 +5,7 @@
 ( function () {
 
 	// cache the separator to avoid object creation on each keypress
-	var colonSeparator = mw.message( 'colon-separator' ).text();
+	var colonSeparator = mw.msg( 'colon-separator' );
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		// This checks the length together with the value from the select field

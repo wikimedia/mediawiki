@@ -14,7 +14,7 @@ var LiveUpdateButtonWidget = function MwRcfiltersUiLiveUpdateButtonWidget( contr
 
 	// Parent
 	LiveUpdateButtonWidget.parent.call( this, $.extend( {
-		label: mw.message( 'rcfilters-liveupdates-button' ).text()
+		label: mw.msg( 'rcfilters-liveupdates-button' )
 	}, config ) );
 
 	this.controller = controller;
@@ -50,11 +50,11 @@ LiveUpdateButtonWidget.prototype.onClick = function () {
 LiveUpdateButtonWidget.prototype.setState = function ( enable ) {
 	this.setValue( enable );
 	this.setIcon( enable ? 'stop' : 'play' );
-	this.setTitle( mw.message(
+	this.setTitle( mw.msg(
 		enable ?
 			'rcfilters-liveupdates-button-title-on' :
 			'rcfilters-liveupdates-button-title-off'
-	).text() );
+	) );
 };
 
 /**
