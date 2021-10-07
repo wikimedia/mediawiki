@@ -111,30 +111,30 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::setProperty
-	 * @covers ParserOutput::getProperty
-	 * @covers ParserOutput::unsetProperty
-	 * @covers ParserOutput::getProperties
+	 * @covers ParserOutput::setPageProperty
+	 * @covers ParserOutput::getPageProperty
+	 * @covers ParserOutput::unsetPageProperty
+	 * @covers ParserOutput::getPageProperties
 	 */
 	public function testProperties() {
 		$po = new ParserOutput();
 
-		$po->setProperty( 'foo', 'val' );
+		$po->setPageProperty( 'foo', 'val' );
 
-		$properties = $po->getProperties();
-		$this->assertSame( 'val', $po->getProperty( 'foo' ) );
+		$properties = $po->getPageProperties();
+		$this->assertSame( 'val', $po->getPageProperty( 'foo' ) );
 		$this->assertSame( 'val', $properties['foo'] );
 
-		$po->setProperty( 'foo', 'second val' );
+		$po->setPageProperty( 'foo', 'second val' );
 
-		$properties = $po->getProperties();
-		$this->assertSame( 'second val', $po->getProperty( 'foo' ) );
+		$properties = $po->getPageProperties();
+		$this->assertSame( 'second val', $po->getPageProperty( 'foo' ) );
 		$this->assertSame( 'second val', $properties['foo'] );
 
-		$po->unsetProperty( 'foo' );
+		$po->unsetPageProperty( 'foo' );
 
-		$properties = $po->getProperties();
-		$this->assertSame( false, $po->getProperty( 'foo' ) );
+		$properties = $po->getPageProperties();
+		$this->assertSame( false, $po->getPageProperty( 'foo' ) );
 		$this->assertArrayNotHasKey( 'foo', $properties );
 	}
 
@@ -726,22 +726,22 @@ EOF
 		// properties ------------
 		$a = new ParserOutput();
 
-		$a->setProperty( 'foo', 'Foo!' );
-		$a->setProperty( 'bar', 'Bar!' );
+		$a->setPageProperty( 'foo', 'Foo!' );
+		$a->setPageProperty( 'bar', 'Bar!' );
 
 		$a->setExtensionData( 'foo', 'Foo!' );
 		$a->setExtensionData( 'bar', 'Bar!' );
 
 		$b = new ParserOutput();
 
-		$b->setProperty( 'zoo', 'Zoo!' );
-		$b->setProperty( 'bar', 'Barrr!' );
+		$b->setPageProperty( 'zoo', 'Zoo!' );
+		$b->setPageProperty( 'bar', 'Barrr!' );
 
 		$b->setExtensionData( 'zoo', 'Zoo!' );
 		$b->setExtensionData( 'bar', 'Barrr!' );
 
 		yield 'properties' => [ $a, $b, [
-			'getProperties' => [
+			'getPageProperties' => [
 				'foo' => 'Foo!',
 				'bar' => 'Barrr!',
 				'zoo' => 'Zoo!',
