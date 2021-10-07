@@ -96,7 +96,7 @@
 			 * @return {boolean}
 			 */
 			trigger: function () {
-				var message = mw.message( 'confirmleave-warning' ).text();
+				var message = mw.msg( 'confirmleave-warning' );
 				// use confirm to show the message to the user (if options.text() is true)
 				// eslint-disable-next-line no-alert
 				if ( test() && !confirm( message ) ) {

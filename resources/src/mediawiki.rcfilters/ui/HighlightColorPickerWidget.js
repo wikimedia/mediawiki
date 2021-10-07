@@ -17,7 +17,7 @@ var HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidge
 	HighlightColorPickerWidget.parent.call( this, config );
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, {
-		label: mw.message( 'rcfilters-highlightmenu-title' ).text()
+		label: mw.msg( 'rcfilters-highlightmenu-title' )
 	} ) );
 
 	this.controller = controller;

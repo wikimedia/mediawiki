@@ -117,12 +117,12 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 				.append(
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-conflict' )
-						.text( mw.message( 'rcfilters-noresults-conflict' ).text() ),
+						.text( mw.msg( 'rcfilters-noresults-conflict' ) ),
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-message' )
 						// TODO: Document possible messages
 						// eslint-disable-next-line mediawiki/msg-doc
-						.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
+						.text( mw.msg( conflictItem.getCurrentConflictResultMessage() ) )
 				);
 		} else {
 			$message

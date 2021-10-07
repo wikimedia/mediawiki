@@ -395,7 +395,7 @@
 					// eslint-disable-next-line no-jquery/no-map-util
 					items = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
 						if ( ns === '0' ) {
-							name = mw.message( 'blanknamespace' ).text();
+							name = mw.msg( 'blanknamespace' );
 						}
 						return new OO.ui.MenuOptionWidget( { data: ns, label: name } );
 					} ).sort( function ( a, b ) {
@@ -405,7 +405,7 @@
 						if ( pi.allspecifier !== undefined ) {
 							items.unshift( new OO.ui.MenuOptionWidget( {
 								data: pi.allspecifier,
-								label: mw.message( 'apisandbox-multivalue-all-namespaces', pi.allspecifier ).text()
+								label: mw.msg( 'apisandbox-multivalue-all-namespaces', pi.allspecifier )
 							} ) );
 						}
 
@@ -474,7 +474,7 @@
 						if ( pi.allspecifier !== undefined ) {
 							items.unshift( new OO.ui.MenuOptionWidget( {
 								data: pi.allspecifier,
-								label: mw.message( 'apisandbox-multivalue-all-values', pi.allspecifier ).text()
+								label: mw.msg( 'apisandbox-multivalue-all-values', pi.allspecifier )
 							} ) );
 						}
 
@@ -524,7 +524,7 @@
 				innerWidget = widget;
 
 				multiModeButton = new OO.ui.ButtonWidget( {
-					label: mw.message( 'apisandbox-add-multi' ).text()
+					label: mw.msg( 'apisandbox-add-multi' )
 				} );
 				$content = innerWidget.$element.add( multiModeButton.$element );
 
@@ -705,11 +705,11 @@
 				.addClass( 'mw-apisandbox-toolbar' )
 				.append(
 					new OO.ui.ButtonWidget( {
-						label: mw.message( 'apisandbox-submit' ).text(),
+						label: mw.msg( 'apisandbox-submit' ),
 						flags: [ 'primary', 'progressive' ]
 					} ).on( 'click', ApiSandbox.sendRequest ).$element,
 					new OO.ui.ButtonWidget( {
-						label: mw.message( 'apisandbox-reset' ).text(),
+						label: mw.msg( 'apisandbox-reset' ),
 						flags: 'destructive'
 					} ).on( 'click', ApiSandbox.resetUI ).$element
 				);
@@ -942,7 +942,7 @@
 								delete actions[ 0 ].flags;
 								actions.push( {
 									action: 'fix',
-									label: mw.message( 'apisandbox-results-fixtoken' ).text(),
+									label: mw.msg( 'apisandbox-results-fixtoken' ),
 									flags: 'primary'
 								} );
 							}
@@ -979,7 +979,7 @@
 				}
 
 				progressLoading = false;
-				$progressText = $( '<span>' ).text( mw.message( 'apisandbox-sending-request' ).text() );
+				$progressText = $( '<span>' ).text( mw.msg( 'apisandbox-sending-request' ) );
 				progress = new OO.ui.ProgressBarWidget( {
 					progress: false
 				} );
@@ -989,7 +989,7 @@
 
 				resultPage = page = new OO.ui.PageLayout( '|results|', { expanded: false } );
 				page.setupOutlineItem = function () {
-					this.outlineItem.setLabel( mw.message( 'apisandbox-results' ).text() );
+					this.outlineItem.setLabel( mw.msg( 'apisandbox-results' ) );
 				};
 
 				if ( !formatDropdown ) {
@@ -1045,7 +1045,7 @@
 						xhr.addEventListener( 'progress', function ( e ) {
 							if ( !progressLoading ) {
 								progressLoading = true;
-								$progressText.text( mw.message( 'apisandbox-loading-results' ).text() );
+								$progressText.text( mw.msg( 'apisandbox-loading-results' ) );
 							}
 							if ( e.lengthComputable ) {
 								progress.setProgress( e.loaded * 100 / e.total );
@@ -1113,12 +1113,12 @@
 							$result.append(
 								$( '<div>' ).append(
 									new OO.ui.ButtonWidget( {
-										label: mw.message( 'apisandbox-continue' ).text()
+										label: mw.msg( 'apisandbox-continue' )
 									} ).on( 'click', function () {
 										ApiSandbox.sendRequest( $.extend( {}, baseRequestParams, data.continue ) );
 									} ).setDisabled( !data.continue ).$element,
 									( clear = new OO.ui.ButtonWidget( {
-										label: mw.message( 'apisandbox-continue-clear' ).text()
+										label: mw.msg( 'apisandbox-continue-clear' )
 									} ).on( 'click', function () {
 										ApiSandbox.updateUI( baseRequestParams );
 										clear.setDisabled( true );
@@ -1141,7 +1141,7 @@
 							$result.append(
 								$( '<div>' ).append(
 									new OO.ui.LabelWidget( {
-										label: mw.message( 'apisandbox-request-time', loadTime ).text()
+										label: mw.msg( 'apisandbox-request-time', loadTime )
 									} ).$element
 								)
 							);
@@ -1151,7 +1151,7 @@
 							// Flush all saved tokens in case one of them is the bad one.
 							Util.markTokensBad();
 							button = new OO.ui.ButtonWidget( {
-								label: mw.message( 'apisandbox-results-fixtoken' ).text()
+								label: mw.msg( 'apisandbox-results-fixtoken' )
 							} );
 							button.on( 'click', ApiSandbox.fixTokenAndResend )
 								.on( 'click', button.setDisabled, [ true ], button )
@@ -1162,7 +1162,7 @@
 						$result.empty()
 							.append(
 								new OO.ui.LabelWidget( {
-									label: mw.message( 'apisandbox-results-error', details ).text(),
+									label: mw.msg( 'apisandbox-results-error', details ),
 									classes: [ 'error' ]
 								} ).$element
 							);
@@ -1430,7 +1430,7 @@
 
 		if ( ppi.tokentype ) {
 			button = new OO.ui.ButtonWidget( {
-				label: mw.message( 'apisandbox-fetch-token' ).text()
+				label: mw.msg( 'apisandbox-fetch-token' )
 			} );
 			button.on( 'click', widget.fetchToken, [], widget );
 
@@ -1663,7 +1663,7 @@
 		this.$element.empty()
 			.append(
 				document.createTextNode(
-					mw.message( 'apisandbox-loading', this.displayText ).text()
+					mw.msg( 'apisandbox-loading', this.displayText )
 				),
 				new OO.ui.ProgressBarWidget( { progress: false } ).$element
 			);
@@ -1720,7 +1720,7 @@
 				if ( pi.helpurls.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
 						$overlay: true,
-						label: mw.message( 'apisandbox-helpurls' ).text(),
+						label: mw.msg( 'apisandbox-helpurls' ),
 						icon: 'help',
 						popup: {
 							width: 'auto',
@@ -1739,7 +1739,7 @@
 				if ( pi.examples.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
 						$overlay: true,
-						label: mw.message( 'apisandbox-examples' ).text(),
+						label: mw.msg( 'apisandbox-examples' ),
 						icon: 'code',
 						popup: {
 							width: 'auto',
@@ -1797,7 +1797,7 @@
 				if ( Util.apiBool( pi.dynamicparameters ) ) {
 					dynamicFieldset = new OO.ui.FieldsetLayout();
 					dynamicParamNameWidget = new OO.ui.TextInputWidget( {
-						placeholder: mw.message( 'apisandbox-dynamic-parameters-add-placeholder' ).text()
+						placeholder: mw.msg( 'apisandbox-dynamic-parameters-add-placeholder' )
 					} ).on( 'enter', addDynamicParamWidget );
 					dynamicFieldset.addItems( [
 						new OO.ui.FieldLayout(
@@ -1813,14 +1813,14 @@
 								flags: 'progressive'
 							} ).on( 'click', addDynamicParamWidget ),
 							{
-								label: mw.message( 'apisandbox-dynamic-parameters-add-label' ).text(),
+								label: mw.msg( 'apisandbox-dynamic-parameters-add-label' ),
 								align: 'left'
 							}
 						)
 					] );
 					$( '<fieldset>' )
 						.append(
-							$( '<legend>' ).text( mw.message( 'apisandbox-dynamic-parameters' ).text() ),
+							$( '<legend>' ).text( mw.msg( 'apisandbox-dynamic-parameters' ) ),
 							dynamicFieldset.$element
 						)
 						.appendTo( that.$element );
@@ -1832,7 +1832,7 @@
 					.append(
 						$( '<legend>' ).append(
 							new OO.ui.ToggleButtonWidget( {
-								label: mw.message( 'apisandbox-deprecated-parameters' ).text()
+								label: mw.msg( 'apisandbox-deprecated-parameters' )
 							} ).on( 'change', that.deprecatedItemsFieldset.toggle, [], that.deprecatedItemsFieldset ).$element
 						),
 						that.deprecatedItemsFieldset.$element
@@ -1863,11 +1863,11 @@
 				that.$element.empty()
 					.append(
 						new OO.ui.LabelWidget( {
-							label: mw.message( 'apisandbox-load-error', that.apiModule, detail ).text(),
+							label: mw.msg( 'apisandbox-load-error', that.apiModule, detail ),
 							classes: [ 'error' ]
 						} ).$element,
 						new OO.ui.ButtonWidget( {
-							label: mw.message( 'apisandbox-retry' ).text()
+							label: mw.msg( 'apisandbox-retry' )
 						} ).on( 'click', that.loadParamInfo, [], that ).$element
 					);
 			} );

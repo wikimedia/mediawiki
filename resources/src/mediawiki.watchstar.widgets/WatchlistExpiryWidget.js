@@ -48,7 +48,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			// This is because there is no CSS class or ID on the link itself,
 			// and skins could manipulate the position of the link. The accessKey
 			// however is always present on the link.
-			if ( document.activeElement.accessKey === mw.message( 'accesskey-ca-watch' ).text() ) {
+			if ( document.activeElement.accessKey === mw.msg( 'accesskey-ca-watch' ) ) {
 				e.preventDefault();
 				expiryDropdown.focus();
 
