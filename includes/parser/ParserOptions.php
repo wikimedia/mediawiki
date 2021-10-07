@@ -345,18 +345,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Use tidy to cleanup output HTML?
-	 * @param bool|null $x New value (null is no change)
-	 * @return null
-	 * @deprecated since 1.35; tidy is always enabled so this has no effect
-	 */
-	public function setTidy( $x ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		// This has no effect.
-		return null;
-	}
-
-	/**
 	 * Parsing an interface message?
 	 * @return bool
 	 */
