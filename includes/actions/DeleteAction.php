@@ -84,6 +84,7 @@ class DeleteAction extends FormlessAction {
 		$request = $context->getRequest();
 
 		$this->runExecuteChecks( $title );
+		$this->prepareOutput( $context->msg( 'delete-confirm', $title->getPrefixedText() ), $title );
 
 		# Better double-check that it hasn't been deleted yet!
 		$article->getPage()->loadPageData(
@@ -102,96 +103,71 @@ class DeleteAction extends FormlessAction {
 
 		$reason = $this->getDeleteReason();
 
-		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
-				[ 'delete', $title->getPrefixedText() ] )
-		) {
-			$permissionStatus = PermissionStatus::newEmpty();
-			if ( !$context->getAuthority()->authorizeWrite(
-				'delete', $title, $permissionStatus
-			) ) {
-				throw new PermissionsError( 'delete', $permissionStatus );
-			}
-
-			# Flag to hide all contents of the archived revisions
-			$suppress = $request->getCheck( 'wpSuppress' ) &&
-				$context->getAuthority()->isAllowed( 'suppressrevision' );
-
-			$article->doDelete( $reason, $suppress );
-
-			$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
-
+		$token = $request->getVal( 'wpEditToken' );
+		if ( !$request->wasPosted() || !$user->matchEditToken( $token, [ 'delete', $title->getPrefixedText() ] ) ) {
+			$this->tempConfirmDelete( $reason );
 			return;
 		}
 
-		// Generate deletion reason
-		$hasHistory = false;
-		if ( !$reason ) {
-			try {
-				$reason = $article->getPage()->getAutoDeleteReason( $hasHistory );
-			} catch ( Exception $e ) {
-				# if a page is horribly broken, we still want to be able to
-				# delete it. So be lenient about errors here.
-				// FIXME What is this for exactly?
-				wfDebug( "Error while building auto delete summary: $e" );
-				$reason = '';
-			}
+		$permissionStatus = PermissionStatus::newEmpty();
+		if ( !$context->getAuthority()->authorizeWrite(
+			'delete', $title, $permissionStatus
+		) ) {
+			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 
-		// If the page has a history, insert a warning
-		if ( $hasHistory ) {
-			$title = $this->getTitle();
+		# Flag to hide all contents of the archived revisions
+		$suppress = $request->getCheck( 'wpSuppress' ) &&
+			$context->getAuthority()->isAllowed( 'suppressrevision' );
 
-			// The following can use the real revision count as this is only being shown for users
-			// that can delete this page.
-			// This, as a side-effect, also makes sure that the following query isn't being run for
-			// pages with a larger history, unless the user has the 'bigdelete' right
-			// (and is about to delete this page).
-			$dbr = wfGetDB( DB_REPLICA );
-			$revisions = (int)$dbr->selectField(
-				'revision',
-				'COUNT(rev_page)',
-				[ 'rev_page' => $title->getArticleID() ],
-				__METHOD__
-			);
+		$article->doDelete( $reason, $suppress );
 
-			// @todo i18n issue/patchwork message
-			$context->getOutput()->addHTML(
-				'<strong class="mw-delete-warning-revisions">' .
-				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
-				$context->msg( 'word-separator' )->escaped() . $this->linkRenderer->makeKnownLink(
-					$title,
-					$context->msg( 'history' )->text(),
-					[],
-					[ 'action' => 'history' ] ) .
-				'</strong>'
-			);
-
-			if ( $title->isBigDeletion() ) {
-				global $wgDeleteRevisionsLimit;
-				$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
-					[
-						'delete-warning-toobig',
-						$context->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
-					]
-				);
-			}
-		}
-
-		$this->tempConfirmDelete( $reason );
+		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
 	}
 
-	/**
-	 * @param string $reason
-	 */
-	private function tempConfirmDelete( string $reason ): void {
+	private function showHistoryWarnings(): void {
+		$context = $this->getContext();
 		$title = $this->getTitle();
-		$ctx = $this->getContext();
-		$outputPage = $ctx->getOutput();
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
-		$outputPage->addBacklinkSubtitle( $title );
-		$outputPage->setRobotPolicy( 'noindex,nofollow' );
-		$outputPage->addModules( 'mediawiki.action.delete' );
-		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
+
+		// The following can use the real revision count as this is only being shown for users
+		// that can delete this page.
+		// This, as a side-effect, also makes sure that the following query isn't being run for
+		// pages with a larger history, unless the user has the 'bigdelete' right
+		// (and is about to delete this page).
+		$dbr = wfGetDB( DB_REPLICA );
+		$revisions = (int)$dbr->selectField(
+			'revision',
+			'COUNT(rev_page)',
+			[ 'rev_page' => $title->getArticleID() ],
+			__METHOD__
+		);
+
+		// @todo i18n issue/patchwork message
+		$context->getOutput()->addHTML(
+			'<strong class="mw-delete-warning-revisions">' .
+			$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
+			$context->msg( 'word-separator' )->escaped() . $this->linkRenderer->makeKnownLink(
+				$title,
+				$context->msg( 'history' )->text(),
+				[],
+				[ 'action' => 'history' ] ) .
+			'</strong>'
+		);
+
+		if ( $title->isBigDeletion() ) {
+			global $wgDeleteRevisionsLimit;
+			$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
+				[
+					'delete-warning-toobig',
+					$context->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
+				]
+			);
+		}
+	}
+
+	private function showFormWarnings(): void {
+		$title = $this->getTitle();
+		$outputPage = $this->getOutput();
 
 		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $title );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
@@ -214,15 +190,47 @@ class DeleteAction extends FormlessAction {
 				)
 			);
 		}
-		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
+		$outputPage->addWikiMsg( 'confirmdeletetext' );
+	}
+
+	/**
+	 * @param string $requestReason
+	 */
+	private function tempConfirmDelete( string $requestReason ): void {
+		$this->prepareOutputForForm();
+		$title = $this->getTitle();
+		$ctx = $this->getContext();
+		$outputPage = $ctx->getOutput();
+
+		// Generate deletion reason
+		$hasHistory = false;
+		if ( !$requestReason ) {
+			try {
+				$reason = $this->getArticle()->getPage()->getAutoDeleteReason( $hasHistory );
+			} catch ( Exception $e ) {
+				# if a page is horribly broken, we still want to be able to
+				# delete it. So be lenient about errors here.
+				// FIXME What is this for exactly?
+				wfDebug( "Error while building auto delete summary: $e" );
+				$reason = '';
+			}
+		} else {
+			$reason = $requestReason;
+		}
+
+		// If the page has a history, insert a warning
+		if ( $hasHistory ) {
+			$this->showHistoryWarnings();
+		}
+		$this->showFormWarnings();
+
+		// FIXME: Replace (or at least rename) this hook
 		$this->getHookRunner()->onArticleConfirmDelete( $this->getArticle(), $outputPage, $reason );
 
 		$user = $ctx->getUser();
 		$checkWatch = $this->userOptionsLookup->getBoolOption( $user, 'watchdeletion' ) ||
 			$this->watchlistManager->isWatched( $user, $title );
-
-		$outputPage->enableOOUI();
 
 		$fields = [];
 
@@ -247,7 +255,7 @@ class DeleteAction extends FormlessAction {
 				'tabIndex' => 1,
 				'infusable' => true,
 				'value' => '',
-				'options' => $options
+				'options' => $options,
 			] ),
 			[
 				'label' => $ctx->msg( 'deletecomment' )->text(),
@@ -295,6 +303,7 @@ class DeleteAction extends FormlessAction {
 					'name' => 'wpSuppress',
 					'inputId' => 'wpSuppress',
 					'tabIndex' => 4,
+					'selected' => false,
 				] ),
 				[
 					'label' => $ctx->msg( 'revdelete-suppress' )->text(),
@@ -411,6 +420,24 @@ class DeleteAction extends FormlessAction {
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete', $title );
+	}
+
+	/**
+	 * @param Message $pageTitle
+	 * @param PageReference $backlinkTitle
+	 */
+	protected function prepareOutput( Message $pageTitle, PageReference $backlinkTitle ): void {
+		$outputPage = $this->getOutput();
+		$outputPage->setPageTitle( $pageTitle );
+		$outputPage->addBacklinkSubtitle( $backlinkTitle );
+		$outputPage->setRobotPolicy( 'noindex,nofollow' );
+	}
+
+	protected function prepareOutputForForm(): void {
+		$outputPage = $this->getOutput();
+		$outputPage->addModules( 'mediawiki.action.delete' );
+		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
+		$outputPage->enableOOUI();
 	}
 
 	public function doesWrites() {
