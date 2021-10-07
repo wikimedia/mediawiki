@@ -1123,6 +1123,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, renamed to ::setPageProperty()
 	 */
 	public function setProperty( $name, $value ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->setPageProperty( $name, $value );
 	}
 
@@ -1136,6 +1137,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, renamed to ::getPageProperty()
 	 */
 	public function getProperty( $name ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getPageProperty( $name );
 	}
 
@@ -1144,6 +1146,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, renamed to ::unsetPageProperty()
 	 */
 	public function unsetProperty( $name ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->unsetPageProperty( $name );
 	}
 
@@ -1152,6 +1155,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, renamed to ::getPageProperties()
 	 */
 	public function getProperties() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getPageProperties();
 	}
 

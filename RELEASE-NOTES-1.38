@@ -181,7 +181,6 @@ because of Phabricator reports.
 * The following methods from the ParserOutput class were hard deprecated:
    - ::hideNewSection() - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
-* The following methods from the ParserOutput class were soft deprecated:
    - ::getProperty()   - use ::getPageProperty()
    - ::setProperty()   - use ::setPageProperty()
    - ::unsetProperty() - use ::unsetPageProperties()
