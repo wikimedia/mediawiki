@@ -246,6 +246,7 @@
 			disambigs = [],
 			titleObj = mw.Title.newFromText( this.getQueryValue() ),
 			redirectsTo = {},
+			redirectIndices = {},
 			pageData = {};
 
 		if ( data.redirects ) {
@@ -253,6 +254,8 @@
 				redirect = data.redirects[ i ];
 				redirectsTo[ redirect.to ] = redirectsTo[ redirect.to ] || [];
 				redirectsTo[ redirect.to ].push( redirect.from );
+				// Save the lowest index for this redirect target.
+				redirectIndices[ redirect.to ] = Math.min( redirectIndices[ redirect.to ] || redirect.index, redirect.index );
 			}
 		}
 
@@ -276,7 +279,7 @@
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
 				description: suggestionPage.description,
 				// Sort index
-				index: suggestionPage.index,
+				index: suggestionPage.index || redirectIndices[ suggestionPage.title ],
 				originalData: suggestionPage
 			};
 
@@ -295,7 +298,7 @@
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
 					// Sort index, just below its target
-					index: suggestionPage.index + 0.5,
+					index: pageData[ suggestionPage.title ] + 0.5,
 					originalData: suggestionPage
 				};
 				titles.push( redirects[ i ] );
