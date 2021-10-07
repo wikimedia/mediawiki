@@ -422,7 +422,7 @@ abstract class MWLBFactory {
 				__METHOD__,
 				static function () use ( $stats, $config ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
-					// Try to periodically flush buffered metrics to avoid OOMs
+					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
@@ -434,7 +434,7 @@ abstract class MWLBFactory {
 					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
 						DeferredUpdates::tryOpportunisticExecute( 'run' );
 					}
-					// Try to periodically flush buffered metrics to avoid OOMs
+					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
