@@ -163,7 +163,7 @@ class ApiExpandTemplates extends ApiBase {
 					}
 				}
 				if ( isset( $prop['properties'] ) ) {
-					$properties = $p_output->getProperties();
+					$properties = $p_output->getPageProperties();
 					if ( $properties ) {
 						ApiResult::setArrayType( $properties, 'BCkvp', 'name' );
 						ApiResult::setIndexedTagName( $properties, 'property' );

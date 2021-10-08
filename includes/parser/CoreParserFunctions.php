@@ -482,7 +482,7 @@ class CoreParserFunctions {
 			&& !$title->hasFragment()
 			&& $title->equals( $parser->getTitle() ) )
 		) {
-			$old = $parser->getOutput()->getProperty( 'displaytitle' );
+			$old = $parser->getOutput()->getPageProperty( 'displaytitle' );
 			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
 				$parser->getOutput()->setDisplayTitle( $text );
 			}

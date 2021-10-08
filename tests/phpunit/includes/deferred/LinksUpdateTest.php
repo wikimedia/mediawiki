@@ -372,7 +372,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::setProperty
+	 * @covers ParserOutput::setPageProperty
 	 */
 	public function testUpdate_page_props() {
 		/** @var ParserOutput $po */
@@ -381,16 +381,16 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$fields = [ 'pp_propname', 'pp_value', 'pp_sortkey' ];
 		$expected = [];
 
-		$po->setProperty( "bool", true );
+		$po->setPageProperty( "bool", true );
 		$expected[] = [ "bool", true ];
 
-		$po->setProperty( "float", 4.0 + 1.0 / 4.0 );
+		$po->setPageProperty( "float", 4.0 + 1.0 / 4.0 );
 		$expected[] = [ "float", 4.0 + 1.0 / 4.0 ];
 
-		$po->setProperty( "int", -7 );
+		$po->setPageProperty( "int", -7 );
 		$expected[] = [ "int", -7 ];
 
-		$po->setProperty( "string", "33 bar" );
+		$po->setPageProperty( "string", "33 bar" );
 		$expected[] = [ "string", "33 bar" ];
 
 		// compute expected sortkey values
