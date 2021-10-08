@@ -221,8 +221,10 @@ because of Phabricator reports.
    - ::setProperty()   - use ::setPageProperty()
    - ::unsetProperty() - use ::unsetPageProperties()
    - ::getProperties() - use ::getPageProperties()
-* The following methods were soft-deprecated; use ::setPreventClickjacking(..)
-  instead:
+* The following methods from the ParserOutput class were deprecated:
+   - ::getCategoryLinks() - use ::getCategoryNames()
+   - ::setCategoryLinks() - use ::setCategories()
+* The following methods were deprecated; use ::setPreventClickjacking() instead:
    - OutputPage::preventClickjacking()
    - OutputPage::allowClickjacking()
    - ImageHistoryList::preventClickjacking()

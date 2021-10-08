@@ -61,7 +61,7 @@ class ParserOutput extends CacheTime {
 	private $mLanguageLinks;
 
 	/**
-	 * @var array Map of category names to sort keys
+	 * @var array<string,string> Map of category names to sort keys
 	 */
 	private $mCategories;
 
@@ -596,7 +596,23 @@ class ParserOutput extends CacheTime {
 		return $this->mInterwikiLinks;
 	}
 
+	/**
+	 * Return the names of the categories on this page.
+	 * @return array<string>
+	 * @deprecated since 1.38, use ::getCategoryNames() instead.
+	 */
 	public function getCategoryLinks() {
+		return $this->getCategoryNames();
+	}
+
+	/**
+	 * Return the names of the categories on this page.
+	 * Unlike ::getCategories(), sort keys are *not* included in the
+	 * return value.
+	 * @return array<string> The names of the categories
+	 * @since 1.38
+	 */
+	public function getCategoryNames(): array {
 		return array_keys( $this->mCategories );
 	}
 
@@ -750,6 +766,9 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mLanguageLinks, $ll );
 	}
 
+	/**
+	 * @deprecated since 1.38, use ::setCategories() instead.
+	 */
 	public function setCategoryLinks( $cl ) {
 		return wfSetVar( $this->mCategories, $cl );
 	}
@@ -774,8 +793,22 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
 
-	public function addCategory( $c, $sort ) {
+	/**
+	 * Add a category.
+	 * @param string $c The category name
+	 * @param string $sort The sort key
+	 */
+	public function addCategory( $c, $sort ): void {
 		$this->mCategories[$c] = $sort;
+	}
+
+	/**
+	 * Overwrite the category map.
+	 * @param array<string,string> $c Map of category names to sort keys
+	 * @since 1.38
+	 */
+	public function setCategories( array $c ): void {
+		$this->mCategories = $c;
 	}
 
 	/**
