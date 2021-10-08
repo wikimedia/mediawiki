@@ -3596,20 +3596,13 @@ class OutputPage extends ContextSource {
 			$tags[] = Html::element( 'link', $tag );
 		}
 
-		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
 			if ( $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
-				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
+				// Use mime type per https://phabricator.wikimedia.org/T21165#6946526
 				$tags['universal-edit-button'] = Html::element( 'link', [
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
-					'title' => $msg,
-					'href' => $this->getTitle()->getEditURL(),
-				] );
-				// Alternate edit link
-				$tags['alternative-edit'] = Html::element( 'link', [
-					'rel' => 'edit',
 					'title' => $msg,
 					'href' => $this->getTitle()->getEditURL(),
 				] );
