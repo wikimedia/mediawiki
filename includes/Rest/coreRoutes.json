@@ -45,7 +45,8 @@
 		"services": [
 			"MainConfig",
 			"SearchEngineFactory",
-			"SearchEngineConfig"
+			"SearchEngineConfig",
+			"PermissionManager"
 		],
 		"mode": "fulltext"
 	},
@@ -55,7 +56,8 @@
 		"services": [
 			"MainConfig",
 			"SearchEngineFactory",
-			"SearchEngineConfig"
+			"SearchEngineConfig",
+			"PermissionManager"
 		],
 		"mode": "completion"
 	},
