@@ -223,7 +223,11 @@ because of Phabricator reports.
    - ::getProperties()       - use ::getPageProperties()
    - ::getCategoryLinks()    - use ::getCategoryNames()
    - ::setCategoryLinks()    - use ::setCategories()
-* The following methods were deprecated; use ::setPreventClickjacking() instead:
+* The following methods from the ParserOutput class were deprecated:
+   - ::addTrackingCategory() - use Parser::addTrackingCategory()
+                               or TrackingCategories::addTrackingCategory()
+* The following methods were deprecated; use ::setPreventClickjacking(..)
+  instead:
    - OutputPage::preventClickjacking()
    - OutputPage::allowClickjacking()
    - ImageHistoryList::preventClickjacking()

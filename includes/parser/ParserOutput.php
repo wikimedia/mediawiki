@@ -1074,33 +1074,12 @@ class ParserOutput extends CacheTime {
 	 *        (used to require a Title until 1.38)
 	 * @return bool Whether the addition was successful
 	 * @since 1.25
+	 * @deprecated since 1.38, use Parser::addTrackingCategory or
+	 *   TrackingCategories::addTrackingCategory() instead
 	 */
 	public function addTrackingCategory( $msg, PageReference $page ) {
-		if ( $page->getNamespace() === NS_SPECIAL ) {
-			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!" );
-			return false;
-		}
-
-		// Important to parse with correct title (T33469)
-		$cat = wfMessage( $msg )
-			->page( $page )
-			->inContentLanguage()
-			->text();
-
-		// Allow tracking categories to be disabled by setting them to "-"
-		if ( $cat === '-' ) {
-			return false;
-		}
-
-		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
-		$containerCategory = $titleParser->makeTitleValueSafe( NS_CATEGORY, $cat );
-		if ( $containerCategory ) {
-			$this->addCategory( $containerCategory->getDBkey(), $this->getPageProperty( 'defaultsort' ) ?: '' );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!" );
-			return false;
-		}
+		$trackingCategories = MediaWikiServices::getInstance()->getTrackingCategories();
+		return $trackingCategories->addTrackingCategory( $this, $msg, $page );
 	}
 
 	/**

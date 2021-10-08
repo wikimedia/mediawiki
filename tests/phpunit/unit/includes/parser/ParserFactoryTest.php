@@ -60,7 +60,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( UserOptionsLookup::class ),
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
-			$this->createNoOpMock( HttpRequestFactory::class )
+			$this->createNoOpMock( HttpRequestFactory::class ),
+			$this->createNoOpMock( TrackingCategories::class )
 		);
 		return $factory;
 	}
