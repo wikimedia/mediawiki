@@ -34,9 +34,9 @@ class FileDeleteForm {
 	/**
 	 * Really delete the file
 	 *
-	 * @param Title &$title
-	 * @param LocalFile &$file
-	 * @param ?string &$oldimage Archive name
+	 * @param Title $title
+	 * @param LocalFile $file
+	 * @param string|null $oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param UserIdentity $user
@@ -44,7 +44,7 @@ class FileDeleteForm {
 	 * @throws MWException
 	 * @return Status
 	 */
-	public static function doDelete( &$title, &$file, &$oldimage, $reason,
+	public static function doDelete( Title $title, LocalFile $file, ?string $oldimage, $reason,
 		$suppress, UserIdentity $user, $tags = []
 	): Status {
 		if ( $oldimage ) {
@@ -101,7 +101,7 @@ class FileDeleteForm {
 						$logtype = $suppress ? 'suppress' : 'delete';
 						$logEntry = new ManualLogEntry( $logtype, 'delete' );
 						$logEntry->setPerformer( $user );
-						$logEntry->setTarget( clone $title );
+						$logEntry->setTarget( $title );
 						$logEntry->setComment( $reason );
 						$logEntry->addTags( $tags );
 						$logid = $logEntry->insert();
@@ -146,21 +146,5 @@ class FileDeleteForm {
 		return strlen( $oldimage ) >= 16
 			&& strpos( $oldimage, '/' ) === false
 			&& strpos( $oldimage, '\\' ) === false;
-	}
-
-	/**
-	 * Could we delete the file specified? If an `oldimage`
-	 * value was provided, does it correspond to an
-	 * existing, local, old version of this file?
-	 *
-	 * @param LocalFile &$file
-	 * @param LocalFile &$oldfile
-	 * @param string $oldimage
-	 * @return bool
-	 */
-	public static function haveDeletableFile( &$file, &$oldfile, $oldimage ) {
-		return $oldimage
-			? $oldfile && $oldfile->exists() && $oldfile->isLocal()
-			: $file && $file->exists() && $file->isLocal();
 	}
 }

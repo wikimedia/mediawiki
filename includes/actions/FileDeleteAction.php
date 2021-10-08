@@ -91,7 +91,8 @@ class FileDeleteAction extends DeleteAction {
 
 		$request = $context->getRequest();
 
-		if ( !FileDeleteForm::haveDeletableFile( $file, $this->oldFile, $this->oldImage ) ) {
+		$checkFile = $this->oldFile ?: $file;
+		if ( !$checkFile->exists() || !$checkFile->isLocal() ) {
 			$outputPage->addHTML( $this->prepareMessage( 'filedelete-nofile' ) );
 			$outputPage->addReturnTo( $this->title );
 			return;
