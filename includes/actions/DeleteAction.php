@@ -82,6 +82,7 @@ class DeleteAction extends FormlessAction {
 		$context = $this->getContext();
 		$user = $context->getUser();
 		$request = $context->getRequest();
+		$outputPage = $context->getOutput();
 
 		$this->runExecuteChecks( $title );
 		$this->prepareOutput( $context->msg( 'delete-confirm', $title->getPrefixedText() ), $title );
@@ -91,7 +92,6 @@ class DeleteAction extends FormlessAction {
 			$request->wasPosted() ? WikiPage::READ_LATEST : WikiPage::READ_NORMAL
 		);
 		if ( !$article->getPage()->exists() ) {
-			$outputPage = $context->getOutput();
 			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 				[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
@@ -120,7 +120,39 @@ class DeleteAction extends FormlessAction {
 		$suppress = $request->getCheck( 'wpSuppress' ) &&
 			$context->getAuthority()->isAllowed( 'suppressrevision' );
 
-		$article->doDelete( $reason, $suppress );
+		$error = '';
+		$context = $this->getContext();
+		$user = $context->getUser();
+		$status = $this->getWikiPage()->doDeleteArticleReal( $reason, $user, $suppress, null, $error );
+
+		if ( $status->isOK() ) {
+			$deleted = $this->getTitle()->getPrefixedText();
+
+			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
+			$outputPage->setRobotPolicy( 'noindex,nofollow' );
+
+			if ( $status->isGood() ) {
+				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
+				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
+				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
+			} else {
+				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
+			}
+
+			$outputPage->returnToMain();
+		} else {
+			$outputPage->setPageTitle( $this->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
+
+			if ( $error === '' ) {
+				$outputPage->wrapWikiTextAsInterface(
+					'error mw-error-cannotdelete',
+					$status->getWikiText( false, false, $context->getLanguage() )
+				);
+				$this->showLogEntries( $this->getTitle() );
+			} else {
+				$outputPage->addHTML( $error );
+			}
+		}
 
 		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
 	}
