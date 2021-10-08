@@ -2594,7 +2594,7 @@
 	"version-libraries-license": "Licenza",
 	"version-libraries-description": "Discrizzioni",
 	"version-libraries-authors": "Autura",
-	"redirect": "Rimannu pi nomu di file o còdici di utenti, di pàggina o di virsioni",
+	"redirect": "Rimannu pi nomu di file o còdici di utenti, di pàggina, di virsioni o còdici riggistru",
 	"redirect-summary": "Sta pàggina spiciali rimanna a nu file (datu lu nomu dû file), a na pàggina (datu n'ID di virsioni o n'ID di pàggina), o puru â pàggina di n'utenti (datu n'ID nummèricu d'utenti). Esempî d'usu: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].",
 	"redirect-submit": "Vai",
 	"redirect-lookup": "Arricerca:",

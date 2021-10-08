@@ -1128,7 +1128,7 @@
 	"prefs-skin": "外装",
 	"prefs-skin-prefs": "外装の設定",
 	"prefs-skin-responsive": "レスポンシブモードを有効にする",
-	"prefs-help-skin-responsive": "スキンを使用可能なビューポート領域に適合させます。（一部のスキンには影響がない場合があります）。",
+	"prefs-help-skin-responsive": "レイアウトをモバイル版の表示領域に適合させます。",
 	"skin-preview": "プレビュー",
 	"datedefault": "選択なし",
 	"prefs-labs": "ラボの機能",
