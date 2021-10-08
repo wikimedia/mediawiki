@@ -234,11 +234,13 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function msg( $key, ...$params ): Message {
 		return wfMessage( $key, ...$params )
+			// Do not use MediaWiki user language from session. Use the provided one instead.
 			->inLanguage( $this->getLanguage() )
-			// Use a dummy title because there is no real title
-			// for this endpoint, and the cache won't vary on it
-			// anyways.
-			->page( PageReferenceValue::localReference( NS_MAIN, 'Dwimmerlaik' ) );
+			// inLanguage() clears the interface flag, so we need re-enable it. (T291601)
+			->setInterfaceMessageFlag( true )
+			// Use a dummy title because there is no real title for this endpoint, and the cache won't
+			// vary on it anyways.
+			->page( PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/ResourceLoaderContext' ) );
 	}
 
 	/**
