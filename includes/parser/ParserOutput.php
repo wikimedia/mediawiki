@@ -602,6 +602,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, use ::getCategoryNames() instead.
 	 */
 	public function getCategoryLinks() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getCategoryNames();
 	}
 
@@ -770,6 +771,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38, use ::setCategories() instead.
 	 */
 	public function setCategoryLinks( $cl ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return wfSetVar( $this->mCategories, $cl );
 	}
 
