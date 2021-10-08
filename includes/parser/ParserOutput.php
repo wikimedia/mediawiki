@@ -8,6 +8,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutputFlags;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
@@ -1119,16 +1120,18 @@ class ParserOutput extends CacheTime {
 	 * Attach a flag to the output so that it can be checked later to handle special cases
 	 *
 	 * @param string $flag
+	 * @deprecated Use ::setOutputFlag()
 	 */
-	public function setFlag( $flag ) {
+	public function setFlag( $flag ): void {
 		$this->mFlags[$flag] = true;
 	}
 
 	/**
 	 * @param string $flag
 	 * @return bool Whether the given flag was set to signify a special case
+	 * @deprecated Use ::getOutputFlag()
 	 */
-	public function getFlag( $flag ) {
+	public function getFlag( $flag ): bool {
 		return isset( $this->mFlags[$flag] );
 	}
 
@@ -1285,6 +1288,101 @@ class ParserOutput extends CacheTime {
 			$this->mProperties = [];
 		}
 		return $this->mProperties;
+	}
+
+	/**
+	 * Provides a uniform interface to various boolean flags stored
+	 * in the ParserOutput.  Flags internal to MediaWiki core should
+	 * have names which are constants in ParserOutputFlags.  Extensions
+	 * should use ::setExtensionData() rather than creating new flags
+	 * with ::setOutputFlag() in order to prevent namespace conflicts.
+	 *
+	 * @param string $name A flag name
+	 * @param bool $val
+	 * @since 1.38
+	 */
+	public function setOutputFlag( string $name, bool $val = true ): void {
+		switch ( $name ) {
+		case ParserOutputFlags::NO_GALLERY:
+			$this->setNoGallery( $val );
+			break;
+
+		case ParserOutputFlags::ENABLE_OOUI:
+			$this->setEnableOOUI( $val );
+			break;
+
+		case ParserOutputFlags::NO_INDEX_POLICY:
+		case ParserOutputFlags::INDEX_POLICY:
+			if ( !$val ) {
+				$this->setIndexPolicy( '' );
+			} elseif ( $name === ParserOutputFlags::INDEX_POLICY ) {
+				$this->setIndexPolicy( 'index' );
+			} else {
+				$this->setIndexPolicy( 'noindex' );
+			}
+			break;
+
+		case ParserOutputFlags::NEW_SECTION:
+			$this->setNewSection( $val );
+			break;
+
+		case ParserOutputFlags::HIDE_NEW_SECTION:
+			$this->setHideNewSection( $val );
+			break;
+
+		case ParserOutputFlags::PREVENT_CLICKJACKING:
+			$this->setPreventClickjacking( $val );
+			break;
+
+		default:
+			if ( $val ) {
+				$this->mFlags[$name] = true;
+			} else {
+				unset( $this->mFlags[$name] );
+			}
+			break;
+		}
+	}
+
+	/**
+	 * Provides a uniform interface to various boolean flags stored
+	 * in the ParserOutput.  Flags internal to MediaWiki core should
+	 * have names which are constants in ParserOutputFlags.  Extensions
+	 * should only use ::getOutputFlag() to query flags defined in
+	 * ParserOutputFlags in core; they should use ::getExtensionData()
+	 * to define their own flags.
+	 *
+	 * @param string $name A flag name
+	 * @return bool The flag value
+	 * @since 1.38
+	 */
+	public function getOutputFlag( string $name ): bool {
+		switch ( $name ) {
+		case ParserOutputFlags::NO_GALLERY:
+			return $this->getNoGallery();
+
+		case ParserOutputFlags::ENABLE_OOUI:
+			return $this->getEnableOOUI();
+
+		case ParserOutputFlags::INDEX_POLICY:
+			return $this->getIndexPolicy() === 'index';
+
+		case ParserOutputFlags::NO_INDEX_POLICY:
+			return $this->getIndexPolicy() === 'noindex';
+
+		case ParserOutputFlags::NEW_SECTION:
+			return $this->getNewSection();
+
+		case ParserOutputFlags::HIDE_NEW_SECTION:
+			return $this->getHideNewSection();
+
+		case ParserOutputFlags::PREVENT_CLICKJACKING:
+			return $this->getPreventClickjacking();
+
+		default:
+			return $this->getFlag( $name );
+
+		}
 	}
 
 	/**

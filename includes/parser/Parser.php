@@ -35,6 +35,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -3578,7 +3579,7 @@ class Parser {
 				} catch ( RevisionAccessException $e ) {
 					$sha1 = null;
 				}
-				$this->setOutputFlag( 'vary-revision-sha1', 'Self transclusion' );
+				$this->setOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1, 'Self transclusion' );
 				$this->getOutput()->setRevisionUsedSha1Base36( $sha1 );
 			}
 		}
@@ -4586,7 +4587,7 @@ class Parser {
 				'~~~' => $sigText
 			] );
 			# The main two signature forms used above are time-sensitive
-			$this->setOutputFlag( 'user-signature', 'User signature detected' );
+			$this->setOutputFlag( ParserOutputFlags::USER_SIGNATURE, 'User signature detected' );
 		}
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]
@@ -6362,7 +6363,7 @@ class Parser {
 	 * @param string $reason
 	 */
 	private function setOutputFlag( string $flag, string $reason ): void {
-		$this->mOutput->setFlag( $flag );
+		$this->mOutput->setOutputFlag( $flag );
 		$name = $this->getTitle()->getPrefixedText();
 		$this->logger->debug( __METHOD__ . ": set $flag flag on '$name'; $reason" );
 	}

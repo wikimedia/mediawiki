@@ -28,6 +28,7 @@ use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputFlags;
 
 /**
  * Content handler for wiki text pages.
@@ -308,7 +309,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 		// Pass along user-signature flag
 		if ( in_array( 'user-signature', $content->getPreSaveTransformFlags() ) ) {
-			$output->setFlag( 'user-signature' );
+			$output->setOutputFlag( ParserOutputFlags::USER_SIGNATURE );
 		}
 	}
 }
