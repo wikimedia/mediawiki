@@ -1419,6 +1419,7 @@ class ParserOutput extends CacheTime {
 	 *   use ::setPreventClickjacking() or ::getPreventClickjacking()
 	 */
 	public function preventClickjacking( $flag ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$old = $this->getPreventClickjacking();
 		if ( $flag !== null ) {
 			$this->setPreventClickjacking( $flag );
