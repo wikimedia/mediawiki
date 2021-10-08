@@ -298,7 +298,7 @@
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
 					// Sort index, just below its target
-					index: pageData[ suggestionPage.title ] + 0.5,
+					index: pageData[ suggestionPage.title ].index + 0.5,
 					originalData: suggestionPage
 				};
 				titles.push( redirects[ i ] );
