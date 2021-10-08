@@ -1193,7 +1193,7 @@
 	"prefs-skin": "Habillage",
 	"prefs-skin-prefs": "Préférences de l’habillage",
 	"prefs-skin-responsive": "Activer le mode réactif",
-	"prefs-help-skin-responsive": "Adapter l’habillage à la zone visible disponible (peut n’avoir aucun effet pour certains habillages).",
+	"prefs-help-skin-responsive": "Adaptez la mise en page à la taille de l'écran sur mobile.",
 	"skin-preview": "Prévisualiser",
 	"datedefault": "Aucune préférence",
 	"prefs-labs": "Fonctionnalités « Labs »",
