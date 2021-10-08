@@ -52,6 +52,18 @@ $( function () {
 	// Add accesskey hints to the tooltips
 	$( '[accesskey]' ).updateTooltipAccessKeys();
 
+	var node = document.querySelector( '.mw-indicators' );
+	if ( node && node.children.length ) {
+		/**
+		 * Fired when indicators are being added to the DOM
+		 *
+		 * @event wikipage_indicators
+		 * @member mw.hook
+		 * @param {jQuery} $content The root element of the indicators
+		 */
+		mw.hook( 'wikipage.indicators' ).fire( $( node ) );
+	}
+
 	/**
 	 * Fired when wiki content is being added to the DOM
 	 *
