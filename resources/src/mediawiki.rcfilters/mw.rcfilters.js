@@ -4,6 +4,7 @@
  */
 mw.rcfilters = {
 	Controller: require( './Controller.js' ),
+	HighlightColors: require( './HighlightColors.js' ),
 	UriProcessor: require( './UriProcessor.js' ),
 	dm: {
 		ChangesListViewModel: require( './dm/ChangesListViewModel.js' ),
@@ -14,7 +15,9 @@ mw.rcfilters = {
 		SavedQueriesModel: require( './dm/SavedQueriesModel.js' ),
 		SavedQueryItemModel: require( './dm/SavedQueryItemModel.js' )
 	},
-	ui: {},
+	ui: {
+		MainWrapperWidget: require( './ui/MainWrapperWidget.js' )
+	},
 	utils: {
 		addArrayElementsUnique: function ( arr, elements ) {
 			elements = Array.isArray( elements ) ? elements : [ elements ];
@@ -56,12 +59,157 @@ mw.rcfilters = {
 	}
 };
 
-// This used to be the `main` script for the mediawiki.rcfilters.filters.dm module,
-// and the mediawiki.rcfilters.filters.ui module had a `main` script mw.rcfilters.init.js
-// that file depends on mw.rcfilters being defined in this one, because module dependencies
-// get executed before those that depend on them. The two scripts should probably be merged,
-// but for now this simply `require()`s mw.rcfilters.init.js so that the setup code there can
-// be run
-require( './mw.rcfilters.init.js' );
+/**
+ * Get list of namespaces and remove unused ones
+ *
+ * @private
+ *
+ * @param {Array} unusedNamespaces Names of namespaces to remove
+ * @return {Array} Filtered array of namespaces
+ */
+function getNamespaces( unusedNamespaces ) {
+	var i, length, name, id,
+		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
+		namespaces = mw.config.get( 'wgFormattedNamespaces' );
+
+	for ( i = 0, length = unusedNamespaces.length; i < length; i++ ) {
+		name = unusedNamespaces[ i ];
+		id = namespaceIds[ name.toLowerCase() ];
+		delete namespaces[ id ];
+	}
+
+	return namespaces;
+}
+
+/**
+ * @private
+ */
+function init() {
+	var $topSection,
+		mainWrapperWidget,
+		conditionalViews = {},
+		$initialFieldset = $( 'fieldset.cloptions' ),
+		savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
+		daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
+		limitPreferenceName = mw.config.get( 'wgStructuredChangeFiltersLimitPreferenceName' ),
+		activeFiltersCollapsedName = mw.config.get( 'wgStructuredChangeFiltersCollapsedPreferenceName' ),
+		initialCollapsedState = mw.config.get( 'wgStructuredChangeFiltersCollapsedState' ),
+		filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+		changesListModel = new mw.rcfilters.dm.ChangesListViewModel( $initialFieldset ),
+		savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+		specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
+		controller = new mw.rcfilters.Controller(
+			filtersModel, changesListModel, savedQueriesModel,
+			{
+				savedQueriesPreferenceName: savedQueriesPreferenceName,
+				daysPreferenceName: daysPreferenceName,
+				limitPreferenceName: limitPreferenceName,
+				collapsedPreferenceName: activeFiltersCollapsedName,
+				normalizeTarget: specialPage === 'Recentchangeslinked'
+			}
+		);
+
+	// TODO: The changesListWrapperWidget should be able to initialize
+	// after the model is ready.
+
+	if ( specialPage === 'Recentchanges' ) {
+		$topSection = $( '.mw-recentchanges-toplinks' ).detach();
+	} else if ( specialPage === 'Watchlist' ) {
+		$( '#contentSub, form#mw-watchlist-resetbutton' ).remove();
+		$topSection = $( '.watchlistDetails' ).detach().contents();
+	} else if ( specialPage === 'Recentchangeslinked' ) {
+		conditionalViews.recentChangesLinked = {
+			groups: [
+				{
+					name: 'page',
+					type: 'any_value',
+					title: '',
+					hidden: true,
+					sticky: true,
+					filters: [
+						{
+							name: 'target',
+							default: ''
+						}
+					]
+				},
+				{
+					name: 'toOrFrom',
+					type: 'boolean',
+					title: '',
+					hidden: true,
+					sticky: true,
+					filters: [
+						{
+							name: 'showlinkedto',
+							default: false
+						}
+					]
+				}
+			]
+		};
+	}
+
+	mainWrapperWidget = new mw.rcfilters.ui.MainWrapperWidget(
+		controller,
+		filtersModel,
+		savedQueriesModel,
+		changesListModel,
+		{
+			$wrapper: $( document.body ),
+			$topSection: $topSection,
+			$filtersContainer: $( '.mw-rcfilters-container' ),
+			$changesListContainer: $( '.mw-changeslist, .mw-changeslist-empty' ),
+			$formContainer: $initialFieldset,
+			collapsed: initialCollapsedState
+		}
+	);
+
+	// Remove the -loading class that may have been added on the server side.
+	// If we are in fact going to load a default saved query, this .initialize()
+	// call will do that and add the -loading class right back.
+	$( document.body ).removeClass( 'mw-rcfilters-ui-loading' );
+
+	controller.initialize(
+		mw.config.get( 'wgStructuredChangeFilters' ),
+		// All namespaces without Media namespace
+		getNamespaces( [ 'Media' ] ),
+		require( './config.json' ).RCFiltersChangeTags,
+		conditionalViews
+	);
+
+	mainWrapperWidget.initFormWidget( specialPage );
+
+	$( 'a.mw-helplink' ).attr(
+		'href',
+		'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review'
+	);
+
+	controller.replaceUrl();
+
+	mainWrapperWidget.setTopSection( specialPage );
+
+	/**
+	 * Fired when initialization of the filtering interface for changes list is complete.
+	 *
+	 * @event structuredChangeFilters_ui_initialized
+	 * @member mw.hook
+	 */
+	mw.hook( 'structuredChangeFilters.ui.initialized' ).fire();
+}
+
+// Import i18n messages from config
+mw.messages.set( mw.config.get( 'wgStructuredChangeFiltersMessages' ) );
+
+// Don't try to run init during QUnit tests, some of the code depends on mw.config variables
+// that are not set, and the ui code here isn't even being tested.
+if ( !window.QUnit ) {
+	if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
+		// Early execute of init
+		init();
+	} else {
+		$( init );
+	}
+}
 
 module.exports = mw.rcfilters;

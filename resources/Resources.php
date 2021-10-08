@@ -1666,12 +1666,6 @@ return [
 		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
-			// This used to be the `main` script for the .dm module, and the .ui module
-			// had a `main` script mw.rcfilters.init.js - that file depends on mw.rcfilters
-			// being defined in this one, because module dependencies get executed before
-			// those that depend on them. The two scripts should probably be merged,
-			// but for now this simply `require()`s mw.rcfilters.init.js at the end so
-			// that the setup code there can be run
 			'mw.rcfilters.js',
 			'Controller.js',
 			'UriProcessor.js',
@@ -1684,9 +1678,6 @@ return [
 			'dm/SavedQueryItemModel.js',
 			// TODO consider merging this with the config.json for the ui code
 			[ 'name' => 'dmConfig.json', 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
-			// Used to be the `main` script for mediawiki.rcfilters.filters.ui, now
-			// triggered by mw.rcfilters.js
-			'mw.rcfilters.init.js',
 			'HighlightColors.js',
 			'ui/CheckboxInputWidget.js',
 			'ui/FilterTagMultiselectWidget.js',
