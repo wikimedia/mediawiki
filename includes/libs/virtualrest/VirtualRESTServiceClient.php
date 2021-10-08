@@ -243,15 +243,30 @@ class VirtualRESTServiceClient {
 				}
 			}
 
-			// Expand protocol-relative URLs
+			// MultiHttpClient::runMulti opts
+			$opts = [];
+
 			foreach ( $executeReqs as $index => &$req ) {
+				// Expand protocol-relative URLs
 				if ( preg_match( '#^//#', $req['url'] ) ) {
 					$req['url'] = wfExpandUrl( $req['url'], PROTO_CURRENT );
+				}
+
+				// Try to find a suitable timeout
+				//
+				// MultiHttpClient::runMulti opts is not per request,
+				// so pick the shortest one
+				if (
+					isset( $req['reqTimeout'] ) &&
+					( !isset( $opts['reqTimeout'] ) ||
+						$req['reqTimeout'] < $opts['reqTimeout'] )
+				) {
+					$opts['reqTimeout'] = $req['reqTimeout'];
 				}
 			}
 
 			// Run the actual work HTTP requests
-			foreach ( $this->http->runMulti( $executeReqs ) as $index => $ranReq ) {
+			foreach ( $this->http->runMulti( $executeReqs, $opts ) as $index => $ranReq ) {
 				$doneReqs[$index] = $ranReq;
 				unset( $origPending[$index] );
 			}
