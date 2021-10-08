@@ -192,6 +192,14 @@ class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 					'fragment' => 'quux',
 				]
 			],
+			[
+				'%0Ahttp://example.com',
+				false,
+			],
+			[
+				'http:///test.com',
+				false,
+			]
 		];
 	}
 }
