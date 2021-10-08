@@ -141,7 +141,7 @@ class LinksUpdate extends DataUpdate {
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
-		$this->mProperties = $parserOutput->getProperties();
+		$this->mProperties = $parserOutput->getPageProperties();
 		$this->mInterwikis = $parserOutput->getInterwikiLinks();
 
 		# Convert the format of the interlanguage links

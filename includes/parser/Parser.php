@@ -4072,7 +4072,7 @@ class Parser {
 
 		# Cache all double underscores in the database
 		foreach ( $this->mDoubleUnderscores as $key => $val ) {
-			$this->mOutput->setProperty( $key, '' );
+			$this->mOutput->setPageProperty( $key, '' );
 		}
 
 		return $text;
@@ -5978,7 +5978,7 @@ class Parser {
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
-		$this->mOutput->setProperty( 'defaultsort', $sort );
+		$this->mOutput->setPageProperty( 'defaultsort', $sort );
 	}
 
 	/**

@@ -631,7 +631,7 @@ class ApiParse extends ApiBase {
 			}
 		}
 		if ( isset( $prop['properties'] ) ) {
-			$result_array['properties'] = (array)$p_result->getProperties();
+			$result_array['properties'] = $p_result->getPageProperties();
 			ApiResult::setArrayType( $result_array['properties'], 'BCkvp', 'name' );
 		}
 

@@ -1051,7 +1051,7 @@ class ParserOutput extends CacheTime {
 
 		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
-			$this->addCategory( $containerCategory->getDBkey(), $this->getProperty( 'defaultsort' ) ?: '' );
+			$this->addCategory( $containerCategory->getDBkey(), $this->getPageProperty( 'defaultsort' ) ?: '' );
 			return true;
 		} else {
 			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!" );
@@ -1072,7 +1072,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function setDisplayTitle( $text ) {
 		$this->setTitleText( $text );
-		$this->setProperty( 'displaytitle', $text );
+		$this->setPageProperty( 'displaytitle', $text );
 	}
 
 	/**
@@ -1117,7 +1117,46 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Set a property to be stored in the page_props database table.
+	 * Sets a page property to be stored in the page_props database table.
+	 * @param string $name
+	 * @param int|float|string|bool|null $value
+	 * @deprecated since 1.38, renamed to ::setPageProperty()
+	 */
+	public function setProperty( $name, $value ) {
+		$this->setPageProperty( $name, $value );
+	}
+
+	/**
+	 * @param string $name The property name to look up.
+	 *
+	 * @return mixed|bool The value previously set using setPageProperty(). False if null or no value
+	 * was set for the given property name.
+	 *
+	 * @note You need to use getPageProperties() to check for boolean and null properties.
+	 * @deprecated since 1.38, renamed to ::getPageProperty()
+	 */
+	public function getProperty( $name ) {
+		return $this->getPageProperty( $name );
+	}
+
+	/**
+	 * @param string $name
+	 * @deprecated since 1.38, renamed to ::unsetPageProperty()
+	 */
+	public function unsetProperty( $name ) {
+		$this->unsetPageProperty( $name );
+	}
+
+	/**
+	 * @return array
+	 * @deprecated since 1.38, renamed to ::getPageProperties()
+	 */
+	public function getProperties() {
+		return $this->getPageProperties();
+	}
+
+	/**
+	 * Set a page property to be stored in the page_props database table.
 	 *
 	 * page_props is a key value store indexed by the page ID. This allows
 	 * the parser to set a property on a page which can then be quickly
@@ -1127,14 +1166,14 @@ class ParserOutput extends CacheTime {
 	 * Since 1.23, page_props are also indexed by numeric value, to allow
 	 * for efficient "top k" queries of pages wrt a given property.
 	 *
-	 * setProperty() is thus used to propagate properties from the parsed
+	 * setPageProperty() is thus used to propagate properties from the parsed
 	 * page to request contexts other than a page view of the currently parsed
 	 * article.
 	 *
 	 * Some applications examples:
 	 *
 	 *   * To implement hidden categories, hiding pages from category listings
-	 *     by storing a property.
+	 *     by storing a page property.
 	 *
 	 *   * Overriding the displayed article title (ParserOutput::setDisplayTitle()).
 	 *
@@ -1143,7 +1182,7 @@ class ParserOutput extends CacheTime {
 	 *     Wikimedia Commons.
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
-	 * @note Do not use setProperty() to set a property which is only used
+	 * @note Do not use setPageProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
 	 * in the database since the text is already parsed. You can just hook
@@ -1180,28 +1219,40 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
+	 * @since 1.38
 	 */
-	public function setProperty( $name, $value ) {
+	public function setPageProperty( string $name, $value ): void {
 		$this->mProperties[$name] = $value;
 	}
 
 	/**
-	 * @param string $name The property name to look up.
-	 *
-	 * @return mixed|bool The value previously set using setProperty(). False if null or no value
+	 * Look up a page property.
+	 * @param string $name The page property name to look up.
+	 * @return int|float|string|bool The value previously set using setPageProperty(). False if null or no value
 	 * was set for the given property name.
 	 *
-	 * @note You need to use getProperties() to check for boolean and null properties.
+	 * @note You need to use getPageProperties() to check for boolean and null properties.
+	 * @since 1.38
 	 */
-	public function getProperty( $name ) {
+	public function getPageProperty( string $name ) {
 		return $this->mProperties[$name] ?? false;
 	}
 
-	public function unsetProperty( $name ) {
+	/**
+	 * Remove a page property.
+	 * @param string $name The page property name.
+	 * @since 1.38
+	 */
+	public function unsetPageProperty( string $name ): void {
 		unset( $this->mProperties[$name] );
 	}
 
-	public function getProperties() {
+	/**
+	 * Return all the page properties set on this ParserOutput.
+	 * @return array<string,int|float|string|bool|null>
+	 * @since 1.38
+	 */
+	public function getPageProperties(): array {
 		if ( !isset( $this->mProperties ) ) {
 			$this->mProperties = [];
 		}
@@ -1211,7 +1262,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Attaches arbitrary data to this ParserObject. This can be used to store some information in
 	 * the ParserOutput object for later use during page output. The data will be cached along with
-	 * the ParserOutput object, but unlike data set using setProperty(), it is not recorded in the
+	 * the ParserOutput object, but unlike data set using setPageProperty(), it is not recorded in the
 	 * database.
 	 *
 	 * This method is provided to overcome the unsafe practice of attaching extra information to a
@@ -1639,9 +1690,9 @@ class ParserOutput extends CacheTime {
 			$source->getInterwikiLinks()
 		);
 
-		// TODO: add a $mergeStrategy parameter to setProperty to allow different
+		// TODO: add a $mergeStrategy parameter to setPageProperty to allow different
 		// kinds of properties to be merged in different ways.
-		$this->mProperties = self::mergeMap( $this->mProperties, $source->getProperties() );
+		$this->mProperties = self::mergeMap( $this->mProperties, $source->getPageProperties() );
 
 		// NOTE: include extension data in "tracking meta data" as well as "html meta data"!
 		// TODO: add a $mergeStrategy parameter to setExtensionData to allow different
