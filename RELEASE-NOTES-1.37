@@ -121,6 +121,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
 * Updated wikimedia/shellbox from v1.0.4 to v2.0.0.
 * Updated wikimedia/wait-condition-loop from v2.0.1 to v2.0.2.
+* Updated zordius/lightncandy from v1.2.5 to v1.2.6.
 
 ===== Changed development-only external libraries =====
 * Updated qunit from 2.10.0 to 2.16.0.
