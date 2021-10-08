@@ -140,8 +140,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			[ "MediaWiki:common.css", 'en' ],
 			[ "User:Foo/common.css", 'en' ],
 			[ "User:Foo", $wgLanguageCode ],
-
-			[ CONTENT_MODEL_JAVASCRIPT, 'javascript' ],
 		];
 	}
 
@@ -150,12 +148,8 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentHandler::getPageLanguage
 	 */
 	public function testGetPageLanguage( $title, $expected ) {
-		if ( is_string( $title ) ) {
-			$title = Title::newFromText( $title );
-			MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
-		}
-
-		$expected = wfGetLangObj( $expected );
+		$title = Title::newFromText( $title );
+		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
 
 		$handler = MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
@@ -163,7 +157,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$lang = $handler->getPageLanguage( $title );
 
 		$this->assertInstanceOf( Language::class, $lang );
-		$this->assertEquals( $expected->getCode(), $lang->getCode() );
+		$this->assertEquals( $expected, $lang->getCode() );
 	}
 
 	public static function dataGetContentText_Null() {
