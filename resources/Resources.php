@@ -1659,11 +1659,19 @@ return [
 			],
 		],
 	],
-	'mediawiki.rcfilters.filters.dm' => [
+	// TODO consider renaming to mediawiki.rcfilters.filters following merge of
+	// mediawiki.rcfilters.filters.dm into mediawiki.rcfilters.filters.ui, see T256836
+	'mediawiki.rcfilters.filters.ui' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
+			// This used to be the `main` script for the .dm module, and the .ui module
+			// had a `main` script mw.rcfilters.init.js - that file depends on mw.rcfilters
+			// being defined in this one, because module dependencies get executed before
+			// those that depend on them. The two scripts should probably be merged,
+			// but for now this simply `require()`s mw.rcfilters.init.js at the end so
+			// that the setup code there can be run
 			'mw.rcfilters.js',
 			'Controller.js',
 			'UriProcessor.js',
@@ -1674,27 +1682,10 @@ return [
 			'dm/ItemModel.js',
 			'dm/SavedQueriesModel.js',
 			'dm/SavedQueryItemModel.js',
-			[ 'name' => 'config.json', 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
-		],
-		'dependencies' => [
-			'mediawiki.String',
-			'oojs',
-			'mediawiki.api',
-			'mediawiki.jqueryMsg',
-			'mediawiki.Uri',
-			'mediawiki.user',
-			'user.options',
-		],
-		'messages' => [
-			'quotation-marks',
-			'rcfilters-filterlist-title',
-		],
-	],
-	'mediawiki.rcfilters.filters.ui' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
-		'packageFiles' => [
+			// TODO consider merging this with the config.json for the ui code
+			[ 'name' => 'dmConfig.json', 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
+			// Used to be the `main` script for mediawiki.rcfilters.filters.ui, now
+			// triggered by mw.rcfilters.js
 			'mw.rcfilters.init.js',
 			'HighlightColors.js',
 			'ui/CheckboxInputWidget.js',
@@ -1854,14 +1845,17 @@ return [
 			'quotation-marks',
 		],
 		'dependencies' => [
-			'oojs-ui-widgets',
 			'jquery.makeCollapsible',
+			'mediawiki.String',
+			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.language',
+			'mediawiki.Uri',
 			'mediawiki.user',
 			'mediawiki.util',
 			'mediawiki.widgets',
-			'mediawiki.rcfilters.filters.dm',
+			'oojs',
+			'oojs-ui-widgets',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-editing-core',
@@ -1869,7 +1863,8 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-layout',
 			'oojs-ui.styles.icons-media',
-			'oojs-ui-windows.icons'
+			'oojs-ui-windows.icons',
+			'user.options',
 		],
 	],
 	'mediawiki.interface.helpers.styles' => [
