@@ -160,9 +160,8 @@ abstract class TablePager extends IndexPager {
 			}
 		}
 
-		$tableClass = $this->getTableClass();
 		$ret = Html::openElement( 'table', [
-			'class' => " $tableClass" ]
+			'class' => $this->getTableClass() ]
 		);
 		$ret .= Html::rawElement( 'thead', [], Html::rawElement( 'tr', [], "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
