@@ -1196,7 +1196,12 @@ MESSAGE;
 				}
 
 				if ( !$debug ) {
-					$strContent = self::filter( $filter, $strContent );
+					$strContent = self::filter( $filter, $strContent, [
+						// Important: Do not cache minifications of embedded modules
+						// This is especially for the private 'user.options' module,
+						// which varies on every pageview and would explode the cache (T84960)
+						'cache' => !$module->shouldEmbedModule( $context )
+					] );
 				} else {
 					// In debug mode, separate each response by a new line.
 					// For example, between 'mw.loader.implement();' statements.

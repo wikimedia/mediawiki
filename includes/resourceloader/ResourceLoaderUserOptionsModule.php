@@ -66,8 +66,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			$script .= 'mw.user.options.set(' . $context->encodeJson( $options ) . ');';
 		}
 
-		// Use FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
-		return ResourceLoader::FILTER_NOMIN . $script;
+		return $script;
 	}
 
 	/**
