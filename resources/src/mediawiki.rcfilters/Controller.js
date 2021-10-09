@@ -32,7 +32,8 @@ Controller = function MwRcfiltersController( filtersModel, changesListModel, sav
 	this.collapsedPreferenceName = config.collapsedPreferenceName;
 	this.normalizeTarget = !!config.normalizeTarget;
 
-	this.pollingRate = require( './config.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
+	// TODO merge dmConfig.json and config.json virtual files, see T256836
+	this.pollingRate = require( './dmConfig.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
 
 	this.requestCounter = {};
 	this.uriProcessor = null;

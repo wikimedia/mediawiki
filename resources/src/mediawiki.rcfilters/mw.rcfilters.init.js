@@ -148,11 +148,13 @@ function init() {
 // Import i18n messages from config
 mw.messages.set( mw.config.get( 'wgStructuredChangeFiltersMessages' ) );
 
-// Early execute of init
-if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
-	init();
-} else {
-	$( init );
+// Don't try to run init during QUnit tests, some of the code depends on mw.config variables
+// that are not set, and the ui code here isn't even being tested.
+if ( !window.QUnit ) {
+	if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
+		// Early execute of init
+		init();
+	} else {
+		$( init );
+	}
 }
-
-module.exports = mw.rcfilters;
