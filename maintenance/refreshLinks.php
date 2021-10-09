@@ -487,8 +487,7 @@ class RefreshLinks extends Maintenance {
 	 * @return Title[]
 	 */
 	private function getPossibleCategories( $categoryKey ) {
-		$trackingCategories = new TrackingCategories( $this->getConfig() );
-		$cats = $trackingCategories->getTrackingCategories();
+		$cats = MediaWikiServices::getInstance()->getTrackingCategories()->getTrackingCategories();
 		if ( isset( $cats[$categoryKey] ) ) {
 			return $cats[$categoryKey]['cats'];
 		}

@@ -140,6 +140,7 @@ use SkinFactory;
 use TitleFactory;
 use TitleFormatter;
 use TitleParser;
+use TrackingCategories;
 use UploadRevisionImporter;
 use UserCache;
 use VirtualRESTServiceClient;
@@ -1662,6 +1663,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser(): TitleParser {
 		return $this->getService( 'TitleParser' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return TrackingCategories
+	 */
+	public function getTrackingCategories(): TrackingCategories {
+		return $this->getService( 'TrackingCategories' );
 	}
 
 	/**

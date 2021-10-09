@@ -297,6 +297,7 @@ class SpecialPageFactory {
 			'class' => \SpecialTrackingCategories::class,
 			'services' => [
 				'LinkBatchFactory',
+				'TrackingCategories',
 			]
 		],
 
