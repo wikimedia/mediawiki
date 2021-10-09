@@ -149,8 +149,8 @@ class JobQueueRedis extends JobQueue {
 		$conn = $this->getConnection();
 		try {
 			$conn->multi( Redis::PIPELINE );
-			$conn->zSize( $this->getQueueKey( 'z-claimed' ) );
-			$conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
+			$conn->zCard( $this->getQueueKey( 'z-claimed' ) );
+			$conn->zCard( $this->getQueueKey( 'z-abandoned' ) );
 
 			return array_sum( $conn->exec() );
 		} catch ( RedisException $e ) {
@@ -166,7 +166,7 @@ class JobQueueRedis extends JobQueue {
 	protected function doGetDelayedCount() {
 		$conn = $this->getConnection();
 		try {
-			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
+			return $conn->zCard( $this->getQueueKey( 'z-delayed' ) );
 		} catch ( RedisException $e ) {
 			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
@@ -180,7 +180,7 @@ class JobQueueRedis extends JobQueue {
 	protected function doGetAbandonedCount() {
 		$conn = $this->getConnection();
 		try {
-			return $conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
+			return $conn->zCard( $this->getQueueKey( 'z-abandoned' ) );
 		} catch ( RedisException $e ) {
 			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
