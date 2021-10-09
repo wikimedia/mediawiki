@@ -1022,7 +1022,7 @@ class ParserOutput extends CacheTime {
 	 *
 	 * Any message used with this function should be registered so it will
 	 * show up on Special:TrackingCategories. Core messages should be added
-	 * to SpecialTrackingCategories::$coreTrackingCategories, and extensions
+	 * to TrackingCategories::CORE_TRACKING_CATEGORIES, and extensions
 	 * should add to "TrackingCategories" in their extension.json.
 	 *
 	 * @todo Migrate some code to TrackingCategories
