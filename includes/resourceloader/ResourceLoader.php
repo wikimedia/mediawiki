@@ -1169,7 +1169,7 @@ MESSAGE;
 						if ( is_string( $scripts ) ) {
 							if ( $name === 'site' || $name === 'user' ) {
 								// Legacy scripts that run in the global scope without a closure.
-								// mw.loader.implement will use globalEval if scripts is a string.
+								// mw.loader.implement will use eval if scripts is a string.
 								// Minify manually here, because general response minification is
 								// not effective due it being a string literal, not a function.
 								if ( !$debug ) {
@@ -1279,7 +1279,7 @@ MESSAGE;
 	 * @param ResourceLoaderContext $context
 	 * @param string $name Module name or implement key (format "`[name]@[version]`")
 	 * @param XmlJsCode|array|string $scripts Code as XmlJsCode (to be wrapped in a closure),
-	 *  list of URLs to JavaScript files, string of JavaScript for `$.globalEval`, or array with
+	 *  list of URLs to JavaScript files, string of JavaScript for eval, or array with
 	 *  'files' and 'main' properties (see ResourceLoaderModule::getScript())
 	 * @param mixed $styles Array of CSS strings keyed by media type, or an array of lists of URLs
 	 *   to CSS files keyed by media type
