@@ -156,6 +156,8 @@ because of Phabricator reports.
     User::removeWatch()
 * ParserOptions::setTidy() that had no effect and was deprecated since 1.35
   has been removed.
+* The constant ApiBase::PARAM_VALUE_LINKS, deprecated since 1.35 has been
+  removed.
 * …
 
 === Deprecations in 1.38 ===
