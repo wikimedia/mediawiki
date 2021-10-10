@@ -240,6 +240,18 @@ because of Phabricator reports.
    - ImageHistoryPseudoPager::preventClickjacking()
    - ContribsPager::preventClickjacking()
 * Collation::singleton() and ::factory() now trigger deprecation warnings.
+* The following methods in MWNamespace, all deprecated since 1.34, now emit
+  deprecation warnings:
+  - isTalk()
+  - exists()
+  - subjectEquals()
+  - getCanonicalNamespaces()
+  - getCanonicalName()
+  - getCanonicalIndex()
+  - getValidNamespaces()
+  - isContent()
+  - hasSubpages()
+  - getContentNamespaces()
 * Return values in the parameter $pageLang of the hook PageContentLanguage
   with other types than a Language object, deprecated since 1.33, now emmits
   deprecation warnings.
