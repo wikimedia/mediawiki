@@ -462,6 +462,20 @@ class PageArchive {
 		$unsuppress = false,
 		$tags = null
 	) {
+		$hookStatus = StatusValue::newGood();
+		$hookRes = $this->hookRunner->onPageUndelete(
+			$this->wikiPageFactory->newFromTitle( $this->title ),
+			$this->userFactory->newFromUserIdentity( $user ),
+			$comment,
+			$unsuppress,
+			$timestamps,
+			$fileVersions ?: [],
+			$hookStatus
+		);
+		if ( !$hookRes && !$hookStatus->isGood() ) {
+			// Note: as per the PageUndeleteHook documentation, `return false` is ignored if $status is good.
+			return false;
+		}
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );

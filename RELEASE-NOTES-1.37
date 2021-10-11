@@ -280,6 +280,8 @@ because of Phabricator reports.
   the "es6-polyfills" module directly intead.
 * The deprecated "mediawiki.legacy.protect" ResourceLoader module, deprecated
   since 1.36, has been removed. Use "mediawiki.action.protect" instead.
+* The JavaScript alias $j for references to jQuery, deprecated since 1.23, has
+  been removed. Use $ instead.
 * The AuthenticationProvider interface and the SessionProvider class no longer
   extend the PSR LoggerAwareInterface concept, so they can't be typehinted as
   LoggerAwareInterface.
@@ -473,6 +475,9 @@ because of Phabricator reports.
 * The LESS mixin `.flex()` now no longer tries to support the 2009 version of
   the Flexbox specification; support for the 2012 and modern standard versions
   remains unchanged.
+* The StorageAwareness::ATTR_SYNCWRITES, StorageAwareness::QOS_SYNCWRITES_*,
+  StorageAwareness::ATTR_LOCALITY, and StorageAwareness::QOS_LOCALITY_*
+  constants were removed.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki(), deprecated in 1.33, now emits deprecation warnings.
@@ -805,6 +810,10 @@ because of Phabricator reports.
   - .transform-origin()
   - .transition()
   - .transition-transform()
+* The `UndeleteForm::undelete` hook was deprecated. A new hook was
+  introduced, `PageUndelete`, that provides handlers with more information and
+  is also called for non-UI requests. The capability of replacing the
+  PageArchive object has been removed, as that violates the laws of nature.
 
 === Other changes in 1.37 ===
 * WatchlistManager::addWatch() and WatchlistManager::addWatchIgnoringRights(),
