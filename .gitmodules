@@ -391,7 +391,7 @@
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
 	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY
-	branch = master
+	branch = REL1_37
 	ignore = dirty
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
@@ -922,7 +922,7 @@
 	path = extensions/DiscordNotifications
 	url = https://github.com/kulttuuri/DiscordNotifications
 	ignore = dirty
-	branch = master
+	branch = REL1_37
 [submodule "extensions/GeoCrumbs"]
 	path = extensions/GeoCrumbs
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoCrumbs
