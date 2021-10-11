@@ -98,6 +98,7 @@ because of Phabricator reports.
 * (T292166) Updated namespace names for the Lombard language.
 * (T291899) Added language support for Xiang Chinese (hsn).
 * (T292612) Added language support for S'gaw Karen (ksw).
+* (T293656) Added language support for Farefare (gur).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
