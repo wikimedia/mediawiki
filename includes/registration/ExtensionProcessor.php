@@ -873,6 +873,14 @@ class ExtensionProcessor implements Processor {
 				"The configuration setting '$key' was already set by MediaWiki core or"
 				. " another extension, and cannot be set again by $extName." );
 		}
+		if ( isset( $value[ExtensionRegistry::MERGE_STRATEGY] ) &&
+			$value[ExtensionRegistry::MERGE_STRATEGY] === 'array_merge_recursive' ) {
+			wfDeprecatedMsg(
+				"Using the array_merge_recursive merge strategy in extension.json and skin.json" .
+				" was deprecated in MediaWiki 1.42",
+				"1.42"
+			);
+		}
 		$this->globals[$key] = $value;
 	}
 

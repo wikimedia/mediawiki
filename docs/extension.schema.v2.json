@@ -1356,7 +1356,6 @@
 						"merge_strategy": {
 							"type": "string",
 							"enum": [
-								"array_merge_recursive",
 								"array_replace_recursive",
 								"array_plus_2d",
 								"array_plus",
