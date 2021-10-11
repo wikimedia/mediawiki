@@ -6677,6 +6677,7 @@ $wgGrantPermissions['basic']['patrolmarks'] = true;
 $wgGrantPermissions['basic']['purge'] = true;
 $wgGrantPermissions['basic']['read'] = true;
 $wgGrantPermissions['basic']['writeapi'] = true;
+$wgGrantPermissions['basic']['unwatchedpages'] = true;
 
 $wgGrantPermissions['highvolume']['bot'] = true;
 $wgGrantPermissions['highvolume']['apihighlimits'] = true;
