@@ -37,6 +37,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @var bool|stdClass
 	 */
 	public $lastRow = false;
+	public $lastResultOffset = false;
 
 	public $counter, $historyPage, $buttons, $conds;
 
@@ -165,7 +166,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	public function formatRow( $row ) {
 		if ( $this->lastRow ) {
-			$resultOffset = $this->counter - 1;
+			$firstInList = $this->counter == 1;
 			$this->counter++;
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
@@ -173,11 +174,13 @@ class HistoryPager extends ReverseChronologicalPager {
 					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
-			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp, $resultOffset );
+			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp,
+				$firstInList, $this->lastResultOffset );
 		} else {
 			$s = '';
 		}
 		$this->lastRow = $row;
+		$this->lastResultOffset = $this->getResultOffset();
 
 		return $s;
 	}
@@ -310,7 +313,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $this->lastRow ) {
-			$resultOffset = $this->counter - 1;
+			$firstInList = $this->counter == 1;
 			if ( $this->mIsBackwards ) {
 				# Next row is unknown, but for UI reasons, probably exists if an offset has been specified
 				if ( $this->mOffset == '' ) {
@@ -329,7 +332,8 @@ class HistoryPager extends ReverseChronologicalPager {
 					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
-			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp, $resultOffset );
+			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp,
+				$firstInList, $this->lastResultOffset );
 		} else {
 			$s = '';
 		}
@@ -367,11 +371,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param mixed $next The database row corresponding to the next line
 	 *   (chronologically previous)
 	 * @param bool|string $notificationtimestamp
+	 * @param bool $firstInList Whether this row corresponds to the first
+	 *   displayed on this history page.
 	 * @param int $resultOffset The offset into the current result set
 	 * @return string HTML output for the row
 	 */
-	private function historyLine( $row, $next, $notificationtimestamp, $resultOffset ) {
-		$firstInList = $resultOffset === 0;
+	private function historyLine( $row, $next, $notificationtimestamp,
+		$firstInList, $resultOffset
+	) {
 		$revRecord = $this->revisions[$resultOffset];
 
 		if ( is_object( $next ) ) {
