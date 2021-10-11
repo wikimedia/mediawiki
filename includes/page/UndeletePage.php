@@ -32,6 +32,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
@@ -88,6 +89,8 @@ class UndeletePage {
 	private $unsuppress = false;
 	/** @var string[] */
 	private $tags = [];
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -101,6 +104,7 @@ class UndeletePage {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ProperPageIdentity $page
 	 * @param Authority $performer
+	 * @param PageUpdaterFactory $pageUpdaterFactory
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
@@ -113,7 +117,8 @@ class UndeletePage {
 		UserFactory $userFactory,
 		WikiPageFactory $wikiPageFactory,
 		ProperPageIdentity $page,
-		Authority $performer
+		Authority $performer,
+		PageUpdaterFactory $pageUpdaterFactory
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->jobQueueGroup = $jobQueueGroup;
@@ -127,6 +132,7 @@ class UndeletePage {
 
 		$this->page = $page;
 		$this->performer = $performer;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
 	}
 
 	/**
@@ -536,16 +542,18 @@ class UndeletePage {
 
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
-				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
-				$wikiPage->doEditUpdates(
-					$revision,
-					$revision->getUser( RevisionRecord::RAW ),
-					[
-						'created' => $created,
-						'oldcountable' => $oldcountable,
-						'restored' => true
-					]
-				);
+				$user = $revision->getUser( RevisionRecord::RAW );
+				$options = [
+					'created' => $created,
+					'oldcountable' => $oldcountable,
+					'restored' => true,
+					'causeAction' => 'edit-page',
+					'causeAgent' => $user->getName(),
+				];
+
+				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
+				$updater->prepareUpdate( $revision, $options );
+				$updater->doUpdates();
 			}
 
 			$this->hookRunner->onArticleUndelete(

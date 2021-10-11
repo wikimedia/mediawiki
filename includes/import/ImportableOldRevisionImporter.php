@@ -5,6 +5,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Storage\PageUpdaterFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -43,6 +44,9 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 */
 	private $wikiPageFactory;
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
 	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
@@ -50,6 +54,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param PageUpdaterFactory|null $pageUpdaterFactory
 	 */
 	public function __construct(
 		$doUpdates,
@@ -57,15 +62,19 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		PageUpdaterFactory $pageUpdaterFactory = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
+
+		$services = MediaWikiServices::getInstance();
 		// @todo: temporary - remove when FileImporter extension is updated
-		$this->wikiPageFactory = $wikiPageFactory ?? MediaWikiServices::getInstance()->getWikiPageFactory();
+		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
+		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services->getPageUpdaterFactory();
 	}
 
 	/** @inheritDoc */
@@ -219,12 +228,17 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
-			// @todo replace deprecated function
-			$page->doEditUpdates(
-				$inserted,
-				$user,
-				[ 'created' => $created, 'oldcountable' => 'no-change' ]
-			);
+
+			$options = [
+				'created' => $created,
+				'oldcountable' => 'no-change',
+				'causeAction' => 'edit-page',
+				'causeAgent' => $user->getName(),
+			];
+
+			$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $page );
+			$updater->prepareUpdate( $inserted, $options );
+			$updater->doUpdates();
 		}
 
 		return true;

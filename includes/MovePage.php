@@ -34,6 +34,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -130,7 +131,12 @@ class MovePage {
 		'MaximumMovedPages',
 	];
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
 	/**
+	 * @internal Extensions should use the MovePageFactory.
+	 *
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @param ServiceOptions|null $options
@@ -147,6 +153,7 @@ class MovePage {
 	 * @param UserEditTracker|null $userEditTracker
 	 * @param MovePageFactory|null $movePageFactory
 	 * @param CollationFactory|null $collationFactory
+	 * @param PageUpdaterFactory|null $pageUpdaterFactory
 	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
 	 */
 	public function __construct(
@@ -165,7 +172,8 @@ class MovePage {
 		UserFactory $userFactory = null,
 		UserEditTracker $userEditTracker = null,
 		MovePageFactory $movePageFactory = null,
-		CollationFactory $collationFactory = null
+		CollationFactory $collationFactory = null,
+		PageUpdaterFactory $pageUpdaterFactory = null
 	) {
 		if ( !$options ) {
 			wfDeprecatedMsg(
@@ -201,6 +209,7 @@ class MovePage {
 		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
 		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
 		$this->collationFactory = $collationFactory ?? $services()->getCollationFactory();
+		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services()->getPageUpdaterFactory();
 	}
 
 	/**
@@ -1017,8 +1026,17 @@ class MovePage {
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
-		$newpage->doEditUpdates( $nullRevision, $user,
-			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
+		$options = [
+			'changed' => false,
+			'moved' => true,
+			'oldcountable' => $oldcountable,
+			'causeAction' => 'edit-page',
+			'causeAgent' => $user->getName(),
+		];
+
+		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $newpage );
+		$updater->prepareUpdate( $nullRevision, $options );
+		$updater->doUpdates();
 
 		WikiPage::onArticleCreate( $nt );
 

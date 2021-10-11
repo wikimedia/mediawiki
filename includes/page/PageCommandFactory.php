@@ -36,6 +36,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -142,6 +143,9 @@ class PageCommandFactory implements
 	/** @var LoggerInterface */
 	private $undeletePageLogger;
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -167,7 +171,8 @@ class PageCommandFactory implements
 		string $localWikiID,
 		string $webRequestID,
 		BacklinkCacheFactory $backlinkCacheFactory,
-		LoggerInterface $undeletePageLogger
+		LoggerInterface $undeletePageLogger,
+		PageUpdaterFactory $pageUpdaterFactory
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -194,6 +199,7 @@ class PageCommandFactory implements
 		$this->webRequestID = $webRequestID;
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
 		$this->undeletePageLogger = $undeletePageLogger;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
 	}
 
 	/**
@@ -289,7 +295,8 @@ class PageCommandFactory implements
 			$this->userFactory,
 			$this->userEditTracker,
 			$this,
-			$this->collationFactory
+			$this->collationFactory,
+			$this->pageUpdaterFactory
 		);
 	}
 
@@ -338,7 +345,8 @@ class PageCommandFactory implements
 			$this->userFactory,
 			$this->wikiPageFactory,
 			$page,
-			$authority
+			$authority,
+			$this->pageUpdaterFactory
 		);
 	}
 }
