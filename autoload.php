@@ -1010,6 +1010,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SpecialContributionsBeforeMainOutputHook' => __DIR__ . '/includes/specials/Hook/SpecialContributionsBeforeMainOutputHook.php',
 	'MediaWiki\\Hook\\SpecialContributions__formatRow__flagsHook' => __DIR__ . '/includes/specials/Hook/SpecialContributions__formatRow__flagsHook.php',
 	'MediaWiki\\Hook\\SpecialContributions__getForm__filtersHook' => __DIR__ . '/includes/specials/Hook/SpecialContributions__getForm__filtersHook.php',
+	'MediaWiki\\Hook\\SpecialExportGetExtraPagesHook' => __DIR__ . '/includes/specials/Hook/SpecialExportGetExtraPagesHook.php',
 	'MediaWiki\\Hook\\SpecialListusersDefaultQueryHook' => __DIR__ . '/includes/specials/Hook/SpecialListusersDefaultQueryHook.php',
 	'MediaWiki\\Hook\\SpecialListusersFormatRowHook' => __DIR__ . '/includes/specials/Hook/SpecialListusersFormatRowHook.php',
 	'MediaWiki\\Hook\\SpecialListusersHeaderFormHook' => __DIR__ . '/includes/specials/Hook/SpecialListusersHeaderFormHook.php',

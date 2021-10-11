@@ -766,6 +766,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'WikiExporterFactory',
+				'TitleFormatter',
 			]
 		],
 		'Import' => [
