@@ -34,6 +34,19 @@ use MediaWiki\Watchlist\WatchlistManager;
  */
 class DeleteAction extends FormlessAction {
 
+	/**
+	 * Constants used to localize form fields
+	 */
+	protected const MSG_REASON_DROPDOWN = 'reason-dropdown';
+	protected const MSG_REASON_DROPDOWN_SUPPRESS = 'reason-dropdown-suppress';
+	protected const MSG_REASON_DROPDOWN_OTHER = 'reason-dropdown-other';
+	protected const MSG_COMMENT = 'comment';
+	protected const MSG_REASON_OTHER = 'reason-other';
+	protected const MSG_SUBMIT = 'submit';
+	protected const MSG_LEGEND = 'legend';
+	protected const MSG_EDIT_REASONS = 'edit-reasons';
+	protected const MSG_EDIT_REASONS_SUPPRESS = 'edit-reasons-suppress';
+
 	/** @var WatchlistManager */
 	protected $watchlistManager;
 
@@ -267,16 +280,16 @@ class DeleteAction extends FormlessAction {
 		$fields = [];
 
 		$suppressAllowed = $ctx->getAuthority()->isAllowed( 'suppressrevision' );
-		$dropDownReason = $ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text();
+		$dropDownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
 		// Add additional specific reasons for suppress
 		if ( $suppressAllowed ) {
-			$dropDownReason .= "\n" . $ctx->msg( 'deletereason-dropdown-suppress' )
+			$dropDownReason .= "\n" . $this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )
 					->inContentLanguage()->text();
 		}
 
 		$options = Xml::listDropDownOptions(
 			$dropDownReason,
-			[ 'other' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text() ]
+			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
@@ -290,7 +303,7 @@ class DeleteAction extends FormlessAction {
 				'options' => $options,
 			] ),
 			[
-				'label' => $ctx->msg( 'deletecomment' )->text(),
+				'label' => $this->getFormMsg( self::MSG_COMMENT )->text(),
 				'align' => 'top',
 			]
 		);
@@ -309,7 +322,7 @@ class DeleteAction extends FormlessAction {
 				'autofocus' => true,
 			] ),
 			[
-				'label' => $ctx->msg( 'deleteotherreason' )->text(),
+				'label' => $this->getFormMsg( self::MSG_REASON_OTHER )->text(),
 				'align' => 'top',
 			]
 		);
@@ -350,8 +363,8 @@ class DeleteAction extends FormlessAction {
 				'name' => 'wpConfirmB',
 				'inputId' => 'wpConfirmB',
 				'tabIndex' => 5,
-				'value' => $ctx->msg( 'deletepage' )->text(),
-				'label' => $ctx->msg( 'deletepage' )->text(),
+				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
+				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'flags' => [ 'primary', 'destructive' ],
 				'type' => 'submit',
 			] ),
@@ -361,7 +374,7 @@ class DeleteAction extends FormlessAction {
 		);
 
 		$fieldset = new OOUI\FieldsetLayout( [
-			'label' => $ctx->msg( 'delete-legend' )->text(),
+			'label' => $this->getFormMsg( self::MSG_LEGEND )->text(),
 			'id' => 'mw-delete-table',
 			'items' => $fields,
 		] );
@@ -392,16 +405,16 @@ class DeleteAction extends FormlessAction {
 			$link = '';
 			if ( $suppressAllowed ) {
 				$link .= $this->linkRenderer->makeKnownLink(
-					$ctx->msg( 'deletereason-dropdown-suppress' )->inContentLanguage()->getTitle(),
-					$ctx->msg( 'delete-edit-reasonlist-suppress' )->text(),
+					$this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )->inContentLanguage()->getTitle(),
+					$this->getFormMsg( self::MSG_EDIT_REASONS_SUPPRESS )->text(),
 					[],
 					[ 'action' => 'edit' ]
 				);
 				$link .= $ctx->msg( 'pipe-separator' )->escaped();
 			}
 			$link .= $this->linkRenderer->makeKnownLink(
-				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-				$ctx->msg( 'delete-edit-reasonlist' )->text(),
+				$this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->getTitle(),
+				$this->getFormMsg( self::MSG_EDIT_REASONS )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
@@ -470,6 +483,35 @@ class DeleteAction extends FormlessAction {
 		$outputPage->addModules( 'mediawiki.action.delete' );
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 		$outputPage->enableOOUI();
+	}
+
+	/**
+	 * @return string[]
+	 */
+	protected function getFormMessages(): array {
+		return [
+			self::MSG_REASON_DROPDOWN => 'deletereason-dropdown',
+			self::MSG_REASON_DROPDOWN_SUPPRESS => 'deletereason-dropdown-suppress',
+			self::MSG_REASON_DROPDOWN_OTHER => 'deletereasonotherlist',
+			self::MSG_COMMENT => 'deletecomment',
+			self::MSG_REASON_OTHER => 'deleteotherreason',
+			self::MSG_SUBMIT => 'deletepage',
+			self::MSG_LEGEND => 'delete-legend',
+			self::MSG_EDIT_REASONS => 'delete-edit-reasonlist',
+			self::MSG_EDIT_REASONS_SUPPRESS => 'delete-edit-reasonlist-suppress',
+		];
+	}
+
+	/**
+	 * @param string $field One of the self::MSG_* constants
+	 * @return Message
+	 */
+	protected function getFormMsg( string $field ): Message {
+		$messages = $this->getFormMessages();
+		if ( !isset( $messages[$field] ) ) {
+			throw new InvalidArgumentException( "Invalid field $field" );
+		}
+		return $this->msg( $messages[$field] );
 	}
 
 	public function doesWrites() {
