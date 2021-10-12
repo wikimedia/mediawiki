@@ -49,9 +49,6 @@ class LocalFileDeleteBatch {
 	/** @var bool Whether to suppress all suppressable fields when deleting */
 	private $suppress;
 
-	/** @var Status */
-	private $status;
-
 	/** @var UserIdentity */
 	private $user;
 
@@ -71,7 +68,6 @@ class LocalFileDeleteBatch {
 		$this->user = $user;
 		$this->reason = $reason;
 		$this->suppress = $suppress;
-		$this->status = $file->repo->newGood();
 	}
 
 	public function addCurrent() {
@@ -125,9 +121,10 @@ class LocalFileDeleteBatch {
 	}
 
 	/**
+	 * @param StatusValue $status To add error messages to
 	 * @return array
 	 */
-	protected function getHashes() {
+	protected function getHashes( StatusValue $status ): array {
 		$hashes = [];
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
@@ -170,12 +167,12 @@ class LocalFileDeleteBatch {
 		$missing = array_diff_key( $this->srcRels, $hashes );
 
 		foreach ( $missing as $name => $rel ) {
-			$this->status->error( 'filedelete-old-unregistered', $name );
+			$status->error( 'filedelete-old-unregistered', $name );
 		}
 
 		foreach ( $hashes as $name => $hash ) {
 			if ( !$hash ) {
-				$this->status->error( 'filedelete-missing', $this->srcRels[$name] );
+				$status->error( 'filedelete-missing', $this->srcRels[$name] );
 				unset( $hashes[$name] );
 			}
 		}
@@ -316,16 +313,17 @@ class LocalFileDeleteBatch {
 	 */
 	public function execute() {
 		$repo = $this->file->getRepo();
-		$status = $this->file->acquireFileLock();
-		if ( !$status->isOK() ) {
-			return $status;
+		$lockStatus = $this->file->acquireFileLock();
+		if ( !$lockStatus->isOK() ) {
+			return $lockStatus;
 		}
 		$unlockScope = new ScopedCallback( function () {
 			$this->file->releaseFileLock();
 		} );
 
+		$status = $this->file->repo->newGood();
 		// Prepare deletion batch
-		$hashes = $this->getHashes();
+		$hashes = $this->getHashes( $status );
 		$this->deletionBatch = [];
 		$ext = $this->file->getExtension();
 		$dotExt = $ext === '' ? '' : ".$ext";
@@ -345,21 +343,21 @@ class LocalFileDeleteBatch {
 			// This also handles files in the 'deleted' zone deleted via revision deletion.
 			$checkStatus = $this->removeNonexistentFiles( $this->deletionBatch );
 			if ( !$checkStatus->isGood() ) {
-				$this->status->merge( $checkStatus );
-				return $this->status;
+				$status->merge( $checkStatus );
+				return $status;
 			}
 			$this->deletionBatch = $checkStatus->value;
 
 			// Execute the file deletion batch
 			$status = $this->file->repo->deleteBatch( $this->deletionBatch );
 			if ( !$status->isGood() ) {
-				$this->status->merge( $status );
+				$status->merge( $status );
 			}
 		}
 
-		if ( !$this->status->isOK() ) {
+		if ( !$status->isOK() ) {
 			// Critical file deletion error; abort
-			return $this->status;
+			return $status;
 		}
 
 		$dbw = $this->file->repo->getPrimaryDB();
@@ -378,16 +376,16 @@ class LocalFileDeleteBatch {
 		// Commit and return
 		ScopedCallback::consume( $unlockScope );
 
-		return $this->status;
+		return $status;
 	}
 
 	/**
 	 * Removes non-existent files from a deletion batch.
 	 * @param array[] $batch
-	 * @return Status
+	 * @return Status A good status with existing files in $batch as value, or a fatal status in case of I/O errors.
 	 */
 	protected function removeNonexistentFiles( $batch ) {
-		$files = $newBatch = [];
+		$files = [];
 
 		foreach ( $batch as [ $src, /* dest */ ] ) {
 			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
@@ -399,6 +397,7 @@ class LocalFileDeleteBatch {
 				$this->file->repo->getBackend()->getName() );
 		}
 
+		$newBatch = [];
 		foreach ( $batch as $batchItem ) {
 			if ( $result[$batchItem[0]] ) {
 				$newBatch[] = $batchItem;

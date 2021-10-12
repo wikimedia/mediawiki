@@ -102,14 +102,17 @@ class ApiDelete extends ApiBase {
 				false,
 				$tags
 			);
+			// TODO What kind of non-fatal errors should we expect here?
+			$wasScheduled = $status->isOK() && $status->getValue() === false;
 		} else {
 			$status = $this->delete( $pageObj, $reason, $tags );
+			$wasScheduled = $status->isGood() && $status->getValue() === false;
 		}
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
-		$wasScheduled = $status->isGood() && $status->getValue() === false;
+
 		if ( $wasScheduled ) {
 			$this->addWarning( [ 'delete-scheduled', $titleObj->getPrefixedText() ] );
 		}
@@ -223,7 +226,7 @@ class ApiDelete extends ApiBase {
 
 		$ret = FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress, $this->getUser(), $tags );
 		if ( $ret->isOK() && is_int( $ret->value ) ) {
-			// DeletePage (and consequently self::delete()) returns an array of IDs, so do the same here.
+			// self::delete() puts an array of IDs in the status' value, so do the same here.
 			$ret->value = [ $ret->value ];
 		}
 		return $ret;

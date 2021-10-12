@@ -263,22 +263,18 @@ class FileRepo {
 	}
 
 	/**
-	 * Check if a single zone or list of zones is defined for usage
+	 * Ensure that a single zone or list of zones is defined for usage
 	 *
 	 * @param string[]|string $doZones Only do a particular zones
 	 * @throws MWException
-	 * @return Status
 	 */
-	protected function initZones( $doZones = [] ) {
-		$status = $this->newGood();
+	protected function initZones( $doZones = [] ): void {
 		foreach ( (array)$doZones as $zone ) {
 			$root = $this->getZonePath( $zone );
 			if ( $root === null ) {
 				throw new MWException( "No '$zone' zone defined in the {$this->name} repo." );
 			}
 		}
-
-		return $status;
 	}
 
 	/**
@@ -1292,10 +1288,7 @@ class FileRepo {
 
 		$backend = $this->backend; // convenience
 		// Try creating directories
-		$status = $this->initZones( 'public' );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
+		$this->initZones( 'public' );
 
 		$status = $this->newGood( [] );
 
@@ -1396,7 +1389,7 @@ class FileRepo {
 	 * Callers are responsible for doing read-only and "writable repo" checks.
 	 *
 	 * @param string $dir Virtual URL (or storage path) of directory to clean
-	 * @return Status
+	 * @return Status Good status without value for success, fatal otherwise.
 	 */
 	protected function initDirectory( $dir ) {
 		$path = $this->resolveToStoragePathIfVirtual( $dir );
@@ -1435,7 +1428,7 @@ class FileRepo {
 	 * Checks existence of a file
 	 *
 	 * @param string $file Virtual URL (or storage path) of file to check
-	 * @return bool
+	 * @return bool|null Whether the file exists, or null in case of I/O errors
 	 */
 	public function fileExists( $file ) {
 		$result = $this->fileExistsBatch( [ $file ] );
@@ -1447,7 +1440,8 @@ class FileRepo {
 	 * Checks existence of an array of files.
 	 *
 	 * @param string[] $files Virtual URLs (or storage paths) of files to check
-	 * @return array Map of files and existence flags, or false
+	 * @return array<string,bool|null> Map of files and either bool indicating whether the files exist,
+	 *   or null in case of I/O errors
 	 */
 	public function fileExistsBatch( array $files ) {
 		$paths = array_map( [ $this, 'resolveToStoragePathIfVirtual' ], $files );
@@ -1499,10 +1493,7 @@ class FileRepo {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		// Try creating directories
-		$status = $this->initZones( [ 'public', 'deleted' ] );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
+		$this->initZones( [ 'public', 'deleted' ] );
 
 		$status = $this->newGood();
 
@@ -1524,7 +1515,7 @@ class FileRepo {
 			$archiveDir = dirname( $archivePath ); // does not touch FS
 
 			// Create destination directories
-			if ( !$this->initDirectory( $archiveDir )->isOK() ) {
+			if ( !$this->initDirectory( $archiveDir )->isGood() ) {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 
