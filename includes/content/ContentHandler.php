@@ -1698,7 +1698,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Fills the provided ParserOutput with information derived from the content.
-	 * Unless $generateHtml was false, this includes an HTML representation of the content.
+	 * Unless $cpoParams->getGenerateHtml() was false,
+	 * this includes an HTML representation of the content.
 	 *
 	 * Subclasses are expected to override this method.
 	 *
