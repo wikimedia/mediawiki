@@ -95,6 +95,8 @@ class PHPVersionCheck {
 		 */
 		$knownBad = array(
 			'CVE-2019-11048' => '7.3.0 - 7.3.18',
+			// https://bugs.php.net/bug.php?id=79174 as a regression from https://bugs.php.net/bug.php?id=78929
+			'T243667, T291127' => '7.4.0 - 7.4.2'
 		);
 
 		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
