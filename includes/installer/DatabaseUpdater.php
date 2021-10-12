@@ -712,7 +712,9 @@ abstract class DatabaseUpdater {
 			null,
 			null,
 			__METHOD__,
-			[ $this, 'appendLine' ]
+			function ( $line ) {
+				return $this->appendLine( $line );
+			}
 		);
 	}
 
