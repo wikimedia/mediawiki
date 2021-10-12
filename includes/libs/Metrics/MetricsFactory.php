@@ -189,12 +189,27 @@ class MetricsFactory {
 	 */
 	public function flush(): void {
 		if ( $this->format !== 'null' && $this->target ) {
-			$transport = UDPTransport::newFromString( $this->target );
-			foreach ( $this->cache as $metric ) {
-				$this->send( $metric->render(), $transport );
-			}
+			$this->send(
+				$this->getRenderedSamples(),
+				UDPTransport::newFromString( $this->target )
+			);
 		}
 		$this->cache = [];
+	}
+
+	/**
+	 * Get all rendered samples from cache
+	 *
+	 * @return string[]
+	 */
+	private function getRenderedSamples() {
+		$rendered_samples = [];
+		foreach ( $this->cache as $metric ) {
+			foreach ( $metric->render() as $rendered ) {
+				$rendered_samples[] = $rendered;
+			}
+		}
+		return $rendered_samples;
 	}
 
 	/**

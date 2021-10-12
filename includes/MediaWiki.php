@@ -1138,7 +1138,6 @@ class MediaWiki {
 		// Handle external profiler outputs.
 		// Any embedded profiler outputs were already processed in outputResponsePayload().
 		$profiler = Profiler::instance();
-		$profiler->setContext( $this->context );
 		$profiler->logData();
 
 		self::emitBufferedStatsdData(
