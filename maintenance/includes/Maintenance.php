@@ -1253,10 +1253,6 @@ abstract class Maintenance {
 		// Handle external profiler outputs
 		// FIXME: Handle embedded outputs as well, such as ProfilerOutputText (T253547)
 		$profiler = Profiler::instance();
-		// FIXME: Make Profiler not need a WebRequest (T292269)
-		// This set/get call silences the Profiler::getContext warning.
-		// This is "safe" so long as Profiler.php only uses this to call WebRequest::getElapsedTime().
-		$profiler->setContext( RequestContext::getMain() );
 		$profiler->logData();
 
 		MediaWiki::emitBufferedStatsdData(

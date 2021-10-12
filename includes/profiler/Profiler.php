@@ -126,29 +126,23 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Sets the context for this Profiler
-	 *
+	 * @internal
 	 * @param IContextSource $context
 	 * @since 1.25
 	 */
 	public function setContext( $context ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->context = $context;
 	}
 
 	/**
-	 * Gets the context for this Profiler
-	 *
+	 * @internal
 	 * @return IContextSource
 	 * @since 1.25
 	 */
 	public function getContext() {
-		if ( $this->context ) {
-			return $this->context;
-		} else {
-			$this->logger->warning( __METHOD__ . " called before setContext, " .
-				"fallback to RequestContext::getMain()." );
-			return RequestContext::getMain();
-		}
+		wfDeprecated( __METHOD__, '1.38' );
+		return $this->context ?? RequestContext::getMain();
 	}
 
 	public function profileIn( $functionname ) {
@@ -222,12 +216,12 @@ abstract class Profiler {
 	 * @since 1.25
 	 */
 	public function logData() {
-		$request = $this->getContext()->getRequest();
-
-		$timeElapsed = $request->getElapsedTime();
-		$timeElapsedThreshold = $this->params['threshold'];
-		if ( $timeElapsed <= $timeElapsedThreshold ) {
-			return;
+		if ( $this->params['threshold'] > 0.0 ) {
+			// Note, this is also valid for CLI processes.
+			$timeElapsed = microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'];
+			if ( $timeElapsed <= $this->params['threshold'] ) {
+				return;
+			}
 		}
 
 		$outputs = [];
