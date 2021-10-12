@@ -27,12 +27,22 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use NamespaceInfo;
 use ReadOnlyMode;
+use Status;
+use StatusValue;
+use TitleValue;
+use User;
 use WatchedItemStoreInterface;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * WatchlistManager service
@@ -55,9 +65,6 @@ class WatchlistManager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
@@ -69,6 +76,15 @@ class WatchlistManager {
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
 
 	/**
 	 * @var array
@@ -91,29 +107,35 @@ class WatchlistManager {
 	/**
 	 * @param ServiceOptions $options
 	 * @param HookContainer $hookContainer
-	 * @param PermissionManager $permissionManager
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param TalkPageNotificationManager $talkPageNotificationManager
 	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param UserFactory $userFactory
+	 * @param NamespaceInfo $nsInfo
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		HookContainer $hookContainer,
-		PermissionManager $permissionManager,
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
 		TalkPageNotificationManager $talkPageNotificationManager,
-		WatchedItemStoreInterface $watchedItemStore
+		WatchedItemStoreInterface $watchedItemStore,
+		UserFactory $userFactory,
+		NamespaceInfo $nsInfo,
+		WikiPageFactory $wikiPageFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->permissionManager = $permissionManager;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->userFactory = $userFactory;
+		$this->nsInfo = $nsInfo;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -123,18 +145,24 @@ class WatchlistManager {
 	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 *
-	 * @param UserIdentity $user
+	 * @param Authority|UserIdentity $performer deprecated passing UserIdentity since 1.37
 	 */
-	public function clearAllUserNotifications( UserIdentity $user ) {
+	public function clearAllUserNotifications( $performer ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			// Cannot change anything in read only
 			return;
 		}
 
-		if ( !$this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
+		if ( !$performer instanceof Authority ) {
+			$performer = $this->userFactory->newFromUserIdentity( $performer );
+		}
+
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
 			// User isn't allowed to edit the watchlist
 			return;
 		}
+
+		$user = $performer->getUser();
 
 		if ( !$this->options->get( 'UseEnotif' ) &&
 			!$this->options->get( 'ShowUpdatedMarker' )
@@ -161,13 +189,13 @@ class WatchlistManager {
 	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 *
-	 * @param UserIdentity $user
-	 * @param LinkTarget $title
+	 * @param Authority|UserIdentity $performer deprecated passing UserIdentity since 1.37
+	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.37
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function clearTitleUserNotifications(
-		UserIdentity $user,
-		LinkTarget $title,
+		$performer,
+		$title,
 		int $oldid = 0
 	) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -175,19 +203,27 @@ class WatchlistManager {
 			return;
 		}
 
-		if ( !$this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
+		if ( !$performer instanceof Authority ) {
+			$performer = $this->userFactory->newFromUserIdentity( $performer );
+		}
+
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
 			// User isn't allowed to edit the watchlist
 			return;
 		}
 
+		$userIdentity = $performer->getUser();
 		$userTalkPage = (
 			$title->getNamespace() === NS_USER_TALK &&
-			$title->getText() === $user->getName()
+			$title->getDBkey() === strtr( $userIdentity->getName(), ' ', '_' )
 		);
 
 		if ( $userTalkPage ) {
 			// If we're working on user's talk page, we should update the talk page message indicator
-			if ( !$this->hookRunner->onUserClearNewTalkNotification( $user, $oldid ) ) {
+			if ( !$this->hookRunner->onUserClearNewTalkNotification(
+				$userIdentity,
+				$oldid
+			) ) {
 				return;
 			}
 
@@ -195,17 +231,17 @@ class WatchlistManager {
 			$talkPageNotificationManager = $this->talkPageNotificationManager;
 			$revisionLookup = $this->revisionLookup;
 			DeferredUpdates::addCallableUpdate( static function () use (
-				$user,
+				$userIdentity,
 				$oldid,
 				$talkPageNotificationManager,
 				$revisionLookup
 			) {
-				if ( !$talkPageNotificationManager->userHasNewMessages( $user ) ) {
+				if ( !$talkPageNotificationManager->userHasNewMessages( $userIdentity ) ) {
 					// no notifications to clear
 					return;
 				}
 				// Delete the last notifications (they stack up)
-				$talkPageNotificationManager->removeUserHasNewMessages( $user );
+				$talkPageNotificationManager->removeUserHasNewMessages( $userIdentity );
 
 				// If there is a new, unseen, revision, use its timestamp
 				if ( !$oldid ) {
@@ -223,7 +259,7 @@ class WatchlistManager {
 				$newRev = $revisionLookup->getNextRevision( $oldRev );
 				if ( $newRev ) {
 					$talkPageNotificationManager->setUserHasNewMessages(
-						$user,
+						$userIdentity,
 						$newRev
 					);
 				}
@@ -236,7 +272,7 @@ class WatchlistManager {
 			return;
 		}
 
-		if ( !$user->isRegistered() ) {
+		if ( !$userIdentity->isRegistered() ) {
 			// Nothing else to do
 			return;
 		}
@@ -246,17 +282,17 @@ class WatchlistManager {
 		// and when it does have to be executed, it can be on a replica DB
 		// If this is the user's newtalk page, we always update the timestamp
 		$force = $userTalkPage ? 'force' : '';
-		$this->watchedItemStore->resetNotificationTimestamp( $user, $title, $force, $oldid );
+		$this->watchedItemStore->resetNotificationTimestamp( $userIdentity, $title, $force, $oldid );
 	}
 
 	/**
 	 * Get the timestamp when this page was updated since the user last saw it.
 	 *
 	 * @param UserIdentity $user
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.37
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
-	public function getTitleNotificationTimestamp( UserIdentity $user, LinkTarget $title ) {
+	public function getTitleNotificationTimestamp( UserIdentity $user, $title ) {
 		$userId = $user->getId();
 
 		if ( !$userId ) {
@@ -282,6 +318,247 @@ class WatchlistManager {
 		return $timestamp;
 	}
 
+	/**
+	 * @since 1.37
+	 * @param PageReference $target
+	 * @return bool
+	 */
+	public function isWatchable( PageReference $target ): bool {
+		if ( !$this->nsInfo->isWatchable( $target->getNamespace() ) ) {
+			return false;
+		}
+
+		if ( $target instanceof PageIdentity && !$target->canExist() ) {
+			// Catch "improper" Title instances
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if the page is watched by the user.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ): bool {
+		if ( $this->isWatchable( $target ) ) {
+			return $this->watchedItemStore->isWatched( $userIdentity, $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the page is watched by the user and the user has permission to view their
+	 * watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isWatched( Authority $performer, PageIdentity $target ): bool {
+		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
+			return $this->isWatchedIgnoringRights( $performer->getUser(), $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the article is temporarily watched by the user.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isTempWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ): bool {
+		if ( $this->isWatchable( $target ) ) {
+			return $this->watchedItemStore->isTempWatched( $userIdentity, $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the page is temporarily watched by the user and the user has permission to view
+	 * their watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isTempWatched( Authority $performer, PageIdentity $target ): bool {
+		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
+			return $this->isTempWatchedIgnoringRights( $performer->getUser(), $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Watch a page. Calls the WatchArticle and WatchArticleComplete hooks.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @return StatusValue
+	 */
+	public function addWatchIgnoringRights(
+		UserIdentity $userIdentity,
+		PageIdentity $target,
+		?string $expiry = null
+	): StatusValue {
+		if ( !$this->isWatchable( $target ) ) {
+			return StatusValue::newFatal( 'watchlistnotwatchable' );
+		}
+
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $target );
+		$title = $wikiPage->getTitle();
+
+		// TODO: update hooks to take Authority
+		$status = Status::newFatal( 'hookaborted' );
+		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
+		if ( $this->hookRunner->onWatchArticle( $user, $wikiPage, $status, $expiry ) ) {
+			$status = StatusValue::newGood();
+			$this->watchedItemStore->addWatch( $userIdentity, $this->nsInfo->getSubjectPage( $title ), $expiry );
+			if ( $this->nsInfo->canHaveTalkPage( $title ) ) {
+				$this->watchedItemStore->addWatch( $userIdentity, $this->nsInfo->getTalkPage( $title ), $expiry );
+			}
+			$this->hookRunner->onWatchArticleComplete( $user, $wikiPage );
+		}
+
+		// eventually user_touched should be factored out of User and this should be replaced
+		$user->invalidateCache();
+
+		return $status;
+	}
+
+	/**
+	 * Watch a page if the user has permission to edit their watchlist.
+	 * Calls the WatchArticle and WatchArticleComplete hooks.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @return StatusValue
+	 */
+	public function addWatch(
+		Authority $performer,
+		PageIdentity $target,
+		?string $expiry = null
+	): StatusValue {
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
+			// TODO: this function should be moved out of User
+			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+		}
+
+		return $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
+	}
+
+	/**
+	 * Stop watching a page. Calls the UnwatchArticle and UnwatchArticleComplete hooks.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @return StatusValue
+	 */
+	public function removeWatchIgnoringRights(
+		UserIdentity $userIdentity,
+		PageIdentity $target
+	): StatusValue {
+		if ( !$this->isWatchable( $target ) ) {
+			return StatusValue::newFatal( 'watchlistnotwatchable' );
+		}
+
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $target );
+		$title = $wikiPage->getTitle();
+
+		// TODO: update hooks to take Authority
+		$status = Status::newFatal( 'hookaborted' );
+		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
+		if ( $this->hookRunner->onUnwatchArticle( $user, $wikiPage, $status ) ) {
+			$status = StatusValue::newGood();
+			$this->watchedItemStore->removeWatch( $userIdentity, $this->nsInfo->getSubjectPage( $title ) );
+			if ( $this->nsInfo->canHaveTalkPage( $title ) ) {
+				$this->watchedItemStore->removeWatch( $userIdentity, $this->nsInfo->getTalkPage( $title ) );
+			}
+			$this->hookRunner->onUnwatchArticleComplete( $user, $wikiPage );
+		}
+
+		// eventually user_touched should be factored out of User and this should be replaced
+		$user->invalidateCache();
+
+		return $status;
+	}
+
+	/**
+	 * Stop watching a page if the user has permission to edit their watchlist.
+	 * Calls the UnwatchArticle and UnwatchArticleComplete hooks.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @return StatusValue
+	 */
+	public function removeWatch(
+		Authority $performer,
+		PageIdentity $target
+	): StatusValue {
+		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
+			// TODO: this function should be moved out of User
+			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+		}
+
+		return $this->removeWatchIgnoringRights( $performer->getUser(), $target );
+	}
+
+	/**
+	 * Watch or unwatch a page, calling watch/unwatch hooks as appropriate.
+	 * Checks before watching or unwatching to see if the page is already in the requested watch
+	 * state and if the expiry is the same so it does not act unnecessarily.
+	 *
+	 * @param bool $watch Whether to watch or unwatch the page
+	 * @param Authority $performer who is watching/unwatching
+	 * @param PageIdentity $target Page to watch/unwatch
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @return StatusValue
+	 * @since 1.37
+	 */
+	public function setWatch(
+		bool $watch,
+		Authority $performer,
+		PageIdentity $target,
+		string $expiry = null
+	): StatusValue {
+		// User must be registered, and either changing the watch state or at least the expiry.
+		if ( !$performer->getUser()->isRegistered() ) {
+			return StatusValue::newGood();
+		}
+
+		// Only call addWatchhIgnoringRights() or removeWatch() if there's been a change in the watched status.
+		$link = TitleValue::newFromPage( $target );
+		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $link );
+		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
+		if ( $oldWatchedItem && $expiry !== null ) {
+			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
+			$oldWatchPeriod = $oldWatchedItem->getExpiry() ?? 'infinity';
+			$changingWatchStatus = $changingWatchStatus ||
+				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
+		}
+
+		if ( $changingWatchStatus ) {
+			// If the user doesn't have 'editmywatchlist', we still want to
+			// allow them to add but not remove items via edits and such.
+			if ( $watch ) {
+				return $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
+			} else {
+				return $this->removeWatch( $performer, $target );
+			}
+		}
+
+		return StatusValue::newGood();
+	}
 }
 
 /**
