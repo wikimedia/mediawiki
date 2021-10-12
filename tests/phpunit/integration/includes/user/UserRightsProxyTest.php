@@ -88,8 +88,8 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	public function testGetUserPage() {
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
 		$this->assertSame(
-			$userRightsProxy->getUserPage()->getLinkURL(),
-			'/index.php/User:UserRightsProxyTest@foowiki'
+			'/index.php/User:UserRightsProxyTest@foowiki',
+			$userRightsProxy->getUserPage()->getLinkURL()
 		);
 	}
 
@@ -108,7 +108,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetWikiId() {
 		$userRightsProxy = UserRightsProxy::newFromName( 'foowiki', 'UserRightsProxyTest' );
-		$this->assertSame( $userRightsProxy->getWikiId(), 'foowiki' );
+		$this->assertSame( 'foowiki', $userRightsProxy->getWikiId() );
 	}
 
 	/**
