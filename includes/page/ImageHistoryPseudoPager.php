@@ -112,12 +112,10 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	public function getBody() {
 		$s = '';
 		$this->doQuery();
-		$formattedComments = [];
 		if ( count( $this->mHist ) ) {
 			if ( $this->mImg->isLocal() ) {
-				// Do a batch existence check for user pages and talkpages. Format comments.
+				// Do a batch existence check for user pages and talkpages.
 				$linkBatch = $this->linkBatchFactory->newLinkBatch();
-				$comments = [];
 				for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 					$file = $this->mHist[$i];
 					$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
@@ -125,12 +123,19 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 						$linkBatch->add( NS_USER, $uploader->getName() );
 						$linkBatch->add( NS_USER_TALK, $uploader->getName() );
 					}
-					$comments[$i] = $file->getDescription( File::FOR_THIS_USER, $this->getUser() );
 				}
 				$linkBatch->execute();
-				$formattedComments = MediaWikiServices::getInstance()->getCommentFormatter()
-					->formatStrings( $comments, $this->getTitle() );
 			}
+
+			// Batch-format comments
+			$comments = [];
+			for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
+				$file = $this->mHist[$i];
+				$comments[$i] = $file->getDescription( File::FOR_THIS_USER, $this->getUser() );
+			}
+			$formattedComments = MediaWikiServices::getInstance()
+				->getCommentFormatter()
+				->formatStrings( $comments, $this->getTitle() );
 
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
