@@ -266,7 +266,7 @@
 				// Remove trailing whitespace for consistency with EditPage diffs.
 				// TODO trimEnd() when we can use that.
 				'totext-main': $textbox.textSelection( 'getContents' ).replace( /\s\s*$/, '' ),
-				'tocontentmodel-main': 'wikitext',
+				'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
 				topst: true,
 				slots: 'main',
 				uselang: mw.config.get( 'wgUserLanguage' )
@@ -276,7 +276,7 @@
 			}
 			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
 				diffPar.fromslots = 'main';
-				diffPar[ 'fromcontentmodel-main' ] = 'wikitext';
+				diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
 				diffPar[ 'fromtext-main' ] = '';
 			}
 			diffRequest = api.post( diffPar );
