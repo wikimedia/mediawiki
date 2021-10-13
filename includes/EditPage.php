@@ -570,7 +570,7 @@ class EditPage implements IEditObject {
 		$this->importFormData( $request );
 		$this->firsttime = false;
 
-		if ( wfReadOnly() && $this->save ) {
+		if ( $this->save && wfReadOnly() ) {
 			// Force preview
 			$this->save = false;
 			$this->preview = true;
@@ -736,19 +736,18 @@ class EditPage implements IEditObject {
 			$rigor
 		);
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
-		$remove = [];
-		foreach ( $permErrors as $error ) {
-			if ( ( $this->preview || $this->diff )
-				&& (
-					$error[0] == 'blockedtext' ||
+		if ( $this->preview || $this->diff ) {
+			$remove = [];
+			foreach ( $permErrors as $error ) {
+				if ( $error[0] == 'blockedtext' ||
 					$error[0] == 'autoblockedtext' ||
 					$error[0] == 'systemblockedtext'
-				)
-			) {
-				$remove[] = $error;
+				) {
+					$remove[] = $error;
+				}
 			}
+			$permErrors = wfArrayDiff2( $permErrors, $remove );
 		}
-		$permErrors = wfArrayDiff2( $permErrors, $remove );
 
 		return $permErrors;
 	}
@@ -1074,8 +1073,12 @@ class EditPage implements IEditObject {
 			if ( $changeTags === null || $changeTags === '' ) {
 				$this->changeTags = [];
 			} else {
-				$this->changeTags = array_filter( array_map( 'trim', explode( ',',
-					$changeTags ) ) );
+				$this->changeTags = array_filter(
+					array_map(
+						'trim',
+						explode( ',', $changeTags )
+					)
+				);
 			}
 		} else {
 			# Not a posted form? Start with nothing.
@@ -1421,7 +1424,8 @@ class EditPage implements IEditObject {
 				// undo-nochange.
 				$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 				$this->editFormPageTop .= Html::rawElement(
-					'div', [ 'class' => $class ],
+					'div',
+					[ 'class' => $class ],
 					$out->parseAsInterface(
 						$this->context->msg( 'undo-' . $undoMsg )->plain()
 					)
@@ -1560,7 +1564,6 @@ class EditPage implements IEditObject {
 			return $handler->makeEmptyContent();
 		}
 
-		$user = $this->context->getUser();
 		$title = Title::newFromText( $preload );
 
 		# Check for existence to avoid getting MediaWiki:Noarticletext
@@ -1580,7 +1583,6 @@ class EditPage implements IEditObject {
 			$page = $this->wikiPageFactory->newFromTitle( $title );
 		}
 
-		$parserOptions = ParserOptions::newFromUser( $user );
 		$content = $page->getContent( RevisionRecord::RAW );
 
 		if ( !$content ) {
@@ -1603,6 +1605,7 @@ class EditPage implements IEditObject {
 			$content = $converted;
 		}
 
+		$parserOptions = ParserOptions::newFromUser( $this->context->getUser() );
 		$contentTransformer = MediaWikiServices::getInstance()->getContentTransformer();
 		return $contentTransformer->preloadTransform(
 			$content,
@@ -2926,7 +2929,8 @@ class EditPage implements IEditObject {
 
 		if ( !$this->isConflict &&
 			$this->section != '' &&
-			!$this->isSectionEditSupported() ) {
+			!$this->isSectionEditSupported()
+		) {
 			// We use $this->section to much before this and getVal('wgSection') directly in other places
 			// at this point we can't reset $this->section to '' to fallback to non-section editing.
 			// Someone is welcome to try refactoring though
@@ -2968,6 +2972,7 @@ class EditPage implements IEditObject {
 		) );
 
 		if ( is_callable( $formCallback ) ) {
+			// TODO go through deprecation process
 			wfWarn( 'The $formCallback parameter to ' . __METHOD__ . ' is deprecated' );
 			call_user_func_array( $formCallback, [ &$out ] );
 		}
@@ -3467,11 +3472,13 @@ class EditPage implements IEditObject {
 		}
 
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		$this->context->getOutput()->addHTML( $this->getSummaryInputWidget(
+		$this->context->getOutput()->addHTML(
+			$this->getSummaryInputWidget(
 				$summary,
 				$labelText,
 				[ 'class' => $summaryClass ]
-			) );
+			)
+		);
 	}
 
 	/**
