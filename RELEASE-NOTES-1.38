@@ -130,6 +130,9 @@ because of Phabricator reports.
   interwiki title through by default, logging a deprecation warning.
 * The `UndeleteForm::undelete` hook, deprecated in 1.37, was removed.
 * The `jquery.mw-jump` ResourceLoader module was removed.
+* The `wgForeignUploadTargets` and `wgEnableUploads` configuration values
+  were removed from mw.config, they had previously been documented as being
+  included for internal use by the mediawiki.ForeignUpload module.
 * Several Skin methods, hard deprecated in 1.36, have been removed. These
   include Skin::privacyLink(), aboutLink(), disclaimerLink(), makeUrl()
   getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink(),
