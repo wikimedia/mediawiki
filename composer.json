@@ -72,7 +72,7 @@
 		"wikimedia/utfnormal": "3.0.2",
 		"wikimedia/timestamp": "3.0.0",
 		"wikimedia/wait-condition-loop": "2.0.2",
-		"wikimedia/wrappedstring": "3.2.0",
+		"wikimedia/wrappedstring": "4.0.1",
 		"wikimedia/xmp-reader": "0.8.1",
 		"zordius/lightncandy": "1.2.6"
 	},
