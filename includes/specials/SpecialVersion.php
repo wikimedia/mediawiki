@@ -276,7 +276,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		if ( defined( 'INTL_ICU_VERSION' ) ) {
-			$software['[http://site.icu-project.org/ ICU]'] = INTL_ICU_VERSION;
+			$software['[https://icu.unicode.org/ ICU]'] = INTL_ICU_VERSION;
 		}
 
 		// Allow a hook to add/remove items.
