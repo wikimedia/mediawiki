@@ -93,6 +93,8 @@ class PHPVersionCheck {
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
 		$knownBad = array(
+			// https://bugs.php.net/bug.php?id=79174 as a regression from https://bugs.php.net/bug.php?id=78929
+			'T243667, T291127' => '7.4.0 - 7.4.2'
 		);
 
 		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
