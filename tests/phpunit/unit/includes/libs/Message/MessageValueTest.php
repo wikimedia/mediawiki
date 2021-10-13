@@ -173,6 +173,16 @@ class MessageValueTest extends \PHPUnit\Framework\TestCase {
 		$this->assertSame( $mv, $mv2 );
 	}
 
+	public function testUserGroupParams() {
+		$mv = new MessageValue( 'key' );
+		$mv2 = $mv->userGroupParams( 'bot' );
+		$this->assertSame( '<message key="key">' .
+			"<group>bot</group>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
 	public function testSizeParams() {
 		$mv = new MessageValue( 'key' );
 		$mv2 = $mv->sizeParams( 1, 2 );

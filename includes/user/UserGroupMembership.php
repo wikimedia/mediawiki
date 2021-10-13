@@ -164,10 +164,10 @@ class UserGroupMembership {
 	 *
 	 * @param string $group Internal group name
 	 * @return string Localized friendly group name
+	 * @deprecated since 1.38, use Language::getGroupName or Message::userGroupParams
 	 */
 	public static function getGroupName( $group ) {
-		$msg = wfMessage( "group-$group" );
-		return $msg->isBlank() ? $group : $msg->text();
+		return RequestContext::getMain()->getLanguage()->getGroupName( $group );
 	}
 
 	/**

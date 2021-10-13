@@ -59,6 +59,13 @@ class ParamType {
 	 */
 	public const TIME = 'time';
 
+	/**
+	 * @since 1.38
+	 *
+	 * User Group
+	 */
+	public const GROUP = 'group';
+
 	/** A number of bytes. The output will be rounded to an appropriate magnitude. */
 	public const SIZE = 'size';
 
