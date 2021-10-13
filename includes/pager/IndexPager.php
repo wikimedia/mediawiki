@@ -100,6 +100,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mDb;
 	/** @var stdClass|bool|null Extra row fetched at the end to see if the end was reached */
 	public $mPastTheEndRow;
+	/** @var array|null same format as getdate */
+	private $lastHeaderDate;
 
 	/**
 	 * The index to actually be used for ordering. This can be a single column,
@@ -264,7 +266,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		# Plus an extra row so that we can tell the "next" link should be shown
 		$queryLimit = $this->mLimit + 1;
-
 		if ( $this->mOffset == '' ) {
 			$isFirst = true;
 		} else {
@@ -587,6 +588,26 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * Get the HTML of a pager row.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @param stdClass $row
+	 * @return string
+	 */
+	protected function getRow( $row ): string {
+		$s = '';
+		$timestamp = $row->rev_timestamp ?? null;
+		$date = $timestamp ? $this->getDateFromTimestamp( $timestamp ) : null;
+		if ( $date && $this->isHeaderRowNeeded( $date ) ) {
+			$s .= $this->getHeaderRow( $timestamp );
+			$this->lastHeaderDate = $date;
+		}
+		$s .= $this->formatRow( $row );
+		return $s;
+	}
+
+	/**
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and
 	 * getEndBody(), concatenates the results and returns them.
 	 *
@@ -614,20 +635,44 @@ abstract class IndexPager extends ContextSource implements Pager {
 				for ( $i = $numRows - 1; $i >= 0; $i-- ) {
 					$this->mResult->seek( $i );
 					$row = $this->mResult->fetchObject();
-					$s .= $this->formatRow( $row );
+					$s .= $this->getRow( $row );
 				}
 			} else {
 				$this->mResult->seek( 0 );
 				for ( $i = 0; $i < $numRows; $i++ ) {
 					$row = $this->mResult->fetchObject();
-					$s .= $this->formatRow( $row );
+					$s .= $this->getRow( $row );
 				}
 			}
+			$s .= $this->getEndGroup();
+			$s .= $this->getFooter();
 		} else {
 			$s .= $this->getEmptyBody();
 		}
 		$s .= $this->getEndBody();
 		return $s;
+	}
+
+	/**
+	 * End an existing group of page rows.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return string
+	 */
+	protected function getEndGroup(): string {
+		return '';
+	}
+
+	/**
+	 * Start a new group of page rows.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return string
+	 */
+	protected function getStartGroup(): string {
+		return '';
 	}
 
 	/**
@@ -639,6 +684,75 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	public function getModuleStyles() {
 		return [ 'mediawiki.pager.styles' ];
+	}
+
+	/**
+	 * Determines if a header row is needed based on the current state of the IndexPager.
+	 *
+	 * @since 1.38
+	 * @param array $date of current row in format returned by getdate.
+	 * @return bool
+	 */
+	protected function isHeaderRowNeeded( array $date ): bool {
+		$showHeading = false;
+		$lastDay = $this->lastHeaderDate['mday'] ?? null;
+		$lastMonth = $this->lastHeaderDate['month'] ?? null;
+		$lastYear = $this->lastHeaderDate['year'] ?? null;
+
+		$showHeading = $lastDay === null || (
+			$date &&
+			$lastMonth && $lastYear &&
+			(
+				$lastDay !== $date['mday'] ||
+				$lastMonth !== $date['month'] ||
+				$lastYear !== $date['year']
+			)
+		);
+		return $date && $showHeading;
+	}
+
+	/**
+	 * Determines whether the header row is the first that will be outputted to the page.
+	 *
+	 * @since 1.38
+	 * @return bool
+	 */
+	final protected function isFirstHeaderRow(): bool {
+		$lastDay = $this->lastHeaderDate['mday'] ?? null;
+		return $lastDay === null;
+	}
+
+	/**
+	 * Get date from the timestamp
+	 *
+	 * @since 1.38
+	 * @param string $timestamp
+	 * @return array|null associative array that matches the return value of getdate
+	 */
+	final protected function getDateFromTimestamp( string $timestamp ) {
+		$time = $timestamp ? wfTimestamp( TS_UNIX, $timestamp ) : null;
+		return $time ? getdate( $time ) : null;
+	}
+
+	/**
+	 * Classes can override this method to introduce headers.
+	 *
+	 * @since 1.38
+	 * @param string $timestamp
+	 * @return string
+	 */
+	protected function getHeaderRow( string $timestamp ): string {
+		return '';
+	}
+
+	/**
+	 * Classes can extend to output a footer at the bottom of the pager list.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	protected function getFooter(): string {
+		return '';
 	}
 
 	/**

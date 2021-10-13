@@ -287,9 +287,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		if ( $haveRevisions ) {
 			$out->addHTML( $revisions->getNavigationBar() );
-			$out->addHTML( '<ul>' );
 			$out->addHTML( $revisions->getBody() );
-			$out->addHTML( '</ul>' );
 			$out->addHTML( $revisions->getNavigationBar() );
 		} else {
 			$out->addWikiMsg( 'mergehistory-empty' );

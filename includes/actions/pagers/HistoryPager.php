@@ -37,6 +37,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @var bool|stdClass
 	 */
 	public $lastRow = false;
+	/**
+	 * @var bool|stdClass|string May be set to 'unknown' when processing the last row
+	 */
+	public $currRow = false;
 	public $lastResultOffset = false;
 
 	public $counter, $historyPage, $buttons, $conds;
@@ -161,28 +165,37 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param stdClass $row
-	 * @return string
+	 * Changes getRow behaviour to only render the previous row.
+	 *
+	 * @inheritDoc
 	 */
-	public function formatRow( $row ) {
+	protected function getRow( $row ): string {
+		$this->currRow = $row;
 		if ( $this->lastRow ) {
-			$firstInList = $this->counter == 1;
 			$this->counter++;
-
-			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->watchlistManager
-					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
-				: false;
-
-			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp,
-				$firstInList, $this->lastResultOffset );
+			$s = parent::getRow( $this->lastRow );
 		} else {
 			$s = '';
 		}
 		$this->lastRow = $row;
 		$this->lastResultOffset = $this->getResultOffset();
-
 		return $s;
+	}
+
+	/**
+	 * @param stdClass $row Unused because we're actually processing the previous row
+	 * @return string
+	 */
+	public function formatRow( $row ) {
+		$firstInList = $this->counter == 1;
+
+		$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+			? $this->watchlistManager
+				->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
+			: false;
+
+		return $this->historyLine( $this->lastRow, $this->currRow, $notifTimestamp,
+			$firstInList, $this->lastResultOffset );
 	}
 
 	protected function doBatchLookups() {
@@ -241,7 +254,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	protected function getStartBody() {
 		$this->lastRow = false;
-		$this->counter = 1;
+		$this->counter = 0;
 		$this->oldIdChecked = 0;
 		$s = '';
 		// Button container stored in $this->buttons for re-use in getEndBody()
@@ -286,8 +299,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->buttons .= '</div>';
 
 			$s .= $this->buttons;
-			$s .= '<ul id="pagehistory">' . "\n";
 		}
+
+		$s .= '<div id="pagehistory">';
 
 		return $s;
 	}
@@ -312,36 +326,33 @@ class HistoryPager extends ReverseChronologicalPager {
 			return '';
 		}
 
+		# Special handling for the last row.
 		if ( $this->lastRow ) {
-			$firstInList = $this->counter == 1;
+			$this->counter++;
+
 			if ( $this->mIsBackwards ) {
 				# Next row is unknown, but for UI reasons, probably exists if an offset has been specified
 				if ( $this->mOffset == '' ) {
-					$next = null;
+					$row = null;
 				} else {
-					$next = 'unknown';
+					$row = 'unknown';
 				}
 			} else {
 				# The next row is the past-the-end row
-				$next = $this->mPastTheEndRow;
+				$row = $this->mPastTheEndRow;
 			}
-			$this->counter++;
 
-			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->watchlistManager
-					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
-				: false;
-
-			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp,
-				$firstInList, $this->lastResultOffset );
+			$s = $this->getStartGroup();
+			$s .= $this->getRow( $row );
+			$s .= $this->getEndGroup();
 		} else {
 			$s = '';
 		}
-		$s .= "</ul>\n";
 		# Add second buttons only if there is more than one rev
 		if ( $this->getNumRows() > 2 ) {
 			$s .= $this->buttons;
 		}
+		$s .= '</div>'; // closes div#pagehistory
 		$s .= '</form>';
 		return $s;
 	}

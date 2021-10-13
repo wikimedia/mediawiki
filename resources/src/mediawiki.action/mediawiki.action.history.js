@@ -4,7 +4,7 @@
 $( function () {
 	var $historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
-		$lis = $( '#pagehistory > li' );
+		$lis = $( '#pagehistory .mw-contributions-list > li' );
 
 	/**
 	 * @ignore
@@ -93,7 +93,7 @@ $( function () {
 
 		if ( $historySubmitter ) {
 			$copyForm = $historyCompareForm.clone();
-			$copyRadios = $copyForm.find( '#pagehistory > li' ).find( 'input[name="diff"], input[name="oldid"]' );
+			$copyRadios = $copyForm.find( '#pagehistory .mw-contributions-list > li' ).find( 'input[name="diff"], input[name="oldid"]' );
 			$copyAction = $copyForm.find( '> [name="action"]' );
 
 			// Remove action=historysubmit and ids[..]=..
