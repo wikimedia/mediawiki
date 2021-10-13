@@ -12,15 +12,15 @@ class LoginPage extends Page {
 		super.openTitle( 'Special:UserLogin' );
 	}
 
-	login( username, password ) {
-		this.open();
-		this.username.setValue( username );
-		this.password.setValue( password );
-		this.loginButton.click();
+	async login( username, password ) {
+		await this.open();
+		await this.username.setValue( username );
+		await this.password.setValue( password );
+		await this.loginButton.click();
 	}
 
-	loginAdmin() {
-		this.login( browser.config.mwUser, browser.config.mwPwd );
+	async loginAdmin() {
+		await this.login( browser.config.mwUser, browser.config.mwPwd );
 	}
 }
 

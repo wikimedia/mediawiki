@@ -4,10 +4,10 @@ const assert = require( 'assert' );
 const BlankPage = require( './../BlankPage' );
 
 describe( 'BlankPage', function () {
-	it( 'should have its title @daily', function () {
-		BlankPage.open();
+	it( 'should have its title @daily', async function () {
+		await BlankPage.open();
 
 		// check
-		assert.strictEqual( BlankPage.heading.getText(), 'Blank page' );
+		assert.strictEqual( await BlankPage.heading.getText(), 'Blank page' );
 	} );
 } );
