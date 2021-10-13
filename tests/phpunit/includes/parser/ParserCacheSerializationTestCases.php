@@ -55,6 +55,8 @@ abstract class ParserCacheSerializationTestCases {
 			. '\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00",
 	];
 
+	private const CACHE_TIME = '20010419042521';
+
 	/**
 	 * Get acceptance test cases for CacheTime class.
 	 * @see SerializationTestTrait::getTestInstancesAndAssertions()
@@ -64,9 +66,8 @@ abstract class ParserCacheSerializationTestCases {
 		$cacheTimeWithUsedOptions = new CacheTime();
 		$cacheTimeWithUsedOptions->recordOptions( [ 'optA', 'optX' ] );
 
-		$cacheTimestamp = MWTimestamp::convert( TS_MW, 987654321 );
 		$cacheTimeWithTime = new CacheTime();
-		$cacheTimeWithTime->setCacheTime( $cacheTimestamp );
+		$cacheTimeWithTime->setCacheTime( self::CACHE_TIME );
 
 		$cacheExpiry = 10;
 		$cacheTimeWithExpiry = new CacheTime();
@@ -106,8 +107,8 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $cacheTimeWithTime,
 				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
-				) use ( $cacheTimestamp ) {
-					$testCase->assertSame( $cacheTimestamp, $object->getCacheTime() );
+				) {
+					$testCase->assertSame( self::CACHE_TIME, $object->getCacheTime() );
 				}
 			],
 			'cacheExpiry' => [
@@ -135,6 +136,11 @@ abstract class ParserCacheSerializationTestCases {
 	 * @return array[]
 	 */
 	public static function getParserOutputTestCases() {
+		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
+		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
+		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
+		$parserOutputWithCacheTimeProps->setCacheRevisionId( 42 );
+
 		$parserOutputWithUsedOptions = new ParserOutput( 'Dummy' );
 		$parserOutputWithUsedOptions->recordOption( 'optA' );
 		$parserOutputWithUsedOptions->recordOption( 'optX' );
@@ -263,6 +269,14 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getUsedOptions() );
 					$testCase->assertNull( $object->getExtensionData( 'test_ext_data' ) );
 					$testCase->assertNull( $object->getTimeSinceStart( 'wall' ) );
+				}
+			],
+			'cacheTime' => [
+				'instance' => $parserOutputWithCacheTimeProps,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame( self::CACHE_TIME, $object->getCacheTime() );
+					$testCase->assertSame( 10, $object->getCacheExpiry() );
+					$testCase->assertSame( 42, $object->getCacheRevisionId() );
 				}
 			],
 			'text' => [

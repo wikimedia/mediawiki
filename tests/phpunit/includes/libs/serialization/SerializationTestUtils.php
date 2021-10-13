@@ -215,12 +215,14 @@ class SerializationTestUtils {
 			sort( $savedFiles );
 			$path = $savedFiles[count( $savedFiles ) - 1];
 		}
+		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$class-$testCaseName.$this->ext";
 		return (object)[
 			'version' => $version,
 			'class' => $class,
 			'testCaseName' => $testCaseName,
 			'ext' => $this->ext,
 			'path' => $path,
+			'currentVersionPath' => $curPath,
 			'data' => file_exists( $path ) ? file_get_contents( $path ) : null,
 		];
 	}

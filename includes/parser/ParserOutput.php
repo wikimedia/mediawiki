@@ -49,145 +49,145 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @var string|null The output text
 	 */
-	public $mText = null;
+	private $mText = null;
 
 	/**
 	 * @var array List of the full text of language links,
 	 *  in the order they appear.
 	 */
-	public $mLanguageLinks;
+	private $mLanguageLinks;
 
 	/**
 	 * @var array Map of category names to sort keys
 	 */
-	public $mCategories;
+	private $mCategories;
 
 	/**
 	 * @var array Page status indicators, usually displayed in top-right corner.
 	 */
-	public $mIndicators = [];
+	private $mIndicators = [];
 
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
 	 */
-	public $mTitleText;
+	private $mTitleText;
 
 	/**
 	 * @var int[][] 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 * @phan-var array<int,array<string,int>>
 	 */
-	public $mLinks = [];
+	private $mLinks = [];
 
 	/**
 	 * @var array Keys are DBKs for the links to special pages in the document.
 	 * @since 1.35
 	 */
-	public $mLinksSpecial = [];
+	private $mLinksSpecial = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplates = [];
+	private $mTemplates = [];
 
 	/**
 	 * @var array 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	public $mTemplateIds = [];
+	private $mTemplateIds = [];
 
 	/**
 	 * @var array DB keys of the images used, in the array key only
 	 */
-	public $mImages = [];
+	private $mImages = [];
 
 	/**
 	 * @var array DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
-	public $mFileSearchOptions = [];
+	private $mFileSearchOptions = [];
 
 	/**
 	 * @var array External link URLs, in the key only.
 	 */
-	public $mExternalLinks = [];
+	private $mExternalLinks = [];
 
 	/**
 	 * @var array 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
-	public $mInterwikiLinks = [];
+	private $mInterwikiLinks = [];
 
 	/**
 	 * @var bool Show a new section link?
 	 */
-	public $mNewSection = false;
+	private $mNewSection = false;
 
 	/**
 	 * @var bool Hide the new section link?
 	 */
-	public $mHideNewSection = false;
+	private $mHideNewSection = false;
 
 	/**
 	 * @var bool No gallery on category page? (__NOGALLERY__).
 	 */
-	public $mNoGallery = false;
+	private $mNoGallery = false;
 
 	/**
 	 * @var array Items to put in the <head> section
 	 */
-	public $mHeadItems = [];
+	private $mHeadItems = [];
 
 	/**
 	 * @var array Modules to be loaded by ResourceLoader
 	 */
-	public $mModules = [];
+	private $mModules = [];
 
 	/**
 	 * @var array Modules of which only the CSSS will be loaded by ResourceLoader.
 	 */
-	public $mModuleStyles = [];
+	private $mModuleStyles = [];
 
 	/**
 	 * @var array JavaScript config variable for mw.config combined with this page.
 	 */
-	public $mJsConfigVars = [];
+	private $mJsConfigVars = [];
 
 	/**
 	 * @var array Hook tags as per $wgParserOutputHooks.
 	 */
-	public $mOutputHooks = [];
+	private $mOutputHooks = [];
 
 	/**
 	 * @var array Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
-	public $mWarnings = [];
+	private $mWarnings = [];
 
 	/**
 	 * @var array Table of contents
 	 */
-	public $mSections = [];
+	private $mSections = [];
 
 	/**
 	 * @var array Name/value pairs to be cached in the DB.
 	 */
-	public $mProperties = [];
+	private $mProperties = [];
 
 	/**
 	 * @var string HTML of the TOC.
 	 */
-	public $mTOCHTML = '';
+	private $mTOCHTML = '';
 
 	/**
 	 * @var string Timestamp of the revision.
 	 */
-	public $mTimestamp;
+	private $mTimestamp;
 
 	/**
 	 * @var bool Whether OOUI should be enabled.
 	 */
-	public $mEnableOOUI = false;
+	private $mEnableOOUI = false;
 
 	/**
 	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
@@ -1948,6 +1948,33 @@ class ParserOutput extends CacheTime {
 		$priorAccessedOptions = $this->getGhostFieldValue( 'mAccessedOptions' );
 		if ( $priorAccessedOptions ) {
 			$this->mParseUsedOptions = $priorAccessedOptions;
+		}
+	}
+
+	public function __get( $name ) {
+		if ( property_exists( get_called_class(), $name ) ) {
+			// Direct access to a public property, deprecated.
+			wfDeprecatedMsg( "ParserOutput::{$name} public read access deprecated", '1.38' );
+			return $this->$name;
+		} elseif ( property_exists( $this, $name ) ) {
+			// Dynamic property access, deprecated.
+			wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.38' );
+			return $this->$name;
+		} else {
+			trigger_error( "Inaccessible property via __set(): $name" );
+			return null;
+		}
+	}
+
+	public function __set( $name, $value ) {
+		if ( property_exists( get_called_class(), $name ) ) {
+			// Direct access to a public property, deprecated.
+			wfDeprecatedMsg( "ParserOutput::$name public write access deprecated", '1.38' );
+			$this->$name = $value;
+		} else {
+			// Dynamic property access, deprecated.
+			wfDeprecatedMsg( "ParserOutput::$name dynamic property write access deprecated", '1.38' );
+			$this->$name = $value;
 		}
 	}
 }
