@@ -1774,7 +1774,7 @@ MESSAGE;
 			$context->getDebug(),
 			$context->getOnly(),
 			$context->getRequest()->getBool( 'printable' ),
-			$context->getRequest()->getBool( 'handheld' ),
+			null,
 			$extraQuery
 		);
 	}
@@ -1791,13 +1791,13 @@ MESSAGE;
 	 * @param int $debug
 	 * @param string|null $only
 	 * @param bool $printable
-	 * @param bool $handheld
+	 * @param bool|null $handheld Unused as of MW 1.38
 	 * @param array $extraQuery
 	 * @return array
 	 */
 	public static function makeLoaderQuery( array $modules, $lang, $skin, $user = null,
 		$version = null, $debug = ResourceLoaderContext::DEBUG_OFF, $only = null,
-		$printable = false, $handheld = false, array $extraQuery = []
+		$printable = false, $handheld = null, array $extraQuery = []
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),
@@ -1826,9 +1826,6 @@ MESSAGE;
 		}
 		if ( $printable ) {
 			$query['printable'] = 1;
-		}
-		if ( $handheld ) {
-			$query['handheld'] = 1;
 		}
 		$query += $extraQuery;
 

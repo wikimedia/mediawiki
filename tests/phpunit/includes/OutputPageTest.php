@@ -2816,8 +2816,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * Asserts that $expectedReturn is returned.
 	 *
-	 * options['printableQuery'] - value of query string for printable, or omitted for none
-	 * options['handheldQuery'] - value of query string for handheld, or omitted for none
+	 * options['queryData'] - value of query string
 	 * options['media'] - passed into the method under the same name
 	 * options['expectedReturn'] - expected return value
 	 * options['message'] - PHPUnit message for assertion
@@ -2825,14 +2824,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args Key-value array of arguments as shown above
 	 */
 	protected function assertTransformCssMediaCase( $args ) {
-		$queryData = [];
-		if ( isset( $args['printableQuery'] ) ) {
-			$queryData['printable'] = $args['printableQuery'];
-		}
-
-		if ( isset( $args['handheldQuery'] ) ) {
-			$queryData['handheld'] = $args['handheldQuery'];
-		}
+		$queryData = $args['queryData'] ?? [];
 
 		$fauxRequest = new FauxRequest( $queryData, false );
 		$this->setRequest( $fauxRequest );
@@ -2848,28 +2840,28 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPrintRequests() {
 		$this->assertTransformCssMediaCase( [
-			'printableQuery' => '1',
+			'queryData' => [ 'printable' => '1' ],
 			'media' => 'screen',
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen returns null'
 		] );
 
 		$this->assertTransformCssMediaCase( [
-			'printableQuery' => '1',
+			'queryData' => [ 'printable' => '1' ],
 			'media' => self::SCREEN_MEDIA_QUERY,
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen media query returns null'
 		] );
 
 		$this->assertTransformCssMediaCase( [
-			'printableQuery' => '1',
+			'queryData' => [ 'printable' => '1' ],
 			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
 			'expectedReturn' => null,
 			'message' => 'On printable request, screen media query with only returns null'
 		] );
 
 		$this->assertTransformCssMediaCase( [
-			'printableQuery' => '1',
+			'queryData' => [ 'printable' => '1' ],
 			'media' => 'print',
 			'expectedReturn' => '',
 			'message' => 'On printable request, media print returns empty string'
@@ -2910,27 +2902,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'media' => 'print',
 			'expectedReturn' => 'print',
 			'message' => 'On screen request, print media type is preserved'
-		] );
-	}
-
-	/**
-	 * Tests handheld behavior
-	 *
-	 * @covers OutputPage::transformCssMedia
-	 */
-	public function testHandheld() {
-		$this->assertTransformCssMediaCase( [
-			'handheldQuery' => '1',
-			'media' => 'handheld',
-			'expectedReturn' => '',
-			'message' => 'On request with handheld querystring and media is handheld, returns empty string'
-		] );
-
-		$this->assertTransformCssMediaCase( [
-			'handheldQuery' => '1',
-			'media' => 'screen',
-			'expectedReturn' => null,
-			'message' => 'On request with handheld querystring and media is screen, returns null'
 		] );
 	}
 

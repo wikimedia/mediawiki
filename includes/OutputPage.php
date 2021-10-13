@@ -2991,8 +2991,7 @@ class OutputPage extends ContextSource {
 				null, // version; not relevant
 				ResourceLoader::inDebugMode(),
 				null, // only; not relevant
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' )
+				$this->isPrintable()
 			);
 			$this->rlClientContext = new ResourceLoaderContext(
 				$this->getResourceLoader(),
@@ -4054,42 +4053,34 @@ class OutputPage extends ContextSource {
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param string $media Current value of the "media" attribute
-	 * @return string|null Modified value of the "media" attribute, or null to skip
+	 * @return string|null Modified value of the "media" attribute, or null to disable
 	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {
 		global $wgRequest;
 
-		// https://www.w3.org/TR/css3-mediaqueries/#syntax
-		$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
+		if ( $wgRequest->getBool( 'printable' ) ) {
+			// When browsing with printable=yes, apply "print" media styles
+			// as if they are screen styles (no media, media="").
+			if ( $media === 'print' ) {
+				return '';
+			}
 
-		// Switch in on-screen display for media testing
-		$switches = [
-			'printable' => 'print',
-			'handheld' => 'handheld',
-		];
-		foreach ( $switches as $switch => $targetMedia ) {
-			if ( $wgRequest->getBool( $switch ) ) {
-				if ( $media == $targetMedia ) {
-					$media = '';
-				} elseif ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
-					/* This regex will not attempt to understand a comma-separated media_query_list
-					 *
-					 * Example supported values for $media:
-					 * 'screen', 'only screen', 'screen and (min-width: 982px)' ),
-					 * Example NOT supported value for $media:
-					 * '3d-glasses, screen, print and resolution > 90dpi'
-					 *
-					 * If it's a print request, we never want any kind of screen stylesheets
-					 * If it's a handheld request (currently the only other choice with a switch),
-					 * we don't want simple 'screen' but we might want screen queries that
-					 * have a max-width or something, so we'll pass all others on and let the
-					 * client do the query.
-					 */
-					if ( $targetMedia == 'print' || $media == 'screen' ) {
-						return null;
-					}
-				}
+			// https://www.w3.org/TR/css3-mediaqueries/#syntax
+			//
+			// This regex will not attempt to understand a comma-separated media_query_list
+			// Example supported values for $media:
+			//
+			//     'screen', 'only screen', 'screen and (min-width: 982px)' ),
+			//
+			// Example NOT supported value for $media:
+			//
+			//     '3d-glasses, screen, print and resolution > 90dpi'
+			//
+			// If it's a "printable" request, we disable all screen stylesheets.
+			$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
+			if ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
+				return null;
 			}
 		}
 
