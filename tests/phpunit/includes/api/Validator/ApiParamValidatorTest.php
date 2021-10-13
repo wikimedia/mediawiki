@@ -262,18 +262,6 @@ class ApiParamValidatorTest extends ApiTestCase {
 					'messages' => [],
 				]
 			],
-			'PARAM_VALUE_LINKS is deprecated' => [
-				[ 'test' => [ ApiBase::PARAM_VALUE_LINKS => null ] ],
-				'test',
-				[
-					'issues' => [
-						'X',
-						ApiBase::PARAM_VALUE_LINKS => 'PARAM_VALUE_LINKS was deprecated in MediaWiki 1.35',
-					],
-					'allowedKeys' => $keys,
-					'messages' => [],
-				]
-			],
 			'PARAM_HELP_MSG (string)' => [
 				[ 'test' => [
 					ApiBase::PARAM_HELP_MSG => 'foo',
