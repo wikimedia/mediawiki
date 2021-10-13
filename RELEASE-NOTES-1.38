@@ -129,6 +129,7 @@ because of Phabricator reports.
   to pass 'interwiki' => true. In 1.37, the default behavior was to let
   interwiki title through by default, logging a deprecation warning.
 * The `UndeleteForm::undelete` hook, deprecated in 1.37, was removed.
+* BagOStuff::setDebug(), deprecated since 1.36, has been removed.
 * The `jquery.mw-jump` ResourceLoader module was removed.
 * The `wgForeignUploadTargets` and `wgEnableUploads` configuration values
   were removed from mw.config, they had previously been documented as being
