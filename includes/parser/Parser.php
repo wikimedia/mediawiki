@@ -5125,7 +5125,7 @@ class Parser {
 							break;
 						case 'gallery-internal-link':
 							$linkValue = $this->stripAltText( $match, false );
-							if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
+							if ( preg_match( '/^-{R\|(.*)}-$/', $linkValue ) ) {
 								// Result of LanguageConverter::markNoConversion
 								// invoked on an external link.
 								$linkValue = substr( $linkValue, 4, -2 );
