@@ -1083,6 +1083,8 @@ EOF
 	 * @covers ParserOutput::addTrackingCategory
 	 */
 	public function testAddTrackingCategory() {
+		$this->hideDeprecated( 'ParserOutput::addTrackingCategory' );
+
 		$po = new ParserOutput;
 		$po->setPageProperty( 'defaultsort', 'foobar' );
 

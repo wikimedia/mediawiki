@@ -1078,6 +1078,7 @@ class ParserOutput extends CacheTime {
 	 *   TrackingCategories::addTrackingCategory() instead
 	 */
 	public function addTrackingCategory( $msg, PageReference $page ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$trackingCategories = MediaWikiServices::getInstance()->getTrackingCategories();
 		return $trackingCategories->addTrackingCategory( $this, $msg, $page );
 	}
