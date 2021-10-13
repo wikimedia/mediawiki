@@ -206,11 +206,6 @@ class ApiParamValidator {
 			$settings = [];
 		}
 
-		if ( array_key_exists( ApiBase::PARAM_VALUE_LINKS, $settings ) ) {
-			$ret['issues'][ApiBase::PARAM_VALUE_LINKS]
-				= 'PARAM_VALUE_LINKS was deprecated in MediaWiki 1.35';
-		}
-
 		if ( !is_bool( $settings[ApiBase::PARAM_RANGE_ENFORCE] ?? false ) ) {
 			$ret['issues'][ApiBase::PARAM_RANGE_ENFORCE] = 'PARAM_RANGE_ENFORCE must be boolean, got '
 				. gettype( $settings[ApiBase::PARAM_RANGE_ENFORCE] );
