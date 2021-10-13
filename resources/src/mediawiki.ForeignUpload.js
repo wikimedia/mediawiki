@@ -1,4 +1,7 @@
 ( function () {
+
+	var config = require( './config.json' );
+
 	/**
 	 * Used to represent an upload in progress on the frontend.
 	 *
@@ -21,7 +24,7 @@
 	 */
 	function ForeignUpload( target, apiconfig ) {
 		var api,
-			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
+			validTargets = config.ForeignUploadTargets,
 			upload = this;
 
 		if ( typeof target === 'object' ) {
@@ -47,7 +50,7 @@
 			this.apiPromise = $.Deferred().reject( 'upload-dialog-disabled' );
 		} else if ( this.target === 'local' ) {
 			// If local uploads were requested, but they are disabled, fail.
-			if ( !mw.config.get( 'wgEnableUploads' ) ) {
+			if ( !config.EnableUploads ) {
 				this.apiPromise = $.Deferred().reject( 'uploaddisabledtext' );
 			} else {
 				// We'll ignore the CORS and centralauth stuff if the target is
