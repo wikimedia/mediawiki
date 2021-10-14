@@ -114,11 +114,9 @@ class DeleteAction extends FormlessAction {
 			return;
 		}
 
-		$reason = $this->getDeleteReason();
-
 		$token = $request->getVal( 'wpEditToken' );
 		if ( !$request->wasPosted() || !$user->matchEditToken( $token, [ 'delete', $title->getPrefixedText() ] ) ) {
-			$this->tempConfirmDelete( $reason );
+			$this->tempConfirmDelete();
 			return;
 		}
 
@@ -136,7 +134,7 @@ class DeleteAction extends FormlessAction {
 		$error = '';
 		$context = $this->getContext();
 		$user = $context->getUser();
-		$status = $this->getWikiPage()->doDeleteArticleReal( $reason, $user, $suppress, null, $error );
+		$status = $this->getWikiPage()->doDeleteArticleReal( $this->getDeleteReason(), $user, $suppress, null, $error );
 
 		if ( $status->isOK() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
@@ -210,7 +208,7 @@ class DeleteAction extends FormlessAction {
 		}
 	}
 
-	private function showFormWarnings(): void {
+	protected function showFormWarnings(): void {
 		$title = $this->getTitle();
 		$outputPage = $this->getOutput();
 
@@ -239,30 +237,14 @@ class DeleteAction extends FormlessAction {
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 	}
 
-	/**
-	 * @param string $requestReason
-	 */
-	private function tempConfirmDelete( string $requestReason ): void {
+	private function tempConfirmDelete(): void {
 		$this->prepareOutputForForm();
 		$title = $this->getTitle();
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
 
-		// Generate deletion reason
 		$hasHistory = false;
-		if ( !$requestReason ) {
-			try {
-				$reason = $this->getArticle()->getPage()->getAutoDeleteReason( $hasHistory );
-			} catch ( Exception $e ) {
-				# if a page is horribly broken, we still want to be able to
-				# delete it. So be lenient about errors here.
-				// FIXME What is this for exactly?
-				wfDebug( "Error while building auto delete summary: $e" );
-				$reason = '';
-			}
-		} else {
-			$reason = $requestReason;
-		}
+		$reason = $this->getDefaultReason( $hasHistory );
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory ) {
@@ -381,7 +363,7 @@ class DeleteAction extends FormlessAction {
 
 		$form = new OOUI\FormLayout( [
 			'method' => 'post',
-			'action' => $title->getLocalURL( 'action=delete' ),
+			'action' => $this->getFormAction(),
 			'id' => 'deleteconfirm',
 		] );
 		$form->appendContent(
@@ -512,6 +494,38 @@ class DeleteAction extends FormlessAction {
 			throw new InvalidArgumentException( "Invalid field $field" );
 		}
 		return $this->msg( $messages[$field] );
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getFormAction(): string {
+		return $this->getTitle()->getLocalURL( 'action=delete' );
+	}
+
+	/**
+	 * Default reason to be used for the deletion form
+	 *
+	 * @param bool &$hasHistory
+	 * @return string
+	 *
+	 * @todo $hasHistory is an awful hack
+	 */
+	protected function getDefaultReason( bool &$hasHistory = false ): string {
+		$requestReason = $this->getRequest()->getText( 'wpReason' );
+		if ( $requestReason ) {
+			return $requestReason;
+		}
+
+		try {
+			return $this->getArticle()->getPage()->getAutoDeleteReason( $hasHistory );
+		} catch ( Exception $e ) {
+			# if a page is horribly broken, we still want to be able to
+			# delete it. So be lenient about errors here.
+			// FIXME What is this for exactly?
+			wfDebug( "Error while building auto delete summary: $e" );
+			return '';
+		}
 	}
 
 	public function doesWrites() {
