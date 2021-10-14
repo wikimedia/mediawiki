@@ -670,7 +670,9 @@ class Parser {
 			if ( $titleText === false ) {
 				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
 			}
-			$this->mOutput->setTitleText( $titleText );
+			$this->mOutput->setTitleText(
+				htmlspecialchars( $titleText, ENT_NOQUOTES )
+			);
 		}
 
 		# Compute runtime adaptive expiry if set

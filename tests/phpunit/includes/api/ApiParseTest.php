@@ -922,4 +922,31 @@ class ApiParseTest extends ApiTestCase {
 			. var_export( self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ), true )
 		);
 	}
+
+	public function testDisplayTitle() {
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => 'Art&copy',
+			'text' => '{{DISPLAYTITLE:art&copy}}foo',
+			'prop' => 'displaytitle',
+		] );
+
+		$this->assertSame(
+			'art&amp;copy',
+			$res[0]['parse']['displaytitle']
+		);
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => 'Art&copy',
+			'text' => 'foo',
+			'prop' => 'displaytitle',
+		] );
+
+		$this->assertSame(
+			'Art&amp;copy',
+			$res[0]['parse']['displaytitle']
+		);
+	}
+
 }
