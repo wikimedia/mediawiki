@@ -1861,14 +1861,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		try {
 			// Wait for any replica DBs to catch up
-			$masterPos = $lb->getPrimaryPos();
-			if ( !$masterPos ) {
+			$primaryPos = $lb->getPrimaryPos();
+			if ( !$primaryPos ) {
 				return true; // not applicable
 			}
 
 			$loop = new WaitConditionLoop(
-				static function () use ( $lb, $masterPos ) {
-					return $lb->waitForAll( $masterPos, 1 );
+				static function () use ( $lb, $primaryPos ) {
+					return $lb->waitForAll( $primaryPos, 1 );
 				},
 				$this->syncTimeout,
 				$this->busyCallbacks
