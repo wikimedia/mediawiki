@@ -1620,9 +1620,10 @@ class Parser {
 	/**
 	 * Shorthand for getting a Language Converter for Target language
 	 *
+	 * @since public since 1.38
 	 * @return ILanguageConverter
 	 */
-	private function getTargetLanguageConverter(): ILanguageConverter {
+	public function getTargetLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getTargetLanguage()
 		);
