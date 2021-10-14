@@ -200,6 +200,17 @@ class MessageValue {
 	}
 
 	/**
+	 * Chainable mutator which adds parameters which are a user group (ParamType::GROUP).
+	 *
+	 * @since 1.38
+	 * @param string ...$values User Groups
+	 * @return $this
+	 */
+	public function userGroupParams( ...$values ) {
+		return $this->textParamsOfType( ParamType::GROUP, ...$values );
+	}
+
+	/**
 	 * Chainable mutator which adds parameters which are a number of bytes (ParamType::SIZE).
 	 *
 	 * @param int ...$values

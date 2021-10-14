@@ -537,6 +537,21 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Message::userGroupParam
+	 * @covers Message::userGroupParams
+	 */
+	public function testUserGroupParams() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
+		$msg = new RawMessage( '$1' );
+		$this->setUserLang( $lang );
+		$this->assertSame(
+			'(group-bot)',
+			$msg->userGroupParams( 'bot' )->plain(),
+			'user group is handled correctly'
+		);
+	}
+
+	/**
 	 * @covers Message::timeperiodParam
 	 * @covers Message::timeperiodParams
 	 */

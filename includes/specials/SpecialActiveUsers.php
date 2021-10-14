@@ -112,8 +112,9 @@ class SpecialActiveUsers extends SpecialPage {
 		$groups = $this->userGroupManager->listAllGroups();
 
 		$options = [];
+		$lang = $this->getLanguage();
 		foreach ( $groups as $group ) {
-			$msg = htmlspecialchars( UserGroupMembership::getGroupName( $group ) );
+			$msg = htmlspecialchars( $lang->getGroupName( $group ) );
 			$options[$msg] = $group;
 		}
 		ksort( $options );
