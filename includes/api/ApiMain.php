@@ -131,6 +131,7 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'Parser',
 				'WikiPageFactory',
+				'ContentRenderer',
 				'ContentTransformer',
 				'CommentFormatter',
 			]

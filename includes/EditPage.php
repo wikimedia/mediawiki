@@ -4236,9 +4236,10 @@ class EditPage implements IEditObject {
 		// once before PST with $content, and then after PST with $pstContent.
 		$services = MediaWikiServices::getInstance();
 		$contentTransformer = $services->getContentTransformer();
+		$contentRenderer = $services->getContentRenderer();
 		$pstContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $parserOptions );
 		$scopedCallback = $parserOptions->setupFakeRevision( $this->mTitle, $pstContent, $user );
-		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
+		$parserOutput = $contentRenderer->getParserOutput( $pstContent, $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
 		return [
 			'parserOutput' => $parserOutput,

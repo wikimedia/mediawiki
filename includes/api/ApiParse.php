@@ -23,8 +23,10 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -77,6 +79,9 @@ class ApiParse extends ApiBase {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -88,6 +93,7 @@ class ApiParse extends ApiBase {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param Parser $parser
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 * @param CommentFormatter $commentFormatter
 	 */
@@ -102,6 +108,7 @@ class ApiParse extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory,
 		Parser $parser,
 		WikiPageFactory $wikiPageFactory,
+		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter
 	) {
@@ -114,6 +121,7 @@ class ApiParse extends ApiBase {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->parser = $parser;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->contentRenderer = $contentRenderer;
 		$this->contentTransformer = $contentTransformer;
 		$this->commentFormatter = $commentFormatter;
 	}
@@ -130,14 +138,14 @@ class ApiParse extends ApiBase {
 
 	private function getContentParserOutput(
 		Content $content,
-		Title $title,
+		PageReference $page,
 		$revId,
 		ParserOptions $popts
 	) {
 		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
 			[
-				'doWork' => static function () use ( $content, $title, $revId, $popts ) {
-					return $content->getParserOutput( $title, $revId, $popts );
+				'doWork' => function () use ( $content, $page, $revId, $popts ) {
+					return $this->contentRenderer->getParserOutput( $content, $page, $revId, $popts );
 				},
 				'error' => function () {
 					$this->dieWithError( 'apierror-concurrency-limit' );

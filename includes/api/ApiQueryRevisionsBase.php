@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -73,6 +74,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
@@ -86,6 +90,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param ParserFactory|null $parserFactory
 	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param ContentRenderer|null $contentRenderer
 	 * @param ContentTransformer|null $contentTransformer
 	 */
 	public function __construct(
@@ -96,6 +101,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		IContentHandlerFactory $contentHandlerFactory = null,
 		ParserFactory $parserFactory = null,
 		SlotRoleRegistry $slotRoleRegistry = null,
+		ContentRenderer $contentRenderer = null,
 		ContentTransformer $contentTransformer = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
@@ -106,6 +112,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
 		$this->parserFactory = $parserFactory ?? $services->getParserFactory();
 		$this->slotRoleRegistry = $slotRoleRegistry ?? $services->getSlotRoleRegistry();
+		$this->contentRenderer = $contentRenderer ?? $services->getContentRenderer();
 		$this->contentTransformer = $contentTransformer ?? $services->getContentTransformer();
 	}
 
@@ -617,7 +624,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 			}
 			if ( $this->parseContent ) {
-				$po = $content->getParserOutput(
+				$po = $this->contentRenderer->getParserOutput(
+					$content,
 					$title,
 					$revision->getId(),
 					ParserOptions::newFromContext( $this->getContext() )

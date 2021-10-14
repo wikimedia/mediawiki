@@ -74,9 +74,6 @@ class RenderedRevision implements SlotRenderingProvider {
 	 */
 	private $slotsOutput = [];
 
-	/** @var ContentRenderer */
-	private $contentRenderer;
-
 	/**
 	 * @var callable Callback for combining slot output into revision output.
 	 *      Signature: function ( RenderedRevision $this ): ParserOutput.
@@ -87,6 +84,11 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @var LoggerInterface For profiling ParserOutput re-use.
 	 */
 	private $saveParseLogger;
+
+	/**
+	 * @var ContentRenderer Service to render content.
+	 */
+	private $contentRenderer;
 
 	/**
 	 * @note Application logic should not instantiate RenderedRevision instances directly,
@@ -113,6 +115,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		Authority $performer = null
 	) {
 		$this->options = $options;
+		$this->contentRenderer = $contentRenderer;
 
 		$this->setRevisionInternal( $revision );
 
@@ -238,7 +241,8 @@ class RenderedRevision implements SlotRenderingProvider {
 					throw new LogicException(
 						'HTML generation was requested, but '
 						. get_class( $content )
-						. '::getParserOutput() returns a ParserOutput with no text set.'
+						. ' that passed to '
+						. 'ContentRenderer::getParserOutput() returns a ParserOutput with no text set.'
 					);
 				}
 
