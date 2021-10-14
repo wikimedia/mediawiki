@@ -1620,9 +1620,10 @@ class Parser {
 	/**
 	 * Shorthand for getting a Language Converter for Target language
 	 *
+	 * @since public since 1.38
 	 * @return ILanguageConverter
 	 */
-	private function getTargetLanguageConverter(): ILanguageConverter {
+	public function getTargetLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getTargetLanguage()
 		);
@@ -5124,7 +5125,7 @@ class Parser {
 							break;
 						case 'gallery-internal-link':
 							$linkValue = $this->stripAltText( $match, false );
-							if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
+							if ( preg_match( '/^-{R\|(.*)}-$/', $linkValue ) ) {
 								// Result of LanguageConverter::markNoConversion
 								// invoked on an external link.
 								$linkValue = substr( $linkValue, 4, -2 );
