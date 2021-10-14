@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
@@ -633,19 +634,36 @@ EOF
 		}
 	}
 
+	/**
+	 * @covers ParserOutput::addLink
+	 * @covers ParserOutput::getLinks
+	 */
+	public function testAddLink() {
+		$a = new ParserOutput();
+		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );
+		$a->addLink( new TitleValue( NS_TALK, 'Kittens' ), 16 );
+		$a->addLink( new TitleValue( NS_MAIN, 'Goats_786827346' ) );
+
+		$expected = [
+			NS_MAIN => [ 'Kittens' => 6, 'Goats_786827346' => 0 ],
+			NS_TALK => [ 'Kittens' => 16 ]
+		];
+		$this->assertSame( $expected, $a->getLinks() );
+	}
+
 	public function provideMergeTrackingMetaDataFrom() {
 		// links ------------
 		$a = new ParserOutput();
 		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );
-		$a->addLink( Title::makeTitle( NS_TALK, 'Kittens' ), 16 );
-		$a->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
+		$a->addLink( new TitleValue( NS_TALK, 'Kittens' ), 16 );
+		$a->addLink( new TitleValue( NS_MAIN, 'Goats' ), 7 );
 
 		$a->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Goats' ), 107, 1107 );
 
 		$a->addLanguageLink( 'de' );
 		$a->addLanguageLink( 'ru' );
 		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens DE', '', 'de' ) );
-		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens RU', '', 'ru' ) );
+		$a->addInterwikiLink( new TitleValue( NS_MAIN, 'Kittens RU', '', 'ru' ) );
 		$a->addExternalLink( 'https://kittens.wikimedia.test' );
 		$a->addExternalLink( 'https://goats.wikimedia.test' );
 
@@ -655,16 +673,16 @@ EOF
 		$b = new ParserOutput();
 		$b->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
 		$b->addLink( Title::makeTitle( NS_TALK, 'Goats' ), 17 );
-		$b->addLink( Title::makeTitle( NS_MAIN, 'Dragons' ), 8 );
-		$b->addLink( Title::makeTitle( NS_FILE, 'Dragons.jpg' ), 28 );
+		$b->addLink( new TitleValue( NS_MAIN, 'Dragons' ), 8 );
+		$b->addLink( new TitleValue( NS_FILE, 'Dragons.jpg' ), 28 );
 
 		$b->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Dragons' ), 108, 1108 );
-		$a->addTemplate( Title::makeTitle( NS_MAIN, 'Dragons' ), 118, 1118 );
+		$a->addTemplate( new TitleValue( NS_MAIN, 'Dragons' ), 118, 1118 );
 
 		$b->addLanguageLink( 'fr' );
 		$b->addLanguageLink( 'ru' );
 		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens FR', '', 'fr' ) );
-		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Dragons RU', '', 'ru' ) );
+		$b->addInterwikiLink( new TitleValue( NS_MAIN, 'Dragons RU', '', 'ru' ) );
 		$b->addExternalLink( 'https://dragons.wikimedia.test' );
 		$b->addExternalLink( 'https://goats.wikimedia.test' );
 
@@ -1059,5 +1077,28 @@ EOF
 		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [ 'foo.com', 'bar.com' ], 'Script' );
 		$this->assertEquals( $po->getExtraCSPDefaultSrcs(),  [ 'baz.com' ], 'Default' );
 		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [ 'fred.com', 'xyzzy.com' ], 'Style' );
+	}
+
+	/**
+	 * @covers ParserOutput::addTrackingCategory
+	 */
+	public function testAddTrackingCategory() {
+		$po = new ParserOutput;
+		$po->setPageProperty( 'defaultsort', 'foobar' );
+
+		$page = PageReferenceValue::localReference( NS_USER, 'Testing' );
+
+		$po->addTrackingCategory( 'index-category', $page ); // from CORE_TRACKING_CATEGORIES
+		$po->addTrackingCategory( 'sitenotice', $page ); // should be "-", which is ignored
+		$po->addTrackingCategory( 'brackets-start', $page ); // invalid text
+		// TODO: assert proper handling of non-existing messages
+
+		$expected = wfMessage( 'index-category' )
+			->page( $page )
+			->inContentLanguage()
+			->text();
+
+		$expected = strtr( $expected, ' ', '_' );
+		$this->assertSame( [ $expected => 'foobar' ], $po->getCategories() );
 	}
 }
