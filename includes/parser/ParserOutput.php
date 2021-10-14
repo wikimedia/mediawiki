@@ -4,7 +4,10 @@ use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
@@ -874,17 +877,17 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link (used to require Title until 1.38)
 	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
-	public function addLink( Title $title, $id = null ) {
-		if ( $title->isExternal() ) {
+	public function addLink( LinkTarget $link, $id = null ) {
+		if ( $link->isExternal() ) {
 			// Don't record interwikis in pagelinks
-			$this->addInterwikiLink( $title );
+			$this->addInterwikiLink( $link );
 			return;
 		}
-		$ns = $title->getNamespace();
-		$dbk = $title->getDBkey();
+		$ns = $link->getNamespace();
+		$dbk = $link->getDBkey();
 		if ( $ns === NS_MEDIA ) {
 			// Normalize this pseudo-alias if it makes it down here...
 			$ns = NS_FILE;
@@ -901,7 +904,8 @@ class ParserOutput extends CacheTime {
 			$this->mLinks[$ns] = [];
 		}
 		if ( $id === null ) {
-			$id = $title->getArticleID();
+			$page = MediaWikiServices::getInstance()->getPageStore()->getPageForLink( $link );
+			$id = $page->getId();
 		}
 		$this->mLinks[$ns][$dbk] = $id;
 	}
@@ -921,13 +925,14 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Register a template dependency for this output
-	 * @param Title $title
+	 *
+	 * @param LinkTarget $link (used to require Title until 1.38)
 	 * @param int $page_id
 	 * @param int $rev_id
 	 */
-	public function addTemplate( $title, $page_id, $rev_id ) {
-		$ns = $title->getNamespace();
-		$dbk = $title->getDBkey();
+	public function addTemplate( $link, $page_id, $rev_id ) {
+		$ns = $link->getNamespace();
+		$dbk = $link->getDBkey();
 		if ( !isset( $this->mTemplates[$ns] ) ) {
 			$this->mTemplates[$ns] = [];
 		}
@@ -939,18 +944,20 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @param Title $title Title object, must be an interwiki link
+	 * @param LinkTarget $link LinkTarget object, must be an interwiki link
+	 *       (used to require Title until 1.38).
+	 *
 	 * @throws MWException If given invalid input
 	 */
-	public function addInterwikiLink( $title ) {
-		if ( !$title->isExternal() ) {
+	public function addInterwikiLink( $link ) {
+		if ( !$link->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
-		$prefix = $title->getInterwiki();
+		$prefix = $link->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
 			$this->mInterwikiLinks[$prefix] = [];
 		}
-		$this->mInterwikiLinks[$prefix][$title->getDBkey()] = 1;
+		$this->mInterwikiLinks[$prefix][$link->getDBkey()] = 1;
 	}
 
 	/**
@@ -1028,28 +1035,30 @@ class ParserOutput extends CacheTime {
 	 * @todo Migrate some code to TrackingCategories
 	 *
 	 * @param string $msg Message key
-	 * @param Title $title title of the page which is being tracked
+	 * @param PageReference $page the page which is being tracked
+	 *        (used to require a Title until 1.38)
 	 * @return bool Whether the addition was successful
 	 * @since 1.25
 	 */
-	public function addTrackingCategory( $msg, $title ) {
-		if ( $title->isSpecialPage() ) {
+	public function addTrackingCategory( $msg, PageReference $page ) {
+		if ( $page->getNamespace() === NS_SPECIAL ) {
 			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!" );
 			return false;
 		}
 
 		// Important to parse with correct title (T33469)
 		$cat = wfMessage( $msg )
-			->page( $title )
+			->page( $page )
 			->inContentLanguage()
 			->text();
 
-		# Allow tracking categories to be disabled by setting them to "-"
+		// Allow tracking categories to be disabled by setting them to "-"
 		if ( $cat === '-' ) {
 			return false;
 		}
 
-		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		$containerCategory = $titleParser->makeTitleValueSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
 			$this->addCategory( $containerCategory->getDBkey(), $this->getPageProperty( 'defaultsort' ) ?: '' );
 			return true;
