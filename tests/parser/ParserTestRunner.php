@@ -590,14 +590,16 @@ class ParserTestRunner {
 		static $testInterwikis = [
 			[
 				'iw_prefix' => 'local',
-				'iw_url' => 'http://doesnt.matter.org/$1',
-				'iw_local' => 0,
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
+				'iw_local' => 1,
 			],
 			// Local interwiki that matches a namespace name (T228616)
 			[
 				'iw_prefix' => 'project',
-				'iw_url' => 'http://doesnt.matter.org/$1',
-				'iw_local' => 0,
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
+				'iw_local' => 1,
 			],
 			[
 				'iw_prefix' => 'wikipedia',
@@ -638,7 +640,8 @@ class ParserTestRunner {
 			],
 			[
 				'iw_prefix' => 'mi',
-				'iw_url' => 'http://mi.wikipedia.org/wiki/$1',
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
 				'iw_local' => 1,
 			],
 			[
@@ -687,6 +690,7 @@ class ParserTestRunner {
 
 		// This affects title normalization in links. It invalidates
 		// MediaWikiTitleCodec objects.
+		// These interwikis should have 'iw_url' that matches wgServer.
 		$setup['wgLocalInterwikis'] = [ 'local', 'project', 'mi' ];
 		$reset = function () {
 			$this->resetTitleServices();
