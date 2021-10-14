@@ -198,9 +198,8 @@ class Parser {
 
 	/**
 	 * @var StripState
-	 * @deprecated since 1.35, use Parser::getStripState()
 	 */
-	public $mStripState;
+	private $mStripState;
 
 	/**
 	 * @var LinkHolderArray
