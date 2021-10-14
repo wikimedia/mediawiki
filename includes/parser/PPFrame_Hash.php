@@ -360,7 +360,7 @@ class PPFrame_Hash implements PPFrame {
 					$serial = count( $this->parser->mHeadings ) - 1;
 					$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 					$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
-					$this->parser->mStripState->addGeneral( $marker, '' );
+					$this->parser->getStripState()->addGeneral( $marker, '' );
 					$out .= $s;
 				} else {
 					# Expand in virtual stack

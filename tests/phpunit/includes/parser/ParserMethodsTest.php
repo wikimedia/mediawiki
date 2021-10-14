@@ -106,7 +106,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$ret = $parser->callParserFunction( $frame, '#tag',
 			[ 'pre', 'foo', 'style' => 'margin-left: 1.6em' ]
 		);
-		$ret['text'] = $parser->mStripState->unstripBoth( $ret['text'] );
+		$ret['text'] = $parser->getStripState()->unstripBoth( $ret['text'] );
 		$this->assertSame( [
 			'found' => true,
 			'text' => '<pre style="margin-left: 1.6em">foo</pre>',

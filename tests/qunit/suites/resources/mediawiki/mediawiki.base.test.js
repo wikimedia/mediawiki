@@ -216,6 +216,47 @@
 		);
 	} );
 
+	QUnit.test( 'mw.log.deprecate()', function ( assert ) {
+		var track = [];
+		var log = [];
+		this.sandbox.stub( mw, 'track', function ( topic, key ) {
+			if ( topic === 'mw.deprecate' ) {
+				track.push( key );
+			}
+		} );
+		this.sandbox.stub( mw.log, 'warn', function ( msg ) {
+			log.push( msg );
+		} );
+		function getFoo() {
+			return 42;
+		}
+
+		var obj = {};
+		mw.log.deprecate( obj, 'foo', getFoo );
+
+		// By default only logging and no tracking
+		assert.strictEqual( obj.foo(), 42, 'first return' );
+		assert.deepEqual( track, [], 'once track' );
+		assert.deepEqual( log, [ 'Use of "foo" is deprecated.' ], 'once log' );
+
+		// Ignore later calls from the same source code line
+		log = [];
+		track = [];
+		for ( var i = 0; i <= 3; i++ ) {
+			obj.foo();
+		}
+		assert.deepEqual( track, [], 'multi track' );
+		assert.deepEqual( log, [ 'Use of "foo" is deprecated.' ], 'multi log' );
+
+		// Custom tracking and logging
+		log = [];
+		track = [];
+		mw.log.deprecate( obj, 'foo', getFoo, 'Hey there!', 'obj.foo thing' );
+		assert.strictEqual( obj.foo(), 42, 'return after custom' );
+		assert.deepEqual( track, [ 'obj.foo thing' ], 'custom track' );
+		assert.deepEqual( log, [ 'Use of "obj.foo thing" is deprecated. Hey there!' ], 'custom log' );
+	} );
+
 	QUnit.test( 'RLQ.push', function ( assert ) {
 		/* global RLQ */
 		var loaded = 0,
