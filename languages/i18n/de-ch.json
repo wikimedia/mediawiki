@@ -168,7 +168,7 @@
 	"recentchangescount": "Anzahl der standardmässig angezeigten Bearbeitungen:",
 	"yourrealname": "Richtiger Name:",
 	"prefs-help-signature": "Beiträge auf Diskussionsseiten sollten mit «<nowiki>~~~~</nowiki>» signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.",
-	"linter-pager-tidy-whitespace-bug-details": "Leerschlagfehler",
+	"linterror-tidy-whitespace-bug": "Leerschlagfehler",
 	"gender-unknown": "«Der Benutzer», «seine Diskussion», «er bearbeitet» usw.",
 	"gender-male": "«Der Benutzer», «seine Diskussion», «er bearbeitet» usw. (männlich)",
 	"gender-female": "«Die Benutzerin», «ihre Diskussion», «sie bearbeitet» usw. (weiblich)",

@@ -983,7 +983,7 @@
 	"badsig": "Kļūdains ''paraksta'' kods; pārbaudi HTML (ja tāds ir lietots).",
 	"badsightml": "Parakstā ir nederīga vai novecojusi HTML sintakse:",
 	"badsiglength": "Paraksts ir pārāk garš.\nTam ir jābūt īsākam par  $1 {{PLURAL:$1|simboliem|simbolu|simboliem}}.",
-	"linter-pager-obsolete-tag-details": "Novecojusi HTML iezīme",
+	"linterror-obsolete-tag": "Novecojusi HTML iezīme",
 	"yourgender": "Kā tevi labāk aprakstīt?",
 	"gender-unknown": "Pieminot tevi, ja iespējams, programmatūra izmantos dzimumam neitrālus vārdus",
 	"gender-notknown": "Viņi labo viki lapas",
