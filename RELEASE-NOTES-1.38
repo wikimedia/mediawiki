@@ -123,6 +123,12 @@ because of Phabricator reports.
 * The BeforeResetNotificationTimestamp hook, deprecated in 1.37, was removed.
 * The global function mimeTypeMatch() has been removed without a deprecation
   process.
+* The following JavaScript mw.config keys have been removed:
+  - $wgCookiePrefix
+  - $wgCookieDomain
+  - $wgCookiePath
+  - $wgCookieExpiration
+  Use mw.cookie from the mediawiki.cookie module instead.
 * The signature of PageUpdater::markAsRevert method was changed. It has never
   been used outside of MediaWiki core.
 * If you want to use interwiki titles with HTMLTitleTextField, you now need
