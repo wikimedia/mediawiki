@@ -1640,22 +1640,53 @@ class Sanitizer {
 			list( /* $whole */, $protocol, $host, $rest ) = $matches;
 
 			// Characters that will be ignored in IDNs.
-			// https://tools.ietf.org/html/rfc3454#section-3.1
+			// https://datatracker.ietf.org/doc/html/rfc8264#section-9.13
+			// https://www.unicode.org/Public/UCD/latest/ucd/DerivedCoreProperties.txt
 			// Strip them before further processing so deny lists and such work.
 			$strip = "/
 				\\s|      # general whitespace
-				\u{00AD}| # 00ad SOFT HYPHEN
-				\u{1806}| # 1806 MONGOLIAN TODO SOFT HYPHEN
-				\u{200B}| # 200b ZERO WIDTH SPACE
-				\u{2060}| # 2060 WORD JOINER
-				\u{FEFF}| # feff ZERO WIDTH NO-BREAK SPACE
-				\u{034F}| # 034f COMBINING GRAPHEME JOINER
-				\u{180B}| # 180b MONGOLIAN FREE VARIATION SELECTOR ONE
-				\u{180C}| # 180c MONGOLIAN FREE VARIATION SELECTOR TWO
-				\u{180D}| # 180d MONGOLIAN FREE VARIATION SELECTOR THREE
-				\u{200C}| # 200c ZERO WIDTH NON-JOINER
-				\u{200D}| # 200d ZERO WIDTH JOINER
-				[\u{FE00}-\u{FE0F}] # fe00-fe0f VARIATION SELECTOR-1-16
+				\u{00AD}|               # SOFT HYPHEN
+				\u{034F}|               # COMBINING GRAPHEME JOINER
+				\u{061C}|               # ARABIC LETTER MARK
+				[\u{115F}-\u{1160}]|    # HANGUL CHOSEONG FILLER..
+							# HANGUL JUNGSEONG FILLER
+				[\u{17B4}-\u{17B5}]|    # KHMER VOWEL INHERENT AQ..
+							# KHMER VOWEL INHERENT AA
+				[\u{180B}-\u{180D}]|    # MONGOLIAN FREE VARIATION SELECTOR ONE..
+							# MONGOLIAN FREE VARIATION SELECTOR THREE
+				\u{180E}|               # MONGOLIAN VOWEL SEPARATOR
+				[\u{200B}-\u{200F}]|    # ZERO WIDTH SPACE..
+							# RIGHT-TO-LEFT MARK
+				[\u{202A}-\u{202E}]|    # LEFT-TO-RIGHT EMBEDDING..
+							# RIGHT-TO-LEFT OVERRIDE
+				[\u{2060}-\u{2064}]|    # WORD JOINER..
+							# INVISIBLE PLUS
+				\u{2065}|               # <reserved-2065>
+				[\u{2066}-\u{206F}]|    # LEFT-TO-RIGHT ISOLATE..
+							# NOMINAL DIGIT SHAPES
+				\u{3164}|               # HANGUL FILLER
+				[\u{FE00}-\u{FE0F}]|    # VARIATION SELECTOR-1..
+							# VARIATION SELECTOR-16
+				\u{FEFF}|               # ZERO WIDTH NO-BREAK SPACE
+				\u{FFA0}|               # HALFWIDTH HANGUL FILLER
+				[\u{FFF0}-\u{FFF8}]|    # <reserved-FFF0>..
+							# <reserved-FFF8>
+				[\u{1BCA0}-\u{1BCA3}]|  # SHORTHAND FORMAT LETTER OVERLAP..
+							# SHORTHAND FORMAT UP STEP
+				[\u{1D173}-\u{1D17A}]|  # MUSICAL SYMBOL BEGIN BEAM..
+							# MUSICAL SYMBOL END PHRASE
+				\u{E0000}|              # <reserved-E0000>
+				\u{E0001}|              # LANGUAGE TAG
+				[\u{E0002}-\u{E001F}]|  # <reserved-E0002>..
+							# <reserved-E001F>
+				[\u{E0020}-\u{E007F}]|  # TAG SPACE..
+							# CANCEL TAG
+				[\u{E0080}-\u{E00FF}]|  # <reserved-E0080>..
+							# <reserved-E00FF>
+				[\u{E0100}-\u{E01EF}]|  # VARIATION SELECTOR-17..
+							# VARIATION SELECTOR-256
+				[\u{E01F0}-\u{E0FFF}]|  # <reserved-E01F0>..
+							# <reserved-E0FFF>
 				/xuD";
 
 			$host = preg_replace( $strip, '', $host );
