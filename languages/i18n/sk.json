@@ -1122,7 +1122,7 @@
 	"badsiglinks": "Váš podpis musí obsahovať odkaz na Vašu používateľskú stránku, diskusiu alebo príspevky. Prosím, doplňte ho, napríklad: <code>$1</code>.",
 	"badsigsubst": "Váš podpis obsahuje vnorenú substitúciu (napr. <code>subst:</code> alebo <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Váš podpis je príliš dlhý.\nMusí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.",
-	"linter-pager-missing-end-tag-details": "Chýba ukončovacia značka",
+	"linterror-missing-end-tag": "Chýba ukončovacia značka",
 	"yourgender": "Ako si želáte byť označovaný?",
 	"gender-unknown": "Softvér bude používať rodovo neutrálne slová, vždy keď je to možné, keď vás spomína",
 	"gender-notknown": "On/ona upravuje wiki stránky",

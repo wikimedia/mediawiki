@@ -701,7 +701,7 @@
 	"yourlanguage": "Lingue:",
 	"yourvariant": "Variante de lingue del contenete:",
 	"yournick": "Nov signature:",
-	"linter-pager-missing-end-tag-details": "Absentie de marcation final.",
+	"linterror-missing-end-tag": "Absentie de marcation final.",
 	"yourgender": "Génere:",
 	"gender-male": "Il redacte págines de wiki",
 	"gender-female": "Ella redacte págines de wiki",

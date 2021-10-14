@@ -1037,7 +1037,7 @@
 	"yournick": "Signaturo:",
 	"prefs-help-signature": "Komenti en la diskuto-pagini mustas signatesar, skribante 4 tildi (<nowiki>~~~~</nowiki>), qui transformesos en vua signaturo ed en l'indiko di la horo e dio quan vu signatis ol.",
 	"badsiglength": "Vua signaturo es tro longa.\nOl mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.",
-	"linter-pager-obsolete-tag-details": "etiketo HTML obsoleta",
+	"linterror-obsolete-tag": "etiketo HTML obsoleta",
 	"yourgender": "Quale vu preferas esar mencionata?",
 	"gender-unknown": "Lor mencionar vu, la programaro uzos sexuo-neutrala vorti tam ofte kam posibla",
 	"gender-notknown": "Lu redaktas wikiopagini",
