@@ -661,18 +661,18 @@ class Parser {
 		 * {{DISPLAYTITLE:...}} is present. DISPLAYTITLE takes precedence over
 		 * automatic link conversion.
 		 */
-		if ( !( $options->getDisableTitleConversion()
-			|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-			|| isset( $this->mDoubleUnderscores['notitleconvert'] )
-			|| $this->mOutput->getDisplayTitle() !== false )
+		if ( !$options->getDisableTitleConversion()
+			&& !isset( $this->mDoubleUnderscores['nocontentconvert'] )
+			&& !isset( $this->mDoubleUnderscores['notitleconvert'] )
+			&& $this->mOutput->getDisplayTitle() === false
 		) {
-			$convruletitle = $this->getTargetLanguageConverter()->getConvRuleTitle();
-			if ( $convruletitle ) {
-				$this->mOutput->setTitleText( $convruletitle );
-			} else {
+			$titleText = $this->getTargetLanguageConverter()->getConvRuleTitle();
+			if ( $titleText === false ) {
 				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
-				$this->mOutput->setTitleText( $titleText );
 			}
+			$this->mOutput->setTitleText(
+				htmlspecialchars( $titleText, ENT_NOQUOTES )
+			);
 		}
 
 		# Compute runtime adaptive expiry if set

@@ -243,4 +243,30 @@ class ApiQueryInfoTest extends ApiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::execute
+	 * @covers ::extractPageInfo
+	 */
+	public function testDisplayTitle() {
+		list( $data ) = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'inprop' => 'displaytitle',
+			'titles' => 'Art&copy',
+		] );
+
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'pages', $data['query'] );
+
+		// For the non-existing page
+		$this->assertArrayHasKey( -1, $data['query']['pages'] );
+
+		$info = $data['query']['pages'][ -1 ];
+		$this->assertArrayHasKey( 'displaytitle', $info );
+		$this->assertEquals(
+			'Art&amp;copy',
+			$info['displaytitle']
+		);
+	}
+
 }
