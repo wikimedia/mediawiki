@@ -29974,20 +29974,6 @@ parsoid={
 === hi <span id="x" class="y">hi</span> hi ho ===
 !! end
 
-## Note that there's a leading \r here that's necessary for the test
-!! test
-Stray carriage return in text
-!! options
-parsoid=wt2html
-!! wikitext
-hiho
-!! html/php
-<p>hiho
-</p>
-!! html/parsoid
-<p>hiho</p>
-!! end
-
 !! test
 Allow tabindex 0
 !! wikitext
