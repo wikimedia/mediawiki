@@ -2190,4 +2190,14 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @covers Language::getGroupName
+	 */
+	public function testGetGroupName() {
+		$lang = $this->getLang();
+		$groupName = $lang->getGroupName( 'bot' );
+		$this->assertSame( 'Bots', $groupName );
+	}
+
 }

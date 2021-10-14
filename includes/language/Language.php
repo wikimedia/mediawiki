@@ -2604,6 +2604,18 @@ class Language {
 	}
 
 	/**
+	 * Gets the localized friendly name for a group, if it exists. For example,
+	 * "Administrators" or "Bureaucrats"
+	 *
+	 * @param string $group Internal group name
+	 * @return string Localized friendly group name
+	 */
+	public function getGroupName( $group ) {
+		$msg = $this->msg( "group-$group" );
+		return $msg->isBlank() ? $group : $msg->text();
+	}
+
+	/**
 	 * @param string $key
 	 * @return string|null
 	 */
