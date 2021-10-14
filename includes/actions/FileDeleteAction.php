@@ -103,7 +103,10 @@ class FileDeleteAction extends DeleteAction {
 
 		// Perform the deletion if appropriate
 		$token = $request->getVal( 'wpEditToken' );
-		if ( !$request->wasPosted() || !$context->getUser()->matchEditToken( $token, $this->oldImage ) ) {
+		if (
+			!$request->wasPosted() ||
+			!$context->getUser()->matchEditToken( $token, [ 'delete', $this->title->getPrefixedText() ] )
+		) {
 			$this->showForm();
 			return;
 		}
@@ -154,6 +157,10 @@ class FileDeleteAction extends DeleteAction {
 		}
 	}
 
+	protected function showFormWarnings(): void {
+		$this->getOutput()->addHTML( $this->prepareMessage( 'filedelete-intro' ) );
+	}
+
 	/**
 	 * Show the confirmation form
 	 */
@@ -163,15 +170,13 @@ class FileDeleteAction extends DeleteAction {
 
 		$outputPage = $ctx->getOutput();
 
+		$this->showFormWarnings();
+
 		$user = $ctx->getUser();
 		$checkWatch = $this->userOptionsLookup->getBoolOption( $user, 'watchdeletion' ) ||
 			$this->watchlistManager->isWatched( $user, $this->title );
 
 		$fields = [];
-
-		$fields[] = new \OOUI\LabelWidget( [ 'label' => new \OOUI\HtmlSnippet(
-				$this->prepareMessage( 'filedelete-intro' ) ) ]
-		);
 
 		$suppressAllowed = $ctx->getAuthority()->isAllowed( 'suppressrevision' );
 		$dropDownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
@@ -212,7 +217,7 @@ class FileDeleteAction extends DeleteAction {
 				'tabIndex' => 2,
 				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
-				'value' => $ctx->getRequest()->getText( 'wpReason' ),
+				'value' => $this->getDefaultReason(),
 				'autofocus' => true,
 			] ),
 			[
@@ -254,8 +259,8 @@ class FileDeleteAction extends DeleteAction {
 
 		$fields[] = new \OOUI\FieldLayout(
 			new \OOUI\ButtonInputWidget( [
-				'name' => 'mw-filedelete-submit',
-				'inputId' => 'mw-filedelete-submit',
+				'name' => 'wpConfirmB',
+				'inputId' => 'wpConfirmB',
 				'tabIndex' => 5,
 				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
@@ -269,20 +274,21 @@ class FileDeleteAction extends DeleteAction {
 
 		$fieldset = new \OOUI\FieldsetLayout( [
 			'label' => $this->getFormMsg( self::MSG_LEGEND )->text(),
+			'id' => 'mw-delete-table',
 			'items' => $fields,
 		] );
 
 		$form = new \OOUI\FormLayout( [
 			'method' => 'post',
 			'action' => $this->getFormAction(),
-			'id' => 'mw-img-deleteconfirm',
+			'id' => 'deleteconfirm',
 		] );
 		$form->appendContent(
 			$fieldset,
 			new \OOUI\HtmlSnippet(
 				Html::hidden(
 					'wpEditToken',
-					$user->getEditToken( $this->oldImage )
+					$user->getEditToken( [ 'delete', $this->title->getPrefixedText() ] )
 				)
 			)
 		);
@@ -314,7 +320,7 @@ class FileDeleteAction extends DeleteAction {
 				[],
 				[ 'action' => 'edit' ]
 			);
-			$outputPage->addHTML( '<p class="mw-filedelete-editreasons">' . $link . '</p>' );
+			$outputPage->addHTML( '<p class="mw-delete-editreasons">' . $link . '</p>' );
 		}
 
 		$this->showLogEntries( $this->title );
@@ -349,11 +355,9 @@ class FileDeleteAction extends DeleteAction {
 	}
 
 	/**
-	 * Prepare the form action
-	 *
 	 * @return string
 	 */
-	private function getFormAction() {
+	protected function getFormAction(): string {
 		$q = [];
 		$q['action'] = 'delete';
 
@@ -391,5 +395,14 @@ class FileDeleteAction extends DeleteAction {
 			self::MSG_EDIT_REASONS => 'filedelete-edit-reasonlist',
 			self::MSG_EDIT_REASONS_SUPPRESS => 'filedelete-edit-reasonlist-suppress',
 		];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getDefaultReason( bool &$hasHistory = false ): string {
+		// TODO Should we autogenerate something for files?
+		// FIXME $hasHistory not working here
+		return $this->getRequest()->getText( 'wpReason' );
 	}
 }
