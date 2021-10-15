@@ -160,10 +160,10 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 					$out->addModuleStyles( 'mediawiki.special' );
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( [ 'desc-link' => false ] ) . '<br />' .
-						$this->msg( 'fileduplicatesearch-info' )->numParams(
-							$img->getWidth(), $img->getHeight() )->params(
-								$this->getLanguage()->formatSize( $img->getSize() ),
-								$img->getMimeType() )->parseAsBlock() .
+						$this->msg( 'fileduplicatesearch-info' )
+							->numParams( $img->getWidth(), $img->getHeight() )
+							->sizeParams( $img->getSize() )
+							->params( $img->getMimeType() )->parseAsBlock() .
 						'</div>' );
 				}
 			}
