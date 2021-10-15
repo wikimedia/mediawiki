@@ -23,6 +23,7 @@ namespace MediaWiki\Preferences;
 use Html;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
@@ -214,7 +215,7 @@ class SignatureValidator {
 		);
 
 		// The signature wikitext contains another '~~~~' or similar (T230652)
-		if ( $parser->getOutput()->getFlag( 'user-signature' ) ) {
+		if ( $parser->getOutput()->getOutputFlag( ParserOutputFlags::USER_SIGNATURE ) ) {
 			return false;
 		}
 
