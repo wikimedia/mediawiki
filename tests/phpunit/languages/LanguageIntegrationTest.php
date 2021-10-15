@@ -6,6 +6,8 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Language
@@ -2198,6 +2200,28 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$lang = $this->getLang();
 		$groupName = $lang->getGroupName( 'bot' );
 		$this->assertSame( 'Bots', $groupName );
+	}
+
+	/**
+	 * @covers Language::getGroupMemberName
+	 */
+	public function testGetGroupMemberName() {
+		$lang = $this->getLang();
+		$user = new UserIdentityValue( 1, 'user' );
+		$groupMemberName = $lang->getGroupMemberName( 'bot', $user );
+		$this->assertSame( 'bot', $groupMemberName );
+
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
+		$groupMemberName = $lang->getGroupMemberName( 'bot', $user );
+		$this->assertSame( '(group-bot-member: user)', $groupMemberName );
+	}
+
+	/**
+	 * @covers Language::msg
+	 */
+	public function testMsg() {
+		$lang = TestingAccessWrapper::newFromObject( $this->getLang() );
+		$this->assertSame( 'December 1', $lang->msg( 'december-date', '1' )->text() );
 	}
 
 }

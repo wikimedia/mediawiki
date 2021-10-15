@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -175,12 +176,11 @@ class UserGroupMembership {
 	 * "administrator" or "bureaucrat"
 	 *
 	 * @param string $group Internal group name
-	 * @param string $username Username for gender
+	 * @param string|UserIdentity $member Username or UserIdentity of member for gender
 	 * @return string Localized name for group member
 	 */
-	public static function getGroupMemberName( $group, $username ) {
-		$msg = wfMessage( "group-$group-member", $username );
-		return $msg->isBlank() ? $group : $msg->text();
+	public static function getGroupMemberName( $group, $member ) {
+		return RequestContext::getMain()->getLanguage()->getGroupMemberName( $group, $member );
 	}
 
 	/**

@@ -21,6 +21,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -650,6 +651,26 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * Add parameters that represent stringable objects
+	 *
+	 * @since 1.38
+	 *
+	 * @param Stringable|Stringable[] ...$params stringable parameters,
+	 * or a single argument that is an array of stringable parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function objectParams( ...$params ) {
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::objectParam( $param );
+		}
+		return $this;
+	}
+
+	/**
 	 * Add parameters that are times and will be passed through
 	 * Language::time before substitution
 	 *
@@ -1174,6 +1195,17 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * @since 1.38
+	 *
+	 * @param Stringable $object
+	 *
+	 * @return Stringable[] Array with a single "object" key.
+	 */
+	public static function objectParam( Stringable $object ) {
+		return [ 'object' => $object ];
+	}
+
+	/**
 	 * @since 1.22
 	 *
 	 * @param int $period
@@ -1311,6 +1343,16 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'after', $this->formatPlaintext( $param['plaintext'], $format ) ];
 			} elseif ( isset( $param['list'] ) ) {
 				return $this->formatListParam( $param['list'], $param['type'], $format );
+			} elseif ( isset( $param['object'] ) ) {
+				$obj = $param['object'];
+				if ( $obj instanceof UserGroupMembershipParam ) {
+					return [
+						'before',
+						$this->getLanguage()->getGroupMemberName( $obj->getGroup(), $obj->getMember() )
+					];
+				} else {
+					return [ 'before', $obj->__toString() ];
+				}
 			} else {
 				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',

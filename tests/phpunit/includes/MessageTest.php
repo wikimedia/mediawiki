@@ -1,8 +1,10 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -548,6 +550,23 @@ class MessageTest extends MediaWikiLangTestCase {
 			'(group-bot)',
 			$msg->userGroupParams( 'bot' )->plain(),
 			'user group is handled correctly'
+		);
+	}
+
+	/**
+	 * @covers Message::objectParam
+	 * @covers Message::objectParams
+	 */
+	public function testUserGroupMemberParams() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
+		$msg = new RawMessage( '$1' );
+		$this->setUserLang( $lang );
+		$this->assertSame(
+			'(group-bot-member: user)',
+			$msg->objectParams(
+				new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
+			)->plain(),
+			'user group member is handled correctly'
 		);
 	}
 

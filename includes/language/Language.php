@@ -899,10 +899,11 @@ class Language {
 	 * Get message object in this language. Only for use inside this class.
 	 *
 	 * @param string $msg Message name
+	 * @param mixed ...$params Message parameters
 	 * @return Message
 	 */
-	protected function msg( $msg ) {
-		return wfMessage( $msg )->inLanguage( $this );
+	protected function msg( $msg, ...$params ) {
+		return wfMessage( $msg, ...$params )->inLanguage( $this );
 	}
 
 	/**
@@ -2612,6 +2613,22 @@ class Language {
 	 */
 	public function getGroupName( $group ) {
 		$msg = $this->msg( "group-$group" );
+		return $msg->isBlank() ? $group : $msg->text();
+	}
+
+	/**
+	 * Gets the localized name for a member of a group, if it exists. For example,
+	 * "administrator" or "bureaucrat"
+	 *
+	 * @param string $group Internal group name
+	 * @param string|UserIdentity $member
+	 * @return string Localized name for group member
+	 */
+	public function getGroupMemberName( string $group, $member ) {
+		if ( $member instanceof UserIdentity ) {
+			$member = $member->getName();
+		}
+		$msg = $this->msg( "group-$group-member", $member );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
 
