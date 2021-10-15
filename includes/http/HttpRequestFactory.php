@@ -70,7 +70,7 @@ class HttpRequestFactory {
 	 *                          not be used in production code.
 	 *    - postData            An array of key-value pairs or a url-encoded form data
 	 *    - proxy               The proxy to use.
-	 *                          Otherwise it will use $wgHTTPProxy or $wgLocalHTTPProxy (if set)
+	 *                          Otherwise it will use $wgHTTPProxy (if set)
 	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
 	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
 	 *    - sslVerifyHost       Verify hostname against certificate
