@@ -215,15 +215,14 @@ because of Phabricator reports.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
 * The following methods from the ParserOutput class now emit deprecation logs:
-   - ::hideNewSection() - use ::setHideNewSection()
+   - ::hideNewSection()      - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
-   - ::getProperty()   - use ::getPageProperty()
-   - ::setProperty()   - use ::setPageProperty()
-   - ::unsetProperty() - use ::unsetPageProperties()
-   - ::getProperties() - use ::getPageProperties()
-* The following methods from the ParserOutput class were deprecated:
-   - ::getCategoryLinks() - use ::getCategoryNames()
-   - ::setCategoryLinks() - use ::setCategories()
+   - ::getProperty()         - use ::getPageProperty()
+   - ::setProperty()         - use ::setPageProperty()
+   - ::unsetProperty()       - use ::unsetPageProperties()
+   - ::getProperties()       - use ::getPageProperties()
+   - ::getCategoryLinks()    - use ::getCategoryNames()
+   - ::setCategoryLinks()    - use ::setCategories()
 * The following methods were deprecated; use ::setPreventClickjacking() instead:
    - OutputPage::preventClickjacking()
    - OutputPage::allowClickjacking()
