@@ -214,7 +214,8 @@ because of Phabricator reports.
   with OutputPage, you may want to check the hooks in DeleteAction instead.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
-* The following methods from the ParserOutput class now emit deprecation logs:
+* The following methods from the ParserOutput class now emit deprecation
+  warnings:
    - ::hideNewSection()      - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
    - ::getProperty()         - use ::getPageProperty()
@@ -223,7 +224,6 @@ because of Phabricator reports.
    - ::getProperties()       - use ::getPageProperties()
    - ::getCategoryLinks()    - use ::getCategoryNames()
    - ::setCategoryLinks()    - use ::setCategories()
-* The following methods from the ParserOutput class were deprecated:
    - ::addTrackingCategory() - use Parser::addTrackingCategory()
                                or TrackingCategories::addTrackingCategory()
 * The following methods were deprecated; use ::setPreventClickjacking(..)
