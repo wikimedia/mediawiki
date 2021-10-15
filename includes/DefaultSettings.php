@@ -4968,8 +4968,8 @@ $wgAllowImageTag = false;
 $wgTidyConfig = [];
 
 /**
- * Enable legacy media HTML structure in the output from the Parser.  The one
- * that replaces it is described at,
+ * Enable legacy media HTML structure in the output from the Parser.  The
+ * alternative modern HTML structure that replaces it is described at
  * https://www.mediawiki.org/wiki/Parsing/Media_structure
  * @since 1.36
  */
