@@ -1134,7 +1134,7 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * @return string[] List of flags signifying special cases
-	 * @since 1.34
+	 * @internal
 	 */
 	public function getAllFlags() {
 		return array_keys( $this->mFlags );
