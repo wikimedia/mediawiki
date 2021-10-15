@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Parser\ParserOutputFlags;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -138,7 +139,7 @@ class CoreMagicVariables {
 			case 'pageid': // requested in T25427
 				// Inform the edit saving system that getting the canonical output
 				// after page insertion requires a parse that used that exact page ID
-				self::setOutputFlag( $parser, $logger, 'vary-page-id', '{{PAGEID}} used' );
+				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_PAGE_ID, '{{PAGEID}} used' );
 				$value = $title->getArticleID();
 				if ( !$value ) {
 					$value = $parser->getOptions()->getSpeculativePageId();
@@ -160,13 +161,18 @@ class CoreMagicVariables {
 					if ( $parser->getRevisionId() || $parser->getOptions()->getSpeculativeRevId() ) {
 						return '-';
 					} else {
-						self::setOutputFlag( $parser, $logger, 'vary-revision-exists', '{{REVISIONID}} used' );
+						self::setOutputFlag(
+							$parser,
+							$logger,
+							ParserOutputFlags::VARY_REVISION_EXISTS,
+							'{{REVISIONID}} used'
+						);
 						return '';
 					}
 				} else {
 					// Inform the edit saving system that getting the canonical output after
 					// revision insertion requires a parse that used that exact revision ID
-					self::setOutputFlag( $parser, $logger, 'vary-revision-id', '{{REVISIONID}} used' );
+					self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_REVISION_ID, '{{REVISIONID}} used' );
 					$value = $parser->getRevisionId();
 					if ( $value === 0 ) {
 						$rev = $parser->getRevisionRecordObject();
@@ -207,7 +213,7 @@ class CoreMagicVariables {
 			case 'revisionuser':
 				// Inform the edit saving system that getting the canonical output after
 				// revision insertion requires a parse that used the actual user ID
-				self::setOutputFlag( $parser, $logger, 'vary-user', '{{REVISIONUSER}} used' );
+				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_USER, '{{REVISIONUSER}} used' );
 				// Note that getRevisionUser() can return null; we need to
 				// be sure to cast this to (an empty) string, since 'null'
 				// means "magic variable not handled here".
@@ -347,7 +353,7 @@ class CoreMagicVariables {
 			if ( $resNow !== $resThen ) {
 				// Inform the edit saving system that getting the canonical output after
 				// revision insertion requires a parse that used an actual revision timestamp
-				self::setOutputFlag( $parser, $logger, 'vary-revision-timestamp', "$variable used" );
+				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_REVISION_TIMESTAMP, "$variable used" );
 			}
 		}
 
@@ -368,7 +374,7 @@ class CoreMagicVariables {
 		string $flag,
 		string $reason
 	): void {
-		$parser->getOutput()->setFlag( $flag );
+		$parser->getOutput()->setOutputFlag( $flag );
 		$name = $parser->getTitle()->getPrefixedText();
 		// This code was moved from Parser::setOutputFlag and used __METHOD__
 		// originally; we've hard-coded that output here so that our refactor

@@ -25,6 +25,7 @@ namespace MediaWiki\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
@@ -398,7 +399,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	}
 
 	/**
-	 * @param ParserOutput $out
+	 * @param ParserOutput $parserOutput
 	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
 	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
 	 *        unconditionally.
@@ -411,7 +412,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return bool
 	 */
 	private function outputVariesOnRevisionMetaData(
-		ParserOutput $out,
+		ParserOutput $parserOutput,
 		$actualPageId,
 		$actualRevId,
 		$actualRevTimestamp
@@ -420,41 +421,41 @@ class RenderedRevision implements SlotRenderingProvider {
 		$varyMsg = __METHOD__ . ": cannot use prepared output for '{title}'";
 		$context = [ 'title' => $this->title->getPrefixedText() ];
 
-		if ( $out->getFlag( 'vary-revision' ) ) {
+		if ( $parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION ) ) {
 			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID
 			$logger->info( "$varyMsg (vary-revision)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-id' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_ID )
 			&& $actualRevId !== false
-			&& ( $actualRevId === true || $out->getSpeculativeRevIdUsed() !== $actualRevId )
+			&& ( $actualRevId === true || $parserOutput->getSpeculativeRevIdUsed() !== $actualRevId )
 		) {
 			$logger->info( "$varyMsg (vary-revision-id and wrong ID)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-timestamp' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_TIMESTAMP )
 			&& $actualRevTimestamp !== false
 			&& ( $actualRevTimestamp === true ||
-				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
+				$parserOutput->getRevisionTimestampUsed() !== $actualRevTimestamp )
 		) {
 			$logger->info( "$varyMsg (vary-revision-timestamp and wrong timestamp)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-page-id' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_PAGE_ID )
 			&& $actualPageId !== false
-			&& ( $actualPageId === true || $out->getSpeculativePageIdUsed() !== $actualPageId )
+			&& ( $actualPageId === true || $parserOutput->getSpeculativePageIdUsed() !== $actualPageId )
 		) {
 			$logger->info( "$varyMsg (vary-page-id and wrong ID)", $context );
 			return true;
-		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
+		} elseif ( $parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_EXISTS ) ) {
 			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.
 			// Note that edit stashing always uses '-', which can be used for both
 			// edit filter checks and canonical parser cache.
 			$logger->info( "$varyMsg (vary-revision-exists)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-sha1' ) &&
-			$out->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1 ) &&
+			$parserOutput->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
 		) {
 			// If a self-transclusion used the proposed page text, it must match the final
 			// page content after PST transformations and automatically merged edit conflicts
@@ -462,7 +463,7 @@ class RenderedRevision implements SlotRenderingProvider {
 			return true;
 		}
 
-		// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
+		// NOTE: In the original fix for T135261, the output was discarded if ParserOutputFlags::VARY_USER was
 		// set for a null-edit. The reason was that the original rendering in that case was
 		// targeting the user making the null-edit, not the user who made the original edit,
 		// causing {{REVISIONUSER}} to return the wrong name.

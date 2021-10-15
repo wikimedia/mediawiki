@@ -183,9 +183,7 @@ class UploadForm extends HTMLForm {
 			UploadBase::getMaxPhpUploadSize()
 		);
 
-		$help = $this->msg( 'upload-maxfilesize',
-				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
-			)->parse();
+		$help = $this->msg( 'upload-maxfilesize' )->sizeParams( $this->mMaxUploadSize['file'] )->parse();
 
 		// If the user can also upload by URL, there are 2 different file size limits.
 		// This extra message helps stress which limit corresponds to what.
@@ -217,9 +215,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'sourceurl',
 				'upload-type' => 'url',
 				'radio' => &$radio,
-				'help' => $this->msg( 'upload-maxfilesize',
-					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
-				)->parse() .
+				'help' => $this->msg( 'upload-maxfilesize' )->sizeParams( $this->mMaxUploadSize['url'] )->parse() .
 					$this->msg( 'word-separator' )->escaped() .
 					$this->msg( 'upload_source_url' )->parse(),
 				'checked' => $selectedSourceType == 'url',
