@@ -1225,7 +1225,8 @@ return [
 			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getTitleFormatter(),
-			$services->getHttpRequestFactory()
+			$services->getHttpRequestFactory(),
+			$services->getTrackingCategories()
 		);
 	},
 
@@ -1722,7 +1723,8 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getNamespaceInfo(),
-			$services->getTitleFactory()
+			$services->getTitleParser(),
+			LoggerFactory::getInstance( 'TrackingCategories' )
 		);
 	},
 

@@ -363,6 +363,9 @@ class Parser {
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
 
+	/** @var TrackingCategories */
+	private $trackingCategories;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -410,6 +413,7 @@ class Parser {
 	 * @param UserFactory $userFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param TrackingCategories $trackingCategories
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -429,7 +433,8 @@ class Parser {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		TitleFormatter $titleFormatter,
-		HttpRequestFactory $httpRequestFactory
+		HttpRequestFactory $httpRequestFactory,
+		TrackingCategories $trackingCategories
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -475,6 +480,7 @@ class Parser {
 		$this->userFactory = $userFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->httpRequestFactory = $httpRequestFactory;
+		$this->trackingCategories = $trackingCategories;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -4085,7 +4091,9 @@ class Parser {
 	 * @since 1.19 method is public
 	 */
 	public function addTrackingCategory( $msg ) {
-		return $this->mOutput->addTrackingCategory( $msg, $this->getTitle() );
+		return $this->trackingCategories->addTrackingCategory(
+			$this->mOutput, $msg, $this->getPage()
+		);
 	}
 
 	/**
