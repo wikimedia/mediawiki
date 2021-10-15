@@ -137,19 +137,30 @@ because of Phabricator reports.
 * The `UndeleteForm::undelete` hook, deprecated in 1.37, was removed.
 * BagOStuff::setDebug(), deprecated since 1.36, has been removed.
 * The `jquery.mw-jump` ResourceLoader module was removed.
-* The `wgForeignUploadTargets` and `wgEnableUploads` configuration values
-  were removed from mw.config, they had previously been documented as being
-  included for internal use by the mediawiki.ForeignUpload module.
-* Several Skin methods, hard deprecated in 1.36, have been removed. These
-  include Skin::privacyLink(), aboutLink(), disclaimerLink(), makeUrl()
-  getIndicatorsHTML(), getLogo(), subPageSubtitle(), getSearchLink(),
-  makeVariablesScript(), getAllowedSkins(), getSkinNames() and
-  mainPageLink(). Use Skin::footerLink for footer links instead of
-  privacyLink, aboutLink and disclaimerLink. For others use
-  Skin::getIndicatorsData, ResourceLoaderSkinModule::getAvailableLogos,
-  Skin::prepareSubtitle,  Skin::getSearchPageTitle,
-  ResourceLoader::makeInlineScript(), SkinFactory::getAllowedSkins
-  or SkinFactory::getInstalledSkins().
+* The `wgForeignUploadTargets` and `wgEnableUploads` configuration values were
+  removed from mw.config. They had previously been documented as being included
+  for internal use by the mediawiki.ForeignUpload module.
+* Several Skin methods, which have emitted deprecation warnings since 1.36, have
+  been removed. These include:
+  - Skin::privacyLink()
+  - Skin::aboutLink()
+  - Skin::disclaimerLink()
+    For these, instead use Skin::footerLink() to alter footer links.
+  - Skin::getLogo()
+    For this, use ResourceLoaderSkinModule::getAvailableLogos() instead.
+  - Skin::getIndicatorsHTML()
+    For this, use Skin::getIndicatorsData() instead.
+  - Skin::subPageSubtitle()
+    For this, use Skin::prepareSubtitle() instead.
+  - Skin::makeVariablesScript()
+    For this, use ResourceLoader::makeInlineScript() instead.
+  - Skin::getAllowedSkins()
+  - Skin::getSkinNames()
+    For these, use SkinFactory::getAllowedSkins() or ::getInstalledSkins().
+  - Skin::makeUrl()
+  - Skin::getSearchLink()
+  - Skin::mainPageLink()
+    For these, use Skin::getSearchPageTitle() instead.
 * Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
   since 1.37, has been removed.
 * Parser::$mStripState, deprecated in 1.35, has been made private.  Use
@@ -162,7 +173,7 @@ because of Phabricator reports.
     use 'by' property with UserIdentity value instead.
   - 'by' property with blocker's ID,
     use 'by' property with UserIdentity value instead.
-* The following functions, hard deprecated since 1.37, have been removed:
+* The following functions, emitting deprecations since 1.37, have been removed:
   - Title::isWatchable()
   - WatchAction::doWatchOrUnwatch(), WatchAction::doWatch(),
     WatchAction::doUnwatch(), WatchAction::getWatchToken()
@@ -185,14 +196,14 @@ because of Phabricator reports.
   MediaWikiServices::getPageProps() instead.
 * User::setOption(), deprecated since 1.35, now emits deprecation warnings.
 * Linker::formatComment(), ::formatLinksInComment(), ::commentBlock() and
-  revComment() were soft-deprecated. Use the new CommentFormatter service.
-* Skin::getSkinStylePath has been hard deprecated. Direct string path
+  revComment() were deprecated. Use the new CommentFormatter service.
+* Skin::getSkinStylePath now triggers deprecation warnings. Direct string path
   should be used instead.
-* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emit
+* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
   deprecation warnings.
 * SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
   deprecation warnings.
-* The following methods from the User class were hard deprecated:
+* The following methods from the User class now trigger deprecation warnings:
    - ::blockedBy
    - ::getBlockId
 * Content::getParserOutput() was deprecated.
@@ -201,28 +212,29 @@ because of Phabricator reports.
 * Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
   you only need to delete the article. If you also need things to happen
   with OutputPage, you may want to check the hooks in DeleteAction instead.
-* MessageContent class was hard-deprecated.
-* Message::content() was hard-deprecated.
-* The following methods from the ParserOutput class were hard deprecated:
-   - ::hideNewSection() - use ::setHideNewSection()
+* Instantiating the MessageContent class now emits deprecation notices.
+* Message::content() now triggers deprecation warnings.
+* The following methods from the ParserOutput class now emit deprecation logs:
+   - ::hideNewSection()      - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
-   - ::getProperty()   - use ::getPageProperty()
-   - ::setProperty()   - use ::setPageProperty()
-   - ::unsetProperty() - use ::unsetPageProperties()
-   - ::getProperties() - use ::getPageProperties()
-* The following methods were soft-deprecated; use ::setPreventClickjacking(..)
-  instead:
+   - ::getProperty()         - use ::getPageProperty()
+   - ::setProperty()         - use ::setPageProperty()
+   - ::unsetProperty()       - use ::unsetPageProperties()
+   - ::getProperties()       - use ::getPageProperties()
+   - ::getCategoryLinks()    - use ::getCategoryNames()
+   - ::setCategoryLinks()    - use ::setCategories()
+* The following methods were deprecated; use ::setPreventClickjacking() instead:
    - OutputPage::preventClickjacking()
    - OutputPage::allowClickjacking()
    - ImageHistoryList::preventClickjacking()
    - ImageHistoryPseudoPager::preventClickjacking()
    - ContribsPager::preventClickjacking()
-* Collation::singleton() and ::factory() were hard-deprecated.
+* Collation::singleton() and ::factory() now trigger deprecation warnings.
 * Return values in the parameter $pageLang of the hook PageContentLanguage
   with other types than a Language object, deprecated since 1.33, now emmits
   deprecation warnings.
-* All external access to ParserOutput and CacheTime classes properties
-  was hard-deprecated. Use getters and setters instead.
+* All external access to ParserOutput and CacheTime classes properties will now
+  emit deprecation warnings. Use getters and setters instead.
 * …
 
 === Other changes in 1.38 ===

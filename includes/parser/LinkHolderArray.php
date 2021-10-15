@@ -407,7 +407,7 @@ class LinkHolderArray {
 		// process categories, check if a category exists in some variant
 		$categoryMap = []; // maps $category_variant => $category (dbkeys)
 		$varCategories = []; // category replacements oldDBkey => newDBkey
-		foreach ( $output->getCategoryLinks() as $category ) {
+		foreach ( $output->getCategoryNames() as $category ) {
 			$categoryTitle = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$linkBatch->addObj( $categoryTitle );
 			$variants = $this->languageConverter->autoConvertToAllVariants( $category );
@@ -488,7 +488,7 @@ class LinkHolderArray {
 					// make the replacement
 					$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
 				}
-				$output->setCategoryLinks( $newCats );
+				$output->setCategories( $newCats );
 			}
 		}
 	}

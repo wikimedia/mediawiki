@@ -231,7 +231,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNull( $object->getRevisionUsedSha1Base36() );
 					$testCase->assertArrayEquals( [], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [], $object->getInterwikiLinks() );
-					$testCase->assertArrayEquals( [], $object->getCategoryLinks() );
+					$testCase->assertArrayEquals( [], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [], $object->getCategories() );
 					$testCase->assertArrayEquals( [], $object->getIndicators() );
 					$testCase->assertSame( '', $object->getTitleText() );
@@ -335,7 +335,7 @@ abstract class ParserCacheSerializationTestCases {
 						'interwiki1' => 1,
 						'interwiki2' => 1
 					] ], $object->getInterwikiLinks() );
-					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryLinks() );
+					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [
 						'category1' => 2,
 						'vategory2' => 1
