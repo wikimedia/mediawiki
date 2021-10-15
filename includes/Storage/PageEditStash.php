@@ -35,7 +35,6 @@ use MediaWiki\User\UserIdentity;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use stdClass;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
 use WikiPage;
@@ -213,10 +212,11 @@ class PageEditStash {
 	 *
 	 * @param PageIdentity $page
 	 * @param Content $content
-	 * @param User $user to get parser options from
+	 * @param UserIdentity $useridentity to get parser options from
 	 * @return stdClass|bool Returns edit stash object or false on cache miss
 	 */
-	public function checkCache( PageIdentity $page, Content $content, User $user ) {
+	public function checkCache( PageIdentity $page, Content $content, UserIdentity $useridentity ) {
+		$user = $this->userFactory->newFromUserIdentity( $useridentity );
 		if (
 			// The context is not an HTTP POST request
 			!$user->getRequest()->wasPosted() ||
