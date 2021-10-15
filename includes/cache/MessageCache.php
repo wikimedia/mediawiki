@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -156,7 +157,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param BagOStuff $clusterCache
 	 * @param BagOStuff $serverCache
 	 * @param Language $contLang Content language of site
-	 * @param ILanguageConverter $contLangConverter Content language converter for site
+	 * @param LanguageConverterFactory $langConverterFactory
 	 * @param LoggerInterface $logger
 	 * @param array $options
 	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
@@ -172,7 +173,7 @@ class MessageCache implements LoggerAwareInterface {
 		BagOStuff $clusterCache,
 		BagOStuff $serverCache,
 		Language $contLang,
-		ILanguageConverter $contLangConverter,
+		LanguageConverterFactory $langConverterFactory,
 		LoggerInterface $logger,
 		array $options,
 		LanguageFactory $langFactory,
@@ -185,7 +186,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->clusterCache = $clusterCache;
 		$this->srvCache = $serverCache;
 		$this->contLang = $contLang;
-		$this->contLangConverter = $contLangConverter;
+		$this->contLangConverter = $langConverterFactory->getLanguageConverter( $contLang );
 		$this->contLangCode = $contLang->getCode();
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
