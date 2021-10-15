@@ -816,8 +816,8 @@ EOF
 		// flags & co
 		$a = new ParserOutput();
 
-		$a->addWarning( 'Oops' );
-		$a->addWarning( 'Whoops' );
+		$a->addWarningMsg( 'duplicate-args-warning', 'A', 'B', 'C' );
+		$a->addWarningMsg( 'template-loop-warning', 'D' );
 
 		$a->setFlag( 'foo' );
 		$a->setFlag( 'bar' );
@@ -827,8 +827,9 @@ EOF
 
 		$b = new ParserOutput();
 
-		$b->addWarning( 'Yikes' );
-		$b->addWarning( 'Whoops' );
+		$b->addWarningMsg( 'template-equals-warning' );
+		$b->addWarningMsg( 'template-loop-warning', 'D' );
+		$b->addWarning( 'Old School' ); // test the deprecated ::addWarning()
 
 		$b->setFlag( 'zoo' );
 		$b->setFlag( 'bar' );
@@ -837,7 +838,12 @@ EOF
 		$b->recordOption( 'Bar' );
 
 		yield 'flags' => [ $a, $b, [
-			'getWarnings' => [ 'Oops', 'Whoops', 'Yikes' ],
+			'getWarnings' => [
+				wfMessage( 'duplicate-args-warning', 'A', 'B', 'C' )->text(),
+				wfMessage( 'template-loop-warning', 'D' )->text(),
+				wfMessage( 'template-equals-warning' )->text(),
+				'Old School',
+			],
 			'$mFlags' => [ 'foo' => true, 'bar' => true, 'zoo' => true ],
 			'getUsedOptions' => [ 'Foo', 'Bar', 'Zoo' ],
 		] ];
