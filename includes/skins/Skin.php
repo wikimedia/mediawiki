@@ -2288,6 +2288,7 @@ abstract class Skin extends ContextSource {
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
+			'aria-label' => $this->msg( 'searchsuggest-search' )->text(),
 			// T251664: Disable autocapitalization of input
 			// method when using fully case-sensitive titles.
 			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
