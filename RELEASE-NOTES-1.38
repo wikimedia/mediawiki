@@ -226,11 +226,11 @@ because of Phabricator reports.
    - ::setCategoryLinks()    - use ::setCategories()
    - ::addTrackingCategory() - use Parser::addTrackingCategory()
                                or TrackingCategories::addTrackingCategory()
+   - ::addWarning()          - use ::addWarningMsg()
 * The following methods from the ParserOutput class were deprecated:
    - ::getFlag() - use ::getOutputFlag()
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
-   - ::addWarning() - use ::addWarningMsg()
 * The following methods were deprecated; use ::setPreventClickjacking(..)
   instead:
    - OutputPage::preventClickjacking()
