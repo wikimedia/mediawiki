@@ -49,7 +49,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\User\UserOptionsLookup::class ),
 			$this->createMock( MediaWiki\User\UserFactory::class ),
 			$this->createMock( TitleFormatter::class ),
-			$this->createMock( HttpRequestFactory::class )
+			$this->createMock( HttpRequestFactory::class ),
+			$this->createMock( TrackingCategories::class )
 		];
 	}
 
