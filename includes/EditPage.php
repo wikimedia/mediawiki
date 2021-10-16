@@ -275,7 +275,7 @@ class EditPage implements IEditObject {
 	 */
 	public $edittime = '';
 
-	/** @var int Revision ID of the latest revision of the page when editing
+	/** @var int|null Revision ID of the latest revision of the page when editing
 	 * was initiated on the client.  This is used to detect and resolve edit
 	 * conflicts.
 	 *
