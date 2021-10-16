@@ -25,6 +25,8 @@
 		"mediawiki/user-functions": "dev-master",
 		"mediawiki/user-merge": "dev-master",
 		"mediawiki/variables": "dev-master",
-		"mediawiki/url-get-parameters": "dev-master"
+		"mediawiki/url-get-parameters": "dev-master",
+		"mediawiki/standard-dialogs": "dev-master",
+		"mediawiki/page-header": "dev-master"
 	}
 }
