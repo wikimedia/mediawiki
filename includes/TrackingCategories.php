@@ -74,6 +74,8 @@ class TrackingCategories {
 		'restricted-displaytitle-ignored',
 		'template-equals-category',
 		'template-loop-category',
+		'unstrip-depth-category',
+		'unstrip-size-category',
 	];
 
 	/**
