@@ -423,7 +423,7 @@ class IcuCollation extends Collation {
 		 * element should be a prefix of some other element, so I think
 		 * this is safe. See:
 		 * - https://ssl.icu-project.org/repos/icu/icuhtml/trunk/design/collation/ICU_collation_design.htm
-		 * - http://site.icu-project.org/design/collation/uca-weight-allocation
+		 * - https://icu.unicode.org/design/collation/uca-weight-allocation
 		 *
 		 * Additionally, there is something called primary compression to
 		 * worry about. Basically, if you have two primary elements that
@@ -559,7 +559,7 @@ class IcuCollation extends Collation {
 		}
 
 		$versionPrefix = substr( $icuVersion, 0, 3 );
-		// Source: http://site.icu-project.org/download
+		// Source: https://icu.unicode.org/download
 		$map = [
 			'69.' => '13.0',
 			'68.' => '13.0',
