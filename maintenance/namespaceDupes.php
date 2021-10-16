@@ -276,8 +276,12 @@ class NamespaceDupes extends Maintenance {
 				$ns, $name, $row->page_namespace, $row->page_title );
 			$logStatus = false;
 			if ( !$newTitle ) {
-				$logStatus = 'invalid title';
-				$action = 'abort';
+				if ( $options['add-prefix'] == '' && $options['add-suffix'] == '' ) {
+					$logStatus = 'invalid title and --add-prefix not specified';
+					$action = 'abort';
+				} else {
+					$action = 'alternate';
+				}
 			} elseif ( $newTitle->exists() ) {
 				if ( $options['merge'] ) {
 					if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
@@ -289,21 +293,26 @@ class NamespaceDupes extends Maintenance {
 					$action = 'abort';
 					$logStatus = 'dest title exists and --add-prefix not specified';
 				} else {
-					$newTitle = $this->getAlternateTitle( $newTitle, $options );
-					if ( !$newTitle ) {
-						$action = 'abort';
-						$logStatus = 'alternate title is invalid';
-					} elseif ( $newTitle->exists() ) {
-						$action = 'abort';
-						$logStatus = 'title conflict';
-					} else {
-						$action = 'move';
-						$logStatus = 'alternate';
-					}
+					$action = 'alternate';
 				}
 			} else {
 				$action = 'move';
 				$logStatus = 'no conflict';
+			}
+			if ( $action === 'alternate' ) {
+				[ $ns, $dbk ] = $this->getDestination( $ns, $name, $row->page_namespace,
+					$row->page_title );
+				$newTitle = $this->getAlternateTitle( $ns, $dbk, $options );
+				if ( !$newTitle ) {
+					$action = 'abort';
+					$logStatus = 'alternate title is invalid';
+				} elseif ( $newTitle->exists() ) {
+					$action = 'abort';
+					$logStatus = 'alternate title conflicts';
+				} else {
+					$action = 'move';
+					$logStatus = 'alternate';
+				}
 			}
 
 			// Take the action or log a dry run message
@@ -511,14 +520,14 @@ class NamespaceDupes extends Maintenance {
 	}
 
 	/**
-	 * Get the preferred destination title for a given target page.
+	 * Get the preferred destination for a given target page.
 	 * @param int $ns The destination namespace ID
 	 * @param string $name The conflicting prefix
 	 * @param int $sourceNs The source namespace
-	 * @param int $sourceDbk The source DB key (i.e. page_title)
-	 * @return Title|false
+	 * @param string $sourceDbk The source DB key (i.e. page_title)
+	 * @return array [ ns, dbkey ], not necessarily valid
 	 */
-	private function getDestinationTitle( $ns, $name, $sourceNs, $sourceDbk ) {
+	private function getDestination( $ns, $name, $sourceNs, $sourceDbk ) {
 		$dbk = substr( $sourceDbk, strlen( "$name:" ) );
 		if ( $ns == 0 ) {
 			// An interwiki; try an alternate encoding with '-' for ':'
@@ -530,6 +539,19 @@ class NamespaceDupes extends Maintenance {
 			// This is an associated talk page moved with the --move-talk feature.
 			$destNS = $nsInfo->getTalk( $destNS );
 		}
+		return [ $destNS, $dbk ];
+	}
+
+	/**
+	 * Get the preferred destination title for a given target page.
+	 * @param int $ns The destination namespace ID
+	 * @param string $name The conflicting prefix
+	 * @param int $sourceNs The source namespace
+	 * @param string $sourceDbk The source DB key (i.e. page_title)
+	 * @return Title|false
+	 */
+	private function getDestinationTitle( $ns, $name, $sourceNs, $sourceDbk ) {
+		[ $destNS, $dbk ] = $this->getDestination( $ns, $name, $sourceNs, $sourceDbk );
 		$newTitle = Title::makeTitleSafe( $destNS, $dbk );
 		if ( !$newTitle || !$newTitle->canExist() ) {
 			return false;
@@ -541,26 +563,19 @@ class NamespaceDupes extends Maintenance {
 	 * Get an alternative title to move a page to. This is used if the
 	 * preferred destination title already exists.
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param int $ns The destination namespace ID
+	 * @param string $dbk The source DB key (i.e. page_title)
 	 * @param array $options Associative array of validated command-line options
 	 * @return Title|bool
 	 */
-	private function getAlternateTitle( LinkTarget $linkTarget, $options ) {
+	private function getAlternateTitle( $ns, $dbk, $options ) {
 		$prefix = $options['add-prefix'];
 		$suffix = $options['add-suffix'];
 		if ( $prefix == '' && $suffix == '' ) {
 			return false;
 		}
-		while ( true ) {
-			$dbk = $prefix . $linkTarget->getDBkey() . $suffix;
-			$title = Title::makeTitleSafe( $linkTarget->getNamespace(), $dbk );
-			if ( !$title ) {
-				return false;
-			}
-			if ( !$title->exists() ) {
-				return $title;
-			}
-		}
+		$newDbk = $prefix . $dbk . $suffix;
+		return Title::makeTitleSafe( $ns, $newDbk );
 	}
 
 	/**
