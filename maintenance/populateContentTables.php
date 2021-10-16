@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -73,9 +74,10 @@ class PopulateContentTables extends Maintenance {
 
 	private function initServices() {
 		$this->dbw = $this->getDB( DB_MASTER );
-		$this->contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
-		$this->slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-		$this->blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$services = MediaWikiServices::getInstance();
+		$this->contentModelStore = $services->getContentModelStore();
+		$this->slotRoleStore = $services->getSlotRoleStore();
+		$this->blobStore = $services->getBlobStore();
 
 		// Don't trust the cache for the NameTableStores, in case something went
 		// wrong during a previous run (see T224949#5325895).
@@ -296,7 +298,11 @@ class PopulateContentTables extends Maintenance {
 					__METHOD__
 				);
 				foreach ( $res as $row ) {
-					$key = $row->content_model . ':' . $row->content_address;
+					$address = $row->content_address;
+					if ( substr( $address, 0, 4 ) === 'bad:' ) {
+						$address = substr( $address, 4 );
+					}
+					$key = $row->content_model . ':' . $address;
 					$map[$key] = $row->content_id;
 				}
 			}
@@ -358,9 +364,9 @@ class PopulateContentTables extends Maintenance {
 	 *
 	 * @param object $row to be modified
 	 * @param string $model
-	 * @param string $address
+	 * @param string &$address
 	 */
-	private function fillMissingFields( $row, $model, $address ) {
+	private function fillMissingFields( $row, $model, &$address ) {
 		if ( !isset( $row->content_model ) ) {
 			// just for completeness
 			$row->content_model = $model;
@@ -371,7 +377,12 @@ class PopulateContentTables extends Maintenance {
 			return;
 		}
 
-		$blob = $this->blobStore->getBlob( $address );
+		try {
+			$blob = $this->blobStore->getBlob( $address );
+		} catch ( BlobAccessException $e ) {
+			$address = 'bad:' . $address;
+			$blob = '';
+		}
 
 		if ( !isset( $row->len ) ) {
 			// NOTE: The nominal size of the content may not be the length of the raw blob.
