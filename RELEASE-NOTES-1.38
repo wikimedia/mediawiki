@@ -230,6 +230,7 @@ because of Phabricator reports.
    - ::getFlag() - use ::getOutputFlag()
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
+   - ::addWarning() - use ::addWarningMsg()
 * The following methods were deprecated; use ::setPreventClickjacking(..)
   instead:
    - OutputPage::preventClickjacking()

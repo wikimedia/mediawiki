@@ -838,7 +838,24 @@ class ParserOutput extends CacheTime {
 		$this->mLanguageLinks[] = $t;
 	}
 
+	/**
+	 * @deprecated since 1.38; use ::addWarningMsg() instead
+	 */
 	public function addWarning( $s ) {
+		$this->mWarnings[$s] = 1;
+	}
+
+	/**
+	 * Add a warning to the output for this page.
+	 * @param string $msg The localization message key for the warning
+	 * @param mixed ...$args Optional arguments for the message
+	 * @since 1.38
+	 */
+	public function addWarningMsg( string $msg, ...$args ): void {
+		$s = wfMessage( $msg, ...$args )
+		   // some callers set the title here?
+		   ->inContentLanguage() // because this ends up in cache
+		   ->text();
 		$this->mWarnings[$s] = 1;
 	}
 
