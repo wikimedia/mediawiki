@@ -239,10 +239,45 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		// Otherwise, fallback to $wgLocalHTTPProxy for local URLs
 		// or $wgHTTPProxy for everything else
 		if ( self::isLocalURL( $this->url ) ) {
-			$this->proxy = (string)$wgLocalHTTPProxy;
+			if ( $wgLocalHTTPProxy !== false ) {
+				$this->setReverseProxy( $wgLocalHTTPProxy );
+			}
 		} else {
 			$this->proxy = (string)$wgHTTPProxy;
 		}
+	}
+
+	/**
+	 * Enable use of a reverse proxy in which the hostname is
+	 * passed as a "Host" header, and the request is sent to the
+	 * proxy's host:port instead.
+	 *
+	 * Note that any custom port in the request URL will be lost
+	 * and cookies and redirects may not work properly.
+	 *
+	 * @param string $proxy URL of proxy
+	 */
+	protected function setReverseProxy( string $proxy ) {
+		$parsedProxy = wfParseUrl( $proxy );
+		if ( $parsedProxy === false ) {
+			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+		}
+		// Set the current host in the Host header
+		$this->setHeader( 'Host', $this->parsedUrl['host'] );
+		// Set current protocol in X-Forwarded-Proto
+		// TODO: consider supporting the standardized "Forwarded" header too
+		$this->setHeader( 'X-Forwarded-Proto', $this->parsedUrl['scheme'] );
+		// Replace scheme, host and port in the request
+		$this->parsedUrl['scheme'] = $parsedProxy['scheme'];
+		$this->parsedUrl['host'] = $parsedProxy['host'];
+		if ( isset( $parsedProxy['port'] ) ) {
+			$this->parsedUrl['port'] = $parsedProxy['port'];
+		} else {
+			unset( $this->parsedUrl['port'] );
+		}
+		$this->url = wfAssembleUrl( $this->parsedUrl );
+		// Mark that we're already using a proxy
+		$this->noProxy = true;
 	}
 
 	/**
