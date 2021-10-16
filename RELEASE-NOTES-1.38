@@ -29,6 +29,9 @@ For notes on 1.36.x and older releases, see HISTORY.
   be re-enabled if you wish, or locally extended for other browsers' quirks.
 * $wgGroupInheritsPermissions – This setting allows inheriting permissions, both
   granted and revoked, from another group.
+* $wgForeignApiRepos – ForeignAPIRepo now has a apiMetadataExpiry option
+  to control how long file metadata is cached. Additionally the default changed
+  from 1 hour to 4 hours.
 * …
 
 ==== Changed configuration ====
