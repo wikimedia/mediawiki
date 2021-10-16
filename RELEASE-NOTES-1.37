@@ -29,6 +29,13 @@ For notes on 1.36.x and older releases, see HISTORY.
 ==== New configuration ====
 * $wgBrowserFormatDetection - This setting allows the enabling or disabling
   of automatic detection of possible phone numbers in a webpage in iOS Safari.
+* $wgParserEnableLegacyMediaDOM - This setting defaults to true, and enables
+  the legacy media HTML structure in the output from the Parser.  The
+  alternative modern HTML structure for media is described at
+  https://www.mediawiki.org/wiki/Parsing/Media_structure
+  In a future release of MediaWiki this option will default to false,
+  so it's a good idea to test this setting on your wiki early and report
+  any issues.
 
 ==== Changed configuration ====
 * $wgContentHandlerTextFallback - This migration setting, which defines how to
