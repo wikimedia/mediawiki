@@ -101,7 +101,7 @@ class ArchivedFile {
 	/** @var MediaHandler */
 	protected $handler;
 
-	/** @var Title */
+	/** @var Title|null */
 	protected $title; # image title
 
 	/** @var bool */
@@ -110,14 +110,14 @@ class ArchivedFile {
 	/**
 	 * @stable to call
 	 * @throws MWException
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param int $id
 	 * @param string $key
 	 * @param string $sha1
 	 */
 	public function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
 		$this->id = -1;
-		$this->title = false;
+		$this->title = null;
 		$this->name = false;
 		$this->group = 'deleted'; // needed for direct use of constructor
 		$this->key = '';

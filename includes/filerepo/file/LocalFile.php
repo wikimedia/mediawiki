@@ -2477,7 +2477,7 @@ class LocalFile extends File {
 	 * May throw database exceptions on error.
 	 * @stable to override
 	 *
-	 * @param array $versions Set of record ids of deleted items to restore,
+	 * @param int[] $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress
 	 * @return Status
