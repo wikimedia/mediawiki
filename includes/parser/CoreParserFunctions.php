@@ -501,11 +501,10 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$parser->getOutput()->addWarning(
-				wfMessage( 'restricted-displaytitle',
-					// Message should be parsed, but this param should only be escaped.
-					wfEscapeWikiText( $text )
-				)->text()
+			$parser->getOutput()->addWarningMsg(
+				'restricted-displaytitle',
+				// Message should be parsed, but this param should only be escaped.
+				Message::plaintextParam( $text )
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
 		}

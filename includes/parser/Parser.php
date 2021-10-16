@@ -2950,9 +2950,11 @@ class Parser {
 		# does no harm if $current and $max are present but are unnecessary for the message
 		# Not doing ->inLanguage( $this->mOptions->getUserLangObj() ), since this is shown
 		# only during preview, and that would split the parser cache unnecessarily.
-		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
-			->text();
-		$this->mOutput->addWarning( $warning );
+		$this->mOutput->addWarningMsg(
+			"$limitationType-warning",
+			Message::numParam( $current ),
+			Message::numParam( $max )
+		);
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
 
@@ -3237,8 +3239,10 @@ class Parser {
 					. wfMessage( 'parser-template-loop-warning', $titleText )->inContentLanguage()->text()
 					. '</span>';
 				$this->addTrackingCategory( 'template-loop-category' );
-				$this->mOutput->addWarning( wfMessage( 'template-loop-warning',
-					wfEscapeWikiText( $titleText ) )->text() );
+				$this->mOutput->addWarningMsg(
+					'template-loop-warning',
+					Message::plaintextParam( $titleText )
+				);
 				$this->logger->debug( __METHOD__ . ": template loop broken at '$titleText'" );
 			}
 		}
@@ -3283,7 +3287,7 @@ class Parser {
 			// T91154: {{=}} is deprecated when it doesn't expand to `=`;
 			// use {{Template:=}} if you must.
 			$this->addTrackingCategory( 'template-equals-category' );
-			$this->mOutput->addWarning( wfMessage( 'template-equals-warning' )->text() );
+			$this->mOutput->addWarningMsg( 'template-equals-warning' );
 		}
 
 		# Replace raw HTML by a placeholder
