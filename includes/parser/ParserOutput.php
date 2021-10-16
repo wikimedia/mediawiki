@@ -842,6 +842,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.38; use ::addWarningMsg() instead
 	 */
 	public function addWarning( $s ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mWarnings[$s] = 1;
 	}
 
