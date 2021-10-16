@@ -1100,7 +1100,7 @@ class LocalFile extends File {
 		}
 
 		// Purge any custom thumbnail caches
-		$this->hookRunner->onLocalFilePurgeThumbnails( $this, $archiveName, $urls );
+		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, $archiveName, $urls );
 
 		// Purge the CDN
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
