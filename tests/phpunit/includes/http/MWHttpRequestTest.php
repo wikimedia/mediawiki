@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers MWHttpRequest
  */
@@ -83,6 +85,16 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testIsValidUri( $expect, $uri, $message = '' ) {
 		$this->assertSame( $expect, MWHttpRequest::isValidURI( $uri ), $message );
+	}
+
+	public function testSetReverseProxy() {
+		$req = TestingAccessWrapper::newFromObject(
+			MWHttpRequest::factory( 'https://example.org/path?query=string' )
+		);
+		$req->setReverseProxy( 'http://localhost:1234' );
+		$this->assertSame( $req->url, 'http://localhost:1234/path?query=string' );
+		$this->assertSame( $req->reqHeaders['Host'], 'example.org' );
+		$this->assertSame( $req->reqHeaders['X-Forwarded-Proto'], 'https' );
 	}
 
 }

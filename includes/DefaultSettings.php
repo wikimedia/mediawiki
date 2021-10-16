@@ -9675,6 +9675,8 @@ $wgHTTPProxy = '';
  * Local virtual hosts.
  *
  * This lists domains that are configured as virtual hosts on the same machine.
+ * It is expected that each domain can be identified by its hostname alone,
+ * without any ports.
  *
  * This affects the following:
  * - MWHttpRequest: If a request is to be made to a domain listed here, or any
@@ -9687,12 +9689,16 @@ $wgHTTPProxy = '';
 $wgLocalVirtualHosts = [];
 
 /**
- * Proxy to use to requests to domains in $wgLocalVirtualHosts
+ * Reverse proxy to use for requests to domains in $wgLocalVirtualHosts
  *
- * If set to false, no proxy will be used for local requests
+ * When used, any port in the request URL will be dropped. The behavior of
+ * redirects and cookies is dependent upon the reverse proxy actually in use,
+ * as MediaWiki doesn't implement any special handling for them.
+ *
+ * If set to false, no reverse proxy will be used for local requests.
  *
  * @var string|bool
- * @since 1.37
+ * @since 1.38
  */
 $wgLocalHTTPProxy = false;
 
