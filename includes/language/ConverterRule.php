@@ -66,7 +66,7 @@ class ConverterRule {
 	 * Check if variants array in convert array.
 	 *
 	 * @param array|string $variants Variant language code
-	 * @return string Translated text
+	 * @return string|false Translated text
 	 */
 	public function getTextInBidtable( $variants ) {
 		$variants = (array)$variants;
