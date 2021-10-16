@@ -186,10 +186,10 @@ class SpecialActiveUsers extends SpecialPage {
 				__METHOD__
 			);
 			if ( $cTime ) {
-				$secondsOld = wfTimestamp( TS_UNIX, $rcMax ) - wfTimestamp( TS_UNIX, $cTime );
+				$secondsOld = (int)wfTimestamp( TS_UNIX, $rcMax ) - (int)wfTimestamp( TS_UNIX, $cTime );
 			} else {
 				$rcMin = $dbr->selectField( 'recentchanges', 'MIN(rc_timestamp)', '', __METHOD__ );
-				$secondsOld = time() - wfTimestamp( TS_UNIX, $rcMin );
+				$secondsOld = time() - (int)wfTimestamp( TS_UNIX, $rcMin );
 			}
 			if ( $secondsOld > 0 ) {
 				$intro .= $this->msg( 'cachedspecial-viewing-cached-ttl' )

@@ -156,7 +156,7 @@ class PageEditStash {
 
 		// Reuse any freshly build matching edit stash cache
 		$editInfo = $this->getStashValue( $key );
-		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+		if ( $editInfo && (int)wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
 			$pageUpdater->setContent( SlotRecord::MAIN, $content );

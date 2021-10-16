@@ -36,7 +36,7 @@ class RSSFeed extends ChannelFeed {
 	 */
 	private function formatTime( $ts ) {
 		if ( $ts ) {
-			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
+			return gmdate( 'D, d M Y H:i:s \G\M\T', (int)wfTimestamp( TS_UNIX, $ts ) );
 		}
 		return null;
 	}

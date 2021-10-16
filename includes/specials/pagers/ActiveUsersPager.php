@@ -111,7 +111,7 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = $this->getDatabase();
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
-		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+		$timestamp = $dbr->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
 		// Inner subselect to pull the active users out of querycachetwo

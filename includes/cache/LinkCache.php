@@ -478,7 +478,7 @@ class LinkCache implements LoggerAwareInterface {
 					$setOpts += Database::getCacheSetOptions( $dbr );
 
 					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
-					$mtime = $row ? wfTimestamp( TS_UNIX, $row->page_touched ) : false;
+					$mtime = $row ? (int)wfTimestamp( TS_UNIX, $row->page_touched ) : false;
 					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
 
 					return $row;

@@ -405,7 +405,7 @@ class LogFormatter {
 						$duration = $contLang->translateBlockExpiry(
 							$rawDuration,
 							null,
-							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+							(int)wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
 						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $contLang );
 						$text = wfMessage( 'blocklogentry' )
@@ -419,7 +419,7 @@ class LogFormatter {
 						$duration = $contLang->translateBlockExpiry(
 							$parameters['5::duration'],
 							null,
-							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+							(int)wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
 						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'],
 							$contLang );

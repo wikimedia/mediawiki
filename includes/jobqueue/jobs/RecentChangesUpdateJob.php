@@ -145,7 +145,7 @@ class RecentChangesUpdateJob extends Job {
 			[ 'qci_type' => 'activeusers' ],
 			__METHOD__
 		);
-		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
+		$cTimeUnix = $cTime ? (int)wfTimestamp( TS_UNIX, $cTime ) : 1;
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window.
@@ -208,7 +208,7 @@ class RecentChangesUpdateJob extends Job {
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => $name,
-					'qcc_value' => wfTimestamp( TS_UNIX, $lastEditTime ),
+					'qcc_value' => (int)wfTimestamp( TS_UNIX, $lastEditTime ),
 					'qcc_namespacetwo' => 0, // unused
 					'qcc_titletwo' => '' // unused
 				];
