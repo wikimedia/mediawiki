@@ -12,7 +12,7 @@
 	 * @param {Object} response Response data
 	 */
 	function parsePreviewRequest( response ) {
-		var newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
+		var indicators, newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
 
 		$editform = $( '#editform' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -26,23 +26,25 @@
 			) );
 		}
 
-		newList = [];
-		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( response.parse.indicators, function ( name, indicator ) {
-			newList.push(
-				$( '<div>' )
-					.addClass( 'mw-indicator' )
-					.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
-					.html( indicator )
-					.get( 0 ),
-				// Add a whitespace between the <div>s because
-				// they get displayed with display: inline-block
-				document.createTextNode( '\n' )
-			);
+		// eslint-disable-next-line no-jquery/no-map-util
+		indicators = $.map( response.parse.indicators, function ( indicator, name ) {
+			return $( '<div>' )
+				.addClass( 'mw-indicator' )
+				.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
+				.html( indicator )
+				.get( 0 );
 		} );
-		if ( newList.length ) {
-			mw.hook( 'wikipage.indicators' ).fire( $( newList ) );
+		if ( indicators.length ) {
+			mw.hook( 'wikipage.indicators' ).fire( $( indicators ) );
 		}
+
+		// Add whitespace between the <div>s because
+		// they get displayed with display: inline-block
+		newList = [];
+		indicators.forEach( function ( indicator ) {
+			newList.push( indicator, document.createTextNode( '\n' ) );
+		} );
+
 		$( '.mw-indicators' ).empty().append( newList );
 
 		if ( response.parse.displaytitle ) {
