@@ -59,9 +59,9 @@ $( function () {
 		 *
 		 * @event wikipage_indicators
 		 * @member mw.hook
-		 * @param {jQuery} $content The root element of the indicators
+		 * @param {jQuery} $content jQuery object with the elements of the indicators
 		 */
-		mw.hook( 'wikipage.indicators' ).fire( $( node ) );
+		mw.hook( 'wikipage.indicators' ).fire( $( node.children ) );
 	}
 
 	/**
