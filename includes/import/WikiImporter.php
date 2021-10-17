@@ -33,6 +33,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * XML file reader for the page data importer.
@@ -705,8 +706,16 @@ class WikiImporter {
 
 			if ( $this->reader->localName != 'mediawiki' ) {
 				libxml_disable_entity_loader( $oldDisable );
-				throw new MWException( "Expected <mediawiki> tag, got " .
-					$this->reader->localName );
+				$error = libxml_get_last_error();
+				if ( $error ) {
+					throw new NormalizedException( "XML error at line {line}: {message}", [
+						'line' => $error->line,
+						'message' => $error->message,
+					] );
+				} else {
+					throw new MWException( "Expected <mediawiki> tag, got " .
+						$this->reader->localName );
+				}
 			}
 			$this->debug( "<mediawiki> tag is correct." );
 
