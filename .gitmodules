@@ -788,11 +788,6 @@
 	url = https://github.com/wikimedia/mediawiki-skins-MinervaNeue
 	branch = REL1_37
 	ignore = dirty
-[submodule "extensions/ElectronPdfService"]
-	path = extensions/ElectronPdfService
-	url = https://github.com/wikimedia/mediawiki-extensions-ElectronPdfService
-	branch = REL1_37
-	ignore = dirty
 [submodule "extensions/GlobalUserPage"]
 	path = extensions/GlobalUserPage
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUserPage
@@ -822,11 +817,6 @@
 	path = extensions/WikiDiscover
 	url = https://github.com/miraheze/WikiDiscover
 	branch = master
-	ignore = dirty
-[submodule "extensions/Collection"]
-	path = extensions/Collection
-	url = https://github.com/wikimedia/mediawiki-extensions-Collection
-	branch = REL1_37
 	ignore = dirty
 [submodule "extensions/PipeEscape"]
 	path = extensions/PipeEscape
