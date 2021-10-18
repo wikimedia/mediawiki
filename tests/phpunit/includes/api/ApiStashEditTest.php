@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -304,11 +305,11 @@ class ApiStashEditTest extends ApiTestCase {
 	 * Shortcut for calling PageStashEdit::checkCache() without
 	 * having to create Titles and Contents in every test.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $text The text of the article
 	 * @return stdClass|bool Return value of PageStashEdit::checkCache(), false if not in cache
 	 */
-	protected function doCheckCache( User $user, $text = 'Content' ) {
+	protected function doCheckCache( UserIdentity $user, $text = 'Content' ) {
 		return MediaWikiServices::getInstance()->getPageEditStash()->checkCache(
 			Title::newFromText( __CLASS__ ),
 			new WikitextContent( $text ),
