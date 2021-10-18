@@ -2604,6 +2604,7 @@ return [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icons-interactions',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
