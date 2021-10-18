@@ -75,6 +75,8 @@ class DeletePage {
 	private $webRequestID;
 	/** @var UserFactory */
 	private $userFactory;
+	/** @var BacklinkCacheFactory */
+	private $backlinkCacheFactory;
 
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
@@ -98,8 +100,12 @@ class DeletePage {
 	/** @var bool */
 	private $mergeLegacyHookErrors = true;
 
-	/** @var BacklinkCacheFactory */
-	private $backlinkCacheFactory;
+	/** @var int[]|null */
+	private $successfulDeletionsIDs;
+	/** @var bool|null */
+	private $wasScheduled;
+	/** @var bool Whether a deletion was attempted */
+	private $attemptedDeletion = false;
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -226,12 +232,50 @@ class DeletePage {
 	}
 
 	/**
+	 * Called before attempting a deletion, allows the result getters to be used
+	 */
+	private function setDeletionAttempted(): void {
+		$this->attemptedDeletion = true;
+		$this->successfulDeletionsIDs = [];
+		$this->wasScheduled = false;
+	}
+
+	/**
+	 * Asserts that a deletion operation was attempted
+	 * @throws BadMethodCallException
+	 */
+	private function assertDeletionAttempted(): void {
+		if ( !$this->attemptedDeletion ) {
+			throw new BadMethodCallException( 'No deletion was attempted' );
+		}
+	}
+
+	/**
+	 * @return int[] Array of log IDs of successful deletions
+	 * @throws BadMethodCallException If no deletions were attempted
+	 */
+	public function getSuccessfulDeletionsIDs(): array {
+		$this->assertDeletionAttempted();
+		return $this->successfulDeletionsIDs;
+	}
+
+	/**
+	 * @return bool Whether (part of) the deletion was scheduled
+	 * @throws BadMethodCallException If no deletions were attempted
+	 */
+	public function deletionWasScheduled(): bool {
+		$this->assertDeletionAttempted();
+		return $this->wasScheduled;
+	}
+
+	/**
 	 * Same as deleteUnsafe, but checks permissions.
 	 *
 	 * @param string $reason
 	 * @return StatusValue
 	 */
 	public function deleteIfAllowed( string $reason ): StatusValue {
+		$this->setDeletionAttempted();
 		$status = $this->authorizeDeletion();
 		if ( !$status->isGood() ) {
 			return $status;
@@ -303,12 +347,12 @@ class DeletePage {
 	 *
 	 * @param string $reason Delete reason for deletion log
 	 * @return Status Status object:
-	 *   - If immediate and successful, a good Status with value = log_id of the deletion log entry.
-	 *   - If scheduled, a good Status with value = false.
+	 *   - If successful (or scheduled), a good Status
 	 *   - If the page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
 	 *   - A fatal Status otherwise.
 	 */
 	public function deleteUnsafe( string $reason ): Status {
+		$this->setDeletionAttempted();
 		$status = Status::newGood();
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
@@ -354,6 +398,9 @@ class DeletePage {
 	 * @return Status
 	 */
 	public function deleteInternal( string $reason, ?string $webRequestId = null ): Status {
+		// The following is necessary for direct calls from the outside
+		$this->setDeletionAttempted();
+
 		$title = $this->page->getTitle();
 		$status = Status::newGood();
 
@@ -437,7 +484,7 @@ class DeletePage {
 
 			$job = new DeletePageJob( $jobParams );
 			$this->jobQueueGroup->push( $job );
-			$status->value = false;
+			$this->wasScheduled = true;
 			return $status;
 		}
 
@@ -512,7 +559,7 @@ class DeletePage {
 			$logEntry,
 			$archivedRevisionCount
 		);
-		$status->value = $logid;
+		$this->successfulDeletionsIDs[] = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
 		$key = $this->recentDeletesCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
