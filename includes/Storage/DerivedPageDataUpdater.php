@@ -371,15 +371,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->logger = new NullLogger();
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 *
-	 * @return User
-	 */
-	private static function toLegacyUser( UserIdentity $user ) {
-		return User::newFromIdentity( $user );
-	}
-
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -834,14 +825,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// The edit may have already been prepared via api.php?action=stashedit
 		$stashedEdit = false;
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		// TODO: MCR: allow output for all slots to be stashed.
 		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
 			$stashedEdit = $this->pageEditStash->checkCache(
 				$title,
 				$slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent(),
-				$legacyUser
+				$user
 			);
 		}
 
@@ -1581,18 +1570,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $mainSlot->getContent() ) );
 		}
 
-		$legacyUser = self::toLegacyUser( $this->user );
-
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
 		// TODO: the permission check should be performed by the callers, see T276181.
 		if ( $this->options['changed']
 			&& $title->getNamespace() === NS_USER_TALK
-
-			// TODO User::getTitleKey is just a string manipulation of the user name,
-			// duplicate it here and use $this->user (a UserIdentity) instead
-			&& $shortTitle != $legacyUser->getTitleKey()
+			&& $title->getText() != $this->user->getName()
 			&& !( $this->revision->isMinor() && $this->permissionManager
 				->userHasRight( $this->user, 'nominornewtalk' )
 			)
