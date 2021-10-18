@@ -217,7 +217,7 @@
 	"currentevents": "Sɔnɔ tɔm",
 	"currentevents-url": "Project:Sɔnɔ tɔm",
 	"disclaimers": "Paɣʋ",
-	"disclaimerpage": "Tɔm tɩŋa yɔɔ paɣʋ",
+	"disclaimerpage": "Project:Tɔm tɩŋa yɔɔ paɣʋ",
 	"edithelp": "Ñɔɔzɩtʋ sɩnaʋ",
 	"mainpage": "Talɩ ɖeu",
 	"mainpage-description": "Talɩ ɖeu",
@@ -513,5 +513,5 @@
 	"logentry-move-move": "$1 {{GENDER:$2|kɛzɩ}} takayɩhayʋʋ $3 ñɩŋgʋ nɛ $4 ñɩŋgʋ yɔɔ",
 	"logentry-newusers-create": "{{GENDER:$2|Patʋlɩ}} labɩnayʋ koozaɣ $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|mʋʋna poliŋ taa}} $3",
-	"searchsuggest-search": "Ñɩnɩ"
+	"searchsuggest-search": "Ñɩnɩ {{SITENAME}} taa"
 }

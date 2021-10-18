@@ -1036,7 +1036,7 @@
 	"prefs-files": "Fichièrs",
 	"prefs-custom-css": "CSS personalizat",
 	"prefs-custom-json": "JSON personalizat",
-	"prefs-custom-js": "JS personalizat",
+	"prefs-custom-js": "JavaScript personalizat",
 	"prefs-common-config": "JavaScript, CSS e JSON partejat per totes los abilhatges :",
 	"prefs-reset-intro": "Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del site. Aquò pòt pas èsser desfait.",
 	"prefs-emailconfirm-label": "Confirmacion del corrièr electronic :",
