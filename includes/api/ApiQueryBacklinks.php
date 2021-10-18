@@ -572,10 +572,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			]
 		];
-		if ( $this->getModuleName() == 'embeddedin' ) {
-			return $retval;
+		if ( $this->getModuleName() !== 'embeddedin' ) {
+			$retval['redirect'] = false;
 		}
-		$retval['redirect'] = false;
 
 		return $retval;
 	}
