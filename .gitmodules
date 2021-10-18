@@ -1468,11 +1468,6 @@
 	url = https://github.com/snapwiki/snapwikiskin
 	branch = stable
 	ignore = dirty
-[submodule "extensions/WebP"]
-	path = extensions/WebP
-	url = https://github.com/octfx/mediawiki-extension-WebP
-	branch = master
-	ignore = dirty
 [submodule "skins/chameleon"]
 	path = skins/chameleon
 	url = https://github.com/ProfessionalWiki/chameleon
