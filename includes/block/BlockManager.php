@@ -153,11 +153,15 @@ class BlockManager {
 
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
+			$isAnon = !$user->isRegistered();
+
+			$xff = $request->getHeader( 'X-Forwarded-For' );
+
 			// TODO: remove dependency on DatabaseBlock (T221075)
 			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary );
-			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromPrimary );
+			$this->getSystemIpBlocks( $blocks, $ip, $isAnon );
+			$this->getXffBlocks( $blocks, $ip, $xff, $isAnon, $fromPrimary );
 			$this->getCookieBlock( $blocks, $user, $request );
-
 		} else {
 
 			// Case #2: checking the global user, but they are exempt from IP blocks
@@ -168,21 +172,7 @@ class BlockManager {
 
 		}
 
-		// Filter out any duplicated blocks, e.g. from the cookie
-		$blocks = $this->getUniqueBlocks( $blocks );
-
-		$block = null;
-		if ( count( $blocks ) > 0 ) {
-			if ( count( $blocks ) === 1 ) {
-				$block = $blocks[ 0 ];
-			} else {
-				$block = new CompositeBlock( [
-					'address' => $ip,
-					'reason' => new Message( 'blockedtext-composite-reason' ),
-					'originalBlocks' => $blocks,
-				] );
-			}
-		}
+		$block = $this->createGetBlockResult( $ip, $blocks );
 
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		$this->hookRunner->onGetUserBlock( clone $legacyUser, $ip, $block );
@@ -191,7 +181,49 @@ class BlockManager {
 	}
 
 	/**
-	 * Get the cookie block, if there is one.
+	 * @param string|null $ip
+	 * @param AbstractBlock[] $blocks
+	 * @return AbstractBlock|null
+	 */
+	private function createGetBlockResult( ?string $ip, array $blocks ): ?AbstractBlock {
+		// Filter out any duplicated blocks, e.g. from the cookie
+		$blocks = $this->getUniqueBlocks( $blocks );
+
+		if ( count( $blocks ) === 0 ) {
+			return null;
+		} elseif ( count( $blocks ) === 1 ) {
+			return $blocks[ 0 ];
+		} else {
+			return new CompositeBlock( [
+				'address' => $ip,
+				'reason' => new Message( 'blockedtext-composite-reason' ),
+				'originalBlocks' => $blocks,
+			] );
+		}
+	}
+
+	/**
+	 * Get the blocks that apply to an IP address. If there is only one, return that, otherwise
+	 * return a composite block that combines the strictest features of the applicable blocks.
+	 *
+	 * @since 1.38
+	 * @param string $ip
+	 * @param bool $fromReplica
+	 * @return AbstractBlock|null
+	 */
+	public function getIpBlock( string $ip, bool $fromReplica ): ?AbstractBlock {
+		if ( !IPUtils::isValid( $ip ) ) {
+			return null;
+		}
+
+		$blocks = DatabaseBlock::newListFromTarget( $ip, $ip, !$fromReplica );
+		$this->getSystemIpBlocks( $blocks, $ip, true );
+
+		return $this->createGetBlockResult( $ip, $blocks );
+	}
+
+	/**
+	 * Get the cookie block, if there is one, and merge it into the `$blocks` parameter.
 	 *
 	 * @param AbstractBlock[] &$blocks
 	 * @param UserIdentity $user
@@ -206,17 +238,14 @@ class BlockManager {
 	}
 
 	/**
-	 * Check for any additional blocks against the IP address or any IPs in the XFF header.
+	 * Get any system blocks against the IP address and merge them into the `$blocks` parameter.
 	 *
 	 * @param AbstractBlock[] &$blocks Blocks found so far
-	 * @param WebRequest $request
-	 * @param bool $isAnon The user is logged out
-	 * @param bool $fromPrimary
+	 * @param string $ip
+	 * @param bool $isAnon Whether the user accessing the wiki from the IP address is logged out
 	 * @return void
 	 */
-	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromPrimary ) {
-		$ip = $request->getIP();
-
+	private function getSystemIpBlocks( array &$blocks, string $ip, bool $isAnon ) {
 		// Proxy blocking
 		if ( !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) ) {
 			// Local list
@@ -245,12 +274,25 @@ class BlockManager {
 				'systemBlock' => 'wgSoftBlockRanges',
 			] );
 		}
+	}
 
+	/**
+	 * If `$wgApplyIpBlocksToXff` is truthy and the IP that the user is accessing the wiki from is not in
+	 * `$wgProxyWhitelist`, then get the blocks that apply to the IP(s) in the X-Forwarded-For HTTP
+	 * header and merge them into the `$blocks` parameter.
+	 *
+	 * @param AbstractBlock[] &$blocks
+	 * @param string $ip
+	 * @param string $xff
+	 * @param bool $isAnon
+	 * @param bool $fromPrimary
+	 * @return void
+	 */
+	private function getXffBlocks( &$blocks, string $ip, string $xff, bool $isAnon, bool $fromPrimary ) {
 		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
 		if ( $this->options->get( 'ApplyIpBlocksToXff' )
 			&& !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) )
 		) {
-			$xff = $request->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock (T221075)
