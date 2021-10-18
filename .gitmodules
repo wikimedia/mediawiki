@@ -1068,11 +1068,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
 	branch = REL1_37
 	ignore = dirty
-[submodule "extensions/AdvancedSearch"]
-	path = extensions/AdvancedSearch
-	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
-	branch = REL1_37
-	ignore = dirty
 [submodule "extensions/CommonsMetadata"]
 	path = extensions/CommonsMetadata
 	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
@@ -1302,11 +1297,6 @@
 	path = extensions/SnapProjectEmbed
 	url = https://github.com/snapwiki/SnapProjectEmbed
 	branch = stable
-	ignore = dirty
-[submodule "extensions/MediaModeration"]
-	path = extensions/MediaModeration
-	url = https://github.com/wikimedia/mediawiki-extensions-MediaModeration
-	branch = REL1_37
 	ignore = dirty
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
