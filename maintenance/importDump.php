@@ -282,6 +282,9 @@ TEXT
 		}
 
 		$file = fopen( $filename, 'rt' );
+		if ( $file === false ) {
+			$this->fatalError( error_get_last()['message'] ?? 'Could not open file' );
+		}
 
 		return $this->importFromHandle( $file );
 	}
