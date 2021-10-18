@@ -349,6 +349,7 @@ interface ILoadBalancer {
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
 	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
+	 * @internal Only for use within ILoadBalancer/ILoadMonitor
 	 */
 	public function getServerConnection( $i, $domain, $flags = 0 );
 
