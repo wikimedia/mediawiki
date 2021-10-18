@@ -188,6 +188,7 @@ class Names {
 		'gsw' => 'Alemannisch', # Alemannic
 		'gu' => 'ગુજરાતી', # Gujarati
 		'guc' => 'wayuunaiki', # Wayuu
+		'gur' => 'farefare', # Farefare
 		'guw' => 'gungbe', # Gun
 		'gv' => 'Gaelg', # Manx
 		'ha' => 'Hausa', # Hausa
