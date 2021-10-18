@@ -1089,7 +1089,7 @@
 	"prefs-skin": "Utseende",
 	"prefs-skin-prefs": "Utseendeinställningar",
 	"prefs-skin-responsive": "Aktivera responsivt läge",
-	"prefs-help-skin-responsive": "Anpassa utseendet till tillgängligt visningsområde. (Kanske inte har någon effekt på vissa utseenden).",
+	"prefs-help-skin-responsive": "Anpassa layouten till mobilens skärmstorlek.",
 	"skin-preview": "Förhandsvisning",
 	"datedefault": "Ingen preferens",
 	"prefs-labs": "Testfunktioner",

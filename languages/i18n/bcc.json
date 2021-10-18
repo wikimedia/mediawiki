@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Baloch Afghanistan",
 			"Ebraminio",
 			"FarsiNevis",
@@ -229,7 +230,7 @@
 	"aboutsite": "{{SITENAME}}ءِ بارہ‌ئا",
 	"aboutpage": "پروژہ:بارہ‌ئا",
 	"copyright": "محتوا مان اجازت نامهٔ $1 انت مگان ایشی که آئی هلاپء آرگ ببیت انت.",
-	"copyrightpage": "{{ns:project}} نکلء ھَک اندݔم اِنت",
+	"copyrightpage": "{{ns:project}}:نکلء ھَک اندݔم اِنت",
 	"currentevents": "ھنیگݔن پݔش‌آتک",
 	"currentevents-url": "Project:هنیگݔن پݔش‌آتک",
 	"disclaimers": "بے میاری",

@@ -687,6 +687,7 @@
 	"session_fail_preview_html": "對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。\n\n<em>由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。</em>\n<strong>如果呢個係正當嘅編輯嘗試，請再試過。</strong>\n如果重係唔得嘅話，請先[[Special:UserLogout|簽退]]後再簽到。",
 	"edit_form_incomplete": "'''編輯表格嘅某個部份同server唔夾，請檢查多次你嘅編輯同埋再試多次。'''",
 	"editing": "編輯緊$1",
+	"edit-textarea-aria-label": "源治碼編輯器",
 	"creating": "開版$1",
 	"editingsection": "編輯緊$1 （小節）",
 	"editingcomment": "編輯緊$1 （新小節）",

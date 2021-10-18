@@ -534,7 +534,7 @@
 	"mainpage-nstab": "This is the name for Main Page tab shown on the Main Page.\n{{Identical|Main Page}}",
 	"nosuchaction": "The title of the error you get when trying to open a page with invalid \"action\" parameter. The text of the warning is the message {{msg-mw|nosuchactiontext}}.\n\nSee example [{{canonicalurl:Main_page|action=x}} action=x].",
 	"nosuchactiontext": "This error is shown when trying to open a page with invalid \"action\" parameter, e.g. [{{canonicalurl:Main_page|action=x}} action=x].\n* The title of this error is the message {{msg-mw|nosuchaction}}.",
-	"nosuchspecialpage": "The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]",
+	"nosuchspecialpage": "The title of the error you get when trying to open a special page which does not exist. The text of the warning is this message:\n\n{{msg-mw|nospecialpagetext}}.\n\nExample: [[Special:Nosuchpage]]",
 	"nospecialpagetext": "{{doc-important|Do not translate <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code>.}}\nThis error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].\n\nRefers to {{msg-mw|Specialpages}}.\n\nThe title of this error is the message {{msg-mw|Nosuchspecialpage}}.",
 	"error": "{{Identical|Error}}",
 	"databaseerror": "Used as page title on error.",

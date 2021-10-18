@@ -1153,7 +1153,7 @@
 	"prefs-files": "Berkas",
 	"prefs-custom-css": "CSS pribadi",
 	"prefs-custom-json": "JSON kustom",
-	"prefs-custom-js": "JS pribadi",
+	"prefs-custom-js": "JavaScript pribadi",
 	"prefs-common-config": "CSS/JSON/JavaScript berbagi untuk semua kulit:",
 	"prefs-reset-intro": "Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.\nPengembalian preferensi tidak dapat dibatalkan.",
 	"prefs-emailconfirm-label": "Konfirmasi surel:",
