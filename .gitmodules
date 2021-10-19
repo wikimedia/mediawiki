@@ -1508,3 +1508,8 @@
 	url = https://github.com/AWikia/SkinEvelution
 	branch = main
 	ignore = dirty
+[submodule "extensions/RatePage"]
+	path = extensions/RatePage
+	url = https://gitlab.com/nonsensopedia/extensions/ratepage
+	branch = master
+	ignore = dirty
