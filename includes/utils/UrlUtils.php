@@ -441,35 +441,20 @@ class UrlUtils {
 
 		// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
 		$bits['scheme'] = strtolower( $bits['scheme'] );
+		$bits['host'] = $bits['host'] ?? '';
 
 		// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
 		if ( in_array( $bits['scheme'] . '://', $this->validProtocols ) ) {
 			$bits['delimiter'] = '://';
 		} elseif ( in_array( $bits['scheme'] . ':', $this->validProtocols ) ) {
 			$bits['delimiter'] = ':';
-			// parse_url detects for news: and mailto: the host part of an url as path
-			// We have to correct this wrong detection
-			if ( isset( $bits['path'] ) ) {
-				$bits['host'] = $bits['path'];
-				$bits['path'] = '';
-			}
 		} else {
 			return null;
 		}
 
-		// Provide an empty host for, e.g., file:/// urls (see T30627)
-		if ( !isset( $bits['host'] ) ) {
-			$bits['host'] = '';
-
-			// See T47069
-			if ( isset( $bits['path'] ) ) {
-				/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-				if ( !str_starts_with( $bits['path'], '/' ) ) {
-					$bits['path'] = '/' . $bits['path'];
-				}
-			} else {
-				$bits['path'] = '';
-			}
+		/* parse_url loses the third / for file:///c:/ urls */
+		if ( $bits['scheme'] === 'file' && isset( $bits['path'] ) && !str_starts_with( $bits['path'], '/' ) ) {
+			$bits['path'] = '/' . $bits['path'];
 		}
 
 		// If the URL was protocol-relative, fix scheme and delimiter
