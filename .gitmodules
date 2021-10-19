@@ -1518,3 +1518,8 @@
 	url = https://github.com/enginbyram/mediawiki-flatbox
 	branch = master
 	ignore = dirty
+[submodule "extensions/ArticleCreationWorkflow"]
+	path = extensions/ArticleCreationWorkflow
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticleCreationWorkflow
+	branch = REL1_37
+	ignore = dirty
