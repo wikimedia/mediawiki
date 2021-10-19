@@ -112,7 +112,14 @@ class ApiMain extends ApiBase {
 				'PasswordReset',
 			]
 		],
-		'query' => ApiQuery::class,
+		'query' => [
+			'class' => ApiQuery::class,
+			'services' => [
+				'ObjectFactory',
+				'DBLoadBalancer',
+				'WikiExporterFactory',
+			]
+		],
 		'expandtemplates' => [
 			'class' => ApiExpandTemplates::class,
 			'services' => [
