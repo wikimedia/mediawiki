@@ -283,9 +283,28 @@
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml = response[ 0 ].compare.bodies.main;
-				$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
-				mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
+				var diff = response[ 0 ].compare.bodies;
+
+				if ( diff.main ) {
+					$wikiDiff.find( 'table.diff tbody' ).html( diff.main );
+					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
+				} else {
+					// The diff is empty.
+					$wikiDiff.find( 'table.diff tbody' )
+						.empty()
+						.append(
+							$( '<tr>' ).append(
+								$( '<td>' )
+									.attr( 'colspan', 4 )
+									.addClass( 'diff-notice' )
+									.append(
+										$( '<div>' )
+											.addClass( 'mw-diff-empty' )
+											.text( mw.msg( 'diff-empty' ) )
+									)
+							)
+						);
+				}
 				$wikiDiff.show();
 			} );
 		} else {
@@ -407,6 +426,18 @@
 							$( '<col>' ).addClass( 'diff-content' ),
 							$( '<col>' ).addClass( 'diff-marker' ),
 							$( '<col>' ).addClass( 'diff-content' ),
+							$( '<thead>' ).append(
+								$( '<tr>' ).addClass( 'diff-title' ).append(
+									$( '<td>' )
+										.attr( 'colspan', 2 )
+										.addClass( 'diff-otitle diff-side-deleted' )
+										.text( mw.msg( 'currentrev' ) ),
+									$( '<td>' )
+										.attr( 'colspan', 2 )
+										.addClass( 'diff-ntitle diff-side-added' )
+										.text( mw.msg( 'yourtext' ) )
+								)
+							),
 							$( '<tbody>' )
 						)
 					)

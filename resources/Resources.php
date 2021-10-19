@@ -1293,6 +1293,8 @@ return [
 			// Keep these message keys in sync with EditPage#setHeaders
 			'continue-editing',
 			'creating',
+			'currentrev',
+			'diff-empty',
 			'editconflict',
 			'editing',
 			'editingcomment',
@@ -1305,6 +1307,7 @@ return [
 			'preview',
 			'previewerrortext',
 			'templatesusedpreview',
+			'yourtext',
 		],
 	],
 	'mediawiki.action.history' => [
