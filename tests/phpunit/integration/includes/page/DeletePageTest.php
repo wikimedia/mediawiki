@@ -65,7 +65,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( $titleText, $ns );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$performer = static::getTestUser()->getUser();
+		$performer = $this->getTestUser()->getAuthority();
 
 		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 
@@ -324,25 +324,5 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		yield 'deletion with tags' => [ false, [ 'tag-foo', 'tag-bar' ], true, 'delete' ];
 		yield 'custom deletion log' => [ false, [], true, 'custom-del-log' ];
 		yield 'queued deletion' => [ false, [], false, 'delete' ];
-	}
-
-	/**
-	 * @todo This test should go away if we don't want doDeleteUpdates to be public
-	 */
-	public function testDoDeleteUpdates() {
-		$teardownScope = DeferredUpdates::preventOpportunisticUpdates();
-		$user = static::getTestUser()->getUser();
-		$page = $this->createPage( __METHOD__, self::PAGE_TEXT );
-		$id = $page->getId();
-		// make sure the current revision is cached.
-		$page->loadPageData();
-		$deletePage = $this->getDeletePage( $page, $user );
-
-		// Similar to MovePage logic
-		wfGetDB( DB_PRIMARY )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$deletePage->doDeleteUpdates( $page, $page->getRevisionRecord() );
-		$this->assertPageLinksUpdate( $id, true );
-
-		ScopedCallback::consume( $teardownScope );
 	}
 }
