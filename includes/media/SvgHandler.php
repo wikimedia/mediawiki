@@ -305,7 +305,7 @@ class SvgHandler extends ImageHandler {
 	 * @param string $dstPath
 	 * @param string $width
 	 * @param string $height
-	 * @param bool|string $lang Language code of the language to render the SVG in
+	 * @param string|false $lang Language code of the language to render the SVG in
 	 * @throws MWException
 	 * @return bool|MediaTransformError
 	 */
@@ -529,7 +529,7 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * @param array $params Name=>value pairs of parameters
-	 * @return string Filename to use
+	 * @return string|false Filename to use
 	 */
 	public function makeParamString( $params ) {
 		$lang = '';

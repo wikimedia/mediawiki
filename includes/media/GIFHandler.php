@@ -90,7 +90,7 @@ class GIFHandler extends BitmapHandler {
 	 * @todo Add unit tests
 	 *
 	 * @param File $image
-	 * @return bool
+	 * @return int
 	 */
 	public function getImageArea( $image ) {
 		$metadata = $image->getMetadataArray();

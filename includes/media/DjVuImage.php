@@ -246,7 +246,7 @@ class DjVuImage {
 
 	/**
 	 * Return an XML string describing the DjVu image
-	 * @return string|bool
+	 * @return string|null|false
 	 */
 	public function retrieveMetaData() {
 		global $wgDjvuDump, $wgDjvuTxt;
@@ -309,7 +309,7 @@ EOR;
 	/**
 	 * Hack to temporarily work around djvutoxml bug
 	 * @param string $dump
-	 * @return string
+	 * @return string|false
 	 */
 	private function convertDumpToXML( $dump ) {
 		if ( strval( $dump ) == '' ) {

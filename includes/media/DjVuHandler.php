@@ -101,7 +101,7 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * @param array $params
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function makeParamString( $params ) {
 		$page = $params['page'] ?? 1;
@@ -114,7 +114,7 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * @param string $str
-	 * @return array|bool
+	 * @return array|false
 	 */
 	public function parseParamString( $str ) {
 		$m = false;
@@ -252,7 +252,7 @@ class DjVuHandler extends ImageHandler {
 	 * Get metadata, unserializing it if necessary.
 	 *
 	 * @param File $file The DjVu file in question
-	 * @return string XML metadata as a string.
+	 * @return string|false XML metadata as a string.
 	 * @throws MWException
 	 */
 	private function getXMLMetadata( File $file ) {
@@ -276,7 +276,7 @@ class DjVuHandler extends ImageHandler {
 	 * Cache a document tree for the DjVu XML metadata
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
-	 * @return bool|SimpleXMLElement
+	 * @return SimpleXMLElement|false
 	 */
 	public function getMetaTree( $image, $gettext = false ) {
 		if ( $gettext && $image->getHandlerState( self::STATE_TEXT_TREE ) ) {
@@ -403,8 +403,8 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Given an XML metadata tree, returns dimension information about the document
-	 * @param bool|SimpleXMLElement $metatree The file's XML metadata tree
-	 * @return bool|array
+	 * @param SimpleXMLElement|false $metatree The file's XML metadata tree
+	 * @return array|false
 	 */
 	protected function getDimensionInfoFromMetaTree( $metatree ) {
 		if ( !$metatree ) {
@@ -431,7 +431,7 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * @param File $image
 	 * @param int $page Page number to get information for
-	 * @return bool|string Page text or false when no text found.
+	 * @return string|false Page text or false when no text found.
 	 */
 	public function getPageText( File $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );

@@ -213,18 +213,18 @@ class PageEditStash {
 	 *
 	 * @param PageIdentity $page
 	 * @param Content $content
-	 * @param UserIdentity $useridentity to get parser options from
-	 * @return stdClass|bool Returns edit stash object or false on cache miss
+	 * @param UserIdentity $user to get parser options from
+	 * @return stdClass|false Returns edit stash object or false on cache miss
 	 */
-	public function checkCache( PageIdentity $page, Content $content, UserIdentity $useridentity ) {
-		$user = $this->userFactory->newFromUserIdentity( $useridentity );
+	public function checkCache( PageIdentity $page, Content $content, UserIdentity $user ) {
+		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		if (
 			// The context is not an HTTP POST request
-			!$user->getRequest()->wasPosted() ||
+			!$legacyUser->getRequest()->wasPosted() ||
 			// The context is a CLI script or a job runner HTTP POST request
 			$this->initiator !== self::INITIATOR_USER ||
 			// The editor account is a known bot
-			$user->isBot()
+			$legacyUser->isBot()
 		) {
 			// Avoid wasted queries and statsd pollution
 			return false;
@@ -259,7 +259,7 @@ class PageEditStash {
 			// Assume nothing changed in this time
 			$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
 			$logger->debug( "Timestamp-based cache hit for key '{key}'.", $logContext );
-		} elseif ( $user->isAnon() ) {
+		} elseif ( !$user->isRegistered() ) {
 			$lastEdit = $this->lastEditTime( $user );
 			$cacheTime = $editInfo->output->getCacheTime();
 			if ( $lastEdit < $cacheTime ) {
