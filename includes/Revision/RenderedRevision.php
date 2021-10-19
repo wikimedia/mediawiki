@@ -25,13 +25,14 @@ namespace MediaWiki\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -42,11 +43,6 @@ use Wikimedia\Assert\Assert;
  * @since 1.32
  */
 class RenderedRevision implements SlotRenderingProvider {
-
-	/**
-	 * @var Title
-	 */
-	private $title;
 
 	/** @var RevisionRecord */
 	private $revision;
@@ -78,6 +74,9 @@ class RenderedRevision implements SlotRenderingProvider {
 	 */
 	private $slotsOutput = [];
 
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	/**
 	 * @var callable Callback for combining slot output into revision output.
 	 *      Signature: function ( RenderedRevision $this ): ParserOutput.
@@ -93,31 +92,31 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @note Application logic should not instantiate RenderedRevision instances directly,
 	 * but should use a RevisionRenderer instead.
 	 *
-	 * @param Title $title
 	 * @param RevisionRecord $revision The revision to render. The content for rendering will be
 	 *        taken from this RevisionRecord. However, if the RevisionRecord is not complete
 	 *        according isReadyForInsertion(), but a revision ID is known, the parser may load
 	 *        the revision from the database if it needs revision meta data to handle magic
 	 *        words like {{REVISIONUSER}}.
 	 * @param ParserOptions $options
+	 * @param ContentRenderer $contentRenderer
 	 * @param callable $combineOutput Callback for combining slot output into revision output.
 	 *        Signature: function ( RenderedRevision $this ): ParserOutput.
 	 * @param int $audience Use RevisionRecord::FOR_PUBLIC, FOR_THIS_USER, or RAW.
 	 * @param Authority|null $performer Required if $audience is FOR_THIS_USER.
 	 */
 	public function __construct(
-		Title $title,
 		RevisionRecord $revision,
 		ParserOptions $options,
+		ContentRenderer $contentRenderer,
 		callable $combineOutput,
 		$audience = RevisionRecord::FOR_PUBLIC,
 		Authority $performer = null
 	) {
-		$this->title = $title;
 		$this->options = $options;
 
 		$this->setRevisionInternal( $revision );
 
+		$this->contentRenderer = $contentRenderer;
 		$this->combineOutput = $combineOutput;
 		$this->saveParseLogger = new NullLogger();
 
@@ -260,8 +259,9 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return ParserOutput
 	 */
 	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
-		$parserOutput = $content->getParserOutput(
-			$this->title,
+		$parserOutput = $this->contentRenderer->getParserOutput(
+			$content,
+			$this->revision->getPage(),
 			$this->revision->getId(),
 			$this->options,
 			$withHtml
@@ -368,7 +368,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		// should not expected to work, since there may not even be an actual revision to
 		// refer to.
 		//
-		// 3) If the revision is a fake constructed around a Title, a Content object, and
+		// 3) If the revision is a fake constructed around a page, a Content object, and
 		// a revision ID, to provide backwards compatibility to code that has access to those
 		// but not to a complete RevisionRecord for rendering, then we want the Parser to
 		// load the actual revision from the database when it encounters a magic word like
@@ -384,14 +384,13 @@ class RenderedRevision implements SlotRenderingProvider {
 		// {{subst::REVISIONUSER}} to function as expected.
 
 		if ( $this->revision->isReadyForInsertion() || !$this->revision->getId() ) {
-			$title = $this->title;
 			$oldCallback = $this->options->getCurrentRevisionRecordCallback();
 			$this->options->setCurrentRevisionRecordCallback(
-				function ( Title $parserTitle, $parser = null ) use ( $title, $oldCallback ) {
-					if ( $title->equals( $parserTitle ) ) {
+				function ( PageReference $parserPage, $parser = null ) use ( $oldCallback ) {
+					if ( $this->revision->getPage()->isSamePageAs( $parserPage ) ) {
 						return $this->revision;
 					} else {
-						return call_user_func( $oldCallback, $parserTitle, $parser );
+						return call_user_func( $oldCallback, $parserPage, $parser );
 					}
 				}
 			);
@@ -419,7 +418,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	) {
 		$logger = $this->saveParseLogger;
 		$varyMsg = __METHOD__ . ": cannot use prepared output for '{title}'";
-		$context = [ 'title' => $this->title->getPrefixedText() ];
+		$context = [ 'title' => (string)$this->revision->getPage() ];
 
 		if ( $parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION ) ) {
 			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID

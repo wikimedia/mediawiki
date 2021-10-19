@@ -1442,7 +1442,8 @@ return [
 	'RevisionRenderer' => static function ( MediaWikiServices $services ): RevisionRenderer {
 		$renderer = new RevisionRenderer(
 			$services->getDBLoadBalancer(),
-			$services->getSlotRoleRegistry()
+			$services->getSlotRoleRegistry(),
+			$services->getContentRenderer()
 		);
 
 		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
