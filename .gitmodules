@@ -1523,3 +1523,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ArticleCreationWorkflow
 	branch = REL1_37
 	ignore = dirty
+[submodule "skins/Mirage"]
+	path = skins/Mirage
+	url = https://github.com/wikimedia/mediawiki-skins-Mirage
+	branch = REL1_37
+	ignore = dirty
