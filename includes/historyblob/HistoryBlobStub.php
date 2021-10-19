@@ -61,6 +61,14 @@ class HistoryBlobStub {
 	}
 
 	/**
+	 * Gets the location of the main object
+	 * @return int
+	 */
+	public function getLocation() {
+		return $this->mOldId;
+	}
+
+	/**
 	 * Sets the location (old_id) of the referring object
 	 * @param string $id
 	 */
