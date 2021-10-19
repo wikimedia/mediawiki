@@ -371,8 +371,8 @@
 		title = new mw.Title( 'ß' );
 		assert.strictEqual( title.toString(), 'ß', 'Uppercasing matches PHP behaviour (ß -> ß, not SS)' );
 
-		title = new mw.Title( 'ǆ (digraph)' );
-		assert.strictEqual( title.toString(), 'ǅ_(digraph)', 'Uppercasing matches PHP behaviour (ǆ -> ǅ, not Ǆ)' );
+		title = new mw.Title( 'ῳ' );
+		assert.strictEqual( title.toString(), 'ῼ', 'Uppercasing matches PHP behaviour (ῳ -> ῼ, not ΩΙ)' );
 
 		// U+10438 (DESERET SMALL LETTER H) U+10443 (DESERET SMALL LETTER ETH)
 		// gets changed to
