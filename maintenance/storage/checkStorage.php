@@ -287,7 +287,7 @@ class CheckStorage {
 								break;
 							}
 							if ( $className == 'historyblobstub' ) {
-								$concatBlobs[$stubObj->mOldId][] = $oldId;
+								$concatBlobs[$stubObj->getLocation()][] = $oldId;
 							} else {
 								$curIds[$stubObj->mCurId][] = $oldId;
 							}
