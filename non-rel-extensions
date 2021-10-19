@@ -78,6 +78,7 @@ extensions/EmbedSpotify
 extensions/DiscordNotifications
 extensions/DynamicPageList3
 extensions/RatePage
+skins/Flatbox
 
 # main
 extensions/LinkTitles
