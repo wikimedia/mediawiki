@@ -301,7 +301,7 @@ class BitmapMetadataHandler {
 	 * Little Endian or Big Endian. Needed for exif stuff.
 	 *
 	 * @param string $filename
-	 * @return string 'BE' or 'LE' or false
+	 * @return string|false 'BE' or 'LE' or false
 	 */
 	public static function getTiffByteOrder( $filename ) {
 		$fh = fopen( $filename, 'rb' );
