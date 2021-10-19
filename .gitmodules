@@ -1513,3 +1513,8 @@
 	url = https://gitlab.com/nonsensopedia/extensions/ratepage
 	branch = master
 	ignore = dirty
+[submodule "skins/Flatbox"]
+	path = skins/Flatbox
+	url = https://github.com/enginbyram/mediawiki-flatbox
+	branch = master
+	ignore = dirty
