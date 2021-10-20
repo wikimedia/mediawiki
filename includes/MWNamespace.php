@@ -55,12 +55,13 @@ class MWNamespace {
 	/**
 	 * Is the given namespace a talk namespace?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public static function isTalk( $index ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isTalk( $index );
 	}
 
@@ -113,9 +114,10 @@ class MWNamespace {
 	 *
 	 * @return bool
 	 * @since 1.19
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 */
 	public static function exists( $index ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $index );
 	}
 
@@ -165,21 +167,23 @@ class MWNamespace {
 	 *
 	 * @return array
 	 * @since 1.17
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 */
 	public static function getCanonicalNamespaces() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalNamespaces();
 	}
 
 	/**
 	 * Returns the canonical (English) name for a given index
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @param int $index Namespace index
 	 * @return string|bool If no canonical definition.
 	 */
 	public static function getCanonicalName( $index ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalName( $index );
 	}
 
@@ -187,12 +191,13 @@ class MWNamespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @param string $name Namespace name
 	 * @return int
 	 */
 	public static function getCanonicalIndex( $name ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalIndex( $name );
 	}
 
@@ -200,11 +205,12 @@ class MWNamespace {
 	 * Returns an array of the namespaces (by integer id) that exist on the
 	 * wiki. Used primarily by the api in help documentation.
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @return array
 	 */
 	public static function getValidNamespaces() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
 	}
 
@@ -226,12 +232,13 @@ class MWNamespace {
 	 * Does this namespace contain content, for the purposes of calculating
 	 * statistics, etc?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function isContent( $index ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isContent( $index );
 	}
 
@@ -265,23 +272,25 @@ class MWNamespace {
 	/**
 	 * Does the namespace allow subpages?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function hasSubpages( $index ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->hasSubpages( $index );
 	}
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.38
 	 *
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getContentNamespaces() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
 	}
 

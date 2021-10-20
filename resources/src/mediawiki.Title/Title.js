@@ -611,7 +611,7 @@ Title.newFromImg = function ( img ) {
 /**
  * Check if a given namespace is a talk namespace
  *
- * See MWNamespace::isTalk in PHP
+ * See NamespaceInfo::isTalk in PHP
  *
  * @param {number} namespaceId Namespace ID
  * @return {boolean} Namespace is a talk namespace
