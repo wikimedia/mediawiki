@@ -6,6 +6,7 @@ use HashConfig;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -40,6 +41,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 	 * @param SearchResultSet|Status $titleResult
 	 * @param SearchResultSet|Status $textResult
 	 * @param SearchSuggestionSet|null $completionResult
+	 * @param PermissionManager|null $permissionManager
 	 *
 	 * @return SearchHandler
 	 */
@@ -47,7 +49,8 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$query,
 		$titleResult,
 		$textResult,
-		$completionResult = null
+		$completionResult = null,
+		$permissionManager = null
 	) {
 		$config = new HashConfig( [
 			'SearchType' => 'test',
@@ -60,6 +63,13 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$language = $this->createNoOpMock( Language::class );
 		$hookContainer = $this->createHookContainer();
 		$searchEngineConfig = new \SearchEngineConfig( $config, $language, $hookContainer, [] );
+
+		if ( !$permissionManager ) {
+			$permissionManager = $this->createMock( PermissionManager::class );
+			$permissionManager->method( 'isEveryoneAllowed' )
+				->with( 'read' )
+				->willReturn( true );
+		}
 
 		/** @var SearchEngine|MockObject $searchEngine */
 		$this->searchEngine = $this->createMock( SearchEngine::class );
@@ -84,7 +94,8 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		return new SearchHandler(
 			$config,
 			$searchEngineFactory,
-			$searchEngineConfig
+			$searchEngineConfig,
+			$permissionManager
 		);
 	}
 
@@ -202,6 +213,27 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'Frob', $data['pages'][0]['excerpt'] );
 		$this->assertSame( 'Frobnitz', $data['pages'][1]['title'] );
 		$this->assertSame( 'Frobnitz', $data['pages'][1]['excerpt'] );
+	}
+
+	public function testCompletionSearchNotCachedForPublicPages() {
+		$titleResults = new MockSearchResultSet( [] );
+		$textResults = new MockSearchResultSet( [] );
+		$completionResults = new SearchSuggestionSet( [] );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'isEveryoneAllowed' )
+			->with( 'read' )
+			->willReturn( false );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults, $completionResults, $permissionManager );
+		$config = [ 'mode' => SearchHandler::COMPLETION_MODE ];
+
+		$response = $this->executeHandler( $handler, $request, $config );
+		$this->assertSame( 'no-store, max-age=0', $response->getHeaderLine( 'Cache-Control' ) );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testExecute_limit() {

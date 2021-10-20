@@ -511,7 +511,7 @@ class WikiExporter {
 	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
 	 * @param IResultWrapper $results
-	 * @param stdClass $lastRow the last row output from the previous call (or null if none)
+	 * @param stdClass|null $lastRow the last row output from the previous call (or null if none)
 	 * @return stdClass the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {

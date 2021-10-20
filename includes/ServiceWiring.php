@@ -115,6 +115,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionFactory;
@@ -197,6 +198,13 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getUserNameUtils(),
 			LoggerFactory::getInstance( 'ActorStore' )
+		);
+	},
+
+	'ArchivedRevisionLookup' => static function ( MediaWikiServices $services ): ArchivedRevisionLookup {
+		return new ArchivedRevisionLookup(
+			$services->getDBLoadBalancer(),
+			$services->getRevisionStore()
 		);
 	},
 
