@@ -63,7 +63,7 @@ class DumpFilter {
 	}
 
 	/**
-	 * @param stdClass $page
+	 * @param stdClass|null $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -84,7 +84,7 @@ class DumpFilter {
 	}
 
 	/**
-	 * @param stdClass $rev
+	 * @param stdClass|null $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {
@@ -127,7 +127,7 @@ class DumpFilter {
 
 	/**
 	 * Override for page-based filter types.
-	 * @param stdClass $page
+	 * @param stdClass|null $page
 	 * @return bool
 	 */
 	protected function pass( $page ) {
