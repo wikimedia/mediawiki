@@ -2794,7 +2794,7 @@
 	"tooltip-preview": "Паказаць, якім будзе вынік — ужывайце перад замацоўваннем!",
 	"tooltip-diff": "Паказаць, што вы мяняеце ў тэксце.",
 	"tooltip-compareselectedversions": "Паказаць розніцу паміж дзвюмя азначанымі версіямі гэтай старонкі.",
-	"tooltip-watch": "Дабавіць старонку ў спіс назірання",
+	"tooltip-watch": "Дадаць старонку ў спіс назірання",
 	"tooltip-watchlistedit-normal-submit": "Выдаліць пазначаныя старонкі",
 	"tooltip-watchlistedit-raw-submit": "Абнавіць спіс назірання",
 	"tooltip-recreate": "Аднавіць старонку, хоць яна і была сцёрта",
