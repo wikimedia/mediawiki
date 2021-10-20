@@ -1145,7 +1145,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': {creator} cannot create users: {reason}', [
 				'user' => $username,
 				'creator' => $creator->getUser()->getName(),
-				'reason' => $status->getWikiText( null, null, 'en' )
+				'reason' => $status->getWikiText( false, false, 'en' )
 			] );
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
@@ -1157,7 +1157,7 @@ class AuthManager implements LoggerAwareInterface {
 			$this->logger->debug( __METHOD__ . ': {user} cannot be created: {reason}', [
 				'user' => $username,
 				'creator' => $creator->getUser()->getName(),
-				'reason' => $status->getWikiText( null, null, 'en' )
+				'reason' => $status->getWikiText( false, false, 'en' )
 			] );
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
@@ -1174,7 +1174,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->logger->debug( __METHOD__ . ': UserData is invalid: {reason}', [
 						'user' => $user->getName(),
 						'creator' => $creator->getUser()->getName(),
-						'reason' => $status->getWikiText( null, null, 'en' ),
+						'reason' => $status->getWikiText( false, false, 'en' ),
 					] );
 					return AuthenticationResponse::newFail( $status->getMessage() );
 				}
@@ -1279,7 +1279,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->logger->debug( __METHOD__ . ': {creator} cannot create users: {reason}', [
 					'user' => $user->getName(),
 					'creator' => $creator->getName(),
-					'reason' => $status->getWikiText( null, null, 'en' )
+					'reason' => $status->getWikiText( false, false, 'en' )
 				] );
 				$ret = AuthenticationResponse::newFail( $status->getMessage() );
 				$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
@@ -1334,7 +1334,7 @@ class AuthManager implements LoggerAwareInterface {
 						$this->logger->debug( __METHOD__ . ': UserData is invalid: {reason}', [
 							'user' => $user->getName(),
 							'creator' => $creator->getName(),
-							'reason' => $status->getWikiText( null, null, 'en' ),
+							'reason' => $status->getWikiText( false, false, 'en' ),
 						] );
 						$ret = AuthenticationResponse::newFail( $status->getMessage() );
 						$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
@@ -1758,7 +1758,7 @@ class AuthManager implements LoggerAwareInterface {
 				$ret = Status::wrap( $status );
 				$this->logger->debug( __METHOD__ . ': Provider denied creation of {username}: {reason}', [
 					'username' => $username,
-					'reason' => $ret->getWikiText( null, null, 'en' ),
+					'reason' => $ret->getWikiText( false, false, 'en' ),
 				] );
 				$session->set( 'AuthManager::AutoCreateBlacklist', $status );
 				$user->setId( 0 );
@@ -1802,7 +1802,7 @@ class AuthManager implements LoggerAwareInterface {
 				} else {
 					$this->logger->error( __METHOD__ . ': {username} failed with message {msg}', [
 						'username' => $username,
-						'msg' => $status->getWikiText( null, null, 'en' )
+						'msg' => $status->getWikiText( false, false, 'en' )
 					] );
 					$user->setId( 0 );
 					$user->loadFromId();
