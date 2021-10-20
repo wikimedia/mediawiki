@@ -41,6 +41,7 @@
 			"Rubentl134",
 			"Ryo567",
 			"Tiberius1701",
+			"Whovian Biologist",
 			"YoViajo"
 		]
 	},
@@ -1400,7 +1401,7 @@
 	"apihelp-json-param-callback": "Si se especifica, envuelve la salida dentro de una llamada a una función dada. Por motivos de seguridad, cualquier dato específico del usuario estará restringido.",
 	"apihelp-json-param-utf8": "Si se especifica, codifica la mayoría (pero no todos) de los caracteres no pertenecientes a ASCII como UTF-8 en lugar de reemplazarlos por secuencias de escape hexadecimal. Toma el comportamiento por defecto si <var>formatversion</var> no es <kbd>1</kbd>.",
 	"apihelp-json-param-ascii": "Si se especifica, codifica todos los caracteres no pertenecientes a ASCII mediante secuencias de escape hexadecimal. Toma el comportamiento por defecto si <var>formatversion</var> no es <kbd>1</kbd>.",
-	"apihelp-json-param-formatversion": "Formato de salida:\n;1: Formato retrocompatible (booleanos con estilo XML, claves <samp>*</samp> para nodos de contenido, etc.).\n;2: Formato moderno.\n;último: Utiliza el último formato (actualmente <kbd>2</kbd>), puede cambiar sin aviso.",
+	"apihelp-json-param-formatversion": "Formato de salida",
 	"apihelp-jsonfm-summary": "Producir los datos de salida en formato JSON (con resaltado sintáctico en HTML).",
 	"apihelp-none-summary": "No extraer nada.",
 	"apihelp-php-summary": "Extraer los datos de salida en formato serializado PHP.",
