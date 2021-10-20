@@ -137,11 +137,11 @@ class SearchExactMatchRescorer {
 	 * @return null|string If title exists and redirects, get the destination's prefixed name
 	 */
 	private function getRedirectTarget( $title ) {
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-		if ( !$page->exists() ) {
-			return null;
-		}
-		$redir = $page->getRedirectTarget();
+		$redirectStore = MediaWikiServices::getInstance()->getRedirectStore();
+		$redir = $redirectStore->getRedirectTarget( $title );
+
+		// Needed to get the text needed for display.
+		$redir = Title::castFromLinkTarget( $redir );
 		return $redir ? $redir->getPrefixedText() : null;
 	}
 }

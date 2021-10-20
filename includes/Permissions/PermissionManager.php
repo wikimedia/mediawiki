@@ -29,8 +29,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserGroupManager;
@@ -84,8 +83,8 @@ class PermissionManager {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
+	/** @var RedirectLookup */
+	private $redirectLookup;
 
 	/** @var NamespaceInfo */
 	private $nsInfo;
@@ -213,35 +212,35 @@ class PermissionManager {
 	/**
 	 * @param ServiceOptions $options
 	 * @param SpecialPageFactory $specialPageFactory
-	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param UserGroupManager $userGroupManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
 	 * @param UserCache $userCache
+	 * @param RedirectLookup $redirectLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
-		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		UserGroupManager $userGroupManager,
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
-		UserCache $userCache
+		UserCache $userCache,
+		RedirectLookup $redirectLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->specialPageFactory = $specialPageFactory;
-		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->userGroupManager = $userGroupManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userCache = $userCache;
+		$this->redirectLookup = $redirectLookup;
 	}
 
 	/**
@@ -1315,9 +1314,7 @@ class PermissionManager {
 				&& !$this->userHasAnyRight( $user, 'edituserjs', 'editmyuserjsredirect' )
 			) {
 				// T207750 - do not allow users to edit a redirect if they couldn't edit the target
-				$rev = $this->revisionLookup->getRevisionByTitle( $title );
-				$content = $rev ? $rev->getContent( 'main', RevisionRecord::RAW ) : null;
-				$target = $content ? $content->getUltimateRedirectTarget() : null;
+				$target = $this->redirectLookup->getRedirectTarget( $title );
 				if ( $target && (
 						!$target->inNamespace( NS_USER )
 						|| !preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $target->getText() )

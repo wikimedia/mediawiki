@@ -116,6 +116,7 @@ class ActionFactory {
 				'RevisionLookup',
 				'MainWANObjectCache',
 				'WatchedItemStore',
+				'RedirectLookup'
 			],
 		],
 		'markpatrolled' => [

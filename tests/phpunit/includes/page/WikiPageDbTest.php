@@ -908,6 +908,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 * @covers WikiPage::getRedirectTarget
+	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
 		$this->setMwGlobals( [
@@ -921,7 +922,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertEquals( WikitextContent::class, get_class( $c ) );
 
 		# now, test the actual redirect
-		$t = $page->getRedirectTarget();
+		$redirectStore = $this->getServiceContainer()->getRedirectStore();
+		$t = $redirectStore->getRedirectTarget( $page );
 		$this->assertEquals( $target, $t ? $t->getFullText() : null );
 	}
 
