@@ -29,9 +29,7 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		$d = unserialize( $blob );
-
-		return new DummyNonTextContent( $d );
+		return new DummyNonTextContent( $blob );
 	}
 
 	/**

@@ -2,17 +2,18 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use DummyContentForTesting;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use WikitextContent;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Revision\SlotRecord
  */
-class SlotRecordTest extends \MediaWikiIntegrationTestCase {
+class SlotRecordTest extends MediaWikiUnitTestCase {
 
 	private function makeRow( $data = [] ) {
 		$data = $data + [
@@ -21,7 +22,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 			'content_size' => '5',
 			'content_sha1' => 'someHash',
 			'content_address' => 'tt:456',
-			'model_name' => CONTENT_MODEL_WIKITEXT,
+			'model_name' => DummyContentForTesting::MODEL_ID,
 			'format_name' => CONTENT_FORMAT_WIKITEXT,
 			'slot_revision_id' => '2',
 			'slot_origin' => '1',
@@ -32,16 +33,16 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 	public function testCompleteConstruction() {
 		$row = $this->makeRow();
-		$record = new SlotRecord( $row, new WikitextContent( 'A' ) );
+		$record = new SlotRecord( $row, new DummyContentForTesting( 'A' ) );
 
 		$this->assertTrue( $record->hasAddress() );
 		$this->assertTrue( $record->hasContentId() );
 		$this->assertTrue( $record->hasRevision() );
 		$this->assertTrue( $record->isInherited() );
-		$this->assertSame( 'A', $record->getContent()->getText() );
+		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 5, $record->getSize() );
 		$this->assertSame( 'someHash', $record->getSha1() );
-		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 1, $record->getOrigin() );
 		$this->assertSame( 'tt:456', $record->getAddress() );
@@ -66,7 +67,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		] );
 
 		$content = static function () {
-			return new WikitextContent( 'A' );
+			return new DummyContentForTesting( 'A' );
 		};
 
 		$record = new SlotRecord( $row, $content );
@@ -75,10 +76,10 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $record->hasRevision() );
 		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->isInherited() );
-		$this->assertSame( 'A', $record->getContent()->getText() );
+		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
-		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 'tt:456', $record->getAddress() );
@@ -88,23 +89,23 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewUnsaved() {
-		$record = SlotRecord::newUnsaved( 'myRole', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( 'myRole', new DummyContentForTesting( 'A' ) );
 
 		$this->assertFalse( $record->hasAddress() );
 		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->hasRevision() );
 		$this->assertFalse( $record->isInherited() );
 		$this->assertFalse( $record->hasOrigin() );
-		$this->assertSame( 'A', $record->getContent()->getText() );
+		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
-		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
 		$this->assertSame( 'myRole', $record->getRole() );
 		$this->assertFalse( $record->isDerived() );
 	}
 
 	public function provideInvalidConstruction() {
-		yield 'empty row' => [ (object)[], new WikitextContent( 'A' ) ];
+		yield 'empty row' => [ (object)[], new DummyContentForTesting( 'A' ) ];
 		yield 'null content' => [ (object)[], null ];
 	}
 
@@ -117,24 +118,24 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetContentId_fails() {
-		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getContentId();
 	}
 
 	public function testGetAddress_fails() {
-		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getAddress();
 	}
 
 	public function provideIncomplete() {
-		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		yield 'unsaved' => [ $unsaved ];
 
-		$parent = new SlotRecord( $this->makeRow(), new WikitextContent( 'A' ) );
+		$parent = new SlotRecord( $this->makeRow(), new DummyContentForTesting( 'A' ) );
 		$inherited = SlotRecord::newInherited( $parent );
 		yield 'inherited' => [ $inherited ];
 	}
@@ -143,7 +144,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIncomplete
 	 */
 	public function testGetRevision_fails( SlotRecord $record ) {
-		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getRevision();
@@ -153,7 +154,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIncomplete
 	 */
 	public function testGetOrigin_fails( SlotRecord $record ) {
-		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getOrigin();
@@ -172,7 +173,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $hash, SlotRecord::base36Sha1( $text ) );
 
-		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( $text ) );
+		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( $text ) );
 		$this->assertSame( $hash, $record->getSha1() );
 	}
 
@@ -180,12 +181,12 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$row = $this->makeRow();
 		$row->content_sha1 = '';
 
-		$rec = new SlotRecord( $row, new WikitextContent( 'A' ) );
+		$rec = new SlotRecord( $row, new DummyContentForTesting( 'A' ) );
 		$this->assertNotEmpty( $rec->getSha1() );
 	}
 
 	public function testNewWithSuppressedContent() {
-		$input = new SlotRecord( $this->makeRow(), new WikitextContent( 'A' ) );
+		$input = new SlotRecord( $this->makeRow(), new DummyContentForTesting( 'A' ) );
 		$output = SlotRecord::newWithSuppressedContent( $input );
 
 		$this->expectException( SuppressedDataException::class );
@@ -194,7 +195,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 	public function testNewInherited() {
 		$row = $this->makeRow( [ 'slot_revision_id' => 7, 'slot_origin' => 7 ] );
-		$parent = new SlotRecord( $row, new WikitextContent( 'A' ) );
+		$parent = new SlotRecord( $row, new DummyContentForTesting( 'A' ) );
 
 		// This would happen while doing an edit, before saving revision meta-data.
 		$inherited = SlotRecord::newInherited( $parent );
@@ -234,7 +235,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 	public function testNewSaved() {
 		// This would happen while doing an edit, before saving revision meta-data.
-		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 
 		// This would happen while doing an edit, after saving the revision meta-data
 		// and content meta-data.
@@ -246,7 +247,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $saved->hasContentId() );
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 20, $saved->getContentId() );
-		$this->assertSame( 'A', $saved->getContent()->getText() );
+		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
 		$this->assertSame( 10, $saved->getRevision() );
 		$this->assertSame( 10, $saved->getOrigin() );
 		$this->assertFalse( $saved->isDerived() );
@@ -266,7 +267,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 			'slot_revision_id' => 1,
 		] );
 
-		$freshSlot = new SlotRecord( $freshRow, new WikitextContent( 'A' ) );
+		$freshSlot = new SlotRecord( $freshRow, new DummyContentForTesting( 'A' ) );
 		yield 'mismatching address' => [ 1, 10, 'address:BAD', $freshSlot ];
 		yield 'mismatching revision' => [ 5, 10, 'address:1', $freshSlot ];
 		yield 'mismatching content ID' => [ 1, 17, 'address:1', $freshSlot ];
@@ -278,7 +279,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 			'slot_revision_id' => 1,
 		] );
 
-		$inheritedSlot = new SlotRecord( $inheritedRow, new WikitextContent( 'A' ) );
+		$inheritedSlot = new SlotRecord( $inheritedRow, new DummyContentForTesting( 'A' ) );
 		yield 'inherited, but no address' => [ 1, 10, 'address:2', $inheritedSlot ];
 	}
 
@@ -396,35 +397,23 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewDerived() {
-		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
-			'derivedslot',
-			CONTENT_MODEL_WIKITEXT,
-			[],
-			true
-		);
-		$record = SlotRecord::newDerived( 'derivedslot', new WikitextContent( 'A' ) );
+		$record = SlotRecord::newDerived( 'derivedslot', new DummyContentForTesting( 'A' ) );
 
 		$this->assertFalse( $record->hasAddress() );
 		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->hasRevision() );
 		$this->assertFalse( $record->isInherited() );
 		$this->assertFalse( $record->hasOrigin() );
-		$this->assertSame( 'A', $record->getContent()->getText() );
+		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotEmpty( $record->getSha1() );
-		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( DummyContentForTesting::MODEL_ID, $record->getModel() );
 		$this->assertSame( 'derivedslot', $record->getRole() );
 		$this->assertTrue( $record->isDerived() );
 	}
 
 	public function testCopyDerived() {
-		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
-			'derivedslot',
-			CONTENT_MODEL_WIKITEXT,
-			[],
-			true
-		);
-		$unsaved = SlotRecord::newDerived( 'derivedslot', new WikitextContent( 'A' ) );
+		$unsaved = SlotRecord::newDerived( 'derivedslot', new DummyContentForTesting( 'A' ) );
 		$saved = SlotRecord::newSaved( 10, 20, 'theNewAddress', $unsaved );
 
 		$this->assertFalse( $saved->isInherited() );
@@ -434,7 +423,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $saved->hasContentId() );
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 20, $saved->getContentId() );
-		$this->assertSame( 'A', $saved->getContent()->getText() );
+		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
 		$this->assertSame( 10, $saved->getRevision() );
 		$this->assertSame( 10, $saved->getOrigin() );
 		$this->assertTrue( $saved->isDerived() );

@@ -250,7 +250,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		return [
 			[ 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, false ],
 			[ 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, false ],
-			[ serialize( 'hallo' ), 'Dummy:Test', null, null, "testing", false ],
+			[ 'hallo', 'Dummy:Test', null, null, "testing", false ],
 
 			[
 				'hallo',
@@ -268,7 +268,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				CONTENT_MODEL_JAVASCRIPT,
 				false
 			],
-			[ serialize( 'hallo' ), 'Dummy:Test', null, "testing", "testing", false ],
+			[ 'hallo', 'Dummy:Test', null, "testing", "testing", false ],
 
 			[ 'hallo', 'Help:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, false ],
 			[
