@@ -114,7 +114,8 @@ class DumpRenderer extends Maintenance {
 		$options = ParserOptions::newFromUser( $user );
 
 		$content = $rev->getContent();
-		$output = $content->getParserOutput( $title, null, $options );
+		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$output = $contentRenderer->getParserOutput( $content, $title, null, $options );
 
 		file_put_contents( $filename,
 			"<!DOCTYPE html>\n" .

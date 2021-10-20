@@ -288,6 +288,7 @@ just a test"
 	 */
 	public function testRedirectParserOption() {
 		$title = Title::newFromText( 'testRedirectParserOption' );
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 
 		// Set up hook and its reporting variables
 		$wikitext = null;
@@ -307,7 +308,7 @@ just a test"
 		$content = $this->newContent( 'hello world.' );
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$options->setRedirectTarget( $title );
-		$content->getParserOutput( $title, null, $options );
+		$contentRenderer->getParserOutput( $content, $title, null, $options );
 		$this->assertEquals( 'hello world.', $wikitext,
 			'Wikitext passed to hook was not as expected'
 		);
@@ -323,7 +324,7 @@ just a test"
 			"#REDIRECT [[TestRedirectParserOption/redir]]\nhello redirect."
 		);
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$content->getParserOutput( $title, null, $options );
+		$contentRenderer->getParserOutput( $content, $title, null, $options );
 		$this->assertEquals(
 			'hello redirect.',
 			$wikitext,
@@ -366,23 +367,5 @@ just a test"
 			],
 			// @todo more...?
 		];
-	}
-
-	/**
-	 * @covers WikitextContent::fillParserOutput
-	 */
-	public function testHadSignature() {
-		$this->hideDeprecated( 'AbstractContent::preSaveTransform' );
-
-		$titleObj = Title::newFromText( __CLASS__ );
-
-		$content = new WikitextContent( '~~~~' );
-		$pstContent = $content->preSaveTransform(
-			$titleObj,
-			$this->getTestUser()->getUser(),
-			ParserOptions::newFromAnon()
-		);
-
-		$this->assertTrue( $pstContent->getParserOutput( $titleObj )->getFlag( 'user-signature' ) );
 	}
 }

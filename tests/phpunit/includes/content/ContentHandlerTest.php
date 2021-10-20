@@ -456,7 +456,8 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				$fields['testDataField'] = 'test content';
 			} );
 
-		$output = $page->getContent()->getParserOutput( $title );
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
+		$output = $contentRenderer->getParserOutput( $page->getContent(), $title );
 		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $output, $mockEngine );
 		$this->assertArrayHasKey( 'text', $data );
 		$this->assertArrayHasKey( 'text_bytes', $data );
