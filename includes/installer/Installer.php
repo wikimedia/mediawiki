@@ -1715,7 +1715,7 @@ abstract class Installer {
 			] );
 			if ( !$status->isGood() ) {
 				return Status::newFatal( 'config-admin-error-password',
-					$name, $status->getWikiText( null, null, $this->getVar( '_UserLang' ) ) );
+					$name, $status->getWikiText( false, false, $this->getVar( '_UserLang' ) ) );
 			}
 
 			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();

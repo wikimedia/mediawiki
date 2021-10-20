@@ -134,7 +134,7 @@ class ThumbnailRenderJob extends Job {
 			return true;
 		} else {
 			$this->setLastError( __METHOD__ . ': HTTP request failure: '
-				. Status::wrap( $status )->getWikiText( null, null, 'en' ) );
+				. Status::wrap( $status )->getWikiText( false, false, 'en' ) );
 		}
 		return false;
 	}

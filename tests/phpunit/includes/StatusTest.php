@@ -747,7 +747,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		/** @var MessageLocalizer $messageLocalizer */
 		$status->setMessageLocalizer( $messageLocalizer );
 		$status->getWikiText();
-		$status->getWikiText( null, null, 'en' );
+		$status->getWikiText( false, false, 'en' );
 		$status->getWikiText( 'wrap-short', 'wrap-long' );
 	}
 
