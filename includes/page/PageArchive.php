@@ -20,8 +20,8 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\UndeletePage;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -45,9 +45,6 @@ class PageArchive {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var RevisionStore */
-	private $revisionStore;
-
 	/**
 	 * @param Title $title
 	 */
@@ -56,7 +53,6 @@ class PageArchive {
 
 		$services = MediaWikiServices::getInstance();
 		$this->loadBalancer = $services->getDBLoadBalancer();
-		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -168,36 +164,8 @@ class PageArchive {
 	 * @return IResultWrapper|bool
 	 */
 	public function listRevisions() {
-		$queryInfo = $this->revisionStore->getArchiveQueryInfo();
-
-		$conds = [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
-		];
-
-		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
-		// XXX: Ideally, we would be ordering by ar_timestamp and ar_rev_id, but since we
-		// don't have an index on ar_rev_id, that causes a file sort.
-		$options = [ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ];
-
-		ChangeTags::modifyDisplayQuery(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$conds,
-			$queryInfo['joins'],
-			$options,
-			''
-		);
-
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		return $dbr->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
-			$conds,
-			__METHOD__,
-			$options,
-			$queryInfo['joins']
-		);
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->listRevisions();
 	}
 
 	/**
@@ -234,11 +202,8 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecordByTimestamp( $timestamp ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$rec = $this->getRevisionByConditions(
-			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
-		);
-		return $rec;
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->getRevisionRecordByTimestamp( $timestamp );
 	}
 
 	/**
@@ -250,38 +215,8 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	public function getArchivedRevisionRecord( int $revId ) {
-		return $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
-	}
-
-	/**
-	 * @param array $conditions
-	 * @param array $options
-	 *
-	 * @return RevisionRecord|null
-	 */
-	private function getRevisionByConditions( array $conditions, array $options = [] ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$arQuery = $this->revisionStore->getArchiveQueryInfo();
-
-		$conditions += [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
-		];
-
-		$row = $dbr->selectRow(
-			$arQuery['tables'],
-			$arQuery['fields'],
-			$conditions,
-			__METHOD__,
-			$options,
-			$arQuery['joins']
-		);
-
-		if ( $row ) {
-			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $this->title );
-		}
-
-		return null;
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->getArchivedRevisionRecord( $revId );
 	}
 
 	/**
@@ -297,48 +232,8 @@ class PageArchive {
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
 	public function getPreviousRevisionRecord( string $timestamp ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-
-		// Check the previous deleted revision...
-		$row = $dbr->selectRow( 'archive',
-			[ 'ar_rev_id', 'ar_timestamp' ],
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey(),
-				'ar_timestamp < ' .
-				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
-			__METHOD__,
-			[
-				'ORDER BY' => 'ar_timestamp DESC',
-			] );
-		$prevDeleted = $row ? wfTimestamp( TS_MW, $row->ar_timestamp ) : false;
-		$prevDeletedId = $row ? intval( $row->ar_rev_id ) : null;
-
-		$row = $dbr->selectRow( [ 'page', 'revision' ],
-			[ 'rev_id', 'rev_timestamp' ],
-			[
-				'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey(),
-				'page_id = rev_page',
-				'rev_timestamp < ' .
-				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
-			__METHOD__,
-			[
-				'ORDER BY' => 'rev_timestamp DESC',
-			] );
-		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
-		$prevLiveId = $row ? intval( $row->rev_id ) : null;
-
-		if ( $prevLive && $prevLive > $prevDeleted ) {
-			// Most prior revision was live
-			$rec = $this->revisionStore->getRevisionById( $prevLiveId );
-		} elseif ( $prevDeleted ) {
-			// Most prior revision was deleted
-			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
-		} else {
-			$rec = null;
-		}
-
-		return $rec;
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->getPreviousRevisionRecord( $timestamp );
 	}
 
 	/**
@@ -347,17 +242,8 @@ class PageArchive {
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId() {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$revId = $dbr->selectField(
-			'archive',
-			'ar_rev_id',
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ]
-		);
-
-		return $revId ? intval( $revId ) : false;
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->getLastRevisionId();
 	}
 
 	/**
@@ -367,16 +253,8 @@ class PageArchive {
 	 * @return bool
 	 */
 	public function isDeleted() {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			[ 'archive' ],
-			'1', // We don't care about the value. Allow the database to optimize.
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ],
-			__METHOD__
-		);
-
-		return (bool)$row;
+		$lookup = new ArchivedRevisionLookup( $this->title );
+		return $lookup->isDeleted();
 	}
 
 	/**
