@@ -159,9 +159,8 @@ class BenchmarkParse extends Maintenance {
 	 */
 	private function runParser( RevisionRecord $revision ) {
 		$content = $revision->getContent( SlotRecord::MAIN );
-		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
-
-		$content->getParserOutput( $title, $revision->getId() );
+		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$contentRenderer->getParserOutput( $content, $revision->getPage(), $revision->getId() );
 		if ( $this->clearLinkCache ) {
 			$this->linkCache->clear();
 		}

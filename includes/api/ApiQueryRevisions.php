@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -57,6 +58,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param NameTableStore $changeTagDefStore
 	 * @param ActorMigration $actorMigration
+	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
@@ -68,6 +70,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		SlotRoleRegistry $slotRoleRegistry,
 		NameTableStore $changeTagDefStore,
 		ActorMigration $actorMigration,
+		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer
 	) {
 		parent::__construct(
@@ -78,6 +81,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$contentHandlerFactory,
 			$parserFactory,
 			$slotRoleRegistry,
+			$contentRenderer,
 			$contentTransformer
 		);
 		$this->revisionStore = $revisionStore;

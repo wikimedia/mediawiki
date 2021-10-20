@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 
 /**
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
@@ -293,4 +294,25 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'This is file content', $data['file_text'] );
 	}
 
+	/**
+	 * @covers WikitextContentHandler::fillParserOutput
+	 */
+	public function testHadSignature() {
+		$services = $this->getServiceContainer();
+		$contentTransformer = $services->getContentTransformer();
+		$contentRenderer = $services->getContentRenderer();
+		$this->hideDeprecated( 'AbstractContent::preSaveTransform' );
+
+		$pageObj = PageReferenceValue::localReference( NS_MAIN, __CLASS__ );
+
+		$content = new WikitextContent( '~~~~' );
+		$pstContent = $contentTransformer->preSaveTransform(
+			$content,
+			$pageObj,
+			$this->getTestUser()->getUser(),
+			ParserOptions::newFromAnon()
+		);
+
+		$this->assertTrue( $contentRenderer->getParserOutput( $pstContent, $pageObj )->getFlag( 'user-signature' ) );
+	}
 }

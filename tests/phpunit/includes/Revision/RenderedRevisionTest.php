@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Page\PageIdentity;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
@@ -36,12 +36,17 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	/** @var callable */
 	private $combinerCallback;
 
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->combinerCallback = function ( RenderedRevision $rr, array $hints = [] ) {
 			return $this->combineOutput( $rr, $hints );
 		};
+
+		$this->contentRenderer = $this->getServiceContainer()->getContentRenderer();
 	}
 
 	private function combineOutput( RenderedRevision $rrev, array $hints = [] ) {
@@ -156,7 +161,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::FOR_THIS_USER
 		);
@@ -172,7 +177,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -204,7 +209,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -223,7 +228,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -253,7 +258,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -283,7 +288,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -314,7 +319,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -334,7 +339,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::FOR_THIS_USER,
 			$this->mockRegisteredUltimateAuthority()
@@ -368,7 +373,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::RAW
 		);
@@ -406,7 +411,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -452,7 +457,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -490,8 +495,9 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
-			$this->combinerCallback );
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		// MutableRevisionRecord with ID should not be used by the parser,
 		// revision should be loaded instead!
@@ -523,7 +529,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -565,7 +571,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -593,7 +599,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 
@@ -638,7 +644,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->getServiceContainer()->getContentRenderer(),
+			$this->contentRenderer,
 			$this->combinerCallback
 		);
 

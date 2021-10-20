@@ -252,8 +252,8 @@ class WikitextContent extends TextContent {
 					$context = RequestContext::getMain();
 					$title = $context->getTitle();
 				}
-
-				$po = $this->getParserOutput( $title, null, null, false );
+				$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
 				$links = $po->getLinks();
 				$hasLinks = !empty( $links );
 			}

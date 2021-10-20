@@ -1,12 +1,6 @@
 <?php
 
-/**
- * See also unit tests at \MediaWiki\Tests\Unit\JsonContentTest
- *
- * @author Addshore
- * @covers JsonContent
- */
-class JsonContentTest extends MediaWikiLangTestCase {
+class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	public function provideDataAndParserText() {
 		return [
@@ -55,10 +49,13 @@ class JsonContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataAndParserText
+	 * @covers JsonContentHandler::fillParserOutput
 	 */
 	public function testFillParserOutput( $data, $expected ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$parserOutput = $obj->getParserOutput(
+		$content = new JsonContent( FormatJson::encode( $data ) );
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
+		$parserOutput = $contentRenderer->getParserOutput(
+			$content,
 			$this->createMock( Title::class ),
 			null,
 			null,

@@ -66,6 +66,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -142,6 +143,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'ActorMigration',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -181,6 +183,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'NamespaceInfo',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -231,6 +234,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ActorMigration',
 				'NamespaceInfo',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
