@@ -131,7 +131,10 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			$comments = [];
 			for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 				$file = $this->mHist[$i];
-				$comments[$i] = $file->getDescription( File::FOR_THIS_USER, $this->getUser() );
+				$comments[$i] = $file->getDescription(
+					File::FOR_THIS_USER,
+					$this->getUser()
+				) ?: '';
 			}
 			$formattedComments = MediaWikiServices::getInstance()
 				->getCommentFormatter()
