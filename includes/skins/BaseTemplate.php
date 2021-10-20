@@ -439,7 +439,10 @@ abstract class BaseTemplate extends QuickTemplate {
 					'class' => 'mw-indicator',
 				],
 				$content
-			) . "\n";
+			) .
+			// Add whitespace between the <div>s because
+			// they get displayed with display: inline-block
+			"\n";
 		}
 		$out .= "</div>\n";
 		return $out;
