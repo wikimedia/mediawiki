@@ -21,18 +21,14 @@
 namespace MediaWiki\Revision;
 
 use ChangeTags;
-use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * @unstable Don't use this, it WILL change
+ * @since 1.38
  */
 class ArchivedRevisionLookup {
-
-	/** @var Title */
-	protected $title;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -41,28 +37,30 @@ class ArchivedRevisionLookup {
 	private $revisionStore;
 
 	/**
-	 * @param Title $title
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
 	 */
-	public function __construct( Title $title ) {
-		$this->title = $title;
-
-		$services = MediaWikiServices::getInstance();
-		$this->loadBalancer = $services->getDBLoadBalancer();
-		$this->revisionStore = $services->getRevisionStore();
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore
+	) {
+		$this->loadBalancer = $loadBalancer;
+		$this->revisionStore = $revisionStore;
 	}
 
 	/**
 	 * List the revisions of the given page. Returns result wrapper with
 	 * various archive table fields.
 	 *
+	 * @param PageIdentity $page
 	 * @return IResultWrapper|bool
 	 */
-	public function listRevisions() {
+	public function listRevisions( PageIdentity $page ) {
 		$queryInfo = $this->revisionStore->getArchiveQueryInfo();
 
 		$conds = [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
+			'ar_namespace' => $page->getNamespace(),
+			'ar_title' => $page->getDBkey(),
 		];
 
 		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
@@ -95,40 +93,47 @@ class ArchivedRevisionLookup {
 	 *
 	 * @internal only for use in SpecialUndelete
 	 *
+	 * @param PageIdentity $page
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionRecordByTimestamp( $timestamp ) {
+	public function getRevisionRecordByTimestamp( PageIdentity $page, $timestamp ): ?RevisionRecord {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$rec = $this->getRevisionByConditions(
+		return $this->getRevisionByConditions(
+			$page,
 			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
 		);
-		return $rec;
 	}
 
 	/**
 	 * Return the archived revision with the given ID.
 	 *
+	 * @param PageIdentity $page
 	 * @param int $revId
 	 * @return RevisionRecord|null
 	 */
-	public function getArchivedRevisionRecord( int $revId ) {
-		return $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
+	public function getArchivedRevisionRecord( PageIdentity $page, int $revId ): ?RevisionRecord {
+		return $this->getRevisionByConditions( $page, [ 'ar_rev_id' => $revId ] );
 	}
 
 	/**
+	 * @param PageIdentity $page
 	 * @param array $conditions
 	 * @param array $options
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function getRevisionByConditions( array $conditions, array $options = [] ) {
+	private function getRevisionByConditions(
+		PageIdentity $page,
+		array $conditions,
+		array $options = []
+	): ?RevisionRecord {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 
 		$conditions += [
-			'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey(),
+			'ar_namespace' => $page->getNamespace(),
+			'ar_title' => $page->getDBkey(),
 		];
 
 		$row = $dbr->selectRow(
@@ -141,7 +146,7 @@ class ArchivedRevisionLookup {
 		);
 
 		if ( $row ) {
-			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $this->title );
+			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $page );
 		}
 
 		return null;
@@ -154,17 +159,18 @@ class ArchivedRevisionLookup {
 	 * May produce unexpected results in case of history merges or other
 	 * unusual time issues.
 	 *
+	 * @param PageIdentity $page
 	 * @param string $timestamp
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
-	public function getPreviousRevisionRecord( string $timestamp ) {
+	public function getPreviousRevisionRecord( PageIdentity $page, string $timestamp ): ?RevisionRecord {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
 			[ 'ar_rev_id', 'ar_timestamp' ],
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey(),
+			[ 'ar_namespace' => $page->getNamespace(),
+				'ar_title' => $page->getDBkey(),
 				'ar_timestamp < ' .
 				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
 			__METHOD__,
@@ -177,8 +183,8 @@ class ArchivedRevisionLookup {
 		$row = $dbr->selectRow( [ 'page', 'revision' ],
 			[ 'rev_id', 'rev_timestamp' ],
 			[
-				'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDBkey(),
+				'page_namespace' => $page->getNamespace(),
+				'page_title' => $page->getDBkey(),
 				'page_id = rev_page',
 				'rev_timestamp < ' .
 				$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ],
@@ -194,7 +200,7 @@ class ArchivedRevisionLookup {
 			$rec = $this->revisionStore->getRevisionById( $prevLiveId );
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
-			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
+			$rec = $this->getArchivedRevisionRecord( $page, $prevDeletedId );
 		} else {
 			$rec = null;
 		}
@@ -205,15 +211,17 @@ class ArchivedRevisionLookup {
 	/**
 	 * Returns the ID of the latest deleted revision.
 	 *
+	 * @param PageIdentity $page
+	 *
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
-	public function getLastRevisionId() {
+	public function getLastRevisionId( PageIdentity $page ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$revId = $dbr->selectField(
 			'archive',
 			'ar_rev_id',
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ],
+			[ 'ar_namespace' => $page->getNamespace(),
+				'ar_title' => $page->getDBkey() ],
 			__METHOD__,
 			[ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ]
 		);
@@ -225,15 +233,17 @@ class ArchivedRevisionLookup {
 	 * Quick check if any archived revisions are present for the page.
 	 * This says nothing about whether the page currently exists in the page table or not.
 	 *
+	 * @param PageIdentity $page
+	 *
 	 * @return bool
 	 */
-	public function isDeleted() {
+	public function hasArchivedRevisions( PageIdentity $page ): bool {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$row = $dbr->selectRow(
-			[ 'archive' ],
+			'archive',
 			'1', // We don't care about the value. Allow the database to optimize.
-			[ 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ],
+			[ 'ar_namespace' => $page->getNamespace(),
+				'ar_title' => $page->getDBkey() ],
 			__METHOD__
 		);
 
