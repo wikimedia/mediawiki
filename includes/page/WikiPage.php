@@ -2669,10 +2669,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->keepLegacyHookErrorsSeparate()
 			->deleteUnsafe( $reason );
 		$error = $deletePage->getLegacyHookErrors();
-		if ( $status->isGood() && $status->value === false ) {
-			// BC for scheduled deletion
-			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-			$status->value = null;
+		if ( $status->isGood() ) {
+			// BC with old return format
+			if ( $deletePage->deletionWasScheduled() ) {
+				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			} else {
+				$status->value = $deletePage->getSuccessfulDeletionsIDs()[0];
+			}
 		}
 		return $status;
 	}
@@ -2711,10 +2714,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->setLogSubtype( $logsubtype )
 			->forceImmediate( $immediate )
 			->deleteInternal( $reason, $webRequestId );
-		if ( $status->isGood() && $status->value === false ) {
-			// BC for scheduled deletion
-			$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-			$status->value = null;
+		if ( $status->isGood() ) {
+			// BC with old return format
+			if ( $deletePage->deletionWasScheduled() ) {
+				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			} else {
+				$status->value = $deletePage->getSuccessfulDeletionsIDs()[0];
+			}
 		}
 		return $status;
 	}
