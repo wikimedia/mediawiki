@@ -76,6 +76,9 @@ abstract class Skin extends ContextSource {
 
 	private $searchPageTitle = null;
 
+	/** @var string cached action for cheap lookup */
+	protected $action;
+
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
 	 * to underlying data and for providing support for older and new versions of code.
@@ -85,6 +88,38 @@ abstract class Skin extends ContextSource {
 	 */
 	public static function getVersion() {
 		return self::VERSION_MAJOR;
+	}
+
+	/**
+	 * Subclasses may extend this method to add additional
+	 * template data.
+	 *
+	 * The data keys should be valid English words. Compound words should
+	 * be hypenated except if they are normally written as one word. Each
+	 * key should be prefixed with a type hint, this may be enforced by the
+	 * class PHPUnit test.
+	 *
+	 * Plain strings are prefixed with 'html-', plain arrays with 'array-'
+	 * and complex array data with 'data-'. 'is-' and 'has-' prefixes can
+	 * be used for boolean variables.
+	 * Messages are prefixed with 'msg-', followed by their message key.
+	 * All messages specified in the skin option 'messages' will be available
+	 * under 'msg-MESSAGE-NAME'.
+	 *
+	 * @return array Data for a mustache template
+	 */
+	public function getTemplateData() {
+		$title = $this->getTitle();
+		$out = $this->getOutput();
+		$user = $this->getUser();
+		$data = [
+			// Boolean values
+			'is-anon' => $user->isAnon(),
+			'is-article' => $out->isArticle(),
+			'is-mainpage' => $title->isMainPage(),
+			'is-specialpage' => $title->isSpecialPage(),
+		];
+		return $data;
 	}
 
 	/**
@@ -2434,6 +2469,98 @@ abstract class Skin extends ContextSource {
 			$data[$key] = $existingItems + $newItems;
 		}
 		return $data;
+	}
+
+	/**
+	 * Returns array of config variables that should be added only to this skin
+	 * for use in JavaScript.
+	 * Skins can override this to add variables to the page.
+	 * @since 1.38 or 1.35 if extending SkinTemplate.
+	 * @return array
+	 */
+	protected function getJsConfigVars(): array {
+		return [];
+	}
+
+	/**
+	 * Prepare user language attribute links
+	 * @since 1.38 on Skin and 1.35 on classes extending SkinTemplate
+	 * @return string HTML attributes
+	 */
+	final protected function prepareUserLanguageAttributes() {
+		$userLang = $this->getLanguage();
+		$userLangCode = $userLang->getHtmlCode();
+		$userLangDir = $userLang->getDir();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if (
+			$userLangCode !== $contLang->getHtmlCode() ||
+			$userLangDir !== $contLang->getDir()
+		) {
+			$escUserlang = htmlspecialchars( $userLangCode );
+			$escUserdir = htmlspecialchars( $userLangDir );
+			// Attributes must be in double quotes because htmlspecialchars() doesn't
+			// escape single quotes
+			return " lang=\"$escUserlang\" dir=\"$escUserdir\"";
+		}
+		return '';
+	}
+
+	/**
+	 * Prepare undelete link for output in page.
+	 * @since 1.38 on Skin and 1.35 on classes extending SkinTemplate
+	 * @return null|string HTML, or null if there is no undelete link.
+	 */
+	final protected function prepareUndeleteLink() {
+		$undelete = $this->getUndeleteLink();
+		return $undelete === '' ? null : '<span class="subpages">' . $undelete . '</span>';
+	}
+
+	/**
+	 * Optimization. Cached lookup of getActionName()
+	 * because it's expensive to compute.
+	 *
+	 * @return string
+	 */
+	final protected function getAction() {
+		if ( $this->action ) {
+			return $this->action;
+		}
+		$this->action = Action::getActionName( $this );
+		return $this->action;
+	}
+
+	/**
+	 * Wrap the body text with language information and identifiable element
+	 *
+	 * @since 1.38 in Skin, previously was a method of SkinTemplate
+	 * @param Title $title
+	 * @param string $html body text
+	 * @return string html
+	 */
+	protected function wrapHTML( $title, $html ) {
+		# An ID that includes the actual body text; without categories, contentSub, ...
+		$realBodyAttribs = [
+			'id' => 'mw-content-text',
+			'class' => [
+				'mw-body-content',
+			],
+		];
+		$action = $this->getAction();
+
+		# Add a mw-content-ltr/rtl class to be able to style based on text
+		# direction when the content is different from the UI language (only
+		# when viewing)
+		# Most information on special pages and file pages is in user language,
+		# rather than content language, so those will not get this
+		if ( $action === 'view' &&
+			( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) || $title->isRedirect() ) ) {
+			$pageLang = $title->getPageViewLanguage();
+			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
+			$realBodyAttribs['dir'] = $pageLang->getDir();
+			$realBodyAttribs['class'][] = 'mw-content-' . $pageLang->getDir();
+		}
+
+		return Html::rawElement( 'div', $realBodyAttribs, $html );
 	}
 
 	public function getSearchPageTitle(): Title {
