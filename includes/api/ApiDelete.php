@@ -111,7 +111,7 @@ class ApiDelete extends ApiBase {
 		}
 		$wasScheduled = $status->isGood() && $status->getValue() === false;
 		if ( $wasScheduled ) {
-			$this->addWarning( 'delete-scheduled' );
+			$this->addWarning( [ 'delete-scheduled', $titleObj->getPrefixedText() ] );
 		}
 
 		// Deprecated parameters
