@@ -403,9 +403,9 @@ class ForeignAPIRepo extends FileRepo implements ForeignRepoWithMWApi {
 			&& isset( $metadata['timestamp'] )
 		) {
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before" );
-			$modified = $backend->getFileTimestamp( [ 'src' => $localFilename ] );
-			$remoteModified = strtotime( $metadata['timestamp'] );
-			$current = time();
+			$modified = (int)wfTimestamp( TS_UNIX, $backend->getFileTimestamp( [ 'src' => $localFilename ] ) );
+			$remoteModified = (int)wfTimestamp( TS_UNIX, $metadata['timestamp'] );
+			$current = (int)wfTimestamp( TS_UNIX );
 			$diff = abs( $modified - $current );
 			if ( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
