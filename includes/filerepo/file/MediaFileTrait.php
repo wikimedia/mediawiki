@@ -102,7 +102,7 @@ trait MediaFileTrait {
 
 	/**
 	 * @param File $file
-	 * @param int $duration File duration (if any)
+	 * @param int|null $duration File duration (if any)
 	 * @param int $maxWidth Max width to display at
 	 * @param int $maxHeight Max height to display at
 	 * @return array|null Transform info ready to include in response, or null if unavailable

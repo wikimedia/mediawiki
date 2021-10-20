@@ -34,7 +34,7 @@ class LocalFileRestoreBatch {
 	/** @var string[] List of file IDs to restore */
 	private $cleanupBatch;
 
-	/** @var string[] List of file IDs to restore */
+	/** @var int[] List of file IDs to restore */
 	private $ids;
 
 	/** @var bool Add all revisions of the file */

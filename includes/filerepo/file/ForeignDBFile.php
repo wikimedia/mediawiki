@@ -51,7 +51,7 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
-	 * @param array $versions
+	 * @param int[] $versions
 	 * @param bool $unsuppress
 	 * @return Status
 	 * @throws MWException
@@ -145,7 +145,7 @@ class ForeignDBFile extends LocalFile {
 	/**
 	 * Get short description URL for a file based on the page ID.
 	 *
-	 * @return string
+	 * @return string|null
 	 * @throws DBUnexpectedError
 	 * @since 1.27
 	 */

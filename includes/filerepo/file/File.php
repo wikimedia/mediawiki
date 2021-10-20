@@ -136,13 +136,13 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/** @var string File extension */
 	protected $extension;
 
-	/** @var string The name of a file from its title object */
+	/** @var string|null The name of a file from its title object */
 	protected $name;
 
 	/** @var string The storage path corresponding to one of the zones */
 	protected $path;
 
-	/** @var string Relative path including trailing slash */
+	/** @var string|null Relative path including trailing slash */
 	protected $hashPath;
 
 	/** @var int|false Number of pages of a multipage document, or false for
@@ -150,7 +150,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	protected $pageCount;
 
-	/** @var string URL of transformscript (for example thumb.php) */
+	/** @var string|false URL of transformscript (for example thumb.php) */
 	protected $transformScript;
 
 	/** @var Title */
@@ -1041,7 +1041,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * @return string
+	 * @return string|false
 	 */
 	private function getTransformScript() {
 		if ( !isset( $this->transformScript ) ) {
@@ -1553,7 +1553,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/**
 	 * Get a ThumbnailImage representing a file type icon
 	 *
-	 * @return ThumbnailImage
+	 * @return ThumbnailImage|null
 	 */
 	public function iconThumb() {
 		global $wgResourceBasePath, $IP;
@@ -2123,7 +2123,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param array $versions Set of record ids of deleted items to restore,
+	 * @param int[] $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress Remove restrictions on content upon restoration?
 	 * @return Status

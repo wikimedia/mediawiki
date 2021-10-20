@@ -511,8 +511,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options
-	 * @param int|bool &$mtime Resulting Last-Modified UNIX timestamp if received
-	 * @return bool|string
+	 * @param int|false &$mtime Resulting Last-Modified UNIX timestamp if received
+	 * @return string|false
 	 */
 	public static function httpGet(
 		$url, $timeout = 'default', $options = [], &$mtime = false
