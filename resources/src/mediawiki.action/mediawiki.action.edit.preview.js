@@ -273,6 +273,9 @@
 				slots: 'main',
 				uselang: mw.config.get( 'wgUserLanguage' )
 			};
+			if ( mw.config.get( 'wgUserVariant' ) ) {
+				diffPar.variant = mw.config.get( 'wgUserVariant' );
+			}
 			if ( section ) {
 				diffPar[ 'tosection-main' ] = section;
 			}
@@ -322,6 +325,9 @@
 				useskin: mw.config.get( 'skin' ),
 				uselang: mw.config.get( 'wgUserLanguage' )
 			} );
+			if ( mw.config.get( 'wgUserVariant' ) ) {
+				postData.variant = mw.config.get( 'wgUserVariant' );
+			}
 			if ( section === 'new' ) {
 				postData.section = 'new';
 				postData.sectiontitle = postData.summary;
