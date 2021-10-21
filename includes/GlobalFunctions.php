@@ -399,7 +399,7 @@ function wfCgiToArray( $query ) {
 				$k = substr( $k, 0, -1 );
 				$temp = [ $k => $temp ];
 			}
-			if ( isset( $ret[$key] ) ) {
+			if ( isset( $ret[$key] ) && is_array( $ret[$key] ) ) {
 				$ret[$key] = array_merge( $ret[$key], $temp );
 			} else {
 				$ret[$key] = $temp;
