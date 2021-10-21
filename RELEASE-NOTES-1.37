@@ -1,10 +1,10 @@
 = MediaWiki 1.37 =
 
-== MediaWiki 1.37.0-PRERELEASE ==
+== MediaWiki 1.37.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.37 is an beta-quality release branch, and is not recommended
+MediaWiki 1.37 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.37 ==
@@ -96,16 +96,12 @@ For notes on 1.36.x and older releases, see HISTORY.
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
 
-=== New developer features in 1.37 ===
-
 === External library changes in 1.37 ===
 
 ==== New external libraries ====
 * Added symfony/polyfill-php80 1.23.1.
 * Added whatwg-fetch 3.6.2.
 * Added wikimedia/normalized-exception 1.0.1.
-
-===== New development-only external libraries =====
 
 ==== Changed external libraries ====
 * Updated OOjs from v5.0.0 to v6.0.0
@@ -129,8 +125,6 @@ For notes on 1.36.x and older releases, see HISTORY.
 ==== Removed external libraries ====
 * The pimple/pimple development-only library has been removed.
 
-=== Bug fixes in 1.37 ===
-
 === Action API changes in 1.37 ===
 * (T280806) The API methods for fetching tokens which were deprecated in
   MediaWiki 1.24 have been removed. action=query&meta=tokens&type= should be
@@ -148,8 +142,6 @@ For notes on 1.36.x and older releases, see HISTORY.
       action=query&meta=tokens&type=csrf
   - action=query&list=users&ustoken=userrights ->
       action=query&meta=tokens&type=userrights
-
-=== Action API internal changes in 1.37 ===
 
 === Languages updated in 1.37 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
