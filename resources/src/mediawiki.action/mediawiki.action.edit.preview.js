@@ -180,7 +180,8 @@
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section, summary,
-			$wikiPreview, $wikiDiff, $editform, $textbox, $copyElements, $spinner, $errorBox;
+			$wikiPreview, $wikiDiff, $editform, $textbox, $summaryWidget, $copyElements,
+			$spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -188,7 +189,10 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 
-		summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
+		$summaryWidget = $( '#wpSummaryWidget' );
+		if ( $summaryWidget.length ) {
+			summary = OO.ui.infuse( $summaryWidget ).getValue();
+		}
 
 		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
@@ -249,7 +253,7 @@
 			formatversion: 2,
 			action: 'parse',
 			title: mw.config.get( 'wgPageName' ),
-			summary: summary.getValue(),
+			summary: summary,
 			prop: ''
 		};
 
