@@ -3396,6 +3396,7 @@
 	"feedback-useragent": "Браўзэр:",
 	"searchsuggest-search": "Шукаць у {{GRAMMAR:месны|{{SITENAME}}}}",
 	"searchsuggest-containing": "змяшчае...",
+	"api-clientside-error-noconnect": "Немагчыма злучыцца з серверам. Пераканайцеся, што маеце злучэнне з Інтэрнэтам і паўтарыце спробу.",
 	"api-clientside-error-timeout": "Сервер не адказаў у чаканы тэрмін.",
 	"api-error-badtoken": "Унутраная памылка: няслушны ключ.",
 	"api-error-emptypage": "Стварэнне новых пустых старонак забаронена.",

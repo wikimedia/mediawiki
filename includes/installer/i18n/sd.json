@@ -19,7 +19,7 @@
 	"config-continue": "اڳتي ←",
 	"config-page-language": "ٻولي",
 	"config-page-welcome": "ميڊياوڪي تي ڀليڪار!",
-	"config-page-dbconnect": "اعدادخاني سان جُڙو",
+	"config-page-dbconnect": "ڊيٽابيس سان جُڙو",
 	"config-page-upgrade": "هاڻوڪي تنصيبڪاريءَ کي سڌاريو",
 	"config-page-dbsettings": "اعدادخاني جون ترتيبون",
 	"config-page-name": "نالو",
@@ -29,9 +29,9 @@
 	"config-page-restart": "تنصيبڪاري وري کان شروع ڪريو",
 	"config-page-copying": "نقل ڪندي",
 	"config-page-upgradedoc": "اپگريڊڪندي",
-	"config-page-existingwiki": "موجوده وڪِي",
+	"config-page-existingwiki": "موجوده وڪي",
 	"config-help-restart": "ڇا توھان سڄي سانڍيل ڊيٽا ختم ڪرڻ چاھيو ٿا جيڪا توھان داخل ڪئي آھي ۽ تنصيبڪاريءَ جي عمل کي ٻيھر شروع ڪرڻ چاھيو ٿا؟",
-	"config-restart": "ها، وري کان شروع ڪريو",
+	"config-restart": "ها، ان کي شروع ڪريو",
 	"config-env-php": "PHP $1 تنصيب ٿي چڪو",
 	"config-project-namespace": "رٿا نانءُپولار:"
 }

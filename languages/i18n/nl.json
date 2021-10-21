@@ -606,7 +606,7 @@
 	"suspicious-userlogout": "Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.",
 	"createacct-another-realname-tip": "Een echte naam is optioneel.\nAls u een naam opgeeft, wordt deze gebruikt ter erkenning voor diens werk.",
 	"pt-login": "Inloggen",
-	"pt-login-button": "Aanmelden",
+	"pt-login-button": "Inloggen",
 	"pt-login-continue-button": "Doorgaan met aanmelden",
 	"pt-createaccount": "Account aanmaken",
 	"pt-userlogout": "Afmelden",
