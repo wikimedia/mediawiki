@@ -23,7 +23,7 @@ class BadFileLookup {
 	/** @var TitleParser */
 	private $titleParser;
 
-	/** @var array|null Parsed bad file list */
+	/** @var array<string,array<int,array<string,true>>>|null Parsed bad file list */
 	private $badFiles;
 
 	/** @var HookRunner */
@@ -82,52 +82,60 @@ class BadFileLookup {
 		}
 
 		if ( $this->badFiles === null ) {
-			// Not used before in this request, try the cache
 			$list = ( $this->listCallback )();
 			$key = $this->cache->makeKey( 'bad-image-list', sha1( $list ) );
-			$this->badFiles = $this->cache->get( $key ) ?: null;
-		}
-
-		if ( $this->badFiles === null ) {
-			// Cache miss, build the list now
-			$this->badFiles = [];
-			$lines = explode( "\n", $list );
-			foreach ( $lines as $line ) {
-				// List items only
-				if ( substr( $line, 0, 1 ) !== '*' ) {
-					continue;
+			$this->badFiles = $this->cache->getWithSetCallback(
+				$key,
+				BagOStuff::TTL_DAY,
+				function () use ( $list ) {
+					return $this->buildBadFilesList( $list );
 				}
-
-				// Find all links
-				$m = [];
-				// XXX What is the ':?' doing in the regex? Why not let the TitleParser strip it?
-				if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
-					continue;
-				}
-
-				$fileDBkey = null;
-				$exceptions = [];
-				foreach ( $m[1] as $i => $titleText ) {
-					try {
-						$title = $this->titleParser->parseTitle( $titleText );
-					} catch ( MalformedTitleException $e ) {
-						continue;
-					}
-					if ( $i == 0 ) {
-						$fileDBkey = $title->getDBkey();
-					} else {
-						$exceptions[$title->getNamespace()][$title->getDBkey()] = true;
-					}
-				}
-
-				if ( $fileDBkey !== null ) {
-					$this->badFiles[$fileDBkey] = $exceptions;
-				}
-			}
-			$this->cache->set( $key, $this->badFiles, 24 * 60 * 60 );
+			);
 		}
 
 		return isset( $this->badFiles[$name] ) && ( !$contextTitle ||
 			!isset( $this->badFiles[$name][$contextTitle->getNamespace()][$contextTitle->getDBkey()] ) );
+	}
+
+	/**
+	 * @param string $list
+	 * @return array<string,array<int,array<string,true>>>
+	 */
+	private function buildBadFilesList( string $list ): array {
+		$ret = [];
+		$lines = explode( "\n", $list );
+		foreach ( $lines as $line ) {
+			// List items only
+			if ( substr( $line, 0, 1 ) !== '*' ) {
+				continue;
+			}
+
+			// Find all links
+			$m = [];
+			// XXX What is the ':?' doing in the regex? Why not let the TitleParser strip it?
+			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
+				continue;
+			}
+
+			$fileDBkey = null;
+			$exceptions = [];
+			foreach ( $m[1] as $i => $titleText ) {
+				try {
+					$title = $this->titleParser->parseTitle( $titleText );
+				} catch ( MalformedTitleException $e ) {
+					continue;
+				}
+				if ( $i == 0 ) {
+					$fileDBkey = $title->getDBkey();
+				} else {
+					$exceptions[$title->getNamespace()][$title->getDBkey()] = true;
+				}
+			}
+
+			if ( $fileDBkey !== null ) {
+				$ret[$fileDBkey] = $exceptions;
+			}
+		}
+		return $ret;
 	}
 }

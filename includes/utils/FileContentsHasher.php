@@ -59,21 +59,18 @@ class FileContentsHasher {
 		}
 
 		$cacheKey = $this->cache->makeGlobalKey( __CLASS__, $filePath, $mtime, $algo );
-		$hash = $this->cache->get( $cacheKey );
+		return $this->cache->getWithSetCallback(
+			$cacheKey,
+			BagOStuff::TTL_DAY,
+			static function () use ( $filePath, $algo ) {
+				$contents = file_get_contents( $filePath );
+				if ( $contents === false ) {
+					return false;
+				}
 
-		if ( $hash ) {
-			return $hash;
-		}
-
-		$contents = file_get_contents( $filePath );
-		if ( $contents === false ) {
-			return false;
-		}
-
-		$hash = hash( $algo, $contents );
-		$this->cache->set( $cacheKey, $hash, 60 * 60 * 24 );  // 24h
-
-		return $hash;
+				return hash( $algo, $contents );
+			}
+		);
 	}
 
 	/**

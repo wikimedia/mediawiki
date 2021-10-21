@@ -160,21 +160,20 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		}
 
 		$prefix = $this->contLang->lc( $prefix );
-		if ( $this->localCache->has( $prefix ) ) {
-			return $this->localCache->get( $prefix );
-		}
-
-		if ( $this->cdbData ) {
-			$iw = $this->getInterwikiCached( $prefix );
-		} else {
-			$iw = $this->load( $prefix );
-			if ( !$iw ) {
-				$iw = false;
+		return $this->localCache->getWithSetCallback(
+			$prefix,
+			function () use ( $prefix ) {
+				if ( $this->cdbData ) {
+					$iw = $this->getInterwikiCached( $prefix );
+				} else {
+					$iw = $this->load( $prefix );
+					if ( !$iw ) {
+						$iw = false;
+					}
+				}
+				return $iw;
 			}
-		}
-		$this->localCache->set( $prefix, $iw );
-
-		return $iw;
+		);
 	}
 
 	/**

@@ -124,38 +124,45 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @return StatusValue
 	 */
 	public function isAllowed( User $user ) {
-		$status = $this->permissionCache->get( $user->getName() );
-		if ( !$status ) {
-			$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
-			$status = StatusValue::newGood();
-
-			if ( !is_array( $resetRoutes ) || !in_array( true, $resetRoutes, true ) ) {
-				// Maybe password resets are disabled, or there are no allowable routes
-				$status = StatusValue::newFatal( 'passwordreset-disabled' );
-			} elseif (
-				( $providerStatus = $this->authManager->allowsAuthenticationDataChange(
-					new TemporaryPasswordAuthenticationRequest(), false ) )
-				&& !$providerStatus->isGood()
-			) {
-				// Maybe the external auth plugin won't allow local password changes
-				$status = StatusValue::newFatal( 'resetpass_forbidden-reason',
-					$providerStatus->getMessage() );
-			} elseif ( !$this->config->get( 'EnableEmail' ) ) {
-				// Maybe email features have been disabled
-				$status = StatusValue::newFatal( 'passwordreset-emaildisabled' );
-			} elseif ( !$user->isAllowed( 'editmyprivateinfo' ) ) {
-				// Maybe not all users have permission to change private data
-				$status = StatusValue::newFatal( 'badaccess' );
-			} elseif ( $this->isBlocked( $user ) ) {
-				// Maybe the user is blocked (check this here rather than relying on the parent
-				// method as we have a more specific error message to use here and we want to
-				// ignore some types of blocks)
-				$status = StatusValue::newFatal( 'blocked-mailpassword' );
+		return $this->permissionCache->getWithSetCallback(
+			$user->getName(),
+			function () use ( $user ) {
+				return $this->computeIsAllowed( $user );
 			}
+		);
+	}
 
-			$this->permissionCache->set( $user->getName(), $status );
+	/**
+	 * @param User $user
+	 * @return StatusValue
+	 */
+	private function computeIsAllowed( User $user ): StatusValue {
+		$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
+		$status = StatusValue::newGood();
+
+		if ( !is_array( $resetRoutes ) || !in_array( true, $resetRoutes, true ) ) {
+			// Maybe password resets are disabled, or there are no allowable routes
+			$status = StatusValue::newFatal( 'passwordreset-disabled' );
+		} elseif (
+			( $providerStatus = $this->authManager->allowsAuthenticationDataChange(
+				new TemporaryPasswordAuthenticationRequest(), false ) )
+			&& !$providerStatus->isGood()
+		) {
+			// Maybe the external auth plugin won't allow local password changes
+			$status = StatusValue::newFatal( 'resetpass_forbidden-reason',
+				$providerStatus->getMessage() );
+		} elseif ( !$this->config->get( 'EnableEmail' ) ) {
+			// Maybe email features have been disabled
+			$status = StatusValue::newFatal( 'passwordreset-emaildisabled' );
+		} elseif ( !$user->isAllowed( 'editmyprivateinfo' ) ) {
+			// Maybe not all users have permission to change private data
+			$status = StatusValue::newFatal( 'badaccess' );
+		} elseif ( $this->isBlocked( $user ) ) {
+			// Maybe the user is blocked (check this here rather than relying on the parent
+			// method as we have a more specific error message to use here and we want to
+			// ignore some types of blocks)
+			$status = StatusValue::newFatal( 'blocked-mailpassword' );
 		}
-
 		return $status;
 	}
 
