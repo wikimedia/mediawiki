@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Page;
 
 use BacklinkCache;
+use BadMethodCallException;
 use BagOStuff;
 use CommentStore;
 use IDatabase;
@@ -181,5 +182,53 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 		$successAuthority = new UltimateAuthority( new UserIdentityValue( 42, 'Deleter' ) );
 		yield 'Successful' => [ $successAuthority, true ];
+	}
+
+	/**
+	 * @covers ::getSuccessfulDeletionsIDs
+	 */
+	public function testGetSuccessfulDeletionsIDs(): void {
+		$delPage = $this->getDeletePage(
+			$this->createMock( ProperPageIdentity::class ),
+			$this->createMock( Authority::class )
+		);
+		$delPage->deleteUnsafe( 'foo' );
+		$this->assertIsArray( $delPage->getSuccessfulDeletionsIDs() );
+	}
+
+	/**
+	 * @covers ::getSuccessfulDeletionsIDs
+	 */
+	public function testGetSuccessfulDeletionsIDs__notAttempted(): void {
+		$delPage = $this->getDeletePage(
+			$this->createMock( ProperPageIdentity::class ),
+			$this->createMock( Authority::class )
+		);
+		$this->expectException( BadMethodCallException::class );
+		$delPage->getSuccessfulDeletionsIDs();
+	}
+
+	/**
+	 * @covers ::deletionWasScheduled
+	 */
+	public function testDeletionWasScheduled(): void {
+		$delPage = $this->getDeletePage(
+			$this->createMock( ProperPageIdentity::class ),
+			$this->createMock( Authority::class )
+		);
+		$delPage->deleteUnsafe( 'foo' );
+		$this->assertIsBool( $delPage->deletionWasScheduled() );
+	}
+
+	/**
+	 * @covers ::deletionWasScheduled
+	 */
+	public function testDeletionWasScheduled__notAttempted(): void {
+		$delPage = $this->getDeletePage(
+			$this->createMock( ProperPageIdentity::class ),
+			$this->createMock( Authority::class )
+		);
+		$this->expectException( BadMethodCallException::class );
+		$delPage->deletionWasScheduled();
 	}
 }

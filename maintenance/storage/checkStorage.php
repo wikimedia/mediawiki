@@ -287,7 +287,7 @@ class CheckStorage {
 								break;
 							}
 							if ( $className == 'historyblobstub' ) {
-								$concatBlobs[$stubObj->mOldId][] = $oldId;
+								$concatBlobs[$stubObj->getLocation()][] = $oldId;
 							} else {
 								$curIds[$stubObj->mCurId][] = $oldId;
 							}
@@ -509,7 +509,7 @@ class CheckStorage {
 		$importer->doImport();
 	}
 
-	private function importRevision( &$revision, &$importer ) {
+	public function importRevision( $revision ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( RevisionRecord::RAW );
 		$id = $id ?: '';

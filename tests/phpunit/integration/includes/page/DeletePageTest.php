@@ -220,7 +220,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$reason = "testing deletion";
-		$status = $this->getDeletePage( $page, $deleter )
+		$deletePage = $this->getDeletePage( $page, $deleter );
+		$status = $deletePage
 			->setSuppress( $suppress )
 			->setTags( $tags )
 			->forceImmediate( $immediate )
@@ -230,10 +231,13 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $status->isGood(), 'Deletion should succeed' );
 
 		if ( $immediate ) {
-			$this->assertIsInt( $status->getValue() );
-			$logID = $status->getValue();
+			$this->assertFalse( $deletePage->deletionWasScheduled() );
+			$logIDs = $deletePage->getSuccessfulDeletionsIDs();
+			$this->assertCount( 1, $logIDs );
+			$logID = $logIDs[0];
+			$this->assertIsInt( $logID );
 		} else {
-			$this->assertFalse( $status->getValue() );
+			$this->assertTrue( $deletePage->deletionWasScheduled() );
 			$this->runJobs();
 			$logID = wfGetDB( DB_REPLICA )->selectField(
 				'logging',
