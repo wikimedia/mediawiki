@@ -509,7 +509,7 @@ class CheckStorage {
 		$importer->doImport();
 	}
 
-	private function importRevision( &$revision, &$importer ) {
+	public function importRevision( $revision ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( RevisionRecord::RAW );
 		$id = $id ?: '';
