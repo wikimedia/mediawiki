@@ -519,7 +519,7 @@ abstract class AbstractContent implements Content {
 	 * ContentGetParserOutput hook.
 	 *
 	 * @since 1.24
-	 * @deprecated since 1.38. Use ContentRenderer::getParserOutput instead.
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentRenderer::getParserOutput instead.
 	 * Extensions defining a content model should override ContentHandler::fillParserOutput.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId Revision ID being rendered
@@ -531,15 +531,18 @@ abstract class AbstractContent implements Content {
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$this,
 			self::class,
-			'getParserOutput'
+			'getParserOutput',
+			'1.38'
 		);
 		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$this,
 			self::class,
-			'fillParserOutput'
+			'fillParserOutput',
+			'1.38'
 		);
 
 		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
@@ -585,7 +588,7 @@ abstract class AbstractContent implements Content {
 	 * This placeholder implementation always throws an exception.
 	 *
 	 * @since 1.24
-	 * @deprecated since 1.37. Use ContentHandler::fillParserOutput instead.
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentHandler::fillParserOutput instead.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId ID of the revision being rendered.
 	 *  See Parser::parse() for the ramifications.
@@ -598,6 +601,7 @@ abstract class AbstractContent implements Content {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
 		return $this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
 	}
