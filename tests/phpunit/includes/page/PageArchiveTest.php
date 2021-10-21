@@ -8,8 +8,10 @@ use Wikimedia\IPUtils;
 
 /**
  * @group Database
- * @covers \MediaWiki\Revision\ArchivedRevisionLookup
+ * @coversDefaultClass \MediaWiki\Revision\ArchivedRevisionLookup
+ * @covers ::__construct
  * @covers PageArchive::__construct
+ * @fixme this tests two classes
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
@@ -19,7 +21,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	protected $pageId;
 
 	/**
-	 * @var PageArchive
+	 * @var Title
 	 */
 	protected $archivedPage;
 
@@ -69,8 +71,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// First create our dummy page
-		$page = Title::newFromText( 'PageArchiveTest_thePage' );
-		$page = new WikiPage( $page );
+		$this->archivedPage = Title::newFromText( 'PageArchiveTest_thePage' );
+		$page = new WikiPage( $this->archivedPage );
 		$content = ContentHandler::makeContent(
 			'testing',
 			$page->getTitle(),
@@ -103,8 +105,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 		// Delete the page
 		$page->doDeleteArticleReal( 'Just a test deletion', $user );
-
-		$this->archivedPage = new PageArchive( $page->getTitle() );
 	}
 
 	/**
@@ -136,7 +136,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$this->archivedPage->undeleteAsUser( [], $this->getTestSysop()->getUser() );
+		$archive = new PageArchive( $this->archivedPage );
+		$archive->undeleteAsUser( [], $this->getTestSysop()->getUser() );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();
@@ -204,10 +205,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listRevisions
+	 * @covers ::listRevisions
 	 */
 	public function testListRevisions() {
-		$revisions = $this->archivedPage->listRevisions();
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$revisions = $lookup->listRevisions( $this->archivedPage );
 		$this->assertEquals( 2, $revisions->numRows() );
 
 		// Get the rows as arrays
@@ -227,10 +229,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listRevisions
+	 * @covers ::listRevisions
 	 */
 	public function testListRevisions_slots() {
-		$revisions = $this->archivedPage->listRevisions();
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$revisions = $lookup->listRevisions( $this->archivedPage );
 
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
@@ -249,6 +252,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers PageArchive::listPagesBySearch
+	 * @covers PageArchive::listPagesByPrefix
+	 * @covers PageArchive::listPages
 	 */
 	public function testListPagesBySearch() {
 		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
@@ -267,7 +272,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listPagesBySearch
+	 * @covers PageArchive::listPagesByPrefix
+	 * @covers PageArchive::listPages
 	 */
 	public function testListPagesByPrefix() {
 		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );
@@ -286,45 +292,57 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::getLastRevisionId
+	 * @covers ::getLastRevisionId
 	 */
 	public function testGetLastRevisionId() {
-		$id = $this->archivedPage->getLastRevisionId();
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$id = $lookup->getLastRevisionId( $this->archivedPage );
 		$this->assertSame( $this->ipRev->getId(), $id );
 	}
 
 	/**
-	 * @covers PageArchive::isDeleted
+	 * @covers ::hasArchivedRevisions
 	 */
-	public function testIsDeleted() {
-		$this->assertTrue( $this->archivedPage->isDeleted() );
+	public function testHasArchivedRevisions() {
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$this->assertTrue( $lookup->hasArchivedRevisions( $this->archivedPage ) );
 	}
 
 	/**
-	 * @covers PageArchive::getRevisionRecordByTimestamp
+	 * @covers ::getRevisionRecordByTimestamp
+	 * @covers ::getRevisionByConditions
 	 */
 	public function testGetRevisionRecordByTimestamp() {
-		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp(
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$revRecord = $lookup->getRevisionRecordByTimestamp(
+			$this->archivedPage,
 			$this->ipRev->getTimestamp()
 		);
 		$this->assertNotNull( $revRecord );
 		$this->assertSame( $this->pageId, $revRecord->getPageId() );
 
-		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp( '22991212115555' );
+		$revRecord = $lookup->getRevisionRecordByTimestamp(
+			$this->archivedPage,
+			'22991212115555'
+		);
 		$this->assertNull( $revRecord );
 	}
 
 	/**
-	 * @covers PageArchive::getArchivedRevisionRecord
+	 * @covers ::getArchivedRevisionRecord
+	 * @covers ::getRevisionByConditions
 	 */
 	public function testGetArchivedRevisionRecord() {
-		$revRecord = $this->archivedPage->getArchivedRevisionRecord(
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$revRecord = $lookup->getArchivedRevisionRecord(
+			$this->archivedPage,
 			$this->ipRev->getId()
 		);
 		$this->assertNotNull( $revRecord );
 		$this->assertSame( $this->pageId, $revRecord->getPageId() );
 
-		$revRecord = $this->archivedPage->getArchivedRevisionRecord(
+		$revRecord = $lookup->getArchivedRevisionRecord(
+			$this->archivedPage,
 			$this->ipRev->getId() + 42
 		);
 		$this->assertNull( $revRecord );
