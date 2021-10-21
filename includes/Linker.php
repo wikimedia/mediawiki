@@ -262,7 +262,7 @@ class Linker {
 	 *
 	 * @param Parser $parser
 	 * @param LinkTarget $title LinkTarget object of the file (not the currently viewed page)
-	 * @param File $file File object, or false if it doesn't exist
+	 * @param File|false $file File object, or false if it doesn't exist
 	 * @param array $frameParams Associative array of parameters external to the media handler.
 	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and
 	 *     will often be false.
@@ -287,7 +287,7 @@ class Linker {
 	 *
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
-	 * @param string|bool $time Timestamp of the file, set as false for current
+	 * @param string|false $time Timestamp of the file, set as false for current
 	 * @param string $query Query params for desc url
 	 * @param int|null $widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @since 1.20
@@ -555,7 +555,7 @@ class Linker {
 	/**
 	 * Make HTML for a thumbnail including image, border and caption
 	 * @param LinkTarget $title
-	 * @param File|bool $file File object or false if it doesn't exist
+	 * @param File|false $file File object or false if it doesn't exist
 	 * @param string $label
 	 * @param string $alt
 	 * @param string|null $align
@@ -786,7 +786,7 @@ class Linker {
 	 * applicable.
 	 *
 	 * @param File $file
-	 * @param MediaTransformOutput $thumb
+	 * @param MediaTransformOutput|null $thumb
 	 * @param array $hp Image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
@@ -934,7 +934,7 @@ class Linker {
 	 *
 	 * @since 1.16.3
 	 * @param LinkTarget $title
-	 * @param File|bool $file File object or false
+	 * @param File|false $file File object or false
 	 * @param string $html Pre-sanitized HTML
 	 * @return string HTML
 	 *
@@ -1403,7 +1403,7 @@ class Linker {
 	}
 
 	/**
-	 * @param LinkTarget $contextTitle
+	 * @param LinkTarget|null $contextTitle
 	 * @param string $target
 	 * @param string &$text
 	 * @return string
@@ -1580,8 +1580,8 @@ class Linker {
 	 * @param string $anchor
 	 * @param string $tocline
 	 * @param string $tocnumber
-	 * @param string $level
-	 * @param string|bool $sectionIndex
+	 * @param int $level
+	 * @param int|false $sectionIndex
 	 * @return string
 	 */
 	public static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
@@ -1690,7 +1690,7 @@ class Linker {
 	 * @param string $anchor The anchor to give the headline (the bit after the #)
 	 * @param string $html HTML for the text of the header
 	 * @param string $link HTML to add for the section edit link
-	 * @param string|bool $fallbackAnchor A second, optional anchor to give for
+	 * @param string|false $fallbackAnchor A second, optional anchor to give for
 	 *   backward compatibility (false to omit)
 	 *
 	 * @return string HTML headline
@@ -1811,7 +1811,7 @@ class Linker {
 	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
 	 *    since 1.35)
 	 * @param bool $verify Try to verify that this revision can really be rolled back
-	 * @return int|bool|null
+	 * @return int|false|null
 	 */
 	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
 		global $wgShowRollbackEditCount;
@@ -1996,7 +1996,7 @@ class Linker {
 	 *   - 'nonexisting' to add an accessibility hint that page does not exist
 	 * @param array $msgParams Parameters to pass to the message
 	 *
-	 * @return string Contents of the title attribute (which you must HTML-
+	 * @return string|false Contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
 	public static function titleAttrib( $name, $options = null, array $msgParams = [] ) {
@@ -2044,7 +2044,7 @@ class Linker {
 	 *
 	 * @since 1.16.3
 	 * @param string $name Id of the element, minus prefixes.
-	 * @return string Contents of the accesskey attribute (which you must HTML-
+	 * @return string|false Contents of the accesskey attribute (which you must HTML-
 	 *   escape), or false for no accesskey attribute
 	 */
 	public static function accesskey( $name ) {
