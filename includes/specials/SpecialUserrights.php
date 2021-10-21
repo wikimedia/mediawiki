@@ -468,7 +468,7 @@ class UserrightsPage extends SpecialPage {
 	 * of the logging table. Only keeps essential data, removing redundant fields.
 	 *
 	 * @param UserGroupMembership|null $ugm May be null if things get borked
-	 * @return array
+	 * @return array|null
 	 */
 	protected static function serialiseUgmForLog( $ugm ) {
 		if ( !$ugm instanceof UserGroupMembership ) {

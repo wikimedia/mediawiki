@@ -65,7 +65,7 @@ class SpecialUndelete extends SpecialPage {
 	/** @var int[]|null */
 	private $mFileVersions;
 
-	/** @var Title */
+	/** @var Title|null */
 	private $mTargetObj;
 	/**
 	 * @var string Search prefix

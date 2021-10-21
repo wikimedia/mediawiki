@@ -44,7 +44,7 @@ class AllMessagesTablePager extends TablePager {
 	protected $foreign;
 
 	/**
-	 * @var string
+	 * @var string|false
 	 */
 	protected $prefix;
 

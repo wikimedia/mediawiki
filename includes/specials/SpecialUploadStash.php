@@ -357,7 +357,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * usually is.
 	 * Side effect: preps PHP to write headers to STDOUT.
 	 * @param string $contentType String suitable for content-type header
-	 * @param string $size Length in bytes
+	 * @param int $size Length in bytes
 	 */
 	private static function outputFileHeaders( $contentType, $size ) {
 		header( "Content-Type: $contentType", true );
