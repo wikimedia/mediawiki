@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amgine",
+			"Amire80",
 			"C.R.",
 			"Clamengh",
 			"Dakrismeno",
@@ -959,7 +960,7 @@
 	"diff-paragraph-moved-tonew": "El paragraf l'è stad spostad. Clica per passà a la posizzion noeuva.",
 	"diff-paragraph-moved-toold": "El paragraf l'è stad spostad. Clica per passà a la posizzion vesgia.",
 	"difference-missing-revision": "{{PLURAL:$2|Una version|$2 version}} di questa differenza ($1) {{PLURAL:$2|l'è stada minga trovada|a inn stade minga trovade}}.\n\nQuest, de solit, el succed quand che ghe se va adree a 'n conligament andegher de on diff rispet a una pagina scancelada. \nI datili i poden trovass in del [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
-	"searchresults": "Risultad de la ricerca.",
+	"searchresults": "Risultad de la ricerca",
 	"search-filter-title-prefix": "Doma a cercà in di pagine col titol che 'l comenza con \"$1\"",
 	"search-filter-title-prefix-reset": "Cerca in tute i pagine",
 	"searchresults-title": "Resultad de la ricerca de \"$1\"",

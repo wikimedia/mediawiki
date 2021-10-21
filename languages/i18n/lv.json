@@ -945,6 +945,7 @@
 	"prefs-help-recentchangescount": "Maksimums: 1000",
 	"prefs-help-watchlist-token2": "Šī ir slepena atslēga tavam uzraugāmo lapu sarakstam.\nIkvienam, kas to zinās, būs iespēja apskatīt tavu uzraugāmo lapu sarakstu, tāpēc nedalies ar to.\n[[Special:ResetTokens|Spied šeit, lai to atjaunotu]].",
 	"prefs-user-downloaddata-label": "Konta dati:",
+	"prefs-user-downloaddata-info": "Mani konta dati no šī projekta",
 	"savedprefs": "Jūsu izvēles ir saglabātas.",
 	"timezonelegend": "Laika josla:",
 	"localtime": "Vietējais laiks:",
