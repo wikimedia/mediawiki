@@ -3782,7 +3782,7 @@
 	"logentry-block-unblock": "$1{{GENDER:$2|解封了}}{{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间至$5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|页面|页面}}$2",
-	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间|命名空间}}$2",
+	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间}}$2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|操作}}$2",
 	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}对$7的编辑，持续时间至$5 $6",
 	"logentry-partialblock-reblock": "$1{{GENDER:$2|已更改}}{{GENDER:$4|$3}}在$7的封禁设定，终止时间至$5 $6",
