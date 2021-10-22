@@ -47,11 +47,11 @@ class MetricsFactory {
 
 	/** @var array */
 	private const DEFAULT_METRIC_CONFIG = [
-		'name' => '',
+		// 'name' => required,
+		// 'extension' => required,
 		'labels' => [],
 		'sampleRate' => 1.0,
 		'service' => '',
-		'extension' => 'undefined',
 		'format' => 'statsd',
 	];
 
@@ -88,9 +88,8 @@ class MetricsFactory {
 		$this->prefix = $config['prefix'] ?? '';
 		if ( $this->prefix === '' ) {
 			throw new UndefinedPrefixException( '\'prefix\' option is required and cannot be empty.' );
-		} else {
-			$this->prefix = self::normalizeString( $config['prefix'] );
 		}
+		$this->prefix = self::normalizeString( $config['prefix'] );
 		if ( !in_array( $this->format, self::SUPPORTED_OUTPUT_FORMATS ) ) {
 			throw new UnsupportedFormatException(
 				'Format "' . $this->format . '" not supported. Expected one of '
@@ -189,10 +188,7 @@ class MetricsFactory {
 	 */
 	public function flush(): void {
 		if ( $this->format !== 'null' && $this->target ) {
-			$this->send(
-				$this->getRenderedSamples(),
-				UDPTransport::newFromString( $this->target )
-			);
+			$this->send( UDPTransport::newFromString( $this->target ) );
 		}
 		$this->cache = [];
 	}
@@ -200,16 +196,17 @@ class MetricsFactory {
 	/**
 	 * Get all rendered samples from cache
 	 *
-	 * @return string[]
+	 * @param array $cache
+	 * @return string[] Flattened list
 	 */
-	private function getRenderedSamples() {
-		$rendered_samples = [];
-		foreach ( $this->cache as $metric ) {
+	private function getRenderedSamples( array $cache ): array {
+		$renderedSamples = [];
+		foreach ( $cache as $metric ) {
 			foreach ( $metric->render() as $rendered ) {
-				$rendered_samples[] = $rendered;
+				$renderedSamples[] = $rendered;
 			}
 		}
-		return $rendered_samples;
+		return $renderedSamples;
 	}
 
 	/**
@@ -225,30 +222,31 @@ class MetricsFactory {
 	 * @throws TypeError
 	 */
 	private function getCachedMetric( string $name, string $requested_type ) {
-		if ( array_key_exists( $name, $this->cache ) ) {
-			$metric = $this->cache[$name];
-		} else {
+		if ( !array_key_exists( $name, $this->cache ) ) {
 			return null;
 		}
-		if ( get_class( $metric ) != $requested_type ) {
+
+		$metric = $this->cache[$name];
+		if ( get_class( $metric ) !== $requested_type ) {
 			$msg = 'Metric name collision detected: \'' . $name . '\' defined as type \'' . get_class( $metric )
 				. '\' but a \'' . $requested_type . '\' was requested.';
 			$this->logger->error( $msg );
 			throw new TypeError( $msg );
 		}
+
 		return $metric;
 	}
 
 	/**
-	 * Take an array of rendered samples, break them up into payloads, and send them through the provided
-	 * UDPTransport instance.
+	 * Render the buffer of samples, group them into payloads, and send them through the
+	 * provided UDPTransport instance.
 	 *
-	 * @param string[] $rendered_samples
 	 * @param UDPTransport $transport
 	 */
-	private function send( array $rendered_samples, UDPTransport $transport ): void {
+	protected function send( UDPTransport $transport ): void {
 		$payload = '';
-		foreach ( $rendered_samples as $sample ) {
+		$renderedSamples = $this->getRenderedSamples( $this->cache );
+		foreach ( $renderedSamples as $sample ) {
 			if ( strlen( $payload ) + strlen( $sample ) + 1 < UDPTransport::MAX_PAYLOAD_SIZE ) {
 				$payload .= $sample . "\n";
 			} else {
@@ -296,27 +294,24 @@ class MetricsFactory {
 	 * @throws InvalidConfigurationException
 	 */
 	private function getValidConfig( array $config = [] ): array {
-		$config['prefix'] = $this->prefix;
-		$config['format'] = $this->format;
-		$config['name'] = $config['name'] ?? '';
-		if ( $config['name'] === '' ) {
+		if ( !isset( $config['name'] ) ) {
 			throw new InvalidConfigurationException(
 				'\'name\' configuration option is required and cannot be empty.'
 			);
-		} else {
-			$config['name'] = self::normalizeString( $config['name'] );
 		}
-		$config['extension'] = $config['extension'] ?? '';
-		if ( $config['extension'] === '' ) {
+		if ( !isset( $config['extension'] ) ) {
 			throw new InvalidConfigurationException(
 				'\'extension\' configuration option is required and cannot be empty.'
 			);
-		} else {
-			$config['extension'] = self::normalizeString( $config['extension'] );
 		}
-		$config['labels'] = $config['labels'] ?? [];
-		$config['labels'] = self::normalizeArray( $config['labels'] );
-		return array_merge( self::DEFAULT_METRIC_CONFIG, $config );
+
+		$config['prefix'] = $this->prefix;
+		$config['format'] = $this->format;
+		$config['name'] = self::normalizeString( $config['name'] );
+		$config['extension'] = self::normalizeString( $config['extension'] );
+		$config['labels'] = self::normalizeArray( $config['labels'] ?? [] );
+
+		return $config + self::DEFAULT_METRIC_CONFIG;
 	}
 
 	/**

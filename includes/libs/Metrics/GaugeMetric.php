@@ -32,7 +32,7 @@ class GaugeMetric {
 
 	/**
 	 * The StatsD protocol type indicator:
-	 * https://github.com/statsd/statsd/blob/master/docs/metric_types.md
+	 * https://github.com/statsd/statsd/blob/v0.9.0/docs/metric_types.md
 	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
 	 *
 	 * @var string
