@@ -509,6 +509,9 @@ class CheckStorage {
 		$importer->doImport();
 	}
 
+	/**
+	 * @param WikiRevision $revision
+	 */
 	public function importRevision( $revision ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( RevisionRecord::RAW );
