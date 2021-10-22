@@ -245,21 +245,44 @@ function bindToggleOnClick( checkbox, button ) {
  * @ignore
  */
 function bindToggleOnSpaceEnter( checkbox, button ) {
-
-	function onToggleOnSpaceEnter( /** @type {KeyboardEvent} @ignore */ event ) {
-		// Only handle SPACE and ENTER.
-		if ( event.key !== ' ' && event.key !== 'Enter' ) {
-			return;
-		}
-		event.preventDefault();
-		setCheckedState( checkbox, !checkbox.checked );
+	function isEnterOrSpace( /** @type {KeyboardEvent} @ignore */ event ) {
+		return event.key === ' ' || event.key === 'Enter';
 	}
 
-	button.addEventListener( 'keydown', onToggleOnSpaceEnter, true );
+	function onKeydown( /** @type {KeyboardEvent} @ignore */ event ) {
+		// Only handle SPACE and ENTER.
+		if ( !isEnterOrSpace( event ) ) {
+			return;
+		}
+		// Prevent the browser from scrolling when pressing space. The browser will
+		// try to do this unless the "button" element is a button or a checkbox.
+		// Depending on the actual "button" element, this also possibly prevents a
+		// native click event from being triggered so we programatically trigger a
+		// click event in the keyup handler.
+		event.preventDefault();
+	}
+
+	function onKeyup( /** @type {KeyboardEvent} @ignore */ event ) {
+		// Only handle SPACE and ENTER.
+		if ( !isEnterOrSpace( event ) ) {
+			return;
+		}
+
+		// A native button element triggers a click event when the space or enter
+		// keys are pressed. Since the passed in "button" may or may not be a
+		// button, programmatically trigger a click event to make it act like a
+		// button.
+		button.click();
+	}
+
+	button.addEventListener( 'keydown', onKeydown );
+	button.addEventListener( 'keyup', onKeyup );
 
 	return function () {
-		button.removeEventListener( 'keydown', onToggleOnSpaceEnter, true );
+		button.removeEventListener( 'keydown', onKeydown );
+		button.removeEventListener( 'keyup', onKeyup );
 	};
+
 }
 
 /**
