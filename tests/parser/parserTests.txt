@@ -18379,8 +18379,11 @@ Expansion of multi-line templates in attribute values (T8255 check 2)
 Tags which are hidden from tidiers cannot pass through the Sanitizer
 !! wikitext
 <mw:toc><script>alert();</script></mw:toc>
+
+<meta property="mw:PageProp/toc" />
 !! html
 <p>&lt;mw:toc&gt;&lt;script&gt;alert();&lt;/script&gt;&lt;/mw:toc&gt;
+</p><p>&lt;meta property="mw:PageProp/toc" /&gt;
 </p>
 !! end
 
