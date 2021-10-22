@@ -188,6 +188,10 @@ because of Phabricator reports.
   removed.
 * UserLoadOptions, UserSaveOptions and UserResetAllOptions hooks, deprecated
   since 1.37, were removed.
+* The return values for each `bind` function in checkboxHack.js has been changed
+  from an object to a function. In addition, the `unbind` function has been
+  removed. A deprecation process was assumed unnecessary as there were no known
+  usages.
 * …
 
 === Deprecations in 1.38 ===
