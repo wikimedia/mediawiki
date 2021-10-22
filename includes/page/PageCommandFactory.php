@@ -342,11 +342,11 @@ class PageCommandFactory implements
 			$this->repoGroup,
 			$this->undeletePageLogger,
 			$this->revisionStore,
-			$this->userFactory,
 			$this->wikiPageFactory,
 			$page,
 			$authority,
-			$this->pageUpdaterFactory
+			$this->pageUpdaterFactory,
+			$this->contentHandlerFactory
 		);
 	}
 }

@@ -440,6 +440,7 @@ interface Content {
 	 * performed. This means that $page may not yet know a page ID.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38. Use ContentHandler::validateSave instead.
 	 *
 	 * @param WikiPage $page The page to be saved.
 	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doUserEditContent()

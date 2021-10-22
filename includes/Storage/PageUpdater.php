@@ -34,6 +34,7 @@ use LogicException;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
@@ -1106,10 +1107,9 @@ class PageUpdater {
 			$content = $slot->getContent();
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
-			// XXX: prepareSave() and isValid() could live in SlotRoleHandler
-			// XXX: PrepareSave should not take a WikiPage!
-			$legacyUser = self::toLegacyUser( $this->author );
-			$prepStatus = $content->prepareSave( $wikiPage, $this->flags, $oldid, $legacyUser );
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+			$validationParams = new ValidationParams( $wikiPage, $this->flags, $oldid );
+			$prepStatus = $contentHandler->validateSave( $content, $validationParams );
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );

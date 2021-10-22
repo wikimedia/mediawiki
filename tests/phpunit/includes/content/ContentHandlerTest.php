@@ -1,6 +1,9 @@
 <?php
 
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -634,5 +637,36 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$pageViewLanguage = $contentHandler->getPageViewLanguage( $title );
 		$this->assertEquals( $expected, $pageViewLanguage->getCode() );
+	}
+
+	public function provideValidateSave() {
+		yield 'wikitext' => [
+			new WikitextContent( 'hello world' ),
+			true
+		];
+
+		yield 'valid json' => [
+			new JsonContent( '{ "0": "bar" }' ),
+			true
+		];
+
+		yield 'invalid json' => [
+			new JsonContent( 'foo' ),
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidateSave
+	 * @covers ContentHandler::validateSave
+	 */
+	public function testValidateSave( $content, $expectedResult ) {
+		$page = new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL );
+		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$contentHandler = $contentHandlerFactory->getContentHandler( $content->getModel() );
+		$validateParams = new ValidationParams( $page, 0 );
+
+		$status = $contentHandler->validateSave( $content, $validateParams );
+		$this->assertEquals( $status->isOk(), $expectedResult );
 	}
 }
