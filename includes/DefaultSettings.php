@@ -7453,7 +7453,7 @@ $wgProfiler = [];
  *
  * If not set, statsd metrics will not be collected.
  *
- * @see wfLogProfilingData
+ * @see MediaWiki::emitBufferedStatsdData()
  * @since 1.25
  */
 $wgStatsdServer = false;
