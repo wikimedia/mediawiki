@@ -71,23 +71,39 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	public function getPerformerIdentity(): UserIdentity {
 		if ( !$this->performer ) {
 			$actorStore = MediaWikiServices::getInstance()->getActorStore();
-			try {
-				$this->performer = $actorStore->newActorFromRowFields(
-					$this->row->rc_user ?? 0,
-					$this->row->rc_user_text,
-					$this->row->rc_actor ?? null
-				);
-			} catch ( InvalidArgumentException $e ) {
-				LoggerFactory::getInstance( 'logentry' )->warning(
-					'Failed to instantiate RC log entry performer', [
-						'exception' => $e,
-						'log_id' => $this->getId()
-					]
-				);
-				$this->performer = $actorStore->getUnknownActor();
+			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+			if ( isset( $this->row->rc_actor ) ) {
+				try {
+					$this->performer = $actorStore->newActorFromRowFields(
+						$this->row->rc_user ?? 0,
+						$this->row->rc_user_text,
+						$this->row->rc_actor
+					);
+				} catch ( InvalidArgumentException $e ) {
+					LoggerFactory::getInstance( 'logentry' )->warning(
+						'Failed to instantiate RC log entry performer', [
+							'exception' => $e,
+							'log_id' => $this->getId()
+						]
+					);
+				}
+			} elseif ( isset( $this->row->rc_user ) ) {
+				$this->performer = $userFactory->newFromId( $this->row->rc_user )->getUser();
+			} elseif ( isset( $this->row->rc_user_text ) ) {
+				$user = $userFactory->newFromName( $this->row->rc_user_text );
+				if ( $user ) {
+					$this->performer = $user->getUser();
+				} else {
+					LoggerFactory::getInstance( 'logentry' )->warning(
+						'Failed to instantiate RC log entry performer', [
+							'rc_user_text' => $this->row->rc_user_text,
+							'log_id' => $this->getId()
+						]
+					);
+				}
 			}
 		}
-		return $this->performer;
+		return $this->performer ?: $actorStore->getUnknownActor();
 	}
 
 	public function getTarget() {
