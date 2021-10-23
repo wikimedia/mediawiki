@@ -90,8 +90,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 
@@ -103,7 +101,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
 		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
+			( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP )
 		) {
 			// The query is probably best done using the actor_timestamp index on
 			// revision_actor_temp. Use the denormalized fields from that table.

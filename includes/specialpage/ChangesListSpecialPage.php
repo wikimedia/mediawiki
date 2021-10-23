@@ -1849,11 +1849,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function filterOnUserExperienceLevel( $specialPageClassName, $context, $dbr,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0
 	) {
-		global $wgLearnerEdits,
-			$wgExperiencedUserEdits,
-			$wgLearnerMemberSince,
-			$wgExperiencedUserMemberSince;
-
 		$LEVEL_COUNT = 5;
 
 		// If all levels are selected, don't filter
@@ -1890,12 +1885,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$now = time();
 		}
 		$secondsPerDay = 86400;
-		$learnerCutoff = $now - $wgLearnerMemberSince * $secondsPerDay;
-		$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
+		$config = $this->getConfig();
+		$learnerCutoff = $now - $config->get( 'LearnerMemberSince' ) * $secondsPerDay;
+		$experiencedUserCutoff = $now - $config->get( 'ExperiencedUserMemberSince' ) * $secondsPerDay;
 
 		$aboveNewcomer = $dbr->makeList(
 			[
-				'user_editcount >= ' . intval( $wgLearnerEdits ),
+				'user_editcount >= ' . intval( $config->get( 'LearnerEdits' ) ),
 				$dbr->makeList( [
 					'user_registration IS NULL',
 					'user_registration <= ' . $dbr->addQuotes( $dbr->timestamp( $learnerCutoff ) ),
@@ -1906,7 +1902,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$aboveLearner = $dbr->makeList(
 			[
-				'user_editcount >= ' . intval( $wgExperiencedUserEdits ),
+				'user_editcount >= ' . intval( $config->get( 'ExperiencedUserEdits' ) ),
 				$dbr->makeList( [
 					'user_registration IS NULL',
 					'user_registration <= ' .

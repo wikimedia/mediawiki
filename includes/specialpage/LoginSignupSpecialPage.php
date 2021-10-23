@@ -83,6 +83,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	abstract protected function logAuthResult( $success, $status = null );
 
 	public function __construct( $name, $restriction = '' ) {
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage
 		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( $name, $restriction );
 
@@ -123,8 +124,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @param string $subPage Subpage of Special:Userlogin
 	 */
 	protected function load( $subPage ) {
-		global $wgSecureLogin;
-
 		$this->loadRequestParameters();
 		if ( $this->mLoaded ) {
 			return;
@@ -158,7 +157,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
 				'uselang' => $this->mLanguage ?: null,
-				'fromhttp' => $wgSecureLogin && $this->mFromHTTP ? '1' : null,
+				'fromhttp' => $this->getConfig()->get( 'SecureLogin' ) && $this->mFromHTTP ? '1' : null,
 			]
 		);
 
@@ -190,14 +189,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	protected function getPreservedParams( $withToken = false ) {
-		global $wgSecureLogin;
-
 		$params = parent::getPreservedParams( $withToken );
 		$params += [
 			'returnto' => $this->mReturnTo ?: null,
 			'returntoquery' => $this->mReturnToQuery ?: null,
 		];
-		if ( $wgSecureLogin && !$this->isSignup() ) {
+		if ( $this->getConfig()->get( 'SecureLogin' ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
 		return $params;
@@ -272,7 +269,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
-		global $wgSecureLogin;
 		if ( $this->getRequest()->getProtocol() !== 'https' ) {
 			$title = $this->getFullTitle();
 			$query = $this->getPreservedParams( false ) + [
@@ -281,7 +277,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'warning' ) => $this->mEntryError,
 				] + $this->getRequest()->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $wgSecureLogin && !$this->mFromHTTP ) {
+			if ( $this->getConfig()->get( 'SecureLogin' ) && !$this->mFromHTTP ) {
 				// Avoid infinite redirect
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
@@ -586,11 +582,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function getPageHtml( $formHtml ) {
-		global $wgLoginLanguageSelector;
-
 		$loginPrompt = $this->isSignup() ? '' : Html::rawElement( 'div',
 			[ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
-		$languageLinks = $wgLoginLanguageSelector ? $this->makeLanguageSelector() : '';
+		$languageLinks = $this->getConfig()->get( 'LoginLanguageSelector' ) ? $this->makeLanguageSelector() : '';
 		$signupStartMsg = $this->msg( 'signupstart' );
 		$signupStart = ( $this->isSignup() && !$signupStartMsg->isDisabled() )
 			? Html::rawElement( 'div', [ 'id' => 'signupstart' ], $signupStartMsg->parseAsBlock() ) : '';
@@ -725,8 +719,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions() {
-		global $wgEmailConfirmToEdit;
-
 		$isRegistered = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isRegistered ? 'another-' : '';
@@ -748,6 +740,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		if ( $this->isSignup() ) {
+			$config = $this->getConfig();
 			$fieldDefinitions = [
 				'statusarea' => [
 					// Used by the mediawiki.special.createaccount module for error display.
@@ -800,20 +793,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'email' => [
 					'type' => 'email',
-					'label-message' => $wgEmailConfirmToEdit ? 'createacct-emailrequired'
+					'label-message' => $config->get( 'EmailConfirmToEdit' ) ? 'createacct-emailrequired'
 						: 'createacct-emailoptional',
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',
 					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
-					'required' => $wgEmailConfirmToEdit,
+					'required' => $config->get( 'EmailConfirmToEdit' ),
 					'validation-callback' => function ( $value, $alldata ) {
-						global $wgEmailConfirmToEdit;
-
 						// AuthManager will check most of these, but that will make the auth
 						// session fail and this won't, so nicer to do it this way
-						if ( !$value && $wgEmailConfirmToEdit ) {
+						if ( !$value && $this->getConfig()->get( 'EmailConfirmToEdit' ) ) {
 							// no point in allowing registration without email when email is
 							// required to edit
 							return $this->msg( 'noemailtitle' );
@@ -1062,11 +1053,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return bool
 	 */
 	protected function hasSessionCookie() {
-		global $wgDisableCookieCheck, $wgInitialSessionId;
-
-		return $wgDisableCookieCheck || (
-			$wgInitialSessionId &&
-			$this->getRequest()->getSession()->getId() === (string)$wgInitialSessionId
+		$config = $this->getConfig();
+		return $config->get( 'DisableCookieCheck' ) || (
+			$config->get( 'InitialSessionId' ) &&
+			$this->getRequest()->getSession()->getId() === (string)$config->get( 'InitialSessionId' )
 		);
 	}
 
