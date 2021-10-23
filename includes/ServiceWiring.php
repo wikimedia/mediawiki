@@ -747,6 +747,7 @@ return [
 		$isConversionDisabled = $services->getMainConfig()->get( 'DisableLangConversion' );
 		$isTitleConversionDisabled = $services->getMainConfig()->get( 'DisableTitleConversion' );
 		return new LanguageConverterFactory(
+			$services->getObjectFactory(),
 			$usePigLatinVariant,
 			$isConversionDisabled,
 			$isTitleConversionDisabled,
