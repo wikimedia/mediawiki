@@ -111,6 +111,7 @@ class ApiQueryTokens extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => 'csrf',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
+				ApiBase::PARAM_ALL => true,
 			],
 		];
 	}
