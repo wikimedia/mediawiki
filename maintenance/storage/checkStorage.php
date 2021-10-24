@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Shell\Shell;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -511,7 +510,7 @@ class CheckStorage {
 
 	public function importRevision( $revision ) {
 		$id = $revision->getID();
-		$content = $revision->getContent( RevisionRecord::RAW );
+		$content = $revision->getContent();
 		$id = $id ?: '';
 
 		if ( $content === null ) {
