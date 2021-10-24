@@ -8,10 +8,8 @@ use Wikimedia\IPUtils;
 
 /**
  * @group Database
- * @coversDefaultClass \MediaWiki\Revision\ArchivedRevisionLookup
+ * @coversDefaultClass \PageArchive
  * @covers ::__construct
- * @covers PageArchive::__construct
- * @fixme this tests two classes
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
@@ -80,7 +78,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$user = $this->getTestUser()->getUser();
-		$page->doUserEditContent( $content, $user, 'testing', EDIT_NEW );
+		$page->doUserEditContent( $content, $user, 'testing', EDIT_NEW | EDIT_SUPPRESS_RC );
 
 		$this->pageId = $page->getId();
 		$this->firstRev = $page->getRevisionRecord();
@@ -174,7 +172,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_page_id' => strval( $this->ipRev->getPageId() ),
 				'ar_comment_text' => 'just a test',
 				'ar_comment_data' => null,
-				'ar_comment_cid' => '2',
+				'ar_comment_cid' => strval( $this->ipRev->getComment()->id ),
 				'ts_tags' => null,
 				'ar_id' => '2',
 				'ar_namespace' => '0',
@@ -194,7 +192,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_page_id' => strval( $this->firstRev->getPageId() ),
 				'ar_comment_text' => 'testing',
 				'ar_comment_data' => null,
-				'ar_comment_cid' => '1',
+				'ar_comment_cid' => strval( $this->firstRev->getComment()->id ),
 				'ts_tags' => null,
 				'ar_id' => '1',
 				'ar_namespace' => '0',
@@ -202,52 +200,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_parent_id' => '0',
 			],
 		];
-	}
-
-	/**
-	 * @covers ::listRevisions
-	 */
-	public function testListRevisions() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revisions = $lookup->listRevisions( $this->archivedPage );
-		$this->assertEquals( 2, $revisions->numRows() );
-
-		// Get the rows as arrays
-		$row0 = (array)$revisions->current();
-		$row1 = (array)$revisions->next();
-
-		$expectedRows = $this->getExpectedArchiveRows();
-
-		$this->assertEquals(
-			$expectedRows[0],
-			$row0
-		);
-		$this->assertEquals(
-			$expectedRows[1],
-			$row1
-		);
-	}
-
-	/**
-	 * @covers ::listRevisions
-	 */
-	public function testListRevisions_slots() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revisions = $lookup->listRevisions( $this->archivedPage );
-
-		$revisionStore = $this->getServiceContainer()->getRevisionStore();
-		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
-
-		foreach ( $revisions as $row ) {
-			$this->assertSelect(
-				$slotsQuery['tables'],
-				'count(*)',
-				[ 'slot_revision_id' => $row->ar_rev_id ],
-				[ [ 1 ] ],
-				[],
-				$slotsQuery['joins']
-			);
-		}
 	}
 
 	/**
@@ -289,63 +241,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			],
 			$page
 		);
-	}
-
-	/**
-	 * @covers ::getLastRevisionId
-	 */
-	public function testGetLastRevisionId() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$id = $lookup->getLastRevisionId( $this->archivedPage );
-		$this->assertSame( $this->ipRev->getId(), $id );
-	}
-
-	/**
-	 * @covers ::hasArchivedRevisions
-	 */
-	public function testHasArchivedRevisions() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$this->assertTrue( $lookup->hasArchivedRevisions( $this->archivedPage ) );
-	}
-
-	/**
-	 * @covers ::getRevisionRecordByTimestamp
-	 * @covers ::getRevisionByConditions
-	 */
-	public function testGetRevisionRecordByTimestamp() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revRecord = $lookup->getRevisionRecordByTimestamp(
-			$this->archivedPage,
-			$this->ipRev->getTimestamp()
-		);
-		$this->assertNotNull( $revRecord );
-		$this->assertSame( $this->pageId, $revRecord->getPageId() );
-
-		$revRecord = $lookup->getRevisionRecordByTimestamp(
-			$this->archivedPage,
-			'22991212115555'
-		);
-		$this->assertNull( $revRecord );
-	}
-
-	/**
-	 * @covers ::getArchivedRevisionRecord
-	 * @covers ::getRevisionByConditions
-	 */
-	public function testGetArchivedRevisionRecord() {
-		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revRecord = $lookup->getArchivedRevisionRecord(
-			$this->archivedPage,
-			$this->ipRev->getId()
-		);
-		$this->assertNotNull( $revRecord );
-		$this->assertSame( $this->pageId, $revRecord->getPageId() );
-
-		$revRecord = $lookup->getArchivedRevisionRecord(
-			$this->archivedPage,
-			$this->ipRev->getId() + 42
-		);
-		$this->assertNull( $revRecord );
 	}
 
 }
