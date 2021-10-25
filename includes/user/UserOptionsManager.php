@@ -33,7 +33,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
-use User;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -61,6 +61,9 @@ class UserOptionsManager extends UserOptionsLookup {
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -94,6 +97,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -101,7 +105,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		LanguageConverterFactory $languageConverterFactory,
 		ILoadBalancer $loadBalancer,
 		LoggerInterface $logger,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -110,6 +115,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->loadBalancer = $loadBalancer;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -246,7 +252,10 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		// TODO: Deprecate passing full user to the hook
 		$this->hookRunner->onUserResetAllOptions(
-			User::newFromIdentity( $user ), $newOptions, $oldOptions, $resetKinds
+			$this->userFactory->newFromUserIdentity( $user ),
+			$newOptions,
+			$oldOptions,
+			$resetKinds
 		);
 
 		$this->modifiedOptions[$this->getCacheKey( $user )] = $newOptions;
@@ -311,7 +320,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		// TODO: injecting the preferences factory creates a cyclic dependency between
 		// PreferencesFactory and UserOptionsManager. See T250822
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$user = User::newFromIdentity( $userIdentity );
+		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
 		$prefs = $preferencesFactory->getFormDescriptor( $user, $context );
 		$mapping = [];
 
@@ -381,11 +390,37 @@ class UserOptionsManager extends UserOptionsLookup {
 	/**
 	 * Saves the non-default options for this user, as previously set e.g. via
 	 * setOption(), in the database's "user_properties" (preferences) table.
-	 * Usually used via saveSettings().
+	 *
+	 * @since 1.38, this method was internal before that.
 	 * @param UserIdentity $user
-	 * @internal
 	 */
 	public function saveOptions( UserIdentity $user ) {
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$changed = $this->saveOptionsInternal( $user, $dbw );
+		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
+		// Before UserOptionsManager, User::saveSettings was used for user options
+		// saving. Some extensions might depend on UserSaveSettings hook being run
+		// when options are saved, so run this hook for legacy reasons.
+		// Once UserSaveSettings hook is deprecated and replaced with a different hook
+		// with more modern interface, extensions should use 'SaveUserOptions' hook.
+		$this->hookRunner->onUserSaveSettings( $legacyUser );
+		if ( $changed ) {
+			$dbw->onTransactionCommitOrIdle( static function () use ( $legacyUser ) {
+				$legacyUser->checkAndSetTouched();
+			}, __METHOD__ );
+		}
+	}
+
+	/**
+	 * Saves the non-default options for this user, as previously set e.g. via
+	 * setOption(), in the database's "user_properties" (preferences) table.
+	 *
+	 * @param UserIdentity $user
+	 * @param IDatabase $dbw
+	 * @return bool true if options were changed and new options successfully saved.
+	 * @internal only public for use in User::saveSettings
+	 */
+	public function saveOptionsInternal( UserIdentity $user, IDatabase $dbw ): bool {
 		if ( !$user->isRegistered() ) {
 			throw new InvalidArgumentException( __METHOD__ . ' was called on anon user' );
 		}
@@ -394,7 +429,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$modifiedOptions = $this->modifiedOptions[$userKey] ?? [];
 		$originalOptions = $this->loadOriginalOptions( $user, self::READ_LATEST );
 		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions, $originalOptions ) ) {
-			return;
+			return false;
 		}
 
 		// TODO: only needed for old hook.
@@ -402,9 +437,9 @@ class UserOptionsManager extends UserOptionsLookup {
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
 		if ( !$this->hookRunner->onUserSaveOptions(
-			User::newFromIdentity( $user ), $optionsToSave, $originalOptions )
+			$this->userFactory->newFromUserIdentity( $user ), $optionsToSave, $originalOptions )
 		) {
-			return;
+			return false;
 		}
 
 		// Delete any rows that were in the DB but are not in $optionsToSave
@@ -444,11 +479,10 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		if ( !count( $keysToDelete ) && !count( $rowsToInsert ) ) {
 			// Nothing to do
-			return;
+			return false;
 		}
 
 		// Do the DELETE
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		if ( $keysToDelete ) {
 			$dbw->delete(
 				'user_properties',
@@ -476,6 +510,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		unset( $this->originalOptionsCache[$userKey] );
 		// And nothing is modified anymore
 		unset( $this->modifiedOptions[$userKey] );
+		return true;
 	}
 
 	/**
@@ -636,7 +671,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
 		// TODO: Remove deprecated hook.
 		$this->hookRunner->onUserLoadOptions(
-			User::newFromIdentity( $user ), $options
+			$this->userFactory->newFromUserIdentity( $user ), $options
 		);
 		$this->hookRunner->onLoadUserOptions( $user, $options );
 		$this->originalOptionsCache[$userKey] = $options;
