@@ -31,7 +31,7 @@ interface LinkTarget {
 	 *
 	 * @return int Namespace index
 	 */
-	public function getNamespace();
+	public function getNamespace(): int;
 
 	/**
 	 * Convenience function to test if it is in the namespace
@@ -40,7 +40,7 @@ interface LinkTarget {
 	 * @param int $ns
 	 * @return bool
 	 */
-	public function inNamespace( $ns );
+	public function inNamespace( int $ns ): bool;
 
 	/**
 	 * Get the link fragment (i.e. the bit after the #) in text form.
@@ -48,7 +48,7 @@ interface LinkTarget {
 	 *
 	 * @return string link fragment
 	 */
-	public function getFragment();
+	public function getFragment(): string;
 
 	/**
 	 * Whether the link target has a fragment
@@ -56,7 +56,7 @@ interface LinkTarget {
 	 *
 	 * @return bool
 	 */
-	public function hasFragment();
+	public function hasFragment(): bool;
 
 	/**
 	 * Get the main part with underscores.
@@ -64,7 +64,7 @@ interface LinkTarget {
 	 *
 	 * @return string Main part of the link, with underscores (for use in href attributes)
 	 */
-	public function getDBkey();
+	public function getDBkey(): string;
 
 	/**
 	 * Returns the link in text form, without namespace prefix or fragment.
@@ -73,7 +73,7 @@ interface LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function getText();
+	public function getText(): string;
 
 	/**
 	 * Creates a new LinkTarget for a different fragment of the same page.
@@ -85,7 +85,7 @@ interface LinkTarget {
 	 *
 	 * @return LinkTarget
 	 */
-	public function createFragmentTarget( $fragment );
+	public function createFragmentTarget( string $fragment );
 
 	/**
 	 * Whether this LinkTarget has an interwiki component
@@ -93,7 +93,7 @@ interface LinkTarget {
 	 *
 	 * @return bool
 	 */
-	public function isExternal();
+	public function isExternal(): bool;
 
 	/**
 	 * The interwiki component of this LinkTarget
@@ -101,7 +101,7 @@ interface LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function getInterwiki();
+	public function getInterwiki(): string;
 
 	/**
 	 * Checks whether the given LinkTarget refers to the same target as this LinkTarget.
@@ -114,7 +114,7 @@ interface LinkTarget {
 	 * @param LinkTarget $other
 	 * @return bool
 	 */
-	public function isSameLinkAs( LinkTarget $other );
+	public function isSameLinkAs( LinkTarget $other ): bool;
 
 	/**
 	 * Returns an informative human readable representation of the page identity,
