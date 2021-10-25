@@ -510,8 +510,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * Execute a set of HTTP(S) requests sequentially.
 	 *
 	 * @see MultiHttpClient::runMulti()
-	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
-	 *  library or copy code from PhpHttpRequest
+	 * @todo Remove dependency on MediaWikiServices: rewrite using Guzzle T202352
 	 * @param array $reqs Map of HTTP request arrays
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs

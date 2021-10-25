@@ -26,9 +26,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup HTTP
  */
 class Http {
-	/** @deprecated since 1.34, just use the default engine */
-	public static $httpEngine = null;
-
 	/**
 	 * Perform an HTTP request
 	 *

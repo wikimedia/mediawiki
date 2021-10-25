@@ -30,9 +30,6 @@ $wgAutoloadClasses += [
 	# tests/common
 	'TestSetup' => "$testDir/common/TestSetup.php",
 
-	# tests/integration
-	'MWHttpRequestTestCase' => "$testDir/integration/includes/http/MWHttpRequestTestCase.php",
-
 	# tests/exception
 	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
 
