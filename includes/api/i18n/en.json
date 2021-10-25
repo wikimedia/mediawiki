@@ -1103,7 +1103,7 @@
 	"apihelp-query+protectedtitles-example-generator": "Find links to protected titles in the main namespace.",
 
 	"apihelp-query+querypage-summary": "Get a list provided by a QueryPage-based special page.",
-	"apihelp-query+querypage-param-page": "The name of the special page. Note, this is case sensitive.",
+	"apihelp-query+querypage-param-page": "The name of the special page. Note, this is case-sensitive.",
 	"apihelp-query+querypage-param-limit": "Number of results to return.",
 	"apihelp-query+querypage-example-ancientpages": "Return results from [[Special:Ancientpages]].",
 
