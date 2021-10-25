@@ -40,8 +40,7 @@ $( function () {
 	// If a request is in progress, abort it since its payload is stale and the API
 	// may limit concurrent stash parses.
 	function stashEdit() {
-		var req, params,
-			textChanged = isTextChanged(),
+		var textChanged = isTextChanged(),
 			priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
 
 		if ( stashReq ) {
@@ -63,7 +62,7 @@ $( function () {
 			lastTextHash = null;
 		}
 
-		params = {
+		var params = {
 			formatversion: 2,
 			action: 'stashedit',
 			title: mw.config.get( 'wgPageName' ),
@@ -80,7 +79,7 @@ $( function () {
 			params.text = lastText;
 		}
 
-		req = api.postWithToken( 'csrf', params );
+		var req = api.postWithToken( 'csrf', params );
 		stashReq = req;
 		req.then( function ( data ) {
 			if ( req === stashReq ) {
