@@ -237,6 +237,8 @@
 	"helppage": "https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents",
 	"helppage-top-gethelp": "Help",
 	"mainpage": "Main Page",
+	"mainpage-title": "Main Page",
+	"mainpage-title-loggedin": "Main Page",
 	"mainpage-description": "Main page",
 	"policy-url": "Project:Policy",
 	"portal": "Community portal",

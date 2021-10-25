@@ -146,14 +146,29 @@ abstract class Skin extends ContextSource {
 		$title = $this->getTitle();
 		$out = $this->getOutput();
 		$user = $this->getUser();
+		$isMainPage = $title->isMainPage();
+
+		if ( $isMainPage ) {
+			// Special casing for the main page to allow more freedom to editors, to
+			// design their home page differently. This came up in T290480.
+			// The parameter for logged in users is optional and may
+			// or may not be used.
+			$htmlTitle = $user->isAnon() ?
+				$this->msg( 'mainpage-title' )->parse() :
+				$this->msg( 'mainpage-title-loggedin', $user->getName() )->parse();
+		} else {
+			$htmlTitle = $out->getPageTitle();
+		}
 		$data = [
+			// raw HTML
+			'html-title' => $htmlTitle,
 			// Array values
 			'array-sections' => $this->getSectionsData(),
 
 			// Boolean values
 			'is-anon' => $user->isAnon(),
 			'is-article' => $out->isArticle(),
-			'is-mainpage' => $title->isMainPage(),
+			'is-mainpage' => $isMainPage,
 			'is-specialpage' => $title->isSpecialPage(),
 		];
 		return $data;
