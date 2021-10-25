@@ -16,12 +16,11 @@
  */
 
 $( function () {
-	var wpSummary, editBox, scrollTop, $editForm,
-		$wpSummary = $( '#wpSummaryWidget' );
+	var $wpSummary = $( '#wpSummaryWidget' );
 
 	// The summary field might not be there, e.g. when extensions replace it
 	if ( $wpSummary.length ) {
-		wpSummary = OO.ui.infuse( $wpSummary );
+		var wpSummary = OO.ui.infuse( $wpSummary );
 
 		// Show a byte-counter to users with how many bytes are left for their edit summary.
 		mw.widgets.visibleCodePointLimit( wpSummary, mw.config.get( 'wgCommentCodePointLimit' ) );
@@ -29,9 +28,9 @@ $( function () {
 
 	// Restore the edit box scroll state following a preview operation,
 	// and set up a form submission handler to remember this state.
-	editBox = document.getElementById( 'wpTextbox1' );
-	scrollTop = document.getElementById( 'wpScrolltop' );
-	$editForm = $( '#editform' );
+	var editBox = document.getElementById( 'wpTextbox1' );
+	var scrollTop = document.getElementById( 'wpScrolltop' );
+	var $editForm = $( '#editform' );
 	mw.hook( 'wikipage.editform' ).fire( $editForm );
 	if ( $editForm.length && editBox && scrollTop ) {
 		if ( scrollTop.value ) {
