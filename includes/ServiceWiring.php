@@ -1837,8 +1837,7 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'UserOptionsManager' ),
-			$services->getHookContainer(),
-			$services->getUserFactory()
+			$services->getHookContainer()
 		);
 	},
 

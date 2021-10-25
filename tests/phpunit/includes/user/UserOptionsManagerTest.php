@@ -9,19 +9,12 @@ use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
  * @covers MediaWiki\User\UserOptionsManager
  */
 class UserOptionsManagerTest extends UserOptionsLookupTest {
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'user';
-		$this->tablesUsed[] = 'user_properties';
-	}
 
 	/**
 	 * @param array $overrides supported keys:
@@ -48,8 +41,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			$services->getLanguageConverterFactory(),
 			$overrides['lb'] ?? $services->getDBLoadBalancer(),
 			new NullLogger(),
-			$overrides['hookContainer'] ?? $services->getHookContainer(),
-			$services->getUserFactory()
+			$overrides['hookContainer'] ?? $services->getHookContainer()
 		);
 	}
 
@@ -440,25 +432,5 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager->setOption( $user, 'test_option', 'test_value' );
 		$manager->setOption( $user, 'test_option2', 'test_value2' );
 		$manager->saveOptions( $user );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\UserOptionsManager::saveOptions
-	 */
-	public function testUpdatesUserTouched() {
-		$user = $this->getTestUser()->getUser();
-		$userTouched = $user->getDBTouched();
-		$newTouched = ConvertibleTimestamp::convert(
-			TS_MW,
-			intval( ConvertibleTimestamp::convert( TS_UNIX, $userTouched ) ) + 100
-		);
-		ConvertibleTimestamp::setFakeTime( $newTouched );
-
-		$manager = $this->getManager();
-		$manager->setOption( $user, 'test_option', 'test_value' );
-		$manager->saveOptions( $user );
-		$this->assertSame( $newTouched, $user->getDBTouched() );
-		$user->clearInstanceCache();
-		$this->assertSame( $newTouched, $user->getDBTouched() );
 	}
 }
