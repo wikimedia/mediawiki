@@ -82,13 +82,11 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		$this->defaultOptions = $this->serviceOptions->get( 'DefaultUserOptions' );
 
 		// Default language setting
-		$this->defaultOptions['language'] = $this->contentLang->getCode();
+		$contentLangCode = $this->contentLang->getCode();
+		$this->defaultOptions['language'] = $contentLangCode;
+		$this->defaultOptions['variant'] = $contentLangCode;
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-			if ( $langCode === $this->contentLang->getCode() ) {
-				$this->defaultOptions['variant'] = $langCode;
-			} else {
-				$this->defaultOptions["variant-$langCode"] = $langCode;
-			}
+			$this->defaultOptions["variant-$langCode"] = $langCode;
 		}
 
 		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
