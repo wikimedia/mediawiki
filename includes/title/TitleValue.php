@@ -215,7 +215,7 @@ class TitleValue implements LinkTarget {
 	 * @since 1.23
 	 * @return int
 	 */
-	public function getNamespace() {
+	public function getNamespace(): int {
 		return $this->namespace;
 	}
 
@@ -224,7 +224,7 @@ class TitleValue implements LinkTarget {
 	 * @param int $ns
 	 * @return bool
 	 */
-	public function inNamespace( $ns ) {
+	public function inNamespace( int $ns ): bool {
 		return $this->namespace == $ns;
 	}
 
@@ -232,7 +232,7 @@ class TitleValue implements LinkTarget {
 	 * @since 1.23
 	 * @return string
 	 */
-	public function getFragment() {
+	public function getFragment(): string {
 		return $this->fragment;
 	}
 
@@ -240,7 +240,7 @@ class TitleValue implements LinkTarget {
 	 * @since 1.27
 	 * @return bool
 	 */
-	public function hasFragment() {
+	public function hasFragment(): bool {
 		return $this->fragment !== '';
 	}
 
@@ -251,7 +251,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function getDBkey() {
+	public function getDBkey(): string {
 		return $this->dbkey;
 	}
 
@@ -267,7 +267,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function getText() {
+	public function getText(): string {
 		return str_replace( '_', ' ', $this->dbkey );
 	}
 
@@ -279,7 +279,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return TitleValue
 	 */
-	public function createFragmentTarget( $fragment ) {
+	public function createFragmentTarget( string $fragment ): self {
 		return new TitleValue(
 			$this->namespace,
 			$this->dbkey,
@@ -294,7 +294,7 @@ class TitleValue implements LinkTarget {
 	 * @since 1.27
 	 * @return bool
 	 */
-	public function isExternal() {
+	public function isExternal(): bool {
 		return $this->interwiki !== '';
 	}
 
@@ -304,7 +304,7 @@ class TitleValue implements LinkTarget {
 	 * @since 1.27
 	 * @return string
 	 */
-	public function getInterwiki() {
+	public function getInterwiki(): string {
 		return $this->interwiki;
 	}
 
@@ -335,7 +335,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return bool
 	 */
-	public function isSameLinkAs( LinkTarget $other ) {
+	public function isSameLinkAs( LinkTarget $other ): bool {
 		// NOTE: keep in sync with Title::isSameLinkAs()!
 		return ( $other->getInterwiki() === $this->getInterwiki() )
 			&& ( $other->getDBkey() === $this->getDBkey() )
