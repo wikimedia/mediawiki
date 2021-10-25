@@ -487,7 +487,7 @@
 	"noname": "You have not specified a valid username.",
 	"loginsuccesstitle": "Logged in",
 	"loginsuccess": "<strong>You are now logged in to {{SITENAME}} as \"$1\".</strong>",
-	"nosuchuser": "There is no user by the name \"$1\".\nUsernames are case sensitive.\nCheck your spelling, or [[Special:CreateAccount|create a new account]].",
+	"nosuchuser": "There is no user by the name \"$1\".\nUsernames are case-sensitive.\nCheck your spelling, or [[Special:CreateAccount|create a new account]].",
 	"nosuchusershort": "There is no user by the name \"$1\".\nCheck your spelling.",
 	"nouserspecified": "You have to specify a username.",
 	"login-userblocked": "This user is blocked. Login not allowed.",
