@@ -40,6 +40,21 @@ $( function () {
 			scrollTop.value = editBox.scrollTop;
 		} );
 	}
+
+	mw.hook( 'wikipage.watchlistChange' ).add( function ( isWatched, expiry, expirySelected ) {
+		// Update the "Watch this page" checkbox on action=edit when the
+		// page is watched or unwatched via the tab (T14395).
+		var watchCheckbox = document.getElementById( 'wpWatchthisWidget' );
+		if ( watchCheckbox ) {
+			OO.ui.infuse( watchCheckbox ).setSelected( isWatched );
+
+			// Also reset expiry selection to keep it in sync
+			if ( isWatched ) {
+				var expiryCheckbox = document.getElementById( 'wpWatchlistExpiryWidget' );
+				OO.ui.infuse( expiryCheckbox ).setValue( expirySelected );
+			}
+		}
+	} );
 } );
 
 require( './stash.js' );

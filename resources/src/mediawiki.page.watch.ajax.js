@@ -8,9 +8,10 @@
  *     watch.updateWatchLink(
  *         $node,
  *         'watch',
- *         'loading',
- *          null
+ *         'loading'
  *     );
+ *     // When the watch status of the page has been updated:
+ *     watch.updatePageWatchStatus( true );
  *
  * @class mw.plugin.page.watch.ajax
  * @singleton
@@ -18,7 +19,8 @@
 ( function () {
 	// The name of the page to watch or unwatch
 	var pageTitle = mw.config.get( 'wgRelevantPageName' ),
-		isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry;
+		isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry,
+		watchstarsByTitle = {};
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -27,18 +29,15 @@
 	 * @param {jQuery} $link Anchor tag of (un)watch link
 	 * @param {string} action One of 'watch', 'unwatch'
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
-	 * @param {string} [expiry=null] the expiry date if a page is being watched temporarily.
-	 * Default is a null expiry
+	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
 	 */
-	function updateWatchLink( $link, action, state, expiry ) {
+	function updateWatchLinkAttributes( $link, action, state, expiry ) {
 		// A valid but empty jQuery object shouldn't throw a TypeError
 		if ( !$link.length ) {
 			return;
 		}
 
-		if ( expiry === undefined ) {
-			expiry = null;
-		}
+		expiry = expiry || 'infinity';
 
 		// Invalid actions shouldn't silently turn the page in an unrecoverable state
 		if ( action !== 'watch' && action !== 'unwatch' ) {
@@ -48,11 +47,10 @@
 		var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 		var $li = $link.closest( 'li' );
 
-		// Trigger a 'watchpage' event for this List item.
-		// Announce the otherAction value and expiry as params.
-		// Used to monitor the state of watch link.
-		// TODO: Revise when system wide hooks are implemented
 		if ( state !== 'loading' ) {
+			// jQuery event, @deprecated in 1.38
+			// Trigger a 'watchpage' event for this List item.
+			// NB: A expiry of 'infinity' is cast to null here, but not above
 			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
 		}
 
@@ -60,7 +58,7 @@
 		var daysLeftExpiry = null;
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
-			if ( expiry === null || expiry === 'infinity' ) {
+			if ( expiry === 'infinity' ) {
 				// Resolves to tooltip-ca-unwatch message
 				tooltipAction = 'unwatch';
 			} else {
@@ -115,6 +113,82 @@
 	}
 
 	/**
+	 * Notify hooks listeners of the new page watch status
+	 *
+	 * Watchstars should not need to use this hook, as they are updated via
+	 * callback, and automatically kept in sync if a watchstar with the same
+	 * title is changed.
+	 *
+	 * This hook should by used by other interfaces that care if the watch
+	 * status of the page has changed, e.g. an edit form which wants to
+	 * update a 'watch this page' checkbox.
+	 *
+	 * Users which change the watch status of the page without using a
+	 * watchstar (e.g edit forms again) should use the updatePageWatchStatus
+	 * method to ensure watchstars are updated and this hook is fired.
+	 *
+	 * @param {boolean} isWatched The page is watched
+	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 */
+	function notifyPageWatchStatus( isWatched, expiry, expirySelected ) {
+		expiry = expiry || 'infinity';
+		expirySelected = expirySelected || 'infinite';
+
+		mw.hook( 'wikipage.watchlistChange' ).fire(
+			isWatched,
+			expiry,
+			expirySelected
+		);
+	}
+
+	/**
+	 * Update the page watch status
+	 *
+	 * @param {boolean} isWatched The page is watched
+	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 */
+	function updatePageWatchStatus( isWatched, expiry, expirySelected ) {
+		// Update all watchstars associated with the current page
+		( watchstarsByTitle[ pageTitle ] || [] ).forEach( function ( w ) {
+			w.update( isWatched, expiry );
+		} );
+
+		notifyPageWatchStatus( isWatched, expiry, expirySelected );
+	}
+
+	/**
+	 * Update the link text, link href attribute and (if applicable) "loading" class.
+	 *
+	 * For an individual link being set to 'loading', the first
+	 * argument can be a jQuery collection. When updating to a
+	 * "idle" state, an mw.Title object should be passed to that
+	 * all watchstars associated with that title are updated.
+	 *
+	 * @param {mw.Title|jQuery} titleOrLink Title of watchlinks to update (when state is idle), or an individual watchlink
+	 * @param {string} action One of 'watch', 'unwatch'
+	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
+	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
+	 */
+	function updateWatchLink( titleOrLink, action, state, expiry, expirySelected ) {
+		if ( titleOrLink instanceof $ ) {
+			updateWatchLinkAttributes( titleOrLink, action, state, expiry );
+		} else {
+			// Assumed state is 'idle' when update a group of watchstars by title
+			var isWatched = action === 'unwatch';
+			var normalizedTitle = titleOrLink.getPrefixedDb();
+			( watchstarsByTitle[ normalizedTitle ] || [] ).forEach( function ( w ) {
+				w.update( isWatched, expiry, expirySelected );
+			} );
+			if ( normalizedTitle === pageTitle ) {
+				notifyPageWatchStatus( isWatched, expiry, expirySelected );
+			}
+		}
+	}
+
+	/**
 	 * TODO: This should be moved somewhere more accessible.
 	 *
 	 * @private
@@ -146,29 +220,47 @@
 	 * @private
 	 */
 	function init() {
-		var $links = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
-		if ( !$links.length ) {
+		var $pageWatchLinks = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
+		if ( !$pageWatchLinks.length ) {
 			// Fallback to the class-based exclusion method for backwards-compatibility
-			$links = $( '.mw-watchlink a, a.mw-watchlink' );
+			$pageWatchLinks = $( '.mw-watchlink a, a.mw-watchlink' );
 			// Restrict to core interfaces, ignore user-generated content
-			$links = $links.filter( ':not( #bodyContent *, #content * )' );
+			$pageWatchLinks = $pageWatchLinks.filter( ':not( #bodyContent *, #content * )' );
 		}
-		if ( $links.length ) {
+		if ( $pageWatchLinks.length ) {
 			// eslint-disable-next-line no-use-before-define
-			watchstar( $links, pageTitle, function ( $link, isWatched ) {
-				// Update the "Watch this page" checkbox on action=edit when the
-				// page is watched or unwatched via the tab (T14395).
-				if ( document.getElementById( 'wpWatchthisWidget' ) ) {
-					OO.ui.infuse( $( '#wpWatchthisWidget' ) ).setSelected( isWatched === true );
-
-					// Also reset expiry selection to keep it in sync
-					if ( isWatched === true && document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( 'infinite' );
-					}
-				}
-			} );
+			watchstar( $pageWatchLinks, pageTitle );
 		}
 	}
+
+	/**
+	 * Class representing an individual watchstar
+	 *
+	 * @class mw.plugin.page.watch.ajax.Watchstar
+	 * @constructor
+	 * @param {jQuery} $link Watch element
+	 * @param {mw.Title} title Title
+	 * @param {Function} [callback] Callback to run when updating
+	 */
+	function Watchstar( $link, title, callback ) {
+		this.$link = $link;
+		this.title = title;
+		this.callback = callback;
+	}
+
+	/**
+	 * Update the watchstar
+	 *
+	 * @param {boolean} isWatched The page is watched
+	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 */
+	Watchstar.prototype.update = function ( isWatched, expiry ) {
+		expiry = expiry || 'infinity';
+		updateWatchLinkAttributes( this.$link, isWatched ? 'unwatch' : 'watch', 'idle', expiry );
+		if ( this.callback ) {
+			this.callback( this.$link, isWatched, expiry );
+		}
+	};
 
 	/**
 	 * Bind a given watchstar element to make it interactive.
@@ -184,20 +276,35 @@
 	 *  with a url containing a `action=watch` or `action=unwatch` query parameter,
 	 *  from which the current state will be learned (e.g. link to unwatch is currently watched)
 	 * @param {string} title Title of page that this watchstar will affect
-	 * @param {Function} callback Callback to run after the action has been processed and API
+	 * @param {Function} [callback] Callback to run after the action has been processed and API
 	 *  request completed. The callback receives two parameters:
 	 * @param {jQuery} callback.$link The element being manipulated
 	 * @param {boolean} callback.isWatched Whether the article is now watched
+	 * @param {string} callback.expiry The expiry date if a page is being watched temporarily.
 	 */
 	function watchstar( $links, title, callback ) {
 		// Set up the ARIA connection between the watch link and the notification.
 		// This is set outside the click handler so that it's already present when the user clicks.
 		var notificationId = 'mw-watchlink-notification';
+		var mwTitle = mw.Title.newFromText( title );
+
+		if ( !mwTitle ) {
+			return;
+		}
+
+		var normalizedTitle = mwTitle.getPrefixedDb();
+		watchstarsByTitle[ normalizedTitle ] = watchstarsByTitle[ normalizedTitle ] || [];
+
+		$links.each( function () {
+			watchstarsByTitle[ normalizedTitle ].push(
+				new Watchstar( $( this ), mwTitle, callback )
+			);
+		} );
+
 		$links.attr( 'aria-controls', notificationId );
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
-			var mwTitle = mw.Title.newFromText( title );
 			var action = mwUriGetAction( this.href );
 
 			if ( !mwTitle || ( action !== 'watch' && action !== 'unwatch' ) ) {
@@ -214,7 +321,7 @@
 				return;
 			}
 
-			updateWatchLink( $link, action, 'loading', null );
+			updateWatchLinkAttributes( $link, action, 'loading' );
 
 			// Preload the notification module for mw.notify
 			var modulesToLoad = [ 'mediawiki.notification' ];
@@ -229,12 +336,13 @@
 			var api = new mw.Api();
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
+					var isWatched = watchResponse.watched === true;
 
 					var message;
 					if ( mwTitle.isTalkPage() ) {
-						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
+						message = isWatched ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
 					} else {
-						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
+						message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
 					var notifyPromise;
@@ -243,7 +351,7 @@
 					// only if Watchlist Expiry is enabled
 					if ( isWatchlistExpiryEnabled ) {
 
-						if ( action === 'watch' ) { // The message should include `infinite` watch period
+						if ( isWatched ) { // The message should include `infinite` watch period
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
@@ -286,19 +394,26 @@
 						);
 					}
 
-					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 					// The notifications are stored as a promise and the watch link is only updated
 					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
 					// OOUI could cause a race condition and the link is updated before the popup
 					// actually is shown. See T263135
 					notifyPromise.then( function () {
-						updateWatchLink( $link, otherAction );
-						callback( $link, watchResponse.watched === true );
+
+						// Update all watchstars associated with this title
+						watchstarsByTitle[ normalizedTitle ].forEach( function ( w ) {
+							w.update( isWatched );
+						} );
+
+						// For the current page, also trigger the hook
+						if ( normalizedTitle === pageTitle ) {
+							notifyPageWatchStatus( isWatched );
+						}
 					} );
 				} )
 				.fail( function ( code, data ) {
 					// Reset link to non-loading mode
-					updateWatchLink( $link, action );
+					updateWatchLinkAttributes( $link, action );
 
 					// Format error message
 					var $msg = api.getErrorMessage( data );
@@ -318,7 +433,8 @@
 	// Expose public methods.
 	module.exports = {
 		watchstar: watchstar,
-		updateWatchLink: updateWatchLink
+		updateWatchLink: updateWatchLink,
+		updatePageWatchStatus: updatePageWatchStatus
 	};
 
 }() );
