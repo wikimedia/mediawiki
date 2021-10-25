@@ -1861,5 +1861,5 @@
 	"api-usage-mailinglist-ref": "Щоб взнавати про заплановані і остаточні критичні зміни API, підпишіться на розсилку mediawiki-api-announce тут: &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt;.",
 	"api-exception-trace": "$1 у $2($3)\n$4",
 	"api-credits-header": "Автор(и)",
-	"api-credits": "Розробники API:\n* Roan Kattouw (головний розробник вер. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (творець, головний розробник вер. 2006 – вер. 2007)\n* Brad Jorsch (головний розробник 2013 – тепер)\n\nБудь ласка, надсилайте свої коментарі, пропозиції та запитання на mediawiki-api@lists.wikimedia.org\nабо зафайліть звіт про баґ на https://phabricator.wikimedia.org/."
+	"api-credits": "Розробники API:\n* Roan Kattouw (головний розробник вер. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (творець, головний розробник вер. 2006 – вер. 2007)\n* Brad Jorsch (головний розробник 2013 – тепер)\n\nБудь ласка, надсилайте свої коментарі, пропозиції та запитання на mediawiki-api@lists.wikimedia.org\nабо подайте звіт про помилку за адресою https://phabricator.wikimedia.org/."
 }
