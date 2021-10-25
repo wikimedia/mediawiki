@@ -1011,7 +1011,12 @@ class SkinTemplate extends Skin {
 		}
 		$exists = true;
 		if ( $checkEdit && !$title->isKnown() ) {
-			$classes[] = 'new';
+			// Selected tabs should not show as red link. It doesn't make sense
+			// to show a red link on a page the user has already navigated to.
+			// https://phabricator.wikimedia.org/T294129#7451549
+			if ( !$selected ) {
+				$classes[] = 'new';
+			}
 			$exists = false;
 			if ( $query !== '' ) {
 				$query = 'action=edit&redlink=1&' . $query;
