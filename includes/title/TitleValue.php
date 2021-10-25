@@ -39,29 +39,17 @@ use Wikimedia\Assert\ParameterTypeException;
  */
 class TitleValue implements LinkTarget {
 
-	/**
-	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
-	 * @var int
-	 */
-	protected $namespace;
+	/** @var int */
+	private $namespace;
 
-	/**
-	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
-	 * @var string
-	 */
-	protected $dbkey;
+	/** @var string */
+	private $dbkey;
 
-	/**
-	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
-	 * @var string
-	 */
-	protected $fragment;
+	/** @var string */
+	private $fragment;
 
-	/**
-	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
-	 * @var string
-	 */
-	protected $interwiki;
+	/** @var string */
+	private $interwiki;
 
 	/**
 	 * Text form including namespace/interwiki, initialised on demand
