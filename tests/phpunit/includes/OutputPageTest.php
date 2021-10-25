@@ -3040,7 +3040,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
 		$output = $this->newInstance( [
-			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
 			'UseCdn' => $options['useCdn'] ?? false,
 		] );
 
@@ -3083,20 +3082,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'Default' => [],
 			'Logged out max-age' => [
 				[
-					'loggedOutMaxAge' => 300,
-				],
-				[
-					'Cache-Control' => 'private, must-revalidate, max-age=300',
+					'Cache-Control' => 'private, must-revalidate, max-age=0',
 				],
 			],
 			'Cookies' => [
 				[
-					'cookie' => true,
-				],
-			],
-			'Cookies with logged out max-age' => [
-				[
-					'loggedOutMaxAge' => 300,
 					'cookie' => true,
 				],
 			],
