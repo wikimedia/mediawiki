@@ -31,11 +31,6 @@
 	 * Default is a null expiry
 	 */
 	function updateWatchLink( $link, action, state, expiry ) {
-		var msgKey, $li, otherAction, expiryDate,
-			tooltipAction = action,
-			daysLeftExpiry = null,
-			currentDate = new Date();
-
 		// A valid but empty jQuery object shouldn't throw a TypeError
 		if ( !$link.length ) {
 			return;
@@ -50,9 +45,9 @@
 			throw new Error( 'Invalid action' );
 		}
 
-		msgKey = state === 'loading' ? action + 'ing' : action;
-		otherAction = action === 'watch' ? 'unwatch' : 'watch';
-		$li = $link.closest( 'li' );
+		var msgKey = state === 'loading' ? action + 'ing' : action;
+		var otherAction = action === 'watch' ? 'unwatch' : 'watch';
+		var $li = $link.closest( 'li' );
 
 		// Trigger a 'watchpage' event for this List item.
 		// Announce the otherAction value and expiry as params.
@@ -62,13 +57,16 @@
 			$li.trigger( 'watchpage.mw', [ otherAction, expiry === 'infinity' ? null : expiry ] );
 		}
 
+		var tooltipAction = action;
+		var daysLeftExpiry = null;
 		// Checking to see what if the expiry is set or indefinite to display the correct message
 		if ( isWatchlistExpiryEnabled && action === 'unwatch' ) {
 			if ( expiry === null || expiry === 'infinity' ) {
 				// Resolves to tooltip-ca-unwatch message
 				tooltipAction = 'unwatch';
 			} else {
-				expiryDate = new Date( expiry );
+				var expiryDate = new Date( expiry );
+				var currentDate = new Date();
 				// Using the Math.ceil function instead of floor so when, for example, a user selects one week
 				// the tooltip shows 7 days instead of 6 days (see Phab ticket T253936)
 				daysLeftExpiry = Math.ceil( ( expiryDate - currentDate ) / ( 1000 * 60 * 60 * 24 ) );
@@ -124,20 +122,18 @@
 	 * @return {string} The extracted action, defaults to 'view'
 	 */
 	function mwUriGetAction( url ) {
-		var action, actionPaths, key, m, parts;
-
 		// TODO: Does MediaWiki give action path or query param
 		// precedence? If the former, move this to the bottom
-		action = mw.util.getParamValue( 'action', url );
+		var action = mw.util.getParamValue( 'action', url );
 		if ( action !== null ) {
 			return action;
 		}
 
-		actionPaths = mw.config.get( 'wgActionPaths' );
-		for ( key in actionPaths ) {
-			parts = actionPaths[ key ].split( '$1' );
+		var actionPaths = mw.config.get( 'wgActionPaths' );
+		for ( var key in actionPaths ) {
+			var parts = actionPaths[ key ].split( '$1' );
 			parts = parts.map( mw.util.escapeRegExp );
-			m = new RegExp( parts.join( '(.+)' ) ).exec( url );
+			var m = new RegExp( parts.join( '(.+)' ) ).exec( url );
 			if ( m && m[ 1 ] ) {
 				return key;
 			}
@@ -201,10 +197,8 @@
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
-			var mwTitle, action, api, $link, modulesToLoad;
-
-			mwTitle = mw.Title.newFromText( title );
-			action = mwUriGetAction( this.href );
+			var mwTitle = mw.Title.newFromText( title );
+			var action = mwUriGetAction( this.href );
 
 			if ( !mwTitle || ( action !== 'watch' && action !== 'unwatch' ) ) {
 				// Let native browsing handle the link
@@ -213,7 +207,7 @@
 			e.preventDefault();
 			e.stopPropagation();
 
-			$link = $( this );
+			var $link = $( this );
 
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $link.hasClass( 'loading' ) ) {
@@ -223,7 +217,7 @@
 			updateWatchLink( $link, action, 'loading', null );
 
 			// Preload the notification module for mw.notify
-			modulesToLoad = [ 'mediawiki.notification' ];
+			var modulesToLoad = [ 'mediawiki.notification' ];
 
 			// Preload watchlist expiry widget so it runs in parallel with the api call
 			if ( isWatchlistExpiryEnabled ) {
@@ -232,20 +226,19 @@
 
 			mw.loader.load( modulesToLoad );
 
-			api = new mw.Api();
+			var api = new mw.Api();
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
-					var message,
-						watchlistPopup = null,
-						otherAction = action === 'watch' ? 'unwatch' : 'watch',
-						notifyPromise;
 
+					var message;
 					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
 					} else {
 						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
+					var notifyPromise;
+					var watchlistPopup;
 					// @since 1.35 - pop up notification will be loaded with OOUI
 					// only if Watchlist Expiry is enabled
 					if ( isWatchlistExpiryEnabled ) {
@@ -293,6 +286,7 @@
 						);
 					}
 
+					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 					// The notifications are stored as a promise and the watch link is only updated
 					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
 					// OOUI could cause a race condition and the link is updated before the popup
@@ -303,13 +297,11 @@
 					} );
 				} )
 				.fail( function ( code, data ) {
-					var $msg;
-
 					// Reset link to non-loading mode
 					updateWatchLink( $link, action );
 
 					// Format error message
-					$msg = api.getErrorMessage( data );
+					var $msg = api.getErrorMessage( data );
 
 					// Report to user about the error
 					mw.notify( $msg, {
