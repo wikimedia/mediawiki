@@ -153,6 +153,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 			$this->sink = null;
 			throw new UnexpectedValueException( sprintf(
 				'The stream or file "%s" could not be opened: %s',
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternalProbablyReal Set by error handler
 				$this->uri, $this->error
 			) );
 		}

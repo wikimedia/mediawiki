@@ -113,6 +113,7 @@ class DatabaseSqlite extends Database {
 		$p['tablePrefix'] = '';
 		/** @var DatabaseSqlite $db */
 		$db = Database::factory( 'sqlite', $p );
+		'@phan-var DatabaseSqlite $db';
 
 		return $db;
 	}
@@ -249,6 +250,7 @@ class DatabaseSqlite extends Database {
 	protected function closeConnection() {
 		$this->conn = null;
 		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal Expected null
 		$this->lockMgr = null;
 
 		return true;

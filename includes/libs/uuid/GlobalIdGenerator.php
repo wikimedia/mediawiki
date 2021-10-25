@@ -632,6 +632,7 @@ class GlobalIdGenerator {
 			$ts = bcadd( $ts, (string)$delta );
 			// wrap around
 			$ts = bcmod( $ts, bcpow( '2', '60' ) );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Only null if second arg is 0
 			$id_bin = \Wikimedia\base_convert( $ts, 10, 2, 60 );
 		} else {
 			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );
@@ -661,6 +662,7 @@ class GlobalIdGenerator {
 				$csv = trim( ( $this->shellCallback )( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) {
 				// Linux/BSD/Solaris/OS X

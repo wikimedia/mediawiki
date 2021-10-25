@@ -302,6 +302,7 @@ abstract class AuthenticationRequest {
 				} elseif ( $username !== $req->username ) {
 					$requestClass = get_class( $req );
 					throw new \UnexpectedValueException( "Conflicting username fields: \"{$req->username}\" from "
+						// @phan-suppress-next-line PhanTypeSuspiciousStringExpression $otherClass always set
 						. "$requestClass::\$username vs. \"$username\" from $otherClass::\$username" );
 				}
 			}
@@ -350,6 +351,7 @@ abstract class AuthenticationRequest {
 					// If there is a primary not requiring this field, no matter how many others do,
 					// authentication can proceed without it.
 					|| $req->required === self::PRIMARY_REQUIRED
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 						&& !in_array( $name, $sharedRequiredPrimaryFields, true )
 				) {
 					$options['optional'] = true;

@@ -182,6 +182,7 @@ class ContribsPager extends RangeChronologicalPager {
 			// ContribsPagerTest and does not cause newFromName() to return
 			// false. It's probably not used by any production code.
 			$this->target = $options['target'] ?? '';
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty RIGOR_NONE never returns null
 			$this->targetUser = $services->getUserFactory()->newFromName(
 				$this->target, UserFactory::RIGOR_NONE
 			);
@@ -693,6 +694,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
@@ -707,7 +709,9 @@ class ContribsPager extends RangeChronologicalPager {
 				$classes[] = 'mw-contributions-current';
 				# Add rollback link
 				if ( !$row->page_is_new &&
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->getAuthority()->probablyCan( 'edit', $page )
 				) {
 					$this->setPreventClickjacking( true );
@@ -723,6 +727,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 			) {
 				$difftext = $linkRenderer->makeKnownLink(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),
 					[ 'class' => 'mw-changeslist-diff' ],
@@ -735,6 +740,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$difftext = $this->messages['diff'];
 			}
 			$histlink = $linkRenderer->makeKnownLink(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				new HtmlArmor( $this->messages['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
@@ -798,6 +804,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$flags[] = ChangesList::flag( 'minor' );
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$del = Linker::getRevDeleteLink( $user, $revRecord, $page );
 			if ( $del !== '' ) {
 				$del .= ' ';

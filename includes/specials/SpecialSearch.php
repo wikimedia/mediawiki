@@ -879,6 +879,7 @@ class SpecialSearch extends SpecialPage {
 			}
 
 			$prevNext =
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable offset is not null
 				$this->buildPrevNextNavigation( $offset, $this->limit,
 					$this->powerSearchOptions() + [ 'search' => $newSearchTerm ],
 					$this->limit + $this->offset >= $totalRes );

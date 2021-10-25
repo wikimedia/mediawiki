@@ -428,6 +428,7 @@ class RemexCompatMunger implements TreeHandler {
 			$fakeElement->userData = $rNode;
 			$this->serializer->removeNode( $fakeElement, $pos );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $node;
 	}
 

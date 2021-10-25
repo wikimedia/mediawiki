@@ -291,6 +291,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 		list( $redir, $text ) = $content->getRedirectTargetAndText();
 		$parserOutput = $services->getParser()->getFreshParser()
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->parse( $text, $title, $parserOptions, true, true, $revId );
 
 		// Add redirect indicator at the top

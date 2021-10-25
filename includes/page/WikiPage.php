@@ -178,6 +178,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			throw new InvalidArgumentException( "WikiPage constructed on a Title that cannot exist as a page: $title" );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
 		$this->mTitle = $title;
 	}
 

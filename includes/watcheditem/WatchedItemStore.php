@@ -1448,6 +1448,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			}
 		}
 		if ( $seenTime === null ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId does not return null here
 			$seenTime = $this->revisionLookup->getTimestampFromId( $id );
 		}
 

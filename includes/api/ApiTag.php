@@ -120,6 +120,7 @@ class ApiTag extends ApiBase {
 					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
 						'apierror-blocked',
 						'blocked',
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 						[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 					) );
 					return $idResult;
@@ -137,6 +138,7 @@ class ApiTag extends ApiBase {
 					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
 							'apierror-blocked',
 							'blocked',
+							// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 							[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 					) );
 					return $idResult;

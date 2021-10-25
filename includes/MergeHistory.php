@@ -396,6 +396,7 @@ class MergeHistory {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onArticleMergeComplete( $legacySource, $legacyDest );
 
 		$this->dbw->endAtomic( __METHOD__ );
@@ -428,6 +429,7 @@ class MergeHistory {
 			$newContent = $contentHandler->makeEmptyContent();
 		} else {
 			$msg = wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain();
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$newContent = $contentHandler->makeRedirectContent( $legacyDestTitle, $msg );
 		}
 

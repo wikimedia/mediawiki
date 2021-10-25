@@ -677,6 +677,7 @@ class Parser {
 		// Strip U+0000 NULL (T159174)
 		$text = str_replace( "\000", '', $text );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$this->startParse( $page, $options, self::OT_HTML, $clearState );
 
 		$this->currentRevisionCache = null;
@@ -2215,6 +2216,7 @@ class Parser {
 			$this->mOutput->addExternalLink( $url );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive from array_shift
 		return $s;
 	}
 
@@ -2493,6 +2495,7 @@ class Parser {
 			}
 
 			if ( $useLinkPrefixExtension ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $e2 is set under this condition
 				if ( preg_match( $e2, $s, $m ) ) {
 					list( , $s, $prefix ) = $m;
 				} else {
@@ -2733,9 +2736,11 @@ class Parser {
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $prefix is set when used here
 				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $prefix is set when used here
 				$s .= $holders->makeHolder( $nt, $text, $trail, $prefix );
 			}
 		}
@@ -2834,6 +2839,7 @@ class Parser {
 			$ret = null;
 			$originalIndex = $index;
 			$this->hookRunner->onParserGetVariableValueSwitch(
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$this, $this->mVarCache, $index, $ret, $frame
 			);
 			if ( $index !== $originalIndex ) {
@@ -3567,6 +3573,7 @@ class Parser {
 
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->getKnownCurrentRevision( $page );
 		return $revRecord;
 	}
@@ -4109,6 +4116,7 @@ class Parser {
 			$this->mOutput->setPageProperty( $key, '' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $text;
 	}
 
@@ -4549,6 +4557,7 @@ class Parser {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$this->startParse( $page, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 

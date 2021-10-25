@@ -81,8 +81,10 @@ class ImagePage extends Article {
 				$img = $services->getRepoGroup()->getLocalRepo()->newFile( $this->getTitle() );
 			}
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable should be set
 		$this->getPage()->setFile( $img );
 		if ( !$this->displayImg ) { // not set by hook?
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty should be set
 			$this->displayImg = $img;
 		}
 		$this->repo = $img->getRepo();

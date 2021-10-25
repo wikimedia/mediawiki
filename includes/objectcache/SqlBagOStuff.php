@@ -1669,6 +1669,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			// Use the main connection to avoid transaction deadlocks
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable dbDomain should be not null here
 			$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY, [], $dbDomain );
 		} else {
 			// If the RDBMs has row/table/page level locking, then use separate auto-commit
@@ -1676,6 +1677,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$conn = $lb->getMaintenanceConnectionRef(
 				$this->replicaOnly ? DB_REPLICA : DB_PRIMARY,
 				[],
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable dbDomain should be not null here
 				$dbDomain,
 				$lb::CONN_TRX_AUTOCOMMIT
 			);
@@ -1714,6 +1716,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->conns[$shardIndex] = $conn;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $this->conns[$shardIndex];
 	}
 

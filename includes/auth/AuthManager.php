@@ -1167,6 +1167,7 @@ class AuthManager implements LoggerAwareInterface {
 			$req->username = $username;
 			$req->returnToUrl = $returnToUrl;
 			if ( $req instanceof UserDataAuthenticationRequest ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable user should be checked and valid here
 				$status = $req->populateUser( $user );
 				if ( !$status->isGood() ) {
 					$status = Status::wrap( $status );

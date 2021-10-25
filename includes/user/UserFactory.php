@@ -115,6 +115,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		} else {
 			$user = new User();
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Checked by isIp
 		return $user;
 	}
 

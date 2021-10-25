@@ -573,6 +573,7 @@ class ApiMain extends ApiBase {
 			if ( $uselang === 'content' ) {
 				$uselang = $services->getContentLanguage()->getCode();
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getRawVal does not return null
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$derivativeContext->setLanguage( $code );
 			if ( !$this->mInternalMode ) {
@@ -968,6 +969,7 @@ class ApiMain extends ApiBase {
 		if ( $failed ) {
 			$this->mPrinter = null;
 			$this->createErrorPrinter();
+			// @phan-suppress-next-line PhanNonClassMethodCall False positive
 			$this->mPrinter->forceDefaultParams();
 			if ( $httpCode ) {
 				$response->statusHeader( 200 ); // Reset in case the fallback doesn't want a non-200
@@ -1264,6 +1266,7 @@ class ApiMain extends ApiBase {
 			if ( !$this->mModuleMgr->isDefined( $value, 'format' ) ) {
 				$value = self::API_DEFAULT_FORMAT;
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getVal does not return null here
 			$this->mPrinter = $this->createPrinterByName( $value );
 		}
 
@@ -1506,6 +1509,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $module;
 	}
 

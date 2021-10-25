@@ -205,6 +205,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 				$counter += $dbw->affectedRows();
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable row is set
 			list( $next, $display ) = $this->makeNextCond( $dbw, $orderby, $row );
 			$this->output( "... $display\n" );
 			$lbFactory->waitForReplication();

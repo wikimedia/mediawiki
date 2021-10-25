@@ -108,7 +108,9 @@ class NameTableStoreFactory {
 			$this->cache,
 			$this->logger,
 			$tableName,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$info['idField'],
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$info['nameField'],
 			$info['normalizationCallback'] ?? null,
 			$wiki,

@@ -177,6 +177,7 @@ class SpecialImport extends SpecialPage {
 					$frompage = $request->getText( 'frompage' );
 					$includeTemplates = $request->getCheck( 'interwikiTemplates' );
 					$source = ImportStreamSource::newFromInterwiki(
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 						$fullInterwikiPrefix,
 						$frompage,
 						$history,
@@ -217,6 +218,7 @@ class SpecialImport extends SpecialPage {
 					return;
 				}
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$importer->setUsernamePrefix( $fullInterwikiPrefix, $assignKnownUsers );
 
 			$out->addWikiMsg( "importstart" );
@@ -224,6 +226,7 @@ class SpecialImport extends SpecialPage {
 			$reporter = new ImportReporter(
 				$importer,
 				$isUpload,
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				$fullInterwikiPrefix,
 				$logcomment
 			);

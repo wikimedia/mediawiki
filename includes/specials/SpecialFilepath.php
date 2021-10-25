@@ -51,6 +51,7 @@ class SpecialFilepath extends RedirectSpecialPage {
 			$this->mAddedRedirectParams['wpvalue'] = $file;
 			$redirect = SpecialPage::getSafeTitleFor( 'Redirect', 'file' );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Known to be valid
 		return $redirect;
 	}
 

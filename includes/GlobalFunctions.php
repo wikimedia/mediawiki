@@ -1497,6 +1497,7 @@ function wfEscapeWikiText( $text ) {
 		$repl2 = $repl2 ? '/\b(' . implode( '|', $repl2 ) . '):/i' : '/^(?!)/';
 	}
 	$text = substr( strtr( "\n$text", $repl ), 1 );
+	// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 	$text = preg_replace( $repl2, '$1&#58;', $text );
 	return $text;
 }
@@ -2141,6 +2142,7 @@ function wfRelativePath( $path, $from ) {
 	}
 
 	// relative dots to bump us to the parent
+	// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 	while ( count( $against ) ) {
 		array_unshift( $pieces, '..' );
 		array_shift( $against );

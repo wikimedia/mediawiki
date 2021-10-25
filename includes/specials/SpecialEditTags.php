@@ -142,6 +142,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			)
 		) {
 			throw new UserBlockedError(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				$user->getBlock(),
 				$user,
 				$this->getLanguage(),

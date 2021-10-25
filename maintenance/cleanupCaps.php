@@ -93,6 +93,7 @@ class CleanupCaps extends TableCleanup {
 		}
 		$ok = $this->movePage(
 			$current,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is always valid
 			$target,
 			'Converting page title to first-letter uppercase',
 			false

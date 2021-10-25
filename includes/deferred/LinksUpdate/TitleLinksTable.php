@@ -28,6 +28,7 @@ abstract class TitleLinksTable extends LinksTable {
 	 * @return Title
 	 */
 	protected function makeTitle( $linkId ): Title {
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 		return Title::castFromPageReference( $this->makePageReferenceValue( $linkId ) );
 	}
 

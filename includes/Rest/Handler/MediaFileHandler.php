@@ -66,6 +66,7 @@ class MediaFileHandler extends SimpleHandler {
 		if ( $this->file === false ) {
 			$page = $this->getPage();
 			$this->file =
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 				$this->repoGroup->findFile( $page, [ 'private' => $this->getAuthority() ] ) ?: null;
 		}
 		return $this->file;

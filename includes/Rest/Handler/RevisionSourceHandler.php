@@ -69,6 +69,7 @@ class RevisionSourceHandler extends SimpleHandler {
 			case 'bare':
 				$revisionRecord = $this->contentHelper->getTargetRevision();
 				$body = $this->contentHelper->constructMetadata();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord is set when used
 				$body['html_url'] = $this->constructHtmlUrl( $revisionRecord );
 				$response = $this->getResponseFactory()->createJson( $body );
 				$this->contentHelper->setCacheControl( $response );

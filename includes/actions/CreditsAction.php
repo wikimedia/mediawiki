@@ -121,6 +121,7 @@ class CreditsAction extends FormlessAction {
 		}
 
 		return $this->msg( 'lastmodifiedatby', $d, $t )->rawParams(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RIGOR_NONE never returns null
 			$this->userLink( $user ) )->params( $user->getName() )->escaped();
 	}
 

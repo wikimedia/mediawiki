@@ -181,6 +181,7 @@ class LinkRenderer {
 	private function runBeginHook( $target, &$text, &$extraAttribs, &$query, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this, $this->castToTitle( $target ), $text, $extraAttribs, $query, $ret )
 		) {
 			return $ret;
@@ -328,6 +329,7 @@ class LinkRenderer {
 	private function buildAElement( $target, $text, array $attribs, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererEnd(
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this, $this->castToLinkTarget( $target ), $isKnown, $text, $attribs, $ret )
 		) {
 			return $ret;
@@ -460,6 +462,7 @@ class LinkRenderer {
 			return Title::newFromLinkTarget( $target );
 		}
 		// $target instanceof PageReference
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 		return Title::castFromPageReference( $target );
 	}
 
@@ -469,6 +472,7 @@ class LinkRenderer {
 	 */
 	private function castToLinkTarget( $target ): LinkTarget {
 		if ( $target instanceof PageReference ) {
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 			return Title::castFromPageReference( $target );
 		}
 		// $target instanceof LinkTarget

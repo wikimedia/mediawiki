@@ -77,6 +77,7 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 	}
 	if ( $__useReadline ) {
 		readline_add_history( $__line );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
 		readline_write_history( $__historyFile );
 	}
 	try {

@@ -217,6 +217,7 @@ class LanguageNameUtils {
 
 		if ( $inLanguage !== self::AUTONYMS ) {
 			# TODO: also include for self::AUTONYMS, when this code is more efficient
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->hookRunner->onLanguageGetTranslatedLanguageNames( $names, $inLanguage );
 		}
 

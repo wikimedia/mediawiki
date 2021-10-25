@@ -559,6 +559,7 @@ class WikiExporter {
 			throw new LogicException( 'Error while processing a stream of slot rows' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $lastRow;
 	}
 

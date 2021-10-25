@@ -153,6 +153,7 @@ class CleanupSpam extends Maintenance {
 
 		while ( $rev && ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
 			LinkFilter::matchEntry(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
 				$rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW ),
 				$domain,
 				$protocol
@@ -175,6 +176,7 @@ class CleanupSpam extends Maintenance {
 
 				$this->output( "reverting\n" );
 				$page->doUserEditContent(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
 					$content,
 					$performer,
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),

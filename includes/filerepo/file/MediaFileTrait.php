@@ -80,6 +80,7 @@ trait MediaFileTrait {
 				foreach ( $transforms as $transformType => $transform ) {
 					$responseFile[$transformType] = $this->getTransformInfo(
 						$file,
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 						$duration,
 						$transform['maxWidth'],
 						$transform['maxHeight']

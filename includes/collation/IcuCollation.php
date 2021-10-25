@@ -260,6 +260,7 @@ class IcuCollation extends Collation {
 		}
 		$this->mainCollator = $mainCollator;
 
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty successed before, no null check needed
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
 

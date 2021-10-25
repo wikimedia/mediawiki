@@ -1695,6 +1695,7 @@ abstract class ContentHandler {
 		$po = new ParserOutput();
 		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
 		if ( Hooks::runner()->onContentGetParserOutput(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
 		) {
 			// Save and restore the old value, just in case something is reusing
@@ -1715,6 +1716,7 @@ abstract class ContentHandler {
 			$parserOptions->setRedirectTarget( $oldRedir );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
 		$parserOptions->registerWatcher( null );
 
@@ -1805,6 +1807,7 @@ abstract class ContentHandler {
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
 
 		return $content->preSaveTransform(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$legacyUser,
 			$params->getParserOptions()
@@ -1826,6 +1829,7 @@ abstract class ContentHandler {
 		$services = MediaWikiServices::getInstance();
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
 		return $content->preloadTransform(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$params->getParserOptions(),
 			$params->getParams()
@@ -1847,6 +1851,7 @@ abstract class ContentHandler {
 		$services = MediaWikiServices::getInstance();
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
 		return $content->getParserOutput(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$cpoParams->getRevId(),
 			$cpoParams->getParserOptions(),

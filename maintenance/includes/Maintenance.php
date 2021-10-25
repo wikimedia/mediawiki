@@ -1234,6 +1234,7 @@ abstract class Maintenance {
 	 */
 	protected function afterFinalSetup() {
 		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 			call_user_func( MW_CMDLINE_CALLBACK );
 		}
 	}
@@ -1709,6 +1710,7 @@ abstract class Maintenance {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $user;
 	}
 }

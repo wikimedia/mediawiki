@@ -61,6 +61,7 @@ class HTMLCacheUpdateJob extends Job {
 	public static function newForBacklinks( PageReference $page, $table, $params = [] ) {
 		$title = Title::castFromPageReference( $page );
 		return new self(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$title,
 			[
 				'table' => $table,

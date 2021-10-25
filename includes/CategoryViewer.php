@@ -105,6 +105,7 @@ class CategoryViewer extends ContextSource {
 			'title',
 			'1.37',
 			function (): Title {
+				// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 				return Title::castFromPageIdentity( $this->page );
 			},
 			function ( PageIdentity $page ) {
@@ -243,6 +244,7 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		$legacyTitle = MediaWikiServices::getInstance()->getTitleFactory()
 			->castFromPageReference( $page );
+		// @phan-suppress-next-line PhanTypeMismatchArgument castFrom does not return null here
 		$this->getHookRunner()->onCategoryViewer__generateLink( $type, $legacyTitle, $html, $link );
 		if ( $link === null ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
@@ -302,8 +304,10 @@ class CategoryViewer extends ContextSource {
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->gallery->insert( $title );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->gallery->add( $title );
 			}
 		} else {

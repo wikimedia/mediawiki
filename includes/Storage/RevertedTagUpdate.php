@@ -278,6 +278,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 		}
 
 		$this->markAsReverted(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revertedRevision is already checked
 			$this->editResult->getOldestRevertedRevisionId(),
 			$this->getTagExtraParams()
 		);
@@ -363,6 +364,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	private function getNewestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->newestRevertedRevision ) ) {
 			$this->newestRevertedRevision = $this->revisionStore->getRevisionById(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable newestRevertedRevision is checked
 				$this->editResult->getNewestRevertedRevisionId()
 			);
 		}
@@ -377,6 +379,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	private function getOldestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->oldestRevertedRevision ) ) {
 			$this->oldestRevertedRevision = $this->revisionStore->getRevisionById(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable oldestRevertedRevision is checked
 				$this->editResult->getOldestRevertedRevisionId()
 			);
 		}

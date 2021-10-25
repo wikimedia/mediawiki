@@ -287,6 +287,7 @@ class MWExceptionHandler {
 				break;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 		$e = new ErrorException( $prefix . $message, 0, $level, $file, $line );
 		self::logError( $e, 'error', $severity, self::CAUGHT_BY_HANDLER );
 

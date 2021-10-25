@@ -54,6 +54,7 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 	/** @inheritDoc */
 	public function getDiff( Content $oldContent = null, Content $newContent = null ) {
 		$this->normalizeContents( $oldContent, $newContent );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null handled by normalizeContents
 		return $this->differenceEngine->generateContentDiffBody( $oldContent, $newContent );
 	}
 

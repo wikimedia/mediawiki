@@ -443,7 +443,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @since 1.28
 	 * @param stdClass $row Database row
 	 * @param array &$data Data to be added to the result
-	 * @param array &$hookData Hook data from ApiQueryBase::select()
+	 * @param array &$hookData Hook data from ApiQueryBase::select() @phan-output-reference
 	 * @return bool Return false if row processing should end with continuation
 	 */
 	protected function processRow( $row, array &$data, array &$hookData ) {

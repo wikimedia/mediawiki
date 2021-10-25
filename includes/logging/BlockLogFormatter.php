@@ -305,6 +305,7 @@ class BlockLogFormatter extends LogFormatter {
 		}
 
 		if ( isset( $ret['restrictions']['namespaces'] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 			ApiResult::setIndexedTagName( $ret['restrictions']['namespaces'], 'ns' );
 		}
 

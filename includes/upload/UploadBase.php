@@ -198,6 +198,7 @@ abstract class UploadBase {
 		// Give hooks the chance to handle this request
 		/** @var self|null $className */
 		$className = null;
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		Hooks::runner()->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
 			$className = 'UploadFrom' . $type;
@@ -941,6 +942,7 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 
 		$error = null;
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		$this->getHookRunner()->onUploadVerifyUpload( $this, $user, $props, $comment, $pageText, $error );
 		if ( $error ) {
 			if ( !is_array( $error ) ) {

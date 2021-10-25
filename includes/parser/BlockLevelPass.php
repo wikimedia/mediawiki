@@ -419,6 +419,7 @@ class BlockLevelPass {
 			}
 		}
 		while ( $prefixLength ) {
+			// @phan-suppress-next-line PhanTypeArraySuspicious $prefix set if $prefixLength is set
 			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
 			// Note that a paragraph is only ever opened when `prefixLength`

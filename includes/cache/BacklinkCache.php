@@ -282,6 +282,7 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->getHookRunner()->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
@@ -331,7 +332,11 @@ class BacklinkCache {
 			default:
 				$conds = null;
 				$this->getHookRunner()->onBacklinkCacheGetConditions( $table,
-					Title::castFromPageReference( $this->page ), $conds );
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+					Title::castFromPageReference( $this->page ),
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+					$conds
+				);
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}

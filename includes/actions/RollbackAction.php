@@ -176,6 +176,7 @@ class RollbackAction extends FormAction {
 		}
 
 		$rollbackResult = $this->rollbackPageFactory
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable use of raw avoids null here
 			->newRollbackPage( $this->getWikiPage(), $this->getContext()->getAuthority(), $revUser )
 			->setSummary( $request->getText( 'summary' ) )
 			->markAsBot( $request->getBool( 'bot' ) )

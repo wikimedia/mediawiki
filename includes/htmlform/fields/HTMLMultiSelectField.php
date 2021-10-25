@@ -270,6 +270,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		if ( $this->isSubmitAttempt( $request ) || $fromRequest ) {
 			// Checkboxes are just not added to the request arrays if they're not checked,
 			// so it's perfectly possible for there not to be an entry at all
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable getArray does not return null
 			return $fromRequest;
 		} else {
 			// That's ok, the user has not yet submitted the form, so show the defaults

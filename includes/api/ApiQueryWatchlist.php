@@ -341,6 +341,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				)
 			) {
 				if ( $this->fld_title ) {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {

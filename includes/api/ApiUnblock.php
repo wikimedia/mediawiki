@@ -92,6 +92,7 @@ class ApiUnblock extends ApiBase {
 			$this->dieWithError(
 				$status,
 				null,
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				[ 'blockinfo' => $this->getBlockDetails( $performer->getBlock() ) ]
 			);
 		}

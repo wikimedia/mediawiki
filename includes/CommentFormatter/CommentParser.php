@@ -419,6 +419,7 @@ class CommentParser {
 				if ( $linkMarker ) {
 					// If the link is still valid, go ahead and replace it in!
 					$comment = preg_replace(
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal linkRegexp set when used
 						$linkRegexp,
 						$linkMarker,
 						$comment,

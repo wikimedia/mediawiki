@@ -143,6 +143,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$request = $this->getRequest();
 
 		$target = $par ?? $request->getVal( 'target', '' );
+		'@phan-var string $target'; // getVal does not return null here
 
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 

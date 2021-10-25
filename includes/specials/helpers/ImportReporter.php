@@ -170,6 +170,7 @@ class ImportReporter extends ContextSource {
 			$logEntry->setPerformer( $this->getUser() );
 			$logEntry->setParameters( $logParams );
 			// Make sure the null revision will be tagged as well
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T303637
 			$logEntry->setAssociatedRevId( $nullRevId );
 			if ( count( $this->logTags ) ) {
 				$logEntry->addTags( $this->logTags );

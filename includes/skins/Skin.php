@@ -477,6 +477,7 @@ abstract class Skin extends ContextSource {
 	 * @return Title
 	 */
 	public function getRelevantTitle() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable title is set
 		return $this->mRelevantTitle ?? $this->getTitle();
 	}
 

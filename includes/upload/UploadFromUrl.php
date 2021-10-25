@@ -322,6 +322,7 @@ class UploadFromUrl extends UploadBase {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Always set after the loop
 		return $status;
 	}
 }

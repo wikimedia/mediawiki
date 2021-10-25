@@ -288,8 +288,11 @@ class ApiEditPage extends ApiBase {
 			}
 
 			$newContent = $contentHandler->getUndoContent(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use here
 				$pageObj->getRevisionRecord()->getContent( SlotRecord::MAIN ),
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use here
 				$undoRev->getContent( SlotRecord::MAIN ),
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use here
 				$undoafterRev->getContent( SlotRecord::MAIN ),
 				$pageObj->getRevisionRecord()->getId() === $undoRev->getId()
 			);
@@ -531,6 +534,7 @@ class ApiEditPage extends ApiBase {
 			// obvious that this is even possible.
 			// @codeCoverageIgnoreStart
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				$this->dieBlocked( $user->getBlock() );
 				// dieBlocked prevents continuation
 

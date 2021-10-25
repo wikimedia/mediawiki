@@ -505,6 +505,7 @@ class ParserCache {
 		$this->cache->set( $pageKey, $metadataData, $expire );
 
 		$title = $this->titleFactory->castFromPageIdentity( $page );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onParserCacheSaveComplete( $this, $parserOutput, $title, $popts, $revId );
 
 		$this->logger->debug( 'Saved in parser cache', [

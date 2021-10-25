@@ -80,6 +80,7 @@ class WikitextContent extends TextContent {
 	 * @see Content::replaceSection()
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
+		// @phan-suppress-previous-line PhanParamSignatureMismatch False positive
 		$myModelId = $this->getModel();
 		$sectionModelId = $with->getModel();
 
@@ -253,6 +254,7 @@ class WikitextContent extends TextContent {
 					$title = $context->getTitle();
 				}
 				$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getTitle does not return null here
 				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
 				$links = $po->getLinks();
 				$hasLinks = !empty( $links );

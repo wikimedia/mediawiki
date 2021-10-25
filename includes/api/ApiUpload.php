@@ -596,6 +596,7 @@ class ApiUpload extends ApiBase {
 
 		// Check blocks
 		if ( $user->isBlockedFromUpload() ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 			$this->dieBlocked( $user->getBlock() );
 		}
 

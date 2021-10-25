@@ -93,6 +93,7 @@ class ApiRevisionDelete extends ApiBase {
 
 		// TODO: replace use of PermissionManager
 		if ( $this->getPermissionManager()->isBlockedFrom( $user, $targetObj ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 			$this->dieBlocked( $user->getBlock() );
 		}
 

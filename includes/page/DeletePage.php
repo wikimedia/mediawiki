@@ -352,7 +352,7 @@ class DeletePage {
 	public function deletionWasScheduled(): bool {
 		wfDeprecated( __METHOD__, '1.38' );
 		$this->assertDeletionAttempted();
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypeMismatchReturnNullable
 		return $this->wasScheduled[self::PAGE_BASE];
 	}
 
@@ -482,6 +482,7 @@ class DeletePage {
 		}
 		// NOTE: If the page deletion above failed because the page is no longer there (e.g. race condition) we'll
 		// still try to delete the talk page, since it was the user's intention anyway.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable talkReason is set when used
 		$status->merge( $this->deleteInternal( $this->associatedTalk, self::PAGE_TALK, $talkReason ) );
 		return $status;
 	}

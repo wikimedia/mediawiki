@@ -157,6 +157,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			case 'badaccess':
 				throw new PermissionsError( 'sendemail' );
 			case 'blockedemailuser':
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				throw new UserBlockedError( $this->getUser()->getBlock() );
 			case 'actionthrottledtext':
 				throw new ThrottledError;
@@ -179,8 +180,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that
 		// and show the "Send email to user" form directly, if so. Show the "enter username"
 		// form, otherwise.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set
 		$this->mTargetObj = self::getTarget( $this->mTarget, $this->getUser() );
 		if ( !$this->mTargetObj instanceof User ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set
 			$this->userForm( $this->mTarget );
 		} else {
 			$this->sendEmailForm();

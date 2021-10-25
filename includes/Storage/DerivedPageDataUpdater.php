@@ -1460,6 +1460,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$recursive
 		);
 		if ( $this->options['moved'] ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument Oldtitle is set along with moved
 			$linksUpdate->setMoveDetails( $this->options['oldtitle'] );
 		}
 
@@ -1769,6 +1770,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		// updates that are not defined as being related.
 		$update = new RefreshSecondaryDataUpdate(
 			$this->loadbalancerFactory,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Already checked
 			$triggeringUser,
 			$this->wikiPage,
 			$this->revision,

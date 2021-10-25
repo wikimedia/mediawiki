@@ -168,6 +168,7 @@ class Article implements Page {
 		}
 
 		$page = null;
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		Hooks::runner()->onArticleFromTitle( $title, $page, $context );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
@@ -1583,6 +1584,7 @@ class Article implements Page {
 		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 		$userlinks = Linker::revUserTools( $revisionRecord, !$unhide );
 
 		$infomsg = $current && !$context->msg( 'revision-info-current' )->isDisabled()
@@ -1606,6 +1608,7 @@ class Article implements Page {
 					$revisionUser ? $revisionUser->getName() : ''
 				)
 				->rawParams( Linker::revComment(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 					$revisionRecord,
 					true,
 					true
@@ -1632,6 +1635,7 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 		$prevExist = (bool)$this->revisionStore->getPreviousRevision( $revisionRecord );
 		$prevlink = $prevExist
 			? $this->linkRenderer->makeKnownLink(
@@ -1680,6 +1684,7 @@ class Article implements Page {
 
 		$cdel = Linker::getRevDeleteLink(
 			$user,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 			$revisionRecord,
 			$this->getTitle()
 		);

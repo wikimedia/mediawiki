@@ -86,6 +86,7 @@ class ApiParamInfo extends ApiBase {
 						}
 						continue;
 					}
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable recursive is set when used
 					$submodules = $this->listAllSubmodules( $module, $recursive );
 					if ( $submodules ) {
 						$modules = array_merge( $modules, $submodules );
