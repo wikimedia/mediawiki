@@ -2247,7 +2247,7 @@
 	"protectlogpage": "Zapisnik zaštite",
 	"protectlogtext": "Ispod je spisak promjena zaštićenja stranice.\nPogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za pregled trenutno zaštićenih stranica.",
 	"protectedarticle": "{{GENDER:|zaštitio|zaštitila|zaštitio/-la}} je stranicu \"[[$1]]\"",
-	"modifiedarticleprotection": "{{GENDER:|promijenio|promijenila}} je stepen zaštite stranice \"[[$1]]\"",
+	"modifiedarticleprotection": "{{GENDER:|promijenio|promijenila}} je postavke zaštite stranice \"[[$1]]\"",
 	"unprotectedarticle": "uklonjena zaštita sa stranice \"[[$1]]\"",
 	"movedarticleprotection": "podešavanja zaštite premještena sa \"[[$2]]\" na \"[[$1]]\"",
 	"protectedarticle-comment": "{{GENDER:$2|Zaštitio|Zaštitila}} je stranicu \"[[$1]]\"",

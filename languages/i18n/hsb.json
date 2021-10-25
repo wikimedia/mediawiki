@@ -2015,6 +2015,8 @@
 	"wlheader-showupdated": "Strony, kotrež su so po twojim poslednim wopyće změnili, so '''tučne''' pokazuja.",
 	"wlnote": "Deleka {{PLURAL:$1|je poslednja změna|stej poslednjej <strong>$1</strong> změnje|su poslednje <strong>$1</strong> změny|je poslednich <strong>$1</strong> změnow}} za {{PLURAL:$2|poslednju hodźinu|poslednje <strong>$2</strong> hodźinje|poslednje <strong>$2</strong> hodźiny|poslednich <strong>$2</strong> hodźin}}, staw : $3, $4.",
 	"wlshowtime": "Perioda, kotraž ma so pokazać:",
+	"wlshowhideliu": "Zregistrowani wužiwarjo",
+	"wlshowhideanons": "Anonymni wužiwarjo",
 	"watchlist-options": "Opcije wobkedźbowankow",
 	"watching": "Wobkedźbuju…",
 	"unwatching": "Njewobkedźbuju…",

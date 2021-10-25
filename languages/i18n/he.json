@@ -168,7 +168,7 @@
 	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|קטגוריה|קטגוריות}}",
 	"category_header": "דפים בקטגוריה \"$1\"",
-	"subcategories": "קטגוריות משנה",
+	"subcategories": "קטגוריות־משנה",
 	"category-media-header": "קובצי מדיה בקטגוריה \"$1\"",
 	"category-empty": "<em>קטגוריה זו אינה מכילה כרגע דפים או קובצי מדיה.</em>",
 	"hidden-categories": "{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}",
