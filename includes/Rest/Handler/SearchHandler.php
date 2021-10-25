@@ -338,14 +338,17 @@ class SearchHandler extends Handler {
 			$this->buildDescriptionsFromPageIdentities( $pageIdentities ),
 			$this->buildThumbnailsFromPageIdentities( $pageIdentities )
 		);
-
 		$response = $this->getResponseFactory()->createJson( [ 'pages' => $result ] );
 
 		if ( $this->mode === self::COMPLETION_MODE && $this->completionCacheExpiry ) {
 			// Type-ahead completion matches should be cached by the client and
 			// in the CDN, especially for short prefixes.
 			// See also $wgSearchSuggestCacheExpiry and ApiOpenSearch
-			$response->setHeader( 'Cache-Control', 'public, max-age=' . $this->completionCacheExpiry );
+			 if ( $this->permissionManager->isEveryoneAllowed( 'read' ) ) {
+				$response->setHeader( 'Cache-Control', 'public, max-age=' . $this->completionCacheExpiry );
+			 } else {
+				 $response->setHeader( 'Cache-Control', 'no-store, max-age=0' );
+			 }
 		}
 
 		return $response;
