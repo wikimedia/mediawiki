@@ -27,3 +27,8 @@ $namespaceNames = [
 	NS_CATEGORY         => 'zyuwaw_na',
 	NS_CATEGORY_TALK    => 'spkayal_sa_zyuwaw_na',
 ];
+
+$namespaceAliases = [
+	'biru\'_na_zayzyuwaw' => NS_FILE,
+	'spkayal_squ_biru\'_na_zayzyuwaw' => NS_FILE_TALK,
+];
