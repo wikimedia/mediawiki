@@ -601,7 +601,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testSupportsDirectApiEditing_withContentHandlerOverride() {
 		$name = 'DummyNonText:ApiEditPageTest_testNonTextEdit';
-		$data = serialize( 'some bla bla text' );
+		$data = 'some bla bla text';
 
 		$result = $this->doApiRequestWithToken( [
 			'action' => 'edit',

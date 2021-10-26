@@ -9,7 +9,7 @@ class DummyNonTextContent extends AbstractContent {
 	}
 
 	public function serialize( $format = null ) {
-		return serialize( $this->data );
+		return $this->data;
 	}
 
 	/**
