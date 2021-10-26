@@ -133,7 +133,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	public function testGetUser() {
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertSame( null, $ctx->getUser() );
-		$this->assertTrue( $ctx->getUserObj()->isAnon() );
+		$this->assertFalse( $ctx->getUserObj()->isRegistered() );
 
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [
 			'user' => 'Example'

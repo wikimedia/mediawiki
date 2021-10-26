@@ -40,7 +40,7 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		$config = $this->getConfig();
 		$user = $context->getUserObj();
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			return [];
 		}
 
