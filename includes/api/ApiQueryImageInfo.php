@@ -433,28 +433,38 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
 
+		// Handle external callers who don't pass revdelUser
+		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
+			$revdelUser = $opts['revdelUser'];
+			$canShowField = static function ( $field ) use ( $file, $revdelUser ) {
+				return $file->userCan( $field, $revdelUser );
+			};
+		} else {
+			$canShowField = static function ( $field ) use ( $file ) {
+				return !$file->isDeleted( $field );
+			};
+		}
+
 		$user = isset( $prop['user'] );
 		$userid = isset( $prop['userid'] );
 
 		if ( ( $user || $userid ) && $exists ) {
-			if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
-				$uploader = $file->getUploader( File::FOR_THIS_USER, $opts['revdelUser'] );
-			} else {
-				$uploader = $file->getUploader( File::FOR_PUBLIC );
-			}
-			if ( $uploader ) {
-				if ( $user ) {
-					$vals['user'] = $uploader->getName();
-				}
-				if ( $userid ) {
-					$vals['userid'] = $uploader->getId();
-				}
-				if ( !$uploader->isRegistered() ) {
-					$vals['anon'] = true;
-				}
-			} else {
+			if ( $file->isDeleted( File::DELETED_USER ) ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
+			}
+			if ( $canShowField( File::DELETED_USER ) ) {
+				// Already checked if the field can be show
+				$uploader = $file->getUploader( File::RAW );
+				if ( $user ) {
+					$vals['user'] = $uploader ? $uploader->getName() : '';
+				}
+				if ( $userid ) {
+					$vals['userid'] = $uploader ? $uploader->getId() : 0;
+				}
+				if ( $uploader && !$uploader->isRegistered() ) {
+					$vals['anon'] = true;
+				}
 			}
 		}
 
@@ -482,21 +492,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$comment = isset( $prop['comment'] );
 
 		if ( ( $pcomment || $comment ) && $exists ) {
-			if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
-				$description = $file->getDescription( File::FOR_THIS_USER, $opts['revdelUser'] );
-			} else {
-				$description = $file->getDescription( File::FOR_PUBLIC );
-			}
-			if ( $description ) {
-				if ( $pcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $description, $file->getTitle() );
-				}
-				if ( $comment ) {
-					$vals['comment'] = $description;
-				}
-			} else {
+			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
+			}
+			if ( $canShowField( File::DELETED_COMMENT ) ) {
+				if ( $pcomment ) {
+					$vals['parsedcomment'] = Linker::formatComment(
+						$file->getDescription( File::RAW ), $file->getTitle() );
+				}
+				if ( $comment ) {
+					$vals['comment'] = $file->getDescription( File::RAW );
+				}
 			}
 		}
 
