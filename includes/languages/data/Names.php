@@ -510,7 +510,7 @@ class Names {
 		'zh-mo' => '中文（澳門）', # Chinese (Macau)
 		'zh-my' => '中文（马来西亚）', # Chinese (Malaysia)
 		'zh-sg' => '中文（新加坡）', # Chinese (Singapore)
-		'zh-tw' => '中文（台灣）', # Chinese (Taiwan)
+		'zh-tw' => '中文（臺灣）', # Chinese (Taiwan)
 		'zh-yue' => '粵語', # Cantonese -- (see T10217)
 		'zu' => 'isiZulu' # Zulu
 	];
