@@ -21,3 +21,22 @@ $GLOBALS['wgUFAllowedNamespaces'] = array_fill( 0, 5000, true );
 require_once __DIR__ . "/../extensions/UrlGetParameters/UrlGetParameters.php";
 wfLoadExtension( 'FlexiSkin' );
 wfLoadExtension( 'Loops' );
+
+$GLOBALS['wgGroupTypes'] = [
+	'*'                => 'implicit',
+	'user'             => 'implicit',
+	'autoconfirmed'    => 'implicit',
+	'sysop'            => 'core-minimal',
+	'bureaucrat'       => 'core-extended',
+	'bot'              => 'core-extended',
+	'interface-admin'  => 'core-extended',
+	'suppress'         => 'core-extended',
+	'autoreview'       => 'extension-extended',
+	'editor'           => 'extension-minimal',
+	'review'           => 'extension-extended',
+	'reviewer'         => 'extension-minimal',
+	'smwcurator'       => 'extension-extended',
+	'smweditor'        => 'extension-extended',
+	'smwadministrator' => 'extension-extended',
+	'widgeteditor'     => 'extension-extended'
+];
