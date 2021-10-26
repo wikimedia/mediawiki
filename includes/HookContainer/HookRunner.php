@@ -542,11 +542,8 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
 	\MediaWiki\User\Hook\UserLoadFromDatabaseHook,
-	\MediaWiki\User\Hook\UserLoadOptionsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
-	\MediaWiki\User\Hook\UserResetAllOptionsHook,
-	\MediaWiki\User\Hook\UserSaveOptionsHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
 	\MediaWiki\User\Hook\UserSetEmailAuthenticationTimestampHook,
@@ -4193,13 +4190,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserLoadOptions( $user, &$options ) {
-		return $this->container->run(
-			'UserLoadOptions',
-			[ $user, &$options ]
-		);
-	}
-
 	public function onLoadUserOptions( UserIdentity $user, array &$options ): void {
 		$this->container->run(
 			'LoadUserOptions',
@@ -4270,22 +4260,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserRemoveGroup',
 			[ $user, &$group ]
-		);
-	}
-
-	public function onUserResetAllOptions( $user, &$newOptions, $options,
-		$resetKinds
-	) {
-		return $this->container->run(
-			'UserResetAllOptions',
-			[ $user, &$newOptions, $options, $resetKinds ]
-		);
-	}
-
-	public function onUserSaveOptions( $user, &$options, $originalOptions ) {
-		return $this->container->run(
-			'UserSaveOptions',
-			[ $user, &$options, $originalOptions ]
 		);
 	}
 

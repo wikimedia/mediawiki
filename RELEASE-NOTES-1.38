@@ -185,6 +185,8 @@ because of Phabricator reports.
   has been removed.
 * The constant ApiBase::PARAM_VALUE_LINKS, deprecated since 1.35 has been
   removed.
+* UserLoadOptions, UserSaveOptions and UserResetAllOptions hooks, deprecated
+  since 1.37, were removed.
 * …
 
 === Deprecations in 1.38 ===
