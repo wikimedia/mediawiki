@@ -112,7 +112,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
-* Updated wikimedia/parsoid from v0.13.1 to v0.14.0-a19.
+* Updated wikimedia/parsoid from v0.13.1 to v0.14.x.
 * Updated wikimedia/relpath from v2.1.1 to v3.0.0.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
 * Updated wikimedia/shellbox from v1.0.4 to v2.0.0.
@@ -862,7 +862,8 @@ because of Phabricator reports.
 
 == Compatibility ==
 
-MediaWiki 1.37 requires PHP 7.3.19 or later and the following PHP extensions:
+MediaWiki 1.37 requires PHP 7.3.19 or later, or PHP 7.4.3 or later, and the
+following PHP extensions:
 
 * ctype
 * dom
@@ -872,6 +873,8 @@ MediaWiki 1.37 requires PHP 7.3.19 or later and the following PHP extensions:
 * json
 * mbstring
 * xml
+
+Support for PHP 8.0 is not yet complete.
 
 MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
 but support for them is somewhat less mature.
