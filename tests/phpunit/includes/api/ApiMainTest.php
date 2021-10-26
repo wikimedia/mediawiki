@@ -1172,4 +1172,51 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertFalse( $api->matchRequestedHeaders( 'Accept,Foo', $allowedHeaders ) );
 		$this->assertFalse( $api->matchRequestedHeaders( 'Accept, fOO', $allowedHeaders ) );
 	}
+
+	/**
+	 * @param string $cacheMode
+	 * @param string|null $expectedVary
+	 * @param string $expectedCacheControl
+	 * @param array $requestData
+	 * @param Config|null $config
+	 * @dataProvider provideCacheHeaders
+	 */
+	public function testCacheHeaders(
+		string $cacheMode,
+		?string $expectedVary,
+		string $expectedCacheControl,
+		array $requestData = [],
+		Config $config = null
+	) {
+		$req = new FauxRequest( $requestData );
+		$ctx = new RequestContext();
+		$ctx->setRequest( $req );
+		if ( $config ) {
+			$ctx->setConfig( $config );
+		}
+		/** @var ApiMain|TestingAccessWrapper $api */
+		$api = TestingAccessWrapper::newFromObject( new ApiMain( $ctx ) );
+
+		$api->setCacheMode( $cacheMode );
+		$this->assertSame( $cacheMode, $api->mCacheMode, 'Cache mode precondition' );
+		$api->sendCacheHeaders( false );
+
+		$this->assertSame( $expectedVary, $req->response()->getHeader( 'Vary' ), 'Vary' );
+		$this->assertSame( $expectedCacheControl, $req->response()->getHeader( 'Cache-Control' ), 'Cache-Control' );
+	}
+
+	public function provideCacheHeaders(): Generator {
+		yield 'Private' => [ 'private', null, 'private, must-revalidate, max-age=0' ];
+		yield 'Public' => [
+			'public',
+			'Accept-Encoding, Treat-as-Untrusted, Cookie',
+			'private, must-revalidate, max-age=0',
+			[ 'uselang' => 'en' ]
+		];
+		yield 'Anon public, user private' => [
+			'anon-public-user-private',
+			'Accept-Encoding, Treat-as-Untrusted, Cookie',
+			'private, must-revalidate, max-age=0'
+		];
+	}
 }
