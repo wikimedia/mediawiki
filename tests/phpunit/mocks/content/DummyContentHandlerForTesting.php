@@ -33,9 +33,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		$d = unserialize( $blob );
-
-		return new DummyContentForTesting( $d );
+		return new DummyContentForTesting( $blob );
 	}
 
 	/**
