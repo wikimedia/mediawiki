@@ -308,7 +308,7 @@ class CoreMagicVariables {
 			case 'directionmark':
 				return $pageLang->getDirMark();
 			case 'contentlanguage':
-				return (string)$svcOptions->get( 'LanguageCode' );
+				return $parser->getContentLanguage()->getCode();
 			case 'pagelanguage':
 				return $pageLang->getCode();
 			case 'cascadingsources':
