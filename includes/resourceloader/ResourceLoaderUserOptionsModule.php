@@ -53,6 +53,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		$user = $context->getUserObj();
 
 		$tokens = [
+			// Replacement is tricky - T287542
 			'patrolToken' => $user->getEditToken( 'patrol' ),
 			'watchToken' => $user->getEditToken( 'watch' ),
 			'csrfToken' => $user->getEditToken(),
