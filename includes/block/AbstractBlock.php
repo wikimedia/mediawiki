@@ -308,43 +308,6 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Get the target and target type for this particular block. Note that for autoblocks,
-	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
-	 * in this situation.
-	 *
-	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
-	 *
-	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
-	 *             together with getType()
-	 *
-	 * @return array [ User|String|null, int|null ]
-	 * @todo FIXME: This should be an integral part of the block member variables
-	 */
-	public function getTargetAndType() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return [ $this->getTarget(), $this->getType() ];
-	}
-
-	/**
-	 * Get the target for this particular block. Note that for autoblocks,
-	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
-	 * in this situation.
-	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
-	 *             together with getType()
-	 * @return User|string|null
-	 */
-	public function getTarget() {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( $this->target instanceof UserIdentity ) {
-			return MediaWikiServices::getInstance()
-				->getUserFactory()
-				->newFromUserIdentity( $this->target );
-		} else {
-			return $this->target;
-		}
-	}
-
-	/**
 	 * @since 1.37
 	 * @return ?UserIdentity
 	 */

@@ -514,20 +514,6 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Checks whether a given IP is on the autoblock exemption list.
-	 *
-	 * @deprecated since 1.36; use DatabaseBlock::isExemptedFromAutoblocks()
-	 *
-	 * @param string $ip The IP to check
-	 * @return bool
-	 */
-	public static function isWhitelistedFromAutoblocks( $ip ) {
-		// Hard-deprecated since MW 1.37.
-		wfDeprecated( __METHOD__, '1.36' );
-		return self::isExemptedFromAutoblocks( $ip );
-	}
-
-	/**
-	 * Checks whether a given IP is on the autoblock exemption list.
 	 * TODO: this probably belongs somewhere else, but not sure where...
 	 *
 	 * @since 1.36
