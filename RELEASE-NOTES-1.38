@@ -268,6 +268,7 @@ because of Phabricator reports.
      ::getArchivedRevisionRecord, ::getPreviousRevisionRecord and
      ::getLastRevisionId.
    - Use ArchivedRevisionLookup::hasArchivedRevisions instead of ::isDeleted.
+* LinkCache::addGoodLinkObj() has been hard deprecated.
 * …
 
 === Other changes in 1.38 ===

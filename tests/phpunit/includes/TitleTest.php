@@ -16,6 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class TitleTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
+	use LinkCacheTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -367,10 +368,10 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::clearCaches
 	 */
 	public function testClearCaches() {
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$title1 = Title::newFromText( 'Foo' );
-		$linkCache->addGoodLinkObj( 23, $title1 );
+		$this->addGoodLinkObject( 23, $title1 );
 
 		Title::clearCaches();
 
