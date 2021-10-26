@@ -282,6 +282,7 @@ class LinkCache implements LoggerAwareInterface {
 	public function addGoodLinkObj( $id, $page, $len = -1, $redir = null,
 		$revision = 0, $model = null, $lang = null
 	) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->addGoodLinkObjFromRow( $page, (object)[
 			'page_id' => (int)$id,
 			'page_namespace' => $page->getNamespace(),
