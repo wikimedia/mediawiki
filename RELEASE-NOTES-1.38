@@ -167,14 +167,15 @@ because of Phabricator reports.
   since 1.37, has been removed.
 * Parser::$mStripState, deprecated in 1.35, has been made private.  Use
   Parser::getStripState() instead.
-* DatabaseBlock::setBlocker() no longer accepts a username as blocker, it
-  must always be a UserIdentity. This was deprecated since 1.36.
-* The following deprecated constructor options of DatabaseBlock class
-  have been removed:
-  - 'byText' property with blocker's name,
-    use 'by' property with UserIdentity value instead.
-  - 'by' property with blocker's ID,
-    use 'by' property with UserIdentity value instead.
+* The following deprecated features in blocks were removed:
+  - DatabaseBlock constructor 'byText' property with blocker's name, use 'by'
+    property with UserIdentity value instead.
+  - DatabaseBlock constructor 'by' property with blocker's ID, use 'by' property
+    with UserIdentity value instead.
+  - DatabaseBlock::isWhitelistedFromAutoblocks, use ::isExemptedFromAutoblocks.
+  - DatabaseBlock::setBlocker now only accepts UserIdentity.
+  - AbstractBlock::getTargetAndType and ::getTarget, use ::getTargetName,
+    ::getTargetUserIdentity and ::getType instead
 * The following functions, emitting deprecations since 1.37, have been removed:
   - Title::isWatchable()
   - WatchAction::doWatchOrUnwatch(), WatchAction::doWatch(),
