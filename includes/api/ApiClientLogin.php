@@ -119,11 +119,6 @@ class ApiClientLogin extends ApiBase {
 		return false;
 	}
 
-	public function isWriteMode() {
-		// (T283394) Logging in triggers some database writes, so should be marked appropriately.
-		return true;
-	}
-
 	public function needsToken() {
 		return 'login';
 	}
