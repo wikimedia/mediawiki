@@ -492,12 +492,12 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['text'] ) ) {
 			$skin = $context ? $context->getSkin() : null;
-			$options = $skin ? $skin->getOptions() : [
+			$skinOptions = $skin ? $skin->getOptions() : [
 				'toc' => true,
 			];
 			$result_array['text'] = $p_result->getText( [
 				'allowTOC' => !$params['disabletoc'],
-				'injectTOC' => $options['toc'],
+				'injectTOC' => $skinOptions['toc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
