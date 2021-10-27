@@ -50,6 +50,8 @@ class HttpRequestFactory {
 		'HTTPConnectTimeout',
 		'HTTPMaxTimeout',
 		'HTTPMaxConnectTimeout',
+		'LocalVirtualHosts',
+		'LocalHTTPProxy',
 	];
 
 	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
@@ -260,7 +262,9 @@ class HttpRequestFactory {
 			'maxReqTimeout' => $this->options->get( 'HTTPMaxTimeout' ),
 			'maxConnTimeout' => $this->options->get( 'HTTPMaxConnectTimeout' ),
 			'userAgent' => $this->getUserAgent(),
-			'logger' => $this->logger
+			'logger' => $this->logger,
+			'localProxy' => $this->options->get( 'LocalHTTPProxy' ),
+			'localVirtualHosts' => $this->options->get( 'LocalVirtualHosts' ),
 		];
 		return new MultiHttpClient( $options );
 	}
