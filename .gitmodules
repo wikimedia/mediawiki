@@ -998,11 +998,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
 	branch = master
 	ignore = dirty
-[submodule "extensions/Citoid"]
-	path = extensions/Citoid
-	url = https://github.com/wikimedia/mediawiki-extensions-Citoid
-	branch = REL1_37
-	ignore = dirty
 [submodule "extensions/Genealogy"]
 	path = extensions/Genealogy
 	url = https://github.com/wikimedia/mediawiki-extensions-Genealogy
