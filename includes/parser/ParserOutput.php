@@ -333,6 +333,10 @@ class ParserOutput extends CacheTime {
 	 *  - allowTOC: (bool) Show the TOC, assuming there were enough headings
 	 *     to generate one and `__NOTOC__` wasn't used. Default is true,
 	 *     but might be statefully overridden.
+	 *  - injectTOC: (bool) Replace the TOC_PLACEHOLDER with TOC contents;
+	 *     otherwise the marker will be left in the article (and the skin
+	 *     will be responsible for replacing or removing it).  Default is
+	 *     true.
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *     section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
@@ -356,6 +360,7 @@ class ParserOutput extends CacheTime {
 	public function getText( $options = [] ) {
 		$options += [
 			'allowTOC' => true,
+			'injectTOC' => true,
 			'enableSectionEditLinks' => true,
 			'skin' => null,
 			'unwrap' => false,
@@ -371,7 +376,9 @@ class ParserOutput extends CacheTime {
 		}
 
 		if ( $options['enableSectionEditLinks'] ) {
-			// TODO: Passing the skin should be required
+			// TODO: Skin should not be required.
+			// It would be better to define one or more narrow interfaces to use here,
+			// so this code doesn't have to depend on all of Skin.
 			$skin = $options['skin'] ?: RequestContext::getMain()->getSkin();
 
 			$text = preg_replace_callback(
@@ -409,8 +416,32 @@ class ParserOutput extends CacheTime {
 		}
 
 		if ( $options['allowTOC'] ) {
-			$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
+			if ( $options['injectTOC'] ) {
+				// XXX Use DI to inject this once ::getText() is moved out
+				// of ParserOutput.
+				$tidy = MediaWikiServices::getInstance()->getTidy();
+				$toc = $tidy->tidy(
+					$this->getTOCHTML(),
+					[ Sanitizer::class, 'armorFrenchSpaces' ]
+				);
+				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
+				// The line below can be removed once old content has expired
+				// from the parser cache
+				$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
+			} else {
+				// The line below can be removed once old content has expired
+				// from the parser cache (and Parser::TOC_PLACEHOLDER should
+				// then be made private)
+				$text = preg_replace(
+					'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
+					Parser::TOC_PLACEHOLDER,
+					$text
+				);
+			}
 		} else {
+			$text = Parser::replaceTableOfContentsMarker( $text, '' );
+			// The line below can be removed once old content has expired
+			// from the parser cache
 			$text = preg_replace(
 				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
 				'',
@@ -634,6 +665,9 @@ class ParserOutput extends CacheTime {
 		return $this->mTitleText;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getSections() {
 		return $this->mSections;
 	}
