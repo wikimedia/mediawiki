@@ -522,6 +522,7 @@
 	"apihelp-query+protectedtitles-summary": "작성이 보호된 모든 제목을 나열합니다.",
 	"apihelp-query+protectedtitles-paramvalue-prop-level": "보호 수준을 추가합니다.",
 	"apihelp-query+querypage-summary": "QueryPage 기반 특수 문서가 제공하는 목록을 가져옵니다.",
+	"apihelp-query+querypage-param-page": "특수 문서의 이름입니다. 대소문자를 구분합니다.",
 	"apihelp-query+querypage-example-ancientpages": "[[Special:Ancientpages|특수:오래된문서]]에서 결과를 반환합니다.",
 	"apihelp-query+random-summary": "임의 문서 집합을 가져옵니다.",
 	"apihelp-query+recentchanges-summary": "최근 바뀜을 열거합니다.",

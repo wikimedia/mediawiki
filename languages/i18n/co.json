@@ -288,7 +288,7 @@
 	"last": "prec",
 	"page_first": "prima",
 	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: <strong>({{int:cur}})</strong> = differenze cù a versione attuale, <strong>({{int:last}})</strong> = differenze cù a versione precedente, <strong>{{int:minoreditletter}}</strong> = mudifica minò",
-	"history-fieldset-title": "Parcorre a cronolugia",
+	"history-fieldset-title": "Filtra versioni",
 	"history-show-deleted": "Solu quelli cancellati",
 	"histfirst": "prima",
 	"histlast": "ultima",
@@ -300,6 +300,7 @@
 	"revdel-restore": "cambià a visibilità",
 	"mergehistory-reason": "Mutivu:",
 	"history-title": "$1: cronolugia di e mudifiche",
+	"difference-title": "Diffarenze trà e versioni di \"$1\"",
 	"lineno": "Linia $1:",
 	"compareselectedversions": "Paragunà e versione selezziunate",
 	"editundo": "annullà",
@@ -493,6 +494,7 @@
 	"actionfailed": "Azione faltata",
 	"dellogpage": "Cancellamenti",
 	"deletecomment": "Mutivu:",
+	"sessionfailure": "There seems to be a problem with your login session;\nthis action has been canceled as a precaution against session hijacking.\nPlease resubmit the form.",
 	"protectedarticle": "hai prutettu \"[[$1]]\"",
 	"prot_1movedto2": "hà mossu [[$1]] à [[$2]]",
 	"protect-legend": "Cunfirmà a prutezzione",
@@ -678,6 +680,7 @@
 	"logentry-newusers-create": "U participante $1 hè statu {{GENDER:$2|creatu}}",
 	"rightsnone": "(nessunu)",
 	"searchsuggest-search": "Circà in {{SITENAME}}",
+	"api-clientside-error-noconnect": "Could not connect to the server. Make sure you have a working internet connection and try again.",
 	"expand_templates_output": "Risultatu",
 	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media"
 }
