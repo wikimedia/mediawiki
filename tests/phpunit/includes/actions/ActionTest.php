@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @covers Action
@@ -287,12 +288,12 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user->expects( $this->once() )
-			->method( 'isBlockedFrom' )
-			->with( $page->getTitle() )
-			->willReturn( true );
-		$user->expects( $this->once() )
 			->method( 'getBlock' )
 			->willReturn( $block );
+
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'isBlockedFrom' )->willReturn( true );
+		$this->setService( 'PermissionManager', $permissionManager );
 
 		$this->expectException( UserBlockedError::class );
 		$action->canExecute( $user );
