@@ -237,7 +237,12 @@ interface IDatabase {
 	public function trxTimestamp();
 
 	/**
-	 * @return bool Whether an explicit transaction or atomic sections are still open
+	 * Check whether there is a transaction open at the specific request of a caller
+	 *
+	 * Explicit transactions are spawned by begin(), startAtomic(), and doAtomicSection().
+	 * Note that explicit transactions should not be confused with explicit transaction rounds.
+	 *
+	 * @return bool
 	 * @since 1.28
 	 */
 	public function explicitTrxActive();

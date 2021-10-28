@@ -1652,22 +1652,43 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool True if it is safe to retry the query, false otherwise
 	 */
 	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
-		# Transaction dropped; this can mean lost writes, or REPEATABLE-READ snapshots.
-		# Dropped connections also mean that named locks are automatically released.
-		# Only allow error suppression in autocommit mode or when the lost transaction
-		# didn't matter anyway (aside from DBO_TRX snapshot loss).
+		$blockers = [];
 		if ( $this->sessionNamedLocks ) {
-			return false; // possible critical section violation
-		} elseif ( $this->sessionTempTables ) {
-			return false; // tables might be queried latter
-		} elseif ( $sql === 'COMMIT' ) {
-			return !$priorWritesPending; // nothing written anyway? (T127428)
-		} elseif ( $sql === 'ROLLBACK' ) {
-			return true; // transaction lost...which is also what was requested :)
-		} elseif ( $this->explicitTrxActive() ) {
-			return false; // don't drop atomicity and explicit snapshots
-		} elseif ( $priorWritesPending ) {
-			return false; // prior writes lost from implicit transaction
+			// Named locks were automatically released, breaking the expectations
+			// of callers relying on those locks for critical section enforcement
+			$blockers[] = 'named locks';
+		}
+		if ( $this->sessionTempTables ) {
+			// Temp tables were automatically dropped, breaking the expectations
+			// of callers relying on those tables having been created/populated
+			$blockers[] = 'temp tables';
+		}
+		if ( $priorWritesPending && $sql !== 'ROLLBACK' ) {
+			// Transaction was automatically rolled back, breaking the expectations
+			// of callers and DBO_TRX semantics relying on that transaction to provide
+			// atomic writes (point-in-time snapshot loss is acceptable for DBO_TRX)
+			$blockers[] = 'transaction writes';
+		}
+		if ( $this->explicitTrxActive() && $sql !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
+			// Transaction was automatically rolled back, breaking the expectations of
+			// callers relying on that transaction to provide atomic writes, serializability,
+			// or read results consistent with a single point-in-time snapshot. Disconnection
+			// on ROLLBACK is not an issue, since the intented result of rolling back the
+			// transaction was in fact achieved. Disconnection on COMMIT of an empty transaction
+			// is also not an issue, for similar reasons (T127428).
+			$blockers[] = 'explicit transaction';
+		}
+
+		if ( $blockers ) {
+			$this->connLogger->warning(
+				"Silent reconnection to {db_server} could not be attempted: {error}",
+				$this->getLogContext( [
+					'error' => 'session state loss (' . implode( ', ', $blockers ) . ')',
+					'exception' => new RuntimeException()
+				] )
+			);
+
+			return false;
 		}
 
 		return true;
