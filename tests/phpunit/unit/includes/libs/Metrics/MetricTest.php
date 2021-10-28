@@ -3,15 +3,16 @@
 namespace Wikimedia\Tests\Metrics;
 
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 use Wikimedia\Metrics\MetricsFactory;
 
 /**
- * @covers \Wikimedia\Metrics\Metric
+ * @covers \Wikimedia\Metrics\NullMetric
  * @covers \Wikimedia\Metrics\CounterMetric
  * @covers \Wikimedia\Metrics\GaugeMetric
  * @covers \Wikimedia\Metrics\TimingMetric
+ * @covers \Wikimedia\Metrics\MetricUtils
  */
 class MetricTest extends TestCase {
 
@@ -89,17 +90,9 @@ class MetricTest extends TestCase {
 			'mediawiki.testExtension.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
 	];
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
-		$this->logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
-	}
-
 	public function testValidateLabels() {
 		$this->expectException( InvalidLabelsException::class );
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], $this->logger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$counter = $m->getCounter( [
 			'name' => 'test',
 			'extension' => 'testExtension',
@@ -140,7 +133,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function handleFormat( $format ) {
-		$metricsFactory = new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => $format ], $this->logger );
+		$metricsFactory = new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => $format ], new NullLogger );
 		foreach ( self::TYPES as $type ) {
 			$this->handleType( $type, $format, $metricsFactory );
 		}
@@ -155,7 +148,7 @@ class MetricTest extends TestCase {
 	public function testSampledMetrics() {
 		$rounds = 10;
 		foreach ( self::FORMATS as $format ) {
-			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], $this->logger );
+			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], new NullLogger );
 			$ten_percent = $m->getCounter(
 				[
 					'name' => 'test.sampled.ten',
