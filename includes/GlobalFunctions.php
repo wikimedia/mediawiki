@@ -776,13 +776,22 @@ function wfUrlProtocolsWithoutProtRel() {
 function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
 
+	// Protocol-relative URLs are handled really badly by parse_url(). It's so
+	// bad that the easiest way to handle them is to just prepend 'http:' and
+	// strip the protocol out later.
+	$wasRelative = substr( $url, 0, 2 ) == '//';
+	if ( $wasRelative ) {
+		$url = "http:$url";
+	}
 	$bits = parse_url( $url );
-	if ( !$bits ) {
+	// parse_url() returns an array without scheme for some invalid URLs, e.g.
+	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
+	if ( !$bits || !isset( $bits['scheme'] ) ) {
 		return false;
 	}
 
 	// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
-	$bits['scheme'] = strtolower( $bits['scheme'] ?? '' );
+	$bits['scheme'] = strtolower( $bits['scheme'] );
 
 	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
 	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
@@ -795,13 +804,7 @@ function wfParseUrl( $url ) {
 			$bits['host'] = $bits['path'];
 			$bits['path'] = '';
 		}
-	} elseif ( !strlen( $bits['scheme'] ) && isset( $bits['host'] ) ) {
-		// This means $url was protocol-relative, e.g. //example.com
-		$bits['delimiter'] = '//';
 	} else {
-		// Option 1: scheme is not in $wgUrlProtocols
-		// Option 2: parse_url() returns an array without scheme or host for some invalid URLs,
-		// e.g. parse_url("%0Ahttp://example.com") == [ 'path' => '%0Ahttp://example.com' ]
 		return false;
 	}
 
@@ -820,6 +823,11 @@ function wfParseUrl( $url ) {
 		}
 	}
 
+	// If the URL was protocol-relative, fix scheme and delimiter
+	if ( $wasRelative ) {
+		$bits['scheme'] = '';
+		$bits['delimiter'] = '//';
+	}
 	return $bits;
 }
 
