@@ -269,11 +269,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, [] );
 		$action = $this->getAction( 'access' );
-		try {
-			$action->canExecute( $user );
-		} catch ( Exception $e ) {
-			$this->assertInstanceOf( PermissionsError::class, $e );
-		}
+		$this->expectException( PermissionsError::class );
+		$action->canExecute( $user );
 	}
 
 	public function testCanExecuteRequiresUnblock() {
@@ -297,12 +294,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			->method( 'getBlock' )
 			->willReturn( $block );
 
-		try {
-			$action->canExecute( $user );
-			$this->assertFalse( true );
-		} catch ( Exception $e ) {
-			$this->assertInstanceOf( UserBlockedError::class, $e );
-		}
+		$this->expectException( UserBlockedError::class );
+		$action->canExecute( $user );
 	}
 
 }
