@@ -264,6 +264,8 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'UndeletePageFactory',
+				'WikiPageFactory',
 			]
 		],
 		'protect' => [
