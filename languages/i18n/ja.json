@@ -2525,7 +2525,7 @@
 	"logentry-contentmodel-change-revertlink": "差し戻し",
 	"logentry-contentmodel-change-revert": "差し戻し",
 	"protectlogpage": "保護記録",
-	"protectlogtext": "以下はページ保護に対する変更の記録です。\n現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。",
+	"protectlogtext": "以下はページに対する保護変更の記録です。\n現在、保護レベルを変更できるページについては[[Special:ProtectedPages|保護ページ一覧]]を参照してください。",
 	"protectedarticle": "「[[$1]]」を保護しました",
 	"modifiedarticleprotection": "「[[$1]]」の保護設定を変更しました",
 	"unprotectedarticle": "「[[$1]]」の保護を解除しました",

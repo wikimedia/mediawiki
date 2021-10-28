@@ -91,6 +91,40 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Enriches section data with has-subsections and is-last-subsection
+	 * properties so that the table of contents can be rendered in Mustache.
+	 *
+	 * Example Mustache template code:
+	 * <ul>
+	 * {{#array-sections}}
+	 *   <li>{{number}} {{line}}
+	 *   {{#has-subsections}}<ul>{{/has-subsections}}
+	 *   {{^has-subsections}}</li>{{/has-subsections}}
+	 *   {{#is-last-item}}</ul>{{/is-last-item}}
+	 * {{/array-sections}}
+	 * </ul>
+	 *
+	 * @return array
+	 */
+	private function getSectionsData(): array {
+		$sections = $this->getOutput()->getSections();
+		$data = [];
+		$parent = null;
+		$lastLevel = 0;
+		foreach ( $sections as $i => $section ) {
+			$nextSection = $sections[$i + 1] ?? null;
+			$level = $section['toclevel'];
+
+			$data[] = $section + [
+				'has-subsections' => $nextSection !== null && $nextSection['toclevel'] > $level,
+				'is-last-item' => $nextSection === null || $nextSection['toclevel'] < $level,
+			];
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Subclasses may extend this method to add additional
 	 * template data.
 	 *
@@ -113,6 +147,9 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$user = $this->getUser();
 		$data = [
+			// Array values
+			'array-sections' => $this->getSectionsData(),
+
 			// Boolean values
 			'is-anon' => $user->isAnon(),
 			'is-article' => $out->isArticle(),
@@ -185,6 +222,10 @@ abstract class Skin extends ContextSource {
 	 *     tag can be set on the skin. Note, users can disable this feature via  user
 	 *     preference.
 	 *  `link` an array of link options that will be used in makeLink calls. See Skin::makeLink
+	 *  `toc` Whether a table of contents is included in the main article
+	 *     content area.  It defaults to `true`, but if your skins wants to
+	 *     place a table of contents elsewhere (for example, in a sidebar),
+	 *     set `toc` to `false`.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -199,6 +240,7 @@ abstract class Skin extends ContextSource {
 			if ( isset( $options['link'] ) ) {
 				$this->defaultLinkOptions = $options['link'];
 			}
+			// Defaults are set in Skin::getOptions()
 			$this->options = $options;
 			$this->skinname = $name;
 		}
@@ -2578,8 +2620,12 @@ abstract class Skin extends ContextSource {
 	 * @internal
 	 * @return array Skin options passed into constructor
 	 */
-	public function getOptions(): array {
-		return $this->options;
+	final public function getOptions(): array {
+		return $this->options + [
+			// Whether the table of contents will be inserted on page views
+			// See ParserOutput::getText() for the implementation logic
+			'toc' => true,
+		];
 	}
 
 	/**

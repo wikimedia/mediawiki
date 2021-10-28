@@ -491,12 +491,17 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['text'] ) ) {
+			$skin = $context ? $context->getSkin() : null;
+			$options = $skin ? $skin->getOptions() : [
+				'toc' => true,
+			];
 			$result_array['text'] = $p_result->getText( [
 				'allowTOC' => !$params['disabletoc'],
+				'injectTOC' => $options['toc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
-				'skin' => $context ? $context->getSkin() : null,
+				'skin' => $skin,
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 			if ( $context ) {

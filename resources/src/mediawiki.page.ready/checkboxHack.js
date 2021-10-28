@@ -107,20 +107,6 @@
  */
 
 /**
- * Checkbox hack listener state.
- *
- * TODO: Change to @-typedef when we switch to JSDoc
- *
- * @class {Object} CheckboxHackListeners
- * @property {Function} [onUpdateAriaExpandedOnInput]
- * @property {Function} [onToggleOnClick]
- * @property {Function} [onToggleOnSpaceEnter]
- * @property {Function} [onDismissOnClickOutside]
- * @property {Function} [onDismissOnFocusLoss]
- * @ignore
- */
-
-/**
  * Revise the button's `aria-expanded` state to match the checked state.
  *
  * @param {HTMLInputElement} checkbox
@@ -157,7 +143,7 @@ function updateAriaExpanded( checkbox, button ) {
  * @ignore
  */
 function setCheckedState( checkbox, checked ) {
-	/** @type {Event} */
+	/** @type {Event} @ignore */
 	var e;
 	checkbox.checked = checked;
 	// Chrome and Firefox sends the builtin Event with .bubbles == true and .composed == true.
@@ -215,14 +201,17 @@ function dismissIfExternalEventTarget( checkbox, button, target, event ) {
  *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bindUpdateAriaExpandedOnInput( checkbox, button ) {
 	var listener = updateAriaExpanded.bind( undefined, checkbox, button );
 	// Whenever the checkbox state changes, update the `aria-expanded` state.
 	checkbox.addEventListener( 'input', listener );
-	return { onUpdateAriaExpandedOnInput: listener };
+
+	return function () {
+		checkbox.removeEventListener( 'input', listener );
+	};
 }
 
 /**
@@ -230,7 +219,7 @@ function bindUpdateAriaExpandedOnInput( checkbox, button ) {
  *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bindToggleOnClick( checkbox, button ) {
@@ -241,7 +230,10 @@ function bindToggleOnClick( checkbox, button ) {
 		setCheckedState( checkbox, !checkbox.checked );
 	}
 	button.addEventListener( 'click', listener, true );
-	return { onToggleOnClick: listener };
+
+	return function () {
+		button.removeEventListener( 'click', listener, true );
+	};
 }
 
 /**
@@ -249,22 +241,48 @@ function bindToggleOnClick( checkbox, button ) {
  *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bindToggleOnSpaceEnter( checkbox, button ) {
-
-	function onToggleOnSpaceEnter( /** @type {KeyboardEvent} */ event ) {
-		// Only handle SPACE and ENTER.
-		if ( event.key !== ' ' && event.key !== 'Enter' ) {
-			return;
-		}
-		event.preventDefault();
-		setCheckedState( checkbox, !checkbox.checked );
+	function isEnterOrSpace( /** @type {KeyboardEvent} @ignore */ event ) {
+		return event.key === ' ' || event.key === 'Enter';
 	}
 
-	button.addEventListener( 'keydown', onToggleOnSpaceEnter, true );
-	return { onToggleOnSpaceEnter: onToggleOnSpaceEnter };
+	function onKeydown( /** @type {KeyboardEvent} @ignore */ event ) {
+		// Only handle SPACE and ENTER.
+		if ( !isEnterOrSpace( event ) ) {
+			return;
+		}
+		// Prevent the browser from scrolling when pressing space. The browser will
+		// try to do this unless the "button" element is a button or a checkbox.
+		// Depending on the actual "button" element, this also possibly prevents a
+		// native click event from being triggered so we programatically trigger a
+		// click event in the keyup handler.
+		event.preventDefault();
+	}
+
+	function onKeyup( /** @type {KeyboardEvent} @ignore */ event ) {
+		// Only handle SPACE and ENTER.
+		if ( !isEnterOrSpace( event ) ) {
+			return;
+		}
+
+		// A native button element triggers a click event when the space or enter
+		// keys are pressed. Since the passed in "button" may or may not be a
+		// button, programmatically trigger a click event to make it act like a
+		// button.
+		button.click();
+	}
+
+	button.addEventListener( 'keydown', onKeydown );
+	button.addEventListener( 'keyup', onKeyup );
+
+	return function () {
+		button.removeEventListener( 'keydown', onKeydown );
+		button.removeEventListener( 'keyup', onKeyup );
+	};
+
 }
 
 /**
@@ -275,13 +293,16 @@ function bindToggleOnSpaceEnter( checkbox, button ) {
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @param {Node} target
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bindDismissOnClickOutside( window, checkbox, button, target ) {
 	var listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
 	window.addEventListener( 'click', listener, true );
-	return { onDismissOnClickOutside: listener };
+
+	return function () {
+		window.removeEventListener( 'click', listener, true );
+	};
 }
 
 /**
@@ -292,7 +313,7 @@ function bindDismissOnClickOutside( window, checkbox, button, target ) {
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @param {Node} target
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bindDismissOnFocusLoss( window, checkbox, button, target ) {
@@ -300,7 +321,10 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 	// listener on the target would be preferable, but this interferes with the click listener.
 	var listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
 	window.addEventListener( 'focusin', listener, true );
-	return { onDismissOnFocusLoss: listener };
+
+	return function () {
+		window.removeEventListener( 'focusin', listener, true );
+	};
 }
 
 /**
@@ -317,51 +341,23 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
  * @param {HTMLElement} button The visible label icon associated with the checkbox. This button
  *   toggles the state of the underlying checkbox.
  * @param {Node} target The Node to toggle visibility of based on checkbox state.
- * @return {CheckboxHackListeners}
+ * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
 function bind( window, checkbox, button, target ) {
-	var spaceHandlers = bindToggleOnSpaceEnter( checkbox, button );
-	// ES6: return Object.assign( bindToggleOnSpaceEnter( checkbox, button ), ... );
-	// https://caniuse.com/#feat=mdn-javascript_builtins_object_assign
-	return {
-		onUpdateAriaExpandedOnInput: bindUpdateAriaExpandedOnInput( checkbox ).onUpdateAriaExpandedOnInput,
-		onToggleOnClick: bindToggleOnClick( checkbox, button ).onToggleOnClick,
-		onToggleOnSpaceEnter: spaceHandlers.onToggleOnSpaceEnter,
-		onKeydownSpaceEnter: spaceHandlers.onKeydownSpaceEnter,
-		onDismissOnClickOutside: bindDismissOnClickOutside( window, checkbox, button, target ).onDismissOnClickOutside,
-		onDismissOnFocusLoss: bindDismissOnFocusLoss( window, checkbox, button, target ).onDismissOnFocusLoss
-	};
-}
+	var cleanups = [
+		bindUpdateAriaExpandedOnInput( checkbox, button ),
+		bindToggleOnClick( checkbox, button ),
+		bindToggleOnSpaceEnter( checkbox, button ),
+		bindDismissOnClickOutside( window, checkbox, button, target ),
+		bindDismissOnFocusLoss( window, checkbox, button, target )
+	];
 
-/**
- * Free all set listeners.
- *
- * @param {Window} window
- * @param {HTMLInputElement} checkbox The underlying hidden checkbox that controls target
- *   visibility.
- * @param {HTMLElement} button The visible label icon associated with the checkbox. This button
- *   toggles the state of the underlying checkbox.
- * @param {CheckboxHackListeners} listeners
- * @return {void}
- * @ignore
- */
-function unbind( window, checkbox, button, listeners ) {
-	if ( listeners.onDismissOnFocusLoss ) {
-		window.removeEventListener( 'focusin', listeners.onDismissOnFocusLoss );
-	}
-	if ( listeners.onDismissOnClickOutside ) {
-		window.removeEventListener( 'click', listeners.onDismissOnClickOutside );
-	}
-	if ( listeners.onToggleOnClick ) {
-		button.removeEventListener( 'click', listeners.onToggleOnClick );
-	}
-	if ( listeners.onToggleOnSpaceEnter ) {
-		button.removeEventListener( 'keydown', listeners.onToggleOnSpaceEnter );
-	}
-	if ( listeners.onUpdateAriaExpandedOnInput ) {
-		checkbox.removeEventListener( 'input', listeners.onUpdateAriaExpandedOnInput );
-	}
+	return function () {
+		cleanups.forEach( function ( cleanup ) {
+			cleanup();
+		} );
+	};
 }
 
 module.exports = {
@@ -371,6 +367,5 @@ module.exports = {
 	bindToggleOnSpaceEnter: bindToggleOnSpaceEnter,
 	bindDismissOnClickOutside: bindDismissOnClickOutside,
 	bindDismissOnFocusLoss: bindDismissOnFocusLoss,
-	bind: bind,
-	unbind: unbind
+	bind: bind
 };

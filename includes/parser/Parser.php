@@ -149,9 +149,45 @@ class Parser {
 	public const MARKER_SUFFIX = "-QINU`\"'\x7f";
 	public const MARKER_PREFIX = "\x7f'\"`UNIQ-";
 
-	# Markers used for wrapping the table of contents
+	/**
+	 * Internal Markers used for wrapping the table of contents.
+	 *
+	 * The use of the `mw:` prefix makes sure that the table of contents is
+	 * identified as a block element, and prevents the introduction of `p` tags
+	 * wrapping the table of contents; see BlockLevelPass.
+	 *
+	 * @var string
+	 * @deprecated since 1.38.  These markers are used in old cached
+	 * content but not generated from the current parser (or from Parsoid).
+	 * The constants will be removed in a future MediaWiki release.
+	 */
 	public const TOC_START = '<mw:toc>';
+
+	/**
+	 * See ::TOC_START
+	 * @var string
+	 * @deprecated since 1.38. See ::TOC_START
+	 */
 	public const TOC_END = '</mw:toc>';
+
+	/**
+	 * Internal marker used by parser to track where the table of
+	 * contents should be. Various magic words can change the position
+	 * during the parse.  The table of contents is generated during
+	 * the parse, however skins have the final decision on whether the
+	 * table of contents is injected.  This placeholder element
+	 * identifies where in the page the table of contents should be
+	 * injected, if at all.
+	 * @var string
+	 * @see Keep this in sync with BlockLevelPass::execute() and
+	 *  RemexCompatMunger::isTableOfContentsMarker()
+	 * @internal This will be made private as soon as old content
+	 *  has expired from the cache (at the moment it is needed in
+	 *  ParserOutput for a compatibility fallback).  Skins should
+	 *  *not* directly reference TOC_PLACEHOLDER but instead use
+	 *  Parser::replaceTableOfContentsMarker().
+	 */
+	public const TOC_PLACEHOLDER = '<mw:tocplace></mw:tocplace>';
 
 	# Persistent:
 	private $mTagHooks = [];
@@ -4049,7 +4085,7 @@ class Parser {
 			$this->mForceTocPosition = true;
 
 			# Set a placeholder. At the end we'll fill it in with the TOC.
-			$text = $mw->replace( '<!--MWTOC\'"-->', $text, 1 );
+			$text = $mw->replace( self::TOC_PLACEHOLDER, $text, 1 );
 
 			# Only keep the first one.
 			$text = $mw->replace( '', $text );
@@ -4457,7 +4493,6 @@ class Parser {
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
-			$toc = self::TOC_START . $toc . self::TOC_END;
 		}
 
 		if ( $isMain ) {
@@ -4496,16 +4531,12 @@ class Parser {
 		if ( $enoughToc && $isMain && !$this->mForceTocPosition ) {
 			// append the TOC at the beginning
 			// Top anchor now in skin
-			$sections[0] .= $toc . "\n";
+			$sections[0] .= self::TOC_PLACEHOLDER . "\n";
 		}
 
 		$full .= implode( '', $sections );
 
-		if ( $this->mForceTocPosition ) {
-			return str_replace( '<!--MWTOC\'"-->', $toc, $full );
-		} else {
-			return $full;
-		}
+		return $full;
 	}
 
 	/**
@@ -4764,6 +4795,30 @@ class Parser {
 	public static function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
+	}
+
+	/**
+	 * Replace table of contents marker in parsed HTML.
+	 *
+	 * Used to remove or replace the marker.  This method should be
+	 * used instead of direct access to Parser::TOC_PLACEHOLDER, since
+	 * in the future the placeholder might have additional attributes
+	 * attached which should be ignored when the replacement is made.
+	 *
+	 * @since 1.38
+	 * @stable
+	 *
+	 * @param string $text Parsed HTML
+	 * @param string $toc HTML table of contents string, or else an empty
+	 *   string to remove the marker.
+	 * @return string Result HTML
+	 */
+	public static function replaceTableOfContentsMarker( $text, $toc ) {
+		return str_replace(
+			self::TOC_PLACEHOLDER,
+			$toc,
+			$text
+		);
 	}
 
 	/**

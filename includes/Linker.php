@@ -1644,7 +1644,7 @@ class Linker {
 				'class' => 'toctogglelabel',
 			] )
 			. '</span>'
-			. "</div>\n"
+			. "</div>"
 			. $toc
 			. "</ul>\n</div>\n";
 	}

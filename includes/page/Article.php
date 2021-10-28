@@ -744,8 +744,13 @@ class Article implements Page {
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
 		$outputPage->setRevisionId( $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched() );
-
-		$outputPage->addParserOutput( $pOutput, $textOptions );
+		# Ensure that the skin has the necessary ToC information
+		# (and do this before OutputPage::addParserOutput() calls the
+		# OutputPageParserOutput hook)
+		$outputPage->setSections( $pOutput->getSections() );
+		$outputPage->addParserOutput( $pOutput, $textOptions + [
+			'injectTOC' => true,
+		] );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getTimestamp();
 		if ( $cachedTimestamp !== null ) {
