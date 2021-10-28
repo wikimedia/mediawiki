@@ -946,6 +946,7 @@
 	"rev-deleted-event": "(已移除日誌明細)",
 	"rev-deleted-user-contribs": "[使用者名稱或 IP 位址已移除 - 已隱藏貢獻清單中的編輯]",
 	"rev-deleted-text-permission": "此頁面修訂已被<strong>刪除</strong>。可至[{{fullurl:{{#Special:Log}}/delete|page=$1}} 刪除日誌]取得詳細資訊。",
+	"rev-suppressed-text": "此頁面修訂已被<strong>監督隱藏</strong>。",
 	"rev-suppressed-text-permission": "此頁面修訂已被<strong>監督隱藏</strong>。可至[{{fullurl:{{#Special:Log}}/suppress|page=$1}} 監督日誌]取得詳細資訊。",
 	"rev-deleted-text-unhide": "此頁面修訂已被<strong>刪除</strong>。可至[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]取得詳細資訊。若您要繼續，您仍可[$1 檢視此修訂]。",
 	"rev-suppressed-text-unhide": "此頁面修訂已被<strong>監督隱藏</strong>。可至[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 監督日誌]取得詳細資訊。若您要繼續，您仍可以[$1 檢視此修訂]。",
