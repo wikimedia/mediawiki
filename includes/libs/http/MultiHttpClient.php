@@ -53,6 +53,8 @@ use Psr\Log\NullLogger;
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {
+	/** Regex for headers likely to contain tokens, etc. that we want to redact from logs */
+	private const SENSITIVE_HEADERS = '/(^|-|_)(authorization|auth|password|cookie)($|-|_)/';
 	/** @var resource curl_multi_init() handle */
 	protected $cmh;
 	/** @var string|null SSL certificates path */
@@ -627,12 +629,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 			if ( $this->localProxy !== false && $this->isLocalURL( $req['url'] ) ) {
 				$this->useReverseProxy( $req, $this->localProxy );
 			}
-			$this->logger->debug( "HTTP start: {method} {url}",
-				[
-					'method' => $req['method'],
-					'url' => $req['url'],
-				]
-			);
 			$req['query'] = $req['query'] ?? [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
@@ -645,6 +641,20 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$req['body'] = '';
 				$req['headers']['content-length'] = 0;
 			}
+			// Redact some headers we know to have tokens before logging them
+			$logHeaders = $req['headers'];
+			foreach ( $logHeaders as $header => $value ) {
+				if ( preg_match( self::SENSITIVE_HEADERS, $header ) === 1 ) {
+					$logHeaders[$header] = '[redacted]';
+				}
+			}
+			$this->logger->debug( "HTTP start: {method} {url}",
+				[
+					'method' => $req['method'],
+					'url' => $req['url'],
+					'headers' => $logHeaders,
+				]
+			);
 			$req['flags'] = $req['flags'] ?? [];
 		}
 	}
