@@ -139,6 +139,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *                       PHP/curl's default
 	 * @return array Response array for request
 	 */
 	public function run( array $req, array $opts = [] ) {
@@ -171,6 +173,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *                       PHP/curl's default
 	 * @return array[] $reqs With response array populated for each
 	 * @throws Exception
 	 */
@@ -186,8 +190,23 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 
 		if ( $this->isCurlEnabled() ) {
+			switch ( $opts['httpVersion'] ?? null ) {
+				case 'v1.0':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_1_0;
+					break;
+				case 'v1.1':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_1_1;
+					break;
+				case 'v2':
+				case 'v2.0':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_2_0;
+					break;
+				default:
+					$opts['httpVersion'] = CURL_HTTP_VERSION_NONE;
+			}
 			return $this->runMultiCurl( $reqs, $opts );
 		} else {
+			# TODO: Add handling for httpVersion option
 			return $this->runMultiHttp( $reqs, $opts );
 		}
 	}
@@ -214,6 +233,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion:    : HTTP version to use
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
@@ -313,6 +333,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
+	 *   - httpVersion: default HTTP version
 	 * @return resource
 	 * @throws Exception
 	 */
@@ -339,6 +360,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $req['method'] );
 		curl_setopt( $ch, CURLOPT_NOBODY, ( $req['method'] === 'HEAD' ) );
+		curl_setopt( $ch, CURLOPT_HTTP_VERSION, $opts['httpVersion'] ?? CURL_HTTP_VERSION_NONE );
 
 		if ( $req['method'] === 'PUT' ) {
 			curl_setopt( $ch, CURLOPT_PUT, 1 );
