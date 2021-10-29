@@ -21509,6 +21509,90 @@ China
 !! end
 
 !! test
+Title with HTML
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title <i style="color:red">with</i> HTML&amp;Entities}-
+Should be stripped!
+!! html/php
+Title <i style="color:red">with</i> HTML&amp;Entities
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
+Title with Wiki syntax
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title ''with'' Wiki's s&uuml;ntax&copy}-
+Should be stripped!
+!! html/php
+Title <i>with</i> Wiki's süntax&amp;copy
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
+Title with JavaScript injection
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title <i onclick="alert(42)">click me</i> <script>alert(43)</script>}-
+Should be stripped!
+!! html/php
+Title <i>click me</i> &lt;script&gt;alert(43)&lt;/script&gt;
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
+Test 1 from T298401/T67747
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title <script>a</script>&amp;<i>b</i>}-
+Should be stripped!
+!! html/php
+Title &lt;script&gt;a&lt;/script&gt;&amp;<i>b</i>
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
+Test 2 from T298401/T67747
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title <code style="display:none">}-
+Should be stripped!
+!! html/php
+Title <code style="display:none"></code>
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
+Test 3 from T298401/T67747
+!! options
+language=zh variant=zh showtitle
+!! wikitext
+-{T|zh:Title <b>Foo bar<b>}-
+Should be stripped!
+!! html/php
+Title <b>Foo bar<b></b></b>
+<p>
+Should be stripped!
+</p>
+!! end
+
+!! test
 Recursive conversion of alt and title attrs shouldn't clear converter state
 !! options
 language=zh variant=zh-cn
