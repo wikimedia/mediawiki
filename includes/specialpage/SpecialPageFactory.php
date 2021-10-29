@@ -1213,16 +1213,7 @@ class SpecialPageFactory {
 		if ( isset( $specialPageList[$realName] ) ) {
 			$rec = $specialPageList[$realName];
 
-			if ( $rec instanceof SpecialPage ) {
-				wfDeprecatedMsg(
-					"A SpecialPage instance for $realName was found in " .
-					'$wgSpecialPages or came from a SpecialPage_initList hook handler, ' .
-					'this was deprecated in MediaWiki 1.34',
-					'1.34'
-				);
-
-				$page = $rec; // XXX: we should deep clone here
-			} elseif ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {
+			if ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {
 				$page = $this->objectFactory->createObject(
 					$rec,
 					[
