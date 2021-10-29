@@ -67,6 +67,11 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		return true; // faster
 	}
 
+	public function setNewPreparedValues( array $valueByKey ) {
+		// Do not bother staging serialized values as this class does not serialize values
+		return $this->guessSerialSizeOfValues( $valueByKey );
+	}
+
 	public function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
