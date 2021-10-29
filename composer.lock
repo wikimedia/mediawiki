@@ -4012,11 +4012,17 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.7.5",
+            "version": "v0.7.6",
             "source": {
                 "type": "git",
-                "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "42c58655b8b69116c95c87894ab33e4582b677f7"
+                "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
+                "reference": "13d49de5b37653e092cf9cf56230a8b756c6122e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/13d49de5b37653e092cf9cf56230a8b756c6122e",
+                "reference": "13d49de5b37653e092cf9cf56230a8b756c6122e",
+                "shasum": ""
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "^2.5",
@@ -4090,7 +4096,10 @@
                 "donations",
                 "payments"
             ],
-            "time": "2021-09-09T20:34:27+00:00"
+            "support": {
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.7.6"
+            },
+            "time": "2021-10-27T23:40:37+00:00"
         },
         {
             "name": "wikimedia/timestamp",
