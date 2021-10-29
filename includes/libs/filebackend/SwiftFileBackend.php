@@ -35,6 +35,8 @@ use Wikimedia\AtEase\AtEase;
  * @since 1.19
  */
 class SwiftFileBackend extends FileBackendStore {
+	private const DEFAULT_HTTP_OPTIONS = [ 'httpVersion' => 'v1.1' ];
+
 	/** @var MultiHttpClient */
 	protected $http;
 	/** @var int TTL in seconds */
@@ -808,7 +810,7 @@ class SwiftFileBackend extends FileBackendStore {
 						'method' => 'POST',
 						'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
 						'headers' => $this->authTokenHeaders( $auth ) + $postHeaders
-					] );
+					], self::DEFAULT_HTTP_OPTIONS );
 					if ( $rcode >= 200 && $rcode <= 299 ) {
 						$this->deleteFileCache( $path );
 
@@ -852,7 +854,9 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		$opts = [ 'maxConnsPerHost' => $params['concurrency'] ];
+		$opts = [
+			'maxConnsPerHost' => $params['concurrency'],
+		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
@@ -1173,7 +1177,7 @@ class SwiftFileBackend extends FileBackendStore {
 				+ $this->headersFromParams( $params ) + $params['options'],
 			'stream' => $handle,
 			'flags'  => [ 'relayResponseHeaders' => empty( $params['headless'] ) ]
-		] );
+		], self::DEFAULT_HTTP_OPTIONS );
 
 		if ( $rcode >= 200 && $rcode <= 299 ) {
 			// good
@@ -1226,7 +1230,9 @@ class SwiftFileBackend extends FileBackendStore {
 		// Ceph RADOS Gateway is in use (strong consistency) or X-Newest will be used
 		$latest = ( $this->isRGW || !empty( $params['latest'] ) );
 
-		$opts = [ 'maxConnsPerHost' => $params['concurrency'] ];
+		$opts = [
+			'maxConnsPerHost' => $params['concurrency'],
+		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
@@ -1372,7 +1378,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Run all requests for the first stage, then the next, and so on
 		$reqCount = count( $httpReqsByStage );
 		for ( $stage = 0; $stage < $reqCount; ++$stage ) {
-			$httpReqs = $this->http->runMulti( $httpReqsByStage[$stage] );
+			$httpReqs = $this->http->runMulti( $httpReqsByStage[$stage], self::DEFAULT_HTTP_OPTIONS );
 			foreach ( $httpReqs as $index => $httpReq ) {
 				/** @var SwiftFileOpHandle $fileOpHandle */
 				$fileOpHandle = $fileOpHandles[$index];
@@ -1435,7 +1441,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'x-container-read' => implode( ',', $readUsers ),
 				'x-container-write' => implode( ',', $writeUsers )
 			]
-		] );
+		], self::DEFAULT_HTTP_OPTIONS );
 
 		if ( $rcode != 204 && $rcode !== 202 ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
@@ -1473,7 +1479,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'method' => 'HEAD',
 				'url' => $this->storageUrl( $auth, $container ),
 				'headers' => $this->authTokenHeaders( $auth )
-			] );
+			], self::DEFAULT_HTTP_OPTIONS );
 
 			if ( $rcode === 204 ) {
 				$stat = [
@@ -1534,7 +1540,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'x-container-read' => implode( ',', $readUsers ),
 				'x-container-write' => implode( ',', $writeUsers )
 			]
-		] );
+		], self::DEFAULT_HTTP_OPTIONS );
 
 		if ( $rcode === 201 ) { // new
 			// good
@@ -1568,7 +1574,7 @@ class SwiftFileBackend extends FileBackendStore {
 			'method' => 'DELETE',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth )
-		] );
+		], self::DEFAULT_HTTP_OPTIONS );
 
 		if ( $rcode >= 200 && $rcode <= 299 ) { // deleted
 			$this->containerStatCache->clear( $container ); // purge
@@ -1627,7 +1633,7 @@ class SwiftFileBackend extends FileBackendStore {
 			'url' => $this->storageUrl( $auth, $fullCont ),
 			'query' => $query,
 			'headers' => $this->authTokenHeaders( $auth )
-		] );
+		], self::DEFAULT_HTTP_OPTIONS );
 
 		$params = [ 'cont' => $fullCont, 'prefix' => $prefix, 'delim' => $delim ];
 		if ( $rcode === 200 ) { // good
@@ -1684,7 +1690,9 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		// (b) Check the files themselves...
-		$opts = [ 'maxConnsPerHost' => $params['concurrency'] ];
+		$opts = [
+			'maxConnsPerHost' => $params['concurrency'],
+		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
@@ -1763,7 +1771,7 @@ class SwiftFileBackend extends FileBackendStore {
 						'x-auth-user' => $this->swiftUser,
 						'x-auth-key' => $this->swiftKey
 					]
-				] );
+				], self::DEFAULT_HTTP_OPTIONS );
 
 				if ( $rcode >= 200 && $rcode <= 299 ) { // OK
 					$this->authCreds = [
