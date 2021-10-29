@@ -192,6 +192,34 @@ class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 					'fragment' => 'quux',
 				]
 			],
+			[
+				'%0Ahttp://example.com',
+				false,
+			],
+			[
+				'http:///test.com',
+				false,
+			],
+			// T294559
+			[
+				'//xy.wikimedia.org/wiki/Foo:1234',
+				[
+					'scheme' => '',
+					'delimiter' => '//',
+					'host' => 'xy.wikimedia.org',
+					'path' => '/wiki/Foo:1234'
+				]
+			],
+			[
+				'//xy.wikimedia.org:8888/wiki/Foo:1234',
+				[
+					'scheme' => '',
+					'delimiter' => '//',
+					'host' => 'xy.wikimedia.org',
+					'path' => '/wiki/Foo:1234',
+					'port' => 8888,
+				]
+			],
 		];
 	}
 }
