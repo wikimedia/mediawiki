@@ -394,7 +394,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	public function testViewDeletedPage() {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ] );
-		$page->doDeleteArticleReal( 'Test', $this->getTestSysop()->getUser() );
+		$this->deletePage( $page );
 
 		$article = new Article( $page->getTitle() );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );

@@ -1332,7 +1332,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser(),
 			__METHOD__
 		)->value['revision-record'];
-		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		$this->deletePage( $page );
 
 		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
@@ -1454,7 +1454,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser(),
 			__METHOD__
 		)->value['revision-record'];
-		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		$this->deletePage( $page );
 
 		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
@@ -1488,7 +1488,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser(),
 			__METHOD__
 		)->value['revision-record'];
-		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		$this->deletePage( $page );
 
 		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
@@ -1713,7 +1713,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page->doUserEditContent( new WikitextContent( "First" ), $user, __METHOD__ . '-first' );
 		$orig = $page->doUserEditContent( new WikitextContent( "Foo" ), $user, __METHOD__ )
 			->value['revision-record'];
-		$page->doDeleteArticleReal( __METHOD__, $user );
+		$this->deletePage( $page );
 
 		// re-create page, so we can later load revisions for it
 		$page->doUserEditContent( new WikitextContent( 'Two' ), $user, __METHOD__ );
@@ -2359,14 +2359,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
-		$page1->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		$this->deletePage( $page1 );
 
 		$page2 = $this->getTestPage( $page1->getTitle()->getPrefixedText() . '_other' );
 		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
 		$this->assertTrue( $editStatus->isGood(), 'must create revision 2' );
 		/** @var RevisionRecord $revRecord2 */
 		$revRecord2 = $editStatus->getValue()['revision-record'];
-		$page2->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		$this->deletePage( $page2 );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->getContentBlobsForBatch( [
@@ -2568,10 +2568,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$sysop,
 			__METHOD__
 		)->value['revision-record'];
-		$page1->doDeleteArticleReal( __METHOD__, $sysop );
+		$this->deletePage( $page1 );
 
 		if ( $page2 !== $page1 ) {
-			$page2->doDeleteArticleReal( __METHOD__, $sysop );
+			$this->deletePage( $page2 );
 		}
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();

@@ -1365,8 +1365,8 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
+		$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
 
@@ -1406,8 +1406,8 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
+		$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
 

@@ -206,8 +206,8 @@ class UploadFromUrlTest extends ApiTestCase {
 				->findFile( $name, [ 'ignoreRedirect' => true ] );
 			$empty = "";
 			FileDeleteForm::doDelete( $t, $file, $empty, "none", true, $this->user );
-			$page = WikiPage::factory( $t );
-			$page->doDeleteArticleReal( "testing", $this->user );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
+			$this->deletePage( $page );
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 

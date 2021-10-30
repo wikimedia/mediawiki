@@ -305,7 +305,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page );
 
 			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
 			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
@@ -350,13 +350,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page );
 
 			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
 			$this->assertEquals( $latest, $checkIds[0], "Revision #1 in Status for hook" );
 
 			$latest2 = $page2->getLatest();
-			$page2->doDeleteArticleReal( $pageTitle2, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page2 );
 
 			$this->assertGreaterThan( 0, $latest2, "Page #2 revision ID updated in object" );
 			$this->assertEquals( $latest2, $checkIds[1], "Revision #2 in Status for hook" );
@@ -662,13 +662,11 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( __METHOD__, $ns );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal(
-				"clean slate for testing",
-				$this->getTestSysop()->getUser()
-			);
+			$this->deletePage( $page, "clean slate for testing" );
 		}
 
 		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
@@ -794,13 +792,11 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal(
-				"clean slate for testing",
-				$this->getTestSysop()->getUser()
-			);
+			$this->deletePage( $page, "clean slate for testing" );
 		}
 
 		$baseEdit = [

@@ -5,8 +5,11 @@ use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
@@ -295,10 +298,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$title = ( $title === null ) ? 'UTPage-' . rand( 0, 100000 ) : $title;
 		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal( 'Testing', static::getTestSysop()->getUser() );
+			$this->deletePage( $page );
 		}
 
 		return $page;
@@ -2401,6 +2405,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$performer,
 			$summary
 		);
+	}
+
+	/**
+	 * @param ProperPageIdentity $page
+	 * @param string $summary
+	 * @param Authority|null $deleter
+	 */
+	protected function deletePage( ProperPageIdentity $page, string $summary = '', Authority $deleter = null ): void {
+		$deleter = $deleter ?? new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
+		MediaWikiServices::getInstance()->getDeletePageFactory()
+			->newDeletePage( $page, $deleter )
+			->deleteUnsafe( $summary );
 	}
 
 	/**

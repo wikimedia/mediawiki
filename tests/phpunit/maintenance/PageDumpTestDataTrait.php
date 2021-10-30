@@ -115,7 +115,9 @@ trait PageDumpTestDataTrait {
 			[ , , $this->rev3_2 ] = $this->addRevision( $page,
 				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
 			$this->pageId3 = $page->getId();
-			$page->doDeleteArticleReal( "Testing ;)", $context->getUser() );
+			MediaWikiServices::getInstance()->getDeletePageFactory()
+				->newDeletePage( $page, $context->getAuthority() )
+				->deleteUnsafe( "Testing" );
 
 			$this->pageTitle4 = Title::newFromText( 'BackupDumperTestP1', $this->talk_namespace );
 			$page = WikiPage::factory( $this->pageTitle4 );
