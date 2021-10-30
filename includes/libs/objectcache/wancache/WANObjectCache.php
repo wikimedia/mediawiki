@@ -95,11 +95,6 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *            The "gutter" pool is a set of memcached servers that only handle failover traffic.
  *            Such servers should be carefully spread over different rows and racks. See
  *            https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles#failoverroute
- *          - In order to use an on-host cache tier, configure mcrouter to have an 'onhost' pool
- *            (one local memcached service) and a "<datacenter>/<pool-with-onhost>" route
- *            ("WarmUpRoute", with "cold" as the on-host pool, "warm" as the shared pool, and
- *            exptime=10). This means that 'onHostRoutingPrefix' can be the warmup route. See
- *            https://github.com/facebook/mcrouter/wiki/List-of-Route-Handles
  *   - B) Set up dynomite as the cache backend, using a memcached BagOStuff class for the 'cache'
  *        parameter. Note that with this setup, all key setting operations will be broadcasted,
  *        rather than just purges. Writes will be eventually consistent via the Dynamo replication
@@ -119,7 +114,6 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * key type. The sister key types include the following:
  *
  * - `v`: used to store "regular" values (metadata-wrapped) and temporary purge "tombstones".
- * - `f`: used to store copies of temporary purge "tombstones" (only with `onHostRoutingPrefix`).
  * - `t`: used to store "last purge" timestamps for "check" keys.
  * - `m`: used to store temporary mutex locks to avoid cache stampedes.
  * - `i`: used to store temporary interim values (metadata-wrapped) for tombstoned keys.
@@ -154,8 +148,6 @@ class WANObjectCache implements
 	 * @var string|null
 	 */
 	protected $broadcastRoute;
-	/** @var string|null Routing prefix for value keys that support use of an on-host tier */
-	protected $onHostRoute;
 	/** @var bool Whether to use "interim" caching while keys are tombstoned */
 	protected $useInterimHoldOffCaching = true;
 	/** @var float Unix timestamp of the oldest possible valid values */
@@ -308,8 +300,6 @@ class WANObjectCache implements
 	private const TYPE_VALUE = 'v';
 	/** Single character component for timestamp check keys */
 	private const TYPE_TIMESTAMP = 't';
-	/** Single character component for flux keys */
-	private const TYPE_FLUX = 'f';
 	/** Single character component for mutex lock keys */
 	private const TYPE_MUTEX = 'm';
 	/** Single character component for interium value keys */
@@ -338,15 +328,6 @@ class WANObjectCache implements
 	 *       is usually a wildcard to select all matching routes (e.g. the WAN cluster in all DCs).
 	 *       See also <https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup>.
 	 *       This is required when using mcrouter as a multi-region backing store proxy. [optional]
-	 *   - onHostRoutingPrefix: a routing prefix that checks a server-local cache ("on-host tier")
-	 *       for "value" keys before checking the main cache cluster in the current data center.
-	 *       The "helper" keys will still be read from the main cache cluster. An on-host tier can
-	 *       help reduce network saturation due to large value transfers yet without needing to
-	 *       explicitly know, opt-in, or measure which values are large.
-	 *       The on-host tier may blindy store and serve values from the main cluster for up to 10
-	 *       seconds (must be less than WANObjectCache::HOLDOFF_TTL in order for purges to work
-	 *       properly). This prefix takes the form `/<datacenter>/<name of onhost route>/` where
-	 *      `datacenter` may be a wildcard. This can be used with mcrouter. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
 	 *   - secret: stable secret used for hashing long strings into key components. [optional]
 	 *   - coalesceScheme: which key scheme to use in order to encourage the backend to place any
@@ -364,7 +345,6 @@ class WANObjectCache implements
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
 		$this->broadcastRoute = $params['broadcastRoutingPrefix'] ?? null;
-		$this->onHostRoute = $params['onHostRoutingPrefix'] ?? null;
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
 		if ( ( $params['coalesceScheme'] ?? '' ) === 'hash_tag' ) {
@@ -576,22 +556,15 @@ class WANObjectCache implements
 		$allSisterKeys = [];
 		// Order-corresponding value sister key list for the base key list ($keys)
 		$valueSisterKeys = [];
-		// Order-corresponding "flux" sister key list for the base key list ($keys) or []
-		$fluxSisterKeys = [];
 		// List of "check" sister keys to compare all value sister keys against
 		$checkSisterKeysForAll = [];
 		// Map of (base key => additional "check" sister key(s) to compare against)
 		$checkSisterKeysByKey = [];
 
 		foreach ( $keys as $key ) {
-			$sisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE, $this->onHostRoute );
+			$sisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
 			$allSisterKeys[] = $sisterKey;
 			$valueSisterKeys[] = $sisterKey;
-			if ( $this->onHostRoute !== null ) {
-				$sisterKey = $this->makeSisterKey( $key, self::TYPE_FLUX );
-				$allSisterKeys[] = $sisterKey;
-				$fluxSisterKeys[] = $sisterKey;
-			}
 		}
 
 		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
@@ -643,9 +616,6 @@ class WANObjectCache implements
 			);
 		}
 
-		// Map of (base key => "flux" key purge timestamp to compare against)
-		$fkPurgesByKey = $this->processFluxKeys( $keys, $fluxSisterKeys, $wrappedBySisterKey );
-
 		// Unwrap and validate any value found for each base key (under the value sister key)
 		reset( $keys );
 		foreach ( $valueSisterKeys as $valueSisterKey ) {
@@ -653,11 +623,7 @@ class WANObjectCache implements
 			$key = current( $keys );
 			next( $keys );
 
-			if ( isset( $fkPurgesByKey[$key] ) ) {
-				// An on-host tier is in use and a "flux" sister key exists for this
-				// Treat the value sister key as if it was a tombstone with this value.
-				$wrapped = $fkPurgesByKey[$key];
-			} elseif ( array_key_exists( $valueSisterKey, $wrappedBySisterKey ) ) {
+			if ( array_key_exists( $valueSisterKey, $wrappedBySisterKey ) ) {
 				// Key exists as either a live value or tombstone value
 				$wrapped = $wrappedBySisterKey[$valueSisterKey];
 			} else {
@@ -703,37 +669,6 @@ class WANObjectCache implements
 		}
 
 		return $resByKey;
-	}
-
-	/**
-	 * @param string[] $keys Base key list
-	 * @param string[] $fluxSisterKeys Order-corresponding "flux" key list for base keys or []
-	 * @param mixed[] $wrappedBySisterKey Preloaded map of (sister key => wrapped value)
-	 * @return array[] List of purge value arrays
-	 */
-	private function processFluxKeys(
-		array $keys,
-		array $fluxSisterKeys,
-		array $wrappedBySisterKey
-	) {
-		$purges = [];
-
-		reset( $keys );
-		foreach ( $fluxSisterKeys as $fluxKey ) {
-			// Get the corresponding base key for this "flux" key
-			$key = current( $keys );
-			next( $keys );
-
-			$purge = isset( $wrappedBySisterKey[$fluxKey] )
-				? $this->parsePurgeValue( $wrappedBySisterKey[$fluxKey] )
-				: null;
-
-			if ( $purge !== null ) {
-				$purges[$key] = $purge;
-			}
-		}
-
-		return $purges;
 	}
 
 	/**
@@ -1042,20 +977,10 @@ class WANObjectCache implements
 		// violating the holdoff TTL restriction.
 		$valueSisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
 
-		// When an on-host tier is configured, fetchKeys() relies on "flux" keys to determine
-		// whether a value from the on-host tier is still valid. A "flux" key is a short-lived
-		// key that contains the last recent purge due to delete(). This approach avoids having
-		// to purge the on-host cache service on potentially hundreds of application servers.
-
 		if ( $ttl <= 0 ) {
 			// A client or cache cleanup script is requesting a cache purge, so there is no
 			// volatility period due to replica DB lag. Any recent change to an entity cached
 			// in this key should have triggered an appropriate purge event.
-
-			// Remove the key from all datacenters, ignoring any on-host tier. Since on-host
-			// tier caches only use low key TTLs, setting "flux" keys here has little practical
-			// benefit; missed purges should be rare and the on-host tier will quickly correct
-			// itself in those rare cases.
 			$ok = $this->relayNonVolatilePurge( $valueSisterKey );
 		} else {
 			// A cacheable entity recently changed, so there might be a volatility period due
@@ -1064,16 +989,9 @@ class WANObjectCache implements
 			// lower than the time it takes for subsequent request by the client to arrive,
 			// and, (b) DB replica queries have "read-your-writes" consistency due to DB lag
 			// mitigation systems.
-
 			$now = $this->getCurrentTime();
 			// Set the key to the purge value in all datacenters
 			$purgeBySisterKey = [ $valueSisterKey => $this->makeTombstonePurgeValue( $now ) ];
-			// When an on-host tier is configured, purge it by setting "flux" keys
-			if ( $this->onHostRoute !== null ) {
-				$fluxSisterKey = $this->makeSisterKey( $key, self::TYPE_FLUX );
-				$purgeBySisterKey[$fluxSisterKey] = $this->makeTombstonePurgeValue( $now );
-			}
-
 			$ok = $this->relayVolatilePurges( $purgeBySisterKey, $ttl );
 		}
 
@@ -1950,7 +1868,7 @@ class WANObjectCache implements
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
-		$valueSisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE, $this->onHostRoute );
+		$valueSisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
 		list( $estimatedSize ) = $this->cache->setNewPreparedValues( [
 			$valueSisterKey => $value
 		] );
@@ -2714,7 +2632,7 @@ class WANObjectCache implements
 	 *
 	 * This method should not wait for the operation to complete on remote datacenters
 	 *
-	 * @param string $sisterKey A value, "check", or flux sister key
+	 * @param string $sisterKey A value key or "check" key
 	 * @return bool Success
 	 */
 	protected function relayNonVolatilePurge( string $sisterKey ) {
@@ -3126,13 +3044,7 @@ class WANObjectCache implements
 		}
 
 		// Get all the value keys to fetch...
-		$sisterKeys = $this->makeSisterKeys( $keys, self::TYPE_VALUE, $this->onHostRoute );
-		// Get all the flux keys to fetch...
-		if ( $this->onHostRoute !== null ) {
-			foreach ( $keys as $key ) {
-				$sisterKeys[] = $this->makeSisterKey( $key, self::TYPE_FLUX );
-			}
-		}
+		$sisterKeys = $this->makeSisterKeys( $keys, self::TYPE_VALUE );
 		// Get all the "check" keys to fetch...
 		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
 			// Note: avoid array_merge() inside loop in case there are many keys
