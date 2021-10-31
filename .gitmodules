@@ -912,7 +912,7 @@
 	path = extensions/DiscordNotifications
 	url = https://github.com/kulttuuri/DiscordNotifications
 	ignore = dirty
-	branch = REL1_37
+	branch = master
 [submodule "extensions/GeoCrumbs"]
 	path = extensions/GeoCrumbs
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoCrumbs
