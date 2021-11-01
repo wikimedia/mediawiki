@@ -24,7 +24,6 @@ use LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
-use NamespaceInfo;
 use TitleFormatter;
 
 /**
@@ -44,11 +43,6 @@ class LinkRendererFactory {
 	private $linkCache;
 
 	/**
-	 * @var NamespaceInfo
-	 */
-	private $nsInfo;
-
-	/**
 	 * @var HookContainer
 	 */
 	private $hookContainer;
@@ -62,20 +56,17 @@ class LinkRendererFactory {
 	 * @internal For use by core ServiceWiring
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
-	 * @param NamespaceInfo $nsInfo
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
-		NamespaceInfo $nsInfo,
 		SpecialPageFactory $specialPageFactory,
 		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
-		$this->nsInfo = $nsInfo;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->hookContainer = $hookContainer;
 	}
@@ -85,7 +76,7 @@ class LinkRendererFactory {
 	 */
 	public function create() {
 		return new LinkRenderer(
-			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory,
+			$this->titleFormatter, $this->linkCache, $this->specialPageFactory,
 			$this->hookContainer
 		);
 	}
