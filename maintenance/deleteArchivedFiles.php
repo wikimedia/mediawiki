@@ -69,9 +69,8 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			$file = $repo->newFile( $row->fa_name );
-			try {
-				$file->lock();
-			} catch ( LocalFileLockError $e ) {
+			$status = $file->acquireFileLock( 10 );
+			if ( !$status->isOK() ) {
 				$this->error( "Could not acquire lock on '{$row->fa_name}', skipping\n" );
 				continue;
 			}
@@ -104,7 +103,7 @@ class DeleteArchivedFiles extends Maintenance {
 				$this->output( "Notice - file '$key' is still in use\n" );
 			} elseif ( !$repo->quickPurge( $path ) ) {
 				$this->output( "Unable to remove file $path, skipping\n" );
-				$file->unlock();
+				$file->releaseFileLock();
 
 				// don't delete even with --force
 				continue;
@@ -116,14 +115,14 @@ class DeleteArchivedFiles extends Maintenance {
 				if ( $this->hasOption( 'force' ) ) {
 					$this->output( "Got --force, deleting DB entry\n" );
 				} else {
-					$file->unlock();
+					$file->releaseFileLock();
 					continue;
 				}
 			}
 
 			$count++;
 			$dbw->delete( 'filearchive', [ 'fa_id' => $id ], __METHOD__ );
-			$file->unlock();
+			$file->releaseFileLock();
 		}
 
 		$this->commitTransaction( $dbw, __METHOD__ );

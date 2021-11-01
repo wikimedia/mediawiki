@@ -805,26 +805,23 @@ class LocalFile extends File {
 	 * @stable to override
 	 */
 	public function upgradeRow() {
-		$this->lock();
+		$dbw = $this->repo->getPrimaryDB();
+
+		// Make a DB query condition that will fail to match the image row if the
+		// image was reuploaded while the upgrade was in process.
+		$freshnessCondition = [ 'img_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ];
 
 		$this->loadFromFile();
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
-			$this->unlock();
 			wfDebug( __METHOD__ . ": file does not exist, aborting" );
 
 			return;
 		}
 
-		$dbw = $this->repo->getPrimaryDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
-		if ( wfReadOnly() ) {
-			$this->unlock();
-
-			return;
-		}
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
 		$dbw->update( 'image',
@@ -839,13 +836,15 @@ class LocalFile extends File {
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1,
 			],
-			[ 'img_name' => $this->getName() ],
+			array_merge(
+				[ 'img_name' => $this->getName() ],
+				$freshnessCondition
+			),
 			__METHOD__
 		);
 
 		$this->invalidateCache();
 
-		$this->unlock();
 		$this->upgraded = true; // avoid rework/retries
 	}
 
@@ -1799,7 +1798,6 @@ class LocalFile extends File {
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		$this->lock();
 		$status = $this->publish( $src, $flags, $options );
 
 		if ( $status->successCount >= 2 ) {
@@ -1837,7 +1835,6 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock();
 		return $status;
 	}
 
@@ -2072,9 +2069,9 @@ class LocalFile extends File {
 			$newPageContent = ContentHandler::makeContent( $pageText, $descTitle );
 		}
 
-		// NOTE: Even after ending this atomic section, we are probably still in the transaction
-		//       started by the call to lock() in publishTo(). We cannot yet safely schedule jobs,
-		//       see T263301.
+		// NOTE: Even after ending this atomic section, we are probably still in the implicit
+		// transaction started by any prior master query in the request. We cannot yet safely
+		// schedule jobs, see T263301.
 		$dbw->endAtomic( __METHOD__ );
 		$fname = __METHOD__;
 
@@ -2195,12 +2192,11 @@ class LocalFile extends File {
 			[ 'causeAction' => 'file-upload', 'causeAgent' => $performer->getUser()->getName() ]
 		);
 
-		// NOTE: We are probably still in the transaction started by the call to lock() in
-		//       publishTo(). We should only schedule jobs after that transaction was committed,
-		//       so a job queue failure doesn't cause the upload to fail (T263301).
-		//       Also, we should generally not schedule any Jobs or the DeferredUpdates that
-		//       assume the update is complete until after the transaction has been committed and
-		//       we are sure that the upload was indeed successful.
+		// NOTE: We are probably still in the implicit transaction started by DBO_TRX. We should
+		// only schedule jobs after that transaction was committed, so a job queue failure
+		// doesn't cause the upload to fail (T263301). Also, we should generally not schedule any
+		// Jobs or the DeferredUpdates that assume the update is complete until after the
+		// transaction has been committed and we are sure that the upload was indeed successful.
 		$dbw->onTransactionCommitOrIdle( static function () use ( $reupload, $purgeUpdate, $cacheUpdateJob ) {
 			DeferredUpdates::addUpdate( $purgeUpdate, DeferredUpdates::PRESEND );
 
@@ -2259,7 +2255,10 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock();
+		$status = $this->acquireFileLock();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		if ( $this->isOld() ) {
 			$archiveRel = $dstRel;
@@ -2296,7 +2295,7 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock();
+		$this->releaseFileLock();
 		return $status;
 	}
 
@@ -2327,11 +2326,9 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$batch = new LocalFileMoveBatch( $this, $target );
 
-		$this->lock();
 		$batch->addCurrent();
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock();
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
@@ -2389,12 +2386,10 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
-		$this->lock();
 		$batch->addCurrent();
 		// Get old version relative paths
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock();
 
 		if ( $status->isOK() ) {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => -1 ] ) );
@@ -2452,10 +2447,8 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
-		$this->lock();
 		$batch->addOld( $archiveName );
 		$status = $batch->execute();
-		$this->unlock();
 
 		$this->purgeOldThumbnails( $archiveName );
 		if ( $status->isOK() ) {
@@ -2488,7 +2481,6 @@ class LocalFile extends File {
 
 		$batch = new LocalFileRestoreBatch( $this, $unsuppress );
 
-		$this->lock();
 		if ( !$versions ) {
 			$batch->addAll();
 		} else {
@@ -2502,7 +2494,6 @@ class LocalFile extends File {
 			$status->merge( $cleanupStatus );
 		}
 
-		$this->unlock();
 		return $status;
 	}
 
@@ -2653,16 +2644,22 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Acquire an exclusive lock on the file, indicating an intention to write
+	 * to the file backend.
+	 *
+	 * @param float|int $timeout The timeout in seconds
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function acquireFileLock() {
+	public function acquireFileLock( $timeout = 0 ) {
 		return Status::wrap( $this->getRepo()->getBackend()->lockFiles(
-			[ $this->getPath() ], LockManager::LOCK_EX, 10
+			[ $this->getPath() ], LockManager::LOCK_EX, $timeout
 		) );
 	}
 
 	/**
+	 * Release a lock acquired with acquireFileLock().
+	 *
 	 * @return Status
 	 * @since 1.28
 	 */
@@ -2678,6 +2675,7 @@ class LocalFile extends File {
 	 *
 	 * This method should not be used outside of LocalFile/LocalFile*Batch
 	 *
+	 * @deprecated since 1.38 Use acquireFileLock()
 	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
@@ -2691,7 +2689,7 @@ class LocalFile extends File {
 			// T56736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
-			$status = $this->acquireFileLock(); // represents all versions of the file
+			$status = $this->acquireFileLock( 10 ); // represents all versions of the file
 			if ( !$status->isGood() ) {
 				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$logger->warning( "Failed to lock '{file}'", [ 'file' => $this->name ] );
@@ -2725,6 +2723,8 @@ class LocalFile extends File {
 	 *
 	 * The commit and lock release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
+	 *
+	 * @deprecated since 1.38 Use releaseFileLock()
 	 */
 	public function unlock() {
 		if ( $this->locked ) {

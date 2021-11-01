@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\ScopedCallback;
 
 /**
  * Helper class for file movement
@@ -160,14 +161,23 @@ class LocalFileMoveBatch {
 		$destFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 			->newFile( $this->target );
 
-		$this->file->lock();
-		$destFile->lock(); // quickly fail if destination is not available
+		$status->merge( $this->file->acquireFileLock() );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$status->merge( $destFile->acquireFileLock() );
+		if ( !$status->isOK() ) {
+			$this->file->releaseFileLock();
+			return $status;
+		}
+		$unlockScope = new ScopedCallback( function () use ( $destFile ) {
+			$this->file->releaseFileLock();
+			$destFile->releaseFileLock();
+		} );
 
 		$triplets = $this->getMoveTriplets();
 		$checkStatus = $this->removeNonexistentFiles( $triplets );
 		if ( !$checkStatus->isGood() ) {
-			$destFile->unlock();
-			$this->file->unlock();
 			$status->merge( $checkStatus ); // couldn't talk to file backend
 			return $status;
 		}
@@ -176,8 +186,6 @@ class LocalFileMoveBatch {
 		// Verify the file versions metadata in the DB.
 		$statusDb = $this->verifyDBUpdates();
 		if ( !$statusDb->isGood() ) {
-			$destFile->unlock();
-			$this->file->unlock();
 			$statusDb->setOK( false );
 
 			return $statusDb;
@@ -201,8 +209,6 @@ class LocalFileMoveBatch {
 			if ( !$statusMove->isGood() ) {
 				// Delete any files copied over (while the destination is still locked)
 				$this->cleanupTarget( $triplets );
-				$destFile->unlock();
-				$this->file->unlock();
 
 				$this->logger->debug(
 					'Error in moving files: {error}',
@@ -228,8 +234,7 @@ class LocalFileMoveBatch {
 			]
 		);
 
-		$destFile->unlock();
-		$this->file->unlock();
+		ScopedCallback::consume( $unlockScope );
 
 		// Everything went ok, remove the source files
 		$this->cleanupSource( $triplets );
