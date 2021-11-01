@@ -33,7 +33,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		# tested separately, in tests/phpunit/includes/HttpTest.php.
 		foreach ( $URL_messages as $m ) {
 			$titleName = $messageCache->get( $m );
-			if ( Http::isValidURI( $titleName ) ) {
+			if ( MWHttpRequest::isValidURI( $titleName ) ) {
 				$this->messages[$m]['href'] = $titleName;
 			} else {
 				$title = Title::newFromText( $titleName );
@@ -44,56 +44,77 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
 		$this->skin->getContext()->setLanguage( 'en' );
 	}
 
+	/** @return array */
+	public function provideSidebars() {
+		$this->initMessagesHref();
+		return [
+			// sidebar with only two titles
+			[
+				[
+					'Title1' => [],
+					'Title2' => [],
+				],
+				'* Title1
+* Title2
+'
+			],
+			// expand messages
+			[
+				[ 'Title' => [
+					[
+						'text' => 'Help',
+						'href' => $this->messages['helppage']['href'],
+						'id' => 'n-help',
+						'active' => null
+					]
+				] ],
+				'* Title
+** helppage|help
+'
+			],
+			// test tricky pipe - T35321 - Make sure there's a | after transforming.
+			[
+				[ 'Title' => [
+					# The first 2 are skipped
+					# Doesn't really test the url properly
+					# because it will vary with $wgArticlePath et al.
+					# ** Baz|Fred
+					[
+						'text' => 'Fred',
+						'href' => Title::newFromText( 'Baz' )->getLocalURL(),
+						'id' => 'n-Fred',
+						'active' => null,
+					],
+					[
+						'text' => 'title-to-display',
+						'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
+						'id' => 'n-title-to-display',
+						'active' => null,
+					],
+				] ],
+				'* Title
+** {{PAGENAME|Foo}}
+** Bar
+** Baz|Fred
+** {{PLURAL:1|page-to-go-to{{int:pipe-separator/en}}title-to-display|branch not taken}}
+'
+			],
+
+		];
+	}
+
 	/**
-	 * Internal helper to test the sidebar
-	 * @param array $expected
-	 * @param string $text
-	 * @param string $message (Default: '')
-	 * @todo this assert method to should be converted to a test using a dataprovider.
+	 * @covers SkinTemplate::addToSidebarPlain
+	 * @dataProvider provideSidebars
 	 */
-	private function assertSideBar( $expected, $text, $message = '' ) {
+	public function testAddToSidebarPlain( $expected, $text, $message = '' ) {
 		$bar = [];
 		$this->skin->addToSidebarPlain( $bar, $text );
 		$this->assertEquals( $expected, $bar, $message );
-	}
-
-	/**
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testSidebarWithOnlyTwoTitles() {
-		$this->assertSideBar(
-			[
-				'Title1' => [],
-				'Title2' => [],
-			],
-			'* Title1
-* Title2
-'
-		);
-	}
-
-	/**
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testExpandMessages() {
-		$this->assertSideBar(
-			[ 'Title' => [
-				[
-					'text' => 'Help',
-					'href' => $this->messages['helppage']['href'],
-					'id' => 'n-help',
-					'active' => null
-				]
-			] ],
-			'* Title
-** helppage|help
-'
-		);
 	}
 
 	/**
@@ -105,7 +126,14 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'wgNoFollowDomainExceptions' => [],
 			'wgNoFollowNsExceptions' => [],
 		] );
-		$this->assertSideBar(
+
+		$bar = [];
+		$text = '* Title
+** https://www.mediawiki.org/| Home
+** http://valid.no.desc.org/
+';
+		$this->skin->addToSidebarPlain( $bar, $text );
+		$this->assertEquals(
 			[ 'Title' => [
 				# ** https://www.mediawiki.org/| Home
 				[
@@ -118,44 +146,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 				# ** http://valid.no.desc.org/
 				# ... skipped since it is missing a pipe with a description
 			] ],
-			'* Title
-** https://www.mediawiki.org/| Home
-** http://valid.no.desc.org/
-'
-		);
-	}
-
-	/**
-	 * T35321 - Make sure there's a | after transforming.
-	 * @group Database
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testTrickyPipe() {
-		$this->assertSideBar(
-			[ 'Title' => [
-				# The first 2 are skipped
-				# Doesn't really test the url properly
-				# because it will vary with $wgArticlePath et al.
-				# ** Baz|Fred
-				[
-					'text' => 'Fred',
-					'href' => Title::newFromText( 'Baz' )->getLocalURL(),
-					'id' => 'n-Fred',
-					'active' => null,
-				],
-				[
-					'text' => 'title-to-display',
-					'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
-					'id' => 'n-title-to-display',
-					'active' => null,
-				],
-			] ],
-			'* Title
-** {{PAGENAME|Foo}}
-** Bar
-** Baz|Fred
-** {{PLURAL:1|page-to-go-to{{int:pipe-separator/en}}title-to-display|branch not taken}}
-'
+			$bar
 		);
 	}
 
