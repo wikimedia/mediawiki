@@ -1234,8 +1234,6 @@
 	"backend-fail-contenttype": "Manam atinichu \"$1\" nisqapi hallch'ana willañiqip samiqninpa layanta yuqanchayta.",
 	"backend-fail-batchsize": "Willañiqi hallch'ana sirwiqmanqa $1 willañiqi {{PLURAL:$1|ruranayuq|ruranayuq}} tawqam qusqa; saywataq $2 {{PLURAL:$1|ruranam|ruranam}}.",
 	"backend-fail-usable": "Manam atinichu \"$1\" sutiyuq willañiqita ñawiriyta icha qillqayta, mana aypalla saqillaykuna icha mana churanakuna/qullqakuna kaptinmi.",
-	"filejournal-fail-dbconnect": "Manam atinichu \"$1\" sutiyuq willañiqi hallch'ana sirwiqpaq p'unchawnintin hallch'awan t'inkiyta.",
-	"filejournal-fail-dbquery": "Manam atinichu \"$1\" sutiyuq willañiqi hallch'ana sirwiqpaq p'unchawnintin hallch'ata musuqchayta.",
 	"lockmanager-notlocked": "Manam atinichu \"$1\" nisqata paskayta; manam hark'asqachu.",
 	"lockmanager-fail-closelock": "Manam atinichu \"$1\" nisqapaq hark'ana willañiqita wichq'ayta.",
 	"lockmanager-fail-deletelock": "Manam atinichu \"$1\" nisqapaq hark'ana willañiqita qulluyta.",

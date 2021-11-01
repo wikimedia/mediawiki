@@ -1523,8 +1523,6 @@
 	"backend-fail-contenttype": "Ora bisa nemtokaké jinisé kontèn saka barkas kang arep kasimpen ing \"$1\".",
 	"backend-fail-batchsize": "Backend panyimpenan olèh batch {{PLURAL:$1|operasi|operasi}} barkas $2; watesé $2 {{PLURAL:$2|operasi|operasi}}.",
 	"backend-fail-usable": "Ora bisa maca utawa nulis barkas \"$1\" amarga idin durung nyukupi utawa ilang dirèktori/kontaineré.",
-	"filejournal-fail-dbconnect": "Tidak dapat menyambung ke database jurnal untuk penyimpanan backend \"$1\".",
-	"filejournal-fail-dbquery": "Tidak bisa update database jurnal untuk penyimpanan backend \"$1\".",
 	"lockmanager-notlocked": "Ora bisa mbukak gembok \"$1\"; iku ora kagembok.",
 	"lockmanager-fail-closelock": "Ora bisa nutup barkas gembok tumrap \"$1\".",
 	"lockmanager-fail-deletelock": "Ora bisa mbusek barkas gembok tumrap \"$1\".",

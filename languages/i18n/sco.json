@@ -1553,8 +1553,6 @@
 	"backend-fail-contenttype": "Coudna determine the content type o the file tae store at \"$1\".",
 	"backend-fail-batchsize": "The storage backend wis gien ae batch o $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.",
 	"backend-fail-usable": "Coudna read or write file \"$1\" cause o onsuffeecient permeessions or missin directeries/containers.",
-	"filejournal-fail-dbconnect": "Coudna connect til the journal database fer storage backend \"$1\".",
-	"filejournal-fail-dbquery": "Coudna update the journal database fer storage backend \"$1\".",
 	"lockmanager-notlocked": "Coudna lowse \"$1\"; it's no lockit.",
 	"lockmanager-fail-closelock": "Coud no claise lock file fer \"$1\".",
 	"lockmanager-fail-deletelock": "Coudna delyte lock file fer \"$1\".",

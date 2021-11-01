@@ -1282,8 +1282,6 @@
 	"backend-fail-contenttype": "Mana hin ka gundekuna dumi tabatandi tukoo se ka jiši \"$1\" ga.",
 	"backend-fail-batchsize": "Bandahere jišidogoo n' ka duu margari nda tuku {{PLURAL:$1|goy}} $1; alkadaroo ti {{PLURAL:$2|goy}} $2.",
 	"backend-fail-usable": "Mana hin ka \"$1\" tuku caw wal'a hantum zama duɲeyaney ši wasa wala ngi fooloɲaŋey/suuney ga kuma.",
-	"filejournal-fail-dbconnect": "Mana hin ka dobu zaaritiira bayhayahugu \"$1\" bandahere jišidogoo se.",
-	"filejournal-fail-dbquery": "Mana hin ka taariki bayhayahugu taagandi \"$1\" bandahere jišidogoo se.",
 	"lockmanager-notlocked": "Mana hin ka \"$1\" feeri; a ši kufal.",
 	"lockmanager-fail-closelock": "Mana hin ka kufal tuku daabu \"$1\" se.",
 	"lockmanager-fail-deletelock": "Mana hin ka kufal tuku tuusu \"$1\" se.",

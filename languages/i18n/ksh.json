@@ -1430,8 +1430,6 @@
 	"backend-fail-contenttype": "Mer kunnte de Zoot Enhalt nit eruß krijje, di en dä Dattei „$1“ faßjehallde wääde sull.",
 	"backend-fail-batchsize": "Dat Schpeischersysteem hät ene Pöngel met {{PLURAL:$1|einem Befähl|$1 Befähle|keinem Befähl}} krääje, ävver et kann bloß {{PLURAL:$2|eine Befähl|$2 Befähle|keine Befähl}} op eijmohl.",
 	"backend-fail-usable": "Mer kunnte di Dattei $1 nit lässe udder schrieve, weil e Verzeischnes udder e Behältneß fählt, udder et Rääsch, dren ze lässe udder ze schrieve.",
-	"filejournal-fail-dbconnect": "Mer kunnte kein Verbendong opnämme met dä Daatebangk för et Logbooch vum Schpeischersysteem „$1“.",
-	"filejournal-fail-dbquery": "Mer kunnte en et Logbooch vum Schpeischersysteem „$1“ nix eren schriive.",
 	"lockmanager-notlocked": "Mer kunnte „$1“ nit freijävve. Ed es nit jeschpächt.",
 	"lockmanager-fail-closelock": "Mer kunnte di Schpärdatei för „$1“ nit zohmaache.",
 	"lockmanager-fail-deletelock": "Mer kunnte di Schpärdatei för „$1“ nit fottschmiiße.",

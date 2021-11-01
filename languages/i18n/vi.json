@@ -1836,8 +1836,6 @@
 	"backend-fail-usable": "Không thể đọc/ghi tập tin “$1” vì không có đủ quyền hoặc những thư mục hay nơi đựng bị thiếu.",
 	"backend-fail-stat": "Không thể lấy trạng thái tập tin “$1”.",
 	"backend-fail-hash": "Không thể xác định được hàm băm mã hóa của tập tin \"$1\".",
-	"filejournal-fail-dbconnect": "Không thể kết nối với cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.",
-	"filejournal-fail-dbquery": "Không thể cập nhật cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.",
 	"lockmanager-notlocked": "Không thể mở khóa “$1”; nó chưa khóa.",
 	"lockmanager-fail-closelock": "Không thể đóng tập tin khóa cho “$1”.",
 	"lockmanager-fail-deletelock": "Không thể xóa tập tin khóa cho “$1”.",

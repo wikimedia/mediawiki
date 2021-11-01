@@ -1609,8 +1609,6 @@
 	"backend-fail-contenttype": "Nun se ponno determinà 'e tipe 'e cuntenute d' 'o file 'a riggistrà dint'a \"$1\".",
 	"backend-fail-batchsize": "L'archivio 'e rezza prugrammaje na rezza 'e $1 {{PLURAL:$1|prucesso|prucesse}} ncopp' 'o file; 'o lémmeto è $2 {{PLURAL:$2|prucesso|prucesse}}.",
 	"backend-fail-usable": "Nun se può lieggere o scrivere 'o file \"$1\" pecché mancano 'e permesse sufficiente o nun esiste 'a cartella/cuntenitore.",
-	"filejournal-fail-dbconnect": "Nun se può fà connessione a l'archivio d' 'o database pe' puté astipà archivie 'n rezza \"$1\".",
-	"filejournal-fail-dbquery": "Nun se può agghiurnà l'archivio d' 'o database pe' puté astipà l'archivie 'n rezza \"$1\".",
 	"lockmanager-notlocked": "Nun se può sbloccà \"$1\"; nun sta bluccato.",
 	"lockmanager-fail-closelock": "Nun se può nchiure 'o file 'e blocco pe' \"$1\".",
 	"lockmanager-fail-deletelock": "Nun se può scancellà 'o file 'e blocco pe' \"$1\".",

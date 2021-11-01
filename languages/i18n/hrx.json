@@ -1203,8 +1203,6 @@
 	"backend-fail-contenttype": "Der Inhaltstyp, der im Pad \"$1\" zu speichernd Datei, konnt net bestimmt sin.",
 	"backend-fail-batchsize": "En Stapelveroorbeitungsdatei, die {{PLURAL:$1|en Operation|$1 Operatione}} enthält, woard an das Speicher-Backend geschickt. Die Begrenzung lieht allerdings bei {{PLURAL:$2|en Operation|$2 Operatione}}.",
 	"backend-fail-usable": "Die Datei \"$1\" konnt entweder uffgrund von en net voarhand Verzeichnisse orrer weche unzureichender Berechtichunge weder abgeruf noch gespeichert sin.",
-	"filejournal-fail-dbconnect": "Do könnt kein Verbinung zur Journaldatebank con das Speicher-Backend \"$1\" heargestellt sin.",
-	"filejournal-fail-dbquery": "Die Journaldatebank von de Speicher-Backend \"$1\" könnt net aktualisiert sin.",
 	"lockmanager-notlocked": "\"$1\" könnt net entsperrt (befreit) sin, wil ken Sperrung existier/besteht.",
 	"lockmanager-fail-closelock": "Die Sperrdatei für \"$1\" konnt net geschloss sin.",
 	"lockmanager-fail-deletelock": "Die Datei \"$1\" konnt net gelöscht sin.",

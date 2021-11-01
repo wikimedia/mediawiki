@@ -1857,8 +1857,6 @@
 	"backend-fail-usable": "Tidak dapat membaca atau menulis berkas \"$1\" karena izin tidak memadai atau direktori/kontainer hilang.",
 	"backend-fail-stat": "Tidak dapat membaca status berkas \"$1\".",
 	"backend-fail-hash": "Tidak dapat menentukan hash kriptografi berkas \"$1\".",
-	"filejournal-fail-dbconnect": "Tidak dapat menyambung ke database jurnal untuk penyimpanan backend \"$1\".",
-	"filejournal-fail-dbquery": "Tidak bisa update database jurnal untuk penyimpanan backend \"$1\".",
 	"lockmanager-notlocked": "Tidak bisa membuka kunci \"$1\" karena \"$1\" tidak terkunci.",
 	"lockmanager-fail-closelock": "Tidak dapat menutup penguncian berkas untuk \"$1\".",
 	"lockmanager-fail-deletelock": "Tidak dapat menghapus penguncian berkas untuk \"$1\".",

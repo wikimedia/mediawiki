@@ -1645,8 +1645,6 @@
 	"backend-fail-contenttype": "Impossible de determinar lo tipe de contengut del fichièr d'emmagazinar en \"$1\".",
 	"backend-fail-batchsize": "Lo supòrt d'emmagazinatge a provesit un lòt de $1 {{PLURAL:$1|operacion|operacions}} de fichièr ; lo limit es de $2 {{PLURAL:$2|operacion|operacions}}.",
 	"backend-fail-usable": "Impossible de legir o d'escriure lo fichièr « $1 » en rason de dreits insufisents o repertòris/contenidors mancants.",
-	"filejournal-fail-dbconnect": "Impossible de se connectar a la basa de donadas del jornal pel terminal d'emmagazinatge \"$1\".",
-	"filejournal-fail-dbquery": "Impossible de metre a jorn la basa de donadas del jornal pel terminal d'emmagazinatge \"$1\".",
 	"lockmanager-notlocked": "Impossible de desverrolhar « $1 » ; es pas verrolhada.",
 	"lockmanager-fail-closelock": "Impossible de tampar lo fichièr de verrolh per « $1 ».",
 	"lockmanager-fail-deletelock": "Impossible de suprimir lo fichièr de verrolh per « $1 ».",

@@ -1902,8 +1902,6 @@
 	"backend-fail-usable": "権限が不足している、またはディレクトリ/コンテナーがないため、ファイル「$1」の読み取り/書き込みができません。",
 	"backend-fail-stat": "ファイル\"$1\"の状態を読み込めませんでした。",
 	"backend-fail-hash": "ファイル「$1」の暗号化ハッシュを特定できませんでした。",
-	"filejournal-fail-dbconnect": "ストレージバックエンド「$1」のジャーナルデータベースに接続できません。",
-	"filejournal-fail-dbquery": "ストレージバックエンド「$1」のジャーナルデータベースを更新できません。",
 	"lockmanager-notlocked": "「$1」をロック解除できませんでした。ロックされていません。",
 	"lockmanager-fail-closelock": "「$1」用のロックファイルを閉じることができませんでした。",
 	"lockmanager-fail-deletelock": "「$1」用のロックファイルを削除できませんでした。",

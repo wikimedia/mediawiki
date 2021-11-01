@@ -1504,8 +1504,6 @@
 	"backend-fail-connect": "Teu bisa nyambungkeun kana panyimpenan backend \"$1\".",
 	"backend-fail-internal": "Aya kasalahan nu teu dipikawanoh di backend panyimpenan \"$1\".",
 	"backend-fail-contenttype": "Teu bisa nangtukeun tipeu eusi berkas anu badé disimpen di \"$1\".",
-	"filejournal-fail-dbconnect": "Teu bisa nyambung ka basisdata jurnal pikeun panyimpenan ''backend'' \"$1\".",
-	"filejournal-fail-dbquery": "Teu bisa nganyarkeun basisdata jurnal pikeun panyimpenan ''backend'' \"$1\".",
 	"lockmanager-notlocked": "Teu bisa muka konci \"$1\" kusabab teu dikonci.",
 	"lockmanager-fail-closelock": "Teu bisa nutup berkas konci pikeun \"$1\".",
 	"lockmanager-fail-deletelock": "Teu bisa ngahapus berkas konci pikeun \"$1\".",

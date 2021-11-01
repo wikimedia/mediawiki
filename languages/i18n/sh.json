@@ -1718,8 +1718,6 @@
 	"backend-fail-usable": "Ne mogu pročitati ni snimiti datoteku $1 zbog nedovoljno dozvola ili nedostattnih direktorija/sadržaoca.",
 	"backend-fail-stat": "Nisam mogao pročitati stanje datoteke \"$1\".",
 	"backend-fail-hash": "Nisam mogao odrediti kriptografsku tarabu datoteke \"$1\".",
-	"filejournal-fail-dbconnect": "Ne mogu da se povežem s novinarskom bazom za skladišnu osnovu „$1“.",
-	"filejournal-fail-dbquery": "Ne mogu da ažuriram novinarsku bazu za skladišnu osnovu „$1“.",
 	"lockmanager-notlocked": "Ne mogu da otključam „$1“ jer nije zaključan.",
 	"lockmanager-fail-closelock": "Ne mogu da zatvorim katanac za „$1“.",
 	"lockmanager-fail-deletelock": "Ne mogu da obrišem katanac za „$1“.",

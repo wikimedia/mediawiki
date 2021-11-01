@@ -1668,8 +1668,6 @@
 	"backend-fail-contenttype": "Negalima nustatyti failo turinio tipo, kuris saugomas \"$1\".",
 	"backend-fail-batchsize": "Saugyklos posistemė gavo seriją $1 failo {{PLURAL:$1|operaciją|operacijų}}; limitas yra $2 {{PLURAL:$2|operacija|operacijos}}.",
 	"backend-fail-usable": "Negalima perskaityti ar įrašyti failo „$1“ dėl nepakankamų teisių ar trūkstamo katalogo/konteinerio.",
-	"filejournal-fail-dbconnect": "Nepavyko prisijungti prie žurnalo duomenų bazės saugojimo posistemei „$1“.",
-	"filejournal-fail-dbquery": "Nepavyko atnaujinti žurnalo duomenų bazės saugojimo posistemei „$1“.",
 	"lockmanager-notlocked": "Negalima atrakinti \"$1\", nes jis nėra užrakintas.",
 	"lockmanager-fail-closelock": "Negalima uždaryti rakinimų failo dėl \"$1\".",
 	"lockmanager-fail-deletelock": "Negalima panaikinti rakinimų failo dėl \"$1\".",

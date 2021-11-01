@@ -1828,8 +1828,6 @@
 	"backend-fail-usable": "Imposibil de citit sau scris fișierul „$1” din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.",
 	"backend-fail-stat": "Nu se poate citi stare fișierului „$1”.",
 	"backend-fail-hash": "Nu se poate determina amestecătura criptografică a fișierului „$1”.",
-	"filejournal-fail-dbconnect": "Imposibil de conectat la baza de date a jurnalului pentru terminatul de stocare „$1”.",
-	"filejournal-fail-dbquery": "Imposibil de actualizat baza de date a jurnalului pentru terminalul de stocare „$1”.",
 	"lockmanager-notlocked": "Imposibil de deblocat „$1”; nu este blocată.",
 	"lockmanager-fail-closelock": "Imposibil de închis fișierul de blocare pentru „$1”.",
 	"lockmanager-fail-deletelock": "Imposibil de șters fișierul de blocare pentru „$1”.",

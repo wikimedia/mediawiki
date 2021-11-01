@@ -1865,8 +1865,6 @@
 	"backend-fail-usable": "Não foi possível ler ou gravar o ficheiro \"$1\" devido a permissões insuficientes ou a diretórios/repositórios inexistentes.",
 	"backend-fail-stat": "Não foi possível ler o estado do ficheiro \"$1\".",
 	"backend-fail-hash": "Não foi possível determinar o resumo criptográfico do ficheiro \"$1\".",
-	"filejournal-fail-dbconnect": "Não foi possível estabelecer ligação à base de dados de registos no servidor de armazenamento \"$1\".",
-	"filejournal-fail-dbquery": "Não foi possível atualizar a base de dados de registos do servidor de armazenamento \"$1\".",
 	"lockmanager-notlocked": "Não foi possível desbloquear \"$1\" porque não se encontra bloqueado.",
 	"lockmanager-fail-closelock": "Não foi possível encerrar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-deletelock": "Não foi possível eliminar a referência de bloqueio para \"$1\".",

@@ -1873,8 +1873,6 @@
 	"backend-fail-usable": "Nie można zapisać lub czytać z pliku \"$1\" ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.",
 	"backend-fail-stat": "Nie udało się odczytać statusu pliku „$1”.",
 	"backend-fail-hash": "Nie udało się zdefiniować hasha kryptograficznego pliku „$1”.",
-	"filejournal-fail-dbconnect": "Nie można połączyć się z bazą danych dziennika dla backendu magazynowania \"$1\".",
-	"filejournal-fail-dbquery": "Nie można zaktualizować bazy danych dziennika dla backendu magazynowania\"$1\".",
 	"lockmanager-notlocked": "Nie można odblokować \"$1\", ponieważ nie jest on zablokowany.",
 	"lockmanager-fail-closelock": "Nie można znieść blokady z pliku \"$1\".",
 	"lockmanager-fail-deletelock": "Nie można usunąć blokady z pliku \"$1\".",

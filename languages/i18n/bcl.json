@@ -1513,8 +1513,6 @@
 	"backend-fail-contenttype": "Dae makapagdeterminar sa tipo kan laog kan sagunson na magsaray sa \"$1\".",
 	"backend-fail-batchsize": "An panampad na sarayan pinagtao nin sarong batch kan sagunson sa $1 {{PLURAL:$1|operasyon|mga operasyon}}; an limit $2 {{PLURAL:$2|operasyon|mga operasyon}}.",
 	"backend-fail-usable": "Dae makakapagbasa o makakapagsurat nin sagunson sa \"$1\" nin hulita ta kulang an mga permiso o nawawara an mga direktoryo/kaaganan.",
-	"filejournal-fail-dbconnect": "Dae makakasugpon sa datos-sarayan kan dyornal para sa panampad na sarayan \"$1\".",
-	"filejournal-fail-dbquery": "Dae makakasumpay sa datos-sarayan kan dyornal para sa panampad na sarayan \"$1\".",
 	"lockmanager-notlocked": "Dae makakabukas kan \"$1\"; dae po ini nakakandado.",
 	"lockmanager-fail-closelock": "Dae makakasara sa nakakandadong sagunson para sa \"$1\".",
 	"lockmanager-fail-deletelock": "Dae makakapura sa nakakandadong sagunson para sa \"$1\".",

@@ -1847,8 +1847,6 @@
 	"backend-fail-usable": "No s'ha pogut llegir ni escriure el fitxer \"$1\" a causa de permisos insuficients o perquè hi manquen directoris/contenidors.",
 	"backend-fail-stat": "No s’ha pogut llegir l’estat del fitxer «$1».",
 	"backend-fail-hash": "No s’ha pogut determinar el resum criptogràfic del fitxer «$1».",
-	"filejournal-fail-dbconnect": "No es pot connectar amb la base de dades per emmagatzemar el backend \"$1\".",
-	"filejournal-fail-dbquery": "No es pot actualitzar la base de dades per a emmagatzemar el backend \"$1\".",
 	"lockmanager-notlocked": "No s'ha pogut desblocar «$1»; no és blocat.",
 	"lockmanager-fail-closelock": "No s'ha pogut blocar el fitxer per «$1».",
 	"lockmanager-fail-deletelock": "No s'ha pogut suprimir el fitxer de blocatge per «$1».",

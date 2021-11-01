@@ -1428,8 +1428,6 @@
 	"backend-fail-contenttype": "Ii nai pataa lagae sakaa hae ki \"$1\" me bachae ke khaatir file kon rakam ke hae.",
 	"backend-fail-batchsize": "Storage backend ke  $1 file {{PLURAL:$1|operation|operations}} ke ek batch ke dewa gais hae ; limit  $2 {{PLURAL:$2|operation|operation}} hae.",
 	"backend-fail-usable": "File $1 me nai likhe, nai to nai parrhe, sakaa hae kaahe ki iske khatir jaruri ijajat nai hae, nai to directories/containers nai hae.",
-	"filejournal-fail-dbconnect": "Storage backend \"$1\" ke khatir journal database se nai jorre sakaa hae.",
-	"filejournal-fail-dbquery": "Storage backend \"$1\" ke khatir journal database ke nai badle sakaa hae.",
 	"lockmanager-notlocked": "\"$1\" ke  nai khole sakaa hae; ii lock nai hae.",
 	"lockmanager-fail-closelock": "\"$1\" ke khatir lock file ke nai band kare sakaa hae.",
 	"lockmanager-fail-deletelock": "\"$1\" ke khatir lock file ke nai mitae sakaa hae.",

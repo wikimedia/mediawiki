@@ -1784,8 +1784,6 @@
 	"backend-fail-usable": "Non poteva leger o scriber le file \"$1\" a causa de permissiones insufficiente o directorios/contentores mancante.",
 	"backend-fail-stat": "Impossibile leger le stato del file \"$1\".",
 	"backend-fail-hash": "Impossibile determinar le hash cryptographic del file \"$1\".",
-	"filejournal-fail-dbconnect": "Non poteva connecter al base de datos de jornal pro le systema de immagazinage \"$1\".",
-	"filejournal-fail-dbquery": "Non poteva actualisar le base de datos de jornal pro le systema de immagazinage \"$1\".",
 	"lockmanager-notlocked": "Impossibile disblocar \"$1\"; illo non es blocate.",
 	"lockmanager-fail-closelock": "Non poteva clauder le file de serratura pro \"$1\".",
 	"lockmanager-fail-deletelock": "Non poteva deler le file de serratura pro \"$1\".",

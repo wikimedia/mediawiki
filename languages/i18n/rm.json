@@ -1113,8 +1113,6 @@
 	"backend-fail-contenttype": "Impussibel da determinar il tip da cuntegn da la datoteca per memorisar en \"$1\".",
 	"backend-fail-batchsize": "Il backend da memorisar ha retschavì ina seria da $1 {{PLURAL:$1|operaziun|operaziuns}}; la limita è $2 {{PLURAL:$1|operaziun|operaziuns}}.",
 	"backend-fail-usable": "Impussibel da leger u scriver la datoteca \"$1\" causa da permissiuns insufficientas u ordinaturs/containers mancants.",
-	"filejournal-fail-dbconnect": "Impussibel da connectar a la banca da datas dal journal per il backend da memorisar \"$1\".",
-	"filejournal-fail-dbquery": "Impussibel dad actualisar la banca da datas dal journal per il backend da memorisar \"$1\".",
 	"lockmanager-notlocked": "Impussibel da debloccar \"$1\"; la resursa n'è betg bloccada.",
 	"lockmanager-fail-closelock": "Impussibel da serrar la datotoca da bloccar per \"$1\".",
 	"lockmanager-fail-deletelock": "Impussibel da stizzar la datotoca da bloccar per \"$1\".",

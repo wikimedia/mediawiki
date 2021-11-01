@@ -1386,8 +1386,6 @@
 	"backend-fail-contenttype": "Cha deach leinn faighinn a-mach dè an seòrsa susbaint a tha san fhaidhle ri stòradh air \"$1\".",
 	"backend-fail-batchsize": "Chaidh batch de $1 {{PLURAL:$1|obrachadh|obrachadh|obrachaidhean|obrachadh}} faidhle a thoirt gu backend an stòraidh; chan eil ach $2 {{PLURAL:$2|obrachadh|obrachadh|obrachaidhean|obrachadh}} ceadaiche air a char as motha.",
 	"backend-fail-usable": "Cha deach leinn am faidhle \"$1\" a leughadh no a sgrìobhadh ann on a bheil cead no pasgan/soitheach a dhìth.",
-	"filejournal-fail-dbconnect": "Cha deach leinn ceangal ris an stòr-dàta leabhair-latha airson backend an stòrais \"$1\".",
-	"filejournal-fail-dbquery": "Cha deach leinn an stòr-dàta leabhair-latha airson backend an stòrais \"$1\" ùrachadh.",
 	"lockmanager-notlocked": "Cha deach leinn a' ghlas a thoirt far \"$1\" o nach eil e glaiste.",
 	"lockmanager-fail-closelock": "Cha deach leinn am faidhle glasaidh airson \"$1\" a dhùnadh.",
 	"lockmanager-fail-deletelock": "Cha deach leinn am faidhle glasaidh airson \"$1\" a sguabadh às.",

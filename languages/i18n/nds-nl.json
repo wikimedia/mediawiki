@@ -1363,8 +1363,6 @@
 	"backend-fail-contenttype": "Kon t inhoudstype van t bestaand um op \"$1\" op te slaon niet bepaolen.",
 	"backend-fail-batchsize": "Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.",
 	"backend-fail-usable": "Kon t bestaand \"$1\" niet lezen of schrieven umda'j niet genog rechten hebben of vanwegen niet-anwezige mappen of houwers.",
-	"filejournal-fail-dbconnect": "Kon gien verbiending maken mit de journaaldatabanke veur t opslagbackend \"$1\".",
-	"filejournal-fail-dbquery": "Kon de journaaldatabanke niet biewarken veur t opslagbackend \"$1\".",
 	"lockmanager-notlocked": "Kon \"$1\" niet vriegeven; dit objekt is niet vergrendeld.",
 	"lockmanager-fail-closelock": "Kon t vergrendelingsbestaand veur \"$1\" niet sluten.",
 	"lockmanager-fail-deletelock": "Kon t vergrendelingsbestaand veur \"$1\" niet vortdoon.",

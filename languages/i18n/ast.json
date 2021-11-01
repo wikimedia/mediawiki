@@ -1746,8 +1746,6 @@
 	"backend-fail-usable": "Nun pudo lleese o escribise nel ficheru «$1» porque nun hai permisos bastantes o falten los direutorios/contenedores.",
 	"backend-fail-stat": "Nun pudo lleese l'estáu del ficheru «$1».",
 	"backend-fail-hash": "Nun pudo determinase'l hash criptográficu del ficheru «$1».",
-	"filejournal-fail-dbconnect": "Nun se pudo coneutar cola base de datos del diariu pal sofitu d'almacenamientu \"$1\".",
-	"filejournal-fail-dbquery": "Nun se pudo anovar la base de datos del diariu pal sofitu d'almacenamientu \"$1\".",
 	"lockmanager-notlocked": "Nun se pudo desbloquiar \"$1\"; nun ta bloquiáu.",
 	"lockmanager-fail-closelock": "Nun se pudo zarrar el ficheru de bloquéu pa \"$1\".",
 	"lockmanager-fail-deletelock": "Non se pudo desaniciar el ficheru de bloquéu pa \"$1\".",

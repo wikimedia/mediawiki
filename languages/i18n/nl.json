@@ -1877,8 +1877,6 @@
 	"backend-fail-usable": "Het was niet mogelijk naar het bestand $1 te schrijven of eruit te lezen vanwege onvoldoende rechten of niet-aanwezige mappen of containers.",
 	"backend-fail-stat": "Kan de bestandsstatus van \"$1\" niet lezen.",
 	"backend-fail-hash": "Kan de cryptografische hash van het bestand \"$1\" niet bepalen.",
-	"filejournal-fail-dbconnect": "Het was niet mogelijk een verbinding te maken met de journaldatabase voor het opslagbackend \"$1\".",
-	"filejournal-fail-dbquery": "Het was niet mogelijk de journaldatabase bij te werken voor het opslagbackend \"$1\".",
 	"lockmanager-notlocked": "Het was niet mogelijk \"$1\" vrij te geven; dit object is niet vergrendeld.",
 	"lockmanager-fail-closelock": "Het was niet mogelijk het vergrendelingsbestand voor \"$1\" te sluiten.",
 	"lockmanager-fail-deletelock": "Het was niet mogelijk het vergrendelingsbestand voor \"$1\" te verwijderen.",

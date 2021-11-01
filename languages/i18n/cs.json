@@ -1829,8 +1829,6 @@
 	"backend-fail-usable": "Nepodařilo se zapsat do souboru „$1“ kvůli nedostatečným oprávněním nebo chybějícím adresářům/kontejnerům.",
 	"backend-fail-stat": "Nepodařilo se načíst stav souboru „$1“.",
 	"backend-fail-hash": "Nepodařilo se určit kryptografický haš souboru „$1“.",
-	"filejournal-fail-dbconnect": "Nelze se připojit k žurnálové databázi pro koncový úložný systém „$1“.",
-	"filejournal-fail-dbquery": "Nepodařilo se aktualizovat žurnálovou databázi pro koncový úložný systém „$1“.",
 	"lockmanager-notlocked": "Soubor „$1“ nelze odemknout, neboť není zamčen.",
 	"lockmanager-fail-closelock": "Soubor se zámkem pro „$1“ nelze zavřít.",
 	"lockmanager-fail-deletelock": "Soubor se zámkem pro „$1“ nelze smazat.",

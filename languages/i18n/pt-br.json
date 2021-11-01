@@ -1914,8 +1914,6 @@
 	"backend-fail-usable": "Não foi possível ler ou salvar o arquivo $1 devido a permissões insuficientes a diretórios, ou a repositórios/diretórios inexistentes.",
 	"backend-fail-stat": "Não foi possível ler o estado do arquivo \"$1\".",
 	"backend-fail-hash": "Não foi possível determinar o resumo criptográfico do arquivo \"$1\".",
-	"filejournal-fail-dbconnect": "Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento \"$1\".",
-	"filejournal-fail-dbquery": "Não foi possível atualizar o banco de dados de registros do sistema de armazenamento \"$1\".",
 	"lockmanager-notlocked": "Não foi possível desbloquear \"$1\" por ele não se encontrar bloqueado.",
 	"lockmanager-fail-closelock": "Não foi possível encerrar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-deletelock": "Não foi possível eliminar a referência de bloqueio para \"$1\".",

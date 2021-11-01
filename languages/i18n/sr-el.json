@@ -1777,8 +1777,6 @@
 	"backend-fail-usable": "Ne mogu da pročitam ili zapišem datoteku „$1“ jer nemate dovoljno dozvola ili vam nedostaju fascikle/sadržaoci.",
 	"backend-fail-stat": "Nije moguće pročitati status datoteke „$1”.",
 	"backend-fail-hash": "Nije moguće odrediti kriptografsku tarabu datoteke „$1”.",
-	"filejournal-fail-dbconnect": "Nije moguće povezati se sa novinarskom bazom podataka za pozadinsko skladište „$1”.",
-	"filejournal-fail-dbquery": "Nije moguće ažurirati novinarsku bazu podataka za pozadinsko skladište „$1”.",
 	"lockmanager-notlocked": "Nije moguće otključati „$1” jer nije zaključan.",
 	"lockmanager-fail-closelock": "Nije moguće zatvoriti katanac za „$1”.",
 	"lockmanager-fail-deletelock": "Nije moguće izbrisati katanac za „$1”.",

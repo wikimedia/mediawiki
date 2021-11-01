@@ -2003,8 +2003,6 @@
 	"backend-fail-usable": "No se pudo leer o escribir el archivo \"$1\" debido a permisos insuficientes o directorios/contenedores desaparecidos.",
 	"backend-fail-stat": "No se pudo leer el estado del archivo «$1».",
 	"backend-fail-hash": "No se pudo determinar el resumen criptográfico del archivo «$1».",
-	"filejournal-fail-dbconnect": "No se pudo conectar con la base de datos del registro del sistema de almacenamiento «$1».",
-	"filejournal-fail-dbquery": "No se pudo actualizar la base de datos del registro del sistema de almacenamiento \"$1\".",
 	"lockmanager-notlocked": "No se pudo desbloquear \"$1\": no se encontraba bloqueado.",
 	"lockmanager-fail-closelock": "No se pudo cerrar la referencia para el archivo de bloqueo de \"$1\".",
 	"lockmanager-fail-deletelock": "No se pudo eliminar el archivo de bloqueo para \"$1\".",
