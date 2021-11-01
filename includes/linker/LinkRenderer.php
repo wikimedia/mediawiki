@@ -27,7 +27,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReference;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use NamespaceInfo;
 use Sanitizer;
 use Title;
 use TitleFormatter;
@@ -66,14 +65,6 @@ class LinkRenderer {
 	 */
 	private $linkCache;
 
-	/**
-	 * @var NamespaceInfo
-	 */
-	private $nsInfo;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -86,22 +77,18 @@ class LinkRenderer {
 	 * @internal For use by LinkRendererFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
-	 * @param NamespaceInfo $nsInfo
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
-		NamespaceInfo $nsInfo,
 		SpecialPageFactory $specialPageFactory,
 		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
-		$this->nsInfo = $nsInfo;
 		$this->specialPageFactory = $specialPageFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 

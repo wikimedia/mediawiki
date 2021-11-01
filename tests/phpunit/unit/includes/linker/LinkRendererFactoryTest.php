@@ -21,11 +21,6 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 	private $linkCache;
 
 	/**
-	 * @var NamespaceInfo
-	 */
-	private $nsInfo;
-
-	/**
 	 * @var SpecialPageFactory
 	 */
 	private $specialPageFactory;
@@ -40,7 +35,6 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 
 		$this->titleFormatter = $this->createMock( TitleFormatter::class );
 		$this->linkCache = $this->createMock( LinkCache::class );
-		$this->nsInfo = $this->createMock( NamespaceInfo::class );
 		$this->specialPageFactory = $this->createMock( SpecialPageFactory::class );
 		$this->hookContainer = $this->createMock( HookContainer::class );
 	}
@@ -70,9 +64,11 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	public function testCreateFromLegacyOptions( $options, $func, $val ) {
 		$factory = new LinkRendererFactory(
-				$this->titleFormatter, $this->linkCache, $this->nsInfo,
-				$this->specialPageFactory, $this->hookContainer
-			);
+			$this->titleFormatter,
+			$this->linkCache,
+			$this->specialPageFactory,
+			$this->hookContainer
+		);
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
 		);
@@ -82,8 +78,10 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testCreate() {
 		$factory = new LinkRendererFactory(
-			$this->titleFormatter, $this->linkCache, $this->nsInfo,
-			$this->specialPageFactory, $this->hookContainer
+			$this->titleFormatter,
+			$this->linkCache,
+			$this->specialPageFactory,
+			$this->hookContainer
 		);
 		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
 	}
