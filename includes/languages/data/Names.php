@@ -96,6 +96,7 @@ class Names {
 		'bho' => 'भोजपुरी', # Bhojpuri
 		'bi' => 'Bislama', # Bislama
 		'bjn' => 'Banjar', # Banjarese
+		'blk' => 'ပအိုဝ်ႏဘာႏသာႏ', # Pa'O
 		'bm' => 'bamanankan', # Bambara
 		'bn' => 'বাংলা', # Bengali
 		'bo' => 'བོད་ཡིག', # Tibetan
