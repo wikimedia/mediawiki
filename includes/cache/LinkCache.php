@@ -436,30 +436,26 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Returns the row for the page if the page exists (subject to race conditions).
-	 * The row will be returned from local cache or WAN cache if possible, or it
-	 * will be looked up using the callback provided.
-	 *
-	 * @param int $ns
-	 * @param string $dbkey
-	 * @param callable|null $fetchCallback A callback that will retrieve the link row with the
-	 *        signature ( IDatabase $db, int $ns, string $dbkey, array $queryOptions ): ?stdObj.
-	 * @param int $queryFlags IDBAccessObject::READ_XXX
-	 *
-	 * @return stdClass|null
-	 * @internal for use by PageStore. Other code should use a PageLookup instead.
+	 * @param TitleValue|null $link
+	 * @param callable|null $fetchCallback
+	 * @param int $queryFlags
+	 * @return array [ $shouldAddGoodLink, $row ], $shouldAddGoodLink is a bool indicating
+	 * whether addGoodLinkObjFromRow should be called, and $row is the row the caller was looking
+	 * for (or false, when it was not found).
 	 */
-	public function getGoodLinkRow(
-		int $ns,
-		string $dbkey,
+	private function getGoodLinkRowInternal(
+		?TitleValue $link,
 		callable $fetchCallback = null,
 		int $queryFlags = IDBAccessObject::READ_NORMAL
-	): ?stdClass {
-		$link = TitleValue::tryNew( $ns, $dbkey );
+	): array {
 		$key = $link ? $this->getCacheKey( $link ) : null;
 		if ( $key === null ) {
-			return null;
+			return [ false, false ];
 		}
+
+		$ns = $link->getNamespace();
+		$dbkey = $link->getDBkey();
+		$callerShouldAddGoodLink = false;
 
 		if ( $this->mForUpdate ) {
 			$queryFlags |= IDBAccessObject::READ_LATEST;
@@ -467,18 +463,19 @@ class LinkCache implements LoggerAwareInterface {
 		$forUpdate = $queryFlags & IDBAccessObject::READ_LATEST;
 
 		if ( !$forUpdate && $this->isBadLink( $key ) ) {
-			return null;
+			return [ $callerShouldAddGoodLink, false ];
 		}
 
 		[ $row, $rowFlags ] = $this->goodLinks->get( $key );
 		if ( $row && $rowFlags >= $queryFlags ) {
-			return $row;
+			return [ $callerShouldAddGoodLink, $row ];
 		}
 
 		if ( !$fetchCallback ) {
-			return null;
+			return [ $callerShouldAddGoodLink, false ];
 		}
 
+		$callerShouldAddGoodLink = true;
 		if ( $this->usePersistentCache( $ns ) && !$forUpdate ) {
 			// Some pages are often transcluded heavily, so use persistent caching
 			$wanCacheKey = $this->wanCache->makeKey( 'page', $ns, sha1( $dbkey ) );
@@ -504,8 +501,54 @@ class LinkCache implements LoggerAwareInterface {
 			$row = $fetchCallback( $dbr, $ns, $dbkey, $options );
 		}
 
+		return [ $callerShouldAddGoodLink, $row ];
+	}
+
+	/**
+	 * Returns the row for the page if the page exists (subject to race conditions).
+	 * The row will be returned from local cache or WAN cache if possible, or it
+	 * will be looked up using the callback provided.
+	 *
+	 * @param int $ns
+	 * @param string $dbkey
+	 * @param callable|null $fetchCallback A callback that will retrieve the link row with the
+	 *        signature ( IDatabase $db, int $ns, string $dbkey, array $queryOptions ): ?stdObj.
+	 * @param int $queryFlags IDBAccessObject::READ_XXX
+	 *
+	 * @return stdClass|null
+	 * @internal for use by PageStore. Other code should use a PageLookup instead.
+	 */
+	public function getGoodLinkRow(
+		int $ns,
+		string $dbkey,
+		callable $fetchCallback = null,
+		int $queryFlags = IDBAccessObject::READ_NORMAL
+	): ?stdClass {
+		$link = TitleValue::tryNew( $ns, $dbkey );
+		if ( $link === null ) {
+			return null;
+		}
+		[ $shouldAddGoodLink, $row ] = $this->getGoodLinkRowInternal(
+			$link,
+			$fetchCallback,
+			$queryFlags
+		);
+
 		if ( $row ) {
-			$this->addGoodLinkObjFromRow( $link, $row );
+			if ( $shouldAddGoodLink ) {
+				try {
+					$this->addGoodLinkObjFromRow( $link, $row, $queryFlags );
+				} catch ( InvalidArgumentException $e ) {
+					// a field is missing from $row; maybe we used a cache?; invalidate it and try again
+					$this->invalidateTitle( $link );
+					[ $shouldAddGoodLink, $row ] = $this->getGoodLinkRowInternal(
+						$link,
+						$fetchCallback,
+						$queryFlags
+					);
+					$this->addGoodLinkObjFromRow( $link, $row, $queryFlags );
+				}
+			}
 		} else {
 			$this->addBadLinkObj( $link );
 		}
