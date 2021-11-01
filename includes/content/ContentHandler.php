@@ -1635,12 +1635,14 @@ abstract class ContentHandler {
 		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
-			'getParserOutput'
+			'getParserOutput',
+			'1.38'
 		);
 		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
-			'fillParserOutput'
+			'fillParserOutput',
+			'1.38'
 		);
 		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
 			return $this->callDeprecatedContentGPO( $content, $cpoParams );

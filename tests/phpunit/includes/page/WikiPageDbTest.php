@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -2041,15 +2042,18 @@ more stuff
 	public function testNewPageUpdater() {
 		$user = $this->getTestUser()->getUser();
 		$page = $this->newPage( __METHOD__, __METHOD__ );
+		$content = new WikitextContent( 'Hello World' );
 
-		/** @var Content $content */
-		$content = $this->getMockBuilder( WikitextContent::class )
-			->setConstructorArgs( [ 'Hello World' ] )
+		/** @var ContentRenderer $contentRenderer */
+		$contentRenderer = $this->getMockBuilder( ContentRenderer::class )
 			->onlyMethods( [ 'getParserOutput' ] )
+			->disableOriginalConstructor()
 			->getMock();
-		$content->expects( $this->once() )
+		$contentRenderer->expects( $this->once() )
 			->method( 'getParserOutput' )
 			->willReturn( new ParserOutput( 'HTML' ) );
+
+		$this->setService( 'ContentRenderer', $contentRenderer );
 
 		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user );
 

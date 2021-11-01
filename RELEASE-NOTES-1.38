@@ -213,9 +213,10 @@ because of Phabricator reports.
 * The following methods from the User class now trigger deprecation warnings:
    - ::blockedBy
    - ::getBlockId
-* Content::getParserOutput() was deprecated.
-  Use ContentRenderer::getParserOutput and override
-  ContentHandler::fillParserOutput instead.
+* Content::getParserOutput and AbstractContent::fillParserOutput
+  was hard-deprecated, use ContentRenderer::getParserOutput instead.
+  Extensions defining a content model should
+  override ContentHandler::fillParserOutput.
 * Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
   you only need to delete the article. If you also need things to happen
   with OutputPage, you may want to check the hooks in DeleteAction instead.
