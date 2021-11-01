@@ -204,7 +204,6 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	public function testGetLinkClasses( $foobarTitle, $redirectTitle, $userTitle ) {
 		$services = MediaWikiServices::getInstance();
 		$titleFormatter = $services->getTitleFormatter();
-		$nsInfo = $services->getNamespaceInfo();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();
 		$linkCache = $services->getLinkCache();
@@ -228,8 +227,12 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		}
 		$this->addGoodLinkObject( 3, $cacheTitle, 10, 0 );
 
-		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache,
-			$nsInfo, $specialPageFactory, $hookContainer );
+		$linkRenderer = new LinkRenderer(
+			$titleFormatter,
+			$linkCache,
+			$specialPageFactory,
+			$hookContainer
+		);
 		$this->assertSame(
 			'',
 			$linkRenderer->getLinkClasses( $foobarTitle )
