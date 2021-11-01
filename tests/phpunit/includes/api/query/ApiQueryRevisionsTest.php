@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Storage\SlotRecord;
+
 /**
  * @group API
  * @group Database
@@ -13,14 +15,11 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 	 */
 	public function testContentComesWithContentModelAndFormat() {
 		$pageName = 'Help:' . __METHOD__;
-		$title = Title::newFromText( $pageName );
-		$page = WikiPage::factory( $title );
-
-		$page->doUserEditContent(
-			ContentHandler::makeContent( 'Some text', $page->getTitle() ),
-			$this->getTestSysop()->getUser(),
-			'inserting content'
-		);
+		$page = $this->getExistingTestPage( $pageName );
+		$user = $this->getTestUser()->getUser();
+		$page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new WikitextContent( 'Some text' ) )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'inserting content' ) );
 
 		$apiResult = $this->doApiRequest( [
 			'action' => 'query',
