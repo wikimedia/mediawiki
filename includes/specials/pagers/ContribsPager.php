@@ -57,7 +57,7 @@ class ContribsPager extends RangeChronologicalPager {
 	private $namespace;
 
 	/**
-	 * @var string|false Name of tag to filter, or false to ignore tags
+	 * @var string[]|false Name of tag to filter, or false to ignore tags
 	 */
 	private $tagFilter;
 
@@ -524,7 +524,7 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * @return false|string
+	 * @return false|string[]
 	 */
 	public function getTagFilter() {
 		return $this->tagFilter;

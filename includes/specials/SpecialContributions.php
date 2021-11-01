@@ -180,7 +180,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['nsInvert'] = in_array( 'nsInvert', $nsFilters );
 		}
 
-		$this->opts['tagfilter'] = (string)$request->getVal( 'tagfilter' );
+		$this->opts['tagfilter'] = array_filter( explode(
+			'|',
+			(string)$request->getVal( 'tagfilter' )
+		), static function ( $el ) {
+			return $el !== '';
+		} );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -269,7 +274,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['deletedOnly'] ) {
 			$feedParams['deletedonly'] = true;
 		}
-		if ( $this->opts['tagfilter'] !== '' ) {
+
+		if ( $this->opts['tagfilter'] !== [] ) {
 			$feedParams['tagfilter'] = $this->opts['tagfilter'];
 		}
 		if ( $this->opts['namespace'] !== '' ) {
