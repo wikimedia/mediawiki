@@ -2087,8 +2087,6 @@
 	"backend-fail-usable": "Parameters:\n* $1 - the file name, including the path, formatted for the storage backend used\n{{Related|Backend-fail}}",
 	"backend-fail-stat": "Parameters:\n* $1 - the file name, including the path, formatted for the storage backend used\n{{Related|Backend-fail}}",
 	"backend-fail-hash": "Parameters:\n* $1 - the file name, including the path, formatted for the storage backend used\n{{Related|Backend-fail}}",
-	"filejournal-fail-dbconnect": "Parameters:\n* $1 is the name of the \"[[:wikipedia:Front and back ends|backend]]\" that the file journal logs changes for.",
-	"filejournal-fail-dbquery": "Parameters:\n* $1 is the name of the \"[[:wikipedia:Front and back ends|backend]]\" that the file journal logs changes for.",
 	"lockmanager-notlocked": "Parameters:\n* $1 is a resource path (e.g. \"mwstore://media-public/a/ab/file.jpg\").",
 	"lockmanager-fail-closelock": "Parameters:\n* $1 is a resource path (e.g. \"mwstore://media-public/a/ab/file.jpg\").\n\nA \"[[w:File_locking#Lock_files|lock file]]\" signals by its presence that some resource is locked.",
 	"lockmanager-fail-deletelock": "Parameters:\n* $1 is a resource path (e.g. \"mwstore://media-public/a/ab/file.jpg\").\n\nA \"[[w:File_locking#Lock_files|lock file]]\" signals by its presence that some resource is locked.",

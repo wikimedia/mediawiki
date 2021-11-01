@@ -68,7 +68,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.
-	 * Locking, journaling, and read-only checks are handled by the proxy backend.
+	 * Locking and read-only checks are handled by the proxy backend.
 	 *
 	 * Additional $config params include:
 	 *   - backends       : Array of backend config and multi-backend settings.
@@ -110,7 +110,6 @@ class FileBackendMultiWrite extends FileBackend {
 			$namesUsed[$name] = 1;
 			// Alter certain sub-backend settings for sanity
 			unset( $beConfig['readOnly'] ); // use proxy backend setting
-			unset( $beConfig['fileJournal'] ); // use proxy backend journal
 			unset( $beConfig['lockManager'] ); // lock under proxy backend
 			$beConfig['domainId'] = $this->domainId; // use the proxy backend wiki ID
 			$beConfig['logger'] = $this->logger; // use the proxy backend logger
@@ -119,7 +118,6 @@ class FileBackendMultiWrite extends FileBackend {
 					throw new LogicException( 'More than one master backend defined.' );
 				}
 				$this->masterIndex = $index; // this is the "master"
-				$beConfig['fileJournal'] = $this->fileJournal; // log under proxy backend
 			}
 			if ( !empty( $beConfig['readAffinity'] ) ) {
 				$this->readIndex = $index; // prefer this for reads

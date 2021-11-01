@@ -1036,7 +1036,7 @@ class FileRepo {
 
 	/**
 	 * Import a file from the local file system into the repo.
-	 * This does no locking nor journaling and overrides existing files.
+	 * This does no locking and overrides existing files.
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
@@ -1057,7 +1057,7 @@ class FileRepo {
 
 	/**
 	 * Import a batch of files from the local file system into the repo.
-	 * This does no locking nor journaling and overrides existing files.
+	 * This does no locking and overrides existing files.
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
@@ -1106,7 +1106,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Purge a file from the repo. This does no locking nor journaling.
+	 * Purge a file from the repo. This does no locking.
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for purging thumbnails.
 	 *
@@ -1135,7 +1135,7 @@ class FileRepo {
 	/**
 	 * Purge a batch of files from the repo.
 	 * This function can be used to write to otherwise read-only foreign repos.
-	 * This does no locking nor journaling and is intended for purging thumbnails.
+	 * This does no locking and is intended for purging thumbnails.
 	 *
 	 * @param string[] $paths List of virtual URLs or storage paths
 	 * @return Status

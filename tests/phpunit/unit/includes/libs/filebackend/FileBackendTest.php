@@ -797,25 +797,6 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::__construct
-	 * @covers ::getJournal
-	 */
-	public function testGetFileJournal_default(): void {
-		$backend = $this->newMockFileBackend();
-		$this->assertEquals( new NullFileJournal, $backend->getJournal() );
-	}
-
-	/**
-	 * @covers ::__construct
-	 * @covers ::getJournal
-	 */
-	public function testGetJournal(): void {
-		$mockJournal = $this->createNoOpMock( FileJournal::class );
-		$backend = $this->newMockFileBackend( [ 'fileJournal' => $mockJournal ] );
-		$this->assertSame( $mockJournal, $backend->getJournal() );
-	}
-
-	/**
 	 * @covers ::isStoragePath
 	 * @dataProvider provideIsStoragePath
 	 */

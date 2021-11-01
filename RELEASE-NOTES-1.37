@@ -443,6 +443,10 @@ because of Phabricator reports.
   features were deprecated. Skins should instead select from the features
   listed on [[mw:Manual:ResourceLoaderSkinModule]].
 * ParserCache::getKey() and ::getEtag(), deprecated since 1.36, were removed.
+* The experimental FileJournal system has been removed without deprecation.
+  This includes the FileJournal abstract class, its implementation classes
+  DBFileJournal and NullFileJournal, various minor getters and setters, and
+  the option for the wiki configuration $wgFileBackends.
 * The BaseTemplateToolbox hook, deprecated since 1.35, was removed.
 * Previously a capitalize-all-nouns class was added to the body element of
   languages where nouns must be capitalized. This class is no longer added to
@@ -512,7 +516,6 @@ because of Phabricator reports.
   - ForeignDBRepo::getMasterDB() -> ::getPrimaryDB()
   - JobQueueDB::getMasterDB() -> ::getPrimaryDB()
   - ForeignDBViaLBRepo::getMasterDB() -> ::getPrimaryDB()
-  - DBFileJournal::getMasterDB() -> ::getPrimaryDB()
   - ILoadBalancer::getMasterPos() -> ::getPrimaryPos()
   - IDatabase::getMasterPos() -> ::getPrimaryPos()
   - ILoadBalancer::finalizeMasterChanges() -> ::finalizePrimaryChanges()

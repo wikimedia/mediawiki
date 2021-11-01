@@ -239,11 +239,6 @@ class FileBackendGroup {
 				'lockManager' =>
 					$this->lmgFactory->getLockManagerGroup( $config['domainId'] )
 						->get( $config['lockManager'] ),
-				'fileJournal' => isset( $config['fileJournal'] )
-					? $this->objectFactory->createObject(
-						$config['fileJournal'] + [ 'backend' => $name ],
-						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ] )
-					: new NullFileJournal
 			]
 		);
 	}

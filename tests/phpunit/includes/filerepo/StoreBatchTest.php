@@ -27,7 +27,6 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 			}
 			$useConfig['lockManager'] = $this->getServiceContainer()->getLockManagerGroupFactory()
 				->getLockManagerGroup()->get( $useConfig['lockManager'] );
-			unset( $useConfig['fileJournal'] );
 			$useConfig['name'] = 'local-testing'; // swap name
 			$class = $useConfig['class'];
 			$backend = new $class( $useConfig );
