@@ -127,7 +127,7 @@ class Names {
 		'cs' => 'čeština', # Czech
 		'csb' => 'kaszëbsczi', # Cassubian
 		'cu' => 'словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', # Old Church Slavonic (ancient language)
-		'cv' => 'Чӑвашла', # Chuvash
+		'cv' => 'чӑвашла', # Chuvash
 		'cy' => 'Cymraeg', # Welsh
 		'da' => 'dansk', # Danish
 		'dag' => 'dagbanli', # Dagbani
@@ -219,7 +219,7 @@ class Names {
 		'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ', # Inuktitut, Eastern Canadian (Unified Canadian Aboriginal Syllabics)
 		'ike-latn' => 'inuktitut', # Inuktitut, Eastern Canadian (Latin script)
 		'ilo' => 'Ilokano', # Ilokano
-		'inh' => 'ГӀалгӀай', # Ingush
+		'inh' => 'гӀалгӀай', # Ingush
 		'io' => 'Ido', # Ido
 		'is' => 'íslenska', # Icelandic
 		'it' => 'italiano', # Italian
@@ -232,8 +232,8 @@ class Names {
 		'ka' => 'ქართული', # Georgian
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
-		'kbd' => 'Адыгэбзэ', # Kabardian
-		'kbd-cyrl' => 'Адыгэбзэ', # Kabardian (Cyrillic)
+		'kbd' => 'адыгэбзэ', # Kabardian
+		'kbd-cyrl' => 'адыгэбзэ', # Kabardian (Cyrillic)
 		'kbp' => 'Kabɩyɛ', # Kabiyè
 		'kcg' => 'Tyap', # Tyap
 		'kg' => 'Kongo', # Kongo, (FIXME!) should probably be KiKongo or KiKoongo
@@ -271,7 +271,7 @@ class Names {
 		'kum' => 'къумукъ', # Kumyk (Cyrillic, 'kum-latn' for Latin script)
 		'kv' => 'коми', # Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 		'kw' => 'kernowek', # Cornish
-		'ky' => 'Кыргызча', # Kirghiz
+		'ky' => 'кыргызча', # Kirghiz
 		'la' => 'Latina', # Latin
 		'lad' => 'Ladino', # Ladino
 		'lb' => 'Lëtzebuergesch', # Luxembourgish
@@ -350,7 +350,7 @@ class Names {
 		'olo' => 'livvinkarjala', # Livvi-Karelian
 		'om' => 'Oromoo', # Oromo
 		'or' => 'ଓଡ଼ିଆ', # Oriya
-		'os' => 'Ирон', # Ossetic, T31091
+		'os' => 'ирон', # Ossetic, T31091
 		'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (Gurmukhi script) (pan)
 		'pag' => 'Pangasinan', # Pangasinan
 		'pam' => 'Kapampangan', # Pampanga
