@@ -143,7 +143,7 @@ class FSLockManager extends LockManager {
 					$this->handles[$path] = $handle;
 				} else {
 					fclose( $handle );
-					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+					$status->fatal( 'lockmanager-fail-conflict' );
 				}
 			} else {
 				$status->fatal( 'lockmanager-fail-openlock', $path );

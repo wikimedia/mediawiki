@@ -54,9 +54,7 @@ class PostgreSqlLockManager extends DBLockManager {
 			if ( count( $fields ) ) {
 				$db->query( 'SELECT ' . implode( ', ', $fields ), __METHOD__ );
 			}
-			foreach ( $paths as $path ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $path );
-			}
+			$status->fatal( 'lockmanager-fail-conflict' );
 		}
 
 		return $status;

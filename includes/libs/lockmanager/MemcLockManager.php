@@ -101,10 +101,7 @@ class MemcLockManager extends QuorumLockManager {
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {
-			foreach ( $paths as $path ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $path );
-			}
-
+			$status->fatal( 'lockmanager-fail-conflict' );
 			return $status;
 		}
 
@@ -123,7 +120,7 @@ class MemcLockManager extends QuorumLockManager {
 					if ( $expiry < $now ) { // stale?
 						unset( $locksHeld[self::LOCK_EX][$session] );
 					} elseif ( $session !== $this->session ) {
-						$status->fatal( 'lockmanager-fail-acquirelock', $path );
+						$status->fatal( 'lockmanager-fail-conflict' );
 					}
 				}
 				if ( $type === self::LOCK_EX ) {
@@ -131,7 +128,7 @@ class MemcLockManager extends QuorumLockManager {
 						if ( $expiry < $now ) { // stale?
 							unset( $locksHeld[self::LOCK_SH][$session] );
 						} elseif ( $session !== $this->session ) {
-							$status->fatal( 'lockmanager-fail-acquirelock', $path );
+							$status->fatal( 'lockmanager-fail-conflict' );
 						}
 					}
 				}

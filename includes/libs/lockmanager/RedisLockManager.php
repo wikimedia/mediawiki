@@ -164,10 +164,8 @@ LUA;
 			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
-		} else {
-			foreach ( $res as $key ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $pathsByKey[$key] );
-			}
+		} elseif ( count( $res ) ) {
+			$status->fatal( 'lockmanager-fail-conflict' );
 		}
 
 		return $status;
