@@ -1856,8 +1856,6 @@
 	"backend-fail-usable": "Kunde inte läsa eller skriva filen \"$1\" på grund av otillräckliga behörigheter eller saknade kataloger/containrar.",
 	"backend-fail-stat": "Kunde inte läsa status för filen \"$1\".",
 	"backend-fail-hash": "Kunde inte bestämma den kryptografiska hashvärdet för filen \"$1\".",
-	"filejournal-fail-dbconnect": "Kunde inte ansluta till journaldatabasen för lagringssystemet \"$1\".",
-	"filejournal-fail-dbquery": "Kunde inte uppdatera journaldatabasen för lagringssystemet \"$1\".",
 	"lockmanager-notlocked": "Kunde inte låsa upp \"$1\"; den är inte låst.",
 	"lockmanager-fail-closelock": "Kunde inte att stänga låsfilen för \"$1\".",
 	"lockmanager-fail-deletelock": "Kunde inte radera låsfilen för \"$1\".",

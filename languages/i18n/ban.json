@@ -1798,8 +1798,6 @@
 	"backend-fail-usable": "Nénten mersidayang ngawacén miwah nyuray berkaa \"$1\" mawinan lugra nyané kirang utawi diréktori/kontainer ical.",
 	"backend-fail-stat": "Nénten mersidayang ngawacén status berkas \"$1\".",
 	"backend-fail-hash": "Nénten mersidayang minentuin ''hash'' kriptograpi berkas \"$1\".",
-	"filejournal-fail-dbconnect": "Nénten mersidayang minyambungin basis data jurnal antuk panyimpenan ''backend'' \"$1\".",
-	"filejournal-fail-dbquery": "Nénten mersidayang nganyarin basis data jurnal antuk panyimpenan ''backend'' \"$1\".",
 	"lockmanager-notlocked": "Nénten prasida ngabuka sereg \"$1\"; punika nénten kakunci.",
 	"lockmanager-fail-closelock": "Nénten mersidayang nutup panguncian berkas antuk \"$1\".",
 	"lockmanager-fail-deletelock": "Nénten marsidayang ngusap panguncian berkas antuk \"$1\".",

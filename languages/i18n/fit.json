@@ -1715,8 +1715,6 @@
 	"backend-fail-usable": "fiiliä $1 ei voitu lukea tai tehhä, koska käyttöoikeudet ei riittänheet tai hakemisto puuttuu.",
 	"backend-fail-stat": "ei voitu lukkee fiilin \"$1\" staattysta",
 	"backend-fail-hash": "Kunde inte bestämma den kryptografiska hashvärdet för filen \"$1\".",
-	"filejournal-fail-dbconnect": "Ei voitu yhistää kohteesheen journal database for storage backend ”$1”.",
-	"filejournal-fail-dbquery": "Ei voitu päivittää kohetta journal database for storage backend ”$1”.",
 	"lockmanager-notlocked": "Kohtheen $1 lukitusta ei voitu poistaa, sen tähen ko sole lukittu.",
 	"lockmanager-fail-closelock": "fiilin $1 lukkofiiliä ei voitu sulkea.",
 	"lockmanager-fail-deletelock": "fiilin $1 lukkofiiliä ei voitu poistaa.",

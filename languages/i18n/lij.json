@@ -1728,8 +1728,6 @@
 	"backend-fail-usable": "Imposcibile leze ò scrive o file \"$1\" a caosa de aetorizzaçioin insuffixenti ò directory/contegnitoî mancanti.",
 	"backend-fail-stat": "Imposcibbile leze o stato do file \"$1\".",
 	"backend-fail-hash": "Imposcibbile determinâ l'hash critograffico do file \"$1\".",
-	"filejournal-fail-dbconnect": "Imposcibile connettise a-o database journal pe l'archiviaçion back-end \"$1\".",
-	"filejournal-fail-dbquery": "Imposcibile aggiornâ o database journal pe l'archiviaçion back-end \"$1\".",
 	"lockmanager-notlocked": "Imposcibile sbloccâ \"$1\"; o no l'è bloccou.",
 	"lockmanager-fail-closelock": "Imposcibbile serâ o file de blocco pe \"$1\".",
 	"lockmanager-fail-deletelock": "Imposcibile scassâ o file de blocco pe $1.",

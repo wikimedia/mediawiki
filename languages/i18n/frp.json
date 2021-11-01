@@ -1399,8 +1399,6 @@
 	"backend-fail-contenttype": "Y at pas moyen de dètèrmenar lo tipo de contegnu du fichiér a stocar dedens « $1 ».",
 	"backend-fail-batchsize": "Lo sistèmo de stocâjo at balyê na pârt de $1 {{PLURAL:$1|opèracion|opèracions}} de fichiér ; la limita est $2 {{PLURAL:$2|opèracion|opèracions}}.",
 	"backend-fail-usable": "Y at pas moyen de liére d’ècrire lo fichiér « $1 » a côsa de drêts ensufisents ou ben de rèpèrtouèros de conteniors entrovâblos.",
-	"filejournal-fail-dbconnect": "Y at pas moyen de sè branchiér a la bâsa de balyês du jornâl por lo sistèmo de stocâjo « $1 ».",
-	"filejournal-fail-dbquery": "Y at pas moyen de betar a jorn la bâsa de balyês du jornâl por lo sistèmo de stocâjo « $1 ».",
 	"lockmanager-notlocked": "Y at pas moyen de dècotar « $1 » ; o est pas cotâ.",
 	"lockmanager-fail-closelock": "Y at pas moyen de cllôre lo fichiér de vèrroly por « $1 ».",
 	"lockmanager-fail-deletelock": "Y at pas moyen de suprimar lo fichiér de vèrroly por « $1 ».",

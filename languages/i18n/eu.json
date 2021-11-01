@@ -1751,8 +1751,6 @@
 	"backend-fail-batchsize": "Biltegiratze-euskarriari ; $1 {{PLURAL:$1|eragiketa|eragiketak}} fitxategi sorta eman zaio; muga $2 {{PLURAL:$2|eragiketa|eragiketak}} d(ir)elarik.",
 	"backend-fail-usable": "Ezin izan da \"$1\" fitxategia irakurri edo idaztzi baimen nahikorik edo direktorio/edukiontzirik ez delako aurkitzen.",
 	"backend-fail-stat": "ezin izan da \"$1\" fitxategiaren egoera irakurri",
-	"filejournal-fail-dbconnect": "Ezin izan da $1 biltegiratze-ataleko datu-basearen egunkarira konektatu.",
-	"filejournal-fail-dbquery": "Ezin izan da egunkariaren datu-basea eguneratu $1 biltegiratze-atalerako.",
 	"lockmanager-notlocked": "Ezin izan da \"$1\" askatu; ez dago itxita.",
 	"lockmanager-fail-closelock": "Ezin izan da \"$1\" fitxategiaren giltza itxi.",
 	"lockmanager-fail-deletelock": "Ezin izan da \"$1\" fitxategia desblokeatu.",

@@ -1406,8 +1406,6 @@
 	"backend-fail-contenttype": "Kon nie die inhoudstipe van die lêer bepaal om na \"$1\" te stoor nie.",
 	"backend-fail-batchsize": "Die agterliggende stoorspasie het 'n groep van $1 {{PLURAL:$1|operasie|operasies}} ontvang; die limiet is $2 {{PLURAL:$2|operasie|operasies}}.",
 	"backend-fail-usable": "Kon nie die lêer \"$1\" lees of skryf nie vanweë onvoldoende regte of gidse wat nie bestaan nie.",
-	"filejournal-fail-dbconnect": "Kon nie na die joernaal-databasis op die agterliggende stoorspasie \"$1\" konnekteer nie.",
-	"filejournal-fail-dbquery": "Kon nie die joernaal-databasis op die agterliggende stoorspasie \"$1\" bywerk nie.",
 	"lockmanager-notlocked": "Kon nie \"$1\" ontgrendel nie omdat dit nie gesluit is nie.",
 	"lockmanager-fail-closelock": "Kon nie die slotlêer vir \"$1\" te sluit nie.",
 	"lockmanager-fail-deletelock": "Kon nie die slotlêer vir \"$1\" skrap nie.",

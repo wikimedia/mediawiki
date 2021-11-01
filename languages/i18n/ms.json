@@ -1785,8 +1785,6 @@
 	"backend-fail-batchsize": "Backend storan diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.",
 	"backend-fail-usable": "Fail \"$1\" tidak boleh dibaca atau ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.",
 	"backend-fail-stat": "Tidak dapat membaca status fail \"$1\".",
-	"filejournal-fail-dbconnect": "Tidak dapat bersambung dengan pangkalan data jurnal untuk backend storan \"$1\".",
-	"filejournal-fail-dbquery": "Pangkalan data jurnal untuk backend storan \"$1\" tidak dapat dikemaskinikan.",
 	"lockmanager-notlocked": "\"$1\" tidak dapat dibuka; ia tidak terkunci.",
 	"lockmanager-fail-closelock": "Fail kunci untuk \"$1\" tidak dapat ditutup.",
 	"lockmanager-fail-deletelock": "Fail kunci untuk \"$1\" tidak dapat dihapuskan.",

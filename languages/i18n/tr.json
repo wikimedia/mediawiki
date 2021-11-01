@@ -1898,8 +1898,6 @@
 	"backend-fail-usable": "Yetersiz izinlerden ya da eksik dizin/konteynerlerden dolayı \"$1\" dosyası okunup yazılamıyor.",
 	"backend-fail-stat": "Dosya \"$1\" durumu okunamıyor.",
 	"backend-fail-hash": "Dosya \"$1\" ait kriptografi belirlenemedi.",
-	"filejournal-fail-dbconnect": "\"$1\" depolama arka plan uygulaması için günlük veri tabanına erişilemiyor.",
-	"filejournal-fail-dbquery": "\"$1\" depolama arka plan uygulaması için günlük veri tabanı güncellenmiyor.",
 	"lockmanager-notlocked": "\"$1\" kilidi açılamıyor; kilitli değil.",
 	"lockmanager-fail-closelock": "\"$1\" için kilit dosyası kapatılamıyor.",
 	"lockmanager-fail-deletelock": "\"$1\" için kilit dosyası silinemiyor.",

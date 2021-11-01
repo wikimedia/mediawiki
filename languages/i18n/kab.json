@@ -1432,8 +1432,6 @@
 	"backend-fail-contenttype": "Ulamek ad n efk tawsit n ugbur n ufaylu an ḥrez deg \"$1\".",
 	"backend-fail-batchsize": "Tannalt n uḥraz yefkad akemmus n $1 {{PLURAL:$1|tamhelt|timehlin}} n ufaylu ; talast tella ar $2 {{PLURAL:$2|tamhelt|timehlin}}.",
 	"backend-fail-usable": "Ulamek an ɣeṛ naɣ an aru afaylu « $1 » acku drus izerfan naɣ ikaramen xusen.",
-	"filejournal-fail-dbconnect": "Ulamek an qqen ar taffa n isefka n uɣmis i ixf n uḥraz \"$1\".",
-	"filejournal-fail-dbquery": "Ulamek an mucceḍ taffa n isefka n uɣmis i ixf n uḥraz \"$1\".",
 	"lockmanager-notlocked": "Ulamek an kkes aseḍru « $1 » ; ur yesɛa ara asekkweṛ.",
 	"lockmanager-fail-closelock": "Ulamek an mdel afaylu n uzekṛun i « $1 ».",
 	"lockmanager-fail-deletelock": "Ulamek an mḥu afaylu n uzekṛun i « $1 ».",

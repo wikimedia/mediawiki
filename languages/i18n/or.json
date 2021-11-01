@@ -1324,8 +1324,6 @@
 	"backend-fail-contenttype": "\"$1\"ରେ ଥିବା ସାଇତା ପାଇଁ ଥିବା ଫାଇଲର ବିଷୟବସ୍ତୁର ପ୍ରକାର ଗୁଡିକ ଜଣାପଡୁନି ।",
 	"backend-fail-batchsize": "ସାଇତା ଧାରକକୁ  $1 ଫାଇଲର {{PLURAL:$1|operation|operations}} ଏକ ଗୋଛା ଦିଆଯାଇଥିଲା; ସୀମା ହେଉଛି $2 {{PLURAL:$2|operation|operations}} ।",
 	"backend-fail-usable": "ଅନୁମତି ନଥିବାରୁ କିମ୍ବା ଧାରକ/ସୂଚୀ ନଥିବାରୁ\"$1\" ଫାଇଲଟିକୁ ପଢି କିମ୍ବା ଲେଖି ହେଲାନି ।",
-	"filejournal-fail-dbconnect": "ସାଇତା ଧାରକ \"$1\" ପାଇଁ ପାଠ୍ୟ ଡାଟାବେସକୁ ସଂଯୋଗ କରିହେଲାନି ।",
-	"filejournal-fail-dbquery": "ସାଇତା ଧାରକ \"$1\" ପାଇଁ ପାଠ୍ୟ ଡାଟାବେସକୁ ଅପଡେଟ କରିହେଲାନି ।",
 	"lockmanager-notlocked": "କିଳାଯାଇଥିବା \"$1\"କୁ ଖୋଲିପାରିଲୁ ନାହିଁ; ଏହା ପ୍ରକୃତରେ କିଳାଯାଇନାହିଁ ।",
 	"lockmanager-fail-closelock": "\"$1\" ପାଇଁ ତାଲା ପରି କାମ କରିବା ଫାଇଲଟି ମିଳିଲାନାହିଁ ।",
 	"lockmanager-fail-deletelock": "\"$1\" ଫାଇଲଟି କିଳାଯାଇଥିବାରୁ ଲିଭାଯାଇପାରିଲା ନାହିଁ ।",

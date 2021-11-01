@@ -1356,8 +1356,6 @@
 	"backend-fail-contenttype": "Dr Inhaltstyp vu dr Datei, wu im Pfad „$1“ gspycheret soll wäre, het nit chenne bstimmt wäre.",
 	"backend-fail-batchsize": "E Bygiverarbeitigsdatei, wu s {{PLURAL:$1|ei Operation|$1 Operatione}} din het, isch an s Spycher-Backend gschickt wore. D Gränz lyt aber bi {{PLURAL:$2|eire Operation|$2 Operatione}}.",
 	"backend-fail-usable": "D Datei „$1“ het nit chönne abgruefe oder gspyycheret werde, entweder wyl kei Verzeichniss vorhande isch oder wyl kei Berächtigung hesch.",
-	"filejournal-fail-dbconnect": "S het kei Verbindig chenne härgstellt würe zue dr Journaldatebank vum Spycher-Backend „$1“.",
-	"filejournal-fail-dbquery": "D Journaldatebank vum Spycher-Backend „$1“ het nit chenne aktualisiert wäre.",
 	"lockmanager-notlocked": "„$1“ het nit chenne entsperrt wäre, wel s kei Sperrig git.",
 	"lockmanager-fail-closelock": "D Sperrdatei fir „$1“ het nit chenne zuegmacht wäre.",
 	"lockmanager-fail-deletelock": "D Sperrdatei fir „$1“ het nit chenne glescht wäre.",

@@ -1804,8 +1804,6 @@
 	"backend-fail-usable": "Nem lehet olvasni vagy írni a \"$1\" fájlt, jogosultság hiánya, vagy hiányzó könyvtár/konténer miatt.",
 	"backend-fail-stat": "Nem sikerült a(z) „$1” fájl állapotának olvasása.",
 	"backend-fail-hash": "Nem sikerült a(z) „$1” fájl kriptográfiai hasításának meghatározása.",
-	"filejournal-fail-dbconnect": "Nem sikerült csatlakozni a napló adatbázis \"$1 \" háttér tárolójához.",
-	"filejournal-fail-dbquery": "Nem sikerült frissíteni a naplóadatbázis \"$1 \" háttértárolóját.",
 	"lockmanager-notlocked": "Nem lehet a zárolást feloldani: „$1”; nincs zárolva.",
 	"lockmanager-fail-closelock": "Nem sikerült a „$1” zárolási fájljának bezárása.",
 	"lockmanager-fail-deletelock": "Nem sikerült a(z) „$1” zárolási fájljának törlése.",

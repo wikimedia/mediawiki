@@ -1421,8 +1421,6 @@
 	"backend-fail-contenttype": "Inposibiłe determinar ła tipołoxia del file da archiviar in \"$1\".",
 	"backend-fail-batchsize": "El backend de memoria el ga programà na serie de $1 {{PLURAL:$1|operasion}} su file; el limite el xe de $2 {{PLURAL:$2|operasion}}.",
 	"backend-fail-usable": "Inposibiłe lexare o scrivare el file $1 a cauxa de autorixasion insuficenti o directory/contenidori mancanti.",
-	"filejournal-fail-dbconnect": "Inposibiłe coneterse al database journal par l'archiviasion back-end \"$1\".",
-	"filejournal-fail-dbquery": "Inposibiłe axornar el database journal par l'archiviasion back-end \"$1\".",
 	"lockmanager-notlocked": "Inposibiłe sblocar \"$1\"; nó 'l xe blocà.",
 	"lockmanager-fail-closelock": "Nó riusia ła sarada del file de bloco par \"$1\".",
 	"lockmanager-fail-deletelock": "Nó riusia ła scansełasion del file de bloco par \"$1\".",

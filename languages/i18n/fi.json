@@ -1843,8 +1843,6 @@
 	"backend-fail-batchsize": "Taustajärjestelmälle on annettu $1 {{PLURAL:$1|tiedostotoiminto|toimintoa}}; enimmäismäärä on $2 {{PLURAL:$2|tiedostotoiminto|toimintoa}}.",
 	"backend-fail-usable": "Tiedostoa $1 ei voitu lukea tai luoda, koska käyttöoikeudet eivät riittäneet tai hakemisto puuttuu.",
 	"backend-fail-stat": "Tiedoston ”$1” tilan lukeminen epäonnistui.",
-	"filejournal-fail-dbconnect": "Ei voitu yhdistää kohteeseen journal database for storage backend ”$1”.",
-	"filejournal-fail-dbquery": "Ei voitu päivittää kohdetta journal database for storage backend ”$1”.",
 	"lockmanager-notlocked": "Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.",
 	"lockmanager-fail-closelock": "Tiedoston $1 lukkotiedostoa ei voitu sulkea.",
 	"lockmanager-fail-deletelock": "Tiedoston $1 lukkotiedostoa ei voitu poistaa.",

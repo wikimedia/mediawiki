@@ -1780,8 +1780,6 @@
 	"backend-fail-usable": "As peul pa les-se o scrivse l'archivi \"$1\" a motiv ëd drit insuficent o liste/contnidor mancant.",
 	"backend-fail-stat": "As peul pa lese lë stat ëd l'archivi \"$1\".",
 	"backend-fail-hash": "As peul pa determinesse la firma criptogràfica dl'archivi \"$1\".",
-	"filejournal-fail-dbconnect": "Impossìbil coleghesse a la base ëd dàit ëd lë scartari për ël terminal ëd memorisassion «$1».",
-	"filejournal-fail-dbquery": "Impossìbil agiorné la base ëd dàit ëd lë scartari për ël terminal ëd memorisassion «$1».",
 	"lockmanager-notlocked": "As peul pa dësblochesse «$1»; a l'é nen blocà.",
 	"lockmanager-fail-closelock": "As peul pa saresse l'archivi ëd saradura për «$1».",
 	"lockmanager-fail-deletelock": "As peul pa scancelesse l'archivi ëd saradura për «$1».",

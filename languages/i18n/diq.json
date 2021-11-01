@@ -1807,8 +1807,6 @@
 	"backend-fail-usable": "Dosyay $1 nênusneyê çıkı ratnayışê cı racnayeyo yana karkerdışe cı kemiyo.",
 	"backend-fail-stat": "Weziyetê Dosya $1 nêwanıyeno.",
 	"backend-fail-hash": "Aidê dosyay \"$1\" rê kriptografi belı nêbiya.",
-	"filejournal-fail-dbconnect": "Depo kerdış de \"$1\" qande malumatê gurweynayışi cıya irtibat nêkewiya.",
-	"filejournal-fail-dbquery": "Depo kerdış de \"$1\" qande malumatê gurweynayışi cıyo nêbeno.",
 	"lockmanager-notlocked": "Dosyay \"$1\" kılit nêbiya; kesi kılit nêkerda.",
 	"lockmanager-fail-closelock": "Dosyay kıliti nêracneyê \"$1\".",
 	"lockmanager-fail-deletelock": "Dosyay kıliti nêbesterneyê \"$1\".",

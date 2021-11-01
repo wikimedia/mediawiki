@@ -1558,8 +1558,6 @@
 	"backend-fail-internal": "Hadisoana tsy fantatra tao anatin'ny terminal fitahirizana \"$1\".",
 	"backend-fail-contenttype": "Tsy afaka maminavina ny karazam-botoatin'ny rakitra hotahirizina ao amin'i \"$1\".",
 	"backend-fail-usable": "Tsy afaka nanoratra ny rakitra \"$1\" nohon'ny zo tsy ampy na ny tsy fisian'ny petra-drakitra.",
-	"filejournal-fail-dbconnect": "Tsy afaka miantso ilay banky angona laogy ho an'ny terminal fitahirizana \"$1\".",
-	"filejournal-fail-dbquery": "Tsy afaka manavao ny banky angona laogy ho an'ilay terminal fitahirizana \"$1\".",
 	"lockmanager-notlocked": "Tsy afaka manalahidy an'i \"$1\" ; tsy voahidy ilay izy.",
 	"lockmanager-fail-closelock": "Tsy afaka manidy ilay rakitra fanidiana ho an'i \"$1\".",
 	"lockmanager-fail-deletelock": "Tsy afaka manidy ilay rakitra fanidiana ho an'i \"$1\"",

@@ -1952,8 +1952,6 @@
 	"backend-fail-usable": "权限不足或缺少目录/贮存器，无法读取或写入文件“$1”。",
 	"backend-fail-stat": "无法获取文件“$1”的状态。",
 	"backend-fail-hash": "无法确定文件“$1”的加密哈希。",
-	"filejournal-fail-dbconnect": "无法连接到后端存储的日志数据库“$1”。",
-	"filejournal-fail-dbquery": "无法更新后端存储的日志数据库“$1”。",
 	"lockmanager-notlocked": "无法解锁“$1”；它没有被锁定。",
 	"lockmanager-fail-closelock": "无法关闭“$1”的锁文件。",
 	"lockmanager-fail-deletelock": "无法删除“$1”的锁文件。",

@@ -1594,8 +1594,6 @@
 	"backend-fail-contenttype": "Saan a maikeddeng ti kita ti linaon iti papeles a maidulin iti \"$1\".",
 	"backend-fail-batchsize": "Ti pagidulinan a likudan ket naited a paset ti papeles ti $1 nga {{PLURAL:$1|operasion|op-operasion}}; ti patingga ket $2 nga {{PLURAL:$2|operasion|op-operasion}}.",
 	"backend-fail-usable": "Saan a mabasa wenno masuratan ti papeles ti \"$1\" gapu ta awan ti makaanay a pammalubos wenno awan dagiti direktorio/pagikabilan.",
-	"filejournal-fail-dbconnect": "Saan a maikapet iti database ti warnakan a para iti likudan a pagipenpenan ti \"$1\".",
-	"filejournal-fail-dbquery": "Saan a makapabaro ti database ti warnakan para iti likudan a pagipenpenan ti \"$1\".",
 	"lockmanager-notlocked": "Saan a malukatan ti \"$1\"; saan a nakandaduan.",
 	"lockmanager-fail-closelock": "Saan a marikepan ti nakandaduan a papeles para iti \"$1\".",
 	"lockmanager-fail-deletelock": "Saan a maikkat ti kandado ti papeles para iti \"$1\".",

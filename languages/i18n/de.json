@@ -1886,8 +1886,6 @@
 	"backend-fail-usable": "Die Datei „$1“ konnte entweder aufgrund eines nicht vorhandenen Verzeichnisses oder wegen unzureichender Berechtigungen weder abgerufen noch gespeichert werden.",
 	"backend-fail-stat": "Konnte den Status der Datei $1 nicht auslesen.",
 	"backend-fail-hash": "Konnte den kryptographischen Hash der Datei $1 nicht ermitteln.",
-	"filejournal-fail-dbconnect": "Es konnte keine Verbindung zur Journaldatenbank des Datenbanksystems „$1“ hergestellt werden.",
-	"filejournal-fail-dbquery": "Die Journaldatenbank des Datenbanksystems „$1“ konnte nicht aktualisiert werden.",
 	"lockmanager-notlocked": "„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.",
 	"lockmanager-fail-closelock": "Die Sperrdatei für „$1“ konnte nicht geschlossen werden.",
 	"lockmanager-fail-deletelock": "Die Sperrdatei für „$1“ konnte nicht gelöscht werden.",

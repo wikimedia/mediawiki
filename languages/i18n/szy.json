@@ -1473,8 +1473,6 @@
 	"backend-fail-contenttype": "la’cus taazihan misuped i \"$1\" a tangan lacul nikalahizaan",
 	"backend-fail-batchsize": "suped-sulu zikuzan masaungay $1 pice-tangan {{PLURAL:$2|misaungay}}; sisetyimo kelec ku $2 {{PLURAL:$2|misaungay}}.",
 	"backend-fail-usable": "u nanu tungus caay kataneng saca dilyikotoling/sapilacul mahedaw, la’cus miasip saca misuliten tangan \"$1\" .",
-	"filejournal-fail-dbconnect": "la’cus papatun tu zikuzan nu suped-sulu \"$1\" a nasulitan-nazipa’an  kalunasulitan-sulu.",
-	"filejournal-fail-dbquery": "la’cus misabaluh suped-sulu zikuzan \"$1\" a nasulitan-nazipa’an kalunasulitan-sulu",
 	"lockmanager-notlocked": "la’cus mihulak pamutek \"$1\"; kya tangan caay pamutek.",
 	"lockmanager-fail-closelock": "la’cus miedeb \"$1\" pamutekay a  tangan",
 	"lockmanager-fail-deletelock": "la’cus misipu \"$1\" a pamutek  tangan",

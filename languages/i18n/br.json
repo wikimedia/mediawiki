@@ -1640,8 +1640,6 @@
 	"backend-fail-contenttype": "Dibosupl termeniñ ar seurt danvez da enrollañ e \"$1\".",
 	"backend-fail-batchsize": "Pourvezet he deus an dermenell stokañ ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.",
 	"backend-fail-usable": "Dibosupl skrivañ ar restr \"$1\" rak re skort eo an aotreoù pe mankout a ra kavlec'hioù/endalc'herioù.",
-	"filejournal-fail-dbconnect": "N'eus ket bet gallet kevreañ ouzh diaz roadennoù ar marilh evit an dermenell stokañ \"$1\".",
-	"filejournal-fail-dbquery": "N'eus ket bet gallet hizivaat diaz roadennoù marilh an dermenell stokañ \"$1\".",
 	"lockmanager-notlocked": "Dibosupl dibrennañ \"$1\"; n'eo ket prennet.",
 	"lockmanager-fail-closelock": "Dibosupl serriñ ar restr prennañ evit \"$1\".",
 	"lockmanager-fail-deletelock": "Dibosupl diverkañ ar restr prennañ evit \"$1\".",

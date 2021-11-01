@@ -1781,8 +1781,6 @@
 	"backend-fail-usable": "Non se puido ler ou escribir o ficheiro \"$1\" debido a que os permisos son insuficientes ou faltan os directorios/contenedores.",
 	"backend-fail-stat": "Non se puido ler o estado do ficheiro \"$1\".",
 	"backend-fail-hash": "Non se puido determinar o resumo criptográfico do ficheiro \"$1\".",
-	"filejournal-fail-dbconnect": "Non se pode conectar coa base de datos do rexistro do sistema de almacenamento \"$1\".",
-	"filejournal-fail-dbquery": "Non se pode actualizar a base de datos do rexistro do sistema de almacenamento \"$1\".",
 	"lockmanager-notlocked": "Non se puido desbloquear \"$1\". Non está bloqueado.",
 	"lockmanager-fail-closelock": "Non se puido pechar o ficheiro de peche de \"$1\".",
 	"lockmanager-fail-deletelock": "Non se puido borrar o ficheiro de peche de \"$1\".",

@@ -1404,8 +1404,6 @@
 	"backend-fail-contenttype": "Di slach faan det datei uun't steed „$1“ küd ei bestemet wurd.",
 	"backend-fail-batchsize": "En batch uun't süsteem koon ei {{PLURAL:$1|1 apgoow|$1 apgoowen}} bewerke. Det mut ei muar üs {{PLURAL:$2|1 apgoow|$2 apgowen}} tu tidj wees.",
 	"backend-fail-usable": "Det datei „$1“ küd ei ufrepen of seekert wurd, auer diar eder det fertiaknis waant of a brükerrochten ei ling.",
-	"filejournal-fail-dbconnect": "Küd ei ferbinj mä't jurnaal-dootenbeenk uun't süsteem „$1“.",
-	"filejournal-fail-dbquery": "Det jurnaal-dootenbeenk faan't süsteem „$1“ küd ei aktualisiaret wurd.",
 	"lockmanager-notlocked": "Küd det sper faan „$1“ ei apliase, auer diar goor nian sper wiar.",
 	"lockmanager-fail-closelock": "Det sperdatei för „$1“ küd ei slööden wurd.",
 	"lockmanager-fail-deletelock": "Det sperdatei för „$1“ küd ei stregen wurd.",

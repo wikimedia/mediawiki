@@ -1516,8 +1516,6 @@
 	"backend-fail-contenttype": "Kunne ikkje avgjera innhaldstypen til fila som skulle lagrast på «$1».",
 	"backend-fail-batchsize": "Baksystemet vart gjeve ei gruppe med $1 {{PLURAL:$1|filoperasjon|filoperasjonar}}; grensa er $2 {{PLURAL:$2|operasjon|operasjonar}}.",
 	"backend-fail-usable": "Kunne ikkje lesa eller skriva fila «$1» grunna vantande rettar eller mapper/kjerald.",
-	"filejournal-fail-dbconnect": "Kunne ikkje kopla til journaldatabasen for lagringsbaksystemet «$1».",
-	"filejournal-fail-dbquery": "Kunne ikkje oppdatera journaldatabasen for lagringsbaksystemet «$1».",
 	"lockmanager-notlocked": "Kunne ikkje låsa opp «$1» av di han ikkje er låst",
 	"lockmanager-fail-closelock": "Kunne ikkje lata att låsefila for «$1».",
 	"lockmanager-fail-deletelock": "Kunne ikkje sletta låsefila for «$1».",

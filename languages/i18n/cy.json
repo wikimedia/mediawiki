@@ -1566,8 +1566,6 @@
 	"backend-fail-contenttype": "Methwyd a dirnad pa fath o gynnwys sydd yn y ffeil y ceisir ei storio yn \"$1\".",
 	"backend-fail-batchsize": "Rhoddwyd llwyth o {{PLURAL:$1|$1 o weithrediadau}} ffeil i'w gwneud i'r storfa; ni all nifer y {{PLURAL:$2|gweithrediadau}} fod yn fwy na $2.",
 	"backend-fail-usable": "Ni ellid darllen nag ysgrifennu'r ffeil \"$1\" oherwydd nad oedd caniatad digonol ynteu bod cyfeiriaduron neu flychau yn eisiau.",
-	"filejournal-fail-dbconnect": "Methwyd cysylltu â lòg y gweithrediadau ar y storfa \"$1\".",
-	"filejournal-fail-dbquery": "Methwyd diweddaru lòg y gweithrediadau ar y storfa \"$1\".",
 	"lockmanager-notlocked": "Wedi methu datgloi \"$1\"; nid yw ar glo.",
 	"lockmanager-fail-closelock": "Wedi methu cau'r ffeil cloi mynediad at \"$1\".",
 	"lockmanager-fail-deletelock": "Wedi methu dileu'r ffeil cloi mynediad at \"$1\".",

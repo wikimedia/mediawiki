@@ -1606,7 +1606,6 @@
 	"backend-fail-internal": "Onbekannte Feeler am Backend vum Späicher: \"$1\"",
 	"backend-fail-contenttype": "Den Typ vum Inhalt deen op \"$1\" gespäichert gi soll konnt net bestëmmt ginn.",
 	"backend-fail-usable": "De Fichier \"$1\" konnt net gelies oder geschriwwe ginn, well d'Rechter oder de Repertoire feelen.",
-	"filejournal-fail-dbconnect": "Et konnt keng Verbindung mat der Datebank vum Logbuch mam Späicher-Backend \"$1\" opgebaut ginn.",
 	"lockmanager-notlocked": "\"$1\" konnt net fräigeschalt ginn; $1 ass net gespaart.",
 	"lockmanager-fail-closelock": "De Spärfichier fir \"$1\" konnt net zougemaach ginn.",
 	"lockmanager-fail-deletelock": "De Spärfichier fir \"$1\" konnt net geläscht ginn.",

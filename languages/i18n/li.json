@@ -1615,8 +1615,6 @@
 	"backend-fail-contenttype": "Kós 't inhawdtype van 't bestandj om es \"$1\" op te sjlaon neet bepaole.",
 	"backend-fail-batchsize": "Reiks van $1 {{PLURAL:$1|bestandjsoperatie|bestandjsoperaties}} in de opslaagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.",
 	"backend-fail-usable": "Kós 't bestandj $1 neet besjrieve of laeze vanwaenge te mèn rèchte of aafwaezige mappe/kóntaeners.",
-	"filejournal-fail-dbconnect": "Kós neet verbinje mit de journaaldatabase veur de opslaagbackend \"$1\".",
-	"filejournal-fail-dbquery": "Kós de journaaldatabase neet biewèrke veur de opslaagbackend \"$1\".",
 	"lockmanager-notlocked": "Kós \"$1\" neet vrijgaeve; 't waes neet vergrendeld.",
 	"lockmanager-fail-closelock": "Kós 't vergrendelingsbesjtand veur \"$1\" neet sjlete.",
 	"lockmanager-fail-deletelock": "Kós 't vergrendelingsbesjtand veur \"$1\" neet ewegsjaffe.",

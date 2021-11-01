@@ -1823,8 +1823,6 @@
 	"backend-fail-usable": "Kunne ikke lese eller skrive fila «$1» på grunn av utilstrekkelige tillatelser eller manglende mapper/beholdere.",
 	"backend-fail-stat": "Kunne ikke lese statusen til fila «$1».",
 	"backend-fail-hash": "Kunne ikke bestemme den kryptografiske signaturen til fila «$1».",
-	"filejournal-fail-dbconnect": "Kunne ikke koble til journaldatabasen for lagringssystemet «$1».",
-	"filejournal-fail-dbquery": "Kunne ikke oppdatere journaldatabasen for lagringssystemet «$1».",
 	"lockmanager-notlocked": "Kunne ikke låse opp «$1» fordi den er ikke låst.",
 	"lockmanager-fail-closelock": "Kunne ikke lukke låsefilen for «$1».",
 	"lockmanager-fail-deletelock": "Kunne ikke slette låsefilen for «$1».",

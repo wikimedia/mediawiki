@@ -1322,8 +1322,6 @@
 	"backend-fail-contenttype": "Hindi matukoy ang uri ng nilalaman ng talaksang maiimbak sa \"$1\".",
 	"backend-fail-batchsize": "Ang hulihang panlikuran ay nabigyan ng isang pulutong na $1 talaksan ng {{PLURAL:$1|operasyon|mga operasyon}}; ang hangganan ay $2 {{PLURAL:$2|operasyon|mga operasyon}}.",
 	"backend-fail-usable": "Hindi maisulat ang talaksang $1 dahil sa hindi sapat na mga kapahintulutan o nawawalang mga direktoryo/mga lalagyan.",
-	"filejournal-fail-dbconnect": "Hindi makakunekta sa kalipunang pandato ng talaarawan para sa hulihang panlikuran ng imbakang \"$1\".",
-	"filejournal-fail-dbquery": "Hindi maisapanahon ang kalipunan ng dato ng talaarawan para sa hulihang panlikod ng imbakang \"$1\".",
 	"lockmanager-notlocked": "Hindi mabuksan ang \"$1\"; hindi ito nakakandado.",
 	"lockmanager-fail-closelock": "Hindi maisara ang talaksan ng kandado para sa \"$1\".",
 	"lockmanager-fail-deletelock": "Hindi mabura ang talaksan ng kandado para sa \"$1\".",

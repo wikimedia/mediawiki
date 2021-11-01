@@ -1592,8 +1592,6 @@
 	"backend-fail-contenttype": "La tipo de contenida de la fix per pone a \"$1\" no ia pote es determinada.",
 	"backend-fail-batchsize": "La conservador ia reseta un grupo de $1 {{PLURAL:$1|opera|operas}} de fix; la limita es $2 {{PLURAL:$2|opera|operas}}.",
 	"backend-fail-usable": "Fix \"$1\" no ia pote es lejeda o scriveda par causa de permetes nonsufisinte o arcivos/contenadores mancante.",
-	"filejournal-fail-dbconnect": "La banco de jornales per conservador \"$1\" no ia pote es asededa.",
-	"filejournal-fail-dbquery": "La banco de jornales per conservador \"$1\" no ia pote es cambiada.",
 	"lockmanager-notlocked": "\"$1\" no ia pote es desclavida; lo no porta un semafor.",
 	"lockmanager-fail-closelock": "La fix de semafor per \"$1\" no ia pote es cluida.",
 	"lockmanager-fail-deletelock": "La fix de semafor per \"$1\" no ia pote es sutraeda.",

@@ -1665,8 +1665,6 @@
 	"backend-fail-contenttype": "Nije moguće utvrditi tip datoteke koju treba spremiti u \"$1\".",
 	"backend-fail-batchsize": "Spremištu poslužitelja upućen je zahtjev od $1 {{PLURAL:$1|datotečne operacije|datotečne operacije|datotečnih operacija}}; ograničenje je $2 {{PLURAL:$2|datotečne operacija|datotečne operacije|datotečnih operacija}}.",
 	"backend-fail-usable": "Ne mogu pročitati ili zapisati datoteku \"$1\" jer nemate odgovarajuća prava ili direktoriji ne postoje.",
-	"filejournal-fail-dbconnect": "Ne mogu se spojiti na bazu spremišta \"$1\".",
-	"filejournal-fail-dbquery": "Osvježavanje baze spremišta \"$1\" nije uspjelo.",
 	"lockmanager-notlocked": "Ne mogu otključati \"$1\"; nije zaključan.",
 	"lockmanager-fail-closelock": "Ne mogu zatvoriti ''lock'' datoteku za \"$1\".",
 	"lockmanager-fail-deletelock": "Ne mogu obrisati ''lock'' datoteku  za \"$1\".",

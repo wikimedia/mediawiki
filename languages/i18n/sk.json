@@ -1777,8 +1777,6 @@
 	"backend-fail-usable": "Nie je možné čítať alebo zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.",
 	"backend-fail-stat": "Nepodarilo sa načítať stav súboru „$1“.",
 	"backend-fail-hash": "Nepodarilo sa určiť kryptografický haš súboru „$1“.",
-	"filejournal-fail-dbconnect": "Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.",
-	"filejournal-fail-dbquery": "Nepodarilo sa aktualizovať žurnálovú databázu úložiska „$1“.",
 	"lockmanager-notlocked": "Nepodarilo sa odomknúť zámok „$1“; nie je zamknutý.",
 	"lockmanager-fail-closelock": "Nepodarilo sa zatvoriť súbor zámku pre „$1“.",
 	"lockmanager-fail-deletelock": "Nepodarilo sa zmazať súbor zámku pre „$1“.",

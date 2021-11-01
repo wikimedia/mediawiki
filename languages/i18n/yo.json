@@ -1312,8 +1312,6 @@
 	"backend-fail-contenttype": "Irú àkóónú fáìlì fún ìmúpamọ́ sí \"$1\" kò ṣe é sọ.",
 	"backend-fail-batchsize": "Ibi ìfipamọ́ gba àdìpọ̀ {{PLURAL:$1|ìmúṣe|ìmúṣe}} fáìlì $1; ẹ̀kun jẹ́ {{PLURAL:$2|ìmúṣe|ìmúṣe}} $2.",
 	"backend-fail-usable": "Kò le kà tàbí kọ fáìlì \"$1\" nítorí àìní ìyọ̀nda tàbí àìsí àpò/ìkóhunsí.",
-	"filejournal-fail-dbconnect": "Kò le sorapọ̀ mọ́ ibùdó dátà fún ibi ìfipamọ́ \"$1\".",
-	"filejournal-fail-dbquery": "Kò le sọ ibùdó dátà di ọ̀tun fún ibi ìfipamọ́ \"$1\".",
 	"lockmanager-notlocked": "Kò le sí àgádágodo \"$1\" sílẹ̀; kò jẹ́ dídè.",
 	"lockmanager-fail-closelock": "Kò le pa àgádágodo fáìlì de fún \"$1\".",
 	"lockmanager-fail-deletelock": "Kò le pa àgádágodo fáìlì rẹ́ fún \"$1\".",

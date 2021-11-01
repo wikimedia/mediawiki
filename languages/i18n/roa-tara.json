@@ -1696,8 +1696,6 @@
 	"backend-fail-contenttype": "Non ge pozze capìe 'u tipe de condenute d'u file da reggistrà sus a \"$1\".",
 	"backend-fail-batchsize": "L'archivije de rrete ha date 'nu processe de $1 {{PLURAL:$1|operazione|operaziune}} sus a le file; 'u limite jè $2 {{PLURAL:$2|operazione|operaziune}}.",
 	"backend-fail-usable": "Non ge pozze leggere o scrivere 'u file \"$1\" purcé mangane le permesse sufficiende o non g'esiste 'a cartelle/condenitore.",
-	"filejournal-fail-dbconnect": "Non ge pozze collegà a l'archivije d'u database pe memorizzà 'u rrete \"$1\".",
-	"filejournal-fail-dbquery": "Non ge pozze aggiornà l'archivije d'u database pe memorizzà 'u rrete \"$1\".",
 	"lockmanager-notlocked": "Non ge pozze sbloccà \"$1\"; jidde non g'è bloccate.",
 	"lockmanager-fail-closelock": "Non ge pozze achiudere 'u blocche d'u file pe \"$1\".",
 	"lockmanager-fail-deletelock": "Non ge pozze scangellà 'u blocche d'u file pe \"$1\".",
