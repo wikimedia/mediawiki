@@ -176,7 +176,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		if ( $flags & self::EXCLUDE_DEFAULTS ) {
 			$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
 			foreach ( $options as $option => $value ) {
-				if ( isset( $defaultOptions[$option] )
+				if ( array_key_exists( $option, $defaultOptions )
 					&& $this->isValueEqual( $value, $defaultOptions[$option] )
 				) {
 					unset( $options[$option] );

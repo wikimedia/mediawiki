@@ -88,7 +88,6 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$expected = [
 			// Note that the old, relaxed array_diff-approach considered null equal to false and ""
 			'null_vs_false' => false,
-			'null_vs_string' => '',
 			'language' => 'en',
 			'variant' => 'en',
 			'new_option' => 'new_value',
