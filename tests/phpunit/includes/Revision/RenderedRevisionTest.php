@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
@@ -22,7 +23,6 @@ use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
-use Title;
 use TitleValue;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
@@ -544,13 +544,15 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNoHtml() {
-		/** @var MockObject|Content $mockContent */
-		$mockContent = $this->getMockBuilder( WikitextContent::class )
+		$content = new WikitextContent( 'whatever' );
+
+		/** @var MockObject|ContentRenderer $mockContentRenderer */
+		$mockContentRenderer = $this->getMockBuilder( ContentRenderer::class )
 			->onlyMethods( [ 'getParserOutput' ] )
-			->setConstructorArgs( [ 'Whatever' ] )
+			->disableOriginalConstructor()
 			->getMock();
-		$mockContent->method( 'getParserOutput' )
-			->willReturnCallback( function ( Title $title, $revId = null,
+		$mockContentRenderer->method( 'getParserOutput' )
+			->willReturnCallback( function ( Content $content, PageReference $page, $revId = null,
 				ParserOptions $options = null, $generateHtml = true
 			) {
 				if ( !$generateHtml ) {
@@ -564,14 +566,14 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord(
 			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' )
 		);
-		$rev->setContent( SlotRecord::MAIN, $mockContent );
-		$rev->setContent( 'aux', $mockContent );
+		$rev->setContent( SlotRecord::MAIN, $content );
+		$rev->setContent( 'aux', $content );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
-			$this->contentRenderer,
+			$mockContentRenderer,
 			$this->combinerCallback
 		);
 
