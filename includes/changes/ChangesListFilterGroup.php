@@ -88,7 +88,7 @@ abstract class ChangesListFilterGroup {
 	 * Priority integer.  Higher values means higher up in the
 	 * group list.
 	 *
-	 * @var string
+	 * @var int
 	 */
 	protected $priority;
 
