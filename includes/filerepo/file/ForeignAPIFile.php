@@ -71,9 +71,7 @@ class ForeignAPIFile extends File {
 		$info = $repo->getImageInfo( $data );
 
 		if ( $info ) {
-			$lastRedirect = isset( $data['query']['redirects'] )
-				? count( $data['query']['redirects'] ) - 1
-				: -1;
+			$lastRedirect = count( $data['query']['redirects'] ?? [] ) - 1;
 			if ( $lastRedirect >= 0 ) {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to'] );
@@ -165,7 +163,7 @@ class ForeignAPIFile extends File {
 	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
-		return isset( $this->mInfo['width'] ) ? intval( $this->mInfo['width'] ) : 0;
+		return (int)( $this->mInfo['width'] ?? 0 );
 	}
 
 	/**
@@ -173,7 +171,7 @@ class ForeignAPIFile extends File {
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
-		return isset( $this->mInfo['height'] ) ? intval( $this->mInfo['height'] ) : 0;
+		return (int)( $this->mInfo['height'] ?? 0 );
 	}
 
 	/**

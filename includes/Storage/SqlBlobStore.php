@@ -709,7 +709,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		$schema = strtolower( $m[1] );
 		$id = $m[2];
-		$parameters = isset( $m[4] ) ? wfCgiToArray( $m[4] ) : [];
+		$parameters = wfCgiToArray( $m[4] ?? '' );
 
 		return [ $schema, $id, $parameters ];
 	}
