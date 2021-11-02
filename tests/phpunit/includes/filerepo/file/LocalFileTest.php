@@ -299,15 +299,6 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers File::getUser
-	 */
-	public function testGetUserForNonExistingFile() {
-		$this->hideDeprecated( 'File::getUser' );
-		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
-		$this->assertSame( 'Unknown user', $file->getUser() );
-	}
-
-	/**
 	 * @covers LocalFile::getUploader
 	 */
 	public function testGetUploaderForNonExistingFile() {

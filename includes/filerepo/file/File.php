@@ -5,6 +5,7 @@
  *
  * Represents files in a repository.
  */
+
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -601,27 +602,6 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			// because of rounding.
 		}
 		return [ $width, $height ];
-	}
-
-	/**
-	 * Returns ID or name of user who uploaded the file
-	 * STUB
-	 *
-	 * @deprecated since 1.37. Use and override ::getUploader instead.
-	 * @param string $type 'text' or 'id'
-	 * @return string|int
-	 */
-	public function getUser( $type = 'text' ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$user = $this->getUploader( self::RAW ) ?? User::newFromName( 'Unknown user' );
-		if ( $type === 'object' ) {
-			return User::newFromIdentity( $user );
-		} elseif ( $type === 'text' ) {
-			return $user->getName();
-		} elseif ( $type === 'id' ) {
-			return $user->getId();
-		}
-		throw new MWException( "Unknown type '$type'." );
 	}
 
 	/**
@@ -2185,27 +2165,6 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Get an image size array like that returned by getImageSize(), or false if it
-	 * can't be determined. Loads the image size directly from the file ignoring caches.
-	 *
-	 * @note Use getWidth()/getHeight() instead of this method unless you have a
-	 *  a good reason. This method skips all caches.
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param string $filePath The path to the file (e.g. From getLocalRefPath() )
-	 * @return array|false The width, followed by height, with optionally more things after
-	 */
-	protected function getImageSize( $filePath ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( !$this->getHandler() ) {
-			return false;
-		}
-
-		return $this->getHandler()->getImageSize( $this, $filePath );
-	}
-
-	/**
 	 * Get the URL of the image description page. May return false if it is
 	 * unknown or not applicable.
 	 *
@@ -2360,7 +2319,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param Authority $performer User object to check
+	 * @param Authority $performer user object to check
 	 * @return bool
 	 */
 	public function userCan( $field, Authority $performer ) {
