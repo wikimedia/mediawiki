@@ -174,7 +174,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$row = (object)[
 			'bp_user' => 0,
-			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
+			'bp_app_id' => trim( $data['appId'] ?? '' ),
 			'bp_token' => '**unsaved**',
 			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
 			'bp_grants' => $data['grants'] ?? [],
