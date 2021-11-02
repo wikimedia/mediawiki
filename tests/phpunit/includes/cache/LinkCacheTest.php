@@ -494,6 +494,30 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers LinkCache::getGoodLinkRow()
+	 */
+	public function testGetGoodLinkRowGetsIncompleteCachedInfo() {
+		// Pages in some namespaces use the WAN cache: Template, File, Category, MediaWiki
+		$existing = new TitleValue( NS_TEMPLATE, 'Existing' );
+		$brokenRow = $this->getPageRow( 3 );
+		unset( $brokenRow->page_len ); // make incomplete row
+
+		$cache = new HashBagOStuff();
+		$wanCache = new WANObjectCache( [ 'cache' => $cache ] );
+		$linkCache = $this->newLinkCache( $wanCache );
+
+		// force the incomplete row into the cache
+		$keys = $linkCache->getMutableCacheKeys( $wanCache, $existing );
+		$wanCache->set( $keys[0], $brokenRow );
+
+		// check that we are not getting the broken row, but load a good row
+		$callback = [ $this, 'getRowIfExisting' ];
+		$row = $linkCache->getGoodLinkRow( $existing->getNamespace(), $existing->getDBkey(), $callback );
+
+		$this->assertNotEquals( $brokenRow, $row );
+	}
+
+	/**
+	 * @covers LinkCache::getGoodLinkRow()
 	 * @covers LinkCache::getMutableCacheKeys()
 	 */
 	public function testGetGoodLinkRowUsesWANCache() {
