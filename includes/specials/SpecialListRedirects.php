@@ -124,9 +124,11 @@ class SpecialListRedirects extends QueryPage {
 	 */
 	protected function getRedirectTarget( $row ) {
 		if ( isset( $row->rd_title ) ) {
-			return Title::makeTitle( $row->rd_namespace,
-				$row->rd_title, $row->rd_fragment,
-				$row->rd_interwiki
+			return Title::makeTitle(
+				$row->rd_namespace,
+				$row->rd_title,
+				$row->rd_fragment ?? '',
+				$row->rd_interwiki ?? ''
 			);
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );

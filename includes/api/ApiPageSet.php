@@ -1212,8 +1212,8 @@ class ApiPageSet extends ApiBase {
 				$to = Title::makeTitle(
 					$row->rd_namespace,
 					$row->rd_title,
-					$row->rd_fragment,
-					$row->rd_interwiki
+					$row->rd_fragment ?? '',
+					$row->rd_interwiki ?? ''
 				);
 				$this->mResolvedRedirectTitles[$from] = $this->mPendingRedirectIDs[$rdfrom];
 				unset( $this->mPendingRedirectIDs[$rdfrom] );
