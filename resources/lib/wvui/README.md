@@ -7,6 +7,11 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 Find WVUI's up-to-date code output in Storybook components demo at
 [doc.wikimedia.org](https://doc.wikimedia.org/wvui/master/ui/)
 
+Please note that WVUI is deprecated and in patch-only maintenance mode. A new Vue.js based component
+library will be created based on WVUI and other prototypical libraries by Wikimedia Foundation and
+Wikimedia Deutschland. Visit [this Phabricator task](https://phabricator.wikimedia.org/T288980) to
+follow the initialization of the new library.
+
 ## Table of contents {ignore=true}
 
 <!--
