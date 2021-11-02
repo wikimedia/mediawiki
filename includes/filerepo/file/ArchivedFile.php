@@ -302,7 +302,13 @@ class ArchivedFile {
 		$this->description = MediaWikiServices::getInstance()->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
-		$this->user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
+		$actorStore = MediaWikiServices::getInstance()->getActorStore();
+		$this->user = $actorStore->newActorFromRowFields(
+			$row->fa_user ?? null,
+			$row->fa_user_text ?? null,
+			$row->fa_actor ?? null,
+			$actorStore->getUnknownActor()
+		);
 		$this->timestamp = $row->fa_timestamp;
 		$this->deleted = $row->fa_deleted;
 		if ( isset( $row->fa_sha1 ) ) {
