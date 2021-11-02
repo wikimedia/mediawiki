@@ -8,6 +8,7 @@ use MediaWiki\Permissions\UltimateAuthority;
  * @covers SpecialContributions
  */
 class SpecialContributionsTest extends SpecialPageTestBase {
+	private $pageName = __CLASS__ . 'BlaBlaTest';
 	private $admin;
 
 	protected function setUp(): void {
@@ -25,6 +26,12 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			}
 		);
 		$this->admin = new UltimateAuthority( $this->getTestSysop()->getUser() );
+		$this->assertTrue(
+			$this->editPage(
+				$this->pageName, 'Test Content', 'test', NS_MAIN, $this->admin
+			)->isOK(),
+			'Sanity: admin contributed'
+		);
 	}
 
 	/**
@@ -74,6 +81,42 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		yield 'Invalid IP should not have blocklink for admin' => [ '24.237.222208.166', false ];
 		yield 'External user should not have blocklink for admin' => [ 'imported>UTSysop', false ];
 		yield 'Nonexistent user should not have blocklink for admin' => [ __CLASS__, false ];
+	}
+
+	public function provideYearMonthParams() {
+		yield 'Current year/month' => [
+			'year' => date( 'Y' ),
+			'month' => date( 'm' ),
+			'expect' => true,
+		];
+		yield 'Old year/moth' => [
+			'year' => '2007',
+			'month' => '01',
+			'expect' => false,
+		];
+		yield 'Garbage' => [
+			'year' => '123garbage123',
+			'month' => date( 'm' ),
+			'expect' => true,
+		];
+	}
+
+	/**
+	 * @covers SpecialContributions::execute
+	 * @dataProvider provideYearMonthParams
+	 */
+	public function testYearMonthParams( string $year, string $month, bool $expect ) {
+		[ $html ] = $this->executeSpecialPage(
+			$this->admin->getUser()->getName(),
+			new FauxRequest( [
+				'year' => $year,
+				'month' => $month,
+		] ) );
+		if ( $expect ) {
+			$this->assertStringContainsString( $this->pageName, $html );
+		} else {
+			$this->assertStringNotContainsString( $this->pageName, $html );
+		}
 	}
 
 	protected function newSpecialPage(): SpecialContributions {
