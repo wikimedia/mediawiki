@@ -1290,16 +1290,9 @@ return [
 			'oojs-ui-core',
 		],
 		'messages' => [
-			// Keep these message keys in sync with EditPage#setHeaders
 			'continue-editing',
-			'creating',
 			'currentrev',
 			'diff-empty',
-			'editconflict',
-			'editing',
-			'editingcomment',
-			'editingsection',
-			'pagetitle',
 			'otherlanguages',
 			'summary-preview',
 			'subject-preview',

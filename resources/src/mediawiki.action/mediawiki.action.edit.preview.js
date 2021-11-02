@@ -12,7 +12,7 @@
 	 * @param {Object} response Response data
 	 */
 	function parsePreviewRequest( response ) {
-		var indicators, newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
+		var indicators, newList, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
 
 		$editform = $( '#editform' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -48,30 +48,7 @@
 		$( '.mw-indicators' ).empty().append( newList );
 
 		if ( response.parse.displaytitle ) {
-			$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
-			// The following messages can be used here:
-			// * editconflict
-			// * editingcomment
-			// * editingsection
-			// * editing
-			// * creating
-			$( '#firstHeading' ).msg(
-				mw.config.get( 'wgEditMessage', 'editing' ),
-				$displaytitle
-			);
-			document.title = mw.msg(
-				'pagetitle',
-				// The following messages can be used here:
-				// * editconflict
-				// * editingcomment
-				// * editingsection
-				// * editing
-				// * creating
-				mw.msg(
-					mw.config.get( 'wgEditMessage', 'editing' ),
-					$displaytitle.text()
-				)
-			);
+			$( '#firstHeadingTitle' ).html( response.parse.displaytitle );
 		}
 		if ( response.parse.categorieshtml ) {
 			$content = $( $.parseHTML( response.parse.categorieshtml ) );
