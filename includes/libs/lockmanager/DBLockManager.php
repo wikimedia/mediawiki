@@ -65,8 +65,9 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                     - password    : DB user password
 	 *                     - tablePrefix : DB table prefix
 	 *                     - flags       : DB flags; bitfield of IDatabase::DBO_* constants
-	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                   each having an odd-numbered list of DB names (peers) as values.
+	 *   - dbsByBucket : An array of up to 16 arrays, each containing the DB names
+	 *                   in a bucket. Each bucket should have an odd number of servers.
+	 *                   If omitted, all DBs will be in one bucket. (optional).
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
@@ -76,9 +77,13 @@ abstract class DBLockManager extends QuorumLockManager {
 		parent::__construct( $config );
 
 		$this->dbServers = $config['dbServers'];
-		// Sanitize srvsByBucket config to prevent PHP errors
-		$this->srvsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
-		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		if ( isset( $config['dbsByBucket'] ) ) {
+			// Sanitize srvsByBucket config to prevent PHP errors
+			$this->srvsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
+			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		} else {
+			$this->srvsByBucket = [ array_keys( $this->dbServers ) ];
+		}
 
 		if ( isset( $config['lockExpiry'] ) ) {
 			$this->lockExpiry = $config['lockExpiry'];

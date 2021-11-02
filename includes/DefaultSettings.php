@@ -585,7 +585,15 @@ $wgImgAuthUrlPathMap = [];
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
  *                      The name should consist of alpha-numeric characters.
- *   - backend          A file backend name (see $wgFileBackends).
+ *
+ * Optional common properties:
+ *   - backend          A file backend name (see $wgFileBackends). If not specified, or
+ *                      if the name is not present in $wgFileBackends, an FSFileBackend
+ *                      will automatically be configured.
+ *   - lockManager      If a file backend is automatically configured, this will be lock
+ *                      manager name used. A lock manager named in $wgLockManagers, or one of
+ *                      the default lock managers "fsLockManager" or "nullLockManager". Default
+ *                      "fsLockManager".
  *
  * For most core repos:
  *   - zones            Associative array of zone names that each map to an array with:
