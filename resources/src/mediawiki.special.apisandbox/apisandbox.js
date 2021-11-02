@@ -1654,7 +1654,7 @@
 				);
 				button.on( 'click', removeDynamicParamWidget, [ name, layout ] );
 				that.widgets[ name ] = widget;
-				dynamicFieldset.addItems( [ layout ], dynamicFieldset.getItems().length - 1 );
+				dynamicFieldset.addItems( [ layout ], dynamicFieldset.getItemCount() - 1 );
 				widget.focus();
 
 				dynamicParamNameWidget.setValue( '' );
