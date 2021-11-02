@@ -477,7 +477,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @covers File::getHandlerState
 	 */
 	public function testSetHandlerState() {
-		$obj = new stdClass;
+		$obj = (object)[];
 		$file = new class extends File {
 			public function __construct() {
 			}
