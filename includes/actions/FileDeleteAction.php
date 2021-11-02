@@ -134,9 +134,6 @@ class FileDeleteAction extends DeleteAction {
 		);
 
 		if ( !$status->isGood() ) {
-			$outputPage->addHTML(
-				'<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n"
-			);
 			$outputPage->wrapWikiTextAsInterface(
 				'error',
 				$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
