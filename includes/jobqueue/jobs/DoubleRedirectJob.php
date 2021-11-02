@@ -234,7 +234,7 @@ class DoubleRedirectJob extends Job {
 					$row->rd_namespace,
 					$row->rd_title,
 					'',
-					$row->rd_interwiki
+					$row->rd_interwiki ?? ''
 				);
 			}
 		}

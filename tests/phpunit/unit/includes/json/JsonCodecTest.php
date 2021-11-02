@@ -8,7 +8,6 @@ use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
 use MediaWikiUnitTestCase;
-use stdClass;
 use Title;
 use Wikimedia\Assert\PreconditionException;
 
@@ -136,7 +135,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Null' => [ null, true, null ];
 		yield 'Class' => [ $classInstance, false, '$' ];
 		yield 'Empty array' => [ [], true, null ];
-		yield 'Empty stdClass' => [ new stdClass(), true, null ];
+		yield 'Empty stdClass' => [ (object)[], true, null ];
 		yield 'Non-empty array' => [ [ 1, 2, 3 ], true, null ];
 		yield 'Non-empty map' => [ [ 'a' => 'b' ], true, null ];
 		yield 'Nested, serializable' => [ [ 'a' => [ 'b' => [ 'c' => 'd' ] ] ], true, null ];
