@@ -5,7 +5,7 @@
  */
 class TrivialMediaHandlerStateTest extends MediaWikiUnitTestCase {
 	public function testSetHandlerState() {
-		$obj = new stdClass;
+		$obj = (object)[];
 		$state = new TrivialMediaHandlerState;
 		$this->assertNull( $state->getHandlerState( 'test' ) );
 		$state->setHandlerState( 'test', $obj );

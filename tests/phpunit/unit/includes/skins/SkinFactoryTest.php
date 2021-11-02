@@ -90,7 +90,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 * @covers SkinFactory::makeSkin
 	 */
 	public function testMakeSkinWithValidSpec() {
-		$serviceInstance = new stdClass();
+		$serviceInstance = (object)[];
 
 		$serviceContainer = $this->createMock( ContainerInterface::class );
 		$serviceContainer->method( 'has' )->willReturn( true );

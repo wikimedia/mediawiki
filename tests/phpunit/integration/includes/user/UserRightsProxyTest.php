@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWikiIntegrationTestCase;
-use stdClass;
 use UserRightsProxy;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
@@ -27,9 +26,10 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 
 		$dbMock = $this->createMock( MaintainableDBConnRef::class );
 
-		$row = new stdClass;
-		$row->user_name = 'UserRightsProxyTest';
-		$row->user_id = 12345;
+		$row = (object)[
+			'user_name' => 'UserRightsProxyTest',
+			'user_id' => 12345,
+		];
 		$dbMock->method( 'selectRow' )->willReturn( $row );
 
 		$lbMock = $this->createMock( ILoadBalancer::class );
@@ -138,7 +138,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$userGroupManagerMock
 			->expects( $this->once() )
 			->method( 'getUserGroupMemberships' )
-			->willReturn( [ 'bot' => new stdClass, 'sysop' => new stdClass ] );
+			->willReturn( [ 'bot' => (object)[], 'sysop' => (object)[] ] );
 		$userGroupManagerFactoryMock = $this->createMock( UserGroupManagerFactory::class );
 		$userGroupManagerFactoryMock
 			->method( 'getUserGroupManager' )
@@ -161,7 +161,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$userGroupManagerMock2
 			->expects( $this->exactly( 2 ) )
 			->method( 'getUserGroupMemberships' )
-			->willReturn( [ 'bot' => new stdClass ] );
+			->willReturn( [ 'bot' => (object)[] ] );
 		$userGroupManagerFactoryMock2 = $this->createMock( UserGroupManagerFactory::class );
 		$userGroupManagerFactoryMock2
 			->method( 'getUserGroupManager' )
@@ -184,9 +184,10 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$value = 'bar';
 
 		$dbMock = $this->createMock( MaintainableDBConnRef::class );
-		$row = new stdClass;
-		$row->user_name = 'UserRightsProxyTest';
-		$row->user_id = 12345;
+		$row = (object)[
+			'user_name' => 'UserRightsProxyTest',
+			'user_id' => 12345,
+		];
 		$dbMock->method( 'selectRow' )->willReturn( $row );
 		$dbMock->method( 'timestamp' )->willReturn( 'timestamp' );
 		$dbMock->method( 'getDomainID' )->willReturn( 'foowiki' );
