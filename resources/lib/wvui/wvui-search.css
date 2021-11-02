@@ -371,8 +371,8 @@
   -webkit-box-pack: center;
           justify-content: center;
 }
-.wvui-typeahead-suggestion__thumbnail-icon {
-  color: #54595d;
+.wvui-typeahead-suggestion__thumbnail-placeholder-icon {
+  color: #72777d;
 }
 .wvui-typeahead-suggestion__text {
   overflow: hidden;
@@ -436,6 +436,9 @@
   padding: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
+.wvui-typeahead-search__suggestion {
+  padding-left: 36px;
+}
 .wvui-typeahead-search__suggestions__footer {
   color: #202122;
   display: -webkit-box;
@@ -451,20 +454,17 @@
 .wvui-typeahead-search__suggestions__footer:active {
   color: #202122;
 }
-.wvui-typeahead-search__suggestions__footer .wvui-icon {
+.wvui-typeahead-search__suggestions__footer--active {
+  background-color: #eaecf0;
+}
+.wvui-typeahead-search__suggestions__footer__icon {
   color: #54595d;
   width: auto;
   height: 2.57142857em;
   margin-right: 12px;
 }
-.wvui-typeahead-search__suggestions__footer--active {
-  background-color: #eaecf0;
-}
 .wvui-typeahead-search__suggestions__footer__text {
   font-size: 1.14285714em;
-}
-.wvui-typeahead-search__suggestion {
-  padding-left: 36px;
 }
 .wvui-typeahead-search .wvui-input__input {
   border-right-color: transparent;
@@ -491,14 +491,14 @@
 .wvui-typeahead-search--show-thumbnail .wvui-input__input {
   padding-left: 2.57142857em;
 }
-.wvui-typeahead-search--show-thumbnail .wvui-input__start-icon {
-  width: 2.57142857em;
-}
 .wvui-typeahead-search--show-thumbnail .wvui-input__input:focus {
   position: relative;
   left: -24px;
   width: calc(100% + 24px);
   padding-left: calc(12px + 2.57142857em + 12px);
+}
+.wvui-typeahead-search--show-thumbnail .wvui-input__start-icon {
+  width: 2.57142857em;
 }
 .wvui-typeahead-search--show-thumbnail .wvui-input__input:focus + .wvui-input__start-icon {
   left: -11px;
@@ -514,6 +514,10 @@
   padding-right: 12px;
   padding-left: 12px;
 }
+.wvui-typeahead-search--show-thumbnail .wvui-typeahead-search__suggestions__footer__icon {
+  flex-shrink: 0;
+  width: 2.57142857em;
+}
 .wvui-typeahead-search--show-thumbnail .wvui-typeahead-search__suggestions__footer__text,
 .wvui-typeahead-search--show-thumbnail .wvui-typeahead-search__suggestions__footer__text__query {
   -webkit-hyphens: auto;
@@ -521,9 +525,5 @@
           hyphens: auto;
   word-break: break-word;
   word-wrap: break-word;
-}
-.wvui-typeahead-search--show-thumbnail .wvui-typeahead-search__suggestions-footer-article-icon {
-  flex-shrink: 0;
-  width: 2.57142857em;
 }
 
