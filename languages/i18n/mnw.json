@@ -1602,6 +1602,7 @@
 	"feedback-submit": "ဗပေင်",
 	"feedback-thanks-title": "တင်ဂုန်ရအဴ!",
 	"searchsuggest-search": "ဂၠာဲ {{SITENAME}}",
+	"searchsuggest-containing": "သွက်ဂၠာဲမုက်လိက်မနွံဂမၠိုင်",
 	"duration-seconds": "$1{{PLURAL:$1|စက္က|စက္ကဂမၠိုၚ်}}",
 	"duration-minutes": "$1{{PLURAL:$1|ဗဳဇနာ|ဗဳဇနာဂမၠိုၚ်}}",
 	"duration-hours": "$1{{PLURAL:$1|နာဍဳ|နာဍဳဂမၠိုၚ်}}",

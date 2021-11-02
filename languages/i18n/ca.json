@@ -1184,7 +1184,7 @@
 	"linterror-tidy-whitespace-bug": "Incidència d'anàlisi d'espais en blanc",
 	"linterror-unclosed-quotes-in-heading": "Cometes sense tancar que desborden la taula de continguts",
 	"yourgender": "Quina és la vostra identitat?",
-	"gender-unknown": "En esmentar-vos, el software utilitzarà paraules sense marcar el gènere, sempre que sigui possible",
+	"gender-unknown": "En esmentar-vos, el programari utilitzarà paraules sense marcar el gènere, sempre que sigui possible",
 	"gender-notknown": "No binari",
 	"gender-male": "Masculí",
 	"gender-female": "Femení",
