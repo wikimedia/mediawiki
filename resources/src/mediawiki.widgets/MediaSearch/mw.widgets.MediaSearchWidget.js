@@ -118,7 +118,7 @@
 			this.resetRows();
 			this.itemCache = {};
 			this.processQueueResults( items );
-			if ( this.results.getItems().length > 0 ) {
+			if ( !this.results.isEmpty() ) {
 				this.lazyLoadResults();
 			}
 
@@ -181,8 +181,8 @@
 				}
 
 				search.query.popPending();
-				search.noItemsMessage.toggle( search.results.getItems().length === 0 );
-				if ( search.results.getItems().length > 0 ) {
+				search.noItemsMessage.toggle( search.results.isEmpty() );
+				if ( !search.results.isEmpty() ) {
 					search.lazyLoadResults();
 				}
 
