@@ -1218,7 +1218,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array|null
-	 * @phan-return array{main:string,files:string[][]}|null
+	 * @phan-return array{main:?string,files:array[]}|null
 	 * @throws LogicException If the 'packageFiles' definition is invalid.
 	 */
 	private function expandPackageFiles( ResourceLoaderContext $context ) {

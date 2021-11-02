@@ -23,6 +23,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
+use Psr\Log\LoggerInterface;
 
 /**
  * Context object that contains information about the state of a specific
@@ -41,28 +42,44 @@ class ResourceLoaderContext implements MessageLocalizer {
 	public const DEBUG_LEGACY = 1;
 	private const DEBUG_MAIN = 2;
 
+	/** @var ResourceLoader */
 	protected $resourceLoader;
+	/** @var WebRequest */
 	protected $request;
+	/** @var LoggerInterface */
 	protected $logger;
 
 	// Module content vary
+	/** @var string */
 	protected $skin;
+	/** @var string */
 	protected $language;
 	/** @var int */
 	protected $debug;
+	/** @var string|null */
 	protected $user;
 
 	// Request vary (in addition to cache vary)
+	/** @var string[] */
 	protected $modules;
+	/** @var string|null */
 	protected $only;
+	/** @var string|null */
 	protected $version;
+	/** @var bool */
 	protected $raw;
+	/** @var string|null */
 	protected $image;
+	/** @var string|null */
 	protected $variant;
+	/** @var string|null */
 	protected $format;
 
+	/** @var string|null */
 	protected $direction;
+	/** @var string|null */
 	protected $hash;
+	/** @var User|null */
 	protected $userObj;
 	/** @var ResourceLoaderImage|false */
 	protected $imageObj;
@@ -170,7 +187,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @deprecated since 1.34 Use ResourceLoaderModule::getLogger instead
 	 * inside module methods. Use ResourceLoader::getLogger elsewhere.
 	 * @since 1.27
-	 * @return \Psr\Log\LoggerInterface
+	 * @return LoggerInterface
 	 */
 	public function getLogger() {
 		return $this->logger;
@@ -185,6 +202,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// Must be a valid language code after this point (T64849)
 			// Only support uselang values that follow built-in conventions (T102058)
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
+			'@phan-var string $lang'; // getRawVal does not return null here
 			// Stricter version of RequestContext::sanitizeLangCode()
 			$validBuiltinCode = MediaWikiServices::getInstance()->getLanguageNameUtils()
 				->isValidBuiltInCode( $lang );
