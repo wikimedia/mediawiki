@@ -1820,7 +1820,7 @@ class Language {
 	 *
 	 * @param int $year
 	 *
-	 * @return string
+	 * @return int
 	 */
 	private static function hebrewYearStart( $year ) {
 		$a = ( 12 * ( $year - 1 ) + 17 ) % 19;
@@ -2097,9 +2097,9 @@ class Language {
 	 * Used by date() and time() to adjust the time output.
 	 *
 	 * @param string $ts The time in date('YmdHis') format
-	 * @param mixed $tz Adjust the time by this amount (default false, mean we
+	 * @param string|false $tz Adjust the time by this amount (default false, mean we
 	 *   get user timecorrection setting)
-	 * @return int
+	 * @return string
 	 */
 	public function userAdjust( $ts, $tz = false ) {
 		global $wgLocalTZoffset;
@@ -4390,7 +4390,7 @@ class Language {
 	 * @param string $filename $prefix . $languageCode . $suffix
 	 * @param string $prefix Prefix before the language code
 	 * @param string $suffix Suffix after the language code
-	 * @return string Language code, or false if $prefix or $suffix isn't found
+	 * @return string|false Language code, or false if $prefix or $suffix isn't found
 	 */
 	public static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
 		$m = null;
@@ -4783,7 +4783,7 @@ class Language {
 	 *
 	 * @deprecated since 1.35 use LanguageConverter::getConvRuleTitle instead
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getConvRuleTitle() {
 		return $this->getConverter()->getConvRuleTitle();

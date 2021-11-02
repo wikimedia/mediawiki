@@ -200,12 +200,12 @@ class Message implements MessageSpecifier, Serializable {
 	protected $contextPage = null;
 
 	/**
-	 * @var Content Content object representing the message.
+	 * @var Content|null Content object representing the message.
 	 */
 	protected $content = null;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected $message;
 
