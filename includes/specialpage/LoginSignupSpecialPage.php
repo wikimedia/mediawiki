@@ -44,6 +44,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mPosted;
 	protected $mAction;
 	protected $mLanguage;
+	protected $mVariant;
 	protected $mReturnToQuery;
 	protected $mToken;
 	protected $mStickHTTPS;
@@ -118,6 +119,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			|| ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
 			|| $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
+		$this->mVariant = $request->getText( 'variant' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 	}
@@ -161,6 +163,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
 				'uselang' => $this->mLanguage ?: null,
+				'variant' => $this->mVariant ?: null,
 				'fromhttp' => $this->getConfig()->get( MainConfigNames::SecureLogin ) &&
 					$this->mFromHTTP ? '1' : null,
 			]
@@ -706,6 +709,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->mLanguage ) {
 			$form->addHiddenField( 'uselang', $this->mLanguage );
 		}
+		if ( $this->mVariant ) {
+			$form->addHiddenField( 'variant', $this->mVariant );
+		}
 		$form->addHiddenField( 'force', $this->securityLevel );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		$config = $this->getConfig();
@@ -1083,6 +1089,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				if ( $this->mLanguage ) {
 					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 				}
+				if ( $this->mVariant ) {
+					$linkq .= '&variant=' . urlencode( $this->mVariant );
+				}
 				$isLoggedIn = $this->getUser()->isRegistered()
 					&& !$this->getUser()->isTemp();
 
@@ -1202,6 +1211,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			return htmlspecialchars( $text );
 		}
 		$query = [ 'uselang' => $lang ];
+		if ( $this->mVariant ) {
+			$query['variant'] = $this->mVariant;
+		}
 		if ( $this->mReturnTo !== '' ) {
 			$query['returnto'] = $this->mReturnTo;
 			$query['returntoquery'] = $this->mReturnToQuery;
