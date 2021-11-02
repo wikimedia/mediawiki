@@ -191,8 +191,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
 		# Offset overrides year/month selection
 		if ( !$skip ) {
-			$this->opts['year'] = $request->getVal( 'year' );
-			$this->opts['month'] = $request->getVal( 'month' );
+			$this->opts['year'] = $request->getIntOrNull( 'year' );
+			$this->opts['month'] = $request->getIntOrNull( 'month' );
 
 			$this->opts['start'] = $request->getVal( 'start' );
 			$this->opts['end'] = $request->getVal( 'end' );
