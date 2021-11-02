@@ -2638,23 +2638,6 @@ class LocalFile extends File {
 	 */
 	public function getSha1() {
 		$this->load();
-		// Initialise now if necessary
-		if ( $this->sha1 == '' && $this->fileExists ) {
-			$this->lock();
-
-			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
-			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
-				$dbw = $this->repo->getPrimaryDB();
-				$dbw->update( 'image',
-					[ 'img_sha1' => $this->sha1 ],
-					[ 'img_name' => $this->getName() ],
-					__METHOD__ );
-				$this->invalidateCache();
-			}
-
-			$this->unlock();
-		}
-
 		return $this->sha1;
 	}
 
