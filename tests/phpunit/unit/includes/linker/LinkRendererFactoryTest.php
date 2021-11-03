@@ -74,6 +74,10 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
 		$this->assertEquals( $val, $linkRenderer->$func(), $func );
+		$this->assertFalse(
+			$linkRenderer->isForComment(),
+			'isForComment should default to false in legacy implementation'
+		);
 	}
 
 	public function testCreate() {
@@ -83,6 +87,20 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 			$this->specialPageFactory,
 			$this->hookContainer
 		);
-		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
+		$linkRenderer = $factory->create();
+		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
+		$this->assertFalse( $linkRenderer->isForComment(), 'isForComment should default to false' );
+	}
+
+	public function testCreateForComment() {
+		$factory = new LinkRendererFactory(
+			$this->titleFormatter,
+			$this->linkCache,
+			$this->specialPageFactory,
+			$this->hookContainer
+		);
+		$linkRenderer = $factory->create( [ 'renderForComment' => true ] );
+		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
+		$this->assertTrue( $linkRenderer->isForComment() );
 	}
 }

@@ -353,8 +353,9 @@ return [
 	},
 
 	'CommentFormatter' => static function ( MediaWikiServices $services ): CommentFormatter {
+		$linkRenderer = $services->getLinkRendererFactory()->create( [ 'renderForComment' => true ] );
 		$parserFactory = new CommentParserFactory(
-			$services->getLinkRenderer(),
+			$linkRenderer,
 			$services->getLinkBatchFactory(),
 			$services->getLinkCache(),
 			$services->getRepoGroup(),
