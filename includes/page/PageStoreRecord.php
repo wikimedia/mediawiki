@@ -119,8 +119,25 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	 * @return ?string
 	 */
 	public function getLanguage(): ?string {
-		// field may be missing
-		return $this->row->page_lang ?? null;
+		return $this->getField( 'page_lang' );
+	}
+
+	/**
+	 * Return the raw value for the given field as returned by the database query.
+	 *
+	 * Numeric values may be encoded as strings.
+	 * Boolean values may be represented as integers (or numeric strings).
+	 * Timestamps will use the database's native format.
+	 *
+	 * @internal
+	 *
+	 * @param string $field
+	 *
+	 * @return string|int|bool|null
+	 */
+	public function getField( string $field ) {
+		// Field may be missing entirely.
+		return $this->row->$field ?? null;
 	}
 
 }

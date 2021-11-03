@@ -103,6 +103,7 @@ interface PageLookup extends IDBAccessObject {
 	/**
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
+	 * If $page is a PageIdentity, implementations may call methods like exists() and getId() on it.
 	 *
 	 * The PageReference must refer to a proper page - that is, it must not refer to a special page.
 	 *
