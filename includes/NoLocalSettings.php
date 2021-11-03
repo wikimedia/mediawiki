@@ -44,7 +44,7 @@ if ( !function_exists( 'session_name' ) ) {
 	$installerStarted = ( $success && isset( $_SESSION['installData'] ) );
 }
 
-$templateParser = new TemplateParser();
+$templateParser = new TemplateParser( null, new EmptyBagOStuff() );
 
 # Render error page if no LocalSettings file can be found
 try {
