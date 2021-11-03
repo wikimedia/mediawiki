@@ -581,9 +581,9 @@ if ( isset( $wgSlaveLagCritical ) ) {
 	$wgSlaveLagCritical = $wgDatabaseReplicaLagCritical;
 }
 
-if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+if ( $wgInvalidateCacheOnLocalSettingsChange && defined( 'MW_CONFIG_FILE' ) ) {
 	Wikimedia\suppressWarnings();
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
 	Wikimedia\restoreWarnings();
 }
 
