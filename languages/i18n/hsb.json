@@ -1311,7 +1311,6 @@
 	"recentchanges-label-plusminus": "Změnjena wulkosć strony (w bajtach)",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (hlej tež [[Special:NewPages|lisćinu nowych stronow]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "nachwilnje wobkedźbowana strona",
 	"recentchanges-submit": "Pokazać",
 	"rcfilters-tag-remove": "„$1“ wotstronić",

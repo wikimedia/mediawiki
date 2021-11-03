@@ -631,7 +631,6 @@
 	"recentchanges-label-plusminus": "El tamanyo de esta hoja kanvió esta kantidad de baytes",
 	"recentchanges-legend-heading": "<strong>Leyenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (también mire [[Special:NewPages|la lista de hojas nuevas]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Debasho se amostran {{PLURAL:$5|el trokamiento|los trokamientos}} desde '''$2''' (amostrados fina <b>$1</b>)",
 	"rclistfrom": "Amostrar los trocamientos muevos empeçando el $3 $2",
 	"rcshowhideminor": "$1 trocamientos chiquiticos",

@@ -1062,7 +1062,6 @@
 	"recentchanges-label-plusminus": "Změnjona wjelikosc boka (licba bajtow)",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (glej teke [[Special:NewPages|lisćinu nowych bokow]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Dołojce pokazuju se změny wót <strong>$2</strong> (maks. <strong>$1</strong> zapisow).",
 	"rclistfrom": "Nowe změny wót $3 $2 pokazaś",
 	"rcshowhideminor": "Snadne změny $1",

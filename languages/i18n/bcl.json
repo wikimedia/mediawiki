@@ -1256,7 +1256,6 @@
 	"recentchanges-label-plusminus": "Pinagliwat an kadakulaan nin pahina sa paagi kan numero nin mga bayta kaini",
 	"recentchanges-legend-heading": "<strong>Kabalaynan:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (hilngon man [[Special:NewPages|listahan kan mga baguhon na pahina]])",
-	"recentchanges-legend-plusminus": "(''±saro-duwa-tolo'')",
 	"recentchanges-submit": "Ipahiling",
 	"rcfilters-tag-remove": "Halion '$1'",
 	"rcfilters-other-review-tools": "Ibang gamit sa pagsuri",

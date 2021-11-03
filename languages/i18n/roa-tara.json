@@ -1395,7 +1395,6 @@
 	"recentchanges-label-plusminus": "'A dimenzione d'a pàgene ave cangiate da stu numere de byte",
 	"recentchanges-legend-heading": "<strong>Leggende:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Fà 'ndrucà",
 	"rcfilters-tag-hidden": "$1 (tag scunnute)",
 	"rcfilters-tag-remove": "Live '$1'",

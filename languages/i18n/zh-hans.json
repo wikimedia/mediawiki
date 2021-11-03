@@ -1596,7 +1596,6 @@
 	"recentchanges-label-plusminus": "该页面字节数的前后变化",
 	"recentchanges-legend-heading": "<strong>说明：</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}（见[[Special:NewPages|新页面列表]]）",
-	"recentchanges-legend-plusminus": "（<em>±123</em>）",
 	"recentchanges-legend-watchlistexpiry": "临时监视的页面",
 	"recentchanges-submit": "显示",
 	"rcfilters-tag-hidden": "$1（隐藏的标签）",

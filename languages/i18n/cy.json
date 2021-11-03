@@ -1286,7 +1286,6 @@
 	"recentchanges-label-plusminus": "Newidiodd maint y dudalen o'r nifer hwn o feitiau",
 	"recentchanges-legend-heading": "<strong>Allwedd:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Dangos",
 	"rcfilters-tag-remove": "Dileu '$1'",
 	"rcfilters-legend-heading": "<strong>Rhestr o fyrfoddau:</strong>",

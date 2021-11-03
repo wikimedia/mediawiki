@@ -1427,7 +1427,6 @@
 	"recentchanges-label-plusminus": "O tamaño da páxina variou este número de bytes",
 	"recentchanges-legend-heading": "<strong>Lenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (véxase tamén a [[Special:NewPages|lista de páxinas novas]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Páxina temporalmente vixiada",
 	"recentchanges-submit": "Amosar",
 	"rcfilters-tag-remove": "Eliminar '$1'",

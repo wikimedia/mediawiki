@@ -1558,7 +1558,6 @@
 	"recentchanges-label-plusminus": "Alteração no tamanho da página, em bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veja também a [[Special:NewPages|lista de páginas novas]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Página vigiada temporariamente",
 	"recentchanges-submit": "Exibir",
 	"rcfilters-tag-hidden": "$1 (etiqueta oculta)",

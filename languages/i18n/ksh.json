@@ -1224,7 +1224,6 @@
 	"recentchanges-label-plusminus": "Der Ömvang vun dä Sigg hät sesch öm di Aanzahl <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Bytes</i> verändert.",
 	"recentchanges-legend-heading": "<strong>Lejänd:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (Loor och noh de [[Special:NewPages|Leß met de neue Sigge]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Aanzeije!",
 	"rcnotefrom": "Hee {{PLURAL:$5|es ein|sin bes op <strong>$1</strong>|es keine}} fun de Änderunge zick dem <strong>$3</strong> öm <strong>$4</strong> Uhr opjelėß.",
 	"rclistfrom": "Zeisch de Änderonge avv em $3 öm $2 Uhr aan.",

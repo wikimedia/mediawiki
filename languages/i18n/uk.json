@@ -1517,7 +1517,6 @@
 	"recentchanges-label-plusminus": "Розмір сторінки змінився на таку кількість байтів",
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (див. також [[Special:NewPages|список нових сторінок]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Тимчасово спостережувана сторінка",
 	"recentchanges-submit": "Показати",
 	"rcfilters-tag-hidden": "$1 (прихований тег)",

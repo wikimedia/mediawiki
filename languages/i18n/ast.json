@@ -1395,7 +1395,6 @@
 	"recentchanges-label-plusminus": "El tamañu d'esta páxina cambió nesti númberu de bytes",
 	"recentchanges-legend-heading": "<strong>Lleenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ver tamién la  [[Special:NewPages|llista de páxines nueves]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Amosar",
 	"rcfilters-tag-remove": "Desanicia '$1'",
 	"rcfilters-legend-heading": "<strong>Llista d'abreviatures:</strong>",

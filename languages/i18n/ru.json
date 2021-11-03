@@ -1581,7 +1581,6 @@
 	"recentchanges-label-plusminus": "Изменение размера страницы в байтах",
 	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (см. также [[Special:NewPages|список новых страниц]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Временно наблюдаемая страница",
 	"recentchanges-submit": "Показать",
 	"rcfilters-tag-hidden": "$1 (скрытый тег)",

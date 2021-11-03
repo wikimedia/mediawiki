@@ -1502,7 +1502,6 @@
 	"recentchanges-label-plusminus": "Sidans storlek ändrades med detta antal byte",
 	"recentchanges-legend-heading": "<strong>Teckenförklaring:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se även [[Special:NewPages|listan över nya sidor]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Tillfälligt bevakad sida",
 	"recentchanges-submit": "Visa",
 	"rcfilters-tag-hidden": "$1 (dold tagg)",
