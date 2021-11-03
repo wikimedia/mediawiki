@@ -384,20 +384,20 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @return string
 	 */
 	public function getHash(): string {
-		if ( !isset( $this->hash ) ) {
+		if ( $this->hash === null ) {
 			$this->hash = implode( '|', [
 				// Module content vary
 				$this->getLanguage(),
 				$this->getSkin(),
-				$this->getDebug(),
-				$this->getUser(),
+				(string)$this->getDebug(),
+				$this->getUser() ?? '',
 				// Request vary
-				$this->getOnly(),
-				$this->getVersion(),
-				$this->getRaw(),
-				$this->getImage(),
-				$this->getVariant(),
-				$this->getFormat(),
+				$this->getOnly() ?? '',
+				$this->getVersion() ?? '',
+				(string)$this->getRaw(),
+				$this->getImage() ?? '',
+				$this->getVariant() ?? '',
+				$this->getFormat() ?? '',
 			] );
 		}
 		return $this->hash;
