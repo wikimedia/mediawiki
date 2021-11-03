@@ -122,9 +122,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 			'HTTP_ACCEPT' => 'text/html'
 		] );
 
-		// FIXME assertSame fails here
-		// phpcs:ignore MediaWiki.PHPUnit.AssertEquals
-		$this->assertEquals( '', $this->reqFromGlobals->getBody() );
+		$this->assertSame( '', $this->reqFromGlobals->getBody()->getContents() );
 	}
 
 	public function testGetServerParams() {
