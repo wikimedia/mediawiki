@@ -21,6 +21,7 @@
 namespace MediaWiki\Linker;
 
 use LinkCache;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
@@ -72,12 +73,16 @@ class LinkRendererFactory {
 	}
 
 	/**
+	 * @param array $options optional array with flags for rendering
+	 *        * 'renderForComment' set to true if this LinkRender is to be used for edit summary comment
+	 *
 	 * @return LinkRenderer
 	 */
-	public function create() {
+	public function create( array $options = [ 'renderForComment' => false ] ) {
 		return new LinkRenderer(
 			$this->titleFormatter, $this->linkCache, $this->specialPageFactory,
-			$this->hookContainer
+			$this->hookContainer,
+			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, $options )
 		);
 	}
 
