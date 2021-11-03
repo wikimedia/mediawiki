@@ -508,7 +508,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Returns a list of fields that are to be selected for initializing Title
-	 * objects or LinkCache entries.
+	 * objects.
 	 *
 	 * @deprecated since 1.36, use PageStore::newSelectQueryBuilder() instead.
 	 *
@@ -1070,6 +1070,16 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
+	 * @param int $flags
+	 *
+	 * @return bool Whether $flags indicates that the latest information should be
+	 *         read from the primary database, bypassing caches.
+	 */
+	private function shouldReadLatest( int $flags ) {
+		return ( $flags & ( self::READ_LATEST | self::GAID_FOR_UPDATE ) ) > 0;
+	}
+
+	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
 	 * @todo Deprecate this in favor of SlotRecord::getModel()
@@ -1086,15 +1096,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return $this->mContentModel;
 		}
 
-		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
-			$this->lazyFillContentModel( $this->loadFieldFromDB( 'page_content_model', $flags ) );
-		} elseif (
-			( !$this->mContentModel || $flags & self::GAID_FOR_UPDATE ) &&
-			$this->getArticleID( $flags )
-		) {
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this ); # in case we already had an article ID
-			$this->lazyFillContentModel( $linkCache->getGoodLinkFieldObj( $this, 'model' ) );
+		if ( $this->shouldReadLatest( $flags ) || !$this->mContentModel ) {
+			$this->lazyFillContentModel( $this->getFieldFromPageStore( 'page_content_model', $flags ) );
 		}
 
 		if ( !$this->mContentModel ) {
@@ -2860,25 +2863,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int The ID
 	 */
 	public function getArticleID( $flags = 0 ) {
-		if ( !$this->canExist() ) {
+		if ( $this->mArticleID === -1 && !$this->canExist() ) {
 			$this->mArticleID = 0;
 
 			return $this->mArticleID;
 		}
 
-		if ( $flags & self::GAID_FOR_UPDATE ) {
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->clearLink( $this );
-			$this->mArticleID = $linkCache->addLinkObj( $this, self::READ_LATEST );
-		} elseif ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
-			// If mArticleID is >0, pageCond() will use it, making it impossible
-			// for the call below to return a different result, e.g. after a
-			// page move.
-			$this->mArticleID = -1;
-			$this->mArticleID = (int)$this->loadFieldFromDB( 'page_id', $flags );
-		} elseif ( $this->mArticleID == -1 ) {
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$this->mArticleID = $linkCache->addLinkObj( $this );
+		if ( $this->mArticleID === -1 || $this->shouldReadLatest( $flags ) ) {
+			$this->mArticleID = (int)$this->getFieldFromPageStore( 'page_id', $flags );
 		}
 
 		return $this->mArticleID;
@@ -2899,18 +2891,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isRedirect( $flags = 0 ) {
-		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
-			$this->mRedirect = (bool)$this->loadFieldFromDB( 'page_is_redirect', $flags );
-		} elseif ( $this->mRedirect === null ) {
-			if ( $this->getArticleID( $flags ) ) {
-				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-				$linkCache->addLinkObj( $this ); // in case we already had an article ID
-				// Note that LinkCache returns null if it thinks the page does not exist;
-				// always trust the state of LinkCache over that of this Title instance.
-				$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-			} else {
-				$this->mRedirect = false;
-			}
+		if ( $this->shouldReadLatest( $flags ) || $this->mRedirect === null ) {
+			$this->mRedirect = (bool)$this->getFieldFromPageStore( 'page_is_redirect', $flags );
 		}
 
 		return $this->mRedirect;
@@ -2924,21 +2906,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int
 	 */
 	public function getLength( $flags = 0 ) {
-		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
-			$this->mLength = (int)$this->loadFieldFromDB( 'page_len', $flags );
-		} else {
-			if ( $this->mLength != -1 ) {
-				return $this->mLength;
-			} elseif ( !$this->getArticleID( $flags ) ) {
-				$this->mLength = 0;
-				return $this->mLength;
-			}
+		if ( $this->shouldReadLatest( $flags ) || $this->mLength < 0 ) {
+			$this->mLength = (int)$this->getFieldFromPageStore( 'page_len', $flags );
+		}
 
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this ); // in case we already had an article ID
-			// Note that LinkCache returns null if it thinks the page does not exist;
-			// always trust the state of LinkCache over that of this Title instance.
-			$this->mLength = (int)$linkCache->getGoodLinkFieldObj( $this, 'length' );
+		if ( $this->mLength < 0 ) {
+			$this->mLength = 0;
 		}
 
 		return $this->mLength;
@@ -2951,22 +2924,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
-		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
-			$this->mLatestID = (int)$this->loadFieldFromDB( 'page_latest', $flags );
-		} else {
-			if ( $this->mLatestID !== false ) {
-				return (int)$this->mLatestID;
-			} elseif ( !$this->getArticleID( $flags ) ) {
-				$this->mLatestID = 0;
+		if ( $this->shouldReadLatest( $flags ) || $this->mLatestID === false ) {
+			$this->mLatestID = (int)$this->getFieldFromPageStore( 'page_latest', $flags );
+		}
 
-				return $this->mLatestID;
-			}
-
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this ); // in case we already had an article ID
-			// Note that LinkCache returns null if it thinks the page does not exist;
-			// always trust the state of LinkCache over that of this Title instance.
-			$this->mLatestID = (int)$linkCache->getGoodLinkFieldObj( $this, 'revision' );
+		if ( !$this->mLatestID ) {
+			$this->mLatestID = 0;
 		}
 
 		return $this->mLatestID;
@@ -3384,13 +3347,16 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Check if this is a new page
+	 * Check if this is a new page.
+	 *
+	 * @note This returns false if the page does not exist.
+	 * @param int $flags one of the READ_XXX constants.
 	 *
 	 * @return bool
 	 */
-	public function isNewPage() {
-		$dbr = wfGetDB( DB_REPLICA );
-		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
+	public function isNewPage( $flags = self::READ_NORMAL ) {
+		// NOTE: we rely on PHP casting "0" to false here.
+		return (bool)$this->getFieldFromPageStore( 'page_is_new', $flags );
 	}
 
 	/**
@@ -3757,15 +3723,24 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param IDatabase|null $db
+	 * @param int $flags one of the READ_XXX constants. For historical reasons, an IDatabase
+	 *        instance is also accepted here. If an IDatabase is passed, a deprecation warning
+	 *        is triggered, caches will be bypassed, and the primary database connection will be
+	 *        used. However, the IDatabase instance itself will be ignored.
 	 * @return string|false Last-touched timestamp
 	 */
-	public function getTouched( $db = null ) {
-		if ( $db === null ) {
-			$db = wfGetDB( DB_REPLICA );
+	public function getTouched( $flags = self::READ_NORMAL ) {
+		if ( is_object( $flags ) ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ' was called with a ' . get_class( $flags )
+				. ' instance instead of an integer!',
+				'1.38'
+			);
+			$flags = self::READ_LATEST;
 		}
-		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
-		return $touched;
+
+		$touched = $this->getFieldFromPageStore( 'page_touched', $flags );
+		return MWTimestamp::convert( TS_MW, $touched );
 	}
 
 	/**
@@ -3938,20 +3913,20 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * to true in LocalSettings.php, otherwise returns false. If there is no language saved in
 	 * the db, it will return NULL.
 	 *
-	 * @return string|null|bool
+	 * @param int $flags
+	 *
+	 * @return ?string
 	 */
-	private function getDbPageLanguageCode() {
+	private function getDbPageLanguageCode( int $flags = 0 ): ?string {
 		global $wgPageLanguageUseDB;
 
 		// check, if the page language could be saved in the database, and if so and
-		// the value is not requested already, lookup the page language using LinkCache
+		// the value is not requested already, lookup the page language using PageStore
 		if ( $wgPageLanguageUseDB && $this->mDbPageLanguage === false ) {
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this );
-			$this->mDbPageLanguage = $linkCache->getGoodLinkFieldObj( $this, 'lang' );
+			$this->mDbPageLanguage = $this->getFieldFromPageStore( 'page_lang', $flags );
 		}
 
-		return $this->mDbPageLanguage;
+		return $this->mDbPageLanguage ?: null;
 	}
 
 	/**
@@ -4124,23 +4099,44 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * @param string $field
 	 * @param int $flags Bitfield of class READ_* constants
-	 * @return string|bool
+	 * @return string|false
 	 */
-	private function loadFieldFromDB( $field, $flags ) {
-		if ( !in_array( $field, self::getSelectFields(), true ) ) {
-			return false; // field does not exist
+	private function getFieldFromPageStore( $field, $flags ) {
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+
+		if ( !in_array( $field, $pageStore->getSelectFields(), true ) ) {
+			throw new InvalidArgumentException( "Unknown field: $field" );
 		}
 
-		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		if ( $flags === self::READ_NORMAL && $this->mArticleID === 0 ) {
+			// page does not exist
+			return false;
+		}
 
-		return wfGetDB( $index )->selectField(
-			'page',
-			$field,
-			$this->pageCond(),
-			__METHOD__,
-			$options
-		);
+		if ( !$this->canExist() ) {
+			return false;
+		}
+
+		if ( $this->mArticleID > 0 && $field !== 'page_id' ) {
+			// NOTE: if we already have a page ID, we trust it.
+			$page = $pageStore->getPageById( $this->getArticleID(), $flags );
+		} elseif ( $field === 'page_id' ) {
+			// NOTE: When looking up the page ID, don't use PageStore::getPageByReference().
+			//       getPageByReference() would call exists() and getId(), which would land
+			//       us back here, recursing until we run out of stack.
+			$page = $pageStore->getPageByName( $this->getNamespace(), $this->getDBkey(), $flags );
+		} else {
+			$page = $pageStore->getPageByReference( $this, $flags );
+		}
+
+		if ( $page instanceof PageStoreRecord ) {
+			return $page->getField( $field );
+		} else {
+			// page does not exist
+			return false;
+		}
 	}
 
 	/**
@@ -4277,10 +4273,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				'page_title' => $this->getDBkey(),
 				'page_wiki_id' => $this->getWikiId(),
 				'page_latest' => $this->getLatestRevID( $flags ),
-				'page_is_new' => $this->isNewPage(), // no flags?
+				'page_is_new' => $this->isNewPage( $flags ),
 				'page_is_redirect' => $this->isRedirect( $flags ),
-				'page_touched' => $this->getTouched(), // no flags?
-				'page_lang' => $this->getDbPageLanguageCode() ?: null,
+				'page_touched' => $this->getTouched( $flags ),
+				'page_lang' => $this->getDbPageLanguageCode( $flags ),
 			],
 			PageIdentity::LOCAL
 		);

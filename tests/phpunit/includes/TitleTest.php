@@ -516,6 +516,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( MWTimestamp::convert( TS_MW, $title->getTouched() ), $record->getTouched() );
 		$this->assertSame( $title->isNewPage(), $record->isNew() );
 		$this->assertSame( $title->isRedirect(), $record->isRedirect() );
+		$this->assertSame( $title->getTouched(), $record->getTouched() );
 	}
 
 	/**
