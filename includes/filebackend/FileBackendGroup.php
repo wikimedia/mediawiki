@@ -118,11 +118,12 @@ class FileBackendGroup {
 			$deletedDir = $info['deletedDir'] ?? false; // deletion disabled
 			$thumbDir = $info['thumbDir'] ?? "{$directory}/thumb";
 			$transcodedDir = $info['transcodedDir'] ?? "{$directory}/transcoded";
+			$lockManager = $info['lockManager'] ?? 'fsLockManager';
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
 				'class' => FSFileBackend::class,
-				'lockManager' => 'fsLockManager',
+				'lockManager' => $lockManager,
 				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
 					"{$repoName}-thumb" => $thumbDir,
