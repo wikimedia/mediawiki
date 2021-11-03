@@ -1489,7 +1489,6 @@
 	"recentchanges-label-plusminus": "Sivun koon muutos tavuina",
 	"recentchanges-legend-heading": "<strong>Selitys:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (katso myös [[Special:NewPages|lista uusista sivuista]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Väliaikaisesti tarkkailulistallasi oleva sivu",
 	"recentchanges-submit": "Näytä",
 	"rcfilters-tag-hidden": "$1 (piilotettu merkkaus)",

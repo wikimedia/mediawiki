@@ -1480,7 +1480,6 @@
 	"recentchanges-label-plusminus": "Kích cỡ trang đã thay đổi bằng số byte này",
 	"recentchanges-legend-heading": "<strong>Chú giải:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (xem thêm [[Special:NewPages|danh sách trang mới]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Trang tạm theo dõi",
 	"recentchanges-submit": "Xem",
 	"rcfilters-tag-hidden": "$1 (thẻ ẩn)",

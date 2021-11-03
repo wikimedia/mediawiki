@@ -1325,7 +1325,6 @@
 	"recentchanges-label-plusminus": "La talha de la pagina a cambiat d'aqueste nombre d’octets.",
 	"recentchanges-legend-heading": "<strong>Legenda :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veire tanben la [[Special:NewPages|lista de las paginas novèlas]]).",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Afichar",
 	"rcfilters-tag-remove": "Suprimir '$1'",
 	"rcfilters-legend-heading": "<strong>Lista de las abreviacions:</strong>",

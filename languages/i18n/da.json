@@ -1409,7 +1409,6 @@
 	"recentchanges-label-plusminus": "Størrelsen på siden blev ændret med dette antal bytes",
 	"recentchanges-legend-heading": "<strong>Tegnforklaring:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se også [[Special:NewPages|listen over nye sider]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Midlertidigt overvåget side",
 	"recentchanges-submit": "Vis",
 	"rcfilters-tag-remove": "Fjern »$1«",

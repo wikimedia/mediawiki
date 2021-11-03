@@ -1519,7 +1519,6 @@
 	"recentchanges-label-plusminus": "Zmieniony rozmiar strony (liczba bajtów)",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zobacz też [[Special:NewPages|listę nowych stron]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Tymczasowo obserwowana strona",
 	"recentchanges-submit": "Pokaż",
 	"rcfilters-tag-hidden": "$1 (ukryty znacznik)",

@@ -1449,7 +1449,6 @@
 	"recentchanges-label-plusminus": "Големинска промена на страницата во бајти",
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (погл. и [[Special:NewPages|списокот на нови страници]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Привремено набљудувана страница",
 	"recentchanges-submit": "Прикажи",
 	"rcfilters-tag-hidden": "$1 (скриена ознака)",

@@ -1427,7 +1427,6 @@
 	"recentchanges-label-plusminus": "La taja dla pàgina a l'é cangià d'un nùmer ëd bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vëdde ëdcò la [[Special:NewPages|lista dle pàgine neuve]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Pàgina tnùa sot-euj temporaneament",
 	"recentchanges-submit": "Smon-e",
 	"rcfilters-tag-remove": "Dëscancelé '$1'",

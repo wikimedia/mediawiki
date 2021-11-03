@@ -1430,7 +1430,6 @@
 	"recentchanges-label-plusminus": "Le dimension del pagina ha cambiate de iste numero de bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vide etiam le [[Special:NewPages|lista de nove paginas]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Pagina sub observation temporari",
 	"recentchanges-submit": "Monstrar",
 	"rcfilters-tag-hidden": "$1 (etiquetta celate)",

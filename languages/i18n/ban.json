@@ -1442,7 +1442,6 @@
 	"recentchanges-label-plusminus": "Agengnyané kacané kauahin akéhnyané bita",
 	"recentchanges-legend-heading": "<strong>Legénda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taler cingak [[Special:NewPages|bacakan kaca anyar]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Kaca sané kaawasin ajebos",
 	"recentchanges-submit": "Sinahang",
 	"rcfilters-tag-hidden": "$1 (tag kaengkebang)",

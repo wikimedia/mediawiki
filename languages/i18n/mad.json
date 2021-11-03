@@ -349,7 +349,6 @@
 	"recentchanges-label-plusminus": "Obâ'ân okoran kaca ḍâlem bita",
 	"recentchanges-legend-heading": "<strong>Katrangan</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (tèngghu kèya [[Special:NewPages|ḍaftar kaca anyar]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "È bâbâ rèya {{PLURAL:$5|paobâ'ân}} sajjhek <strong>$3, $4</strong> (èyangghâlaghi sampè' <strong>$1</strong> obâ'ân),",
 	"rclistfrom": "Angghâlaghi obâ'ân anyar molaè $2, $3",
 	"rcshowhideminor": "$1 beccè'an kènè'",

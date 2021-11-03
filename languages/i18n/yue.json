@@ -1905,6 +1905,7 @@
 	"logeventslist-submit": "顯示",
 	"logeventslist-patrol-log": "巡查日誌",
 	"logeventslist-tag-log": "標籤日誌",
+	"logeventslist-newusers-log": "開戶日誌",
 	"all-logs-page": "全部嘅公共日誌",
 	"alllogstext": "響{{SITENAME}}度全部日誌嘅綜合顯示。你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。",
 	"logempty": "日誌中冇符合嘅項目。",

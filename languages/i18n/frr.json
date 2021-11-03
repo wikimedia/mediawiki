@@ -1224,7 +1224,6 @@
 	"recentchanges-label-plusminus": "Feranert sidjengrate (am soföl bytes)",
 	"recentchanges-legend-heading": "<strong>Ferklaarang:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (luke uk bi't [[Special:NewPages|list mä nei sidjen]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Wise",
 	"rcfilters-activefilters-show": "Wise",
 	"rcfilters-preference-label": "Brük di skak saner JavaScript.",

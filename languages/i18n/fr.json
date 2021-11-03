@@ -1614,7 +1614,6 @@
 	"recentchanges-label-plusminus": "La taille de la page a changé de ce nombre d’octets.",
 	"recentchanges-legend-heading": "<strong>Légende :</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (voir aussi la  [[Special:NewPages|liste des nouvelles pages]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Page suivie temporairement",
 	"recentchanges-submit": "Lister",
 	"rcfilters-tag-hidden": "$1 (balise masquée)",

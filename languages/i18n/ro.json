@@ -1472,7 +1472,6 @@
 	"recentchanges-label-plusminus": "Dimensiunea paginii s-a modificat corespunzător acestui număr de octeți",
 	"recentchanges-legend-heading": "<strong>Legendă:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vedeți și [[Special:NewPages|lista cu pagini noi]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Pagină urmărită temporar",
 	"recentchanges-submit": "Afișează",
 	"rcfilters-tag-hidden": "$1 (etichetă ascunsă)",

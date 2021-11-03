@@ -854,7 +854,6 @@
 	"recentchanges-label-plusminus": "Sahifa vazni necha baytga oʻzgargani",
 	"recentchanges-legend-heading": "<strong>Izoh:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (shuningdek q.: [[Special:NewPages|alohida roʻyxat]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Vaqtincha kuzatilinayotgan sahifa",
 	"recentchanges-submit": "Koʻrsat",
 	"rcfilters-tag-remove": "'$1'ni oʻchirish",

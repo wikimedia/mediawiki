@@ -1264,7 +1264,6 @@
 	"recentchanges-label-plusminus": "בלאט גרייס געענדערט מיט דער צאל בייטן",
 	"recentchanges-legend-heading": "<strong>לעגענדע:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (זעט אויך [[Special:NewPages|די רשימה פון נייע בלעטער]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "ווייזן",
 	"rcfilters-tag-remove": "אוועקנעמען '$1'",
 	"rcfilters-legend-heading": "<strong>ליסטע פון ראשי תיבות:</strong>",

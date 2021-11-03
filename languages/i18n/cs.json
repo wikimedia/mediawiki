@@ -1473,7 +1473,6 @@
 	"recentchanges-label-plusminus": "Velikost stránky se změnila o tolik bajtů",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (viz též [[Special:NewPages|seznam nových stránek]])",
-	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-legend-watchlistexpiry": "Dočasně sledovaná stránka",
 	"recentchanges-submit": "Zobrazit",
 	"rcfilters-tag-hidden": "$1 (skrytá značka)",
