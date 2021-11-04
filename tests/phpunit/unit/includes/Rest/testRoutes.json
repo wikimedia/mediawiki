@@ -16,6 +16,10 @@
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwHandlerFactory"
 	},
 	{
+		"path": "/mock/RouterTest/fatal",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::fatalHandlerFactory"
+	},
+	{
 		"path": "/mock/RouterTest/throwRedirect",
 		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwRedirectHandlerFactory"
 	},
