@@ -1,11 +1,20 @@
 = MediaWiki 1.37 =
 
-== MediaWiki 1.37.0-rc.0 ==
+== MediaWiki 1.37.0-rc.1 ==
 
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.37 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.37.0-rc.0 ===
+* (T294043) checkStorage: pass no parameters to WikiRevision::getContent().
+* (T292763) Do not cache private wiki completion results.
+* (T293783) ApiQueryImageInfo: don't show empty comments as deleted.
+* (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
+* (T294796) JobQueueRedis: Replace deprecated zSize with zCard.
+* Remove duplicate settings from DefaultSettings.
+* (T278037) NoLocalSettings: Pass an EmptyBagOStuff to TemplateParser.
 
 == Upgrading notes for 1.37 ==
 Don't forget to always back up your database before upgrading!
@@ -675,6 +684,8 @@ because of Phabricator reports.
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
 * The LocalFile::getHistory() hook is deprecated.
+* Previously the Skin templateDirectory option inside skin.json had to be
+  relative to MediaWiki core. This should now be relative to the skin.
 * Calling WikiPage::prepareContentForEdit() without a UserIdentity is now
   deprecated.
 * User::getEditTokenObject(), ::getEditToken(), and ::matchEditToken() were each
