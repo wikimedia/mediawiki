@@ -36,7 +36,7 @@
 		"guzzlehttp/guzzle": "7.2.0",
 		"liuggio/statsd-php-client": "1.0.18",
 		"monolog/monolog": "2.2.0",
-		"oojs/oojs-ui": "0.42.0",
+		"oojs/oojs-ui": "0.42.1",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.11",
 		"pear/net_smtp": "1.10.0",

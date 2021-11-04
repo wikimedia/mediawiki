@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.0
+ * OOUI v0.42.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-08-19T04:45:01Z
+ * Date: 2021-11-04T01:18:47Z
  */
 /* stylelint-disable selector-no-vendor-prefix */
 /* stylelint-enable selector-no-vendor-prefix */
@@ -243,6 +243,15 @@
 }
 .oo-ui-image-progressive.oo-ui-icon-articleRedirect {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/articleRedirect-ltr-progressive.svg);
+}
+.oo-ui-icon-database {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/database.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-database {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/database-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-database {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/database-progressive.svg);
 }
 .oo-ui-icon-die {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/die.svg);
@@ -2265,6 +2274,15 @@
 }
 .oo-ui-image-progressive.oo-ui-icon-quotes {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/quotes-ltr-progressive.svg);
+}
+.oo-ui-icon-sandbox {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/sandbox.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-sandbox {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/sandbox-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-sandbox {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/sandbox-progressive.svg);
 }
 .oo-ui-icon-searchCaseSensitive {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/searchCaseSensitive.svg);

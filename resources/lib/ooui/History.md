@@ -1,4 +1,32 @@
 # OOUI Release History
+## v0.42.1 / 2021-11-03
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Mark 'destructive' variant of close icon as deprecated (Kosta Harlan)
+
+### Styles
+* Center and size action buttons to match bar height (Ed Sanders)
+* WikimediaUI theme: Add missing styles for disabled list tools (Ed Sanders)
+* icons: Add 'database' icon (Luca Mauri)
+* icons: Provide 'sandbox' in 'editing-advanced' pack (James D. Forrester)
+
+### Code
+* BookletLayout: Fix `BookletLayout.setPage()` emitting events twice (Thiemo Kreuz)
+* BookletLayout: Reduce deep nesting in `BookletLayout.setPage()` (Thiemo Kreuz)
+* BookletLayout: Remove bogus auto-scroll behavior from BookletLayout (Thiemo Kreuz)
+* BookletLayout: Remove misplaced `.selectFirstSelectablePage()` calls (Thiemo Kreuz)
+* IndexLayout: Fix documentation for class property (Umherirrender)
+* PageLayout: Remove unused return from OO.ui.PageLayout.setupOutlineItem (Thiemo Kreuz)
+* StackLayout: Fix StackLayout scrolling to the very top when removing items (Thiemo Kreuz)
+* LabelElement: Remove non-existent parameter from 'labelChange' event doc (Bartosz Dziewoński)
+* SelectWidget: Mark multiselect SelectWidget with `aria-multiselectable="true"` (Thiemo Kreuz)
+* PHP Tag: Remove unreachable statement after trigger_error (Umherirrender)
+* build: Updating composer dependencies (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 38.0.0 (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* icons: Remove unnecessary `fill-rule="…"` attributes from 2 icons (Thiemo Kreuz)
+* tests: Allow ES6 syntax (Bartosz Dziewoński)
+
+
 ## v0.42.0 / 2021-08-18
 ### Breaking changes
 * [BREAKING CHANGE] Remove obsolete browsers' vendor prefixes (Volker E.)
