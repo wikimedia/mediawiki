@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.0
+ * OOUI v0.42.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-08-19T04:44:48Z
+ * Date: 2021-11-04T01:18:37Z
  */
 ( function ( OO ) {
 
@@ -2805,7 +2805,6 @@ OO.initClass( OO.ui.mixin.LabelElement );
 
 /**
  * @event labelChange
- * @param {string} value
  */
 
 /* Static Properties */
@@ -6929,7 +6928,10 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-selectWidget oo-ui-selectWidget-unpressed' )
-		.attr( 'role', 'listbox' );
+		.attr( {
+			role: 'listbox',
+			'aria-multiselectable': this.multiselect.toString()
+		} );
 	this.setFocusOwner( this.$element );
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
