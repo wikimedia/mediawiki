@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.0
+ * OOUI v0.42.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-08-19T04:44:48Z
+ * Date: 2021-11-04T01:18:37Z
  */
 ( function ( OO ) {
 
@@ -1277,16 +1277,13 @@ OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
 /**
  * Set up the outline item.
  *
- * Use this method to customize the outline item (e.g., to add a label or outline level). To set or
- * unset the outline item itself (with an {@link OO.ui.OutlineOptionWidget outline option} or
+ * Override this method to customize the outline item (e.g., to add a label or outline level). To
+ * set or unset the outline item itself (with an {@link OO.ui.OutlineOptionWidget outline option} or
  * `null`), use the #setOutlineItem method instead.
  *
- * @param {OO.ui.OutlineOptionWidget} outlineItem Outline option widget to set up
- * @chainable
- * @return {OO.ui.PageLayout} The layout, for chaining
+ * @protected
  */
 OO.ui.PageLayout.prototype.setupOutlineItem = function () {
-	return this;
 };
 
 /**
@@ -1363,7 +1360,6 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	this.$element.addClass( 'oo-ui-stackLayout' );
 	if ( this.continuous ) {
 		this.$element.addClass( 'oo-ui-stackLayout-continuous' );
-		this.$element.on( 'scroll', OO.ui.debounce( this.onScroll.bind( this ), 250 ) );
 	}
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
@@ -1385,71 +1381,7 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.mixin.GroupElement );
  * @param {OO.ui.Layout|null} item Current panel or `null` if no panel is shown
  */
 
-/**
- * When used in continuous mode, this event is emitted when the user scrolls down
- * far enough such that currentItem is no longer visible.
- *
- * @event visibleItemChange
- * @param {OO.ui.PanelLayout} panel The next visible item in the layout
- */
-
 /* Methods */
-
-/**
- * Handle scroll events from the layout element
- *
- * @param {jQuery.Event} e
- * @fires visibleItemChange
- */
-OO.ui.StackLayout.prototype.onScroll = function () {
-	var currentRect, currentIndex, newIndex, containerRect,
-		len = this.items.length;
-
-	if ( !this.currentItem ) {
-		// onScroll should never be triggered while there are no items, but this event is debounced.
-		return;
-	}
-
-	currentIndex = this.items.indexOf( this.currentItem );
-	newIndex = currentIndex;
-	containerRect = this.$element[ 0 ].getBoundingClientRect();
-
-	if ( !containerRect || ( !containerRect.top && !containerRect.bottom ) ) {
-		// Can't get bounding rect, possibly not attached.
-		return;
-	}
-
-	function getRect( item ) {
-		return item.$element[ 0 ].getBoundingClientRect();
-	}
-
-	function isVisible( item ) {
-		var rect = getRect( item );
-		return rect.bottom > containerRect.top && rect.top < containerRect.bottom;
-	}
-
-	currentRect = getRect( this.currentItem );
-
-	if ( currentRect.bottom < containerRect.top ) {
-		// Scrolled down past current item
-		while ( ++newIndex < len ) {
-			if ( isVisible( this.items[ newIndex ] ) ) {
-				break;
-			}
-		}
-	} else if ( currentRect.top > containerRect.bottom ) {
-		// Scrolled up past current item
-		while ( --newIndex >= 0 ) {
-			if ( isVisible( this.items[ newIndex ] ) ) {
-				break;
-			}
-		}
-	}
-
-	if ( newIndex !== currentIndex ) {
-		this.emit( 'visibleItemChange', this.items[ newIndex ] );
-	}
-};
 
 /**
  * Get the current panel.
@@ -1509,18 +1441,28 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  * Removed panels are detached from the DOM, not removed, so that they may be reused. To remove all
  * panels, you may wish to use the #clearItems method instead.
  *
- * @param {OO.ui.Layout[]} items Panels to remove
+ * @param {OO.ui.Layout[]} itemsToRemove Panels to remove
  * @chainable
  * @return {OO.ui.StackLayout} The layout, for chaining
  * @fires set
  */
-OO.ui.StackLayout.prototype.removeItems = function ( items ) {
-	// Mixin method
-	OO.ui.mixin.GroupElement.prototype.removeItems.call( this, items );
+OO.ui.StackLayout.prototype.removeItems = function ( itemsToRemove ) {
+	var isCurrentItemRemoved = itemsToRemove.indexOf( this.currentItem ) !== -1,
+		nextItem;
 
-	if ( items.indexOf( this.currentItem ) !== -1 ) {
+	if ( isCurrentItemRemoved ) {
+		var i = this.items.indexOf( this.currentItem );
+		do {
+			nextItem = this.items[ ++i ];
+		} while ( nextItem && itemsToRemove.indexOf( nextItem ) !== -1 );
+	}
+
+	// Mixin method
+	OO.ui.mixin.GroupElement.prototype.removeItems.call( this, itemsToRemove );
+
+	if ( isCurrentItemRemoved ) {
 		if ( this.items.length ) {
-			this.setItem( this.items[ 0 ] );
+			this.setItem( nextItem || this.items[ this.items.length - 1 ] );
 		} else {
 			this.unsetCurrentItem();
 		}
@@ -1973,10 +1915,6 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		this.outlineSelectWidget.connect( this, {
 			select: 'onOutlineSelectWidgetSelect'
 		} );
-		this.scrolling = false;
-		this.stackLayout.connect( this, {
-			visibleItemChange: 'onStackLayoutVisibleItemChange'
-		} );
 	}
 	if ( this.autoFocus ) {
 		// Event 'focus' does not bubble, but 'focusin' does
@@ -2048,22 +1986,6 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
 			break;
 		}
 	}
-};
-
-/**
- * Handle visibleItemChange events from the stackLayout
- *
- * The next visible page is set as the current page by selecting it
- * in the outline
- *
- * @param {OO.ui.PageLayout} page The next visible page in the layout
- */
-OO.ui.BookletLayout.prototype.onStackLayoutVisibleItemChange = function ( page ) {
-	// Set a flag to so that the resulting call to #onStackLayoutSet doesn't
-	// try and scroll the item into view again.
-	this.scrolling = true;
-	this.outlineSelectWidget.selectItemByData( page.getName() );
-	this.scrolling = false;
 };
 
 /**
@@ -2333,7 +2255,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 
 	if ( this.outlined && items.length ) {
 		this.outlineSelectWidget.addItems( items, index );
-		this.selectFirstSelectablePage();
+		// It's impossible to lose a selection here. Selecting something else is business logic.
 	}
 	this.stackLayout.addItems( pages, index );
 	this.emit( 'add', pages, index );
@@ -2353,20 +2275,20 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
  */
 OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 	var i, len, name, page,
-		items = [];
+		itemsToRemove = [];
 
 	for ( i = 0, len = pages.length; i < len; i++ ) {
 		page = pages[ i ];
 		name = page.getName();
 		delete this.pages[ name ];
 		if ( this.outlined ) {
-			items.push( this.outlineSelectWidget.findItemFromData( name ) );
+			itemsToRemove.push( this.outlineSelectWidget.findItemFromData( name ) );
 			page.setOutlineItem( null );
 		}
 	}
-	if ( this.outlined && items.length ) {
-		this.outlineSelectWidget.removeItems( items );
-		this.selectFirstSelectablePage();
+	if ( itemsToRemove.length ) {
+		this.outlineSelectWidget.removeItems( itemsToRemove );
+		// We might loose the selection here, but what to select instead is business logic.
 	}
 	this.stackLayout.removeItems( pages );
 	this.emit( 'remove', pages );
@@ -2409,53 +2331,55 @@ OO.ui.BookletLayout.prototype.clearPages = function () {
  * @param {string} name Symbolic name of page
  */
 OO.ui.BookletLayout.prototype.setPage = function ( name ) {
-	var selectedItem,
-		$focused,
-		page = this.pages[ name ],
-		previousPage = this.currentPageName && this.pages[ this.currentPageName ];
+	var page = this.pages[ name ];
+	if ( !page || name === this.currentPageName ) {
+		return;
+	}
 
-	if ( name !== this.currentPageName ) {
-		if ( this.outlined ) {
-			selectedItem = this.outlineSelectWidget.findSelectedItem();
-			if ( selectedItem && selectedItem.getData() !== name ) {
-				this.outlineSelectWidget.selectItemByData( name );
-			}
-		}
-		if ( page ) {
-			if ( previousPage ) {
-				previousPage.setActive( false );
-				// Blur anything focused if the next page doesn't have anything focusable.
-				// This is not needed if the next page has something focusable (because once it is
-				// focused this blur happens automatically). If the layout is non-continuous, this
-				// check is meaningless because the next page is not visible yet and thus can't
-				// hold focus.
-				if (
-					this.autoFocus &&
-					!OO.ui.isMobile() &&
-					this.stackLayout.continuous &&
-					OO.ui.findFocusable( page.$element ).length !== 0
-				) {
-					$focused = previousPage.$element.find( ':focus' );
-					if ( $focused.length ) {
-						$focused[ 0 ].blur();
-					}
-				}
-			}
-			this.currentPageName = name;
-			page.setActive( true );
-			this.stackLayout.setItem( page );
-			if ( !this.stackLayout.continuous && previousPage ) {
-				// This should not be necessary, since any inputs on the previous page should have
-				// been blurred when it was hidden, but browsers are not very consistent about
-				// this.
-				$focused = previousPage.$element.find( ':focus' );
-				if ( $focused.length ) {
-					$focused[ 0 ].blur();
-				}
-			}
-			this.emit( 'set', page );
+	var previousPage = this.pages[ this.currentPageName ];
+	this.currentPageName = name;
+
+	if ( this.outlined ) {
+		var selectedItem = this.outlineSelectWidget.findSelectedItem();
+		if ( selectedItem && selectedItem.getData() !== name ) {
+			// Warning! This triggers a "select" event and the .onOutlineSelectWidgetSelect()
+			// handler, which calls .setPage() a second time. Make sure .currentPageName is set to
+			// break this loop.
+			this.outlineSelectWidget.selectItemByData( name );
 		}
 	}
+
+	var $focused;
+	if ( previousPage ) {
+		previousPage.setActive( false );
+		// Blur anything focused if the next page doesn't have anything focusable.
+		// This is not needed if the next page has something focusable (because once it is
+		// focused this blur happens automatically). If the layout is non-continuous, this
+		// check is meaningless because the next page is not visible yet and thus can't
+		// hold focus.
+		if ( this.autoFocus &&
+			!OO.ui.isMobile() &&
+			this.stackLayout.continuous &&
+			OO.ui.findFocusable( page.$element ).length !== 0
+		) {
+			$focused = previousPage.$element.find( ':focus' );
+			if ( $focused.length ) {
+				$focused[ 0 ].blur();
+			}
+		}
+	}
+	page.setActive( true );
+	this.stackLayout.setItem( page );
+	if ( !this.stackLayout.continuous && previousPage ) {
+		// This should not be necessary, since any inputs on the previous page should have
+		// been blurred when it was hidden, but browsers are not very consistent about
+		// this.
+		$focused = previousPage.$element.find( ':focus' );
+		if ( $focused.length ) {
+			$focused[ 0 ].blur();
+		}
+	}
+	this.emit( 'set', page );
 };
 
 /**

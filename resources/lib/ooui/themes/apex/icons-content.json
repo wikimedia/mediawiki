@@ -50,6 +50,9 @@
 				"rtl": "../wikimediaui/images/icons/articleRedirect-rtl.svg"
 			}
 		},
+		"database": {
+			"file": "../wikimediaui/images/icons/database.svg"
+		},
 		"die": {
 			"file": "../wikimediaui/images/icons/die.svg"
 		},
