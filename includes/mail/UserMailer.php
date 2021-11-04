@@ -446,10 +446,12 @@ class UserMailer {
 
 	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
+	 * @deprecated 1.38 This method has not been used by anything
 	 * @param string $phrase
 	 * @return string
 	 */
 	public static function rfc822Phrase( $phrase ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		// Remove line breaks
 		$phrase = self::sanitizeHeaderValue( $phrase );
 		// Remove quotes

@@ -390,6 +390,7 @@ because of Phabricator reports.
 * Database::listViews() has been deprecated. This was previously used to filter
   views out of the return value of Database::listTables(). Now listTables()
   will not include views. MediaWiki does not use views.
+* (T207621) UserMailer::rfc822Phrase() has been hard deprecated.
 * …
 
 === Other changes in 1.42 ===
