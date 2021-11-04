@@ -582,6 +582,26 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'vue-composition-api' => [
+		'packageFiles' => [
+			'resources/src/vue/composition-api.js',
+			[
+				'name' => 'resources/lib/vue-composition-api/vue-composition-api.js',
+				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					// Use the development version if development mode is enabled, or if we're in debug mode
+					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+						'resources/lib/vue-composition-api/vue-composition-api.js' :
+						'resources/lib/vue-composition-api/vue-composition-api.prod.js';
+					return new ResourceLoaderFilePath( $file );
+				}
+			]
+		],
+		'dependencies' => [
+			'vue'
+		],
+		'targets' => [ 'desktop', 'mobile' ]
+	],
+
 	'vuex' => [
 		'packageFiles' => [
 			'resources/src/vue/vuex.js',
