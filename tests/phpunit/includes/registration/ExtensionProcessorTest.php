@@ -63,6 +63,7 @@ class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExtractSkins() {
+		$this->expectDeprecation();
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, self::$default + [
 			'ValidSkinNames' => [
