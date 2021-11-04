@@ -9,6 +9,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
+use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use RequestContext;
 use Title;
@@ -75,6 +76,7 @@ class EntryPoint {
 			$authority,
 			$objectFactory,
 			$restValidator,
+			new MWErrorReporter(),
 			$services->getHookContainer()
 		) )->setCors( $cors );
 	}
