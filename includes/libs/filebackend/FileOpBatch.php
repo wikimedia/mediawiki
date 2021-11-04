@@ -21,8 +21,6 @@
  * @ingroup FileBackend
  */
 
-use Wikimedia\Timestamp\ConvertibleTimestamp;
-
 /**
  * Helper class for representing batch file operations.
  * Do not use this class from places outside FileBackend.
@@ -63,7 +61,6 @@ class FileOpBatch {
 			return $status;
 		}
 
-		$batchId = self::getTimestampedUUID();
 		$ignoreErrors = !empty( $opts['force'] );
 		$maxConcurrency = $opts['concurrency'] ?? 1;
 
@@ -75,7 +72,6 @@ class FileOpBatch {
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
 			$backendName = $fileOp->getBackend()->getName();
-			$fileOp->setBatchId( $batchId ); // transaction ID
 			// Decide if this op can be done concurrently within this sub-batch
 			// or if a new concurrent sub-batch must be started after this one...
 			if ( $fileOp->dependsOn( $curBatchDeps )
@@ -183,16 +179,5 @@ class FileOpBatch {
 				}
 			}
 		}
-	}
-
-	private static function getTimestampedUUID() {
-		// TODO: This is a leftover from FileJournal that is probably no longer needed.
-		$s = '';
-		for ( $i = 0; $i < 5; $i++ ) {
-			$s .= mt_rand( 0, 2147483647 );
-		}
-		$s = Wikimedia\base_convert( sha1( $s ), 16, 36, 31 );
-		$timestamp = ConvertibleTimestamp::convert( TS_MW, time() );
-		return substr( Wikimedia\base_convert( $timestamp, 10, 36, 9 ) . $s, 0, 31 );
 	}
 }

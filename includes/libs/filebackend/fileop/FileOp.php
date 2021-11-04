@@ -48,8 +48,6 @@ abstract class FileOp {
 	protected $failed = false;
 	/** @var bool */
 	protected $async = false;
-	/** @var string */
-	protected $batchId;
 	/** @var bool */
 	protected $cancelled = false;
 
@@ -121,15 +119,6 @@ abstract class FileOp {
 		}
 
 		return $path;
-	}
-
-	/**
-	 * Set the batch UUID this operation belongs to
-	 *
-	 * @param string $batchId
-	 */
-	final public function setBatchId( $batchId ) {
-		$this->batchId = $batchId;
 	}
 
 	/**
@@ -517,7 +506,7 @@ abstract class FileOp {
 		$params['failedAction'] = $action;
 		try {
 			$this->logger->error( static::class .
-				" failed (batch #{$this->batchId}): " . FormatJson::encode( $params ) );
+				" failed: " . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?
 		}
