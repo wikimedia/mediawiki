@@ -85,7 +85,7 @@ class LanguageConverterFactory {
 	 * @param bool $usePigLatinVariant should pig variant of English be used
 	 * @param bool $isConversionDisabled Whether to disable language variant conversion
 	 * @param bool $isTitleConversionDisabled Whether to disable language variant conversion for links
-	 * @param callable $defaultLanguage - callback of () : Language, should return
+	 * @param callable $defaultLanguage callback of () : Language, should return
 	 * default language. Used in getLanguageConverter when $language is null.
 	 *
 	 * @internal Should be called from MediaWikiServices only.

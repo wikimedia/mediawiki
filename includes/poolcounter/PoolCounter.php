@@ -172,7 +172,7 @@ abstract class PoolCounter {
 
 	/**
 	 * Checks that the lock request is sane.
-	 * @return Status - good for sane requests fatal for insane
+	 * @return Status good for sane requests fatal for insane
 	 * @since 1.25
 	 */
 	final protected function precheckAcquire() {
