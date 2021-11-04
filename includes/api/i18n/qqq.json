@@ -37,6 +37,7 @@
 	"apihelp-main-param-responselanginfo": "{{doc-apihelp-param|main|responselanginfo}}",
 	"apihelp-main-param-origin": "{{doc-apihelp-param|main|origin}}",
 	"apihelp-main-param-uselang": "{{doc-apihelp-param|main|uselang}}",
+	"apihelp-main-param-variant": "{{doc-apihelp-param|main|variant}}",
 	"apihelp-main-param-errorformat": "{{doc-apihelp-param|main|errorformat}}",
 	"apihelp-main-paramvalue-errorformat-plaintext": "{{doc-apihelp-paramvalue|main|errorformat|plaintext}}",
 	"apihelp-main-paramvalue-errorformat-wikitext": "{{doc-apihelp-paramvalue|main|errorformat|wikitext}}",
