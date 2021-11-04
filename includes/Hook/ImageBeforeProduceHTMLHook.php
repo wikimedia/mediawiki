@@ -24,7 +24,7 @@ interface ImageBeforeProduceHTMLHook {
 	 *
 	 * @param DummyLinker $linker Formerly a Skin/Linker, now a DummyLinker for b/c
 	 * @param Title &$title Title object of the image
-	 * @param File|bool &$file File object, or false if it doesn't exist
+	 * @param File|false &$file File object, or false if it doesn't exist
 	 * @param array &$frameParams Various parameters with special meanings; see documentation in
 	 *   includes/Linker.php for Linker::makeImageLink
 	 * @param array &$handlerParams Various parameters with special meanings; see documentation in
