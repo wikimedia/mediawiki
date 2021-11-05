@@ -36,7 +36,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Session\Token;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -239,13 +238,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @var AbstractBlock|null
 	 */
 	public $mBlock;
-
-	/**
-	 * TODO: This should be removed when User::isAllowUsertalk
-	 * is removed.
-	 * @var bool
-	 */
-	protected $mAllowUsertalk;
 
 	/** @var AbstractBlock|bool */
 	private $mBlockedFromCreateAccount = false;
@@ -946,18 +938,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Reset the cache used in idFromName(). In tests, reset the service container.
-	 * There is no use-case for this in production code.
-	 *
-	 * @deprecated since 1.37.
-	 */
-	public static function resetIdByNameCache() {
-		// TODO: when removing this call, also remove the ActorStore::clearCaches() method!
-		wfDeprecated( __METHOD__, '1.37' );
-		MediaWikiServices::getInstance()->getActorStore()->clearCaches();
-	}
-
-	/**
 	 * Does the string match an anonymous IP address?
 	 *
 	 * This function exists for username validation, in order to reject
@@ -1644,13 +1624,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$this->mBlockedby = $block->getByName();
 			$this->mBlockreason = $block->getReason();
 			$this->mHideName = $block->getHideName();
-			$this->mAllowUsertalk = $block->isUsertalkEditAllowed();
 		} else {
 			$this->mBlock = null;
 			$this->mBlockedby = '';
 			$this->mBlockreason = '';
 			$this->mHideName = 0;
-			$this->mAllowUsertalk = false;
 		}
 	}
 
@@ -2811,19 +2789,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the user preferred stub threshold
-	 *
-	 * @deprecated since 1.37. The stub threshold preference support
-	 * was removed. See T284917
-	 *
-	 * @return int
-	 */
-	public function getStubThreshold() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
 	 * Get the permissions this user has.
 	 * @return string[] permission names
 	 *
@@ -3661,23 +3626,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Check given value against the token value stored in the session,
-	 * ignoring the suffix.
-	 *
-	 * @deprecated since 1.37. No replacement was provided.
-	 * @param string $val Input value to compare
-	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use, or null to use the global request
-	 * @param int|null $maxage Fail tokens older than this, in seconds
-	 * @return bool Whether the token matches
-	 */
-	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . Token::SUFFIX;
-		return $this->matchEditToken( $val, $salt, $request, $maxage );
-	}
-
-	/**
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
@@ -4045,38 +3993,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Returns an array of the groups that a particular group can add/remove.
-	 *
-	 * @param string $group The group to check for whether it can add/remove
-	 * @return array [ 'add' => [ addablegroups ],
-	 *     'remove' => [ removablegroups ],
-	 *     'add-self' => [ addablegroups to self ],
-	 *     'remove-self' => [ removable groups from self ] ]
-	 * @deprecated since 1.37 Use UserGroupManager::getGroupsChangeableByGroup instead.
-	 */
-	public static function changeableByGroup( $group ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getGroupsChangeableByGroup( $group );
-	}
-
-	/**
-	 * Returns an array of groups that this user can add and remove
-	 * @return array [ 'add' => [ addablegroups ],
-	 *  'remove' => [ removablegroups ],
-	 *  'add-self' => [ addablegroups to self ],
-	 *  'remove-self' => [ removable groups from self ] ]
-	 * @deprecated since 1.37 Use UserGroupManager::getGroupsChangeableBy instead.
-	 */
-	public function changeableGroups() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getGroupsChangeableBy( $this );
-	}
-
-	/**
 	 * Schedule a deferred update to update the user's edit count
 	 * @deprecated since 1.37
 	 */
@@ -4190,18 +4106,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
-	}
-
-	/**
-	 * Checks if usertalk is allowed
-	 *
-	 * @deprecated since 1.37 Use AbstractBlock::isUsertalkEditAllowed
-	 *
-	 * @return bool|null Returns null when no block has been loaded
-	 */
-	public function isAllowUsertalk() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mAllowUsertalk;
 	}
 
 	/**

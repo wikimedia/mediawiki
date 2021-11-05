@@ -190,14 +190,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * @internal only exists until User::resetIdByNameCache is removed.
-	 * Wipe-out the in-process caches.
-	 */
-	public function clearCaches() {
-		$this->cache->clear();
-	}
-
-	/**
 	 * Find an actor by $id.
 	 *
 	 * @param int $actorId
