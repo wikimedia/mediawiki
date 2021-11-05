@@ -25,6 +25,7 @@
 namespace MediaWiki\Storage;
 
 use AtomicSectionUpdate;
+use ChangeTags;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
@@ -1304,6 +1305,8 @@ class PageUpdater {
 					$tags,
 					$editResult
 				);
+			} else {
+				ChangeTags::addTags( $tags, null, $newRevisionRecord->getId(), null );
 			}
 
 			$this->userEditTracker->incrementUserEditCount( $this->author );
@@ -1423,6 +1426,8 @@ class PageUpdater {
 				$this->rcPatrolStatus,
 				$tags
 			);
+		} else {
+			ChangeTags::addTags( $tags, null, $newRevisionRecord->getId(), null );
 		}
 
 		$this->userEditTracker->incrementUserEditCount( $this->author );

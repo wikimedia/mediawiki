@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use ChangeTags;
 use CommentStoreComment;
 use Content;
 use DeferredUpdates;
 use FormatJson;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -969,4 +971,30 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $expected, $html, 'In HTML' );
 	}
 
+	public function testChangeTagsSuppressRecentChange() {
+		$page = PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ );
+		$revision = $this->getServiceContainer()
+			->getPageUpdaterFactory()
+			->newPageUpdater(
+				WikiPage::factory( $page ),
+				$this->getTestUser()->getUser()
+			)
+			->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) )
+			->addTag( 'foo' )
+			->setFlags( EDIT_SUPPRESS_RC )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
+		$this->assertArrayEquals( [ 'foo' ], ChangeTags::getTags( $this->db, null, $revision->getId() ) );
+
+		$revision2 = $this->getServiceContainer()
+			->getPageUpdaterFactory()
+			->newPageUpdater(
+				WikiPage::factory( $page ),
+				$this->getTestUser()->getUser()
+			)
+			->setContent( SlotRecord::MAIN, new TextContent( 'Other content' ) )
+			->addTag( 'bar' )
+			->setFlags( EDIT_SUPPRESS_RC )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
+		$this->assertArrayEquals( [ 'bar' ], ChangeTags::getTags( $this->db, null, $revision2->getId() ) );
+	}
 }
