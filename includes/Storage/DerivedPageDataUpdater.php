@@ -307,7 +307,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	private $permissionManager;
 
 	/**
-	 * @param WikiPage $wikiPage ,
+	 * @param WikiPage $wikiPage
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry

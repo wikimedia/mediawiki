@@ -37,7 +37,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * Example value: `'user'`
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	protected $mType;
 
@@ -46,7 +46,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * Example value: `'42'`
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	protected $mValue;
 
