@@ -272,7 +272,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $id
-	 * @param bool $assigned - whether a new actor ID was just assigned.
+	 * @param bool $assigned whether a new actor ID was just assigned.
 	 */
 	private function attachActorId( UserIdentity $user, int $id, bool $assigned ) {
 		if ( $user instanceof User ) {

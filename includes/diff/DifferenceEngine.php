@@ -1517,7 +1517,7 @@ class DifferenceEngine extends ContextSource {
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
 	 *
-	 * @param string $generator : What diff engine was used
+	 * @param string $generator What diff engine was used
 	 *
 	 * @return string
 	 */
