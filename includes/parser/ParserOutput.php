@@ -417,11 +417,27 @@ class ParserOutput extends CacheTime {
 
 		if ( $options['allowTOC'] ) {
 			if ( $options['injectTOC'] ) {
+				$toc = $this->getTOCHTML();
+				// language conversion needs to be done on the TOC fetched
+				// from parser cache
+				// XXX doesn't check ParserOptions::getDisableContentConversion()
+				// XXX doesn't check Parser::$mDoubleUnderscores['nocontentconvert']
+				// XXX doesn't check ParserOptions::getInterfaceMessage()
+				// XXX Use DI to inject this once ::getText() is moved out
+				// of ParserOutput
+				$services = MediaWikiServices::getInstance();
+				$languageConverterFactory =
+					$services->getLanguageConverterFactory();
+				$toc = $languageConverterFactory->getLanguageConverter(
+					// XXX This was Parser::getTargetLanguage()
+					$services->getContentLanguage()
+				)->convert( $toc );
+
 				// XXX Use DI to inject this once ::getText() is moved out
 				// of ParserOutput.
 				$tidy = MediaWikiServices::getInstance()->getTidy();
 				$toc = $tidy->tidy(
-					$this->getTOCHTML(),
+					$toc,
 					[ Sanitizer::class, 'armorFrenchSpaces' ]
 				);
 				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
