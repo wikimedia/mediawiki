@@ -481,15 +481,27 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'wgRightsUrl' => $url,
 			'wgRightsText' => $text,
 		] );
-
 		$this->assertSame(
 			[ 'url' => $expectedUrl, 'text' => $expectedText ],
 			$this->doQuery( 'rightsinfo' )
 		);
+
+		// The installer sets these options to empty string if not specified otherwise,
+		// test that this behaves the same as null.
+		$this->setMwGlobals( [
+			'wgRightsPage' => $page ?? '',
+			'wgRightsUrl' => $url ?? '',
+			'wgRightsText' => $text ?? '',
+		] );
+		$this->assertSame(
+			[ 'url' => $expectedUrl, 'text' => $expectedText ],
+			$this->doQuery( 'rightsinfo' ),
+			'empty string behaves the same as null'
+		);
 	}
 
 	public function rightsInfoProvider() {
-		$textUrl = wfExpandUrl( Title::newFromText( 'License' ), PROTO_CURRENT );
+		$textUrl = wfExpandUrl( Title::newFromText( 'License' )->getLinkURL(), PROTO_CURRENT );
 		$url = 'http://license.example/';
 
 		return [
@@ -503,7 +515,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'Page and text' => [ 'License', null, '!!!', $textUrl, '!!!' ],
 			'Page and URL and text' => [ 'License', $url, '!!!', $textUrl, '!!!' ],
 			'Pagename "0"' => [ '0', null, null,
-				wfExpandUrl( Title::newFromText( '0' ), PROTO_CURRENT ), '0' ],
+				wfExpandUrl( Title::newFromText( '0' )->getLinkURL(), PROTO_CURRENT ), '0' ],
 			'URL "0"' => [ null, '0', null, '0', '' ],
 			'Text "0"' => [ null, null, '0', '', '0' ],
 		];
