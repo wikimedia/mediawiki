@@ -868,7 +868,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
-	 * @param null $ns Use this namespace for the given titles in the result wrapper,
+	 * @param int|null $ns Use this namespace for the given titles in the result wrapper,
 	 *  instead of the namespace value of $res.
 	 */
 	protected function executeLBFromResultWrapper( IResultWrapper $res, $ns = null ) {

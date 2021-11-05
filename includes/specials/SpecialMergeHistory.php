@@ -61,10 +61,10 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var bool Was submitted? */
 	protected $mSubmitted;
 
-	/** @var Title */
+	/** @var Title|null */
 	protected $mTargetObj;
 
-	/** @var Title */
+	/** @var Title|null */
 	protected $mDestObj;
 
 	/** @var int[] */
