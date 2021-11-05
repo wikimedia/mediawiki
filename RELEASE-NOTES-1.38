@@ -198,6 +198,8 @@ because of Phabricator reports.
   from an object to a function. In addition, the `unbind` function has been
   removed. A deprecation process was assumed unnecessary as there were no known
   usages.
+* File::getUser, ::getImageSize, ArchivedFile::getRawDescription, ::getUser,
+  ::getRawUser and ::getRawDescription, deprecated since 1.37, has been removed.
 * …
 
 === Deprecations in 1.38 ===
