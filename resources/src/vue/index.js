@@ -24,16 +24,24 @@
 	 * To create and mount an app with Vuex:
 	 *     var RootComponent = require( './RootComponent.vue' ),
 	 *         store = require( './store.js' );
-	 *     Vue.createMwApp( RootCompoinent )
+	 *     Vue.createMwApp( RootComponent )
 	 *         .use( store )
 	 *         .mount( '#foo' );
 	 *
+	 * To pass props to the component, pass them as the second parameter to createMwApp():
+	 *    Vue.createMwApp( RootComponent, { pageName: 'foo', disabled: false } );
+	 *
 	 * @param {Object} componentOptions Vue component options object
+	 * @param {Object} [propsData] Props to pass to the component
 	 * @return {Object} Object that pretends to be a Vue 3 app object, supports .use() and .mount()
 	 */
-	Vue.createMwApp = function ( componentOptions ) {
+	Vue.createMwApp = function ( componentOptions, propsData ) {
 		var App = Vue.extend( componentOptions ),
 			finalOptions = {};
+
+		if ( propsData ) {
+			finalOptions.propsData = propsData;
+		}
 
 		// Wrap .use(), so we can redirect app.use( VuexStore )
 		App.use = function ( plugin ) {
