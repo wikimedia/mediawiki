@@ -1189,21 +1189,41 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Copy items from the OutputPage object into this one
+	 * Accomodate very basic transcluding of a temporary OutputPage object into parser output.
 	 *
+	 * This is a fragile method that cannot be relied upon in any meaningful way.
+	 * It exists solely to support the wikitext feature of transcluding a SpecialPage, and
+	 * only has to work for that use case to ensure relevant styles are loaded, and that
+	 * essential config vars needed between SpecialPage and a JS feature are added.
+	 *
+	 * This relies on there being no overlap between modules or config vars added by
+	 * the SpecialPage and those added by parser extensions. If there is overlap,
+	 * then arise and break one or both sides. This is expected and unsupported.
+	 *
+	 * @internal For use by Parser for basic special page transclusion
 	 * @param OutputPage $out
 	 */
 	public function addOutputPageMetadata( OutputPage $out ) {
 		// This should eventually use the same merge mechanism used
 		// internally to merge ParserOutputs together.
-		$this->addModules( $out->getModules() );
+
+		// Take the strictest click-jacking policy. This is to ensure any one-click features
+		// such as patrol or rollback on the transcluded special page will result in the wiki page
+		// disallowing embedding in cross-origin iframes. Articles are generally allowed to be
+		// embedded. Pages that transclude special pages are expected to be user pages or
+		// other non-content pages that content re-users won't discover or care about.
+		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
+
 		$this->addModuleStyles( $out->getModuleStyles() );
+
+		// TODO: Figure out if style modules suffice, or whether the below is needed as well.
+		// Are there special pages that permit transcluding/including and also have JS modules
+		// that should be activate on the host page?
+		$this->addModules( $out->getModules() );
 		$this->mJsConfigVars = self::mergeMapStrategy(
 			$this->mJsConfigVars, $out->getJsConfigVars()
 		);
-
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
-		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
 	}
 
 	/**
