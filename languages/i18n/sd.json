@@ -613,7 +613,7 @@
 	"nohistory": "هن صفحي جي ڪا بہ سوانح نہ آهي.",
 	"currentrev": "تازو-ترين ورجاءُ",
 	"currentrev-asof": "تازو-ترين ترين ورجاءُ بمطابق $1",
-	"revisionasof": "$1 وارو ورجاءُ",
+	"revisionasof": "ورجاءُ بمطابق $1ع",
 	"revision-info": "$1 جو {{GENDER:$6|$2}}$7 طرفان ورجاءُ",
 	"previousrevision": "→ اڃا پراڻو ورجاءُ",
 	"nextrevision": "اڃا نئون ورجاءُ ←",

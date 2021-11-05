@@ -998,7 +998,7 @@
 	"diff-paragraph-moved-toold": "Đoạn văn được chuyển từ vị trí khác. Nhấn chuột để nhảy tới vị trí cũ.",
 	"difference-missing-revision": "Không tìm thấy {{PLURAL:$2|một phiên bản|$2 phiên bản}} trong khác biệt này ($1).\n\nLỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến khác biệt giữa các bản của trang đã bị xóa.\nXem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 	"searchresults": "Kết quả tìm kiếm",
-	"search-filter-title-prefix": "Chỉ có tìm trong các trang có tên bắt đầu với “$1”",
+	"search-filter-title-prefix": "Chỉ tìm trong các trang có tên bắt đầu bằng “$1”",
 	"search-filter-title-prefix-reset": "Tìm kiếm tất cả các trang",
 	"searchresults-title": "Kết quả tìm kiếm “$1”",
 	"titlematches": "Đề mục tương tự",
