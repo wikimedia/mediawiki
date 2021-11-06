@@ -1,25 +1,12 @@
 <?php
 
-namespace MediaWiki\Tests\Unit\Context;
-
-use DerivativeContext;
-use FauxRequest;
-use HashConfig;
-use IContextSource;
-use Language;
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\Authority;
-use MediaWikiUnitTestCase;
-use OutputPage;
-use RequestContext;
-use Title;
-use User;
-use WikiPage;
 
 /**
- * @coversDefaultClass DerivativeContext
- * @package MediaWiki\Tests\Unit\Context
+ * @covers DerivativeContext
  */
-class DerivativeContextTest extends MediaWikiUnitTestCase {
+class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetterSetter() {
 		$initialContext = new RequestContext();
@@ -102,27 +89,6 @@ class DerivativeContextTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::__construct
-	 * @covers ::getContext
-	 * @covers ::setContext
-	 * @covers ::getConfig
-	 * @covers ::setConfig
-	 * @covers ::getOutput
-	 * @covers ::setOutput
-	 * @covers ::getUser
-	 * @covers ::setUser
-	 * @covers ::getAuthority
-	 * @covers ::setAuthority
-	 * @covers ::setLanguage
-	 * @covers ::getLanguage
-	 * @covers ::getRequest
-	 * @covers ::setRequest
-	 * @covers ::getTitle
-	 * @covers ::setTitle
-	 * @covers ::getWikiPage
-	 * @covers ::setWikiPage
-	 * @covers ::getActionName
-	 * @covers ::setActionName
 	 * @dataProvider provideGetterSetter
 	 */
 	public function testGetterSetter(
@@ -140,5 +106,30 @@ class DerivativeContextTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $initialValue, $derivativeContext->$getter(), 'Get inital value' );
 		$derivativeContext->$setter( $newValue );
 		$this->assertSame( $newValue, $derivativeContext->$getter(), 'Get new value' );
+	}
+
+	public function testOverideActionName() {
+		$parent = new RequestContext();
+		$parent->setActionName( 'view' );
+
+		$factory = $this->createMock( ActionFactory::class );
+		$factory
+			->method( 'getActionName' )
+			->willReturnOnConsecutiveCalls( 'foo', 'bar', 'baz' );
+		$this->setService( 'ActionFactory', $factory );
+
+		$derivative = new DerivativeContext( $parent );
+		$this->assertSame( 'view', $derivative->getActionName(), 'default to parent cache' );
+
+		$derivative->setTitle( $this->createMock( Title::class ) );
+		$this->assertSame( 'foo', $derivative->getActionName(), 'recompute after change' );
+		$this->assertSame( 'foo', $derivative->getActionName(), 'local cache' );
+
+		$derivative->setWikiPage( $this->createMock( WikiPage::class ) );
+		$this->assertSame( 'bar', $derivative->getActionName(), 'recompute after change' );
+		$this->assertSame( 'bar', $derivative->getActionName(), 'local cache' );
+
+		$derivative->setActionName( 'custom' );
+		$this->assertSame( 'custom', $derivative->getActionName(), 'override' );
 	}
 }

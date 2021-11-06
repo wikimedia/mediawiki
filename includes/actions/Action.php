@@ -107,9 +107,8 @@ abstract class Action implements MessageLocalizer {
 	 * @return string Action name
 	 */
 	final public static function getActionName( IContextSource $context ) {
-		return MediaWikiServices::getInstance()
-			->getActionFactory()
-			->getActionName( $context );
+		// Optimisation: Reuse/prime the cached value of RequestContext
+		return $context->getActionName();
 	}
 
 	/**
