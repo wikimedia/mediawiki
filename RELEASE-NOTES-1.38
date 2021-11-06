@@ -202,6 +202,13 @@ because of Phabricator reports.
   ::getRawUser and ::getRawDescription, deprecated since 1.37, has been removed.
 * ShellboxHttpClient class has been removed without deprecation. It was an
   internal class used by ShellboxClientFactory.
+* The following User methods, deprecated in 1.37, have been removed:
+  - ::resetIdByNameCache,
+  - ::getStubThreshold,
+  - ::matchEditTokenNoSuffix,
+  - ::changeableByGroup,
+  - ::changeableGroups,
+  - ::isAllowUsertalk
 * …
 
 === Deprecations in 1.38 ===
