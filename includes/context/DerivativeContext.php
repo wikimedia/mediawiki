@@ -46,6 +46,11 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	private $wikipage;
 
 	/**
+	 * @var string
+	 */
+	private $action;
+
+	/**
 	 * @var OutputPage
 	 */
 	private $output;
@@ -185,6 +190,24 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 */
 	public function getWikiPage() {
 		return $this->wikipage ?: $this->getContext()->getWikiPage();
+	}
+
+	/**
+	 * @since 1.38
+	 * @param string $action
+	 */
+	public function setActionName( string $action ): void {
+		$this->action = $action;
+	}
+
+	/**
+	 * Get the action name for the current web request.
+	 *
+	 * @since 1.38
+	 * @return string Action
+	 */
+	public function getActionName(): string {
+		return $this->action ?: $this->getContext()->getActionName();
 	}
 
 	/**

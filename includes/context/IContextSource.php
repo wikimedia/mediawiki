@@ -89,6 +89,14 @@ interface IContextSource extends MessageLocalizer, CsrfTokenSetProvider {
 	public function getWikiPage();
 
 	/**
+	 * Get the action name for the current web request.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	public function getActionName(): string;
+
+	/**
 	 * @return OutputPage
 	 */
 	public function getOutput();
