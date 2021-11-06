@@ -1528,3 +1528,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MixedNamespaceSearchSuggestions
 	branch = REL1_37
 	ignore = dirty
+[submodule "skins/WMAU"]
+	path = skins/WMAU
+	url = https://github.com/wikimedia/mediawiki-skins-WMAU
+	branch = master
+	ignore = dirty
