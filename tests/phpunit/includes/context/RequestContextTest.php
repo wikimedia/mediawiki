@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
 
 /**
+ * @covers RequestContext
  * @group Database
  * @group RequestContext
  */
@@ -138,5 +140,58 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$context->setAuthority( $authority );
 		$this->assertTrue( $context->getUser()->equals( $authorityActor ) );
 		$this->assertTrue( $context->getAuthority()->getUser()->equals( $authorityActor ) );
+	}
+
+	/**
+	 * @covers RequestContext
+	 */
+	public function testGetActionName() {
+		$factory = $this->createMock( ActionFactory::class );
+		$factory
+			// Assert calling only once.
+			// Determining the action name is an expensive operation that
+			// must be cached by the context, as it involved database and hooks.
+			->expects( $this->once() )
+			->method( 'getActionName' )
+			->willReturn( 'foo' );
+		$this->setService( 'ActionFactory', $factory );
+
+		$context = new RequestContext();
+		$this->assertSame( 'foo', $context->getActionName(), 'value from factory' );
+		$this->assertSame( 'foo', $context->getActionName(), 'cached' );
+	}
+
+	/**
+	 * @covers RequestContext
+	 */
+	public function testSetActionName() {
+		$factory = $this->createMock( ActionFactory::class );
+		$factory
+			->expects( $this->never() )
+			->method( 'getActionName' );
+		$this->setService( 'ActionFactory', $factory );
+
+		$context = new RequestContext();
+		$context->setActionName( 'fixed' );
+		$this->assertSame( 'fixed', $context->getActionName() );
+	}
+
+	/**
+	 * @covers RequestContext
+	 */
+	public function testOverideActionName() {
+		$factory = $this->createMock( ActionFactory::class );
+		$factory
+			->method( 'getActionName' )
+			->willReturnOnConsecutiveCalls( 'aaa', 'bbb' );
+		$this->setService( 'ActionFactory', $factory );
+
+		$context = new RequestContext();
+		$this->assertSame( 'aaa', $context->getActionName(), 'first from factory' );
+		$this->assertSame( 'aaa', $context->getActionName(), 'cached first' );
+
+		$context->setTitle( $this->createMock( Title::class ) );
+		$this->assertSame( 'bbb', $context->getActionName(), 'second from factory' );
+		$this->assertSame( 'bbb', $context->getActionName(), 'cached second' );
 	}
 }

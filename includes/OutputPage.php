@@ -3320,7 +3320,7 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 		$bodyClasses[] =
-			'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+			'action-' . Sanitizer::escapeClass( $this->getContext()->getActionName() );
 
 		if ( $sk->isResponsive() ) {
 			$bodyClasses[] = 'skin--responsive';
@@ -3535,7 +3535,7 @@ class OutputPage extends ContextSource {
 			'wgArticleId' => $articleId,
 			'wgIsArticle' => $this->isArticle(),
 			'wgIsRedirect' => $title->isRedirect(),
-			'wgAction' => Action::getActionName( $this->getContext() ),
+			'wgAction' => $this->getContext()->getActionName(),
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
 			'wgUserGroups' => $services->getUserGroupManager()->getUserEffectiveGroups( $user ),
 			'wgCategories' => $this->getCategories(),
@@ -3913,10 +3913,12 @@ class OutputPage extends ContextSource {
 				// typically all requests that show content (query title, curid, oldid, diff),
 				// and all wikipage actions (edit, delete, purge, info, history etc.).
 				// It does not apply to File pages and Special pages.
+				//
 				// 'history' and 'info' actions address page metadata rather than the page
 				// content itself, so they may not be canonicalized to the view page url.
-				// TODO: this ought to be better encapsulated in the Action class.
-				$action = Action::getActionName( $this->getContext() );
+				//
+				// TODO: this logic should be owned by Action subclasses.
+				$action = $this->getContext()->getActionName();
 				if ( in_array( $action, [ 'history', 'info' ] ) ) {
 					$query = "action={$action}";
 				} else {

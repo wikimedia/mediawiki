@@ -75,9 +75,6 @@ abstract class Skin extends ContextSource {
 	/** The current major version of the skin specification. */
 	protected const VERSION_MAJOR = 1;
 
-	/** @var string cached action for cheap lookup */
-	protected $action;
-
 	/** @var array|null Cache for getLanguages() */
 	private $languageLinks;
 
@@ -2560,17 +2557,10 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Optimization. Cached lookup of getActionName()
-	 * because it's expensive to compute.
-	 *
 	 * @return string
 	 */
-	final protected function getAction() {
-		if ( $this->action ) {
-			return $this->action;
-		}
-		$this->action = Action::getActionName( $this );
-		return $this->action;
+	final protected function getAction(): string {
+		return $this->getContext()->getActionName();
 	}
 
 	/**
