@@ -79,6 +79,7 @@ extensions/DiscordNotifications
 extensions/DynamicPageList3
 extensions/RatePage
 skins/Flatbox
+skins/WMAU
 
 # main
 extensions/LinkTitles
