@@ -1538,3 +1538,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-LockAuthor
 	branch = REL1_37
 	ignore = dirty
+[submodule "extensions/TemplateStylesExtender"]
+	path = extensions/TemplateStylesExtender
+	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender
+	branch = master
+	ignore = dirty
