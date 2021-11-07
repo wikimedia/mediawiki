@@ -80,6 +80,7 @@ extensions/DynamicPageList3
 extensions/RatePage
 skins/Flatbox
 skins/WMAU
+extensions/TemplateStylesExtender
 
 # main
 extensions/LinkTitles
