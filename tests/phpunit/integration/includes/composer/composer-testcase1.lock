@@ -1,0 +1,14 @@
+{
+	"packages": [
+		{
+			"name": "wikimedia/at-ease",
+			"version": "v2.1.0",
+			"type": "library"
+		},
+		{
+			"name": "wikimedia/relpath",
+			"version": "3.0.0",
+			"type": "library"
+		}
+	]
+}

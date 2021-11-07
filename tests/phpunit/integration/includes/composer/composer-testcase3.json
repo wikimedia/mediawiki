@@ -1,0 +1,6 @@
+{
+	"require": {
+		"wikimedia/at-ease": "2.1.0",
+		"wikimedia/relpath": "3.0.0"
+	}
+}

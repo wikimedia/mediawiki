@@ -996,6 +996,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\CommentFormatter\\StringCommentIterator' => __DIR__ . '/includes/CommentFormatter/StringCommentIterator.php',
 	'MediaWiki\\CommentStore\\CommentStore' => __DIR__ . '/includes/CommentStore/CommentStore.php',
 	'MediaWiki\\CommentStore\\CommentStoreComment' => __DIR__ . '/includes/CommentStore/CommentStoreComment.php',
+	'MediaWiki\\Composer\\LockFileChecker' => __DIR__ . '/includes/composer/LockFileChecker.php',
 	'MediaWiki\\Config\\Config' => __DIR__ . '/includes/config/Config.php',
 	'MediaWiki\\Config\\ConfigException' => __DIR__ . '/includes/config/ConfigException.php',
 	'MediaWiki\\Config\\ConfigFactory' => __DIR__ . '/includes/config/ConfigFactory.php',

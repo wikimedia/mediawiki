@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Composer\Semver\Semver;
+use MediaWiki\Composer\LockFileChecker;
 
 /**
  * Checks whether your composer-installed dependencies are up to date
@@ -35,58 +35,23 @@ class CheckComposerLockUpToDate extends Maintenance {
 		$lock = new ComposerLock( $lockLocation );
 		$json = new ComposerJson( $jsonLocation );
 
-		$requiredButOld = [];
-		$requiredButMissing = [];
-
 		// Check all the dependencies to see if any are old
-		$installed = $lock->getInstalledDependencies();
-		foreach ( $json->getRequiredDependencies() as $name => $version ) {
-			// Not installed at all.
-			if ( !isset( $installed[$name] ) ) {
-				$requiredButMissing[] = [
-					'name' => $name,
-					'wantedVersion' => $version
-				];
-				continue;
-			}
-
-			// Installed; need to check it's the right version
-			if ( !SemVer::satisfies( $installed[$name]['version'], $version ) ) {
-				$requiredButOld[] = [
-					'name' => $name,
-					'wantedVersion' => $version,
-					'suppliedVersion' => $installed[$name]['version']
-				];
-			}
-
-			// We're happy; loop to the next dependency.
-		}
-
-		if ( count( $requiredButOld ) === 0 && count( $requiredButMissing ) === 0 ) {
-			// We couldn't find any out-of-date or missing dependencies, so assume everything is ok!
+		$checker = new LockFileChecker( $json, $lock );
+		$result = $checker->check();
+		if ( $result->isGood() ) {
+			// We couldn't find any out-of-date dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
-			return;
-		}
-
-		foreach ( $requiredButOld as [
-			"name" => $name,
-			"suppliedVersion" => $suppliedVersion,
-			"wantedVersion" => $wantedVersion
-		] ) {
-			$this->error( "$name: $suppliedVersion installed, $wantedVersion required.\n" );
-		}
-
-		foreach ( $requiredButMissing as [
-			"name" => $name,
-			"wantedVersion" => $wantedVersion
-		] ) {
-			$this->error( "$name: not installed, $wantedVersion required.\n" );
-		}
-
-		$this->fatalError(
-			'Error: your composer.lock file is not up to date. ' .
+		} else {
+			foreach ( $result->getErrors() as $error ) {
+				$this->error(
+					wfMessage( $error['message'], ...$error['params'] )->inLanguage( 'en' )->plain() . "\n"
+				);
+			}
+			$this->fatalError(
+				'Error: your composer.lock file is not up to date. ' .
 				'Run "composer update --no-dev" to install newer dependencies'
-		);
+			);
+		}
 	}
 }
 
