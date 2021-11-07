@@ -1533,3 +1533,8 @@
 	url = https://github.com/wikimedia/mediawiki-skins-WMAU
 	branch = master
 	ignore = dirty
+[submodule "extensions/LockAuthor"]
+	path = extensions/LockAuthor
+	url = https://github.com/wikimedia/mediawiki-extensions-LockAuthor
+	branch = REL1_37
+	ignore = dirty
