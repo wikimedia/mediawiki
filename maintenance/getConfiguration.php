@@ -54,6 +54,12 @@ class GetConfiguration extends Maintenance {
 		$this->addOption( 'iregex', 'same as --regex but case insensitive', false, true );
 		$this->addOption( 'settings', 'Space-separated list of wg* variables', false, true );
 		$this->addOption( 'format', implode( ', ', self::$outFormats ), false, true );
+		$this->addOption(
+			'json-partial-output-on-error',
+			'Use JSON_PARTIAL_OUTPUT_ON_ERROR flag with json_encode(). This allows for partial response to ' .
+			'be output in case of an exception while serializing to JSON. If an error occurs, ' .
+			'the wgGetConfigurationJsonErrorOccurred field is set in the output.'
+		);
 	}
 
 	public function validateParamsAndArgs() {
@@ -138,7 +144,6 @@ class GetConfiguration extends Maintenance {
 
 		ksort( $res );
 
-		$out = null;
 		switch ( strtolower( $this->getOption( 'format' ) ) ) {
 			case 'serialize':
 			case 'php':
@@ -149,6 +154,10 @@ class GetConfiguration extends Maintenance {
 				break;
 			case 'json':
 				$out = FormatJson::encode( $res );
+				if ( !$out && $this->getOption( 'json-partial-output-on-error' ) ) {
+					$res['wgGetConfigurationJsonErrorOccurred'] = true;
+					$out = json_encode( $res, JSON_PARTIAL_OUTPUT_ON_ERROR );
+				}
 				break;
 			default:
 				throw new MWException( "Invalid serialization format given." );
