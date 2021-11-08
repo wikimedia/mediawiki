@@ -808,7 +808,7 @@ class UserrightsPage extends SpecialPage {
 							Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
 						"</td>
 						<td class='mw-input'>" .
-							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ), [
+							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason' ) ?? false, [
 								'id' => 'wpReason',
 								// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 								// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
