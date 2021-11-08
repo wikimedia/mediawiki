@@ -1489,9 +1489,9 @@ abstract class Maintenance {
 	public static function posix_isatty( $fd ) {
 		if ( !function_exists( 'posix_isatty' ) ) {
 			return !$fd;
-		} else {
-			return posix_isatty( $fd );
 		}
+
+		return posix_isatty( $fd );
 	}
 
 	/**
@@ -1507,23 +1507,20 @@ abstract class Maintenance {
 
 		if ( $isatty && function_exists( 'readline' ) ) {
 			return readline( $prompt );
-		} else {
-			if ( $isatty ) {
-				$st = self::readlineEmulation( $prompt );
-			} else {
-				if ( feof( STDIN ) ) {
-					$st = false;
-				} else {
-					$st = fgets( STDIN, 1024 );
-				}
-			}
-			if ( $st === false ) {
-				return false;
-			}
-			$resp = trim( $st );
-
-			return $resp;
 		}
+
+		if ( $isatty ) {
+			$st = self::readlineEmulation( $prompt );
+		} elseif ( feof( STDIN ) ) {
+			$st = false;
+		} else {
+			$st = fgets( STDIN, 1024 );
+		}
+		if ( $st === false ) {
+			return false;
+		}
+
+		return trim( $st );
 	}
 
 	/**
@@ -1543,7 +1540,9 @@ abstract class Maintenance {
 
 			if ( $result->getExitCode() == 0 ) {
 				return $result->getStdout();
-			} elseif ( $result->getExitCode() == 127 ) {
+			}
+
+			if ( $result->getExitCode() == 127 ) {
 				// Couldn't execute bash even though we thought we saw it.
 				// Shell probably spit out an error message, sorry :(
 				// Fall through to fgets()...
