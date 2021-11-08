@@ -84,6 +84,7 @@ class DeleteBatch extends Maintenance {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
 		$repoGroup = $services->getRepoGroup();
+		$delPageFactory = $services->getDeletePageFactory();
 
 		# Handle each entry
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
@@ -111,18 +112,11 @@ class DeleteBatch extends Maintenance {
 				}
 			}
 			$page = $wikiPageFactory->newFromTitle( $title );
-			$error = '';
-			$status = $page->doDeleteArticleReal(
-				$reason,
-				$user,
-				false,
-				null,
-				$error,
-				null,
-				[],
-				'delete',
-				true
-			);
+			$delPage = $delPageFactory->newDeletePage( $page, $user );
+			$status = $delPage
+				->forceImmediate( true )
+				->deleteUnsafe( $reason );
+
 			if ( $status->isOK() ) {
 				$this->output( " Deleted!\n" );
 			} else {

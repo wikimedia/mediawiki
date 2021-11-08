@@ -184,10 +184,8 @@ class CleanupSpam extends Maintenance {
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
-				$page->doDeleteArticleReal(
-					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
-					$performer->getUser()
-				);
+				$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $performer );
+				$deletePage->deleteUnsafe( wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text() );
 			} else {
 				// Didn't find a non-spammy revision, blank the page
 				$handler = $services->getContentHandlerFactory()

@@ -185,13 +185,14 @@ class DeleteEqualMessages extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
+		$delPageFactory = $services->getDeletePageFactory();
 		foreach ( $messageInfo['results'] as $result ) {
 			$lbFactory->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );
 			$page = $wikiPageFactory->newFromTitle( $title );
-			$status = $page->doDeleteArticleReal( 'No longer required', $user );
+			$status = $delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'No longer required' );
 			if ( !$status->isOK() ) {
 				$this->output( " (Failed!)" );
 			}
@@ -199,10 +200,8 @@ class DeleteEqualMessages extends Maintenance {
 				$title = Title::makeTitle( NS_MEDIAWIKI_TALK, $result['title'] );
 				$this->output( "\n* [[$title]]" );
 				$page = $wikiPageFactory->newFromTitle( $title );
-				$status = $page->doDeleteArticleReal(
-					'Orphaned talk page of no longer required message',
-					$user
-				);
+				$status = $delPageFactory->newDeletePage( $page, $user )
+					->deleteUnsafe( 'Orphaned talk page of no longer required message' );
 				if ( !$status->isOK() ) {
 					$this->output( " (Failed!)" );
 				}

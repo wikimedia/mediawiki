@@ -438,18 +438,10 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 		if ( $deletionReason !== null ) {
 			$page = $services->getWikiPageFactory()->newFromTitle( $newTitle );
-			$error = '';
-			$status = $page->doDeleteArticleReal(
-				$deletionReason,
-				$this->user,
-				false, // don't suppress
-				null, // unused
-				$error,
-				null, // unused
-				[], // tags
-				'delete',
-				true // immediate
-			);
+			$delPage = $services->getDeletePageFactory()->newDeletePage( $page, $this->user );
+			$status = $delPage
+				->forceImmediate( true )
+				->deleteUnsafe( $deletionReason );
 			if ( !$status->isOK() ) {
 				$this->error(
 					"Deletion of {$newTitle->getPrefixedText()} failed: "

@@ -93,6 +93,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
+		$delPageFactory = $services->getDeletePageFactory();
 
 		foreach ( $res as $row ) {
 			$lbFactory->waitForReplication();
@@ -100,7 +101,7 @@ class DeleteDefaultMessages extends Maintenance {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$page = $wikiPageFactory->newFromTitle( $title );
 			// FIXME: Deletion failures should be reported, not silently ignored.
-			$page->doDeleteArticleReal( 'No longer required', $user );
+			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'No longer required' );
 		}
 
 		$this->output( "done!\n", 'msg' );
