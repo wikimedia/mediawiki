@@ -601,14 +601,14 @@
 				mw.util.setOptionsForTest( { GenerateThumbnailOnParse: false } );
 				data = mw.util.parseImageUrl( thisCase.url );
 				if ( thisCase.name !== undefined ) {
-					assert.ok( data, 'Parses successfully' );
+					assert.notStrictEqual( data, null, 'Parses successfully' );
 					assert.strictEqual( data.name, thisCase.name, 'File name is correct' );
 					assert.strictEqual( data.width, thisCase.width, 'Width is correct' );
 					if ( thisCase.resizedUrl ) {
-						assert.ok( data.resizeUrl, 'resizeUrl is set' );
+						assert.strictEqual( typeof data.resizeUrl, 'function', 'resizeUrl is set' );
 						assert.strictEqual( data.resizeUrl( 1000 ), thisCase.resizedUrl, 'Resized URL is correct' );
 					} else {
-						assert.notOk( data.resizeUrl, 'resizeUrl is not set' );
+						assert.strictEqual( data.resizeUrl, null, 'resizeUrl is not set' );
 					}
 				} else {
 					assert.strictEqual( data, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
@@ -622,7 +622,7 @@
 			mw.util.setOptionsForTest( { GenerateThumbnailOnParse: true } );
 			this.sandbox.stub( mw.config.values, 'wgScript', '/w' );
 			resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
-			assert.ok( resizeUrl, 'resizeUrl is set' );
+			assert.strictEqual( typeof resizeUrl, 'function', 'resizeUrl is set' );
 			assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 		} );
 	} );
@@ -705,7 +705,7 @@
 		);
 
 		util.init();
-		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.true( util.$content instanceof $, 'jQuery object' );
 		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
 		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
@@ -717,14 +717,14 @@
 		);
 
 		util.init();
-		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.true( util.$content instanceof $, 'jQuery object' );
 		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
 		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
 
 	QUnit.test( 'init (body fallback)', function ( assert ) {
 		util.init();
-		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.true( util.$content instanceof $, 'jQuery object' );
 		assert.strictEqual( mw.util.$content[ 0 ], document.body, 'node' );
 		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
