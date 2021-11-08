@@ -1930,7 +1930,7 @@
 	"filerevert-comment": "Ok:",
 	"filerevert-defaultcomment": "A $1, $2 ($3)-kori verzió visszaállítása",
 	"filerevert-submit": "Visszaállítás",
-	"filerevert-success": "<span class=\"plainlinks\">A(z) '''[[Media:$1|$1]]''' fájl visszaállítása a(z) [$4 verzióra, $3, $2] sikerült.</span>",
+	"filerevert-success": "A(z) '''[[Media:$1|$1]]''' fájl visszaállítva a(z) [$4 $2, $3-kori verzióra].",
 	"filerevert-badversion": "A megadott időbélyegzésű fájlnak nincs helyi változata.",
 	"filerevert-identical": "A fájl jelenlegi verziója már azonos a kiválasztottal.",
 	"filedelete": "$1 törlése",

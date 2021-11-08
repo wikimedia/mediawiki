@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Akamycoco",
+			"Amire80",
 			"Vickylin77s"
 		]
 	},
@@ -196,7 +197,7 @@
 	"resetpass-submit-cancel": "Sawaden miforic",
 	"passwordreset": " misafaeloh patonek to mima’",
 	"passwordreset-username": "o ngangan no micokaymasay",
-	"summary": " o nisa’amotoan a pakimad",
+	"summary": "o nisa’amotoan a pakimad:",
 	"minoredit": "O sapado^do^ a mikawitan",
 	"watchthis": "mitapal to inian a felih",
 	"savearticle": "mina’ang to felih",
@@ -371,7 +372,7 @@
 	"recentchangeslinked-to": "Pahapinangen ko nifalican a felih a itira toya nipatonekan nifalic a felih.",
 	"upload": " mipaefer to tang^an",
 	"uploadlogpage": "Mipaefer to nisoritan to romi’ami’ad",
-	"filedesc": " o nisa’amotoan a pakimad",
+	"filedesc": "o nisa’amotoan a pakimad",
 	"filesource": "lalengatan",
 	"upload-dialog-title": " mipaefer to tang^an",
 	"upload-dialog-button-cancel": "Sawaden miforic",
