@@ -238,7 +238,8 @@ class PageCommandFactory implements
 			$this->wikiPageFactory,
 			$this->titleFormatter,
 			$this->titleFactory,
-			$this->linkTargetLookup
+			$this->linkTargetLookup,
+			$this
 		);
 	}
 
@@ -266,7 +267,8 @@ class PageCommandFactory implements
 			$this,
 			$this->collationFactory,
 			$this->pageUpdaterFactory,
-			$this->restrictionStore
+			$this->restrictionStore,
+			$this
 		);
 	}
 

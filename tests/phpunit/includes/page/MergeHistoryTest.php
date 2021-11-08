@@ -104,7 +104,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getWikiPageFactory(),
 				$this->getServiceContainer()->getTitleFormatter(),
 				$this->getServiceContainer()->getTitleFactory(),
-				$this->getServiceContainer()->getLinkTargetLookup()
+				$this->getServiceContainer()->getLinkTargetLookup(),
+				$this->getServiceContainer()->getDeletePageFactory(),
 			] )
 			->getMock();
 		$mh->expects( $this->once() )

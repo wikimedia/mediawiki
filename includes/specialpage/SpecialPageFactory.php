@@ -1118,6 +1118,7 @@ class SpecialPageFactory {
 				'WatchlistManager',
 				'RestrictionStore',
 				'TitleFactory',
+				'DeletePageFactory',
 			]
 		],
 		'Mycontributions' => [

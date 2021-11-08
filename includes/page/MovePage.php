@@ -84,6 +84,7 @@ class MovePage {
 	public CollationFactory $collationFactory;
 	private PageUpdaterFactory $pageUpdaterFactory;
 	private RestrictionStore $restrictionStore;
+	private DeletePageFactory $deletePageFactory;
 
 	/** @var int */
 	private $maximumMovedPages;
@@ -117,7 +118,8 @@ class MovePage {
 		MovePageFactory $movePageFactory,
 		CollationFactory $collationFactory,
 		PageUpdaterFactory $pageUpdaterFactory,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		DeletePageFactory $deletePageFactory
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -138,6 +140,7 @@ class MovePage {
 		$this->collationFactory = $collationFactory;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->restrictionStore = $restrictionStore;
+		$this->deletePageFactory = $deletePageFactory;
 
 		$this->maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
 	}
@@ -816,17 +819,18 @@ class MovePage {
 					$this->oldTitle->getPrefixedText()
 				)->inContentLanguage()->text();
 			$newpage = $this->wikiPageFactory->newFromTitle( $nt );
-			$errs = [];
-			$status = $newpage->doDeleteArticleReal(
-				$overwriteMessage,
-				$user,
-				/* $suppress */ false,
-				/* unused */ null,
-				$errs,
-				/* unused */ null,
-				$changeTags,
-				'delete_redir'
-			);
+			// TODO The public methods of this class should take an Authority.
+			$moverAuthority = $this->userFactory->newFromUserIdentity( $user );
+			$deletePage = $this->deletePageFactory->newDeletePage( $newpage, $moverAuthority );
+			$status = $deletePage
+				->setTags( $changeTags )
+				->setLogSubtype( 'delete_redir' )
+				->deleteUnsafe( $overwriteMessage );
+			if ( $status->isGood() && $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
+				// FIXME Scheduled deletion not properly handled here -- it should probably either ensure an
+				// immediate deletion or not fail if it was scheduled.
+				$status->warning( 'delete-scheduled', wfEscapeWikiText( $nt->getPrefixedText() ) );
+			}
 
 			if ( !$status->isGood() ) {
 				return $status;

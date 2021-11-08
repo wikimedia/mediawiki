@@ -45,7 +45,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -110,6 +109,7 @@ class MergeHistory {
 	private TitleFormatter $titleFormatter;
 	private TitleFactory $titleFactory;
 	private LinkTargetLookup $linkTargetLookup;
+	private DeletePageFactory $deletePageFactory;
 
 	/**
 	 * @param PageIdentity $source Page from which history will be merged
@@ -125,6 +125,7 @@ class MergeHistory {
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleFactory $titleFactory
 	 * @param LinkTargetLookup $linkTargetLookup
+	 * @param DeletePageFactory $deletePageFactory
 	 */
 	public function __construct(
 		PageIdentity $source,
@@ -139,7 +140,8 @@ class MergeHistory {
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory,
-		LinkTargetLookup $linkTargetLookup
+		LinkTargetLookup $linkTargetLookup,
+		DeletePageFactory $deletePageFactory
 	) {
 		// Save the parameters
 		$this->source = $source;
@@ -158,6 +160,7 @@ class MergeHistory {
 		$this->titleFormatter = $titleFormatter;
 		$this->titleFactory = $titleFactory;
 		$this->linkTargetLookup = $linkTargetLookup;
+		$this->deletePageFactory = $deletePageFactory;
 	}
 
 	/**
@@ -366,7 +369,7 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$this->updateSourcePage( $status, $performer->getUser(), $reason );
+			$this->updateSourcePage( $status, $performer, $reason );
 
 		} else {
 			$legacySource->invalidateCache();
@@ -404,12 +407,10 @@ class MergeHistory {
 	 * depending on whether the content model of the page supports redirects or not.
 	 *
 	 * @param Status $status
-	 * @param UserIdentity $user
+	 * @param Authority $performer
 	 * @param string $reason
-	 *
-	 * @return Status
 	 */
-	private function updateSourcePage( $status, $user, $reason ) {
+	private function updateSourcePage( $status, $performer, $reason ): void {
 		$deleteSource = false;
 		$legacySourceTitle = $this->titleFactory->newFromPageIdentity( $this->source );
 		$legacyDestTitle = $this->titleFactory->newFromPageIdentity( $this->dest );
@@ -460,7 +461,7 @@ class MergeHistory {
 		$revRecord->setContent( SlotRecord::MAIN, $newContent )
 			->setPageId( $this->source->getId() )
 			->setComment( $comment )
-			->setUser( $user )
+			->setUser( $performer->getUser() )
 			->setTimestamp( wfTimestampNow() );
 
 		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $revRecord, $this->dbw );
@@ -506,13 +507,18 @@ class MergeHistory {
 			// This deletion does not depend on userright but may still fails. If it
 			// fails, it will be communicated in the status response.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
-			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
+			$delPage = $this->deletePageFactory->newDeletePage( $newPage, $performer );
+			$deletionStatus = $delPage->deleteUnsafe( $reason );
+			if ( $deletionStatus->isGood() && $delPage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
+				$deletionStatus->warning(
+					'delete-scheduled',
+					wfEscapeWikiText( $newPage->getTitle()->getPrefixedText() )
+				);
+			}
 			// Notify callers that the source page has been deleted.
 			$status->value = 'source-deleted';
 			$status->merge( $deletionStatus );
 		}
-
-		return $status;
 	}
 
 	/**

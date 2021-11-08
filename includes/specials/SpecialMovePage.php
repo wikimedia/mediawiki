@@ -31,6 +31,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -110,6 +111,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	private WatchlistManager $watchlistManager;
 	private RestrictionStore $restrictionStore;
 	private TitleFactory $titleFactory;
+	private DeletePageFactory $deletePageFactory;
 
 	/**
 	 * @param MovePageFactory $movePageFactory
@@ -125,6 +127,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	 * @param WatchlistManager $watchlistManager
 	 * @param RestrictionStore $restrictionStore
 	 * @param TitleFactory $titleFactory
+	 * @param DeletePageFactory $deletePageFactory
 	 */
 	public function __construct(
 		MovePageFactory $movePageFactory,
@@ -139,7 +142,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		SearchEngineFactory $searchEngineFactory,
 		WatchlistManager $watchlistManager,
 		RestrictionStore $restrictionStore,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		DeletePageFactory $deletePageFactory
 	) {
 		parent::__construct( 'Movepage' );
 		$this->movePageFactory = $movePageFactory;
@@ -155,6 +159,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->watchlistManager = $watchlistManager;
 		$this->restrictionStore = $restrictionStore;
 		$this->titleFactory = $titleFactory;
+		$this->deletePageFactory = $deletePageFactory;
 	}
 
 	public function doesWrites() {
@@ -727,9 +732,10 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			}
 
 			$page = $this->wikiPageFactory->newFromTitle( $nt );
+			$delPage = $this->deletePageFactory->newDeletePage( $page, $user );
 
 			// Small safety margin to guard against concurrent edits
-			if ( $page->isBatchedDelete( 5 ) ) {
+			if ( $delPage->isBatchedDelete( 5 ) ) {
 				$this->showForm( [ [ 'movepage-delete-first' ] ] );
 
 				return;
@@ -746,12 +752,13 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				}
 			}
 
-			$error = ''; // passed by ref
 			$deletionLog = $redir2 ? 'delete_redir2' : 'delete';
-			$deleteStatus = $page->doDeleteArticleReal(
-				$reason, $user, false, null, $error,
-				null, [], $deletionLog
-			);
+			$deleteStatus = $delPage
+				->setLogSubtype( $deletionLog )
+				// Should be redundant thanks to the isBatchedDelete check above.
+				->forceImmediate( true )
+				->deleteUnsafe( $reason );
+
 			if ( !$deleteStatus->isGood() ) {
 				$this->showForm( $deleteStatus->getErrorsArray() );
 
