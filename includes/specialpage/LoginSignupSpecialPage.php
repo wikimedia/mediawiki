@@ -586,11 +586,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function getPageHtml( $formHtml ) {
-		global $wgLoginLanguageSelector;
-
 		$loginPrompt = $this->isSignup() ? '' : Html::rawElement( 'div',
 			[ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
-		$languageLinks = $wgLoginLanguageSelector ? $this->makeLanguageSelector() : '';
+		$languageLinks = $this->getConfig()->get( 'LoginLanguageSelector' ) ? $this->makeLanguageSelector() : '';
 		$signupStartMsg = $this->msg( 'signupstart' );
 		$signupStart = ( $this->isSignup() && !$signupStartMsg->isDisabled() )
 			? Html::rawElement( 'div', [ 'id' => 'signupstart' ], $signupStartMsg->parseAsBlock() ) : '';
@@ -600,6 +598,23 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
+		return Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+			$loginPrompt
+			. $languageLinks
+			. $signupStart
+			. Html::rawElement( 'div', [ 'id' => 'userloginForm' ], $formHtml )
+			. $this->getBenefitsContainerHtml()
+		);
+	}
+
+	/**
+	 * The HTML to be shown in the "benefits to signing in / creating an account" section of the signup/login page.
+	 *
+	 * @unstable Experimental method added in 1.38. As noted in the comment from 2015 for getPageHtml,
+	 *   this should use a template.
+	 * @return string
+	 */
+	protected function getBenefitsContainerHtml(): string {
 		$benefitsContainer = '';
 		if ( $this->isSignup() && $this->showExtraInformation() ) {
 			// messages used:
@@ -622,23 +637,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 			$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
 				Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading' )->escaped() )
-				. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ],
-					$benefitList
-				)
+				. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
 			);
 		}
-
-		$html = Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
-			$loginPrompt
-			. $languageLinks
-			. $signupStart
-			. Html::rawElement( 'div', [ 'id' => 'userloginForm' ],
-				$formHtml
-			)
-			. $benefitsContainer
-		);
-
-		return $html;
+		return $benefitsContainer;
 	}
 
 	/**
