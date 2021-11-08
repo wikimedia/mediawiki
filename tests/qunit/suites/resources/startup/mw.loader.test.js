@@ -3,7 +3,7 @@
 		setup: function ( assert ) {
 			// Expose for load.mock.php
 			mw.loader.testFail = function ( reason ) {
-				assert.ok( false, reason );
+				assert.true( false, reason );
 			};
 
 			this.resetStore = false;
@@ -155,10 +155,10 @@
 		] );
 		mw.loader.using( 'test.set.circleC' ).then(
 			function () {
-				assert.ok( false, 'Unexpected resolution, expected error.' );
+				assert.true( false, 'Unexpected resolution, expected error.' );
 			},
 			function ( e ) {
-				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+				assert.true( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
 			.always( done );
@@ -185,10 +185,10 @@
 		] );
 		mw.loader.using( 'test.shim.circleC' ).then(
 			function () {
-				assert.ok( false, 'Unexpected resolution, expected error.' );
+				assert.true( false, 'Unexpected resolution, expected error.' );
 			},
 			function ( e ) {
-				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+				assert.true( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
 			.always( done );
@@ -251,10 +251,10 @@
 
 		mw.loader.using( 'test.using.unreg' ).then(
 			function () {
-				assert.ok( false, 'Unexpected resolution, expected error.' );
+				assert.true( false, 'Unexpected resolution, expected error.' );
 			},
 			function ( e ) {
-				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
+				assert.true( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
 			}
 		).always( done );
 	} );
@@ -298,7 +298,7 @@
 	QUnit.test( '.implement( styles={ "css": [text, ..] } )', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element.css( 'float' ),
 			'right',
 			'style is clear'
@@ -327,17 +327,17 @@
 			$element3 = $( '<div class="mw-test-implement-b3"></div>' ).appendTo( '#qunit-fixture' ),
 			done = assert.async();
 
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element1.css( 'text-align' ),
 			'center',
 			'style is clear'
 		);
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element2.css( 'float' ),
 			'left',
 			'style is clear'
 		);
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element3.css( 'text-align' ),
 			'right',
 			'style is clear'
@@ -351,7 +351,7 @@
 				// assertStyleAsync calls have completed.
 				var pending = 2;
 				assertStyleAsync( assert, $element2, 'float', 'left', function () {
-					assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
+					assert.notStrictEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
 					pending--;
 					if ( pending === 0 ) {
@@ -359,7 +359,7 @@
 					}
 				} );
 				assertStyleAsync( assert, $element3, 'float', 'right', function () {
-					assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
+					assert.notStrictEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
 					pending--;
 					if ( pending === 0 ) {
@@ -435,12 +435,12 @@
 		var $element = $( '<div class="mw-test-implement-e"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-e2"></div>' ).appendTo( '#qunit-fixture' );
 
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element.css( 'float' ),
 			'right',
 			'style is clear'
 		);
-		assert.notEqual(
+		assert.notStrictEqual(
 			$element2.css( 'float' ),
 			'left',
 			'style is clear'
@@ -495,7 +495,7 @@
 		mw.loader.implement( 'test.implement.msgs', [], {}, { T31107: 'loaded' } );
 
 		return mw.loader.using( 'test.implement.msgs', function () {
-			assert.ok( mw.messages.exists( 'T31107' ), 'T31107: messages-only module should implement ok' );
+			assert.true( mw.messages.exists( 'T31107' ), 'T31107: messages-only module should implement ok' );
 		} );
 	} );
 
@@ -543,7 +543,7 @@
 			{}
 		);
 		mw.loader.using( 'test.implement.packageFiles' ).done( function () {
-			assert.ok( initJsRan, 'main JS file is executed' );
+			assert.true( initJsRan, 'main JS file is executed' );
 			done();
 		} );
 	} );
@@ -755,8 +755,7 @@
 			function ( e, modules ) {
 				// When the server sets state of 'testMissing' to 'missing'
 				// it should bubble up and trigger the error callback of the job for 'testUsesNestedMissing'.
-				// eslint-disable-next-line qunit/no-ok-equality
-				assert.ok( modules.indexOf( 'testMissing' ) !== -1, 'Triggered by testMissing.' );
+				assert.true( modules.indexOf( 'testMissing' ) !== -1, 'Triggered by testMissing.' );
 
 				verifyModuleStates();
 			}
@@ -801,7 +800,7 @@
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now
 			delete mw.loader.testCallback;
-			assert.ok( true, 'callback' );
+			assert.true( true, 'callback' );
 			done();
 		};
 
@@ -820,7 +819,7 @@
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now
 			delete mw.loader.testCallback;
-			assert.ok( true, 'callback' );
+			assert.true( true, 'callback' );
 			done();
 		};
 
@@ -942,7 +941,7 @@
 
 				// Legacy behaviour is storing under the expected version,
 				// which woudl lead to whitewashing and stale values (T117587).
-				assert.ok( mw.loader.store.get( 'test.stalebc' ), 'In store' );
+				assert.strictEqual( typeof mw.loader.store.get( 'test.stalebc' ), 'string', 'In store' );
 			} );
 	} );
 

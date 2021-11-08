@@ -61,10 +61,10 @@
 	// Glue code for nicer integration with QUnit setup/teardown
 	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
-		QUnit.assert.ok( false, msg );
+		QUnit.assert.true( false, msg );
 	};
 	sinon.assert.pass = function ( msg ) {
-		QUnit.assert.ok( true, msg );
+		QUnit.assert.true( true, msg );
 	};
 	sinon.config = {
 		injectIntoThis: true,
@@ -614,7 +614,7 @@
 		}
 	} );
 	QUnit.test( 'beforeEach', function ( assert ) {
-		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
 		mw.html = null;
 	} );
 	QUnit.test( 'afterEach', function ( assert ) {
@@ -632,7 +632,7 @@
 		}
 	} );
 	QUnit.test( 'setup', function ( assert ) {
-		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
 		mw.html = null;
 	} );
 	QUnit.test( 'teardown', function ( assert ) {
@@ -644,7 +644,7 @@
 	QUnit.module( 'testrunner-nested', function () {
 		QUnit.module( 'testrunner-nested-inner', function () {
 			QUnit.test( 'Dummy', function ( assert ) {
-				assert.ok( true, 'Nested modules supported' );
+				assert.true( true, 'Nested modules supported' );
 			} );
 		} );
 	} );
@@ -662,7 +662,7 @@
 				QUnit.test(
 					'`after` hook for module `testrunner-hooks` was executed',
 					function ( assert ) {
-						assert.ok( afterHookWasExecuted );
+						assert.true( afterHookWasExecuted );
 					}
 				);
 			},
@@ -672,7 +672,7 @@
 		} );
 
 		QUnit.test( '`before` hook was executed', function ( assert ) {
-			assert.ok( beforeHookWasExecuted );
+			assert.true( beforeHookWasExecuted );
 		} );
 	} );
 

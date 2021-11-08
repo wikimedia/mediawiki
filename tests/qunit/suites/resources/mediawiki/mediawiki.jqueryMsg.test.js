@@ -1273,7 +1273,7 @@
 			mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
 			$messageArgument = $( '<div class="bar">&gt;</div>' );
 			$message = $( '<span>' ).msg( 'object-double-replace', $messageArgument );
-			assert.ok(
+			assert.true(
 				$message[ 0 ].contains( $messageArgument[ 0 ] ),
 				'The original jQuery object is actually in the DOM'
 			);

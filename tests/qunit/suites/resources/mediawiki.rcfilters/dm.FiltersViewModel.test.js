@@ -281,7 +281,7 @@
 		model.initializeFilters( filterDefinition, viewsDefinition );
 
 		// Test that all items were created
-		assert.ok(
+		assert.true(
 			Object.keys( baseFilterRepresentation ).every( function ( filterName ) {
 				return model.getItemByName( filterName ) instanceof mw.rcfilters.dm.FilterItem;
 			} ),
@@ -542,7 +542,7 @@
 		} );
 
 		foundMatches = model.findMatches( 'foo' );
-		assert.ok(
+		assert.true(
 			$.isEmptyObject( foundMatches ),
 			'findMatches returns an empty object when no results found'
 		);
