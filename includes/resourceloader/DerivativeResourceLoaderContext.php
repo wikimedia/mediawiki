@@ -38,17 +38,27 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 */
 	private $context;
 
-	/** @var int|array */
+	/** @var int|string[] */
 	protected $modules = self::INHERIT_VALUE;
+	/** @var int|string */
 	protected $language = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $direction = self::INHERIT_VALUE;
+	/** @var int|string */
 	protected $skin = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $user = self::INHERIT_VALUE;
+	/** @var int|User|null */
 	protected $userObj = self::INHERIT_VALUE;
+	/** @var int */
 	protected $debug = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $only = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $version = self::INHERIT_VALUE;
+	/** @var int|bool */
 	protected $raw = self::INHERIT_VALUE;
+	/** @var int|callable|null */
 	protected $contentOverrideCallback = self::INHERIT_VALUE;
 
 	public function __construct( ResourceLoaderContext $context ) {
