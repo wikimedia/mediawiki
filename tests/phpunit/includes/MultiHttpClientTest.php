@@ -33,7 +33,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			'timeout' => 1,
 			'connectTimeout' => 1
 		];
-		$httpRequest = $this->getMockBuilder( PhpHttpRequest::class )
+		$httpRequest = $this->getMockBuilder( MWHttpRequest::class )
 			->setConstructorArgs( [ '', $options ] )
 			->getMock();
 		$httpRequest->method( 'execute' )

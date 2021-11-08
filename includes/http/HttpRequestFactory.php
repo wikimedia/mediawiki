@@ -19,18 +19,14 @@
  */
 namespace MediaWiki\Http;
 
-use CurlHttpRequest;
 use GuzzleHttp\Client;
 use GuzzleHttpRequest;
-use Http;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MultiHttpClient;
 use MWHttpRequest;
-use PhpHttpRequest;
 use Profiler;
 use Psr\Log\LoggerInterface;
-use RuntimeException;
 use Status;
 
 /**
@@ -90,15 +86,10 @@ class HttpRequestFactory {
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\WebRequest|array{ip:string,userAgent:string}} $options
 	 * @param string $caller The method making this request, for profiling
-	 * @throws RuntimeException
 	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
 	public function create( $url, array $options = [], $caller = __METHOD__ ) {
-		if ( !Http::$httpEngine ) {
-			Http::$httpEngine = 'guzzle';
-		}
-
 		if ( !isset( $options['logger'] ) ) {
 			$options['logger'] = $this->logger;
 		}
@@ -115,16 +106,7 @@ class HttpRequestFactory {
 			$this->options->get( 'HTTPMaxConnectTimeout' )
 		);
 
-		switch ( Http::$httpEngine ) {
-			case 'guzzle':
-				return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
-			case 'curl':
-				return new CurlHttpRequest( $url, $options, $caller, Profiler::instance() );
-			case 'php':
-				return new PhpHttpRequest( $url, $options, $caller, Profiler::instance() );
-			default:
-				throw new RuntimeException( __METHOD__ . ': The requested engine is not valid.' );
-		}
+		return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
 	}
 
 	/**

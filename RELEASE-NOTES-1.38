@@ -209,6 +209,9 @@ because of Phabricator reports.
   - ::changeableByGroup,
   - ::changeableGroups,
   - ::isAllowUsertalk
+* Http::$httpEngine, deprecated since 1.34, has been removed. The only available
+  HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
+  removed.
 * …
 
 === Deprecations in 1.38 ===
