@@ -177,7 +177,8 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 	} );
 };
 
-/** Toggles overlay class on changes list
+/**
+ * Toggles overlay class on changes list
  *
  * @param {boolean} isVisible True if overlay should be visible
  */

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+// @vue/component
 module.exports = {
 	data: function () {
 		return {

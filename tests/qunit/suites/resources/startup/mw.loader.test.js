@@ -83,7 +83,7 @@
 		}
 
 		function styleTestLoop() {
-			var styleTestSince = new Date().getTime() - styleTestStart;
+			var styleTestSince = Date.now() - styleTestStart;
 			// If it is passing or if we timed out, run the real test and stop the loop
 			if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
 				assert.strictEqual( $element.css( prop ), val,
@@ -101,7 +101,7 @@
 		}
 
 		// Start the loop
-		styleTestStart = new Date().getTime();
+		styleTestStart = Date.now();
 		styleTestLoop();
 	}
 

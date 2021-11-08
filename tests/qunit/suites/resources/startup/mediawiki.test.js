@@ -63,7 +63,7 @@
 		assert.strictEqual( typeof mw.now(), 'number', 'Return a number' );
 		assert.strictEqual(
 			String( Math.round( mw.now() ) ).length,
-			String( +new Date() ).length,
+			String( Date.now() ).length,
 			'Match size of current timestamp'
 		);
 	} );

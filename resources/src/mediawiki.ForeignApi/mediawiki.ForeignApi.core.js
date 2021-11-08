@@ -85,7 +85,6 @@ module.exports = ( function () {
 			return '*';
 		}
 
-		// eslint-disable-next-line compat/compat
 		origin = location.protocol + '//' + location.hostname;
 		if ( location.port ) {
 			origin += ':' + location.port;

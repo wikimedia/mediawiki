@@ -45,7 +45,7 @@
 			// something is minified, there are occasionally line breaks inserted after
 			// every few thousand bytes, which means the test result changes over time
 			// based on the code above.
-			// eslint-disable-next-line no-multi-str, no-eval
+			// eslint-disable-next-line no-eval
 			eval( "({\
 	main: 'init.js',\
 	files: {\

@@ -10,7 +10,7 @@
  * author Mozilla Contributors
  * license CC0 per https://developer.mozilla.org/en-US/docs/MDN/About#copyrights_and_licenses
  *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+ * https://github.com/mdn/content/blob/b81aa721130/files/en-us/web/javascript/reference/global_objects/array/find/index.html#L113
  */
 if ( !Array.prototype.find ) {
 	Object.defineProperty( Array.prototype, 'find', {
@@ -19,7 +19,7 @@ if ( !Array.prototype.find ) {
 
 			// 1. Let O be ? ToObject(this value).
 			if ( this == null ) {
-				throw TypeError( '"this" is null or not defined' );
+				throw new TypeError( '"this" is null or not defined' );
 			}
 
 			o = Object( this );
@@ -29,7 +29,7 @@ if ( !Array.prototype.find ) {
 
 			// 3. If IsCallable(predicate) is false, throw a TypeError exception.
 			if ( typeof predicate !== 'function' ) {
-				throw TypeError( 'predicate must be a function' );
+				throw new TypeError( 'predicate must be a function' );
 			}
 
 			// 4. If thisArg was supplied, let T be thisArg; else let T be undefined.

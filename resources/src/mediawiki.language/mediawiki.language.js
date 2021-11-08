@@ -191,7 +191,7 @@
 					newSegment = segment.toUpperCase();
 				// ISO 15924 script code
 				} else if ( segment.length === 4 && !isFirstSegment ) {
-					newSegment = segment.charAt( 0 ).toUpperCase() + segment.substring( 1 ).toLowerCase();
+					newSegment = segment.charAt( 0 ).toUpperCase() + segment.slice( 1 ).toLowerCase();
 				// Use lowercase for other cases
 				} else {
 					newSegment = segment.toLowerCase();
