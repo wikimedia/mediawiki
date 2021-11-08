@@ -27,36 +27,36 @@
 
 	QUnit.test( 'isElementInViewport', function ( assert ) {
 		var viewport = $.extend( {}, DEFAULT_VIEWPORT );
-		assert.ok( mw.viewport.isElementInViewport( this.el, viewport ),
+		assert.true( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return true when the element is fully enclosed in the viewport' );
 
 		viewport.right = 20;
 		viewport.bottom = 20;
-		assert.ok( mw.viewport.isElementInViewport( this.el, viewport ),
+		assert.true( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return true when only the top-left of the element is within the viewport' );
 
 		viewport.top = 40;
 		viewport.left = 40;
 		viewport.right = 50;
 		viewport.bottom = 50;
-		assert.ok( mw.viewport.isElementInViewport( this.el, viewport ),
+		assert.true( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return true when only the bottom-right is within the viewport' );
 
 		viewport.top = 30;
 		viewport.left = 30;
 		viewport.right = 35;
 		viewport.bottom = 35;
-		assert.ok( mw.viewport.isElementInViewport( this.el, viewport ),
+		assert.true( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return true when the element encapsulates the viewport' );
 
 		viewport.top = 0;
 		viewport.left = 0;
 		viewport.right = 19;
 		viewport.bottom = 19;
-		assert.notOk( mw.viewport.isElementInViewport( this.el, viewport ),
+		assert.false( mw.viewport.isElementInViewport( this.el, viewport ),
 			'It should return false when the element is not within the viewport' );
 
-		assert.ok( mw.viewport.isElementInViewport( this.el ),
+		assert.true( mw.viewport.isElementInViewport( this.el ),
 			'It should default to the window object if no viewport is given' );
 	} );
 
@@ -77,7 +77,7 @@
 				} )
 				.get( 0 );
 		window.scrollTo( viewport.left, viewport.top );
-		assert.ok( mw.viewport.isElementInViewport( el, viewport ),
+		assert.true( mw.viewport.isElementInViewport( el, viewport ),
 			'It should return true when the element is fully enclosed in the ' +
 			'viewport even when the page is scrolled down' );
 		window.scrollTo( 0, 0 );
@@ -101,11 +101,11 @@
 				} )
 				.get( 0 );
 
-		assert.ok( mw.viewport.isElementCloseToViewport( this.el, 60, viewport ),
+		assert.true( mw.viewport.isElementCloseToViewport( this.el, 60, viewport ),
 			'It should return true when the element is within the given threshold away' );
-		assert.notOk( mw.viewport.isElementCloseToViewport( this.el, 20, viewport ),
+		assert.false( mw.viewport.isElementCloseToViewport( this.el, 20, viewport ),
 			'It should return false when the element is further than the given threshold away' );
-		assert.notOk( mw.viewport.isElementCloseToViewport( distantElement ),
+		assert.false( mw.viewport.isElementCloseToViewport( distantElement ),
 			'It should default to a threshold of 50px and the window\'s viewport' );
 	} );
 

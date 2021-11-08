@@ -32,16 +32,16 @@
 	} ) );
 
 	QUnit.test( 'Initial check', function ( assert ) {
-		assert.ok( window.jQuery, 'jQuery defined' );
-		assert.ok( window.$, '$ defined' );
+		assert.strictEqual( typeof window.jQuery, 'function', 'jQuery defined' );
+		assert.strictEqual( typeof window.$, 'function', '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
 
 		// window.mw and window.mediaWiki are not deprecated, but for some reason
 		// PhantomJS is triggerring the accessors on all mw.* properties in this test,
 		// and with that lots of unrelated deprecation notices.
 		this.suppressWarnings();
-		assert.ok( window.mediaWiki, 'mediaWiki defined' );
-		assert.ok( window.mw, 'mw defined' );
+		assert.strictEqual( typeof window.mediaWiki, 'object', 'mediaWiki defined' );
+		assert.strictEqual( typeof window.mw, 'object', 'mw defined' );
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 		this.restoreWarnings();
 	} );
@@ -82,8 +82,8 @@
 			}
 		}
 
-		assert.ok( mw.messages, 'messages defined' );
-		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
+		assert.strictEqual( typeof mw.messages, 'object', 'messages defined' );
+		assert.true( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
 		hello = mw.message( 'hello' );
 
@@ -95,7 +95,7 @@
 		assert.deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array' );
 
 		// TODO
-		assert.ok( hello.params, 'Message prototype "params"' );
+		assert.strictEqual( typeof hello.params, 'function', 'Message prototype "params"' );
 
 		hello.format = 'plain';
 		assert.strictEqual( hello.toString(), 'Hello <b>awesome</b> world', 'Message.toString returns the message as a string with the current "format"' );
@@ -103,12 +103,12 @@
 		assert.strictEqual( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'Message.escaped returns the escaped message' );
 		assert.strictEqual( hello.format, 'escaped', 'Message.escaped correctly updated the "format" property' );
 
-		assert.ok( mw.messages.set( 'multiple-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'multiple-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'multiple-curly-brace' ], [ 'text', 'parse' ], '"' + siteName + '" is the home of Other Message', 'Curly brace format works correctly' );
 		assert.strictEqual( mw.message( 'multiple-curly-brace' ).plain(), mw.messages.get( 'multiple-curly-brace' ), 'Plain format works correctly for curly brace message' );
 		assert.strictEqual( mw.message( 'multiple-curly-brace' ).escaped(), mw.html.escape( '"' + siteName + '" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
 
-		assert.ok( mw.messages.set( 'multiple-square-brackets-and-ampersand', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'multiple-square-brackets-and-ampersand', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'multiple-square-brackets-and-ampersand' ], [ 'plain', 'text' ], mw.messages.get( 'multiple-square-brackets-and-ampersand' ), 'Square bracket message is not processed' );
 		assert.strictEqual( mw.message( 'multiple-square-brackets-and-ampersand' ).escaped(), 'Visit the [[Project:Community portal|community portal]] &amp; [[Project:Help desk|help desk]]', 'Escaped format works correctly for square bracket message' );
 		assert.htmlEqual( mw.message( 'multiple-square-brackets-and-ampersand' ).parse(), 'Visit the ' +
@@ -138,14 +138,14 @@
 
 		assertMultipleFormats( [ 'good<>bye' ], [ 'plain', 'text', 'parse', 'escaped' ], '⧼good&lt;&gt;bye⧽', 'Message.toString returns ⧼key⧽ if key does not exist' );
 
-		assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'plural-test-msg', 6 ], [ 'text', 'parse', 'escaped' ], 'There are 6 results', 'plural get resolved' );
 		assert.strictEqual( mw.message( 'plural-test-msg', 6 ).plain(), 'There {{PLURAL:6|is|are}} 6 {{PLURAL:6|result|results}}', 'Parameter is substituted but plural is not resolved in plain' );
 
-		assert.ok( mw.messages.set( 'plural-test-msg-explicit', 'There {{plural:$1|is one car|are $1 cars|0=are no cars|12=are a dozen cars}}' ), 'mw.messages.set: Register message with explicit plural forms' );
+		assert.true( mw.messages.set( 'plural-test-msg-explicit', 'There {{plural:$1|is one car|are $1 cars|0=are no cars|12=are a dozen cars}}' ), 'mw.messages.set: Register message with explicit plural forms' );
 		assertMultipleFormats( [ 'plural-test-msg-explicit', 12 ], [ 'text', 'parse', 'escaped' ], 'There are a dozen cars', 'explicit plural get resolved' );
 
-		assert.ok( mw.messages.set( 'plural-test-msg-explicit-beginning', 'Basket has {{plural:$1|0=no eggs|12=a dozen eggs|6=half a dozen eggs|one egg|$1 eggs}}' ), 'mw.messages.set: Register message with explicit plural forms' );
+		assert.true( mw.messages.set( 'plural-test-msg-explicit-beginning', 'Basket has {{plural:$1|0=no eggs|12=a dozen eggs|6=half a dozen eggs|one egg|$1 eggs}}' ), 'mw.messages.set: Register message with explicit plural forms' );
 		assertMultipleFormats( [ 'plural-test-msg-explicit-beginning', 1 ], [ 'text', 'parse', 'escaped' ], 'Basket has one egg', 'explicit plural given at beginning get resolved for singular' );
 		assertMultipleFormats( [ 'plural-test-msg-explicit-beginning', 4 ], [ 'text', 'parse', 'escaped' ], 'Basket has 4 eggs', 'explicit plural given at beginning get resolved for plural' );
 		assertMultipleFormats( [ 'plural-test-msg-explicit-beginning', 6 ], [ 'text', 'parse', 'escaped' ], 'Basket has half a dozen eggs', 'explicit plural given at beginning get resolved for 6' );
@@ -157,10 +157,10 @@
 
 		assert.strictEqual( mw.message( 'mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ).escaped(), 'Notifying author of deletion nomination for [[' + mw.html.escape( specialCharactersPageName ) + ']]', 'Double square brackets with one parameter, when escaped' );
 
-		assert.ok( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
 		assert.strictEqual( mw.message( 'mediawiki-test-categorytree-collapse-bullet' ).plain(), mw.messages.get( 'mediawiki-test-categorytree-collapse-bullet' ), 'Single square brackets unchanged in plain mode' );
 
-		assert.ok( mw.messages.set( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result', '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result', '<a href=\'#\' title=\'{{#special:mypage}}\'>Username</a> (<a href=\'#\' title=\'{{#special:mytalk}}\'>talk</a>)' ), 'mw.messages.set: Register' );
 		assert.strictEqual( mw.message( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ).plain(), mw.messages.get( 'mediawiki-test-wikieditor-toolbar-help-content-signature-result' ), 'HTML message with curly braces is not changed in plain mode' );
 
 		assertMultipleFormats( [ 'gender-plural-msg', 'male', 1 ], [ 'text', 'parse', 'escaped' ], 'he is awesome', 'Gender and plural are resolved' );
@@ -176,7 +176,7 @@
 		assertMultipleFormats( [ 'int-msg' ], [ 'text', 'parse', 'escaped' ], 'Some Other Message', 'int is resolved' );
 		assert.strictEqual( mw.message( 'int-msg' ).plain(), mw.messages.get( 'int-msg' ), 'int is not resolved in plain mode' );
 
-		assert.ok( mw.messages.set( 'mediawiki-italics-msg', '<i>Very</i> important' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'mediawiki-italics-msg', '<i>Very</i> important' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'mediawiki-italics-msg' ], [ 'plain', 'text', 'parse' ], mw.messages.get( 'mediawiki-italics-msg' ), 'Simple italics unchanged' );
 		assert.htmlEqual(
 			mw.message( 'mediawiki-italics-msg' ).escaped(),
@@ -184,7 +184,7 @@
 			'Italics are escaped in escaped mode'
 		);
 
-		assert.ok( mw.messages.set( 'mediawiki-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'mediawiki-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'mediawiki-italics-with-link' ], [ 'plain', 'text' ], mw.messages.get( 'mediawiki-italics-with-link' ), 'Italics with link unchanged' );
 		assert.htmlEqual(
 			mw.message( 'mediawiki-italics-with-link' ).escaped(),
@@ -197,7 +197,7 @@
 			'Italics with link inside in parse mode'
 		);
 
-		assert.ok( mw.messages.set( 'mediawiki-script-msg', '<script  >alert( "Who put this script here?" );</script>' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'mediawiki-script-msg', '<script  >alert( "Who put this script here?" );</script>' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'mediawiki-script-msg' ], [ 'plain', 'text' ], mw.messages.get( 'mediawiki-script-msg' ), 'Script unchanged' );
 		assert.htmlEqual(
 			mw.message( 'mediawiki-script-msg' ).escaped(),
@@ -223,11 +223,11 @@
 	} );
 
 	QUnit.test( 'mw.msg', function ( assert ) {
-		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 		assert.strictEqual( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 		assert.strictEqual( mw.msg( 'goodbye' ), '⧼goodbye⧽', 'Gets message with default options (nonexistent message)' );
 
-		assert.ok( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
+		assert.true( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 		assert.strictEqual( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
 		assert.strictEqual( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
 		assert.strictEqual( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );

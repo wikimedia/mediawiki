@@ -27,7 +27,7 @@
 		this.server.respond( function ( request ) {
 			assert.strictEqual( request.method, 'POST', 'Method should be POST' );
 			assert.strictEqual( request.url, 'http://test.example.com/rest.php/test/bla/bla/bla', 'Url should be correct' );
-			assert.ok( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
+			assert.true( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
 			assert.strictEqual( request.requestHeaders.authorization, 'my_token', 'Should pass request header' );
 			assert.deepEqual( JSON.parse( request.requestBody ), { param: 'value' }, 'Body should be correct' );
 			request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
