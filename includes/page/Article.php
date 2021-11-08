@@ -467,8 +467,14 @@ class Article implements Page {
 		# Allow frames by default
 		$outputPage->setPreventClickjacking( false );
 
+		$skin = $outputPage->getSkin();
+		$skinOptions = $skin->getOptions();
+
 		$parserOptions = $this->getParserOptions();
-		$poOptions = [];
+		$poOptions = [
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
 		# Allow extensions to vary parser options used for article rendering
 		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
 		# Render printable version, use printable version cache
@@ -748,9 +754,7 @@ class Article implements Page {
 		# (and do this before OutputPage::addParserOutput() calls the
 		# OutputPageParserOutput hook)
 		$outputPage->setSections( $pOutput->getSections() );
-		$outputPage->addParserOutput( $pOutput, $textOptions + [
-			'injectTOC' => true,
-		] );
+		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getTimestamp();
 		if ( $cachedTimestamp !== null ) {
