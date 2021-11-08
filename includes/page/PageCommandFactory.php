@@ -35,6 +35,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\ActorNormalization;
@@ -150,6 +151,9 @@ class PageCommandFactory implements
 	/** @var ITextFormatter */
 	private $contLangMsgTextFormatter;
 
+	/** @var ArchivedRevisionLookup */
+	private $archivedRevisionLookup;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -177,7 +181,8 @@ class PageCommandFactory implements
 		BacklinkCacheFactory $backlinkCacheFactory,
 		LoggerInterface $undeletePageLogger,
 		PageUpdaterFactory $pageUpdaterFactory,
-		ITextFormatter $contLangMsgTextFormatter
+		ITextFormatter $contLangMsgTextFormatter,
+		ArchivedRevisionLookup $archivedRevisionLookup
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -206,6 +211,7 @@ class PageCommandFactory implements
 		$this->undeletePageLogger = $undeletePageLogger;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
+		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
 
 	/**
@@ -353,6 +359,8 @@ class PageCommandFactory implements
 			$this->wikiPageFactory,
 			$this->pageUpdaterFactory,
 			$this->contentHandlerFactory,
+			$this->archivedRevisionLookup,
+			$this->namespaceInfo,
 			$page,
 			$authority
 		);

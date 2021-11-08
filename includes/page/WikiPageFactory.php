@@ -98,7 +98,7 @@ class WikiPageFactory {
 	 *
 	 * @return WikiPage
 	 */
-	public function newFromLinkTarget( LinkTarget $title ) {
+	public function newFromLinkTarget( LinkTarget $title ): WikiPage {
 		return $this->newFromTitle( $this->titleFactory->newFromLinkTarget( $title ) );
 	}
 
