@@ -1016,7 +1016,7 @@
 	"rev-deleted-event": "(détails de l’historique retirés)",
 	"rev-deleted-user-contribs": "[nom d’utilisateur ou adresse IP retiré – modification masquée dans les contributions]",
 	"rev-deleted-text-permission": "Cette version de la page a été <strong>supprimée</strong>.\nLes détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page=$1}} journal des suppressions].",
-	"rev-suppressed-text": "Cette révision de page a été <strong>supprimée</strong>.",
+	"rev-suppressed-text": "Cette révision de page a été <strong>masquée</strong>.",
 	"rev-suppressed-text-permission": "Cette version de la page a été <strong>retirée</strong>.\nLes détails se trouvent dans le [{{fullurl:{{#Special:Log}}/suppress|page=$1}} journal des retraits].",
 	"rev-deleted-text-unhide": "Cette version de la page a été <strong>supprimée</strong>.\nDes détails sont disponibles dans [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} le journal des suppressions].\nVous pouvez toujours [$1 voir cette version] si vous le voulez.",
 	"rev-suppressed-text-unhide": "Cette version de la page a été <strong>masquée</strong>.\nDes détails sont disponibles dans [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} le journal des masquages].\nVous pouvez toujours [$1 voir cette version] si vous le voulez.",

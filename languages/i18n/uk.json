@@ -1646,7 +1646,7 @@
 	"rcfilters-liveupdates-button-title-off": "Показувати нові зміни одразу ж після їх здійснення",
 	"rcfilters-watchlist-markseen-button": "Позначити всі зміни як переглянуті",
 	"rcfilters-watchlist-edit-watchlist-button": "Редагувати Ваш список спостереження",
-	"rcfilters-watchlist-showupdated": "Зміни до сторінок, які Ви не відвідували з моменту здійснення змін, виділені <strong>жирним</strong>, із цілісними маркерами.",
+	"rcfilters-watchlist-showupdated": "Зміни до сторінок, які Ви не відвідували з моменту здійснення змін, виділені <strong>жирним</strong>, із цілісними токенами.",
 	"rcfilters-preference-label": "Використовувати інтерфейс без JavaScript",
 	"rcfilters-preference-help": "Завантажує сторінку Нових редагувань, Список спостереження та подібні сторінки без фільтрованого пошуку чи функціоналу підсвічування.",
 	"rcfilters-watchlist-preference-label": "Використовувати інтерфейс без JavaScript",

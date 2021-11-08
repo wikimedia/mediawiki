@@ -1177,7 +1177,7 @@
 	"prefs-signature-invalid-new": "Semnătura dumneavoastră actuală este invalidă. Deși o puteți folosi în continuare, nu veți putea să o schimați dacă nu o corectați.",
 	"prefs-signature-invalid-disallow": "Semnătura dumneavoastră actuală este invalidă. Până o corectați, semnătura implicită va fi folosită atunci când vă semnați comentariile.",
 	"prefs-signature-highlight-error": "Arată locația erorii",
-	"prefs-signature-error-details": "Învățați mai multe",
+	"prefs-signature-error-details": "Aflați mai mult",
 	"prefs-dateformat": "Format dată",
 	"prefs-timeoffset": "Decalaj orar",
 	"prefs-advancedediting": "Opțiuni generale",
