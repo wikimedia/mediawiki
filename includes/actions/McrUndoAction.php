@@ -290,12 +290,14 @@ class McrUndoAction extends FormAction {
 			$parserOptions = $this->getWikiPage()->makeParserOptions( $this->context );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( false );
-			$parserOptions->enableLimitReport();
 
 			$parserOutput = $this->revisionRenderer
 				->getRenderedRevision( $rev, $parserOptions, $this->context->getUser() )
 				->getRevisionParserOutput();
-			$previewHTML = $parserOutput->getText( [ 'enableSectionEditLinks' => false ] );
+			$previewHTML = $parserOutput->getText( [
+				'enableSectionEditLinks' => false,
+				'includeLimitReport' => true,
+			] );
 
 			$out->addParserOutputMetadata( $parserOutput );
 			if ( count( $parserOutput->getWarnings() ) ) {

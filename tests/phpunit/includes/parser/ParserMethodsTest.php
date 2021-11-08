@@ -323,8 +323,6 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
 		] );
 
-		$po->enableLimitReport( false );
-
 		$oldRevision = new MutableRevisionRecord( $title );
 		$oldRevision->setId( 100 );
 		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor' ) );
