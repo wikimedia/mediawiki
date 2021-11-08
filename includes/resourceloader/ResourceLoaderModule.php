@@ -397,7 +397,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get the group this module is in.
 	 *
 	 * @stable to override
-	 * @return string Group name
+	 * @return string|null Group name
 	 */
 	public function getGroup() {
 		// Stub, override expected
