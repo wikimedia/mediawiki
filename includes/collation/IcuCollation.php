@@ -254,10 +254,11 @@ class IcuCollation extends Collation {
 		$localeParts = explode( '@', $locale );
 		$this->digitTransformLanguage = $languageFactory->getLanguage( $locale === 'root' ? 'en' : $localeParts[0] );
 
-		$this->mainCollator = Collator::create( $locale );
-		if ( !$this->mainCollator ) {
+		$mainCollator = Collator::create( $locale );
+		if ( !$mainCollator ) {
 			throw new MWException( "Invalid ICU locale specified for collation: $locale" );
 		}
+		$this->mainCollator = $mainCollator;
 
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
