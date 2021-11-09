@@ -502,11 +502,11 @@ FilterTagMultiselectWidget.prototype.onModelUpdate = function () {
 FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
 	var view = this.model.getCurrentView(),
 		inputValue = this.input.getValue().trim(),
-		inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) );
+		inputView = this.model.getViewByTrigger( inputValue.slice( 0, 1 ) );
 
 	if ( inputView !== 'default' ) {
 		// We have a prefix already, remove it
-		inputValue = inputValue.substr( 1 );
+		inputValue = inputValue.slice( 1 );
 	}
 
 	if ( inputView !== view ) {

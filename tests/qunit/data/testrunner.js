@@ -34,7 +34,7 @@
 	 */
 	QUnit.fixurl = function ( value ) {
 		return value + ( /\?/.test( value ) ? '&' : '?' ) +
-			String( new Date().getTime() ) +
+			String( Date.now() ) +
 			String( parseInt( Math.random() * 100000, 10 ) );
 	};
 

@@ -1141,7 +1141,7 @@ Controller.prototype._trackHighlight = function ( action, filters ) {
  */
 Controller.prototype.trackFilterGroupings = function ( action ) {
 	var controller = this,
-		rightNow = new Date().getTime(),
+		rightNow = Date.now(),
 		randomIdentifier = String( mw.user.sessionId() ) + String( rightNow ) + String( Math.random() ),
 		// Get all current filters
 		filters = this.filtersModel.findSelectedItems().map( function ( item ) {

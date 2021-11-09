@@ -23,6 +23,8 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -81,6 +83,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 	protected $hash;
 	/** @var User|null */
 	protected $userObj;
+	/** @var UserIdentity|null|false */
+	protected $userIdentity = false;
 	/** @var ResourceLoaderImage|false */
 	protected $imageObj;
 
@@ -259,6 +263,31 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// Use a dummy title because there is no real title for this endpoint, and the cache won't
 			// vary on it anyways.
 			->page( PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/ResourceLoaderContext' ) );
+	}
+
+	/**
+	 * Get the possibly-cached UserIdentity object for the specified username
+	 *
+	 * This will be null on most requests,
+	 * except for load.php requests that have a 'user' parameter set.
+	 *
+	 * @since 1.38
+	 * @return UserIdentity|null
+	 */
+	public function getUserIdentity(): ?UserIdentity {
+		if ( $this->userIdentity === false ) {
+			$username = $this->getUser();
+			if ( $username === null ) {
+				// Anonymous user
+				$this->userIdentity = null;
+			} else {
+				// Use provided username if valid
+				$this->userIdentity = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromName( $username, UserFactory::RIGOR_VALID );
+			}
+		}
+		return $this->userIdentity;
 	}
 
 	/**

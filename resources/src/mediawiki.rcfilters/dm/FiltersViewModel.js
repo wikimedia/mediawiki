@@ -1020,13 +1020,13 @@ FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
 		groupTitle,
 		result = {},
 		flatResult = [],
-		view = this.getViewByTrigger( query.substr( 0, 1 ) ),
+		view = this.getViewByTrigger( query.slice( 0, 1 ) ),
 		items = this.getFiltersByView( view );
 
 	// Normalize so we can search strings regardless of case and view
 	query = query.trim().toLowerCase();
 	if ( view !== 'default' ) {
-		query = query.substr( 1 );
+		query = query.slice( 1 );
 	}
 	// Trim again to also intercept cases where the spaces were after the trigger
 	// eg: '#   str'
@@ -1166,7 +1166,7 @@ FiltersViewModel.prototype.getViewByTrigger = function ( trigger ) {
  */
 FiltersViewModel.prototype.removeViewTriggers = function ( str ) {
 	if ( this.getViewFromString( str ) !== 'default' ) {
-		str = str.substr( 1 );
+		str = str.slice( 1 );
 	}
 
 	return str;
@@ -1179,7 +1179,7 @@ FiltersViewModel.prototype.removeViewTriggers = function ( str ) {
  * @return {string} View name
  */
 FiltersViewModel.prototype.getViewFromString = function ( str ) {
-	return this.getViewByTrigger( str.substr( 0, 1 ) );
+	return this.getViewByTrigger( str.slice( 0, 1 ) );
 };
 
 /**

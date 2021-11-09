@@ -1220,9 +1220,8 @@
 
 				for ( i = 0; i < modules.length; i++ ) {
 					// Determine how many bytes this module would add to the query string
-					// If lastDotIndex is -1, substr() returns an empty string
 					var lastDotIndex = modules[ i ].lastIndexOf( '.' ),
-						prefix = modules[ i ].substr( 0, lastDotIndex ),
+						prefix = modules[ i ].slice( 0, Math.max( 0, lastDotIndex ) ),
 						suffix = modules[ i ].slice( lastDotIndex + 1 ),
 						bytesAdded = moduleMap[ prefix ] ?
 							suffix.length + 3 : // '%2C'.length == 3

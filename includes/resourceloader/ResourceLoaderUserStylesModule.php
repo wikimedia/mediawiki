@@ -38,17 +38,18 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 	 * @return array[]
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		$config = $this->getConfig();
-		$user = $context->getUserObj();
-		if ( !$user->isRegistered() ) {
+		$user = $context->getUserIdentity();
+		if ( !$user || !$user->isRegistered() ) {
 			return [];
 		}
 
-		// Use localised/normalised variant to ensure $excludepage matches
-		$userPage = $user->getUserPage()->getPrefixedDBkey();
+		$config = $this->getConfig();
 		$pages = [];
 
 		if ( $config->get( 'AllowUserCss' ) ) {
+			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+			// Use localised/normalised variant to ensure $excludepage matches
+			$userPage = $titleFormatter->getPrefixedDBkey( new TitleValue( NS_USER, $user->getName() ) );
 			$pages["$userPage/common.css"] = [ 'type' => 'style' ];
 			$pages["$userPage/" . $context->getSkin() . '.css'] = [ 'type' => 'style' ];
 		}
