@@ -90,6 +90,8 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideIsSafeToCache() {
+		global $wgEnableParserLimitReporting;
+
 		$seven = static function () {
 			return 7;
 		};
@@ -124,6 +126,12 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			] ],
 			'Callback not default' => [ true, [
 				'speculativeRevIdCallback' => $seven,
+			] ],
+			'Canonical override, not default (1)' => [ true, [
+				'enableLimitReport' => $wgEnableParserLimitReporting,
+			] ],
+			'Canonical override, not default (2)' => [ false, [
+				'enableLimitReport' => !$wgEnableParserLimitReporting,
 			] ],
 		];
 	}
@@ -263,6 +271,10 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testMatches() {
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
 		$popt2 = ParserOptions::newCanonical( 'canonical' );
+		$this->assertTrue( $popt1->matches( $popt2 ) );
+
+		$popt1->enableLimitReport( true );
+		$popt2->enableLimitReport( false );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
 
 		$popt2->setInterfaceMessage( !$popt2->getInterfaceMessage() );
