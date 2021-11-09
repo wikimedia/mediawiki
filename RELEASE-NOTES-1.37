@@ -1,11 +1,20 @@
 = MediaWiki 1.37 =
 
-== MediaWiki 1.37.0-rc.1 ==
+== MediaWiki 1.37.0-rc.2 ==
 
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.37 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.37.0-rc.1 ===
+* (T295173) Re-add wikimedia/normalized-exception to vendor.
+* Remove wikimedia/testing-access-wrapper, psr/simple-cache, psr/http-factory
+  from vendor.
+* (T295191) ApiQuerySiteinfo: Fix "rightsinfo"/"url" when $wgRightsPage is set.
+* (T212428) Allow populateContentTables to continue when there are bad blobs.
+
+== MediaWiki 1.37.0-rc.1 ==
 
 === Changes since MediaWiki 1.37.0-rc.0 ===
 * (T294043) checkStorage: pass no parameters to WikiRevision::getContent().
@@ -15,6 +24,8 @@ for use in production.
 * (T294796) JobQueueRedis: Replace deprecated zSize with zCard.
 * Remove duplicate settings from DefaultSettings.
 * (T278037) NoLocalSettings: Pass an EmptyBagOStuff to TemplateParser.
+
+== MediaWiki 1.37.0-rc.0 ==
 
 == Upgrading notes for 1.37 ==
 Don't forget to always back up your database before upgrading!
