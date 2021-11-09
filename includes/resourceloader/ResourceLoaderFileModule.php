@@ -361,8 +361,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$deprecationScript = $this->getDeprecationInformation( $context );
-		if ( $this->packageFiles !== null ) {
-			$packageFiles = $this->getPackageFiles( $context );
+		$packageFiles = $this->getPackageFiles( $context );
+		if ( $packageFiles !== null ) {
 			foreach ( $packageFiles['files'] as &$file ) {
 				if ( $file['type'] === 'script+style' ) {
 					$file['content'] = $file['content']['script'];
@@ -420,8 +420,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$context
 		);
 
-		if ( $this->packageFiles !== null ) {
-			$packageFiles = $this->getPackageFiles( $context );
+		$packageFiles = $this->getPackageFiles( $context );
+		if ( $packageFiles !== null ) {
 			foreach ( $packageFiles['files'] as $fileName => $file ) {
 				if ( $file['type'] === 'script+style' ) {
 					$style = $this->processStyle(
@@ -1355,7 +1355,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Resolves the package files definition and generates the content of each package file.
 	 * @param ResourceLoaderContext $context
-	 * @return array Package files data structure, see ResourceLoaderModule::getScript()
+	 * @return array|null Package files data structure, see ResourceLoaderModule::getScript()
 	 * @throws RuntimeException If a file doesn't exist, or parsing a .vue file fails
 	 */
 	public function getPackageFiles( ResourceLoaderContext $context ) {
