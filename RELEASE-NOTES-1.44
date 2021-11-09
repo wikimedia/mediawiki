@@ -153,6 +153,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 === Bug fixes in 1.44 ===
 
+* File reverts now check for 'reupload' or 'reupload-own' rights. (T304474)
 * …
 
 === Action API changes in 1.44 ===
