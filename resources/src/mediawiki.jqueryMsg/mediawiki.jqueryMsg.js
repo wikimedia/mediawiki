@@ -432,7 +432,7 @@ mw.jqueryMsg.Parser.prototype = {
 			var len = s.length;
 			return function () {
 				var result = null;
-				if ( input.substr( pos, len ) === s ) {
+				if ( input.slice( pos, pos + len ) === s ) {
 					result = s;
 					pos += len;
 				}

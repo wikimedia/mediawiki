@@ -37,28 +37,28 @@
 			config.shortMonthNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullMonthNames, function ( k, v ) {
-				config.shortMonthNames[ k ] = v.substr( 0, 3 );
+				config.shortMonthNames[ k ] = v.slice( 0, 3 );
 			} );
 		}
 		if ( config.shortDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.shortDayNames, function ( k, v ) {
-				config.dayLetters[ k ] = v.substr( 0, 1 );
+				config.dayLetters[ k ] = v.slice( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullDayNames, function ( k, v ) {
-				config.dayLetters[ k ] = v.substr( 0, 1 );
+				config.dayLetters[ k ] = v.slice( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.shortDayNames ) {
 			config.shortDayNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullDayNames, function ( k, v ) {
-				config.shortDayNames[ k ] = v.substr( 0, 3 );
+				config.shortDayNames[ k ] = v.slice( 0, 3 );
 			} );
 		}
 		config = $.extend( {
@@ -159,28 +159,28 @@
 			this.shortMonthNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullMonthNames, function ( k, v ) {
-				this.shortMonthNames[ k ] = v.substr( 0, 3 );
+				this.shortMonthNames[ k ] = v.slice( 0, 3 );
 			}.bind( this ) );
 		}
 		if ( this.shortDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.shortDayNames, function ( k, v ) {
-				this.dayLetters[ k ] = v.substr( 0, 1 );
+				this.dayLetters[ k ] = v.slice( 0, 1 );
 			}.bind( this ) );
 		}
 		if ( this.fullDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullDayNames, function ( k, v ) {
-				this.dayLetters[ k ] = v.substr( 0, 1 );
+				this.dayLetters[ k ] = v.slice( 0, 1 );
 			}.bind( this ) );
 		}
 		if ( this.fullDayNames && !this.shortDayNames ) {
 			this.shortDayNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullDayNames, function ( k, v ) {
-				this.shortDayNames[ k ] = v.substr( 0, 3 );
+				this.shortDayNames[ k ] = v.slice( 0, 3 );
 			}.bind( this ) );
 		}
 
@@ -243,7 +243,7 @@
 			this.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.shortDayNames, function ( k, v ) {
-				this.dayLetters[ k ] = v.substr( 0, 1 );
+				this.dayLetters[ k ] = v.slice( 0, 1 );
 			}.bind( this ) );
 		}
 

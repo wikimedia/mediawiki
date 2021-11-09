@@ -522,7 +522,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		namespace = NS_MAIN;
 		title = title
 			// Strip colon
-			.substr( 1 )
+			.slice( 1 )
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 	}

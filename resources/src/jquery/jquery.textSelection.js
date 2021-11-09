@@ -90,7 +90,7 @@
 				if ( !el ) {
 					val = '';
 				} else {
-					val = el.value.substring( el.selectionStart, el.selectionEnd );
+					val = el.value.slice( el.selectionStart, el.selectionEnd );
 				}
 
 				return val;

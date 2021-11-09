@@ -112,7 +112,7 @@
 					if ( v[ 0 ] !== '\x1f' ) {
 						return v.split( '|' );
 					} else {
-						return v.substr( 1 ).split( '\x1f' );
+						return v.slice( 1 ).split( '\x1f' );
 					}
 				}
 			},
@@ -973,7 +973,7 @@
 					if ( Object.prototype.hasOwnProperty.call( availableFormats, params.format + 'fm' ) ) {
 						params.format = params.format + 'fm';
 					}
-					if ( params.format.substr( -2 ) === 'fm' ) {
+					if ( params.format.slice( -2 ) === 'fm' ) {
 						params.wrappedhtml = 1;
 					}
 				}
@@ -1675,8 +1675,8 @@
 					deprecatedItems = [],
 					buttons = [],
 					filterFmModules = function ( v ) {
-						return v.substr( -2 ) !== 'fm' ||
-							!Object.prototype.hasOwnProperty.call( availableFormats, v.substr( 0, v.length - 2 ) );
+						return v.slice( -2 ) !== 'fm' ||
+							!Object.prototype.hasOwnProperty.call( availableFormats, v.slice( 0, v.length - 2 ) );
 					};
 
 				// This is something of a hack. We always want the 'format' and

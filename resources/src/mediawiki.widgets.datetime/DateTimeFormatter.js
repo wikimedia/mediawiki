@@ -98,7 +98,7 @@
 		if ( !this.shortZones ) {
 			this.shortZones = [
 				'Z',
-				this.fullZones[ 1 ].substr( 0, 1 ).toUpperCase()
+				this.fullZones[ 1 ].slice( 0, 1 ).toUpperCase()
 			];
 			if ( this.shortZones[ 1 ] === 'Z' ) {
 				this.shortZones[ 1 ] = 'L';
@@ -210,7 +210,7 @@
 			}
 		}
 		if ( last < format.length ) {
-			ret.push( format.substr( last ) );
+			ret.push( format.slice( last ) );
 		}
 
 		return ret;

@@ -162,12 +162,11 @@
 		}
 
 		return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
-			var interwiki;
 			// Optimization: check we have any prefixes.
 			if ( interwikiPrefixes.length ) {
-				interwiki = query.substring( 0, query.indexOf( ':' ) );
+				var interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
 				if (
-					interwiki && interwiki !== '' &&
+					interwiki !== '' &&
 					interwikiPrefixes.indexOf( interwiki ) !== -1
 				) {
 					// Interwiki prefix is valid: return the original query as a valid title
