@@ -100,9 +100,6 @@ class ApiParseTest extends ApiTestCase {
 
 		$html = substr( $html, strlen( $expectedStart ) );
 
-		$possibleParserCache = '/\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n/';
-		$html = preg_replace( $possibleParserCache, '', $html );
-
 		if ( $res[1]->getBool( 'disablelimitreport' ) ) {
 			$expectedEnd = "</div>";
 			$this->assertSame( $expectedEnd, substr( $html, -strlen( $expectedEnd ) ) );
@@ -115,7 +112,7 @@ class ApiParseTest extends ApiTestCase {
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
-				'</div>$#s';
+				'(\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n)?</div>$#s';
 			$this->assertRegExp( $expectedEnd, $html );
 
 			$html = preg_replace( $expectedEnd, '', $html );
