@@ -275,11 +275,7 @@ class PopulateContentTables extends Maintenance {
 				$contentKeys[$revisionId] = $key;
 
 				if ( !isset( $map[$key] ) ) {
-					$fillFields = $this->fillMissingFields( $row, $model, $address );
-					if ( !$fillFields ) {
-						continue;
-					}
-
+					$this->fillMissingFields( $row, $model, $address );
 					$map[$key] = false;
 					$contentRows[] = [
 						'content_size' => (int)$row->len,
@@ -301,7 +297,11 @@ class PopulateContentTables extends Maintenance {
 					__METHOD__
 				);
 				foreach ( $res as $row ) {
-					$key = $row->content_model . ':' . $row->content_address;
+					$address = $row->content_address;
+					if ( substr( $address, 0, 4 ) === 'bad:' ) {
+						$address = substr( $address, 4 );
+					}
+					$key = $row->content_model . ':' . $address;
 					$map[$key] = $row->content_id;
 				}
 			}
@@ -363,10 +363,9 @@ class PopulateContentTables extends Maintenance {
 	 *
 	 * @param stdClass $row to be modified
 	 * @param string $model
-	 * @param string $address
-	 * @return bool
+	 * @param string &$address
 	 */
-	private function fillMissingFields( $row, $model, $address ) {
+	private function fillMissingFields( $row, $model, &$address ) {
 		if ( !isset( $row->content_model ) ) {
 			// just for completeness
 			$row->content_model = $model;
@@ -374,14 +373,14 @@ class PopulateContentTables extends Maintenance {
 
 		if ( isset( $row->len ) && isset( $row->sha1 ) && $row->sha1 !== '' ) {
 			// No need to load the content, quite now.
-			return true;
+			return;
 		}
 
 		try {
 			$blob = $this->blobStore->getBlob( $address );
 		} catch ( BlobAccessException $e ) {
-			$this->error( $e->getMessage() );
-			return false;
+			$address = 'bad:' . $address;
+			$blob = '';
 		}
 
 		if ( !isset( $row->len ) ) {
@@ -392,8 +391,6 @@ class PopulateContentTables extends Maintenance {
 		if ( !isset( $row->sha1 ) || $row->sha1 === '' ) {
 			$row->sha1 = SlotRecord::base36Sha1( $blob );
 		}
-
-		return true;
 	}
 }
 
