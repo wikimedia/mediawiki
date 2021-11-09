@@ -1288,6 +1288,7 @@ class PageUpdater {
 			// Update recentchanges
 			if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
 				// Add RC row to the DB
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				RecentChange::notifyEdit(
 					$now,
 					$this->getPage(),
@@ -1413,6 +1414,7 @@ class PageUpdater {
 		// Update recentchanges
 		if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
 			// Add RC row to the DB
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			RecentChange::notifyNew(
 				$now,
 				$this->getPage(),

@@ -214,6 +214,26 @@ because of Phabricator reports.
   - ::changeableGroups,
   - ::isAllowUsertalk,
   - ::getRights
+  - ::isAllowUsertalk
+  - ::isIP,
+  - ::isIPRange,
+  - ::isValidUserName,
+  - ::isUsableName,
+  - ::isCreatableName,
+  - ::getCanonicalName,
+  - ::addAutopromoteOnceGroups,
+  - ::getDefaultOptions,
+  - ::getDefaultOption,
+  - ::getOptions,
+  - ::getBoolOption,
+  - ::getIntOption,
+  - ::setOption
+  - ::listOptionKinds
+  - ::getOptionKinds,
+  - ::resetOptions,
+  - ::getEffectiveGroups,
+  - ::getAutomaticGroups,
+  - ::getFormerGroups
 * Http::$httpEngine, deprecated since 1.34, has been removed. The only available
   HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
   removed.
