@@ -102,6 +102,11 @@
 	&:before {
 		.mixin-background-square( @icon-size-md );
 	}
+
+	& + span {
+		// Margin is added to separate accompanying text.
+		margin-left: @margin-icon-md-labelled;
+	}
 }
 
 /**
