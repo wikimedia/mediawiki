@@ -4212,7 +4212,6 @@ class EditPage implements IEditObject {
 		$parserOptions = $this->page->makeParserOptions( $this->context );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( $this->section !== null && $this->section !== '' );
-		$parserOptions->enableLimitReport();
 
 		// XXX: we could call $parserOptions->setCurrentRevisionRecordCallback here to force the
 		// current revision to be null during PST, until setupFakeRevision is called on
@@ -4250,7 +4249,8 @@ class EditPage implements IEditObject {
 		return [
 			'parserOutput' => $parserOutput,
 			'html' => $parserOutput->getText( [
-				'enableSectionEditLinks' => false
+				'enableSectionEditLinks' => false,
+				'includeDebugInfo' => true,
 			] )
 		];
 	}

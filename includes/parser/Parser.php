@@ -675,9 +675,7 @@ class Parser {
 
 		$this->currentRevisionCache = null;
 		$this->mInputSize = strlen( $text );
-		if ( $this->mOptions->getEnableLimitReport() ) {
-			$this->mOutput->resetParseStartTime();
-		}
+		$this->mOutput->resetParseStartTime();
 
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionRecordObject = $this->mRevisionRecordObject;
@@ -730,8 +728,8 @@ class Parser {
 		}
 
 		# Information on limits, for the benefit of users who try to skirt them
-		if ( $this->mOptions->getEnableLimitReport() ) {
-			$text .= $this->makeLimitReport();
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableParserLimitReporting' ) ) {
+			$this->makeLimitReport();
 		}
 
 		# Wrap non-interface parser output in a <div> so it can be targeted
@@ -755,10 +753,7 @@ class Parser {
 	}
 
 	/**
-	 * Set the limit report data in the current ParserOutput, and return the
-	 * limit report HTML comment.
-	 *
-	 * @return string
+	 * Set the limit report data in the current ParserOutput.
 	 */
 	protected function makeLimitReport() {
 		$maxIncludeSize = $this->mOptions->getMaxIncludeSize();
@@ -797,42 +792,6 @@ class Parser {
 
 		$this->hookRunner->onParserLimitReportPrepare( $this, $this->mOutput );
 
-		$limitReport = "NewPP limit report\n";
-		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
-			$limitReport .= 'Parsed by ' . wfHostname() . "\n";
-		}
-		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
-		$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
-		$limitReport .= 'Reduced expiry: ' .
-			( $this->mOutput->hasReducedExpiry() ? 'true' : 'false' ) .
-			"\n";
-		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
-
-		foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
-			if ( $this->hookRunner->onParserLimitReportFormat(
-				$key, $value, $limitReport, false, false )
-			) {
-				$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
-				$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
-					->inLanguage( 'en' )->useDatabase( false );
-				if ( !$valueMsg->exists() ) {
-					$valueMsg = new RawMessage( '$1' );
-				}
-				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
-					$valueMsg->params( $value );
-					$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
-				}
-			}
-		}
-		// Since we're not really outputting HTML, decode the entities and
-		// then re-encode the things that need hiding inside HTML comments.
-		$limitReport = htmlspecialchars_decode( $limitReport );
-
-		// Sanitize for comment. Note '‐' in the replacement is U+2010,
-		// which looks much like the problematic '-'.
-		$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
-		$text = "\n<!-- \n$limitReport-->\n";
-
 		// Add on template profiling data in human/machine readable way
 		$dataByFunc = $this->mProfiler->getFunctionStats();
 		uasort( $dataByFunc, static function ( $a, $b ) {
@@ -844,8 +803,6 @@ class Parser {
 				$item['%real'], $item['real'], $item['calls'],
 				htmlspecialchars( $item['name'] ) );
 		}
-		$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
-		$text .= implode( "\n", $profileReport ) . "\n-->\n";
 
 		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
 
@@ -859,8 +816,6 @@ class Parser {
 			$this->mOutput->getCacheExpiry() );
 		$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
 			$this->mOutput->hasDynamicContent() );
-
-		return $text;
 	}
 
 	/**

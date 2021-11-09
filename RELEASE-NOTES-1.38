@@ -212,6 +212,10 @@ because of Phabricator reports.
 * Http::$httpEngine, deprecated since 1.34, has been removed. The only available
   HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
   removed.
+* Parser option enableLimitReport was deprecated. The report is now generated
+  post-parse and can be included by providing 'includeDebugInfo' option
+  to ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
+  ::getEnableLimitReport methods were deprecated.
 * …
 
 === Deprecations in 1.38 ===
@@ -305,6 +309,7 @@ because of Phabricator reports.
      `mw-delete-editreasons`
   The goal of these changes is to make the HTML more similar to that of
   normal page deletion.
+* ParserOptions created with ::newFrom* or ::newCanonical are now identical.
 * …
 
 == Compatibility ==
