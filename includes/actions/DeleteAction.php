@@ -21,8 +21,6 @@
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -97,8 +95,8 @@ class DeleteAction extends FormlessAction {
 		$request = $context->getRequest();
 		$outputPage = $context->getOutput();
 
-		$this->runExecuteChecks( $title );
-		$this->prepareOutput( $context->msg( 'delete-confirm', $title->getPrefixedText() ), $title );
+		$this->runExecuteChecks();
+		$this->prepareOutput( $context->msg( 'delete-confirm', $title->getPrefixedText() ) );
 
 		# Better double-check that it hasn't been deleted yet!
 		$article->getPage()->loadPageData(
@@ -109,7 +107,7 @@ class DeleteAction extends FormlessAction {
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 				[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
 			);
-			$this->showLogEntries( $title );
+			$this->showLogEntries();
 
 			return;
 		}
@@ -159,7 +157,7 @@ class DeleteAction extends FormlessAction {
 					'error mw-error-cannotdelete',
 					$status->getWikiText( false, false, $context->getLanguage() )
 				);
-				$this->showLogEntries( $this->getTitle() );
+				$this->showLogEntries();
 			} else {
 				$outputPage->addHTML( $error );
 			}
@@ -239,7 +237,6 @@ class DeleteAction extends FormlessAction {
 
 	private function tempConfirmDelete(): void {
 		$this->prepareOutputForForm();
-		$title = $this->getTitle();
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
 
@@ -255,16 +252,56 @@ class DeleteAction extends FormlessAction {
 		// FIXME: Replace (or at least rename) this hook
 		$this->getHookRunner()->onArticleConfirmDelete( $this->getArticle(), $outputPage, $reason );
 
-		$user = $ctx->getUser();
+		$this->showForm( $reason );
+		$this->showEditReasonsLinks();
+		$this->showLogEntries();
+	}
+
+	protected function showEditReasonsLinks(): void {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'editinterface' ) ) {
+			$link = '';
+			if ( $this->isSuppressionAllowed() ) {
+				$link .= $this->linkRenderer->makeKnownLink(
+					$this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )->inContentLanguage()->getTitle(),
+					$this->getFormMsg( self::MSG_EDIT_REASONS_SUPPRESS )->text(),
+					[],
+					[ 'action' => 'edit' ]
+				);
+				$link .= $this->msg( 'pipe-separator' )->escaped();
+			}
+			$link .= $this->linkRenderer->makeKnownLink(
+				$this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->getTitle(),
+				$this->getFormMsg( self::MSG_EDIT_REASONS )->text(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$this->getOutput()->addHTML( '<p class="mw-delete-editreasons">' . $link . '</p>' );
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function isSuppressionAllowed(): bool {
+		return $this->getContext()->getAuthority()->isAllowed( 'suppressrevision' );
+	}
+
+	/**
+	 * @param string $reason
+	 */
+	protected function showForm( string $reason ): void {
+		$outputPage = $this->getOutput();
+		$user = $this->getUser();
+		$title = $this->getTitle();
+
 		$checkWatch = $this->userOptionsLookup->getBoolOption( $user, 'watchdeletion' ) ||
 			$this->watchlistManager->isWatched( $user, $title );
 
 		$fields = [];
 
-		$suppressAllowed = $ctx->getAuthority()->isAllowed( 'suppressrevision' );
 		$dropDownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
 		// Add additional specific reasons for suppress
-		if ( $suppressAllowed ) {
+		if ( $this->isSuppressionAllowed() ) {
 			$dropDownReason .= "\n" . $this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )
 					->inContentLanguage()->text();
 		}
@@ -318,13 +355,13 @@ class DeleteAction extends FormlessAction {
 					'selected' => $checkWatch,
 				] ),
 				[
-					'label' => $ctx->msg( 'watchthis' )->text(),
+					'label' => $this->msg( 'watchthis' )->text(),
 					'align' => 'inline',
 					'infusable' => true,
 				]
 			);
 		}
-		if ( $suppressAllowed ) {
+		if ( $this->isSuppressionAllowed() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -333,7 +370,7 @@ class DeleteAction extends FormlessAction {
 					'selected' => false,
 				] ),
 				[
-					'label' => $ctx->msg( 'revdelete-suppress' )->text(),
+					'label' => $this->msg( 'revdelete-suppress' )->text(),
 					'align' => 'inline',
 					'infusable' => true,
 				]
@@ -382,36 +419,14 @@ class DeleteAction extends FormlessAction {
 				'content' => $form,
 			] )
 		);
-
-		if ( $ctx->getAuthority()->isAllowed( 'editinterface' ) ) {
-			$link = '';
-			if ( $suppressAllowed ) {
-				$link .= $this->linkRenderer->makeKnownLink(
-					$this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )->inContentLanguage()->getTitle(),
-					$this->getFormMsg( self::MSG_EDIT_REASONS_SUPPRESS )->text(),
-					[],
-					[ 'action' => 'edit' ]
-				);
-				$link .= $ctx->msg( 'pipe-separator' )->escaped();
-			}
-			$link .= $this->linkRenderer->makeKnownLink(
-				$this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->getTitle(),
-				$this->getFormMsg( self::MSG_EDIT_REASONS )->text(),
-				[],
-				[ 'action' => 'edit' ]
-			);
-			$outputPage->addHTML( '<p class="mw-delete-editreasons">' . $link . '</p>' );
-		}
-
-		$this->showLogEntries( $title );
 	}
 
 	/**
-	 * @param PageIdentity $title
+	 * @todo Should use Action::checkCanExecute instead
 	 */
-	protected function runExecuteChecks( PageIdentity $title ): void {
+	protected function runExecuteChecks(): void {
 		$permissionStatus = PermissionStatus::newEmpty();
-		if ( !$this->getContext()->getAuthority()->definitelyCan( 'delete', $title, $permissionStatus ) ) {
+		if ( !$this->getContext()->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
 			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 
@@ -440,23 +455,21 @@ class DeleteAction extends FormlessAction {
 
 	/**
 	 * Show deletion log fragments pertaining to the current page
-	 * @param PageReference $title
 	 */
-	protected function showLogEntries( PageReference $title ): void {
+	protected function showLogEntries(): void {
 		$deleteLogPage = new LogPage( 'delete' );
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $outputPage, 'delete', $title );
+		LogEventsList::showLogExtract( $outputPage, 'delete', $this->getTitle() );
 	}
 
 	/**
 	 * @param Message $pageTitle
-	 * @param PageReference $backlinkTitle
 	 */
-	protected function prepareOutput( Message $pageTitle, PageReference $backlinkTitle ): void {
+	protected function prepareOutput( Message $pageTitle ): void {
 		$outputPage = $this->getOutput();
 		$outputPage->setPageTitle( $pageTitle );
-		$outputPage->addBacklinkSubtitle( $backlinkTitle );
+		$outputPage->addBacklinkSubtitle( $this->getTitle() );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 	}
 
