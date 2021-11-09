@@ -2703,7 +2703,7 @@
 	"autosumm-blank": "Pejy nofotsiana",
 	"autosumm-replace": "Votoatiny novaina ho « $1 »",
 	"autoredircomment": "Pejy fihodinana mankany [[$1]]",
-	"autosumm-new": "Pejy voaforona amin'ny « $1 »",
+	"autosumm-new": "Pejy noforonina tamin'ny « $1 »",
 	"autosumm-newblank": "Namorona pejy fotsy",
 	"lag-warn-normal": "Ny fanovana vaovao nohon'ny $1 segondra {{PLURAL:}} dia tsy hiseho eo amin'ity lisitra ity.",
 	"lag-warn-high": "Noho ny hataraiky ny lohamilin'ny banky angona, tsy hiseho eto ny fanovana natao tao anatin'ny fotoana latsaky ny $1 segondra{{PLURAL:}}.",
