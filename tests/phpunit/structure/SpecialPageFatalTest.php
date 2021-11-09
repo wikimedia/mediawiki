@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Test that runs against all registered special pages to make sure that regular
@@ -38,6 +39,16 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 		$page = $spf->getPage( $name );
 		if ( !$page ) {
 			$this->markTestSkipped( "Could not create special page $name" );
+		}
+
+		// Assert that the global context is not used,
+		// can have side effects on Special:SpecialPages
+		$assertPage = TestingAccessWrapper::newFromObject( $page );
+		if ( $assertPage->mContext !== null ) {
+			// Does not call assertNull, because that prints the whole object
+			// and building message is also expensive
+			$this->fail( get_class( $page ) . '::__construct is not safe to call SpecialPage::getContext()' .
+				' (possible indirectly by other get*() functions)' );
 		}
 
 		$executor = new SpecialPageExecutor();
