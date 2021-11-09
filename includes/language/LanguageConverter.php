@@ -410,25 +410,28 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return false;
 		}
 
-		$services = MediaWikiServices::getInstance();
-		if ( $user->isRegistered() ) {
-			// Get language variant preference from logged in users
-			if (
-				$this->getMainCode() ==
-				$services->getContentLanguage()->getCode()
-			) {
-				$optionName = 'variant';
+		if ( !$this->mUserVariant ) {
+			$services = MediaWikiServices::getInstance();
+			if ( $user->isRegistered() ) {
+				// Get language variant preference from logged in users
+				if (
+					$this->getMainCode() ==
+					$services->getContentLanguage()->getCode()
+				) {
+					$optionName = 'variant';
+				} else {
+					$optionName = 'variant-' . $this->getMainCode();
+				}
 			} else {
-				$optionName = 'variant-' . $this->getMainCode();
+				// figure out user lang without constructing wgLang to avoid
+				// infinite recursion
+				$optionName = 'language';
 			}
-		} else {
-			// figure out user lang without constructing wgLang to avoid
-			// infinite recursion
-			$optionName = 'language';
-		}
-		$ret = $services->getUserOptionsLookup()->getOption( $user, $optionName );
+			$ret = $services->getUserOptionsLookup()->getOption( $user, $optionName );
 
-		$this->mUserVariant = $this->validateVariant( $ret );
+			$this->mUserVariant = $this->validateVariant( $ret );
+		}
+
 		return $this->mUserVariant;
 	}
 
