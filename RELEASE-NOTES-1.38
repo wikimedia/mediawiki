@@ -202,13 +202,14 @@ because of Phabricator reports.
   ::getRawUser and ::getRawDescription, deprecated since 1.37, has been removed.
 * ShellboxHttpClient class has been removed without deprecation. It was an
   internal class used by ShellboxClientFactory.
-* The following User methods, deprecated in 1.37, have been removed:
+* The following hard deprecated User methods have been removed:
   - ::resetIdByNameCache,
   - ::getStubThreshold,
   - ::matchEditTokenNoSuffix,
   - ::changeableByGroup,
   - ::changeableGroups,
-  - ::isAllowUsertalk
+  - ::isAllowUsertalk,
+  - ::getRights
 * Http::$httpEngine, deprecated since 1.34, has been removed. The only available
   HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
   removed.

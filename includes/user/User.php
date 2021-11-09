@@ -2789,20 +2789,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the permissions this user has.
-	 * @return string[] permission names
-	 *
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use MediaWikiServices::getInstance()->getPermissionManager()
-	 * ->getUserPermissions(..) instead
-	 *
-	 */
-	public function getRights() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissions( $this );
-	}
-
-	/**
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
 	 *
