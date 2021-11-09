@@ -1870,6 +1870,7 @@
 	"lockmanager-fail-db-release": "Could not release locks on database $1.",
 	"lockmanager-fail-svr-acquire": "Could not acquire locks on server $1.",
 	"lockmanager-fail-svr-release": "Could not release locks on server $1.",
+	"lockmanager-fail-conflict": "Could not acquire lock. Somebody else is doing something to this file.",
 	"zip-file-open-error": "An error was encountered when opening the file for ZIP checks.",
 	"zip-wrong-format": "The specified file was not a ZIP file.",
 	"zip-bad": "The file is a corrupt or otherwise unreadable ZIP file.\nIt cannot be properly checked for security.",

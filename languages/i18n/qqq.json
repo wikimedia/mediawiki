@@ -2097,6 +2097,7 @@
 	"lockmanager-fail-db-release": "Parameters:\n* $1 is a database name.",
 	"lockmanager-fail-svr-acquire": "Parameters:\n* $1 - server",
 	"lockmanager-fail-svr-release": "Parameters:\n* $1 is a server name.",
+	"lockmanager-fail-conflict": "Used as an error message when the lock is held by another process.",
 	"zip-file-open-error": "Used as ZIP error message.\n\nSee also:\n* {{msg-mw|Zip-wrong-format}}\n* {{msg-mw|Zip-bad}}\n* {{msg-mw|Zip-unsupported}}",
 	"zip-wrong-format": "Used as ZIP error message.\n\nSee also:\n* {{msg-mw|Zip-file-open-error}}\n* {{msg-mw|Zip-bad}}\n* {{msg-mw|Zip-unsupported}}",
 	"zip-bad": "Used as ZIP error message.\n\nSee also:\n* {{msg-mw|Zip-file-open-error}}\n* {{msg-mw|Zip-wrong-format}}\n* {{msg-mw|Zip-unsupported}}",
