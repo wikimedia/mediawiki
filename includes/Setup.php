@@ -116,7 +116,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
 		"git repository and must be installed separately by the end user.\n\n" .
 		'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
-		'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
+		'#Fetch_external_libraries">this page on mediawiki.org</a> for help on installing ' .
 		'the required components.'
 	);
 	echo $message;
