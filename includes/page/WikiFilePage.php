@@ -273,6 +273,12 @@ class WikiFilePage extends WikiPage {
 	 * @inheritDoc
 	 */
 	public function getActionOverrides() {
-		return [ 'delete' => FileDeleteAction::class ] + parent::getActionOverrides();
+		$file = $this->getFile();
+		if ( $file->exists() && $file->isLocal() && !$file->getRedirected() ) {
+			// Would be an actual file deletion
+			return [ 'delete' => FileDeleteAction::class ] + parent::getActionOverrides();
+		}
+		// It should use the normal article deletion interface
+		return parent::getActionOverrides();
 	}
 }
