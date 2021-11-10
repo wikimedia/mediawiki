@@ -4022,7 +4022,7 @@ $wgMangleFlashPolicy = true;
  *   a PHP callback. This allows dependency injection to be used.
  *   This option cannot be combined with the `class` option.
  *
- *   Since: **MW 1.30**
+ *   Since: MW 1.30
  *
  * - dependencies `{string[]|string}`:
  *   Modules that must be executed before this module.
@@ -4133,7 +4133,7 @@ $wgMangleFlashPolicy = true;
  *   the `scripts` option, including its extended variants `languageScripts`,
  *   `skinScripts`, and `debugScripts`.
  *
- *   Since: **MW 1.33**
+ *   Since: MW 1.33
  *
  *   Default: `[]`
  *
@@ -4174,15 +4174,15 @@ $wgMangleFlashPolicy = true;
  *
  *   Default: `[]`
  *
- *  - es6 `{bool}`:
- *    If true, this module will only be executed in browsers that support ES6. You should set this
- *    flag for modules that use ES6 in their JavaScript. Only use this for modules that provide
- *    progressive enhancements that are safe to not load in browsers that are not modern but still
- *    have a substantial user base, like IE11.
+ * - es6 `{bool}`:
+ *   If true, this module will only be executed in browsers that support ES6. You should set this
+ *   flag for modules that use ES6 in their JavaScript. Only use this for modules that provide
+ *   progressive enhancements that are safe to not load in browsers that are not modern but still
+ *   have a substantial user base, like IE11.
  *
- *    Since: **MW 1.36**
+ *   Since: MW 1.36
  *
- *    Default: `false`
+ *   Default: `false`
  *
  * ## Examples
  *
