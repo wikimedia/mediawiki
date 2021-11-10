@@ -1760,14 +1760,20 @@ class LoadBalancer implements ILoadBalancer {
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
 			if ( $limit > 0 ) {
 				if ( $time > $limit ) {
+					$humanTimeSec = round( $time, 3 );
 					throw new DBTransactionSizeError(
 						$conn,
-						"Transaction spent $time second(s) in writes, exceeding the limit of $limit",
+						"Transaction spent {$humanTimeSec}s in writes, exceeding the {$limit}s limit",
+						// Message parameters for: transaction-duration-limit-exceeded
 						[ $time, $limit ]
 					);
 				} elseif ( $time > 0 ) {
-					$this->perfLogger->debug( "Transaction spent $time second(s) in writes, " .
-						"less than the limit of $limit" );
+					$timeMs = $time * 1000;
+					$humanTimeMs = $timeMs > 1 ? round( $timeMs ) : round( $timeMs, 3 );
+					$this->perfLogger->debug(
+						"Transaction spent {time_ms}ms in writes, under the {$limit}s limit",
+						[ 'time_ms' => $humanTimeMs ]
+					);
 				}
 			}
 			// If a connection sits idle while slow queries execute on another, that connection
