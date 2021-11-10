@@ -28,3 +28,5 @@ $namespaceNames = [
 	NS_CATEGORY         => 'ОагӀат',
 	NS_CATEGORY_TALK    => 'ОагӀат_ювцар',
 ];
+
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюяӀ]+)(.*)$/sDu';
