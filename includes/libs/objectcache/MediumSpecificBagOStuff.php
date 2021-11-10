@@ -34,8 +34,6 @@ use Wikimedia\WaitConditionLoop;
 abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var array<string,array> Map of (key => (class, depth, expiry) */
 	protected $locks = [];
-	/** @var int ERR_* class constant */
-	protected $lastError = self::ERR_NONE;
 	/** @var int Seconds */
 	protected $syncTimeout;
 	/** @var int Bytes; chunk size of segmented cache values */
@@ -286,12 +284,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		do {
 			$token = self::PASS_BY_REF; // passed by reference
 			// Get the old value and CAS token from cache
-			$this->clearLastError();
+			$watchPoint = $this->watchErrors();
 			$currentValue = $this->resolveSegments(
 				$key,
 				$this->doGet( $key, $flags, $token )
 			);
-			if ( $this->getLastError() ) {
+			if ( $this->getLastError( $watchPoint ) ) {
 				// Don't spam slow retries due to network problems (retry only on races)
 				$this->logger->warning(
 					__METHOD__ . ' failed due to read I/O error on get() for {key}.',
@@ -307,7 +305,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$valueMatchesOldValue = ( $value === $currentValue );
 			unset( $currentValue ); // free RAM in case the value is large
 
-			$this->clearLastError();
+			$watchPoint = $this->watchErrors();
 			if ( $value === false || $exptime < 0 ) {
 				$success = true; // do nothing
 			} elseif ( $valueMatchesOldValue && $attemptsLeft !== $attempts ) {
@@ -319,7 +317,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				// Try to update the key, failing if it gets changed in the meantime
 				$success = $this->cas( $token, $key, $value, $exptime, $flags );
 			}
-			if ( $this->getLastError() ) {
+			if ( $this->getLastError( $watchPoint ) ) {
 				// Don't spam slow retries due to network problems (retry only on races)
 				$this->logger->warning(
 					__METHOD__ . ' failed due to write I/O error for {key}.',
@@ -376,13 +374,13 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		$curCasToken = self::PASS_BY_REF; // passed by reference
-		$this->clearLastError();
+		$watchPoint = $this->watchErrors();
 		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( is_object( $curCasToken ) ) {
 			// Using === does not work with objects since it checks for instance identity
 			throw new UnexpectedValueException( "CAS token cannot be an object" );
 		}
-		if ( $this->getLastError() ) {
+		if ( $this->getLastError( $watchPoint ) ) {
 			// Fail if the old CAS token could not be read
 			$success = false;
 			$this->logger->warning(
@@ -506,12 +504,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		$fname = __METHOD__;
 		$loop = new WaitConditionLoop(
 			function () use ( $key, $exptime, $fname, &$lockTsUnix ) {
-				$this->clearLastError();
+				$watchPoint = $this->watchErrors();
 				if ( $this->add( $this->makeLockKey( $key ), 1, $exptime ) ) {
 					$lockTsUnix = microtime( true );
 
 					return WaitConditionLoop::CONDITION_REACHED; // locked!
-				} elseif ( $this->getLastError() ) {
+				} elseif ( $this->getLastError( $watchPoint ) ) {
 					$this->logger->warning(
 						"$fname failed due to I/O error for {key}.",
 						[ 'key' => $key ]
@@ -754,12 +752,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
 		$init = is_int( $init ) ? $init : $value;
-		$this->clearLastError();
+		$watchPoint = $this->watchErrors();
 		$newValue = $this->incr( $key, $value, $flags );
-		if ( $newValue === false && !$this->getLastError() ) {
+		if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
 			// No key set; initialize
 			$newValue = $this->add( $key, (int)$init, $exptime, $flags ) ? $init : false;
-			if ( $newValue === false && !$this->getLastError() ) {
+			if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
 				// Raced out initializing; increment
 				$newValue = $this->incr( $key, $value, $flags );
 			}
@@ -803,32 +801,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		return $mainValue;
-	}
-
-	/**
-	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* constant for the "last error" registry
-	 * @since 1.23
-	 */
-	public function getLastError() {
-		return $this->lastError;
-	}
-
-	/**
-	 * Clear the "last error" registry
-	 * @since 1.23
-	 */
-	public function clearLastError() {
-		$this->lastError = self::ERR_NONE;
-	}
-
-	/**
-	 * Set the "last error" registry
-	 * @param int $err ERR_* constant
-	 * @since 1.23
-	 */
-	protected function setLastError( $err ) {
-		$this->lastError = $err;
 	}
 
 	final public function addBusyCallback( callable $workCallback ) {

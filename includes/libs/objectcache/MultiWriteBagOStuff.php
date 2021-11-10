@@ -347,23 +347,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function getLastError() {
-		foreach ( $this->caches as $cache ) {
-			$error = $cache->getLastError();
-			if ( $error !== self::ERR_NONE ) {
-				return $error;
-			}
-		}
-
-		return self::ERR_NONE;
-	}
-
-	public function clearLastError() {
-		foreach ( $this->caches as $cache ) {
-			$cache->clearLastError();
-		}
-	}
-
 	public function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
@@ -412,7 +395,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return mixed The result of calling the given method
 	 */
 	private function callKeyMethodOnTierCache( $index, $method, $arg0Sig, $rvSig, array $args ) {
-		return $this->caches[$index]->proxyCall( $method, $arg0Sig, $rvSig, $args );
+		return $this->caches[$index]->proxyCall( $method, $arg0Sig, $rvSig, $args, $this );
 	}
 
 	/**
@@ -447,7 +430,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 			if ( $i == 0 || !$asyncSecondary ) {
 				// Tier 0 store or in sync mode: write synchronously and get result
-				$storeRes = $cache->proxyCall( $method, $arg0Sig, $resSig, $args );
+				$storeRes = $cache->proxyCall( $method, $arg0Sig, $resSig, $args, $this );
 				if ( $storeRes === false ) {
 					$res = false;
 				} elseif ( $res === null ) {
@@ -456,8 +439,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 			} else {
 				// Secondary write in async mode: do not block this HTTP request
 				( $this->asyncHandler )(
-					static function () use ( $cache, $method, $arg0Sig, $resSig, $args ) {
-						$cache->proxyCall( $method, $arg0Sig, $resSig, $args );
+					function () use ( $cache, $method, $arg0Sig, $resSig, $args ) {
+						$cache->proxyCall( $method, $arg0Sig, $resSig, $args, $this );
 					}
 				);
 			}
