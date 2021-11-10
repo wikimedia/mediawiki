@@ -611,7 +611,7 @@ class DatabaseSqlite extends Database {
 		return $this->lastErrno() == 8; // SQLITE_READONLY;
 	}
 
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
 

@@ -1249,7 +1249,7 @@ abstract class DatabaseMysqlBase extends Database {
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return $errno == 2013 || $errno == 2006;
 	}
 
