@@ -1824,7 +1824,7 @@ $wgDjvuOutputExtension = 'jpg';
  * Shell to use when getting djvu metadata
  *
  * @var string
- * @since 1.37
+ * @since 1.38
  */
 $wgDjvuShell = '/bin/sh';
 
