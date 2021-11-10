@@ -592,6 +592,8 @@ $wgImgAuthUrlPathMap = [];
  *                      manager name used. A lock manager named in $wgLockManagers, or one of
  *                      the default lock managers "fsLockManager" or "nullLockManager". Default
  *                      "fsLockManager".
+ *   - favicon          URL to a favicon. This is exposed via FileRepo::getInfo and
+ *                      ApiQueryFileRepoInfo. Originally for use by MediaViewer (T77093).
  *
  * For most core repos:
  *   - zones            Associative array of zone names that each map to an array with:
