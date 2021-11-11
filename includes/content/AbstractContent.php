@@ -30,6 +30,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -444,8 +445,8 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable to override
 	 * @since 1.21
+	 * @deprecated since 1.38. Use ContentHandler::validateSave instead.
 	 *
 	 * @param WikiPage $page
 	 * @param int $flags
@@ -456,11 +457,27 @@ abstract class AbstractContent implements Content {
 	 * @see Content::prepareSave
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
-		if ( $this->isValid() ) {
-			return Status::newGood();
-		} else {
-			return Status::newFatal( "invalid-content-data" );
+		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'prepareSave'
+		);
+
+		if ( $detectPSDeprecatedOverride ) {
+			if ( $this->isValid() ) {
+				return Status::newGood();
+			} else {
+				return Status::newFatal( "invalid-content-data" );
+			}
 		}
+
+		$validationParams = new ValidationParams( $page, $flags, $parentRevId );
+		$statusValue = $this->getContentHandler()->validateSave(
+			$this,
+			$validationParams
+		);
+
+		return Status::wrap( $statusValue );
 	}
 
 	/**
