@@ -211,6 +211,9 @@ class ParserOutput extends CacheTime {
 	/** @var array Parser limit report data for JSON */
 	private $mLimitReportJSData = [];
 
+	/** @var string Debug message added by ParserCache */
+	private $mCacheMessage = '';
+
 	/**
 	 * @var array Timestamps for getTimeSinceStart().
 	 */
@@ -354,6 +357,7 @@ class ParserOutput extends CacheTime {
 	 *    the scheme-specific-part of the href is the (percent-encoded) value
 	 *    of the `data-mw-deduplicate` attribute.
 	 *  - absoluteURLs: (bool) use absolute URLs in all links. Default: false
+	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
 	 * @return string HTML
 	 * @return-taint escaped
 	 */
@@ -366,8 +370,13 @@ class ParserOutput extends CacheTime {
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
+			'includeDebugInfo' => false,
 		];
 		$text = $this->getRawText();
+
+		if ( $options['includeDebugInfo'] ) {
+			$text .= $this->renderDebugInfo();
+		}
 
 		Hooks::runner()->onParserOutputPostCacheTransform( $this, $text, $options );
 
@@ -530,7 +539,7 @@ class ParserOutput extends CacheTime {
 	 * @internal used by ParserCache
 	 */
 	public function addCacheMessage( string $msg ) {
-		$this->mText .= "\n<!-- $msg\n -->\n";
+		$this->mCacheMessage .= $msg;
 	}
 
 	/**
@@ -1603,6 +1612,83 @@ class ParserOutput extends CacheTime {
 		}
 	}
 
+	private function renderDebugInfo(): string {
+		$text = '';
+
+		$limitReportData = $this->getLimitReportData();
+		// If nothing set it, we can't get it.
+		if ( $limitReportData ) {
+			$limitReport = "NewPP limit report\n";
+
+			if ( array_key_exists( 'cachereport-origin', $limitReportData ) ) {
+				$limitReport .= "Parsed by {$limitReportData['cachereport-origin']}\n";
+			}
+
+			if ( array_key_exists( 'cachereport-timestamp', $limitReportData ) ) {
+				$limitReport .= "Cached time: {$limitReportData['cachereport-timestamp']}\n";
+			}
+
+			if ( array_key_exists( 'cachereport-ttl', $limitReportData ) ) {
+				$limitReport .= "Cache expiry: {$limitReportData['cachereport-ttl']}\n";
+			}
+
+			if ( array_key_exists( 'cachereport-transientcontent', $limitReportData ) ) {
+				$transient = $limitReportData['cachereport-transientcontent'] ? 'true' : 'false';
+				$limitReport .= "Reduced expiry: $transient\n";
+			}
+
+			// TODO: flags should go into limit report too.
+			$limitReport .= 'Complications: [' . implode( ', ', $this->getAllFlags() ) . "]\n";
+
+			foreach ( $limitReportData as $key => $value ) {
+				if ( in_array( $key, [
+					'cachereport-origin',
+					'cachereport-timestamp',
+					'cachereport-ttl',
+					'cachereport-transientcontent',
+					'limitreport-timingprofile'
+				] ) ) {
+					// These keys are processed separately.
+					continue;
+				}
+				if ( Hooks::runner()->onParserLimitReportFormat(
+					$key, $value, $limitReport, false, false )
+				) {
+					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
+					$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
+						->inLanguage( 'en' )->useDatabase( false );
+					if ( !$valueMsg->exists() ) {
+						$valueMsg = new RawMessage( '$1' );
+					}
+					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+						$valueMsg->params( $value );
+						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+					}
+				}
+			}
+			// Since we're not really outputting HTML, decode the entities and
+			// then re-encode the things that need hiding inside HTML comments.
+			$limitReport = htmlspecialchars_decode( $limitReport );
+
+			// Sanitize for comment. Note '‐' in the replacement is U+2010,
+			// which looks much like the problematic '-'.
+			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
+			$text = "\n<!-- \n$limitReport-->\n";
+
+			$profileReport = $limitReportData['limitreport-timingprofile'] ?? null;
+			if ( $profileReport ) {
+				$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
+				$text .= implode( "\n", $profileReport ) . "\n-->\n";
+			}
+		}
+
+		if ( $this->mCacheMessage ) {
+			$text .= "\n<!-- $this->mCacheMessage\n -->\n";
+		}
+
+		return $text;
+	}
+
 	/**
 	 * Check whether the cache TTL was lowered from the site default.
 	 *
@@ -2008,6 +2094,7 @@ class ParserOutput extends CacheTime {
 			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
 			'LimitReportJSData' => $this->mLimitReportJSData,
+			'CacheMessage' => $this->mCacheMessage,
 			'ParseStartTime' => $this->mParseStartTime,
 			'PreventClickjacking' => $this->mPreventClickjacking,
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
@@ -2079,6 +2166,7 @@ class ParserOutput extends CacheTime {
 		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
+		$this->mCacheMessage = $jsonData['CacheMessage'] ?? '';
 		$this->mParseStartTime = $jsonData['ParseStartTime'];
 		$this->mPreventClickjacking = $jsonData['PreventClickjacking'];
 		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];

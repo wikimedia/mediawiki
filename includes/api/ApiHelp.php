@@ -187,6 +187,7 @@ class ApiHelp extends ApiBase {
 		$helptitle = $options['helptitle'] ?? null;
 		$html = self::fixHelpLinks( $out->getHTML(), $helptitle, $haveModules );
 		$out->clearHTML();
+		// @phan-suppress-next-line SecurityCheck-XSS
 		$out->addHTML( $html );
 
 		if ( $cacheKey !== null ) {
