@@ -110,7 +110,7 @@ class SettingsBuilder {
 
 		foreach ( $this->settings['config-schema'] as $key => $schema ) {
 			if ( array_key_exists( 'default', $schema ) ) {
-				$this->configSink->setIfNotDefined( $key, $schema['default'] );
+				$this->configSink->setDefault( $key, $schema['default'] );
 			}
 		}
 
