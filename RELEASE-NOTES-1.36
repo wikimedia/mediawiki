@@ -218,7 +218,7 @@ This is no longer encouraged, and the option has been removed.
 * Updated jQuery Migrate from v3.1.0 to v3.3.2.
 * Updated jquery.client from 2.0.2 to 3.0.0.
 * Updated OOUI from 0.39.3 to 0.41.3.
-* Updated pear/mail_mime from 1.10.8 to 1.10.9.
+* Updated pear/mail_mime from 1.10.8 to 1.10.11.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * Updated pimple/pimple from 3.3.0 to 3.3.1.
 * Updated wikimedia/at-ease from 2.0.0 to 2.1.0.
