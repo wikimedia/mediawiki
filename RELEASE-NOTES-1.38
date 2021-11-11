@@ -66,6 +66,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated guzzlehttp/guzzle from 7.2.0 to 7.4.0.
 * Updated OOUI from v0.42.0 to v0.42.1
 * Updated WVUI from v0.3.0 to v0.3.2
 * Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
