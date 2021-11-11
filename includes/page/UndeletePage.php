@@ -26,6 +26,8 @@ use HTMLCacheUpdateJob;
 use JobQueueGroup;
 use LocalFile;
 use ManualLogEntry;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
@@ -33,7 +35,6 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\PageUpdaterFactory;
-use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
 use ReadOnlyMode;
@@ -68,8 +69,6 @@ class UndeletePage {
 	private $repoGroup;
 	/** @var RevisionStore */
 	private $revisionStore;
-	/** @var UserFactory */
-	private $userFactory;
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
@@ -91,6 +90,8 @@ class UndeletePage {
 	private $tags = [];
 	/** @var PageUpdaterFactory */
 	private $pageUpdaterFactory;
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -100,11 +101,11 @@ class UndeletePage {
 	 * @param RepoGroup $repoGroup
 	 * @param LoggerInterface $logger
 	 * @param RevisionStore $revisionStore
-	 * @param UserFactory $userFactory
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ProperPageIdentity $page
 	 * @param Authority $performer
 	 * @param PageUpdaterFactory $pageUpdaterFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
@@ -114,11 +115,11 @@ class UndeletePage {
 		RepoGroup $repoGroup,
 		LoggerInterface $logger,
 		RevisionStore $revisionStore,
-		UserFactory $userFactory,
 		WikiPageFactory $wikiPageFactory,
 		ProperPageIdentity $page,
 		Authority $performer,
-		PageUpdaterFactory $pageUpdaterFactory
+		PageUpdaterFactory $pageUpdaterFactory,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->jobQueueGroup = $jobQueueGroup;
@@ -127,12 +128,12 @@ class UndeletePage {
 		$this->repoGroup = $repoGroup;
 		$this->logger = $logger;
 		$this->revisionStore = $revisionStore;
-		$this->userFactory = $userFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
 
 		$this->page = $page;
 		$this->performer = $performer;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -413,14 +414,12 @@ class UndeletePage {
 				$this->page
 			);
 
-			// TODO: The User isn't used for anything in prepareSave()! We should drop it.
-			$legacyRevUser = $this->userFactory->newFromUserIdentity( $revision->getUser( RevisionRecord::RAW ) );
-
 			foreach ( $revision->getSlotRoles() as $role ) {
 				$content = $revision->getContent( $role, RevisionRecord::RAW );
-
-				// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
-				$status = $content->prepareSave( $wikiPage, 0, -1, $legacyRevUser );
+				// NOTE: article ID may not be known yet. validateSave() should not modify the database.
+				$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+				$validationParams = new ValidationParams( $wikiPage, 0 );
+				$status = $contentHandler->validateSave( $content, $validationParams );
 				if ( !$status->isOK() ) {
 					$dbw->endAtomic( __METHOD__ );
 

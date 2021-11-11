@@ -29,6 +29,7 @@
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -1610,6 +1611,59 @@ abstract class ContentHandler {
 			$content,
 			$pltParams
 		);
+	}
+
+	/**
+	 * Validate content for saving it.
+	 *
+	 * This may be used to check the content's consistency with global state. This function should
+	 * NOT write any information to the database.
+	 *
+	 * Note that this method will usually be called inside the same transaction
+	 * bracket that will be used to save the new revision, so the revision passed
+	 * in is probably unsaved (has no id) and might belong to unsaved page.
+	 *
+	 * @since 1.38
+	 * @stable to override
+	 *
+	 * @param Content $content
+	 * @param ValidationParams $validationParams
+	 *
+	 * @return StatusValue A status object indicating if content can be saved in the given revision.
+	 */
+	public function validateSave(
+		Content $content,
+		ValidationParams $validationParams
+	) {
+		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'prepareSave'
+		);
+
+		if ( $detectPSDeprecatedOverride ) {
+			$services = MediaWikiServices::getInstance();
+			$page = $validationParams->getPageIdentity();
+			$user = RequestContext::getMain()->getUser();
+
+			if ( !( $page instanceof WikiPage ) ) {
+				$wikiPageFactory = $services->getWikiPageFactory();
+				$page = $wikiPageFactory->newFromTitle( $page );
+			}
+
+			return $content->prepareSave(
+				$page,
+				$validationParams->getFlags(),
+				$validationParams->getParentRevisionId(),
+				$user
+			);
+		}
+
+		if ( $content->isValid() ) {
+			return StatusValue::newGood();
+		} else {
+			return StatusValue::newFatal( "invalid-content-data" );
+		}
 	}
 
 	/**
