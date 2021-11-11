@@ -129,6 +129,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated OOUI from v0.41.3 to v0.42.0
 * Updated WVUI from v0.1.0 to v0.3.0
 * Updated cssjanus/cssjanus from v1.3.0 to v2.1.0.
+* Updated pear/mail_mime from 1.10.9 to 1.10.11.
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
