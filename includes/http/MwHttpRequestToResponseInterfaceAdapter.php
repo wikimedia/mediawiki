@@ -3,11 +3,11 @@
 declare( strict_types = 1 );
 namespace MediaWiki\Http;
 
+use GuzzleHttp\Psr7\Utils;
 use LogicException;
 use MWHttpRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use function GuzzleHttp\Psr7\stream_for;
 
 /**
  * @since 1.36
@@ -73,7 +73,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	public function getBody(): StreamInterface {
-		return stream_for( $this->mwHttpRequest->getContent() );
+		return Utils::streamFor( $this->mwHttpRequest->getContent() );
 	}
 
 	public function withBody( StreamInterface $body ): void {
