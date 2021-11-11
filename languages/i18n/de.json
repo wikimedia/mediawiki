@@ -1897,6 +1897,7 @@
 	"lockmanager-fail-db-release": "Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.",
 	"lockmanager-fail-svr-acquire": "Die Sperren auf Server $1 konnte nicht abgerufen werden.",
 	"lockmanager-fail-svr-release": "Die Sperren auf Server $1 konnten nicht freigegeben werden.",
+	"lockmanager-fail-conflict": "Konnte keine Sperre erhalten. Jemand anderes macht etwas mit dieser Datei.",
 	"zip-file-open-error": "Es ist ein Fehler beim Öffnen der Datei zur ZIP-Überprüfung aufgetreten.",
 	"zip-wrong-format": "Die angegebene Datei ist keine ZIP-Datei.",
 	"zip-bad": "Die Datei ist beschädigt oder eine aus anderweitigen Gründen nicht lesbare ZIP-Datei.\nSie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werden.",

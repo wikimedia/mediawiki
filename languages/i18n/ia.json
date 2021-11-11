@@ -1793,6 +1793,7 @@
 	"lockmanager-fail-db-release": "Non poteva liberar le serraturas sur le base de datos $1.",
 	"lockmanager-fail-svr-acquire": "Non poteva acquirer le serraturas sur le servitor $1.",
 	"lockmanager-fail-svr-release": "Non poteva liberar le serraturas sur le servitor $1.",
+	"lockmanager-fail-conflict": "Non esseva possibile marcar le file pro uso exclusive perque un altere persona lo usa in iste momento.",
 	"zip-file-open-error": "Un error esseva incontrate durante le apertura del file pro verification de ZIP.",
 	"zip-wrong-format": "Le file specificate non es un file ZIP.",
 	"zip-bad": "Iste file es un archivo ZIP defectuose o alteremente illegibile.\nUn verification correcte de su securitate es impossibile.",
