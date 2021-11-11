@@ -498,11 +498,25 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers File::getDescriptionText
+	 * @covers LocalFile::getDescriptionText
 	 */
-	public function testDescriptionTextForNonExistingFile() {
+	public function testDescriptionText_NonExisting() {
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
 		$this->assertFalse( $file->getDescriptionText() );
+	}
+
+	/**
+	 * @covers LocalFile::getDescriptionText
+	 */
+	public function testDescriptionText_Existing() {
+		$this->assertTrue( $this->editPage(
+			__METHOD__,
+			'TEST CONTENT',
+			'',
+			NS_FILE
+		)->isOK() );
+		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( __METHOD__ );
+		$this->assertStringContainsString( 'TEST CONTENT', $file->getDescriptionText() );
 	}
 
 	public function provideLoadFromDBAndCache() {

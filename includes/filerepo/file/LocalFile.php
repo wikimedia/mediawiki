@@ -25,7 +25,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -2539,28 +2538,29 @@ class LocalFile extends File {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
 
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revision = $store->getRevisionByTitle( $this->title, 0, RevisionStore::READ_NORMAL );
-		if ( !$revision ) {
+		$services = MediaWikiServices::getInstance();
+		$page = $services->getPageStore()->getPageByReference( $this->getTitle() );
+		if ( !$page ) {
 			return false;
 		}
 
-		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$rendered = $renderer->getRenderedRevision(
-			$revision,
-			ParserOptions::newFromUserAndLang(
+		if ( $lang ) {
+			$parserOptions = ParserOptions::newFromUserAndLang(
 				RequestContext::getMain()->getUser(),
 				$lang
-			)
-		);
-
-		if ( !$rendered ) {
-			// audience check failed
-			return false;
+			);
+		} else {
+			$parserOptions = ParserOptions::newFromContext( RequestContext::getMain() );
 		}
 
-		$pout = $rendered->getRevisionParserOutput();
-		return $pout->getText();
+		$parseStatus = $services->getParserOutputAccess()
+			->getParserOutput( $page, $parserOptions );
+
+		if ( !$parseStatus->isGood() ) {
+			// Rendering failed.
+			return false;
+		}
+		return $parseStatus->getValue()->getText();
 	}
 
 	/**
