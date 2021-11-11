@@ -252,11 +252,17 @@ class DjVuHandler extends ImageHandler {
 	 * Get metadata, unserializing it if necessary.
 	 *
 	 * @param File $file The DjVu file in question
-	 * @return string|false XML metadata as a string.
+	 * @param bool $gettext
+	 * @return string|false|array metadata
 	 * @throws MWException
 	 */
-	private function getXMLMetadata( File $file ) {
-		$unser = $file->getMetadataArray();
+	private function getMetadataInternal( File $file, $gettext ) {
+		$itemNames = [ 'error', '_error', 'data', 'xml' ];
+		if ( $gettext ) {
+			$itemNames[] = 'text';
+		}
+		$unser = $file->getMetadataItems( $itemNames );
+
 		if ( isset( $unser['error'] ) ) {
 			return false;
 		} elseif ( isset( $unser['xml'] ) ) {
@@ -268,15 +274,15 @@ class DjVuHandler extends ImageHandler {
 			// Old style. Not serialized but instead just a raw string of XML.
 			return $unser['_error'];
 		} else {
-			return false;
+			return $unser;
 		}
 	}
 
 	/**
-	 * Cache a document tree for the DjVu XML metadata
+	 * Cache a document tree for the DjVu metadata
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
-	 * @return SimpleXMLElement|false
+	 * @return SimpleXMLElement|false|array
 	 */
 	public function getMetaTree( $image, $gettext = false ) {
 		if ( $gettext && $image->getHandlerState( self::STATE_TEXT_TREE ) ) {
@@ -286,14 +292,22 @@ class DjVuHandler extends ImageHandler {
 			return $image->getHandlerState( self::STATE_META_TREE );
 		}
 
-		$xml = $this->getXMLMetadata( $image );
-		if ( !$xml ) {
-			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow" );
-
+		$metadata = $this->getMetadataInternal( $image, $gettext );
+		if ( !$metadata ) {
 			return false;
 		}
 
-		$trees = $this->extractTreesFromXML( $xml );
+		if ( is_array( $metadata ) ) {
+			if ( $gettext ) {
+				return $metadata;
+			} else {
+				unset( $metadata['text'] );
+				return $metadata;
+			}
+		}
+
+		// XML version saved
+		$trees = $this->extractTreesFromXML( $metadata );
 		$image->setHandlerState( self::STATE_TEXT_TREE, $trees['TextTree'] );
 		$image->setHandlerState( self::STATE_META_TREE, $trees['MetaTree'] );
 
@@ -353,17 +367,16 @@ class DjVuHandler extends ImageHandler {
 		wfDebug( "Getting DjVu metadata for $path" );
 
 		$djvuImage = $this->getDjVuImage( $state, $path );
-		$xml = $djvuImage->retrieveMetaData();
-		if ( $xml === false ) {
+		$metadata = $djvuImage->retrieveMetaData();
+		if ( $metadata === false ) {
 			// Special value so that we don't repetitively try and decode a broken file.
 			$metadata = [ 'error' => 'Error extracting metadata' ];
-		} else {
-			$metadata = [ 'xml' => $xml ];
 		}
 		return [ 'metadata' => $metadata ] + $djvuImage->getImageSize();
 	}
 
 	public function getMetadataType( $image ) {
+		// historical reasons
 		return 'djvuxml';
 	}
 
@@ -402,16 +415,32 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * Given an XML metadata tree, returns dimension information about the document
-	 * @param SimpleXMLElement|false $metatree The file's XML metadata tree
+	 * Given the metadata, returns dimension information about the document
+	 * @param SimpleXMLElement|false|array $metatree The file's metadata tree
 	 * @return array|false
 	 */
 	protected function getDimensionInfoFromMetaTree( $metatree ) {
 		if ( !$metatree ) {
 			return false;
 		}
-
 		$dimsByPage = [];
+
+		if ( is_array( $metatree['data'] ) ) {
+			foreach ( $metatree['data']['pages'] as $page ) {
+				if ( !$page ) {
+					$dimsByPage[] = false;
+				} else {
+					$dimsByPage[] = [
+						'width' => (int)$page['width'],
+						'height' => (int)$page['height'],
+					];
+				}
+			}
+			return [
+				'pageCount' => count( $metatree['data']['pages'] ),
+				'dimensionsByPage' => $dimsByPage
+			];
+		}
 		$count = count( $metatree->xpath( '//OBJECT' ) );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$o = $metatree->BODY[0]->OBJECT[$i];
@@ -438,8 +467,18 @@ class DjVuHandler extends ImageHandler {
 		if ( !$tree ) {
 			return false;
 		}
+		// b/c
+		if ( $tree instanceof SimpleXMLElement ) {
+			$o = $tree->BODY[0]->PAGE[$page - 1];
+			return $o ? (string)$o['value'] : false;
+		}
+		if ( isset( $tree['text'] ) && isset( $tree['text'][$page - 1] ) ) {
+			return $tree['text'][$page - 1];
+		}
+		return false;
+	}
 
-		$o = $tree->BODY[0]->PAGE[$page - 1];
-		return $o ? (string)$o['value'] : false;
+	public function useSplitMetadata() {
+		return true;
 	}
 }

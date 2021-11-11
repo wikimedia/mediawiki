@@ -29,7 +29,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 			new TrivialMediaHandlerState, $this->filePath . '/LoremIpsum.djvu' );
 		$this->assertSame( 2480, $info['width'] );
 		$this->assertSame( 3508, $info['height'] );
-		$this->assertIsString( $info['metadata']['xml'] );
+		$this->assertIsArray( $info['metadata']['data'] );
 	}
 
 	public function testInvalidFile() {
