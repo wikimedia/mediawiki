@@ -1634,7 +1634,7 @@
 	"rcfilters-noresults-conflict": "Результатов не найдено из-за конфликта критериев поиска",
 	"rcfilters-state-message-subset": "Фильтр не будет иметь эффекта, поскольку его результаты включены в {{PLURAL:$2|следующий более широкий фильтр|следующие более широкие фильтры}} (попробуйте подсвечивание для различения): $1",
 	"rcfilters-state-message-fullcoverage": "Выбор всех фильтров в этой группе — это то же самое, что и отсутствие какого-либо выбора, поэтому данный фильтр не имеет никакого эффекта. Включённые группы: $1",
-	"rcfilters-filtergroup-authorship": "Редактировать авторство",
+	"rcfilters-filtergroup-authorship": "Авторство правок",
 	"rcfilters-filter-editsbyself-label": "Внесённые вами изменения",
 	"rcfilters-filter-editsbyself-description": "Ваш вклад.",
 	"rcfilters-filter-editsbyother-label": "Изменения, внесённые другими участниками",

@@ -12,6 +12,7 @@
 			"Nemo bis",
 			"Nicky.ker",
 			"Nrowe",
+			"SawJaemin",
 			"Scryfer",
 			"아라"
 		]
@@ -780,6 +781,7 @@
 	"excontent": "yth esa ynni: \"$1\"",
 	"delete-confirm": "Dilea \"$1\"",
 	"delete-legend": "Dilea",
+	"historyaction-submit": "နဲၣ်ဖျါ တၢ်က့ကွၢ်ကဒါက့ၤတၢ်တဖၣ်",
 	"actioncomplete": "Kowlwrys yw an gwrians",
 	"actionfailed": "An gwrians a fyllis",
 	"deletedtext": "\"$1\" re beu diles.\nGwelewgh $2 rag kovadh a dhileansow a-dhiwedhes.",

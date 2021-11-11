@@ -518,7 +518,7 @@
 	"noarticletext-nopermission": "ပ္ဍဲမုက်လိက်ဏအ် လိက်ဟွံမဲဏီရ၊၊ မၞး ဂၠာဲကေတ် [[Special:Search/{{PAGENAME}}|search for this page title]] ပ္ဍဲမုက်လိက်တၞဟ်၊ ဟွံသေင်မ္ဂး ကလိဂွံမာန်ရ၊၊ <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, ဆဂး မၞးအခေါင် ခၞံကၠောန် မုက်လိက်ဏအ် ဟွံမဲ၊၊",
 	"userpage-userdoesnotexist": "အကံက်ညးလွပ်$1ဂှ်ဟွံသ္ပလဝ်စၟတ်သမ္တီရ.\nသ္ပဂုဏ်တုဲစၟဳစၟတ်ရံၚ် ယဝ်ရမၞးမိက်ဂွံခၞံကၠောန်/ဒါန်မုက်လိက်ဏအ်.",
 	"userpage-userdoesnotexist-view": "အကံက် ညးလွပ် \"$1\" ဂှ် ဟွံဂွံပၠောပ်လဝ် စရင်၊၊",
-	"blocked-notice-logextract": "ညးလွပ်ဏအ်ဂှ်လၟုဟ်ဒးဒုၚ်ကၟာတ်လဝ်.\nအရာဒးဒုၚ်ကၟာတ်လဝ်လုပ်လံက်ဂှ် ဒးဒုၚ်စဵုဒၞဲါလဝ်သွက်စၞောန်သၟဝ်:",
+	"blocked-notice-logextract": "{{GENDER:$1|ညးလွပ်}}ဏအ်ဂှ်လၟုဟ်ဒးဒုၚ်ကၟာတ်လဝ်။\nအရာဒးဒုၚ်ကၟာတ်လဝ်လုပ်လံက်ဂှ် ဒးဒုၚ်စဵုဒၞဲါလဝ်သွက်စၞောန်သၟဝ်:",
 	"clearyourcache": "<strong>တင်စၟတ်:</strong> ကြဴနူ မသီဂိုင်တုဲ တၞဟ်နမဂွံညာတ် အပြံင်အလှာဲ မၞးသ္ဒးကၟာတ်ထောအ် မုက်လိက်ဗြောဝ်သာဂှ်ရောင်။ \n* <strong>Firefox / Safari:</strong>မ္ဂး ဍဵုလဝ် <em>Shift</em> အဃောမဍဵု <em>Reload</em>၊ ဟွံသေင်မ္ဂး ဍဵု either <em>Ctrl-F5</em> ဟွံသေင်မ္ဂး <em>Ctrl-R</em> (<em>⌘-R</em> သွက် Mac)\n* <strong>Google Chrome:</strong>မ္ဂး ဍဵု <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> သွက် Mac)\n* <strong>Internet Explorer / Edge:</strong>မ္ဂး ဍဵုလဝ် <em>Ctrl</em> အဃော မဍဵု <em>Refresh</em>, ဟွံသေင်မ္ဂး ဍဵု <em>Ctrl-F5</em>\n* <strong>Opera:</strong> မ္ဂး ဍဵု <em>Ctrl-F5</em>.",
 	"updated": "(ပဂဵုလဟဵု)",
 	"note": "<strong>စၟတ်သမ္တီ:</strong>",

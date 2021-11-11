@@ -199,7 +199,6 @@
 	"searchmenu-new": "<strong>Энэ викидэ \"[[:$1]]\" гэһэн хуудаһые үүсхэхэ!</strong> {{PLURAL:$2|0=|Мүн олдоһон хуудаһые харагты.|Мүн хайлтын дүные харагты.}}",
 	"searchprofile-articles": "Агуулгын хуудаһанууд",
 	"searchprofile-images-tooltip": "Файл хайха",
-	"search-result-size": "$1 (ниитэ $2 үгэ�)",
 	"search-interwiki-more": "(үшөө)",
 	"search-nonefound": "Хайлтада таараһан үрэ дүн олдоһонгүй.",
 	"mypreferences": "Тааруулга",
