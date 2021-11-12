@@ -1796,6 +1796,7 @@
 	"lockmanager-fail-db-release": "Ne morem sprostiti zaklepov zbirke podatkov $1.",
 	"lockmanager-fail-svr-acquire": "Ne morem pridobiti zaklepov na strežniku $1.",
 	"lockmanager-fail-svr-release": "Ne morem sprostiti zaklepov strežnika $1.",
+	"lockmanager-fail-conflict": "Nismo uspeli pridobiti zaklepa. Nekdo drug počne nekaj na tej datoteki.",
 	"zip-file-open-error": "Med odpiranjem datoteke za preverjanja ZIP je prišlo do napake.",
 	"zip-wrong-format": "Navedena datoteka ni bila datoteka ZIP.",
 	"zip-bad": "Datoteka je pokvarjena ali kako drugače neberljiva datoteka ZIP.\nNi mogoče ustrezno preveriti njene varnosti.",
