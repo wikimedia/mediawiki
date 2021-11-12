@@ -245,8 +245,8 @@ class DjVuImage {
 	}
 
 	/**
-	 * Return an XML string describing the DjVu image
-	 * @return string|null|false
+	 * Return an array describing the DjVu image
+	 * @return array|null|false
 	 */
 	public function retrieveMetaData() {
 		global $wgDjvuDump, $wgDjvuTxt, $wgDjvuShell;
@@ -284,14 +284,15 @@ class DjVuImage {
 			->execute();
 		if ( $wgDjvuDump !== null ) {
 			$dump = $result->getFileContents( 'dump' );
-			$xml = $this->convertDumpToXML( $dump );
+			$json = [ 'data' => $this->convertDumpToJSON( $dump ) ];
 		} else {
-			$xml = null;
+			$json = null;
 		}
 
 		# Text layer
 		if ( $wgDjvuTxt !== null ) {
 			$retval = (int)trim( $result->getFileContents( 'txt_exit_code' ) );
+			$json['text'] = [];
 			if ( $retval == 0 ) {
 				$txt = $result->getFileContents( 'txt' );
 				# Strip some control characters
@@ -311,58 +312,51 @@ class DjVuImage {
 					| # Or page can be empty ; in this case, djvutxt dumps ()
 					\(\s*()\)/sx
 EOR;
-				$txt = preg_replace_callback( $reg, [ $this, 'pageTextCallback' ], $txt );
-				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
-				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 ) .
-					$txt .
-					'</mw-djvu>';
+				$matches = [];
+				preg_match_all( $reg, $txt, $matches );
+				$json['text'] = array_map( [ $this, 'pageTextCallback' ], $matches[1] );
 			}
 		}
 
-		return $xml;
+		return $json;
 	}
 
-	private function pageTextCallback( $matches ) {
-		# Get rid of invalid UTF-8, strip control characters
-		$val = htmlspecialchars( UtfNormal\Validator::cleanUp( stripcslashes( $matches[1] ) ) );
-		$val = str_replace( [ "\n", '�' ], [ '&#10;', '' ], $val );
-		return '<PAGE value="' . $val . '" />';
+	private function pageTextCallback( string $match ) {
+		# Get rid of invalid UTF-8
+		$val = UtfNormal\Validator::cleanUp( stripcslashes( $match ) );
+		$val = str_replace( '�', '', $val );
+		return $val;
 	}
 
 	/**
-	 * Hack to temporarily work around djvutoxml bug
 	 * @param string $dump
-	 * @return string|false
+	 * @return array|false
 	 */
-	private function convertDumpToXML( $dump ) {
+	private function convertDumpToJSON( $dump ) {
 		if ( strval( $dump ) == '' ) {
 			return false;
 		}
-
-		$xml = <<<EOT
-<?xml version="1.0" ?>
-<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
-<DjVuXML>
-<HEAD></HEAD>
-<BODY>
-EOT;
 
 		$dump = str_replace( "\r", '', $dump );
 		$line = strtok( $dump, "\n" );
 		$m = false;
 		$good = false;
+		$result = [];
 		if ( preg_match( '/^( *)FORM:DJVU/', $line, $m ) ) {
 			# Single-page
-			if ( $this->parseFormDjvu( $line, $xml ) ) {
+			$parsed = $this->parseFormDjvu( $line );
+			if ( $parsed ) {
 				$good = true;
 			} else {
 				return false;
 			}
+			$result[] = $parsed;
 		} elseif ( preg_match( '/^( *)FORM:DJVM/', $line, $m ) ) {
 			# Multi-page
 			$parentLevel = strlen( $m[1] );
 			# Find DIRM
 			$line = strtok( "\n" );
+			$result['pages'] = [];
 			while ( $line !== false ) {
 				$childLevel = strspn( $line, ' ' );
 				if ( $childLevel <= $parentLevel ) {
@@ -375,13 +369,16 @@ EOT;
 
 					return false;
 				}
+
 				if ( preg_match( '/^ *FORM:DJVU/', $line ) ) {
 					# Found page
-					if ( $this->parseFormDjvu( $line, $xml ) ) {
+					$parsed = $this->parseFormDjvu( $line );
+					if ( $parsed ) {
 						$good = true;
 					} else {
 						return false;
 					}
+					$result['pages'][] = $parsed;
 				}
 				$line = strtok( "\n" );
 			}
@@ -390,15 +387,12 @@ EOT;
 			return false;
 		}
 
-		$xml .= "</BODY>\n</DjVuXML>\n";
-
-		return $xml;
+		return $result;
 	}
 
-	private function parseFormDjvu( $line, &$xml ) {
+	private function parseFormDjvu( $line ) {
 		$parentLevel = strspn( $line, ' ' );
 		$line = strtok( "\n" );
-
 		# Find INFO
 		while ( $line !== false ) {
 			$childLevel = strspn( $line, ' ' );
@@ -412,21 +406,12 @@ EOT;
 				$line,
 				$m
 			) ) {
-				$xml .= Xml::tags(
-					'OBJECT',
-					[
-						# 'data' => '',
-						# 'type' => 'image/x.djvu',
-						'height' => $m[2],
-						'width' => $m[1],
-						# 'usemap' => '',
-					],
-					"\n" .
-						Xml::element( 'PARAM', [ 'name' => 'DPI', 'value' => $m[3] ] ) . "\n" .
-						Xml::element( 'PARAM', [ 'name' => 'GAMMA', 'value' => $m[4] ] ) . "\n"
-				) . "\n";
-
-				return true;
+				return [
+					'height' => (int)$m[2],
+					'width' => (int)$m[1],
+					'dpi' => (float)$m[3],
+					'gamma' => (float)$m[4],
+				];
 			}
 			$line = strtok( "\n" );
 		}
