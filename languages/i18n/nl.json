@@ -1887,6 +1887,7 @@
 	"lockmanager-fail-db-release": "Het was niet mogelijk om de vergrendeling voor de database $1 op te heffen.",
 	"lockmanager-fail-svr-acquire": "Het was niet mogelijk een vergrendeling te krijgen op server $1.",
 	"lockmanager-fail-svr-release": "Het was niet mogelijk om de vergrendeling voor de server $1 op te heffen.",
+	"lockmanager-fail-conflict": "Kon het bestand niet vergrendelen. Iemand anders is waarschijnlijk met het bestand bezig.",
 	"zip-file-open-error": "Er is een fout opgetreden bij het openen van het bestand voor de ZIP-controle.",
 	"zip-wrong-format": "Het opgegeven bestand was geen ZIP-bestand.",
 	"zip-bad": "Het bestand is een beschadigd of onleesbaar ZIP-bestand.\nDe veiligheid kan niet worden gecontroleerd.",

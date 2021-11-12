@@ -1966,7 +1966,7 @@
 	"rollback": "Йухабаккха хийцам",
 	"rollbacklink": "йухайаккха",
 	"rollbacklinkcount": "йухадаккха $1 {{PLURAL:$1|нисдар}}",
-	"rollbacklinkcount-morethan": "Йухадаккха $1 дукха {{PLURAL:$1|нисдар}}",
+	"rollbacklinkcount-morethan": "$1 сов {{PLURAL:$1|нисдар}} йухадаккха",
 	"rollbackfailed": "Йухайоккхуш гӀалат ду",
 	"alreadyrolled": "ТӀаьххьара [[User:$2|$2]] ([[User talk:$2|дийцар]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) декъашхочо «[[:$1]]» агӀонан бина хийцамаш йухабаха цатарло,\nхӀинцале цхъаъ кхиъна хийцамаш йухабаха йа агӀо тайан.\n\nХийцамаш бинарг [[User:$3|$3]] ([[User talk:$3|дийцар]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Хийцамаш барна гайтина бахьана: <em>$1</em>.",
