@@ -425,7 +425,10 @@ class DjVuHandler extends ImageHandler {
 		}
 		$dimsByPage = [];
 
-		if ( is_array( $metatree['data'] ) ) {
+		if ( is_array( $metatree ) ) {
+			if ( !$metatree['data'] ) {
+				return false;
+			}
 			foreach ( $metatree['data']['pages'] as $page ) {
 				if ( !$page ) {
 					$dimsByPage[] = false;
