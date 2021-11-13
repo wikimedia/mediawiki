@@ -96,7 +96,7 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * Create UserIdentity for a registered user.
 	 *
-	 * @since 1.37
+	 * @since 1.36
 	 * @param int $userId
 	 * @param string $name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
@@ -110,7 +110,7 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * Create UserIdentity for an external user with $prefix and $name
 	 *
-	 * @since 1.37
+	 * @since 1.36
 	 * @param string $prefix
 	 * @param string $name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
