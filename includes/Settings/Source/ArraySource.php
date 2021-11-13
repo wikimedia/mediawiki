@@ -8,7 +8,6 @@ namespace MediaWiki\Settings\Source;
  * @since 1.38
  */
 class ArraySource implements SettingsSource {
-
 	private $settings;
 
 	public function __construct( array $settings ) {

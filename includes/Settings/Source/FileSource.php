@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings\Source;
 
+use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\Format\JsonFormat;
 use MediaWiki\Settings\Source\Format\SettingsFormat;
@@ -14,12 +15,25 @@ use Wikimedia\AtEase\AtEase;
  *
  * @since 1.38
  */
-class FileSource implements SettingsSource {
+class FileSource implements CacheableSource {
 
 	private const BUILT_IN_FORMATS = [
 		JsonFormat::class,
 		YamlFormat::class,
 	];
+
+	/**
+	 * Early expiry weight. This value influences the margin by which
+	 * processes are selected to expire cached local-file settings early to
+	 * avoid cache stampedes. Changes to this value are not likely to be
+	 * necessary as time spent loading from local files should not have much
+	 * variation and should already be well served by the default early expiry
+	 * calculation.
+	 *
+	 * @see getExpiryWeight()
+	 * @see CacheableSource::getExpiryWeight()
+	 */
+	private const EXPIRY_WEIGHT = 1.0;
 
 	/**
 	 * Format to use for reading the file, if given.
@@ -96,6 +110,35 @@ class FileSource implements SettingsSource {
 				'path' => $this->path,
 			]
 		);
+	}
+
+	/**
+	 * Coefficient used in determining early expiration of cached settings to
+	 * avoid stampedes.
+	 *
+	 * @return float
+	 */
+	public function getExpiryWeight(): float {
+		return self::EXPIRY_WEIGHT;
+	}
+
+	/**
+	 * Returns a hash key computed from the file's inode, size, and last
+	 * modified timestamp.
+	 *
+	 * @return string
+	 */
+	public function getHashKey(): string {
+		$stat = stat( $this->path );
+
+		if ( $stat === false ) {
+			throw new SettingsBuilderException(
+				"Failed to stat file '{path}'",
+				[ 'path' => $this->path ]
+			);
+		}
+
+		return sprintf( '%x-%x-%x', $stat['ino'], $stat['size'], $stat['mtime'] );
 	}
 
 	/**
