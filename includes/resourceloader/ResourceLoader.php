@@ -57,62 +57,54 @@ use Wikimedia\WrappedString;
  * @since 1.17
  */
 class ResourceLoader implements LoggerAwareInterface {
-	/** @var Config */
-	protected $config;
-	/** @var MessageBlobStore */
-	protected $blobStore;
-	/** @var DependencyStore */
-	protected $depStore;
+	/** @var int */
+	public const CACHE_VERSION = 9;
+	/** @var string JavaScript / CSS pragma to disable minification. * */
+	public const FILTER_NOMIN = '/*@nomin*/';
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var ResourceLoaderModule[] Map of (module name => ResourceLoaderModule) */
-	protected $modules = [];
-	/** @var array[] Map of (module name => associative info array) */
-	protected $moduleInfos = [];
-	/**
-	 * Associative array mapping framework ids to a list of names of test suite modules
-	 * like [ 'qunit' => [ 'mediawiki.tests.qunit.suites', 'ext.foo.tests', ... ], ... ]
-	 * @var array
-	 */
-	protected $testModuleNames = [];
-	/** @var string[] List of module names that contain QUnit test suites */
-	protected $testSuiteModuleNames = [];
-	/** @var array Map of (source => path); E.g. [ 'source-id' => 'http://.../load.php' ] */
-	protected $sources = [];
-	/** @var array Errors accumulated during current respond() call */
-	protected $errors = [];
-	/** @var string[] Extra HTTP response headers from modules loaded in makeModuleResponse() */
-	protected $extraHeaders = [];
-
-	/** @var array Map of (module-variant => buffered DependencyStore updates) */
-	private $depStoreUpdateBuffer = [];
-
-	/** @var array Styles that are skin-specific and supplement or replace the
-	 * default skinStyles of a FileModule. See $wgResourceModuleSkinStyles.
-	 */
-	private $moduleSkinStyles = [];
+	/** @var string */
+	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
+	/** @var int How long to preserve indirect dependency metadata in our backend store. */
+	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
 
 	/** @var int|null */
 	protected static $debugMode = null;
 
-	/** @var int */
-	public const CACHE_VERSION = 9;
+	/** @var Config */
+	private $config;
+	/** @var MessageBlobStore */
+	private $blobStore;
+	/** @var DependencyStore */
+	private $depStore;
+	/** @var LoggerInterface */
+	private $logger;
+	/** @var HookContainer */
+	private $hookContainer;
+	/** @var HookRunner */
+	private $hookRunner;
 
-	/** @var string */
-	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
-	/** @var int Expiry (in seconds) of indirect dependency information for modules */
-	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
-
-	/** @var string JavaScript / CSS pragma to disable minification. * */
-	public const FILTER_NOMIN = '/*@nomin*/';
+	/** @var ResourceLoaderModule[] Map of (module name => ResourceLoaderModule) */
+	private $modules = [];
+	/** @var array[] Map of (module name => associative info array) */
+	private $moduleInfos = [];
+	/** @var string[] List of module names that contain QUnit test suites */
+	private $testSuiteModuleNames = [];
+	/** @var string[] Map of (source => path); E.g. [ 'source-id' => 'http://.../load.php' ] */
+	private $sources = [];
+	/** @var array Errors accumulated during a respond() call. Exposed for testing. */
+	protected $errors = [];
+	/**
+	 * @var string[] Buffer for extra response headers during a makeModuleResponse() call.
+	 * Exposed for testing.
+	 */
+	protected $extraHeaders = [];
+	/** @var array Map of (module-variant => buffered DependencyStore updates) */
+	private $depStoreUpdateBuffer = [];
+	/**
+	 * @var array Styles that are skin-specific and supplement or replace the
+	 * default skinStyles of a FileModule. See $wgResourceModuleSkinStyles.
+	 */
+	private $moduleSkinStyles = [];
 
 	/**
 	 * Load information stored in the database and dependency tracking store about modules
@@ -238,8 +230,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Register core modules and runs registration hooks.
-	 * @param Config $config
+	 * @param Config $config Required configuration:
+	 *  - EnableJavaScriptTest
+	 *  - LoadScript
+	 *  - ResourceLoaderMaxage
+	 *  - UseFileCache
 	 * @param LoggerInterface|null $logger [optional]
 	 * @param DependencyStore|null $tracker [optional]
 	 */
@@ -248,11 +243,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		LoggerInterface $logger = null,
 		DependencyStore $tracker = null
 	) {
-		$this->logger = $logger ?: new NullLogger();
-		$services = MediaWikiServices::getInstance();
-
 		$this->config = $config;
+		$this->logger = $logger ?: new NullLogger();
 
+		$services = MediaWikiServices::getInstance();
 		$this->hookContainer = $services->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
 

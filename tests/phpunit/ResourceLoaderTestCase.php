@@ -56,8 +56,12 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 
 	public static function getSettings() {
 		return [
-			// For ResourceLoader::inDebugMode since it doesn't have context
+			// For ResourceLoader class
 			'ResourceLoaderDebug' => true,
+			'LoadScript' => '/w/load.php',
+			'EnableJavaScriptTest' => false,
+			// For ResourceLoader::respond() - TODO: Inject somehow T32956
+			'UseFileCache' => false,
 
 			// For ResourceLoaderModule
 			'ResourceLoaderValidateJS' => false,
@@ -71,17 +75,11 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'ResourceBasePath' => '/w',
 			'ParserEnableLegacyMediaDOM' => true,
 
-			// For ResourceLoader::expandUrl()
+			// For  ResourceLoader::getSiteConfigSettings and ResourceLoaderStartUpModule
 			'Server' => 'https://example.org',
-			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
-			'LoadScript' => '/w/load.php',
-			'EnableJavaScriptTest' => false,
 			'ResourceLoaderEnableJSProfiler' => false,
-
-			// For ResourceLoader::respond() - TODO: Inject somehow T32956
-			'UseFileCache' => false,
 		];
 	}
 
