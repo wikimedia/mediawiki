@@ -27,8 +27,14 @@
  * @since 1.38
  */
 class SpecialProtectPage extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'ProtectPage', 'protect', 'protectpage' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'ProtectPage', 'protect', 'protectpage', $searchEngineFactory );
 	}
 
 	// Messages, for grep:
