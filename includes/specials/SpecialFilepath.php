@@ -27,9 +27,19 @@
  * @ingroup SpecialPage
  */
 class SpecialFilepath extends RedirectSpecialPage {
-	public function __construct() {
+
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
 		parent::__construct( 'Filepath' );
 		$this->mAllowedRedirectParams = [ 'width', 'height' ];
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**
@@ -53,6 +63,32 @@ class SpecialFilepath extends RedirectSpecialPage {
 		}
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Known to be valid
 		return $redirect;
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$title = Title::newFromText( $search, NS_FILE );
+		if ( !$title || $title->getNamespace() !== NS_FILE ) {
+			// No prefix suggestion outside of file namespace
+			return [];
+		}
+		$searchEngine = $this->searchEngineFactory->create();
+		$searchEngine->setLimitOffset( $limit, $offset );
+		// Autocomplete subpage the same as a normal search, but just for files
+		$searchEngine->setNamespaces( [ NS_FILE ] );
+		$result = $searchEngine->defaultPrefixSearch( $search );
+
+		return array_map( static function ( Title $t ) {
+			// Remove namespace in search suggestion
+			return $t->getText();
+		}, $result );
 	}
 
 	protected function getGroupName() {
