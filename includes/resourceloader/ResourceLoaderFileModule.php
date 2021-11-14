@@ -814,17 +814,23 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $lang
 	 * @return string[]
 	 */
-	private function getLanguageScripts( $lang ) {
+	private function getLanguageScripts( string $lang ): array {
 		$scripts = self::tryForKey( $this->languageScripts, $lang );
 		if ( $scripts ) {
 			return $scripts;
 		}
-		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()
-			->getAll( $lang, LanguageFallback::MESSAGES );
-		foreach ( $fallbacks as $lang ) {
-			$scripts = self::tryForKey( $this->languageScripts, $lang );
-			if ( $scripts ) {
-				return $scripts;
+
+		// Optimization: Avoid initialising and calling into language services
+		// for the majority of modules that don't use this option.
+		if ( $this->languageScripts ) {
+			$fallbacks = MediaWikiServices::getInstance()
+				->getLanguageFallback()
+				->getAll( $lang, LanguageFallback::MESSAGES );
+			foreach ( $fallbacks as $lang ) {
+				$scripts = self::tryForKey( $this->languageScripts, $lang );
+				if ( $scripts ) {
+					return $scripts;
+				}
 			}
 		}
 
