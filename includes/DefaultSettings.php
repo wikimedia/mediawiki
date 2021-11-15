@@ -1790,21 +1790,21 @@ $wgImagePreconnect = false;
 /**
  * Path of the djvudump executable
  * Enable this and $wgDjvuRenderer to enable djvu rendering
- * example: $wgDjvuDump = '/usr/bin/djvudump';
+ * example: $wgDjvuDump = 'djvudump';
  */
 $wgDjvuDump = null;
 
 /**
  * Path of the ddjvu DJVU renderer
  * Enable this and $wgDjvuDump to enable djvu rendering
- * example: $wgDjvuRenderer = '/usr/bin/ddjvu';
+ * example: $wgDjvuRenderer = 'ddjvu';
  */
 $wgDjvuRenderer = null;
 
 /**
  * Path of the djvutxt DJVU text extraction utility
  * Enable this and $wgDjvuDump to enable text layer extraction from djvu files
- * example: $wgDjvuTxt = '/usr/bin/djvutxt';
+ * example: $wgDjvuTxt = 'djvutxt';
  */
 $wgDjvuTxt = null;
 
@@ -1819,14 +1819,6 @@ $wgDjvuPostProcessor = 'pnmtojpeg';
  * File extension for the DJVU post processor output
  */
 $wgDjvuOutputExtension = 'jpg';
-
-/**
- * Shell to use when getting djvu metadata
- *
- * @var string
- * @since 1.38
- */
-$wgDjvuShell = '/bin/sh';
 
 // endregion -- end of DJvu
 
