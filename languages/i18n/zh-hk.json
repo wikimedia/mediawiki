@@ -203,6 +203,7 @@
 	"emailusername": "用戶名稱：",
 	"wlshowhidebots": "機械人",
 	"rollbacklink": "回退",
+	"protect-level-autoconfirmed": "僅允許自動確認用戶",
 	"protect-expiry-options": "一小時:1 hour,一日:1 day,一星期:1 week,二星期:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,無限期:infinite",
 	"blanknamespace": "（主要）",
 	"tool-link-contributions": "{{GENDER:$1|用戶}}貢獻",
