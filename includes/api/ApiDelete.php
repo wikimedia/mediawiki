@@ -156,10 +156,7 @@ class ApiDelete extends ApiBase {
 
 		// Auto-generate a summary, if necessary
 		if ( $reason === null ) {
-			// Need to pass a throwaway variable because generateReason expects
-			// a reference
-			$hasHistory = false;
-			$reason = $page->getAutoDeleteReason( $hasHistory );
+			$reason = $page->getAutoDeleteReason();
 			if ( $reason === false ) {
 				// Should be reachable only if the page has no revisions
 				return Status::newFatal( 'cannotdelete', $title->getPrefixedText() ); // @codeCoverageIgnore

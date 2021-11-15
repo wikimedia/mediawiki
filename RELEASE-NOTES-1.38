@@ -147,6 +147,8 @@ because of Phabricator reports.
 * The `wgForeignUploadTargets` and `wgEnableUploads` configuration values were
   removed from mw.config. They had previously been documented as being included
   for internal use by the mediawiki.ForeignUpload module.
+*The `&$hasHistory` parameter to WikiPage::getAutoDeleteReason() and
+  ContentHandler::getAutoDeleteReason() was hard-deprecated with no replacement.
 * Several Skin methods, which have emitted deprecation warnings since 1.36, have
   been removed. These include:
   - Skin::privacyLink()
