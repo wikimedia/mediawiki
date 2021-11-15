@@ -22,6 +22,7 @@ use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -240,11 +241,10 @@ class DeleteAction extends FormlessAction {
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
 
-		$hasHistory = false;
-		$reason = $this->getDefaultReason( $hasHistory );
+		$reason = $this->getDefaultReason();
 
 		// If the page has a history, insert a warning
-		if ( $hasHistory ) {
+		if ( $this->pageHasHistory() ) {
 			$this->showHistoryWarnings();
 		}
 		$this->showFormWarnings();
@@ -519,26 +519,43 @@ class DeleteAction extends FormlessAction {
 	/**
 	 * Default reason to be used for the deletion form
 	 *
-	 * @param bool &$hasHistory
 	 * @return string
-	 *
-	 * @todo $hasHistory is an awful hack
 	 */
-	protected function getDefaultReason( bool &$hasHistory = false ): string {
+	protected function getDefaultReason(): string {
 		$requestReason = $this->getRequest()->getText( 'wpReason' );
 		if ( $requestReason ) {
 			return $requestReason;
 		}
 
 		try {
-			return $this->getArticle()->getPage()->getAutoDeleteReason( $hasHistory );
+			return $this->getArticle()->getPage()->getAutoDeleteReason();
 		} catch ( Exception $e ) {
 			# if a page is horribly broken, we still want to be able to
 			# delete it. So be lenient about errors here.
-			// FIXME What is this for exactly?
-			wfDebug( "Error while building auto delete summary: $e" );
+			// TODO Find out when this can happen and narrow the type in the `catch` clause.
+			MWExceptionHandler::logException( $e );
 			return '';
 		}
+	}
+
+	/**
+	 * Determines whether a page has a history of more than one revision.
+	 * @fixme We should use WikiPage::isNew() here, but it doesn't work right for undeleted pages (T289008)
+	 * @return bool
+	 */
+	private function pageHasHistory(): bool {
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->selectRowCount(
+			'revision',
+			'*',
+			[
+				'rev_page' => $this->getTitle()->getArticleID(),
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
+			],
+			__METHOD__,
+			[ 'LIMIT' => 2 ]
+		);
+		return $res > 1;
 	}
 
 	public function doesWrites() {

@@ -234,9 +234,8 @@ class FileDeleteAction extends DeleteAction {
 	/**
 	 * @inheritDoc
 	 */
-	protected function getDefaultReason( bool &$hasHistory = false ): string {
+	protected function getDefaultReason(): string {
 		// TODO Should we autogenerate something for files?
-		// FIXME $hasHistory not working here
 		return $this->getRequest()->getText( 'wpReason' );
 	}
 }

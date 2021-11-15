@@ -3017,8 +3017,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return string|bool String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
 	 */
-	public function getAutoDeleteReason( &$hasHistory ) {
-		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
+	public function getAutoDeleteReason( &$hasHistory = false ) {
+		if ( func_num_args() === 1 ) {
+			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
+			return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
+		}
+		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle() );
 	}
 
 	/**
