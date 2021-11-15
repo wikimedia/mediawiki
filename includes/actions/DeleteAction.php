@@ -135,7 +135,7 @@ class DeleteAction extends FormlessAction {
 		$user = $context->getUser();
 		$status = $this->getWikiPage()->doDeleteArticleReal( $this->getDeleteReason(), $user, $suppress, null, $error );
 
-		if ( $status->isOK() ) {
+		if ( $status->isGood() || ( $status->isOK() && $status->hasMessage( 'delete-scheduled' ) ) ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
