@@ -2400,7 +2400,7 @@ return [
 	'mediawiki.ui.checkbox' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.ui/components/checkbox.less',
+				'resources/src/mediawiki.ui.checkbox/checkbox.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2408,7 +2408,7 @@ return [
 	'mediawiki.ui.radio' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.ui/components/radio.less',
+				'resources/src/mediawiki.ui.radio/radio.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2417,7 +2417,7 @@ return [
 	'mediawiki.ui.anchor' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.ui/components/anchors.less',
+				'resources/src/mediawiki.ui.anchor/anchor.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2426,7 +2426,7 @@ return [
 	'mediawiki.ui.button' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.ui/components/buttons.less',
+				'resources/src/mediawiki.ui.button/button.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2434,14 +2434,14 @@ return [
 	'mediawiki.ui.input' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.ui/components/inputs.less',
+				'resources/src/mediawiki.ui.input/input.less',
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.ui.icon' => [
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.ui/components/icons-2.less',
+			'default' => 'resources/src/mediawiki.ui.icon/icons-2.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
