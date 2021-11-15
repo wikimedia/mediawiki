@@ -235,64 +235,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIPs
-	 * @covers User::isIP
-	 */
-	public function testIsIP( $value, $result, $message ) {
-		$this->hideDeprecated( 'User::isIP' );
-		$this->assertSame( $result, $this->user->isIP( $value ), $message );
-	}
-
-	public static function provideIPs() {
-		return [
-			[ '', false, 'Empty string' ],
-			[ ' ', false, 'Blank space' ],
-			[ '10.0.0.0', true, 'IPv4 private 10/8' ],
-			[ '10.255.255.255', true, 'IPv4 private 10/8' ],
-			[ '192.168.1.1', true, 'IPv4 private 192.168/16' ],
-			[ '203.0.113.0', true, 'IPv4 example' ],
-			[ '2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff', true, 'IPv6 example' ],
-			// Not valid IPs but classified as such by MediaWiki for negated asserting
-			// of whether this might be the identifier of a logged-out user or whether
-			// to allow usernames like it.
-			[ '300.300.300.300', true, 'Looks too much like an IPv4 address' ],
-			[ '203.0.113.xxx', true, 'Assigned by UseMod to cloaked logged-out users' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideUserNames
-	 * @covers User::isValidUserName
-	 */
-	public function testIsValidUserName( $username, $result, $message ) {
-		$this->hideDeprecated( 'User::isValidUserName' );
-		$this->assertSame( $result, $this->user->isValidUserName( $username ), $message );
-	}
-
-	public static function provideUserNames() {
-		return [
-			[ '', false, 'Empty string' ],
-			[ ' ', false, 'Blank space' ],
-			[ 'abcd', false, 'Starts with small letter' ],
-			[ 'Ab/cd', false, 'Contains slash' ],
-			[ 'Ab cd', true, 'Whitespace' ],
-			[ '192.168.1.1', false, 'IP' ],
-			[ '116.17.184.5/32', false, 'IP range' ],
-			[ '::e:f:2001/96', false, 'IPv6 range' ],
-			[ 'User:Abcd', false, 'Reserved Namespace' ],
-			[ '12abcd232', true, 'Starts with Numbers' ],
-			[ '?abcd', true, 'Start with ? mark' ],
-			[ '#abcd', false, 'Start with #' ],
-			[ 'Abcdകഖഗഘ', true, ' Mixed scripts' ],
-			[ 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ],
-			[ 'Ab　cd', false, ' Ideographic space' ],
-			[ '300.300.300.300', false, 'Looks too much like an IPv4 address' ],
-			[ '302.113.311.900', false, 'Looks too much like an IPv4 address' ],
-			[ '203.0.113.xxx', false, 'Reserved for usage by UseMod for cloaked logged-out users' ],
-		];
-	}
-
-	/**
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
@@ -369,71 +311,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$reloadedUser->getEditCount(),
 			'Increasing the edit count after a fresh load leaves the object up to date.'
 		);
-	}
-
-	/**
-	 * Test changing user options.
-	 * @covers User::setOption
-	 * @covers User::getOptions
-	 * @covers User::getBoolOption
-	 * @covers User::getIntOption
-	 */
-	public function testOptions() {
-		$this->hideDeprecated( 'User::getBoolOption' );
-		$this->hideDeprecated( 'User::getIntOption' );
-		$this->hideDeprecated( 'User::setOption' );
-		$this->setMwGlobals( [
-			'wgMaxArticleSize' => 2,
-		] );
-		$user = $this->getMutableTestUser()->getUser();
-
-		$user->setOption( 'userjs-someoption', 'test' );
-		$user->setOption( 'userjs-someintoption', '42' );
-		$user->setOption( 'rclimit', 200 );
-		$user->setOption( 'wpwatchlistdays', '0' );
-		$user->setOption( 'userjs-usedefaultoverride', '' );
-		$user->saveSettings();
-
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
-		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
-		$this->assertSame(
-			123,
-			$user->getIntOption( 'userjs-usedefaultoverride', 123 ),
-			'Int options that are empty string can have a default returned'
-		);
-
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
-		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
-		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
-		$this->assertSame(
-			0,
-			$user->getIntOption( 'userjs-usedefaultoverride' ),
-			'Int options that are empty string and have no default specified default to 0'
-		);
-
-		// Check that an option saved as a string '0' is returned as an integer.
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
-		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
-	}
-
-	/**
-	 * T39963
-	 * Make sure defaults are loaded when setOption is called.
-	 * @covers User::setOption
-	 */
-	public function testAnonOptions() {
-		global $wgDefaultUserOptions;
-		$this->hideDeprecated( 'User::setOption' );
-		$this->user->setOption( 'userjs-someoption', 'test' );
-		$this->assertSame( $wgDefaultUserOptions['rclimit'], $this->user->getOption( 'rclimit' ) );
-		$this->assertSame( 'test', $this->user->getOption( 'userjs-someoption' ) );
 	}
 
 	/**
@@ -525,57 +402,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
-	}
-
-	/**
-	 * @covers User::getCanonicalName()
-	 * @dataProvider provideGetCanonicalName
-	 */
-	public function testGetCanonicalName( $name, array $expectedArray ) {
-		$this->hideDeprecated( 'User::getCanonicalName' );
-		// fake interwiki map for the 'Interwiki prefix' testcase
-		// DummyServicesTrait::getDummyInterwikiLookup
-		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'interwiki' ] );
-		$this->setService( 'InterwikiLookup', $interwikiLookup );
-
-		foreach ( $expectedArray as $validate => $expected ) {
-			$this->assertSame(
-				$expected,
-				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
-				$validate
-			);
-		}
-	}
-
-	public static function provideGetCanonicalName() {
-		return [
-			'Leading space' => [ ' Leading space', [ 'creatable' => 'Leading space' ] ],
-			'Trailing space ' => [ 'Trailing space ', [ 'creatable' => 'Trailing space' ] ],
-			'Namespace prefix' => [ 'Talk:Username', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'Talk:Username' ] ],
-			'Interwiki prefix' => [ 'interwiki:Username', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'Interwiki:Username' ] ],
-			'With hash' => [ 'name with # hash', [ 'creatable' => false, 'usable' => false ] ],
-			'Multi spaces' => [ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
-				'usable' => 'Multi spaces' ] ],
-			'Lowercase' => [ 'lowercase', [ 'creatable' => 'Lowercase' ] ],
-			'Invalid character' => [ 'in[]valid', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'In[]valid' ] ],
-			'With slash' => [ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'With / slash' ] ],
-		];
-	}
-
-	/**
-	 * @covers User::getCanonicalName()
-	 */
-	public function testGetCanonicalName_bad() {
-		$this->hideDeprecated( 'User::getCanonicalName' );
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage(
-			'Invalid parameter value for validation'
-		);
-		User::getCanonicalName( 'ValidName', 'InvalidValidationValue' );
 	}
 
 	/**
@@ -1709,138 +1535,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getDefaultOption
-	 * @covers User::getDefaultOptions
-	 */
-	public function testGetDefaultOptions() {
-		$this->hideDeprecated( 'User::getDefaultOption' );
-		$this->hideDeprecated( 'User::getDefaultOptions' );
-		$this->resetServices();
-
-		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$defaults ) {
-			$defaults['extraoption'] = 42;
-		} );
-
-		$defaultOptions = User::getDefaultOptions();
-		$this->assertArrayHasKey( 'search-match-redirect', $defaultOptions );
-		$this->assertArrayHasKey( 'extraoption', $defaultOptions );
-
-		$extraOption = User::getDefaultOption( 'extraoption' );
-		$this->assertSame( 42, $extraOption );
-	}
-
-	/**
-	 * @covers User::getDefaultOption
-	 */
-	public function testGetDefaultOption_deprecated() {
-		$this->expectDeprecation();
-		User::getDefaultOption( 'extraoption' );
-	}
-
-	/**
-	 * @covers User::getDefaultOptions
-	 */
-	public function testGetDefaultOptions_deprecated() {
-		$this->expectDeprecation();
-		User::getDefaultOptions();
-	}
-
-	/**
-	 * @covers User::getAutomaticGroups
-	 */
-	public function testGetAutomaticGroups() {
-		$this->hideDeprecated( 'User::getAutomaticGroups' );
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $this->user->getAutomaticGroups( true ) );
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getAutomaticGroups( true ) );
-		$user->addGroup( 'something' );
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getAutomaticGroups( true ) );
-
-		$user = User::newFromName( 'UTUser1' );
-		$this->assertSame( [ '*' ], $user->getAutomaticGroups( true ) );
-		$this->setMwGlobals( [
-			'wgAutopromote' => [
-				'dummy' => APCOND_EMAILCONFIRMED
-			]
-		] );
-
-		$this->user->confirmEmail();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'dummy'
-		], $this->user->getAutomaticGroups( true ) );
-
-		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
-		$user->confirmEmail();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'dummy'
-		], $user->getAutomaticGroups( true ) );
-	}
-
-	/**
-	 * @covers User::getEffectiveGroups
-	 */
-	public function testGetEffectiveGroups() {
-		$this->hideDeprecated( 'User::getEffectiveGroups' );
-		$user = $this->getTestUser()->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getEffectiveGroups( true ) );
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed',
-			'bureaucrat',
-			'test'
-		], $user->getEffectiveGroups( true ) );
-
-		$user = $this->getTestUser( [ 'autoconfirmed', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed',
-			'test'
-		], $user->getEffectiveGroups( true ) );
-	}
-
-	/**
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
 		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
 		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
-	}
-
-	/**
-	 * @covers User::getFormerGroups
-	 */
-	public function testGetFormerGroups() {
-		$this->hideDeprecated( 'User::getFormerGroups' );
-		$user = $this->getTestUser( [ 'a', 'b', 'c' ] )->getUser();
-		$this->assertArrayEquals( [], $user->getFormerGroups() );
-		$user->addGroup( 'test' );
-		$user->removeGroup( 'test' );
-		$this->assertArrayEquals( [ 'test' ], $user->getFormerGroups() );
 	}
 
 	/**
@@ -2098,64 +1797,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$user->requiresHTTPS(),
 			'User preference ignored if wgForceHTTPS is true'
-		);
-	}
-
-	/**
-	 * @covers User::isCreatableName
-	 */
-	public function testIsCreatableName() {
-		$this->hideDeprecated( 'User::isCreatableName' );
-		$this->setMwGlobals( [
-			'wgInvalidUsernameCharacters' => '@',
-		] );
-
-		$longUserName = str_repeat( 'x', 260 );
-
-		$this->assertFalse(
-			User::isCreatableName( $longUserName ),
-			'longUserName is too long'
-		);
-		$this->assertFalse(
-			User::isCreatableName( 'Foo@Bar' ),
-			'User name contains invalid character'
-		);
-		$this->assertTrue(
-			User::isCreatableName( 'FooBar' ),
-			'User names with no issues can be created'
-		);
-	}
-
-	/**
-	 * @covers User::isUsableName
-	 */
-	public function testIsUsableName() {
-		$this->hideDeprecated( 'User::isUsableName' );
-		$this->setMwGlobals( [
-			'wgReservedUsernames' => [
-				'MediaWiki default',
-				'msg:reserved-user'
-			],
-			'wgForceUIMsgAsContentMsg' => [
-				'reserved-user'
-			],
-		] );
-
-		$this->assertFalse(
-			User::isUsableName( '' ),
-			'Only valid user names are creatable'
-		);
-		$this->assertFalse(
-			User::isUsableName( 'MediaWiki default' ),
-			'Reserved names cannot be used'
-		);
-		$this->assertFalse(
-			User::isUsableName( 'reserved-user' ),
-			'Names can also be reserved via msg: '
-		);
-		$this->assertTrue(
-			User::isUsableName( 'FooBar' ),
-			'User names with no issues can be used'
 		);
 	}
 
