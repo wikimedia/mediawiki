@@ -20,21 +20,33 @@
 
 namespace MediaWiki\Preferences;
 
-use Title;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageStore;
+use MediaWiki\Page\ProperPageIdentity;
 use TitleFactory;
+use TitleFormatter;
 
 class MultiTitleFilter implements Filter {
 
 	/**
-	 * @var TitleFactory
+	 * @var PageStore
 	 */
-	private $titleFactory;
+	private $pageStore;
 
 	/**
-	 * @param TitleFactory|null $titleFactory
+	 * @var TitleFormatter
 	 */
-	public function __construct( TitleFactory $titleFactory = null ) {
-		$this->titleFactory = $titleFactory;
+	private $titleFormatter;
+
+	/**
+	 * @param TitleFactory|null $titleFactory unused
+	 * @param PageStore|null $pageStore
+	 * @param TitleFormatter|null $titleFormatter
+	 */
+	public function __construct(
+		TitleFactory $titleFactory = null, PageStore $pageStore = null, TitleFormatter $titleFormatter = null ) {
+		$this->pageStore = $pageStore;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -42,13 +54,14 @@ class MultiTitleFilter implements Filter {
 	 */
 	public function filterForForm( $value ) {
 		$ids = array_map( 'intval', preg_split( '/\n/', $value, -1, PREG_SPLIT_NO_EMPTY ) );
-		$titles = $ids ? $this->getTitleFactory()->newFromIDs( $ids ) : [];
-		if ( !$titles ) {
-			return '';
-		}
-		return implode( "\n", array_map( static function ( Title $title ) {
-			return $title->getPrefixedText();
-		}, $titles ) );
+		$pageRecords = $this->getPageStore()
+			->newSelectQueryBuilder()
+			->wherePageIds( $ids )
+			->caller( __METHOD__ )
+			->fetchPageRecords();
+		return implode( "\n", array_map( function ( $pageRecord ) {
+			return $this->getTitleFormatter()->getPrefixedText( $pageRecord );
+		}, iterator_to_array( $pageRecords ) ) );
 	}
 
 	/**
@@ -59,9 +72,9 @@ class MultiTitleFilter implements Filter {
 		if ( $titles !== '' ) {
 			$titles = preg_split( '/\n/', $titles, -1, PREG_SPLIT_NO_EMPTY );
 			$ids = array_map( function ( $text ) {
-				$title = $this->getTitleFactory()->newFromText( $text );
-				if ( $title instanceof \Title && $title->getArticleID() > 0 ) {
-					return $title->getArticleID();
+				$title = $this->getPageStore()->getPageByText( $text );
+				if ( $title instanceof ProperPageIdentity && $title->getId() > 0 ) {
+					return $title->getId();
 				}
 				return false;
 			}, $titles );
@@ -74,10 +87,18 @@ class MultiTitleFilter implements Filter {
 	}
 
 	/**
-	 * @return TitleFactory
+	 * @return PageStore
 	 */
-	private function getTitleFactory(): TitleFactory {
-		$this->titleFactory = $this->titleFactory ?? new TitleFactory();
-		return $this->titleFactory;
+	private function getPageStore(): PageStore {
+		$this->pageStore = $this->pageStore ?? MediaWikiServices::getInstance()->getPageStore();
+		return $this->pageStore;
+	}
+
+	/**
+	 * @return TitleFormatter
+	 */
+	private function getTitleFormatter(): TitleFormatter {
+		$this->titleFormatter = $this->titleFormatter ?? MediaWikiServices::getInstance()->getTitleFormatter();
+		return $this->titleFormatter;
 	}
 }

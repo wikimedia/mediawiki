@@ -719,6 +719,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'newFromID returns the correct title'
 		);
 
+		$this->filterDeprecated( '/newFromIDs/' );
 		// newFromIDs using both
 		$titles = Title::newFromIDs( [ $existingId1, $existingId2 ] );
 		$this->assertCount( 2, $titles );

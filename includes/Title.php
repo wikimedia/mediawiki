@@ -549,8 +549,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @param int[] $ids Array of IDs
 	 * @return Title[] Array of Titles
+	 * @deprecated since 1.38 use a PageStore QueryBuilder instead
 	 */
 	public static function newFromIDs( $ids ) {
+		wfDeprecated( __METHOD__, '1.38' );
+
 		if ( !count( $ids ) ) {
 			return [];
 		}

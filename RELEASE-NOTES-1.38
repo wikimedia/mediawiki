@@ -247,6 +247,8 @@ because of Phabricator reports.
   was hard-deprecated, use ContentRenderer::getParserOutput instead.
   Extensions defining a content model should
   override ContentHandler::fillParserOutput.
+* Title::newFromIDs and TitleFactory::newFromIDs have been hard deprecated.
+  Use a PageSelectQueryBuilder from a PageStore instead.
 * Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
   you only need to delete the article. If you also need things to happen
   with OutputPage, you may want to check the hooks in DeleteAction instead.
