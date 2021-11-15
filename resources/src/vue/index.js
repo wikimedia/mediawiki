@@ -72,7 +72,9 @@
 				parentElement.removeChild( parentElement.firstChild );
 			}
 			parentElement.appendChild( wrapperElement );
-			new App( finalOptions ).$mount( wrapperElement, hydrating );
+			var app = new App( finalOptions );
+			app.$mount( wrapperElement, hydrating );
+			return app;
 		};
 		return App;
 	};
