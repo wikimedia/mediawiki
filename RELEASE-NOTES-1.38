@@ -32,9 +32,6 @@ For notes on 1.36.x and older releases, see HISTORY.
 * $wgMaxImageArea - This setting may now be set to false to disable size
   checking before scaling. Extensions can still override its value by
   using the BitmapHandlerCheckImageArea hook.
-* $wgDjvuDump, $wgDjvuRenderer, $wgDjvuTxt now only accept explicit path.
-  'djvudump' will not work and must be changed to '/usr/bin/djvudump'
-  for example.
 * …
 
 ==== Removed configuration ====
