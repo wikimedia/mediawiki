@@ -127,8 +127,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionDirtyTempTables = [];
 
-	/** @var string ID of the active transaction or the empty string otherwise */
-	private $trxShortId = '';
+	/** @var string Application-side ID of the active transaction or an empty string otherwise */
+	private $trxId = '';
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
 	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
@@ -389,7 +389,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - user : The name of the database user the client operates under
 	 *   - password : The password for the database user
 	 *   - dbname : The name of the database to use where queries do not specify one.
-	 *      The database must exist or an error might be thrown. Setting this to the empty string
+	 *      The database must exist or an error might be thrown. Setting this to an empty string
 	 *      will avoid any such errors and make the handle have no implicit database scope. This is
 	 *      useful for queries like SHOW STATUS, CREATE DATABASE, or DROP DATABASE. Note that a
 	 *      "database" in Postgres is rougly equivalent to an entire MySQL server. This the domain
@@ -597,7 +597,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function trxLevel() {
-		return ( $this->trxShortId != '' ) ? 1 : 0;
+		return ( $this->trxId != '' ) ? 1 : 0;
 	}
 
 	public function trxTimestamp() {
@@ -1463,13 +1463,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxProfiler->transactionWritingIn(
 					$this->getServerName(),
 					$this->getDomainID(),
-					$this->trxShortId
+					$this->trxId
 				);
 			}
 		}
 
 		$prefix = $this->topologyRole ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $sql, $this->trxShortId, $prefix );
+		$generalizedSql = new GeneralizedSql( $sql, $this->trxId, $prefix );
 
 		$startTime = microtime( true );
 		$ps = $this->profiler
@@ -1495,7 +1495,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
 				$this->trxWriteCallers[] = $fname;
 			}
-		} elseif ( $this->wasConnectionError( $lastErrno ) ) {
+		} elseif ( $this->isConnectionError( $lastErrno ) ) {
 			# Check if no meaningful session state was lost
 			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
 			# Update session state tracking and try to restore the connection
@@ -1707,7 +1707,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
-		$oldTrxShortId = $this->consumeTrxShortId();
+		$oldTrxId = $this->consumeTrxId();
 		$this->trxAtomicCounter = 0;
 		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
@@ -1718,7 +1718,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
-				$oldTrxShortId,
+				$oldTrxId,
 				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
 				$this->trxWriteAffectedRows
 			);
@@ -1745,13 +1745,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Reset the transaction ID and return the old one
+	 * Reset the application-side transaction ID and return the old one
 	 *
-	 * @return string The old transaction ID or the empty string if there wasn't one
+	 * @return string The old transaction ID or an empty string if there wasn't one
 	 */
-	private function consumeTrxShortId() {
-		$old = $this->trxShortId;
-		$this->trxShortId = '';
+	private function consumeTrxId() {
+		$old = $this->trxId;
+		$this->trxId = '';
 
 		return $old;
 	}
@@ -1824,7 +1824,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function getQueryException( $error, $errno, $sql, $fname ) {
 		if ( $this->wasQueryTimeout( $error, $errno ) ) {
 			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
-		} elseif ( $this->wasConnectionError( $errno ) ) {
+		} elseif ( $this->isConnectionError( $errno ) ) {
 			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
 		} else {
 			return new DBQueryError( $this, $error, $errno, $sql, $fname );
@@ -4002,7 +4002,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function wasConnectionLoss() {
-		return $this->wasConnectionError( $this->lastErrno() );
+		return $this->isConnectionError( $this->lastErrno() );
 	}
 
 	/**
@@ -4028,7 +4028,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
 	 */
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return false;
 	}
 
@@ -4847,7 +4847,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$this->trxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
+		static $nextTrxId;
+		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
+		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxAtomicCounter = 0;
@@ -4938,14 +4940,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$oldTrxShortId = $this->consumeTrxShortId();
+		$oldTrxId = $this->consumeTrxId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
-				$oldTrxShortId,
+				$oldTrxId,
 				$writeTime,
 				$this->trxWriteAffectedRows
 			);
@@ -4997,7 +4999,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$this->doRollback( $fname );
-		$oldTrxShortId = $this->consumeTrxShortId();
+		$oldTrxId = $this->consumeTrxId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
 		$this->trxAtomicLevels = [];
 		// Clear callbacks that depend on transaction or transaction round commit
@@ -5009,7 +5011,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
-				$oldTrxShortId,
+				$oldTrxId,
 				$writeTime,
 				$this->trxWriteAffectedRows
 			);
