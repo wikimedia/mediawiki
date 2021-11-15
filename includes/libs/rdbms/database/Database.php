@@ -1495,7 +1495,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
 				$this->trxWriteCallers[] = $fname;
 			}
-		} elseif ( $this->wasConnectionError( $lastErrno ) ) {
+		} elseif ( $this->isConnectionError( $lastErrno ) ) {
 			# Check if no meaningful session state was lost
 			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
 			# Update session state tracking and try to restore the connection
@@ -1824,7 +1824,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function getQueryException( $error, $errno, $sql, $fname ) {
 		if ( $this->wasQueryTimeout( $error, $errno ) ) {
 			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
-		} elseif ( $this->wasConnectionError( $errno ) ) {
+		} elseif ( $this->isConnectionError( $errno ) ) {
 			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
 		} else {
 			return new DBQueryError( $this, $error, $errno, $sql, $fname );
@@ -4002,7 +4002,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function wasConnectionLoss() {
-		return $this->wasConnectionError( $this->lastErrno() );
+		return $this->isConnectionError( $this->lastErrno() );
 	}
 
 	/**
@@ -4028,7 +4028,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
 	 */
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return false;
 	}
 
