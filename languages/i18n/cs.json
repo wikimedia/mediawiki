@@ -891,7 +891,7 @@
 	"rev-suppressed-unhide-diff": "Jedna z revizí k tomuto porovnání byla '''utajena'''.\nPodrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].\nPokud chcete, můžete si přesto [$1 tuto revizi prohlédnout].",
 	"rev-deleted-diff-view": "Jedna z revizí k tomuto porovnání byla '''smazána'''.\nMůžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 	"rev-suppressed-diff-view": "Jedna z revizí k tomuto porovnání byla '''utajena'''.\nMůžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize utajení].",
-	"rev-delundel": "skrýt/zobrazit",
+	"rev-delundel": "změnit viditelnost",
 	"rev-showdeleted": "zobrazit",
 	"revisiondelete": "Smazat/obnovit revize",
 	"revdelete-nooldid-title": "Nezadána revize",
