@@ -3,36 +3,36 @@
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
+use MediaWiki\Settings\Config\ConfigSink;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Config\ArrayConfigBuilder
  */
 class ArrayConfigBuilderTest extends TestCase {
+	use ConfigSinkTestTrait;
 
-	public function testSet() {
-		$builder = new ArrayConfigBuilder();
-		$builder->set( 'foo', 'bar' );
-		$this->assertEquals( 'bar', $builder->build()->get( 'foo' ) );
+	/** @var ArrayConfigBuilder */
+	private $builder;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->builder = new ArrayConfigBuilder();
 	}
 
-	public function testSetIfNotDefined() {
-		unset( $GLOBALS['prefix_baz'] );
-		$GLOBALS['prefix_foo'] = 'bar';
-		$builder = new ArrayConfigBuilder( [ 'foo' => 'bar' ] );
-		$builder->set( 'baz', 'quux' );
-		$builder->setIfNotDefined( 'foo', 'baz' );
-
-		$this->assertEquals( 'quux', $builder->build()->get( 'baz' ) );
-		$this->assertEquals( 'bar', $builder->build()->get( 'foo' ) );
+	protected function getConfigSink(): ConfigSink {
+		return $this->builder;
 	}
 
-	public function testBuildArray() {
-		$configBuilder = new ArrayConfigBuilder( [ 'foo' => 'bar', ] );
-		$configBuilder->set( 'baz', 'quux' );
-		$this->assertEquals( [
-			'foo' => 'bar',
-			'baz' => 'quux',
-		], $configBuilder->buildArray() );
+	protected function assertKeyHasValue( string $key, $value ) {
+		$this->assertEquals( $value, $this->builder->build()->get( $key ) );
+	}
+
+	public function testBuild() {
+		$this->builder
+			->set( 'foo',  'bar' )
+			->set( 'baz', 'quu' );
+		$this->assertSame( 'bar', $this->builder->build()->get( 'foo' ) );
+		$this->assertSame( 'quu', $this->builder->build()->get( 'baz' ) );
 	}
 }

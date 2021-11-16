@@ -111,27 +111,31 @@ class SettingsBuilderTest extends TestCase {
 			$setting->loadArray( $batch );
 		}
 		$setting->apply();
-		$this->assertEquals( $expectedGlobals, $configBuilder->buildArray() );
+		foreach ( $expectedGlobals as $key => $value ) {
+			$this->assertSame( $value, $configBuilder->build()->get( $key ) );
+		}
 	}
 
 	public function testApplyPurgesState() {
 		$configBuilder = new ArrayConfigBuilder();
 		$setting = $this->newSettingsBuilder( $configBuilder );
-		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )->apply();
-		$this->assertEquals( [ 'MySetting' => 'MyValue', ], $configBuilder->buildArray() );
+		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )
+			->apply();
+		$this->assertSame( 'MyValue', $configBuilder->build()->get( 'MySetting' ) );
 		$configBuilder->set( 'MySetting', 'MyOtherValue' );
 		// Calling apply a second time should not redefine the global
 		// since the state should be cleared
 		$setting->apply();
-		$this->assertEquals( [ 'MySetting' => 'MyOtherValue', ], $configBuilder->buildArray() );
+		$this->assertSame( 'MyOtherValue', $configBuilder->build()->get( 'MySetting' ) );
 	}
 
 	public function testApplyDefaultDoesNotOverwriteExisting() {
-		$configBuilder = new ArrayConfigBuilder( [ 'MySetting' => 'existing' ] );
+		$configBuilder = ( new ArrayConfigBuilder() )
+			->set( 'MySetting', 'existing' );
 		$this->newSettingsBuilder( $configBuilder )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->apply();
-		$this->assertEquals( [ 'MySetting' => 'existing' ], $configBuilder->buildArray() );
+		$this->assertSame( 'existing', $configBuilder->build()->get( 'MySetting' ) );
 	}
 
 	public function testConfigSchemaOverrideNotAllowed() {
