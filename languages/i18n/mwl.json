@@ -9,7 +9,8 @@
 			"MokaAkashiyaPT",
 			"Romaine",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Sublinhar lhigaçones:",
@@ -516,9 +517,6 @@
 	"saveprefs": "Grabar",
 	"restoreprefs": "Restourar todas las cunfiguraçones padron (an todas las seçones)",
 	"prefs-editing": "Oupçones de eidiçon",
-	"stub-threshold": "Lhemite pa la formataçon de lhigaçones pa rabiscos ($1):",
-	"stub-threshold-sample-link": "eisemplo",
-	"stub-threshold-disabled": "Zatibado",
 	"recentchangesdays": "Dies a apersentar nas mudanças recentes:",
 	"recentchangesdays-max": "Mássimo: $1 {{PLURAL:$1|die|dies}}",
 	"recentchangescount": "Númaro d'eidiçones a apersentar por omisson:",
@@ -544,7 +542,7 @@
 	"default": "padron",
 	"prefs-files": "Fexeiros",
 	"prefs-custom-css": "CSS personalizada",
-	"prefs-custom-js": "JS personalizado",
+	"prefs-custom-js": "JavaScript personalizado",
 	"prefs-common-config": "CSS/JS partilhado por todas las maçcarilhas:",
 	"prefs-emailconfirm-label": "Cunfirmaçon de l correio eiletrónico:",
 	"youremail": "Morada de correio eiletrónico:",

@@ -255,7 +255,7 @@
 	"config-install-updates": "Спречи покретање непотребних ажурирања",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Уметање клучева за ажурирање у табеле није успело због следеће грешке: $1",
 	"config-install-sysop": "Отварање корисничког налога администратора",
-	"config-install-subscribe-fail": "Није могуће претплатити се на mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
+	"config-install-subscribe-fail": "Није могуће претплатити се на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL није инсталиран, а параметар <code>allow_url_fopen</code> није доступан.",
 	"config-install-mainpage": "Прављење главне стране са подразумеваним садржајем",
 	"config-install-mainpage-exists": "Главна страна већ постоји, прескакање",

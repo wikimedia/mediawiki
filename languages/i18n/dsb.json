@@ -23,7 +23,8 @@
 			"Tlustulimu",
 			"Tlustulimu Nepl1",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -829,8 +830,6 @@
 	"restoreprefs": "Wšykne standardne nastajenja wótnowiś (we wšych wótrězkach)",
 	"prefs-editing": "Wobźěłaś",
 	"searchresultshead": "Pytaś",
-	"stub-threshold": "Formatěrowanje  <a href=\"#\" class=\"stub\">wótkaza na zarodk</a> (w bytach):",
-	"stub-threshold-disabled": "Znjemóžnjony",
 	"recentchangesdays": "Licba dnjow, kenž se pokazuju w \"slědnych změnach\":",
 	"recentchangesdays-max": "(maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})",
 	"recentchangescount": "Licba změnow, kótaraž ma se pó standarźe pokazaś:",
@@ -859,7 +858,7 @@
 	"default": "Standard",
 	"prefs-files": "Dataje",
 	"prefs-custom-css": "Swójski CSS",
-	"prefs-custom-js": "Swójski JS",
+	"prefs-custom-js": "Swójski JavaScript",
 	"prefs-common-config": "Zgromadny CSS/JS za wšykne suknje:",
 	"prefs-reset-intro": "You can use this page to reset your preferences to the site defaults. This cannot be undone.\nMóžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standardne gódnoty sedła. To njedajo se anulěrowaś.",
 	"prefs-emailconfirm-label": "E-mailowe wobkšuśenje:",

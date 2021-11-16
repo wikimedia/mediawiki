@@ -24,7 +24,8 @@
 			"Vlad5250",
 			"Yasen igra",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -867,8 +868,6 @@
 	"restoreprefs": "Rudisha mapendekezo ya msingi(katika sehemu zote)",
 	"prefs-editing": "Kuhariri",
 	"searchresultshead": "Kutafuta",
-	"stub-threshold": "Kiwango cha juu cha kuonyesha kiungo kama <a href=\"#\" class=\"stub\">kiungo kinachoelekea mbegu</a> (baiti):",
-	"stub-threshold-disabled": "Imelemazwa",
 	"recentchangesdays": "Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?",
 	"recentchangesdays-max": "Isizidi {{PLURAL:$1|siku}} $1",
 	"recentchangescount": "Idadi ya masahihisho yatakayoonyeshwa kwa kawaida:",
@@ -896,7 +895,7 @@
 	"default": "chaguo-msingi",
 	"prefs-files": "Mafaili",
 	"prefs-custom-css": "CSS niliyotunga mwenyewe",
-	"prefs-custom-js": "JS niliyotunga mwenyewe",
+	"prefs-custom-js": "JavaScript niliyotunga mwenyewe",
 	"prefs-common-config": "CSS/JS inayoshirikishwa na maumbo yote:",
 	"prefs-reset-intro": "Unaweza kutumia ukurasa huu ili kurudisha mapendekezo yako kwenye yale ya msingi ya tovuti.\nHutaweza kulibatilisha tendo hili baadaye.",
 	"prefs-emailconfirm-label": "Kuhakikisha barua pepe:",

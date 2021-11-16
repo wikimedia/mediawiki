@@ -23,7 +23,9 @@
 			"Xiplus",
 			"Yukiseaside",
 			"Yuyu",
-			"和平至上"
+			"和平至上",
+			"Winston Sung",
+			"星海"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -153,7 +155,7 @@
 	"prefs-user-pages": "用戶頁面",
 	"prefs-personal": "用戶資料",
 	"username": "{{GENDER:$1|用戶名稱}}：",
-	"gender-unknown": "當提到您時，本軟體會盡可能使用性別中性詞彙",
+	"gender-unknown": "當提到您時，本軟件會盡可能使用性別中性詞彙",
 	"gender-notknown": "此人",
 	"gender-male": "他",
 	"gender-female": "她",
@@ -167,6 +169,7 @@
 	"group-bot-member": "機械人",
 	"grouppage-user": "{{ns:project}}:用戶",
 	"grouppage-bot": "{{ns:project}}:機械人",
+	"grouppage-suppress": "{{ns:project}}:監督",
 	"right-viewmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"right-editmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"action-block": "封鎖此用戶的編輯權限",
@@ -200,6 +203,7 @@
 	"emailusername": "用戶名稱：",
 	"wlshowhidebots": "機械人",
 	"rollbacklink": "回退",
+	"protect-level-autoconfirmed": "僅允許自動確認用戶",
 	"protect-expiry-options": "一小時:1 hour,一日:1 day,一星期:1 week,二星期:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,無限期:infinite",
 	"blanknamespace": "（主要）",
 	"tool-link-contributions": "{{GENDER:$1|用戶}}貢獻",

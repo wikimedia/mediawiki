@@ -34,7 +34,8 @@
 			"Vlad5250",
 			"sco.wikipedia.org editors",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -975,9 +976,6 @@
 	"restoreprefs": "Restore aw defaut settins (in aw sections)",
 	"prefs-editing": "Eeditin",
 	"searchresultshead": "Rake ootcome settins",
-	"stub-threshold": "Thrashel for stub airtin formattin ($1):",
-	"stub-threshold-sample-link": "sample",
-	"stub-threshold-disabled": "Disablt",
 	"recentchangesdays": "Days tae shaw in recynt chynges:",
 	"recentchangesdays-max": "Mucklest $1 {{PLURAL:$1|day|days}}",
 	"recentchangescount": "Nummer o eedits tae shaw bi defaut:",
@@ -1007,7 +1005,7 @@
 	"default": "defaut",
 	"prefs-files": "Files",
 	"prefs-custom-css": "Custom CSS",
-	"prefs-custom-js": "Custom JS",
+	"prefs-custom-js": "Custom JavaScript",
 	"prefs-common-config": "Shaired CSS/JavaScript fer aw skins:",
 	"prefs-reset-intro": "Ye can uise this page tae reset yer preeferances til the steid defauts.\nThis canna be ondun.",
 	"prefs-emailconfirm-label": "Wab-mail confirmation:",

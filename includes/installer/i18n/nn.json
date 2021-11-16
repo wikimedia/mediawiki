@@ -4,7 +4,8 @@
 			"Harald Khan",
 			"Jon Harald Søby",
 			"Nghtwlkr",
-			"Njardarlogar"
+			"Njardarlogar",
+			"Sophie"
 		]
 	},
 	"config-your-language": "Språket ditt:",
@@ -35,5 +36,5 @@
 	"config-logo": "Logo-URL:",
 	"config-help": "hjelp",
 	"mainpagetext": "'''MediaWiki er no installert.'''",
-	"mainpagedocfooter": "Sjå [https://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-postliste med informasjon om nye MediaWiki-versjonar]"
+	"mainpagedocfooter": "Sjå [https://meta.wikimedia.org/wiki/Help:Contents brukarhandbok] for informasjon om bruk av wikiprogramvara.\n\n==Kome i gang==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista av oppsettsinnstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-postliste om nye MediaWiki-versjonar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Omset MediaWiki i språket ditt]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg korleis du kjempar søppelmeldingar i wikiet ditt]"
 }

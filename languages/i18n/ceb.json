@@ -13,7 +13,8 @@
 			"Palang hernan",
 			"Reedy",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Binadlisan nga mga sumpay:",
@@ -504,7 +505,6 @@
 	"restoreprefs": "Ibalik ang tanang default settings",
 	"prefs-editing": "Nagausab",
 	"searchresultshead": "Pangitaa",
-	"stub-threshold": "Threshold para sa <a href=\"#\" class=\"stub\">stub link</a> formatting (bytes):",
 	"recentchangesdays": "Mga adlaw nga ipakita sa bag-ong giusab:",
 	"recentchangesdays-max": "Maximum $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}",
 	"recentchangescount": "Numero sa mga pag-usab nga ipakita isip default:",
@@ -532,7 +532,7 @@
 	"default": "default",
 	"prefs-files": "Mga payl",
 	"prefs-custom-css": "Kustom nga CSS",
-	"prefs-custom-js": "Kustom nga JS",
+	"prefs-custom-js": "Kustom nga JavaScript",
 	"prefs-reset-intro": "Puyde nimo gamiton ang kining panid aron ma-reset ang imong mga preprensiya ngadto sa default sa sayt.\nDili kini puyde mabalik.",
 	"prefs-emailconfirm-label": "Kompirmasyon sa e-mail:",
 	"youremail": "E-mail:",

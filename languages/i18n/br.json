@@ -25,7 +25,8 @@
 			"VIGNERON",
 			"Y-M D",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -1001,9 +1002,6 @@
 	"restoreprefs": "Adlakaat an holl arventennoù dre ziouer (en holl gevrennoù)",
 	"prefs-editing": "Prenestr skridaozañ",
 	"searchresultshead": "Klask",
-	"stub-threshold": "Bevenn uhelañ evit al liammoù war-du an danvez pennadoù ($1) :",
-	"stub-threshold-sample-link": "skouer",
-	"stub-threshold-disabled": "Diweredekaet",
 	"recentchangesdays": "Niver a zevezhioù da ziskouez er c'hemmoù diwezhañ :",
 	"recentchangesdays-max": "D'ar muiañ $1 {{PLURAL:$1|deiz|deiz}}",
 	"recentchangescount": "Niver a gemmoù da ziskouez e kemmoù diwezhañ, istorioù ha marilhoù, dre ziouer :",
@@ -1036,7 +1034,7 @@
 	"prefs-files": "Restroù",
 	"prefs-custom-css": "CSS personelaet",
 	"prefs-custom-json": "JSON hiniennel",
-	"prefs-custom-js": "JS personelaet",
+	"prefs-custom-js": "JavaScript personelaet",
 	"prefs-common-config": "CSS/JSON/JavaScript kenrannet evit an holl wiskadurioù :",
 	"prefs-reset-intro": "Ober gant ar bajenn-mañ a c'hallit evit adlakaat ho penndibaboù dre ziouer evit al lec'hienn-mañ. Kement-se n'hallo ket bezañ disc'hraet da c'houde.",
 	"prefs-emailconfirm-label": "Kadarnaat ar postel :",

@@ -19,7 +19,8 @@
 			"Мария Олесова",
 			"София",
 			"Туллук",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -996,9 +997,6 @@
 	"restoreprefs": "Туруоруулары саҥаттан (салааларга барыларыгар)",
 	"prefs-editing": "Уларытыы",
 	"searchresultshead": "Көрдөөһүн түмүгэ",
-	"stub-threshold": "Омооннорго ыйынньыктары оҥоруу боруога ($1):",
-	"stub-threshold-sample-link": "холобур",
-	"stub-threshold-disabled": "Арахсыбыт",
 	"recentchangesdays": "Хас хонук иһинэн уларытыылары көрдөрөргө:",
 	"recentchangesdays-max": "(улааппыта $1 күн)",
 	"recentchangescount": "Саҥа уларытыылар испииһэктэригэр, сирэй устуоруйатыгар уонна сурунаалларга көрдөрүллэр уларытыылар ахсааннара:",
@@ -1031,7 +1029,7 @@
 	"prefs-files": "Билэлэр",
 	"prefs-custom-css": "Бэйэ CSS",
 	"prefs-custom-json": "Тус бэйэ JSON-а",
-	"prefs-custom-js": "Бэйэ JS",
+	"prefs-custom-js": "Бэйэ JavaScript",
 	"prefs-common-config": "Бары тиэмэлэргэ биир CSS/JS",
 	"prefs-reset-intro": "Бу сирэй көмөтүнэн туруорууларгын саҥаттан туруорар турукка төннөрүөххүн сөп.\nМаны бигэргэттэххинэ билигин баар туруоруулары дэбигис сөргүппэккин.",
 	"prefs-emailconfirm-label": "Эл. почтаны бигэргэтии:",

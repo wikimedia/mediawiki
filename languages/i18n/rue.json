@@ -16,7 +16,8 @@
 			"Reedy",
 			"Tkalyn",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -832,8 +833,6 @@
 	"restoreprefs": "Обновити вшыткы штандартны наставлїня (у вшыткых секціях)",
 	"prefs-editing": "Едітованя",
 	"searchresultshead": "Гляданя",
-	"stub-threshold": "Поріг про форматованя одказу як одказів на ''stub'' ($1):",
-	"stub-threshold-disabled": "Выпнуте",
 	"recentchangesdays": "За кілько днїв вказовати новы едітованя",
 	"recentchangesdays-max": "(максімум $1 {{PLURAL:$1|день|днї|днїв}})",
 	"recentchangescount": "Чісло імпліцітно зображованых едітовань:",
@@ -865,7 +864,7 @@
 	"prefs-files": "Файлы",
 	"prefs-custom-css": "Властный CSS",
 	"prefs-custom-json": "Властный JSON",
-	"prefs-custom-js": "Властный JS",
+	"prefs-custom-js": "Властный JavaScript",
 	"prefs-common-config": "Сдїляне CSS/JSON/JavaScript про вшыткы штілы:",
 	"prefs-reset-intro": "Помочов той сторінкы можете вшыткы наставлїня вернути на імпліцітны годноты.\nТоту операцію не годен вернути назад.",
 	"prefs-emailconfirm-label": "Потверджіня електронічной пошты:",

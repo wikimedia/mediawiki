@@ -22,7 +22,8 @@
 			"Vlad5250",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1045,9 +1046,6 @@
 	"restoreprefs": "Buté torna j'ampostassion dë stàndard (an tute le session)",
 	"prefs-editing": "Quàder ëd modìfica dël test",
 	"searchresultshead": "Specifiché soe preferense d'arserca",
-	"stub-threshold": "Valor mìnim për buté an forma j'anliure dë sbòss ($1):",
-	"stub-threshold-sample-link": "esempi",
-	"stub-threshold-disabled": "Disabilità",
 	"recentchangesdays": "Vàire dì smon-e ant j'ùltime modìfiche:",
 	"recentchangesdays-max": "(al pì $1 {{PLURAL:$1|di|di}})",
 	"recentchangescount": "Nùmer ëd modìfiche da smon-e ant j'ùltim cangiament, ant le stòrie dle pàgine, e ant ij registr, com normal:",
@@ -1082,7 +1080,7 @@
 	"prefs-files": "Archivi",
 	"prefs-custom-css": "CSS përsonaj",
 	"prefs-custom-json": "JSON përsonalisà",
-	"prefs-custom-js": "JS përsonaj",
+	"prefs-custom-js": "JavaScript përsonaj",
 	"prefs-common-config": "CSS/JSON/JavaScript condividù për tute le gràfiche:",
 	"prefs-reset-intro": "A peul dovré costa pàgina për amposté torna ij sò gust a coj dë stàndard.\nSòn a peul pa esse anulà.",
 	"prefs-emailconfirm-label": "Conferma dl'adrëssa ëd pòsta eletrònica:",

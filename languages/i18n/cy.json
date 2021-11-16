@@ -24,7 +24,8 @@
 			"Vlad5250",
 			"Xxglennxx",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -987,9 +988,6 @@
 	"restoreprefs": "Adfer yr holl osodiadau diofyn (ymhob adran)",
 	"prefs-editing": "Golygu",
 	"searchresultshead": "Chwilio",
-	"stub-threshold": "Trothwy ar gyfer fformatio cyswllt egin ($1):",
-	"stub-threshold-sample-link": "sampl",
-	"stub-threshold-disabled": "Analluogwyd",
 	"recentchangesdays": "Nifer y diwrnodau i'w dangos yn 'newidiadau diweddar':",
 	"recentchangesdays-max": "(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
 	"recentchangescount": "Nifer y golygiadau i'w dangos yn y 'newidiadau diweddar', 'logiau', 'hanes y dudalen' yn ddiofyn:",
@@ -1022,7 +1020,7 @@
 	"default": "rhagosodyn",
 	"prefs-files": "Ffeiliau",
 	"prefs-custom-css": "CSS o hunan-ddewis",
-	"prefs-custom-js": "JS o hunan-ddewis",
+	"prefs-custom-js": "JavaScript o hunan-ddewis",
 	"prefs-common-config": "CSS/JS ar y cyd ar gyfer pob gwedd:",
 	"prefs-reset-intro": "Gallwch ddefnyddio'r dudalen hon i ailosod eich dewisiadau i'r rhai diofyn.\nNi allwch ddadwneud y weithred hon.",
 	"prefs-emailconfirm-label": "Cadarnhau'r e-bost:",

@@ -22,7 +22,8 @@
 			"Wizardist",
 			"Zedlik",
 			"Тест",
-			"아라"
+			"아라",
+			"Nieszczarda2"
 		]
 	},
 	"tog-underline": "Падкрэсьліваць спасылкі:",
@@ -1048,9 +1049,6 @@
 	"restoreprefs": "Аднавіць усе стандартныя налады (ва ўсіх разьдзелах)",
 	"prefs-editing": "Рэдагаваньне",
 	"searchresultshead": "Пошук",
-	"stub-threshold": "Максымальны памер старонкі для паказу спасылак як на накід ($1):",
-	"stub-threshold-sample-link": "прыклад",
-	"stub-threshold-disabled": "Адключаны",
 	"recentchangesdays": "Колькасьць дзён для паказу ў апошніх зьменах:",
 	"recentchangesdays-max": "Максымальна $1 {{PLURAL:$1|дзень|дні|дзён}}",
 	"recentchangescount": "Колькасьць рэдагаваньняў для паказу па змоўчаньні ў апошніх зьменах, старонках гісторыі і журналах падзеяў:",
@@ -3707,8 +3705,8 @@
 	"mediastatistics": "Статыстыка мэдыяфайлаў",
 	"mediastatistics-summary": "Статыстыка тыпаў загружаных файлаў. Яна ўключае толькі актуальныя вэрсіі файлаў. Старыя і выдаленыя вэрсіі ня ўлічваюцца.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%)",
-	"mediastatistics-bytespertype": "Агульны памер файлу для гэтага разьдзелу: {{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%).",
-	"mediastatistics-allbytes": "Агульны памер усіх файлаў: {{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2).",
+	"mediastatistics-bytespertype": "Агульны памер файлу для гэтага разьдзелу з {{PLURAL:$4|$4 файлам|$4 файламі}} ($5): {{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%).",
+	"mediastatistics-allbytes": "Агульны памер усіх {{PLURAL:$3|$3 файлу|$3 файлаў}}: {{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2).",
 	"mediastatistics-table-mimetype": "MIME-тып",
 	"mediastatistics-table-extensions": "Магчымыя пашырэньні",
 	"mediastatistics-table-count": "Колькасьць файлаў",

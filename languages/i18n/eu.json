@@ -38,7 +38,8 @@
 			"Xð",
 			"לערי ריינהארט",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -1051,9 +1052,6 @@
 	"restoreprefs": "Konfigurazio lehenetsi guztiak berrezarri (sekzio guztietan)",
 	"prefs-editing": "Aldatzen",
 	"searchresultshead": "Bilaketa",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">stub link</a> formaturako atalasea ($1):",
-	"stub-threshold-sample-link": "adibidea",
-	"stub-threshold-disabled": "Ezgaitua",
 	"recentchangesdays": "Aldaketa berrietan erakutsi beharreko egun kopurua:",
 	"recentchangesdays-max": "(gehienez {{PLURAL:$1|egun bat|$1 egun}})",
 	"recentchangescount": "Modu lehenetsian erakutsi beharreko zuzneketa kopurua azken aldaketa, orrialdeen historia eta erregistroetan:",
@@ -1089,7 +1087,7 @@
 	"prefs-files": "Fitxategiak",
 	"prefs-custom-css": "CSS pertsonalizatua",
 	"prefs-custom-json": "JSON pertsonalizatua",
-	"prefs-custom-js": "JS pertsonalizatua",
+	"prefs-custom-js": "JavaScript pertsonalizatua",
 	"prefs-common-config": "CSS/JSON/JavaScript azal guztietarako partekatuak:",
 	"prefs-reset-intro": "Orrialde hau erabil dezakezu zure guneko berezko hobespenak berreskuratzeko.\nHau ezin da desegin.",
 	"prefs-emailconfirm-label": "E-posta baieztapena:",
@@ -3242,7 +3240,7 @@
 	"fileduplicatesearch-noresults": "Ez da aurkitu \"$1\" izeneko fitxategirik.",
 	"specialpages": "Orri bereziak",
 	"specialpages-note-top": "Azalpenak",
-	"specialpages-note-restricted": "* Orrialde arrunt bereziak.\n* <span class=\"mw-specialpagerestricted\">Restricted special pages.</span>",
+	"specialpages-note-restricted": "* Orrialde arrunt bereziak.\n* <span class=\"mw-specialpagerestricted\">Orrialde berezi mugatuak.</span>",
 	"specialpages-group-maintenance": "Mantentze-oharrak",
 	"specialpages-group-other": "Beste orri berezi batzuk",
 	"specialpages-group-login": "Hasi saioa / sortu kontua",

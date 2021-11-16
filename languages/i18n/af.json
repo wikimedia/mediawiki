@@ -34,7 +34,8 @@
 			"Winstonza",
 			"Xethron",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -891,9 +892,6 @@
 	"restoreprefs": "Herstel alle verstekvoorkeure (in alle afdelings)",
 	"prefs-editing": "Wysigings",
 	"searchresultshead": "Soekresultate",
-	"stub-threshold": "Drempel vir formatering van saadjies ($1):",
-	"stub-threshold-sample-link": "voorbeeld",
-	"stub-threshold-disabled": "Afgeskakel",
 	"recentchangesdays": "Aantal dae wat in onlangse wysigings vertoon word:",
 	"recentchangesdays-max": "Maksimum $1 {{PLURAL:$1|dag|dae}}",
 	"recentchangescount": "Aantal wysigings om by verstek te vertoon:",
@@ -922,7 +920,7 @@
 	"default": "verstek",
 	"prefs-files": "Lêers",
 	"prefs-custom-css": "Persoonlike CSS",
-	"prefs-custom-js": "Persoonlike JS",
+	"prefs-custom-js": "Persoonlike JavaScript",
 	"prefs-common-config": "Gedeelde CSS/JS vir al die omslae:",
 	"prefs-reset-intro": "U kan die blad gebruik om u voorkeure terug te stel na die webwerf se verstekwaardes.\nDie aksie kan nie ongedaan gemaak word nie.",
 	"prefs-emailconfirm-label": "E-posbevestiging:",

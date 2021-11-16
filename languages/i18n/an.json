@@ -18,7 +18,8 @@
 			"Willtron",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -723,8 +724,6 @@
 	"restoreprefs": "Restaure todas as confeguracions por defecto",
 	"prefs-editing": "Edición",
 	"searchresultshead": "Mirar",
-	"stub-threshold": "Branquil superior ta o formateyo de <a href=\"#\" class=\"stub\">vinclos ta borradors</a> (en bytes):",
-	"stub-threshold-disabled": "Desactivato",
 	"recentchangesdays": "Días que s'amostrarán en ''zaguers cambeos'':",
 	"recentchangesdays-max": "(masimo $1 {{PLURAL:$1|día|días}})",
 	"recentchangescount": "Numero d'edicions a amostrar, por defecto:",
@@ -752,7 +751,7 @@
 	"default": "por defecto",
 	"prefs-files": "fichers",
 	"prefs-custom-css": "CSS presonalizato",
-	"prefs-custom-js": "JS presonalizato",
+	"prefs-custom-js": "JavaScript presonalizato",
 	"prefs-common-config": "CSS/JS compartito ta todas as apariencias:",
 	"prefs-reset-intro": "Puet emplegar ista pachina ta restaurar as suyas preferencias a las valuras por defecto d'o sitio.\nNo se podrá desfer iste cambio.",
 	"prefs-emailconfirm-label": "Confirmación de correu electronico:",

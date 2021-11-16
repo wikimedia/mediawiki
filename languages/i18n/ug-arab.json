@@ -20,7 +20,8 @@
 			"Vlad5250",
 			"بىلگە",
 			"چۈشكۈن",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -911,8 +912,6 @@
 	"restoreprefs": "بارلىق كۆڭۈلدىكى تەڭشەكنى ئەسلىگە كەلتۈر (بارلىق بۆلەكلەردە)",
 	"prefs-editing": "تەھرىرلەش",
 	"searchresultshead": "ئىزدە",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :",
-	"stub-threshold-disabled": "چەكلەنگەن",
 	"recentchangesdays": "يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:",
 	"recentchangesdays-max": "ئەڭ چوڭ $1 {{PLURAL:$1|كۈن|كۈن}}",
 	"recentchangescount": "كۆرسىتىدىغان تەھرىرنىڭ كۆڭۈلدىكى سانى:",
@@ -940,7 +939,7 @@
 	"default": "كۆڭۈلدىكى",
 	"prefs-files": "ھۆججەتلەر",
 	"prefs-custom-css": "ئىختىيارى CSS",
-	"prefs-custom-js": "ئىختىيارى JS",
+	"prefs-custom-js": "ئىختىيارى JavaScript",
 	"prefs-common-config": "ھەممە تېرىدە ھەمبەھىرلەنگەن CSS/JS:",
 	"prefs-reset-intro": "سىز بۇ بەتنى ئىشلىتىپ تەڭشەكلىرىڭىزنى تور بېكەتنىڭ كۆڭۈلدىكى قىممىتىگە تەڭشىيەلەيسىز.\nبۇ مەشغۇلاتتىن يانغىلى بولمايدۇ.",
 	"prefs-emailconfirm-label": "ئېلخەت جەزملەش:",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Meerrahtar"
+			"Meerrahtar",
+			"Merrahtar"
 		]
 	},
 	"underline-always": "Пай",
@@ -113,7 +114,7 @@
 	"cactions": "Вя̄л",
 	"imagepage": "Выльшхэ файл лыст",
 	"otherlanguages": "Мудта кӣл",
-	"lastmodifiedat": "Тэдт лысст лӣ $1 $2 маӈьмусс вуэр вуайхма.",
+	"lastmodifiedat": "Тэдт лысст лӣ $1 $2 маӈьмусс вуэр воайха.",
 	"jumpto": "Ва̄ннҍцэ:",
 	"jumptonavigation": "навигация",
 	"jumptosearch": "коа̄ввнэ",
@@ -284,7 +285,7 @@
 	"search-interwiki-more": "(вя̄л)",
 	"searchall": "пугк",
 	"search-nonefound": "Нимэ̄нн эйй коаввнэй то̄н кэ̄жьнэг мӣлльтэ.",
-	"mypreferences": "Оассмуж",
+	"mypreferences": "Пыйнӭмуж",
 	"prefs-skin": "Ка̄ввь",
 	"prefs-user-pages": "Оаннӭй лыст",
 	"prefs-personal": "Оаннӭй профэль",
@@ -411,7 +412,7 @@
 	"imagelinks": "Фа̄йл оаннҍмушш",
 	"filepage-nofile": "Элля файл тэнна нэ̄мэнҍ.",
 	"filedelete-legend": "Вэ̄цксэ файл",
-	"randompage": "А̄йнхем лысст",
+	"randompage": "А̄йнхэмь лысст",
 	"statistics": "Статистика",
 	"statistics-pages": "Лысстэ",
 	"brokenredirects-edit": "вуайхэ",
@@ -550,6 +551,7 @@
 	"pagelang-language": "Кӣлл",
 	"pagelang-select-lang": "Воалш кӣл",
 	"right-pagelang": "Вуайхэ лыст кӣл",
+	"action-pagelang": "вуайхэ лыст кӣл",
 	"mediastatistics-header-total": "Пугк файл",
 	"special-characters-group-latin": "Латиница",
 	"special-characters-group-ipa": "МФА (IPA)",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Joao Xavier",
-			"Malafaya"
+			"Malafaya",
+			"JSantos"
 		]
 	},
 	"exif-imagewidth": "Larjeso",
@@ -11,6 +12,7 @@
 	"exif-orientation": "Orientizo",
 	"exif-xresolution": "Horizontala distingivo",
 	"exif-yresolution": "Vertikala distingivo",
+	"exif-stripoffsets": "Lokizo di informo pri imajo",
 	"exif-jpeginterchangeformatlength": "Bicoki* dil arkivo JPEG",
 	"exif-datetime": "Dio e horo di la modifiko dil arkivo",
 	"exif-make": "Fabrikanto di la fotografilo",
@@ -60,5 +62,6 @@
 	"exif-subjectdistancerange-0": "Nekonocata",
 	"exif-gpsspeed-k": "Kilometri per horo",
 	"exif-gpsspeed-m": "Milii per horo",
-	"exif-dc-publisher": "Publikigero"
+	"exif-dc-publisher": "Publikigero",
+	"exif-usepanoramaviewer-true": "Yes"
 }

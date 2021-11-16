@@ -31,7 +31,8 @@
 			"Yivangamer",
 			"tl.wikipedia.org sysops",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -906,8 +907,6 @@
 	"restoreprefs": "Ibalik ang lahat ng likas na mga pagtatakda",
 	"prefs-editing": "May binabago",
 	"searchresultshead": "Hanapin",
-	"stub-threshold": "Kakayanan para sa pagpopormat ng <a href=\"#\" class=\"usbong\">kawing ng usbong</a> (mga ''byte''):",
-	"stub-threshold-disabled": "Hindi pinagagana",
 	"recentchangesdays": "Mga araw na ipapakita sa kamakailan lamang na mga pagbabago:",
 	"recentchangesdays-max": "(pinakamataas na ang $1 {{PLURAL:$1|araw|mga araw}})",
 	"recentchangescount": "Bilang ng mga pagbabagong ipapakita sa pamamagitan ng likas na katakdaan:",
@@ -936,7 +935,7 @@
 	"default": "Likas na pagtatakda",
 	"prefs-files": "Mga file",
 	"prefs-custom-css": "Pasadyang CSS",
-	"prefs-custom-js": "Pasadyang JS",
+	"prefs-custom-js": "Pasadyang JavaScript",
 	"prefs-common-config": "Naibahaging CSS/JS para sa lahat ng pabalat:",
 	"prefs-reset-intro": "Magagamit mo ang pahinang ito upang muling maitakda ang mga kagustuhan mo sa likas na pagtatakda ng sityo.\nHindi ito maibabalik sa dating gawi.",
 	"prefs-emailconfirm-label": "Kumpirmasyon ng email:",

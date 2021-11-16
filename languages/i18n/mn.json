@@ -18,7 +18,8 @@
 			"Wisdom",
 			"Zorigt",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Линкүүдийн доогуур зураас зур:",
@@ -848,8 +849,6 @@
 	"restoreprefs": "Бүх тохиргоог анхны байдалд оруулах (хэсэг бүрт)",
 	"prefs-editing": "Засварлах",
 	"searchresultshead": "Хайлт",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">Түүхий холбоосийг</a> форматлах босго （байт）:",
-	"stub-threshold-disabled": "Идэвхигүйжүүлсэн",
 	"recentchangesdays": "Сүүлийн өөрчлөлтүүдэд үзүүлэх өдрийн тоо:",
 	"recentchangesdays-max": "Хамгийн ихдээ $1 өдөр",
 	"recentchangescount": "Үзүүлэх засварын тоо (анхны байдалд):",
@@ -877,7 +876,7 @@
 	"default": "анхны байдал",
 	"prefs-files": "Файлууд",
 	"prefs-custom-css": "Өөрийн сонгосон CSS",
-	"prefs-custom-js": "Өөрийн сонгосон JS",
+	"prefs-custom-js": "Өөрийн сонгосон JavaScript",
 	"prefs-common-config": "Бүх скинд ашиглагдах CSS/ЖаваСкрипт:",
 	"prefs-reset-intro": "Та энэ хуудсыг ашиглан өөрийн тохиргоог сайтын анхны тохиргооо руу шилжүүлэх боломжтой.\nЭнэ үйлдлийг буцаах боломжгүй.",
 	"prefs-emailconfirm-label": "Мэйлийн баталгаажуулалт:",
