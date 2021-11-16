@@ -53,6 +53,8 @@
 use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\Config\GlobalConfigSink;
+use MediaWiki\Settings\SettingsBuilder;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -99,11 +101,8 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
  *
  * These are changes and additions to runtime that don't vary on site configuration.
  */
-
 require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
-require_once "$IP/includes/DefaultSettings.php";
-require_once "$IP/includes/GlobalFunctions.php";
 
 // Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
@@ -126,6 +125,12 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	trigger_error( $message, E_USER_ERROR );
 }
 
+// Define $wgSettings for use in DefaultSettings.php and in LocalSettings.php
+$wgSettings = new SettingsBuilder( $IP, new GlobalConfigSink( 'wg' ) );
+
+require_once "$IP/includes/DefaultSettings.php";
+require_once "$IP/includes/GlobalFunctions.php";
+
 HeaderCallback::register();
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
@@ -136,6 +141,9 @@ mb_internal_encoding( 'UTF-8' );
  * Load LocalSettings.php
  */
 
+// Make any default settings available in globals for use in LocalSettings.php
+$wgSettings->apply();
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK );
 } else {
@@ -144,6 +152,9 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	}
 	require_once MW_CONFIG_FILE;
 }
+
+// Make settings loaded by LocalSettings.php available in globals for use here
+$wgSettings->apply();
 
 /**
  * Customization point after all loading (constants, functions, classes,
@@ -154,7 +165,12 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK );
+	// Make any additional settings available in globals for use here
+	$wgSettings->apply();
 }
+
+// All settings should be loaded now.
+unset( $wgSettings );
 
 // Start time limit
 if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
