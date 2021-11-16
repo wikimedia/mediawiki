@@ -3,6 +3,9 @@
 namespace MediaWiki\Settings;
 
 use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Source\ArraySource;
+use MediaWiki\Settings\Source\FileSource;
+use MediaWiki\Settings\Source\SettingsSource;
 
 /**
  * Utility for loading settings files.
@@ -33,30 +36,16 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Load settings from a file.
+	 * Load settings from a {@link SettingsSource}.
 	 *
 	 * @unstable
 	 *
-	 * @param string $source
+	 * @param SettingsSource $source
 	 * @return $this
 	 */
-	public function loadFile( string $source ): self {
-		$newSettings = $this->readSettingsFile( $source );
+	public function load( SettingsSource $source ): self {
+		$newSettings = $source->load();
 
-		return $this->loadArray( $newSettings );
-	}
-
-	/**
-	 * Load settings from aa array.
-	 *
-	 * @unstable
-	 *
-	 * @param array $newSettings
-	 * @param string $sourceName
-	 *
-	 * @return $this
-	 */
-	public function loadArray( array $newSettings, $sourceName = '<array>' ): self {
 		$this->settings['config'] =
 			array_merge( $this->settings['config'], $newSettings['config'] ?? [] );
 
@@ -66,7 +55,7 @@ class SettingsBuilder {
 		);
 		if ( !empty( $schemaOverrides ) ) {
 			throw new SettingsBuilderException( 'Overriding config schema in {source}', [
-				'source' => $sourceName,
+				'source' => $source,
 				'override_keys' => implode( ',', array_keys( $schemaOverrides ) ),
 			] );
 		}
@@ -74,6 +63,36 @@ class SettingsBuilder {
 			array_merge( $this->settings['config-schema'], $newSettings['config-schema'] ?? [] );
 
 		return $this;
+	}
+
+	/**
+	 * Load settings from an array.
+	 *
+	 * @unstable
+	 *
+	 * @param array $newSettings
+	 *
+	 * @return $this
+	 */
+	public function loadArray( array $newSettings ): self {
+		return $this->load( new ArraySource( $newSettings ) );
+	}
+
+	/**
+	 * Load settings from a file.
+	 *
+	 * @unstable
+	 *
+	 * @param string $path
+	 * @return $this
+	 */
+	public function loadFile( string $path ): self {
+		// Qualify the path if it isn't already absolute
+		if ( !preg_match( '!^[a-zA-Z]:\\\\!', $path ) && $path[0] != DIRECTORY_SEPARATOR ) {
+			$path = $this->baseDir . DIRECTORY_SEPARATOR . $path;
+		}
+
+		return $this->load( new FileSource( $path ) );
 	}
 
 	/**
@@ -103,29 +122,5 @@ class SettingsBuilder {
 			'config' => [],
 			'config-schema' => [],
 		];
-	}
-
-	/**
-	 * @param string $path
-	 *
-	 * @return array
-	 */
-	private function readSettingsFile( string $path ): array {
-		$fullPath = $this->baseDir . '/' . $path;
-
-		if ( !file_exists( $fullPath ) ) {
-			throw new SettingsBuilderException( "settings file '{path}' does not exist", [
-				'path' => $fullPath
-			] );
-		}
-
-		$json = file_get_contents( $fullPath );
-		$newSettings = json_decode( $json, true );
-
-		if ( !is_array( $newSettings ) ) {
-			throw new SettingsBuilderException( "failed to decode JSON from '$fullPath'" );
-		}
-
-		return $newSettings;
 	}
 }

@@ -1,0 +1,57 @@
+<?php
+
+namespace MediaWiki\Tests\Unit\Settings\Source;
+
+use MediaWiki\Settings\SettingsBuilderException;
+use MediaWiki\Settings\Source\FileSource;
+use MediaWiki\Settings\Source\Format\JsonFormat;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @covers \MediaWiki\Settings\Source\FileSource
+ */
+class FileSourceTest extends TestCase {
+	public function testLoad() {
+		$source = new FileSource( __DIR__ . '/fixtures/settings.json' );
+		$settings = $source->load();
+
+		$this->assertSame(
+			[ 'config' => [ 'MySetting' => 'BlaBla' ] ],
+			$source->load()
+		);
+	}
+
+	public function testLoadFormat() {
+		$source = new FileSource( __DIR__ . '/fixtures/settings.json', new JsonFormat() );
+		$settings = $source->load();
+
+		$this->assertSame(
+			[ 'config' => [ 'MySetting' => 'BlaBla' ] ],
+			$source->load()
+		);
+	}
+
+	public function testLoadBadFormat() {
+		$source = new FileSource( __DIR__ . '/fixtures/bad.json', new JsonFormat() );
+
+		$this->expectException( SettingsBuilderException::class );
+
+		$settings = $source->load();
+	}
+
+	public function testLoadDirectory() {
+		$source = new FileSource( __DIR__ . '/fixtures/dir.json' );
+
+		$this->expectException( SettingsBuilderException::class );
+
+		$settings = $source->load();
+	}
+
+	public function testLoadNoSuitableFormats() {
+		$source = new FileSource( __DIR__ . '/fixtures/settings.toml', new JsonFormat() );
+
+		$this->expectException( SettingsBuilderException::class );
+
+		$settings = $source->load();
+	}
+}
