@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
-use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilderException;
 
 trait ConfigSinkTestTrait {
 
-	abstract protected function getConfigSink(): ConfigSink;
+	abstract protected function getConfigSink(): ConfigBuilder;
 
 	abstract protected function assertKeyHasValue( string $key, $value );
 

@@ -21,11 +21,11 @@ class GlobalConfigBuilder extends ArrayConfigBuilder {
 		$this->prefix = $prefix;
 	}
 
-	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigSink {
+	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
 		return parent::set( $this->prefix . $key, $value, $mergeStrategy );
 	}
 
-	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigSink {
+	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
 		return parent::setDefault( $this->prefix . $key, $value, $mergeStrategy );
 	}
 

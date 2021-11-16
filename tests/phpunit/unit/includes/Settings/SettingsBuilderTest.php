@@ -2,9 +2,10 @@
 
 namespace phpunit\unit\includes\Settings;
 
+use InvalidArgumentException;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
-use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
@@ -18,13 +19,13 @@ use Psr\SimpleCache\CacheInterface;
 class SettingsBuilderTest extends TestCase {
 
 	/**
-	 * @param ConfigSink|null $configBuilder
+	 * @param ConfigBuilder|null $configBuilder
 	 * @param PhpIniSink|null $phpIniSink
 	 * @param CacheInterface|null $cache
 	 * @return SettingsBuilder
 	 */
 	private function newSettingsBuilder(
-		ConfigSink $configBuilder = null,
+		ConfigBuilder $configBuilder = null,
 		PhpIniSink $phpIniSink = null,
 		CacheInterface $cache = null
 	): SettingsBuilder {
@@ -205,6 +206,66 @@ class SettingsBuilderTest extends TestCase {
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'override' ], ], ] )
 			->apply();
+	}
+
+	public function provideValidate() {
+		yield 'all good' => [
+			'settings' => [
+				'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+				'config' => [ 'foo' => 'bar', ],
+			],
+			'valid' => true,
+		];
+		yield 'missing key' => [
+			'settings' => [
+				'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+				'config' => [ 'bar' => 'bar' ],
+			],
+			'valid' => false,
+		];
+		yield 'invalid config' => [
+			'settings' => [
+				'config-schema' => [ 'foo' => [ 'type' => 'string', ], ],
+				'config' => [ 'foo' => 1 ],
+			],
+			'valid' => false,
+		];
+		yield 'no schema was added' => [
+			'settings' => [
+				'config-schema' => [],
+				'config' => [ 'foo' => 'bar', ],
+			],
+			'valid' => true,
+		];
+		yield 'key is in config but has no schema' => [
+			'settings' => [
+				'config-schema' => [ 'foo' => [ 'type' => 'array', 'mergeStrategy' => MergeStrategy::ARRAY_MERGE ], ],
+				'config' => [ 'foo' => [], 'baz' => false, ],
+			],
+			'valid' => true,
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidate
+	 */
+	public function testValidate( array $settings, bool $valid ) {
+		$status = $this->newSettingsBuilder()
+			->loadArray( $settings )
+			->apply()
+			->validate();
+		$this->assertSame( $valid, $status->isOK() );
+	}
+
+	public function testValidateInvalidSchema() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->newSettingsBuilder()
+			->loadArray( [
+				'config-schema' => [ 'foo' => [ 'type' => 1 ] ],
+				'config' => [ 'foo' => 'bar' ],
+			] )
+			->apply()
+			->validate();
 	}
 
 	public function testLoadsCacheableSource() {

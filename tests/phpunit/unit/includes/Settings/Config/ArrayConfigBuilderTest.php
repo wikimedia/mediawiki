@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
-use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\ConfigBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,7 +20,7 @@ class ArrayConfigBuilderTest extends TestCase {
 		$this->builder = new ArrayConfigBuilder();
 	}
 
-	protected function getConfigSink(): ConfigSink {
+	protected function getConfigSink(): ConfigBuilder {
 		return $this->builder;
 	}
 
