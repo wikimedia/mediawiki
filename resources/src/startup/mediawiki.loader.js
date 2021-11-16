@@ -1289,8 +1289,10 @@
 	 * @return {Object}
 	 */
 	function splitModuleKey( key ) {
-		var index = key.indexOf( '@' );
-		if ( index === -1 ) {
+		// Module names may contain '@' but version strings may not, so the last '@' is the delimiter
+		var index = key.lastIndexOf( '@' );
+		// If the key doesn't contain '@' or starts with it, the whole thing is the module name
+		if ( index === -1 || index === 0 ) {
 			return {
 				name: key,
 				version: ''
@@ -1984,7 +1986,7 @@
 				// key is in the form [name]@[version], slice to get just the name
 				// to provide to getModuleKey, which will return a key in the same
 				// form but with the latest version
-				if ( getModuleKey( key.slice( 0, key.indexOf( '@' ) ) ) !== key ) {
+				if ( getModuleKey( splitModuleKey( key ).name ) !== key ) {
 					this.stats.expired++;
 					delete this.items[ key ];
 				}

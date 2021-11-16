@@ -548,6 +548,28 @@
 		} );
 	} );
 
+	QUnit.test( '.implement( name with @ )', function ( assert ) {
+		var done = assert.async();
+		// Calling implement() without a version number works if the '@' is the first character
+		mw.loader.implement( '@foo/bar', function ( $, jQuery, require, module ) {
+			module.exports = 'foobar';
+		} );
+		// If '@' is not the first character, a version number is required to resolve the ambiguity
+		mw.loader.implement( 'baz@quux@123', function ( $, jQuery, require, module ) {
+			module.exports = 'bazquux';
+		} );
+
+		assert.strictEqual( mw.loader.getState( '@foo/bar' ), 'loaded' );
+		assert.strictEqual( mw.loader.getState( 'baz@quux' ), 'loaded' );
+		mw.loader.using( [ '@foo/bar', 'baz@quux' ], function ( require ) {
+			assert.strictEqual( mw.loader.getState( '@foo/bar' ), 'ready' );
+			assert.strictEqual( require( '@foo/bar' ), 'foobar' );
+			assert.strictEqual( mw.loader.getState( 'baz@quux' ), 'ready' );
+			assert.strictEqual( require( 'baz@quux' ), 'bazquux' );
+			done();
+		} );
+	} );
+
 	QUnit.test( '.addSource()', function ( assert ) {
 		mw.loader.addSource( { testsource1: 'https://1.test/src' } );
 
