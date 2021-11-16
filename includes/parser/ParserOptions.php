@@ -1282,7 +1282,8 @@ class ParserOptions {
 
 	/**
 	 * Registers a callback for tracking which ParserOptions which are used.
-	 * This is a private API with the parser.
+	 *
+	 * @since 1.16
 	 * @param callable|null $callback
 	 */
 	public function registerWatcher( $callback ) {
@@ -1290,14 +1291,15 @@ class ParserOptions {
 	}
 
 	/**
-	 * Called when an option is accessed.
-	 * Calls the watcher that was set using registerWatcher().
+	 * Record that an option was internally accessed.
+	 *
+	 * This calls the watcher set by ParserOptions::registerWatcher().
 	 * Typically, the watcher callback is ParserOutput::registerOption().
-	 * The information registered that way will be used by ParserCache::save().
+	 * The information registered this way is consumed by ParserCache::save().
 	 *
 	 * @param string $optionName Name of the option
 	 */
-	public function optionUsed( $optionName ) {
+	private function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {
 			call_user_func( $this->onAccessCallback, $optionName );
 		}
