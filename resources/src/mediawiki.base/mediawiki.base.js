@@ -1,27 +1,6 @@
-/*!
- * This file is currently loaded as part of the 'mediawiki' module and therefore
- * concatenated to mediawiki.js and executed at the same time. This file exists
- * to help prepare for splitting up the 'mediawiki' module.
- * This effort is tracked at https://phabricator.wikimedia.org/T192623
- *
- * In short:
- *
- * - mediawiki.js will be reduced to the minimum needed to define mw.loader and
- *   mw.config, and then moved to its own private "mediawiki.loader" module that
- *   can be embedded within the StartupModule response.
- *
- * - mediawiki.base.js and other files in this directory will remain part of the
- *   "mediawiki" module, and will remain a default/implicit dependency for all
- *   regular modules, just like jquery and wikibits already are.
- */
 'use strict';
 
-var queue,
-	slice = Array.prototype.slice,
-	hooks = Object.create( null ),
-	mwLoaderTrack = mw.track,
-	trackCallbacks = $.Callbacks( 'memory' ),
-	trackHandlers = [];
+var slice = Array.prototype.slice;
 
 // Apply site-level config
 mw.config.set( require( './config.json' ) );
@@ -107,9 +86,11 @@ Message.prototype = {
 	 *
 	 * This function will not be called for nonexistent messages.
 	 *
+	 * @private For internal use by mediawiki.jqueryMsg only
+	 * @param {string} format
 	 * @return {string} Parsed message
 	 */
-	parser: function () {
+	parser: function ( format ) {
 		var text = this.map.get( this.key );
 		if (
 			mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
@@ -118,7 +99,7 @@ Message.prototype = {
 			text = '(' + this.key + '$*)';
 		}
 		text = mw.format.apply( null, [ text ].concat( this.parameters ) );
-		if ( this.format === 'parse' ) {
+		if ( format === 'parse' ) {
 			// We don't know how to parse anything, so escape it all
 			text = mw.html.escape( text );
 		}
@@ -160,11 +141,11 @@ Message.prototype = {
 		}
 
 		if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
-			return this.parser();
+			return this.parser( this.format );
 		}
 
-		// Format: 'escaped'
-		return mw.html.escape( this.parser() );
+		// Format: 'escaped' (including for any invalid format, default to safe escape)
+		return mw.html.escape( this.parser( 'escaped' ) );
 	},
 
 	/**
@@ -350,6 +331,10 @@ mw.notify = function ( message, options ) {
 	} );
 };
 
+var mwLoaderTrack = mw.track;
+var trackCallbacks = $.Callbacks( 'memory' );
+var trackHandlers = [];
+
 /**
  * Track an analytic event.
  *
@@ -397,7 +382,6 @@ mw.trackSubscribe = function ( topic, callback ) {
 	}
 
 	trackHandlers.push( [ handler, callback ] );
-
 	trackCallbacks.add( handler );
 };
 
@@ -459,6 +443,8 @@ trackCallbacks.fire( mw.trackQueue );
  *
  * @class mw.hook
  */
+
+var hooks = Object.create( null );
 
 /**
  * Create an instance of mw.hook.
@@ -767,7 +753,7 @@ mw.user = {
 };
 
 // Process callbacks for modern browsers (Grade A) that require modules.
-queue = window.RLQ;
+var queue = window.RLQ;
 // Replace temporary RLQ implementation from startup.js with the
 // final implementation that also processes callbacks that can
 // require modules. It must also support late arrivals of

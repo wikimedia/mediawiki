@@ -216,6 +216,36 @@
 		);
 	} );
 
+	QUnit.test( 'mw.log.makeDeprecated()', function ( assert ) {
+		var track = [];
+		var log = [];
+		var fn;
+		this.sandbox.stub( mw, 'track', function ( topic, key ) {
+			if ( topic === 'mw.deprecate' ) {
+				track.push( key );
+			}
+		} );
+		this.sandbox.stub( mw.log, 'warn', function ( msg ) {
+			log.push( msg );
+		} );
+
+		fn = mw.log.makeDeprecated( 'key', 'Warning.' );
+		for ( var i = 0; i <= 3; i++ ) {
+			fn();
+		}
+		assert.deepEqual( track, [ 'key' ], 'track' );
+		assert.deepEqual( log, [ 'Warning.' ], 'log' );
+
+		log = [];
+		track = [];
+		fn = mw.log.makeDeprecated( null, 'Warning.' );
+		for ( var j = 0; j <= 3; j++ ) {
+			fn();
+		}
+		assert.deepEqual( track, [], 'no track' );
+		assert.deepEqual( log, [ 'Warning.' ], 'log without track' );
+	} );
+
 	QUnit.test( 'mw.log.deprecate()', function ( assert ) {
 		var track = [];
 		var log = [];
