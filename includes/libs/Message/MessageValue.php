@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Message;
 
+use Stringable;
+
 /**
  * Value object representing a message for i18n.
  *
@@ -88,6 +90,19 @@ class MessageValue {
 	public function textParamsOfType( $type, ...$values ) {
 		foreach ( $values as $value ) {
 			$this->params[] = new ScalarParam( $type, $value );
+		}
+		return $this;
+	}
+
+	/**
+	 * Chainable mutator which adds object parameters
+	 *
+	 * @param Stringable ...$values stringable object values
+	 * @return $this
+	 */
+	public function objectParams( ...$values ) {
+		foreach ( $values as $value ) {
+			$this->params[] = new ScalarParam( ParamType::OBJECT, $value );
 		}
 		return $this;
 	}

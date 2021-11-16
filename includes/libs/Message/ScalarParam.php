@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Message;
 
+use Stringable;
+
 /**
  * Value object representing a message parameter holding a single value.
  *
@@ -16,7 +18,7 @@ class ScalarParam extends MessageParam {
 	 * @stable to call.
 	 *
 	 * @param string $type One of the ParamType constants.
-	 * @param string|int|float|MessageValue $value
+	 * @param string|int|float|MessageValue|Stringable $value
 	 */
 	public function __construct( $type, $value ) {
 		if ( $type === ParamType::LIST ) {
@@ -24,7 +26,8 @@ class ScalarParam extends MessageParam {
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
 			);
 		}
-		if ( !is_string( $value ) && !is_numeric( $value ) && !$value instanceof MessageValue ) {
+		if ( !is_string( $value ) && !is_numeric( $value ) &&
+			!$value instanceof MessageValue && !$value instanceof Stringable ) {
 			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
 			throw new \InvalidArgumentException(
 				"Scalar parameter must be a string, number, or MessageValue; got $type"
@@ -39,7 +42,7 @@ class ScalarParam extends MessageParam {
 		if ( $this->value instanceof MessageValue ) {
 			$contents = $this->value->dump();
 		} else {
-			$contents = htmlspecialchars( $this->value );
+			$contents = htmlspecialchars( (string)$this->value );
 		}
 		return "<{$this->type}>" . $contents . "</{$this->type}>";
 	}
