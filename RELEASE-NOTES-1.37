@@ -1,11 +1,17 @@
 = MediaWiki 1.37 =
 
+== MediaWiki 1.37.0 ==
+
+=== Changes since MediaWiki 1.37.0-rc.2 ===
+* Remove justinrainbow/json-schema from vendor.
+* Updated pear/mail_mime from 1.10.9 to 1.10.11.
+* Update deprecated Guzzle Psr7 function calls.
+* (T281972) UserIdentityValue: Correct @since tags.
+* Updated wikimedia/parsoid from v0.14.0-a19 to v0.14.0.
+* Localisation updates.
+* Tweak error message for missing composer dependencies.
+
 == MediaWiki 1.37.0-rc.2 ==
-
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.37 is a pre-release testing branch, and is not recommended
-for use in production.
 
 === Changes since MediaWiki 1.37.0-rc.1 ===
 * (T295173) Re-add wikimedia/normalized-exception to vendor.
