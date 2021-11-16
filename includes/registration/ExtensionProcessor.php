@@ -530,7 +530,9 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $ns['capitallinkoverride'] ) ) {
 					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
-
+				if ( isset( $ns['includable'] ) && !$ns['includable'] ) {
+					$this->globals['wgNonincludableNamespaces'][] = $id;
+				}
 			}
 		}
 	}
