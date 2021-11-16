@@ -64,8 +64,8 @@ $maintenance->setup();
 $self = $maintenance->getName();
 
 // Define how settings are loaded (e.g. LocalSettings.php)
-if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
-	define( 'MW_CONFIG_FILE', $maintenance->loadSettings() );
+if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
+	$maintenance->loadSettings();
 }
 
 // Custom setup for Maintenance entry point

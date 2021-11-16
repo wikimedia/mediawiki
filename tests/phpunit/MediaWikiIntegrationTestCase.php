@@ -187,8 +187,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	final public static function mediaWikiSetUpBeforeClass(): void {
 		global $IP;
-		if ( !is_file( "$IP/LocalSettings.php" ) ) {
-				echo "File \"$IP/LocalSettings.php\" could not be found. "
+		$settingsFile = wfDetectLocalSettingsFile( $IP );
+		if ( !is_file( $settingsFile ) ) {
+				echo "The file $settingsFile could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
 				. "which requires a working MediaWiki installation.\n"
 				. ( new RuntimeException() )->getTraceAsString();
