@@ -5,6 +5,7 @@
  */
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -70,8 +71,17 @@ abstract class LockManager {
 	public const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
 	public const LOCK_EX = 3; // exclusive lock (for writes)
 
-	/** @var int Max expected lock expiry in any context */
-	protected const MAX_LOCK_TTL = 7200; // 2 hours
+	/** Max expected lock expiry in any context */
+	protected const MAX_LOCK_TTL = 2 * 3600; // 2 hours
+
+	/** Default lock TTL in CLI mode */
+	protected const CLI_LOCK_TTL = 3600; // 1 hour
+
+	/** Minimum lock TTL. The configured lockTTL is ignored if it is less than this value. */
+	protected const MIN_LOCK_TTL = 5; // seconds
+
+	/** The minimum lock TTL if it is guessed from max_execution_time rather than configured. */
+	protected const MIN_GUESSED_LOCK_TTL = 5 * 60; // 5 minutes
 
 	/**
 	 * Construct a new instance from configuration
@@ -85,12 +95,13 @@ abstract class LockManager {
 	public function __construct( array $config ) {
 		$this->domain = $config['domain'] ?? 'global';
 		if ( isset( $config['lockTTL'] ) ) {
-			$this->lockTTL = max( 5, $config['lockTTL'] );
+			$this->lockTTL = max( self::MIN_LOCK_TTL, $config['lockTTL'] );
 		} elseif ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
-			$this->lockTTL = 3600;
+			$this->lockTTL = self::CLI_LOCK_TTL;
 		} else {
-			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
-			$this->lockTTL = max( 5 * 60, 2 * (int)$met );
+			$ttl = 2 * ceil( RequestTimeout::singleton()->getWallTimeLimit() );
+			$this->lockTTL = ( $ttl === INF || $ttl < self::MIN_GUESSED_LOCK_TTL )
+				? self::MIN_GUESSED_LOCK_TTL : $ttl;
 		}
 
 		// Upper bound on how long to keep lock structures around. This is useful when setting

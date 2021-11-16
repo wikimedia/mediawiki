@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\ScopedCallback;
 
 /**
  * Helper class for file deletion
@@ -315,7 +316,13 @@ class LocalFileDeleteBatch {
 	 */
 	public function execute() {
 		$repo = $this->file->getRepo();
-		$this->file->lock();
+		$status = $this->file->acquireFileLock();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$unlockScope = new ScopedCallback( function () {
+			$this->file->releaseFileLock();
+		} );
 
 		// Prepare deletion batch
 		$hashes = $this->getHashes();
@@ -352,18 +359,24 @@ class LocalFileDeleteBatch {
 
 		if ( !$this->status->isOK() ) {
 			// Critical file deletion error; abort
-			$this->file->unlock();
-
 			return $this->status;
 		}
+
+		$dbw = $this->file->repo->getPrimaryDB();
+
+		$dbw->startAtomic( __METHOD__ );
 
 		// Copy the image/oldimage rows to filearchive
 		$this->doDBInserts();
 		// Delete image/oldimage rows
 		$this->doDBDeletes();
 
+		// This is typically a no-op since we are wrapped by another atomic
+		// section in FileDeleteForm and also the implicit transaction.
+		$dbw->endAtomic( __METHOD__ );
+
 		// Commit and return
-		$this->file->unlock();
+		ScopedCallback::consume( $unlockScope );
 
 		return $this->status;
 	}
