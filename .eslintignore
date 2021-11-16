@@ -11,6 +11,7 @@
 /vendor/
 /tests/coverage/
 /tests/phpunit/data/registration/duplicate_keys.json
+/tests/phpunit/unit/includes/Settings/Source/fixtures/bad.json
 /maintenance/benchmarks/data/
 
 # Nested projects
