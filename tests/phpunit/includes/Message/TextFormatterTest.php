@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Message;
 
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
+use MediaWiki\Message\UserGroupMembershipParam;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
@@ -91,6 +93,13 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 		yield [ ( new MessageValue( 'test' ) )
 			->userGroupParams( 'bot' ),
 			'test (group-bot) $2'
+		];
+
+		yield [ ( new MessageValue( 'test' ) )
+			->objectParams(
+				new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
+			),
+			'test (group-bot-member: user) $2'
 		];
 	}
 
