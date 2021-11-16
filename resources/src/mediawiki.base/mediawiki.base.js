@@ -1,27 +1,6 @@
-/*!
- * This file is currently loaded as part of the 'mediawiki' module and therefore
- * concatenated to mediawiki.js and executed at the same time. This file exists
- * to help prepare for splitting up the 'mediawiki' module.
- * This effort is tracked at https://phabricator.wikimedia.org/T192623
- *
- * In short:
- *
- * - mediawiki.js will be reduced to the minimum needed to define mw.loader and
- *   mw.config, and then moved to its own private "mediawiki.loader" module that
- *   can be embedded within the StartupModule response.
- *
- * - mediawiki.base.js and other files in this directory will remain part of the
- *   "mediawiki" module, and will remain a default/implicit dependency for all
- *   regular modules, just like jquery and wikibits already are.
- */
 'use strict';
 
-var queue,
-	slice = Array.prototype.slice,
-	hooks = Object.create( null ),
-	mwLoaderTrack = mw.track,
-	trackCallbacks = $.Callbacks( 'memory' ),
-	trackHandlers = [];
+var slice = Array.prototype.slice;
 
 // Apply site-level config
 mw.config.set( require( './config.json' ) );
@@ -350,6 +329,10 @@ mw.notify = function ( message, options ) {
 	} );
 };
 
+var mwLoaderTrack = mw.track;
+var trackCallbacks = $.Callbacks( 'memory' );
+var trackHandlers = [];
+
 /**
  * Track an analytic event.
  *
@@ -397,7 +380,6 @@ mw.trackSubscribe = function ( topic, callback ) {
 	}
 
 	trackHandlers.push( [ handler, callback ] );
-
 	trackCallbacks.add( handler );
 };
 
@@ -459,6 +441,8 @@ trackCallbacks.fire( mw.trackQueue );
  *
  * @class mw.hook
  */
+
+var hooks = Object.create( null );
 
 /**
  * Create an instance of mw.hook.
@@ -767,7 +751,7 @@ mw.user = {
 };
 
 // Process callbacks for modern browsers (Grade A) that require modules.
-queue = window.RLQ;
+var queue = window.RLQ;
 // Replace temporary RLQ implementation from startup.js with the
 // final implementation that also processes callbacks that can
 // require modules. It must also support late arrivals of
