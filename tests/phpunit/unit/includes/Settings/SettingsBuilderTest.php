@@ -4,6 +4,7 @@ namespace phpunit\unit\includes\Settings;
 
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
@@ -97,6 +98,51 @@ class SettingsBuilderTest extends TestCase {
 			],
 			'expectedGlobals' => [
 				'MySetting' => null,
+			],
+		];
+		yield 'merge strategy is applied when setting config' => [
+			'settingsBatches' => [
+				[
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE
+					], ],
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'c' ], ], ],
+				],
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
+			],
+		];
+		yield 'merge strategy is applied backwards setting schema default' => [
+			'settingsBatches' => [
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
+						'default' => [ 'a' => [ 'b' => 'c' ], ],
+					], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
+			],
+		];
+		yield 'merge strategy is applied backwards setting schema default in different batch' => [
+			'settingsBatches' => [
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+				], [
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
+						'default' => [ 'a' => [ 'b' => 'c' ], ],
+					], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
 			],
 		];
 	}
