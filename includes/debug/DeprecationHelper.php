@@ -112,8 +112,8 @@ trait DeprecationHelper {
 	 *
 	 * @param string $property The name of the property.
 	 * @param string $version MediaWiki version where the property became deprecated.
-	 * @param callable $getter an user provided getter that implements a `get` logic for the property
-	 * @param callable|null $setter an user provided getter that implements a `set` logic for the property
+	 * @param callable $getter A user provided getter that implements a `get` logic for the property.
+	 * @param callable|null $setter A user provided setter that implements a `set` logic for the property.
 	 * @param string|null $class The class which has the deprecated property.
 	 * @param string|null $component
 	 *
