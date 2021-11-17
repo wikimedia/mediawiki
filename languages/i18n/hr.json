@@ -1103,7 +1103,7 @@
 	"linterror-self-closed-tag": "Samozatvorena oznaka",
 	"linterror-tidy-font-bug": "Oznaka font pokušava promijeniti boju poveznice",
 	"yourgender": "Na koji način želite da Vam se ostali suradnici obraćaju?",
-	"gender-unknown": "Kad Vas se spominje, programska će oprema pokušati upotrijebiti srednji rod kad god je to moguće.",
+	"gender-unknown": "Kad Vas spominje, sustav će izbjegavati upotrebu određenog roda gdje god je to moguće",
 	"gender-notknown": "Uređivači/uređivačice ste wikistranica.",
 	"gender-male": "Uređivač sam wikistranica.",
 	"gender-female": "Uređivačica sam wikistranica.",
