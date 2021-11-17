@@ -120,6 +120,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->altUserName = 'Altuseruser';
 		date_default_timezone_set( $localZone );
 
+		/**
+		 * TODO: We should provision title object(s) via providers not in here
+		 * in order for us to avoid setting mInterwiki via reflection property.
+		 */
 		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
@@ -302,7 +306,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] ];
 
 		if ( isset( $titleOverrides['interwiki'] ) ) {
-			$this->title->mInterwiki = $titleOverrides['interwiki'];
+			$reflectedTitle = TestingAccessWrapper::newFromObject( $this->title );
+			$reflectedTitle->mInterwiki = $titleOverrides['interwiki'];
 		}
 
 		$this->assertEquals(

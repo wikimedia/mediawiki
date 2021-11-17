@@ -74,6 +74,27 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public const NEW_CLONE = 'clone';
 
+	/** @var string Text form (spaces not underscores) of the main part */
+	private $mTextform = '';
+
+	/** @var string URL-encoded form of the main part */
+	private $mUrlform = '';
+
+	/** @var string Main part with underscores */
+	private $mDbkeyform = '';
+
+	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
+	private $mNamespace = NS_MAIN;
+
+	/** @var string Interwiki prefix */
+	private $mInterwiki = '';
+
+	/** @var bool Was this Title created from a string with a local interwiki prefix? */
+	private $mLocalInterwiki = false;
+
+	/** @var string Title fragment (i.e. the bit after the #) */
+	private $mFragment = '';
+
 	/***************************************************************************/
 	// region   Private member variables
 	/** @name   Private member variables
@@ -81,51 +102,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @internal
 	 * @{
 	 */
-
-	/**
-	 * @deprecated since 1.37 directly accessing this member,
-	 *   use the ::getText() method instead.
-	 * @var string Text form (spaces not underscores) of the main part
-	 */
-	public $mTextform = '';
-
-	/**
-	 * @deprecated since 1.37 directly accessing this member,
-	 *   use the ::getPartialURL() method instead.
-	 * @var string URL-encoded form of the main part
-	 */
-	public $mUrlform = '';
-
-	/**
-	 * @deprecated since 1.37 directly accessing this member,
-	 *   use the ::getDBkey() method instead.
-	 * @var string Main part with underscores
-	 */
-	public $mDbkeyform = '';
-
-	/**
-	 * @deprecated sine 1.37 Avoid directly accessing this member,
-	 *   use the ::getNamespace() method instead
-	 * @var int Namespace index, i.e. one of the NS_xxxx constants
-	 */
-	public $mNamespace = NS_MAIN;
-
-	/**
-	 * @deprecated since 1.37 Avoid directly accessing this member,
-	 *   use the ::getInterwiki() method instead.
-	 * @var string Interwiki prefix
-	 */
-	public $mInterwiki = '';
-
-	/** @var bool Was this Title created from a string with a local interwiki prefix? */
-	private $mLocalInterwiki = false;
-
-	/**
-	 * @deprecated since 1.37 Avoid directly accessing this member,
-	 *   use the ::getFragment() method instead.
-	 * @var string Title fragment (i.e. the bit after the #)
-	 */
-	public $mFragment = '';
 
 	/** @var int Article ID, fetched from the link cache on demand */
 	public $mArticleID = -1;
@@ -242,6 +218,43 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	private function __construct() {
+		$this->deprecatePublicProperty( 'mTextform', '1.37', __CLASS__ );
+		$this->deprecatePublicProperty( 'mUrlform', '1.37', __CLASS__ );
+		$this->deprecatePublicProperty( 'mDbkeyform', '1.37', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNamespace', '1.37', __CLASS__ );
+		$this->deprecatePublicProperty( 'mInterwiki', '1.37', __CLASS__ );
+		$this->deprecatePublicProperty( 'mFragment', '1.37', __CLASS__ );
+
+		$this->deprecatePublicPropertyFallback( 'mTextform', '1.38', function () {
+			return $this->getText();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mUrlform', '1.38', function () {
+			return $this->getPartialURL();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mDbkeyform', '1.38', function () {
+			return $this->getDBkey();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mNamespace', '1.38', function () {
+			return $this->getNamespace();
+		} );
+
+		$this->deprecatePublicPropertyFallback( 'mInterwiki', '1.38', function () {
+			return $this->getInterwiki();
+		} );
+
+		$this->deprecatePublicPropertyFallback(
+			'mFragment',
+			'1.38',
+			function () {
+				return $this->getFragment();
+			},
+			function ( $fragment ) {
+				$this->setFragment( $fragment );
+			}
+		);
 	}
 
 	/**
