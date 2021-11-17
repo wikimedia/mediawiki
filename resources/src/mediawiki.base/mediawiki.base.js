@@ -315,7 +315,9 @@ mw.message = function ( key ) {
  * @return {string}
  */
 mw.msg = function () {
-	return mw.message.apply( mw, arguments ).toString();
+	// Shortcut must process text transformations by default
+	// if mediawiki.jqueryMsg is loaded. (T46459)
+	return mw.message.apply( mw, arguments ).text();
 };
 
 /**
