@@ -114,6 +114,9 @@
 			mw.messages.set( 'hello', 'Hello <b>awesome</b> world' );
 			var hello = mw.message( 'hello' );
 
+			// Silence deprecation warning
+			this.sandbox.stub( mw.log, 'warn' );
+
 			hello.format = 'plain';
 			assert.strictEqual( hello.toString(), 'Hello <b>awesome</b> world', 'use stored format' );
 
