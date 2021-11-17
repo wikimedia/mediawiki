@@ -4,6 +4,7 @@ namespace phpunit\unit\includes\Settings;
 
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
@@ -99,6 +100,51 @@ class SettingsBuilderTest extends TestCase {
 				'MySetting' => null,
 			],
 		];
+		yield 'merge strategy is applied when setting config' => [
+			'settingsBatches' => [
+				[
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE
+					], ],
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'c' ], ], ],
+				],
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
+			],
+		];
+		yield 'merge strategy is applied backwards setting schema default' => [
+			'settingsBatches' => [
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
+						'default' => [ 'a' => [ 'b' => 'c' ], ],
+					], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
+			],
+		];
+		yield 'merge strategy is applied backwards setting schema default in different batch' => [
+			'settingsBatches' => [
+				[
+					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+				], [
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
+						'default' => [ 'a' => [ 'b' => 'c' ], ],
+					], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
+			],
+		];
 	}
 
 	/**
@@ -111,27 +157,31 @@ class SettingsBuilderTest extends TestCase {
 			$setting->loadArray( $batch );
 		}
 		$setting->apply();
-		$this->assertEquals( $expectedGlobals, $configBuilder->buildArray() );
+		foreach ( $expectedGlobals as $key => $value ) {
+			$this->assertSame( $value, $configBuilder->build()->get( $key ) );
+		}
 	}
 
 	public function testApplyPurgesState() {
 		$configBuilder = new ArrayConfigBuilder();
 		$setting = $this->newSettingsBuilder( $configBuilder );
-		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )->apply();
-		$this->assertEquals( [ 'MySetting' => 'MyValue', ], $configBuilder->buildArray() );
+		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )
+			->apply();
+		$this->assertSame( 'MyValue', $configBuilder->build()->get( 'MySetting' ) );
 		$configBuilder->set( 'MySetting', 'MyOtherValue' );
 		// Calling apply a second time should not redefine the global
 		// since the state should be cleared
 		$setting->apply();
-		$this->assertEquals( [ 'MySetting' => 'MyOtherValue', ], $configBuilder->buildArray() );
+		$this->assertSame( 'MyOtherValue', $configBuilder->build()->get( 'MySetting' ) );
 	}
 
 	public function testApplyDefaultDoesNotOverwriteExisting() {
-		$configBuilder = new ArrayConfigBuilder( [ 'MySetting' => 'existing' ] );
+		$configBuilder = ( new ArrayConfigBuilder() )
+			->set( 'MySetting', 'existing' );
 		$this->newSettingsBuilder( $configBuilder )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->apply();
-		$this->assertEquals( [ 'MySetting' => 'existing' ], $configBuilder->buildArray() );
+		$this->assertSame( 'existing', $configBuilder->build()->get( 'MySetting' ) );
 	}
 
 	public function testConfigSchemaOverrideNotAllowed() {

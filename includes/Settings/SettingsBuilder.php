@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings;
 
+use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\ConfigSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
@@ -19,8 +20,11 @@ class SettingsBuilder {
 	/** @var ConfigSink */
 	private $configSink;
 
-	/** @var array */
-	private $settings;
+	/** @var SettingsSource[] */
+	private $currentBatch;
+
+	/** @var ConfigSchemaAggregator */
+	private $configSchema;
 
 	/**
 	 * @param string $baseDir
@@ -32,6 +36,7 @@ class SettingsBuilder {
 	) {
 		$this->baseDir = $baseDir;
 		$this->configSink = $configSink;
+		$this->configSchema = new ConfigSchemaAggregator();
 		$this->reset();
 	}
 
@@ -44,24 +49,7 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function load( SettingsSource $source ): self {
-		$newSettings = $source->load();
-
-		$this->settings['config'] =
-			array_merge( $this->settings['config'], $newSettings['config'] ?? [] );
-
-		$schemaOverrides = array_intersect_key(
-			$this->settings['config-schema'],
-			$newSettings['config-schema'] ?? []
-		);
-		if ( !empty( $schemaOverrides ) ) {
-			throw new SettingsBuilderException( 'Overriding config schema in {source}', [
-				'source' => $source,
-				'override_keys' => implode( ',', array_keys( $schemaOverrides ) ),
-			] );
-		}
-		$this->settings['config-schema'] =
-			array_merge( $this->settings['config-schema'], $newSettings['config-schema'] ?? [] );
-
+		$this->currentBatch[] = $source;
 		return $this;
 	}
 
@@ -104,23 +92,40 @@ class SettingsBuilder {
 	 * This may however not be the case in the future.
 	 */
 	public function apply() {
-		foreach ( $this->settings['config'] as $key => $value ) {
-			$this->configSink->set( $key, $value );
+		foreach ( $this->currentBatch as $source ) {
+			$settings = $source->load();
+			$this->configSchema->addSchemas( $settings['config-schema'] ?? [], (string)$source );
+			$this->applySettings( $settings );
 		}
-
-		foreach ( $this->settings['config-schema'] as $key => $schema ) {
-			if ( array_key_exists( 'default', $schema ) ) {
-				$this->configSink->setIfNotDefined( $key, $schema['default'] );
-			}
-		}
-
 		$this->reset();
 	}
 
+	/**
+	 * Apply the settings file.
+	 *
+	 * @param array $settings
+	 */
+	private function applySettings( array $settings ) {
+		foreach ( $settings['config'] ?? [] as $key => $value ) {
+			$this->configSink->set(
+				$key,
+				$value,
+				$this->configSchema->getMergeStrategyFor( $key )
+			);
+		}
+
+		foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
+			if ( $this->configSchema->hasDefaultFor( $key ) ) {
+				$this->configSink->setDefault(
+					$key,
+					$this->configSchema->getDefaultFor( $key ),
+					$this->configSchema->getMergeStrategyFor( $key )
+				);
+			}
+		}
+	}
+
 	private function reset() {
-		$this->settings = [
-			'config' => [],
-			'config-schema' => [],
-		];
+		$this->currentBatch = [];
 	}
 }
