@@ -431,7 +431,7 @@ class WikiExporter {
 			# query optimization for history stub dumps
 			if ( $this->text == self::STUB ) {
 				$opts[] = 'STRAIGHT_JOIN';
-				$opts['USE INDEX']['revision'] = 'rev_page_id';
+				$opts['IGNORE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
 				$join['page'] = [ 'JOIN', 'rev_page=page_id' ];
 			}
