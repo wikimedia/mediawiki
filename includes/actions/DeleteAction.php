@@ -21,6 +21,7 @@
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserOptionsLookup;
@@ -61,6 +62,9 @@ class DeleteAction extends FormlessAction {
 	/** @var UserOptionsLookup */
 	protected $userOptionsLookup;
 
+	/** @var DeletePageFactory */
+	private $deletePageFactory;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -72,6 +76,7 @@ class DeleteAction extends FormlessAction {
 		$this->backlinkCacheFactory = $services->getBacklinkCacheFactory();
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
+		$this->deletePageFactory = $services->getDeletePageFactory();
 	}
 
 	public function getName() {
@@ -119,29 +124,26 @@ class DeleteAction extends FormlessAction {
 			return;
 		}
 
-		$permissionStatus = PermissionStatus::newEmpty();
-		if ( !$context->getAuthority()->authorizeWrite(
-			'delete', $title, $permissionStatus
-		) ) {
-			throw new PermissionsError( 'delete', $permissionStatus );
-		}
-
 		# Flag to hide all contents of the archived revisions
 		$suppress = $request->getCheck( 'wpSuppress' ) &&
 			$context->getAuthority()->isAllowed( 'suppressrevision' );
 
-		$error = '';
 		$context = $this->getContext();
-		$user = $context->getUser();
-		$status = $this->getWikiPage()->doDeleteArticleReal( $this->getDeleteReason(), $user, $suppress, null, $error );
+		$deletePage = $this->deletePageFactory->newDeletePage(
+			$this->getWikiPage(),
+			$context->getAuthority()
+		);
+		$status = $deletePage
+			->setSuppress( $suppress )
+			->deleteIfAllowed( $this->getDeleteReason() );
 
-		if ( $status->isGood() || ( $status->isOK() && $status->hasMessage( 'delete-scheduled' ) ) ) {
+		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			if ( $status->isGood() ) {
+			if ( !$deletePage->deletionWasScheduled() ) {
 				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
 				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
@@ -151,17 +153,15 @@ class DeleteAction extends FormlessAction {
 
 			$outputPage->returnToMain();
 		} else {
+			// This branch is also executed when the status is OK but not good, meaning the page couldn't be found (e.g.
+			// because it was deleted in another request)
 			$outputPage->setPageTitle( $this->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 
-			if ( $error === '' ) {
-				$outputPage->wrapWikiTextAsInterface(
-					'error mw-error-cannotdelete',
-					$status->getWikiText( false, false, $context->getLanguage() )
-				);
-				$this->showLogEntries();
-			} else {
-				$outputPage->addHTML( $error );
-			}
+			$outputPage->wrapWikiTextAsInterface(
+				'error mw-error-cannotdelete',
+				Status::wrap( $status )->getWikiText( false, false, $context->getLanguage() )
+			);
+			$this->showLogEntries();
 		}
 
 		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
