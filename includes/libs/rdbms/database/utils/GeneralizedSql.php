@@ -88,4 +88,8 @@ class GeneralizedSql {
 
 		return $this->genericSql;
 	}
+
+	public function getRawSql() {
+		return $this->rawSql;
+	}
 }

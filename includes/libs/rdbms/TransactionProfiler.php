@@ -385,7 +385,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$trace = '';
 			foreach ( $this->dbTrxMethodTimes[$name] as $i => [ $query, $sTime, $end ] ) {
 				$trace .= sprintf(
-					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), self::queryString( $query ) );
+					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $this->getGeneralizedSql( $query ) );
 			}
 			$this->logger->warning( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
@@ -449,9 +449,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 				'max' => $max,
 				'by' => $by,
 				'actual' => $actual,
-				'query' => self::queryString( $query ),
+				'query' => $this->getGeneralizedSql( $query ),
 				'exception' => new RuntimeException(),
 				'trxId' => $trxId,
+				'fullQuery' => $this->getRawSql( $query ),
 			]
 		);
 	}
@@ -460,7 +461,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param GeneralizedSql|string $query
 	 * @return string
 	 */
-	private static function queryString( $query ) {
+	private function getGeneralizedSql( $query ) {
 		return $query instanceof GeneralizedSql ? $query->stringify() : $query;
+	}
+
+	/**
+	 * @param GeneralizedSql|string $query
+	 * @return string
+	 */
+	private function getRawSql( $query ) {
+		return $query instanceof GeneralizedSql ? $query->getRawSql() : $query;
 	}
 }
