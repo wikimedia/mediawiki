@@ -1196,7 +1196,12 @@ MESSAGE;
 				}
 
 				if ( !$debug ) {
-					$strContent = self::filter( $filter, $strContent );
+					$strContent = self::filter( $filter, $strContent, [
+						// Important: Do not cache minifications of embedded modules
+						// This is especially for the private 'user.options' module,
+						// which varies on every pageview and would explode the cache (T84960)
+						'cache' => !$module->shouldEmbedModule( $context )
+					] );
 				} else {
 					// In debug mode, separate each response by a new line.
 					// For example, between 'mw.loader.implement();' statements.
@@ -1297,18 +1302,12 @@ MESSAGE;
 	private static function makeLoaderImplementScript(
 		ResourceLoaderContext $context, $name, $scripts, $styles, $messages, $templates
 	) {
-		$debug = (bool)$context->getDebug();
 		if ( $scripts instanceof XmlJsCode ) {
 			if ( $scripts->value === '' ) {
 				$scripts = null;
-			} elseif ( $debug ) {
-				// @phan-suppress-next-line SecurityCheck-XSS
-				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
 				// @phan-suppress-next-line SecurityCheck-XSS
-				$scripts = new XmlJsCode(
-					'function($,jQuery,require,module){' . self::ensureNewline( $scripts->value ) . '}'
-				);
+				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			}
 		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
 			$files = $scripts['files'];
@@ -1320,19 +1319,15 @@ MESSAGE;
 					// last line.
 					$content = self::ensureNewline( $file['content'] );
 					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
-					if ( $debug ) {
-						$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
-					} else {
-						$file = new XmlJsCode( 'function(require,module){' . $content . '}' );
-					}
+					$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
 				} else {
 					$file = $file['content'];
 				}
 			}
 			$scripts = XmlJsCode::encodeObject( [
 				'main' => $scripts['main'],
-				'files' => XmlJsCode::encodeObject( $files, $debug )
-			], $debug );
+				'files' => XmlJsCode::encodeObject( $files, true )
+			], true );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
 		}
@@ -1349,7 +1344,9 @@ MESSAGE;
 		];
 		self::trimArray( $module );
 
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, $debug );
+		// We use pretty output unconditionally to make this method simpler.
+		// Minification is taken care of closer to the output.
+		return Xml::encodeJsCall( 'mw.loader.implement', $module, true );
 	}
 
 	/**
