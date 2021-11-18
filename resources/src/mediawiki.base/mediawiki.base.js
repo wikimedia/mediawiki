@@ -2,7 +2,7 @@
 
 var slice = Array.prototype.slice;
 
-// Apply site-level config
+// Apply site-level data
 mw.config.set( require( './config.json' ) );
 
 // Load other files in the package
@@ -76,6 +76,11 @@ function Message( map, key, parameters ) {
 	this.parameters = parameters || [];
 }
 
+var statefulDeprecated = mw.log.makeDeprecated(
+	'mw_Message_toString_stateful',
+	'Use of stateful mw.Message#toString is deprecated. https://phabricator.wikimedia.org/T292489'
+);
+
 Message.prototype = {
 	/**
 	 * Get parsed contents of the message.
@@ -122,12 +127,19 @@ Message.prototype = {
 	},
 
 	/**
-	 * Convert message object to its string form based on current format.
+	 * Convert message object to a string using the "text"-format .
 	 *
-	 * @return {string} Message as a string in the current form, or `<key>` if key
+	 * This exists for implicit string type casting only.
+	 * Do not call this directly. Use mw.Message#text() instead, one of the
+	 * other format methods.
+	 *
+	 * @private
+	 * @param {string} [format="text"] Internal parameter. Uses "text" if called
+	 *  implicitly through string casting.
+	 * @return {string} Message in the given format, or `⧼key⧽` if the key
 	 *  does not exist.
 	 */
-	toString: function () {
+	toString: function ( format ) {
 		if ( !this.exists() ) {
 			// Use ⧼key⧽ as text if key does not exist
 			// Err on the side of safety, ensure that the output
@@ -140,8 +152,16 @@ Message.prototype = {
 			return '⧼' + mw.html.escape( this.key ) + '⧽';
 		}
 
-		if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
-			return this.parser( this.format );
+		if ( !format ) {
+			format = this.format;
+			if ( format !== 'text' ) {
+				// Stateful default is deprecated since MW 1.38
+				statefulDeprecated();
+			}
+		}
+
+		if ( format === 'plain' || format === 'text' || format === 'parse' ) {
+			return this.parser( format );
 		}
 
 		// Format: 'escaped' (including for any invalid format, default to safe escape)
@@ -160,7 +180,7 @@ Message.prototype = {
 	 */
 	parse: function () {
 		this.format = 'parse';
-		return this.toString();
+		return this.toString( this.format );
 	},
 
 	/**
@@ -173,7 +193,7 @@ Message.prototype = {
 	 */
 	plain: function () {
 		this.format = 'plain';
-		return this.toString();
+		return this.toString( this.format );
 	},
 
 	/**
@@ -188,7 +208,7 @@ Message.prototype = {
 	 */
 	text: function () {
 		this.format = 'text';
-		return this.toString();
+		return this.toString( this.format );
 	},
 
 	/**
@@ -315,7 +335,9 @@ mw.message = function ( key ) {
  * @return {string}
  */
 mw.msg = function () {
-	return mw.message.apply( mw, arguments ).toString();
+	// Shortcut must process text transformations by default
+	// if mediawiki.jqueryMsg is loaded. (T46459)
+	return mw.message.apply( mw, arguments ).text();
 };
 
 /**
@@ -751,6 +773,8 @@ mw.user = {
 	 */
 	tokens: new mw.Map()
 };
+
+mw.user.options.set( require( './user.json' ) );
 
 // Process callbacks for modern browsers (Grade A) that require modules.
 var queue = window.RLQ;

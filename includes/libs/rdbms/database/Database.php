@@ -1469,7 +1469,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$prefix = $this->topologyRole ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $sql, $this->trxId, $prefix );
+		$generalizedSql = new GeneralizedSql( $sql, $prefix );
 
 		$startTime = microtime( true );
 		$ps = $this->profiler
@@ -1513,7 +1513,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$generalizedSql,
 			$startTime,
 			$isPermWrite,
-			$isPermWrite ? $this->affectedRows() : $this->numRows( $ret )
+			$isPermWrite ? $this->affectedRows() : $this->numRows( $ret ),
+			$this->trxId
 		);
 
 		// Avoid the overhead of logging calls unless debug mode is enabled

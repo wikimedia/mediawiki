@@ -94,7 +94,6 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 		$req->setReverseProxy( 'http://localhost:1234' );
 		$this->assertSame( 'http://localhost:1234/path?query=string', $req->url );
 		$this->assertSame( 'example.org', $req->reqHeaders['Host'] );
-		$this->assertSame( 'https', $req->reqHeaders['X-Forwarded-Proto'] );
 	}
 
 }

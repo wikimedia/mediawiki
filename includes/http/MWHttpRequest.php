@@ -264,9 +264,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		}
 		// Set the current host in the Host header
 		$this->setHeader( 'Host', $this->parsedUrl['host'] );
-		// Set current protocol in X-Forwarded-Proto
-		// TODO: consider supporting the standardized "Forwarded" header too
-		$this->setHeader( 'X-Forwarded-Proto', $this->parsedUrl['scheme'] );
 		// Replace scheme, host and port in the request
 		$this->parsedUrl['scheme'] = $parsedProxy['scheme'];
 		$this->parsedUrl['host'] = $parsedProxy['host'];
