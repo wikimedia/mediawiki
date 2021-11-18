@@ -29,6 +29,9 @@
 		"mediawiki/text-extracts": "dev-master",
 		"mediawiki/title-blacklist": "dev-master",
 		"mediawiki/wiki-editor": "dev-master",
+		"mediawiki/template-data": "dev-master",
+		"mediawiki/page-images": "dev-master",
+		"mediawiki/text-extracts": "dev-master",
 
 		"mediawiki/monobook-skin": "dev-master",
 		"mediawiki/vector-skin": "dev-master",
