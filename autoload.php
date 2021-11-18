@@ -1363,7 +1363,6 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoaderSiteStylesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSiteStylesModule.php',
 	'ResourceLoaderSkinModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSkinModule.php',
 	'ResourceLoaderStartUpModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderStartUpModule.php',
-	'ResourceLoaderUserDefaultsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserDefaultsModule.php',
 	'ResourceLoaderUserModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserModule.php',
 	'ResourceLoaderUserOptionsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderUserStylesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserStylesModule.php',

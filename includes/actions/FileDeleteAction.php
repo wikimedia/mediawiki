@@ -63,12 +63,6 @@ class FileDeleteAction extends DeleteAction {
 	}
 
 	protected function tempDelete() {
-		if ( !$this->file->exists() || !$this->file->isLocal() || $this->file->getRedirected() ) {
-			// Standard article deletion
-			parent::tempDelete();
-			return;
-		}
-
 		$file = $this->file;
 		/** @var LocalFile $file */'@phan-var LocalFile $file';
 		$this->tempExecute( $file );

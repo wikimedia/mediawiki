@@ -27,7 +27,8 @@ use MediaWiki\User\UserOptionsLookup;
 /**
  * Module for per-user private data that is transmitted on all HTML web responses.
  *
- * It is send to the browser from the HTML <head>. See OutputPage.
+ * This module is embedded by ResourceLoaderClientHtml and sent to the browser
+ * by OutputPage as part of the HTML `<head>`.
  *
  * @ingroup ResourceLoader
  * @internal
@@ -36,14 +37,6 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	protected $targets = [ 'desktop', 'mobile' ];
-
-	/**
-	 * @param ResourceLoaderContext|null $context
-	 * @return string[] List of module names
-	 */
-	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return [ 'user.defaults' ];
-	}
 
 	/**
 	 * @param ResourceLoaderContext $context
@@ -61,7 +54,12 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		$script = 'mw.user.tokens.set(' . $context->encodeJson( $tokens ) . ');';
 
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		// Optimisation: Exclude the defaults, which we load separately and allow the browser
+		// to cache across page views. The defaults are loaded before this code executes,
+		// as part of the "mediawiki.base" module.
 		$options = $userOptionsLookup->getOptions( $user, UserOptionsLookup::EXCLUDE_DEFAULTS );
+
 		// Optimisation: Only output this function call if the user has non-default settings.
 		if ( $options ) {
 			$script .= 'mw.user.options.set(' . $context->encodeJson( $options ) . ');';

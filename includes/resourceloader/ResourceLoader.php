@@ -1909,6 +1909,18 @@ MESSAGE;
 	}
 
 	/**
+	 * Get user default options to expose to JavaScript on all pages via `mw.user.options`.
+	 *
+	 * @internal Exposed for use from Resources.php
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public static function getUserDefaults( ResourceLoaderContext $context ): array {
+		// TODO inject
+		return MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+	}
+
+	/**
 	 * Get site configuration settings to expose to JavaScript on all pages via `mw.config`.
 	 *
 	 * @internal Exposed for use from Resources.php
