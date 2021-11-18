@@ -660,7 +660,7 @@
 	"default": "praedeterminatum",
 	"prefs-files": "Fasciculi",
 	"prefs-custom-css": "CSS proprium",
-	"prefs-custom-js": "JS proprium",
+	"prefs-custom-js": "JavaScript proprium",
 	"prefs-reset-intro": "Hac pagina tuos modos in integrum restituere poteris.\nQuod infectum fieri nequit.",
 	"prefs-emailconfirm-label": "Adfirmatio inscriptionis electronicae:",
 	"youremail": "Inscriptio electronica:",

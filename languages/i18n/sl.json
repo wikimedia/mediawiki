@@ -17,7 +17,8 @@
 			"Vlad5250",
 			"Xð",
 			"Yerpo",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -840,6 +841,7 @@
 	"rev-deleted-event": "(podrobnosti dnevnika so odstranjene)",
 	"rev-deleted-user-contribs": "[uporabniško ime ali IP-naslov odstranjen – urejanje skrito v prispevkih]",
 	"rev-deleted-text-permission": "Ta redakcija strani je bila <strong>izbrisana</strong>.\nPodrobnosti so na voljo v [{{fullurl:{{#Special:Log}}/delete|page=$1}} dnevniku brisanja].",
+	"rev-suppressed-text": "Ta redakcija strani je bila <strong>zatrta</strong>.",
 	"rev-suppressed-text-permission": "Ta redakcija strani je bila <strong>zatrta</strong>.\nPodrobnosti so navedene v [{{fullurl:{{#Special:Log}}/suppress|page=$1}} dnevniku zatrtij].",
 	"rev-deleted-text-unhide": "Ta sprememba je bila '''izbrisana'''.\nPodrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].\nŠe vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 	"rev-suppressed-text-unhide": "Ta sprememba je bila <strong>zatrta</strong>.\nPodrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zatrtij].\nŠe vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
@@ -1047,9 +1049,6 @@
 	"restoreprefs": "Obnovi vse privzete nastavitve (v vseh razdelkih)",
 	"prefs-editing": "Urejanje",
 	"searchresultshead": "Nastavitve poizvedovanja",
-	"stub-threshold": "Prag označevanja škrbin ($1):",
-	"stub-threshold-sample-link": "vzorec",
-	"stub-threshold-disabled": "Onemogočeno",
 	"recentchangesdays": "Število dni, prikazanih v zadnjih spremembah:",
 	"recentchangesdays-max": "Največ $1 {{PLURAL:$1|dan|dneva|dnevi|dni}}",
 	"recentchangescount": "Število urejanj v zadnjih spremembah, zgodovinah strani in dnevnikih, privzeto:",
@@ -1086,7 +1085,7 @@
 	"prefs-files": "Datoteke",
 	"prefs-custom-css": "CSS po meri",
 	"prefs-custom-json": "JSON po meri",
-	"prefs-custom-js": "JS po meri",
+	"prefs-custom-js": "JavaScript po meri",
 	"prefs-common-config": "Skupni CSS/JSON/JavaScript za vse preobleke:",
 	"prefs-reset-intro": "To stran lahko uporabite za ponastavitev nastavitev na privzete za to spletno mesto.\nTega ni mogoče razveljaviti.",
 	"prefs-emailconfirm-label": "Potrditev e-pošte:",

@@ -1,11 +1,23 @@
 = MediaWiki 1.37 =
 
-== MediaWiki 1.37.0-rc.2 ==
+== MediaWiki 1.37.1 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.37 is a pre-release testing branch, and is not recommended
-for use in production.
+=== Changes since MediaWiki 1.37.0 ===
+
+== MediaWiki 1.37.0 ==
+
+=== Changes since MediaWiki 1.37.0-rc.2 ===
+* Remove justinrainbow/json-schema from vendor.
+* Updated pear/mail_mime from 1.10.9 to 1.10.11.
+* Update deprecated Guzzle Psr7 function calls.
+* (T281972) UserIdentityValue: Correct @since tags.
+* Updated wikimedia/parsoid from v0.14.0-a19 to v0.14.0.
+* Localisation updates.
+* Tweak error message for missing composer dependencies.
+
+== MediaWiki 1.37.0-rc.2 ==
 
 === Changes since MediaWiki 1.37.0-rc.1 ===
 * (T295173) Re-add wikimedia/normalized-exception to vendor.
@@ -129,10 +141,11 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated OOUI from v0.41.3 to v0.42.0
 * Updated WVUI from v0.1.0 to v0.3.0
 * Updated cssjanus/cssjanus from v1.3.0 to v2.1.0.
+* Updated pear/mail_mime from 1.10.9 to 1.10.11.
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
-* Updated wikimedia/parsoid from v0.13.1 to v0.14.x.
+* Updated wikimedia/parsoid from v0.13.1 to v0.14.0.
 * Updated wikimedia/relpath from v2.1.1 to v3.0.0.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
 * Updated wikimedia/shellbox from v1.0.4 to v2.0.0.

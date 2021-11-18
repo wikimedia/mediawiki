@@ -9,7 +9,9 @@
 			"Wantok",
 			"Wytukaze",
 			"לערי ריינהארט",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Amire80",
+			"Tok Pisin"
 		]
 	},
 	"tog-underline": "Putim lain ananit long ol link:",
@@ -137,7 +139,7 @@
 	"personaltools": "Ol pes bilong mi",
 	"talk": "Toktok",
 	"views": "Ol lukluk",
-	"toolbox": "Sipesol bokis",
+	"toolbox": "Ol tul:",
 	"imagepage": "Lukim pes bilong fail",
 	"mediawikipage": "Lukim pes bilong toksave",
 	"templatepage": "Lukim templet pes",
@@ -595,6 +597,6 @@
 	"compare-page2": "Pes 2",
 	"htmlform-selectorother-other": "Narapela",
 	"rightsnone": "i nogat wanpela",
-	"searchsuggest-search": "Painim",
+	"searchsuggest-search": "Painim long {{SITENAME}}",
 	"expand_templates_ok": "OK"
 }

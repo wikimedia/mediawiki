@@ -19,7 +19,8 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -590,7 +591,6 @@
 	"saveprefs": "Eenstallunga speichern",
 	"restoreprefs": "Olle Standardeinstallunga wiederherstalla",
 	"prefs-editing": "Bearbta",
-	"stub-threshold": "Linkformatierung <a href=\"#\" class=\"stub\">klenner Seyta</a> (ei Byte):",
 	"recentchangesdays": "Oazoahl dar Tage, de de Liste dar „Letzta Änderunga“ standardmäßig imfassa sull:",
 	"recentchangescount": "Oazoahl dar standardmäßig oagezeigta Beoarbeetunga:",
 	"savedprefs": "Denne Einstallunga waan gespeichert.",
@@ -602,7 +602,7 @@
 	"allowemail": "E-Mail-Empfang vu andern Benutzern ermeeglichn",
 	"prefs-searchoptions": "Sichoptiona",
 	"prefs-namespaces": "Noamasräume",
-	"prefs-custom-js": "Nutzerdefiniertes JS",
+	"prefs-custom-js": "Nutzerdefiniertes JavaScript",
 	"youremail": "E-Mail-Adresse:",
 	"username": "Benutzernoame:",
 	"prefs-memberingroups": "Mitglied dar {{PLURAL:$1|Nutzergruppe|Nutzergruppen}}:",

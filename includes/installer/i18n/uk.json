@@ -25,7 +25,7 @@
 	"config-desc": "Інсталятор MediaWiki",
 	"config-title": "Встановлення MediaWiki $1",
 	"config-information": "Інформація",
-	"config-localsettings-upgrade": "'''Увага''': було виявлено файл <code>LocalSettings.php</code>.\nВаше програмне забезпечення може бути оновлено.\nБудь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
+	"config-localsettings-upgrade": "Було виявлено файл <code>LocalSettings.php</code>.\nВаше програмне забезпечення може бути оновлено.\nБудь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
 	"config-localsettings-cli-upgrade": "Виявлено файл <code>LocalSettings.php</code>.\nЩоб оновити наявну установку, запустіть <code>update.php</code>",
 	"config-localsettings-key": "Ключ оновлення:",
 	"config-localsettings-badkey": "Ви вказали неправильний ключ оновлення.",

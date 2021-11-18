@@ -13,7 +13,8 @@
 			"The Evil IP address",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -816,8 +817,6 @@
 	"restoreprefs": "Tukuy kikinmanta allinkachinakunata kutichimuy (tukuy rakirikunapi)",
 	"prefs-editing": "Llamk'apusqa",
 	"searchresultshead": "Maskay",
-	"stub-threshold": "Kay hatun kaykamam <a href=\"#\" class=\"stub\">t'una qillqasqa t'inki</a> nisqa kachun (byte):",
-	"stub-threshold-disabled": "Ama nisqa",
 	"recentchangesdays": "Ñaqha hukchasqakunapi rikuchina p'unchawkuna:",
 	"recentchangesdays-max": "Ama $1-manta aswan {{PLURAL:$1|p'unchawkuna}} kachunchu",
 	"recentchangescount": "Rikuchina hukchasqakunap yupaynin, kikinmanta:",
@@ -845,7 +844,7 @@
 	"default": "kikinmanta",
 	"prefs-files": "Willañiqikuna",
 	"prefs-custom-css": "Munakusqa CSS",
-	"prefs-custom-js": "Munakusqa JS",
+	"prefs-custom-js": "Munakusqa JavaScript",
 	"prefs-common-config": "Tukuy qarakunapaq rakinakusqa CSS/JS:",
 	"prefs-reset-intro": "Kay p'anqataqa llamk'achiyta atinki allinkachinaykikunata kikinmanta kasqaman kutichinaykipaq.\nChaytataq manam kutichiyta atinkichu.",
 	"prefs-emailconfirm-label": "E-chaskita takyachiy:",

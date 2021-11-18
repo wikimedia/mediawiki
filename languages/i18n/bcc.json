@@ -16,7 +16,8 @@
 			"RigiMahnoor",
 			"Sultanselim baloch",
 			"ZxxZxxZ",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": ":لینکاں کِشک کن",
@@ -230,7 +231,7 @@
 	"aboutsite": "{{SITENAME}}ءِ بارہ‌ئا",
 	"aboutpage": "پروژہ:بارہ‌ئا",
 	"copyright": "محتوا مان اجازت نامهٔ $1 انت مگان ایشی که آئی هلاپء آرگ ببیت انت.",
-	"copyrightpage": "{{ns:project}} نکلء ھَک اندݔم اِنت",
+	"copyrightpage": "{{ns:project}}:نکلء ھَک اندݔم اِنت",
 	"currentevents": "ھنیگݔن پݔش‌آتک",
 	"currentevents-url": "Project:هنیگݔن پݔش‌آتک",
 	"disclaimers": "بے میاری",
@@ -893,8 +894,6 @@
 	"restoreprefs": "پهکین پیش‌ پرزین تنظیمانء واتر بکن (مان پهکین بهران)",
 	"prefs-editing": "ٹگلݔنگ",
 	"searchresultshead": "گردگ",
-	"stub-threshold": "سرحد په  <a href=\"#\" class=\"stub\">چنڈ لینک</a> فرمت (بایت):",
-	"stub-threshold-disabled": "نافعال",
 	"recentchangesdays": "روچ ان به پیش دارگ ته نوکیت تغییرات:",
 	"recentchangesdays-max": "(حداکثر $1 {{PLURAL:$1|روچ|روچ}})",
 	"recentchangescount": "تعداد اصلاحات به پیش دارگ به طور پیش فرض :",

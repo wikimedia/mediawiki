@@ -14,7 +14,8 @@
 			"Priviet",
 			"Revi",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"렌즈"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -86,7 +87,7 @@
 	"config-using-server": "\"<nowiki>$1</nowiki>\" 서버 이름을 사용 중입니다.",
 	"config-using-uri": "\"<nowiki>$1$2</nowiki>\" 서버 URL을 사용 중입니다.",
 	"config-uploads-not-safe": "<strong>경고:</strong> 올리기에 대한 기본 디렉터리(<code>$1</code>)는 임의의 스크립트 실행에 취약합니다.\n미디어위키는 보안 위협 때문에 모든 올려진 파일을 검사하지만, 올리기를 활성화하기 전에 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",
-	"config-no-cli-uploads-check": "<strong>경고:</strong> 올리기를 위한 기본 디렉터리(<code>$1</code>)는 CLI를 설치하는 동안 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
+	"config-no-cli-uploads-check": "<strong>경고:</strong> CLI로 설치하는 동안 올리기를 위한 기본 디렉터리(<code>$1</code>)는 임의의 스크립트 실행에 대한 취약점에 대해 검사되지 않습니다.",
 	"config-suhosin-max-value-length": "수호신(Suhosin)이 설치되어 있고 $1 바이트로 GET 매개 변수 <code>length</code>를 $1 바이트로 제한하고 있습니다.\n미디어위키를 사용하려면 <code>php.ini</code>의 <code>suhosin.get.max_value_length</code>를 $2 이상으로 설정해야 합니다. 해당 설정을 비활성화하거나, <code>php.ini</code>에서 해당 값을 $3 이상으로 조정하세요.",
 	"config-using-32bit": "<strong>경고:</strong> 시스템이 32비트 정수와 함께 실행 중인 것으로 보입니다. 이것은 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 권장되지 않습니다].",
 	"config-db-type": "데이터베이스 종류:",

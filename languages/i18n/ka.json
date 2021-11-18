@@ -35,7 +35,8 @@
 			"გიორგიმელა",
 			"Გიო ოქრო",
 			"Იო ოქრო",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -935,7 +936,7 @@
 	"searchprofile-everything-tooltip": "ყველა გვერდზე ძიება (მათ შორის განხილვის გვერდები)",
 	"searchprofile-advanced-tooltip": "ძიება სახელთა მოცემულ სივრცეში",
 	"search-result-size": "$1 ($2 სიტყვა)",
-	"search-result-category-size": "{{PLURAL:$1|$1 ელემენტი|$1 ელემენტი|$1 ელემენტები}} ({{PLURAL:$2|$2 ქვეკატეგორია|$2 ქვეკატეგორიები|$2 ქვეკატეგორიები}}, {{PLURAL:$3|$3 ფაილი|$3 ფაილი|$3 ფაილი}})",
+	"search-result-category-size": "{{PLURAL:$1|1 წევრი|$1 წევრი}} ({{PLURAL:$2|1 ქვეკატეგორია|$2 ქვეკატეგორია}}, {{PLURAL:$3|1 ფაილი|$3 ფაილი}})",
 	"search-redirect": "(გადამისამართება $1)",
 	"search-section": "(სექცია $1)",
 	"search-category": "(კატეგორია $1)",
@@ -998,9 +999,6 @@
 	"restoreprefs": "ყველა საწყისი პარამეტრის აღდგენა (ყველა სექციაში)",
 	"prefs-editing": "რედაქტირება",
 	"searchresultshead": "ძიება",
-	"stub-threshold": "გაფორმების გასაუმჯობესებლად მოცემულია ესკიზის ბმული ($1):",
-	"stub-threshold-sample-link": "მაგალითი",
-	"stub-threshold-disabled": "გათიშულია",
 	"recentchangesdays": "ბოლო ცვლილებებში საჩვენებელი დღეები:",
 	"recentchangesdays-max": "მაქსიმუმ $1 {{PLURAL:$1|დღე}}",
 	"recentchangescount": "საჩვენებელი ცვლილებების რაოდენობა:",
@@ -1035,7 +1033,7 @@
 	"default": "სტანდარტული",
 	"prefs-files": "ფაილები",
 	"prefs-custom-css": "მომხმარებლის CSS",
-	"prefs-custom-js": "მომხმარებლის JS",
+	"prefs-custom-js": "მომხმარებლის JavaScript",
 	"prefs-common-config": "საერთო CSS/JSON/JavaScript ყველა თემისთვის:",
 	"prefs-reset-intro": "ეს გვერდი შეიძლება გამოყენებული იქნეს თქვენი კონფიგურაციის შესაცვლელად საწყის კონფიგურაციაზე. ამ მოქმედების დადასტურების შემთხვევაში, თქვენ ვეღარ შეძლებთ მის გაუქმებას.",
 	"prefs-emailconfirm-label": "ელ-ფოსტის დადასტურება:",

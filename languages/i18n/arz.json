@@ -15,7 +15,8 @@
 			"Oldstoneage",
 			"Ouda",
 			"Ramsis II",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "حط خط تحت اللينكات:",
@@ -767,8 +768,6 @@
 	"restoreprefs": "استرجع التظبيطات الاصليه",
 	"prefs-editing": "تعديل",
 	"searchresultshead": "تدوير",
-	"stub-threshold": "الحد لتنسيق لينك البذرة ($1):",
-	"stub-threshold-disabled": "معطل",
 	"recentchangesdays": "عدد الأيام المعروضة فى اخرالتغييرات:",
 	"recentchangesdays-max": "(الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}})",
 	"recentchangescount": "عدد التعديلات اللى بتظهر اوتوماتيكى فى اخر التغييرات, تواريخ الصفحه, و فى السجلات, :",
@@ -796,7 +795,7 @@
 	"default": "اوتوماتيكي",
 	"prefs-files": "ملفات",
 	"prefs-custom-css": "CSS مخصص",
-	"prefs-custom-js": "مخصص JS",
+	"prefs-custom-js": "مخصص JavaScript",
 	"prefs-reset-intro": "ممكن تستعمل الصفحه دى عشان تعيد ظبط التفضيلات بتاعتك و تخليها زى الحاله الافتراضيه للموقع.\nماينفعش الرجوع فى التعديل دا.",
 	"prefs-emailconfirm-label": "التأكد من الايميل:",
 	"youremail": "الايميل:",

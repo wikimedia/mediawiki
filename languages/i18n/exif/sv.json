@@ -378,7 +378,14 @@
 	"exif-exposurelockused": "Exponeringslås som användes",
 	"exif-exposurelockused-true": "Ja",
 	"exif-exposurelockused-false": "Nej",
+	"exif-poseheadingdegrees": "X-rotation (grader)",
 	"exif-posepitchdegrees": "Pitch (grader)",
+	"exif-poserolldegrees": "Y-rotation (grader)",
+	"exif-initialviewheadingdegrees": "Initial riktning (grader)",
+	"exif-initialviewpitchdegrees": "X-rotation för initial vy (grader)",
+	"exif-initialviewrolldegrees": "Y-rotation för initial vy (grader)",
+	"exif-initialhorizontalfovdegrees": "Initialt synfält (horisontala grader)",
+	"exif-initialverticalfovdegrees": "Initialt synfält (vertikala grader)",
 	"exif-sourcephotoscount": "Antal källfotografier",
 	"exif-croppedareaimagewidthpixels": "Panorama med beskuren bredd",
 	"exif-croppedareaimageheightpixels": "Panorama med beskuren höjd",
@@ -386,5 +393,6 @@
 	"exif-fullpanoheightpixels": "Panorama med full höjd",
 	"exif-croppedarealeftpixels": "Panorama med vänsterbeskärning",
 	"exif-croppedareatoppixels": "Panorama med beskuren topp",
-	"exif-initialcameradolly": "Ursprunglig kameraposition"
+	"exif-initialcameradolly": "Ursprunglig kameraposition",
+	"exif-stitchingsoftware": "Flätningsprogramvara"
 }

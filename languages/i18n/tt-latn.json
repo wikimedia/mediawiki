@@ -13,7 +13,8 @@
 			"Reedy",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -622,8 +623,6 @@
 	"restoreprefs": "Baştağı köylänmälärne kire qaytaru",
 	"prefs-editing": "Üzgärtü",
 	"searchresultshead": "Ezläw",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">Yasalma sıltamalarnıñ</a> bizäleşe buyınça çikläwlär (baytlarda):",
-	"stub-threshold-disabled": "Yabılğan",
 	"recentchangesdays": "Soñğı üzgärtülärne kürsätüçe könnär sanı:",
 	"recentchangesdays-max": "( $1 {{PLURAL:$1|könnän}} dä artıq bulmasqa tieş)",
 	"recentchangescount": "Töp bularaq qullanuçı üzgärtülär sanı:",
@@ -651,7 +650,7 @@
 	"default": "kileşü buyınça",
 	"prefs-files": "Fayllar",
 	"prefs-custom-css": "Üzemneñ CSS",
-	"prefs-custom-js": "Üzemneñ JS",
+	"prefs-custom-js": "Üzemneñ JavaScript",
 	"prefs-common-config": "Barlıq bizäleşlär öçen ğomumi CSS/JS:",
 	"prefs-reset-intro": "Bu bit sezneñ köylänmäläregezne beterü öçen qullanıla. Bu eşne başqaru näticäsendä sez yañadan üz köylänmälärne yañadan qaytara almıysız.",
 	"prefs-emailconfirm-label": "E-mail raslaw",

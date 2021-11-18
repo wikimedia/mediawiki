@@ -32,7 +32,8 @@
 			"Zamwan",
 			"Zulfadli51",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1059,9 +1060,6 @@
 	"restoreprefs": "Pulihkan semua tetapan asali (dalam semua bahagian)",
 	"prefs-editing": "Menyunting",
 	"searchresultshead": "Cari",
-	"stub-threshold": "Ambang untuk pemformatan pautan tunas ($1):",
-	"stub-threshold-sample-link": "contoh",
-	"stub-threshold-disabled": "Dimatikan",
 	"recentchangesdays": "Bilangan hari dalam perubahan terkini:",
 	"recentchangesdays-max": "(had $1 hari)",
 	"recentchangescount": "Bilangan suntingan untuk dipaparkan dalam perubahan terkini, sejarah laman, dan dalam log, secara tersedia:",
@@ -1098,7 +1096,7 @@
 	"prefs-files": "Fail",
 	"prefs-custom-css": "CSS tempahan",
 	"prefs-custom-json": "JSON menurut pesanan",
-	"prefs-custom-js": "JS tempahan",
+	"prefs-custom-js": "JavaScript tempahan",
 	"prefs-common-config": "CSS/JavaScript kongsi untuk semua kulit:",
 	"prefs-reset-intro": "Anda boleh menggunakan laman ini untuk menetapkan semula keutamaan anda kepada tetapan asali.\nTindakan ini tidak boleh dibatalkan.",
 	"prefs-emailconfirm-label": "Pengesahan e-mel:",

@@ -13,7 +13,8 @@
 			"Triple-ADHD-AS",
 			"Vlad5250",
 			"Игорь Бродский",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -686,8 +687,6 @@
 	"restoreprefs": "Endištada kaik augotižjärgendused (kaikiš sekcijoiš)",
 	"prefs-editing": "Redaktiruind",
 	"searchresultshead": "Ecind",
-	"stub-threshold": "Nägutesen märitamižen künduz <a href=\"#\" class=\"stub\">kosketust otetile</a> (baitoiš)",
-	"stub-threshold-disabled": "Ei ole kävutamas",
 	"recentchangesdays": "Päiväd veresiden toižetusidenke, lugumär:",
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|päiv|päiväd}})",
 	"recentchangescount": "Redakcijoiden lugu, kudamb pidab ozutada augotižjärgendusen mödhe:",
@@ -715,7 +714,7 @@
 	"default": "augotižjärgendusen mödhe",
 	"prefs-files": "Failad",
 	"prefs-custom-css": "Ičeze CSS",
-	"prefs-custom-js": "Ičeze JS",
+	"prefs-custom-js": "Ičeze JavaScript",
 	"prefs-common-config": "Ühthižed CSS/JavaScript kaikiden temiden täht:",
 	"prefs-reset-intro": "Tö sat kävutada nece lehtpol', miše pördutada teiden järgendused saitan ezijärgendusidennoks.\nNecidä tegendad ei sa toižetada.",
 	"prefs-emailconfirm-label": "E-počtan vahvištand:",

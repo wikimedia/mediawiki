@@ -21,7 +21,8 @@
 			"Tibor",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -973,9 +974,6 @@
 	"restoreprefs": "Herstèl dien veurkäöre (veur alle instèllinge)",
 	"prefs-editing": "Aafmeitinge tèksveld",
 	"searchresultshead": "Insjtèllinge veur zeukresultate",
-	"stub-threshold": "Dörpel veur markering es sjtumpke ($1):",
-	"stub-threshold-sample-link": "veurbild",
-	"stub-threshold-disabled": "Oetgezatj",
 	"recentchangesdays": "Aantal daag te tuine in de recènte verangeringe:",
 	"recentchangesdays-max": "(maximaal $1 {{PLURAL:$1|daag|daag}})",
 	"recentchangescount": "Aantaal te tuine bewirkinge in de recènte verangeringe, paginagesjiechte en in logbeuk (standerd):",
@@ -1008,7 +1006,7 @@
 	"prefs-files": "Bestenj",
 	"prefs-custom-css": "Persoonlijke CSS",
 	"prefs-custom-json": "Aangepasde JSON",
-	"prefs-custom-js": "Persoonlijke JS",
+	"prefs-custom-js": "Persoonlijke JavaScript",
 	"prefs-common-config": "Gedeilde CSS/JSON/JavaScrip veur eder vormgaeving:",
 	"prefs-reset-intro": "Gebroek dees functie om dien veurkäöre te herstelle nao de standaardinstellinge.\nDees hanjeling kin neet ongedaon gemaak waere.",
 	"prefs-emailconfirm-label": "E-mailbevestiging:",

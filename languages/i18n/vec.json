@@ -28,7 +28,8 @@
 			"Vajotwo",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Sotołinea i lingambi:",
@@ -954,8 +955,6 @@
 	"restoreprefs": "Ripristina le inpostasion predefinìe",
 	"prefs-editing": "Canbiamento",
 	"searchresultshead": "Riserca",
-	"stub-threshold": "Vaƚor minimo par i coƚegamenti a i stub ($1):",
-	"stub-threshold-disabled": "Disativà",
 	"recentchangesdays": "Nùmaro de dì da mostrar inte łe modifeghe in ùltima:",
 	"recentchangesdays-max": "($1 {{PLURAL:$1|dì}} masimo)",
 	"recentchangescount": "Numaro de modifeghe da mostrar in te łe ultime modifeghe, istoreghi e rejistri, par inpostasion predefinìa:",
@@ -987,7 +986,7 @@
 	"prefs-files": "File",
 	"prefs-custom-css": "CSS personalixà",
 	"prefs-custom-json": "JSON personałixà",
-	"prefs-custom-js": "JS personalixà",
+	"prefs-custom-js": "JavaScript personalixà",
 	"prefs-common-config": "CSS/JS condiviso par tute ƚe skin:",
 	"prefs-reset-intro": "Se połe doparar sta pajina par reinpostar łe propie prefarense a chełe predefinie dal sito.\nL'operasion dopo no ła podarà esare desfada.",
 	"prefs-emailconfirm-label": "Conferma de l'e-mail:",

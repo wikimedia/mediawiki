@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"PonkoSasuke",
+			"Robin van der Vliet",
+			"Romaine"
+		]
+	},
+	"paramvalidator-badexpiry": "Ongeldige waarde \"$2\" voor vervaldatumparameter \"$1\".",
+	"paramvalidator-badexpiry-past": "Waarde \"$2\" voor vervaldatumparameter \"$1\" is in het verleden.",
+	"paramvalidator-unrecognizedvalues": "Niet herkende {{PLURAL:$4|waarde|waarden}} voor parameter \"$1\": $3",
+	"paramvalidator-help-default": "Standaard: $1",
+	"paramvalidator-help-default-empty": "Standaard: (leeg)",
+	"paramvalidator-help-deprecated": "Deze parameter is verouderd.",
+	"paramvalidator-help-required": "Deze parameter is vereist.",
+	"paramvalidator-help-type-expiry": "Type: {{PLURAL:$1|1=vervaldatum|2=vervaldatalijst}}.\n\nKan relatief zijn (b.v. <kbd>5 maanden</kbd> of <kbd>2 weken</kbd>) of absoluut (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). Is er geen vervaldatum, gebruik $2."
+}

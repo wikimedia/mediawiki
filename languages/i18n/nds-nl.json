@@ -22,7 +22,8 @@
 			"Vlad5250",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Verwysingen understreapen",
@@ -854,9 +855,6 @@
 	"restoreprefs": "Alle standardinstellingen weerummezetten (veur alle seksies)",
 	"prefs-editing": "Bewarkingsveld",
 	"searchresultshead": "Zeukresultaoten",
-	"stub-threshold": "Verwiezingsformattering van beginnetjes ($1):",
-	"stub-threshold-sample-link": "veurbeeld",
-	"stub-threshold-disabled": "uutezet",
 	"recentchangesdays": "Antal dagen die \"Leste wiezigingen\" löt zien:",
 	"recentchangesdays-max": "(hooguut $1 {{PLURAL:$1|dag|dagen}})",
 	"recentchangescount": "Standard antal bewarkingen um te laoten zien:",
@@ -888,7 +886,7 @@
 	"default": "standard",
 	"prefs-files": "Bestaanden",
 	"prefs-custom-css": "Persoonlike CSS",
-	"prefs-custom-js": "Persoonlike JS",
+	"prefs-custom-js": "Persoonlike JavaScript",
 	"prefs-common-config": "Edeelden CSS/JS veur elke vormgeving:",
 	"prefs-reset-intro": "Je kunnen disse zied gebruken um joew veurkeuren naor de standardinstellingen weerumme te zetten.\nDisse haandeling kan niet ongedaonemaakt wörden.",
 	"prefs-emailconfirm-label": "Netpostbevestiging:",

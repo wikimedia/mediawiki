@@ -46,7 +46,8 @@
 			"Yardom78",
 			"Ата",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1068,9 +1069,6 @@
 	"restoreprefs": "Obnoviť všetky predvolené nastavenia (vo všetkých sekciách)",
 	"prefs-editing": "Úpravy",
 	"searchresultshead": "Vyhľadávanie",
-	"stub-threshold": "Prah formátovania odkazu ako výhonok ($1):",
-	"stub-threshold-sample-link": "príklad",
-	"stub-threshold-disabled": "Vypnuté",
 	"recentchangesdays": "Koľko dní zobrazovať v posledných úpravách:",
 	"recentchangesdays-max": "(maximálne $1 {{PLURAL:$1|deň|dni|dní}})",
 	"recentchangescount": "Počet implicitne zobrazovaných záznamov v posledných úpravách, históriách stránok a protokolovacích záznamoch:",
@@ -1107,7 +1105,7 @@
 	"prefs-files": "Súbory",
 	"prefs-custom-css": "Vlastný CSS",
 	"prefs-custom-json": "Vlastný JSON",
-	"prefs-custom-js": "Vlastný JS",
+	"prefs-custom-js": "Vlastný JavaScript",
 	"prefs-common-config": "Spoločné CSS/JSON/JavaScript pre všetky témy:",
 	"prefs-reset-intro": "Túto stránku môžete použiť na vrátenie predvolených hodnôt vašich nastavení.\nTúto operáciu nemožno vrátiť.",
 	"prefs-emailconfirm-label": "Overenie e-mailu:",

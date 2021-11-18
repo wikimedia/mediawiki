@@ -184,7 +184,11 @@
 	"exif-compression-6": "JPEG (al)",
 	"exif-copyrighted-true": "Duerch Copyright geschützt",
 	"exif-copyrighted-false": "Copyright status net agestallt",
+	"exif-photometricinterpretation-0": "Schwaarz a wäiss (Wäiss ass 0)",
 	"exif-photometricinterpretation-1": "Schwaarz a wäiss (Schwaarz ass 0)",
+	"exif-photometricinterpretation-3": "Palett",
+	"exif-photometricinterpretation-4": "TRansparenzmask",
+	"exif-photometricinterpretation-5": "Getrennt (Warscheinlech CMYK)",
 	"exif-unknowndate": "Onbekannten Datum",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Horizontal gedréit",
@@ -258,6 +262,7 @@
 	"exif-customrendered-2": "HDR (keen Original gespäichert)",
 	"exif-customrendered-4": "Original (fir HDR)",
 	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "Portrait HDR",
 	"exif-customrendered-8": "Portrait",
 	"exif-exposuremode-0": "Automatesch Beliichtung",
 	"exif-exposuremode-1": "Manuell Beliichtung",
@@ -342,5 +347,12 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Niddreg ($1)",
 	"exif-urgency-high": "Héich ($1)",
-	"exif-urgency-other": "Benotzerdefinéiert Prioritéit ($1)"
+	"exif-urgency-other": "Benotzerdefinéiert Prioritéit ($1)",
+	"exif-firstphotodate": "Datum vun der éischter Foto",
+	"exif-lastphotodate": "Datum vun der leschter Foto",
+	"exif-usepanoramaviewer-true": "Jo",
+	"exif-usepanoramaviewer-false": "Neen",
+	"exif-exposurelockused-true": "Jo",
+	"exif-exposurelockused-false": "Neen",
+	"exif-stitchingsoftware": "Stitching-Software"
 }

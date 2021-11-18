@@ -18,7 +18,8 @@
 			"ToniSant",
 			"Urhixidur",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -933,9 +934,6 @@
 	"restoreprefs": "Irkupra l-konfigurazzjoni oriġinali (fis-sezzjonijiet kollha)",
 	"prefs-editing": "Modifiki",
 	"searchresultshead": "Fittex",
-	"stub-threshold": "Valur minimu għall-<a href=\"#\" class=\"stub\">ħoloq għall-abozzi</a>, f'bytes:",
-	"stub-threshold-sample-link": "eżempju",
-	"stub-threshold-disabled": "Diżattivat",
 	"recentchangesdays": "Numru ta' ġranet li għandhom jintwerew fit-tibdil riċenti:",
 	"recentchangesdays-max": "(massimu ta' $1 {{PLURAL:$1|ġurnata|ġurnata}})",
 	"recentchangescount": "Numru ta' modifiki li jintwerew awtomatikament f'bidliet riċenti, paġni ta' kronoloġija, u ġurnali:",
@@ -963,7 +961,7 @@
 	"default": "predefinit",
 	"prefs-files": "Fajls",
 	"prefs-custom-css": "CSS personalizzat",
-	"prefs-custom-js": "JS personalizzat",
+	"prefs-custom-js": "JavaScript personalizzat",
 	"prefs-common-config": "CSS/JS maqsum għal kull aspett grafiku:",
 	"prefs-reset-intro": "Inti tista' tuża' din il-paġna sabiex terġa' tbiddel il-preferenzi tiegħek għal dawk li ngħatawlek fil-bidu. Din l-operazzjoni hija definittiva u ma tistax tiġi mħassra.",
 	"prefs-emailconfirm-label": "Konferma tal-ittra-e:",

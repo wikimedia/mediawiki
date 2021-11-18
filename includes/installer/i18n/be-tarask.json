@@ -281,7 +281,7 @@
 	"config-install-updates": "Прадухіленьне запуску непатрэбных абнаўленьняў",
 	"config-install-updates-failed": "<strong>Памылка</strong>: устаўка ключоў абнаўленьня ў табліцы завершылася наступнай памылкай: $1",
 	"config-install-sysop": "Стварэньне рахунку адміністратара",
-	"config-install-subscribe-fail": "Немагчыма падпісацца на «mediawiki-announce»[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
+	"config-install-subscribe-fail": "Немагчыма падпісацца на «[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]»: $1",
 	"config-install-subscribe-notpossible": "cURL не ўсталяваны, <code>allow_url_fopen</code> недаступны.",
 	"config-install-mainpage": "Стварэньне галоўнай старонкі са зьместам па змоўчваньні",
 	"config-install-mainpage-exists": "Галоўная старонка ўжо існуе, прапускаем",
