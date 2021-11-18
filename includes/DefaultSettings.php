@@ -3191,7 +3191,7 @@ $wgInvalidateCacheOnLocalSettingsChange = true;
  *
  * @par Example:
  * @code
- * $wgExtensionInfoMtime = filemtime( "$IP/LocalSettings.php" );
+ * $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" );
  * @endcode
  *
  * If set to false, the mtime for each individual JSON file will be checked,
