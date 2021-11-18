@@ -393,8 +393,6 @@
 	"site-atom-feed": "$1 的 Atom 來源",
 	"page-rss-feed": "「$1」的 RSS 來源",
 	"page-atom-feed": "「$1」的 Atom 來源",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1（頁面不存在）",
 	"sort-descending": "降冪排序",
 	"sort-ascending": "昇冪排序",
