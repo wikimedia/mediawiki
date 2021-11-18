@@ -319,9 +319,8 @@ class PageStore implements PageLookup {
 
 		if ( $page instanceof PageIdentity ) {
 			Assert::parameter( $page->canExist(), '$page', 'Must be a proper page' );
-
-			if ( $page->exists() ) {
-				// if we have a page ID, use it
+			$id = $page->getId( $this->wikiId );
+			if ( $id > 0 ) { // can't use Title::exists, it might be affected by TitleExists hook.
 				$id = $page->getId( $this->wikiId );
 				return $this->getPageById( $id, $queryFlags );
 			} elseif ( $queryFlags === self::READ_NORMAL ) {
