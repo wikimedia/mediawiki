@@ -846,8 +846,8 @@ class SpecialPageFactory {
 		'Blankpage' => [
 			'class' => \SpecialBlankpage::class,
 		],
-		'Delete' => [
-			'class' => \SpecialDelete::class,
+		'DeletePage' => [
+			'class' => \SpecialDeletePage::class,
 		],
 		'Diff' => [
 			'class' => \SpecialDiff::class,
@@ -907,8 +907,8 @@ class SpecialPageFactory {
 		'PageInfo' => [
 			'class' => \SpecialPageInfo::class,
 		],
-		'Protect' => [
-			'class' => \SpecialProtect::class,
+		'ProtectPage' => [
+			'class' => \SpecialProtectPage::class,
 		],
 		'Purge' => [
 			'class' => \SpecialPurge::class,

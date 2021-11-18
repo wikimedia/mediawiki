@@ -1,6 +1,6 @@
 <?php
 /**
- * Redirect from Special:Delete/$1 to index.php?title=$1&action=delete.
+ * Redirect from Special:ProtectPage/$1 to index.php?title=$1&action=protect.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,12 +26,12 @@
  *
  * @since 1.38
  */
-class SpecialDelete extends SpecialRedirectWithAction {
+class SpecialProtectPage extends SpecialRedirectWithAction {
 	public function __construct() {
-		parent::__construct( 'Delete', 'delete', 'delete' );
+		parent::__construct( 'ProtectPage', 'protect', 'protectpage' );
 	}
 
 	// Messages, for grep:
-	// specialdelete-page
-	// specialdelete-submit
+	// specialprotectpage-page
+	// specialprotectpage-submit
 }
