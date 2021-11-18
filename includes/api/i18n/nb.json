@@ -1080,7 +1080,7 @@
 	"apihelp-query+redirects-example-generator": "Hent informasjon om alle omdirigeringer til [[Main Page]].",
 	"apihelp-query+revisions-summary": "Hent revisjonsinformasjon.",
 	"apihelp-query+revisions-extended-description": "Kan brukes på flere måter:\n# Hent data om et sett sider (siste revisjon), ved å sette titler eller side-ID-er.\n# Hent revisjoner for n gitt side, ved å bruke titler eller side-ID-er med start, slutt eller grense.\n# Hent data om et sett revisjoner ved å sette ID-ene deres med revisjons-ID-er.",
-	"apihelp-query+revisions-paraminfo-singlepageonly": "Kun bare brukes med enkeltsidemodus (modus 2).",
+	"apihelp-query+revisions-paraminfo-singlepageonly": "Kan bare brukes med enkeltsidemodus (modus 2).",
 	"apihelp-query+revisions-param-startid": "Start opplistingen fra denne revisjonens tidsstempel. Revisjonen må eksistere, men må ikke nødvendigvis tilhøre denne siden.",
 	"apihelp-query+revisions-param-endid": "Stopp opplistingen ved denne revisjonens tidsstempel. Revisjonen må eksistere, men må ikke nødvendigvis tilhøre denne siden.",
 	"apihelp-query+revisions-param-start": "Hvilken revisjons tidsstempel opplistingen skal starte fra.",
