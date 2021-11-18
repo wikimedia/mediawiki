@@ -261,30 +261,31 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
 	 * @param int|null $rowCount Number of affected/read rows
+	 * @param string $trxId Transaction id
 	 */
-	public function recordQueryCompletion( $query, float $sTime, bool $isWrite, ?int $rowCount ) {
+	public function recordQueryCompletion( $query, float $sTime, bool $isWrite, ?int $rowCount, string $trxId ) {
 		$eTime = microtime( true );
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $this->isAboveThreshold( $rowCount, 'maxAffected' ) ) {
-			$this->reportExpectationViolated( 'maxAffected', $query, $rowCount );
+			$this->reportExpectationViolated( 'maxAffected', $query, $rowCount, $trxId );
 		} elseif ( !$isWrite && $this->isAboveThreshold( $rowCount, 'readQueryRows' ) ) {
-			$this->reportExpectationViolated( 'readQueryRows', $query, $rowCount );
+			$this->reportExpectationViolated( 'readQueryRows', $query, $rowCount, $trxId );
 		}
 
 		// Report when too many writes/queries happen...
 		if ( $this->pingAndCheckThreshold( 'queries' ) ) {
-			$this->reportExpectationViolated( 'queries', $query, $this->hits['queries'] );
+			$this->reportExpectationViolated( 'queries', $query, $this->hits['queries'], $trxId );
 		}
 		if ( $isWrite && $this->pingAndCheckThreshold( 'writes' ) ) {
-			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'] );
+			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'], $trxId );
 		}
 		// Report slow queries...
 		if ( !$isWrite && $this->isAboveThreshold( $elapsed, 'readQueryTime' ) ) {
-			$this->reportExpectationViolated( 'readQueryTime', $query, $elapsed );
+			$this->reportExpectationViolated( 'readQueryTime', $query, $elapsed, $trxId );
 		}
 		if ( $isWrite && $this->isAboveThreshold( $elapsed, 'writeQueryTime' ) ) {
-			$this->reportExpectationViolated( 'writeQueryTime', $query, $elapsed );
+			$this->reportExpectationViolated( 'writeQueryTime', $query, $elapsed, $trxId );
 		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
@@ -348,8 +349,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $writeTime, 'writeQueryTime' ) ) {
 			$this->reportExpectationViolated(
 				'writeQueryTime',
-				"[transaction $id writes to {$server} ({$db})]",
-				$writeTime
+				"[transaction writes to {$server} ({$db})]",
+				$writeTime,
+				$id
 			);
 			$slow = true;
 		}
@@ -357,8 +359,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $affected, 'maxAffected' ) ) {
 			$this->reportExpectationViolated(
 				'maxAffected',
-				"[transaction $id writes to {$server} ({$db})]",
-				$affected
+				"[transaction writes to {$server} ({$db})]",
+				$affected,
+				$id
 			);
 		}
 		// Fill in the last non-query period...
@@ -425,23 +428,30 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $expectation
 	 * @param string|GeneralizedSql $query
 	 * @param float|int $actual
+	 * @param string|null $trxId Transaction id
 	 */
-	private function reportExpectationViolated( $expectation, $query, $actual ) {
+	private function reportExpectationViolated( $expectation, $query, $actual, ?string $trxId = null ) {
 		if ( $this->silenced ) {
 			return;
 		}
 
 		$max = $this->expect[$expectation][self::FLD_LIMIT];
 		$by = $this->expect[$expectation][self::FLD_FNAME];
+		$message = "Expectation ($expectation <=) $max by $by not met (actual: {actual})";
+		if ( $trxId ) {
+			$message .= ' in trx #{trxId}';
+		}
+		$message .= ":\n{query}\n";
 		$this->logger->warning(
-			"Expectation ($expectation <=) $max by $by not met (actual: {actual}):\n{query}\n",
+			$message,
 			[
 				'measure' => $expectation,
 				'max' => $max,
 				'by' => $by,
 				'actual' => $actual,
 				'query' => self::queryString( $query ),
-				'exception' => new RuntimeException()
+				'exception' => new RuntimeException(),
+				'trxId' => $trxId,
 			]
 		);
 	}
