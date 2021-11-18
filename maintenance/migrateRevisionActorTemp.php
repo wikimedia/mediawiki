@@ -23,6 +23,7 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 			false,
 			true
 		);
+		$this->addOption( 'start', 'Start after this rev_id', false, true );
 	}
 
 	protected function getUpdateKey() {
@@ -45,6 +46,10 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 		$this->output( "Merging the revision_actor_temp table into the revision table...\n" );
 		$conds = [];
 		$updated = 0;
+		$start = (int)$this->getOption( 'start', 0 );
+		if ( $start > 0 ) {
+			$conds[] = 'rev_id >= ' . $dbw->addQuotes( $start );
+		}
 		while ( true ) {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'rev_id', 'rev_actor', 'revactor_actor' ] )
