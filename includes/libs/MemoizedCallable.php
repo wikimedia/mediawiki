@@ -20,7 +20,7 @@
  */
 
 /**
- * APC-backed and APCu-backed function memoization
+ * APCu-backed function memoization
  *
  * This class provides memoization for pure functions. A function is pure
  * if its result value depends on nothing other than its input parameters
@@ -28,7 +28,7 @@
  *
  * The first invocation of the memoized callable with a particular set of
  * arguments will be delegated to the underlying callable. Repeat invocations
- * with the same input parameters will be served from APC or APCu.
+ * with the same input parameters will be served from APCu.
  *
  * @par Example:
  * @code
@@ -52,7 +52,6 @@ class MemoizedCallable {
 	private $ttl;
 
 	/**
-	 * @throws InvalidArgumentException if $callable is not a callable.
 	 * @param callable $callable Function or method to memoize.
 	 * @param int $ttl TTL in seconds. Defaults to 3600 (1hr). Capped at 86400 (24h).
 	 */
@@ -73,7 +72,7 @@ class MemoizedCallable {
 	}
 
 	/**
-	 * Fetch the result of a previous invocation from APC or APCu.
+	 * Fetch the result of a previous invocation.
 	 *
 	 * @param string $key
 	 * @param bool &$success
@@ -81,24 +80,20 @@ class MemoizedCallable {
 	 */
 	protected function fetchResult( $key, &$success ) {
 		$success = false;
-		if ( function_exists( 'apc_fetch' ) ) {
-			return apc_fetch( $key, $success );
-		} elseif ( function_exists( 'apcu_fetch' ) ) {
+		if ( function_exists( 'apcu_fetch' ) ) {
 			return apcu_fetch( $key, $success );
 		}
 		return false;
 	}
 
 	/**
-	 * Store the result of an invocation in APC or APCu.
+	 * Store the result of an invocation.
 	 *
 	 * @param string $key
 	 * @param mixed $result
 	 */
 	protected function storeResult( $key, $result ) {
-		if ( function_exists( 'apc_store' ) ) {
-			apc_store( $key, $result, $this->ttl );
-		} elseif ( function_exists( 'apcu_store' ) ) {
+		if ( function_exists( 'apcu_store' ) ) {
 			apcu_store( $key, $result, $this->ttl );
 		}
 	}
