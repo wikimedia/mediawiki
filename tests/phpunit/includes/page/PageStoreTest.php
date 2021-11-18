@@ -12,6 +12,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
+use Title;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\DBConnRef;
@@ -781,6 +782,22 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$pageStore = $this->getPageStore();
 		$this->assertEmpty( $pageStore->getSubpages( $title, 100 ) );
+	}
+
+	/**
+	 * See T295931. If removing TitleExists hook, remove this test.
+	 *
+	 * @covers \MediaWiki\Page\PageStore::getPageByReference
+	 */
+	public function testGetPageByReferenceTitleExistsHook() {
+		$this->setTemporaryHook( 'TitleExists', static function ( $title, &$exists ) {
+			$exists = true;
+		} );
+		$this->assertNull(
+			$this->getPageStore()->getPageByReference(
+				Title::newFromText( __METHOD__ )
+			)
+		);
 	}
 
 }
