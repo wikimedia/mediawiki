@@ -327,7 +327,7 @@ EOR;
 			} else {
 				return false;
 			}
-			$result[] = $parsed;
+			$result['pages'] = [ $parsed ];
 		} elseif ( preg_match( '/^( *)FORM:DJVM/', $line, $m ) ) {
 			# Multi-page
 			$parentLevel = strlen( $m[1] );
