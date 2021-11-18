@@ -1058,10 +1058,10 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
- * @todo document
- * @todo Move logic to MediaWiki.php
+ * @deprecated since 1.38
  */
 function wfLogProfilingData() {
+	wfDeprecated( __FUNCTION__, '1.38' );
 	$profiler = Profiler::instance();
 	$profiler->logData();
 

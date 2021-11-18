@@ -314,6 +314,8 @@ because of Phabricator reports.
   deprecation warnings.
 * All external access to ParserOutput and CacheTime classes properties will now
   emit deprecation warnings. Use getters and setters instead.
+* The global function wfLogProfilingData() has been deprecated without a
+  replacement. The logic has been moved to the MediaWiki class.
 * The PageArchive class has had several methods deprecated. The replacements
   are as follows:
    - Use UndeletePage instead of ::undeleteAsUser(), ::getFileStatus() and
