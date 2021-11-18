@@ -1385,6 +1385,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Add trace comment to the begin of the sql string, right after the operator.
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
+		// NOTE: Don't add varying ids such as request id or session id to the comment.
+		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
 		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
 		$commentedSql = preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
 
