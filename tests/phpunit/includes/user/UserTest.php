@@ -456,15 +456,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers User::isRegistered
-	 * @covers User::isLoggedIn
 	 * @covers User::isAnon
 	 * @covers User::logOut
 	 */
 	public function testIsRegistered() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertTrue( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertFalse( $user->isAnon() );
 
 		$this->setTemporaryHook( 'UserLogout', static function ( &$user ) {
@@ -480,14 +477,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
 		$this->assertFalse( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 
 		$user = new User;
 		$this->assertFalse( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 	}
 
@@ -1359,31 +1352,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'sitewide blocks block uploads' => [ true, true ],
 			'partial blocks allow uploads' => [ false, false ],
 		];
-	}
-
-	/**
-	 * @covers User::getFirstEditTimestamp
-	 * @covers User::getLatestEditTimestamp
-	 */
-	public function testGetFirstLatestEditTimestamp() {
-		$this->hideDeprecated( 'User::getFirstEditTimestamp' );
-		$this->hideDeprecated( 'User::getLatestEditTimestamp' );
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
-			return $clock += 1000;
-		} );
-		try {
-			$user = $this->user;
-			$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
-			$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
-			// Sanity check: revisions timestamp are different
-			$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
-
-			$this->assertSame( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
-			$this->assertSame( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
-		} finally {
-			MWTimestamp::setFakeTime( false );
-		}
 	}
 
 	/**

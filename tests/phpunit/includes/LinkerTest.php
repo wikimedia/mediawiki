@@ -654,7 +654,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		] );
 		$user = $this->createMock( User::class );
 		$user->method( 'isRegistered' )->willReturn( true );
-		$user->method( 'isLoggedIn' )->willReturn( true );
 
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
 
