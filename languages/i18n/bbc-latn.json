@@ -746,7 +746,7 @@
 	"tags-active-yes": "Olo",
 	"tags-active-no": "Daong",
 	"tags-hitcount": "$1 {{PLURAL:$1|parubaan|angka parubaan}}",
-	"specialprotect-submit": "Lao tu Alaman",
+	"specialprotectpage-submit": "Lao tu Alaman",
 	"logentry-delete-delete": "$1{{GENDER:$2|manesa}} alaman $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|diulahan}} alaman $3 ($4)",
 	"logentry-delete-revision": "Nunga {{GENDER:$2|diubahon}} $1 do tampilan {{PLURAL:$5|$5 padengganan}} di alaman $3: $4",

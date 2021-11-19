@@ -2486,7 +2486,7 @@
 	"protect-default": "Cho phép mọi thành viên",
 	"protect-fallback": "Chỉ cho phép những người dùng có quyền “$1”",
 	"protect-level-autoconfirmed": "Chỉ cho phép các thành viên tự động xác nhận",
-	"protect-level-sysop": "Chỉ cho phép các bảo quản viên",
+	"protect-level-sysop": "Chỉ cho phép bảo quản viên",
 	"protect-summary-desc": "[$1=$2] ($3)",
 	"protect-summary-cascade": "khóa theo tầng",
 	"protect-expiring": "hết hạn $1 (UTC)",
