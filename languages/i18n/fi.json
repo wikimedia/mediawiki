@@ -2390,7 +2390,7 @@
 	"enotif_minoredit": "Tämä on pieni muutos",
 	"created": "luonut",
 	"changed": "muuttanut",
-	"deletepage": "Poista sivu",
+	"deletepage-submit": "Poista sivu",
 	"confirm": "Toteuta",
 	"excontent": "sisälsi: ”$1”",
 	"excontentauthor": "sisältö oli: ”$1”, ja ainoa muokkaaja oli ”[[Special:Contributions/$2|$2]]” ([[User talk:$2|keskustelu]])",

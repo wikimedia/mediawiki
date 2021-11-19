@@ -2500,7 +2500,7 @@
 	"enotif_minoredit": "这是一个小编辑",
 	"created": "创建",
 	"changed": "更改",
-	"deletepage": "删除页面",
+	"deletepage-submit": "删除页面",
 	"confirm": "确认",
 	"excontent": "内容：“$1”",
 	"excontentauthor": "内容为：“$1”，唯一贡献者是“[[Special:Contributions/$2|$2]]”（[[User talk:$2|讨论]]）",

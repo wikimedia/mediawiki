@@ -1151,7 +1151,7 @@
 	"enotif_body": "Кельгома $WATCHINGUSERNAME,\n\n\n{{SITENAME}} лопа $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE тиись $PAGEEDITOR. Мекольце верзие ванк $REFINFO\n\n$NEWPAGE\n\nПетнить лихтемац: $PAGESUMMARY $PAGEMINOREDIT\n\nСотомс петнить мархта:\nэлектрононь адрес вельде: $PAGEEDITOR_EMAIL\nвики вельде: $PAGEEDITOR_WIKI\n\nАф кармайхть кучевома пачфтемат иля сай полафнематнень колга тонь самдот тя лопас инголе. Тондейть тага ули кода омбоцекс путомс пачфтема содафксне тонь мельгеваномазот сембе тонь мельгеванома ала лопатненди.\n\n             Тонь ялгань {{SITENAME}} пачфтема системце\n\n--\nТонь мельгеваномацень латцемасна полафтоманкса сашентт\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nЛопать тонь мельгеваномастот нардаманди сашентт\n$UNWATCHURL\n\nАзома мекпяли ди иля лезкс:\n$HELPPAGE",
 	"created": "тиф",
 	"changed": "полафтсь",
-	"deletepage": "Нардамс лопать",
+	"deletepage-submit": "Нардамс лопать",
 	"confirm": "Кемокстамс",
 	"excontent": "потмосоль: '$1'",
 	"excontentauthor": "потмоц ульсь: '$1' (аньцек фкя путысь ульсь'[[Special:Contributions/$2|$2]]')",

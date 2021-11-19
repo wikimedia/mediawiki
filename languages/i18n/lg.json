@@ -637,7 +637,7 @@
 	"watchlist-options": "Enteetakeeka y'endaga ya mpapula zengoberera",
 	"watching": "Kikolebwako...",
 	"unwatching": "Kikolebwako...",
-	"deletepage": "Gyawo olupapula",
+	"deletepage-submit": "Gyawo olupapula",
 	"confirm": "Kakasa",
 	"confirmdeletetext": "Ogenda okugyawo olupapula n'ennanda ya lwo yonna.\n\nKakasa nti kino ky'oyagala, era nti otegeera bye kinaaleetawo, era nti kikkirizigana [[{{MediaWiki:Policy-url}}|n'enkola ya MediaWiki]].",
 	"actioncomplete": "Kiwedde",

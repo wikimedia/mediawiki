@@ -2188,7 +2188,7 @@
 	"enotif_minoredit": "Бу улахан суолтата суох уларытыы",
 	"created": "айыллыбыт",
 	"changed": "уларыппыт (уларытыллыбыт)",
-	"deletepage": "Сирэйи сот",
+	"deletepage-submit": "Сирэйи сот",
 	"confirm": "Бигэргэтии",
 	"excontent": "иһинээҕитэ: '$1'",
 	"excontentauthor": "иһинээҕитэ: «$1», соҕотох ааптар \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

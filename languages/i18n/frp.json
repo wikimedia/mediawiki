@@ -1873,7 +1873,7 @@
 	"enotif_body": "Chier{{GENDER:$WATCHINGUSERNAME||a}} $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRèsumâ du contributor : $PAGESUMMARY $PAGEMINOREDIT\n\nVeriéd-vos vers lo contributor :\nmèl. : $PAGEEDITOR_EMAIL\nvouiqui : $PAGEEDITOR_WIKI\n\nY arat gins d’ôtra notificacion en câs de changements a vegnir, a muens que vos vesiteyéd cela pâge a pêna branchiê. Vos pouede asse-ben rebetar a zérô los marcâjos de notificacion por totes les pâges de voutra lista de gouârda.\n\nVoutron sistèmo de notificacion de {{SITENAME}}\n\n--\nPor changiér la configuracion de notificacion per mèssageria èlèctronica, vesitâd\n{{canonicalurl:{{#special:Preferences}}}}\n\nPor changiér la configuracion de voutra lista de gouârda, vesitâd\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPor suprimar la pâge de voutra lista de gouârda, vesitâd\n$UNWATCHURL\n\nAvis et éde de més :\n$HELPPAGE",
 	"created": "fêta",
 	"changed": "changiê",
-	"deletepage": "Suprimar la pâge",
+	"deletepage-submit": "Suprimar la pâge",
 	"confirm": "Confirmar",
 	"excontent": "lo contegnu ére : « $1 »",
 	"excontentauthor": "lo contegnu ére : « $1 », et lo solèt contributor « [[Special:Contributions/$2|$2]] » ([[User talk:$2|discutar]])",

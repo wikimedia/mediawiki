@@ -2275,7 +2275,7 @@
 	"enotif_minoredit": "Esta ye una edición menor",
 	"created": "creada",
 	"changed": "camudada",
-	"deletepage": "Desaniciar páxina",
+	"deletepage-submit": "Desaniciar páxina",
 	"confirm": "Confirmar",
 	"excontent": "el conteníu yera: «$1»",
 	"excontentauthor": "el conteníu yera: «$1», y l'únicu autor yera «[[Special:Contributions/$2|$2]]» ([[User talk:$2|alderique]])",

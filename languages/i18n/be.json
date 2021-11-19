@@ -2212,7 +2212,7 @@
 	"enotif_minoredit": "Гэта малая праўка",
 	"created": "створана",
 	"changed": "зменена",
-	"deletepage": "Выдаліць старонку",
+	"deletepage-submit": "Выдаліць старонку",
 	"confirm": "Пацвердзіць",
 	"excontent": "тэкст быў: '$1'",
 	"excontentauthor": "тэкст быў: '$1' (і адзіны аўтар: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|размовы]]))",

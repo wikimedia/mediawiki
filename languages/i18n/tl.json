@@ -1701,7 +1701,7 @@
 	"enotif_body": "Mahal naming $WATCHINGUSERNAME,\n\n\nAng pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED ni $PAGEEDITOR noong $PAGEEDITDATE, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang rebisyon.\n\n$NEWPAGE\n\nBuod ng patnugot: $PAGESUMMARY $PAGEMINOREDIT\n\nMakipagugnayan sa patnugot:\nliham: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nWala nang iba pang mga pagpapahayag sa pagkakataon ng pagkakaroon ng karagdagang mga pagbabago maliban na lamang kung dadalawin mo ang pahinang ito.\nMaaari mo ring itakda muli ang mga watawat na pangpagpapabatid para sa lahat ng mga pahinang binabantayan mo sa loob ng iyong talaan ng mga binabantayan.\n\nAng iyong maginhawang sistema ng pagpapabatid ng {{SITENAME}}\n\n--\nUpang mabago ang mga katakdaan sa iyong talaan ng mga binabantayan, dalawin ang\n{{canonicalurl:{{#special:Preferences}}}}\n\nUpang baguhin ang mga katakdaan ng bantayan mo, dumalaw sa\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nUpang burahin ang pahina mula sa pahina mo ng mga binabantayan, dumalaw sa\n$UNWATCHURL\n\nTugon at karagdagang tulong:\n$HELPPAGE",
 	"created": "nilikha",
 	"changed": "binago",
-	"deletepage": "Burahin ang pahina",
+	"deletepage-submit": "Burahin ang pahina",
 	"confirm": "Tiyakin",
 	"excontent": "ang dating nilalaman ay: '$1'",
 	"excontentauthor": "ang nilalaman ay: '$1' (at ang tanging nag-ambag ay si '[[Special:Contributions/$2|$2]]')",

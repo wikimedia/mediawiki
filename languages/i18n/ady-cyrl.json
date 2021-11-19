@@ -959,7 +959,7 @@
 	"enotif_anon_editor": "ТымышӀэрэ нэбгыр $1",
 	"created": "къагъэхъуыгъ",
 	"changed": "зэблэхъугъэ",
-	"deletepage": "ТегъэкI нэкIубгъор",
+	"deletepage-submit": "ТегъэкI нэкIубгъор",
 	"confirm": "Теубыт",
 	"excontent": "дэтхэгъагъэр: \"$1\"",
 	"excontentauthor": "дэтхагъэщтыгъэхэр: \"$1\", ыкIи хэлэжьэкIо закъощтыгъэр \"[[Special:Contributions/$2|$2]]\"([[User talk:$2|тегущыIэн]])",

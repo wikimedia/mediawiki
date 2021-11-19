@@ -1944,7 +1944,7 @@
 	"enotif_minoredit": "यो सानो सम्पादन हो",
 	"created": "बनाइएको",
 	"changed": "परिवर्तन भइसकेको",
-	"deletepage": "पृष्ठ मेट्नुहोस्",
+	"deletepage-submit": "पृष्ठ मेट्नुहोस्",
 	"confirm": "सुनिश्चित गर्नुहोस्:",
 	"excontent": "लेख थियो: '$1'",
 	"excontentauthor": "लेखेको थियो:\"$1\" (र  योगदान कर्ता थिए \"[[Special:Contributions/$2|$2]]\")",

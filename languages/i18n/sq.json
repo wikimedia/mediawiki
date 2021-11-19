@@ -2014,7 +2014,7 @@
 	"enotif_body": "I nderuar $WATCHINGUSERNAME, \n\nKjo {{SITENAME}} faqe $PAGETITLE është $CHANGEDORCREATED më $PAGEEDITDATE nga $PAGEEDITOR, shikoni $PAGETITLE_URL për versionin më të ri.\n\n$NEWPAGE\n\nPërmbledhja e redaktorit: $PAGESUMMARY $PAGEMINOREDIT\nKontakto:\nemail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNuk do të ketë njoftime të tjera për ndryshimet e ardhshme përveç nëse e vizitoni faqen. Gjithashtu mund të ktheni gjendjen e njoftimeve për të gjitha faqet nën mbikëqyrje.\n\nMiku juaj njoftues nga {{SITENAME}}\n\n--\nPër të ndryshuar parapëlqimet e mbikëqyrjes, shikoni {{canonicalurl:Special:Watchlist/edit}}\n\nPër të larguar faqen nga lista juaj e mbikëqyrjes, shikoni\n$UNWATCHURL\n\nPër përshtypje dhe ndihmë të mëtejshme:\n$HELPPAGE",
 	"created": "u krijua",
 	"changed": "ndryshuar",
-	"deletepage": "Grise faqen",
+	"deletepage-submit": "Grise faqen",
 	"confirm": "Konfirmoni",
 	"excontent": "përmbajtja ishte: '$1'",
 	"excontentauthor": "përmbajtja ishte: \"$1\" dhe {{GENDER:$2|i vetmi redaktor|e vetmja redaktore}} ishte \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|diskutimet]])",

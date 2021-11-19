@@ -2376,7 +2376,7 @@
 	"enotif_minoredit": "Aceasta este o modificare minoră",
 	"created": "creată",
 	"changed": "modificată",
-	"deletepage": "Șterge pagina",
+	"deletepage-submit": "Șterge pagina",
 	"confirm": "Confirmă",
 	"excontent": "conținutul era: '$1'",
 	"excontentauthor": "conținutul era: „$1”, iar unicul contribuitor a fost „[[Special:Contributions/$2|$2]]” ([[User talk:$2|discuție]])",

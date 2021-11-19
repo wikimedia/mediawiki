@@ -2393,7 +2393,7 @@
 	"enotif_minoredit": "Aquesta és una modificació menor",
 	"created": "creada",
 	"changed": "modificada",
-	"deletepage": "Elimina la pàgina",
+	"deletepage-submit": "Elimina la pàgina",
 	"confirm": "Confirma",
 	"excontent": "el contingut era: «$1»",
 	"excontentauthor": "el contingut era: «$1», i l'únic col·laborador era «[[Special:Contributions/$2|$2]]» ([[User talk:$2|discussió]])",

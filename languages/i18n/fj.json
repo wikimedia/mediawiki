@@ -470,7 +470,7 @@
 	"watchlist-options": "Sarasaralisi digidigi",
 	"enotif_reset": "Makataka taucoko na tabana sa sikovi",
 	"enotif_impersonal_salutation": "{{SITENAME}} dauvakatavako",
-	"deletepage": "Bokoca tabana",
+	"deletepage-submit": "Bokoca tabana",
 	"excontent": "lewena na: \"$1\"",
 	"delete-confirm": "Bokoca \"$1\"",
 	"rollback-confirmation-yes": "Cokiamuri",

@@ -2006,7 +2006,7 @@
 	"enotif_body": "Tompoko $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nAmbangovangon'ny mpikambana nanova : $PAGESUMMARY $PAGEMINOREDIT\n\nIfandraisana amin'io mpikambana io :\nmailaka : $PAGEEDITOR_EMAIL\nwiki : $PAGEEDITOR_WIKI\n\nTsy hisy fampandrenesana hafa raha misy mpikambana manova aorian'ny nandefasana ity mailaka ity, raha tsy hoe mitsidika ilay pejy ianao. Azonao atao koa ny mamerina ho aotra ny flag fampandrenesana ho an'ny pejy rehetra ao amin'ny lisitry ny pejy arahanao.\n\n             Ny rafitr'i {{SITENAME}} mampandre anao.\n\n--\nRehefa hanova ny parametatra mikasika ny fampandrenesana amin'ny alalan'ny mailaka, tsidiho\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nRehefa tia hanova ny parametatray ny lisitry ny pejy arahanao, tsidiho\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nRehefa tsy hanaraka ilay pejy intsony ianao dia tsidiho\n$UNWATCHURL\n\nVerindrohy ary fanampiana:\n$HELPPAGE",
 	"created": "voaforona",
 	"changed": "voaova",
-	"deletepage": "Hamafa ny pejy",
+	"deletepage-submit": "Hamafa ny pejy",
 	"confirm": "Antero",
 	"excontent": "votoatiny: '$1'",
 	"excontentauthor": "votoatiny: '$1' (ary i '[[Special:Contributions/$2|$2]]' irery ihany no nikitika azy)",

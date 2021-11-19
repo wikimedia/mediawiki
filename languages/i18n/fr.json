@@ -2522,7 +2522,7 @@
 	"enotif_minoredit": "C’est une modification mineure",
 	"created": "créée",
 	"changed": "modifiée",
-	"deletepage": "Supprimer la page",
+	"deletepage-submit": "Supprimer la page",
 	"confirm": "Confirmer",
 	"excontent": "contenait « $1 »",
 	"excontentauthor": "contenait « $1 » et son seul contributeur était [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",

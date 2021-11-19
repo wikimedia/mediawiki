@@ -1164,7 +1164,7 @@
 	"enotif_body": "Binamé $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nComintaire do candjeu: $PAGESUMMARY $PAGEMINOREDIT\n\nContak do candjeu:\nemile: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nI n' årè nén d' ôtes notifiaedjes po ds ôtes candjmints di ç' minme pådje ci tant k' vos n' l' åroz nén vizitêye (tot estant elodjî).\nVos ploz eto rimete a noû les drapeas di notifiaedje po totes les pådjes di vosse djivêye des pådjes a shuve.\n\n\nVosse binamé sistinme di notifiaedje so {{SITENAME}}\n\n--\nPo candjî l' apontiaedje di vos notifiaedjes pa emile, loukîz\n{{canonicalurl:{{#special:Preferences}}}}\n\nPo candjî l' apontiaedje di vosse djivêye a shuve, loukîz\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPo rsaetchî l' pådje di vosse djivêye a shuve, alez so\n$UNWATCHURL\n\nPo pus d' aidance:\n$HELPPAGE",
 	"created": "ahivêye",
 	"changed": "candjeye",
-	"deletepage": "Disfacer l’&nbsp;pådje",
+	"deletepage-submit": "Disfacer l’&nbsp;pådje",
 	"confirm": "Acertiner",
 	"excontent": "li contnou esteut: «$1»",
 	"excontentauthor": "li contnou esteut: «$1» (eyet l' seu contribouweu esteut «$2»)",

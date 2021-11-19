@@ -2375,7 +2375,7 @@
 	"enotif_minoredit": "Toto je malá editace",
 	"created": "vytvořil",
 	"changed": "upravil",
-	"deletepage": "Smazat stránku",
+	"deletepage-submit": "Smazat stránku",
 	"confirm": "Potvrdit",
 	"excontent": "obsah byl: „$1“",
 	"excontentauthor": "obsah byl: „$1“ a jediným přispěvatelem byl „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]])",

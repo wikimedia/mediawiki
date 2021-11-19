@@ -1462,7 +1462,7 @@
 	"enotif_body": "Halo $WATCHINGUSERNAME,\n\n\nTungkaran $PAGETITLE di {{SITENAME}} sudah $CHANGEDORCREATED pada $PAGEEDITDATE ulih $PAGEEDITOR, janaki $PAGETITLE_URL gasan ralatan wayah ini.\n\n$NEWPAGE\n\nKasimpulan pambabak: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungi pambabak:\nsuril: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKami kada akan mangirim pamadahan lain amun ada paubahan labih lanjut sampai Pian mailangi tungkaran ngini.\nPian kawa jua manyetel-pulang bandira pamadahan hagan samunyaan tungkaran nang Pian itihi dalam paitihan Pian.\n\nSistem kakawalan pamadahan {{SITENAME}} Pian\n\n--\nHagan maubah setelan suril pamadahan Piann, ilangi\n{{canonicalurl:{{#special:Preferences}}}}\n\nHagan maubah setelan paitihan Pian, ilangi\n$UNWATCHURL\n\nkitihan-bulik wan pangganian labih jauh:\n$HELPPAGE",
 	"created": "ta'ulah",
 	"changed": "ta'ubah",
-	"deletepage": "Hapus tungkaran",
+	"deletepage-submit": "Hapus tungkaran",
 	"confirm": "Yakinakan",
 	"excontent": "isi sabalumnya: '$1'",
 	"excontentauthor": "isinya: '$1' haja (wan aasaannya panyumbang adalah '[[Special:Contributions/$2|$2]]')",

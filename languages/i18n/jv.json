@@ -1993,7 +1993,7 @@
 	"enotif_minoredit": "Iki besutan cilik",
 	"created": "kadamel",
 	"changed": "kaubah",
-	"deletepage": "Busak kaca",
+	"deletepage-submit": "Busak kaca",
 	"confirm": "Dhedhes (konfirmasi)",
 	"excontent": "isi sadurungé: '$1'",
 	"excontentauthor": "isiné: \"$1\", lan kang nyumbang mung \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|parembugan]])",

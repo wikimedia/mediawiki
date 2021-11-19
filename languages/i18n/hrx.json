@@ -1611,7 +1611,7 @@
 	"enotif_lastdiff": "Sieh $1 noh der Ännrung.",
 	"enotif_anon_editor": "Anonymer Benutzer $1",
 	"enotif_body": "Hallo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nZusammerfassung von dem Beoorbeiter/rinne: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt zu dem Beoorbeiter/rinne:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nBei weitrer Aktivität uff der Seit werre dir so lang keh weitre Benochrichtichungs-E-Mails geschickt, bis du die Seit wieder oongemeldt besucht host. Uff dein Beobachtungslist kannst du all Benochrichtichungsmarkierung zusammet zurücksetze.\n\nDein freindliches {{SITENAME}}-Benochrichtichungssystem\n\n--\nUm die Einstellunge der E-Mail-Benochrichtichung oonzupasse, besuch {{canonicalurl:{{#special:Preferences}}}}.\n\nUm die Einstellunge von deiner Beobachtungslist oonzupasse, besuche {{canonicalurl:{{#special:EditWatchlist}}}}.\n\nUm die Seit von deiner Beobachtungslist herunnerzunehme, besuch $UNWATCHURL.\n\nRückmeldunge und weitre Hilfe: $HELPPAGE",
-	"deletepage": "Seite abwische",
+	"deletepage-submit": "Seite abwische",
 	"confirm": "Bestätich",
 	"excontent": "Inhalt woor: \"$1\"",
 	"excontentauthor": "Inhalt woor: \"$1\" (enzicher Beoorbeiter: [[Special:Contributions/$2|$2]])",

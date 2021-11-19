@@ -2402,7 +2402,7 @@
 	"enotif_minoredit": "Detta är en mindre redigering",
 	"created": "skapad",
 	"changed": "ändrad",
-	"deletepage": "Radera sida",
+	"deletepage-submit": "Radera sida",
 	"confirm": "Bekräfta",
 	"excontent": "Före radering: \"$1\"",
 	"excontentauthor": "innehållet var: \"$1\", den enda som skrivit var \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|diskussion]])",

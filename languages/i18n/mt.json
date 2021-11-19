@@ -2034,7 +2034,7 @@
 	"enotif_minoredit": "Din hija modifika minuri",
 	"created": "inħolqot",
 	"changed": "modifikata",
-	"deletepage": "Ħassar il-paġna",
+	"deletepage-submit": "Ħassar il-paġna",
 	"confirm": "Ikkonferma",
 	"excontent": "kontenut kien: '$1'",
 	"excontentauthor": "kontenut kien: '$1' (u l-unika kontributur kien '[[Special:Contributions/$2|$2]]')",

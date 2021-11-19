@@ -632,7 +632,7 @@
 	"enotif_lastdiff": "Bona $1 go nyakorela phetogo ye.",
 	"created": "tlhodilwe",
 	"changed": "fetotšwe",
-	"deletepage": "Phumula letlakala",
+	"deletepage-submit": "Phumula letlakala",
 	"excontent": "mateng ebe e le: '$1'",
 	"delete-legend": "Phumula",
 	"historywarning": "<strong>Temošo:</strong> Letlakala leo o lekago go lephumula le nale histori le {{PLURAL:$1|phetogo|diphetogo tše $1}}:",

@@ -2170,7 +2170,7 @@
 	"enotif_minoredit": "ეს არის მცირე შესწორება",
 	"created": "შექმნილია",
 	"changed": "შეცვლილი",
-	"deletepage": "გვერდის წაშლა",
+	"deletepage-submit": "გვერდის წაშლა",
 	"confirm": "დადასტურება",
 	"excontent": "შინაარსი იყო: „$1“",
 	"excontentauthor": "შინაარსი იყო: „$1“ და ერთადერთი ავტორი იყო „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|განხილვა]])",

@@ -1305,7 +1305,7 @@
 	"enotif_body": "Ljoowe $WATCHINGUSERNAME,\n\nJu {{SITENAME}} Siede $PAGETITLE wuude fon $PAGEEDITOR an dän $PAGEEDITDATE $CHANGEDORCREATED, sjuch $PAGETITLE_URL foar ju aktuälle Version.\n\n$NEWPAGE\n\nTouhoopefoatenge fon dän Editor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt toun Beoarbaider:\nMail $PAGEEDITOR_EMAIL\nWiki $PAGEEDITOR_WIKI\n\nDer wäide soloange neen wiedere Mails toun Beskeed soand, bit du ju Siede wier besoacht hääst. Ap dien Beooboachtengssiede koast du aal Markere toun Beskeed touhoope touräächsätte.\n\nDien früntelk {{SITENAME}} Becheedtälsystem\n\n--\n\nUum do Ienstaaleungen fon dät E-Mail-Becheedtälsystem antoupaasjen, besäik \n{{canonicalurl:{{#special:Preferences}}}}\n\nUum do Ienstaalengen fon dien Beooboachtengslieste antoupaasjen, besäik\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nUum ju Siede fon dien Kontrollieste tou läskjen, besäik\n$UNWATCHURL\n\nTouräächmäldengen un wiedere Hälpe: $HELPPAGE",
 	"created": "näi anlaid",
 	"changed": "annerd",
-	"deletepage": "Siede läskje",
+	"deletepage-submit": "Siede läskje",
 	"confirm": "Bestäätigje",
 	"excontent": "Oolde Inhoold: '$1'",
 	"excontentauthor": "Inhoold waas: '$1' (eensige Benutser: '[[Special:Contributions/$2|$2]]')",

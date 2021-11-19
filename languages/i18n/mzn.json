@@ -599,7 +599,7 @@
 	"enotif_lastdiff": "هارشائن این تغییر وسّه $1 ره بزنین.",
 	"enotif_anon_editor": "نشناسی‌یه کارور $1",
 	"created": "بساته بیّه",
-	"deletepage": "صفحه پاک هاکردن",
+	"deletepage-submit": "صفحه پاک هاکردن",
 	"excontent": "صفحه محتوا وِ بیه: «$1»",
 	"excontentauthor": "صفحه محتوا وِ بیه: «$1» (فقط «[[Special:Contributions/$2|$2]]» وِنه کایر بیه)",
 	"exbeforeblank": "قبل اینکه صفحه محتوا خالی بوه ونه محتوا وِ بیه: «$1»",

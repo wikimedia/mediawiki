@@ -2450,7 +2450,7 @@
 	"enotif_minoredit": "Bu bir küçük değişiklik",
 	"created": "oluşturuldu",
 	"changed": "değiştirildi",
-	"deletepage": "Sayfayı sil",
+	"deletepage-submit": "Sayfayı sil",
 	"confirm": "Onayla",
 	"excontent": "eski içerik: \"$1\"",
 	"excontentauthor": "eski içerik: \"$1\" ve katkıda bulunmuş olan tek kullanıcı \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|mesaj]])",

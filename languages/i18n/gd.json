@@ -1804,7 +1804,7 @@
 	"enotif_body": "$WATCHINGUSERNAME, a charaid,\n\n$PAGEINTRO $NEWPAGE\n\nGearr-chunntas an deasaiche: $PAGESUMMARY $PAGEMINOREDIT\n\nCuir fios gun deasaiche:\npost-d: $PAGEEDITOR_EMAIL\nuicidh: $PAGEEDITOR_WIKI\n\nChan fhaigh thu brath-naidheachd eile air gnìomhan ach ma thadhaileas tu air an duilleag 's tu air logadh a-steach. 'S urrainn dhut cuideachd brataich nam brathan-naidheachd aiseag airson nan duilleagan uile a tha air a' chlàr-fhaire agad.\n\nSiostam càirdeil nam brath aig {{SITENAME}}\n\n--\nGus roghainnean nam brathan a gheibh thu air a' phost-d atharrachadh, tadhail air\n{{canonicalurl:{{#special:Preferences}}}}\n\nGus roghainnean a' chlàir-fhaire agad atharrachadh, tadhail air\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nGus duilleagan a thoirt far a' chlàir-fhaire agad, tadhail air\n$UNWATCHURL\n\nBeachdan thugainn 's barrachd taice:\n$HELPPAGE",
 	"created": "air a chruthachadh",
 	"changed": "air atharrachadh",
-	"deletepage": "Sguab às duilleag",
+	"deletepage-submit": "Sguab às duilleag",
 	"confirm": "Daingnich",
 	"excontent": "stuth a bh' ann: '$1'",
 	"excontentauthor": "b' e: \"$1\" an t-susbaint agus \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]]) an aon deasaiche",

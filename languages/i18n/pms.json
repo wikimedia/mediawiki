@@ -2322,7 +2322,7 @@
 	"enotif_minoredit": "Costa a l'é na modìfica cita",
 	"created": "creà",
 	"changed": "modificà",
-	"deletepage": "Scancelé la pàgina",
+	"deletepage-submit": "Scancelé la pàgina",
 	"confirm": "Confermé",
 	"excontent": "Ël contnù a l'era: '$1'",
 	"excontentauthor": "ël contnù a l'era: «$1», e l'ùnich contributor a l'era stàit «[[Special:Contributions/$2|$2]]» ([[User talk:$2|discussion]])",

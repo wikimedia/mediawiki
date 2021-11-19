@@ -1685,7 +1685,7 @@
 	"enotif_minoredit": "Àtúnṣe kéreré kan nì yí",
 	"created": "dídá",
 	"changed": "títúnṣẹ",
-	"deletepage": "Ìparẹ́ ojúewé",
+	"deletepage-submit": "Ìparẹ́ ojúewé",
 	"confirm": "Ìmúdájú",
 	"excontent": "àkóónú rẹ̀ jẹ́: '$1'",
 	"excontentauthor": "àkóónú jẹ́: \"$1\", aláfikún rẹ̀ kan soso ni \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|ọ̀rọ̀]])",

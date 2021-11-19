@@ -768,7 +768,7 @@
 	"enotif_anon_editor": "$1 анонимлă хутшăнакан",
 	"created": "хатĕрленĕ",
 	"changed": "улăштарнă",
-	"deletepage": "Кăларса парахнă статьясем",
+	"deletepage-submit": "Кăларса парахнă статьясем",
 	"confirm": "Çирĕплетни",
 	"excontent": "ăшĕнче пулнă: \"$1\"",
 	"excontentauthor": "ăшĕнче пулнă: \"$1\", пĕртен пĕр хушакан пулнă \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

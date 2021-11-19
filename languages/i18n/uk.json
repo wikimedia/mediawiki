@@ -2424,7 +2424,7 @@
 	"enotif_minoredit": "Це незначна зміна",
 	"created": "створена",
 	"changed": "змінена",
-	"deletepage": "Вилучити сторінку",
+	"deletepage-submit": "Вилучити сторінку",
 	"confirm": "Підтвердження",
 	"excontent": "зміст: «$1»",
 	"excontentauthor": "зміст був: «$1», єдиний автор: [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]])",

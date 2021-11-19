@@ -1519,7 +1519,7 @@
 	"enotif_subject_created": "$2 द्वारा {{SITENAME}} पन्ना $1 {{GENDER:$2|बनावल गइल}}",
 	"enotif_minoredit": "ई एगो छोट संपादन बा",
 	"created": "बनावल गईल",
-	"deletepage": "पन्ना हटाईं",
+	"deletepage-submit": "पन्ना हटाईं",
 	"confirm": "कन्फर्म",
 	"excontent": "सामग्री रहल: \"$1\"",
 	"exbeforeblank": "खाली करे से पहिले सामग्री: \"$1\"",

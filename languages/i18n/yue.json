@@ -2071,7 +2071,7 @@
 	"enotif_minoredit": "呢個係一個細編輯",
 	"created": "建立過",
 	"changed": "修改過",
-	"deletepage": "剷版",
+	"deletepage-submit": "剷版",
 	"confirm": "確認",
 	"excontent": "內容係：「$1」",
 	"excontentauthor": "內容係：「$1」，而且唯一嘅貢獻者係「[[Special:Contributions/$2|$2]]」([[User talk:$2|talk]])",

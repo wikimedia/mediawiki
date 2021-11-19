@@ -2236,7 +2236,7 @@
 	"enotif_minoredit": "Dette er en mindre ændring",
 	"created": "oprettet",
 	"changed": "ændret",
-	"deletepage": "Slet side",
+	"deletepage-submit": "Slet side",
 	"confirm": "Bekræft",
 	"excontent": "indholdet var: '$1'",
 	"excontentauthor": "indholdet var: '$1' og den eneste forfatter var '[[Special:Contributions/$2|$2]]' ([[User talk:$2|talk]])",

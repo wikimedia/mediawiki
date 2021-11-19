@@ -1684,7 +1684,7 @@
 	"enotif_minoredit": "ایہ اک چھوٹی تبدیلی اے۔",
 	"created": "بن گیا",
 	"changed": "بدلیا",
-	"deletepage": "صفحہ مٹاؤ",
+	"deletepage-submit": "صفحہ مٹاؤ",
 	"confirm": "پکا کرو",
 	"excontent": "مواد: \"$1\"",
 	"excontentauthor": "لکھت سی:\"$1\" تے صرف اک لکھاری سی \"\n[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

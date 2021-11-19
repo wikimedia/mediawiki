@@ -2550,7 +2550,7 @@
 	"enotif_minoredit": "Esta es una edición menor",
 	"created": "creada",
 	"changed": "modificada",
-	"deletepage": "Borrar página",
+	"deletepage-submit": "Borrar página",
 	"confirm": "Confirmar",
 	"excontent": "el contenido era: «$1»",
 	"excontentauthor": "el contenido era: «$1», y el único autor fue «[[Special:Contributions/$2|$2]]» ([[User talk:$2|discusión]])",

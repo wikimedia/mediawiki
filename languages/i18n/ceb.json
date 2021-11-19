@@ -684,7 +684,7 @@
 	"watchlist-options": "Mga opsyon sa akong gibantayan",
 	"watching": "Gibantayan...",
 	"unwatching": "Gipasagdan...",
-	"deletepage": "Papasa ang panid",
+	"deletepage-submit": "Papasa ang panid",
 	"confirmdeletetext": "Imo nang papason ang panid kauban ang tanang kaagi niini.\nPalihog ikompirma nga imo gyud ni buhaton, nga nakasabot ka sa mga puyde idangat niini, ug imo kini gibuhat sumala sa [[{{MediaWiki:Policy-url}}|palisiya]].",
 	"actioncomplete": "Nahuman na ang lihok",
 	"actionfailed": "Di humana ang galaw",

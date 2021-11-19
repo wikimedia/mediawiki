@@ -608,7 +608,7 @@
 	"enotif_anon_editor": "caitom anoniimom $1",
 	"created": "creacöx",
 	"changed": "quiixöx",
-	"deletepage": "Delatar páhina",
+	"deletepage-submit": "Delatar páhina",
 	"prot_1movedto2": "[[$1]] yacomöxde [[$2]]",
 	"pagesize": "(bytenám)",
 	"restriction-edit": "Ticpatlöx",

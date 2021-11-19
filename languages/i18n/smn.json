@@ -646,7 +646,7 @@
 	"watchlist-submit": "Čääiti",
 	"watchlist-options": "Tarkkumlisto asâttâsah",
 	"enotif_reset": "Merkii puoh keččum siijđoid",
-	"deletepage": "Siho siijđo",
+	"deletepage-submit": "Siho siijđo",
 	"delete-confirm": "Siho \"$1\"",
 	"dellogpage": "Sikkumloki",
 	"rollbacklink": "maaccât",

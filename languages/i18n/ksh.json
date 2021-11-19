@@ -1901,7 +1901,7 @@
 	"enotif_body": "Leeven $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\n{{int:summary}} „$PAGESUMMARY“ $PAGEMINOREDIT\n\nDo kanns dä Metmaacher „$PAGEEDITOR“ aanschpräsche:\n* Övver e-mail: $PAGEEDITOR_EMAIL\n* Em Wiki: $PAGEEDITOR_WIKI\n\nDo kreß vun jetz aan kein e-mail mih, bes dat Do\nDer di Sigg aanjeluurt häs wann De enjelogg bes,\noch wann se norr_ens verändert weed. Do kanns ävver\noch all di Märker för e-mail för di Sigge en Dinger\nOppaßleß op eimohl ändere.\n\nEne schöne Jrohß {{GRAMMAR:vun|{{SITENAME}}}}.\n\n-- \nÖm de Enschtällonge för Nohreeschte aan Desch ze ändere,\njangk op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nDo kanns heh Ding Oppaßleß ändere:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nÖm di Sigg vun Dinger Oppaßleß ze schmiiße:\n$UNWATCHURL\n\nDo kanns heh noh Hölp luhre:\n$HELPPAGE",
 	"created": "neu aanjelaht",
 	"changed": "jeändert",
-	"deletepage": "Schmiiß di Sigg jäz fott",
+	"deletepage-submit": "Schmiiß di Sigg jäz fott",
 	"confirm": "Dä Schoz för di Sigg änndere",
 	"excontent": "drop stundt: „$1“",
 	"excontentauthor": "drop stundt: „$1“ un dä einzije Schriever woh: „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|{{ns:talk}}]])",

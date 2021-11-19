@@ -1425,7 +1425,7 @@
 	"enotif_body": "عزيزى $WATCHINGUSERNAME,\n\n\nالصفحه {{SITENAME}} $PAGETITLE اتغيّرت $CHANGEDORCREATED فى $PAGEEDITDATE من $PAGEEDITOR, شوف $PAGETITLE_URL علشان تعرف مراجعة دلوقتى.\n\n$NEWPAGE\n\nملخص تعديل المحرر: $PAGESUMMARY $PAGEMINOREDIT\n\nاتصل بالمحرر:\nايميل: $PAGEEDITOR_EMAIL\nصفحة اليوزر: $PAGEEDITOR_WIKI\n\nمش ح يكون فيه تنبيهات تانيه فى حالة لو حصل تغييرات اكتر الا اذا زورت الصفحه دى.\nتقدر بردو ترجّع اعلمة التنبيه ع الزيرو لكل الصفح المتراقبه بتاعتك على ليستة المراقبه.\n\n\n             نظام التنبيه {{SITENAME}} السهل\n\n--\nعلشان تغيّر ليستة المراقبه بتاعتك, زور\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nعلشان تمسح الصفحه من على ليستة مراقبتك, زور\n$UNWATCHURL\n\nالfeedback و مساعده اكتر:\n$HELPPAGE",
 	"created": "إتنشأت",
 	"changed": "اتغيرت",
-	"deletepage": "امسح الصفحه",
+	"deletepage-submit": "امسح الصفحه",
 	"confirm": "أكد",
 	"excontent": "المحتوى كان: '$1'",
 	"excontentauthor": "المحتوى كان: \"$1\" والمساهم الوحيد كان \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

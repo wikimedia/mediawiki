@@ -1194,7 +1194,7 @@
 	"enotif_impersonal_salutation": "{{grammar:genitive|{{SITENAME}}}} архайæг",
 	"enotif_anon_editor": "сусæг архайæг $1",
 	"changed": "ивд æрцыд",
-	"deletepage": "Схаф фарс",
+	"deletepage-submit": "Схаф фарс",
 	"confirm": "Афтæ у",
 	"delete-confirm": "Схаф \"$1\"",
 	"delete-legend": "Схафын",

@@ -860,7 +860,7 @@
 	"enotif_reset": "Marcar todas las páiginas cumo bejitadas",
 	"created": "criada",
 	"changed": "demudada",
-	"deletepage": "Botar fuora la páigina",
+	"deletepage-submit": "Botar fuora la páigina",
 	"excontent": "l cuntenido era: \"$1\"",
 	"excontentauthor": "l cuntenido era: \"$1\", i {{GENDER:$2|l único eiditor|la única eiditora|l(a) único(a) eiditor(a)}} era [[Special:Contributions/$2|$2]] ([[User talk:$2|cumbersa]])",
 	"exbeforeblank": "l cuntenido antes de sbaziar era: \"$1\"",

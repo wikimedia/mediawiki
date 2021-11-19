@@ -921,7 +921,7 @@
 	"wlnote": "ⴳ ⵓⴼⵍⵍⴰ, {{PLURAL:$1|ⵢⵓⵎⴰⵏ ⵓⵙⵏⴼⵍ ⴰⵎⴳⴳⴰⵔⵓ ⵉⵜⵜⵡⴰⵙⴽⴰⵔⵏ|ⵓⵎⴰⵏⴻⵏ <strong>$1</strong> ⵏ ⵉⵙⵏⵉⴼⵉⵍⵏ ⵉⵎⴳⴳⵓⵔⴰ ⵉⵜⵜⵢⴰⵙⴽⴰⵔⵏ}} {{PLURAL:$2|ⵢⴰⵜ ⵜⵙⵔⴰⴳⵜ ⴰⵢⴰ|ⵢⴰⵏ <strong>$2</strong> ⵏ ⵜⵙⵔⴰⴳⵉⵏ ⴰⵢⴰ}}, ⴰⵔ $3, $4.",
 	"watchlist-options": "ⵜⵉⴷⵖⵔⵉⵏ ⵏ ⵜⵍⴳⴰⵎⵜ ⵏ ⵓⴹⴼⴼⵓⵔ",
 	"enotif_reset": "ⴷⵔⵣ ⵜⴰⵙⵏⵉⵡⵉⵏ ⴰⴽⴽ ⵏⵏⴰ ⵜⵔⵣⴼⴷ",
-	"deletepage": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ",
+	"deletepage-submit": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ",
 	"delete-confirm": "ⴽⴽⵙ \"$1\"",
 	"delete-legend": "ⴽⴽⵙ",
 	"dellogpage": "ⵜⴰⵎⵙⵙⴽⵜⵉⵜ ⵏ ⵜⵓⴽⴽⵙⴰ",

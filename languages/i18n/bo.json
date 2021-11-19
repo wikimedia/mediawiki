@@ -647,7 +647,7 @@
 	"enotif_reset": "ཤོག་ངོས་ཚང་མ་བལྟས་ཟིན་དུ་རྟགས་རྒྱོབ།",
 	"created": "བཟོས་ཟིན།",
 	"changed": "བསྒྱུར་ཟིན།",
-	"deletepage": "ཤོག་ངོས་འདོར་བ།",
+	"deletepage-submit": "ཤོག་ངོས་འདོར་བ།",
 	"confirm": "གཏན་འཁེལ་བྱོས།",
 	"delete-confirm": "\"$1\"སུབས་ཤིག",
 	"delete-legend": "སུབས་ཤིག",

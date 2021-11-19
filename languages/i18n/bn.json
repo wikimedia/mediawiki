@@ -2354,7 +2354,7 @@
 	"enotif_minoredit": "এটি একটি অনুল্লেখিত সম্পাদনা",
 	"created": "তৈরী হয়েছিল",
 	"changed": "পরিবর্তিত",
-	"deletepage": "একটি পাতা অপসারণ করুন",
+	"deletepage-submit": "পাতা মুছুন",
 	"confirm": "নিশ্চিত করুন",
 	"excontent": "বিষয়বস্তু ছিল: '$1'",
 	"excontentauthor": "বিষয়বস্তু ছিল: \"$1\", এবং একমাত্র অবদানকারী ছিলেন \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|আলাপ]])",

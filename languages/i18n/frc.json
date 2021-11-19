@@ -762,7 +762,7 @@
 	"enotif_subject_changed": "La page $1 sur {{SITENAME}} a été changée par {{GENDER:$2|$2}}",
 	"enotif_body_intro_deleted": "La page $1 sur {{SITENAME}} a été effacée le $PAGEEDITDATE par {{gender:$2|$2}}, regarder $3 pour la révision actuelle.",
 	"enotif_body_intro_created": "La page $1 sur {{SITENAME}} a été créée le $PAGEEDITDATE par {{GENDER:$2|$2}}, regarder $3 pour la révision actuelle.",
-	"deletepage": "Effacer la page",
+	"deletepage-submit": "Effacer la page",
 	"delete-confirm": "Effacer \"$1\"",
 	"delete-legend": "Effacer",
 	"deletecomment": "Raison:",

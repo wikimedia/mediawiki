@@ -793,7 +793,7 @@
 	"enotif_body": "Māhuiztic $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nTlapatlani ītlahtōlpehuallo:  $PAGESUMMARY $PAGEMINOREDIT\n\nXicnotzāz in tlapatlani:\nīnetitlanizyeyān:$PAGEEDITOR_EMAIL\nīhuiqui:$PAGEEDITOR_WIKI\n\nAhmo occēppa mitztlamachiztīz intlā yancuīc tlapatlaliztli, zā mā tiquittaz inīn āmatl. Tihueliti ticcencahulīz in tēmachiztīlizpāmitl in mochintin motlachixāmatl in motlachiyaliz.\n\nIn {{SITENAME}} icnīuhtīliztica motēmachiztīliztlacentetilīz.\n\nIntlā ticnequi ticpatlaz in maltzinteyōtl monetitlanizyeyān, xiquihitta:\n{{canonicalurl:{{#special:Preferences}}}}\n\n\nIntlā ticnequi ticpatlaz in motlachiyaliz tlaēlēhuiliztli, xiquihitta:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nIntlā ticnequi ticpolōz in āmatl ītech motlachiyaliz, xiquihitta:\n$UNWATCHURL\n\nMotlahtōlcaquiliztīlōni īhuān ocachi tēpalēhuiliztli, xiquihitta:\n$HELPPAGE",
 	"created": "Omochiuh",
 	"changed": "omocuep",
-	"deletepage": "Mopoloz inin tlahcuilolamatl",
+	"deletepage-submit": "Mopoloz inin tlahcuilolamatl",
 	"excontent": "Tlapiyaliztli ōcatca: '$1'",
 	"excontentauthor": "Tlapiyaliztli ōcatca: '$1' (auh zancē ōquipatlac ōcatca '[[Special:Contributions/$2|$2]]')",
 	"delete-confirm": "Ticpoloz \"$1\"",

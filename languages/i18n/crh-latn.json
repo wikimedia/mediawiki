@@ -1023,7 +1023,7 @@
 	"enotif_body": "Sayğılı $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nDeñiştirmeniñ qısqa tarifi: $PAGESUMMARY $PAGEMINOREDIT\n\nSaifeni deñiştirgen qullanıcınen bağlanmaq içün:\ne-mail adresi: $PAGEEDITOR_EMAIL\nviki saifesi: $PAGEEDITOR_WIKI\n\nBu saifeni ziyaret etmeseñiz, birev onı bir daa deñiştirse de, iç bir tenbi beyanatı yollanmaycaq. Közetüv cedveliñizdeki bütün saifeler içün tenbi sazlamalarını deñiştire bilesiñiz.\n\n{{SITENAME}} bildirüv sisteması\n\n--\n\nBildirüv sazlamalarını deñiştirmek içün:\n{{canonicalurl:{{#special:Preferences}}}}\n\nKözetüv cedveli sazlamalarını deñiştirmek içün:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nSaifeni közetüv cedvelinden çıqarmaq içün:\n$UNWATCHURL\n\nYardım ve teklifler içün:\n$HELPPAGE",
 	"created": "yaratıldı",
 	"changed": "deñiştirildi",
-	"deletepage": "Saifeni yoq et",
+	"deletepage-submit": "Saifeni yoq et",
 	"confirm": "Tasdıqla",
 	"excontent": "eski metin: '$1'",
 	"excontentauthor": "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",

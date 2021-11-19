@@ -588,7 +588,7 @@
 	"enotif_minoredit": "እዚ ንእሽቶ ኣርትዖት እዩ",
 	"created": "ዝተፈጠረ",
 	"changed": "ዝተለወጠ",
-	"deletepage": "ገጽ ሰርዝ",
+	"deletepage-submit": "ገጽ ሰርዝ",
 	"confirm": "ኣረጋግጽ",
 	"delete-confirm": "«$1» ሰርዝ",
 	"delete-legend": "ሰርዝ",

@@ -1135,7 +1135,7 @@
 	"enotif_impersonal_salutation": "Impitadore de {{SITENAME}}",
 	"enotif_anon_editor": "impitadore anònimu $1",
 	"created": "creada",
-	"deletepage": "Fùlia pàgina",
+	"deletepage-submit": "Fùlia pàgina",
 	"confirm": "Cunfima",
 	"excontent": "su cuntenutu fiat: '$1'",
 	"excontentauthor": "su cuntenutu fiat: '$1' (e s'ùnicu contribudore fiat '[[Special:Contributions/$2|$2]]')",

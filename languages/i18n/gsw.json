@@ -1780,7 +1780,7 @@
 	"enotif_body": "Sali $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nZämmenfassig vum Autor: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt zum Autor:\nMail $PAGEEDITOR_EMAIL\nWiki $PAGEEDITOR_WIKI\n\n\nEs wird kei wyteri Nochricht iber Änderige gschickt, bis Du uf sälli Syte gohsch un di aamäldsch. Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu Du beobachte tuesch.\n\n             Dyy fryndli {{SITENAME}}-Nochrichtesyschtem\n\n---\nGo d Yystellige vu dr E-Mail-Benochrichtigung aapasse, gang uf {{canonicalurl:{{#special:Preferences}}}}\n\nGo d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{canonicalurl:{{#special:EditWatchlist}}}}\n\nGo d Syte us Dyyre Beobachtigslischte uuseneh, gang uf $UNWATCHURL\n\nRuckmäldig un wyteri Hilf: $HELPPAGE",
 	"created": "aagleit",
 	"changed": "gänderet",
-	"deletepage": "Syte lösche",
+	"deletepage-submit": "Syte lösche",
 	"confirm": "Bstätige",
 	"excontent": "Alter Inhalt: '$1'",
 	"excontentauthor": "einzigen Inhalt: «$1», bearbeitet nume dür «[[Special:Contributions/$2|$2]]» ([[User talk:$2|Diskussion]])",

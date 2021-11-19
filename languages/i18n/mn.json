@@ -1574,7 +1574,7 @@
 	"enotif_body": "$WATCHINGUSERNAME танаа,\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\n{{SITENAME}}-н $PAGETITLE хуудаст $PAGEEDITOR $PAGEEDITDATE-нд $CHANGEDORCREATED үйлдэл хийжээ. $PAGETITLE_URL -руу орж одоогоор хийгдээд байгаа засварыг харна уу.\n\n$NEWPAGE\n\nЗассан тойм: $PAGESUMMARY $PAGEMINOREDIT\n\nЗасвар хийсэн хүний холбогдъё гэвэл:\nемэйл: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\n\nӨөр шинээр хийгдэх өөрчлөлтүүдийн талаарх уг хуудсан орж л байж мэдэх боломжтой.\nМөн та үзсэн хуудсынхаа шинээр хийгдэх өөрчлөлтүүдийг сануулах тохиргоог шинэчилж болно. \n\n\t\t\t {{SITENAME}} -н сануулгын систем\n\n--\nИмейл хаягаар шинэчлэл хийсэн талаар мэдээлэл явуулах тохиргоог \n{{canonicalurl:{{#special:Preferences}}}} хаягаар орж хийнэ үү\n\nХянаж буй хуудсын жагсаалтын тохиргоог\n{{canonicalurl:{{#special:EditWatchlist}}}} хаягаар орж хийнэ үү\n\nХянаж буй хуудын жагсаалтаас хаяг хасах тохиолдолд\n$UNWATCHURL\n\nСанал сэтгэгдэл болон тулгарсан бэрхшээлээ :\n$HELPPAGE хаягаар орж бичнэ үү",
 	"created": "үүсгэсэн",
 	"changed": "өөрчлөгдсөн",
-	"deletepage": "Хуудсыг устга",
+	"deletepage-submit": "Хуудсыг устга",
 	"confirm": "Баталгаажуулах",
 	"excontent": "агуулга нь ийм байсан: '$1'",
 	"excontentauthor": "агуулга нь ийм байсан: '$1' (цорын ганц хувь нэмэрлэгч нь '[[Special:Contributions/$2|$2]]')",

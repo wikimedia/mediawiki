@@ -451,7 +451,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 n Tasniwin|$1 n Tasniwin}} Twaẓrent bla Tasniwin n usiwl.",
 	"watching": "Ḥṭṭigh...",
 	"unwatching": "Ur ḥṭṭigh...",
-	"deletepage": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ",
+	"deletepage-submit": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ",
 	"delete-confirm": "ⴽⴽⵙ \"$1\"",
 	"delete-legend": "ⴽⴽⵙ",
 	"historywarning": "ɣark: Tasna i txisd atekesd ɣars amzruy :",

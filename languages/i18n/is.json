@@ -2080,7 +2080,7 @@
 	"enotif_minoredit": "Þetta er minniháttar breyting",
 	"created": "búin til",
 	"changed": "breytt",
-	"deletepage": "Eyða",
+	"deletepage-submit": "Eyða",
 	"confirm": "Staðfesta",
 	"excontent": "innihaldið var: „$1“",
 	"excontentauthor": "innihaldið var: „$1“ og öll framlög voru frá „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|talk]])",

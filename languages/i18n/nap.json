@@ -2110,7 +2110,7 @@
 	"enotif_body": "Caro $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRiepilego 'e cagnamiente: $PAGESUMMARY $PAGEMINOREDIT\n\nCuntattate l'autore:\ne-mail: $PAGEEDITOR_EMAIL\nncopp' 'o sito: $PAGEEDITOR_WIKI\n\nNun se mannarranno ati notifiche si facite cocch'at'attività senza venì a sta paggena.\nPutite pure cagnà 'e mpustaziune d' 'e mmasciate pe tutt' 'e ppaggene cuntrullate dint' 'a lista.\n\nStatteve Bbuon, 'O sistema d' 'e mmasciate ncopp' 'a {{SITENAME}} vuosto\n\n--\nPe cagnà 'e mpustaziune d' 'e mmasciate elettroniche, jate ccà: {{canonicalurl:{{#special:Preferences}}}}\n\nPe cagnà 'e mpustaziune 'a lista d' 'e ppaggene cuntrullate vuoste, jate ccà: {{canonicalurl:{{#special:EditWatchlist}}}}\n\nPe scancellà 'a lista d' 'e ppaggene cuntrullate vedite $UNWATCHURL\n\nSegnalaziune e at'assistenze:\n$HELPPAGE",
 	"enotif_minoredit": "Chisto è nu cagnamiénto piccerillo",
 	"changed": "cagnata",
-	"deletepage": "Scancella paggena",
+	"deletepage-submit": "Scancella paggena",
 	"confirm": "Cunferma",
 	"excontent": "'o cuntenuto era: '$1'",
 	"excontentauthor": "'o cuntenuto era: '$1', e ll'unneco cuntribbutore era '[[Special:Contributions/$2|$2]]' ([[User talk:$2|chiacchieria]])",

@@ -449,7 +449,7 @@
 	"enotif_anon_editor": "IP yusa $1",
 	"created": "i kirapim",
 	"changed": "i senisim",
-	"deletepage": "Rausim dispela pes",
+	"deletepage-submit": "Rausim dispela pes",
 	"delete-confirm": "Rausim $1",
 	"delete-legend": "Rausim",
 	"dellogpage": "Ripot long rausim ol pes",

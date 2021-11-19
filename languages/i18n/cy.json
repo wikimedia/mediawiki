@@ -2021,7 +2021,7 @@
 	"enotif_minoredit": "Golygiad bach yw hwn",
 	"created": "crëwyd",
 	"changed": "Newidiwyd",
-	"deletepage": "Dilëir y dudalen",
+	"deletepage-submit": "Dilëir y dudalen",
 	"confirm": "Cadarnhau",
 	"excontent": "y cynnwys oedd: '$1'",
 	"excontentauthor": "y cynnwys oedd: \"$1\", a'r unig gyfrannwr oedd \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

@@ -2331,7 +2331,7 @@
 	"enotif_body": "Car -/a $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSunt di modifiche scrivud de quell che je hà fade: $PAGESUMMARY $PAGEMINOREDIT\n\nToeu contat con chi l'hà fad i modifiche:\nposta eletronica: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nI vegnanran mandà minga de noeuve notifiche in cas de inatività ulteriora, se te fee minga visita a la pagina dopo de vesser andad denter. De sorapù a l'è possibil cambià i impostazzion de notifica per tucce i pagine de la lista di pagine tegnude d'oeugg.\n\nEl to sistema de notifica {{SITENAME}} al to servizzi\n\n--\nPer cambià i to impostazzion sora i notifiche via posta eletronica, varda\n{{canonicalurl:{{#special:Preferences}}}}\n\nPer cambià la lista di pagine tegnude d'oeugg\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nDe trà via la pagina de la lista di pagine tegnude d'oeugg, varda \n$UNWATCHURL\n\nPer dì quell che te penset e ciamà ajut:\n$HELPPAGE",
 	"enotif_minoredit": "Questa chì l'è una modifega piscinina",
 	"changed": "cambiaa",
-	"deletepage": "Scancela la pagina",
+	"deletepage-submit": "Scancela la pagina",
 	"confirm": "Conferma",
 	"excontent": "el contegnud l'eva: '$1'",
 	"excontentauthor": "el contegnud l'era: '$1', e l'unegh contributor l'era stad [[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

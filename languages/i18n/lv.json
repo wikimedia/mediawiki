@@ -1946,7 +1946,7 @@
 	"enotif_minoredit": "Šis ir maznozīmīgs labojums",
 	"created": "izveidoja",
 	"changed": "izmainīja",
-	"deletepage": "Dzēst lapu",
+	"deletepage-submit": "Dzēst lapu",
 	"confirm": "Apstiprināt",
 	"excontent": "lapas saturs bija: '$1'",
 	"excontentauthor": "saturs bija: \"$1\" (vienīgais autors: [[Special:Contributions/$2|$2]])",

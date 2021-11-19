@@ -100,7 +100,7 @@
 	"log": "Журналъяс",
 	"allarticles": "Став гижӧдъяс",
 	"mywatchlist": "Видзӧдӧм лыддьӧгӧй",
-	"deletepage": "Лист бокӧс бырӧдны",
+	"deletepage-submit": "Лист бокӧс бырӧдны",
 	"deletereason-dropdown": "* Типовые причины удаления\n** вандализм\n** по запросу автора\n** нарушение авторских прав\n* MediaWiki\n** Дубликат сообщения с translatewiki.net",
 	"protect-level-sysop": "Администраторъяс сӧмын",
 	"namespace": "Ним пространство:",

@@ -1937,7 +1937,7 @@
 	"enotif_anon_editor": "къайлаха декъашхо $1",
 	"enotif_body": "Маршалла хуьлда, $WATCHINGUSERNAME!\n\n$PAGEINTRO $NEWPAGE\n\nХийцамах лаьцна доцца дӀайаздар: $PAGESUMMARY $PAGEMINOREDIT\n\nХийцам бинчунна тӀедерзар:\nэл. пошт: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\nНагахь санна хьо хьайн хьесапан дӀайаздарца хӀокху агӀонан чу цадагӀахь, оцунна кхин хийцамаш бича хьуна хаам бира бац. Кхин хьан йиш йу и опци массо агӀонашна дӀайайъа.\nХааман система {{grammar:genitive|{{SITENAME}}}}\n\n--\nХааман хийцам бар\n{{canonicalurl:{{#special:Preferences}}}}\n\nХьайн тергаме могӀам нисбар\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nХьайн тергаме могӀам чуьра агӀонаш дӀайаха\n$UNWATCHURL\n\nЗӀе а, гӀо а\n$HELPPAGE",
 	"changed": "хийцина",
-	"deletepage": "ДӀайаккха агӀо",
+	"deletepage-submit": "ДӀайаккха агӀо",
 	"confirm": "Бакъдан",
 	"excontent": "чуьраниг: «$1»",
 	"excontentauthor": "чуьраниг: «$1» (дуьххьара кхоьллинарг [[Special:Contributions/$2|$2]])",

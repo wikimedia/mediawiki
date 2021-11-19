@@ -300,7 +300,7 @@
 	"watch": "Bukela",
 	"unwatch": "Mus'ukubukela",
 	"notanarticle": "Akulona ikhasi elinakho okuqukethwe",
-	"deletepage": "Sula ikhasi",
+	"deletepage-submit": "Sula ikhasi",
 	"confirm": "Qinisekisa",
 	"protectcomment": "Isizathu",
 	"protect-locked-blocked": "Awukwazi ukushintsha amazinga ukuvikelwa ngenkathi ivinjiwe.\nNazi izilungiselelo zamanje ikhasi <strong>$1</strong>:",

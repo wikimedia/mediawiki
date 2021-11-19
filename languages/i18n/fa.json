@@ -2399,7 +2399,7 @@
 	"enotif_minoredit": "این یک ویرایش جزئی است",
 	"created": "ایجاد شده",
 	"changed": "تغییر یافته",
-	"deletepage": "حذف صفحه",
+	"deletepage-submit": "حذف صفحه",
 	"confirm": "تأیید",
 	"excontent": "محتوای صفحه این بود: «$1»",
 	"excontentauthor": "محتوای صفحه این بود: «$1» و تنها مشارکت‌کننده «[[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]])» بود",

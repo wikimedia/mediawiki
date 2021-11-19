@@ -1838,7 +1838,7 @@
 	"enotif_body": "Ay $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nAgzul n umttekki  : $PAGESUMMARY $PAGEMINOREDIT\n\nMeslay s umttekki :\ne-mail : $PAGEEDITOR_EMAIL\nwiki : $PAGEEDITOR_WIKI\n\nUr yelli ara email n talɣut asmi ad illin ibeddlen deg usebter ala lukan tekcmeḍ deg usebtar-agi sakin teqqneḍ. Tzemreḍ ad wennezeḍ tikbabin n talɣut i akkw isebtar yellan deg umuɣ inek/inem n uḍfar.\n\nAnagraw inek/inem n talɣut n {{SITENAME}}\n\n--\nIwakken ad beddeleḍ iɣewwaren n talɣut deg tirawt, ẓeṛ\n{{canonicalurl:{{#special:Preferences}}}}\n\nIwakken ad beddeleḍ iɣewwaren n umuɣ inek/inem n uḍfar, ẓeṛ\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nIwakken ad mḥuḍ asebtar deg umuɣ inek/inem n uḍfar, ẓeṛ\n$UNWATCHURL\n\nTuɣalin d tadhelt :\n$HELPPAGE",
 	"created": "yettwaxleq",
 	"changed": "yettubeddel",
-	"deletepage": "Mḥu asebter",
+	"deletepage-submit": "Mḥu asebter",
 	"confirm": "Sentem",
 	"excontent": "Ayen yella: '$1'",
 	"excontentauthor": "yegber : \"$1\", udiɣ immttekki-ines d \"[[Special:Ittekkiyen/$2|$2]]\" ([[User talk:$2|asqerdec]])",

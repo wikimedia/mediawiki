@@ -2423,7 +2423,7 @@
 	"enotif_minoredit": "Dit is een kleine bewerking",
 	"created": "aangemaakt",
 	"changed": "gewijzigd",
-	"deletepage": "Pagina verwijderen",
+	"deletepage-submit": "Pagina verwijderen",
 	"confirm": "Bevestigen",
 	"excontent": "De inhoud was: \"$1\"",
 	"excontentauthor": "inhoud was: \"$1\" ([[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) was de enige auteur)",

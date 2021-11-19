@@ -1289,7 +1289,7 @@
 	"enotif_minoredit": "Bu kichik tahrir",
 	"created": "yaratildi",
 	"changed": "o‘zgartirildi",
-	"deletepage": "Sahifani oʻchirish",
+	"deletepage-submit": "Sahifani oʻchirish",
 	"confirm": "Tasdiqlash",
 	"excontent": "tarkibi: „$1“",
 	"excontentauthor": "tarkibi: „$1“ (faqat bitta muallifi bor edi: „[[Special:Contributions/$2|$2]]“) ([[User talk:$2|munozara]])",

@@ -834,7 +834,7 @@
 	"watchlist-options": "Opcionet e listës së mbikëqyrjes",
 	"watching": "Tuj mbikqyrë...",
 	"unwatching": "Tuj çmbikqyrë...",
-	"deletepage": "Fshij faqen",
+	"deletepage-submit": "Fshij faqen",
 	"confirmdeletetext": "Jeni tue fshi nji faqe bashkë me krejt historikun e saj.\nJu lutemi konfirmoni që kjo âsht ajo që deshtët me bâ, që i keni të njoftuna konsekuencat, dhe që këtë jeni tue e bâ në përputhje me [[{{MediaWiki:Policy-url}}|politikat]].",
 	"actioncomplete": "Veprimi u kry",
 	"deletedtext": "\"$1\" âsht fshi.\nShih $2 për regjistrin e fshimjeve të fundit.",

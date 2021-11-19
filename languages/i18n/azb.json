@@ -1804,7 +1804,7 @@
 	"enotif_body": "حؤرمتلی $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nدَییشدیرنین قیساسی: $PAGESUMMARY $PAGEMINOREDIT\n\nدَییشدیرن‌له تماس تاپماق:\nایمیل: $PAGEEDITOR_EMAIL\nویکی: $PAGEEDITOR_WIKI\n\nگلن دفعه سایتا گیریش ائدیب و بو صفحه‌یه باخمایانا کیمی، داها آیری خبر سیزه گؤندریلمه‌یه‌جک. سیز هم‌ده ایزلدیکلرینیزده، بوتون صفحه‌لرین خبر یوللاماق ترجیحینی دَییشدیره بیلرسیز.\n\nسیزین یولداش {{SITENAME}} خبر سیستِمی\n\n--\nایمیل خبرلندیرمه ترجیحلرینی دَییشدیرمک اوچون بورا باخین:\n{{canonicalurl:{{#special:Preferences}}}}\n\nایزله‌دیکلر لیستینین ترجیحلرینی دَییشدیرمک اوچون بورا باخین:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nبو صفحه‌نی ایزله‌دیکلر لیستین‌دن سیلمک اوچون بورا باخین:\n$UNWATCHURL\n\nنظر وئرماق و آرتیق یاردیم:\n$HELPPAGE",
 	"created": "یارادیلیب",
 	"changed": "ديَیشدی",
-	"deletepage": "صحیفه‌‌نی سیل",
+	"deletepage-submit": "صحیفه‌‌نی سیل",
 	"confirm": "تصدیق ائت",
 	"excontent": "کؤهنه مظمون: '$1'",
 	"excontentauthor": "صفحه ایچینده‌کیلر بۇ ایدی: «$1» و تکجه چالیشان «[[Special:Contributions/$2|$2]] ([[User talk:$2|دانیشیق]])» ایدی.",

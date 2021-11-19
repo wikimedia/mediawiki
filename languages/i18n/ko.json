@@ -2397,7 +2397,7 @@
 	"enotif_minoredit": "사소한 편집입니다",
 	"created": "만들었",
 	"changed": "바꾸었",
-	"deletepage": "문서 삭제",
+	"deletepage-submit": "문서 삭제",
 	"confirm": "확인",
 	"excontent": "내용: \"$1\"",
 	"excontentauthor": "내용: \"$1\". 유일한 편집자는 \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|토론]])",

@@ -334,7 +334,7 @@
 	"watchlist-options": "Scielt int la lèsta d'pàgin da tnì d'öcc",
 	"watching": "Mêt insèn al pàgin da t'nì d'öcc...",
 	"unwatching": "Scanzèla dal pàgin da t'nì d'öcc...",
-	"deletepage": "Scanzela la pàgina",
+	"deletepage-submit": "Scanzela la pàgina",
 	"confirmdeletetext": "Oci! T'ste par scanzlè una pàgina cun tòta la storia d'j su cambiamént.\nPar piasé, cunferma ch't'ê propri l'intenziòn d'fël, ch'at capèss al su conseguenzi e quel ch't fë adès l'è in regola cun al [[{{MediaWiki:Policy-url}}]].",
 	"actioncomplete": "Lavor fät e finì",
 	"deletedtext": "La pàgina \"$1\" l'è stëda scanzlèda.\nGuèrda $2 par avdé la lèsta daglj ultum scanzeladür.",

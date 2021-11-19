@@ -1576,7 +1576,7 @@
 	"enotif_minoredit": "Бу кече төзәтмә",
 	"created": "төзелгән",
 	"changed": "үзгәртелде",
-	"deletepage": "Битне бетерү",
+	"deletepage-submit": "Битне бетерү",
 	"confirm": "Раслау",
 	"excontent": "эчтәлек: «$1»",
 	"excontentauthor": "эчтәлеге: «$1», бердәнбер авторы [[Special:Contributions/$2|$2]] ([[User talk:$2|бәхәс]])",

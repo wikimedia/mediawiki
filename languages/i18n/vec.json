@@ -1815,7 +1815,7 @@
 	"enotif_body": "Caro/a $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nOgeto del intervento, inserio dal autor: $PAGESUMMARY $PAGEMINOREDIT\n\nContata l'autor:\nvia posta eletronega: $PAGEEDITOR_EMAIL\nso'l sito: $PAGEEDITOR_WIKI\n\nNo vegnarà invià altre notifeghe in caxo de ulteriori atività, se no te vixiti ła pàgina. Inoltre, xe posibiƚe modifegar ƚe inpostasion de notifega par tute ƚe pàgine inte ƚa lista de ƚe tegnùe d'òcio.\n\n             El sistema de notifega de {{SITENAME}}, al to servisio\n\n--\nPar modifegar ƚe inpostasion de ƚe notifeghe via posta eletronega, varda \n{{canonicalurl:{{#special:Preferences}}}}\n\nPar modifegar ƚa lista de ƚe tegnùe d'òcio, varda \n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPar cavar ƚa pàgina da ƚa lista de ƚe tegnùe d'òcio, varda\n$UNWATCHURL\n\nPar comentare e risevere ajuto:\n$HELPPAGE",
 	"created": "creà",
 	"changed": "canbià",
-	"deletepage": "Scanceƚa pàgina",
+	"deletepage-submit": "Scanceƚa pàgina",
 	"confirm": "Conferma",
 	"excontent": "El contegnuo el jera: '$1'",
 	"excontentauthor": "el contenuto l'era: '$1' (e l'unico contribudor l'era '$2')",

@@ -1621,7 +1621,7 @@
 	"enotif_body": "Luby $WATCHINGUSERNAME,\n\n$PAGEEDITOR jo bok $PAGETITLE na {{GRAMMAR:lokatiw|{{SITENAME}}}} $PAGEEDITDATE $CHANGEDORCREATED, glědaj $PAGETITLE_URL za aktualnu wersiju.\n\n$NEWPAGE\n\nZespominanje wobźěłarja: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt z wobźěłarjom:\nE-mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nNjebudu žedne dalšne powěźeńki w paźe aktiwity, snaźkuli woglědujoš se toś ten bok, mjaztym sy pśizjawjony.\nMóźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki slědk stajiś.\n\n             Twój pśijaśelny powěsćowy system {{SITENAME}}\n--\nAby swoje nastajenja za e-mailowe zdźělenja změnił, woglědaj\n{{canonicalurl:{{#special:Preferences}}}}\n\nAby nastajenja twójeje wobglědowańki změnił, woglědaj:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nAby se bok z twójeje wobglědowańki wulašował, woglědaj\n$UNWATCHURL\n\nPšašanja a dalšna pomoc:\n$HELPPAGE",
 	"created": "napórał",
 	"changed": "změnił",
-	"deletepage": "Bok wulašowaś",
+	"deletepage-submit": "Bok wulašowaś",
 	"confirm": "Wobkšuśiś",
 	"excontent": "wopśimjeśe jo było: '$1'",
 	"excontentauthor": "wopśimjeśe jo było: '$1' (a jadnučki wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",

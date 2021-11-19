@@ -782,7 +782,7 @@
 	"enotif_anon_editor": "registereretkeahtes geavaheaddji $1",
 	"created": "álggahan siiddu",
 	"changed": "rievdadan siiddu",
-	"deletepage": "Sihko siiddu",
+	"deletepage-submit": "Sihko siiddu",
 	"confirm": "Daga",
 	"excontent": "sisdisdolii: ”$1”",
 	"exbeforeblank": "sisdoallu ovdal gurrema: «$1»",

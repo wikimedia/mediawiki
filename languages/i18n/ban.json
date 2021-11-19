@@ -2348,7 +2348,7 @@
 	"enotif_minoredit": "Puniki uahan alit",
 	"created": "kakardi",
 	"changed": "kauah",
-	"deletepage": "Usap kaca",
+	"deletepage-submit": "Usap kaca",
 	"confirm": "Konfirmasi",
 	"excontent": "daging sadurungné: \"$1\"",
 	"excontentauthor": "daging wantah: \"$1\", miwah wantah satunggal panguah ipun \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|pabligbagan]])",
