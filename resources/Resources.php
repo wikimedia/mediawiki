@@ -582,7 +582,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	'vue-composition-api' => [
+	'@vue/composition-api' => [
 		'packageFiles' => [
 			'resources/src/vue/composition-api.js',
 			[
