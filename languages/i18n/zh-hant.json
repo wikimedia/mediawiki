@@ -2434,7 +2434,7 @@
 	"enotif_minoredit": "這是一個小修改",
 	"created": "建立了",
 	"changed": "變更",
-	"deletepage": "刪除頁面",
+	"deletepage-submit": "刪除頁面",
 	"confirm": "確認",
 	"excontent": "內容為：「$1」",
 	"excontentauthor": "內容為：「$1」，且僅有一位貢獻者「[[Special:Contributions/$2|$2]]」（[[User talk:$2|留言]]）",

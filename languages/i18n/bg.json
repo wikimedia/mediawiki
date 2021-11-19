@@ -2347,7 +2347,7 @@
 	"enotif_minoredit": "Това е малка промяна",
 	"created": "създадена",
 	"changed": "променена",
-	"deletepage": "Изтриване",
+	"deletepage-submit": "Изтриване",
 	"confirm": "Потвърждаване",
 	"excontent": "съдържанието беше: „$1“",
 	"excontentauthor": "съдържанието беше: „$1“, като единственият автор беше „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|беседа]])",

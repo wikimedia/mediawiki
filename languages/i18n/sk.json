@@ -2307,7 +2307,7 @@
 	"enotif_minoredit": "Toto je drobná úprava",
 	"created": "vytvorení",
 	"changed": "zmene",
-	"deletepage": "Zmazať stránku",
+	"deletepage-submit": "Zmazať stránku",
 	"confirm": "Potvrdiť",
 	"excontent": "obsah bol: „$1“",
 	"excontentauthor": "obsah bol: „$1“ a jediným autorom bol [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]])",

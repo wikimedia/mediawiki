@@ -1149,7 +1149,7 @@
 	"enotif_anon_editor": "Jëfandikukat bu binduwul $1",
 	"created": "sosu na",
 	"changed": "soppi",
-	"deletepage": "Far xët wi",
+	"deletepage-submit": "Far xët wi",
 	"confirm": "Dëggal",
 	"excontent": "ëmbitam doonoon « $1 »",
 	"excontentauthor": "ëmbitam doonoon: « $1 » te kenn ki ci cëru doonoon « [[Special:Contributions/$2|$2]] »",

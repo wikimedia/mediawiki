@@ -1588,7 +1588,7 @@
 	"enotif_minoredit": "Dizze feroaring is fan lytse betsjutting",
 	"created": "oanmakke",
 	"changed": "feroare",
-	"deletepage": "Wisk side",
+	"deletepage-submit": "Wisk side",
 	"confirm": "Befêstigje",
 	"excontent": "ynhâld wie: '$1'",
 	"excontentauthor": "ynhâld wie: '$1' (en de ienige bewurker wie: '[[Special:Contributions/$2|$2]]')",

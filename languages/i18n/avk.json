@@ -1198,7 +1198,7 @@
 	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n\nThe {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.\n\n$NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further changes unless you visit this page.\nYou could also reset the notification flags for all your watched pages on your watchlist.\n\n             Your friendly {{SITENAME}} notification system\n\n--\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nFeedback and further assistance:\n$HELPPAGE",
 	"created": "reduyun",
 	"changed": "betayan",
-	"deletepage": "Busulara",
+	"deletepage-submit": "Busulara",
 	"confirm": "Gruyé",
 	"excontent": "ruldas va « $1 »",
 	"excontentauthor": "cek tiyir : '$1' (is tanaf webesik tiyir '$2')",

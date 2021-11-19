@@ -1804,7 +1804,7 @@
 	"enotif_minoredit": "នេះជា​កំណែប្រែតិចតួចប៉ុណ្ណោះ",
 	"created": "បានបង្កើត",
 	"changed": "បានផ្លាស់ប្តូរ",
-	"deletepage": "លុបទំព័រចោល",
+	"deletepage-submit": "លុបទំព័រចោល",
 	"confirm": "ផ្ទៀងផ្ទាត់បញ្ជាក់",
 	"excontent": "ខ្លឹមសារគឺ៖ '$1'",
 	"excontentauthor": "អត្ថន័យគឺ៖ \"$1\" ហើយអ្នករួមចំណែកតែម្នាក់គត់គឺ '[[Special:Contributions/$2|$2]]' ([[User talk:$2|ការពិភាក្សា]])",

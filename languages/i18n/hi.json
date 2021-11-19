@@ -2287,7 +2287,7 @@
 	"enotif_minoredit": "यह एक छोटा बदलाव है",
 	"created": "बनाया",
 	"changed": "परिवर्तित किया",
-	"deletepage": "पृष्ठ हटाएँ",
+	"deletepage-submit": "पृष्ठ हटाएँ",
 	"confirm": "सुनिश्चित करें",
 	"excontent": "पाठ था: '$1'",
 	"excontentauthor": "पाठ था: '$1', और सिर्फ '[[Special:Contributions/$2|$2]]' का योगदान था। ([[User talk:$2|वार्ता]])",

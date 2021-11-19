@@ -1263,7 +1263,7 @@
 	"enotif_body": "Leve/n $WATCHINGUSERNAME,\n\nde {{SITENAME}}-Siet „$PAGETITLE“ is vun $PAGEEDITOR an’n $PAGEEDITDATE $CHANGEDORCREATED ännert worrn.\n\nAktuelle Version: $PAGETITLE_URL\n\n$NEWPAGE\n\nKommentar vun’n Bruker: $PAGESUMMARY $PAGEMINOREDIT\n\nKuntakt to’n Bruker:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nDu kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder besöcht hest. Op diene Oppasslist kannst du ok all Bescheedgeevmarker trüchsetten.\n\n             Dien fründlich {{SITENAME}}-Bescheedgeevsystem\n\n--\nDe Instellungen vun dien Oppasslist to ännern, gah na: {{canonicalurl:Special:Watchlist/edit}}",
 	"created": "opstellt",
 	"changed": "ännert",
-	"deletepage": "Siet wegsmieten",
+	"deletepage-submit": "Siet wegsmieten",
 	"confirm": "Bestätigen",
 	"excontent": "Olen Inholt: ‚$1‘",
 	"excontentauthor": "Inholt weer: ‚$1‘ (un de eenzige Autor weer ‚[[Special:Contributions/$2|$2]]‘)",

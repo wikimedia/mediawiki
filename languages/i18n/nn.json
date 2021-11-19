@@ -1956,7 +1956,7 @@
 	"enotif_body": "Kjære $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEndringssamandraget var: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt brukaren:\ne-post: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nDu får ikkje fleire endringsvarsel før du vitjar sida på nytt. Du kan dessutan nullstilla varselflagga for alle sidene på overvakingslista di.\n\nHelsing det venlege meldingssystemet ditt for {{SITENAME}}\n\n--\nFor å endra innstillingane dine for e-postvarsling, vitja\n{{canonicalurl:{{#special:Preferences}}}}\n\nFor å endra innstillingane for overvakingslista di, vitja\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nFor å fjerna sida frå overvakingslista di, vitja\n$UNWATCHURL\n\nAttendemelding og hjelp:\n$HELPPAGE",
 	"created": "oppretta",
 	"changed": "endra",
-	"deletepage": "Slett sida",
+	"deletepage-submit": "Slett sida",
 	"confirm": "Stadfest",
 	"excontent": "innhaldet var: «$1»",
 	"excontentauthor": "innhaldet var: «$1» (og den einaste bidragsytaren var «[[Special:Contributions/$2|$2]]»)",

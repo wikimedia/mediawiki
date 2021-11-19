@@ -1952,7 +1952,7 @@
 	"enotif_anon_editor": "paceba panganganay a misaungayay $1",
 	"enotif_body": "$WATCHINGUSERNAME mahicatu kisu,\n\n$PAGEINTRO $NEWPAGE\n\nmikawaway-kalumyiti pecu’ nu lacul:$PAGESUMMARY $PAGEMINOREDIT\n\nmikawaway-kalumyitiay patakus sasakawawen:\ntigami haku:$PAGEEDITOR_EMAIL\ntina kakacawan:$PAGEEDITOR_WIKI\n\niayaw kisu miciwsace kya kasabelih, kakakilul sa kya sumad sisetyimo caaytu patakus tisuwan aca. kapahtu kisu i miazihay a piazihan tu sulit miliyaw patizeng kisu sacahamin miazih kasabelih takus setyitase.\n\n{{SITENAME}} patakus sisetyimo \n\n--\nmisumad imyiyo(email) patakus setin nu misu, katayza:\n{{canonicalurl:{{#special:Preferences}}}}\n\nmisumad nu misu miazihay a piazihan tu sulit setin, katayza:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nnay miazihay a piazihan tu sulit masipu tina kasabelih, katayza:\n$UNWATCHURL\n\nmaminay tigami atu miala tatalaayaway a miedap：\n$HELPPAGE",
 	"enotif_minoredit": "payni mikilulay a mikawaway-kalumyiti",
-	"deletepage": "misipu tu kasabelih",
+	"deletepage-submit": "misipu tu kasabelih",
 	"confirm": "malucekaytu",
 	"excontent": "lacul nu: \"$1\"",
 	"excontentauthor": "lacul ku：\"$1\", zumasatu dada’ ku cacay paaninay tu kalusasing \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|sasukamu]])",

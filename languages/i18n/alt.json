@@ -2113,7 +2113,7 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} туружаачы",
 	"enotif_anon_editor": "ады јок туружаачы $1",
 	"enotif_minoredit": "Бу кичӱ тӱзедӱ",
-	"deletepage": "Бӱкти кырар",
+	"deletepage-submit": "Бӱкти кырар",
 	"confirm": "Чындыктар",
 	"delete-confirm": "\"$1\" јоголторы",
 	"delete-legend": "Јоголтор",

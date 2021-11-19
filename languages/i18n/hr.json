@@ -2166,7 +2166,7 @@
 	"enotif_minoredit": "Ovo je sitnije uređivanje",
 	"created": "stvorio",
 	"changed": "promijenio",
-	"deletepage": "Izbriši stranicu",
+	"deletepage-submit": "Izbriši stranicu",
 	"confirm": "Potvrdi",
 	"excontent": "sadržaj je bio: '$1'",
 	"excontentauthor": "sadržaj je bio: »$1«; {{GENDER:$2|jedini pridonositelj bio je|jedina pridonositeljica bila je}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])",

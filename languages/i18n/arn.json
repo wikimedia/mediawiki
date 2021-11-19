@@ -457,7 +457,7 @@
 	"unwatching": "Llaytumekewelay...",
 	"enotif_impersonal_salutation": "{{SITENAME}} kellufe",
 	"created": "Llituy",
-	"deletepage": "Ñamümün tüfachi pakina",
+	"deletepage-submit": "Ñamümün tüfachi pakina",
 	"delete-confirm": "Ñamümüngelu \"$1\"",
 	"delete-legend": "Ñamümün",
 	"actioncomplete": "Wechuley chi femün",

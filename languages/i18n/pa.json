@@ -1458,7 +1458,7 @@
 	"enotif_anon_editor": "ਗੁਮਨਾਮ ਵਰਤੋਂਕਾਰ $1",
 	"created": "ਬਣਾਇਆ",
 	"changed": "ਬਦਲਿਆ",
-	"deletepage": "ਸਫ਼ਾ ਹਟਾਓ",
+	"deletepage-submit": "ਸਫ਼ਾ ਹਟਾਓ",
 	"confirm": "ਪੁਸ਼ਟੀ",
 	"excontent": "ਸਮੱਗਰੀ ਸੀ: '$1'",
 	"excontentauthor": "ਲਿਖਤ ਸੀ: \"$1\" (ਅਤੇ ਇੱਕੋ-ਇੱਕ ਯੋਗਦਾਨੀ \"[[Special:Contributions/$2|$2]]\" ਸੀ)",

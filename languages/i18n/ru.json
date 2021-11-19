@@ -2484,7 +2484,7 @@
 	"enotif_minoredit": "Это малая правка",
 	"created": "создана",
 	"changed": "изменена",
-	"deletepage": "Удалить страницу",
+	"deletepage-submit": "Удалить страницу",
 	"confirm": "Подтвердить",
 	"excontent": "содержимое: «$1»",
 	"excontentauthor": "содержимое: «$1», единственным автором которого был [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]])",

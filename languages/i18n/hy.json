@@ -1479,7 +1479,7 @@
 	"enotif_minoredit": "Սա չնչին խմբագրում է",
 	"created": "ստեղծված է",
 	"changed": "փոփոխված է",
-	"deletepage": "Ջնջել էջը",
+	"deletepage-submit": "Ջնջել էջը",
 	"confirm": "Հաստատել",
 	"excontent": "բովանդակությունը սա էր՝ «$1»",
 	"excontentauthor": "Պարունակությունն էր. «$1» (և միակ հեղինակն էր՝ [[Special:Contributions/$2|$2]])",

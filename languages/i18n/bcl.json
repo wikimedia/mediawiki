@@ -1970,7 +1970,7 @@
 	"enotif_minoredit": "Ini saro sanang menor na pagliwat",
 	"created": "piggibo",
 	"changed": "pigbâgo",
-	"deletepage": "Paraon an pahina",
+	"deletepage-submit": "Paraon an pahina",
 	"confirm": "Kompermaron",
 	"excontent": "Ini an dating laog: '$1'",
 	"excontentauthor": "ini an dating laog: '$1' (asin an unikong kontribuidor si '[[Special:Contributions/$2|$2]]')([[User talk:$2|talk]])",

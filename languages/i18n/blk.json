@@ -1655,7 +1655,7 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} ကေားသုင်ꩻသား",
 	"enotif_anon_editor": "သေတဝ်းအမိဉ်ꩻ ကေားသုင်ꩻသား $1",
 	"enotif_minoredit": "အရေꩻတန်တဝ်း ဖျင်ဆင်မုꩻဒျာႏသွူ",
-	"deletepage": "ယားကုဲင် လိတ်မဲ့ငါတဗာႏ",
+	"deletepage-submit": "ယားကုဲင် လိတ်မဲ့ငါတဗာႏ",
 	"excontentauthor": "နွို့ပါအကျောင်ꩻခရာႏကိုနဝ်ꩻ ထွာဒျာႏ - \"$1\"၊ တဲင် ခံႏအထျ့ꩻ ကစွဲးကမ်းဖေႏသားနဝ်ꩻ ထွာဒျာႏ \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|အုံကွံ]])  တဖြာꩻလွုမ်ꩻသွူ။",
 	"delete-confirm": "ယားကုဲင် $1",
 	"delete-legend": "ယား",

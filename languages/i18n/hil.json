@@ -1117,7 +1117,7 @@
 	"watching": "Nagalantaw...",
 	"unwatching": "Di-paglantaw...",
 	"enotif_reset": "Markarong bilang nabisita na ang tanang panid",
-	"deletepage": "Panason ang pahina",
+	"deletepage-submit": "Panason ang pahina",
 	"delete-legend": "Panason",
 	"confirmdeletetext": "Ikaw ay magapanas sang pahina upod sang tanan niya nga historya.\nPalihog lang nga sigurado nga kinagusto mo ini nga himuon, nga na-intindihan mo ang resulta sang ginahimo mo, kag ang gina obra mo ga santo upod sa [[{{MediaWiki:Policy-url}}|polisiya]].",
 	"actioncomplete": "Kompleto nga aksiyon",

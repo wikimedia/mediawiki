@@ -1034,7 +1034,7 @@
 	"enotif_anon_editor": "hmangtu hriat loh $1",
 	"created": "siam a ni ta",
 	"changed": "tihdanglam a ni ta",
-	"deletepage": "Hë phêk hi paih rawh",
+	"deletepage-submit": "Hë phêk hi paih rawh",
 	"confirm": "Tihchianna",
 	"excontent": "kentel: \"$1\"",
 	"excontentauthor": "kentel: \"$1\" (kutthawhtu awm chhun \"[[Special:Contributions/$2|$2]])",

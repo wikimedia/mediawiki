@@ -490,7 +490,7 @@ class DeleteAction extends FormlessAction {
 			self::MSG_REASON_DROPDOWN_OTHER => 'deletereasonotherlist',
 			self::MSG_COMMENT => 'deletecomment',
 			self::MSG_REASON_OTHER => 'deleteotherreason',
-			self::MSG_SUBMIT => 'deletepage',
+			self::MSG_SUBMIT => 'deletepage-submit',
 			self::MSG_LEGEND => 'delete-legend',
 			self::MSG_EDIT_REASONS => 'delete-edit-reasonlist',
 			self::MSG_EDIT_REASONS_SUPPRESS => 'delete-edit-reasonlist-suppress',

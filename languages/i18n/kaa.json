@@ -913,7 +913,7 @@
 	"enotif_anon_editor": "anonim paydalanıwshı $1",
 	"created": "jaratılg'an",
 	"changed": "o'zgertilgen",
-	"deletepage": "Betti o'shir",
+	"deletepage-submit": "Betti o'shir",
 	"confirm": "Tastıyıqlaw",
 	"excontent": "bolg'an mag'lıwmat: '$1'",
 	"excontentauthor": "bolg'an mag'lıwmat: '$1' (tek '[[Special:Contributions/$2|$2]]' u'lesi)",

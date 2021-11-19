@@ -2207,7 +2207,7 @@
 	"enotif_minoredit": "ఇదొక చిన్న దిద్దుబాటు",
 	"created": "సృష్టించారు",
 	"changed": "మార్చారు",
-	"deletepage": "పేజీని తొలగించు",
+	"deletepage-submit": "పేజీని తొలగించు",
 	"confirm": "ధృవీకరించు",
 	"excontent": "ఉన్న విషయ సంగ్రహం: '$1'",
 	"excontentauthor": "ఉన్న పాఠ్యం: \"$1\", ఉన్న ఒకే ఒక్క రచయిత: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|చర్చ]])",

@@ -900,7 +900,7 @@
 	"enotif_anon_editor": "ọ'bànifé ézíghị ihu $1",
 	"created": "kèrè",
 	"changed": "gbanwere",
-	"deletepage": "Kàchafu ihü",
+	"deletepage-submit": "Kàchafu ihü",
 	"confirm": "Kwèré",
 	"excontent": "ihe nọr na ímé ya mbu bụ: \"$1\"",
 	"delete-confirm": "Kàcha \"$1\"",

@@ -1743,7 +1743,7 @@
 	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nଉଇକିଆଳିଙ୍କ ସୂଚନା: $PAGESUMMARY $PAGEMINOREDIT\n\nଉଇକିଆଳିଙ୍କୁ ଜଣାନ୍ତୁ:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nକିଛି କାମ ହେଲେ ମଧ୍ୟ ଭବିଷ୍ୟତରେ ଆପଣ ଲଗ ଇନ କରି ପୃଷ୍ଠାଟିକୁ ନ ଦେଖିବା ଯାଏ ଆଉ କିଛି ବି ସୂଚନା ରହିବ ନାହିଁ  । ଆପଣ ନିଜର ଦେଖଣାତାଲିକାରେ ଥିବା ସବୁ ପୃଷ୍ଠାମାନଙ୍କ  ସୂଚନା ସୂଚକମାନଙ୍କୁ ରିସେଟ କରିପାରିବେ।\n\nଆପଣଙ୍କ ହିତକାରୀ {{SITENAME}} ସୂଚନା ବ୍ୟବସ୍ଥା\n\n--\nନିଜର ଇମେଲ ସୂଚନା ସଂରଚନା ବଦଳାଇବା ପାଇଁ\n{{canonicalurl:{{#special:Preferences}}}} ଦେଖନ୍ତୁ\n\nନିଜର ଦେଖଣାତାଲିକା ସୂଚନା ସଂରଚନା ବଦଳାଇବା ପାଇଁ\n{{canonicalurl:{{#special:EditWatchlist}}}} ଦେଖନ୍ତୁ\n\nଏହି ପୃଷ୍ଠାଟିକୁ ନିଜର ଦେଖଣାତାଲିକାରୁ ହଟାଇବା ପାଇଁ\n$UNWATCHURL\n\nମତାମତ ଓ ଅଧିକ ସହଯୋଗ:\n$HELPPAGE",
 	"created": "ତିଆରି କରାଗଲା",
 	"changed": "ବଦଳାଗଲା",
-	"deletepage": "ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ",
+	"deletepage-submit": "ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ",
 	"confirm": "ନିଶ୍ଚିତ କରନ୍ତୁ",
 	"excontent": "ଲେଖା ଥିଲା: \"$1\"",
 	"excontentauthor": "ଭିତରେ ଥିଲା: \"$1\" (ଆଉ \"[[Special:Contributions/$2|$2]]\" କେବଳ ଜଣେ ଦାତା ଥିଲେ)",

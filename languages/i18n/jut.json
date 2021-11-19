@@ -699,7 +699,7 @@
 	"watchlist-details": "Du har $1 {{PLURAL:$1|side|sider}} på din åvervågnengsliste (øn diskusjesider).",
 	"watching": "Tilfye öwewågneng...",
 	"unwatching": "Fjäne öwewågneng...",
-	"deletepage": "Slett siid",
+	"deletepage-submit": "Slett siid",
 	"historywarning": "Advarsel: Æ side du erst ve at slette har en skigte:",
 	"confirmdeletetext": "Du ä we å slett en siid sammel mä hiel dens tilhörenje historik.\nBekräft wenlist å du wirkeli will djör detj, å du forstor konsekvenser, å å du djör dä i öwe-iensstæmmels mä [[{{MediaWiki:Policy-url}}|rettnengslinjer]].",
 	"actioncomplete": "Djennemförtj",

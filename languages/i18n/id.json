@@ -2407,7 +2407,7 @@
 	"enotif_minoredit": "Ini adalah suntingan kecil.",
 	"created": "dibuat",
 	"changed": "diubah",
-	"deletepage": "Hapus halaman",
+	"deletepage-submit": "Hapus halaman",
 	"confirm": "Konfirmasi",
 	"excontent": "isi sebelumnya: '$1'",
 	"excontentauthor": "isinya hanya berupa: \"$1\", dan satu-satunya penyumbang adalah \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|bicara]])",

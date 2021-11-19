@@ -923,7 +923,7 @@
 	"enotif_body": "Qadirli $WATCHINGUSERNAME,\n\n\n{{SITENAME}} jobasınıñ $PAGETITLE atawlı betti $PAGEEDITDATE kezinde $PAGEEDITOR degen $CHANGEDORCREATED, ağımdıq nusqası üşin $PAGETITLE_URL qarañız.\n\n$NEWPAGE\n\nÖñdewşi keltirgen qısqaşa mazmundaması: $PAGESUMMARY $PAGEMINOREDIT\n\nÖñdewşimen qatınasw:\ne-poşta: $PAGEEDITOR_EMAIL\nwïkï: $PAGEEDITOR_WIKI\n\nBılaýğı özgerister bolğanda da osı betke kelip-ketwiñizgenşe deýin eşqandaý basqa eskertw xattar jiberilmeýdi.\nSonımen qatar baqılaw tizimiñizdegi bet eskertpelik belgisin qaýta qoýıñız.\n\n             Sizdiñ dostıq {{SITENAME}} jobasınıñ eskertw qızmeti\n\n----\nBaqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nSın-pikir berw jäne bılaýğı järdem alw üşin:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
 	"created": "bastadı",
 	"changed": "özgertti",
-	"deletepage": "Betti joyw",
+	"deletepage-submit": "Betti joyw",
 	"confirm": "Quptaw",
 	"excontent": "bolğan mağlumatı: '$1'",
 	"excontentauthor": "bolğan mağlumatı (tek '[[{{#special:Contributions}}/$2|$2]]' ülesi): '$1'",

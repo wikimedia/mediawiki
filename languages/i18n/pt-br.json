@@ -2464,7 +2464,7 @@
 	"enotif_minoredit": "Esta é uma edição menor",
 	"created": "criada",
 	"changed": "alterada",
-	"deletepage": "Eliminar página",
+	"deletepage-submit": "Eliminar página",
 	"confirm": "Confirmar",
 	"excontent": "o conteúdo era: '$1'",
 	"excontentauthor": "o conteúdo era: \"$1\", e {{GENDER:$2|o único editor|a única editora|o(a) único(a) editor(a)}} era [[Special:Contributions/$2|$2]] ([[User talk:$2|discussão]])",

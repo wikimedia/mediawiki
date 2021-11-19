@@ -712,7 +712,7 @@
 	"unwatching": "Амма клигнай",
 	"created": "туькIуьрнава",
 	"changed": "дегишнава",
-	"deletepage": "Алудун хъувун",
+	"deletepage-submit": "Алудун хъувун",
 	"confirm": "Тестикьун",
 	"delete-confirm": "«$1» алудун",
 	"delete-legend": "Алудун",

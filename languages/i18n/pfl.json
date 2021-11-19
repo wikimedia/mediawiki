@@ -774,7 +774,7 @@
 	"watching": "Beowachde ...",
 	"unwatching": "Nimmi beowachde ...",
 	"enotif_reset": "Alle Seide als bsuchd margiere",
-	"deletepage": "Said lesche",
+	"deletepage-submit": "Said lesche",
 	"confirm": "Beschdedische",
 	"delete-legend": "Lesche",
 	"historywarning": "<strong>Bassma uff:</strong> Die Said, wu lesche wilschd, hoddä Gschischd midd {{PLURAL:$1|äna Ännarung|$1 Ännarunge}}:",

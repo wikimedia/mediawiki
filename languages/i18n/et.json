@@ -2344,7 +2344,7 @@
 	"enotif_minoredit": "See on pisimuudatus",
 	"created": "loonud lehekülje",
 	"changed": "muutnud lehekülge",
-	"deletepage": "Kustuta lehekülg",
+	"deletepage-submit": "Kustuta lehekülg",
 	"confirm": "Kinnita",
 	"excontent": "sisu oli: '$1'",
 	"excontentauthor": "sisu oli: \"$1\"; ainuke kirjutaja oli \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|arutelu]])",

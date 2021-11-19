@@ -2171,7 +2171,7 @@
 	"enotif_minoredit": "Tai smulkus pakeitimas",
 	"created": "sukurė",
 	"changed": "pakeitė",
-	"deletepage": "Trinti puslapį",
+	"deletepage-submit": "Trinti puslapį",
 	"confirm": "Tvirtinu",
 	"excontent": "buvęs turinys: „$1“",
 	"excontentauthor": "buvęs turinys: „$1“; redagavo tik „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|aptarimas]])",

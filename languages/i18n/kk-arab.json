@@ -919,7 +919,7 @@
 	"enotif_body": "قادىرلى $WATCHINGUSERNAME,\n\n\n{{SITENAME}} جوباسىنىڭ $PAGETITLE اتاۋلى بەتتى $PAGEEDITDATE كەزىندە $PAGEEDITOR دەگەن $CHANGEDORCREATED, اعىمدىق نۇسقاسى ٴۇشىن $PAGETITLE_URL قاراڭىز.\n\n$NEWPAGE\n\nوڭدەۋشى كەلتىرگەن قىسقاشا مازمۇنداماسى: $PAGESUMMARY $PAGEMINOREDIT\n\nوڭدەۋشىمەن قاتىناسۋ:\nە-پوشتا: $PAGEEDITOR_EMAIL\nۋىيكىي: $PAGEEDITOR_WIKI\n\nبىلايعى وزگەرىستەر بولعاندا دا وسى بەتكە كەلىپ-كەتۋىڭىزگەنشە دەيىن ەشقانداي باسقا ەسكەرتۋ حاتتار جىبەرىلمەيدى.\nسونىمەن قاتار باقىلاۋ تىزىمىڭىزدەگى بەت ەسكەرتپەلىك بەلگىسىن قايتا قويىڭىز.\n\n             ٴسىزدىڭ دوستىق {{SITENAME}} جوباسىنىڭ ەسكەرتۋ قىزمەتى\n\n----\nباقىلاۋ ٴتىزىمىڭىزدىڭ باپتاۋلىرىن وزگەرتۋ ٴۇشىن, مىندا كەلىپ-كەتىڭىز:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nسىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:\n{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}",
 	"created": "باستادى",
 	"changed": "وزگەرتتى",
-	"deletepage": "بەتتى جويۋ",
+	"deletepage-submit": "بەتتى جويۋ",
 	"confirm": "قۇپتاۋ",
 	"excontent": "بولعان ماعلۇماتى: '$1'",
 	"excontentauthor": "بولعان ماعلۇماتى (تەك '[[{{#special:Contributions}}/$2|$2]]' ۇلەسى): '$1'",

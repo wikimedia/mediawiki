@@ -828,7 +828,7 @@
 	"enotif_body": "Servas $WATCHINGUSERNAME,\n\ndé {{SITENAME}}-Seiten „$PAGETITLE“ is voh $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uar $CHANGEDORCREATED.\n\nAktuöe Versión: $PAGETITLE_URL\n\n$NEWPAGE\n\nZåmmfossung vom Beorweiter: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt zum Beorweiter:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEs wern da sólång koane weidern Benoochrichtigungsmails gsendt, bis du dé Seiten wieder bsuachst. Auf deiner Beówochtungslisten kåst olle Benoochrichtigunsmarkiarungen zåmm zrucksétzen.\n             Deih freindlichs {{SITENAME}}-Benoochrichtigungssystém\n\n--\nUm d' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{canonicalurl:{{#special:Preferences}}}}\n\nUm d' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{canonicalurl:{{#special:EditWatchlist}}}}\n\nUm d' Seiten voh deiner Beówochtungslisten ower z' doah, bsuachst $UNWATCHURL\n\nRyckmödungen und a weidre Hüf: $HELPPAGE",
 	"created": "erstöd",
 	"changed": "gänderd",
-	"deletepage": "Seiten léschen",
+	"deletepage-submit": "Seiten léschen",
 	"confirm": "Bstäting",
 	"excontent": "Inhoid woa: „$1“",
 	"excontentauthor": "Da Inhoid is gwésen: „$1“ (oahziger Beorweiter: [[Special:Contributions/$2|$2]])",

@@ -1012,7 +1012,7 @@
 	"watching": "Kalön...",
 	"unwatching": "Hana kalön...",
 	"enotif_reset": "Bôh tanda ban dum laman kalheuh meusaweue",
-	"deletepage": "Sampôh laman",
+	"deletepage-submit": "Sampôh laman",
 	"historywarning": "'''Peuneugah:''' Laman nyang keumeung neusampôh na riwayat ngön kureuëng leubèh $1 {{PLURAL:$1|geunantoë}}:",
 	"confirmdeletetext": "Droëneuh neuk neusampôh laman atawa beureukaih nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].",
 	"actioncomplete": "Seuleusoë",

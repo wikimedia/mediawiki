@@ -1478,7 +1478,7 @@
 	"enotif_body": "Мӯҳтарам $WATCHINGUSERNAME,\n\n\nСаҳифаи $PAGETITLE дар {{SITENAME}} аз тарафаи $PAGEEDITOR дар $PAGEEDITDATE  $CHANGEDORCREATED шуд, барои нусхаи кунунӣ, нигаред ба $PAGETITLE_URL.\n\n$NEWPAGE\n\nТавзеҳи вироишгар: $PAGESUMMARY $PAGEMINOREDIT\n\nТамос бо вироишгар:\nпочати электронӣ: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\n\nТо ҳангоме, ки ба саҳифа сар назадаед, дар сурати рух додани эҳтимолӣ, тағйироти бештар эълоне барои шумо фиристода нахоҳад шуд. Шумо ҳамчунин метавонед дар саҳифаи пайгириҳои худ парчамҳои марбут огоҳирасонии тариқи почтаи электониро сифр кунед.\n\n             Хоксори шумо {{SITENAME}} сомонаи огоҳирасонӣ\n\n--\nБарои танзимоти феҳристи пайгириҳоятон биравед ба\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nПешниҳодот ва кӯмаки бештар:\n$HELPPAGE",
 	"created": "эҷод шуд",
 	"changed": "тағйирёфта",
-	"deletepage": "Ҳазфи саҳифа",
+	"deletepage-submit": "Ҳазфи саҳифа",
 	"confirm": "Тасдиқ",
 	"excontent": "мӯҳтавои саҳифа ин буд: '$1'",
 	"excontentauthor": "мӯҳтавои саҳифа ин буд: '$1' (ва ягона ҳиссагузор '[[Special:Contributions/$2|$2]]' буд)",

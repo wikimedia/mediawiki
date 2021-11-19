@@ -1257,7 +1257,7 @@
 	"enotif_anon_editor": "anuonėminis nauduotuos $1",
 	"created": "sokūrė",
 	"changed": "pakeitė",
-	"deletepage": "Trintė poslapi",
+	"deletepage-submit": "Trintė poslapi",
 	"confirm": "Tėkrā tāp",
 	"excontent": "bovis torėnīs: „$1“",
 	"excontentauthor": "bovė̄s torėnīs: „$1“ (dėrba tėktās „[[Special:Contributions/$2|$2]] [[User talk:$2|aptarėms]]“)",

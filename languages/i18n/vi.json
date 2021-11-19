@@ -2387,7 +2387,7 @@
 	"enotif_minoredit": "Sửa đổi nhỏ",
 	"created": "viết mới",
 	"changed": "thay đổi",
-	"deletepage": "Xóa trang",
+	"deletepage-submit": "Xóa trang",
 	"confirm": "Xác nhận",
 	"excontent": "nội dung cũ: “$1”",
 	"excontentauthor": "nội dung cũ: “$1”; người viết duy nhất: “[[Special:Contributions/$2|$2]]” ([[User talk:$2|thảo luận]])",

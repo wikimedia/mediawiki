@@ -1771,7 +1771,7 @@
 	"enotif_body": "හිතවත් $WATCHINGUSERNAME,\n\n\n{{SITENAME}} මත ඇති $PAGETITLE පිටුව $PAGEEDITOR විසින් $PAGEEDITDATE වැනි දින $CHANGEDORCREATED, වර්තමාන සංශෝධනය සදහා $PAGETITLE_URL බලන්න.\n\n$NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further changes unless you visit this page.\nYou could also reset the notification flags for all your watched pages on your watchlist.\n\n             Your friendly {{SITENAME}} notification system\n\n--\nTo change your email notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n$HELPPAGE",
 	"created": "තනන ලදි",
 	"changed": "වෙනස්කරන ලදි",
-	"deletepage": "පිටුව මකා දමන්න",
+	"deletepage-submit": "පිටුව මකා දමන්න",
 	"confirm": "තහවුරු කරන්න",
 	"excontent": "අන්තර්ගතය වූයේ: '$1'",
 	"excontentauthor": "අන්තර්ගතය වූයේ: '$1' (හා එකම දායකයා වූයේ  '[[Special:Contributions/$2|$2]]' පමණි)",

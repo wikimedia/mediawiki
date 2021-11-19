@@ -2327,7 +2327,7 @@
 	"enotif_minoredit": "Isto es un modification minor",
 	"created": "create",
 	"changed": "modificate",
-	"deletepage": "Deler pagina",
+	"deletepage-submit": "Deler pagina",
 	"confirm": "Confirmar",
 	"excontent": "contento esseva: '$1'",
 	"excontentauthor": "contento esseva: \"$1\" e le unic contributor esseva \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|discussion]])",

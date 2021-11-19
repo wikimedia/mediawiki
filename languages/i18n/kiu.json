@@ -796,7 +796,7 @@
 	"watching": "Şêr ke…",
 	"unwatching": "Şêr meke…",
 	"changed": "vuriya",
-	"deletepage": "Pele bestere",
+	"deletepage-submit": "Pele bestere",
 	"delete-legend": "Bestere",
 	"confirmdeletetext": "Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.\nEke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.",
 	"actioncomplete": "Kar bi temam",

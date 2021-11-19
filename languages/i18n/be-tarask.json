@@ -2326,7 +2326,7 @@
 	"enotif_minoredit": "Гэта дробная праўка",
 	"created": "створаная",
 	"changed": "зьмененая",
-	"deletepage": "Выдаліць старонку",
+	"deletepage-submit": "Выдаліць старонку",
 	"confirm": "Пацьвердзіць",
 	"excontent": "колішні зьмест: «$1»",
 	"excontentauthor": "зьмест быў: «$1», адзіным аўтарам быў «[[Special:Contributions/$2|$2]]» ([[User talk:$2|гутаркі]])",

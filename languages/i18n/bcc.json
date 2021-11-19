@@ -1624,7 +1624,7 @@
 	"enotif_body": "آزیزین $WATCHINGUSERNAME،\n\nصفحه {{SITENAME}} $PAGETITLE بوتت $CHANGEDORCREATED ته  $PAGEEDITDATE گون $PAGEEDITOR، بچار $PAGETITLE_URL په هنوکین نسخه.\n\n$NEWPAGE\n\nخلاصهء اصلاح کنوک:$PAGESUMMARY $PAGEMINOREDIT\n\nتماس گر گون اصلاح کنوک:\nایمیل:$PAGEEDITOR_EMAIL\nویکی: $PAGEEDITOR_WIKI\n\nدگه گیشترین اخطار په تغییرات دگه دیم دهگ نه بوت مگر شی که شما ای صفحه بچاریت.\nشما تونیت هنچوش نشانآن اخطارء ته وتی لیست چارگ په کلی چارتگین صفحات تنظیم کنیت.\n\nشمی دوستین سیستم اخطار {{SITENAME}}\n\n--\nپه عوض کتن تنظیمات وتی لیست چارگ،به چار\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nنظرات و گیشترین کمک:\n$HELPPAGE",
 	"created": "شربوتت",
 	"changed": "عوض بوت.",
-	"deletepage": "تاکدیمِ پاک کورتین",
+	"deletepage-submit": "تاکدیمِ پاک کورتین",
 	"confirm": "تایید",
 	"excontent": "محتوا هستنت:  '$1'",
 	"excontentauthor": "محتوا ات: '$1' (و  فقط شرکت کنندگان انت '[[Special:Contributions/$2|$2]]')",

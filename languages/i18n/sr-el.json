@@ -2307,7 +2307,7 @@
 	"enotif_minoredit": "Ovo je manja izmena",
 	"created": "napravljena",
 	"changed": "izmenjena",
-	"deletepage": "Izbriši stranicu",
+	"deletepage-submit": "Izbriši stranicu",
 	"confirm": "Potvrdi",
 	"excontent": "sadržaj je bio: „$1“",
 	"excontentauthor": "sadržaj je bio: „$1”, a jedini urednik „[[Special:Contributions/$2|$2]]” ([[User talk:$2|razgovor]])",

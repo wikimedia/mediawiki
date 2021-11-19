@@ -1845,7 +1845,7 @@
 	"enotif_body": "قدرمن/قدرمنې $WATCHINGUSERNAME,\n\n\nپه $PAGEEDITDATE نېټه، د  $PAGEEDITOR لخوا د {{SITENAME}} مخ $PAGETITLE ته $CHANGEDORCREATED، د اوسنۍ بڼې لپاره $PAGETITLE_URL وگورۍ.\n\n$NEWPAGE\n\nد سمونگر لنډيز: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nبرېښليک: $PAGEEDITOR_EMAIL\nويکي: $PAGEEDITOR_WIKI\n\nد لا نورو بدلونونو په پېښېدو سره به تاسې ته د خبراوي بل برېښليک نه درلېږل کېږي، تر څو چې تاسې د همدې مخ نه کتنه و نه کړۍ.\nتاسې دا هم کولای شی چې په خپل کتنلړ کې د ټولو کتل شويو مخونو د خبراوي بيرغونه بيا له سره پرځای کړۍ.\n\n             ستاسې ملگری\n\nد {{SITENAME}} د خبرولو غونډال\n\n--\nد خپل کتنلړ د امستنو د بدلون لپاره،\n{{canonicalurl:{{#special:EditWatchlist}}}} نه ليدنه وکړۍ\n\nد خپل کتنلړ د مخونو د ړنگولو لپاره،\n$UNWATCHURL  نه ليدنه وکړۍ\n\nانگېرنې او نورې مرستې:\n$HELPPAGE",
 	"created": "جوړ شو",
 	"changed": "بدلېدلی",
-	"deletepage": "مخ ړنگول",
+	"deletepage-submit": "مخ ړنگول",
 	"confirm": "تاييد",
 	"excontent": "د مخ مېنځپانگه دا وه: \"$1\"",
 	"excontentauthor": "د مخ مېنځپانگه دا وه: «$1» او يواځينی ونډه وال «[[Special:Contributions/$2|$2]] ([[User talk:$2|خبرې اترې]])» وه",

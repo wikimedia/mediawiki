@@ -2348,7 +2348,7 @@
 	"enotif_minoredit": "Ez egy apró szerkesztés",
 	"created": "létrehozta",
 	"changed": "megváltoztatta",
-	"deletepage": "Lap törlése",
+	"deletepage-submit": "Lap törlése",
 	"confirm": "Megerősítés",
 	"excontent": "a lap tartalma: „$1”",
 	"excontentauthor": "a lap tartalma: „$1”, és csak „[[Special:Contributions/$2|$2]]” ([[User talk:$2|vita]]) szerkesztette",

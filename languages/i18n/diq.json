@@ -2355,7 +2355,7 @@
 	"enotif_minoredit": "No yew vırnayışo werdiyo",
 	"created": "viraziya",
 	"changed": "vurneya",
-	"deletepage": "Pele bestere",
+	"deletepage-submit": "Pele bestere",
 	"confirm": "Tesdiq ke",
 	"excontent": "zerreko verên: \"$1\"",
 	"excontentauthor": "zerreko kehan: '$1' u teyna yew iştırakwan \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|mesac]]) bi",

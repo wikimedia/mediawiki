@@ -2309,7 +2309,7 @@
 	"enotif_minoredit": "นี่เป็นการแก้ไขเล็กน้อย",
 	"created": "ถูกสร้าง",
 	"changed": "ถูกเปลี่ยนแปลง",
-	"deletepage": "ลบหน้า",
+	"deletepage-submit": "ลบหน้า",
 	"confirm": "ยืนยัน",
 	"excontent": "เนื้อหาเดิม: \"$1\"",
 	"excontentauthor": "เนื้อหาเดิม: \"$1\" และมีผู้เขียนคนเดียวคือ \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|คุย]])",

@@ -868,7 +868,7 @@
 	"watching": "Kia‘i nei...",
 	"unwatching": "Ke wehe nei i ke kiaʻi...",
 	"changed": "ua loli ‘ia",
-	"deletepage": "Holoi ʻaoʻao",
+	"deletepage-submit": "Holoi ʻaoʻao",
 	"actioncomplete": "Hana kūleʻa",
 	"actionfailed": "Hana pohō",
 	"deletedtext": "Ua holoi ʻia ʻo \"$1\".\nE ʻike iā $2 no ka papa o nā holoi hou.",

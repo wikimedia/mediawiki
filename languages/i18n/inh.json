@@ -982,7 +982,7 @@
 	"enotif_impersonal_salutation": "{{grammar:genitive|{{SITENAME}}}} – доакъашхо",
 	"enotif_subject_changed": "«{{SITENAME}}» чу «$1» яхача оагIона тIа хувцам баьб {{gender:$2|доакъашхочо}} $2",
 	"enotif_body_intro_changed": "«{{SITENAME}}» чу «$1» яхача оагӀона тIа хувцам баьб {{gender:$2|доакъашхочо}} $2 ($PAGEEDITDATE). ОагIон хIанзара куц: $3",
-	"deletepage": "ДIаяккха оагIув",
+	"deletepage-submit": "ДIаяккха оагIув",
 	"confirm": "Бакъде",
 	"excontent": "чудар: «$1»",
 	"excontentauthor": "чухьнахьадар: «$1», цу оагIон цаI марка воаца автор ва [[Special:Contributions/$2|$2]] ([[User talk:$2|дувцара оагIув]])",

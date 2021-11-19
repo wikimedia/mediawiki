@@ -2258,7 +2258,7 @@
 	"enotif_body": "Gentî $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nÖgetto de l'intervento, inseio da l'aotô: $PAGESUMMARY $PAGEMINOREDIT\n\nContatta l'aotô:\nvia posta eletronnica: $PAGEEDITOR_EMAIL\nin sciô scito: $PAGEEDITOR_WIKI\n\nNo saiâ mandou atre notiffiche in caxo de urteioî attivitæ, se no ti vixiti a pagina doppo avei effettuou l'accesso. Inoltre, l'è poscibbile modificâ e impostaçioin de notiffica pe tutte e paggine inta lista dei öservæ speciali.\n\nO scistema de notiffica de {{SITENAME}}, a-o to serviççio\n\n--\nPe modificâ e impostaçioin de notiffiche via posta elettronnica, vixita \n{{canonicalurl:{{#special:Preferences}}}}\n\nPe modificâ a lista di öservæ speciali, vixita \n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPe rimoeuve a pagina da-a lista di öservæ speciali, vixita\n$UNWATCHURL\n\nPe commentâ e riçeive agiutto:\n$HELPPAGE",
 	"enotif_minoredit": "Quésta a l'é 'na modìfica minô",
 	"changed": "cangiâ",
-	"deletepage": "Scancélla a pàgina",
+	"deletepage-submit": "Scancélla a pàgina",
 	"confirm": "Conferma",
 	"excontent": "o contegnuo o l'ea: '$1'",
 	"excontentauthor": "o contegnuo o l'ea: '$1', e l'unnico contributô o l'ea \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|msg]])",

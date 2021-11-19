@@ -1826,7 +1826,7 @@
 	"enotif_body": "Gud dai $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nTuupfaadet faan: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt tu di bewerker:\nE-mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nDi wurd iarst ans nian e-mails muar tu detdiar sidj schüürd, bit dü det sidj weder uunmeldet beschükst. Üüb din list faan sidjen, diar dü uun't uug behual wel, könst dü a noorachtenkääntiaken weder turagsaat.\n\nDan frinjelk {{SITENAME}}-noorachten siinst\n\n--\nAm iinstelangen tu e-mail noorachten tu feranrin, gung tu {{canonicalurl:{{#special:Preferences}}}}.\n\nAm iinstelangen am sidjen, diar dü uun't uug behual wel, gung tu {{canonicalurl:{{#special:EditWatchlist}}}}.\n\nAm det sidj ei linger uun't uug tu behualen, gung tu $UNWATCHURL.\n\nHalep an muar diartu: $HELPPAGE",
 	"created": "maaget",
 	"changed": "feranert",
-	"deletepage": "Sidj strik",
+	"deletepage-submit": "Sidj strik",
 	"confirm": "Gudkään",
 	"excontent": "diar sted: „$1“",
 	"excontentauthor": "Diar sted: „$1“, an di iansagst bewerker wiar: [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschuun]])",

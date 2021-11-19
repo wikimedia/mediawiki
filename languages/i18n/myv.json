@@ -1108,7 +1108,7 @@
 	"enotif_anon_editor": "лемтеме теиця $1",
 	"created": "теезь-шказь",
 	"changed": "полавтозь",
-	"deletepage": "Нардамс лопанть",
+	"deletepage-submit": "Нардамс лопанть",
 	"confirm": "Кемекстамс",
 	"excontent": "потсонзоль: '$1'",
 	"excontentauthor": "потсонзоль: \"$1\" (ськамонзо \"[[Special:Contributions/$2|$2]]\" совицязоль)",

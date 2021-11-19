@@ -2279,7 +2279,7 @@
 	"enotif_minoredit": "Aldaketa hau txikia da",
 	"created": "sortu",
 	"changed": "aldatu",
-	"deletepage": "Orrialdea ezabatu",
+	"deletepage-submit": "Orrialdea ezabatu",
 	"confirm": "Baieztatu",
 	"excontent": "edukia hau zen: '$1'",
 	"excontentauthor": "edukia hau zen: \"$1\", eta parte hartu duen lankide bakarra: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|eztabaida]])",

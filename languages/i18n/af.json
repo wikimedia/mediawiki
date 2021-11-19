@@ -1827,7 +1827,7 @@
 	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamevatting van die wysiging: $PAGESUMMARY $PAGEMINOREDIT\n\nOuteur se kontakdetails:\nE-pos: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nTensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.\nU kan ook die waarskuwingsvlag op u dophoulys stel.\n\nGroete van {{SITENAME}} se waarskuwingsstelsel.\n\n--\nU kan u e-posvoorkeure stel by:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kan u dophoulys wysig by:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nOm die bladsy vanaf u dophoulys te verwyder, besoek:\n$UNWATCHURL\n\nTerugvoer en verdere bystand:\n$HELPPAGE",
 	"created": "geskep",
 	"changed": "verander",
-	"deletepage": "Skrap bladsy",
+	"deletepage-submit": "Skrap bladsy",
 	"confirm": "Bevestig",
 	"excontent": "inhoud was: \"$1\"",
 	"excontentauthor": "Inhoud was: \"$1\" (en die enigste bydraer was [[Special:Contributions/$2|$2]])",

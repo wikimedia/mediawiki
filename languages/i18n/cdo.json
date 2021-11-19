@@ -870,7 +870,7 @@
 	"wlheader-showupdated": "Ṳ̀-guō ô diê-siŏh-hiĕk, găk nṳ̄ muōi-muōi siŏh-huòi káng guó cī-hâiu, bô ké̤ṳk nè̤ng gāi kó̤, hī-siŏh-hiĕk gì biĕu-dà̤ cêu-sê <strong>cū-tā̤</strong>.",
 	"watchlist-options": "監視單選項",
 	"watching": "監視...",
-	"deletepage": "刪頁",
+	"deletepage-submit": "刪頁",
 	"confirm": "確認",
 	"excontent": "乇是：「$1」",
 	"excontentauthor": "乇是：「$1」，並且作者囇有蜀萆作者「[[Special:Contributions/$2|$2]]」（[[User talk:$2|討論]]）",

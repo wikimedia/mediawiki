@@ -1033,7 +1033,7 @@
 	"enotif_body": "Xörmätle $WATCHINGUSERNAME,\n\n«{{SITENAME}}» proyektınıñ «$PAGETITLE» bite  $PAGEEDITOR  tarafınnan  $PAGEEDITDATE  könne  $CHANGEDORCREATED. Bitne qarar öçen $PAGETITLE_URL  buyınça uzığız.\n\n$NEWPAGE\n\nÜzgärtüneñ qısqa eçtälege: $PAGESUMMARY $PAGEMINOREDIT\n\nÜzgärtüçegä yazu:\nel. poçta $PAGEEDITOR_EMAIL\nwiki $PAGEEDITOR_WIKI\n\nBu bitkä kermäsägez, anıñ başqa üzgärtüläre turında xat cibärelmäyäçäk. Şulay uq sez küzätü isemlegegezdä bulğan bitlär öçen xäbär birü flağın alıp quya alasız.\n\n             {{SITENAME}} xäbär birü sisteması\n\n--\nKüzätü isemlege köyläwlären üzgärtü:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nBitne sezneñ küzätü isemlegezdän beterü:\n$UNWATCHURL\n\nElemtä häm yärdäm:\n$HELPPAGE",
 	"created": "tözergän",
 	"changed": "üzgärtelde",
-	"deletepage": "Bitne beterü",
+	"deletepage-submit": "Bitne beterü",
 	"confirm": "Raslaw",
 	"excontent": "eçtälek: «$1»",
 	"excontentauthor": "eçtälege: \"$1\" (berdänber üzgärtüçe \"[[Special:Contributions/$2|$2]]\" ide)",

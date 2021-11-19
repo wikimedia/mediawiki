@@ -2368,7 +2368,7 @@
 	"enotif_minoredit": "Ĉi tiu estas redakteto",
 	"created": "kreita",
 	"changed": "ŝanĝita",
-	"deletepage": "Forigi paĝon",
+	"deletepage-submit": "Forigi paĝon",
 	"confirm": "Konfirmi",
 	"excontent": "enhavis: '$1'",
 	"excontentauthor": "la enteno estis: '$1', kaj la sola kontribuinto estis \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

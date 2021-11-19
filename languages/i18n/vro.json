@@ -1070,7 +1070,7 @@
 	"enotif_body": "Hüä $WATCHINGUSERNAME,\n\n{{SITENAME}} lehte $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, parhillast kujjo kaeq $PAGETITLE_URL.\n\n$NEWPAGE\n\nMuutja kokkovõtõq: $PAGESUMMARY $PAGEMINOREDIT\n\nKirodaq muutjalõ:\ne-post: $PAGEEDITOR_EMAIL\nviki: $PAGEEDITOR_WIKI\n\nInämb seo lehe kotsilõ teedäqandmiisi saadõta-i. Võit ka kõik su perräkaetavidõ lehti muutmisõ kuulutusõq ärq keeldäq.\n\n{{SITENAME}} teedäqandmiskõrraldus\n\nPerräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{canonicalurl:Special:Watchlist/edit}}\n\nAs'a kotsilõ mano kaiaq ja küssü saat lehe päält: $HELPPAGE",
 	"created": "lehe loonuq",
 	"changed": "lehte muutnuq",
-	"deletepage": "Kistudaq lehekülg ärq",
+	"deletepage-submit": "Kistudaq lehekülg ärq",
 	"confirm": "Kinnüdäq",
 	"excontent": "sisu oll': '$1'",
 	"excontentauthor": "sisu oll': '$1' (ja ainugõnõ toimõndaja oll' '[[Special:Contributions/$2|$2]]')",

@@ -692,7 +692,7 @@
 	"enotif_minoredit": "Ko ha fatu siʻi",
 	"created": "kuo fakatupu",
 	"changed": "ʻosi liliu",
-	"deletepage": "Tāmateʻi peesi",
+	"deletepage-submit": "Tāmateʻi peesi",
 	"confirm": "Fakamoʻoniʻi",
 	"excontent": "ko e kakano naʻe: '$1'",
 	"excontentauthor": "ko e kakano naʻe: '$1', mei he ʻetita ʻe taha pē: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",
