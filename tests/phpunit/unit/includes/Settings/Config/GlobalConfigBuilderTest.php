@@ -13,11 +13,11 @@ class GlobalConfigBuilderTest extends TestCase {
 	use ConfigSinkTestTrait;
 
 	protected function getConfigSink(): ConfigBuilder {
-		return new GlobalConfigBuilder( '' );
+		return new GlobalConfigBuilder( 'prefix_' );
 	}
 
 	protected function assertKeyHasValue( string $key, $value ) {
-		$this->assertEquals( $value, $GLOBALS[$key] );
+		$this->assertEquals( $value, $GLOBALS['prefix_' . $key] );
 	}
 
 	public function testBuild() {
