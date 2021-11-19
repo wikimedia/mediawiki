@@ -466,7 +466,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 
 		$ops = $this->resolveFSFileObjects( $ops );
-		if ( empty( $opts['force'] ) ) { // sanity
+		if ( empty( $opts['force'] ) ) {
 			unset( $opts['nonLocking'] );
 		}
 

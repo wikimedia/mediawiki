@@ -494,7 +494,6 @@ class RevisionStore
 			}
 		);
 
-		// sanity checks
 		Assert::postcondition( $rev->getId( $this->wikiId ) > 0, 'revision must have an ID' );
 		Assert::postcondition( $rev->getPageId( $this->wikiId ) > 0, 'revision must have a page ID' );
 		Assert::postcondition(

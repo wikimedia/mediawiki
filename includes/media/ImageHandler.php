@@ -181,7 +181,6 @@ abstract class ImageHandler extends MediaHandler {
 	private function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
 		$width = intval( $width );
 
-		# Sanity check $width
 		if ( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width" );
 

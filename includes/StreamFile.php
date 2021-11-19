@@ -47,7 +47,7 @@ class StreamFile {
 	public static function stream(
 		$fname, $headers = [], $sendErrors = true, $optHeaders = [], $flags = 0
 	) {
-		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
+		if ( FileBackend::isStoragePath( $fname ) ) {
 			throw new InvalidArgumentException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 

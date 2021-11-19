@@ -146,7 +146,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Sanity check a relative file system path for validity
+	 * Check a relative file system path for validity
 	 *
 	 * @param string $fsPath Normalized relative path
 	 * @return bool
@@ -290,7 +290,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( $fsSrcPath === $fsDstPath ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 
-			return $status; // sanity
+			return $status;
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred

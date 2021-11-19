@@ -188,7 +188,8 @@ class MessageCache implements LoggerAwareInterface {
 		$this->languageFallback = $languageFallback;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
+		// limit size
+		$this->cache = new MapCacheLRU( 5 );
 
 		$this->mDisable = !( $options['useDB'] ?? true );
 	}
@@ -396,7 +397,7 @@ class MessageCache implements LoggerAwareInterface {
 			# the whole wiki being instantly down if the memcached server died
 		}
 
-		if ( !$this->isLanguageLoaded( $code ) ) { // sanity
+		if ( !$this->isLanguageLoaded( $code ) ) {
 			throw new LogicException( "Process cache for '$code' should be set by now." );
 		}
 

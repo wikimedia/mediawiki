@@ -517,7 +517,7 @@ class GlobalIdGenerator {
 				$randOffset = mt_rand( 0, $offsetSize - 1 );
 				trigger_error( "Clock was set back; sequence number incremented." );
 			} elseif ( $sec === $prevSec ) {
-				// Sanity check, only keep remainder if a previous writer wrote
+				// Double check, only keep remainder if a previous writer wrote
 				// something here that we don't accept.
 				$msecCounter = (int)$data[2] % $msecCounterSize;
 				// Bump the counter if the time has not changed yet

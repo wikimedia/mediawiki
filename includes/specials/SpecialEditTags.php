@@ -109,7 +109,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->typeName = $request->getVal( 'type' );
 		$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 
-		// sanity check of parameter
 		switch ( $this->typeName ) {
 			case 'logentry':
 			case 'logging':

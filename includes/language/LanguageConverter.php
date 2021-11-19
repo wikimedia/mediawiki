@@ -908,7 +908,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string Converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
-		// Quick sanity check (no function calls)
+		// Quick check (no function calls)
 		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
 			throw new MWException( __METHOD__ . ': invalid input string' );
 		}

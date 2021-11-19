@@ -80,7 +80,7 @@ TEXT
 		}
 		$collation = MediaWikiServices::getInstance()->getCollationFactory()->makeCollation( $collationName );
 
-		// Collation sanity check: in some cases the constructor will work,
+		// Collation check: in some cases the constructor will work,
 		// but this will raise an exception, breaking all category pages
 		$collation->getFirstLetter( 'MediaWiki' );
 

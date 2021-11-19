@@ -301,7 +301,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			if ( $lastQuery ) {
 				// Additional query in the trx...
 				$lastEnd = $lastQuery[2];
-				if ( $sTime >= $lastEnd ) { // sanity check
+				if ( $sTime >= $lastEnd ) {
 					if ( ( $sTime - $lastEnd ) > self::EVENT_THRESHOLD_SEC ) {
 						// Add an entry representing the time spent doing non-queries
 						$this->dbTrxMethodTimes[$name][] = [ '...delay...', $lastEnd, $sTime ];
@@ -310,7 +310,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 				}
 			} else {
 				// First query in the trx...
-				if ( $sTime >= $info['start'] ) { // sanity check
+				if ( $sTime >= $info['start'] ) {
 					$this->dbTrxMethodTimes[$name][] = [ $query, $sTime, $eTime ];
 				}
 			}

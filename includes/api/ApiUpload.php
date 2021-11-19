@@ -246,7 +246,7 @@ class ApiUpload extends ApiBase {
 		$totalSoFar = $this->mParams['offset'] + $chunkSize;
 		$minChunkSize = self::getMinUploadChunkSize( $this->getConfig() );
 
-		// Sanity check sizing
+		// Double check sizing
 		if ( $totalSoFar > $this->mParams['filesize'] ) {
 			$this->dieWithError( 'apierror-invalid-chunk' );
 		}

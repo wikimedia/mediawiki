@@ -467,7 +467,7 @@ class PageEditStash {
 		UserIdentity $user
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
-		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
+		// Put an upper limit on the TTL to avoid extreme template/file staleness.
 		$age = time() - (int)wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $age, self::MAX_CACHE_TTL );
 		// Avoid extremely stale user signature timestamps (T84843)

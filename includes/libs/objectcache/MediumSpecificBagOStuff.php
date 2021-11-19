@@ -851,7 +851,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 					$chunksByKey[$chunkKey] = $segment;
 					$segmentHashes[] = $hash;
 				}
-				$flags &= ~self::WRITE_ALLOW_SEGMENTS; // sanity
+				$flags &= ~self::WRITE_ALLOW_SEGMENTS;
 				$usable = $this->setMulti( $chunksByKey, $exptime, $flags );
 				$entry = SerializedValueContainer::newSegmented( $segmentHashes );
 			}

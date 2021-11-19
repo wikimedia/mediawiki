@@ -792,7 +792,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$revision = $this->getRevisionStore()->getKnownCurrentRevision( $this->getTitle(), $latest );
 		}
 
-		if ( $revision ) { // sanity
+		if ( $revision ) {
 			$this->setLastEdit( $revision );
 		}
 	}

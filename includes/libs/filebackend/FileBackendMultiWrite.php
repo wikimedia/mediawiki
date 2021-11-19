@@ -108,7 +108,7 @@ class FileBackendMultiWrite extends FileBackend {
 				throw new LogicException( "Two or more backends defined with the name $name." );
 			}
 			$namesUsed[$name] = 1;
-			// Alter certain sub-backend settings for sanity
+			// Alter certain sub-backend settings
 			unset( $beConfig['readOnly'] ); // use proxy backend setting
 			unset( $beConfig['lockManager'] ); // lock under proxy backend
 			$beConfig['domainId'] = $this->domainId; // use the proxy backend wiki ID

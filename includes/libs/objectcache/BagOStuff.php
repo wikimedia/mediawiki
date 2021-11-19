@@ -678,7 +678,7 @@ abstract class BagOStuff implements
 	 * encoding.
 	 *
 	 * The provided callback takes a transformed key, having the specified prefix component,
-	 * and extracts the key collection name. For sanity, the callback must be able to handle
+	 * and extracts the key collection name. The callback must be able to handle
 	 * keys that bear the prefix (by coincidence) but do not originate from the wrapper class.
 	 *
 	 * Calls to this method should be idempotent.

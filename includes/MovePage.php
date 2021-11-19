@@ -316,7 +316,7 @@ class MovePage {
 	}
 
 	/**
-	 * Does various sanity checks that the move is
+	 * Does various checks that the move is
 	 * valid. Only things based on the two titles
 	 * should be checked here.
 	 *
@@ -398,7 +398,7 @@ class MovePage {
 	}
 
 	/**
-	 * Sanity checks for when a file is being moved
+	 * Checks for when a file is being moved
 	 *
 	 * @return Status
 	 */
@@ -654,7 +654,7 @@ class MovePage {
 	}
 
 	/**
-	 * Moves *without* any sort of safety or sanity checks. Hooks can still fail the move, however.
+	 * Moves *without* any sort of safety or other checks. Hooks can still fail the move, however.
 	 *
 	 * @param UserIdentity $user
 	 * @param string $reason

@@ -139,7 +139,7 @@ class HTMLCacheUpdateJob extends Job {
 		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		// Update page_touched (skipping pages already touched since the root job).
-		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
+		// Check $wgUpdateRowsPerQuery; batch jobs are sized by that already.
 		$batches = array_chunk( $pageIds, $config->get( 'UpdateRowsPerQuery' ) );
 		foreach ( $batches as $batch ) {
 			$dbw->update( 'page',

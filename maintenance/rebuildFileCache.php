@@ -184,7 +184,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page '$title' (id {$row->page_id}) not cacheable\n" );
 				}
 			}
-			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes (just for sanity)
+			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

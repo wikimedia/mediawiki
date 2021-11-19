@@ -234,7 +234,7 @@ class SvgHandler extends ImageHandler {
 		}
 
 		$metadata = $this->validateMetadata( $image->getMetadataArray() );
-		if ( isset( $metadata['error'] ) ) { // sanity check
+		if ( isset( $metadata['error'] ) ) {
 			$err = wfMessage( 'svg-long-error', $metadata['error']['message'] );
 
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );

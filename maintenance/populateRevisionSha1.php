@@ -208,7 +208,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				'ar_namespace' => $row->ar_namespace,
 				'ar_title' => $row->ar_title,
 				'ar_timestamp' => $row->ar_timestamp,
-				'ar_len' => $row->ar_len // extra sanity
+				'ar_len' => $row->ar_len,
 			],
 			__METHOD__
 		);

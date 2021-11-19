@@ -1226,7 +1226,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		if ( isset( $row->user_editcount ) ) {
-			// Sanity check - don't try to set edit count for anonymous users
+			// Don't try to set edit count for anonymous users
 			// We check the id here and not in UserEditTracker because calling
 			// User::getId() can trigger some other loading. This will result in
 			// discarding the user_editcount field for rows if the id wasn't set.

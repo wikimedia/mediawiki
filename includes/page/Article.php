@@ -351,7 +351,7 @@ class Article implements Page {
 					wfDebug( __METHOD__ . " failed to find page data for title " .
 						$this->getTitle()->getPrefixedText() );
 
-					// Just for sanity, output for this case is done by showMissingArticle().
+					// Output for this case is done by showMissingArticle().
 					$this->fetchResult = Status::newFatal( 'noarticletext' );
 					return null;
 				}
@@ -370,7 +370,7 @@ class Article implements Page {
 		if ( !$this->mRevisionRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " . $this->mRevisionRecord->getId() );
 
-			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
+			// Output for this case is done by showDeletedRevisionHeader().
 			// title used in wikilinks, should not contain whitespaces
 			$this->fetchResult = new Status;
 			$title = $this->getTitle()->getPrefixedDBkey();
@@ -959,7 +959,7 @@ class Article implements Page {
 		}
 		if ( $this->getTitle()->canUseNoindex() && is_object( $pOutput ) && $pOutput->getIndexPolicy() ) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
-			# a final sanity check that we have really got the parser output.
+			# a final check that we have really got the parser output.
 			$policy = array_merge(
 				$policy,
 				[ 'index' => $pOutput->getIndexPolicy() ]
@@ -1407,7 +1407,7 @@ class Article implements Page {
 			$this->getContext()->getRequest()->response()->statusHeader( 404 );
 		}
 
-		// Also apply the robot policy for nonexisting pages (even if a 404 was used for sanity)
+		// Also apply the robot policy for nonexisting pages (even if a 404 was used)
 		$policy = $this->getRobotPolicy( 'view' );
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
@@ -1974,7 +1974,7 @@ class Article implements Page {
 			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity" );
+				"Return RequestContext::getMain()" );
 			return RequestContext::getMain();
 		}
 	}
