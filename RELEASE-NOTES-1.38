@@ -235,6 +235,9 @@ because of Phabricator reports.
   - ::getEffectiveGroups,
   - ::getAutomaticGroups,
   - ::getFormerGroups
+  - ::isLoggedIn
+  - ::getFirstEditTimestamp
+  - ::getLatestEditTimestamp
 * Http::$httpEngine, deprecated since 1.34, has been removed. The only available
   HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
   removed.
