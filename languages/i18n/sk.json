@@ -221,7 +221,7 @@
 	"edit-local": "Upraviť miestny popis",
 	"create": "Vytvoriť",
 	"create-local": "Pridať miestny popis",
-	"delete": "Vymazať",
+	"delete": "Vymazať stránku",
 	"undelete_short": "Obnoviť {{PLURAL:$1|jednu úpravu|$1 úpravy|$1 úprav}}",
 	"viewdeleted_short": "Zobraziť {{PLURAL:$1|jednu zmazanú úpravu|$1 zmazané úpravy|$1 zmazaných úprav}}",
 	"protect": "Zamknúť",

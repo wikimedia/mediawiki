@@ -188,7 +188,7 @@
 	"edit-local": "Edit déskripsi lokal",
 	"create": "Jieun",
 	"create-local": "Tambah déskripsi lokal",
-	"delete": "Pupus",
+	"delete": "Hapus",
 	"undelete_short": "Tong jadi mupus {{PLURAL:$1|hiji éditan|$1 éditan}}",
 	"viewdeleted_short": "Témbongkeun {{PLURAL:$1|hiji éditan nu dipupus|$1 éditan nu dipupus}}",
 	"protect": "Konci",
