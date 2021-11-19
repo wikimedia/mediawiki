@@ -416,6 +416,8 @@ because of Phabricator reports.
 * DBConnRef doesn't accept live connection in constructor anymore.
   Only parameters for getting connection should be provided.
 * IDatabase::getTopologyRootPrimary() was removed.
+* User::blockedBy(), deprecated since 1.38, has been removed.
+* User::getBlockId(), deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.39 ===
