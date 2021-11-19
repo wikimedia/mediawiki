@@ -1415,7 +1415,7 @@ class SpecialPageFactory {
 			'language' => $main->getLanguage(),
 		];
 
-		if ( $title->canExist() ) {
+		if ( $title && $title->canExist() ) {
 			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$ctx['wikipage'] = $wikiPage;
 		}
