@@ -110,14 +110,12 @@ class LanguageFactory {
 	 */
 	public function getLanguage( $code ): Language {
 		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
-		$langObj = $this->langObjCache->get( $code );
-
-		if ( !$langObj ) {
-			$langObj = $this->newFromCode( $code );
-			$this->langObjCache->set( $code, $langObj );
-		}
-
-		return $langObj;
+		return $this->langObjCache->getWithSetCallback(
+			$code,
+			function () use ( $code ) {
+				return $this->newFromCode( $code );
+			}
+		);
 	}
 
 	/**

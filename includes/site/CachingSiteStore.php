@@ -105,13 +105,11 @@ class CachingSiteStore implements SiteStore {
 	 */
 	public function getSites() {
 		if ( $this->sites === null ) {
-			$this->sites = $this->cache->get( $this->getCacheKey() );
-
-			if ( !is_object( $this->sites ) ) {
-				$this->sites = $this->siteStore->getSites();
-
-				$this->cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
-			}
+			$this->sites = $this->cache->getWithSetCallback(
+				$this->getCacheKey(),
+				$this->cacheTimeout,
+				[ $this->siteStore, 'getSites' ]
+			);
 		}
 
 		return $this->sites;

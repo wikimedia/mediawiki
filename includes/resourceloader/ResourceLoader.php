@@ -199,14 +199,16 @@ class ResourceLoader implements LoggerAwareInterface {
 			md5( $data )
 		);
 
-		$result = $cache->get( $key );
-		if ( $result === false ) {
-			$stats->increment( "resourceloader_cache.$filter.miss" );
-			$result = self::applyFilter( $filter, $data );
-			$cache->set( $key, $result, 24 * 3600 );
-		} else {
-			$stats->increment( "resourceloader_cache.$filter.hit" );
-		}
+		$incKey = "resourceloader_cache.$filter.hit";
+		$result = $cache->getWithSetCallback(
+			$key,
+			BagOStuff::TTL_DAY,
+			function () use ( $filter, $data, &$incKey ) {
+				$incKey = "resourceloader_cache.$filter.miss";
+				return self::applyFilter( $filter, $data );
+			}
+		);
+		$stats->increment( $incKey );
 		if ( $result === null ) {
 			// Cached failure
 			$result = $data;

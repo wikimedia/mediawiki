@@ -759,10 +759,22 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		$key = $cache->makeKey( 'languageconverter', 'namespace-text', $index, $variant );
-		$nsVariantText = $cache->get( $key );
-		if ( $nsVariantText !== false ) {
-			return $nsVariantText;
-		}
+		return $cache->getWithSetCallback(
+			$key,
+			BagOStuff::TTL_MINUTE,
+			function () use ( $index, $variant ) {
+				return $this->computeNsVariantText( $index, $variant );
+			}
+		);
+	}
+
+	/**
+	 * @param int $index
+	 * @param string|null $variant
+	 * @return string
+	 */
+	private function computeNsVariantText( int $index, ?string $variant ): string {
+		$nsVariantText = false;
 
 		// First check if a message gives a converted name in the target variant.
 		$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inLanguage( $variant );
@@ -786,9 +798,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 				->getLanguage( $variant );
 			$nsVariantText = $mLangObj->getFormattedNsText( $index );
 		}
-
-		$cache->set( $key, $nsVariantText, 60 );
-
 		return $nsVariantText;
 	}
 
