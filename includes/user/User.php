@@ -2530,18 +2530,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get whether the user is registered.
-	 *
-	 * @deprecated since 1.36; use isRegistered() directly
-	 * @return bool
-	 */
-	public function isLoggedIn() {
-		// Hard-deprecated in 1.37
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->isRegistered();
-	}
-
-	/**
 	 * Get whether the user is anonymous
 	 * @return bool
 	 */
@@ -3477,37 +3465,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		$this->load();
 		return $this->mRegistration;
-	}
-
-	/**
-	 * Get the timestamp of the first edit
-	 *
-	 * @deprecated since 1.36, use a UserEditTracker instead
-	 *
-	 * @return string|bool Timestamp of first edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
-	public function getFirstEditTimestamp() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserEditTracker()
-			->getFirstEditTimestamp( $this );
-	}
-
-	/**
-	 * Get the timestamp of the latest edit
-	 *
-	 * @deprecated since 1.36, use a UserEditTracker instead
-	 *
-	 * @since 1.33
-	 * @return string|bool Timestamp of first edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
-	public function getLatestEditTimestamp() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserEditTracker()
-			->getLatestEditTimestamp( $this );
 	}
 
 	/**
