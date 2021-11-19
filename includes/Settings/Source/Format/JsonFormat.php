@@ -42,7 +42,7 @@ class JsonFormat implements SettingsFormat {
 	 *
 	 * @return bool
 	 */
-	public function supportsFileExtension( string $ext ): bool {
+	public static function supportsFileExtension( string $ext ): bool {
 		return strtolower( $ext ) == 'json';
 	}
 
