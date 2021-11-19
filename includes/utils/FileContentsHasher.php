@@ -28,7 +28,7 @@ class FileContentsHasher {
 	private static $instance;
 
 	public function __construct() {
-		$this->cache = ObjectCache::getLocalServerInstance( 'hash' );
+		$this->cache = function_exists( 'apcu_fetch' ) ? new APCUBagOStuff() : new EmptyBagOStuff();
 	}
 
 	/**
