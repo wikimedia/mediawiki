@@ -2158,7 +2158,7 @@
 	"enotif_minoredit": "یہ ایک معمولی ترمیم ہے",
 	"created": "بنا دیا گیا",
 	"changed": "تبدیل کردیاگیا",
-	"deletepage": "حذف کریں",
+	"deletepage-submit": "حذف کریں",
 	"confirm": "یقین",
 	"excontent": "'$1':مواد تھا",
 	"excontentauthor": "مواد «$1» تھا اور صرف «[[Special:Contributions/$2|$2]]» ([[User talk:$2|تبادلۂ خیال]]) نے اس میں ترمیم کی تھی",

@@ -902,7 +902,7 @@
 	"enotif_anon_editor": "ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ $1",
 	"created": "ܒܪܐ",
 	"changed": "ܐܫܬܚܠܦܬ",
-	"deletepage": "ܫܘܦ ܦܐܬܐ",
+	"deletepage-submit": "ܫܘܦ ܦܐܬܐ",
 	"confirm": "ܫܪܪ",
 	"excontent": "ܚܒܝܫܬ̈ܐ ܗܘ̈ܝ: '$1'",
 	"excontentauthor": "ܚܒܝܫܬ̈ܐ ܗܘ̈ܝ: '$1' (ܘܫܘܬܦܢܐ ܝܚܝܕܝܐ ܗܘܐ '[[Special:Contributions/$2|$2]]')",

@@ -1620,7 +1620,7 @@
 	"enotif_body": "Munakusqa $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nLlamk'apuqpa willasqan: $PAGESUMMARY $PAGEMINOREDIT\n\nLlamk'apuqta tapuy:\ne-chaski: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKay p'anqata mana musuqmanta watukamuptiykiqa, manam huk ruraykunamanta willasqaykichu. Tukuy watiqasqayki p'anqakunapaq musyachina sananchakunatapas kutichiytam atinkiman.\n\nTukuy sunquwan, {{SITENAME}}pa e-chaski musyachina llikan\n\n--\nE-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p'anqatam qhaway:\n{{canonicalurl:{{#special:Preferences}}}} \n\nWatiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p'anqatam qhaway:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nP'anqata watiqana sutisuyuykimanta qichunaykipaqqa kay p'anqatam qhaway:\n$UNWATCHURL\n\nYanapasunaykipaq:\n$HELPPAGE",
 	"created": "kamarirqan",
 	"changed": "hukchasqa",
-	"deletepage": "Kay p'anqata qulluy",
+	"deletepage-submit": "Kay p'anqata qulluy",
 	"confirm": "Takyachiy",
 	"excontent": "Samiqnin karqan kay hinam: '$1'",
 	"excontentauthor": "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",

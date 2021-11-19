@@ -1961,7 +1961,7 @@
 	"enotif_minoredit": "Ieu mah éditan minor",
 	"created": "geus dijieun",
 	"changed": "geus robah",
-	"deletepage": "Hapus kaca",
+	"deletepage-submit": "Hapus kaca",
 	"confirm": "Konfirmasi",
 	"excontent": "eusina nu heubeul: '$1'",
 	"excontentauthor": "eusina ngan mangrupa: \"$1\", sarta hiji-hijina kontributor téh nyaéta \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|obrolan]])",

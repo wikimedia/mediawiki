@@ -1675,7 +1675,7 @@
 	"enotif_body": "પ્રિય $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nફેરફારોનો સારાંશ: $PAGESUMMARY $PAGEMINOREDIT\n\nસંપાદકનો સંપર્ક:\nઇમેલ: $PAGEEDITOR_EMAIL\nવિકિ: $PAGEEDITOR_WIKI\n\nજ્યાં સુધી તમે પ્રવેશ કરીને આ પાનાની મુલાકાત નહી લો ત્યાં સુધી તેમાં ભવિષ્યમાં થનાર કોઇ પણ ફેરફારની સૂચના તમને મળશે નહિ. તમે તમારી ધ્યાન સૂચિમાં તમે જોયેલા પાના સંબંધી સૂચનાને લાગતા વિકલ્પોમાં ફેરફાર કરી શકો છો.\n\nઆપની વિશ્વાસુ {{SITENAME}} સૂચના પ્રણાલી   \n\n--\nઇમેલ સૂચના પ્રણાલી બદલવા માટે, મુલાકાત લો\n{{canonicalurl:{{#special:Preferences}}}}\n\nતમારી ધ્યાનસૂચિની વિક્લ્પ ગોઠવણી માટે, મુલાકાત લો\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nધ્યાનસૂચિમાંથી પાનું હટાવવા માટે, મુલાકાત લો\n$UNWATCHURL\n\nમંતવ્યો અને વધુ મદદ માટે:\n$HELPPAGE",
 	"created": "બનાવ્યું",
 	"changed": "બદલ્યું",
-	"deletepage": "પાનું હટાવો",
+	"deletepage-submit": "પાનું હટાવો",
 	"confirm": "ખાતરી કરો",
 	"excontent": "આટલી જ માહિતી હતી: \"$1\"",
 	"excontentauthor": "માત્ર આજ માહિતી હતી : \"$1\" (અને યોગદાન કરનાર માત્ર \"[[Special:Contributions/$2|$2]]\" જ હતા)",

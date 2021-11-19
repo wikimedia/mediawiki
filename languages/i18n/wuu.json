@@ -1478,7 +1478,7 @@
 	"enotif_body_intro_deleted": "{{SITENAME}}页面$1已于$PAGEEDITDATE被$2{{GENDER:$2|删除}}，请见<$3>。",
 	"created": "建立哉",
 	"changed": "改变哉",
-	"deletepage": "删脱页面",
+	"deletepage-submit": "删脱页面",
 	"confirm": "确认",
 	"excontentauthor": "内容是：“$1”，唯一贡献者是“[[Special:Contributions/$2|$2]]”（[[User talk:$2|讲张]]）",
 	"exbeforeblank": "清空前个内容是：“$1”",

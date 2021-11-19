@@ -1173,7 +1173,7 @@
 	"enotif_anon_editor": "anōnims tērpautajs $1",
 	"created": "teīktan",
 	"changed": "kitawīdintan",
-	"deletepage": "Āupausinais pāusan",
+	"deletepage-submit": "Āupausinais pāusan",
 	"confirm": "Padrūktinais",
 	"excontent": "pāusas ēnturs bēi: \"$1\"",
 	"excontentauthor": "pāusas ēnturs bēi: \"$1\" (ainagimmusis autōrs: [[Special:Contributions/$2|$2]])",

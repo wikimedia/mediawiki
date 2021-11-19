@@ -2316,7 +2316,7 @@
 	"enotif_minoredit": "Esta é unha edición pequena",
 	"created": "creada",
 	"changed": "modificada",
-	"deletepage": "Borrar a páxina",
+	"deletepage-submit": "Borrar a páxina",
 	"confirm": "Confirmar",
 	"excontent": "o contido era: \"$1\"",
 	"excontentauthor": "o contido era \"$1\", e o único editor foi [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])",

@@ -420,7 +420,7 @@
 	"watchlist-options": "Kattsõspiizgaa valimizõd",
 	"watching": "Kattsõõn…",
 	"unwatching": "Kattsõõmizõõ lõpõttõmin…",
-	"deletepage": "Pühi cülci",
+	"deletepage-submit": "Pühi cülci",
 	"delete-legend": "Pühi",
 	"confirmdeletetext": "Õlõtta pühcimässä cüľľee vai failii ja kõigõ sene istorii. Õlka nii üvä, kõvissõga jot tahotta sitä tehä, jot saatta arvoa sledstvijäd jot pühcimüz on [[{{MediaWiki:Policy-url}}|poolissaa]] mukka.",
 	"actioncomplete": "Töö tehtü lõppuu",

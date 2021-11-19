@@ -902,7 +902,7 @@
 	"watching": "زیر نظر",
 	"unwatching": "منسوخ",
 	"enotif_reset": "سف صفحاتن بطور لوڑیرو مارک کورے",
-	"deletepage": "صفحہو ضائع کورے",
+	"deletepage-submit": "صفحہو ضائع کورے",
 	"confirm": "کنفرم",
 	"excontent": "'$1':مواد اوشوئے",
 	"excontentauthor": "حذف شدہ مواد: '$1' (وا صرفی '[[Special:Contributions/$2|$2]]' حصہ دریریتائے)",

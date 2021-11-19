@@ -1749,7 +1749,7 @@
 	"enotif_body": "Huj $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamenvatting van de wieziging: $PAGESUMMARY $PAGEMINOREDIT\n\nKontaktgevevens van de auteur:\nNetpost: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nJe kriegen veerder gien berichten, behalven a'j disse zied bezeuken terwiel je an-emeld bin. Op joew volglieste ku'j veur alle ziejen die'j volgen de waorschuwingsinstellingen deraof haolen.\n\nGroeten van t {{SITENAME}}-waorschuwingssysteem.\n\n--\nJe kunnen joew netpostinstellingen wiezigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nJe kunnen de volgliestinstellingen wiezigen op:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nJe kunnen de zied van joew volglieste aofhaolen deur op de volgende verwiezing te klikken:\n$UNWATCHURL\n\nOpmarkingen en veerdere hulpe:\n$HELPPAGE",
 	"created": "an-emaakt",
 	"changed": "ewiezigd",
-	"deletepage": "Syde vordsmyten",
+	"deletepage-submit": "Syde vordsmyten",
 	"confirm": "Bevästigen",
 	"excontent": "inhold was: '$1'",
 	"excontentauthor": "inhold was: \"$1\" ([[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) was de eynigste autöör)",

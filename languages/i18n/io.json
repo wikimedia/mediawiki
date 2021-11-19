@@ -1987,7 +1987,7 @@
 	"enotif_lastdiff": "Por vidar ca modifikuro, videz $1",
 	"enotif_anon_editor": "anonima uzero $1",
 	"enotif_body": "Kara $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRezumo dil redaktero: $PAGESUMMARY $PAGEMINOREDIT\n\nSkribez al redaktero:\ne-posto: $PAGEEDITOR_EMAIL\nwiki   : $PAGEEDITOR_WIKI\n\nTil ke vu itere vizitos ca pagino, nula plusa avizo sendesos a vu, dum ke vu restos hike. Vu anke povas riestablisar l'avizo por omna pagini quin vu mantenas en vua surveyo-listo.\n\nVua kordiala notifiko-sistemo de {{SITENAME}}\n\n--\nPor modifikar la formo por notifikar vu per e-posto, vizitez\n{{canonicalurl:{{#special:Preferences}}}}\n\nPor modifikar l'ajusti  pri notifiki, vizitez\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPor eliminar la pagino de vua surveyo-listo, vizitez\n$UNWATCHURL\n\nRetro-informo e plusa helpo:\n$HELPPAGE",
-	"deletepage": "Efacar pagino",
+	"deletepage-submit": "Efacar pagino",
 	"confirm": "Konfirmez",
 	"excontent": "La kontenajo esis: \"$1\"",
 	"excontentauthor": "la kontenajo esis: \"$1\", e l'unika redaktero esis \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

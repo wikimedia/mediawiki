@@ -1403,7 +1403,7 @@
 	"enotif_body": "Birêz $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nKurteya bikarhênerê: $PAGESUMMARY $PAGEMINOREDIT\n\nJi bo bikarhêner peyamekê binivisîne:\nmaîl: $PAGEEDITOR_EMAIL\nwîkî: $PAGEEDITOR_WIKI\n\nHeta tu gava têketî bî li vê guherandinê nenêrî, peyamên din ên guhertinê yên vê rûpelê nayên nîşandan. Ji xeynî vê tu dikarî rewşa hemû danezanên li ser lîsteya te ya şopandinê reset bikî. \n\n             Peyamên {{SITENAME}}\n\n--\nHeke tu bixwazî eyarên agahdariyên e-peyamê biguherînî, li\n{{canonicalurl:{{#special:Preferences}}}} binêre.\n\n--\nHeke tu bixwazî eyarên lîsteya xwe ya şopandinê biguherînî, li\n{{canonicalurl:{{#special:EditWatchlist}}}} binêre.\n\nJi bo jêbirina rûpelê ji lîsteya xwe ya şopandinê, li \n$UNWATCHURL binêre.\n\nPaşragihandin û alîkariyên din:\n$HELPPAGE",
 	"created": "hat afirandin",
 	"changed": "hat guhartin",
-	"deletepage": "Rûpelê jê bibe",
+	"deletepage-submit": "Rûpelê jê bibe",
 	"confirm": "Pesend bike",
 	"excontent": "Naveroka berê: \"$1\"",
 	"excontentauthor": "Naveroka rûpelê ev bû: \"$1\", û tenê ya bikarhêner \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|gotûbêj]]) bû.",

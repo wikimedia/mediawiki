@@ -2331,7 +2331,7 @@
 	"enotif_minoredit": "Manjše urejanje",
 	"created": "ustvaril",
 	"changed": "spremenil",
-	"deletepage": "Briši stran",
+	"deletepage-submit": "Briši stran",
 	"confirm": "Potrdi",
 	"excontent": "vsebina: '$1'",
 	"excontentauthor": "vsebina je bila: »$1«, edini urejevalec pa »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]])",

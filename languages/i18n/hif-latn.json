@@ -1882,7 +1882,7 @@
 	"enotif_minoredit": "Ii ek minor edit hai",
 	"created": "banae dewa gais hai",
 	"changed": "badal dewa gais hai",
-	"deletepage": "Pana ke delete karo",
+	"deletepage-submit": "Pana ke delete karo",
 	"confirm": "Confirm karo",
 	"excontent": "content rahaa: '$1'",
 	"excontentauthor": "content rahaa: \"$1\", aur khaali ek contributor rahaa \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

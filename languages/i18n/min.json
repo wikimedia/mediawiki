@@ -1880,7 +1880,7 @@
 	"unwatching": "indak dipantau le...",
 	"enotif_reset": "Tandoi sado laman alah dibaco",
 	"enotif_body_intro_restored": "Laman $1 pado {{SITENAME}} alah dikambalian tanggal $PAGEEDITDATE dek {{gender:$2|$2}}, caliak $3 untuak revisi tabaru.",
-	"deletepage": "Hapuih laman",
+	"deletepage-submit": "Hapuih laman",
 	"confirm": "Konfirmasi",
 	"excontent": "isi sabalunnyo: \"$1\"",
 	"excontentauthor": "isinyo: \"$1\", dan dibuek dek \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|maota]])",

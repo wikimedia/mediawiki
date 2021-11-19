@@ -2398,7 +2398,7 @@
 	"enotif_minoredit": "هذا تعديل طفيف",
 	"created": "أنشئت",
 	"changed": "غيرت",
-	"deletepage": "حذف الصفحة",
+	"deletepage-submit": "حذف الصفحة",
 	"confirm": "أكد",
 	"excontent": "المحتوى كان: '$1'",
 	"excontentauthor": "المحتوى كان: \"$1\" والمساهم الوحيد كان \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

@@ -601,7 +601,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 påhina|$1 na påhina siha}} un pupulan, sin i påhinan kombetsasion siha.",
 	"watching": "Mamulan...",
 	"unwatching": "Pumapara mamulan...",
-	"deletepage": "Na'suha i påhina",
+	"deletepage-submit": "Na'suha i påhina",
 	"historywarning": "Adahi: Guåha historia-ña ni påhina na para un na'suha:",
 	"confirmdeletetext": "Para un na'suha i påhina kontodu i historia-ña.\nKonfotme fan na este i malago'-mu, na kumonprende hao hiniyong-ña, yan tumattiyi [[{{MediaWiki:Policy-url}}|i polisia]] ni bidada-mu.",
 	"actioncomplete": "Funhayan i aksion",

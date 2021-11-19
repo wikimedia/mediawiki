@@ -2059,7 +2059,7 @@
 	"enotif_minoredit": "हा एक छोटा बदल आहे",
 	"created": "तयार केले",
 	"changed": "बदलले",
-	"deletepage": "पान वगळा",
+	"deletepage-submit": "पान वगळा",
 	"confirm": "निश्चीत करा",
 	"excontent": "मजकूर होता: '$1'",
 	"excontentauthor": "मजकूर होता: \"$1\" आणि फक्त [[Special:Contributions/$2|$2]]  ([[User talk:$2|चर्चा]])यांचेच योगदान होते.",

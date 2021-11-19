@@ -1422,7 +1422,7 @@
 	"enotif_body": "Queriu/ida $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nResumen de l'editor: $PAGESUMMARY $PAGEMINOREDIT\n\nContacto con l'editor:\ncorreu-e: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nSi no visita a pachina, no recibirá mas notificacions de futuros cambios. \nTamién puet cambiar o modo de notificación d'as pachinas que cosira en a suya lista de seguimiento.\n\nAtentament,\nO servicio de notificacions d'o prochecto {{SITENAME}}\n\n--\nTa cambiar as opcions de notificación por correu-e vaiga ta\n{{canonicalurl:{{#special:Preferences}}}}\n\nTa cambiar as opcions d'a suya lista de seguimiento, vaiga ta\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTa eliminar a pachina d'a suya lista de seguimiento, vaiga ta $UNWATCHURL\n\nSucherencias y aduya:\n$HELPPAGE",
 	"created": "creyata",
 	"changed": "editata",
-	"deletepage": "Borrar ista pachina",
+	"deletepage-submit": "Borrar ista pachina",
 	"confirm": "Confirmar",
 	"excontent": "O conteniu yera: '$1'",
 	"excontentauthor": "O conteniu yera: '$1' (y o suyo unico autor yera [[Special:Contributions/$2|$2]])",

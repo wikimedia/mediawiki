@@ -808,7 +808,7 @@
 	"enotif_anon_editor": "uncuð brucend $1",
 	"created": "ȝescapen",
 	"changed": "hƿorfen",
-	"deletepage": "Forleos tramet",
+	"deletepage-submit": "Forleos tramet",
 	"excontent": "innung wæs: \"$1\"",
 	"excontentauthor": "innung wæs: '$1' (and se ana forðiend wæs \"[[Special:Contributions/$2|$2]]\")",
 	"historywarning": "<strong>Warnung:</strong> Se tramet þe þu wilt forleosan hafaþ stær $1 {{PLURAL:$1|fadunge|fadunga}}:",

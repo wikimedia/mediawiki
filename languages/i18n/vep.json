@@ -1292,7 +1292,7 @@
 	"enotif_body": "Kalliž $WATCHINGUSERNAME,\n\n\n{{SITENAME}}-saitan $PAGETITLE-lehtpol' om $CHANGEDORCREATED $PAGEEDITDATE; toižetusen avtor om $PAGEEDITOR, kc. $PAGETITLE_URL, miše nägištada jäl'gmäine versii.\n\n$NEWPAGE\n\nToižetajan ümbrikacund: $PAGESUMMARY $PAGEMINOREDIT\n\nSäkat pagin toižetusiden avtoranke:\ne-počt: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKu tö et tuleskekoi necile lehtpolile, ka sistem ei oigendaškande enamba teile tedotusid toižetusiš.\nTö voižit mugažo saubata tedotusiden opcii kaikiden lehtpoliden täht teiden kaclendnimikirjuteses.\n\n             {{SITENAME}}-saitan ustavakaz tedotuzsistem\n\n--\n\nMiše toižetada teiden e-počtan järgendused, mängat tänna:\n{{canonicalurl:{{#special:Preferences}}}}\n\nMiše toižetada teiden kaclendnimikirjutesen järgendused, mängat tänna:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nMiše čuta lehtpol' teiden kaclendnimikirjutesespäi, mängat tänna:\n$UNWATCHURL\n\nPid'oitelend da joksii abu:\n$HELPPAGE",
 	"created": "om sätud",
 	"changed": "om toižetadud",
-	"deletepage": "Čuta lehtpol' poiš",
+	"deletepage-submit": "Čuta lehtpol' poiš",
 	"confirm": "Vahvištoitkat",
 	"excontent": "südäiolend: '$1'",
 	"excontentauthor": "südäiolend: '$1' (üksjäine avtor oli '[[Special:Contributions/$2|$2]]')",

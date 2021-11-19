@@ -2365,7 +2365,7 @@
 	"enotif_minoredit": "זוהי עריכה משנית",
 	"created": "נוצר",
 	"changed": "שוּנה",
-	"deletepage": "מחיקת דף",
+	"deletepage-submit": "מחיקת הדף",
 	"confirm": "אישור",
 	"excontent": "התוכן היה: \"$1\"",
 	"excontentauthor": "התוכן היה: \"$1\", {{GENDER:$2|והתורם היחיד היה|והתורמת היחידה הייתה}} \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|שיחה]])",

@@ -498,7 +498,7 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} sebelu",
 	"created": "hlolini",
 	"changed": "petuhoni",
-	"deletepage": "Afi kulobala petulo",
+	"deletepage-submit": "Afi kulobala petulo",
 	"confirm": "Afi pe",
 	"excontent": "Petulo sa ng'i: '$1'",
 	"excontentauthor": "Petulo sa ng'i: '$1' (sebelu sa ng'i '[[Special:Contributions/$2|$2]]')",

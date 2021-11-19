@@ -1836,7 +1836,7 @@
 	"enotif_minoredit": "Bu kiçik redaktədir",
 	"created": "yaradıldı",
 	"changed": "dəyişdi",
-	"deletepage": "Səhifəni sil",
+	"deletepage-submit": "Səhifəni sil",
 	"confirm": "Təsdiq et",
 	"excontent": "Köhnə məzmun: '$1'",
 	"excontentauthor": "məzmun: \"$1\", səhifədə yeganə redaktə edən: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|müzakirə]])",

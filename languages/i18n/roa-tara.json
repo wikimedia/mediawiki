@@ -2197,7 +2197,7 @@
 	"enotif_minoredit": "Quiste ète 'nu cangiamende stuèdeche",
 	"created": "ccrejete",
 	"changed": "cangete",
-	"deletepage": "Scangille 'a pàgene",
+	"deletepage-submit": "Scangille 'a pàgene",
 	"confirm": "Conferme",
 	"excontent": "'u condenute ere: '$1'",
 	"excontentauthor": "'u condenute ere: '$1' e l'uneche condrebbutore ere \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|'ngazzamende]])",

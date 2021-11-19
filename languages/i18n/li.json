@@ -2133,7 +2133,7 @@
 	"enotif_minoredit": "Dit is 'n klein verangering",
 	"created": "aangemaak",
 	"changed": "verangerd",
-	"deletepage": "Pagina ewegsjaffe",
+	"deletepage-submit": "Pagina ewegsjaffe",
 	"confirm": "Bevèstig",
 	"excontent": "inhawd waor: '$1'",
 	"excontentauthor": "inhawd waor: '$1' ([[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) waas d'n ènsigste sjriever)",

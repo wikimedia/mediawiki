@@ -1644,7 +1644,7 @@
 	"enotif_lastdiff": "ایہ تبدیلی ݙیکھݨ کیتے، $1 ݙیکھو",
 	"enotif_anon_editor": "گمنام ورتݨ آلا $1",
 	"enotif_minoredit": "ایہ ہک چھوٹی تبدیلی ہے",
-	"deletepage": "ورقہ مٹاؤ",
+	"deletepage-submit": "ورقہ مٹاؤ",
 	"confirm": "تصدیق",
 	"excontent": "مواد ہائی: \"$1\"",
 	"delete-confirm": "\"$1\" مٹاؤ",

@@ -1376,7 +1376,7 @@
 	"enotif_reset": "دزاٛکرڌن گشڌ بٱلٛگیٱل ڤاْ اوڌڤان نیٱشڌ آڤیڌاْ",
 	"enotif_impersonal_salutation": "{{SITENAME}} کاریار",
 	"enotif_minoredit": "یو یٱ هیرداْ ڤیرایشداْ",
-	"deletepage": "پاکسا کردن بٱلگاْ",
+	"deletepage-submit": "پاکسا کردن بٱلگاْ",
 	"confirm": "پوشت راست کاری کردن",
 	"excontent": "میٛنوناْ: \"$1\" بی",
 	"delete-confirm": "پاکسا کردن \"$1\"",

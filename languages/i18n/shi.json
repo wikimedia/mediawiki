@@ -815,7 +815,7 @@
 	"watching": "Iḍuf...",
 	"unwatching": "Ur at sul ntḍuf",
 	"enotif_reset": "Ɣ tamatart akk i tasniwin ttekkit",
-	"deletepage": "Kks tasna",
+	"deletepage-submit": "Kks tasna",
 	"delete-confirm": "Kks \"$1\"",
 	"delete-legend": "Kks",
 	"confirmdeletetext": "Ḥan tbidt f attkkist tasna yad kullu d kullu amzruy nes.\nilla fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist d is iffaɣ mayad i [[{{MediaWiki:Policy-url}}|tasrtit]].",

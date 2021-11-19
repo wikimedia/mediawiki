@@ -1008,7 +1008,7 @@
 	"enotif_minoredit": "Is mionathrú é seo",
 	"created": "Chruthaigh",
 	"changed": "D'athraigh",
-	"deletepage": "Scrios an leathanach",
+	"deletepage-submit": "Scrios an leathanach",
 	"confirm": "Cinntigh",
 	"excontent": "téacs an lch: '$1'",
 	"excontentauthor": "seo a bhí an t-inneachar: '$1' (agus ba é '[[Special:Contributions/$2|$2]]' an t-aon dhréachtóir)",

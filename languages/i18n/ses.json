@@ -1700,7 +1700,7 @@
 	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.\n\nYour friendly {{SITENAME}} notification system\n\n--\nTo change your email notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n$HELPPAGE",
 	"created": "n' ka tee",
 	"changed": "n' ka barmay",
-	"deletepage": "Moɲoo tuusu",
+	"deletepage-submit": "Moɲoo tuusu",
 	"confirm": "Cimandi",
 	"excontent": "gundekuna bay ka ti: \"$1\" \\",
 	"excontentauthor": "gundekuna bay ka ti: \"$1\" (nda kanbuzaakaw follokaa bay ka ti \"[[Special:Contributions/$2|$2]]\")",

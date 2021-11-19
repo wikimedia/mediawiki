@@ -1944,7 +1944,7 @@
 	"enotif_lastdiff": "ߖߐ߲߬ߛߊ߫ ߌ ߘߌ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߣߌ߲߬ ߦߋ߫߸ $1 ߘߐߜߍ߫",
 	"enotif_anon_editor": "ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߊ߫ ߕߐ߯ߒߕߊ߲ $1",
 	"enotif_minoredit": "ߣߌ߲߬ ߦߋ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲߬ ߘߋ߬ߣߍ߲ ߘߏ߫ ߟߋ߬ ߘߌ߫",
-	"deletepage": "ߞߐߜߍ ߖߏ߰ߛߌ߬",
+	"deletepage-submit": "ߞߐߜߍ ߖߏ߰ߛߌ߬",
 	"confirm": "ߊ߬ ߟߊߛߙߋߦߊ߫",
 	"excontent": "ߞߣߐߘߐ ߕߘߍ߬ ߦߋ߫: \"$1\"",
 	"excontentauthor": "ߞߣߐߘߐ ߕߘߍ߬ ߦߋ߫: \"$1\"߸ ߊ߬ ߣߌ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߊ߫ ߞߋߟߋ߲ ߕߘߍ߬ ߦߋ߫ \"[[Special:Contributions/$2|$2]]\" \" ([[User talk:$2|talk]])",

@@ -1015,7 +1015,7 @@
 	"enotif_body": "Estimau $WATCHINGUSERNAME,\n\n\nS'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATE, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.\n\n$NEWPAGE\n\nSíntesis el eitol: $PAGESUMMARY $PAGEMINOREDIT\n\nContatal con el eitol:\nEmail: $PAGEEDITOR_EMAIL\nGüiqui: $PAGEEDITOR_WIKI\n\nNel chascu en que nu vesitis el artículu, nu se te hazrán mas notificacionis. Amas, pueis cancelal tolas notificacionis ena tu lista e seguimientu.\n\n             Salús dendi {{SITENAME}}!!\n\n--\nPa hazel chambus ena tu lista e seguimientu, vesita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nAyua la Güiquipeya:\n$HELPPAGE",
 	"created": "criá",
 	"changed": "chambau",
-	"deletepage": "Esborral páhina",
+	"deletepage-submit": "Esborral páhina",
 	"confirm": "Confirmal",
 	"excontent": "el continiu era: '$1'",
 	"excontentauthor": "el continiu era: '$1' (i el únicu contribuyenti hue '[[Special:Contributions/$2|$2]]')",

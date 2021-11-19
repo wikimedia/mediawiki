@@ -2119,7 +2119,7 @@
 	"enotif_minoredit": "Был әҙ үҙгәреш",
 	"created": "булдырылды",
 	"changed": "үҙгәртелгән",
-	"deletepage": "Битте юйырға",
+	"deletepage-submit": "Битте юйырға",
 	"confirm": "Раҫларға",
 	"excontent": "эстәлеге: \"$1\"",
 	"excontentauthor": "эстәлеге: \"$1\" (һәм берҙән-бер авторы \"[[Special:Contributions/$2|$2]] ([[User talk:$2|фекер алышыу]])\" ине)",

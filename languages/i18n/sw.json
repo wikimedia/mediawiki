@@ -1703,7 +1703,7 @@
 	"enotif_minoredit": "Hili ni badiliko dogo",
 	"created": "alianzisha",
 	"changed": "alibadilisha",
-	"deletepage": "Futa ukurasa",
+	"deletepage-submit": "Futa ukurasa",
 	"confirm": "Yakinisha",
 	"excontent": "iliyokuwemo: '$1'",
 	"excontentauthor": "Yaliyomo yalikuwa: \"$1\" (na mchangiaji mmoja tu anayeitwa \"[[Special:Contributions/$2|$2]]\")",

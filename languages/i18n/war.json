@@ -1529,7 +1529,7 @@
 	"enotif_anon_editor": "waray magpakilala nga gumaramit $1",
 	"created": "nahimo",
 	"changed": "naliwanan",
-	"deletepage": "Igpara an pakli",
+	"deletepage-submit": "Igpara an pakli",
 	"confirm": "Kompirma",
 	"excontent": "An sulod in: ''$1''",
 	"excontentauthor": "An nasusulod in: ''$1'', ngan hi \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|pakighimangraw]]) la an nag-amot",

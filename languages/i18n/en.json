@@ -2468,7 +2468,7 @@
 	"enotif_minoredit": "This is a minor edit",
 	"created": "created",
 	"changed": "changed",
-	"deletepage": "Delete page",
+	"deletepage-submit": "Delete page",
 	"confirm": "Confirm",
 	"excontent": "content was: \"$1\"",
 	"excontentauthor": "content was: \"$1\", and the only contributor was \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",

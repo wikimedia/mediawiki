@@ -749,7 +749,7 @@
 	"enotif_impersonal_salutation": "{{grammar:genitive|{{SITENAME}}}} ажыглакчызы",
 	"enotif_anon_editor": "ат чок киржикчи $1",
 	"changed": "өскертти",
-	"deletepage": "Арынны казыыр",
+	"deletepage-submit": "Арынны казыыр",
 	"delete-confirm": "«$1» деп арынны казыыр",
 	"delete-legend": "Казыыр",
 	"actioncomplete": "Ажыл доосту",

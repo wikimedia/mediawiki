@@ -2249,7 +2249,7 @@
 	"enotif_anon_editor": "anonyymi käyttäjä $1",
 	"enotif_body": "$WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nMuokkaajan yhteenveto: $PAGESUMMARY $PAGEMINOREDIT\n\nOta yhteyttä muokkaajaan:\ne-posti: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nUusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivula sishään kirjautuneena. Voit myös nollata ilmoitukset kaikile tarkkailemillesi sivuile tarkkailulistalasi.\n\n             {{GRAMMAR:genitive|{{SITENAME}}}} ilmoitusjärjestelmä\n\n--\nVoit muuttaa e-posti asetuksia atressissa:\n{{canonicalurl:{{#special:Preferences}}}}\n\nVoit muuttaa tarkkailulistasi asetuksia atressissa:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nVoit poistaa sivun tarkkailulistalta atressissa:\n$UNWATCHURL\n\nPalaute ja lisäapu atresissa:\n$HELPPAGE",
 	"enotif_minoredit": "Tämä on pieni mookkaus",
-	"deletepage": "Ota poies sivu.",
+	"deletepage-submit": "Ota poies sivu.",
 	"confirm": "Toteuta",
 	"excontent": "sisälsi: ”$1”",
 	"excontentauthor": "sisältö oli: ”$1”, ja ainoa mookkaaja oli ”[[Special:Contributions/$2|$2]]” ([[User talk:$2|keskustelu]])",

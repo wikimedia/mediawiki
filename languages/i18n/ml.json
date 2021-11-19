@@ -2208,7 +2208,7 @@
 	"enotif_minoredit": "ഇതൊരു ചെറിയ തിരുത്താണ്",
 	"created": "സൃഷ്ടിച്ചു",
 	"changed": "മാറ്റിയിരിക്കുന്നു",
-	"deletepage": "താൾ മായ്ക്കുക",
+	"deletepage-submit": "താൾ മായ്ക്കുക",
 	"confirm": "സ്ഥിരീകരിക്കുക",
 	"excontent": "ഉള്ളടക്കം: '$1'",
 	"excontentauthor": "ഉള്ളടക്കം: '$1', \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]]) മാത്രമേ ഈ താളിൽ തിരുത്തൽ നടത്തിയിട്ടുള്ളൂ",

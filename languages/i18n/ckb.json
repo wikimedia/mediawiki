@@ -1876,7 +1876,7 @@
 	"enotif_minoredit": "ئەمە دەستکارییەکی بچووکە",
 	"created": "دروستکرا",
 	"changed": "گۆڕدرا",
-	"deletepage": "پەڕە بسڕەوە",
+	"deletepage-submit": "پەڕە بسڕەوە",
 	"confirm": "پشتدار بکەرەوە",
 	"excontent": "ناوەرۆک ئەمە بوو: «$1»",
 	"excontentauthor": "ناوەرۆک ئەمە بوو: «$1» (و تەنیا بەشداربوو «[[Special:Contributions/$2|$2]]» بوو)",

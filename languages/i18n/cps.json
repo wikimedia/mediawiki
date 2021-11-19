@@ -490,7 +490,7 @@
 	"watchlist-options": "Pililian para sa listahan sang mga ginabantayan",
 	"watching": "Ginabantayan...",
 	"unwatching": "Wala ginabantayan...",
-	"deletepage": "Panason ang pahina",
+	"deletepage-submit": "Panason ang pahina",
 	"confirmdeletetext": "Imo na pagapanason ang isa ka pahina kaupod sang iya mga kasaysayan.\nPalihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang abtan, kag gina-ubra mo mini nga nagasunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
 	"actioncomplete": "Tapos na ang aksyon",
 	"deletedtext": "Napanas na ang \"$1\".\nTan-awon ang $2 para sa nalista sang mga bag-o lang napanas.",

@@ -1469,7 +1469,7 @@
 	"enotif_body": "Olla $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nResumaziun dal contribuent: $PAGESUMMARY $PAGEMINOREDIT\n\nContactar il contribuent:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nTi na retschaivas betg ulteriurs avis en cass dad ulteriuras activitads sche ti na visitas betg questa pagina. Ti has era la pussaivladad da redefinir tut ils flags d'avis per tut las paginas sin tia glista d'observaziun.\n\nCun amiaivels salids,\nil sistem d'avis da {{SITENAME}}\n\n--\nPer midar tia configuraziun per avis per e-mails, visita\n{{fullurl:{{#special:Preferences}}}}\n\nPer midar tia configuraziun da la glista d'observaziun, visita\n{{fullurl:{{#special:EditWatchlist}}}}\n\nPer stizzar questa pagina da la glista d'observaziun, visita\n$UNWATCHURL\n\nResuns ed agid chattas qua:\n{{fullurl:{{MediaWiki:Helppage}}}}",
 	"created": "creada",
 	"changed": "midada",
-	"deletepage": "Stizzar la pagina",
+	"deletepage-submit": "Stizzar la pagina",
 	"confirm": "Confermar",
 	"excontent": "il cuntegn era: \"$1\"",
 	"excontentauthor": "il cuntegn era: \"$1\" (ed il sulet contribuent era \"[[Special:Contributions/$2|$2]]\")",

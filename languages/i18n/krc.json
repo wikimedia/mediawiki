@@ -1514,7 +1514,7 @@
 	"enotif_body": "Багъалы $WATCHINGUSERNAME,\n\n{{SITENAME}} сайтдагъы $PAGETITLE башлыкълы бет $PAGEEDITDATE заманда $PAGEEDITOR джанындан $CHANGEDORCREATED тюзетилгенди неда тюрледирилгенди. Бетни ахыр халына $PAGETITLE_URL адресден кирирге боллукъсуз.\n\n$NEWPAGE\n\nТюрлендириуню этген къошлуучуну ангылатыуу: $PAGESUMMARY $PAGEMINOREDIT\n\nБетни тюрлендирген къошулуучуну билгилери:\nэл. почта: $PAGEEDITOR_EMAIL\nвики: $PAGEEDITOR_WIKI\n\nБу бетге киргинчигизге дери бу бет бла байламлы башха тюрлендириулени юсюнден хапар джибериллик тюлдю. Кёзде тургъан тизмегиздеги бютеу бетлени билдириу джибериу опцияларын джукълаталлыкъсыз.\n\n{{SITENAME}} сайтны билдириу системасы.\n\n--\n\nДжарашдырыуланы тюрлендирир ючюн:\n{{fullurl:{{#special:Watchlist}}/edit}}\n\nКёзде тургъан тизмеден кетерир ючюн:\n$UNWATCHURL\n\nБолушлукъ эм теджеуле ючюн:\n$HELPPAGE",
 	"created": "къуралды",
 	"changed": "тюрленди",
-	"deletepage": "Бетни кетер",
+	"deletepage-submit": "Бетни кетер",
 	"confirm": "Къабыл эт",
 	"excontent": "ичиндеги: $1",
 	"excontentauthor": "ичиндеги: «$1» (юлюш къошхан джангыз къошулуучу [[Special:Contributions/$2|$2]] эди)",

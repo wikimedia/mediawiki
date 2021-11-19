@@ -1232,7 +1232,7 @@
 	"enotif_body": "O $WATCHINGUSERNAME löfik!\n\n\nPad: $PAGETITLE in {{SITENAME}} $CHANGEDORCREATED tü $PAGEEDITDATE fa geban: $PAGEEDITOR; otuvol fomami anuik in $PAGETITLE_URL.\n\n$NEWPAGE\n\nNaböfodönuam redakana: $PAGESUMMARY $PAGEMINOREDIT\n\nKanol penön gebane:\npot leäktronik: $PAGEEDITOR_EMAIL\npad in vük: $PAGEEDITOR_WIKI\n\nVotükams fütürik no ponunons ole if no ovisitol dönu padi at.\nKanol i geükön nunamastänis padas valik galädaliseda olik.\n\n             Nunamasit flenöfik ela {{SITENAME}} olik\n\n--\nAd votükön parametami galädaliseda olik, loglös\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nKüpets e yuf pluik:\n$HELPPAGE",
 	"created": "pejafon",
 	"changed": "pevotüköl",
-	"deletepage": "Moükolöd padi",
+	"deletepage-submit": "Moükolöd padi",
 	"confirm": "Fümedolös",
 	"excontent": "ninäd äbinon: '$1'",
 	"excontentauthor": "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",

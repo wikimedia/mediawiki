@@ -1052,7 +1052,7 @@
 	"enotif_body": "Gintiri $WATCHINGUSERNAME,\n\n\nLa pàgina $PAGETITLE di {{SITENAME}} è isthadda $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versioni attuari s'acciappa a l'indirizzu $PAGETITLE_URL.\n\n$NEWPAGE\n\nRiassuntu di la mudìfigga, insiriddu da l'autori: $PAGESUMMARY $PAGEMINOREDIT\n\nCuntatta l'autori di la mudìfigga:\nvia postha erettrònica: $PAGEEDITOR_EMAIL\ni' lu situ: $PAGEEDITOR_WIKI\n\nNò sarani inviaddi althri nutìfichi in casu d'althri ciambamenti, arumancu chi tu nò visiti la pàgina. Daboi, è pussìbiri rimpusthà l'abbisu di nutìfica pa tutti li pàgini i' la listha di l'abbaidaddi ippiziari.\n\n             Lu sisthema di nutìfica di {{SITENAME}}\n\n--\nPa mudìfiggà l'impusthazioni di la listha di l'abbaidaddi ippiziari, visita\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nPa dì cosa ni pensi e dumandà assisthènzia:\n$HELPPAGE",
 	"created": "criadda",
 	"changed": "ciambadda",
-	"deletepage": "Canzella pàgina",
+	"deletepage-submit": "Canzella pàgina",
 	"confirm": "Cunfèimma",
 	"excontent": "lu cuntinuddu era : '$1'",
 	"excontentauthor": "lu cuntinuddu era: '$1' (e lu soru cuntributori era '[[Special:Contributions/$2|$2]]')",

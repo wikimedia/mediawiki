@@ -2109,7 +2109,7 @@
 	"enotif_minoredit": "Esta es un edita minor",
 	"created": "creada",
 	"changed": "cambiada",
-	"deletepage": "Sutrae paje",
+	"deletepage-submit": "Sutrae paje",
 	"confirm": "Aproba",
 	"excontent": "contenida ia es: \"$1\"",
 	"excontentauthor": "contenida ia es: \"$1\", e la sola contribuor ia es \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|discute]])",

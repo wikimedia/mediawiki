@@ -1954,7 +1954,7 @@
 	"enotif_minoredit": "अल्प सम्पादन",
 	"created": "बनाएल गेल",
 	"changed": "बदलल गेल",
-	"deletepage": "पन्ना मेटाउ",
+	"deletepage-submit": "पन्ना मेटाउ",
 	"confirm": "पक्का छी",
 	"excontent": "विषय छल:\"$1\"",
 	"excontentauthor": "पाठ छल:\"$1\" आ एकमात्र योगदान दैबला छल \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|वार्ता]])",

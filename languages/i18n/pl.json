@@ -2419,7 +2419,7 @@
 	"enotif_minoredit": "To jest drobna zmiana",
 	"created": "utworzona",
 	"changed": "zmieniona",
-	"deletepage": "Usuń stronę",
+	"deletepage-submit": "Usuń stronę",
 	"confirm": "Potwierdź",
 	"excontent": "treść: „$1”",
 	"excontentauthor": "treść: „$1”, jedyny autor: „[[Special:Contributions/$2|$2]]” ([[User talk:$2|dyskusja]])",

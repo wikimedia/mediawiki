@@ -1400,7 +1400,7 @@
 	"enotif_anon_editor": "mosṫeĥdim ma mċejjelċ $1",
 	"created": "tnch'at",
 	"changed": "Beddel",
-	"deletepage": "محي هاد الصفحة",
+	"deletepage-submit": "محي هاد الصفحة",
 	"confirm": "أكًد",
 	"excontent": "لمحتوى كان: '$1'",
 	"delete-confirm": "محي\"$1\"",

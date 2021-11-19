@@ -2128,7 +2128,7 @@
 	"enotif_minoredit": "Dëst ass eng kleng Ännerung",
 	"created": "gemaach",
 	"changed": "geännert",
-	"deletepage": "Säit läschen",
+	"deletepage-submit": "Säit läschen",
 	"confirm": "Confirméieren",
 	"excontent": "Inhalt war: '$1'",
 	"excontentauthor": "Op der Säit stoung: '$1' an als eenzegen dru geschriwwen hat de Benotzer '[[Special:Contributions/$2|$2]]' ([[User talk:$2|Diskussioun]])",

@@ -1775,7 +1775,7 @@
 	"enotif_minoredit": "Chistu è nu canciamentu nicu",
 	"created": "criatu",
 	"changed": "canciatu",
-	"deletepage": "Cancella na pàggina",
+	"deletepage-submit": "Cancella la pàggina",
 	"confirm": "Cunferma",
 	"excontent": "lu cuntinutu era: \"$1\"",
 	"excontentauthor": "lu cuntinutu era: \"$1\" (e lu sulu cuntribbuturi era \"[[Special:Contributions/$2|$2]]\")",

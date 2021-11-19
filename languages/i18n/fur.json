@@ -925,7 +925,7 @@
 	"enotif_anon_editor": "utent anonim $1",
 	"created": "creade",
 	"changed": "cambiade",
-	"deletepage": "Elimine pagjine",
+	"deletepage-submit": "Elimine pagjine",
 	"confirm": "Conferme",
 	"excontent": "il contignût al jere: '$1'",
 	"excontentauthor": "il contignût al jere: '$1' (e al veve contribuît dome '$2')",

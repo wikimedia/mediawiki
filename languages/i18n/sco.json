@@ -1996,7 +1996,7 @@
 	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEediter's ootline: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the eediter:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThaur'll be naw ither annooncemants in case o further acteevitie onless ye veesit this page while loggit in. Ye coud forby reset the annooncemant flags fer aw yer watched pages oan yer watchleet.\n\nYer freendlie {{SITENAME}} annooncemant system\n\n--\nTae chynge yer wab-mail annooncemant settins, veesit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTae chynge yer watchleet settins, veesit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTae delyte the page fae yer watchleet, veesit\n$UNWATCHURL\n\nFeedback n further asseestance:\n$HELPPAGE",
 	"created": "cræftit",
 	"changed": "chynged",
-	"deletepage": "Delyte page",
+	"deletepage-submit": "Delyte page",
 	"confirm": "Confirm",
 	"excontent": "content wis: '$1'",
 	"excontentauthor": "content wis: '$1' (n the ae contreebuter wis '[[Special:Contributions/$2|$2]]')",

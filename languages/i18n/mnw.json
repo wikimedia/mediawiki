@@ -1174,7 +1174,7 @@
 	"enotif_lastdiff": "သ္ဂောအ်ဗဵုကေတ်ပြံၚ်လှာဲဏအ်, ရံၚ်ကေတ်$1",
 	"enotif_anon_editor": "ညးလွပ် ဟွံဗမံက်ယၟု $1",
 	"enotif_minoredit": "ဣဏအ်ဂှ် ဒှ်အရာ မပလေဝ်ဒါန် ညိည",
-	"deletepage": "မုက်မပလီု",
+	"deletepage-submit": "မုက်မပလီု",
 	"confirm": "သ္ပဒတန်",
 	"delete-confirm": "ပလီုလဝ် $1",
 	"delete-legend": "ပလီု",

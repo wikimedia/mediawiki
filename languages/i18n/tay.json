@@ -892,7 +892,7 @@
 	"enotif_impersonal_salutation": "{{SITENAME}} kwara’ ka cyux mbing ka qutux qutux ngasal",
 	"enotif_anon_editor": "inqing lalu’ nqu squliq cyux mbing $1",
 	"enotif_minoredit": "Qaniy hya’ ga mszik na musa’ sr’tun miru’",
-	"deletepage": "Pzyuciy zngazyan",
+	"deletepage-submit": "Pzyuciy zngazyan",
 	"confirm": "Wal balay srhgun",
 	"delete-confirm": "’muyut \"$1\"",
 	"delete-legend": "’muyut",

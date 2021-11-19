@@ -2330,7 +2330,7 @@
 	"enotif_minoredit": "Ово је мања измена",
 	"created": "направљена",
 	"changed": "измењена",
-	"deletepage": "Избриши страницу",
+	"deletepage-submit": "Избриши страницу",
 	"confirm": "Потврди",
 	"excontent": "садржина је била: „$1”",
 	"excontentauthor": "садржина је била: „$1”, а једини уредник „[[Special:Contributions/$2|$2]]” ([[User talk:$2|разговор]])",

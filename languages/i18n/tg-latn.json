@@ -913,7 +913,7 @@
 	"enotif_anon_editor": "korbari noşinos $1",
 	"created": "eçod şud",
 	"changed": "taƣjirjofta",
-	"deletepage": "Hazfi sahifa",
+	"deletepage-submit": "Hazfi sahifa",
 	"confirm": "Tasdiq",
 	"excontent": "mūhtavoi sahifa in bud: '$1'",
 	"excontentauthor": "mūhtavoi sahifa in bud: '$1' (va jagona hissaguzor '[[Special:Contributions/$2|$2]]' bud)",

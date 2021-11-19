@@ -2116,7 +2116,7 @@
 	"enotif_minoredit": "Daytoy ket bassit a panagurnos",
 	"created": "naaramid",
 	"changed": "nasukatan",
-	"deletepage": "Ikkaten ti panid",
+	"deletepage-submit": "Ikkaten ti panid",
 	"confirm": "Pasingkedan",
 	"excontent": "ti linaon idi ket: '$1'",
 	"excontentauthor": "\n\nti linaon idi ket: \"$1\", ken ti laeng kontributor idi ket ni \"[[Special:Contributions/$2|$2]]\"([[User talk:$2|tungtungan]])",

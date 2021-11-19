@@ -815,7 +815,7 @@
 	"unwatching": "Dexando de cudiar...",
 	"enotif_reset": "Markar todas las hojas komo visitadas",
 	"enotif_impersonal_salutation": "{{SITENAME}} usuario",
-	"deletepage": "Efassar esta hoja",
+	"deletepage-submit": "Efassar esta hoja",
 	"confirmdeletetext": "Estás al punto de efassar una hoja\nen forma turable, ansí como todo su istoria.\nSi puede ser, confirma que de verdad queres hazer esto, que estás entendiendo las\nresultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url}}|Políticas]].",
 	"actioncomplete": "Aksion kompleta",
 	"actionfailed": "Aksión sin reuşitá",

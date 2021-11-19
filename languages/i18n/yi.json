@@ -1958,7 +1958,7 @@
 	"enotif_minoredit": "דאָס איז אַ מינערדיקע רעדאַקטירונג",
 	"created": "געשאַפֿן",
 	"changed": "געטוישט",
-	"deletepage": "מעק אויס בלאט",
+	"deletepage-submit": "מעק אויס בלאט",
 	"confirm": "באַשטעטיגן",
 	"excontent": "אינהאלט געווען: \"$1\"",
 	"excontentauthor": "אינהאלט געווען: \"$1\" און דער איינציגסטער באארבעטער איז געווען '[[Special:Contributions/$2|$2]]' ([[User talk:$2|שמועס]])",

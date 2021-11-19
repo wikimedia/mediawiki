@@ -2294,7 +2294,7 @@
 	"enotif_anon_editor": "ანონიმური მახვარებუ $1",
 	"enotif_body": "პატიცემული $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nთირუაშ კუნტა ეჭარუა: $PAGESUMMARY $PAGEMINOREDIT\n\nმიკართით რედაქტორს:\nელ-ფოსტა: $PAGEEDITOR_EMAIL\nვიკი: $PAGEEDITOR_WIKI\n\nგეჸვენჯი თირუეფიშ გეშა გინაფეფიშ მიოღებელო ათე ხასჷლა კჷნ ოკო ესურათ. თქვა თაშნეშე შეულებჷნა თქვან კონტროლიშ ერკებულს გოთიშათ გინაფაშ ფუნქცია არძა ხასჷლასო.\n\n\t\t\t {{SITENAME}}    \nგინაფეფიშ სისტემა\n\n--\nგინაფეფიშ პარამეტრეფიშ თირუა\n{{canonicalurl:{{#special:Preferences}}}}\n\nთქვანი კონტროლიშ ერკებულიშ პარამეტრეფიშ თირუა\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nხასჷლეფიშ ეშალასუა თქვანი კონტროლიშ ერკებულიშე\n$UNWATCHURL\n\nგეძნელი ინფორმაცია\n$HELPPAGE",
 	"enotif_minoredit": "თენა რე ციქა რედაქტირაფა",
-	"deletepage": "ხასჷლაშ ლასუა",
+	"deletepage-submit": "ხასჷლაშ ლასუა",
 	"confirm": "დოდასურაფა",
 	"excontent": "დინორე რდჷ: \"$1\"",
 	"excontentauthor": "დინორე რდჷ: „$1“ დო აკა ავტორი რდჷ „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|სხუნუა]])",

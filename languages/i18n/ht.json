@@ -783,7 +783,7 @@
 	"watchlist-options": "Opsyon pou lis swivi",
 	"watching": "Swiv...",
 	"unwatching": "Fini swiv paj sa a...",
-	"deletepage": "Efase yon paj",
+	"deletepage-submit": "Efase yon paj",
 	"historywarning": "'''Atansyon:''' paj w ap efase a genyen yon istorik ki genyen $1 {{PLURAL:$1|revizyon|revizyon yo}} ladan l:",
 	"confirmdeletetext": "W ap efase yon paj oubyen yon imaj epi tout vèsyon li yo toutbon nan bazdone a. Tanpri, konfime aksyon enpòtan sa a, ke ou konprann sa w ap fè, epi ke ou fè l nan dwa ak [[{{MediaWiki:Policy-url}}|lwa medyawiki a]].",
 	"actioncomplete": "Aksyon an fèt",

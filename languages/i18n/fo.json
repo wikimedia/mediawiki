@@ -1534,7 +1534,7 @@
 	"enotif_lastdiff": "Sí $1 fyri at síggja hesa broyting.",
 	"enotif_anon_editor": "dulnevndur brúkari $1",
 	"created": "stovnað",
-	"deletepage": "Strika síðu",
+	"deletepage-submit": "Strika síðu",
 	"confirm": "Vátta",
 	"excontent": "innihald var: '$1'",
 	"excontentauthor": "innihaldið var: '$1' (og einasti rithøvundur var '[[Special:Contributions/$2|$2]]')",

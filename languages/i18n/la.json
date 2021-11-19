@@ -1157,7 +1157,7 @@
 	"enotif_body": "\nSalve $WATCHINGUSERNAME,\n\nPagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est. Vide redactionem currentem apud $PAGETITLE_URL\n\n$NEWPAGE\n\nCuius auctor hoc summarium dedit: $PAGESUMMARY $PAGEMINOREDIT\n\nUt conlatorem adloquaris:\nlitterae electronicae: $PAGEEDITOR_EMAIL\nvici: $PAGEEDITOR_WIKI\n\nDe futuris recensionibus non certior fies nisi nomine dato paginam ipsam inspexeris. Praeterea licet omnes paginas non iam observandas notare.\n\n             Your friendly {{SITENAME}} notification system\n\n--\nUt paginarum observandarum modos spectes, ito ad\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nFeedback and further assistance:\n$HELPPAGE",
 	"created": "creata",
 	"changed": "mutata",
-	"deletepage": "Delere paginam",
+	"deletepage-submit": "Delere paginam",
 	"confirm": "Adfirmare",
 	"excontent": "contenta fuerant: \"$1\"",
 	"excontentauthor": "contenta fuerant: \"$1\", conlata a solo \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|Disputatio]])",

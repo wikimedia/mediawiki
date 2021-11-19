@@ -1410,7 +1410,7 @@
 	"enotif_anon_editor": "ಅನಾಮಧೇಯ ಸದಸ್ಯ $1",
 	"created": "ಸೃಷ್ಟಿಸಲ್ಪಟ್ಟಿದೆ",
 	"changed": "ಬದಲಾಯಿಸಲಾಗಿದೆ",
-	"deletepage": "ಪುಟವನ್ನು ಅಳಿಸಿ",
+	"deletepage-submit": "ಪುಟವನ್ನು ಅಳಿಸಿ",
 	"confirm": "ಧೃಡಪಡಿಸು",
 	"delete-confirm": "\"$1\" ಅಳಿಸುವಿಕೆ",
 	"delete-legend": "ಅಳಿಸು",

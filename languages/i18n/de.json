@@ -2433,7 +2433,7 @@
 	"enotif_minoredit": "Dies ist eine kleine Bearbeitung",
 	"created": "erstellt",
 	"changed": "geändert",
-	"deletepage": "Löschen einer Seite",
+	"deletepage-submit": "Seite löschen",
 	"confirm": "Bestätigen",
 	"excontent": "Inhalt war: „$1“",
 	"excontentauthor": "Inhalt war: „$1“. Einziger Bearbeiter: [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]])",

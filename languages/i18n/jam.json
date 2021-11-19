@@ -608,7 +608,7 @@
 	"watchlist-options": "Wachlis apshan",
 	"watching": "De wach ...",
 	"unwatching": "De anwach ...",
-	"deletepage": "Diliit piej",
+	"deletepage-submit": "Diliit piej",
 	"confirmdeletetext": "Yu bout fi diliit a piej alangx wid aal a i'ischri.\nBegyu kanfoerm se yu inten fi du dis, se yu andastan di kansikwens, ahn se yu a du dis askaadans wid [[{{MediaWiki:Policy-url}}|di palisi]].",
 	"actioncomplete": "Akshan kompliit",
 	"deletedtext": "\"$1\" don diliit.\nSi $2 fi a rekaad a riisant diliishan.",
