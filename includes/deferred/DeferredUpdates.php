@@ -382,56 +382,48 @@ class DeferredUpdates {
 		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
-
 		$updateId = spl_object_id( $update );
 		$logger->debug( __METHOD__ . ": started $type #$updateId" );
+
+		$updateException = null;
+
 		$startTime = microtime( true );
-		$e = null;
 		try {
 			self::attemptUpdate( $update, $lbFactory );
-
-			return null;
-		} catch ( Throwable $e ) {
+		} catch ( Throwable $updateException ) {
+			MWExceptionHandler::logException( $updateException );
+			$logger->error(
+				"Deferred update '{deferred_type}' failed to run.",
+				[
+					'deferred_type' => $type,
+					'exception' => $updateException,
+				]
+			);
+			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 		} finally {
-			$executionTime = microtime( true ) - $startTime;
-			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $executionTime" );
+			$walltime = microtime( true ) - $startTime;
+			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $walltime" );
 		}
 
-		MWExceptionHandler::logException( $e );
-		$logger->error(
-			"Deferred update '{deferred_type}' failed to run.",
-			[
-				'deferred_type' => $type,
-				'exception' => $e,
-			]
-		);
-
-		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
-
 		// Try to push the update as a job so it can run later if possible
-		if ( $update instanceof EnqueueableDataUpdate ) {
-			$jobEx = null;
+		if ( $updateException && $update instanceof EnqueueableDataUpdate ) {
 			try {
 				$spec = $update->getAsJobSpecification();
 				JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
-
-				return $e;
-			} catch ( Throwable $jobEx ) {
+			} catch ( Throwable $jobException ) {
+				MWExceptionHandler::logException( $jobException );
+				$logger->error(
+					"Deferred update '{deferred_type}' failed to enqueue as a job.",
+					[
+						'deferred_type' => $type,
+						'exception' => $jobException,
+					]
+				);
+				$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 			}
-
-			MWExceptionHandler::logException( $jobEx );
-			$logger->error(
-				"Deferred update '{deferred_type}' failed to enqueue as a job.",
-				[
-					'deferred_type' => $type,
-					'exception' => $jobEx,
-				]
-			);
-
-			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 		}
 
-		return $e;
+		return $updateException;
 	}
 
 	/**
