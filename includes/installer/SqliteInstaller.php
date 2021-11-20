@@ -228,7 +228,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		# deleted the data dir between then and now
 		$dir_status = self::checkDataDir( $dir );
 		if ( $dir_status->isGood() ) {
-			// @phan-suppress-next-line SecurityCheck-PathTraversal
 			$res = self::createDataDir( $dir );
 			if ( !$res->isGood() ) {
 				return $res;
