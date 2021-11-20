@@ -348,8 +348,8 @@ vuex:
 
 wvui:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.3.2.tgz
-  integrity: sha512-IZF9X/LN7waIP/XWxoYVJx28Q1pcrWL3gRu/wLy1Aihi5PdiISdqFYNbSpLoH9Q+/94qBRS0wOvgrs0yksXmPw==
+  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.3.3.tgz
+  integrity: sha512-/Z3aHvrjU2EtTOPh78PpY6oUh+LTGvOceb6A1GhpPnq8sj2q6nKFD4ILihl0zp1bl+k03mL2JJJ062000A2QuQ==
 
   dest:
     package/README.md:
