@@ -544,13 +544,14 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	public function getPageClasses( $title ) {
-		$numeric = 'ns-' . $title->getNamespace();
+		$services = MediaWikiServices::getInstance();
+		$ns = $title->getNamespace();
+		$numeric = 'ns-' . $ns;
 
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
 			// T25315: provide a class based on the canonical special page name without subpages
-			list( $canonicalName ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				resolveAlias( $title->getDBkey() );
+			list( $canonicalName ) = $services->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
 			if ( $canonicalName ) {
 				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
 			} else {
@@ -568,8 +569,9 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
-		$root = Sanitizer::escapeClass( 'rootpage-' . $title->getRootTitle()->getPrefixedText() );
+		$titleFormatter = $services->getTitleFormatter();
+		$name = Sanitizer::escapeClass( 'page-' . $titleFormatter->getPrefixedText( $title ) );
+		$root = Sanitizer::escapeClass( 'rootpage-' . $titleFormatter->formatTitle( $ns, $title->getRootText() ) );
 
 		return "$numeric $type $name $root";
 	}
