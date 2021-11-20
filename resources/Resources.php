@@ -632,7 +632,8 @@ return [
 			'resources/lib/wvui/wvui.css',
 		],
 		'dependencies' => [
-			'vue'
+			'vue',
+			'@vue/composition-api',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
