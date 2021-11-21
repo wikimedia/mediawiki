@@ -1747,7 +1747,7 @@ function wfTempDir() {
 function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
-	if ( FileBackend::isStoragePath( $dir ) ) { // sanity
+	if ( FileBackend::isStoragePath( $dir ) ) {
 		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
 	}
 

@@ -897,7 +897,7 @@ class SpecialVersion extends SpecialPage {
 
 			if ( is_array( $descriptionMsg ) ) {
 				$descriptionMsgKey = array_shift( $descriptionMsg );
-				$descriptionMsg = array_map( 'htmlspecialchars', $descriptionMsg ); // For sanity
+				$descriptionMsg = array_map( 'htmlspecialchars', $descriptionMsg );
 				$description = $this->msg( $descriptionMsgKey, ...$descriptionMsg )->text();
 			} else {
 				$description = $this->msg( $descriptionMsg )->text();

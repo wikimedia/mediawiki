@@ -47,7 +47,7 @@ class RevisionDeleteUser {
 		global $wgActorTableSchemaMigrationStage;
 
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
-			return false; // sanity check
+			return false;
 		}
 		if ( !$dbw instanceof IDatabase ) {
 			$dbw = wfGetDB( DB_PRIMARY );

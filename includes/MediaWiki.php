@@ -722,7 +722,7 @@ class MediaWiki {
 			}
 
 			if ( $isCrossWikiRedirect ) {
-				if ( $output->getRedirect() ) { // sanity
+				if ( $output->getRedirect() ) {
 					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
 						$output->getRedirect(),
 						$cpIndex
@@ -834,7 +834,7 @@ class MediaWiki {
 		// Since the headers and output where already flushed, disable WebResponse setters
 		// during post-send processing to warnings and unexpected behavior (T191537)
 		WebResponse::disableForPostSend();
-		// Run post-send updates while preventing further output for sanity...
+		// Run post-send updates while preventing further output...
 		ob_start( static function () {
 			return ''; // do not output uncaught exceptions
 		} );

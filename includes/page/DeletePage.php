@@ -663,7 +663,6 @@ class DeletePage {
 			}
 		}
 
-		// This conditional is just a sanity check
 		if ( count( $revids ) > 0 ) {
 			// Copy them into the archive table
 			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );

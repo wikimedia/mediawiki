@@ -1046,7 +1046,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// callbacks are pending does not mean that an exception should be thrown. Rather, they
 		// will be executed after the reconnection step.
 		if ( $wasOpen ) {
-			// Sanity check that no callbacks are dangling
+			// Double check that no callbacks are dangling
 			$fnames = $this->pendingWriteAndCallbackCallers();
 			if ( $fnames ) {
 				throw new RuntimeException(
@@ -1059,7 +1059,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make sure there is an open connection handle (alive or not) as a sanity check
+	 * Make sure there is an open connection handle (alive or not)
 	 *
 	 * This guards against fatal errors to the binding handle not being defined in cases
 	 * where open() was never called or close() was already called.
@@ -1073,7 +1073,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make sure that this server is not marked as a replica nor read-only as a sanity check
+	 * Make sure that this server is not marked as a replica nor read-only
 	 *
 	 * @throws DBReadOnlyError
 	 * @since 1.37
@@ -1315,7 +1315,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
 		$flags = (int)$flags; // b/c; this field used to be a bool
-		// Sanity check that the SQL query is appropriate in the current context and is
+		// Double check that the SQL query is appropriate in the current context and is
 		// allowed for an outside caller (e.g. does not break transaction/session tracking).
 		$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 
@@ -1863,7 +1863,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		if ( $var === '*' ) { // sanity
+		if ( $var === '*' ) {
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
 		} elseif ( is_array( $var ) && count( $var ) !== 1 ) {
 			throw new DBUnexpectedError( $this, 'Cannot use more than one field' );
@@ -1888,9 +1888,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function selectFieldValues(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array {
-		if ( $var === '*' ) { // sanity
+		if ( $var === '*' ) {
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
-		} elseif ( !is_string( $var ) ) { // sanity
+		} elseif ( !is_string( $var ) ) {
 			throw new DBUnexpectedError( $this, "Cannot use an array of fields" );
 		}
 
@@ -3896,7 +3896,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// Skip empty $values
 				continue;
 			}
-			$values = array_unique( $values ); // For sanity
+			$values = array_unique( $values );
 			$newConds = [];
 			foreach ( $conds as $cond ) {
 				foreach ( $values as $value ) {
@@ -4338,7 +4338,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws Throwable Any non-DBError exception thrown by a callback
 	 */
 	public function runOnTransactionIdleCallbacks( $trigger, array &$errors = [] ) {
-		if ( $this->trxLevel() ) { // sanity
+		if ( $this->trxLevel() ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ': a transaction is still open' );
 		}
 
@@ -6068,7 +6068,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Run a few simple sanity checks and close dangling connections
+	 * Run a few simple checks and close dangling connections
 	 */
 	public function __destruct() {
 		if ( $this->trxLevel() && $this->trxDoneWrites ) {
@@ -6082,7 +6082,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $this->conn ) {
-			// Avoid connection leaks for sanity. Normally, resources close at script completion.
+			// Avoid connection leaks. Normally, resources close at script completion.
 			// The connection might already be closed in PHP by now, so suppress warnings.
 			AtEase::suppressWarnings();
 			$this->closeConnection();

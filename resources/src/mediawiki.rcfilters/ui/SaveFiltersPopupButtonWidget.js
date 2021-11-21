@@ -175,7 +175,7 @@ SaveFiltersPopupButtonWidget.prototype.onApplyButtonClick = function () {
 SaveFiltersPopupButtonWidget.prototype.apply = function () {
 	var label = this.input.getValue().trim();
 
-	// This condition is more for sanity-check, since the
+	// This condition is more for double-checking, since the
 	// apply button should be disabled if the label is empty
 	if ( label ) {
 		this.controller.saveCurrentQuery( label, this.setAsDefaultCheckbox.isSelected() );

@@ -56,7 +56,7 @@ class OutputHandler {
 			$s = self::mangleFlashPolicy( $s );
 		}
 
-		// Sanity check if a compression output buffer is already enabled via php.ini. Such
+		// Check if a compression output buffer is already enabled via php.ini. Such
 		// buffers exists at the start of the request and are reflected by ob_get_level().
 		$phpHandlesCompression = (
 			ini_get( 'output_handler' ) === 'ob_gzhandler' ||

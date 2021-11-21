@@ -263,7 +263,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 					}
 				);
 
-			// Sanity check
 			default:
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-pagehistorycount-type-unrecognized',

@@ -5909,7 +5909,7 @@ class Parser {
 
 		// If the parse is for a new revision, then the callback should have
 		// already been set to force the object and should match mRevisionId.
-		// If not, try to fetch by mRevisionId for sanity.
+		// If not, try to fetch by mRevisionId instead.
 		if ( $this->mRevisionId && $rev && $rev->getId() != $this->mRevisionId ) {
 			$rev = MediaWikiServices::getInstance()
 				->getRevisionLookup()

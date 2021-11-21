@@ -216,7 +216,7 @@ class UnblockUser {
 
 		$logEntry = new ManualLogEntry( 'block', 'unblock' );
 
-		if ( $page !== null ) { // Sanity
+		if ( $page !== null ) {
 			$logEntry->setTarget( $page );
 		}
 		$logEntry->setComment( $this->reason );

@@ -3825,9 +3825,10 @@ class Language {
 	 */
 	private function truncate_skip( &$ret, $text, $search, $start, $len = null ) {
 		if ( $len === null ) {
-			$len = -1; // -1 means "no limit" for strcspn
+			// -1 means "no limit" for strcspn
+			$len = -1;
 		} elseif ( $len < 0 ) {
-			$len = 0; // sanity
+			$len = 0;
 		}
 		$skipCount = 0;
 		if ( $start < strlen( $text ) ) {

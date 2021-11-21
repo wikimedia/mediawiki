@@ -619,7 +619,7 @@ class LocalFile extends File {
 		$array = (array)$row;
 		$prefixLength = strlen( $prefix );
 
-		// Sanity check prefix once
+		// Double check prefix once
 		if ( substr( key( $array ), 0, $prefixLength ) !== $prefix ) {
 			throw new MWException( __METHOD__ . ': incorrect $prefix parameter' );
 		}
@@ -826,7 +826,7 @@ class LocalFile extends File {
 
 		$dbw->update( 'image',
 			[
-				'img_size' => $this->size, // sanity
+				'img_size' => $this->size,
 				'img_width' => $this->width,
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
@@ -1578,7 +1578,7 @@ class LocalFile extends File {
 		$purgeList = [];
 		foreach ( $files as $file ) {
 			# Check that the reference (filename or sha1) is part of the thumb name
-			# This is a basic sanity check to avoid erasing unrelated directories
+			# This is a basic check to avoid erasing unrelated directories
 			if ( strpos( $file, $reference ) !== false
 				|| strpos( $file, "-thumbnail" ) !== false // "short" thumb name
 			) {

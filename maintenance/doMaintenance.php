@@ -55,7 +55,7 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 /** @var Maintenance $maintenance */
 $maintenance = new $maintClass();
 
-// Basic sanity checks and such
+// Basic checks and such
 $maintenance->setup();
 
 // We used to call this variable $self, but it was moved
@@ -92,7 +92,7 @@ require_once "$IP/includes/Setup.php";
 // Initialize main config instance
 $maintenance->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
 
-// Sanity-check required extensions are installed
+// Double check required extensions are installed
 $maintenance->checkRequiredExtensions();
 
 if ( $maintenance->getDbType() == Maintenance::DB_NONE ) {

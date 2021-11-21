@@ -218,7 +218,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			# Normalize NS_MEDIA -> NS_FILE
 			if ( $ret->getNamespace() === NS_MEDIA ) {
 				$ret = Title::makeTitleSafe( NS_FILE, $ret->getDBkey() );
-			# Sanity check the title namespace
+			# Double check the titles namespace
 			} elseif ( $ret->getNamespace() !== NS_FILE ) {
 				$ret = null;
 			}

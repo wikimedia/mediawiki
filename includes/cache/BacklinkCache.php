@@ -528,7 +528,7 @@ class BacklinkCache {
 				$end = (int)$row->page_id;
 			}
 
-			# Sanity check order
+			# Check order
 			if ( $start && $end && $start > $end ) {
 				throw new MWException( __METHOD__ . ': Internal error: query result out of order' );
 			}

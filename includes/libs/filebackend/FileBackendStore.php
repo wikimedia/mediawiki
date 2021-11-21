@@ -405,8 +405,8 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doConcatenate( array $params ) {
 		$status = $this->newStatus();
-		$tmpPath = $params['dst']; // convenience
-		unset( $params['latest'] ); // sanity
+		$tmpPath = $params['dst'];
+		unset( $params['latest'] );
 
 		// Check that the specified temp file is valid...
 		AtEase::suppressWarnings();
@@ -1562,7 +1562,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected static function isValidShortContainerName( $container ) {
 		// Suffixes like '.xxx' (hex shard chars) or '.seg' (file segments)
-		// might be used by subclasses. Reserve the dot character for sanity.
+		// might be used by subclasses. Reserve the dot character.
 		// The only way dots end up in containers (e.g. resolveStoragePath)
 		// is due to the wikiId container prefix or the above suffixes.
 		return self::isValidContainerName( $container ) && !preg_match( '/[.]/', $container );
@@ -1953,7 +1953,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Load all of the results into process cache...
 		foreach ( array_filter( $values, 'is_array' ) as $cacheKey => $stat ) {
 			$path = $pathNames[$cacheKey];
-			// Sanity; this flag only applies to stat info loaded directly
+			// This flag only applies to stat info loaded directly
 			// from a high consistency backend query to the process cache
 			unset( $stat['latest'] );
 

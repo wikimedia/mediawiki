@@ -764,7 +764,7 @@ class SpecialPage implements MessageLocalizer {
 	public function getContext() {
 		if ( !( $this->mContext instanceof IContextSource ) ) {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Using RequestContext::getMain(); for sanity" );
+				"Using RequestContext::getMain()" );
 
 			$this->mContext = RequestContext::getMain();
 		}

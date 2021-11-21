@@ -95,7 +95,8 @@ class BacklinkJobUtils {
 		$backlinkCache = MediaWikiServices::getInstance()->getBacklinkCacheFactory()
 			->getBacklinkCache( $title );
 		if ( isset( $params['pages'] ) || empty( $params['recursive'] ) ) {
-			$ranges = []; // sanity; this is a leaf node
+			// this is a leaf node
+			$ranges = [];
 			$realBSize = 0;
 			wfWarn( __METHOD__ . " called on {$job->getType()} leaf job (explosive recursion)." );
 		} elseif ( isset( $params['range'] ) ) {

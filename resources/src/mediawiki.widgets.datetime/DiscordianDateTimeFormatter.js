@@ -391,7 +391,6 @@
 				delta *= 5;
 			}
 			if ( components.Day === 'tib' ) {
-				// For sanity
 				components.Season = 1;
 			}
 			switch ( mode ) {

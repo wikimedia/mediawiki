@@ -216,7 +216,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Only allow content-* and x-content-* headers (but not content-length)
 				$contentHeaders[$name] = $value;
 			} elseif ( $name === 'content-type' && strlen( $value ) ) {
-				// This header can be set to a value but not unset for sanity
+				// This header can be set to a value but not unset
 				$contentHeaders[$name] = $value;
 			}
 		}
@@ -982,7 +982,7 @@ class SwiftFileBackend extends FileBackendStore {
 						do { // add dir and all its parent dirs
 							$dirs[] = "{$pDir}/";
 							$pDir = $getParentDir( $pDir );
-						} while ( $pDir !== false // sanity
+						} while ( $pDir !== false
 							&& strcmp( $pDir, $lastDir ) > 0 // not done already
 							&& strlen( $pDir ) > strlen( $dir ) // within $dir
 						);

@@ -405,7 +405,7 @@ class ResourceLoaderImage {
 		// class, with a separate set of configuration settings.
 		//
 		// This is a distinct use case from regular SVG rasterization:
-		// * We can skip many sanity and security checks (as the images come from a trusted source,
+		// * We can skip many checks (as the images come from a trusted source,
 		//   rather than from the user).
 		// * We need to provide extra options to some converters to achieve acceptable quality for very
 		//   small images, which might cause performance issues in the general case.

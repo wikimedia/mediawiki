@@ -531,7 +531,7 @@ class BlockUser {
 	}
 
 	/**
-	 * Places a block without any sort of sanity/permission checks, hooks can still
+	 * Places a block without any sort of permission or double checking, hooks can still
 	 * abort the block through, as well as already existing block.
 	 *
 	 * @param bool $reblock Should this reblock?

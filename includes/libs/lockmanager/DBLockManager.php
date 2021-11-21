@@ -234,7 +234,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	}
 
 	/**
-	 * Make sure remaining locks get cleared for sanity
+	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
 		$this->releaseAllLocks();

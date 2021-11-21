@@ -32,8 +32,8 @@ use MediaWiki\User\UserIdentity;
  * summary box. By the time of submission, the parse may have already
  * finished, and can be immediately used on page save. Certain parser
  * functions like {{REVISIONID}} or {{CURRENTTIME}} may cause the cache
- * to not be used on edit. Template and files used are check for changes
- * since the output was generated. The cache TTL is also kept low for sanity.
+ * to not be used on edit. Template and files used are checked for changes
+ * since the output was generated. The cache TTL is also kept low.
  *
  * @ingroup API
  * @since 1.25
@@ -86,7 +86,7 @@ class ApiStashEdit extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		if ( $user->isBot() ) { // sanity
+		if ( $user->isBot() ) {
 			$this->dieWithError( 'apierror-botsnotsupported' );
 		}
 

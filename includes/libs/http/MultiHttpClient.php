@@ -654,7 +654,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 
 		$selectTimeout = min( $timeouts ) * self::TIMEOUT_ACCURACY_FACTOR;
-		// Minimum 10us for sanity
+		// Minimum 10us
 		if ( $selectTimeout < 10e-6 ) {
 			$selectTimeout = 10e-6;
 		}

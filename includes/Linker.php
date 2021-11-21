@@ -1855,7 +1855,7 @@ class Linker {
 				) ) {
 					// If the user or the text of the revision we might rollback
 					// to is deleted in some way we can't rollback. Similar to
-					// the sanity checks in WikiPage::commitRollback.
+					// the checks in WikiPage::commitRollback.
 					return false;
 				}
 				$moreRevs = true;

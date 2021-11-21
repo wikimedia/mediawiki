@@ -304,7 +304,7 @@ class Message implements MessageSpecifier, Serializable {
 			// TODO: figure out what's needed to remove this codepath
 			$this->contextPage = Title::newFromText( $data['titlestr'] );
 		} else {
-			$this->contextPage = null; // Explicit for sanity
+			$this->contextPage = null;
 		}
 	}
 
