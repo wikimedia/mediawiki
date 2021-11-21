@@ -217,6 +217,9 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-page-rename-name_title-index.sql' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_rc_tag_id', 'ct_rc_tag_id', false,
 				'patch-change_tag-rename-indexes.sql' ],
+
+			// 1.38
+			[ 'doConvertDjvuMetadata' ],
 		];
 	}
 

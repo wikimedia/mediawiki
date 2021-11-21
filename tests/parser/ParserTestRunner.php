@@ -1544,6 +1544,17 @@ class ParserTestRunner {
 
 		# A DjVu file
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$djvuMetadata = [
+			'data' => [
+				'pages' => [
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+				],
+			],
+		];
 		$image->recordUpload3(
 			'',
 			'Upload a DjVu',
@@ -1556,32 +1567,7 @@ class ParserTestRunner {
 				'bits' => 0,
 				'media_type' => MEDIATYPE_OFFICE,
 				'mime' => 'image/vnd.djvu',
-				'metadata' => [ 'xml' => '<?xml version="1.0" ?>
-<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
-<DjVuXML>
-<HEAD></HEAD>
-<BODY><OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-</BODY>
-</DjVuXML>' ],
+				'metadata' => $djvuMetadata,
 				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],

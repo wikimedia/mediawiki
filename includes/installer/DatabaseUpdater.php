@@ -1186,6 +1186,27 @@ abstract class DatabaseUpdater {
 		$this->output( "...done.\n" );
 	}
 
+	protected function doConvertDjvuMetadata() {
+		if ( $this->updateRowExists( 'ConvertDjvuMetadata' ) ) {
+			return;
+		}
+		$this->output( "Converting djvu metadata..." );
+		$task = $this->maintenance->runChild( RefreshImageMetadata::class );
+		'@phan-var RefreshImageMetadata $task';
+		$task->loadParamsAndArgs( RefreshImageMetadata::class, [
+			'force' => true,
+			'mediatype' => 'OFFICE',
+			'mime' => 'image/*',
+			'batch-size' => 1,
+			'sleep' => 1
+		] );
+		$ok = $task->execute();
+		if ( $ok !== false ) {
+			$this->output( "...done.\n" );
+			$this->insertUpdateRow( 'ConvertDjvuMetadata' );
+		}
+	}
+
 	/**
 	 * Rebuilds the localisation cache
 	 */
