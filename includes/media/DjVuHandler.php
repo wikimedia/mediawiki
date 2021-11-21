@@ -257,7 +257,7 @@ class DjVuHandler extends ImageHandler {
 	 * @throws MWException
 	 */
 	private function getMetadataInternal( File $file, $gettext ) {
-		$itemNames = [ 'error', '_error', 'data', 'xml' ];
+		$itemNames = [ 'error', '_error', 'data' ];
 		if ( $gettext ) {
 			$itemNames[] = 'text';
 		}
@@ -265,14 +265,8 @@ class DjVuHandler extends ImageHandler {
 
 		if ( isset( $unser['error'] ) ) {
 			return false;
-		} elseif ( isset( $unser['xml'] ) ) {
-			return $unser['xml'];
-		} elseif ( isset( $unser['_error'] )
-			&& is_string( $unser['_error'] )
-			&& substr( $unser['_error'], 0, 3 ) === '<?xml'
-		) {
-			// Old style. Not serialized but instead just a raw string of XML.
-			return $unser['_error'];
+		} elseif ( isset( $unser['_error'] ) ) {
+			return false;
 		} else {
 			return $unser;
 		}
@@ -282,7 +276,7 @@ class DjVuHandler extends ImageHandler {
 	 * Cache a document tree for the DjVu metadata
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
-	 * @return SimpleXMLElement|false|array
+	 * @return false|array
 	 */
 	public function getMetaTree( $image, $gettext = false ) {
 		if ( $gettext && $image->getHandlerState( self::STATE_TEXT_TREE ) ) {
@@ -297,59 +291,12 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 
-		if ( is_array( $metadata ) ) {
-			if ( $gettext ) {
-				return $metadata;
-			} else {
-				unset( $metadata['text'] );
-				return $metadata;
-			}
-		}
-
-		// XML version saved
-		$trees = $this->extractTreesFromXML( $metadata );
-		$image->setHandlerState( self::STATE_TEXT_TREE, $trees['TextTree'] );
-		$image->setHandlerState( self::STATE_META_TREE, $trees['MetaTree'] );
-
 		if ( $gettext ) {
-			return $trees['TextTree'];
+			return $metadata;
 		} else {
-			return $trees['MetaTree'];
+			unset( $metadata['text'] );
+			return $metadata;
 		}
-	}
-
-	/**
-	 * Extracts metadata and text trees from metadata XML in string form
-	 * @param string $xml XML metadata as a string
-	 * @return array
-	 */
-	protected function extractTreesFromXML( $xml ) {
-		Wikimedia\suppressWarnings();
-		try {
-			// Set to false rather than null to avoid further attempts
-			$metaTree = false;
-			$textTree = false;
-			$tree = new SimpleXMLElement( $xml, LIBXML_PARSEHUGE );
-			if ( $tree->getName() == 'mw-djvu' ) {
-				/** @var SimpleXMLElement $b */
-				foreach ( $tree->children() as $b ) {
-					if ( $b->getName() == 'DjVuTxt' ) {
-						// @todo File::djvuTextTree and File::dejaMetaTree are declared
-						// dynamically. Add a public File::$data to facilitate this?
-						$textTree = $b;
-					} elseif ( $b->getName() == 'DjVuXML' ) {
-						$metaTree = $b;
-					}
-				}
-			} else {
-				$metaTree = $tree;
-			}
-		} catch ( Exception $e ) {
-			wfDebug( "Bogus multipage XML metadata" );
-		}
-		Wikimedia\restoreWarnings();
-
-		return [ 'MetaTree' => $metaTree, 'TextTree' => $textTree ];
 	}
 
 	public function getThumbType( $ext, $mime, $params = null ) {
@@ -416,7 +363,7 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Given the metadata, returns dimension information about the document
-	 * @param SimpleXMLElement|false|array $metatree The file's metadata tree
+	 * @param false|array $metatree The file's metadata tree
 	 * @return array|false
 	 */
 	protected function getDimensionInfoFromMetaTree( $metatree ) {
@@ -425,39 +372,23 @@ class DjVuHandler extends ImageHandler {
 		}
 		$dimsByPage = [];
 
-		if ( is_array( $metatree ) ) {
-			if ( !isset( $metatree['data'] ) || !$metatree['data'] ) {
-				return false;
-			}
-			foreach ( $metatree['data']['pages'] as $page ) {
-				if ( !$page ) {
-					$dimsByPage[] = false;
-				} else {
-					$dimsByPage[] = [
-						'width' => (int)$page['width'],
-						'height' => (int)$page['height'],
-					];
-				}
-			}
-			return [
-				'pageCount' => count( $metatree['data']['pages'] ),
-				'dimensionsByPage' => $dimsByPage
-			];
+		if ( !isset( $metatree['data'] ) || !$metatree['data'] ) {
+			return false;
 		}
-		$count = count( $metatree->xpath( '//OBJECT' ) );
-		for ( $i = 0; $i < $count; $i++ ) {
-			$o = $metatree->BODY[0]->OBJECT[$i];
-			if ( $o ) {
-				$dimsByPage[$i] = [
-					'width' => (int)$o['width'],
-					'height' => (int)$o['height'],
-				];
+		foreach ( $metatree['data']['pages'] as $page ) {
+			if ( !$page ) {
+				$dimsByPage[] = false;
 			} else {
-				$dimsByPage[$i] = false;
+				$dimsByPage[] = [
+					'width' => (int)$page['width'],
+					'height' => (int)$page['height'],
+				];
 			}
 		}
-
-		return [ 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage ];
+		return [
+			'pageCount' => count( $metatree['data']['pages'] ),
+			'dimensionsByPage' => $dimsByPage
+		];
 	}
 
 	/**
@@ -469,11 +400,6 @@ class DjVuHandler extends ImageHandler {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
 			return false;
-		}
-		// b/c
-		if ( $tree instanceof SimpleXMLElement ) {
-			$o = $tree->BODY[0]->PAGE[$page - 1];
-			return $o ? (string)$o['value'] : false;
 		}
 		if ( isset( $tree['text'] ) && isset( $tree['text'][$page - 1] ) ) {
 			return $tree['text'][$page - 1];

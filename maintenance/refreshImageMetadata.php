@@ -187,7 +187,9 @@ class RefreshImageMetadata extends Maintenance {
 					$this->output( "{$row->img_name} failed. {$e->getMessage()}\n" );
 				}
 			}
-			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
+			if ( $res->numRows() > 0 ) {
+				$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
+			}
 			$lbFactory->waitForReplication();
 			if ( $sleep ) {
 				sleep( $sleep );

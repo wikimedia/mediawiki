@@ -632,6 +632,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'change_tag', 'change_tag_log_tag_id', 'ct_log_tag_id' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_rev_tag_id', 'ct_rev_tag_id' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_tag_id_id', 'ct_tag_id_id' ],
+
+			// 1.38
+			[ 'doConvertDjvuMetadata' ],
 		];
 	}
 
