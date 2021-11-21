@@ -181,7 +181,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue(
 			$manager->addUserToGroup( $user, self::GROUP ),
-			'Sanity: added user to group'
+			'added user to group'
 		);
 		$this->assertArrayEquals(
 			[ '*', 'user', 'autoconfirmed' ],
@@ -494,7 +494,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$expiryInPast = wfTimestamp( TS_MW, time() - 100500 );
 		$this->assertTrue(
 			$manager->addUserToGroup( $user, 'expired', $expiryInPast ),
-			'Sanity: can add expired group'
+			'can add expired group'
 		);
 		$manager->purgeExpired();
 		$this->assertNotContains( 'expired', $manager->getUserGroups( $user ) );
@@ -989,9 +989,9 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$manager->removeUserFromGroup( $user, $formerGroup );
 		}
 		$this->assertArrayEquals( $userGroups, $manager->getUserGroups( $user ),
-			false, 'Sanity: user groups are correct ' );
+			false, 'user groups are correct ' );
 		$this->assertArrayEquals( $formerGroups, $manager->getUserFormerGroups( $user ),
-			false, 'Sanity: user former groups are correct ' );
+			false, 'user former groups are correct ' );
 		$this->assertArrayEquals(
 			$expected,
 			$manager->getUserAutopromoteOnceGroups( $user, 'EVENT' )

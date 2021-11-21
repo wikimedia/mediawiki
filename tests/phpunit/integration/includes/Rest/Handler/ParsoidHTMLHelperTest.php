@@ -213,7 +213,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( $now );
 		$this->assertTrue(
 			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $now ) ),
-			'Sanity: can invalidate cache'
+			'Can invalidate cache'
 		);
 		DeferredUpdates::doUpdates();
 		$page->clear();

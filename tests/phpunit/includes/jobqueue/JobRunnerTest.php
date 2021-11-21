@@ -31,7 +31,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 		$str = wfRandomString( 10 );
 		$this->page = $this->insertPage( $str )['title'];
 
-		$this->assertTrue( $this->page->exists(), 'Sanity: The created page exists' );
+		$this->assertTrue( $this->page->exists(), 'The created page exists' );
 
 		$this->jobRunner = MediaWikiServices::getInstance()->getJobRunner();
 		$jobParams = [

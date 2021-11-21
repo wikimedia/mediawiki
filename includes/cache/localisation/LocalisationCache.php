@@ -1027,7 +1027,7 @@ class LocalisationCache {
 		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
 		if ( $allData['namespaceNames'] === null ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
+			throw new MWException( __METHOD__ . ': Localisation data failed validation check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 

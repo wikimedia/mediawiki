@@ -368,7 +368,6 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		// sanity
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs

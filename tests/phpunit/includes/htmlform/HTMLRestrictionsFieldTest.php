@@ -55,7 +55,6 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 			$this->assertEquals( $value, $restrictions->toArray()['IPAddresses'] );
 		}
 
-		// sanity
 		$form->getHTML( $status );
 	}
 

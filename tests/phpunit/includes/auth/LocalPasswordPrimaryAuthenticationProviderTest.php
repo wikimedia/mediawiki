@@ -475,7 +475,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$provider = $this->getProvider( $loginOnly );
 
-		// Sanity check
 		$loginReq = new PasswordAuthenticationRequest();
 		$loginReq->action = AuthManager::ACTION_LOGIN;
 		$loginReq->username = $user;

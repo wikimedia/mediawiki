@@ -33,7 +33,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 				$row,
 				__METHOD__,
 				[ 'IGNORE' ]
-			), "Sanity: must create {$description} actor" );
+			), "Must create {$description} actor" );
 		}
 	}
 

@@ -1116,7 +1116,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	public function testAddTemporaryUserRights() {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->overrideUserPermissions( $this->user, [ 'read', 'edit' ] );
-		// sanity checks
+
 		$this->assertEquals( [ 'read', 'edit' ], $permissionManager->getUserPermissions( $this->user ) );
 		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
 

@@ -696,7 +696,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$existingTitle1 = $existingPage1->getTitle();
 		$existingId1 = $existingTitle1->getId();
 
-		$this->assertGreaterThan( 0, $existingId1, 'Sanity: Existing test page should have a positive id' );
+		$this->assertGreaterThan( 0, $existingId1, 'Existing test page should have a positive id' );
 
 		$newFromId1 = Title::newFromID( $existingId1 );
 		$this->assertInstanceOf( Title::class, $newFromId1, 'newFromID returns a title for an existing id' );
@@ -710,7 +710,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$existingTitle2 = $existingPage2->getTitle();
 		$existingId2 = $existingTitle2->getId();
 
-		$this->assertGreaterThan( 0, $existingId2, 'Sanity: Existing test page should have a positive id' );
+		$this->assertGreaterThan( 0, $existingId2, 'Existing test page should have a positive id' );
 
 		$newFromId2 = Title::newFromID( $existingId2 );
 		$this->assertInstanceOf( Title::class, $newFromId2, 'newFromID returns a title for an existing id' );

@@ -116,7 +116,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 		// cache in $store1, but not the internal cache in store2.
 		$this->assertTrue( $store1->clear() );
 
-		// sanity check: $store2 should have a stale cache now
+		// check: $store2 should have a stale cache now
 		$this->assertNotNull( $store2->getSite( 'enwiki' ) );
 
 		// purge cache

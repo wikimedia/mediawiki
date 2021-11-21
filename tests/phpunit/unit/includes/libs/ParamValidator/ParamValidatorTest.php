@@ -82,7 +82,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			->setConstructorArgs( [ $callbacks ] );
 		$def1 = $mb->getMockForAbstractClass();
 		$def2 = $mb->getMockForAbstractClass();
-		$this->assertNotSame( $def1, $def2, 'sanity check' );
+		$this->assertNotSame( $def1, $def2, 'consistency check' );
 
 		$factory = $this->getMockBuilder( ObjectFactory::class )
 			->setConstructorArgs( [ $this->getMockForAbstractClass( ContainerInterface::class ) ] )

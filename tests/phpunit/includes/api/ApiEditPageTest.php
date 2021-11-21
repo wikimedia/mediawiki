@@ -142,7 +142,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => $text, ] );
 
-			$this->assertSame( 'Success', $re['edit']['result'] ); // sanity
+			$this->assertSame( 'Success', $re['edit']['result'] );
 		}
 
 		// -- try append/prepend --------------------------------------------

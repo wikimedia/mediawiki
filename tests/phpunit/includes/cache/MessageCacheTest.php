@@ -80,7 +80,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			->setContent( SlotRecord::MAIN, $content )
 			->saveRevision( $summary );
 
-		// sanity
 		$this->assertNotNull( $newRevision, 'Create page ' . $title->getPrefixedDBkey() );
 		return $newRevision;
 	}

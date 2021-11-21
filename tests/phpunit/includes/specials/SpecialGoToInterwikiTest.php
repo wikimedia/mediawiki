@@ -22,12 +22,11 @@ class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 
-		// sanity check
-		$this->assertTrue( !Title::newFromText( 'Foo' )->isExternal() );
+		$this->assertNotTrue( Title::newFromText( 'Foo' )->isExternal() );
 		$this->assertTrue( Title::newFromText( 'local:Foo' )->isExternal() );
 		$this->assertTrue( Title::newFromText( 'nonlocal:Foo' )->isExternal() );
 		$this->assertTrue( Title::newFromText( 'local:Foo' )->isLocal() );
-		$this->assertTrue( !Title::newFromText( 'nonlocal:Foo' )->isLocal() );
+		$this->assertNotTrue( Title::newFromText( 'nonlocal:Foo' )->isLocal() );
 
 		$goToInterwiki = MediaWikiServices::getInstance()->getSpecialPageFactory()
 			->getPage( 'GoToInterwiki' );

@@ -1312,7 +1312,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		$msg = new Message( 'mainpage' );
 
-		// Sanity check empty array
+		// Check empty array
 		$expect = Status::newGood();
 		$this->assertEquals( $expect, $mock->errorArrayToStatus( [] ) );
 
@@ -1375,7 +1375,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		$msg = new Message( 'mainpage' );
 
-		// Sanity check empty array
+		// Check empty array
 		$expect = Status::newGood();
 		$test = Status::newGood();
 		$mock->addBlockInfoToStatus( $test );

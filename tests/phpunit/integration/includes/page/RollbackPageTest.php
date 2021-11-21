@@ -124,15 +124,15 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		// Make some edits
 		$text = "one";
 		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'Sanity: edit 1 success' );
+		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
 
 		$text .= "\n\ntwo";
 		$status2 = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user1 );
-		$this->assertTrue( $status2->isGood(), 'Sanity: edit 2 success' );
+		$this->assertTrue( $status2->isGood(), 'edit 2 success' );
 
 		$text .= "\n\nthree";
 		$status3 = $this->editPage( $page, $text, "adding section three", NS_MAIN, $user2 );
-		$this->assertTrue( $status3->isGood(), 'Sanity: edit 3 success' );
+		$this->assertTrue( $status3->isGood(), 'edit 3 success' );
 
 		/** @var RevisionRecord $rev1 */
 		/** @var RevisionRecord $rev2 */
@@ -191,13 +191,13 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$text = "one";
 		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'Sanity: edit 1 success' );
+		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
 		$rev1 = $page->getRevisionRecord();
 
 		$user1 = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$text .= "\n\ntwo";
 		$status1 = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user1 );
-		$this->assertTrue( $status1->isGood(), 'Sanity: edit 2 success' );
+		$this->assertTrue( $status1->isGood(), 'edit 2 success' );
 
 		$rollbackResult = $this->getServiceContainer()
 			->getRollbackPageFactory()
@@ -243,12 +243,12 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$result = [];
 		$text = "one";
 		$status = $this->editPage( $page, $text, "section one", NS_MAIN, $user1 );
-		$this->assertTrue( $status->isGood(), 'Sanity: edit 1 success' );
+		$this->assertTrue( $status->isGood(), 'edit 1 success' );
 		$result['revision-one'] = $status->getValue()['revision-record'];
 
 		$text .= "\n\ntwo";
 		$status = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user2 );
-		$this->assertTrue( $status->isGood(), 'Sanity: edit 2 success' );
+		$this->assertTrue( $status->isGood(), 'edit 2 success' );
 		$result['revision-two'] = $status->getValue()['revision-record'];
 		return $result;
 	}
@@ -348,11 +348,11 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$status1 = $this->editPage( $page, new JsonContent( '{}' ),
 			"it's json", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'Sanity: edit 1 success' );
+		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
 
 		$status1 = $this->editPage( $page, new WikitextContent( 'bla' ),
 			"no, it's wikitext", NS_MAIN, $user1 );
-		$this->assertTrue( $status1->isGood(), 'Sanity: edit 2 success' );
+		$this->assertTrue( $status1->isGood(), 'edit 2 success' );
 
 		$rollbackResult = $this->getServiceContainer()
 			->getRollbackPageFactory()

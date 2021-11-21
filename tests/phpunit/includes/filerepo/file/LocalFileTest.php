@@ -380,7 +380,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getRepoGroup()->getLocalRepo(),
 			'20201105235242'
 		);
-		$this->assertInstanceOf( File::class, $file, 'Sanity: created a test file' );
+		$this->assertInstanceOf( File::class, $file, 'Created a test file' );
 		return $file;
 	}
 

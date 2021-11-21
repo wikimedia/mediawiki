@@ -457,7 +457,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$provider = $this->getProvider();
 
-		// Sanity check
 		$loginReq = new PasswordAuthenticationRequest();
 		$loginReq->action = AuthManager::ACTION_CHANGE;
 		$loginReq->username = $user;

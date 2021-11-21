@@ -121,7 +121,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
 		$dataName = $this->dataName();
 		$this->assertNotSame( '', $name, "$dataName: Name cannot be empty" );
-		$this->assertArrayHasKey( $name, $params, "$dataName: Sanity check" );
+		$this->assertArrayHasKey( $name, $params, "$dataName: Existence check" );
 
 		$ret = $main->getParamValidator()->checkSettings(
 			$main->getModuleFromPath( $path ), $params, $name, []

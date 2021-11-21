@@ -218,11 +218,10 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$u = User::newFromName( $username );
 		$u->addToDatabase();
 		$userId = $u->getId();
-		$this->assertNotEquals( 0, $userId, 'sanity' );
+		$this->assertNotEquals( 0, $userId, 'Check user id is not 0' );
 		TestUser::setPasswordForUser( $u, 'NotRandomPass' );
 		unset( $u );
 
-		// Sanity check
 		$this->assertNull(
 			DatabaseBlock::newFromTarget( $username ),
 			"$username should not be blocked"
@@ -290,7 +289,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$user = User::newFromName( 'UserOnForeignWiki' );
 		$user->addToDatabase();
 		$userId = $user->getId();
-		$this->assertNotEquals( 0, $userId, 'sanity' );
+		$this->assertNotEquals( 0, $userId, 'Check user id is not 0' );
 
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = [

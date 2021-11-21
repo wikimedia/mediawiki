@@ -104,7 +104,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		if ( $editPageText !== null ) {
 			$editedUser = $isEditedBySameUser ? $user1 : $user2;
 			$editIsGood = $this->editPage( $article->getPage(), $editPageText, '', NS_MAIN, $editedUser )->isGood();
-			$this->assertTrue( $editIsGood, 'Sanity: edited a page' );
+			$this->assertTrue( $editIsGood, 'edited a page' );
 		}
 		$this->assertSame( $expectedResult, $article->showPatrolFooter() );
 	}

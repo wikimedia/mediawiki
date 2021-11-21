@@ -30,7 +30,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			$this->editPage(
 				$this->pageName, 'Test Content', 'test', NS_MAIN, $this->admin
 			)->isOK(),
-			'Sanity: admin contributed'
+			'Admin contributed'
 		);
 	}
 
