@@ -33,7 +33,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var array[] List of (PageReference, rebound purge delay) tuples */
 	private $pageTuples = [];
 
-	/** @var int Maximum seconds of rebound purge delay (sanity) */
+	/** @var int Maximum seconds of rebound purge delay */
 	private const MAX_REBOUND_DELAY = 300;
 
 	/**

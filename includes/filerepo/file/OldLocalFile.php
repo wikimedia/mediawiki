@@ -361,7 +361,7 @@ class OldLocalFile extends LocalFile {
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
 		$dbw->update( 'oldimage',
 			[
-				'oi_size' => $this->size, // sanity
+				'oi_size' => $this->size,
 				'oi_width' => $this->width,
 				'oi_height' => $this->height,
 				'oi_bits' => $this->bits,

@@ -147,7 +147,7 @@ class RepoGroup {
 			}
 		}
 
-		$image = $image instanceof File ? $image : false; // type sanity
+		$image = $image instanceof File ? $image : false; // type check
 		# Cache file existence or non-existence
 		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
 			$this->cache->setField( $dbkey, $timeKey, $image );

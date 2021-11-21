@@ -401,7 +401,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function enforceConnectionFlags( IDatabase $conn, $flags ) {
 		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
-			if ( $conn->trxLevel() ) { // sanity
+			if ( $conn->trxLevel() ) {
 				throw new DBUnexpectedError(
 					$conn,
 					'Handle requested with CONN_TRX_AUTOCOMMIT yet it has a transaction'
@@ -1190,7 +1190,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		// Sanity check to make sure that the right domain is selected
+		// Check to make sure that the right domain is selected
 		if (
 			$conn instanceof IDatabase &&
 			!$this->localDomain->isCompatible( $conn->getDomainID() )
@@ -1311,7 +1311,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $conn instanceof IDatabase ) {
-			// Sanity check to make sure that the right domain is selected
+			// Check to make sure that the right domain is selected
 			if ( !$domainInstance->isCompatible( $conn->getDomainID() ) ) {
 				throw new UnexpectedValueException(
 					"Got connection to '{$conn->getDomainID()}', but expected '$domain'" );
@@ -2635,7 +2635,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function __destruct() {
-		// Avoid connection leaks for sanity
+		// Avoid connection leaks
 		$this->disable( __METHOD__, $this->ownerId );
 	}
 }

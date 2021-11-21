@@ -1638,7 +1638,7 @@ class DifferenceEngine extends ContextSource {
 			$newRevRecord = $this->mNewRevisionRecord;
 		}
 
-		// Sanity: don't show the notice if too many rows must be scanned
+		// Don't show the notice if too many rows must be scanned
 		// @todo show some special message for that case
 		$nEdits = $this->revisionStore->countRevisionsBetween(
 			$this->mNewPage->getArticleID(),

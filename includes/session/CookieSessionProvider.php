@@ -129,7 +129,6 @@ class CookieSessionProvider extends SessionProvider {
 				return null;
 			}
 
-			// Sanity check
 			if ( $userName !== null && $userInfo->getName() !== $userName ) {
 				$this->logger->warning(
 					'Session "{session}" requested with mismatched UserID and UserName cookies.',

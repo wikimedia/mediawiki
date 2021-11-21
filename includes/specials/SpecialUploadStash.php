@@ -96,7 +96,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	/**
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
-	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
+	 * n.b. Most checking done in UploadStashLocalFile, so this is straightforward.
 	 *
 	 * @param string $key The key of a particular requested file
 	 * @throws HttpError

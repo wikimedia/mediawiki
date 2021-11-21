@@ -1296,7 +1296,7 @@ class EditPage implements IEditObject {
 				$oldrev = $this->revisionStore->getRevisionById( $undoafter );
 				$undoMsg = null;
 
-				# Sanity check, make sure it's the right page,
+				# Make sure it's the right page,
 				# the revisions exist and they were not deleted.
 				# Otherwise, $content will be left as-is.
 				if ( $undorev !== null && $oldrev !== null &&
@@ -1413,7 +1413,7 @@ class EditPage implements IEditObject {
 						}
 					}
 				} else {
-					// Failed basic sanity checks.
+					// Failed basic checks.
 					// Older revisions may have been removed since the link
 					// was created, or we may simply have got bogus input.
 					$undoMsg = 'norev';
@@ -2450,7 +2450,7 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Does sanity checks and compares the automatically generated undo content with the
+	 * Does checks and compares the automatically generated undo content with the
 	 * one that was submitted by the user. If they match, the undo is considered "clean".
 	 * Otherwise there is no guarantee if anything was reverted at all, as the user could
 	 * even swap out entire content.
@@ -2473,7 +2473,6 @@ class EditPage implements IEditObject {
 			$oldRev = $this->revisionStore->getPreviousRevision( $undoRev );
 		}
 
-		// Sanity checks
 		if ( $oldRev === null ||
 			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
 			$oldRev->isDeleted( RevisionRecord::DELETED_TEXT )

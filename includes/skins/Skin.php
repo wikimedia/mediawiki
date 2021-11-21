@@ -1669,11 +1669,11 @@ abstract class Skin extends ContextSource {
 			} else {
 				$line = trim( $line, '* ' );
 
-				if ( strpos( $line, '|' ) !== false ) { // sanity check
+				if ( strpos( $line, '|' ) !== false ) {
 					$line = $messageCache->transform( $line, false, null, $messageTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
-						// Second sanity check, could be hit by people doing
+						// Second check, could be hit by people doing
 						// funky stuff with parserfuncs... (T35321)
 						continue;
 					}

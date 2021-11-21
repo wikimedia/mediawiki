@@ -90,7 +90,6 @@ class RevisionStoreRecord extends RevisionRecord {
 			$this->mCurrent = ( $row->rev_id == $row->page_latest );
 		}
 
-		// sanity check
 		$pageIdBasedOnPage = $this->getArticleId( $this->mPage );
 		if ( $this->mPageId && $pageIdBasedOnPage && $this->mPageId !== $pageIdBasedOnPage ) {
 			throw new InvalidArgumentException(

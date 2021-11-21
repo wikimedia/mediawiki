@@ -200,7 +200,7 @@ abstract class Maintenance {
 		$bt = debug_backtrace();
 		$count = count( $bt );
 		if ( $count < 2 ) {
-			return false; // sanity
+			return false;
 		}
 		if ( $bt[0]['class'] !== self::class || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
@@ -694,7 +694,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Do some sanity checking and basic setup
+	 * Do some checking and basic setup
 	 */
 	public function setup() {
 		global $IP, $wgCommandLineMode;

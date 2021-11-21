@@ -775,7 +775,7 @@ class PageUpdater {
 			);
 		}
 
-		// Low-level sanity check
+		// Low-level check
 		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
@@ -907,7 +907,7 @@ class PageUpdater {
 			);
 		}
 
-		// Low-level sanity check
+		// Low-level check
 		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}

@@ -244,7 +244,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addWhere( $value ) {
 		if ( is_array( $value ) ) {
-			// Sanity check: don't insert empty arrays,
+			// Double check: don't insert empty arrays,
 			// Database::makeList() chokes on them
 			if ( count( $value ) ) {
 				$this->getQueryBuilder()->where( $value );

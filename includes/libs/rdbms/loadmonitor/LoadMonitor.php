@@ -148,7 +148,7 @@ class LoadMonitor implements ILoadMonitor {
 			$this->getStatesCacheKey( $this->wanCache, $serverIndexes ),
 			self::TIME_TILL_REFRESH, // 1 second logical expiry
 			function ( $oldValue, &$ttl ) use ( $serverIndexes, $domain, $staleValue, &$updated ) {
-				// Sanity check for circular recursion in computeServerStates()/getWeightScale().
+				// Double check for circular recursion in computeServerStates()/getWeightScale().
 				// Mainly, connection attempts should use LoadBalancer::getServerConnection()
 				// rather than something that will pick a server based on the server states.
 				$scopedLock = $this->acquireServerStatesLoopGuard();
@@ -242,7 +242,7 @@ class LoadMonitor implements ILoadMonitor {
 				$this->movingAveRatio
 			);
 
-			// Scale from 0% to 100% of nominal weight (sanity)
+			// Scale from 0% to 100% of nominal weight
 			$weightScales[$i] = max( $newScale, 0.0 );
 
 			// Mark replication lag on this server as "false" if it is unreacheable

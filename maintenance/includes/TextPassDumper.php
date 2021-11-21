@@ -569,7 +569,7 @@ TEXT
 	 * @param string|bool|null $model The content model used to determine
 	 *  applicable export transformations. If $model is null, no transformation is applied.
 	 * @param string|null $format The content format used when applying export transformations.
-	 * @param int|null $expSize Expected length of the text, for sanity checks
+	 * @param int|null $expSize Expected length of the text, for checks
 	 *
 	 * @return string The revision text for $id, or ""
 	 * @throws MWException

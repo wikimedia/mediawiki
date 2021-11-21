@@ -209,7 +209,7 @@ class VirtualRESTServiceClient {
 
 		$rounds = 0;
 		do {
-			if ( ++$rounds > 5 ) { // sanity
+			if ( ++$rounds > 5 ) {
 				throw new Exception( "Too many replacement rounds detected. Aborting." );
 			}
 			// Track requests executed this round that have a prefix/service.

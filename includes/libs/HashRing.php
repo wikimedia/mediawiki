@@ -303,7 +303,7 @@ class HashRing implements Serializable {
 					$node = ( $qi * self::SECTORS_PER_HASH + $gi ) . "@$location";
 					$posKey = (string)$position; // large integer
 					if ( isset( $claimed[$posKey] ) ) {
-						// Disallow duplicates for sanity (name decides precedence)
+						// Disallow duplicates  (name decides precedence)
 						if ( $claimed[$posKey]['node'] > $node ) {
 							continue;
 						} else {

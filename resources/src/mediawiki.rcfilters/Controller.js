@@ -842,7 +842,7 @@ Controller.prototype._saveSavedQueries = function () {
 	stringified = JSON.stringify( state );
 
 	if ( byteLength( stringified ) > 65535 ) {
-		// Sanity check, since the preference can only hold that.
+		// Double check, since the preference can only hold that.
 		return;
 	}
 

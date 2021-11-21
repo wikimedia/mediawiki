@@ -588,7 +588,7 @@ class WANObjectCache implements
 			// Get the wrapped values of the sister keys from the warmup cache
 			$wrappedBySisterKey = $this->warmupCache;
 			$sisterKeysMissing = array_diff( $allSisterKeys, array_keys( $wrappedBySisterKey ) );
-			if ( $sisterKeysMissing ) { // sanity
+			if ( $sisterKeysMissing ) {
 				$this->warmupKeyMisses += count( $sisterKeysMissing );
 				$wrappedBySisterKey += $this->cache->getMulti( $sisterKeysMissing );
 			}
@@ -2960,7 +2960,7 @@ class WANObjectCache implements
 	 */
 	private function determineKeyClassForStats( $key ) {
 		$parts = explode( ':', $key, 3 );
-		// Sanity fallback in case the key was not made by makeKey.
+		// Fallback in case the key was not made by makeKey.
 		// Replace dots because they are special in StatsD (T232907)
 		return strtr( $parts[1] ?? $parts[0], '.', '_' );
 	}

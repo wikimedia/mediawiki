@@ -247,7 +247,7 @@ class MergeHistory {
 	}
 
 	/**
-	 * Does various sanity checks that the merge is
+	 * Does various checks that the merge is
 	 * valid. Only things based on the two pages
 	 * should be checked here.
 	 *

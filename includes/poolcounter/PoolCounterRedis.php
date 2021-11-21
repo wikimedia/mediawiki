@@ -168,7 +168,7 @@ class PoolCounterRedis extends PoolCounter {
 			if 1*redis.call('zScore',kSlotsNextRelease,rSlot) ~= (rSlotTime + rExpiry) then
 				-- Slot lock expired and was released already
 			elseif redis.call('lLen',kSlots) >= 1*rMaxWorkers then
-				-- Slots somehow got out of sync; reset the list for sanity
+				-- Slots somehow got out of sync; reset the list
 				redis.call('del',kSlots,kSlotsNextRelease)
 			elseif redis.call('lLen',kSlots) == (1*rMaxWorkers - 1) and redis.call('zCard',kWaiting) == 0 then
 				-- Slot list will be made full; clear it to save space (it re-inits as needed)
@@ -207,7 +207,7 @@ LUA;
 					$this->workers,
 					$this->lockTTL,
 					$this->slot,
-					$this->slotTime, // used for CAS-style sanity check
+					$this->slotTime, // used for CAS-style check
 					( $this->onRelease === self::AWAKE_ALL ) ? 1 : 0,
 					microtime( true )
 				],
@@ -306,7 +306,7 @@ LUA;
 		-- Initialize if the "next release" time sorted-set is empty. The slot key
 		-- itself is empty if all slots are busy or when nothing is initialized.
 		-- If the list is empty but the set is not, then it is the latter case.
-		-- For sanity, if the list exists but not the set, then reset everything.
+		-- If the list exists but not the set, then reset everything.
 		if redis.call('exists',kSlotsNextRelease) == 0 then
 			redis.call('del',kSlots)
 			for i = 1,1*rMaxWorkers do
@@ -315,7 +315,7 @@ LUA;
 			end
 		-- Otherwise do maintenance to clean up after network partitions
 		else
-			-- Find stale slot locks and add free them (avoid duplicates for sanity)
+			-- Find stale slot locks and add free them (avoid duplicates)
 			local staleLocks = redis.call('zRangeByScore',kSlotsNextRelease,0,rTime)
 			for k,slot in ipairs(staleLocks) do
 				redis.call('lRem',kSlots,0,slot)

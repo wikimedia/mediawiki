@@ -147,7 +147,7 @@ class RecentChangesUpdateJob extends Job {
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
 
 		// Pick the date range to fetch from. This is normally from the last
-		// update to till the present time, but has a limited window for sanity.
+		// update to till the present time, but has a limited window.
 		// If the window is limited, multiple runs are need to fully populate it.
 		$sTimestamp = max( $cTimeUnix, $nowUnix - $days * 86400 );
 		$eTimestamp = min( $sTimestamp + $window, $nowUnix );

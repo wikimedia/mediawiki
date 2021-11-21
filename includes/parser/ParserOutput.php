@@ -279,7 +279,7 @@ class ParserOutput extends CacheTime {
 	private const PARSE_SLOW_SEC = 1.0; // perceived "slow" page parse
 	private const FAST_AR_TTL = 60; // adaptive TTL for "fast" pages
 	private const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
-	private const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
+	private const MIN_AR_TTL = 15; // min adaptive TTL (for pool counter, and edit stashing)
 
 	/**
 	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
@@ -1582,7 +1582,7 @@ class ParserOutput extends CacheTime {
 	 *
 	 * Note that all values are interpreted as wikitext, and so should be
 	 * encoded with htmlspecialchars() as necessary, but should avoid complex
-	 * HTML for sanity of display in the "NewPP limit report" comment.
+	 * HTML for display in the "NewPP limit report" comment.
 	 *
 	 * @since 1.22
 	 * @param string $key Message key

@@ -605,7 +605,7 @@ class SessionManager implements SessionManagerInterface {
 		$newParams = [];
 
 		if ( $blob !== false ) {
-			// Sanity check: blob must be an array, if it's saved at all
+			// Double check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
 				$this->logger->warning( 'Session "{session}": Bad data', [
 					'session' => $info->__toString(),
@@ -614,7 +614,7 @@ class SessionManager implements SessionManagerInterface {
 				return $failHandler();
 			}
 
-			// Sanity check: blob has data and metadata arrays
+			// Double check: blob has data and metadata arrays
 			if ( !isset( $blob['data'] ) || !is_array( $blob['data'] ) ||
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
@@ -628,7 +628,7 @@ class SessionManager implements SessionManagerInterface {
 			$data = $blob['data'];
 			$metadata = $blob['metadata'];
 
-			// Sanity check: metadata must be an array and must contain certain
+			// Double check: metadata must be an array and must contain certain
 			// keys, if it's saved at all
 			if ( !array_key_exists( 'userId', $metadata ) ||
 				!array_key_exists( 'userName', $metadata ) ||
