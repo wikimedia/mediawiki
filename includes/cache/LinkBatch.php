@@ -151,7 +151,8 @@ class LinkBatch {
 	 */
 	public function add( $ns, $dbkey ) {
 		if ( $ns < 0 || $dbkey === '' ) {
-			return; // T137083
+			// T137083
+			return;
 		}
 		if ( !array_key_exists( $ns, $this->data ) ) {
 			$this->data[$ns] = [];
@@ -222,9 +223,7 @@ class LinkBatch {
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
 		$this->doGenderQuery();
-		$ids = $this->addResultToCache( $cache, $res );
-
-		return $ids;
+		return $this->addResultToCache( $cache, $res );
 	}
 
 	/**
@@ -326,9 +325,8 @@ class LinkBatch {
 		if ( strval( $this->caller ) !== '' ) {
 			$caller .= " (for {$this->caller})";
 		}
-		$res = $dbr->select( $table, $fields, $conds, $caller );
 
-		return $res;
+		return $dbr->select( $table, $fields, $conds, $caller );
 	}
 
 	/**

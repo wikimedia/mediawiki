@@ -83,19 +83,13 @@ class LinkBatchFactory {
 	 * @return LinkBatch
 	 */
 	public function newLinkBatch( iterable $initialItems = [] ): LinkBatch {
-		$batch = new LinkBatch(
-			[],
+		return new LinkBatch(
+			$initialItems,
 			$this->linkCache,
 			$this->titleFormatter,
 			$this->contentLanguage,
 			$this->genderCache,
 			$this->loadBalancer
 		);
-
-		foreach ( $initialItems as $item ) {
-			$batch->addObj( $item );
-		}
-
-		return $batch;
 	}
 }
