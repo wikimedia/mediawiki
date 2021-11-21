@@ -592,7 +592,7 @@ class ApiParseTest extends ApiTestCase {
 			'prop' => 'headhtml',
 		] );
 
-		// Just do a rough sanity check
+		// Just do a rough check
 		$this->assertRegExp( '#<!DOCTYPE.*<html.*<head.*</head>.*<body#s',
 			$res[0]['parse']['headhtml'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );

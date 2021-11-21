@@ -996,7 +996,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetLatestKnownRevision_foreigh() {
 		$page = $this->getTestPage();
 		$status = $this->editPage( $page, __METHOD__ );
-		$this->assertTrue( $status->isGood(), 'Sanity: edited a page' );
+		$this->assertTrue( $status->isGood(), 'edited a page' );
 		/** @var RevisionRecord $revRecord */
 		$revRecord = $status->value['revision-record'];
 		$dbDomain = 'some_foreign_wiki';
@@ -2295,13 +2295,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
 		$page2 = $this->getTestPage( $page1->getTitle()->getPrefixedText() . '_other' );
 		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 2' );
 		/** @var RevisionRecord $revRecord2 */
 		$revRecord2 = $editStatus->getValue()['revision-record'];
 
@@ -2354,14 +2354,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage( __METHOD__ );
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 		$page1->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
 		$page2 = $this->getTestPage( $page1->getTitle()->getPrefixedText() . '_other' );
 		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 2' );
 		/** @var RevisionRecord $revRecord2 */
 		$revRecord2 = $editStatus->getValue()['revision-record'];
 		$page2->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
@@ -2483,13 +2483,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
 		$page2 = $this->getTestPage( $otherPageTitle );
 		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 2' );
 		/** @var RevisionRecord $revRecord2 */
 		$revRecord2 = $editStatus->getValue()['revision-record'];
 
@@ -2644,7 +2644,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $rev1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
@@ -2665,7 +2665,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
@@ -2692,7 +2692,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revisionIds = [];
 		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
 			$editStatus = $this->editPage( $page->getTitle()->getPrefixedDBkey(), 'Revision ' . $revNum );
-			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$this->assertTrue( $editStatus->isGood(), 'must create revision ' . $revNum );
 			$newRevision = $editStatus->getValue()['revision-record'];
 			/** @var RevisionRecord $newRevision */
 			$revisions[] = $newRevision;
@@ -2789,7 +2789,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revisions = [];
 		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
 			$editStatus = $this->editPage( $page->getTitle()->getPrefixedDBkey(), 'Revision ' . $revNum );
-			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$this->assertTrue( $editStatus->isGood(), 'must create revision ' . $revNum );
 			$revisions[] = $editStatus->getValue()['revision-record'];
 		}
 
@@ -2845,7 +2845,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				'',
 				NS_MAIN,
 				$users[$revNum] );
-			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$this->assertTrue( $editStatus->isGood(), 'must create revision ' . $revNum );
 			$revisions[] = $editStatus->getValue()['revision-record'];
 		}
 
@@ -2894,10 +2894,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage( __METHOD__ );
 		$page2 = $this->getTestPage( 'Other_Page' );
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), 'Revision 1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		$rev1 = $editStatus->getValue()['revision-record'];
 		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), 'Revision 1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		$rev2 = $editStatus->getValue()['revision-record'];
 
 		$this->expectException( InvalidArgumentException::class );
@@ -2933,14 +2933,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetFirstRevision( $getPageIdentity ) {
 		list( $pageTitle, $pageIdentity ) = $getPageIdentity();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create first revision' );
+		$this->assertTrue( $editStatus->isGood(), 'must create first revision' );
 		$firstRevId = $editStatus->getValue()['revision-record']->getID();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedText(), 'New Revision' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create new revision' );
+		$this->assertTrue( $editStatus->isGood(), 'must create new revision' );
 		$this->assertNotSame(
 			$firstRevId,
 			$editStatus->getValue()['revision-record']->getID(),
-			'Sanity: new revision must have different id'
+			'new revision must have different id'
 		);
 		$this->assertSame(
 			$firstRevId,
@@ -3116,7 +3116,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
@@ -3169,7 +3169,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
@@ -3252,7 +3252,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
-		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'must create revision 1' );
 		/** @var RevisionRecord $revRecord1 */
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
@@ -3298,13 +3298,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		// Prepare a page with 3 revisions
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$status = $this->editPage( $page, 'Content 1' );
-		$this->assertTrue( $status->isGood(), 'Sanity: edit 1' );
+		$this->assertTrue( $status->isGood(), 'edit 1' );
 		$originalRev = $status->value[ 'revision-record' ];
 
-		$this->assertTrue( $this->editPage( $page, 'Content 2' )->isGood(), 'Sanity: edit 2' );
+		$this->assertTrue( $this->editPage( $page, 'Content 2' )->isGood(), 'edit 2' );
 
 		$status = $this->editPage( $page, 'Content 1' );
-		$this->assertTrue( $status->isGood(), 'Sanity: edit 3' );
+		$this->assertTrue( $status->isGood(), 'edit 3' );
 		$latestRev = $status->value[ 'revision-record' ];
 
 		$store = $this->getServiceContainer()->getRevisionStore();

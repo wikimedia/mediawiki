@@ -345,7 +345,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$frenchResult = $access->getParserOutput( $page, $frenchOptions );
 		$this->assertContainsHtml( 'Test', $frenchResult );
 
-		// sanity check that French output was cached
+		// Check that French output was cached
 		$cachedFrenchOutput =
 			$access->getCachedParserOutput( $page, $frenchOptions );
 		$this->assertNotNull( $cachedFrenchOutput, 'French output should be in the cache' );
@@ -531,7 +531,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$frenchResult = $access->getParserOutput( $page, $frenchOptions, $oldRev );
 		$this->assertContainsHtml( 'Test', $frenchResult );
 
-		// sanity check that French output was cached
+		// Check that French output was cached
 		$cachedFrenchOutput =
 			$access->getCachedParserOutput( $page, $frenchOptions, $oldRev );
 		$this->assertNotNull( $cachedFrenchOutput, 'French output should be in the cache' );

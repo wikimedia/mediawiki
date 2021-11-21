@@ -768,7 +768,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, '129.0.0.1' );
 		$actorId = $store->createNewActor( $originalActor, $this->db );
-		$this->assertTrue( $actorId > 0, 'Sanity: acquired new actor ID' );
+		$this->assertTrue( $actorId > 0, 'Acquired new actor ID' );
 
 		$updatedActor = new UserIdentityValue( 56789, '129.0.0.1' );
 		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );
@@ -787,7 +787,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, 'RESERVED' );
 		$actorId = $store->createNewActor( $originalActor, $this->db );
-		$this->assertTrue( $actorId > 0, 'Sanity: acquired new actor ID' );
+		$this->assertTrue( $actorId > 0, 'Acquired new actor ID' );
 
 		$updatedActor = new UserIdentityValue( 80, 'RESERVED' );
 		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );

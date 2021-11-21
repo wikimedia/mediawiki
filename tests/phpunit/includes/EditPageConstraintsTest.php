@@ -90,7 +90,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			);
 			$page->clear();
 
-			// sanity check
 			$content = $page->getContent();
 			$this->assertInstanceOf( TextContent::class, $content );
 			$currentText = $content->getText();

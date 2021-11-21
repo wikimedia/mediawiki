@@ -447,7 +447,7 @@ class ApiMainTest extends ApiTestCase {
 	 * Test that 'assert' is processed before module errors
 	 */
 	public function testAssertBeforeModule() {
-		// Sanity check that the query without assert throws too-many-titles
+		// Check that the query without assert throws too-many-titles
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',

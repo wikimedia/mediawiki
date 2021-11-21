@@ -360,7 +360,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		// statements such as CREATE TABLE.
 		$useAtomicSection = in_array( $db->getType(), [ 'sqlite', 'postgres' ], true );
 		try {
-			$db->dropTable( 'some_table' ); // clear for sanity
+			$db->dropTable( 'some_table' );
 			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
 
 			if ( $useAtomicSection ) {

@@ -916,7 +916,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$page = $this->createPage( $title, $text, $model );
 
-		# sanity check, because this test seems to fail for no reason for some people.
+		# double check, because this test seems to fail for no reason for some people.
 		$c = $page->getContent();
 		$this->assertEquals( WikitextContent::class, get_class( $c ) );
 

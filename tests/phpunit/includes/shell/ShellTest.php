@@ -10,7 +10,7 @@ use MediaWiki\Shell\Shell;
 class ShellTest extends MediaWikiIntegrationTestCase {
 
 	public function testIsDisabled() {
-		$this->assertIsBool( Shell::isDisabled() ); // sanity
+		$this->assertIsBool( Shell::isDisabled() );
 	}
 
 	/**

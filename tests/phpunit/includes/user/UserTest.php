@@ -348,7 +348,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 
-		// Sanity
 		$this->assertTrue( $this->user->isValidPassword( 'Password1234' ) );
 
 		// Minimum length
@@ -784,7 +783,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'User::saveSettings updates actor table for name change'
 		);
 
-		// For sanity
 		$ip = '192.168.12.34';
 		$this->db->delete( 'actor', [ 'actor_name' => $ip ], __METHOD__ );
 

@@ -253,7 +253,6 @@ class ImportExportTest extends MediaWikiLangTestCase {
 			$asserter->setVarMapping( $key, $value );
 		}
 
-		// sanity check
 		$dumpData = file_get_contents( $tmpFile );
 		$this->assertNotEmpty( $dumpData, 'Dump XML' );
 

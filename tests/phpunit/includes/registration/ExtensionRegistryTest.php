@@ -437,7 +437,7 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry = new ExtensionRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
-		// Sanity check that it worked
+		// Check that it worked
 		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
 		$reset = $registry->setAttributeForTest( 'FooBarAttr', [ 'override' ] );
 		// overridden properly

@@ -5,7 +5,7 @@ use Wikimedia\Minify\CSSMin;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * Sanity checks for making sure registered resources are sane.
+ * Checks for making sure registered resources are sensible.
  *
  * @author Antoine Musso
  * @author Niklas Laxström

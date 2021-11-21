@@ -474,7 +474,7 @@ namespace MediaWiki\HookContainer {
 				$count++;
 			} );
 
-			// Sanity check: all three handlers should be called initially.
+			// Check: all three handlers should be called initially.
 			$count = 0;
 			$hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertSame( 3, $count );
@@ -515,7 +515,7 @@ namespace MediaWiki\HookContainer {
 				$count++;
 			} );
 
-			// Sanity check: both handlers should be called initially.
+			// Check: both handlers should be called initially.
 			$count = 0;
 			$hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertSame( 3, $count );

@@ -86,7 +86,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$rev = $revisions[$revid];
 			$slot = $rev->getSlot( $role );
 
-			// NOTE: TextPassDumper does a sanity check on the string length,
+			// NOTE: TextPassDumper does a check on the string length,
 			// so we have to pad to match the original length. The hash is not checked.
 			return str_pad( "Prefetch: ({$pageid}/{$revid}/$role)", $slot->getSize(), '*' );
 		};

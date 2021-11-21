@@ -176,7 +176,6 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$dbw->setFlag( DBO_TRX, $dbw::REMEMBER_PRIOR ); // make queries trigger TRX
 		$reset = new ScopedCallback( [ $dbw, 'restoreFlags' ] );
 
-		// Sanity check
 		$this->assertSame( 0, $dbw->trxLevel() );
 		$dbw->selectRow( 'page', '*', '', __METHOD__ );
 		if ( !$dbw->trxLevel() ) {

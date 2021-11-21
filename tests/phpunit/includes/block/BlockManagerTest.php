@@ -107,7 +107,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $onUserGetRightsCalled, 'Extensions should be able to grant rights' );
 		$this->assertTrue(
 			$onGetUserBlockCalled,
-			'Sanity check: HookRunner::onGetUserBlock should have been called'
+			'Check that HookRunner::onGetUserBlock was called'
 		);
 		$this->assertNull(
 			$onGetUserBlockIP,
