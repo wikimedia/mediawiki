@@ -261,17 +261,17 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( '$metadata must be an array or null', $ex->getMessage() );
 		}
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
 		$backend->setProviderMetadata( [ 'dummy' ] );
 		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
 		$backend->setProviderMetadata( [ 'test' ] );
 		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
 		$this->assertSame( [ 'test' ], $backend->getProviderMetadata() );
 		$this->store->deleteSession( self::SESSIONID );
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
 		$backend->setProviderMetadata( null );
 		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
 		$this->assertSame( null, $backend->getProviderMetadata() );
@@ -321,11 +321,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->once() )->method( 'persistSession' );
 		$backend = $this->getBackend();
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		$backend->save(); // This one shouldn't call $provider->persistSession()
 
 		$backend->persist();
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 
 		$this->provider = null;
 		$backend = $this->getBackend();
@@ -347,8 +347,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->dataDirty = true;
 
 		$backend->save(); // This one shouldn't call $provider->persistSession(), but should save
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
-		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
+		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
 
 		$backend->unpersist();
 		$this->assertFalse( $backend->isPersistent() );
@@ -410,7 +410,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->provider = null;
 		$backend = $this->getBackend();
 		$this->assertTrue( $backend->canSetUser() );
-		$this->assertNotSame( $user, $backend->getUser(), 'sanity check' );
+		$this->assertNotSame( $user, $backend->getUser() );
 		$backend->setUser( $user );
 		$this->assertSame( $user, $backend->getUser() );
 	}
@@ -471,12 +471,12 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->onSessionMetadataCalled = false;
 		$priv->metaDirty = true;
 		$backend->save();
-		$this->assertTrue( $this->onSessionMetadataCalled, 'sanity check' );
+		$this->assertTrue( $this->onSessionMetadataCalled );
 
 		$this->onSessionMetadataCalled = false;
 		$priv->metaDirty = true;
 		$priv->autosave();
-		$this->assertTrue( $this->onSessionMetadataCalled, 'sanity check' );
+		$this->assertTrue( $this->onSessionMetadataCalled );
 
 		$delay = $backend->delaySave();
 
@@ -534,7 +534,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->setSessionData( self::SESSIONID, $testData );
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -550,7 +550,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = false;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -566,7 +566,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = false;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -579,7 +579,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->setSessionData( self::SESSIONID, $testData );
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
@@ -601,7 +601,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -617,7 +617,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -631,7 +631,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
@@ -657,7 +657,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
@@ -682,7 +682,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = true;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
@@ -706,7 +706,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataHash = 'Doesn\'t match';
@@ -756,7 +756,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = true;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
@@ -778,7 +778,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		$wrap->metaDirty = false;
 		$wrap->dataDirty = false;
 		$wrap->forcePersist = false;
@@ -805,7 +805,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
 		$wrap->persist = true;
-		$this->assertTrue( $backend->isPersistent(), 'sanity check' );
+		$this->assertTrue( $backend->isPersistent() );
 		$wrap->metaDirty = false;
 		$wrap->dataDirty = false;
 		$wrap->forcePersist = false;
@@ -831,7 +831,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = $this->getBackend( $user );
 		$this->store->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
-		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
+		$this->assertFalse( $backend->isPersistent() );
 		$wrap->metaDirty = false;
 		$wrap->dataDirty = false;
 		$wrap->forcePersist = false;

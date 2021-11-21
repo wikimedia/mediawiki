@@ -82,10 +82,10 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		] );
 		$manager->addModule( 'mod3', 'xyz', MockApi::class );
 
-		$this->assertSame( $api, $api->getModuleFromPath( 'testmod' ), 'sanity check' );
-		$this->assertSame( $dep, $api->getModuleFromPath( 'testmod+dep' ), 'sanity check' );
-		$this->assertSame( $int, $api->getModuleFromPath( 'testmod+int' ), 'sanity check' );
-		$this->assertSame( $depint, $api->getModuleFromPath( 'testmod+depint' ), 'sanity check' );
+		$this->assertSame( $api, $api->getModuleFromPath( 'testmod' ) );
+		$this->assertSame( $dep, $api->getModuleFromPath( 'testmod+dep' ) );
+		$this->assertSame( $int, $api->getModuleFromPath( 'testmod+int' ) );
+		$this->assertSame( $depint, $api->getModuleFromPath( 'testmod+depint' ) );
 
 		return $api;
 	}

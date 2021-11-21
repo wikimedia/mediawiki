@@ -39,7 +39,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @return array result of doApiRequest
 	 */
 	private function doBlock( array $extraParams = [], User $blocker = null ) {
-		$this->assertNotNull( $this->mUser, 'Sanity check' );
+		$this->assertNotNull( $this->mUser );
 
 		$params = [
 			'action' => 'block',
@@ -112,7 +112,7 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "There is no user with ID $id." );
 
-		$this->assertFalse( User::whoIs( $id ), 'Sanity check' );
+		$this->assertFalse( User::whoIs( $id ) );
 
 		$this->doBlock( [ 'userid' => $id ] );
 	}

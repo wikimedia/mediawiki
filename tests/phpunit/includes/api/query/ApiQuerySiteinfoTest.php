@@ -55,7 +55,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testLinkPrefixCharset() {
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ar' );
 		$this->setContentLang( $contLang );
-		$this->assertTrue( $contLang->linkPrefixExtension(), 'Sanity check' );
+		$this->assertTrue( $contLang->linkPrefixExtension() );
 
 		$data = $this->doQuery();
 
@@ -65,7 +65,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testVariants() {
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' );
 		$this->setContentLang( $contLang );
-		$this->assertTrue( $contLang->hasVariants(), 'Sanity check' );
+		$this->assertTrue( $contLang->hasVariants() );
 
 		$data = $this->doQuery();
 

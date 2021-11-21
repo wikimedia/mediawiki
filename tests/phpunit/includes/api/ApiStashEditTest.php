@@ -90,7 +90,7 @@ class ApiStashEditTest extends ApiTestCase {
 			$this->assertSame( $expectedHash, $hash );
 
 			if ( isset( $params['stashedtexthash'] ) ) {
-				$this->assertSame( $params['stashedtexthash'], $expectedHash, 'Sanity' );
+				$this->assertSame( $params['stashedtexthash'], $expectedHash );
 			}
 		} else {
 			$this->assertSame( $origText, $this->getStashedText( $expectedHash ) );

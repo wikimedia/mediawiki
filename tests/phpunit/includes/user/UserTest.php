@@ -618,7 +618,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
 		$this->setSessionUser( $this->user, $request );
-		$this->assertFalse( $this->user->isAnon(), 'sanity check' );
+		$this->assertFalse( $this->user->isAnon() );
 		$this->assertNull( $this->user->getBlock() );
 	}
 
@@ -728,7 +728,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan(
 			0,
 			$userId,
-			'Sanity check: user has a working id'
+			'user has a working id'
 		);
 
 		$otherUser = User::newFromId( $userId );
@@ -1006,7 +1006,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame(
 			$req1,
 			$req2,
-			'Sanity check: passing a request that does not match $wgRequest'
+			'passing a request that does not match $wgRequest'
 		);
 		$user = User::newFromSession( $req2 );
 		$request = $user->getRequest();
@@ -1054,11 +1054,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
-		$this->assertNull( $user->getBlock( false ), 'sanity check' );
-		$this->assertSame( '', $user->blockedBy(), 'sanity check' );
-		$this->assertSame( '', $user->blockedFor(), 'sanity check' );
-		$this->assertFalse( $user->isHidden(), 'sanity check' );
-		$this->assertFalse( $user->isBlockedFrom( $ut ), 'sanity check' );
+		$this->assertNull( $user->getBlock( false ) );
+		$this->assertSame( '', $user->blockedBy() );
+		$this->assertSame( '', $user->blockedFor() );
+		$this->assertFalse( $user->isHidden() );
+		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
@@ -1071,7 +1071,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$block->setBlocker( $blocker );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$res = $blockStore->insertBlock( $block );
-		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
+		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();

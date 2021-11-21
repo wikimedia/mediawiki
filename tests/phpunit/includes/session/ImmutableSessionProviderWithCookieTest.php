@@ -200,7 +200,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$user = User::newFromName( 'UTSysop' );
-		$this->assertSame( $forceHTTPS, $user->requiresHTTPS(), 'sanity check' );
+		$this->assertSame( $forceHTTPS, $user->requiresHTTPS() );
 
 		$backend = new SessionBackend(
 			new SessionId( $sessionId ),

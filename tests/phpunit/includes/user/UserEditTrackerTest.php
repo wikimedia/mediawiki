@@ -149,7 +149,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			0,
 			DeferredUpdates::pendingUpdatesCount(),
-			'Sanity check: deferred updates ran'
+			'deferred updates ran'
 		);
 
 		$editCountEnd = $tracker->getUserEditCount( $user );

@@ -52,7 +52,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'wikitext',
 			$wikipage->getTitle()->getContentModel(),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$change = $this->newContentModelChange(
@@ -88,7 +88,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'wikitext',
 			$wikipage->getTitle()->getContentModel(),
-			'Sanity check: `PageWithTextThatIsNotValidJSON` should be wikitext at first'
+			'`PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
 
 		$change = $this->newContentModelChange(
@@ -121,7 +121,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'wikitext',
 			$wikipage->getTitle()->getContentModel( Title::READ_LATEST ),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
@@ -172,7 +172,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'wikitext',
 			$wikipage->getTitle()->getContentModel( Title::READ_LATEST ),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
@@ -274,7 +274,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'wikitext',
 			$currentContentModel,
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$performer = $this->mockRegisteredAuthority( static function (

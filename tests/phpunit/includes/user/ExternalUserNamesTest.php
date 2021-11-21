@@ -106,7 +106,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 	public function testApplyPrefix_existingUser() {
 		$testName = $this->getTestUser()->getUser()->getName();
 		$testName2 = lcfirst( $testName );
-		$this->assertNotSame( $testName, $testName2, 'sanity check' );
+		$this->assertNotSame( $testName, $testName2 );
 
 		$externalUserNames = new ExternalUserNames( 'p', false );
 		$this->assertSame( "p>$testName", $externalUserNames->applyPrefix( $testName ) );
