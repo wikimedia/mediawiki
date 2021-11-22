@@ -127,7 +127,7 @@ class SearchNearMatcher {
 				return $title;
 			}
 
-			# See if it still otherwise has content is some sane sense
+			# See if it still otherwise has content is some sensible sense
 			if ( $title->canExist() ) {
 				$page = $this->wikiPageFactory->newFromTitle( $title );
 				if ( $page->hasViewableContent() ) {

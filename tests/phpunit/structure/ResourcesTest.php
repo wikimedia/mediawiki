@@ -278,7 +278,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 
-			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
+			// To populate missingLocalFileRefs. Not sure how sensible this is inside this test...
 			$moduleProxy->readStyleFiles(
 				$module->getStyleFiles( $data['context'] ),
 				$data['context']

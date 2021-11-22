@@ -138,7 +138,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			// some user agents.
 			session_cache_limiter( '' );
 
-			// Also set a sane serialization handler
+			// Also set a serialization handler
 			\Wikimedia\PhpSessionSerializer::setSerializeHandler();
 
 			// Register this as the save handler, and register an appropriate

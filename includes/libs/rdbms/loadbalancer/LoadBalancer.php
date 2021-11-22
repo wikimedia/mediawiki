@@ -1755,7 +1755,7 @@ class LoadBalancer implements ILoadBalancer {
 			// caught an exception but failed to properly rollback any changes. Detect that and
 			// throw an error (causing rollback).
 			$conn->assertNoOpenTransactions();
-			// Assert that the time to replicate the transaction will be sane.
+			// Assert that the time to replicate the transaction will be reasonable.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
 			if ( $limit > 0 ) {

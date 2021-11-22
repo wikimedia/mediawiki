@@ -106,7 +106,7 @@ class ApiUpload extends ApiBase {
 			$this->dieStatus( $status );
 		}
 
-		// Check if the uploaded file is sane
+		// Check the uploaded file
 		$this->verifyUpload();
 
 		// Check if the user has the rights to modify or overwrite the requested title

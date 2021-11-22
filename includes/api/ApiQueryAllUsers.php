@@ -258,7 +258,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			if ( $lastUser === $row->user_name ) {
 				// Duplicate row due to one of the needed subtable joins.
-				// Ignore it, but count the number of them to sanely handle
+				// Ignore it, but count the number of them to sensibly handle
 				// miscalculation of $maxDuplicateRows.
 				$countDuplicates++;
 				if ( $countDuplicates == $maxDuplicateRows ) {

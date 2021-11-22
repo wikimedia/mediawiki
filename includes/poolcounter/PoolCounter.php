@@ -171,8 +171,8 @@ abstract class PoolCounter {
 	abstract public function release();
 
 	/**
-	 * Checks that the lock request is sane.
-	 * @return Status good for sane requests fatal for insane
+	 * Checks that the lock request is sensible.
+	 * @return Status good for sensible requests, fatal for the not so sensible
 	 * @since 1.25
 	 */
 	final protected function precheckAcquire() {

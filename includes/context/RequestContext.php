@@ -319,8 +319,8 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Accepts a language code and ensures it's sane. Outputs a cleaned up language
-	 * code and replaces with $wgLanguageCode if not sane.
+	 * Accepts a language code and ensures it's sensible. Outputs a cleaned up language
+	 * code and replaces with $wgLanguageCode if not sensible.
 	 * @param string $code Language code
 	 * @return string
 	 */
