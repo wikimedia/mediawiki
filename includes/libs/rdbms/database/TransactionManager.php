@@ -40,6 +40,11 @@ class TransactionManager {
 	/** @var int No transaction is active */
 	public const STATUS_TRX_NONE = 3;
 
+	/** Session is in a error state requiring a reset */
+	public const STATUS_SESS_ERROR = 1;
+	/** Session is in a normal state */
+	public const STATUS_SESS_OK = 2;
+
 	/** @var float Guess of how many seconds it takes to replicate a small insert */
 	private const TINY_WRITE_SEC = 0.010;
 	/** @var float Consider a write slow if it took more than this many seconds */
@@ -56,10 +61,13 @@ class TransactionManager {
 	private $trxTimestamp = null;
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
-	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
+	/** @var Throwable|null The cause of any unresolved transaction state error, or, null */
 	private $trxStatusCause;
-	/** @var array|null Error details of the last statement-only rollback */
+	/** @var array|null Details of the last statement-rollback error for the last transaction */
 	private $trxStatusIgnoredCause;
+
+	/** @var Throwable|null The cause of any unresolved session state loss error, or, null */
+	private $sessionError;
 
 	/** @var string[] Write query callers of the current transaction */
 	private $trxWriteCallers = [];
@@ -119,6 +127,13 @@ class TransactionManager {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getTrxId(): string {
+		return $this->trxId;
+	}
+
+	/**
 	 * TODO: This should be removed once all usages have been migrated here
 	 * @param string $mode One of IDatabase::TRANSACTION_* values
 	 * @param string $fname method name
@@ -128,6 +143,7 @@ class TransactionManager {
 		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
 		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
 		$this->trxStatus = self::STATUS_TRX_OK;
+		$this->trxStatusCause = null;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxWriteDuration = 0.0;
 		$this->trxWriteQueryCount = 0;
@@ -174,11 +190,14 @@ class TransactionManager {
 
 	public function setTrxStatusToOk() {
 		$this->trxStatus = self::STATUS_TRX_OK;
+		$this->trxStatusCause = null;
 		$this->trxStatusIgnoredCause = null;
 	}
 
 	public function setTrxStatusToNone() {
 		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->trxStatusCause = null;
+		$this->trxStatusIgnoredCause = null;
 	}
 
 	public function assertTransactionStatus( IDatabase $db, $deprecationLogger, $fname ) {
@@ -199,14 +218,14 @@ class TransactionManager {
 		}
 	}
 
-	public function setTransactionErrorFromStatus( $db, $fname ) {
-		if ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
-			// Put the transaction into an error state if it's not already in one
-			$trxError = new DBUnexpectedError(
+	public function assertSessionStatus( IDatabase $db, $fname ) {
+		if ( $this->sessionError ) {
+			throw new DBSessionStateError(
 				$db,
-				"Uncancelable atomic section canceled (got $fname)"
+				"Cannot execute query from $fname while session status is ERROR",
+				[],
+				$this->sessionError
 			);
-			$this->setTransactionError( $trxError );
 		}
 	}
 
@@ -227,6 +246,32 @@ class TransactionManager {
 	 */
 	public function setTrxStatusIgnoredCause( ?array $trxStatusIgnoredCause ): void {
 		$this->trxStatusIgnoredCause = $trxStatusIgnoredCause;
+	}
+
+	/**
+	 * Get the status of the current session (ephemeral server-side state tied to the connection)
+	 *
+	 * @return int One of the STATUS_SESSION_* class constants
+	 */
+	public function sessionStatus() {
+		// Check if an unresolved error still exists
+		return ( $this->sessionError ) ? self::STATUS_SESS_ERROR : self::STATUS_SESS_OK;
+	}
+
+	/**
+	 * Flag the session as needing a reset due to an error, if not already flagged
+	 *
+	 * @param Throwable $sessionError
+	 */
+	public function setSessionError( Throwable $sessionError ) {
+		$this->sessionError = $this->sessionError ?? $sessionError;
+	}
+
+	/**
+	 * Unflag the session as needing a reset due to an error
+	 */
+	public function clearSessionError() {
+		$this->sessionError = null;
 	}
 
 	/**
@@ -821,6 +866,20 @@ class TransactionManager {
 			foreach ( $callbacks as $callback ) {
 				$fnames[] = $callback[1];
 			}
+		}
+
+		return $fnames;
+	}
+
+	/**
+	 * List the methods that have precommit callbacks for the current transaction
+	 *
+	 * @return string[]
+	 */
+	public function pendingPreCommitCallbackCallers(): array {
+		$fnames = $this->pendingWriteCallers();
+		foreach ( $this->trxPreCommitOrIdleCallbacks as $callback ) {
+			$fnames[] = $callback[1];
 		}
 
 		return $fnames;
