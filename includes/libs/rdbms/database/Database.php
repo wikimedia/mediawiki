@@ -571,17 +571,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Get important session state that cannot be recovered upon connection loss
 	 *
-	 * @return array<string,mixed> Map of (property => value) for the current session state
+	 * @return CriticalSessionInfo
 	 */
-	private function sessionStateInfo() {
-		return [
-			'trxId' => $this->transactionManager->getTrxId(),
-			'trxExplicit' => $this->transactionManager->explicitTrxActive(),
-			'trxWriteCallers' => $this->transactionManager->pendingWriteCallers(),
-			'trxPreCommitCbCallers' => $this->transactionManager->pendingPreCommitCallbackCallers(),
-			'sessNamedLocks' => $this->sessionNamedLocks,
-			'sessTempTables' => $this->sessionTempTables
-		];
+	private function getCriticalSessionInfo(): CriticalSessionInfo {
+		return new CriticalSessionInfo(
+			$this->transactionManager->getTrxId(),
+			$this->transactionManager->explicitTrxActive(),
+			$this->transactionManager->pendingWriteCallers(),
+			$this->transactionManager->pendingPreCommitCallbackCallers(),
+			$this->sessionNamedLocks,
+			$this->sessionTempTables
+		);
 	}
 
 	public function tablePrefix( $prefix = null ) {
@@ -1269,7 +1269,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Add agent and calling method comments to the SQL
-		$commentedSql = $this->getCommentedSql( $sql, $fname );
+		$commentedSql = $this->makeCommentedSql( $sql, $fname );
 		// How many silent retry attempts are left for recoverable connection loss errors
 		$retriesLeft = $this->fieldHasBit( $flags, self::QUERY_NO_RETRY ) ? 0 : 1;
 
@@ -1325,7 +1325,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags ) {
 		// Transaction attributes before issuing this query
-		$priorSessInfo = $this->sessionStateInfo();
+		$priorSessInfo = $this->getCriticalSessionInfo();
 
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
@@ -1455,7 +1455,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname
 	 * @return string
 	 */
-	private function getCommentedSql( $sql, $fname ) {
+	private function makeCommentedSql( $sql, $fname ): string {
 		// Add trace comment to the begin of the sql string, right after the operator.
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
 		// NOTE: Don't add varying ids such as request id or session id to the comment.
@@ -1542,14 +1542,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql SQL query statement that encountered or caused the connection loss
 	 * @param float $walltime How many seconds passes while attempting the query
-	 * @param array $priorSessInfo Result of sessionStateInfo(), just before the query
+	 * @param CriticalSessionInfo $priorSessInfo Session state just before the query
 	 * @return int Recovery approach. One of the following ERR_* class constants:
 	 *   - Database::ERR_RETRY_QUERY: reconnect silently, retry query
 	 *   - Database::ERR_ABORT_QUERY: reconnect silently, do not retry query
 	 *   - Database::ERR_ABORT_TRX: reconnect, throw error, enforce transaction rollback
 	 *   - Database::ERR_ABORT_SESSION: reconnect, throw error, enforce session rollback
 	 */
-	private function assessConnectionLoss( string $sql, float $walltime, array $priorSessInfo ) {
+	private function assessConnectionLoss(
+		string $sql,
+		float $walltime,
+		CriticalSessionInfo $priorSessInfo
+	) {
 		$verb = $this->getQueryVerb( $sql );
 
 		if ( $walltime < self::DROPPED_CONN_BLAME_THRESHOLD_SEC ) {
@@ -1563,8 +1567,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// List of problems causing session/transaction state corruption
 		$blockers = [];
 		// Loss of named locks breaks future callers relying on those locks for critical sections
-		foreach ( $priorSessInfo['sessNamedLocks'] as $lockName => $lockInfo ) {
-			if ( $lockInfo['trxId'] && $lockInfo['trxId'] === $priorSessInfo['trxId'] ) {
+		foreach ( $priorSessInfo->namedLocks as $lockName => $lockInfo ) {
+			if ( $lockInfo['trxId'] && $lockInfo['trxId'] === $priorSessInfo->trxId ) {
 				// Treat lost locks acquired during the lost transaction as a transaction state
 				// problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
 				// rollback automatically triggered server-side.
@@ -1580,8 +1584,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 		// Loss of temp tables breaks future callers relying on those tables for queries
-		foreach ( $priorSessInfo['sessTempTables'] as $tableName => $tableInfo ) {
-			if ( $tableInfo['trxId'] && $tableInfo['trxId'] === $priorSessInfo['trxId'] ) {
+		foreach ( $priorSessInfo->tempTables as $tableName => $tableInfo ) {
+			if ( $tableInfo['trxId'] && $tableInfo['trxId'] === $priorSessInfo->trxId ) {
 				// Treat lost temp tables created during the lost transaction as a transaction
 				// state problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
 				// rollback automatically triggered server-side.
@@ -1599,15 +1603,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Loss of transaction writes breaks future callers and DBO_TRX logic relying on those
 		// writes to be atomic and still pending. Connection loss on ROLLBACK (non-SAVEPOINT) is
 		// tolerable since rollback automatically triggered server-side.
-		if ( $priorSessInfo['trxWriteCallers'] && $verb !== 'ROLLBACK' ) {
+		if ( $priorSessInfo->trxWriteCallers && $verb !== 'ROLLBACK' ) {
 			$res = max( $res, self::ERR_ABORT_TRX );
 			$blockers[] = 'uncommitted writes';
 		}
-		if ( $priorSessInfo['trxPreCommitCbCallers'] && $verb !== 'ROLLBACK' ) {
+		if ( $priorSessInfo->trxPreCommitCbCallers && $verb !== 'ROLLBACK' ) {
 			$res = max( $res, self::ERR_ABORT_TRX );
 			$blockers[] = 'pre-commit callbacks';
 		}
-		if ( $priorSessInfo['trxExplicit'] && $verb !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
+		if ( $priorSessInfo->trxExplicit && $verb !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
 			// Transaction automatically rolled back, breaking the expectations of callers
 			// relying on that transaction to provide atomic writes, serializability, or use
 			// one  point-in-time snapshot for all reads. Assume that connection loss is OK
