@@ -48,7 +48,7 @@ class RenameDbPrefix extends Maintenance {
 		if ( $this->getOption( 'old', 0 ) === '0' ) {
 			$old = '';
 		} else {
-			// Use nice safe, sane, prefixes
+			// Use nice safe, sensible, prefixes
 			preg_match( '/^[a-zA-Z]+_$/', $this->getOption( 'old' ), $m );
 			$old = $m[0] ?? false;
 		}
@@ -56,7 +56,7 @@ class RenameDbPrefix extends Maintenance {
 		if ( $this->getOption( 'new', 0 ) === '0' ) {
 			$new = '';
 		} else {
-			// Use nice safe, sane, prefixes
+			// Use nice safe, sensible, prefixes
 			preg_match( '/^[a-zA-Z]+_$/', $this->getOption( 'new' ), $m );
 			$new = $m[0] ?? false;
 		}

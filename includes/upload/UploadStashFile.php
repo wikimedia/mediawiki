@@ -45,7 +45,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		if ( FileRepo::isVirtualUrl( $path ) ) {
 			$path = $repo->resolveVirtualUrl( $path );
 		} else {
-			// check if path appears to be sane, no parent traversals,
+			// check if path appears to be correct, no parent traversals,
 			// and is in this repo's temp zone.
 			$repoTempPath = $repo->getZonePath( 'temp' );
 			if ( ( !$repo->validateFilename( $path ) ) ||

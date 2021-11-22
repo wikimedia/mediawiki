@@ -112,7 +112,7 @@ class ParserOptions {
 	/**
 	 * Stored user object
 	 * @var UserIdentity
-	 * @todo Track this for caching somehow without fragmenting the cache insanely
+	 * @todo Track this for caching somehow without fragmenting the cache
 	 */
 	private $mUser;
 

@@ -131,7 +131,7 @@ class MWExceptionHandler {
 		if ( !$services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
 			// Rollback DBs to avoid transaction notices. This might fail
 			// to rollback some databases due to connection issues or exceptions.
-			// However, any sane DB driver will rollback implicitly anyway.
+			// However, any sensible DB driver will rollback implicitly anyway.
 			try {
 				$services->getDBLoadBalancerFactory()->rollbackPrimaryChanges( __METHOD__ );
 			} catch ( DBError $e2 ) {

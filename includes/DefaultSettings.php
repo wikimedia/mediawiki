@@ -8366,7 +8366,7 @@ $wgExportAllowListContributors = false;
  * If non-zero, Special:Export accepts a "pagelink-depth" parameter
  * up to this specified level, which will cause it to include all
  * pages linked to from the pages you specify. Since this number
- * can become *insanely large* and could easily break your wiki,
+ * can become *really really large* and could easily break your wiki,
  * it's disabled by default for now.
  *
  * @warning There's a HARD CODED limit of 5 levels of recursion to prevent a

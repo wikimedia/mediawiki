@@ -254,7 +254,7 @@
 
 		/**
 		 * Check if this is a recognizable image type...
-		 * Also excludes files over 10 MiB to avoid going insane on memory usage.
+		 * Also excludes files over 10 MiB to avoid excessive memory usage.
 		 *
 		 * TODO: Is there a way we can ask the browser what's supported in `<img>`s?
 		 *

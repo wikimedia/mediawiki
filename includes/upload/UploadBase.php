@@ -348,7 +348,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Verify whether the upload is sane.
+	 * Verify whether the upload is sensible.
 	 *
 	 * Return a status array representing the outcome of the verification.
 	 * Possible keys are:

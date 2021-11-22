@@ -395,7 +395,7 @@ class BacklinkCache {
 			// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
 			$this->partition( $table, $wgUpdateRowsPerJob ); // updates $this->partitionCache
 			return $this->partitionCache[$table][$wgUpdateRowsPerJob]['numRows'];
-		} else { // probably some sane limit
+		} else {
 			// Fetch the full title info, since the caller will likely need it next
 			$count = iterator_count( $this->getLinkPages( $table, false, false, $max ) );
 			if ( $count < $max ) { // full count

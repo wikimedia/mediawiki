@@ -2288,7 +2288,7 @@ class ApiMain extends ApiBase {
 				'',
 				$idFallback
 			);
-			// Ensure we have a sane anchor
+			// Ensure we have a sensible anchor
 			if ( $id !== 'main/datatypes' && $idFallback !== 'main/datatypes' ) {
 				$headline = '<div id="main/datatypes"></div>' . $headline;
 			}
@@ -2335,7 +2335,7 @@ class ApiMain extends ApiBase {
 				'',
 				$idFallback
 			);
-			// Ensure we have a sane anchor
+			// Ensure we have a sensible anchor
 			if ( $id !== 'main/templatedparams' && $idFallback !== 'main/templatedparams' ) {
 				$headline = '<div id="main/templatedparams"></div>' . $headline;
 			}
@@ -2363,7 +2363,7 @@ class ApiMain extends ApiBase {
 				'',
 				$idFallback
 			);
-			// Ensure we have a sane anchor
+			// Ensure we have a sensible anchor
 			if ( $id !== 'main/credits' && $idFallback !== 'main/credits' ) {
 				$headline = '<div id="main/credits"></div>' . $headline;
 			}

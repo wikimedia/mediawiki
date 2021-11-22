@@ -687,7 +687,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			]
 		);
 
-		// @todo: This is not at all safe or sane. It just blindly assumes
+		// @todo: This is not at all safe or sensible. It just blindly assumes
 		// nothing in $conds depends on any other tables.
 		$result = wfGetDB( DB_PRIMARY )->select(
 			'user',

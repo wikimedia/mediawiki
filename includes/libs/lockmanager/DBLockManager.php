@@ -89,7 +89,7 @@ abstract class DBLockManager extends QuorumLockManager {
 			$this->lockExpiry = $config['lockExpiry'];
 		} else {
 			$met = ini_get( 'max_execution_time' );
-			$this->lockExpiry = $met ?: 60; // use some sane amount if 0
+			$this->lockExpiry = $met ?: 60; // use some sensible amount if 0
 		}
 		$this->safeDelay = ( $this->lockExpiry <= 0 )
 			? 60 // pick a safe-ish number to match DB timeout default

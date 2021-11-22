@@ -3325,7 +3325,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * hardcoded English names of the Special: pages, for ASCII safety.
 	 *
 	 * @note Since these URLs get dropped directly into emails, using the
-	 * short English names avoids insanely long URL-encoded links, which
+	 * short English names avoids really long URL-encoded links, which
 	 * also sometimes can get corrupted in some browsers/mailers
 	 * (T8957 with Gmail and Internet Explorer).
 	 *
