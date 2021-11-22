@@ -23,6 +23,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 				'HTTPMaxConnectTimeout' => INF
 			];
 		}
+		$options += [
+			'LocalVirtualHosts' => [],
+			'LocalHTTPProxy' => false,
+		];
 		return new HttpRequestFactory(
 			new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, $options ),
 			new NullLogger

@@ -71,6 +71,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var string|null */
+	protected $localProxy;
+	/** @var string[] */
+	protected $localVirtualHosts = [];
 	/** @var string */
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 	/** @var LoggerInterface */
@@ -87,16 +91,18 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * a MultiHttpClient directly.
 	 *
 	 * @param array $options
-	 *   - connTimeout     : default connection timeout (seconds)
-	 *   - reqTimeout      : default request timeout (seconds)
-	 *   - maxConnTimeout  : maximum connection timeout (seconds)
-	 *   - maxReqTimeout   : maximum request timeout (seconds)
-	 *   - proxy           : HTTP proxy to use
-	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
-	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 *   - userAgent       : The User-Agent header value to send
-	 *   - logger          : a \Psr\Log\LoggerInterface instance for debug logging
-	 *   - caBundlePath    : path to specific Certificate Authority bundle (if any)
+	 *   - connTimeout       : default connection timeout (seconds)
+	 *   - reqTimeout        : default request timeout (seconds)
+	 *   - maxConnTimeout    : maximum connection timeout (seconds)
+	 *   - maxReqTimeout     : maximum request timeout (seconds)
+	 *   - proxy             : HTTP proxy to use
+	 *   - localProxy        : Reverse proxy to use for domains in localVirtualHosts
+	 *   - localVirtualHosts : Domains that are configured as virtual hosts on the same machine
+	 *   - usePipelining     : whether to use HTTP pipelining if possible (for all hosts)
+	 *   - maxConnsPerHost   : maximum number of concurrent connections (per host)
+	 *   - userAgent         : The User-Agent header value to send
+	 *   - logger            : a \Psr\Log\LoggerInterface instance for debug logging
+	 *   - caBundlePath      : path to specific Certificate Authority bundle (if any)
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -108,7 +114,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 		static $opts = [
 			'connTimeout', 'maxConnTimeout', 'reqTimeout', 'maxReqTimeout',
-			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger'
+			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger',
+			'localProxy', 'localVirtualHosts',
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -617,6 +624,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
+			if ( $this->localProxy !== null && $this->isLocalURL( $req['url'] ) ) {
+				$this->useReverseProxy( $req, $this->localProxy );
+			}
 			$this->logger->debug( "HTTP start: {method} {url}",
 				[
 					'method' => $req['method'],
@@ -637,6 +647,72 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 			$req['flags'] = $req['flags'] ?? [];
 		}
+	}
+
+	private function useReverseProxy( array &$req, $proxy ) {
+		$parsedProxy = wfParseUrl( $proxy );
+		if ( $parsedProxy === false ) {
+			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+		}
+		$parsedUrl = wfParseUrl( $req['url'] );
+		if ( $parsedUrl === false ) {
+			throw new Exception( "Invalid url specified: ${req['url']}" );
+		}
+		// Set the current host in the Host header
+		$req['headers']['Host'] = $parsedUrl['host'];
+		// Replace scheme, host and port in the request
+		$parsedUrl['scheme'] = $parsedProxy['scheme'];
+		$parsedUrl['host'] = $parsedProxy['host'];
+		if ( isset( $parsedProxy['port'] ) ) {
+			$parsedUrl['port'] = $parsedProxy['port'];
+		} else {
+			unset( $parsedUrl['port'] );
+		}
+		$req['url'] = wfAssembleUrl( $parsedUrl );
+		// Explicitly disable use of another proxy by setting to false,
+		// since null will fallback to $this->proxy
+		$req['proxy'] = false;
+	}
+
+	/**
+	 * Check if the URL can be served by localhost
+	 *
+	 * @note this is mostly a copy of MWHttpRequest::isLocalURL()
+	 * @param string $url Full url to check
+	 * @return bool
+	 */
+	private function isLocalURL( $url ) {
+		if ( !$this->localVirtualHosts ) {
+			// Shortcut
+			return false;
+		}
+
+		// Extract host part
+		$matches = [];
+		if ( preg_match( '!^https?://([\w.-]+)[/:].*$!', $url, $matches ) ) {
+			$host = $matches[1];
+			// Split up dotwise
+			$domainParts = explode( '.', $host );
+			// Check if this domain or any superdomain is listed as a local virtual host
+			$domainParts = array_reverse( $domainParts );
+
+			$domain = '';
+			$countParts = count( $domainParts );
+			for ( $i = 0; $i < $countParts; $i++ ) {
+				$domainPart = $domainParts[$i];
+				if ( $i == 0 ) {
+					$domain = $domainPart;
+				} else {
+					$domain = $domainPart . '.' . $domain;
+				}
+
+				if ( in_array( $domain, $this->localVirtualHosts ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
