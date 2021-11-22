@@ -876,6 +876,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "Ja",
 	"tags-active-no": "Nej",
+	"deletepage": "Slett siid",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettetj}} siden $3",
 	"logentry-move-move": "$1 {{GENDER:$2|flyttje}} siden $3 te $4",
 	"logentry-newusers-create": "Brugekontoe $1 bløw {{GENDER:$2|opretten}}",

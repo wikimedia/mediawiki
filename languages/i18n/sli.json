@@ -1643,6 +1643,7 @@
 	"tags-edit": "bearbta",
 	"tags-hitcount": "$1 {{PLURAL:$1|Änderung|Änderunga}}",
 	"diff-form": "a '''Formular'''",
+	"deletepage": "Seite läscha",
 	"htmlform-submit": "Ieberträän",
 	"htmlform-reset": "Änderunga rickgängig macha",
 	"htmlform-selectorother-other": "Ondere",

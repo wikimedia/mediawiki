@@ -1948,6 +1948,7 @@
 	"tags-active-no": "Niy",
 	"tags-hitcount": "$1 {{PLURAL:$1|zmiana|zmiany|zmian}}",
 	"diff-form": "Rōżnice",
+	"deletepage": "Skasuj artykuł",
 	"logentry-delete-delete": "$1 {{GENDER:$2|skasowoł|skasowała}} strōnã $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|prziwrōciōł|prziwrōciyła}} strōnã $3",
 	"logentry-delete-revision": "$1 {{GENDER:$2|zmiyniōł|zmiyniyła}} widoczność {{PLURAL:$5|wersyje|$5 wersyji}} strōny $3: $4",

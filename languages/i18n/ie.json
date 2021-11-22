@@ -1619,6 +1619,7 @@
 	"tags-apply-not-allowed-multi": "Li sequent {{PLURAL:$2|marcation ne posse|marcationes ne posse}} esser aplicat manualmen: $1",
 	"compare-page1": "Págine 1",
 	"compare-page2": "Págine 2",
+	"deletepage": "Deleter págine",
 	"purge": "Actualisar",
 	"htmlform-reset": "Anullar changes",
 	"logentry-delete-delete": "$1 ha removet li págine $3",

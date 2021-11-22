@@ -1725,6 +1725,7 @@
 	"tags-active-yes": "Gue / en",
 	"tags-active-no": "Volgue / me",
 	"tags-hitcount": "$1 {{PLURAL:$1|betaks}}",
+	"deletepage": "Busulara",
 	"logentry-delete-delete": "$1 {{GENDER:$2|sulayanu}} $3 bu",
 	"logentry-delete-restore": "$1 {{GENDER:$2|dimplekuyunu}} $3 bu ko $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|betayar}} va rowinuca ke {{PLURAL:$5|tanoya betara|$5 betara}} va $3: $4 bu.",

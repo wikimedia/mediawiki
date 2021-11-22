@@ -752,6 +752,7 @@
 	"tags-active-yes": "Ho",
 	"tags-active-no": "var",
 	"tags-hitcount": "$1 {{PLURAL:$1|oktiroba|oktiroba}}",
+	"deletepage": "Butʼkʼa jili",
 	"logentry-delete-delete": "$1 $3 sayfasını {{GENDER:$2|sildi}}",
 	"logentry-delete-restore": "$1, $3 sayfasını $4 sayfasına {{GENDER:$2|taşıdı}}",
 	"logentry-delete-revision": "$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4",

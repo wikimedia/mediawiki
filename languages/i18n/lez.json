@@ -958,6 +958,7 @@
 	"tags-active-no": "Ваъ",
 	"tags-edit": "дегишарун",
 	"compare-page1": "Чар 1",
+	"deletepage": "Алудун хъувун",
 	"logentry-delete-delete": "$1-ди $3 чин {{GENDER:$2|чӀурна}}",
 	"logentry-move-move": "$1 $3 макъаладин тӀвар $4 -диз масакӀа хъувуна",
 	"logentry-move-move-noredirect": "$1 $3 макъаладин тӀвар, ракъурунин винелай $4 -диз масакӀа хъувуна",

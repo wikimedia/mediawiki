@@ -1662,6 +1662,7 @@
 	"tag-filter-submit": "ማጣሪያ",
 	"tags-edit": "አርም",
 	"tags-hitcount": "$1 {{PLURAL:$1|ለውጥ|ለውጦች}}",
+	"deletepage": "ገጹ ይጥፋ",
 	"htmlform-submit": "ለማቅረብ",
 	"htmlform-selectorother-other": "ሌላ",
 	"logentry-delete-delete": "$1 ገጹን $3 አጠፋ",

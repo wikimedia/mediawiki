@@ -1186,6 +1186,7 @@
 	"tags-active-yes": "Ciáng-sê",
 	"tags-active-no": "Ng-sê",
 	"tags-hitcount": "$1 huòi {{PLURAL:$1|siŭ-gāi}}",
+	"deletepage": "刪頁",
 	"logentry-delete-delete": "$1 dṳ̀ kó̤ hiĕk-miêng $3",
 	"logentry-delete-delete_redir": "$1 sāi sĭng gì nó̤h muák-lâi kó̤ tṳ̀ng-dêng-hióng $3",
 	"revdelete-content-hid": "Káung-kī gì nó̤h",

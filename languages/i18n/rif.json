@@ -660,6 +660,7 @@
 	"tags-edit-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ:",
 	"compare-page1": "ⵜⴰⵙⵏⴰ 1",
 	"compare-page2": "ⵜⴰⵙⵏⴰ 2",
+	"deletepage": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ",
 	"htmlform-no": "ⵓⵀⵓ",
 	"htmlform-yes": "ⵢⴰⵀ",
 	"logentry-delete-delete": "{{GENDER:$2|ⵉⴽⴽⵙ|ⵜⴽⴽⵙ}} $1 ⵜⴰⵙⵏⴰ $3",

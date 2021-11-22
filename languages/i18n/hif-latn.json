@@ -2777,6 +2777,7 @@
 	"compare-submit": "Antar dekho",
 	"compare-revision-not-exists": "Chuna gais revision abhi nai banawa gais hai.",
 	"diff-form": "ek '''form'''",
+	"deletepage": "Pana ke delete karo",
 	"dberr-problems": "Maaf karna! Ii site technical difficulties experience kare hae.",
 	"dberr-again": "Thora deri wait kar ke fir se load kare ke try karo",
 	"dberr-info-hidden": "(Database ke nai access kare sakaa jaawe hae)",

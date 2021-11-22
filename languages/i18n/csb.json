@@ -1211,6 +1211,7 @@
 	"tags-delete-reason": "Przëczëna:",
 	"tags-activate-reason": "Przëczëna:",
 	"tags-deactivate-reason": "Przëczëna:",
+	"deletepage": "Rëmôj starnã",
 	"logentry-delete-delete": "$1 {{GENDER:$2|rëmnął|rëmnãła}} starnã $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|doprowôdzôł|doprowôdza}} nazôd starnã $3",
 	"logentry-delete-revision": "$1 {{GENDER:$2|zjinacził|zjinacziła}} widzawnotã {{PLURAL:$5|wersëji|$5 wersëji}} starnë $3: $4",

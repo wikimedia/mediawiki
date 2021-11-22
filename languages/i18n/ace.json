@@ -1309,6 +1309,7 @@
 	"tags-activate-reason": "Alasan:",
 	"tags-deactivate-reason": "Alasan:",
 	"tags-edit-reason": "Alasan:",
+	"deletepage": "Sampôh laman",
 	"logentry-delete-delete": "$1 {{GENDER:$2|geusampôh}} laman $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|geupeuriwang}} laman $3 ($4)",
 	"revdelete-content-hid": "asoe geusom",

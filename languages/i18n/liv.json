@@ -539,5 +539,6 @@
 	"duplicate-defaultsort": "'''Kūondõks:''' Kõõrda-jadā võţīm ''$2'' tīeb tijāks jedsõ pūol vólbiz kõõrda-jadā võţīm ''$1''.",
 	"specialpages": "Eņtšvīţizt lēḑõd",
 	"external_image_whitelist": "  #Jettõgid se jadā bäz mõitiņtõmõt<pre>\n#Pangid regulār-ekpressij jagūd ( set merkid // vail vȯlbi jag) mōzõpēḑõn \n#Ne āt sidtõd vikipēdij-uļļizt bīldad internet adresõdõks\n#Sidtõd vȯlbizt nägţõbõd bīldadõks, mūn kȭrdal nägţõbõd setku bīlda siḑīm \n#Merkõks # irgõbõd rīndad āt komentārd \n#Se um nei-īž sūrd ja piškizt tǟdõdõks\n\n#Pangid tikkiž regulār-ekpressij jagūd sīe krīpš pāikal. Jettõgid se jadā bäz mõitiņtõmõt mūoḑ pǟlõ  </pre>",
-	"tag-filter": "[[Special:Tags|Tag]] sõggõl:"
+	"tag-filter": "[[Special:Tags|Tag]] sõggõl:",
+	"deletepage": "Kištāntõgid se lēḑ jarā"
 }

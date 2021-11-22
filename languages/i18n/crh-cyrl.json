@@ -1414,6 +1414,7 @@
 	"tag-filter-submit": "Сюз",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Бельги|Бельгилер}}]]: $2",
 	"tags-title": "Бельгилер",
+	"deletepage": "Саифени ёкъ эт",
 	"htmlform-reset": "Денъишикликлерни кери ал",
 	"logentry-move-move": "$1 адлы къуланыджы $3 саифесининъ адыны $4 деп {{GENDER:$2|денъиштирильди}}.",
 	"logentry-move-move-noredirect": "$1 адлы къулланыджы $3 саифесининъ адыны ёнетме къалдырмайып $4 деп {{GENDER:$2|денъиштирди}}",

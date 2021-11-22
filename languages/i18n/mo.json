@@ -484,6 +484,7 @@
 	"specialpages": "Паӂинь спечиале",
 	"tag-filter": "Филтраря [[Special:Tags|маркажелор]]:",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Маркаж|Маркаже}}]]: $2",
+	"deletepage": "Штерӂе паӂина",
 	"logentry-newusers-create": "{{GENDER:$2|Утилизаторул|Утилизатоаря}} шь-а креат ун конт $1",
 	"searchsuggest-search": "Кэутаре ын {{SITENAME}}"
 }

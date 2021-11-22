@@ -19,6 +19,7 @@
 			"ToniSant",
 			"Urhixidur",
 			"Vlad5250",
+			"Weather Top Wizard",
 			"아라"
 		]
 	},
@@ -1261,6 +1262,7 @@
 	"recentchanges-label-plusminus": "Id-daqs tal-paġna nbidel b'dan in-numru ta' bytes",
 	"recentchanges-legend-heading": "<strong>Leġenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ara wkoll il-[[Special:NewPages|lista tal-paġni l-ġodda]])",
+	"recentchanges-legend-watchlistexpiry": "Paġna li jarahom temporanjament",
 	"recentchanges-submit": "Uri",
 	"rcfilters-tag-remove": "Neħħi '$1'",
 	"rcfilters-legend-heading": "<strong>Lista ta' abbrevjazzjonijiet:</strong>",
@@ -3020,6 +3022,7 @@
 	"compare-rev2": "Reviżjoni 2",
 	"compare-submit": "Qabbel",
 	"compare-revision-not-exists": "Ir-reviżjoni li speċifikajt ma teżistix.",
+	"deletepage": "Ħassar il-paġna",
 	"dberr-problems": "Jiddispjaċina! Dan is-sit għandu diffikultajiet tekniċi.",
 	"dberr-again": "Prova stenna ftit minuti u erġa' tella' l-paġna.",
 	"dberr-info": "(Impossibbli li jsir kuntratt mas-server tad-databażi: $1)",

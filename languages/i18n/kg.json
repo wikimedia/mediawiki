@@ -375,5 +375,6 @@
 	"table_pager_next": "Mukânda ya kulânda",
 	"table_pager_prev": "Mukânda ya kutwala",
 	"table_pager_first": "Mukânda ya ntete",
-	"table_pager_last": "Mukânda ya nsuka"
+	"table_pager_last": "Mukânda ya nsuka",
+	"deletepage": "Kufwa mukânda"
 }

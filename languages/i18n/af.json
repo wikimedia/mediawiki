@@ -2682,6 +2682,7 @@
 	"diff-form-submit": "Vertoon verskille",
 	"permanentlink": "Permanente skakel",
 	"permanentlink-submit": "Beweeg na hersiening",
+	"deletepage": "Skrap bladsy",
 	"dberr-problems": "Jammer! Die webwerf ondervind op die oomblik tegniese probleme.",
 	"dberr-again": "Wag 'n paar minute en probeer dan weer.",
 	"dberr-info": "(Kan nie die databasisbediener kontak nie: $1)",

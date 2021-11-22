@@ -1541,6 +1541,7 @@
 	"specialpages": "Xëti jagleel",
 	"tag-filter": "Seggee ak [[Special:Tags|Tafaan]]:",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tafaan}}]]: $2",
+	"deletepage": "Far xët wi",
 	"logentry-delete-delete": "$1 {{GENDER:$2|moo far}} xët wi $3",
 	"revdelete-restricted": "doxalub digal ngir yorkat yi",
 	"revdelete-unrestricted": "digal ngir yorkat yi deñ na",

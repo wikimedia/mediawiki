@@ -1762,6 +1762,7 @@
 	"tags-edit": "redigīs",
 	"tags-hitcount": "$1 {{PLURAL:$1|kitawīdinsna|kitawīdinsnas}}",
 	"diff-form": "'''fōrmularan'''",
+	"deletepage": "Āupausinais pāusan",
 	"dberr-again": "Bandais etkūmps kraūtun šin pāusan pa delli minūtins.",
 	"dberr-info": "(Ni mazīngi sēitun si sen dātanbazis sērwerin: $1)",
 	"htmlform-invalid-input": "Ast prōblamai sen wērtibins enwestans prō tin",

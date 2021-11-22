@@ -869,6 +869,7 @@
 	"tags-active-yes": "हाँ",
 	"tags-active-no": "नै",
 	"tags-hitcount": "$1 {{PLURAL:$1|बदलाव|बदलाव सिनी}}",
+	"deletepage": "पन्ना हटाबॊ",
 	"logentry-delete-delete": "$1 न॑ पृष्ठ $3 {{GENDER:$2|हटाय}} देलकै",
 	"logentry-delete-restore": "$1 न॑ पृष्ठ $3 ($4) क॑ {{GENDER:$2|पुनर्स्थापित}} करी देलकै",
 	"logentry-delete-revision": "$1 न॑ $3 पृष्ठ के {{PLURAL:$5|एक अवतरण|$5 अवतरणों}} के दृश्यता {{GENDER:$2|बदललकै}}: $4",

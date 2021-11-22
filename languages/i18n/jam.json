@@ -780,6 +780,7 @@
 	"specialpages": "Special page",
 	"tag-filter": "[[Special:Tags|Tag]] filta:",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
+	"deletepage": "Diliit piej",
 	"logentry-delete-delete": "$1 {{GENDER:$2|diliitid}} piej $3‎",
 	"logentry-move-move": "$1 {{GENDER:$2|muuv}} piej $3 tu $4‎",
 	"logentry-newusers-create": "One account {{GENDER:$2|mek}} fi $1",

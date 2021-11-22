@@ -786,6 +786,7 @@
 	"tags-delete": "ထုဂ်ဆိင့်",
 	"tags-hitcount": "ဆ်ုအင်းလယ် $1 {{PLURAL:$1|ၮါင်း|ၮါင်းလ်ုဖး}}",
 	"tags-edit-existing-tags-none": "အှ်ဏင်မိင်အေ",
+	"deletepage": "မ်ုထုဂ်ဆိင့်လိက်‌မေံၜၠါ်",
 	"htmlform-selectorother-other": "ၰာႋၰံင်",
 	"htmlform-yes": "မွာဲ",
 	"logentry-delete-delete": "$3 လိက်မေံအိုဝ် $1 ၮ်ှ {{GENDER:$2|ပ္တုံသီ့ဝေ့ဆေဝ်ႋလ်ှ}}",
