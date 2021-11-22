@@ -464,8 +464,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$loginReqs = [ PasswordAuthenticationRequest::class => $loginReq ];
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $cuser ),
-			$provider->beginPrimaryAuthentication( $loginReqs ),
-			'Sanity check'
+			$provider->beginPrimaryAuthentication( $loginReqs )
 		);
 
 		if ( $type === PasswordAuthenticationRequest::class ||
@@ -692,10 +691,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$expect->createRequest = $req;
 
 		$res2 = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
-		$this->assertEquals( $expect, $res2, 'Sanity check' );
+		$this->assertEquals( $expect, $res2 );
 
 		$ret = $provider->beginPrimaryAuthentication( $authreqs );
-		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status, 'sanity check' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status );
 
 		$this->assertSame( null, $provider->finishAccountCreation( $user, $user, $res2 ) );
 

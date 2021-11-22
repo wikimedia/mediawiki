@@ -479,7 +479,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[],
 			$mp->isValidMove()->getErrorsArray(),
-			'Sanity check - can move over normal redirect'
+			'Can move over normal redirect'
 		);
 
 		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );

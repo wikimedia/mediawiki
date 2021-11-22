@@ -413,7 +413,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->config->set( 'AllowSecuritySensitiveOperationIfCannotReauthenticate', [] );
 		$provideUser = new \User;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
-		$this->assertSame( 0, $session->getUser()->getId(), 'sanity check' );
+		$this->assertSame( 0, $session->getUser()->getId() );
 
 		// Anonymous user => reauth
 		$session->set( 'AuthManager:lastAuthId', 0 );
@@ -422,7 +422,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$provideUser = $user;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
-		$this->assertSame( $user->getId(), $session->getUser()->getId(), 'sanity check' );
+		$this->assertSame( $user->getId(), $session->getUser()->getId() );
 
 		// Error for no default (only gets thrown for non-anonymous user)
 		$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
@@ -711,8 +711,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->initializeManager( false );
 		$this->assertSame(
 			[ 'A' => $mock1, 'B' => $mock2, 'C' => $mock3 ],
-			$this->managerPriv->getPrimaryAuthenticationProviders(),
-			'sanity check'
+			$this->managerPriv->getPrimaryAuthenticationProviders()
 		);
 
 		$config['primaryauth']['A']['sort'] = 100;
@@ -946,7 +945,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $res );
 		$this->logger->setCollect( true );
 		$ret = $this->manager->beginAuthentication( [], 'http://localhost/' );
-		$this->assertSame( AuthenticationResponse::UI, $ret->status, 'sanity check' );
+		$this->assertSame( AuthenticationResponse::UI, $ret->status );
 		$ret = $this->manager->continueAuthentication( [] );
 		$this->logger->setCollect( false );
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
@@ -2510,8 +2509,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( AuthenticationResponse::PASS, $ret->status );
 
 		$user = \User::newFromName( $username );
-		$this->assertNotEquals( 0, $user->getId(), 'sanity check' );
-		$this->assertNotEquals( $creator->getId(), $user->getId(), 'sanity check' );
+		$this->assertNotEquals( 0, $user->getId() );
+		$this->assertNotEquals( $creator->getId(), $user->getId() );
 
 		$data = \DatabaseLogEntry::getSelectQueryData();
 		$rows = iterator_to_array( $dbw->select(
@@ -2919,7 +2918,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Test addToDatabase throws an exception
 		$cache = \ObjectCache::getLocalClusterInstance();
 		$backoffKey = $cache->makeKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
-		$this->assertFalse( $cache->get( $backoffKey ), 'sanity check' );
+		$this->assertFalse( $cache->get( $backoffKey ) );
 		$session->clear();
 		$user = $this->getMockBuilder( \User::class )
 			->onlyMethods( [ 'addToDatabase' ] )->getMock();
@@ -2951,7 +2950,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->will( $this->returnCallback( function () use ( $username, &$user ) {
 				$oldUser = \User::newFromName( $username );
 				$status = $oldUser->addToDatabase();
-				$this->assertTrue( $status->isOK(), 'sanity check' );
+				$this->assertTrue( $status->isOK() );
 				$user->setId( $oldUser->getId() );
 				return Status::newFatal( 'userexists' );
 			} ) );
@@ -3408,8 +3407,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$session = $this->request->getSession();
 		$session->clear();
 
-		$this->assertSame( 0, \User::newFromName( $username )->getId(),
-			'sanity check' );
+		$this->assertSame( 0, \User::newFromName( $username )->getId() );
 
 		$callback = $this->callback( static function ( $user ) use ( $username ) {
 			return $user->getName() === $username;
@@ -3457,10 +3455,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$session = $this->request->getSession();
 		$session->clear();
 
-		$this->assertSame( 0, $session->getUser()->getId(),
-			'sanity check' );
-		$this->assertSame( 0, \User::newFromName( $username )->getId(),
-			'sanity check' );
+		$this->assertSame( 0, $session->getUser()->getId() );
+		$this->assertSame( 0, \User::newFromName( $username )->getId() );
 
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );

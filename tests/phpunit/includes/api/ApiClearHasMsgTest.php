@@ -17,7 +17,7 @@ class ApiClearHasMsgTest extends ApiTestCase {
 		$talkPageNotificationManager = MediaWikiServices::getInstance()
 			->getTalkPageNotificationManager();
 		$talkPageNotificationManager->setUserHasNewMessages( $user );
-		$this->assertTrue( $talkPageNotificationManager->userHasNewMessages( $user ), 'sanity check' );
+		$this->assertTrue( $talkPageNotificationManager->userHasNewMessages( $user ) );
 
 		$data = $this->doApiRequest( [ 'action' => 'clearhasmsg' ], [] );
 
