@@ -397,4 +397,13 @@ class SettingsBuilderTest extends TestCase {
 
 		$this->assertSame( 'BlaBla', $configBuilder->build()->get( 'MySetting' ) );
 	}
+
+	public function testGetDefaultConfig() {
+		$defaultConfig = $this->newSettingsBuilder()
+			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'bla' ], ], ] )
+			->apply()
+			->getDefaultConfig();
+		$this->assertTrue( $defaultConfig->has( 'MySetting' ) );
+		$this->assertSame( 'bla', $defaultConfig->get( 'MySetting' ) );
+	}
 }
