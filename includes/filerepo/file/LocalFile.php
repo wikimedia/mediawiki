@@ -2326,7 +2326,10 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$batch = new LocalFileMoveBatch( $this, $target );
 
-		$batch->addCurrent();
+		$status = $batch->addCurrent();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
 
