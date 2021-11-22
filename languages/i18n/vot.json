@@ -617,6 +617,7 @@
 	"external_image_whitelist": "# Jättägä kase rivi mokomassi, minenä-mokomana se on õõmaz.<pre>\n# Sijottaga tänne säännollizije ilmaud’d’e fragmentad (se õsa, kumpa on // väliz)\n# ned leevät võrrõttu ulko-kuvije URL-sõ.\n# Sopivad leeväd näütettü kuvijna, muud leeväd näütettü kuvijsõ viitauina.\n# Rivid, kummad alguta //-ss, pietä kommentaarijina. Rivid eväd õlla tunnuttu registra suhtõsõ.\n# Sijottaga säännollizije ilmaud’d’e fragmentad kaze rivi ülez.\n\n# Jättägä kase rivi mokomassi, minenä-mokomana se on õõmaz.",
 	"tag-filter": "[[Special:Tags|Deskriptorije]] fil'tra:",
 	"tags-edit": "muuttaa",
+	"deletepage": "Pühi cülci",
 	"htmlform-selectorother-other": "Muu",
 	"rightsnone": "(eb õõ)",
 	"feedback-cancel": "Otmeńoit",

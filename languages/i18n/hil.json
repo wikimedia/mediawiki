@@ -1378,6 +1378,7 @@
 	"external_image_whitelist": " #Pabay-an lang ang ini nga linya nga amu ni<pre>\n#Ibutang ang mga piraso sang mga regular nga expressions (amo lang nga parte nga yara sa tunga sang //) sa idalum\n#Ini ibagay sa mga URLs sang mga imahen (hotlinked ukon ginsugpon) sa gwa.\n#Ang mga nagakabagay nga mga imahen ini igapagwa, kon indi ang sugpon ukon link lang sang imahen ang igapagwa.\n#Mga linya nga nagasugod sa # tratuhon bilang komento.\n#Ini indi sensitibo sa kapitalisasyon\n\n#Ibutang ang tanan nga regex fragments sa babaw sang linya. Pabay-i lang ang linya nga amu ina</pre>",
 	"tag-filter": "Ginpangsala sa [[Special:Tags|marka]]:",
 	"tags-active-yes": "Huo",
+	"deletepage": "Panason ang pahina",
 	"logentry-delete-restore": "Walay minyatura",
 	"revdelete-content-hid": "gintago ang kaundan",
 	"revdelete-restricted": "ginapatuman nga pagbawal sa mga administrador",

@@ -2435,6 +2435,7 @@
 	"compare-rev2": "Version 2",
 	"compare-submit": "Vergleiche",
 	"compare-revision-not-exists": "Die oongebne Version ist net voarhand.",
+	"deletepage": "Seite abwische",
 	"dberr-problems": "Entschuldichung. Die Seit hot momentan technische Schwierichkeite.",
 	"dberr-again": "Woort en pooh Minute und versuch dann nochmo zu loode.",
 	"dberr-info": "(Kann ken Verbinnung zum Datebank-Server hearstelle: $1)",

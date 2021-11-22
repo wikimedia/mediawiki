@@ -1806,6 +1806,7 @@
 	"tags-edit": "taisītė",
 	"tags-hitcount": "$1 {{PLURAL:$1|pakeitėms|pakeitėmā|pakeitėmu}}",
 	"comparepages": "Primestė poslapio",
+	"deletepage": "Trintė poslapi",
 	"logentry-delete-delete": "$1 ėštrīnė poslapi $3",
 	"logentry-delete-restore": "$1 atgrōžėna poslapi $3 ($4)",
 	"revdelete-content-hid": "torėnīs pakavuots",

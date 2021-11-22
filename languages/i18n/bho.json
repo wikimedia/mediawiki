@@ -1820,6 +1820,7 @@
 	"tags-delete-reason": "कारण:",
 	"tags-activate-reason": "कारण:",
 	"tags-edit-reason": "कारण:",
+	"deletepage": "पन्ना हटाईं",
 	"logentry-delete-delete": "$1 द्वारा पन्ना $3 {{GENDER:$2|हटा}} दिहल गइल",
 	"logentry-delete-restore": "$1 पन्ना $3 ($4) के वापस ले {{GENDER:$2|अइलें|अइली}}",
 	"logentry-delete-revision": "$1 पन्ना $3 पर {{PLURAL:$5|रिवीजन|$5 रिवीजन सभ}} के विजिबिलिटी {{GENDER:$2|बदललें|बदलली}}: $4",

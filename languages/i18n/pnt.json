@@ -900,6 +900,7 @@
 	"tags-hitcount-header": "Αλλαγάς με ετικέτας",
 	"tags-edit": "άλλαγμαν",
 	"tags-hitcount": "$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}",
+	"deletepage": "Σβήσον τη σελίδαν",
 	"htmlform-submit": "Στείλον",
 	"htmlform-reset": "Κλώσον τ'αλλαγάς",
 	"htmlform-selectorother-other": "Άλλον",

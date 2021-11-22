@@ -2665,6 +2665,7 @@
 	"compare-submit": "Confronta",
 	"compare-revision-not-exists": "Ła revixion che te ghe spesifegà nó ła existe.",
 	"diff-form": "un '''modulo'''",
+	"deletepage": "Scanceƚa pàgina",
 	"dberr-problems": "Sto sito al momento el gà qualche problema tènico.",
 	"dberr-again": "Próa a spetar un par de minuti e ricargar la pàxena.",
 	"dberr-info": "(No se riesse a métarse in contato col server del database: $1)",

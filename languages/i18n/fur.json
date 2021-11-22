@@ -1291,6 +1291,7 @@
 	"tags-active-no": "No",
 	"tags-edit": "cambie",
 	"tags-hitcount": "$1 {{PLURAL:$1|cambiament|cambiaments}}",
+	"deletepage": "Elimine pagjine",
 	"dberr-problems": "Nus displâs, chest sît web al è daûr a vê dificoltâts tecnichis.",
 	"dberr-again": "Prove a spietâ uns minûts e po torne a cjamâ la pagjine.",
 	"dberr-info": "(No si pues contatâ il servidor de base di dâts: $1)",

@@ -1162,6 +1162,7 @@
 	"tags-active-no": "نو",
 	"tags-hitcount": "$1 {{PLURAL:$1|تبدیلی|تبدیلی}}",
 	"compare-page1": "صفحہ 1",
+	"deletepage": "صفحہو ضائع کورے",
 	"logentry-delete-delete": "$1 {{GENDER:$2|حذف کورونو ہوئے}} صفحہ $3",
 	"logentry-delete-restore": "$1 صفحو $3 {{GENDER:$2|بحال آریر}}",
 	"logentry-delete-revision": "$1 نے $3 میں موجود {{PLURAL:$5|ایک نسخے|$5 نسخوں}} کی مرئیت کو {{GENDER:$2|تبدیل کیا}}: $4",

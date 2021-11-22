@@ -1413,6 +1413,7 @@
 	"tags-title": "Belgiler",
 	"comparepages": "Saifelerni teñeştirüv",
 	"compare-submit": "Teñeştir",
+	"deletepage": "Saifeni yoq et",
 	"htmlform-reset": "Deñişikliklerni keri al",
 	"logentry-move-move": "$1 adlı qulanıcı $3 saifesiniñ adını $4 dep {{GENDER:$2|deñiştirildi}}.",
 	"logentry-move-move-noredirect": "$1 adlı qullanıcı $3 saifesiniñ adını yönetme qaldırmayıp $4 dep {{GENDER:$2|deñiştirdi}}",

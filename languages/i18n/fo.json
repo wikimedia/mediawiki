@@ -2189,6 +2189,7 @@
 	"compare-rev1": "Versjón 1",
 	"compare-rev2": "Versjón 2",
 	"compare-submit": "Samanber",
+	"deletepage": "Strika síðu",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettaði}} síðuna $3",
 	"logentry-move-move": "$1 {{GENDER:$2|flutti}} síðuna $3 til $4",
 	"logentry-newusers-create": "Brúkarakonta $1 varð {{GENDER:$2|upprættað}}",

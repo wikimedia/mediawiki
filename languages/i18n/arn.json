@@ -634,6 +634,7 @@
 	"external_image_whitelist": " #Kakünukilnge tüfachi wirin<pre>\n#Tukunge kalekenulu pin (fey konküley // mew müten) nagpüle\n#Fey ta wekun adnentun (hotlinked) ñi URL\n#Pengelngeay küme URL adentun reke, femnuale pengelneay adentun ñi lasun.\n#Wif tuwüli # ta ngütramkawün reke\n#Kimfal-lay fütrake wirin ka pichike wirin\n\n#Tukunge kom regex nemül wente tüfachi wirin mew. Kakünukilnge tüfachi wirin</pre>",
 	"tag-filter": "[[Special:Tags|Tag]] ñi chaytuwe:",
 	"tags-edit": "Wirin",
+	"deletepage": "Ñamümün tüfachi pakina",
 	"htmlform-selectorother-other": "Kakelu",
 	"rightsnone": "chemnorume",
 	"searchsuggest-search": "Kintun {{SITENAME}} mew"

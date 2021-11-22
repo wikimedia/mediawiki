@@ -24,6 +24,7 @@
 			"Surjection",
 			"Syreeni",
 			"Uusijani",
+			"Veikk0.ma",
 			"VezonThunder",
 			"아라"
 		]
@@ -83,9 +84,9 @@
 	"config-apc": "[https://www.php.net/apc APC] on asennettu",
 	"config-apcu": "[https://www.php.net/apcu APCu] on asennettu",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] on asennettu",
-	"config-diff3-bad": "GNU diff3:a ei löytynyt.",
+	"config-diff3-bad": "GNU diff3 -tekstinvertailutyökalua ei löytynyt. Voit sivuuttaa tämän viestin toistaiseksi, mutta päällekkäisiä muutoksia saattaa tapahtua useammin.",
 	"config-git": "Löydetty Git-versionhallintaohjelmisto: <code>$1</code>",
-	"config-git-bad": "Git-versionhallintaohjelmistoa ei löydy.",
+	"config-git-bad": "Git-versionhallintaohjelmistoa ei löytynyt. Voit sivuuttaa tämän viestin toistaiseksi. Huom.: Special:Version ei tule näyttämään versiotiivisteitä.",
 	"config-imagemagick": "Löydettiin ImageMagick: <code>$1</code>.\nKuvien esikatselukuvat otetaan samalla käyttöön jos otetaan tiedostojen tallennus.",
 	"config-gd": "Löydettiin sisäänrakennettu GD-grafiikkakirjasto.\nKuvista luodaan esikatseluversiot automaattisesti, jos otat käyttöön tiedostojen lähettämisen.",
 	"config-no-scaling": "GD-kirjastoa tai ImageMagick-ohjelmaa ei löydy. \nKuvista ei luoda esikatseluversioita.",
@@ -187,7 +188,7 @@
 	"config-subscribe": "Liity [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ päivityssähköpostilistalle].",
 	"config-subscribe-help": "Tällä harvoin käytettävällä sähköpostilistalla julkaistaan päivitysilmoituksia ja turvallisuuspäivityksiä.\nLiittymistä listalle suositellaan samoin kuin päivittämään MediaWiki kun uusi versio julkaistaan.",
 	"config-subscribe-noemail": "Yritit liittyä päivityssähköpostilistalle antamatta sähköpostiosoitetta.\nSyötä sähköpostiosoite jos haluat liittyä listalle.",
-	"config-pingback": "Jaa tietoja tästä asennuksesta MediaWiki-kehittäjien kanssa.",
+	"config-pingback": "Jaa tietoa tästä asennuksesta MediaWikin kehittäjien kanssa. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Tietosuojakäytäntö].",
 	"config-almost-done": "Olet jo lähes valmis!\nVoit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.",
 	"config-optional-continue": "Säädä lisää asetuksia.",
 	"config-optional-skip": "Nyt riittää, asenna wiki näillä tiedoilla.",

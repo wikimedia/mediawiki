@@ -1477,6 +1477,7 @@
 	"tags-activate-not-found": "Ala yu ing tag \"$1\"",
 	"tags-activate-submit": "Iyaktiba",
 	"tags-deactivate-reason": "Sangkan:",
+	"deletepage": "Buran ya ing bulung",
 	"revdelete-restricted": "ipairal la reng limitasiun kareng sysop",
 	"revdelete-unrestricted": "ilako la reng makabawal kareng sysops",
 	"rightsnone": "(ala)",

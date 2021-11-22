@@ -1201,6 +1201,7 @@
 	"comparepages": "Acumparar páiginas",
 	"diff-form": "Defréncias",
 	"permanentlink": "Lhigaçon permaniente",
+	"deletepage": "Botar fuora la páigina",
 	"purge": "Purgar",
 	"logentry-delete-delete": "$1 {{GENDER:$2|botou fuora}} la páigina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restourou}} la páigina $3 ($4)",

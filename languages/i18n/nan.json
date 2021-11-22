@@ -1228,6 +1228,7 @@
 	"tag-mw-changed-redirect-target": "Choán-ia̍h bo̍k-phiau kái-piàn",
 	"tags-active-yes": "Tio̍h",
 	"tags-active-no": "M̄-tio̍h",
+	"deletepage": "Thâi ia̍h",
 	"logentry-delete-delete": "$1 kā ia̍h-bīn $3 {{GENDER:$2|thâi tiāu}}",
 	"logentry-delete-delete_redir": "$1 ēng têng-siá lâi kā choán-ia̍h $3 {{GENDER:$2|thâi-tiāu}}",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",

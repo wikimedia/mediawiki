@@ -1576,6 +1576,7 @@
 	"tags-active-yes": "Jah",
 	"tags-active-no": "Ei",
 	"tags-hitcount": "$1 {{PLURAL:$1|muutminõ|muutmiisi}}",
+	"deletepage": "Kistudaq lehekülg ärq",
 	"logentry-delete-delete": "$1 {{GENDER:$2|kistut' ärq}} lehe $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|tekk' tagasi}} leheküle $3 ($4)",
 	"logentry-delete-revision": "$1 {{GENDER:$2|muut'}} lehekülel $3 {{PLURAL:$5|üte|$5}} muutmisõ nättävüst: $4",

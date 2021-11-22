@@ -1373,6 +1373,7 @@
 	"specialpages-group-redirects": "重定向特殊頁面",
 	"external_image_whitelist": "#留住箇行字<pre>\n#到下首（//嗰中間）輸入正規表達式\n#佢俚會同得外部（已超連結嗰）圖片配合\n#許滴配合到出來嗰會顯示做圖片，否則就光會顯示做連結\n#有 # 開頭嗰行會當做註解\n#大小寫冇有差别\n\n#到箇行上首輸入所有嗰regex。留住箇行字</pre>",
 	"tag-filter": "[[Special:Tags|標籤]]過濾器：",
+	"deletepage": "刪卟頁面",
 	"rightsnone": "（冇）",
 	"searchsuggest-search": "尋吖"
 }

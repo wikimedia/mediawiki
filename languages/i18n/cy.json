@@ -2947,6 +2947,7 @@
 	"compare-submit": "Cymharer",
 	"compare-revision-not-exists": "Nid yw'r diwygiad a enwyd ar gael.",
 	"diff-form": "Gwahaniaethau",
+	"deletepage": "Dilëir y dudalen",
 	"dberr-problems": "Mae'n ddrwg gennym! Mae'r wefan hon yn dioddef anawsterau technegol.",
 	"dberr-again": "Oedwch am ychydig funudau cyn ceisio ail-lwytho.",
 	"dberr-info": "(Ni ellir cysylltu â chronfa ddata: $1)",

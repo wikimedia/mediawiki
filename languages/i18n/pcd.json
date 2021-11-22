@@ -860,6 +860,7 @@
 	"compare-rev1": "Canjemint 1",
 	"compare-rev2": "Canjemint 2",
 	"compare-submit": "Aconparer",
+	"deletepage": "Défacer l'pache",
 	"htmlform-reset": "n'poin foaire chés canjemints",
 	"logentry-delete-delete": "$1 a supprimé l' pache $3",
 	"logentry-move-move": "$1 a déplacé l' pache $3 vers $4",

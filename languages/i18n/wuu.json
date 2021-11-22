@@ -1824,6 +1824,7 @@
 	"tags-active-yes": "好",
 	"tags-active-no": "弗",
 	"tags-hitcount": "$1趟改动",
+	"deletepage": "删脱页面",
 	"dberr-info-hidden": "（連弗上數據庫）",
 	"logentry-delete-delete": "$1{{GENDER:$2|删除}}页面$3",
 	"logentry-delete-restore": "$1{{GENDER:$2|还原}}页面$3（$4）",

@@ -2697,6 +2697,7 @@
 	"compare-rev2": "Mùthadh 2",
 	"compare-submit": "Coimeas",
 	"compare-revision-not-exists": "Chan eil am mùthadh a shònraich thu ann.",
+	"deletepage": "Sguab às duilleag",
 	"dberr-problems": "Duilich! Tha trioblaid teicnigeach aig an làrach seo.",
 	"dberr-again": "Feitheamh mionaid no dhà 's ath-luchdaich i.",
 	"dberr-info": "(Chan urrainn dhuinn an stòr-dàta inntrigeadh: $1)",

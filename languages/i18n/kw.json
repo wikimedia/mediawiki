@@ -1026,6 +1026,7 @@
 	"tags-active-no": "Nag yw",
 	"tags-edit": "golegi",
 	"tags-hitcount": "$1 {{PLURAL:$1|chanj|chanj}}",
+	"deletepage": "Dilea an folen",
 	"dberr-problems": "Drog yw genen! An wiasva ma a's teves kaletter teknogel.",
 	"dberr-again": "Assayewgh gortos pols ha daskarga.",
 	"dberr-info": "(Ny yllir kestava orth servyer an database: $1)",

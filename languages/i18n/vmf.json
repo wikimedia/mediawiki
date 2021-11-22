@@ -655,5 +655,6 @@
 	"duplicate-defaultsort": "Der Sordierungsschlissl „$2“ ieberschreibt den vuurher verwendten Schlissl „$1“.",
 	"specialpages": "Schbedsjaal-sajdn",
 	"external_image_whitelist": " # Däi Zeiln net verändern.<pre>\n# Undnstehnd könna Fragmende vo reguläre Asdrigg (der Deil zwischa die //) eigeem werrn.\n# Däi werrn miid die URLs vo Bilder aus egsderne Gwelln verglichng.\n# A bositiver Vergleich fiehrt zur Ozeich vom Bild, sunsd werrds Bild blouss als Link ozeichd.\n# Zeiln, däi wou miid an # ofanga, werrn als Gommendar behandld.\n# Zwischa Grouß- un Klaaschreibung werrd net underschiedn.\n\n# Fragmende vo reguläre Asdrigg nach dera Zeiln eidroong. Däi Zeiln net verändern.</pre>",
-	"tag-filter": "[[Special:Tags|Marrgierungs]]-Fillder:"
+	"tag-filter": "[[Special:Tags|Marrgierungs]]-Fillder:",
+	"deletepage": "Sajdn leschn"
 }

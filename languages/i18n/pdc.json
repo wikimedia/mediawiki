@@ -678,6 +678,7 @@
 	"tags-hitcount": "$1 {{PLURAL:$1|Ennering|Enneringe}}",
 	"compare-page1": "Blatt 1",
 	"compare-page2": "Blatt 2",
+	"deletepage": "Blatt lesche",
 	"htmlform-reset": "Enneringe losmache",
 	"htmlform-selectorother-other": "Annere",
 	"rightsnone": "(ken)",

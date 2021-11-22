@@ -2961,6 +2961,7 @@
 	"compare-submit": "Krahasimi",
 	"compare-revision-not-exists": "Rishikimi që ju specifikuat nuk ekziston",
 	"diff-form": "Ndryshimet",
+	"deletepage": "Grise faqen",
 	"dberr-problems": "Na vjen keq! Kjo faqe po has vështirësi teknike.",
 	"dberr-again": "Pritni disa minuta dhe provoni të ringarkoni faqen.",
 	"dberr-info": "(Nuk mund të qaset në bazën e të dhënave: $1)",

@@ -843,5 +843,6 @@
 	"tags-active-yes": "Oui",
 	"tags-active-no": "Non",
 	"tags-hidden": "(masqué)",
+	"deletepage": "Effacer la page",
 	"searchsuggest-search": "Charche {{SITENAME}}"
 }

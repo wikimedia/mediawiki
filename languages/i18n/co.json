@@ -675,6 +675,7 @@
 	"tags-active-yes": "Ïè",
 	"tags-active-no": "Innò",
 	"tags-edit": "mudificà",
+	"deletepage": "Supprimà a pagina",
 	"logentry-delete-delete": "$1 ha cancellatu a pagina $3",
 	"logentry-move-move": "$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4",
 	"logentry-newusers-create": "U participante $1 hè statu {{GENDER:$2|creatu}}",

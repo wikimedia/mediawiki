@@ -3328,6 +3328,7 @@
 	"newsection": "Novi podnaslov",
 	"newsection-page": "Ciljna stranica",
 	"newsection-submit": "Idi na stranicu",
+	"deletepage": "Izbrišite stranicu",
 	"dberr-problems": "Žao nam je! Ova stranica ima tehničke poteškoće.",
 	"dberr-again": "Pokušajte pričekati nekoliko minuta i ponovno učitati.",
 	"dberr-info": "(Ne mogu pristupiti bazi podataka: $1)",

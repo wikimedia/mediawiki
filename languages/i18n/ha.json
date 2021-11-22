@@ -779,6 +779,7 @@
 	"fileduplicatesearch-submit": "Nema",
 	"specialpages": "Shafuna na musamman",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
+	"deletepage": "Soke shafin",
 	"logentry-newusers-create": "Anyi kirkiri sabon account $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ya loda|ta loda}} $3",
 	"searchsuggest-search": "Binciko {{SITENAME}}",

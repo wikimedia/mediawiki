@@ -1381,6 +1381,7 @@
 	"specialpages-group-redirects": "重定向特殊页面",
 	"external_image_whitelist": "#留住个行字<pre>\n#到下首（//𠮶中间）输入正规表达式\n#佢俚会同得外部（已超连结𠮶）图片配合\n#许滴配合到出来𠮶会显示做图片，否则就光会显示做连结\n#有 # 开头𠮶行会当做注解\n#大小写冇有差别\n\n#到个行上首输入所有𠮶regex。留住个行字</pre>",
 	"tag-filter": "[[Special:Tags|标签]]过滤器：",
+	"deletepage": "删卟页面",
 	"rightsnone": "（冇）",
 	"searchsuggest-search": "寻吖{{SITENAME}}"
 }

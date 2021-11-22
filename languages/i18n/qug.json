@@ -596,5 +596,6 @@
 	"duplicate-defaultsort": "'''Rikupay''': Kikinmanta ordenankapak llawita «$2» ñawpak pachamanta «$1» llawita pichankami.",
 	"specialpages": "Sapak pankakuna",
 	"external_image_whitelist": "  #Kay aspita kay shinallami sakipay<pre>\n#Uraypi ''regex'' samikunata churapay (// chawpipilla)\n#Kay samikunaka hawa rikchakunapa URLwan taripachishkami kanka.\n#Alli taripashkakunaka rikcha shinami rikushishkami kanka, shukkunaka tinki shinallami riksichinka, \n#«#» llikawan kallarik aspikunaka willaykunallami kanka\n#Uchilla, hatun llikakunatapash churanata ushapanki, kaypi shinallami kan\n\n#Tukuy regex samikunata kay aspi hawapi churapay. Kay aspita kay shinallami sakipay</pre>",
-	"tag-filter": "[[Special:Tags|Wipalakunapa]] susuna:"
+	"tag-filter": "[[Special:Tags|Wipalakunapa]] susuna:",
+	"deletepage": "kay pankata pichana"
 }

@@ -2165,6 +2165,7 @@
 	"compare-submit": "Contimparar",
 	"compare-revision-not-exists": "A revisión especificada no existe.",
 	"diff-form": "un '''formulario'''",
+	"deletepage": "Borrar ista pachina",
 	"dberr-problems": "Lo sentimos. Iste sitio ye experimentando dificultatz tecnicas.",
 	"dberr-again": "Mire de recargar en bells menutos.",
 	"dberr-info": "(No s'ha puesto contactar con o servidor d'a base de datos: $1)",
