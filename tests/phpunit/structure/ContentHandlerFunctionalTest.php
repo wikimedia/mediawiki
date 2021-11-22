@@ -27,7 +27,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  */
-class ContentHandlerSanityTest extends MediaWikiIntegrationTestCase {
+class ContentHandlerFunctionalTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideModels() {
 		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
