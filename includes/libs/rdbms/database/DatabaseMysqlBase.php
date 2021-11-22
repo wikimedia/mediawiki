@@ -152,7 +152,7 @@ abstract class DatabaseMysqlBase extends Database {
 				null,
 				$tablePrefix
 			);
-			// Abstract over any insane MySQL defaults
+			// Abstract over any excessive MySQL defaults
 			$set = [ 'group_concat_max_len = 262144' ];
 			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 			if ( is_string( $this->sqlMode ) ) {

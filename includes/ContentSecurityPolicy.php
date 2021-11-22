@@ -395,7 +395,7 @@ class ContentSecurityPolicy {
 	 */
 	private function getAdditionalSelfUrls() {
 		// XXX on a foreign repo, the included description page can have anything on it,
-		// including inline scripts. But nobody sane does that.
+		// including inline scripts. But nobody does that.
 
 		// In principle, you can have even more complex configs... (e.g. The urlsByExt option)
 		$pathUrls = [];

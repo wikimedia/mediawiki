@@ -1219,7 +1219,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function getTempTableWrites( $sql, $pseudoPermanent ) {
 		// Regexes for basic queries that can create/change/drop temporary tables.
-		// For simplicity, this only looks for tables with sane, alphanumeric, names;
+		// For simplicity, this only looks for tables with sensible, alphanumeric, names;
 		// temporary tables only need simple programming names anyway.
 		static $regexes = null;
 		if ( $regexes === null ) {
