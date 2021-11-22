@@ -380,6 +380,19 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
 	}
 
+	/**
+	 * @covers Title::getFieldFromPageStore
+	 */
+	public function testUseCaches() {
+		$title1 = Title::makeTitle( NS_MAIN, __METHOD__ . '998724352' );
+		$this->addGoodLinkObject( 23, $title1, 7, 0, 42 );
+
+		// Ensure that getLatestRevID uses the LinkCache even after
+		// the article ID is known (T296063#7520023).
+		$this->assertSame( 23, $title1->getArticleID() );
+		$this->assertSame( 42, $title1->getLatestRevID() );
+	}
+
 	public function provideGetLinkURL() {
 		yield 'Simple' => [
 			'/wiki/Goats',

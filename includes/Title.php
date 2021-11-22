@@ -4119,17 +4119,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return false;
 		}
 
-		if ( $this->mArticleID > 0 && $field !== 'page_id' ) {
-			// NOTE: if we already have a page ID, we trust it.
-			$page = $pageStore->getPageById( $this->getArticleID(), $flags );
-		} elseif ( $field === 'page_id' ) {
-			// NOTE: When looking up the page ID, don't use PageStore::getPageByReference().
-			//       getPageByReference() would call exists() and getId(), which would land
-			//       us back here, recursing until we run out of stack.
-			$page = $pageStore->getPageByName( $this->getNamespace(), $this->getDBkey(), $flags );
-		} else {
-			$page = $pageStore->getPageByReference( $this, $flags );
-		}
+		$page = $pageStore->getPageByReference( $this, $flags );
 
 		if ( $page instanceof PageStoreRecord ) {
 			return $page->getField( $field );
