@@ -941,7 +941,6 @@ class LogFormatter {
 			case 'title-link':
 				$title = Title::newFromText( $value );
 				if ( !$title ) {
-					// Huh? Do something halfway sane.
 					$title = SpecialPage::getTitleFor( 'Badtitle', $value );
 				}
 				$value = [];

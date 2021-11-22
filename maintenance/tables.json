@@ -263,7 +263,7 @@
 	},
 	{
 		"name": "user_properties",
-		"comment": "User preferences and perhaps other fun stuff. :) Replaces the old user.user_options blob, with a couple nice properties: 1) We only store non-default settings, so changes to the defaults are now reflected for everybody, not just new accounts. 2) We can more easily do bulk lookups, statistics, or modifications of saved options since it's a sane table structure.",
+		"comment": "User preferences and perhaps other fun stuff. :) Replaces the old user.user_options blob, with a couple nice properties: 1) We only store non-default settings, so changes to the defaults are now reflected for everybody, not just new accounts. 2) We can more easily do bulk lookups, statistics, or modifications of saved options since it's a sensible table structure.",
 		"columns": [
 			{
 				"name": "up_user",

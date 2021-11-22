@@ -136,7 +136,7 @@ class FSFileBackend extends FileBackendStore {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		// Check that container has a root directory
 		if ( isset( $this->containerPaths[$container] ) || isset( $this->basePath ) ) {
-			// Check for sane relative paths (assume the base paths are OK)
+			// Check for sensible relative paths (assume the base paths are OK)
 			if ( $this->isLegalRelPath( $relStoragePath ) ) {
 				return $relStoragePath;
 			}

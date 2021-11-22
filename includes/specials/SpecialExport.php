@@ -205,7 +205,7 @@ class SpecialExport extends SpecialPage {
 			$request->response()->header( 'X-Robots-Tag: noindex,nofollow' );
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
-				// Provide a sane filename suggestion
+				// Provide a sensible filename suggestion
 				$filename = urlencode( $config->get( 'Sitename' ) . '-' . wfTimestampNow() . '.xml' );
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}

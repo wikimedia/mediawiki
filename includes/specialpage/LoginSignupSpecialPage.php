@@ -581,7 +581,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Add page elements which are outside the form.
-	 * FIXME this should probably be a template, but use a sane language (handlebars?)
+	 * FIXME this should probably be a template, but use a sensible language (handlebars?)
 	 * @param string $formHtml
 	 * @return string
 	 */

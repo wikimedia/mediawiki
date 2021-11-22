@@ -86,7 +86,7 @@ class ForeignAPIRepo extends FileRepo {
 			// hack for description fetches
 			$this->scriptDirUrl = dirname( $this->mApiBase );
 		}
-		// If we can cache thumbs we can guess sane defaults for these
+		// If we can cache thumbs we can guess sensible defaults for these
 		if ( $this->canCacheThumbs() && !$this->url ) {
 			$this->url = $wgLocalFileRepo['url'];
 		}

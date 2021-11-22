@@ -151,7 +151,7 @@ class SearchUpdate implements DeferrableUpdate {
 		 *   $text = preg_replace( "/([{$lc}]+)'s /", "\\1 \\1's ", $text );
 		 *   $text = preg_replace( "/([{$lc}]+)s' /", "\\1s ", $text );
 		 *
-		 * These tail-anchored regexps are insanely slow. The worst case comes
+		 * These tail-anchored regexps are very slow. The worst case comes
 		 * when Japanese or Chinese text (ie, no word spacing) is written on
 		 * a wiki configured for Western UTF-8 mode. The Unicode characters are
 		 * expanded to hex codes and the "words" are very long paragraph-length

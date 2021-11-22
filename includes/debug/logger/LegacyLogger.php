@@ -66,7 +66,7 @@ class LegacyLogger extends AbstractLogger {
 	private const LEVEL_INFINITY = 999;
 
 	/**
-	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
+	 * Convert \Psr\Log\LogLevel constants into int for sensible comparisons
 	 * These are the same values that Monolog uses
 	 *
 	 * @var array

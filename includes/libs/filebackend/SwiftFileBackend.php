@@ -125,7 +125,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftUser = $config['swiftUser'];
 		$this->swiftKey = $config['swiftKey'];
 		// Optional settings
-		$this->authTTL = $config['swiftAuthTTL'] ?? 15 * 60; // some sane number
+		$this->authTTL = $config['swiftAuthTTL'] ?? 15 * 60; // some sensible number
 		$this->swiftTempUrlKey = $config['swiftTempUrlKey'] ?? '';
 		$this->swiftStorageUrl = $config['swiftStorageUrl'] ?? null;
 		$this->shardViaHashLevels = $config['shardViaHashLevels'] ?? '';

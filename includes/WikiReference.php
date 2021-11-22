@@ -51,7 +51,7 @@ class WikiReference {
 			return $parsed['host'];
 		} else {
 			// Invalid server spec.
-			// There's no sane thing to do here, so just return the canonical server name in full.
+			// There's no sensible thing to do here, so just return the canonical server name in full.
 			return $this->mCanonicalServer;
 		}
 	}

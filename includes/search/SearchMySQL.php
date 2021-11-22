@@ -416,15 +416,14 @@ class SearchMySQL extends SearchDatabase {
 
 		// Periods within things like hostnames and IP addresses
 		// are also important -- we want a search for "example.com"
-		// or "192.168.1.1" to work sanely.
+		// or "192.168.1.1" to work sensibly.
 		// MySQL's search seems to ignore them, so you'd match on
 		// "example.wikipedia.com" and "192.168.83.1" as well.
-		$out = preg_replace(
+		return preg_replace(
 			"/(\w)\.(\w|\*)/u",
 			"$1u82e$2",
-			$out );
-
-		return $out;
+			$out
+		);
 	}
 
 	/**

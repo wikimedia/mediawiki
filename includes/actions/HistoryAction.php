@@ -396,7 +396,7 @@ class HistoryAction extends FormlessAction {
 			$this->getTitle()->getFullURL( 'action=history' )
 		);
 
-		// Get a limit on number of feed entries. Provide a sane default
+		// Get a limit on number of feed entries. Provide a sensible default
 		// of 10 if none is defined (but limit to $wgFeedLimit max)
 		$limit = $request->getInt( 'limit', 10 );
 		$limit = min(

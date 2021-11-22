@@ -1425,7 +1425,7 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Process DiffEngine config and get a sane, usable engine
+	 * Process DiffEngine config and get a sensible, usable engine
 	 *
 	 * @return string 'wikidiff2', 'php', or path to an executable
 	 * @internal For use by this class and TextSlotDiffRenderer only.

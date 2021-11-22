@@ -115,7 +115,7 @@ class GetConfiguration extends Maintenance {
 		// Settings we will display
 		$res = [];
 
-		# Sane default: dump any wg / wmg variable
+		# Default: dump any wg / wmg variable
 		if ( !$this->regex && !$this->getOption( 'settings' ) ) {
 			$this->regex = '/^wm?g/';
 		}

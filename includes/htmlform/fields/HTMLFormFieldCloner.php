@@ -58,7 +58,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			throw new MWException( 'HTMLFormFieldCloner called without any fields' );
 		}
 
-		// Make sure the delete button, if explicitly specified, is sane
+		// Make sure the delete button, if explicitly specified, is sensible
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [
