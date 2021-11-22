@@ -397,24 +397,6 @@ abstract class MWLBFactory {
 		] );
 
 		if ( $config->get( 'CommandLineMode' ) ) {
-
-			// Add a comment for easy SHOW PROCESSLIST interpretation
-			// TODO: For web requests this is still handled eagerly in MediaWiki.php.
-			if ( function_exists( 'posix_getpwuid' ) ) {
-				$uid = posix_geteuid();
-
-				// NOTE: posix_getpwuid will return false if the current user has no name,
-				//       which is common when running inside a Docker container.
-				$pwuid = posix_getpwuid( $uid );
-				$agent = $pwuid['name'] ?? "uid:$uid";
-			} else {
-				$agent = 'sysadmin';
-			}
-			$agent .= '@' . wfHostname();
-			$lbFactory->setAgentName(
-				mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
-			);
-
 			// Disable buffering and delaying of DeferredUpdates and stats
 			// for maintenance scripts and PHPUnit tests.
 			// Hook into period lag checks which often happen in long-running scripts
