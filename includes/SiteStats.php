@@ -56,13 +56,13 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
+		if ( !self::isRowSensible( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
-		if ( !self::isRowSane( $row ) ) {
+		if ( !self::isRowSensible( $row ) ) {
 			if ( $config->get( 'MiserMode' ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
@@ -79,10 +79,10 @@ class SiteStats {
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
-		if ( !self::isRowSane( $row ) ) {
+		if ( !self::isRowSensible( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O" );
 			// Always return a row-like object
-			$row = self::salvageInsaneRow( $row );
+			$row = self::salvageIncorrectRow( $row );
 		}
 
 		return $row;
@@ -248,14 +248,14 @@ class SiteStats {
 	}
 
 	/**
-	 * Is the provided row of site stats sane, or should it be regenerated?
+	 * Is the provided row of site stats sensible, or should it be regenerated?
 	 *
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
 	 *
 	 * @param bool|stdClass $row
 	 * @return bool
 	 */
-	private static function isRowSane( $row ) {
+	private static function isRowSensible( $row ) {
 		if ( $row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
@@ -282,7 +282,7 @@ class SiteStats {
 	 * @param stdClass|bool $row
 	 * @return stdClass
 	 */
-	private static function salvageInsaneRow( $row ) {
+	private static function salvageIncorrectRow( $row ) {
 		$map = $row ? (array)$row : [];
 		// Fill in any missing values with zero
 		$map += array_fill_keys( self::selectFields(), 0 );
