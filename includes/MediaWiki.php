@@ -551,7 +551,6 @@ class MediaWiki {
 	 */
 	public function run() {
 		try {
-			$this->setDBProfilingAgent();
 			$this->main();
 		} catch ( Exception $e ) {
 			$context = $this->context;
@@ -578,17 +577,6 @@ class MediaWiki {
 		}
 
 		$this->doPostOutputShutdown();
-	}
-
-	/**
-	 * Add a comment to future SQL queries for easy SHOW PROCESSLIST interpretation
-	 */
-	private function setDBProfilingAgent() {
-		$services = MediaWikiServices::getInstance();
-		$name = $this->context->getUser()->getName();
-		$services->getDBLoadBalancerFactory()->setAgentName(
-			mb_strlen( $name ) > 15 ? mb_substr( $name, 0, 15 ) . '...' : $name
-		);
 	}
 
 	/**
