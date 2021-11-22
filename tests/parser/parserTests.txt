@@ -5949,7 +5949,7 @@ External link containing a single quote. (T65947)
 !! end
 
 !! test
-External link containing double-single-quotes in text '' (T6598 sanity check)
+External link containing double-single-quotes in text '' (T6598 check)
 !! wikitext
 Some [http://example.com/ pretty ''italics'' and stuff]!
 !! html
@@ -5959,7 +5959,7 @@ Some [http://example.com/ pretty ''italics'' and stuff]!
 
 # Note different rendering by Parsoid here compared to the legacy parser.
 !! test
-External link containing double-single-quotes in text embedded in italics (T6598 sanity check)
+External link containing double-single-quotes in text embedded in italics (T6598 check)
 !! wikitext
 ''Some [http://example.com/ pretty ''italics'' and stuff]!''
 !! html/php
@@ -8498,7 +8498,7 @@ Redirect containing double quotes and spaces
 !! end
 
 !! test
-Link containing double-single-quotes '' in text (T6598 sanity check)
+Link containing double-single-quotes '' in text (T6598 check)
 !! wikitext
 Some [[Link|pretty ''italics'' and stuff]]!
 !! html/php
@@ -8509,7 +8509,7 @@ Some [[Link|pretty ''italics'' and stuff]]!
 !! end
 
 !! test
-Link containing double-single-quotes '' in text embedded in italics (T6598 sanity check)
+Link containing double-single-quotes '' in text embedded in italics (T6598 check)
 !! wikitext
 ''Some [[Link|pretty ''italics'' and stuff]]!''
 !! html
@@ -8846,7 +8846,7 @@ Link with multiple ":" in a subpage-supporting namespace (T65636)
 <p><a rel="mw:WikiLink" href="./User:Foo/Test/63636:Bar" title="User:Foo/Test/63636:Bar" class="new">Test</a></p>
 !! end
 
-## Mainly a sanity check for Parsoid
+## Mainly a check for Parsoid
 !! test
 Handle title parsing for subpages
 !! options
@@ -17225,7 +17225,7 @@ language=is
 [[Miðill:Foobar.jpg|Bat!]]
 !! end
 
-# This is a sanity test to ensure we don't crash or choke when given
+# This is a test to ensure we don't crash or choke when given
 # old cached 1.7.0 HTML for media links; we don't require that the
 # result be "valid" because wt2wt was completely broken in 1.7.0
 !! test
@@ -17734,7 +17734,7 @@ Expansion of multi-line templates in attribute values (T8255)
 !! end
 
 !! test
-Expansion of multi-line templates in attribute values (T8255 sanity check)
+Expansion of multi-line templates in attribute values (T8255 check)
 !! wikitext
 <div style="background:
 #00FF00">-</div>
@@ -17746,7 +17746,7 @@ Expansion of multi-line templates in attribute values (T8255 sanity check)
 !! end
 
 !! test
-Expansion of multi-line templates in attribute values (T8255 sanity check 2)
+Expansion of multi-line templates in attribute values (T8255 check 2)
 !! wikitext
 <div style="background: &#10;#00FF00">-</div>
 !! html
@@ -19730,7 +19730,7 @@ section=1
 !! end
 
 !! test
-Section extraction, heading followed by pre with 19 spaces (T8398 sanity check)
+Section extraction, heading followed by pre with 19 spaces (T8398 check)
 !! options
 section=1
 !! wikitext
