@@ -165,7 +165,7 @@ class RollbackPage {
 	 * @return $this
 	 */
 	public function setSummary( ?string $summary ): self {
-		$this->summary = $summary ?: '';
+		$this->summary = $summary ?? '';
 		return $this;
 	}
 
@@ -474,7 +474,7 @@ class RollbackPage {
 	 */
 	private function getSummary( RevisionRecord $current, RevisionRecord $target ): string {
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
-		if ( !$this->summary ) {
+		if ( $this->summary === '' ) {
 			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = MessageValue::new( 'revertpage-nouser' );
 			} elseif ( $this->options->get( 'DisableAnonTalk' ) && !$currentEditorForPublic->isRegistered() ) {

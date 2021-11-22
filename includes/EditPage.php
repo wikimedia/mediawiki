@@ -3496,7 +3496,7 @@ class EditPage implements IEditObject {
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		// avoid spaces in preview, gets always trimmed on save
 		$summary = trim( $summary );
-		if ( !$summary || ( !$this->preview && !$this->diff ) ) {
+		if ( $summary === '' || ( !$this->preview && !$this->diff ) ) {
 			return "";
 		}
 

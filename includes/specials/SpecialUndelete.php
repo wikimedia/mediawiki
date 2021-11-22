@@ -1315,7 +1315,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private function getFileComment( $file ) {
 		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
-		if ( !$comment ) {
+		if ( ( $comment ?? '' ) === '' ) {
 			return Html::rawElement(
 				'span',
 				[ 'class' => 'history-deleted' ],
