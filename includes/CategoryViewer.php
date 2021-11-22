@@ -761,10 +761,10 @@ class CategoryViewer extends ContextSource {
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
 		// There are three cases:
-		//   1) The category table figure seems sane.  It might be wrong, but
+		//   1) The category table figure seems good.  It might be wrong, but
 		//      we can't do anything about it if we don't recalculate it on ev-
 		//      ery category view.
-		//   2) The category table figure isn't sane, like it's smaller than the
+		//   2) The category table figure isn't good, like it's smaller than the
 		//      number of actual results, *but* the number of results is less
 		//      than $this->limit and there's no offset.  In this case we still
 		//      know the right figure.
@@ -788,10 +788,10 @@ class CategoryViewer extends ContextSource {
 		if ( $dbcnt == $rescnt ||
 			( ( $rescnt == $this->limit || $fromOrUntil ) && $dbcnt > $rescnt )
 		) {
-			// Case 1: seems sane.
+			// Case 1: seems good.
 			$totalcnt = $dbcnt;
 		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
-			// Case 2: not sane, but salvageable.  Use the number of results.
+			// Case 2: not good, but salvageable.  Use the number of results.
 			$totalcnt = $rescnt;
 		} else {
 			// Case 3: hopeless.  Don't give a total count at all.

@@ -351,7 +351,7 @@
 	$( function () {
 		var selector;
 
-		// Enable only live diff on user .js/.css pages, as there's no sane way of
+		// Enable only live diff on user .js/.css pages, as there's no sensible way of
 		// "previewing" the scripts or styles without reloading the page.
 		if ( $( '#mw-userjsyoucanpreview, #mw-usercssyoucanpreview, #mw-userjspreview, #mw-usercsspreview' ).length ) {
 			selector = '#wpDiff';

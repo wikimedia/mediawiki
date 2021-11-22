@@ -4266,7 +4266,7 @@ class Language {
 	 *
 	 * @param string $text Text to be converted
 	 * @return string
-	 * @todo this should get integrated somewhere sane
+	 * @todo this should get integrated somewhere sensible
 	 */
 	public function convertHtml( $text ) {
 		return htmlspecialchars( $this->convert( $text ) );

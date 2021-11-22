@@ -202,7 +202,7 @@ class CommentParser {
 	) {
 		// @todo $append here is something of a hack to preserve the status
 		// quo. Someone who knows more about bidi and such should decide
-		// (1) what sane rendering even *is* for an LTR edit summary on an RTL
+		// (1) what sensible rendering even *is* for an LTR edit summary on an RTL
 		// wiki, both when autocomments exist and when they don't, and
 		// (2) what markup will make that actually happen.
 		$append = '';

@@ -470,7 +470,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	 * are redirects to the same place, there's no point in keeping it.
 	 *
 	 * Note the caller will still rename it before deleting it, so the archive
-	 * and logging rows wind up in a sane place.
+	 * and logging rows wind up in a sensible place.
 	 *
 	 * @param IDatabase $db
 	 * @param Title $oldTitle
