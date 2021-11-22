@@ -44,8 +44,6 @@ use Wikimedia\Rdbms\ILBFactory;
  * and stampede protection via PoolCounter.
  *
  * @since 1.36
- *
- * @unstable Extensions should use WikiPage::getParserOutput until this class has settled down.
  */
 class ParserOutputAccess {
 
