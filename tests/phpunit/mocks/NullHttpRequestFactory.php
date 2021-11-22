@@ -24,7 +24,9 @@ class NullHttpRequestFactory extends HttpRequestFactory {
 			'HTTPConnectTimeout' => 1,
 			'HTTPMaxTimeout' => 2,
 			'HTTPMaxConnectTimeout' => 2,
-		]
+			'LocalVirtualHosts' => [],
+			'LocalHTTPProxy' => false,
+			]
 		);
 
 		parent::__construct( $options, new NullLogger() );
