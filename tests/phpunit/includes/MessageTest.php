@@ -891,7 +891,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new Message( 'parentheses' );
 		$msg->rawParams( '<a>foo</a>' );
 		$msg->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) );
-		$this->assertSame( '(<a>foo</a>)', $msg->parse(), 'Sanity check' );
+		$this->assertSame( '(<a>foo</a>)', $msg->parse() );
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertSame( '(<a>foo</a>)', $msg->parse() );
 		$title = TestingAccessWrapper::newFromObject( $msg )->contextPage;
@@ -900,7 +900,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 		$msg = new Message( 'mainpage' );
 		$msg->inLanguage( 'de' );
-		$this->assertSame( 'Hauptseite', $msg->plain(), 'Sanity check' );
+		$this->assertSame( 'Hauptseite', $msg->plain() );
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertSame( 'Hauptseite', $msg->plain() );
 	}

@@ -99,7 +99,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			$this->assertEquals(
 				rtrim( $baseText ),
 				rtrim( $currentText ),
-				'Sanity check: page should have the text specified'
+				'page should have the text specified'
 			);
 		}
 
@@ -265,7 +265,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$this->assertSame(
 			CONTENT_MODEL_WIKITEXT,
 			$title->getContentModel(),
-			'Sanity check: title should start as wikitext content model'
+			'title should start as wikitext content model'
 		);
 
 		$this->assertEdit(

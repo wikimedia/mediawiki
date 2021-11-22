@@ -757,9 +757,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
-		$this->assertNull( $user->getBlock( false ), 'sanity check' );
+		$this->assertNull( $user->getBlock( false ) );
 		$this->assertFalse( MediaWikiServices::getInstance()->getPermissionManager()
-			->isBlockedFrom( $user, $ut ), 'sanity check' );
+			->isBlockedFrom( $user, $ut ) );
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
@@ -772,7 +772,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$block->setBlocker( $blocker );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$res = $blockStore->insertBlock( $block );
-		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
+		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
@@ -944,10 +944,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$rights = $permissionManager->getUserPermissions( $user );
-		$this->assertContains( 'test', $rights, 'sanity check' );
-		$this->assertContains( 'runtest', $rights, 'sanity check' );
-		$this->assertContains( 'writetest', $rights, 'sanity check' );
-		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
+		$this->assertContains( 'test', $rights );
+		$this->assertContains( 'runtest', $rights );
+		$this->assertContains( 'writetest', $rights );
+		$this->assertNotContains( 'nukeworld', $rights );
 
 		// Add a hook manipluating the rights
 		$this->setTemporaryHook( 'UserGetRights', static function ( $user, &$rights ) {

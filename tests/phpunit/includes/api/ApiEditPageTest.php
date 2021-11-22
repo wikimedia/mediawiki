@@ -1560,7 +1560,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileBlocked() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
 		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),

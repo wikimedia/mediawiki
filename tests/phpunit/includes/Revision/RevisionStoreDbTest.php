@@ -2993,7 +2993,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$actorId = $actorNormalization->findActorId( $user, $this->db );
-		$this->assertNull( $actorId, 'Sanity, new actor has no actor_id' );
+		$this->assertNull( $actorId, 'New actor has no actor_id' );
 
 		$page = $this->getTestPage();
 		$rev = new MutableRevisionRecord( $page->getTitle() );

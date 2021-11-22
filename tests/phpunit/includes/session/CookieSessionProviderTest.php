@@ -538,7 +538,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$user = static::getTestSysop()->getUser();
-		$this->assertSame( $user->requiresHTTPS(), $forceHTTPS, 'sanity check' );
+		$this->assertSame( $user->requiresHTTPS(), $forceHTTPS );
 
 		$backend = new SessionBackend(
 			new SessionId( $sessionId ),

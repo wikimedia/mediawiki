@@ -205,7 +205,7 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveWhileBlocked() {
-		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( [

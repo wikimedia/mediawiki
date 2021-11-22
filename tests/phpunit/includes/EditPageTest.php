@@ -148,7 +148,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$page->doUserEditContent( $content, $user, "base text for test" );
 			$this->forceRevisionDate( $page, '20120101000000' );
 
-			// sanity check
 			$page->clear();
 			$content = $page->getContent();
 
