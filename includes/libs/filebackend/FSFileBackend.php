@@ -481,10 +481,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param string $fullCont
-	 * @param string $dirRel
-	 * @param array $params
-	 * @return StatusValue
+	 * @inheritDoc
 	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
@@ -515,7 +512,7 @@ class FSFileBackend extends FileBackendStore {
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
 		}
 
-		if ( $status->isOK() ) {
+		if ( $status->isGood() ) {
 			$this->usableDirCache->set( $fsDirectory, 1 );
 		}
 

@@ -861,7 +861,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - noAccess       : try to deny file access (since 1.20)
 	 *   - noListing      : try to deny file listing (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	final public function prepare( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
@@ -875,7 +875,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::prepare()
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	abstract protected function doPrepare( array $params );
 

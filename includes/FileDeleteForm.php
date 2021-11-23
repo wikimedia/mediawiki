@@ -42,7 +42,8 @@ class FileDeleteForm {
 	 * @param UserIdentity $user
 	 * @param string[] $tags Tags to apply to the deletion action
 	 * @throws MWException
-	 * @return Status
+	 * @return Status The value can be an integer with the log ID of the deletion, or false in case of
+	 *   scheduled deletion.
 	 */
 	public static function doDelete( Title $title, LocalFile $file, ?string $oldimage, $reason,
 		$suppress, UserIdentity $user, $tags = []
@@ -53,7 +54,7 @@ class FileDeleteForm {
 			if ( $status->isOK() ) {
 				// Need to do a log item
 				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();
-				if ( trim( $reason ) != '' ) {
+				if ( trim( $reason ) !== '' ) {
 					$logComment .= wfMessage( 'colon-separator' )
 						->inContentLanguage()->text() . $reason;
 				}
@@ -74,46 +75,47 @@ class FileDeleteForm {
 			$status = Status::newFatal( 'cannotdelete',
 				wfEscapeWikiText( $title->getPrefixedText() )
 			);
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			$services = MediaWikiServices::getInstance();
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			'@phan-var WikiFilePage $page';
+			$deleter = $services->getUserFactory()->newFromUserIdentity( $user );
+			$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $deleter );
 			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first
-			$error = '';
-			$deleteStatus = $page->doDeleteArticleReal(
-				$reason,
-				$user,
-				$suppress,
-				null,
-				$error,
-				null,
-				$tags
-			);
-			// doDeleteArticleReal() returns a non-fatal error status if the page
-			// or revision is missing, so check for isOK() rather than isGood()
+			$deleteStatus = $deletePage
+				->setSuppress( $suppress )
+				->setTags( $tags ?: [] )
+				->deleteUnsafe( $reason );
+
+			// DeletePage returns a non-fatal error status if the page
+			// or revision is missing, so check for isOK() rather than isGood().
 			if ( $deleteStatus->isOK() ) {
 				$status = $file->deleteFile( $reason, $user, $suppress );
 				if ( $status->isOK() ) {
-					if ( $deleteStatus->value === null ) {
-						// No log ID from doDeleteArticleReal(), probably
-						// because the page/revision didn't exist, so create
-						// one here.
-						$logtype = $suppress ? 'suppress' : 'delete';
-						$logEntry = new ManualLogEntry( $logtype, 'delete' );
-						$logEntry->setPerformer( $user );
-						$logEntry->setTarget( $title );
-						$logEntry->setComment( $reason );
-						$logEntry->addTags( $tags );
-						$logid = $logEntry->insert();
-						$dbw->onTransactionPreCommitOrIdle(
-							static function () use ( $logEntry, $logid ) {
-								$logEntry->publish( $logid );
-							},
-							__METHOD__
-						);
-						$status->value = $logid;
+					if ( $deletePage->deletionWasScheduled() ) {
+						$status->value = false;
 					} else {
-						$status->value = $deleteStatus->value; // log id
+						$deletedIDs = $deletePage->getSuccessfulDeletionsIDs();
+						if ( $deletedIDs ) {
+							$status->value = $deletedIDs[0];
+						} else {
+							// Means that the page/revision didn't exist, so create a log entry here.
+							$logtype = $suppress ? 'suppress' : 'delete';
+							$logEntry = new ManualLogEntry( $logtype, 'delete' );
+							$logEntry->setPerformer( $user );
+							$logEntry->setTarget( $title );
+							$logEntry->setComment( $reason );
+							$logEntry->addTags( $tags );
+							$logid = $logEntry->insert();
+							$dbw->onTransactionPreCommitOrIdle(
+								static function () use ( $logEntry, $logid ) {
+									$logEntry->publish( $logid );
+								},
+								__METHOD__
+							);
+							$status->value = $logid;
+						}
 					}
 					$dbw->endAtomic( __METHOD__ );
 				} else {

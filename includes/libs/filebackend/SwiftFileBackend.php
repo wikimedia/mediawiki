@@ -636,6 +636,9 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = $this->newStatus();
 
@@ -1422,7 +1425,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $writeUsers A list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
 	 *   - account:user       : Grants access if the request is by the given user
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function setContainerAccess( $container, array $readUsers, array $writeUsers ) {
 		$status = $this->newStatus();
@@ -1510,7 +1513,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $container Container name
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function createContainer( $container, array $params ) {
 		$status = $this->newStatus();
@@ -1842,7 +1845,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Log an unexpected exception for this backend.
 	 * This also sets the StatusValue object to have a fatal error.
 	 *
-	 * @param StatusValue|null $status
+	 * @param StatusValue|null $status To add fatal errors to
 	 * @param string $func
 	 * @param array $params
 	 * @param string $err Error string
