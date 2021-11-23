@@ -423,6 +423,7 @@ class Names {
 		'sm' => 'Gagana Samoa', # Samoan
 		'sma' => 'åarjelsaemien', # Southern Sami
 		'smn' => 'anarâškielâ', # Inari Sami
+		'sms' => 'nuõrttsääʹmǩiõll', # Skolt Sami
 		'sn' => 'chiShona', # Shona
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian

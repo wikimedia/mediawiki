@@ -565,6 +565,23 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test that we get a PageRecord from cached data even if we pass in a
+	 * PageIdentity that provides a page ID (T296063#7520023).
+	 *
+	 * @covers \MediaWiki\Page\PageStore::getPageByReference
+	 */
+	public function testGetPageByIdentity_cached() {
+		$title = $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] );
+		$this->addGoodLinkObject( 23, $title );
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByReference( $title );
+
+		$this->assertNotNull( $page );
+		$this->assertSame( 23, $page->getId() );
+	}
+
+	/**
 	 * Test that we get null if we look up a page with ID 0
 	 *
 	 * @covers \MediaWiki\Page\PageStore::getPageByReference
