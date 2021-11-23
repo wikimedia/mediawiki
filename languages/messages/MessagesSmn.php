@@ -30,10 +30,6 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Savâstâllâm_luokkaast',
 ];
 
-$linkTrail = '/^([a-zâčđŋšžäá]+)(.*)$/sDu';
-
-$fallback = 'fi';
-
 $defaultDateFormat = 'dmy';
 
 $dateFormats = [
@@ -41,3 +37,5 @@ $dateFormats = [
 	'dmy date' => 'j. M Y',
 	'dmy both' => 'j. M Y "tme" H:i',
 ];
+
+$linkTrail = '/^([a-zâčđŋšžäá]+)(.*)$/sDu';
