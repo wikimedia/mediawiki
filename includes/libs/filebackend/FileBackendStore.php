@@ -471,6 +471,9 @@ abstract class FileBackendStore extends FileBackend {
 		return $status;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	final protected function doPrepare( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -502,7 +505,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
 		return $this->newStatus();
@@ -539,7 +542,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
 		return $this->newStatus();
