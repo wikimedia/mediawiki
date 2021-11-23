@@ -446,7 +446,8 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @since 1.21
-	 * @deprecated since 1.38. Use ContentHandler::validateSave instead.
+	 * @deprecated since 1.38. Hard-deprecated since 1.38.
+	 * Use ContentHandler::validateSave instead.
 	 *
 	 * @param WikiPage $page
 	 * @param int $flags
@@ -457,10 +458,12 @@ abstract class AbstractContent implements Content {
 	 * @see Content::prepareSave
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$this,
 			self::class,
-			'prepareSave'
+			'prepareSave',
+			'1.38'
 		);
 
 		if ( $detectPSDeprecatedOverride ) {

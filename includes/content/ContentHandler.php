@@ -1638,7 +1638,8 @@ abstract class ContentHandler {
 		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
-			'prepareSave'
+			'prepareSave',
+			'1.38'
 		);
 
 		if ( $detectPSDeprecatedOverride ) {
