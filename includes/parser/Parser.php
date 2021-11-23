@@ -815,7 +815,7 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'cachereport-ttl',
 			$this->mOutput->getCacheExpiry() );
 		$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
-			$this->mOutput->hasDynamicContent() );
+			$this->mOutput->hasReducedExpiry() );
 	}
 
 	/**

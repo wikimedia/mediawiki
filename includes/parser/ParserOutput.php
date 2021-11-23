@@ -1715,8 +1715,10 @@ class ParserOutput extends CacheTime {
 	 * @see ParserOutput::hasReducedExpiry
 	 * @return bool
 	 * @since 1.25
+	 * @deprecated since 1.38: use ::hasReducedExpiry()
 	 */
 	public function hasDynamicContent() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->hasReducedExpiry();
 	}
 
