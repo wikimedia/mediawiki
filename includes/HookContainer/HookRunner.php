@@ -2669,10 +2669,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageParserOutput( $out, $parserOutput ): void {
+	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void {
 		$this->container->run(
 			'OutputPageParserOutput',
-			[ $out, $parserOutput ],
+			[ $outputPage, $parserOutput ],
 			[ 'abortable' => false ]
 		);
 	}
