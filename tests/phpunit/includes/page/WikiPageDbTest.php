@@ -1466,7 +1466,8 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, null );
 
 		$this->assertSelect(
@@ -1491,7 +1492,8 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, $page->getLatest() );
 
 		$this->assertSelect(
@@ -1516,7 +1518,8 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, 215251 );
 
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );

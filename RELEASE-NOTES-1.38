@@ -90,6 +90,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.38 ===
+* New `variant` parameter for all API actions, for specifying language variant
+  (akin to the existing `variant` parameter for index.php). Task T117549.
 * …
 
 === Action API internal changes in 1.38 ===

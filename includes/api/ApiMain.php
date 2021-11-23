@@ -2197,6 +2197,7 @@ class ApiMain extends ApiBase {
 			'uselang' => [
 				ApiBase::PARAM_DFLT => self::API_DEFAULT_USELANG,
 			],
+			'variant' => null,
 			'errorformat' => [
 				ApiBase::PARAM_TYPE => [ 'plaintext', 'wikitext', 'html', 'raw', 'none', 'bc' ],
 				ApiBase::PARAM_DFLT => 'bc',
