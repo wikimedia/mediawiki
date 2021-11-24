@@ -3702,7 +3702,7 @@
 	"feedback-thanks-title": "감사합니다!",
 	"feedback-useragent": "사용자 에이전트:",
 	"searchsuggest-search": "{{SITENAME}} 검색",
-	"searchsuggest-containing": "다음을 포함하는 문서 검색",
+	"searchsuggest-containing": "다음 어구를 포함하는 문서 검색:",
 	"search-match-redirect-label": "검색에서 완전 일치하는 문서로 바로 이동하기",
 	"search-match-redirect-help": "선택하면 문서 제목과 검색한 구문이 일치할 때 해당 문서로 이동합니다",
 	"api-clientside-error-noconnect": "서버에 연결할 수 없습니다. 인터넷 연결이 올바르게 작동하는지 확인하고 다시 시도해 주십시오.",

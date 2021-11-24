@@ -16,7 +16,8 @@
 			"WBT004Togu",
 			"WBT006Hendra",
 			"WBT009Anju",
-			"아라"
+			"아라",
+			"ProudBatak"
 		]
 	},
 	"tog-underline": "Ondolhon panait",
@@ -138,9 +139,9 @@
 	"edit": "Patota",
 	"create": "Tompa",
 	"create-local": "Tambahon deskripsi lokal",
-	"delete": "Sesa",
+	"delete": "Sesa Alaman on",
 	"undelete_short": "Sundat sesa $1 {{PLURAL:$1|panotaan|panotaan}}",
-	"protect": "Ramoti",
+	"protect": "Alaman na di jaga",
 	"protect_change": "Pauba",
 	"newpage": "Alaman na imbaru",
 	"talkpagelinktext": "manghatai",

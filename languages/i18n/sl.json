@@ -193,7 +193,7 @@
 	"edit-local": "Uredi lokalni opis",
 	"create": "Ustvari",
 	"create-local": "Dodaj lokalni opis",
-	"delete": "Briši",
+	"delete": "Izbriši",
 	"undelete_short": "Vrni $1 {{PLURAL:$1|izbrisano urejanje|izbrisani urejanji|izbrisana urejanja|izbrisanih urejanj|izbrisanih urejanj}}",
 	"viewdeleted_short": "Ogled {{PLURAL:$1|enega izbrisanega urejanja|$1 izbrisanih urejanj}}",
 	"protect": "Zaščiti",

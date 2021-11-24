@@ -1025,7 +1025,7 @@
 	"search-suggest": "V-ați referit la: $1",
 	"search-rewritten": "Se afișează rezultatele pentru $1. Nu au fost găsite rezultate pentru $2.",
 	"search-interwiki-caption": "Rezultate din proiecte înrudite",
-	"search-interwiki-default": "Rezultate de la $1:",
+	"search-interwiki-default": "Rezultate de la $1",
 	"search-interwiki-more": "(mai mult)",
 	"search-interwiki-more-results": "Mai multe rezultate",
 	"search-relatedarticle": "Relaționat",

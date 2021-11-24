@@ -224,7 +224,8 @@
 			"아라",
 			"Jakeukalane",
 			"Whovian Biologist",
-			"ZhaleyLeitnib"
+			"ZhaleyLeitnib",
+			"Cashews"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -236,7 +237,7 @@
 	"tog-usenewrc": "Agrupar los cambios por página en cambios recientes y en la lista de seguimiento",
 	"tog-numberheadings": "Numerar automáticamente los encabezados",
 	"tog-editondblclick": "Editar páginas al hacer doble clic",
-	"tog-editsectiononrightclick": "Permitir las modificaciones de sección al hacer clic derecho en sus títulos",
+	"tog-editsectiononrightclick": "Permitir editar secciones al hacer clic derecho en sus títulos",
 	"tog-watchcreations": "Añadir a mi lista de seguimiento las páginas que cree y los archivos que suba",
 	"tog-watchdefault": "Añadir a mi lista de seguimiento las páginas y archivos que edite",
 	"tog-watchmoves": "Añadir a mi lista de seguimiento las páginas y archivos que traslade",

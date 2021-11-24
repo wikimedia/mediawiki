@@ -38,7 +38,8 @@
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
-			"아라"
+			"아라",
+			"Trisorn Triboon"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -215,10 +216,10 @@
 	"edit-local": "แก้ไขคำอธิบายท้องถิ่น",
 	"create": "สร้าง",
 	"create-local": "เพิ่มคำอธิบายท้องถิ่น",
-	"delete": "ลบ",
+	"delete": "ลบหน้า",
 	"undelete_short": "กู้คืน $1 การแก้ไข",
 	"viewdeleted_short": "ดู $1 การแก้ไขที่ถูกลบ",
-	"protect": "ป้องกัน",
+	"protect": "ป้องกันหน้า",
 	"protect_change": "เปลี่ยน",
 	"unprotect": "เปลี่ยนการล็อก",
 	"newpage": "หน้าใหม่",
@@ -832,6 +833,7 @@
 	"undo-nochange": "ดูเหมือนว่าการแก้ไขดังกล่าวถูกย้อนกลับแล้ว",
 	"undo-summary": "ย้อนรุ่นแก้ไข $1 ของ [[Special:Contributions/$2|$2]] ([[User talk:$2|คุย]])",
 	"undo-summary-anon": "ย้อนรุ่นแก้ไข $1 โดย [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "ทำกลับการนำเข้า $1 โดย ผู้ใช้ [[:$2|$3]]",
 	"undo-summary-import2": "ทำกลับการนำเข้า $1 จากผู้ใช้ $2",
 	"undo-summary-username-hidden": "ย้อนการแก้ไข $1 ที่สร้างโดยผู้ใช้ปกปิดชื่อ",
 	"viewpagelogs": "ดูปูมของหน้านี้",
@@ -1468,7 +1470,7 @@
 	"rcfilters-days-show-hours": "$1 ชั่วโมง",
 	"rcfilters-highlighted-filters-list": "เน้น: $1",
 	"rcfilters-quickfilters": "ตัวกรองที่บันทึกไว้",
-	"rcfilters-quickfilters-placeholder-title": "ยังไม่มีตัวกรองที่บันทึกแล้ว",
+	"rcfilters-quickfilters-placeholder-title": "ยังไม่มีตัวกรองที่บันทึกไว้",
 	"rcfilters-quickfilters-placeholder-description": "ในการบันทึกการตั้งค่าตัวกรองของคุณแล้วนำกลับมาใช้ภายหลัง คลิกสัญรูปที่คั่นหนังสือในบริเวณตัวกรองที่เปิดใช้งานอยู่ด้านล่าง",
 	"rcfilters-savedqueries-defaultlabel": "ตัวกรองที่บันทึกไว้",
 	"rcfilters-savedqueries-rename": "เปลี่ยนชื่อ",
@@ -3843,5 +3845,6 @@
 	"userlogout-continue": "คุณต้องการออกจากระบบหรือไม่",
 	"paramvalidator-help-type-user-subtype-name": "ชื่อผู้ใช้",
 	"paramvalidator-help-type-user-subtype-ip": "ไอพี",
-	"paramvalidator-help-type-user-subtype-cidr": "ช่วงไอพี"
+	"paramvalidator-help-type-user-subtype-cidr": "ช่วงไอพี",
+	"paramvalidator-help-type-user-subtype-id": "ไอดีผู้ใช้ (เช่น \"#12345\")"
 }
