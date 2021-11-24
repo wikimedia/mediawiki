@@ -71,8 +71,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
-	/** @var string|null */
-	protected $localProxy;
+	/** @var string|bool */
+	protected $localProxy = false;
 	/** @var string[] */
 	protected $localVirtualHosts = [];
 	/** @var string */
@@ -624,7 +624,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
-			if ( $this->localProxy !== null && $this->isLocalURL( $req['url'] ) ) {
+			if ( $this->localProxy !== false && $this->isLocalURL( $req['url'] ) ) {
 				$this->useReverseProxy( $req, $this->localProxy );
 			}
 			$this->logger->debug( "HTTP start: {method} {url}",

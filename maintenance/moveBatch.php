@@ -47,15 +47,11 @@ class MoveBatch extends Maintenance {
 	}
 
 	public function execute() {
-		# Change to current working directory
-		$oldCwd = getcwd();
-		chdir( $oldCwd );
-
 		# Options processing
 		$username = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
-		$noredirects = $this->hasOption( 'noredirects' );
+		$noRedirects = $this->hasOption( 'noredirects' );
 		if ( $this->hasArg( 0 ) ) {
 			$file = fopen( $this->getArg( 0 ), 'r' );
 		} else {
@@ -78,20 +74,20 @@ class MoveBatch extends Maintenance {
 
 		# Setup complete, now start
 		$dbw = $this->getDB( DB_PRIMARY );
-		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
+		for ( $lineNum = 1; !feof( $file ); $lineNum++ ) {
 			$line = fgets( $file );
 			if ( $line === false ) {
 				break;
 			}
 			$parts = array_map( 'trim', explode( '|', $line ) );
-			if ( count( $parts ) != 2 ) {
-				$this->error( "Error on line $linenum, no pipe character" );
+			if ( count( $parts ) !== 2 ) {
+				$this->error( "Error on line $lineNum, no pipe character" );
 				continue;
 			}
 			$source = Title::newFromText( $parts[0] );
 			$dest = Title::newFromText( $parts[1] );
 			if ( $source === null || $dest === null ) {
-				$this->error( "Invalid title on line $linenum" );
+				$this->error( "Invalid title on line $lineNum" );
 				continue;
 			}
 
@@ -99,7 +95,7 @@ class MoveBatch extends Maintenance {
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
 				->newMovePage( $source, $dest );
-			$status = $mp->move( $user, $reason, !$noredirects );
+			$status = $mp->move( $user, $reason, !$noRedirects );
 			if ( !$status->isOK() ) {
 				$this->output( "\nFAILED: " . $status->getMessage( false, false, 'en' )->text() );
 			}
