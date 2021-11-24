@@ -76708,7 +76708,7 @@
       }
     },
     {
-      "data": "<TABLE>\n<TR>\n<CENTER><CENTER><TD></TD></TR><TR>\n<FONT>\n<TABLE><tr></tr></TABLE>\n</P>\n<a></font><font></a>\nThis page contains an insanely badly-nested tag sequence.",
+      "data": "<TABLE>\n<TR>\n<CENTER><CENTER><TD></TD></TR><TR>\n<FONT>\n<TABLE><tr></tr></TABLE>\n</P>\n<a></font><font></a>\nThis page contains a ridiculously badly-nested tag sequence.",
       "errors": [
         "(1,7): expected-doctype-but-got-start-tag",
         "(3,8): unexpected-start-tag-implies-table-voodoo",
@@ -76837,7 +76837,7 @@
                     "tag": "font",
                     "children": [
                       {
-                        "text": "\nThis page contains an insanely badly-nested tag sequence."
+                        "text": "\nThis page contains a ridiculously badly-nested tag sequence."
                       }
                     ]
                   }
@@ -76846,8 +76846,8 @@
             ]
           }
         ],
-        "html": "<html><head></head><body><center><center></center></center><font>\n</font><table>\n<tbody><tr>\n<td></td></tr><tr>\n</tr></tbody></table><table><tbody><tr></tr></tbody></table><font>\n<p></p>\n<a></a></font><a><font></font></a><font>\nThis page contains an insanely badly-nested tag sequence.</font></body></html>",
-        "noQuirksBodyHtml": "<center><center></center></center><font>\n</font><table>\n<tbody><tr>\n<td></td></tr><tr>\n</tr></tbody></table><table><tbody><tr></tr></tbody></table><font>\n<p></p>\n<a></a></font><a><font></font></a><font>\nThis page contains an insanely badly-nested tag sequence.</font>"
+        "html": "<html><head></head><body><center><center></center></center><font>\n</font><table>\n<tbody><tr>\n<td></td></tr><tr>\n</tr></tbody></table><table><tbody><tr></tr></tbody></table><font>\n<p></p>\n<a></a></font><a><font></font></a><font>\nThis page contains a ridiculously badly-nested tag sequence.</font></body></html>",
+        "noQuirksBodyHtml": "<center><center></center></center><font>\n</font><table>\n<tbody><tr>\n<td></td></tr><tr>\n</tr></tbody></table><table><tbody><tr></tr></tbody></table><font>\n<p></p>\n<a></a></font><a><font></font></a><font>\nThis page contains a ridiculously badly-nested tag sequence.</font>"
       }
     },
     {
