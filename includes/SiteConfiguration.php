@@ -110,13 +110,21 @@ use MediaWiki\Shell\Shell;
  * extract( $globals );
  * @endcode
  *
+ * Simple suffix system where "pt_brwiki" becomes lang="pt-br", site="wiki":
+ *
+ * @code
+ * $conf->suffixes[] = 'wiki';
+ * @endcode
+ *
+ * Suffix is resolved as an alias, so "dewiki" becomes lang="de", site="wikipedia":
+ * @code
+ * $conf->suffixes['wikipedia'] = 'wiki';
+ * @endcode
+ *
  * @note For WikiMap to function, the configuration must define string values for
  *  $wgServer (or $wgCanonicalServer) and $wgArticlePath, even if these are the
  *  same for all wikis or can be correctly determined by the logic in
  *  Setup.php.
- *
- * @todo Give examples for suffixes:
- * $conf->suffixes = [ 'wiki' ];
  */
 class SiteConfiguration {
 
@@ -445,7 +453,7 @@ class SiteConfiguration {
 	 * Values returned by self::getWikiParams() have the priority.
 	 *
 	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param string $suffix The suffix of the wiki in question.
+	 * @param string|null $suffix The suffix of the wiki in question.
 	 * @param array $params List of parameters. $.'key' is replaced by $value in
 	 *   all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
@@ -468,7 +476,7 @@ class SiteConfiguration {
 		$ret['params'] += $params;
 
 		// Make the $lang and $site parameters automatically available if they
-		// were provided by `siteParamsCallback`  via getWikiParams()
+		// were provided by `siteParamsCallback` via getWikiParams()
 		if ( !isset( $ret['params']['lang'] ) && $ret['lang'] !== null ) {
 			$ret['params']['lang'] = $ret['lang'];
 		}
