@@ -705,7 +705,7 @@ class XmlDumpWriter {
 			$uploader = Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		}
 		$comment = $file->getDescription( File::FOR_PUBLIC );
-		if ( $comment ) {
+		if ( ( $comment ?? '' ) !== '' ) {
 			$comment = Xml::elementClean( 'comment', null, $comment );
 		} else {
 			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
