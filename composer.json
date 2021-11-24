@@ -136,12 +136,12 @@
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"test": [
-			"composer lint .",
-			"composer phpcs ."
+			"@lint .",
+			"@phpcs ."
 		],
 		"test-some": [
-			"composer lint",
-			"composer phpcs"
+			"@lint",
+			"@phpcs"
 		],
 		"phpunit": "phpunit",
 		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
