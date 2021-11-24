@@ -2695,6 +2695,7 @@
 	"enotif_minoredit": "Possible value (it's empty string for non-minor edits) in the {{msg-mw|Enotif body|notext=1}} message.  This can use magic words like <nowiki>{{GRAMMAR}}</nowiki>.  However, it will not be parsed, so you can not use wikitext (e.g. links) that generates HTML.\n{{Identical|minoredit}}",
 	"created": "{{Optional}}\nPossible value for $CHANGEDORCREATED in the following messages:\n* {{msg-mw|enotif_subject}}\n* {{msg-mw|enotif_body}}\n{{Identical|Created}}",
 	"changed": "{{Optional}}\nPossible value for $CHANGEDORCREATED in the following messages:\n* {{msg-mw|Enotif subject}}\n* {{msg-mw|Enotif body}}",
+	"deletepage-deletetalk": "Label of the checkbox to delete the associated talk page to the page you are deleting.",
 	"deletepage-submit": "Used as Submit button text.\n{{Identical|Delete page}}",
 	"confirm": "Submit button text for protection confirmation\n\n{{Identical|Confirm}}",
 	"excontent": "Automated deletion reason when deleting a page for admins. Parameters:\n* $1 - content before deletion",

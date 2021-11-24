@@ -70,6 +70,12 @@ class DeleteAction extends FormlessAction {
 	/** @var int */
 	private $deleteRevisionsLimit;
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -83,6 +89,8 @@ class DeleteAction extends FormlessAction {
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->deletePageFactory = $services->getDeletePageFactory();
 		$this->deleteRevisionsLimit = $services->getMainConfig()->get( 'DeleteRevisionsLimit' );
+		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->titleFormatter = $services->getTitleFormatter();
 	}
 
 	public function getName() {
@@ -139,28 +147,51 @@ class DeleteAction extends FormlessAction {
 			$this->getWikiPage(),
 			$context->getAuthority()
 		);
+		$shouldDeleteTalk = $request->getCheck( 'wpDeleteTalk' ) &&
+			$deletePage->canProbablyDeleteAssociatedTalk()->isGood();
+		$deletePage->setDeleteAssociatedTalk( $shouldDeleteTalk );
 		$status = $deletePage
 			->setSuppress( $suppress )
 			->deleteIfAllowed( $this->getDeleteReason() );
 
-		if ( $status->isGood() ) {
-			$deleted = $this->getTitle()->getPrefixedText();
-
+		if ( $status->isOK() ) {
 			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			if ( !$deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
+			if ( !$status->isGood() ) {
+				// If the page (and/or its talk) couldn't be found (e.g. because it was deleted in another request),
+				// let the user know.
+				$outputPage->wrapWikiTextAsInterface(
+					'warningbox',
+					Status::wrap( $status )->getWikiText( false, false, $context->getLanguage() )
+				);
+			}
+
+			$deleted = $this->getTitle()->getPrefixedText();
+			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
+				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
+			} elseif ( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE] !== null ) {
 				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
 				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
-			} else {
-				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
+			}
+			if ( $shouldDeleteTalk ) {
+				$talkPage = $this->titleFormatter->getPrefixedText(
+					$this->namespaceInfo->getTalkPage( $this->getTitle() )
+				);
+				if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_TALK] ) {
+					$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $talkPage ) );
+				} elseif ( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_TALK] !== null ) {
+					$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
+					$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $talkPage ), $loglink );
+				}
 			}
 
+			if ( !$status->isGood() ) {
+				$this->showLogEntries();
+			}
 			$outputPage->returnToMain();
 		} else {
-			// This branch is also executed when the status is OK but not good, meaning the page couldn't be found (e.g.
-			// because it was deleted in another request)
 			$outputPage->setPageTitle( $this->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 
 			$outputPage->wrapWikiTextAsInterface(
@@ -351,12 +382,29 @@ class DeleteAction extends FormlessAction {
 			]
 		);
 
+		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getContext()->getAuthority() );
+		if ( $delPage->canProbablyDeleteAssociatedTalk()->isGood() ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpDeleteTalk',
+					'inputId' => 'wpDeleteTalk',
+					'tabIndex' => 3,
+					'selected' => false,
+				] ),
+				[
+					'label' => $this->msg( 'deletepage-deletetalk' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
+		}
+
 		if ( $user->isRegistered() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpWatch',
 					'inputId' => 'wpWatch',
-					'tabIndex' => 3,
+					'tabIndex' => 4,
 					'selected' => $checkWatch,
 				] ),
 				[
@@ -371,7 +419,7 @@ class DeleteAction extends FormlessAction {
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
 					'inputId' => 'wpSuppress',
-					'tabIndex' => 4,
+					'tabIndex' => 5,
 					'selected' => false,
 				] ),
 				[
@@ -386,7 +434,7 @@ class DeleteAction extends FormlessAction {
 			new OOUI\ButtonInputWidget( [
 				'name' => 'wpConfirmB',
 				'inputId' => 'wpConfirmB',
-				'tabIndex' => 5,
+				'tabIndex' => 6,
 				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'flags' => [ 'primary', 'destructive' ],

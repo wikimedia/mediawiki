@@ -2461,6 +2461,7 @@
 	"enotif_minoredit": "This is a minor edit",
 	"created": "created",
 	"changed": "changed",
+	"deletepage-deletetalk": "Delete associated talk page",
 	"deletepage-submit": "Delete page",
 	"confirm": "Confirm",
 	"excontent": "content was: \"$1\"",
