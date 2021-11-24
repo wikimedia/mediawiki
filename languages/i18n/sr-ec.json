@@ -2907,6 +2907,7 @@
 	"tooltip-search": "Претражите пројекат {{SITENAME}}",
 	"tooltip-search-go": "Идите на страницу с тачно овим именом, ако постоји",
 	"tooltip-search-fulltext": "Претражите странице с овим текстом",
+	"tooltip-p-cactions": "Више опција",
 	"tooltip-p-logo": "Посетите главну страну",
 	"tooltip-n-mainpage": "Посетите главну страну",
 	"tooltip-n-mainpage-description": "Посетите главну страну",
