@@ -18,9 +18,9 @@ interface OutputPageParserOutputHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param OutputPage $out
-	 * @param ParserOutput $parserOutput ParserOutput instance being added in $out
+	 * @param OutputPage $outputPage
+	 * @param ParserOutput $parserOutput ParserOutput instance being added in $outputPage
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onOutputPageParserOutput( $out, $parserOutput ): void;
+	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void;
 }

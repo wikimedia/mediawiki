@@ -291,6 +291,7 @@ because of Phabricator reports.
    - ::addTrackingCategory() - use Parser::addTrackingCategory()
                                or TrackingCategories::addTrackingCategory()
    - ::addWarning()          - use ::addWarningMsg()
+   - ::hasDynamicContent()   - use ::hasReducedExpiry()
 * The following methods from the ParserOutput class were deprecated:
    - ::getFlag() - use ::getOutputFlag()
    - ::setFlag() - use ::setOutputFlag()
