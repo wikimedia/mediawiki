@@ -1,5 +1,8 @@
 {
 	"config": {
 		"Something": "TEST"
+	},
+	"php-ini": {
+		"foo": "bar"
 	}
 }

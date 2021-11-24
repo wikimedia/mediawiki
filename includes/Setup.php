@@ -54,6 +54,7 @@ use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
+use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -126,7 +127,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 }
 
 // Define $wgSettings for use in DefaultSettings.php and in LocalSettings.php
-$wgSettings = new SettingsBuilder( $IP, new GlobalConfigBuilder( 'wg' ) );
+$wgSettings = new SettingsBuilder( $IP, new GlobalConfigBuilder( 'wg' ), new PhpIniSink() );
 
 require_once "$IP/includes/DefaultSettings.php";
 require_once "$IP/includes/GlobalFunctions.php";
