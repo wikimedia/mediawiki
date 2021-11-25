@@ -4,6 +4,7 @@ namespace MediaWiki\Settings;
 
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\SettingsSource;
@@ -26,17 +27,23 @@ class SettingsBuilder {
 	/** @var ConfigSchemaAggregator */
 	private $configSchema;
 
+	/** @var PhpIniSink */
+	private $phpIniSink;
+
 	/**
 	 * @param string $baseDir
 	 * @param ConfigSink $configSink
+	 * @param PhpIniSink $phpIniSink
 	 */
 	public function __construct(
 		string $baseDir,
-		ConfigSink $configSink
+		ConfigSink $configSink,
+		PhpIniSink $phpIniSink
 	) {
 		$this->baseDir = $baseDir;
 		$this->configSink = $configSink;
 		$this->configSchema = new ConfigSchemaAggregator();
+		$this->phpIniSink = $phpIniSink;
 		$this->reset();
 	}
 
@@ -122,6 +129,13 @@ class SettingsBuilder {
 					$this->configSchema->getMergeStrategyFor( $key )
 				);
 			}
+		}
+
+		foreach ( $settings['php-ini'] ?? [] as $option => $value ) {
+			$this->phpIniSink->set(
+				$option,
+				$value
+			);
 		}
 	}
 

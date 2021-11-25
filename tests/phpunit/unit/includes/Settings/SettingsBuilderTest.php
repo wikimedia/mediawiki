@@ -5,6 +5,7 @@ namespace phpunit\unit\includes\Settings;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSink;
 use MediaWiki\Settings\Config\MergeStrategy;
+use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
@@ -16,18 +17,27 @@ class SettingsBuilderTest extends TestCase {
 
 	/**
 	 * @param ConfigSink|null $configBuilder
+	 * @param PhpIniSink|null $phpIniSink
 	 * @return SettingsBuilder
 	 */
-	private function newSettingsBuilder( ConfigSink $configBuilder = null ): SettingsBuilder {
+	private function newSettingsBuilder(
+		ConfigSink $configBuilder = null,
+		PhpIniSink $phpIniSink = null
+	): SettingsBuilder {
 		return new SettingsBuilder(
 			__DIR__,
-			$configBuilder ?? new ArrayConfigBuilder()
+			$configBuilder ?? new ArrayConfigBuilder(),
+			$phpIniSink ?? new PhpIniSink()
 		);
 	}
 
 	public function testLoadingFromFile() {
 		$configBuilder = new ArrayConfigBuilder();
-		$setting = $this->newSettingsBuilder( $configBuilder );
+
+		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
+		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
+
+		$setting = $this->newSettingsBuilder( $configBuilder, $phpIniSinkMock );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
 
 		$config = $configBuilder->build();
