@@ -383,6 +383,7 @@
 	"recentchanges-label-minor": "እዚ ንእሽቶ ኣርትዖት እዩ",
 	"recentchanges-label-bot": "እዚ ኣርትዖት ብቦት ፈጺሙ ነይሩ",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|ዝርዝር ሓደሽቲ ገጻት]] እውን ርኣይ)",
+	"recentchanges-legend-watchlistexpiry": "ንግዚኡ ዝተዓዘበ ገጽ",
 	"recentchanges-submit": "ኣርእይ",
 	"rcfilters-legend-heading": "<strong>ዝርዝር ኣሕጽሮተ ቃላት፦</strong>",
 	"rcfilters-group-results-by-page": "ውጽኢታት ብገጽ ጎጅል",
