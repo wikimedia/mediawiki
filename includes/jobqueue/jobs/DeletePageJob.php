@@ -26,7 +26,8 @@ class DeletePageJob extends Job implements GenericParameterJob {
 				->setSuppress( $this->params['suppress'] )
 				->setTags( json_decode( $this->params['tags'] ) )
 				->setLogSubtype( $this->params['logsubtype'] )
-				->deleteInternal( $this->params['reason'], $this->getRequestId() );
+				->deleteInternal(
+					$this->params['pageRole'], $this->params['reason'], $this->getRequestId() );
 		}
 		return true;
 	}

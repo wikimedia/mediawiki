@@ -26,6 +26,7 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
@@ -2671,10 +2672,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$error = $deletePage->getLegacyHookErrors();
 		if ( $status->isGood() ) {
 			// BC with old return format
-			if ( $deletePage->deletionWasScheduled() ) {
+			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 			} else {
-				$status->value = $deletePage->getSuccessfulDeletionsIDs()[0];
+				$status->value = $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE];
 			}
 		}
 		return $status;
@@ -2713,13 +2714,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->setTags( $tags )
 			->setLogSubtype( $logsubtype )
 			->forceImmediate( $immediate )
-			->deleteInternal( $reason, $webRequestId );
+			->deleteInternal( DeletePage::PAGE_BASE, $reason, $webRequestId );
 		if ( $status->isGood() ) {
 			// BC with old return format
-			if ( $deletePage->deletionWasScheduled() ) {
+			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 			} else {
-				$status->value = $deletePage->getSuccessfulDeletionsIDs()[0];
+				$status->value = $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE];
 			}
 		}
 		return $status;

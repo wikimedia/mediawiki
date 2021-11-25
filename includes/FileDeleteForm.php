@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -93,12 +94,12 @@ class FileDeleteForm {
 			if ( $deleteStatus->isOK() ) {
 				$status = $file->deleteFile( $reason, $user, $suppress );
 				if ( $status->isOK() ) {
-					if ( $deletePage->deletionWasScheduled() ) {
+					if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 						$status->value = false;
 					} else {
-						$deletedIDs = $deletePage->getSuccessfulDeletionsIDs();
-						if ( $deletedIDs ) {
-							$status->value = $deletedIDs[0];
+						$deletedID = $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE];
+						if ( $deletedID !== null ) {
+							$status->value = $deletedID;
 						} else {
 							// Means that the page/revision didn't exist, so create a log entry here.
 							$logtype = $suppress ? 'suppress' : 'delete';
