@@ -4046,6 +4046,7 @@
 	"passwordpolicies-policy-passwordnotincommonlist": "Salasana ei voi olla 100,000 yleisimmin käytetyn joukossa.",
 	"passwordpolicies-policyflag-forcechange": "täytyy vaihtaa kirjautuessa",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ehdota vaihtamista kirjautuessa",
+	"mycustomjsredirectprotected": "Sinulla ei ole oikeutta muokata tätä JavaScript-sivua koska se on ohjaussivu joka ei johda millekään käyttäjäsivullesi.",
 	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
 	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi ladata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle.",
 	"userlogout-continue": "Haluatko kirjautua ulos?",
