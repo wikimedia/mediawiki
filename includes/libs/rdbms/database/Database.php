@@ -1516,7 +1516,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$startTime,
 			$isPermWrite,
 			$isPermWrite ? $this->affectedRows() : $this->numRows( $ret ),
-			$this->trxId
+			$this->trxId,
+			$this->getServerName()
 		);
 
 		// Avoid the overhead of logging calls unless debug mode is enabled
