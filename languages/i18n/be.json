@@ -2168,7 +2168,7 @@
 	"addedwatchindefinitelytext": "Старонка «[[:$1]]» разам з размовамі былі дададзены ў ваш [[Special:Watchlist|спіс назірання]] назаўсёды.",
 	"addedwatchindefinitelytext-talk": "«[[:$1]]» і звязаная з ёй старонка былі дададзеныя ў ваш [[Special:Watchlist|спіс назірання]] назаўсёды.",
 	"removewatch": "Выдаліць са спісу назірання",
-	"removedwatchtext": "Старонка \"[[:$1]]\" была вынята з Вашага [[Special:Watchlist|спісу назірання]].",
+	"removedwatchtext": "Старонка «[[:$1]]» была вынята з Вашага [[Special:Watchlist|спісу назірання]].",
 	"removedwatchtext-talk": "«[[:$1]]» і звязаная з ёй старонка выдаленыя з вашага [[Special:Watchlist|спісу назірання]].",
 	"removedwatchtext-short": "Старонка «$1» была выдаленая з вашага спісу назірання.",
 	"watch": "Назіраць",
