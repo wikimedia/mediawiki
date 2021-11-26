@@ -309,6 +309,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	/**
 	 * @dataProvider provideNewActorFromRowFields
 	 * @covers ::newActorFromRowFields
+	 * @covers ::doCreateActorFromRowFields
 	 */
 	public function testNewActorFromRowFields( $wikiId, $actorId, $name, $userId, UserIdentity $expected ) {
 		$actor = $this->getStore( $wikiId )->newActorFromRowFields( $userId, $name, $actorId );
@@ -341,10 +342,21 @@ class ActorStoreTest extends ActorStoreTestBase {
 	/**
 	 * @dataProvider provideNewActorFromRowFields_exception
 	 * @covers ::newActorFromRowFields
+	 * @covers ::doCreateActorFromRowFields
 	 */
 	public function testNewActorFromRowFields_exception( $actorId, $name, $userId ) {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getStore()->newActorFromRowFields( $userId, $name, $actorId );
+	}
+
+	/**
+	 * @dataProvider provideNewActorFromRowFields_exception
+	 * @covers ::newActorFromRowFields
+	 */
+	public function testNewActorFromRowFields_fallback( $actorId, $name, $userId ) {
+		$store = $this->getStore();
+		$fallback = $store->getUnknownActor();
+		$this->assertSame( $fallback, $store->newActorFromRowFields( $userId, $name, $actorId, $fallback ) );
 	}
 
 	public function provideFindActorId() {

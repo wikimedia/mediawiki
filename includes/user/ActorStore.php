@@ -135,13 +135,44 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * is completed and all queries use explicit join with actor table, this method will be
 	 * deprecated and removed.
 	 *
+	 * @param int|null $userId
+	 * @param string|null $name
+	 * @param int|null $actorId
+	 * @param UserIdentity|null $fallback in case actor can not be created, use this as fallback.
+	 * @return UserIdentity
 	 * @throws InvalidArgumentException
+	 */
+	public function newActorFromRowFields(
+		$userId,
+		$name,
+		$actorId,
+		UserIdentity $fallback = null
+	): UserIdentity {
+		try {
+			return $this->doCreateActorFromRowFields( $userId, $name, $actorId );
+		} catch ( InvalidArgumentException $e ) {
+			$this->logger->warning( 'Failed to create actor from row fields', [
+				'exception' => $e,
+				'user_id' => $userId,
+				'actor_id' => $actorId,
+				'actor_name' => $name,
+			] );
+			if ( $fallback ) {
+				return $fallback;
+			}
+			throw $e;
+		}
+	}
+
+	/**
+	 * Instantiate a new UserIdentity object based on field values from a DB row.
+	 *
 	 * @param int|null $userId
 	 * @param string|null $name
 	 * @param int|null $actorId
 	 * @return UserIdentity
 	 */
-	public function newActorFromRowFields( $userId, $name, $actorId ): UserIdentity {
+	private function doCreateActorFromRowFields( $userId, $name, $actorId ): UserIdentity {
 		// For backwards compatibility we are quite relaxed about what to accept,
 		// but try not to create entirely incorrect objects. As we move more code
 		// from ActorMigration aliases to proper join with the actor table,

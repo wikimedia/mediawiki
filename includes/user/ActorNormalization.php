@@ -61,9 +61,15 @@ interface ActorNormalization {
 	 * @param int|null $userId
 	 * @param string|null $name
 	 * @param int|null $actorId
+	 * @param UserIdentity|null $fallback
 	 * @return UserIdentity
 	 */
-	public function newActorFromRowFields( $userId, $name, $actorId ): UserIdentity;
+	public function newActorFromRowFields(
+		$userId,
+		$name,
+		$actorId,
+		UserIdentity $fallback = null
+	): UserIdentity;
 
 	/**
 	 * Find the actor_id for the given name.
