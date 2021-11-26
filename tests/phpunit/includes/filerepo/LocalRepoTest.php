@@ -48,8 +48,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$row = (object)[
 			"{$prefix}_name" => 'Test_file',
 			"{$prefix}_user" => '1',
-			"{$prefix}_user_text" => 'TestUser',
-			"{$prefix}_actor" => '42',
 			"{$prefix}_timestamp" => '12345678910111',
 			"{$prefix}_metadata" => '',
 			"{$prefix}_sha1" => sha1( '' ),
@@ -69,7 +67,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( $expectedClass, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
 		$this->assertSame( 1, $file->getUploader()->getId() );
-		$this->assertSame( 'TestUser', $file->getUploader()->getName() );
 	}
 
 	public static function provideNewFileFromRow() {

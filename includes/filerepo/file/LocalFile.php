@@ -658,12 +658,10 @@ class LocalFile extends File {
 		$this->description = MediaWikiServices::getInstance()->getCommentStore()
 			->getComment( "{$prefix}description", $row )->text;
 
-		$actorStore = MediaWikiServices::getInstance()->getActorStore();
-		$this->user = $actorStore->newActorFromRowFields(
+		$this->user = User::newFromAnyId(
 			$unprefixed['user'] ?? null,
 			$unprefixed['user_text'] ?? null,
-			$unprefixed['actor'] ?? null,
-			$actorStore->getUnknownActor()
+			$unprefixed['actor'] ?? null
 		);
 
 		$this->timestamp = wfTimestamp( TS_MW, $unprefixed['timestamp'] );
