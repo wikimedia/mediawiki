@@ -3954,6 +3954,7 @@
 	"specialmute-submit": "Konfirmasi",
 	"specialmute-label-mute-email": "Mendepang rerepél saking sang anganggé {{GENDER:$1|sang angangge}}",
 	"specialmute-error-invalid-user": "Aran anganggé saané katunas tan katemuin.",
+	"specialmute-email-footer": "Antuk mingaturin préférénsi rerepél antuk sang anganggé {{BIDI:$2}} durus rauhin <$1>.",
 	"specialmute-login-required": "Durus manjing log antuk ngentosin anggitan bisu ragané.",
 	"mute-preferences": "Pustaka bisu",
 	"revid": "révisi $1",
@@ -3965,6 +3966,7 @@
 	"undelete-cantedit": "Ragané tan prasida ngawangdé pangusapan kaca puniki krana ragané tan prasida nguahin kaca puniki.",
 	"undelete-cantcreate": "Ragané tan prasida ngawangdé pangusapan kaca puniki krana nénten wénten kaca sané madué murda puniki miwah Ragané tan kalugra ngardi kaca puniki.",
 	"pagedata-title": "Data kaca",
+	"pagedata-not-acceptable": "Ten katemuin format sané patut. Soroh MIME sané kadukung: $1",
 	"pagedata-bad-title": "Murda nénten sah:$1.",
 	"unregistered-user-config": "Antuk hawanan kaamanan JavaScript, CSS, miwah JSON subkaca sang anganggé nénten prasida kamuat antuk sang anganggé nénten kadaptar.",
 	"passwordpolicies": "Kawijakan kruna sandi",
@@ -3981,6 +3983,7 @@
 	"passwordpolicies-policy-passwordnotincommonlist": "Kruna sandi ten dados rumasuk ring lis 100.000 kruna sandi sané pinih ketah kaanggén.",
 	"passwordpolicies-policyflag-forcechange": "patut gentos ri kala manjing log",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "kanikayang gentosin ri kala manjing log",
+	"unprotected-js": "Santukan hawanan kaamanan Javascript ten prasida kamuat saking kava sané ten kasaibin. Durus wantah ngardi javascript ring genaharan MédiaWiki: utawi dados subkaca Anganggé",
 	"userlogout-continue": "Napiké ragané jagi medal log?",
 	"paramvalidator-baduser": "Aji tan patit \"$2\" antuk paraméter sang anganggé <var>$1</var>.",
 	"paramvalidator-help-type-user": "Tipe: {{PLURAL:$1|1=sang anganggé|2=lis sang anganggé}}, {{PLURAL:$3|antuk|antuk silih tunggil saking}} $2",
@@ -3993,5 +3996,6 @@
 	"paramvalidator-missingtitle": "Aji tan patit \"$2\" antuk paraméter murda <var>$1</var>: kaca nyané nénten wénten.",
 	"paramvalidator-help-type-title": "Tipe: murda kaca",
 	"paramvalidator-help-type-title-must-exist": "Wantah nampi kaca sané sampun wentén.",
-	"paramvalidator-help-type-title-no-must-exist": "Tampi kaca sané durung wénten."
+	"paramvalidator-help-type-title-no-must-exist": "Tampi kaca sané durung wénten.",
+	"nonmain-slot-differences-therefore-readonly": "Ragané tan prasida nguahin téks wiki ring révisi kaca puniki, santukan sampun wénten pauhan data non-téks wiki ring kaca puniki sesampun révisi puniki. [$1 Teken iriki antuk ngulihang révisi puniki.]"
 }

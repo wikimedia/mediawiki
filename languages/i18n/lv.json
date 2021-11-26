@@ -207,7 +207,7 @@
 	"edit-local": "Labot vietējo aprakstu",
 	"create": "Izveidot",
 	"create-local": "Pievienot vietējo aprakstu",
-	"delete": "Dzēst lapu",
+	"delete": "Dzēst",
 	"undelete_short": "Atjaunot $1 {{PLURAL:$1|versijas|versiju|versijas}}",
 	"viewdeleted_short": "Apskatīt {{PLURAL:$1|$1 dzēstus labojumus|$1 dzēstu labojumu|$1 dzēstus labojumus}}",
 	"protect": "Aizsargāt",

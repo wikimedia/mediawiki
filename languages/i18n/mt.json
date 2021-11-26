@@ -1262,7 +1262,6 @@
 	"recentchanges-label-plusminus": "Id-daqs tal-paġna nbidel b'dan in-numru ta' bytes",
 	"recentchanges-legend-heading": "<strong>Leġenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ara wkoll il-[[Special:NewPages|lista tal-paġni l-ġodda]])",
-	"recentchanges-legend-watchlistexpiry": "Paġna li jarahom temporanjament",
 	"recentchanges-submit": "Uri",
 	"rcfilters-tag-remove": "Neħħi '$1'",
 	"rcfilters-legend-heading": "<strong>Lista ta' abbrevjazzjonijiet:</strong>",
