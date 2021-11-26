@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -985,4 +986,19 @@ class StatusTest extends MediaWikiLangTestCase {
 			]
 		], $status->errors );
 	}
+
+	/**
+	 * @covers Status::__toString
+	 */
+	public function testToString() {
+		// This is a debug method, we don't care about the exact output. But it shouldn't cause
+		// an error as it's called in various logging codee.
+		$this->expectNotToPerformAssertions();
+		(string)Status::newGood();
+		(string)Status::newGood( new MessageValue( 'foo' ) );
+		(string)Status::newFatal( 'foo' );
+		(string)Status::newFatal( wfMessage( 'foo' ) );
+		(string)( Status::newFatal( 'foo' )->fatal( 'bar' ) );
+	}
+
 }
