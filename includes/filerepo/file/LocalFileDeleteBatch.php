@@ -257,6 +257,7 @@ class LocalFileDeleteBatch {
 				$reason = $commentStore->createComment( $dbw, $this->reason );
 				foreach ( $res as $row ) {
 					$comment = $commentStore->getComment( 'oi_description', $row );
+					$user = User::newFromAnyId( $row->oi_user, $row->oi_user_text, $row->oi_actor );
 					$rowsInsert[] = [
 						// Deletion-specific fields
 						'fa_storage_group' => 'deleted',

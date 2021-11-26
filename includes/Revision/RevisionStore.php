@@ -1614,12 +1614,22 @@ class RevisionStore
 			$row->$field = $value;
 		}
 
-		$user = $this->actorStore->newActorFromRowFields(
-			$row->ar_user ?? null,
-			$row->ar_user_text ?? null,
-			$row->ar_actor ?? null,
-			$this->actorStore->getUnknownActor()
-		);
+		try {
+			$user = $this->actorStore->newActorFromRowFields(
+				$row->ar_user ?? null,
+				$row->ar_user_text ?? null,
+				$row->ar_actor ?? null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			$this->logger->warning( 'Could not load user for archive revision {rev_id}', [
+				'ar_rev_id' => $row->ar_rev_id,
+				'ar_actor' => $row->ar_actor ?? 'null',
+				'ar_user_text' => $row->ar_user_text ?? 'null',
+				'ar_user' => $row->ar_user ?? 'null',
+				'exception' => $ex
+			] );
+			$user = $this->actorStore->getUnknownActor();
+		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
 		// Legacy because $row may have come from self::selectFields()
@@ -1687,12 +1697,22 @@ class RevisionStore
 			);
 		}
 
-		$user = $this->actorStore->newActorFromRowFields(
-			$row->rev_user ?? null,
-			$row->rev_user_text ?? null,
-			$row->rev_actor ?? null,
-			$this->actorStore->getUnknownActor()
-		);
+		try {
+			$user = $this->actorStore->newActorFromRowFields(
+				$row->rev_user ?? null,
+				$row->rev_user_text ?? null,
+				$row->rev_actor ?? null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			$this->logger->warning( 'Could not load user for revision {rev_id}', [
+				'rev_id' => $row->rev_id,
+				'rev_actor' => $row->rev_actor ?? 'null',
+				'rev_user_text' => $row->rev_user_text ?? 'null',
+				'rev_user' => $row->rev_user ?? 'null',
+				'exception' => $ex
+			] );
+			$user = $this->actorStore->getUnknownActor();
+		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
 		// Legacy because $row may have come from self::selectFields()
