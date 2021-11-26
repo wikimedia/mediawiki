@@ -333,8 +333,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
-	 * @param string $indexName The index name
+	 * @param string $tableName
+	 * @param string $indexName
 	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
@@ -360,9 +360,9 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
-	 * @param string $oldIndexName The old index name
-	 * @param string $newIndexName The new index name
+	 * @param string $tableName
+	 * @param string $oldIndexName
+	 * @param string $newIndexName
 	 * @param string $sqlPath The path to the SQL change path
 	 * @param bool $skipBothIndexExistWarning Whether to warn if both the old
 	 * and the new indexes exist. [facultative; by default, false]
@@ -387,7 +387,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
+	 * @param string $tableName
 	 * @param string $fieldName The field to be modified
 	 * @param string $sqlPath The path to the SQL patch
 	 */
@@ -401,7 +401,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.31
 	 *
-	 * @param string $tableName The table name
+	 * @param string $tableName
 	 * @param string $sqlPath The path to the SQL patch
 	 */
 	public function modifyExtensionTable( $tableName, $sqlPath ) {

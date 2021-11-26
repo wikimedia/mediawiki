@@ -2315,7 +2315,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Registers the given hook handler for the duration of the current test case.
 	 *
-	 * @param string $hookName Hook name
+	 * @param string $hookName
 	 * @param mixed $handler Value suitable for a hook handler
 	 * @param bool $replace (optional) Default is to replace all existing handlers for the given hook.
 	 *        Set false to add to existing handler list.

@@ -380,7 +380,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
-	 * @param string $newStage the new stage
+	 * @param string $newStage
 	 * @return string the previous stage
 	 *
 	 * @throws LogicException If a transition to the given stage is not possible in the current
@@ -400,7 +400,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
-	 * @param string $newStage the new stage
+	 * @param string $newStage
 	 *
 	 * @throws LogicException If this instance is not in the expected stage
 	 */

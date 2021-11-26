@@ -396,7 +396,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param string $table Table to use (e.g. 'templatelinks')
 	 * @param string $action Triggering action
 	 * @param string $userName Triggering user name
-	 * @param BacklinkCache|null $backlinkCache Backlink cache
+	 * @param BacklinkCache|null $backlinkCache
 	 */
 	public static function queueRecursiveJobsForTable(
 		PageIdentity $page, $table, $action = 'unknown', $userName = 'unknown', ?BacklinkCache $backlinkCache = null

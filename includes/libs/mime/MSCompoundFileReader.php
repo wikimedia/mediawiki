@@ -89,7 +89,7 @@ class MSCompoundFileReader {
 	/**
 	 * Read from an open seekable handle
 	 *
-	 * @param resource $fileHandle The file handle
+	 * @param resource $fileHandle
 	 * @return array An associative array of information about the file:
 	 *    - valid: true if the file is valid, false otherwise
 	 *    - error: An error message in English, should be present if valid=false

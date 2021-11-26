@@ -648,7 +648,7 @@ class NamespaceDupes extends Maintenance {
 	 * Merge page histories
 	 *
 	 * @param stdClass $row Page row
-	 * @param Title $newTitle The new title
+	 * @param Title $newTitle
 	 * @return bool
 	 */
 	private function mergePage( $row, Title $newTitle ) {

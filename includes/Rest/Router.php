@@ -74,7 +74,7 @@ class Router {
 	/**
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
-	 * @param string $baseUrl The base URL
+	 * @param string $baseUrl
 	 * @param string $rootPath The base path for routes, relative to the base URL
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory

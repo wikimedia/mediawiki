@@ -171,7 +171,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param array $groupDefinition Group definition
+	 * @param array $groupDefinition
 	 * @param string $input Value in URL
 	 */
 	protected function modifyQueryHelper( $groupDefinition, $input ) {

@@ -149,7 +149,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Check whether the given tag's checkbox should
 	 * be checked
 	 *
-	 * @param string $tagName Tag name
+	 * @param string $tagName
 	 * @return bool Tag should be checked
 	 */
 	private function isTagChecked( $tagName ) {
@@ -163,7 +163,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Check whether the given tag's checkbox should
 	 * be disabled
 	 *
-	 * @param string $tagName Tag name
+	 * @param string $tagName
 	 * @return bool Tag should be disabled
 	 */
 	private function isTagDisabled( $tagName ) {

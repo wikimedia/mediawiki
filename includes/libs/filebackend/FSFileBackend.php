@@ -184,7 +184,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Get the absolute file system path for a storage path
 	 *
-	 * @param string $storagePath Storage path
+	 * @param string $storagePath
 	 * @return string|null
 	 */
 	protected function resolveToFSPath( $storagePath ) {
@@ -972,7 +972,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Clean up directory separators for the given OS
 	 *
-	 * @param string $fsPath FS path
+	 * @param string $fsPath
 	 * @return string
 	 */
 	protected function cleanPathSlashes( $fsPath ) {

@@ -17,7 +17,7 @@ interface UploadFormSourceDescriptorsHook {
 	 *
 	 * @param array &$descriptor The HTMLForm descriptor
 	 * @param bool &$radio Boolean, if source type should be shown as radio button
-	 * @param string $selectedSourceType The selected source type
+	 * @param string $selectedSourceType
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUploadFormSourceDescriptors( &$descriptor, &$radio,

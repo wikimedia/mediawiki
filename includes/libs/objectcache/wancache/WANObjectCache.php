@@ -2670,7 +2670,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $sisterKey Sister key
+	 * @param string $sisterKey
 	 * @param string $route Key routing prefix
 	 * @return string
 	 */
