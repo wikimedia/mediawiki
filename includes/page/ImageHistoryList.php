@@ -85,6 +85,9 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
+		// Styles for class=history-deleted
+		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+
 		return Xml::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
 		. "\n"
 		. "<div id=\"mw-imagepage-section-filehistory\">\n"
