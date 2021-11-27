@@ -407,14 +407,15 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$formResult = $form->tryAuthorizedSubmit();
 
 		// show the files + form, if there are any, or just say there are none
-		$refreshHtml = Html::element( 'a',
-			[ 'href' => $this->getPageTitle()->getLocalURL() ],
-			$this->msg( 'uploadstash-refresh' )->text() );
+		$linkRenderer = $this->getLinkRenderer();
+		$refreshHtml = $linkRenderer->makeKnownLink(
+			$this->getPageTitle(),
+			$this->msg( 'uploadstash-refresh' )->text()
+		);
 		$files = $this->stash->listFiles();
 		if ( $files && count( $files ) ) {
 			sort( $files );
 			$fileListItemsHtml = '';
-			$linkRenderer = $this->getLinkRenderer();
 			foreach ( $files as $file ) {
 				$itemHtml = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( "file/$file" ),
