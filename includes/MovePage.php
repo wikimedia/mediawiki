@@ -1012,6 +1012,8 @@ class MovePage {
 		 */
 		$this->userEditTracker->incrementUserEditCount( $user );
 
+		// Get the old redirect state before clean up
+		$isRedirect = $this->oldTitle->isRedirect();
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
@@ -1020,7 +1022,7 @@ class MovePage {
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
-		$newpage->updateRevisionOn( $dbw, $nullRevision );
+		$newpage->updateRevisionOn( $dbw, $nullRevision, null, $isRedirect );
 
 		$fakeTags = [];
 		$this->hookRunner->onRevisionFromEditComplete(

@@ -1402,7 +1402,7 @@ class PageUpdater {
 
 		// Update the page record with revision data
 		// TODO: move to storage service
-		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0 ) ) {
+		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0, false ) ) {
 			throw new PageUpdateException( "Failed to update page row to use new revision." );
 		}
 
