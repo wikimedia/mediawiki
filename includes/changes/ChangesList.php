@@ -673,7 +673,7 @@ class ChangesList extends ContextSource {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
 			$deletedClass = 'history-deleted';
 			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
-				$deletedClass = ' mw-history-suppressed';
+				$deletedClass .= ' mw-history-suppressed';
 			}
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
