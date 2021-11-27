@@ -922,13 +922,15 @@ class RecentChange implements Taggable {
 	 * @param string $actionCommentIRC
 	 * @param int $revId Id of associated revision, if any
 	 * @param bool $isPatrollable Whether this log entry is patrollable
+	 * @param bool|null $forceBotFlag Override the default behavior and set bot flag to
+	 * 	the value of the argument. When omitted or null, it falls back to the global state.
 	 *
 	 * @return RecentChange
 	 */
 	public static function newLogEntry( $timestamp,
 		$logPage, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
-		$revId = 0, $isPatrollable = false ) {
+		$revId = 0, $isPatrollable = false, $forceBotFlag = null ) {
 		global $wgRequest;
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -965,6 +967,13 @@ class RecentChange implements Taggable {
 			$pageId = 0;
 		}
 
+		if ( $forceBotFlag !== null ) {
+			$bot = (int)$forceBotFlag;
+		} else {
+			$bot = $permissionManager->userHasRight( $user, 'bot' ) ?
+				(int)$wgRequest->getBool( 'bot', true ) : 0;
+		}
+
 		$rc = new RecentChange;
 		$rc->mPage = $target;
 		$rc->mPerformer = $user;
@@ -983,8 +992,7 @@ class RecentChange implements Taggable {
 			'rc_comment_data' => null,
 			'rc_this_oldid' => (int)$revId,
 			'rc_last_oldid' => 0,
-			'rc_bot' => $permissionManager->userHasRight( $user, 'bot' ) ?
-				(int)$wgRequest->getBool( 'bot', true ) : 0,
+			'rc_bot' => $bot,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => $markPatrolled ? self::PRC_AUTOPATROLLED : self::PRC_UNPATROLLED,
 			'rc_new' => 0, # obsolete

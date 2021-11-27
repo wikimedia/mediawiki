@@ -85,6 +85,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var bool Whether this is a legacy log entry */
 	protected $legacy = false;
 
+	/** @var bool|null The bot flag in the recent changes will be set to this value */
+	protected $forceBotFlag = null;
+
 	/**
 	 * @stable to call
 	 * @since 1.19
@@ -276,6 +279,16 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	}
 
 	/**
+	 * Set the bot flag in the recent changes to this value.
+	 *
+	 * @since 1.40 (also backported to 1.39.14)
+	 * @param bool $forceBotFlag
+	 */
+	public function setForceBotFlag( bool $forceBotFlag ): void {
+		$this->forceBotFlag = $forceBotFlag;
+	}
+
+	/**
 	 * Insert the entry into the `logging` table.
 	 *
 	 * @param IDatabase|null $dbw
@@ -385,7 +398,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$newId,
 			$formatter->getIRCActionComment(), // Used for IRC feeds
 			$this->getAssociatedRevId(), // Used for e.g. moves and uploads
-			$this->getIsPatrollable()
+			$this->getIsPatrollable(),
+			$this->forceBotFlag
 		);
 	}
 

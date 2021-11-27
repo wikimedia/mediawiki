@@ -304,7 +304,11 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			$this->title,
 			$this->user_comment,
 			'a|b|c',
-			7
+			7,
+			'',
+			42,
+			false,
+			true
 		);
 
 		$expected = [
@@ -316,6 +320,9 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_logid' => 7,
 			'rc_log_type' => 'test',
 			'rc_log_action' => 'testing',
+			'rc_this_oldid' => 42,
+			'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED,
+			'rc_bot' => 1,
 		];
 
 		$actual = array_intersect_key( $rc->getAttributes(), $expected );
