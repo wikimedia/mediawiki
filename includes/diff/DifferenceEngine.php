@@ -693,15 +693,15 @@ class DifferenceEngine extends ContextSource {
 				if ( $this->userCanEdit( $this->mOldRevisionRecord ) &&
 					$this->userCanEdit( $this->mNewRevisionRecord )
 				) {
-					$undoLink = Html::element( 'a', [
-							'href' => $this->mNewPage->getLocalURL( [
-								'action' => 'edit',
-								'undoafter' => $this->mOldid,
-								'undo' => $this->mNewid
-							] ),
-							'title' => Linker::titleAttrib( 'undo' ),
-						],
-						$this->msg( 'editundo' )->text()
+					$undoLink = $this->linkRenderer->makeKnownLink(
+						$this->mNewPage,
+						$this->msg( 'editundo' )->text(),
+						[ 'title' => Linker::titleAttrib( 'undo' ) ],
+						[
+							'action' => 'edit',
+							'undoafter' => $this->mOldid,
+							'undo' => $this->mNewid
+						]
 					);
 					$revisionTools['mw-diff-undo'] = $undoLink;
 				}
