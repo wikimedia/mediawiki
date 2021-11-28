@@ -1000,6 +1000,7 @@
 	"lineno": "Line $1:",
 	"compareselectedversions": "Compare selected revisions",
 	"showhideselectedversions": "Change visibility of selected revisions",
+	"showhideselectedfileversions": "Change visibility of selected file versions",
 	"editundo": "undo",
 	"diff-empty": "(No difference)",
 	"diff-multi-sameuser": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by the same user not shown)",

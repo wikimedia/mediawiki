@@ -143,13 +143,29 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
 			$navLink = $this->getNavigationBar();
-			$s = $list->beginImageHistoryList( $navLink );
+
+			$s = Html::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() ) . "\n"
+				. Html::openElement( 'div', [ 'id' => 'mw-imagepage-section-filehistory' ] ) . "\n"
+				. $this->msg( 'filehist-help' )->parseAsBlock()
+				. $navLink . "\n";
+
+			$sList = $list->beginImageHistoryList();
+			$onlyCurrentFile = true;
 			// Skip rows there just for paging links
 			for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 				$file = $this->mHist[$i];
-				$s .= $list->imageHistoryLine( !$file->isOld(), $file, $formattedComments[$i] );
+				$sList .= $list->imageHistoryLine( !$file->isOld(), $file, $formattedComments[$i] );
+				$onlyCurrentFile = !$file->isOld();
 			}
-			$s .= $list->endImageHistoryList( $navLink );
+			$sList .= $list->endImageHistoryList();
+			if ( $onlyCurrentFile ) {
+				// It is not possible to revision-delete the current file,
+				// if there is only the current file, show no buttons
+				$s .= $sList;
+			} else {
+				$s .= $this->wrapWithActionButtons( $sList );
+			}
+			$s .= $navLink . "\n" . Html::closeElement( 'div' ) . "\n";
 
 			if ( $list->getPreventClickjacking() ) {
 				$this->setPreventClickjacking( true );
@@ -245,6 +261,44 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			$this->mFirstShown = $firstIndex;
 		}
 		$this->mQueryDone = true;
+	}
+
+	/**
+	 * Wrap the content with action buttons at begin and end if the user
+	 * is allow to use the action buttons.
+	 * @param string $formcontents
+	 * @return string
+	 */
+	private function wrapWithActionButtons( $formcontents ) {
+		if ( !$this->getAuthority()->isAllowed( 'deleterevision' ) ) {
+			return $formcontents;
+		}
+
+		# Show button to hide log entries
+		$s = Html::openElement(
+			'form',
+			[ 'action' => wfScript(), 'id' => 'mw-filehistory-deleterevision-submit' ]
+		) . "\n";
+		$s .= Html::hidden( 'target', $this->getTitle()->getPrefixedDBkey() ) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+		$s .= Html::hidden( 'type', 'oldimage' ) . "\n";
+		$this->setPreventClickjacking( true );
+
+		$buttons = Html::element(
+			'button',
+			[
+				'type' => 'submit',
+				'name' => 'revisiondelete',
+				'value' => '1',
+				'class' => "deleterevision-filehistory-submit mw-filehistory-deleterevision-button mw-ui-button"
+			],
+			$this->msg( 'showhideselectedfileversions' )->text()
+		) . "\n";
+
+		$s .= $buttons . $formcontents . $buttons;
+		$s .= Html::closeElement( 'form' );
+
+		return $s;
 	}
 
 	/**
