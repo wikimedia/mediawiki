@@ -142,6 +142,7 @@ interface ILBFactory {
 	 *
 	 * @param string $cluster External cluster name
 	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
+	 * @throws InvalidArgumentException If $cluster is not recognized
 	 * @return ILoadBalancer
 	 */
 	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer;
@@ -152,6 +153,7 @@ interface ILBFactory {
 	 * If no tracked instances exists, then one will be instantiated
 	 *
 	 * @param string $cluster External cluster name
+	 * @throws InvalidArgumentException If $cluster is not recognized
 	 * @return ILoadBalancer
 	 */
 	public function getExternalLB( $cluster ): ILoadBalancer;
