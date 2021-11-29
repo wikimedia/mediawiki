@@ -1955,9 +1955,13 @@ class RevisionStore
 			Assert::invariant( !$archiveMode, 'Titles are not loaded by ID in archive mode.' );
 
 			$pageIdsToFetchTitles = array_unique( $pageIdsToFetchTitles );
-			foreach ( Title::newFromIDs( $pageIdsToFetchTitles ) as $t ) {
-				$titlesByPageKey[$t->getArticleID()] = $t;
-			}
+			$pageRecords = $this->pageStore
+				->newSelectQueryBuilder()
+				->wherePageIds( $pageIdsToFetchTitles )
+				->caller( __METHOD__ )
+				->fetchPageRecordArray();
+			// Cannot array_merge because it re-indexes entries
+			$titlesByPageKey = $pageRecords + $titlesByPageKey;
 		}
 
 		// which method to use for creating RevisionRecords
