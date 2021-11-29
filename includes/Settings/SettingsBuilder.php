@@ -2,26 +2,31 @@
 
 namespace MediaWiki\Settings;
 
+use MediaWiki\Settings\Cache\CacheableSource;
+use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\ConfigSink;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\SettingsSource;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * Utility for loading settings files.
  * @since 1.38
  */
 class SettingsBuilder {
-
 	/** @var string */
 	private $baseDir;
+
+	/** @var CacheInterface */
+	private $cache;
 
 	/** @var ConfigSink */
 	private $configSink;
 
-	/** @var SettingsSource[] */
+	/** @var array */
 	private $currentBatch;
 
 	/** @var ConfigSchemaAggregator */
@@ -34,13 +39,19 @@ class SettingsBuilder {
 	 * @param string $baseDir
 	 * @param ConfigSink $configSink
 	 * @param PhpIniSink $phpIniSink
+	 * @param CacheInterface|null $cache PSR-16 compliant cache interface used
+	 *  to cache settings loaded from each source. The caller should beware
+	 *  that secrets contained in any source passed to {@link load} or {@link
+	 *  loadFile} will be cached as well.
 	 */
 	public function __construct(
 		string $baseDir,
 		ConfigSink $configSink,
-		PhpIniSink $phpIniSink
+		PhpIniSink $phpIniSink,
+		CacheInterface $cache = null
 	) {
 		$this->baseDir = $baseDir;
+		$this->cache = $cache;
 		$this->configSink = $configSink;
 		$this->configSchema = new ConfigSchemaAggregator();
 		$this->phpIniSink = $phpIniSink;
@@ -56,7 +67,12 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function load( SettingsSource $source ): self {
+		if ( $this->cache !== null && $source instanceof CacheableSource ) {
+			$source = new CachedSource( $this->cache, $source );
+		}
+
 		$this->currentBatch[] = $source;
+
 		return $this;
 	}
 
@@ -108,7 +124,7 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Apply the settings file.
+	 * Apply the settings array.
 	 *
 	 * @param array $settings
 	 */

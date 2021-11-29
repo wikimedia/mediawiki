@@ -54,4 +54,12 @@ class FileSourceTest extends TestCase {
 
 		$settings = $source->load();
 	}
+
+	public function testGetHashKey() {
+		$source = new FileSource( __DIR__ . '/fixtures/settings.json' );
+
+		// We can't reliably mock the filesystem stat so simply ensure the
+		// method returns and is non-zero in length
+		$this->assertNotEmpty( $source->getHashKey() );
+	}
 }

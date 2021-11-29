@@ -2,6 +2,7 @@
 
 namespace phpunit\unit\includes\Settings;
 
+use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSink;
 use MediaWiki\Settings\Config\MergeStrategy;
@@ -9,6 +10,7 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * @covers \MediaWiki\Settings\SettingsBuilder
@@ -18,16 +20,19 @@ class SettingsBuilderTest extends TestCase {
 	/**
 	 * @param ConfigSink|null $configBuilder
 	 * @param PhpIniSink|null $phpIniSink
+	 * @param CacheInterface|null $cache
 	 * @return SettingsBuilder
 	 */
 	private function newSettingsBuilder(
 		ConfigSink $configBuilder = null,
-		PhpIniSink $phpIniSink = null
+		PhpIniSink $phpIniSink = null,
+		CacheInterface $cache = null
 	): SettingsBuilder {
 		return new SettingsBuilder(
 			__DIR__,
 			$configBuilder ?? new ArrayConfigBuilder(),
-			$phpIniSink ?? new PhpIniSink()
+			$phpIniSink ?? new PhpIniSink(),
+			$cache
 		);
 	}
 
@@ -186,8 +191,8 @@ class SettingsBuilderTest extends TestCase {
 	}
 
 	public function testApplyDefaultDoesNotOverwriteExisting() {
-		$configBuilder = ( new ArrayConfigBuilder() )
-			->set( 'MySetting', 'existing' );
+		$configBuilder = new ArrayConfigBuilder();
+		$configBuilder->set( 'MySetting', 'existing' );
 		$this->newSettingsBuilder( $configBuilder )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->apply();
@@ -200,5 +205,35 @@ class SettingsBuilderTest extends TestCase {
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'override' ], ], ] )
 			->apply();
+	}
+
+	public function testLoadsCacheableSource() {
+		$mockSource = $this->createMock( CacheableSource::class );
+		$mockCache = $this->createMock( CacheInterface::class );
+		$configBuilder = new ArrayConfigBuilder();
+		$builder = $this
+			->newSettingsBuilder( $configBuilder, null, $mockCache )
+			->load( $mockSource );
+
+		// Mock a cache miss
+		$mockSource
+			->expects( $this->once() )
+			->method( 'getHashKey' )
+			->willReturn( 'abc123' );
+
+		$mockCache
+			->expects( $this->once() )
+			->method( 'get' )
+			->with( 'abc123' )
+			->willReturn( null );
+
+		$mockSource
+			->expects( $this->once() )
+			->method( 'load' )
+			->willReturn( [ 'config' => [ 'MySetting' => 'BlaBla' ] ] );
+
+		$builder->apply();
+
+		$this->assertSame( 'BlaBla', $configBuilder->build()->get( 'MySetting' ) );
 	}
 }
