@@ -109,6 +109,7 @@ because of Phabricator reports.
 * (T294729) Added language support for Pa'O (blk).
 * (T296286) Added language support for Skolt Sámi (sms).
 * (T296612) Added language support for Makhuwa (vmw).
+* (T296707) Added language support for Ga (gaa).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
