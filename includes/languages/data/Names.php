@@ -484,6 +484,7 @@ class Names {
 		'vi' => 'Tiếng Việt', # Vietnamese
 		'vls' => 'West-Vlams', # West Flemish
 		'vmf' => 'Mainfränkisch', # Upper Franconian, Main-Franconian
+		'vmw' => 'emakhuwa', # Makhuwa
 		'vo' => 'Volapük', # Volapük
 		'vot' => 'Vaďďa', # Vod/Votian
 		'vro' => 'võro', # Võro
