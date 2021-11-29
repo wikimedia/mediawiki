@@ -973,7 +973,7 @@
 	"revertmerge": "ביטול המיזוג",
 	"mergelogpagetext": "זוהי רשימה של המיזוגים האחרונים של גרסאות מדף אחד לתוך דף שני.",
 	"history-title": "היסטוריית גרסאות של הדף \"$1\"",
-	"difference-title": "הבדלים בין גרסאות בדף \"$1\"",
+	"difference-title": "$1: הבדלים בין גרסאות בדף",
 	"difference-title-multipage": "הבדלים בין הדף \"$1\" לדף \"$2\"",
 	"difference-multipage": "(הבדלים בין דפים)",
 	"lineno": "שורה $1:",
