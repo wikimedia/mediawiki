@@ -2862,8 +2862,6 @@
 	"undelete-cleanup-error": "Used as error message. Parameters:\n* $1 - file path",
 	"undelete-missing-filearchive": "Used as error message. Parameters:\n* $1 - missing ID",
 	"undelete-error": "Page title when a page could not be undeleted",
-	"undelete-error-short": "Used as error message. Parameters:\n* $1 - ...\nSee also:\n* {{msg-mw|Undelete-error-long}}",
-	"undelete-error-long": "Used as error message. Parameters:\n* $1 - ...\nSee also:\n* {{msg-mw|Undelete-error-short}}",
 	"undelete-show-file-confirm": "A confirmation message shown on [[Special:Undelete]] when the request does not contain a valid token (e.g. when a user clicks a link received in mail).\n\nParameters:\n* $1 - the name of the file being undeleted\n* $2 - the date of the displayed revision\n* $3 - the time of the displayed revision\n{{Identical|Are you sure you want to view the deleted revision of the file...}}",
 	"undelete-show-file-submit": "{{Identical|Yes}}",
 	"undelete-revision-row2": "{{Optional}}\nA revision row in the undelete page. Parameters:\n* $1 is a checkBox to indicate whether to restore this specific revision\n* $2 is a link to the last revision of a page ({{msg-mw|last}})\n* $3 is a link to the page\n* $4 is a link to the revision's user\n* $5 is the revision's minor edit identifier\n* $6 is the revision size\n* $7 is the revision comment\n* $8 is the revision's tags",
