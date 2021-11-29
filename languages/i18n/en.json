@@ -2633,8 +2633,6 @@
 	"undelete-cleanup-error": "Error deleting unused archive file \"$1\".",
 	"undelete-missing-filearchive": "Unable to restore file archive ID $1 because it is not in the database.\nIt may have already been undeleted.",
 	"undelete-error": "Error undeleting page",
-	"undelete-error-short": "Error undeleting file: $1",
-	"undelete-error-long": "Errors were encountered while undeleting the file:\n\n$1",
 	"undelete-show-file-confirm": "Are you sure you want to view the deleted revision of the file \"<nowiki>$1</nowiki>\" from $2 at $3?",
 	"undelete-show-file-submit": "Yes",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

@@ -23,6 +23,8 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\UndeletePage;
+use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -49,10 +51,12 @@ class SpecialUndelete extends SpecialPage {
 	private $mRevdel;
 	private $mInvert;
 	private $mFilename;
-	private $mTargetTimestamp;
+	/** @var string[] */
+	private $mTargetTimestamp = [];
 	private $mAllowed;
 	private $mCanView;
-	private $mComment;
+	/** @var string */
+	private $mComment = '';
 	private $mToken;
 	/** @var bool|null */
 	private $mPreview;
@@ -62,8 +66,8 @@ class SpecialUndelete extends SpecialPage {
 	private $mDiffOnly;
 	/** @var bool|null */
 	private $mUnsuppress;
-	/** @var int[]|null */
-	private $mFileVersions;
+	/** @var int[] */
+	private $mFileVersions = [];
 
 	/** @var Title|null */
 	private $mTargetObj;
@@ -105,6 +109,9 @@ class SpecialUndelete extends SpecialPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
+	/** @var UndeletePageFactory */
+	private $undeletePageFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionStore $revisionStore
@@ -117,6 +124,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param UndeletePageFactory $undeletePageFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -129,7 +137,8 @@ class SpecialUndelete extends SpecialPage {
 		ILoadBalancer $loadBalancer,
 		UserOptionsLookup $userOptionsLookup,
 		WikiPageFactory $wikiPageFactory,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		UndeletePageFactory $undeletePageFactory
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -143,6 +152,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->undeletePageFactory = $undeletePageFactory;
 	}
 
 	public function doesWrites() {
@@ -1350,52 +1360,44 @@ class SpecialUndelete extends SpecialPage {
 		$this->checkReadOnly();
 
 		$out = $this->getOutput();
-		$archive = new PageArchive( $this->mTargetObj );
-		$ok = $archive->undeleteAsUser(
-			$this->mTargetTimestamp,
-			$this->getUser(),
-			$this->mComment,
-			$this->mFileVersions,
-			$this->mUnsuppress
+		$undeletePage = $this->undeletePageFactory->newUndeletePage(
+			$this->wikiPageFactory->newFromTitle( $this->mTargetObj ),
+			$this->getAuthority()
 		);
+		$status = $undeletePage
+			->setUndeleteOnlyTimestamps( $this->mTargetTimestamp )
+			->setUndeleteOnlyFileVersions( $this->mFileVersions )
+			->setUnsuppress( $this->mUnsuppress )
+			// TODO Should use undeleteIfAllowed instead.
+			->undeleteUnsafe( $this->mComment );
 
-		if ( is_array( $ok ) ) {
-			if ( $ok[1] ) { // Undeleted file count
+		if ( !$status->isGood() ) {
+			$out->setPageTitle( $this->msg( 'undelete-error' ) );
+			$out->wrapWikiTextAsInterface(
+				'error',
+				Status::wrap( $status )->getWikiText(
+					'cannotundelete',
+					'cannotundelete',
+					$this->getLanguage()
+				)
+			);
+			return;
+		}
+
+		$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
+		$restoredFiles = $status->getValue()[UndeletePage::FILES_RESTORED];
+
+		if ( $restoredRevs === 0 && $restoredFiles === 0 ) {
+			// TODO Should use a different message here
+			$out->setPageTitle( $this->msg( 'undelete-error' ) );
+		} else {
+			if ( $status->getValue()[UndeletePage::FILES_RESTORED] !== 0 ) {
 				$this->getHookRunner()->onFileUndeleteComplete(
 					$this->mTargetObj, $this->mFileVersions, $this->getUser(), $this->mComment );
 			}
 
 			$link = $this->getLinkRenderer()->makeKnownLink( $this->mTargetObj );
 			$out->addWikiMsg( 'undeletedpage', Message::rawParam( $link ) );
-		} else {
-			$out->setPageTitle( $this->msg( 'undelete-error' ) );
-		}
-
-		// Show revision undeletion warnings and errors
-		$status = $archive->getRevisionStatus();
-		if ( $status && !$status->isGood() ) {
-			$out->wrapWikiTextAsInterface(
-				'error',
-				'<div id="mw-error-cannotundelete">' .
-				$status->getWikiText(
-					'cannotundelete',
-					'cannotundelete',
-					$this->getLanguage()
-				) . '</div>'
-			);
-		}
-
-		// Show file undeletion warnings and errors
-		$status = $archive->getFileStatus();
-		if ( $status && !$status->isGood() ) {
-			$out->wrapWikiTextAsInterface(
-				'error',
-				$status->getWikiText(
-					'undelete-error-short',
-					'undelete-error-long',
-					$this->getLanguage()
-				)
-			);
 		}
 	}
 
