@@ -26,16 +26,16 @@ class JsonFormatTest extends TestCase {
 		$format->decode( '{ bad }' );
 	}
 
-	public function testSupportsFileExtension() {
-		$format = new JsonFormat();
-
-		$this->assertTrue( $format->supportsFileExtension( 'json' ) );
-		$this->assertTrue( $format->supportsFileExtension( 'JSON' ) );
+	public function provideSupportsFileExtension() {
+		yield 'Supported' => [ 'json', true ];
+		yield 'Supported, uppercase' => [ 'JSON', true ];
+		yield 'Unsupported' => [ 'txt', false ];
 	}
 
-	public function testSupportsFileExtensionUnsupported() {
-		$format = new JsonFormat();
-
-		$this->assertFalse( $format->supportsFileExtension( 'yaml' ) );
+	/**
+	 * @dataProvider provideSupportsFileExtension
+	 */
+	public function testSupportsFileExtension( $extension, $expected ) {
+		$this->assertSame( $expected, JsonFormat::supportsFileExtension( $extension ) );
 	}
 }

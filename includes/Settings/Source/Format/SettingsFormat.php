@@ -31,5 +31,5 @@ interface SettingsFormat extends Stringable {
 	 *
 	 * @return bool
 	 */
-	public function supportsFileExtension( string $ext ): bool;
+	public static function supportsFileExtension( string $ext ): bool;
 }
