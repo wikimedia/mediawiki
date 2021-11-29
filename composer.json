@@ -45,6 +45,7 @@
 		"psr/log": "1.1.4",
 		"ralouphie/getallheaders": "3.0.3",
 		"symfony/polyfill-php80": "1.23.1",
+		"symfony/yaml": "5.3.6",
 		"wikimedia/assert": "0.5.0",
 		"wikimedia/at-ease": "2.1.0",
 		"wikimedia/base-convert": "2.0.1",
@@ -93,7 +94,6 @@
 		"phpunit/phpunit": "^8.5",
 		"psy/psysh": "^0.10.5",
 		"seld/jsonlint": "1.8.3",
-		"symfony/yaml": "~3.4|~5.1",
 		"wikimedia/testing-access-wrapper": "~2.0",
 		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},
@@ -104,6 +104,7 @@
 	"suggest": {
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
+		"ext-yaml": "Improved YAML parsing performance",
 		"ext-openssl": "Cryptographical functions",
 		"ext-wikidiff2": "Diff accelerator",
 		"monolog/monolog": "Flexible debug logging system",

@@ -5,6 +5,7 @@ namespace MediaWiki\Settings\Source;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\Format\JsonFormat;
 use MediaWiki\Settings\Source\Format\SettingsFormat;
+use MediaWiki\Settings\Source\Format\YamlFormat;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 
@@ -14,17 +15,18 @@ use Wikimedia\AtEase\AtEase;
  * @since 1.38
  */
 class FileSource implements SettingsSource {
-	/**
-	 * Default format with which to attempt decoding if none are given to the
-	 * constructor.
-	 */
-	private const DEFAULT_FORMAT = JsonFormat::class;
+
+	private const BUILT_IN_FORMATS = [
+		JsonFormat::class,
+		YamlFormat::class,
+	];
 
 	/**
-	 * Possible formats.
-	 * @var array
+	 * Format to use for reading the file, if given.
+	 *
+	 * @var ?SettingsFormat
 	 */
-	private $formats;
+	private $format;
 
 	/**
 	 * Path to local file.
@@ -33,45 +35,37 @@ class FileSource implements SettingsSource {
 	private $path;
 
 	/**
-	 * Constructs a new FileSource for the given path and possible matching
-	 * formats. The first format to match the path's file extension will be
-	 * used to decode the content.
+	 * Constructs a new FileSource for the given path and possibly a custom format
+	 * to decode the contents. If no format is given, the built-in formats will be
+	 * tried and the first one that supports the file extension will be used.
 	 *
-	 * An end-user caller may be explicit about the given path's format by
-	 * providing only one format.
+	 * Built-in formats:
+	 *  - JsonFormat
+	 *  - YamlFormat
 	 *
 	 * <code>
 	 * <?php
-	 * $source = new FileSource( 'my/settings.json', new JsonFormat() );
+	 * $source = new FileSource( 'my/settings.json' );
 	 * $source->load();
 	 * </code>
 	 *
-	 * While a generalized caller may want to pass a number of supported
-	 * formats.
+	 * While a specialized caller may want to pass a specialized format
 	 *
 	 * <code>
 	 * <?php
-	 * function loadAllPossibleFormats( string $path ) {
-	 *     $source = new FileSource(
-	 *         $path,
-	 *         new JsonFormat(),
-	 *         new YamlFormat(),
-	 *         new TomlFormat()
-	 *     )
-	 * }
+	 * $source = new FileSource(
+	 *     'my/settings.toml',
+	 *     new TomlFormat()
+	 * );
+	 * $source->load();
 	 * </code>
 	 *
 	 * @param string $path
-	 * @param SettingsFormat ...$formats
+	 * @param SettingsFormat|null $format
 	 */
-	public function __construct( string $path, SettingsFormat ...$formats ) {
+	public function __construct( string $path, SettingsFormat $format = null ) {
 		$this->path = $path;
-		$this->formats = $formats;
-
-		if ( empty( $this->formats ) ) {
-			$class = self::DEFAULT_FORMAT;
-			$this->formats = [ new $class() ];
-		}
+		$this->format = $format;
 	}
 
 	/**
@@ -86,20 +80,19 @@ class FileSource implements SettingsSource {
 
 		// If there's only one format, don't bother to match the file
 		// extension.
-		if ( count( $this->formats ) == 1 ) {
-			return $this->readAndDecode( $this->formats[0] );
+		if ( $this->format ) {
+			return $this->readAndDecode( $this->format );
 		}
 
-		foreach ( $this->formats as $format ) {
-			if ( $format->supportsFileExtension( $ext ) ) {
-				return $this->readAndDecode( $format );
+		foreach ( self::BUILT_IN_FORMATS as $format ) {
+			if ( call_user_func( [ $format, 'supportsFileExtension' ], $ext ) ) {
+				return $this->readAndDecode( new $format() );
 			}
 		}
 
 		throw new SettingsBuilderException(
-			"None of the given formats ({formats}) are suitable for '{path}'",
+			"None of the built-in formats are suitable for '{path}'",
 			[
-				'formats' => implode( ', ', $this->formats ),
 				'path' => $this->path,
 			]
 		);
