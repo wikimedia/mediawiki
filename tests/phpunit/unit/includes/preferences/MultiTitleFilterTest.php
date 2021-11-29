@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageSelectQueryBuilder;
+use MediaWiki\Page\PageStore;
 use MediaWiki\Preferences\MultiTitleFilter;
 
 /**
@@ -48,13 +51,34 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider filterForFormDataProvider
 	 */
 	public function testFilterForForm( $expected, $inputValue, $newFromIDsReturnValue ) {
-		$titleFactory = $this->getMockBuilder( TitleFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$titleFactory->method( 'newFromIDs' )
-			->willReturn( $newFromIDsReturnValue );
-		$multiTitleFilter = new MultiTitleFilter( $titleFactory );
+		$titleFormatter = $this->createMock( TitleFormatter::class );
+		$titleFormatter->method( 'getPrefixedText' )
+			->willReturnOnConsecutiveCalls(
+				...array_map(
+					static function ( $t ) {
+						return $t->getPrefixedText();
+					},
+					$newFromIDsReturnValue
+				)
+			);
+		$pageStore = $this->getPageStore( $newFromIDsReturnValue );
+		$multiTitleFilter = new MultiTitleFilter( null, $pageStore, $titleFormatter );
 		$this->assertSame( $expected, $multiTitleFilter->filterForForm( $inputValue ) );
+	}
+
+	private function getPageStore( $mockFetchPageRecordsReturn ): PageStore {
+		$pageSelectQueryBuilder = $this->getMockBuilder( PageSelectQueryBuilder::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'fetchPageRecords' ] )
+			->getMock();
+		$pageSelectQueryBuilder->method( 'fetchPageRecords' )
+			->willReturn( new ArrayIterator( $mockFetchPageRecordsReturn ) );
+
+		$pageStore = $this->createMock( PageStore::class );
+		$pageStore->method( 'newSelectQueryBuilder' )
+			->willReturn( $pageSelectQueryBuilder );
+
+		return $pageStore;
 	}
 
 	public function filterForFormDataProvider(): array {
@@ -85,12 +109,10 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider filterFromFormDataProvider
 	 */
 	public function testFilterFromForm( $expected, $titles, $newFromTextValue ) {
-		$titleFactory = $this->getMockBuilder( TitleFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$titleFactory->method( 'newFromText' )
-			->willReturn( $newFromTextValue );
-		$multiTitleFilter = new MultiTitleFilter( $titleFactory );
+		$pageStore = $this->createMock( PageStore::class );
+		$pageStore->method( 'getPageByText' )
+			->willReturnOnConsecutiveCalls( $newFromTextValue );
+		$multiTitleFilter = new MultiTitleFilter( null, $pageStore );
 		$this->assertSame( $expected, $multiTitleFilter->filterFromForm( $titles ) );
 	}
 
@@ -99,20 +121,24 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 			[
 				null,
 				'',
-				$this->getMockTitle( 'Foo' ),
+				$this->getMockPageIdentityValue( 0, 'Foo' ),
 			],
 			[
 				"42",
 				"Foo",
-				$this->getMockTitle( 'Foo', 42 )
+				$this->getMockPageIdentityValue( 42, 'Foo' )
 			],
 			[
 				"",
 				"Bar",
-				$this->getMockTitle( 'Bar', 0 )
+				$this->getMockPageIdentityValue( 0, 'Bar' )
 			]
 
 		];
+	}
+
+	private function getMockPageIdentityValue( int $pageId, string $dbKey ) {
+		return new PageIdentityValue( $pageId, NS_MAIN, $dbKey, PageIdentityValue::LOCAL );
 	}
 
 	private function getMockTitle( $getTextResult, $articleId = 0 ) {
