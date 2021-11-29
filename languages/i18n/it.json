@@ -344,7 +344,7 @@
 	"redirectedfrom": "(Reindirizzamento da $1)",
 	"redirectpagesub": "Pagina di reindirizzamento",
 	"redirectto": "Reindirizza a:",
-	"lastmodifiedat": "Questa pagina è stata modificata per l'ultima volta il $1 alle $2.",
+	"lastmodifiedat": "Questa pagina è stata modificata per l'ultima volta {{#switch:{{padleft:|2|$1}}|8|11|8-|8/|8.|08=l'|#default=il&nbsp;}}$1 alle $2.",
 	"viewcount": "Questa pagina è stata letta {{PLURAL:$1|una volta|$1 volte}}.",
 	"protectedpage": "Pagina protetta",
 	"jumpto": "Vai a:",

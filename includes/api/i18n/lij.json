@@ -2,15 +2,22 @@
 	"@metadata": {
 		"authors": [
 			"Giromin Cangiaxo",
+			"N. Longo",
 			"S4b1nuz E.656"
 		]
 	},
-	"apihelp-main-param-action": "Açion da compî.",
-	"apihelp-main-param-format": "Formato de l'output.",
-	"apihelp-main-param-assert": "Veifica che l'utente o l'agge effetoòu l'accesso se s'è impostou <kbd>user</kbd>, ò ch'o l'agge i permissi di bot se s'è impostou <kbd>bot</kbd>.",
-	"apihelp-main-param-requestid": "Tutti i valoî fornii saian incruxi inta risposta. Porieivan ese doeuviæ pe distingue e receste.",
-	"apihelp-main-param-servedby": "Inciodi into risultou o nomme de l'host ch'o l'ha servio a recesta.",
-	"apihelp-main-param-curtimestamp": "Inciodi into risultou o timestamp attoâ.",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Doocomentaçión]] (in ingléize)\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & lìnie goìdda in sce l'utilìzzo]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]] (in ingléize)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailing list]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anónçi in sce l'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & domànde]\n</div>\n<strong>Stâto:</strong> l'API MediaWiki a l'é 'n'interfaccia interfàccia méuia e stàbile ch'a l'é ativaménte suportâ e megioâ. Scibén che amiémmo de evitâlo, poriêscimo dovéi fâ de modìfiche che càozan di fonçionâ mâ; inscrîvise a-a [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mailing list in scî anónçi de l'API MediaWiki] pe êse informòu in scî agiornaménti.\n\n<strong>Instruçioîn eræ:</strong> quànde són dæte a-e API de instruçioîn eræ, 'n'intestaçión HTTP a saiâ mandâ co-o mesàggio \"MediaWiki-API-Error\" e, ségge o valô de l'intestaçión, ségge o còdice d'erô, saiàn inpòstæ co-o mæximo valô. Pe ciù informaçioîn, lêze [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Eroî e avertiménti]] (in ingléize).\n\n<p class=\"mw-apisandbox-link\"><strong>Test:</strong> pe provâ façilménte e domànde API, védde [[Special:ApiSandbox]].</p>",
+	"apihelp-main-param-action": "Açión da conpî.",
+	"apihelp-main-param-format": "Formâto de l'output.",
+	"apihelp-main-param-maxlag": "O màscimo ritàrdo o pêu êse dêuviòu quànde MediaWiki o l'é instalòu in sce 'n database replicated cluster. Pe sarvâ e açioîn che càozan ciù ritàrdo inta réplica do scîto, quésto paràmetro o pêu fâ de mòddo che o client o l'aspêta scìnn-a quànde o ritàrdo da réplica o ségge inferiô a-o valô specificòu. In câxo de ritàrdo ecescîvo, o còdice d'erô <samp>maxlag</samp> o l'é restitoîo co-in mesàggio cómme <samp>Waiting for $host: $lag seconds lagged</samp>.<br />Védde [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] pe ciù informaçioîn.",
+	"apihelp-main-param-smaxage": "Inpòsta l'intestaçión do contròllo da cache HTTP <code>s-maxage</code> in sce 'sto nùmero de segóndi chi.\nI eroî no són memorizæ inta cache.",
+	"apihelp-main-param-maxage": "Inpòsta l'intestaçión do contròllo da cache HTTP <code>max-age</code> in sce 'sto nùmero de segóndi chi.\nI eroî no són memorizæ inta cache.",
+	"apihelp-main-param-assert": "Verìfica che l'uténte o l'àgge efetoòu l'intrâ se s'é inpostòu <kbd>user</kbd>, <em>no</em> l'àgge efetoòu l'intrâ se s'é inpostòu <kbd>anon</kbd> ò ch'o l'àgge i permìssi di bot se s'é inpostòu <kbd>bot</kbd>.",
+	"apihelp-main-param-assertuser": "Verìfica che l'uténte corénte o ségge l'uténte dezignòu.",
+	"apihelp-main-param-requestid": "Tùtti i valoî fornîi saiàn inclûzi inta rispòsta. Poriéivan êse dêuviæ pe distìngoe e domànde.",
+	"apihelp-main-param-servedby": "Inclùddi into rizultâto o nómme de l'host ch'o l'à servîo a domànda.",
+	"apihelp-main-param-curtimestamp": "Inclùddi into rizultâto o timestamp atoâle.",
+	"apihelp-main-param-responselanginfo": "Inclùddi e léngoe dêuviæ pe <var>uselang</var> e <var>errorlang</var> into rizultâto.",
 	"apihelp-block-summary": "Blocca un utente.",
 	"apihelp-block-param-user": "Nomme utente, adresso IP o range di IP da bloccâ.",
 	"apihelp-block-param-expiry": "Tempo de scadença. O poeu ese relativo (presempio, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) ò assoluo (presempio <kbd>2014-09-18T12:34:56Z</kbd>). Se impostou a <kbd>infinite</kbd>, <kbd>indefinite</kbd> ò <kbd>never</kbd>, o blòcco o no descaziâ mai.",

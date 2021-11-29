@@ -345,7 +345,7 @@
 	"nstab-category": "Thể loại",
 	"mainpage-nstab": "Trang chính",
 	"nosuchaction": "Không có tác vụ này",
-	"nosuchactiontext": "Wiki không hiểu được tác vụ được yêu cầu trong địa chỉ URL.\nCó thể bạn đã gõ nhầm địa chỉ URL, hoặc nhấn vào một liên kết sai.\nNó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{SITENAME}} sử dụng.",
+	"nosuchactiontext": "Tác vụ chỉ định trong URL không hợp lệ.\nCó thể bạn đã gõ nhầm địa chỉ URL, hoặc nhấn vào một liên kết sai.\nNó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{SITENAME}} sử dụng.",
 	"nosuchspecialpage": "Không có trang đặc biệt nào có tên này",
 	"nospecialpagetext": "<strong>Bạn đã đi đến một liên kết trang đặc biệt không tồn tại.</strong>\n\nDanh sách trang đặc biệt có thể xem tại [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Lỗi",

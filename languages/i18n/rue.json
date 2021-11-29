@@ -1798,7 +1798,7 @@
 	"enotif_minoredit": "Тото є мала зміна",
 	"created": "створена",
 	"changed": "змінена",
-	"deletepage-submit": "Змазати сторінку",
+	"deletepage-submit": "Стерти сторунку",
 	"confirm": "Потверджіня",
 	"excontent": "обсяг быв: „$1“",
 	"excontentauthor": "обсяг быв: „$1“, і єдиным приспівателём быв „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|діскузія]])",

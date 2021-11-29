@@ -1246,7 +1246,7 @@
 	"linterror-unclosed-quotes-in-heading": "Aspas não fechadas que se propagam para fora do índice",
 	"yourgender": "Como você prefere ser descrito(a)?",
 	"gender-unknown": "Ao mencionar você, o ''software'' usará palavras do gênero neutro sempre que possível",
-	"gender-notknown": "Eles editam páginas wiki",
+	"gender-notknown": "Ele edita páginas wiki",
 	"gender-male": "Ele é um usuário",
 	"gender-female": "Ela é uma usuária",
 	"prefs-help-gender": "A configuração dessa preferência é opcional.\nO ''software'' utiliza seu valor para tratar e mencionar você a outros usando o gênero gramatical adequado.\nEssa informação será pública.",
