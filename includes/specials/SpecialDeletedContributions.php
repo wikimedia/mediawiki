@@ -103,6 +103,8 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->checkPermissions();
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$opts = new FormOptions();
@@ -144,7 +146,6 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		$target = $userObj->getName();
 
-		$out = $this->getOutput();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
 		$out->setPageTitle( $this->msg( 'deletedcontributions-title', $target ) );
 
