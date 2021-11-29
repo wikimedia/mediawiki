@@ -34,6 +34,12 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup JobQueue
  */
 class DoubleRedirectJob extends Job {
+	/**
+	 * @var int Max number of double redirect jobs counter.
+	 *   This is meant to avoid excessive memory usage. This is
+	 *   also used in fixDoubleRedirects.php script.
+	 */
+	public const MAX_DR_JOBS_COUNTER = 10000;
 
 	/** @var Title The title which has changed, redirects pointing to this
 	 *    title are fixed
@@ -92,7 +98,7 @@ class DoubleRedirectJob extends Job {
 					->getPrefixedDBkey( $redirTitle ),
 			] );
 			# Avoid excessive memory usage
-			if ( count( $jobs ) > 10000 ) {
+			if ( count( $jobs ) > self::MAX_DR_JOBS_COUNTER ) {
 				JobQueueGroup::singleton()->push( $jobs );
 				$jobs = [];
 			}

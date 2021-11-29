@@ -113,8 +113,7 @@ class FixDoubleRedirects extends Maintenance {
 				}
 			} else {
 				$jobs[] = $job;
-				// @todo FIXME: Hardcoded constant 10000 copied from DoubleRedirectJob class
-				if ( count( $jobs ) > 10000 ) {
+				if ( count( $jobs ) > DoubleRedirectJob::MAX_DR_JOBS_COUNTER ) {
 					$this->queueJobs( $jobs, $dryrun );
 					$jobs = [];
 				}
