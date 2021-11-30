@@ -1372,8 +1372,6 @@
 	"undelete-bad-store-key": "De Dateiversion vun de Tiet $1 kunn nich wedderhaalt warrn: De Datei weer al vör dat Wegsmieten nich mehr dor.",
 	"undelete-cleanup-error": "Fehler bi dat Wegsmieten vun de nich bruukte Archiv-Version $1.",
 	"undelete-missing-filearchive": "De Datei mit de Archiv-ID $1 kunn nich wedderhaalt warrn. Dat gifft ehr gor nich in de Datenbank. Villicht hett ehr al en annern wedderhaalt.",
-	"undelete-error-short": "Fehler bi dat Wedderhalen vun de Datei $1",
-	"undelete-error-long": "Fehlers bi dat Wedderhalen vun de Datei:\n\n$1",
 	"undelete-show-file-confirm": "Wullt du worraftig en wegsmeten Version vun de Datei „<nowiki>$1</nowiki>“ vun $2, $3 ankieken?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Naamruum:",

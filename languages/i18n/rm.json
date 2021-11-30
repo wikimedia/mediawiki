@@ -1589,8 +1589,6 @@
 	"undelete-cleanup-error": "Errur cun stizzar la datoteca da l'archiv nunutilisada \"$1\".",
 	"undelete-missing-filearchive": "Impussibel da restaurar la datoteca cun l'ID dad archiv $1, perquai ch'ella n'exista betg en la banca da datas.\nEventualmain è ella gia vegnida restaurada.",
 	"undelete-error": "Errur durant restaurar la pagina",
-	"undelete-error-short": "Errur durant restaurar la datoteca: $1",
-	"undelete-error-long": "Durant restaurar la datoteca èn errurs vegnidas constatadas: \n\n$1",
 	"undelete-show-file-confirm": "Es ti segir che ti vuls vesair la versiun stizzada da la datoteca \"<nowiki>$1</nowiki>\" dals $2 las $3?",
 	"undelete-show-file-submit": "Gea",
 	"namespace": "Tip da pagina:",

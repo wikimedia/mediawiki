@@ -2580,8 +2580,6 @@
 	"undelete-cleanup-error": "Wystąpił błąd przy usuwaniu nieużywanego archiwalnego pliku „$1”.",
 	"undelete-missing-filearchive": "Nie udało się odtworzyć z archiwum pliku o ID $1, ponieważ brak go w bazie danych.\nByć może plik został już odtworzony.",
 	"undelete-error": "Błąd odtwarzania usuniętej strony",
-	"undelete-error-short": "Wystąpił błąd przy odtwarzaniu pliku: $1",
-	"undelete-error-long": "Napotkano błędy przy odtwarzaniu pliku:\n\n$1",
 	"undelete-show-file-confirm": "Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 $3?",
 	"undelete-show-file-submit": "Tak",
 	"namespace": "Przestrzeń nazw:",

@@ -1260,8 +1260,6 @@
 	"undelete-bad-store-key": "Аш кода мърдафтомс $1 файл верзиеть: файлсь юмась нардамада инголе.",
 	"undelete-cleanup-error": "Лиссь эльбятькс аркив файл \"$1\" нардамста.",
 	"undelete-missing-filearchive": "Аш кода мърдафтомс файлть аркив  ID $1 сяс мес сон аф датабазаса. Сонь, улема, нардазь ни.",
-	"undelete-error-short": "Эльбятькс нардама файл: $1",
-	"undelete-error-long": "Листь эльбятькст мърдафтома файл:\n\n$1",
 	"undelete-show-file-confirm": "Тонь афкукс мяльце ваномс файлть нардаф ревизиенц \"<nowiki>$1</nowiki>\" $2ста $3са?",
 	"undelete-show-file-submit": "Ина",
 	"namespace": "Лемботма:",

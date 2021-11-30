@@ -2253,8 +2253,6 @@
 	"undelete-cleanup-error": "Error al moment de la supression de l’archiu inutilizada « $1 ».",
 	"undelete-missing-filearchive": "Impossible de restablir lo fichièr amb l’ID $1 perque es pas dins la basa de donadas. Benlèu ja i es estat restablit.",
 	"undelete-error": "Pagina d'error d'anullacion",
-	"undelete-error-short": "Error al moment del restabliment del fichièr : $1",
-	"undelete-error-long": "D'errors son estadas rencontradas al moment del restabliment del fichièr :\n\n$1",
 	"undelete-show-file-confirm": "Sètz segur(a) que volètz visionar una version suprimida del fichièr « <nowiki>$1</nowiki> » que data del $2 a $3 ?",
 	"undelete-show-file-submit": "Òc",
 	"namespace": "Espaci de noms :",

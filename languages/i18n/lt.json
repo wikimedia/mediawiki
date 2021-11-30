@@ -2323,8 +2323,6 @@
 	"undelete-cleanup-error": "Klaida trinant nenaudotą archyvo failą „$1“.",
 	"undelete-missing-filearchive": "Nepavyksta atkurti failo archyvo ID $1, nes jo nėra duomenų bazėje. Jis gali būti jau atkurtas.",
 	"undelete-error": "Klaida panaikinant puslapį",
-	"undelete-error-short": "Klaida atkuriant rinkmeną: $1",
-	"undelete-error-long": "Įvyko klaidų atkuriant failą:\n\n$1",
 	"undelete-show-file-confirm": "Ar tikrai norite peržiūrėti ištrintą failo „<nowiki>$1</nowiki>“ $2 $3 versiją?",
 	"undelete-show-file-submit": "Taip",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

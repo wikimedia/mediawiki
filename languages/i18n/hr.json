@@ -2324,8 +2324,6 @@
 	"undelete-cleanup-error": "Pogreška pri brisanju nekorištene arhivske datoteke \"$1\".",
 	"undelete-missing-filearchive": "Vraćanje arhivske datoteke s oznakom $1 nije moguće jer ne postoji u bazi podataka. Moguće je već vraćena.",
 	"undelete-error": "Pogreška pri vraćanju obrisane stranice",
-	"undelete-error-short": "Pogrješka pri vraćanju datoteke: $1",
-	"undelete-error-long": "Dogodila se pogrješka pri vraćanju datoteke:\n\n$1",
 	"undelete-show-file-confirm": "Jeste li sigurni da želite vidjeti izbrisanu inačicu datoteke \"<nowiki>$1</nowiki>\" od $2 u $3?",
 	"undelete-show-file-submit": "Da",
 	"namespace": "Imenski prostor:",

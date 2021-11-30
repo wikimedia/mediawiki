@@ -2382,8 +2382,6 @@
 	"undelete-cleanup-error": "Fejl under sletning af ubrugt arkiveret version \"$1\".",
 	"undelete-missing-filearchive": "Kunne ikke genskabe arkiveret fil med ID $1 fordi den ikke findes i databasen. Måske er den allerede gendannet.",
 	"undelete-error": "Fejl under gendannelse af siden",
-	"undelete-error-short": "Fejl under gendannelsen af fil: $1",
-	"undelete-error-long": "Der opstod en fejl under gendannelsen af filen:\n\n$1",
 	"undelete-show-file-confirm": "Er du sikker på at du vil vise en slettet version af filen \"<nowiki>$1</nowiki>\" fra $2 $3?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Navnerum:",

@@ -2095,8 +2095,6 @@
 	"undelete-cleanup-error": "yu misipu caay pisaungay a misinga’ tangan \"$1\" sa mungangaw.",
 	"undelete-missing-filearchive": "nasulitan-sulu inayi’ay i tangan emicen henay ID $1, la’cus patiku tangan.\nkya tangan hakay mapalawpes tu masipu.",
 	"undelete-error": "palawpes masipu kasabelih  mungangaw",
-	"undelete-error-short": "palawpes masipu tangan mungangaw: $1",
-	"undelete-error-long": "imahini palawpes misipu tangan bahal mungangaw:\n\n$1",
 	"undelete-show-file-confirm": "pilucek kisu maydih miciwsace tu tangan \"<nowiki>$1</nowiki>\" i $2 $3 masipuay tu masumad nu ayaway?",
 	"undelete-show-file-submit": "hang",
 	"namespace": "pangangananay a salaedan:",

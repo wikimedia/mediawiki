@@ -1826,8 +1826,6 @@
 	"undelete-cleanup-error": "Jišidoo kaŋ-ši-dira tuku tuusuyan firka \"$1\".",
 	"undelete-missing-filearchive": "Ši hin ka tuku jšidoo $1 tammaasa yeeti zam'a ši bayhayahugoo ra.\nA ga tee nga tuusuyanoo hun ka ben.",
 	"undelete-error": "Moo tuusu naŋyan firka",
-	"undelete-error-short": "Moo tuusu naŋyan tuku: $1",
-	"undelete-error-long": "Firkayaŋ bangay waati kaŋ tuku tuusuyan hun.\n\n$1",
 	"undelete-show-file-confirm": "Alhakiika war ga boona ka dii filla tuusantaa \"<nowiki>$1</nowiki>\" tukoo se $2 hane $3 waate?",
 	"undelete-show-file-submit": "Ayyo",
 	"namespace": "Maafarru:",

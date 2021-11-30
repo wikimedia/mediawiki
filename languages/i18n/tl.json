@@ -1822,8 +1822,6 @@
 	"undelete-cleanup-error": "Mali ang pagbura sa hindi ginagamit na talaksan ng sinupan/arkibong \"$1\".",
 	"undelete-missing-filearchive": "Hindi naibalik mula sa pagkakabura ang sinupan/arkibo ng talaksang may ID na $1 dahil wala ito sa kalipunan ng dato.  Maaaring naibalik na ito dati mula sa pagkakabura.",
 	"undelete-error": "Kamalian sa hindi pagbura ng pahina",
-	"undelete-error-short": "May mali sa pagkakabalik mula sa pagkakabura ng talaksang: $1",
-	"undelete-error-long": "Nakaranas ng mga kamalian habang ibinabalik mula sa pagkakabura ang talaksang:\n\n$1",
 	"undelete-show-file-confirm": "Nakatitiyak ka bang ibig mong tanawin ang isang nabura nang pagbabago ng talaksang \"<nowiki>$1</nowiki>\" mula $2 noong $3?",
 	"undelete-show-file-submit": "Oo",
 	"namespace": "Ngalan-espasyo:",

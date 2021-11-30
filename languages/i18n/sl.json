@@ -2492,8 +2492,6 @@
 	"undelete-cleanup-error": "Napaka pri brisanju neuporabljene arhivske datoteke »$1«.",
 	"undelete-missing-filearchive": "Ne morem obnoviti datoteke arhiva ID $1, ker ga ni v zbirki podatkov.\nMorda je bil že obnovljen.",
 	"undelete-error": "Napaka pri obnovi strani",
-	"undelete-error-short": "Napaka pri obnavljanju datoteke: $1",
-	"undelete-error-long": "Pri obnavljanju datoteke je prišlo do napak:\n\n$1",
 	"undelete-show-file-confirm": "Ali si resnično želite ogledati izbrisano redakcijo datoteke »<nowiki>$1</nowiki>« z dne $2 ob $3?",
 	"undelete-show-file-submit": "Da",
 	"namespace": "Imenski prostor:",

@@ -2549,8 +2549,6 @@
 	"undelete-cleanup-error": "Có lỗi khi xóa các tập tin lưu trữ “$1” không được sử dụng.",
 	"undelete-missing-filearchive": "Không thể phục hồi bộ tập tin có định danh $1 vì nó không nằm ở cơ sở dữ liệu. Có thể nó được phục hồi rồi.",
 	"undelete-error": "Lỗi khi phục hồi trang",
-	"undelete-error-short": "Có lỗi khi phục hồi tập tin: $1",
-	"undelete-error-long": "Xuất hiện lỗi khi phục hồi tập tin:\n\n$1",
 	"undelete-show-file-confirm": "Bạn có chắc mình muốn xem một phiên bản đã xóa của tập tin “<nowiki>$1</nowiki>” vào ngày $2 lúc $3?",
 	"undelete-show-file-submit": "Có",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

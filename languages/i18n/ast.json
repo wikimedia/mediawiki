@@ -2435,8 +2435,6 @@
 	"undelete-cleanup-error": "Error al desaniciar el ficheru non usáu «$1».",
 	"undelete-missing-filearchive": "Nun se pue restaurar l'archivu col númberu d'identificación $1 porque nun ta na base de datos. Seique yá fuera restauráu.",
 	"undelete-error": "Error al restaurar la páxina",
-	"undelete-error-short": "Error al restaurar el ficheru: $1",
-	"undelete-error-long": "Atopáronse errores al restaurar l'archivu:\n\n$1",
 	"undelete-show-file-confirm": "¿Tas seguru de que quies ver la versión desaniciada del ficheru «<nowiki>$1</nowiki>» del $2 a les $3?",
 	"undelete-show-file-submit": "Sí",
 	"namespace": "Espaciu de nomes:",

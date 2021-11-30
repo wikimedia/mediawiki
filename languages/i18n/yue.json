@@ -2223,8 +2223,6 @@
 	"undelete-cleanup-error": "刪除無用嘅歸檔檔案 \"$1\" 時出錯。",
 	"undelete-missing-filearchive": "由於檔案歸檔 ID $1 唔響個數據庫度，唔能夠響個檔案歸檔恢復。佢可能已經反刪除咗。",
 	"undelete-error": "還原刪版出錯",
-	"undelete-error-short": "反刪除檔案嗰陣出錯: $1",
-	"undelete-error-long": "當反刪除緊個檔案嗰陣遇到錯誤:\n\n$1",
 	"undelete-show-file-confirm": "你係咪肯定你想去睇響 $2 $3 嘅 \"<nowiki>$1</nowiki>\" 檔案?",
 	"undelete-show-file-submit": "係",
 	"namespace": "空間名：",

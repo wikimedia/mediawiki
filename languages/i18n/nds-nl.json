@@ -1874,8 +1874,6 @@
 	"undelete-cleanup-error": "Fout bie t herstellen van t ongebruukten archiefbestaand \"$1\".",
 	"undelete-missing-filearchive": "t Lokten niet um ID $1 weerumme te plaotsen umdat t niet in de databanke is.\nMisschien is t al weerummeplaotst.",
 	"undelete-error": "Der is wat fout egaon bie t vortdoon van de zied",
-	"undelete-error-short": "Fout bie t herstellen van t bestaand: $1",
-	"undelete-error-long": "Fouten bie t herstellen van t bestaand:\n\n$1",
 	"undelete-show-file-confirm": "Bi'j der wisse van da'j n vortedaone versie van t bestaand \"<nowiki>$1</nowiki>\" van $2 um $3 bekieken willen?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Naamruumde:",

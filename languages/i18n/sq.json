@@ -2162,8 +2162,6 @@
 	"undelete-cleanup-error": "Gabim në grisjen e skedës \"$1\" të pa përdorur të arkivit .",
 	"undelete-missing-filearchive": "Nuk mund të restaurohet arkivi ID i skedës $1 sepse nuk është në bazën të dhënave.\nMund të jetë restauruar një herë.",
 	"undelete-error": "Gabim gjatë restaurimit të faqes",
-	"undelete-error-short": "Gabim në rikthimin e skedës: $1",
-	"undelete-error-long": "U hasën gabime gjatë restaurimit të skedës:\n\n$1",
 	"undelete-show-file-confirm": "Jeni të sigurt se dëshironi të shihni redaktimin e grisur të skedës \"<nowiki>$1</nowiki>\" nga $2 në $3?",
 	"undelete-show-file-submit": "Po",
 	"namespace": "Emërhapësirë:",

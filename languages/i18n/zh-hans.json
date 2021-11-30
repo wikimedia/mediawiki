@@ -2664,8 +2664,6 @@
 	"undelete-cleanup-error": "删除无用的存档文件“$1”时发生错误。",
 	"undelete-missing-filearchive": "无法恢复文件归档ID $1，因为它不在数据库中。\n它可能已经被恢复了。",
 	"undelete-error": "还原页面出错",
-	"undelete-error-short": "还原文件时出错：$1",
-	"undelete-error-long": "恢复被删除的文件时出错：\n\n$1",
 	"undelete-show-file-confirm": "确定要查看文件“<nowiki>$1</nowiki>”于$2$3被删除的版本吗？",
 	"undelete-show-file-submit": "是",
 	"namespace": "命名空间：",

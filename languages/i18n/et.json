@@ -2505,8 +2505,6 @@
 	"undelete-cleanup-error": "Kasutamata arhiivifaili \"$1\" kustutamine ebaõnnestus.",
 	"undelete-missing-filearchive": "Failiarhiivi tunnusega $1 ei saa taastada, sest seda pole andmebaasis.\nVõimalik, et see on juba taastatud.",
 	"undelete-error": "Tõrge lehekülje taastamisel",
-	"undelete-error-short": "Faili $1 taastamine ebaõnnestus",
-	"undelete-error-long": "Faili taastamine ebaõnnestus:\n\n$1",
 	"undelete-show-file-confirm": "Kas oled kindel, et soovid näha kustutatud versiooni failist <nowiki>$1</nowiki> seisuga $2, kell $3?",
 	"undelete-show-file-submit": "Jah",
 	"namespace": "Nimeruum:",

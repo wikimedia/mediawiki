@@ -2626,8 +2626,6 @@
 	"undelete-cleanup-error": "Erro ao eliminar o arquivo não utilizado \"$1\".",
 	"undelete-missing-filearchive": "Não é possível restaurar o arquivo de ID $1, uma vez que ele não se encontra na base de dados. Isso pode significar que já tenha sido restaurado.",
 	"undelete-error": "Erro ao restaurar a página",
-	"undelete-error-short": "Erro ao restaurar arquivo: $1",
-	"undelete-error-long": "Foram encontrados erros ao tentar restaurar o arquivo:\n\n$1",
 	"undelete-show-file-confirm": "Você tem certeza de que deseja visualizar um versão eliminada do arquivo \"<nowiki>$1</nowiki>\" das $3 de $2?",
 	"undelete-show-file-submit": "Sim",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

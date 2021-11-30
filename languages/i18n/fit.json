@@ -2404,8 +2404,6 @@
 	"undelete-cleanup-error": "Käyttämättömän arkistofiilin $1 poistaminen epäonnistui.",
 	"undelete-missing-filearchive": "Tiedostoarkiston tunnuksen $1 hakeminen epäonnistui. Fiili on saatettu jo palauttaa.",
 	"undelete-error": "Sivun palauttaminen epäonnistui",
-	"undelete-error-short": "Fiilin $1 palauttaminen epäonnistui",
-	"undelete-error-long": "Fiilin palauttaminen epäonnistui:\n\n$1",
 	"undelete-show-file-confirm": "Halvaako varmasti nähä poijesotetun versuunin fiilistä <nowiki>$1</nowiki>, joka oon säästetty $2 kello $3?",
 	"undelete-show-file-submit": "Joo",
 	"namespace": "Nimityhjyys:",

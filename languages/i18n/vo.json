@@ -1341,8 +1341,6 @@
 	"undelete-bad-store-key": "No mögos ad moükön ragivirevidi tü $1: ragiv no ädabinon bü moükam.",
 	"undelete-cleanup-error": "Pöl dü moükam ragiva no pageböla: \"$1\".",
 	"undelete-missing-filearchive": "No emögos ad sädunön moükami ragiva: $1 bi no binon in nünodem.\nMoükam onik ba ya pesädunon.",
-	"undelete-error-short": "Pöl dü sädunam moükama ragiva: $1",
-	"undelete-error-long": "Pöls äjenons dü sädunam moükama ragiva:\n\n$1",
 	"undelete-show-file-confirm": "Vilol-li fümiko logön revidi pemoüköl ragiva: „<nowiki>$1</nowiki>“ dätü $2 tü $3?",
 	"undelete-show-file-submit": "Si",
 	"namespace": "Nemaspad:",

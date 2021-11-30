@@ -1249,8 +1249,6 @@
 	"undelete-search-submit": "ይታይ",
 	"undelete-no-results": "በመዝገቡ ምንም ተመሳሳይ ገጽ አልተገኘም።",
 	"undelete-filename-mismatch": "በጊዜ ማህተም $1 ያለው እትም መመልስ አልተቻለም፤ የፋይል ስም አለመስማማት",
-	"undelete-error-short": "ፋይል የመመለስ ስኅተት፦ $1",
-	"undelete-error-long": "ፋይሉ በመመለስ ስኅተቶች ተነሡ፦\n\n$1",
 	"undelete-show-file-submit": "አዎን",
 	"namespace": "ዓይነት፦",
 	"invert": "(ምርጫውን ለመገልበጥ)",

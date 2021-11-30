@@ -2618,8 +2618,6 @@
 	"undelete-cleanup-error": "Errore nella cancellazione del file di archivio non utilizzato \"$1\".",
 	"undelete-missing-filearchive": "Impossibile ripristinare l'ID $1 dell'archivio file in quanto non è presente nel database. Potrebbe essere stato già ripristinato.",
 	"undelete-error": "Errore nel ripristino della pagina",
-	"undelete-error-short": "Errore nel ripristino del file: $1",
-	"undelete-error-long": "Si sono verificati degli errori nel tentativo di annullare la cancellazione del file:\n\n$1",
 	"undelete-show-file-confirm": "Si desidera visualizzare la versione cancellata del file \"<nowiki>$1</nowiki>\" del $2 alle $3?",
 	"undelete-show-file-submit": "Sì",
 	"namespace": "Namespace:",

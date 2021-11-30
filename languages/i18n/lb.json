@@ -2283,8 +2283,6 @@
 	"undelete-cleanup-error": "Feeler beim Läsche vun der onbenotzter Archiv-Versioun $1.",
 	"undelete-missing-filearchive": "De Fichier mat der Archiv-ID $1 kann net restauréiert ginn, well en net an der Datebank ass. Méiglecherweis gouf e scho restauréiert.",
 	"undelete-error": "Feeler beim Restauréiere vun der Säit",
-	"undelete-error-short": "Feeler beim Restauréiere vum Fichier: $1",
-	"undelete-error-long": "Beim Restauréiere vun engem Fichier goufe Feeler fonnt:\n\n$1",
 	"undelete-show-file-confirm": "Sidd Dir sécher, datt dir eng geläscht Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 um $3 Auer gesi wëllt?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Nummraum:",

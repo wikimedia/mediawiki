@@ -2492,8 +2492,6 @@
 	"undelete-cleanup-error": "Eror in del cors del scancelament del fail d'archivi  minga doprad \"$1\".",
 	"undelete-missing-filearchive": "Impossibil rimet a post l'ID $1 de l'archivi di fail desgià che 'l gh'è no in del databeis.\nEl podariss vesser sgiamò rimiss a post.",
 	"undelete-error": "Eror in del descancelament de la pagina",
-	"undelete-error-short": "Eror in el descancelament el: $1",
-	"undelete-error-long": "A inn sucedud di eror intanta che 'l fail l'era 'dree a vesser descanceladː\n\n$1",
 	"undelete-show-file-confirm": "Te see sicur che te voeuret vedè la version scancelada del fail \"<nowiki>$1</nowiki>\" del $2 ai $3?",
 	"undelete-show-file-submit": "Sì",
 	"namespace": "Spazzi di nomː",

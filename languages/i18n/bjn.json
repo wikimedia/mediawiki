@@ -1583,8 +1583,6 @@
 	"undelete-cleanup-error": "Kasalahan mahapus barakas arkip kada-dipuruk \"$1\".",
 	"undelete-missing-filearchive": "Kada kawa manyimpan-pulang barakas arkip ID $1 karana ngini kadada dalam data basis.\nPinanya barakas ngini sudah dilapas-hapusannya.",
 	"undelete-error": "Kasalahan kada-mahapus tungkaran",
-	"undelete-error-short": "Kasalahan malapas-hapusan barakas: $1",
-	"undelete-error-long": "Kasalahan tarikin parhatan malapas-hapusan barakas:\n\n$1",
 	"undelete-show-file-confirm": "Pian handak maniringi ralatan tahapus matan barakas \"<nowiki>$1</nowiki>\" matan $2 pada $3 kah?",
 	"undelete-show-file-submit": "Iya-ai",
 	"namespace": "Ruang-ngaran:",

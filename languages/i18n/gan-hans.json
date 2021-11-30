@@ -998,8 +998,6 @@
 	"undelete-bad-store-key": "删伓正带到时间标记𠮶档案修订 $1: 档案删卟之前就跌卟嘞。",
 	"undelete-cleanup-error": "删卟冇用𠮶存盘文件 \"$1\" 时出错。",
 	"undelete-missing-filearchive": "数据库冇档案存盘 ID $1 ，故系佢也就到档案存盘恢复伓正。佢话伓定早反删除嘞。",
-	"undelete-error-short": "反删除档案𠮶时间出错: $1",
-	"undelete-error-long": "反删除档案当中出错:\n\n$1",
 	"namespace": "空间名:",
 	"invert": "反选",
 	"blanknamespace": "（主要）",

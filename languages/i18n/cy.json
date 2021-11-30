@@ -2160,8 +2160,6 @@
 	"undelete-cleanup-error": "Bu gwall wrth ddileu'r ffeil archif na ddefnyddiwyd \"$1\".",
 	"undelete-missing-filearchive": "Nid oes modd adfer archif y ffeil â'r ID $1 oherwydd nad ydyw yn y gronfa ddata.\nEfallai ei bod eisoes wedi'i hadfer.",
 	"undelete-error": "Gwall wrth adfer tudalen",
-	"undelete-error-short": "Gwall wrth adfer y ffeil: $1",
-	"undelete-error-long": "Cafwyd gwallau wrth adfer y ffeil:\n\n$1",
 	"undelete-show-file-confirm": "A ydych yn siŵr eich bod am weld golygiad dileedig o'r ffeil \"<nowiki>$1</nowiki>\" a roddwyd ar gadw ar $2 am $3?",
 	"undelete-show-file-submit": "Ydw",
 	"namespace": "Parth:",

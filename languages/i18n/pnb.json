@@ -1815,8 +1815,6 @@
 	"undelete-cleanup-error": "ناں ورتی گئی آرکائیو فائل \"$1\" دے مٹانے چ غلطی۔",
 	"undelete-missing-filearchive": "فائل آرکائیو آئی ڈی $1 نوں واپس کرن چ ناکامی کیوں جے اے ڈیٹابیس نئیں اے۔\nخورے اے پہلے ای مٹ چکی ہووے۔",
 	"undelete-error": "مٹاۓ صفے واپس لیان چ غلطی",
-	"undelete-error-short": "فائل واپس کرن وچ غلطی: $1",
-	"undelete-error-long": "فائل واپس کرن  لگیاں غلطیاں ہوئیاں:\n$1",
 	"undelete-show-file-confirm": "تساں نوں کیا پک اے جے تسیں فائل \"<nowiki>$1</nowiki>\" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟",
 	"undelete-show-file-submit": "ہاں",
 	"namespace": "ناں تھاں:",

@@ -1812,8 +1812,6 @@
 	"undelete-search-prefix": "Onyesha kurasa kuanzia na:",
 	"undelete-search-submit": "Tafuta",
 	"undelete-error": "Hitilafu ya kutfutua ukurasa",
-	"undelete-error-short": "Hitilafu wakati wa kurudisha faili: $1",
-	"undelete-error-long": "Hitilafu zilitokea wakati wa kurudisha faili:\n\n$1",
 	"undelete-show-file-submit": "Ndiyo",
 	"namespace": "Chagua eneo la wiki:",
 	"invert": "Geuza uteuzi",

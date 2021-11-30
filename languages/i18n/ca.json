@@ -2555,8 +2555,6 @@
 	"undelete-cleanup-error": "S'ha produït un error en eliminar el fitxer d'arxiu sense utilitzar «$1».",
 	"undelete-missing-filearchive": "No s'ha pogut restaurar l'identificador $1 d'arxiu de fitxers perquè no es troba a la base de dades. Podria ser que ja s'hagués revertit l'eliminació.",
 	"undelete-error": "Error recuperant pàgina",
-	"undelete-error-short": "S'ha produït un error en revertir l'eliminació del fitxer: $1",
-	"undelete-error-long": "S'han produït errors en revertir la supressió del fitxer:\n\n$1",
 	"undelete-show-file-confirm": "Segur que voleu veure la revisió esborrada del fitxer «<nowiki>$1</nowiki>» corresponent a les $3 del $2?",
 	"undelete-show-file-submit": "Sí",
 	"namespace": "Espai de noms:",

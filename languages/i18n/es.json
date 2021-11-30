@@ -2711,8 +2711,6 @@
 	"undelete-cleanup-error": "Error al borrar el archivo no utilizado «$1».",
 	"undelete-missing-filearchive": "No se ha podido restaurar el archivo de ID $1 debido a que no está en la base de datos.\nPuede que ya haya sido restaurado.",
 	"undelete-error": "Error restaurando la página",
-	"undelete-error-short": "Error restaurando archivo: $1",
-	"undelete-error-long": "Se encontraron errores mientras se restauraba el archivo:\n\n$1",
 	"undelete-show-file-confirm": "¿Estás seguro de que quieres ver una revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?",
 	"undelete-show-file-submit": "Sí",
 	"namespace": "Espacio de nombres:",

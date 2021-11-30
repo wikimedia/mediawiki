@@ -2273,8 +2273,6 @@
 	"undelete-cleanup-error": "Biddut ti panagikkat ti saan a naus-usar a naarkibo a papeles ti \"$1\".",
 	"undelete-missing-filearchive": "Saan a naipasubli ti ID ti arkibo ti papeles ti $1 ngamin ket awan idiay database.\nMabalin naikkaten daytoy.",
 	"undelete-error": "Biddut ti panagisubli ti panagikkat ti panid",
-	"undelete-error-short": "Biddut ti panagisubli ti pannakaikkat ti papeles: $1",
-	"undelete-error-long": "Adda dagiti nasarakan a biddut bayat ti panagisubli ti panagikkat ti papeles:\n\n$1",
 	"undelete-show-file-confirm": "Sigurado a kayatmo ti mangkita ti naikkat a rebision ti papeles \"<nowiki>$1</nowiki>\" manipud idi $2, $3?",
 	"undelete-show-file-submit": "Wen",
 	"namespace": "Nagan ti espasio:",

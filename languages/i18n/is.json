@@ -2230,8 +2230,6 @@
 	"undelete-cleanup-error": "Villa við eyðingu ónotaðs skjalasafns $1",
 	"undelete-missing-filearchive": "Mistókst að endurvekja skjalasafn með auðkenninu $1 því það er ekki til í gagnabankanum.\nMögulega er þegar búið að endurvekja það.",
 	"undelete-error": "Mistókst að endurvekja síðu.",
-	"undelete-error-short": "Villa við endurvakningu skráar: $1",
-	"undelete-error-long": "Það kom upp villa við endurvakningu skrárinnar:\n\n$1",
 	"undelete-show-file-confirm": "Ertu viss um að þú viljir sjá eydda breytingu af skránni \"<nowiki>$1</nowiki>\" frá $2 $3?",
 	"undelete-show-file-submit": "Já",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

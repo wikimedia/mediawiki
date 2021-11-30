@@ -2559,8 +2559,6 @@
 	"undelete-cleanup-error": "خطأ حذف ملف أرشيف غير مستخدم \"$1\".",
 	"undelete-missing-filearchive": "غير قادر على استرجاع ملف الأرشيف رقم $1 لأنه ليس في قاعدة البيانات.\nربما يكون قد تم استرجاعه.",
 	"undelete-error": "وقع خطأ عند إلغاء حذف الصفحة",
-	"undelete-error-short": "خطأ استرجاع ملف: $1",
-	"undelete-error-long": "حدثت أخطاء أثناء استرجاع الملف:\n\n$1",
 	"undelete-show-file-confirm": "هل أنت متأكد أنك تريد رؤية مراجعة محذوفة للملف \"<nowiki>$1</nowiki>\" بتاريخ $2 الساعة $3؟",
 	"undelete-show-file-submit": "نعم",
 	"namespace": "النطاق:",

@@ -2265,8 +2265,6 @@
 	"undelete-cleanup-error": "Errore scancellanno n'archivio 'e file nun ausate \"$1\".",
 	"undelete-missing-filearchive": "Non se può arrepiglià l'archivie cu l'ID $1 pecché nun ce stanno dint' 'o database.\nPò darse ca songo già state arrepigliate.",
 	"undelete-error": "Errore pe' tramente ca s'arrepigliava na paggena",
-	"undelete-error-short": "Errore pe' tramente ca s'arrepigliava na paggena: $1",
-	"undelete-error-long": "Errore pe' tramente ca s'arrepigliava na paggena:\n\n$1",
 	"undelete-show-file-confirm": "Site sicuro/a ca vulite veré 'a verziona scancellata d' 'o file \"<nowiki>$1</nowiki>\" d' 'o $2 a 'e $3?",
 	"undelete-show-file-submit": "Sì",
 	"namespace": "Namespace:",

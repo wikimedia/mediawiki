@@ -1919,8 +1919,6 @@
 	"undelete-cleanup-error": "Fähler bim Lesche vu dr nit benutzte Archiv-Version $1.",
 	"undelete-missing-filearchive": "D Datei mit dr Archiv-ID $1 cha nit widerhärgstellt wäre, wel si nit in dr Datebank vorhanden isch. Villicht isch si scho widerhärgstellt wore.",
 	"undelete-error": "Bim Widerhärstelle vu dr Syte het s e Fähler gee.",
-	"undelete-error-short": "Fähler bim Widerhärstelle vu dr Datei $1",
-	"undelete-error-long": "S sin Fähler bim Widerhärstelle vun ere Datei feschtgstellt wore:\n\n$1",
 	"undelete-show-file-confirm": "Bisch sicher, ass Du e gleschti Version vu dr Datei „<nowiki>$1</nowiki>“ vum $2, $3 Uhr wit aaluege?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Namensruum:",

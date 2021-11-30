@@ -1962,8 +1962,6 @@
 	"undelete-cleanup-error": "İstifadəsiz \"$1\" arxiv faylının silinmə xətası.",
 	"undelete-missing-filearchive": "$1 nömrəli arxiv faylını bərpa etmək mümkün deyil, çünki o məlumat bazasında yoxdur. Ola bilər fayl artıq bərpa olunub.",
 	"undelete-error": "Səhifə bərpasında xəta",
-	"undelete-error-short": "Fayl silinərkən xəta: $1",
-	"undelete-error-long": "Fayl silinərkən üzə çıxan xətalar:\n\n$1",
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" faylının $2 $3 tarixli silinmiş bir redaktəsini görmək istədiyinizdən əminsizinizmi?",
 	"undelete-show-file-submit": "Bəli",
 	"namespace": "Adlar fəzası:",

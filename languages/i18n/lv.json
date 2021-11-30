@@ -2082,8 +2082,6 @@
 	"undelete-search-submit": "Meklēt",
 	"undelete-no-results": "Dzēšanas arhīvā netika atrasta neviena atbilstoša lapa.",
 	"undelete-cleanup-error": "Kļūda dzēšot neizmantotu arhīva failu \"$1\".",
-	"undelete-error-short": "Kļūda dzēšot failu: $1",
-	"undelete-error-long": "Dzēšot failu radās kļūdas:\n\n$1",
 	"undelete-show-file-submit": "Jā",
 	"namespace": "Vārdtelpa:",
 	"invert": "Izvēlēties pretēji",

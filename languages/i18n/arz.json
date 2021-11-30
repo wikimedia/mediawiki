@@ -1537,8 +1537,6 @@
 	"undelete-bad-store-key": "ما قدرناش نرجع المراجعة بتاعة الملف بتاريخ $1: الملف كان ضايع قبل المسح",
 	"undelete-cleanup-error": "خطأ مسح ملف أرشيف مش بيستعمل\"$1\".",
 	"undelete-missing-filearchive": "مش قادرين نرجع ملف الأرشيف رقم $1 لأنه مش موجود فى قاعدة البيانات.\nيمكن يكون اترجع قبل كدا.",
-	"undelete-error-short": "غلطة ترجيع ملف: $1",
-	"undelete-error-long": "حصلت غلطات و الملف بيترجع:\n\n$1",
 	"undelete-show-file-confirm": "انتا متأكد من انك عايز تشوف المراجعة الملغية بتاعة الملف \"<nowiki>$1</nowiki>\" من $2 فى $3؟",
 	"undelete-show-file-submit": "ايوه",
 	"namespace": "اسم المساحه:",

@@ -2299,8 +2299,6 @@
 	"undelete-cleanup-error": "Fazi en ur ziverkañ ar restr diellaouet dizimplij \"$1\".",
 	"undelete-missing-filearchive": "Dibosupl adsevel ID diell ar restr $1 rak n'emañ ket er bank ditouroù. Diziverket eo bet c'hoazh, marteze a-walc'h.",
 	"undelete-error": "Pajenn ar fazioù diziverkañ",
-	"undelete-error-short": "Fazi e-ser diziverkañ ar restr : $1",
-	"undelete-error-long": "Fazioù zo bet kavet e-ser diziverkañ ar restr :\n\n$1",
 	"undelete-show-file-confirm": "Ha sur oc'h e fell deoc'h sellet ouzh ur stumm diverket eus ar restr \"<nowiki>$1</nowiki>\" a sav d'an $2 da $3?",
 	"undelete-show-file-submit": "Ya",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

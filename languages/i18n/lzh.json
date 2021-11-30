@@ -1575,8 +1575,6 @@
 	"undelete-bad-store-key": "$1之審乃空，無可還焉。",
 	"undelete-cleanup-error": "冗檔$1，欲刪而有誤也。",
 	"undelete-missing-filearchive": "$1無尋，或已還矣。",
-	"undelete-error-short": "$1欲還而有誤也。",
-	"undelete-error-long": "還檔有誤。欲還者：\n\n$1",
 	"undelete-show-file-confirm": "汝乃確視於 $2 $3 之「<nowiki>$1</nowiki>」的已刪之審嗎？",
 	"undelete-show-file-submit": "是",
 	"namespace": "名集：",

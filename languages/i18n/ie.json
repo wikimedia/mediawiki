@@ -1210,8 +1210,6 @@
 	"undelete-bad-store-key": "Ne posse restaurar version che hor e date de file $1: file esset existet ante de deletion.",
 	"undelete-cleanup-error": "Error deletent archive sin usu de file \"$1\".",
 	"undelete-missing-filearchive": "Ne posse restaurar archive de file ID $1 pro que it ne es in li funde de data.\nIt posse have ja esset restaurat.",
-	"undelete-error-short": "Errore in li restauration de file: $1",
-	"undelete-error-long": "Errores esset incontrat durante li restauration de file:\n\n$1",
 	"undelete-show-file-confirm": "Vu comprende se que vu cari vider li revision deletet del file \"<nowiki>$1</nowiki>\" de $2 in $3?",
 	"undelete-show-file-submit": "Yes",
 	"namespace": "Spacie nominal:",

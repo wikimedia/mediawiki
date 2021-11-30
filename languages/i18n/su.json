@@ -2103,8 +2103,6 @@
 	"undelete-cleanup-error": "Éror ngahapus berkas arsip \"$1\" anu teu kapaké.",
 	"undelete-missing-filearchive": "Hanteu bisa mulangkeun arsip berkas ID $1 kusabab teu kapanggih dina pangkalan data. Bisa jadi éta koropak bolay dihapus.",
 	"undelete-error": "Kasalahan malikkeun kaca",
-	"undelete-error-short": "Éror ngabolaykeun hapusan: $1",
-	"undelete-error-long": "Aya éror nalika ngabolaykeun hapusan:\n\n$1",
 	"undelete-show-file-submit": "Enya",
 	"namespace": "Ngaranspasi:",
 	"invert": "Balikkeun pilihan",

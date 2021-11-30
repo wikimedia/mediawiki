@@ -1242,8 +1242,6 @@
 	"undelete-bad-store-key": "Neenalug far gu sumb mu $1 : ŋara wi jàppandiwul woon laataa far gi.",
 	"undelete-cleanup-error": "Njuumte ci farug ŋaraw dencu wu ñu jëfandikuwul « $1 ».",
 	"undelete-missing-filearchive": "Loppantig ŋaraw dencu wu xameekaayam doon $1 antuwul, ndax nekkul ci dáttub njoxe bi.\nXéj-na keeneen loppanti na ko ba noppi",
-	"undelete-error-short": "Njuumte ci loppantig ŋara wu: $1",
-	"undelete-error-long": "Njuumte ci jéem gee neenal farug dencukaay bi:\n\n$1",
 	"undelete-show-file-confirm": "Ndax wóor na ne bëgg ngaa wone sumb bees far bu bii dencukaay \"<nowiki>$1</nowiki>\" bu $2 ci $3?",
 	"undelete-show-file-submit": "Waaw",
 	"namespace": "Barabu tur :",

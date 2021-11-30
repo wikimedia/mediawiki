@@ -2132,8 +2132,6 @@
 	"undelete-cleanup-error": "Masalah nalika mbusak barkas arsip \"$1\" kang ora kanggo.",
 	"undelete-missing-filearchive": "Ora bisa mulihaké arsip barkas ID $1 amarga ora ana ing basis dhatah.\nBarkas iku bokmanawa wis binusek.",
 	"undelete-error": "Masalah mulihaké kaca",
-	"undelete-error-short": "Masalah nalika wurung mbusak barkas: $1",
-	"undelete-error-long": "Masalah nalika wurung mbusak barkas:\n\n$1",
 	"undelete-show-file-confirm": "Apa panjenengan yakin arep mirsani révisi berkas \"<nowiki>$1</nowiki>\" kang wis kabusak ing $2 jam $3?",
 	"undelete-show-file-submit": "Ya",
 	"namespace": "Mandhala aran:",
