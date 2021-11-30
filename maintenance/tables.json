@@ -827,7 +827,7 @@
 				"name": "ir_ipb_id",
 				"comment": "The ipb_id from ipblocks",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "ir_type",
@@ -2463,7 +2463,8 @@
 				"type": "integer",
 				"options": {
 					"autoincrement": true,
-					"notnull": true
+					"notnull": true,
+					"unsigned": true
 				}
 			},
 			{
@@ -2616,6 +2617,7 @@
 				"type": "integer",
 				"options": {
 					"notnull": false,
+					"unsigned": true,
 					"default": null
 				}
 			},
