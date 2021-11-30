@@ -1949,6 +1949,7 @@
 				"type": "integer",
 				"options": {
 					"autoincrement": true,
+					"unsigned": true,
 					"notnull": true
 				}
 			},

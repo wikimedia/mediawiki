@@ -574,7 +574,7 @@ CREATE TABLE /*_*/uploadstash (
 
 
 CREATE TABLE /*_*/filearchive (
-  fa_id INT AUTO_INCREMENT NOT NULL,
+  fa_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
   fa_name VARBINARY(255) DEFAULT '' NOT NULL,
   fa_archive_name VARBINARY(255) DEFAULT '',
   fa_storage_group VARBINARY(16) DEFAULT NULL,
