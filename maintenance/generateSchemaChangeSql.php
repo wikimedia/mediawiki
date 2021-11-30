@@ -61,7 +61,13 @@ class GenerateSchemaChangeSql extends Maintenance {
 	public function execute() {
 		global $IP;
 		$jsonPath = $this->getOption( 'json' );
-		$relativeJsonPath = str_replace( "$IP/", '', $jsonPath );
+		$installPath = $IP;
+		// For windows
+		if ( DIRECTORY_SEPARATOR === '\\' ) {
+			$installPath = strtr( $installPath, '\\', '/' );
+			$jsonPath = strtr( $jsonPath, '\\', '/' );
+		}
+		$relativeJsonPath = str_replace( "$installPath/", '', $jsonPath );
 		$sqlPath = $this->getOption( 'sql' );
 		$abstractSchemaChange = json_decode( file_get_contents( $jsonPath ), true );
 
