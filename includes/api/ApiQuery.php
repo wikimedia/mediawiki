@@ -382,7 +382,7 @@ class ApiQuery extends ApiBase {
 				'UserNameUtils',
 				'UserFactory',
 				'UserGroupManager',
-				'UserOptionsLookup',
+				'GenderCache',
 				'AuthManager',
 			],
 		],

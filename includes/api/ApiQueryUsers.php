@@ -25,7 +25,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Query module to get information about a list of users
@@ -46,8 +45,8 @@ class ApiQueryUsers extends ApiQueryBase {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	/** @var GenderCache */
+	private $genderCache;
 
 	/** @var AuthManager */
 	private $authManager;
@@ -78,7 +77,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserFactory $userFactory
 	 * @param UserGroupManager $userGroupManager
-	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param GenderCache $genderCache
 	 * @param AuthManager $authManager
 	 */
 	public function __construct(
@@ -87,14 +86,14 @@ class ApiQueryUsers extends ApiQueryBase {
 		UserNameUtils $userNameUtils,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
-		UserOptionsLookup $userOptionsLookup,
+		GenderCache $genderCache,
 		AuthManager $authManager
 	) {
 		parent::__construct( $query, $moduleName, 'us' );
 		$this->userNameUtils = $userNameUtils;
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
-		$this->userOptionsLookup = $userOptionsLookup;
+		$this->genderCache = $genderCache;
 		$this->authManager = $authManager;
 	}
 
@@ -182,6 +181,13 @@ class ApiQueryUsers extends ApiQueryBase {
 					$userGroups[$row->user_name][] = $row;
 				}
 			}
+			if ( isset( $this->prop['gender'] ) ) {
+				$userNames = [];
+				foreach ( $res as $row ) {
+					$userNames[] = $row->user_name;
+				}
+				$this->genderCache->doQuery( $userNames, __METHOD__ );
+			}
 
 			foreach ( $res as $row ) {
 				// create user object and pass along $userGroups if set
@@ -243,11 +249,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['gender'] ) ) {
-					$gender = $this->userOptionsLookup->getOption( $user, 'gender' );
-					if ( strval( $gender ) === '' ) {
-						$gender = 'unknown';
-					}
-					$data[$key]['gender'] = $gender;
+					$data[$key]['gender'] = $this->genderCache->getGenderOf( $user, __METHOD__ );
 				}
 
 				if ( isset( $this->prop['centralids'] ) ) {
