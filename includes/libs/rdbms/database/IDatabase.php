@@ -1075,6 +1075,37 @@ interface IDatabase {
 	public function makeWhereFrom2d( $data, $baseKey, $subKey );
 
 	/**
+	 * Given an array of condition arrays representing an OR list of AND lists,
+	 * for example:
+	 *
+	 *   (A=1 AND B=2) OR (A=1 AND B=3)
+	 *
+	 * produce an SQL expression in which the conditions are factored:
+	 *
+	 *  (A=1 AND (B=2 OR B=3))
+	 *
+	 * We also use IN() to simplify further:
+	 *
+	 *  (A=1 AND (B IN (2,3))
+	 *
+	 * More compactly, in boolean algebra notation, a sum of products, e.g.
+	 * AB + AC is factored to produce A(B+C). Factoring proceeds recursively
+	 * to reduce expressions with any number of variables, for example
+	 *   AEP + AEQ + AFP + AFQ = A(E(P+Q) + F(P+Q))
+	 *
+	 * The algorithm is simple and will not necessarily find the shortest
+	 * possible expression. For the best results, fields should be given in a
+	 * consistent order, and the fields with values likely to be shared should
+	 * be leftmost in the associative arrays.
+	 *
+	 * @param array $condsArray An array of associative arrays. The associative
+	 *   array keys represent field names, and the values represent the field
+	 *   values to compare against.
+	 * @return string SQL expression fragment
+	 */
+	public function factorConds( $condsArray );
+
+	/**
 	 * Return aggregated value alias
 	 *
 	 * @param array $valuedata

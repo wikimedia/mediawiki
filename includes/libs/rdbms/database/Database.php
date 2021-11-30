@@ -2777,6 +2777,81 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	public function factorConds( $condsArray ) {
+		if ( count( $condsArray ) === 0 ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ": empty condition array" );
+		}
+		$condsByFieldSet = [];
+		foreach ( $condsArray as $conds ) {
+			if ( !count( $conds ) ) {
+				throw new InvalidArgumentException(
+					__METHOD__ . ": empty condition subarray" );
+			}
+			$fieldKey = implode( ',', array_keys( $conds ) );
+			$condsByFieldSet[$fieldKey][] = $conds;
+		}
+		$result = '';
+		foreach ( $condsByFieldSet as $conds ) {
+			if ( $result !== '' ) {
+				$result .= ' OR ';
+			}
+			$result .= $this->factorCondsWithCommonFields( $conds );
+		}
+		return $result;
+	}
+
+	/**
+	 * Same as factorConds() but with each element in the array having the same
+	 * set of array keys. Validation is done by the caller.
+	 *
+	 * @param array $condsArray
+	 * @return string
+	 */
+	private function factorCondsWithCommonFields( $condsArray ) {
+		$first = $condsArray[array_key_first( $condsArray )];
+		if ( count( $first ) === 1 ) {
+			// IN clause
+			$field = array_key_first( $first );
+			$values = [];
+			foreach ( $condsArray as $conds ) {
+				$values[] = $conds[$field];
+			}
+			return $this->makeList( [ $field => $values ], self::LIST_AND );
+		}
+
+		$field1 = array_key_first( $first );
+		$nullExpressions = [];
+		$expressionsByField1 = [];
+		foreach ( $condsArray as $conds ) {
+			$value1 = $conds[$field1];
+			unset( $conds[$field1] );
+			if ( $value1 === null ) {
+				$nullExpressions[] = $conds;
+			} else {
+				$expressionsByField1[$value1][] = $conds;
+			}
+
+		}
+		$result = '';
+		foreach ( $expressionsByField1 as $value1 => $expressions ) {
+			if ( $result !== '' ) {
+				$result .= ' OR ';
+			}
+			$factored = $this->factorCondsWithCommonFields( $expressions );
+			$result .= "($field1 = " . $this->addQuotes( $value1 ) .
+				" AND $factored)";
+		}
+		if ( count( $nullExpressions ) ) {
+			$factored = $this->factorCondsWithCommonFields( $nullExpressions );
+			if ( $result !== '' ) {
+				$result .= ' OR ';
+			}
+			$result .= "($field1 IS NULL AND $factored)";
+		}
+		return $result;
+	}
+
 	/**
 	 * @inheritDoc
 	 * @stable to override
