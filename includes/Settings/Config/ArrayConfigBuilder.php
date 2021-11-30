@@ -6,12 +6,12 @@ use Config;
 use HashConfig;
 use MediaWiki\Settings\SettingsBuilderException;
 
-class ArrayConfigBuilder implements ConfigSink {
+class ArrayConfigBuilder implements ConfigBuilder {
 
 	/** @var array */
 	protected $config = [];
 
-	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigSink {
+	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
 		if ( $mergeStrategy ) {
 			if ( !is_array( $value ) ) {
 				throw new SettingsBuilderException(
@@ -36,7 +36,7 @@ class ArrayConfigBuilder implements ConfigSink {
 		return $this;
 	}
 
-	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigSink {
+	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
 		if ( $mergeStrategy ) {
 			$this->set( $key, $value, $mergeStrategy->reverse() );
 		} elseif ( !array_key_exists( $key, $this->config ) ) {

@@ -31,6 +31,15 @@ class ConfigSchemaAggregator {
 	}
 
 	/**
+	 * Get the schemas for all the defined config keys.
+	 *
+	 * @return array config-key => schema
+	 */
+	public function getSchemas(): array {
+		return $this->schema;
+	}
+
+	/**
 	 * Check whether schema for $key is defined.
 	 *
 	 * @param string $key

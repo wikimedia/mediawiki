@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
-use MediaWiki\Settings\Config\ConfigSink;
+use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class GlobalConfigBuilderTest extends TestCase {
 	use ConfigSinkTestTrait;
 
-	protected function getConfigSink(): ConfigSink {
+	protected function getConfigSink(): ConfigBuilder {
 		return new GlobalConfigBuilder( '' );
 	}
 

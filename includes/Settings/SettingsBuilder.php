@@ -2,15 +2,18 @@
 
 namespace MediaWiki\Settings;
 
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Validator;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
+use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
-use MediaWiki\Settings\Config\ConfigSink;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\SettingsSource;
 use Psr\SimpleCache\CacheInterface;
+use StatusValue;
 
 /**
  * Utility for loading settings files.
@@ -23,7 +26,7 @@ class SettingsBuilder {
 	/** @var CacheInterface */
 	private $cache;
 
-	/** @var ConfigSink */
+	/** @var ConfigBuilder */
 	private $configSink;
 
 	/** @var array */
@@ -37,7 +40,7 @@ class SettingsBuilder {
 
 	/**
 	 * @param string $baseDir
-	 * @param ConfigSink $configSink
+	 * @param ConfigBuilder $configSink
 	 * @param PhpIniSink $phpIniSink
 	 * @param CacheInterface|null $cache PSR-16 compliant cache interface used
 	 *  to cache settings loaded from each source. The caller should beware
@@ -46,7 +49,7 @@ class SettingsBuilder {
 	 */
 	public function __construct(
 		string $baseDir,
-		ConfigSink $configSink,
+		ConfigBuilder $configSink,
 		PhpIniSink $phpIniSink,
 		CacheInterface $cache = null
 	) {
@@ -107,20 +110,58 @@ class SettingsBuilder {
 	}
 
 	/**
+	 * Assert that the config loaded so far conforms the schema loaded so far.
+	 *
+	 * @note this is slow, so you probably don't want to do this on every request.
+	 *
+	 * @return StatusValue
+	 */
+	public function validate(): StatusValue {
+		$config = $this->configSink->build();
+		$validator = new Validator();
+		$result = StatusValue::newGood();
+
+		foreach ( $this->configSchema->getSchemas() as $key => $schema ) {
+			// All config keys present in the schema must be set.
+			if ( !$config->has( $key ) ) {
+				$result->fatal( 'config-missing-key', $key );
+				continue;
+			}
+
+			$value = $config->get( $key );
+			$validator->validate(
+				$value,
+				$schema,
+				Constraint::CHECK_MODE_TYPE_CAST
+			);
+			if ( !$validator->isValid() ) {
+				foreach ( $validator->getErrors() as $error ) {
+					$result->fatal( 'config-invalid-key', $key, $error['message'] );
+				}
+			}
+			$validator->reset();
+		}
+		return $result;
+	}
+
+	/**
 	 * Apply any settings loaded so far to the runtime environment.
 	 *
 	 * @unstable
 	 *
 	 * @note This usually makes all configuration available in global variables.
 	 * This may however not be the case in the future.
+	 *
+	 * @return $this
 	 */
-	public function apply() {
+	public function apply(): self {
 		foreach ( $this->currentBatch as $source ) {
 			$settings = $source->load();
 			$this->configSchema->addSchemas( $settings['config-schema'] ?? [], (string)$source );
 			$this->applySettings( $settings );
 		}
 		$this->reset();
+		return $this;
 	}
 
 	/**
