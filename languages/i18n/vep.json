@@ -1395,8 +1395,6 @@
 	"undelete-search-prefix": "Ozutada lehtpoled, kudambad augotase mugomal tekstal:",
 	"undelete-search-submit": "Ectä",
 	"undelete-cleanup-error": "Kävutamatoman \"$1\"-arhivfailan čudandan petuz.",
-	"undelete-error-short": "Failan endištandan petuz: $1",
-	"undelete-error-long": "Necen failan endištamižen aigan ozaižihe petused:\n\n$1",
 	"undelete-show-file-confirm": "Todest-ik tahtoit nähta \"<nowiki>$1</nowiki>\"-failan versii aigalpäi $2 $3?",
 	"undelete-show-file-submit": "Ka",
 	"namespace": "Nimiavaruz:",

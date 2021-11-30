@@ -1964,8 +1964,6 @@
 	"undelete-cleanup-error": "Tuccḍa deg tukksa n ufaylu n weɣbaṛ ur yetseqdacen ara « $1 ».",
 	"undelete-missing-filearchive": "Ulamek an err afaylu n weɣbaṛ s tamagit $1 acku ulac it deg taffa n isefka.\nAhat yetwerr yakan.",
 	"undelete-error": "Asebtar n tuccḍa n usemmet",
-	"undelete-error-short": "Tuccḍa deg tiririt n ufaylu : $1",
-	"undelete-error-long": "LLant tuccḍiwin deg tiririt n ufaylu:\n\n$1",
 	"undelete-show-file-confirm": "Tebɣriḍ ad ẓṛeḍ lqem yemḥan n ufaylu « <nowiki>$1</nowiki> » n $2 af $3 ?",
 	"undelete-show-file-submit": "Ih",
 	"namespace": "Talluntin n isemawen :",

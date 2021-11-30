@@ -2571,8 +2571,6 @@
 	"undelete-cleanup-error": "Kesalahan sewaktu menghapus arsip berkas \"$1\" yang tak digunakan.",
 	"undelete-missing-filearchive": "Tidak dapat mengembalikan arsip berkas dengan ID $1 karena tak ada di basis data. Berkas tersebut mungkin telah dihapus..",
 	"undelete-error": "Kesalahan mengembalikan halaman",
-	"undelete-error-short": "Kesalahan membatalkan penghapusan: $1",
-	"undelete-error-long": "Terjadi kesalahan sewaktu membatalkan penghapusan berkas:\n\n$1",
 	"undelete-show-file-confirm": "Apakah Anda yakin ingin melihat revisi yang telah dihapus dari berkas \"<nowiki>$1</nowiki>\" per $3, $2?",
 	"undelete-show-file-submit": "Ya",
 	"namespace": "Ruang nama:",

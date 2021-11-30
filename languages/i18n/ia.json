@@ -2488,8 +2488,6 @@
 	"undelete-cleanup-error": "Error durante le deletion del file de archivo non usate \"$1\".",
 	"undelete-missing-filearchive": "Impossibile restaurar le file con ID de archvo $1 proque illo non es presente in le base de datos.\nEs possibile que illo ha ja essite restaurate.",
 	"undelete-error": "Error durante le restauration del pagina",
-	"undelete-error-short": "Error durante le restauration del file: $1",
-	"undelete-error-long": "Se incontrava errores durante le restauration del file:\n\n$1",
 	"undelete-show-file-confirm": "Es tu secur de voler vider un version delite del file \"<nowiki>$1</nowiki>\" del $2 a $3?",
 	"undelete-show-file-submit": "Si",
 	"namespace": "Spatio de nomines:",

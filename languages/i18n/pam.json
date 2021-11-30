@@ -1090,8 +1090,6 @@
 	"undelete-bad-store-key": "E maliaring mabura ing pamagbayu king simpan a maki tatak-oras (timestamp) $1: ala nayu ing simpan bayu pa ing pangabura na.",
 	"undelete-cleanup-error": "Migkamali ya king pamamura ketang simpan king simpanan (archive file) a e magagamit \"$1\".",
 	"undelete-missing-filearchive": "E misubli ing file archive ID $1 uling ala yu king database.\nMapaliaring miurung na ing kayang pamamura.",
-	"undelete-error-short": "Maling lakong pamamurang keng simpan: $1",
-	"undelete-error-long": "Atin mali kabang babalik ing meburang simpan:\n\n$1",
 	"namespace": "Pirinan lagyu (Namespace):",
 	"invert": "Ibaligtad la pamitukituki",
 	"blanknamespace": "(Pun)",

@@ -2101,8 +2101,6 @@
 	"undelete-cleanup-error": "बिना प्रयोग कएल संचिका \"$1\" केँ मेटेबामे भ्रम संकेत।",
 	"undelete-missing-filearchive": "संचिका पेटार चेन्ह $1  केँ नै आनि सकल कारण ई दत्तनिधिमे नै अछि।\nई पहिनहिये आनि लेल गेल हएत।",
 	"undelete-error": "पुनः पन्ना प्राप्तिमे भ्रम",
-	"undelete-error-short": "संचिका अनबामे भ्रम : $1",
-	"undelete-error-long": "संचिका अनबामे भ्रम संकेत भेटल:\n$1",
 	"undelete-show-file-confirm": "की अहाँ आश्वस्त छी जे अहाँ संचिकाक मेटाएल संशोधन देखऽ चाहै छी \"<nowiki>$1</nowiki>\" सँ $2 पर $3?",
 	"undelete-show-file-submit": "हँ",
 	"namespace": "चेन्हासी समूह:",

@@ -2132,8 +2132,6 @@
 	"undelete-cleanup-error": "Mistak delytin onuised airchive file \"$1\".",
 	"undelete-missing-filearchive": "Onable tae restore file airchive ID $1 cause it's na in the database.\nIt micht awreadie hae been ondelytit.",
 	"undelete-error": "Mistak ondelytin page",
-	"undelete-error-short": "Mistak ondelytin file: $1",
-	"undelete-error-long": "Mistaks were encoontered while ondelytin the file:\n\n$1",
 	"undelete-show-file-confirm": "Ar ye sair that ye want tae see the delytit reveesion o the file \"<nowiki>$1</nowiki>\" fae $2 at $3?",
 	"undelete-show-file-submit": "Aye",
 	"namespace": "Namespace:",

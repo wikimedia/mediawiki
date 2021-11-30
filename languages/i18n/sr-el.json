@@ -2469,8 +2469,6 @@
 	"undelete-cleanup-error": "Greška pri brisanju nekorišćene arhive „$1“.",
 	"undelete-missing-filearchive": "Ne mogu da vratim arhivu s IB $1 jer se ona ne nalazi u bazi podataka.\nMožda je već bila vraćena.",
 	"undelete-error": "Došlo je do greške pri vraćanju izbrisane stranice",
-	"undelete-error-short": "Greška pri vraćanju datoteke: $1",
-	"undelete-error-long": "Došlo je do greške pri vraćanju datoteke:\n\n$1",
 	"undelete-show-file-confirm": "Jeste li sigurni da želite da pogledate izbrisanu izmenu datoteke „<nowiki>$1</nowiki>“ od $2 u $3?",
 	"undelete-show-file-submit": "Da",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

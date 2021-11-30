@@ -2092,8 +2092,6 @@
 	"undelete-cleanup-error": "Feil ved sletting av den ubrukte arkivfila «$1».",
 	"undelete-missing-filearchive": "Kunne ikkje attopprette filarkivet med nummer $1 fordi det ikkje ligg i databasen. Det kan allereie ver attoppretta.",
 	"undelete-error": "Feil under attoppretting av sida.",
-	"undelete-error-short": "Veil ved sletting av fila: $1",
-	"undelete-error-long": "Feil ved attoppretting av fila:\n\n$1",
 	"undelete-show-file-confirm": "Er du sikker på at du vil visa ein sletta versjon av fila «<nowiki>$1</nowiki>» frå den $2 klokka $3?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Namnerom:",

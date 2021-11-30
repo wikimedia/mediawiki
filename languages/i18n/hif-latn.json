@@ -2023,8 +2023,6 @@
 	"undelete-bad-store-key": "File revision jiske timestamp $1 hai ke pahile jaise nai karaa jaawe sake hai: file was missing before deletion.",
 	"undelete-cleanup-error": "Bina use karaa gais archive file \"$1\" ke delete kare me mistake hoe gais.",
 	"undelete-missing-filearchive": "File archive ID $1 ke pahile jaise nai kare sakaa hai kahe ki ii database me nai hai.\nSaait iske aur koi pahile jaise kar diis hai.",
-	"undelete-error-short": "File ke pahile jaise kare me eror: $1",
-	"undelete-error-long": "Ii file ke pahile jaise kare me error hoe gais:\n\n$1",
 	"undelete-show-file-confirm": "Ka aap sure hai ki aap mitawa gais file ke badlao ke dekhe mangta hai  \"<nowiki>$1</nowiki>\" from $2 at $3?",
 	"undelete-show-file-submit": "Haan",
 	"invert": "Selection ke ulto",

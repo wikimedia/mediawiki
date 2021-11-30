@@ -2419,8 +2419,6 @@
 	"undelete-cleanup-error": "Errô into scassâ o file d'archivio non utilizzòu \"$1\".",
 	"undelete-missing-filearchive": "Imposcibile ripristinâ l'ID $1 de l'archivio file in quanto o no l'è presente into database. O poriæ ese stæto za ripristinou.",
 	"undelete-error": "Errô into ripristino da pagina",
-	"undelete-error-short": "Errô repiggiando i dæti do file \"$1\".",
-	"undelete-error-long": "Gh'è stæto di erroî inte l'annullâ a cançellaçion do file:\n\n$1",
 	"undelete-show-file-confirm": "T'ê seguo de voei amiâ a verscion scassâ do file \"<nowiki>$1</nowiki>\" do $2 a $3?",
 	"undelete-show-file-submit": "Sci",
 	"namespace": "Namespace:",

@@ -2015,8 +2015,6 @@
 	"undelete-cleanup-error": "Fôta pendent la suprèssion du fichiér de les arch·ives pas empleyê « $1 ».",
 	"undelete-missing-filearchive": "Y at pas moyen de refâre lo fichiér de les arch·ives avouéc l’ID $1, il est pas dedens la bâsa de balyês.\nPôt-étre il est ja étâ refêt.",
 	"undelete-error": "Fôta pendent la rèstoracion de la pâge",
-	"undelete-error-short": "Fôta pendent la rèstoracion du fichiér : $1",
-	"undelete-error-long": "Des fôtes sont arrevâyes pendent la rèstoracion du fichiér :\n\n$1",
 	"undelete-show-file-confirm": "Vos éte de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » que dâte du $2 a $3 ?",
 	"undelete-show-file-submit": "Ouè",
 	"namespace": "Èspâço de noms :",

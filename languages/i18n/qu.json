@@ -1742,8 +1742,6 @@
 	"undelete-cleanup-error": "Pantasqam tukurqan \"$1\" sutiyuq mana llamk'achisqa hallch'a willañiqita qulluypi.",
 	"undelete-missing-filearchive": "Manam atinichu ID $1 nisqa willañiqi hallch'ata paqarichiyta, willañiqintinpi mana kaptinmi. Qullusqamanta paqarichisqañachá.",
 	"undelete-error": "Qullusqa p'anqa paqarichisqa kaptin pantasqam tukurqan",
-	"undelete-error-short": "Willañiqita paqarichiypi kay pantasqam tukurqan: $1",
-	"undelete-error-long": "Pantasqakunam tukurqan kay willañiqita qulluypi:\n\n$1",
 	"undelete-show-file-confirm": "Allinta yachankiñachu \"<nowiki>$1</nowiki>\" sutiyuq willañiqimanta qullusqa $2 p'unchawpi $3 pachapi llamk'apusqata qhawayta munanaykita?",
 	"undelete-show-file-submit": "Arí",
 	"namespace": "Suti k'iti:",

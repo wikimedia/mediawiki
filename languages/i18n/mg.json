@@ -2138,8 +2138,6 @@
 	"undelete-cleanup-error": "Tsy fetezana teo am-pamafana ilay rakitra an-tahiry tsy miasa « $1 ».",
 	"undelete-missing-filearchive": "Tsy afaka atao ny mamerina ilay rakitra tahiry miaraka amin'ny ID $1 satria tsy ao amin'ny banky angona izy io.\nMety efa naverina angamba izy io.",
 	"undelete-error": "Pejin-kadisoam-panafoanana",
-	"undelete-error-short": "Tsi-fetezana teo am-pamerenana ilay rakitra : $1",
-	"undelete-error-long": "Nisy tsi-fetezana nitranga teo am-pamerenana ilay rakitra :\n\n$1",
 	"undelete-show-file-confirm": "Tapa-kevitra ny hamafa ny versiona voafafan'ny rakitra <nowiki>$1</nowiki> tamin'ny $2 tamin'ny $3 ve ianao ?",
 	"undelete-show-file-submit": "Eny",
 	"namespace": "Anaran-tsehatra :",

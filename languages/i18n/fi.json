@@ -2555,8 +2555,6 @@
 	"undelete-cleanup-error": "Käyttämättömän arkistotiedoston $1 poistaminen epäonnistui.",
 	"undelete-missing-filearchive": "Tiedostoarkiston tunnuksen $1 hakeminen epäonnistui. Tiedosto on saatettu jo palauttaa.",
 	"undelete-error": "Sivun palauttaminen epäonnistui",
-	"undelete-error-short": "Tiedoston $1 palauttaminen epäonnistui",
-	"undelete-error-long": "Tiedoston palauttaminen epäonnistui:\n\n$1",
 	"undelete-show-file-confirm": "Haluatko varmasti nähdä poistetun version tiedostosta <nowiki>$1</nowiki>, joka on tallennettu $2 kello $3?",
 	"undelete-show-file-submit": "Kyllä",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

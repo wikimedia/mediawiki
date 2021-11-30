@@ -1734,8 +1734,6 @@
 	"undelete-cleanup-error": "Fehler beim Abwisch von der unbenutzte Archiv-Version $1.",
 	"undelete-missing-filearchive": "Die Datei mit der Archiv-ID $1 kann net wiederheargestellt sin, weil sie net in der Datebank voarhand ist. Möchlicherweis woard sie schon wiederheargestellt.",
 	"undelete-error": "Beim Wiederhearstelle von der Seit ist en Fehler uffgetret.",
-	"undelete-error-short": "Fehler beim Wiederhearstell von der Datei $1",
-	"undelete-error-long": "Do woorre Fehler beim Wiederhearstelle von en Datei festgestellt:\n\n$1",
 	"undelete-show-file-confirm": "Bist du sicher, dass du ein abgewischte Version von der Datei \"<nowiki>$1</nowiki>\" vom $2, $3 Uhr siehn willst?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Naameraum:",

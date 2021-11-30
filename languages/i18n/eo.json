@@ -2529,8 +2529,6 @@
 	"undelete-cleanup-error": "Eraro forigante la neuzatan arkivon \"$1\".",
 	"undelete-missing-filearchive": "Ne povas restarigi dosieran arkivon ID $1 ĉar ĝi ne estas en la datumbazo.\nEble ĝi jam estis restarigita.",
 	"undelete-error": "Eraro malforigante paĝon",
-	"undelete-error-short": "Eraro pro restarigo de dosiero: $1",
-	"undelete-error-long": "Jen eraroj dum restarigo de dosiero:\n\n$1",
 	"undelete-show-file-confirm": "Ĉu vi vere volas vidi forigitan version de la dosiero \"<nowiki>$1</nowiki>\" je $2 $3?",
 	"undelete-show-file-submit": "Jes",
 	"namespace": "Nomspaco:",

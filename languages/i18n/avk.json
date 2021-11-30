@@ -1285,8 +1285,6 @@
 	"undelete-search-submit": "Aneyara",
 	"undelete-no-results": "Nedoyu trasiyinu vadjesu bu koe sularak.",
 	"undelete-cleanup-error": "Rokla sulason va \"$1\" mefaven kofukayan iyeltak.",
-	"undelete-error-short": "Rokla dimsulason va $1 iyeltak",
-	"undelete-error-long": "Rokla se dimsulason va iyeltak :\n\n$1",
 	"undelete-show-file-submit": "En",
 	"namespace": "Yoltxo:",
 	"invert": "Tukevolara va rebara",

@@ -1109,8 +1109,6 @@
 	"undelete-bad-store-key": "Nu se puei arrecuperal la revisión del archivu con fecha $1: ya nu desistia el archivu nel momentu el esborrau.",
 	"undelete-cleanup-error": "Marru esborrandu el archivu \"$1\".",
 	"undelete-missing-filearchive": "Nu se puei arrecuperal el archivu con ID $1 ebiu a que nu s'alcuentra ena basi e datus. Es posibri que ya aiga siu arrecuperau.",
-	"undelete-error-short": "Marru arrecuperandu archivu: $1",
-	"undelete-error-long": "Marrus alcuentraus al arrecuperal el archivu:\n\n$1",
 	"undelete-show-file-submit": "Sí",
 	"namespace": "Espáciu de nombris:",
 	"invert": "Invertil seleción",

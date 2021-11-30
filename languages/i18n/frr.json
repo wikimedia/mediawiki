@@ -1966,8 +1966,6 @@
 	"undelete-cleanup-error": "Det ei brükt archiif wersion $1 küd ei stregen wurd.",
 	"undelete-missing-filearchive": "Det datei mä det archiif-ID $1 koon ei weder iinsteld wurd, auer hat ei uun't dootenbeenk as. Ferlicht as't al ans weder iinsteld wurden?",
 	"undelete-error": "Bi't weder iinstelen faan det sidj as wat skiaf gingen.",
-	"undelete-error-short": "Bi't weder iinstelen faan det datei $1 as wat skiaf gingen.",
-	"undelete-error-long": "Bi't weder iinstelen faan en datei as wat skiaf gingen:\n\n$1",
 	"undelete-show-file-confirm": "Wel dü würelk det stregen wersion faan det datei „<nowiki>$1</nowiki>“ faan di $2, am a klook $3 uunluke?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Nöömrüm:",

@@ -2177,8 +2177,6 @@
 	"undelete-cleanup-error": "Problema fit-tħassir ta' fajl \"$1\" tal-arkivju li mhux użat.",
 	"undelete-missing-filearchive": "Impossibli tirkupra l-fajl tal-arkivju b'ID $1 minħabba li mhux qiegħed fid-database.\nJista' jkun li ġa ġie rkuprat.",
 	"undelete-error": "Żball fl-irkuprar tal-paġna",
-	"undelete-error-short": "Problema fl-irkuprar tal-fajl: $1",
-	"undelete-error-long": "Kien hemm problemi waqt il-fajl kien qiegħed jiġi rkuprat:\n\n$1",
 	"undelete-show-file-confirm": "Inti ċert li trid tara reviżjoni imħassra tal-fajl \"<nowiki>$1</nowiki>\" ta' nhar $2, fil-ħin ta' $3?",
 	"undelete-show-file-submit": "Iva",
 	"namespace": "Spazju tal-isem:",

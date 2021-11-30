@@ -2584,8 +2584,6 @@
 	"undelete-cleanup-error": "Fout bij het herstellen van ongebruikt archiefbestand \"$1\".",
 	"undelete-missing-filearchive": "Het is niet mogelijk om ID $1 terug te plaatsen, omdat deze niet in de database te vinden is.\nMisschien is deze versie al teruggeplaatst.",
 	"undelete-error": "Er is een fout opgetreden tijdens het verwijderen van de pagina",
-	"undelete-error-short": "Fout bij het herstellen van bestand: $1",
-	"undelete-error-long": "Er zijn fouten opgetreden bij het herstellen van het bestand:\n\n$1",
 	"undelete-show-file-confirm": "Weet u zeker dat u een verwijderde versie van het bestand \"<nowiki>$1</nowiki>\" van $2 om $3 wilt bekijken?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Naamruimte:",

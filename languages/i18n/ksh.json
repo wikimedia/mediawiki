@@ -2038,8 +2038,6 @@
 	"undelete-cleanup-error": "Fähler beim Fottschmieße vun de Archiv-Version „$1“, di nit jebruch wohd.",
 	"undelete-missing-filearchive": "De Datei met dä Archiv-Nommer $1 künne mer nit zerök holle. Di ham_mer nit in de Datebangk. Künnt sinn, di es ald zeröckjehollt.",
 	"undelete-error": "Ene Fähler es opjetrodde beim Zerökholle",
-	"undelete-error-short": "Fähler beim Zerökholle fun dä Dattei $1",
-	"undelete-error-long": "Mer wollte en Datei widder zeröckholle, ävver dobei sin_er Fääler opjefalle:\n\n$1",
 	"undelete-show-file-confirm": "Wells De dä Dattei „<nowiki>$1</nowiki>“ ier fottjeschmeße Väsjohn vum $2 öm $3 Uhr verhaftesch sinn?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Appachtemang:",

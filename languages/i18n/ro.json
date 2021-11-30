@@ -2537,8 +2537,6 @@
 	"undelete-cleanup-error": "Eroare la ștergerea arhivei nefolosite „$1”.",
 	"undelete-missing-filearchive": "Nu poate fi restaurată arhiva fișierul cu ID-ul $1 pentru că nu există în baza de date.\nS-ar putea ca ea să fi fost deja restaurată.",
 	"undelete-error": "Eroare la recuperarea paginii",
-	"undelete-error-short": "Eroare la restaurarea fișierului: $1",
-	"undelete-error-long": "S-au găsit erori la ștergerea fișierului:\n\n$1",
 	"undelete-show-file-confirm": "Sunteți sigur că doriți să vizualizați o versiune ștearsă a fișierului „<nowiki>$1</nowiki>” din $2, ora $3?",
 	"undelete-show-file-submit": "Da",
 	"namespace": "Spațiu de nume:",

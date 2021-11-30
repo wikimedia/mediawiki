@@ -1943,8 +1943,6 @@
 	"undelete-cleanup-error": "Eror ne la scancelazion del file de archivio non doparà \"$1\".",
 	"undelete-missing-filearchive": "No se pol ripristinar l'ID $1 de l'archivio file in quanto no'l ghe xe mìà nel database. El podarìa èssar stà zà ripristinà.",
 	"undelete-error": "Eror inte'l ripristino de ƚa pàgina",
-	"undelete-error-short": "Eror nel ripristino del file: $1",
-	"undelete-error-long": "Se gà verificà dei erori nel tentativo de anular la scancelazion del file:\n\n$1",
 	"undelete-show-file-confirm": "Sito sicuro che te vol vardar na revision del file \"<nowiki>$1</nowiki>\" scancelà da $2 el $3",
 	"undelete-show-file-submit": "Sì",
 	"namespace": "Spasio-nome:",

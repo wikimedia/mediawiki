@@ -2597,8 +2597,6 @@
 	"undelete-cleanup-error": "刪除未使用的封存檔案 \"$1\" 時發生錯誤。",
 	"undelete-missing-filearchive": "資料庫不存在檔案封存 ID $1，無法還原檔案。\n該檔案可能已經取消刪除。",
 	"undelete-error": "取消刪除頁面錯誤",
-	"undelete-error-short": "取消刪除檔案錯誤：$1",
-	"undelete-error-long": "取消刪除檔案時發生錯誤：\n\n$1",
 	"undelete-show-file-confirm": "您確定要檢視檔案 \"<nowiki>$1</nowiki>\" 於 $2 $3 已刪除的修訂？",
 	"undelete-show-file-submit": "是",
 	"namespace": "命名空間：",

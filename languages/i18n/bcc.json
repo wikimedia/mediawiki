@@ -1733,8 +1733,6 @@
 	"undelete-bad-store-key": "نه تونیت بازبینی فایل حذفیء ترینیت گون ای وهد$1:فایل پیش چه حذف گار ات.",
 	"undelete-cleanup-error": "حطا وهد حذف کتن نه دیستگین فایل آرشیو \"$1\".",
 	"undelete-missing-filearchive": "نه نونیت فایل آرشیو شناسگ  $1 برگردینت په چی که آیء ته دیتابیس نهنت.\nشاید الان حذف ترینگ بوتت.",
-	"undelete-error-short": "حطا ته ترینگ حذف فایل:$1",
-	"undelete-error-long": "حطایانی پیش آت وهدی که فایل حذف ترینگ بوت:\n\n$1",
 	"undelete-show-file-confirm": "آیا مطمئن ایت که حذف بوتگین بازبینی فایل \"<nowiki>$1</nowiki>\" از $2 ته $3 را بچاریت؟",
 	"undelete-show-file-submit": "بله",
 	"namespace": "نامء جدایی",

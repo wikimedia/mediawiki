@@ -2513,8 +2513,6 @@
 	"undelete-cleanup-error": "Galat ngusapin berkas arsip tan kaanggén \"$1\".",
 	"undelete-missing-filearchive": "Tan prasida ngawaliang arsip berkas antuk ID $1 krana tan wénten ring basis data. Berkas punika minab sampun kausap.",
 	"undelete-error": "Pikobet ngawaliang kaca",
-	"undelete-error-short": "Pikobet ngawaliang berkas: $1",
-	"undelete-error-long": "Kawéntenan pikobet ri kala ngawangdé pangusapan berkas:\n\n$1",
 	"undelete-show-file-confirm": "Napiké Ida pacang nyingakin révisi sané sampun kausap saking berkas \"<nowiki>$1</nowiki>\" saking $2 ring $3?",
 	"undelete-show-file-submit": "Inggih",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

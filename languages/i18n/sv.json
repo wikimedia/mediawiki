@@ -2564,8 +2564,6 @@
 	"undelete-cleanup-error": "Fel vid radering av den oanvända arkivfilen \"$1\".",
 	"undelete-missing-filearchive": "Filen med arkiv-ID $1 kunde inte återställas eftersom den inte finns i databasen. Filen kanske redan har återställts.",
 	"undelete-error": "Kunde inte återställa sidan",
-	"undelete-error-short": "Fel vid filåterställning: $1",
-	"undelete-error-long": "Fel inträffade vid återställning av filen:\n\n$1",
 	"undelete-show-file-confirm": "Är du säker på att du vill visa en raderad version av filen \"<nowiki>$1</nowiki>\" från den $2 kl. $3?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Namnrymd:",

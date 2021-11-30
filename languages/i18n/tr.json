@@ -2612,8 +2612,6 @@
 	"undelete-cleanup-error": "Kullanılmayan \"$1\" arşiv dosyasını silerken hata.",
 	"undelete-missing-filearchive": "Dosya arşiv kimliği $1 geri getirilemiyor çünkü veritabanında değil.\nDaha önceden silinmesi geri alınmış olabilir.",
 	"undelete-error": "Sayfa silinirken hata oluştu",
-	"undelete-error-short": "Dosya silinirken hata oluştu: $1",
-	"undelete-error-long": "Bu dosyanın silinmesini geri alırken hatalar çıktı:\n\n$1",
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" dosyasının $2 $3 tarihli silinmiş bir revizyonunu görmek istediğinize emin misiniz?",
 	"undelete-show-file-submit": "Evet",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

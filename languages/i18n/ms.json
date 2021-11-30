@@ -2461,8 +2461,6 @@
 	"undelete-cleanup-error": "Ralat ketika menyahhhapuskan fail \"$1\" dalam arkib yang tidak digunakan.",
 	"undelete-missing-filearchive": "Arkib fail dengan ID $1 tidak dapat dipulihkan kerana tiada dalam pangkalan data. Ia mungkin telah pun dinyahhapuskan.",
 	"undelete-error": "Ralat ketika menyahhapuskan laman",
-	"undelete-error-short": "Ralat ketika menyahhapuskan fail: $1",
-	"undelete-error-long": "Berlaku ralat ketika menyahhapuskan fail tersebut:\n\n$1",
 	"undelete-show-file-confirm": "Betul anda mahu melihat semakan bagi fail \"<nowiki>$1</nowiki>\" yang telah dihapuskan pada $2, $3?",
 	"undelete-show-file-submit": "Ya",
 	"namespace": "Ruang nama:",

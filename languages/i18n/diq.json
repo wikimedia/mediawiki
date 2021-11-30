@@ -2516,8 +2516,6 @@
 	"undelete-cleanup-error": "Eka dosyayê arşîvî \"$1\"î ke ho wedariyeno feqet yew ğelet biya.",
 	"undelete-missing-filearchive": "arşiwê IDyê yi dosyayi $1 tepiya niyeno çunke database de niyo.\nbelka cıwa ver hewn a biyo..",
 	"undelete-error": "Besternayışê peyd bıgi pela de xırabin vıcyê",
-	"undelete-error-short": "Eka dosyayê biyereno feqet yew ğelet biya: $1",
-	"undelete-error-long": "hewn a kerdışê na dosyayi wexta tepiya geriyenê xeta vıraziya:\n\n$1",
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" şıma emin î dosyaya revizyonê no $2 $3 tarixi bıvini?",
 	"undelete-show-file-submit": "Eya",
 	"namespace": "Heruna nameyan:",

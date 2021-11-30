@@ -2285,8 +2285,6 @@
 	"undelete-cleanup-error": "Fout bie 't herstelle van ongebroek archiefbestand \"$1\".",
 	"undelete-missing-filearchive": "'t Luk neet om ID $1 trök te plaatse omdet 't neet in de database is. Mesjien is 't al trökgeplaats.",
 	"undelete-error": "d'r Is 'n fout bie 't wösje vanne pagina",
-	"undelete-error-short": "Fout bie 't herstelle van bestand: $1",
-	"undelete-error-long": "d'r Zeen foute opgetraeje bie 't herstelle van 't bestand:\n\n$1",
 	"undelete-show-file-confirm": "Wèt se zeker det se 'n gewösjdje versie ven 't bestandj \"<nowiki>$1</nowiki>\" ven $2 óm $3 wils bekieke?",
 	"undelete-show-file-submit": "Jao",
 	"namespace": "Naamruumde:",

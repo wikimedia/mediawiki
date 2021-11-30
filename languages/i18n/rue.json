@@ -1925,8 +1925,6 @@
 	"undelete-cleanup-error": "Хыба мазаня нехоснованого архівного файлу „$1“.",
 	"undelete-missing-filearchive": "Не вдало ся обновити файл архіву з ідентіфікаціёв $1, бо не є в датабазї. Може же уж быв обновленый.",
 	"undelete-error": "Хыба обновлїня сторінкы",
-	"undelete-error-short": "Хыба обновлїня файлу: $1",
-	"undelete-error-long": "Выникла хыба під час обновлїня файлу:\n\n$1",
 	"undelete-show-file-confirm": "На певно собі хочете посмотрити змазану ревізію файлу „<nowiki>$1</nowiki>“ з $2, $3?",
 	"undelete-show-file-submit": "Гей",
 	"namespace": "Простор назв:",

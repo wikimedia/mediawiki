@@ -2161,8 +2161,6 @@
 	"undelete-cleanup-error": "Zmylk při wušmórnjenju njewužita wersija $1 z archiwa.",
 	"undelete-missing-filearchive": "Dataja z archiwowym ID $1 njeda so wobnowić, dokelž w datowej bance njeje. Snano bu wona hižo wobnowjena.",
 	"undelete-error": "Zmylk při wušmórnjenju strony",
-	"undelete-error-short": "Zmylk při wobnowjenju dataje $1",
-	"undelete-error-long": "Buchu zmylki při wobnowjenju dataje zwěsćene:\n\n$1",
 	"undelete-show-file-confirm": "Chceš sej woprawdźe zničenu wersiju dataje \"<nowiki>$1</nowiki>\" wot $2 $3 wobhladać?",
 	"undelete-show-file-submit": "Haj",
 	"namespace": "Mjenowy rum:",

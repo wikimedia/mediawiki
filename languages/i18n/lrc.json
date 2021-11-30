@@ -1865,8 +1865,6 @@
 	"undelete-cleanup-error": "خطا د پاکسا کردن ویرگارچه وه کار نگرته بیه د«$1».",
 	"undelete-missing-filearchive": "نبوئه ویرگارچه شماره $1 د نو زنه بکی سی یه که دونسمنیاش د رسینه جا نیئن.\nیا شایت د دماتر د نو زنه بینه.",
 	"undelete-error": "خطا بلگه ای که نبوئه پاکساش بکی",
-	"undelete-error-short": "خطا پاک نبیئن جانیا:$1",
-	"undelete-error-long": "د گات زنه کردن جانیا یه گل خطا پیش اوما:\n\n\n$1",
 	"undelete-show-file-confirm": "آیا یه دل بئیته که میهایت یه گل نسقه پاکسا بیه د جانیا \"<nowiki>$1</nowiki>\" که ها د ویرگار $2 ساعت $3 نه سیل بکیت؟",
 	"undelete-show-file-submit": "هأری",
 	"namespace": "نوم جا",

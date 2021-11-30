@@ -2261,8 +2261,6 @@
 	"undelete-cleanup-error": "Era en sutrae fix arcivida nonusada \"$1\".",
 	"undelete-missing-filearchive": "La fix arcivida con numero $1 no pote es restorada car lo no es en la banco de datos.\nCisa lo es ja desutraeda.",
 	"undelete-error": "Era en desutrae paje",
-	"undelete-error-short": "Era en desutrae fix: $1",
-	"undelete-error-long": "Eras ia aveni en desutrae la fix:\n\n$1",
 	"undelete-show-file-confirm": "Esce tu es serta ce tu vole regarda la revisa sutraeda de la fix \"<nowiki>$1</nowiki>\" de $2 a $3?",
 	"undelete-show-file-submit": "Si",
 	"namespace": "Spasio de nom:",

@@ -2477,8 +2477,6 @@
 	"undelete-cleanup-error": "Erro ao eliminar o ficheiro do arquivo sen usar \"$1\".",
 	"undelete-missing-filearchive": "Non foi posible restaurar o arquivo do ficheiro co ID $1 porque non figura na base de datos.\nPoida que xa se restaurase con anterioridade.",
 	"undelete-error": "Erro ao restaurar a páxina",
-	"undelete-error-short": "Erro ao desfacer a eliminación do ficheiro: $1",
-	"undelete-error-long": "Atopáronse erros ao desfacer a eliminación do ficheiro:\n\n$1",
 	"undelete-show-file-confirm": "Está seguro de querer ver unha revisión borrada do ficheiro \"<nowiki>$1</nowiki>\" do día $2 ás $3?",
 	"undelete-show-file-submit": "Si",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

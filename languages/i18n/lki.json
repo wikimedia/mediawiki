@@ -1973,8 +1973,6 @@
 	"undelete-cleanup-error": "خطا در حذف تاریخچهٔ استفاده نشدهٔ «$1».",
 	"undelete-missing-filearchive": "امکان احیای تاریخچهٔ شمارهٔ $1 وجود ندارد زیرا اطلاعات در پایگاه داده وجود ندارد.\nممکن است پیشتر احیا شده باشد.",
 	"undelete-error": "خطا صفحه غیرقابل حذف",
-	"undelete-error-short": "خطا در احیای پرونده: $1",
-	"undelete-error-long": "در زمان احیای پرونده خطا رخ داد:\n\n$1",
 	"undelete-show-file-confirm": "آیا مطمئن هستید که می‌خواهید یک نسخهٔ حذف شده از پرونده \"<nowiki>$1</nowiki>\" مورخ $2 ساعت $3 را ببینید؟",
 	"undelete-show-file-submit": "أرێ-بةلئ",
 	"namespace": "فضای نامۀل",

@@ -1140,8 +1140,6 @@
 	"undelete-bad-store-key": "Impussìbiri annullà la canzilladdura di la ribisioni di lu file cun marchaddura oreria $1: file nò dipunìbiri primma di la canzilladdura.",
 	"undelete-cleanup-error": "Errori i' la canzilladdura di lu file d'archìbiu nò utirizaddu \"$1\".",
 	"undelete-missing-filearchive": "Impussìbiri ricuparà l'ID $1 di l'archìbiu file parchí nò è prisenti i' la bancadati. Pudia assé isthaddu già ricuparaddu.",
-	"undelete-error-short": "Errori i' lu ricùparu di lu file: $1",
-	"undelete-error-long": "Si so verifiggaddi di l'errori annullendi la canzilladdura di lu file:\n\n$1",
 	"undelete-show-file-submit": "Sì",
 	"namespace": "Tipu di pàgina:",
 	"invert": "invirthi la isciubaradda",

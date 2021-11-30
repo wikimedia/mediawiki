@@ -2467,8 +2467,6 @@
 	"undelete-cleanup-error": "Chyba pri mazaní nepoužitého archívneho súboru „$1“.",
 	"undelete-missing-filearchive": "Nebolo možné obnoviť archív s ID $1, pretože sa nenachádza v databáze. Je možné, že už bol obnovený.",
 	"undelete-error": "Chyba pri obnovovaní stránky",
-	"undelete-error-short": "Chyba pri obnovovaní súboru: $1",
-	"undelete-error-long": "Vyskytli sa chyby pri obnovovaní súboru:\n\n$1",
 	"undelete-show-file-confirm": "Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?",
 	"undelete-show-file-submit": "Áno",
 	"namespace": "Menný priestor:",

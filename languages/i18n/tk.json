@@ -1410,8 +1410,6 @@
 	"undelete-bad-store-key": "$1 wagt belgili faýl wersiýasyny yzyna dikeldip bolmaýar: faýl entek öçürilmänkä hem ýokdy.",
 	"undelete-cleanup-error": "Ulanylmaýan \"$1\" arhiw faýly öçürilýärkä säwlik ýüze çykdy.",
 	"undelete-missing-filearchive": "$1 arhiw ID-li faýl yzyna dikeldip bolmaýar, çünki maglumat bazasynda däl.\nEýýäm yzyna dikeldilen bolmagy ahmal.",
-	"undelete-error-short": "Faýl yzyna dikeldilýärkä säwlik ýüze çykdy: $1",
-	"undelete-error-long": "Bu faýl yzyna dikeldilende säwlikler ýüze çykdy:\n\n$1",
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" faýlynyň $3, $2 seneli öçürilen wersiýasyny görmek isleýäniňiz çynyňyzmy?",
 	"undelete-show-file-submit": "Hawa",
 	"namespace": "At giňişligi:",

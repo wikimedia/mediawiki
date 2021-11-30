@@ -1417,8 +1417,6 @@
 	"undelete-bad-store-key": "Ju Doatäiversion mäd dän Tiedstämpel $1 kuude nit wier moaked wäide: Ju Doatäi waas al foar dät Läskjen nit moor deer.",
 	"undelete-cleanup-error": "Failer bie dät Läskjen fon ju nit benutsede Archiv-Version $1.",
 	"undelete-missing-filearchive": "Ju Doatäi mäd ju Archiv-ID $1 kon nit wier moaked wäide, deer ju nit in ju Doatenboank deer is. Muugelkerwiese wuude ju al wier moaked.",
-	"undelete-error-short": "Failer bie dät wier moakjen fon ju Doatäi $1",
-	"undelete-error-long": "Der wuuden Failere bie dät wier moakjen fon ne Doatäi fääststoald:\n\n$1",
 	"undelete-show-file-confirm": "Bäst du sicher, dät du ne läskede Version fon ju Doatäi „<nowiki>$1</nowiki>“ fon n $2, $3 Uure sjo wolt?",
 	"undelete-show-file-submit": "Jee",
 	"namespace": "Noomensruum:",

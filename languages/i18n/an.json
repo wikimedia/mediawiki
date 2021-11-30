@@ -1541,8 +1541,6 @@
 	"undelete-cleanup-error": "Bi habió una error mientres se borraba o fichero \"$1\".",
 	"undelete-missing-filearchive": "No ye posible restaurar o fichero con ID $1 porque no bi ye en a base de datos. Puede que ya s'aiga restaurato.",
 	"undelete-error": "Error en restaurar a pachina",
-	"undelete-error-short": "Error mientres se restauraba o fichero: $1",
-	"undelete-error-long": "S'han trobato errors mientres se borraban os fichers:\n\n$1",
 	"undelete-show-file-confirm": "Seguro que quiere veyer una versión borrata d'o fichero \"<nowiki>$1</nowiki>\" d'o $2 a las $3?",
 	"undelete-show-file-submit": "Sí",
 	"namespace": "Espacio de nombres:",

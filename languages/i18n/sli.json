@@ -1169,8 +1169,6 @@
 	"undelete-bad-store-key": "De Dateiversion miet damm Zeitstempel $1 konnte ne wiederhergestellt waan: De Datei woar bereits vor damm Läscha ne meh vorhanden.",
 	"undelete-cleanup-error": "Fahler beim Läscha dar unbenutzta Archiv-Version $1.",
 	"undelete-missing-filearchive": "De Datei miet dar Archiv-ID $1 koan ne wiederhergestellt waan, do se ne ei dar Datenbank vorhanden ies. Meeglicherweise wurde se bereits wiederhergestellt.",
-	"undelete-error-short": "Fahler beim Wiederherstalla dar Datei $1",
-	"undelete-error-long": "Is wurden Fahler beim Wiederherstella a'r Datei festgestellt:\n\n$1",
 	"undelete-show-file-confirm": "Best du sicher, doaß du anne geläschte Version dar Datei „<nowiki>$1</nowiki>“ vum $2, $3 Seeger sahn wielst?",
 	"undelete-show-file-submit": "Ju",
 	"namespace": "Noamensraum:",

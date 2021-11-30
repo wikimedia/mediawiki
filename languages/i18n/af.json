@@ -1952,8 +1952,6 @@
 	"undelete-cleanup-error": "Fout met die herstel van die ongebruikte argieflêer \"$1\".",
 	"undelete-missing-filearchive": "Nie in staat om ID $1 terug te plaas nie omdat dit nie in die databasis is nie.\nMiskien is dit reeds teruggeplaas.",
 	"undelete-error": "'n Fout het voorgekom met die verwydering van die bladsy",
-	"undelete-error-short": "Fout met herstel van lêer: $1",
-	"undelete-error-long": "Foute het voorgekom tydens die herstel van die lêer:\n\n$1",
 	"undelete-show-file-confirm": "Is u seker u wil na die verwyderde weergawe van die lêer \"<nowiki>$1</nowiki>\" van $2 om $3 kyk?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Naamruimte:",

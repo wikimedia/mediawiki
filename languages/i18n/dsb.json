@@ -1744,8 +1744,6 @@
 	"undelete-cleanup-error": "Zmólka pśi wulašowanju njewužywaneje archiwneje dataje $1.",
 	"undelete-missing-filearchive": "Njejo móžno, archiwnu dataju ID $1 nawrośiś. Wóna južo w datowej bance njejo. Snaź jo južo raz se nawrośiła.",
 	"undelete-error": "Zmólka pśi wulašowanju boka",
-	"undelete-error-short": "Zmólka pśi nawrośenju dataje: $1",
-	"undelete-error-long": "Zmólki pśi nawrośenju dataje:\n\n$1",
 	"undelete-show-file-confirm": "Coš se napšawdu wulašowanu wersiju dataje \"<nowiki>$1</nowiki>\" wót $2 $3 woglědaś?",
 	"undelete-show-file-submit": "Jo",
 	"namespace": "Mjenjowy rum:",

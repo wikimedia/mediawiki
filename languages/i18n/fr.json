@@ -2684,8 +2684,6 @@
 	"undelete-cleanup-error": "Erreur lors de la suppression du fichier d’archive inutilisé « $1 ».",
 	"undelete-missing-filearchive": "Impossible de restaurer le fichier d’archive avec l’identifiant $1 parce qu’il n’est pas dans la base de données.\nIl a peut-être déjà été restauré.",
 	"undelete-error": "Page d’erreur d’annulation",
-	"undelete-error-short": "Erreur lors de la restauration du fichier : $1",
-	"undelete-error-long": "Des erreurs ont été rencontrées lors de la restauration du fichier :\n\n$1",
 	"undelete-show-file-confirm": "Êtes-vous sûr{{GENDER:||e}} de vouloir consulter une version supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?",
 	"undelete-show-file-submit": "Oui",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

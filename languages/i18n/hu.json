@@ -2511,8 +2511,6 @@
 	"undelete-cleanup-error": "Hiba történt a nem használt „$1” archivált fájl törlésekor.",
 	"undelete-missing-filearchive": "Nem állítható helyre a(z) $1 azonosítószámú fájlarchívum, mert nincs az adatbázisban. Lehet, hogy már korábban helyreállították.",
 	"undelete-error": "Hiba a lap helyreállítása során",
-	"undelete-error-short": "Hiba történt a fájl helyreállítása során: $1",
-	"undelete-error-long": "Hiba történt a fájl helyreállítása során:\n\n$1",
 	"undelete-show-file-confirm": "Biztosan meg akarod nézni a(z) \"<nowiki>$1</nowiki>\" fájl $2, $3-kori törölt változatát?",
 	"undelete-show-file-submit": "Igen",
 	"namespace": "Névtér:",

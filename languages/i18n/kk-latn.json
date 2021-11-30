@@ -1019,8 +1019,6 @@
 	"undelete-bad-store-key": "$1 kezindegi faýl tüzetwiniñ joywı boldırmadı: joywdıñ aldınan faýl joq bolğan.",
 	"undelete-cleanup-error": "«$1» paýdalanılmağan murağattalğan faýl joyw qatesi.",
 	"undelete-missing-filearchive": "Murağattalğan faýl (nömiri $1) qalpına keltirwi ïkemdi emes, sebebi ol derekqorda joq.\nBunıñ joywın boldırmawı aldaqaşan bolğanı mümkin.",
-	"undelete-error-short": "Faýl joywın boldırmaw qatesi: $1",
-	"undelete-error-long": "Faýl joywın boldırmaw kezinde mına qateler kezdesti:\n\n$1",
 	"namespace": "Esim ayası:",
 	"invert": "Bölektewdi kerilew",
 	"blanknamespace": "(Negizgi)",

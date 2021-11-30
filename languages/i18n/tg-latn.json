@@ -1005,8 +1005,6 @@
 	"undelete-bad-store-key": "Imkoni barqarorkuniji nusxai $1 vuçud nadorad: parvanda qabl az hazf az dast rafta bud.",
 	"undelete-cleanup-error": "Xato dar hazfi ta'rixcai istifoda naşuda \"$1\".",
 	"undelete-missing-filearchive": "Imkoni barqarorkuniji ta'rixcai şumorai $1 vuçud nadorad zero ittiloot dar pojgohi doda vuçud nadorad. Mumkin ast peş barqaror şuda boşad.",
-	"undelete-error-short": "Xato dar ehjoi parvanda: $1",
-	"undelete-error-long": "Dar vaqti ehjoi parvanda xatoe rux dod:\n\n$1",
 	"namespace": "Fazoinom:",
 	"invert": "Pinhon kardani intixobkardaşuda",
 	"blanknamespace": "(Aslī)",

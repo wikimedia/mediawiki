@@ -2113,8 +2113,6 @@
 	"undelete-cleanup-error": "May salâ pagparâ kan ''file'' na archibong \"$1\".",
 	"undelete-missing-filearchive": "Dai maibalik an archibo kan ''file'' may na  ID $1 ta mayô ini sa base nin datos. Pwede ser na pigparâ na ini.",
 	"undelete-error": "Kasalaan sa dae pinagpupurang pahina",
-	"undelete-error-short": "May salâ sa pagbalik kan pigparang ''file'': $1",
-	"undelete-error-long": "May mga salâ na nasabat mientras sa pigbabalik an pigparang ''file'':\n\n$1",
 	"undelete-show-file-confirm": "Segurado ka na gusto mong hilngon an pinagpurang rebisyon kan sagunson \"<nowiki>$1</nowiki>\" poon kan $2 oras na $3?",
 	"undelete-show-file-submit": "Iyo po",
 	"namespace": "Espasyong-ngaran:",

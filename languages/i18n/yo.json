@@ -1822,8 +1822,6 @@
 	"undelete-cleanup-error": "Àsìṣe láti pa fáìlì ìpamọ́ àìlòmọ́ \"$1\" rẹ́.",
 	"undelete-missing-filearchive": "Kò le dá fáìlì ìpamọ́ nọ́mbà ìdámọ̀ $1 padà nítorí pé kò sí nínú ibùdó dátà.\nÓ le ti jẹ́ àìjẹ́píparẹ́.",
 	"undelete-error": "Àsìṣe ìdápadà ìparẹ́ ojúewé",
-	"undelete-error-short": "Àsìṣe láti ìmúkúrò ìparẹ́ fáílì: $1",
-	"undelete-error-long": "Àwọn àsìṣe ṣẹlẹ̀ nígbà ìdápadà fáìlì náà:\n\n$1",
 	"undelete-show-file-confirm": "Ṣé ẹ ní ìdálójú pé ẹ fẹ́ wo àtúnyẹ̀wó píparẹ́ fáìlì \"<nowiki>$1</nowiki>\" látọjọ́ $2 ní ago $3?",
 	"undelete-show-file-submit": "Bẹ́ẹ̀ni",
 	"namespace": "Orúkọàyè:",

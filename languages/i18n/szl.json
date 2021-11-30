@@ -1445,8 +1445,6 @@
 	"undelete-bad-store-key": "Ńy idźe wćepać nazod wersyji plika z datům $1: před wyćepańem brakowouo plika.",
 	"undelete-cleanup-error": "Wystůmpiu feler při wyćepywańu ńyužywanygo archiwalnygo plika „$1”.",
 	"undelete-missing-filearchive": "Ńy idźe wćepać nazod s archiwum plika uo ID $1, s kuli tygo co ńy ma go w baźe danych.\nByć može plik zostou juž wćepany nazod.",
-	"undelete-error-short": "Wystůmpiu feler při wćepywańu nazod plika: $1",
-	"undelete-error-long": "Napotkano felery při wćepywańu nazod plika:\n\n$1",
 	"undelete-show-file-confirm": "Jeżeś echt pewny co chcesz uobejzdrzeć wyćepano wersyjo plika „<nowiki>$1</nowiki>” s $2 $3?",
 	"undelete-show-file-submit": "Ja",
 	"namespace": "Przestrzyń mian:",

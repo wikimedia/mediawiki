@@ -2064,8 +2064,6 @@
 	"undelete-search-submit": "Лахар",
 	"undelete-no-results": "Архив чохь йогӀуш агӀонаш цакарий.",
 	"undelete-error": "АгӀо меттахӀоттаяран гӀалат",
-	"undelete-error-short": "Файл меттахӀоттайаран гӀалат: $1",
-	"undelete-error-long": "Файл меттахӀоттош гӀалат даьлла:\n\n$1",
 	"undelete-show-file-submit": "ХӀаъ",
 	"namespace": "ЦӀерийн меттигаш:",
 	"invert": "Хаьржинарг къайлайаккха",

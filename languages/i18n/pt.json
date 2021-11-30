@@ -2570,8 +2570,6 @@
 	"undelete-cleanup-error": "Erro ao eliminar o ficheiro não utilizado \"$1\".",
 	"undelete-missing-filearchive": "Não é possível restaurar o ficheiro de ID $1, uma vez que ele não se encontra na base de dados. Isso pode significar que já tenha sido restaurado.",
 	"undelete-error": "Erro ao restaurar a página",
-	"undelete-error-short": "Erro ao restaurar ficheiro: $1",
-	"undelete-error-long": "Foram encontrados erros ao tentar restaurar o ficheiro:\n\n$1",
 	"undelete-show-file-confirm": "Tem a certeza de que quer ver a revisão eliminada do ficheiro \"<nowiki>$1</nowiki>\" de $2 às $3?",
 	"undelete-show-file-submit": "Sim",
 	"namespace": "Espaço nominal:",

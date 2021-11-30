@@ -2527,8 +2527,6 @@
 	"undelete-cleanup-error": "שגיאת בעת מחיקת קובץ הארכיון \"$1\" שאינו בשימוש.",
 	"undelete-missing-filearchive": "שחזור קובץ הארכיון שמספרו $1 נכשל כיוון שהוא אינו בבסיס הנתונים.\nייתכן שהוא כבר שוחזר.",
 	"undelete-error": "שגיאה בשחזור דף",
-	"undelete-error-short": "שגיאה בשחזור הקובץ: $1",
-	"undelete-error-long": "שגיאות שאירעו בעת שחזור הקובץ:\n\n$1",
 	"undelete-show-file-confirm": "האם ברצונך לצפות בגרסה המחוקה של הקובץ \"<nowiki>$1</nowiki>\" מ־$3, $2?",
 	"undelete-show-file-submit": "כן",
 	"namespace": "מרחב שם:",

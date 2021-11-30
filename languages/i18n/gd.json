@@ -1933,8 +1933,6 @@
 	"undelete-cleanup-error": "Mearachd a' sguabadh às faidhle tasglainn \"$1\" nach eil 'ga chleachdadh.",
 	"undelete-missing-filearchive": "Cha ghabh tasglann an fhaidhle air a bheil an ID $1 aiseag o nach eil e san stòr-dàta.\n'S dòcha gun deach an sguabadh às a neo-dhèanamh mar-thà.",
 	"undelete-error": "Mearachd a' neo-dhèanamh sguabadh às na duilleige",
-	"undelete-error-short": "Mearachd a' neo-dhèanamh sguabadh às an fhaidhle: $1",
-	"undelete-error-long": "Thachair mearachd le neo-dhèanamh sguabadh às an fhaidhle:\n\n$1",
 	"undelete-show-file-confirm": "A bheil thu cinnteach gu bheil thu airson coimhead air mùthadh an fhaidhle \"<nowiki>$1</nowiki>\" a chaidh a sguabadh às $2 aig $3?",
 	"undelete-show-file-submit": "Tha",
 	"namespace": "Ainm-spàs:",
