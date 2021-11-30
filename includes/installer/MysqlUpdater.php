@@ -253,6 +253,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'image', 'img_major_mime', 'patch-image-img_major_mime-default.sql' ],
 			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
 			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
+			[ 'modifyField', 'page_restrictions', 'pr_page', 'patch-page_restrictions-pr_page.sql' ],
+			[ 'modifyField', 'page_props', 'pp_page', 'patch-page_props-pp_page.sql' ],
+			[ 'modifyField', 'ipblocks_restrictions', 'ir_value', 'patch-ipblocks_restrictions-ir_value.sql' ],
 		];
 	}
 

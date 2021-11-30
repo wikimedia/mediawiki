@@ -247,7 +247,7 @@ CREATE TABLE /*_*/change_tag_def (
 CREATE TABLE /*_*/ipblocks_restrictions (
   ir_ipb_id INT NOT NULL,
   ir_type TINYINT(4) NOT NULL,
-  ir_value INT NOT NULL,
+  ir_value INT UNSIGNED NOT NULL,
   INDEX ir_type_value (ir_type, ir_value),
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
 ) /*$wgDBTableOptions*/;
@@ -281,7 +281,7 @@ CREATE TABLE /*_*/querycachetwo (
 
 CREATE TABLE /*_*/page_restrictions (
   pr_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-  pr_page INT NOT NULL,
+  pr_page INT UNSIGNED NOT NULL,
   pr_type VARBINARY(60) NOT NULL,
   pr_level VARBINARY(60) NOT NULL,
   pr_cascade TINYINT NOT NULL,
@@ -443,7 +443,7 @@ CREATE TABLE /*_*/revision_actor_temp (
 
 
 CREATE TABLE /*_*/page_props (
-  pp_page INT NOT NULL,
+  pp_page INT UNSIGNED NOT NULL,
   pp_propname VARBINARY(60) NOT NULL,
   pp_value BLOB NOT NULL,
   pp_sortkey FLOAT DEFAULT NULL,

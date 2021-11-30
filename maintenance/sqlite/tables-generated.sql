@@ -264,7 +264,7 @@ CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 CREATE TABLE /*_*/ipblocks_restrictions (
   ir_ipb_id INTEGER NOT NULL,
   ir_type SMALLINT NOT NULL,
-  ir_value INTEGER NOT NULL,
+  ir_value INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
 );
 
@@ -301,9 +301,9 @@ CREATE INDEX qcc_titletwo ON /*_*/querycachetwo (
 
 CREATE TABLE /*_*/page_restrictions (
   pr_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  pr_page INTEGER NOT NULL, pr_type BLOB NOT NULL,
-  pr_level BLOB NOT NULL, pr_cascade SMALLINT NOT NULL,
-  pr_expiry BLOB DEFAULT NULL
+  pr_page INTEGER UNSIGNED NOT NULL,
+  pr_type BLOB NOT NULL, pr_level BLOB NOT NULL,
+  pr_cascade SMALLINT NOT NULL, pr_expiry BLOB DEFAULT NULL
 );
 
 CREATE UNIQUE INDEX pr_pagetype ON /*_*/page_restrictions (pr_page, pr_type);
@@ -477,7 +477,7 @@ CREATE INDEX page_actor_timestamp ON /*_*/revision_actor_temp (
 
 
 CREATE TABLE /*_*/page_props (
-  pp_page INTEGER NOT NULL,
+  pp_page INTEGER UNSIGNED NOT NULL,
   pp_propname BLOB NOT NULL,
   pp_value BLOB NOT NULL,
   pp_sortkey DOUBLE PRECISION DEFAULT NULL,
