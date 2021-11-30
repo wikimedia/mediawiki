@@ -171,6 +171,7 @@ class Names {
 		'fur' => 'furlan', # Friulian
 		'fy' => 'Frysk', # Frisian
 		'ga' => 'Gaeilge', # Irish
+		'gaa' => 'Ga', # Ga
 		'gag' => 'Gagauz', # Gagauz
 		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional)
 		'gan-hans' => '赣语（简体）', # Gan (Simplified Han)
