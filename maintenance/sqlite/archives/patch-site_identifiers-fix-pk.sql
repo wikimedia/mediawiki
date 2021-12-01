@@ -1,5 +1,5 @@
 CREATE TABLE /*_*/site_identifiers_tmp (
-  -- Key on site.site_id
+  -- Key on sites.site_id
   si_site                    INT UNSIGNED        NOT NULL,
 
   -- local key type, ie 'interwiki' or 'langlink'
