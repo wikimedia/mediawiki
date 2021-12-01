@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings;
 
+use ExtensionRegistry;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 use MediaWiki\Settings\Cache\CacheableSource;
@@ -22,6 +23,9 @@ use StatusValue;
 class SettingsBuilder {
 	/** @var string */
 	private $baseDir;
+
+	/** @var ExtensionRegistry */
+	private $extensionRegistry;
 
 	/** @var CacheInterface */
 	private $cache;
@@ -47,6 +51,7 @@ class SettingsBuilder {
 
 	/**
 	 * @param string $baseDir
+	 * @param ExtensionRegistry $extensionRegistry
 	 * @param ConfigBuilder $configSink
 	 * @param PhpIniSink $phpIniSink
 	 * @param CacheInterface|null $cache PSR-16 compliant cache interface used
@@ -56,11 +61,13 @@ class SettingsBuilder {
 	 */
 	public function __construct(
 		string $baseDir,
+		ExtensionRegistry $extensionRegistry,
 		ConfigBuilder $configSink,
 		PhpIniSink $phpIniSink,
 		CacheInterface $cache = null
 	) {
 		$this->baseDir = $baseDir;
+		$this->extensionRegistry = $extensionRegistry;
 		$this->cache = $cache;
 		$this->configSink = $configSink;
 		$this->configSchema = new ConfigSchemaAggregator();
@@ -205,6 +212,30 @@ class SettingsBuilder {
 				$option,
 				$value
 			);
+		}
+
+		// TODO: Closely integrate with ExtensionRegistry. Loading extension.json is basically
+		//       the same as loading settings files. See T297166.
+		//       That would also mean that extensions would actually be loaded here,
+		//       not just queued. We can't do this right now, because we need to preserve
+		//       interoperability with wfLoadExtension() being called from LocalSettings.php.
+
+		$config = $this->configSink->build();
+
+		if ( isset( $settings['extensions'] ) ) {
+			$extDir = $config->get( 'ExtensionDirectory' );
+			foreach ( $settings['extensions'] ?? [] as $ext ) {
+				$path = "$extDir/$ext/extension.json"; // see wfLoadExtension
+				$this->extensionRegistry->queue( $path );
+			}
+		}
+
+		if ( isset( $settings['skins'] ) ) {
+			$skinDir = $config->get( 'StyleDirectory' );
+			foreach ( $settings['skins'] ?? [] as $skin ) {
+				$path = "$skinDir/$skin/skin.json"; // see wfLoadSkin
+				$this->extensionRegistry->queue( $path );
+			}
 		}
 	}
 
