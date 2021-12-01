@@ -125,7 +125,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'content-media' => [
 			'all' => [ 'resources/src/mediawiki.skinning/content.thumbnails-common.less' ],
-			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails-screen.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
 		],
 		'content-links' => [
