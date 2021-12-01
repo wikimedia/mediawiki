@@ -77,8 +77,8 @@ class IcuCollation extends Collation {
 	 * letters (denoted by keys starting with '-').
 	 *
 	 * These are additions to (or subtractions from) the data stored in the
-	 * first-letters-root.php data file (which among others includes full basic Latin,
-	 * Cyrillic and Greek alphabets).
+	 * first-letters-root.php data file (which among others includes full basic
+	 * Latin, Cyrillic and Greek alphabets).
 	 *
 	 * "Separate letter" is a letter that would have a separate heading/section
 	 * for it in a dictionary or a phone book in this language. This data isn't
@@ -277,10 +277,6 @@ class IcuCollation extends Collation {
 		return $this->mainCollator->getSortKey( $string );
 	}
 
-	public function getPrimarySortKey( $string ) {
-		return $this->primaryCollator->getSortKey( $string );
-	}
-
 	public function getFirstLetter( $string ) {
 		$string = strval( $string );
 		if ( $string === '' ) {
@@ -290,16 +286,21 @@ class IcuCollation extends Collation {
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
 
 		// If the first character is a CJK character, just return that character.
-		if ( ord( $firstChar ) > 0x7f && self::isCjk( UtfNormal\Utils::utf8ToCodepoint( $firstChar ) ) ) {
+		if ( ord( $firstChar ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
 			return $firstChar;
 		}
 
 		$sortKey = $this->getPrimarySortKey( $string );
+		$data = $this->getFirstLetterData();
+		$keys = $data['keys'];
+		$letters = $data['chars'];
 
 		// Do a binary search to find the correct letter to sort under
 		$min = ArrayUtils::findLowerBound(
-			[ $this, 'getSortKeyByLetterIndex' ],
-			$this->getFirstLetterCount(),
+			static function ( $index ) use ( $keys ) {
+				return $keys[$index];
+			},
+			count( $keys ),
 			'strcmp',
 			$sortKey );
 
@@ -308,7 +309,7 @@ class IcuCollation extends Collation {
 			return '';
 		}
 
-		$sortLetter = $this->getLetterByIndex( $min );
+		$sortLetter = $letters[$min];
 
 		if ( $this->useNumericCollation ) {
 			// If the sort letter is a number, return '0–9' (or localized equivalent).
@@ -322,11 +323,15 @@ class IcuCollation extends Collation {
 		return $sortLetter;
 	}
 
+	private function getPrimarySortKey( $string ) {
+		return $this->primaryCollator->getSortKey( $string );
+	}
+
 	/**
 	 * @since 1.16.3
 	 * @return array
 	 */
-	public function getFirstLetterData() {
+	private function getFirstLetterData() {
 		if ( $this->firstLetterData === null ) {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 			$cacheKey = $cache->makeKey(
@@ -349,10 +354,9 @@ class IcuCollation extends Collation {
 	 * @throws MWException
 	 */
 	private function fetchFirstLetterData() {
-		global $IP;
 		// Generate data from serialized data file
 		if ( isset( self::TAILORING_FIRST_LETTERS[$this->locale] ) ) {
-			$letters = require "$IP/includes/collation/data/first-letters-root.php";
+			$letters = require __DIR__ . "/data/first-letters-root.php";
 			// Append additional characters
 			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->locale] );
 			// Remove unnecessary ones, if any
@@ -366,14 +370,10 @@ class IcuCollation extends Collation {
 				$letters[] = $this->digitTransformLanguage->formatNumNoSeparators( $digit );
 			}
 		} elseif ( $this->locale === 'root' ) {
-			$letters = require "$IP/includes/collation/data/first-letters-root.php";
+			$letters = require __DIR__ . "/data/first-letters-root.php";
 		} else {
-			// FIXME: Is this still used?
-			$letters = $this->getPrecompiledData( "first-letters-{$this->locale}.ser" );
-			if ( $letters === false ) {
-				throw new MWException( "MediaWiki does not support ICU locale " .
-					"\"{$this->locale}\"" );
-			}
+			throw new MWException( "MediaWiki does not support ICU locale " .
+				"\"{$this->locale}\"" );
 		}
 
 		/* Sort the letters.
@@ -395,8 +395,7 @@ class IcuCollation extends Collation {
 				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)" );
 				// If that also has a collision, use codepoint as a tiebreaker.
 				if ( $comp === 0 ) {
-					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) <=>
-						UtfNormal\Utils::utf8ToCodepoint( $letterMap[$key] );
+					$comp = mb_ord( $letter ) <=> mb_ord( $letterMap[$key] );
 				}
 				if ( $comp < 0 ) {
 					$letterMap[$key] = $letter;
@@ -418,7 +417,7 @@ class IcuCollation extends Collation {
 		 * is an 'R' followed by an 's'.
 		 *
 		 * Additionally an expanded element should always sort directly
-		 * after its first element due to they way sortkeys work.
+		 * after its first element due to the way sortkeys work.
 		 *
 		 * UCA sortkey elements are of variable length but no collation
 		 * element should be a prefix of some other element, so I think
@@ -483,52 +482,6 @@ class IcuCollation extends Collation {
 		unset( $letterMap );
 
 		return $data;
-	}
-
-	/**
-	 * Get an object from the precompiled serialized directory
-	 *
-	 * Replaced use of wfGetPrecompiledData
-	 *
-	 * @param string $name
-	 * @return mixed The variable on success, false on failure
-	 */
-	private function getPrecompiledData( $name ) {
-		global $IP;
-		$file = "$IP/serialized/$name";
-		if ( file_exists( $file ) ) {
-			$blob = file_get_contents( $file );
-			if ( $blob ) {
-				return unserialize( $blob );
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * @param string $index
-	 * @return string
-	 * @since 1.16.3
-	 */
-	public function getLetterByIndex( $index ) {
-		return $this->getFirstLetterData()['chars'][$index];
-	}
-
-	/**
-	 * @param string $index
-	 * @return string
-	 * @since 1.16.3
-	 */
-	public function getSortKeyByLetterIndex( $index ) {
-		return $this->getFirstLetterData()['keys'][$index];
-	}
-
-	/**
-	 * @return int
-	 * @since 1.16.3
-	 */
-	public function getFirstLetterCount() {
-		return count( $this->getFirstLetterData()['chars'] );
 	}
 
 	/**
