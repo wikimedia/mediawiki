@@ -32,9 +32,9 @@ namespace Wikimedia\LightweightObjectStore;
 interface StorageAwareness {
 	/** No storage medium error */
 	public const ERR_NONE = 0;
-	/** Storage medium failed to yield a response */
+	/** Storage medium failed to yield a complete response to an operation */
 	public const ERR_NO_RESPONSE = 1;
-	/** Storage medium could not be reached */
+	/** Storage medium could not be reached to establish a connection */
 	public const ERR_UNREACHABLE = 2;
 	/** Storage medium operation failed due to usage limitations or an I/O error */
 	public const ERR_UNEXPECTED = 3;
