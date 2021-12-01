@@ -315,6 +315,7 @@ class ApiMain extends ApiBase {
 				'WikiPageFactory',
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'RedirectLookup',
 			]
 		],
 		'upload' => [

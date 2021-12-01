@@ -277,6 +277,11 @@ because of Phabricator reports.
   override ContentHandler::fillParserOutput.
 * Title::newFromIDs and TitleFactory::newFromIDs have been hard deprecated.
   Use a PageSelectQueryBuilder from a PageStore instead.
+* Content::getRedirectChain() and Content::getUltimateRedirectTarget() have
+  been deprecated with no replacement because support for $wgMaxRedirect
+  will be removed completely. See T296430 for more information.
+* WikiPage::getRedirectTarget() has been deprecated. Use the equivalent
+  RedirectLookup::getRedirectTarget() instead.
 * Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
   you only need to delete the article. If you also need things to happen
   with OutputPage, you may want to check the hooks in DeleteAction instead.
@@ -351,6 +356,10 @@ because of Phabricator reports.
   The goal of these changes is to make the HTML more similar to that of
   normal page deletion.
 * ParserOptions created with ::newFrom* or ::newCanonical are now identical.
+* MediaWiki initialization order have been changed to load vendor autoload
+  earlier. This means that extensions that are installed via composer and
+  execute code upon autoloading can not depend on any MediaWiki classes,
+  constants or globals in that code.
 * …
 
 == Compatibility ==

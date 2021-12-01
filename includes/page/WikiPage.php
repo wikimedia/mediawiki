@@ -24,6 +24,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
@@ -1018,6 +1019,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * The target will be fetched from the redirect table if possible.
 	 * If this page doesn't have an entry there, call insertRedirect()
 	 *
+	 * @deprecated since 1.38 Use RedirectLookup::getRedirectTarget() instead.
+	 *
 	 * @return Title|null Title object, or null if this page is not a redirect
 	 */
 	public function getRedirectTarget() {
@@ -1075,7 +1078,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function insertRedirect() {
 		$content = $this->getContent();
-		$retval = $content ? $content->getUltimateRedirectTarget() : null;
+		$retval = $content ? $content->getRedirectTarget() : null;
 		if ( !$retval ) {
 			return null;
 		}
@@ -1095,11 +1098,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
-	 * @param Title $rt Redirect target
+	 * @param LinkTarget $rt Redirect target
 	 * @param int|null $oldLatest Prior page_latest for check and set
 	 * @return bool Success
 	 */
-	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
+	public function insertRedirectEntry( LinkTarget $rt, $oldLatest = null ) {
+		$rt = Title::castFromLinkTarget( $rt );
 		if ( !$rt->isValidRedirectTarget() ) {
 			// Don't put a bad redirect into the database (T278367)
 			return false;
@@ -1423,7 +1427,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		$content = $revision->getContent( SlotRecord::MAIN );
 		$len = $content ? $content->getSize() : 0;
-		$rt = $content ? $content->getUltimateRedirectTarget() : null;
+		$rt = $content ? $content->getRedirectTarget() : null;
 		$isNew = ( $lastRevision === 0 ) ? 1 : 0;
 		$isRedirect = $rt !== null ? 1 : 0;
 

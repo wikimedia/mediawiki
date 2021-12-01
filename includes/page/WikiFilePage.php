@@ -39,6 +39,9 @@ class WikiFilePage extends WikiPage {
 	/** @var array|null */
 	protected $mDupes = null;
 
+	/**
+	 * @param Title $title
+	 */
 	public function __construct( $title ) {
 		parent::__construct( $title );
 		$this->mDupes = null;

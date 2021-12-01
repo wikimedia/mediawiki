@@ -268,6 +268,8 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title[]|null
 	 *
@@ -322,6 +324,8 @@ abstract class AbstractContent implements Content {
 	 * @note Migrated here from Title::newFromRedirectRecurse.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title|null
 	 *

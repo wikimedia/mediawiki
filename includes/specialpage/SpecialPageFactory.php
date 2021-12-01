@@ -286,6 +286,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'WikiPageFactory',
+				'RedirectLookup'
 			]
 		],
 		'PagesWithProp' => [
@@ -894,7 +895,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
-				'WikiPageFactory',
+				'RedirectLookup'
 			]
 		],
 		'Mypage' => [

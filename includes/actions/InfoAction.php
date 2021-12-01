@@ -29,6 +29,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
@@ -81,6 +82,9 @@ class InfoAction extends FormlessAction {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var RedirectLookup */
+	private $redirectLookup;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
@@ -97,6 +101,7 @@ class InfoAction extends FormlessAction {
 	 * @param RevisionLookup $revisionLookup
 	 * @param WANObjectCache $wanObjectCache
 	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param RedirectLookup $redirectLookup
 	 */
 	public function __construct(
 		Page $page,
@@ -113,7 +118,8 @@ class InfoAction extends FormlessAction {
 		RepoGroup $repoGroup,
 		RevisionLookup $revisionLookup,
 		WANObjectCache $wanObjectCache,
-		WatchedItemStoreInterface $watchedItemStore
+		WatchedItemStoreInterface $watchedItemStore,
+		RedirectLookup $redirectLookup
 	) {
 		parent::__construct( $page, $context );
 		$this->contentLanguage = $contentLanguage;
@@ -129,6 +135,7 @@ class InfoAction extends FormlessAction {
 		$this->revisionLookup = $revisionLookup;
 		$this->wanObjectCache = $wanObjectCache;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->redirectLookup = $redirectLookup;
 	}
 
 	/**
@@ -367,7 +374,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it a redirect? If so, where to?
-		$redirectTarget = $this->getWikiPage()->getRedirectTarget();
+		$redirectTarget = $this->redirectLookup->getRedirectTarget( $this->getWikiPage() );
 		if ( $redirectTarget !== null ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),

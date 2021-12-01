@@ -238,7 +238,7 @@ class RefreshLinks extends Maintenance {
 		$rt = null;
 		$content = $page->getContent( RevisionRecord::RAW );
 		if ( $content !== null ) {
-			$rt = $content->getUltimateRedirectTarget();
+			$rt = $content->getRedirectTarget();
 		}
 
 		if ( $rt === null ) {
