@@ -48,6 +48,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
@@ -421,6 +422,9 @@ class EditPage implements IEditObject {
 	 */
 	private $userNameUtils;
 
+	/** @var RedirectLookup */
+	private $redirectLookup;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -455,6 +459,7 @@ class EditPage implements IEditObject {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
+		$this->redirectLookup = $services->getRedirectLookup();
 
 		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
@@ -1574,13 +1579,14 @@ class EditPage implements IEditObject {
 
 		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->isRedirect() ) {
-			$title = $page->getRedirectTarget();
+			$redirTarget = $this->redirectLookup->getRedirectTarget( $title );
+			$redirTarget = Title::castFromLinkTarget( $redirTarget );
 			# Same as before
-			if ( !$this->isPageExistingAndViewable( $title, $this->getContext()->getAuthority() ) ) {
+			if ( !$this->isPageExistingAndViewable( $redirTarget, $this->getContext()->getAuthority() ) ) {
 				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
-			$page = $this->wikiPageFactory->newFromTitle( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $redirTarget );
 		}
 
 		$content = $page->getContent( RevisionRecord::RAW );

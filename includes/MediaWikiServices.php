@@ -71,6 +71,8 @@ use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Page\RedirectStore;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
@@ -1431,6 +1433,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode(): ReadOnlyMode {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return RedirectLookup
+	 */
+	public function getRedirectLookup(): RedirectLookup {
+		return $this->getService( 'RedirectLookup' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return RedirectStore
+	 */
+	public function getRedirectStore(): RedirectStore {
+		return $this->getService( 'RedirectStore' );
 	}
 
 	/**

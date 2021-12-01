@@ -36,7 +36,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$title = Title::makeTitle( $this->getDefaultWikitextNS(), $title );
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$user = $this->getTestUser()->getUser();
 
@@ -140,8 +140,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Article::getPage()
-	 * @covers WikiPage::getRedirectTarget()
+	 * @covers Article::getPage
+	 * @covers WikiPage::getRedirectTarget
+	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testViewRedirect() {
 		$target = Title::makeTitle( $this->getDefaultWikitextNS(), 'Test_Target' );
@@ -153,12 +154,14 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
 		$article->view();
 
+		$redirectStore = $this->getServiceContainer()->getRedirectStore();
+
 		$this->assertNotNull(
-			$article->getPage()->getRedirectTarget()->getPrefixedDBkey()
+			$redirectStore->getRedirectTarget( $article->getPage() )->getPrefixedDBkey()
 		);
 		$this->assertSame(
 			$target->getPrefixedDBkey(),
-			$article->getPage()->getRedirectTarget()->getPrefixedDBkey()
+			$redirectStore->getRedirectTarget( $article->getPage() )->getPrefixedDBkey()
 		);
 
 		$output = $article->getContext()->getOutput();

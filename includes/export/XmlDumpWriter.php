@@ -246,10 +246,12 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->currentTitle );
+			$services = MediaWikiServices::getInstance();
+			$page = $services->getWikiPageFactory()->newFromTitle( $this->currentTitle );
+			$redirectStore = $services->getRedirectStore();
 			$redirect = $this->invokeLenient(
-				static function () use ( $page ) {
-					return $page->getRedirectTarget();
+				static function () use ( $page, $redirectStore ) {
+					return $redirectStore->getRedirectTarget( $page );
 				},
 				'Failed to get redirect target of page ' . $page->getId()
 			);

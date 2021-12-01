@@ -2,14 +2,12 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
-use Content;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserGroupManager;
@@ -48,8 +46,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$config = $overrideConfig + $baseConfig;
 		$specialPageFactory = $options['specialPageFactory'] ??
 			$this->createMock( SpecialPageFactory::class );
-		$revisionLookup = $options['revisionLookup'] ??
-			$this->createMock( RevisionLookup::class );
 
 		// DummyServicesTrait::getDummyNamespaceInfo
 		$namespaceInfo = $this->getDummyNamespaceInfo();
@@ -66,17 +62,19 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( HookContainer::class );
 		$userCache = $options['userCache'] ??
 			$this->createMock( UserCache::class );
+		$redirectLookup = $options['redirectLookup'] ??
+			$this->createMock( RedirectLookup::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
 			$specialPageFactory,
-			$revisionLookup,
 			$namespaceInfo,
 			$groupPermissionsLookup,
 			$userGroupManager,
 			$blockErrorFormatter,
 			$hookContainer,
-			$userCache
+			$userCache,
+			$redirectLookup
 		);
 
 		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );
@@ -215,19 +213,13 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		} else {
 			$target = null;
 		}
-		$content = $this->createMock( Content::class );
-		$content->method( 'getUltimateRedirectTarget' )->willReturn( $target );
 
-		$revisionRecord = $this->createMock( RevisionRecord::class );
-		$revisionRecord->method( 'getContent' )->willReturn( $content );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionByTitle' )
-			->with( $title )
-			->willReturn( $revisionRecord );
+		$redirectLookup = $this->createMock( RedirectLookup::class );
+		$redirectLookup->method( 'getRedirectTarget' )->with( $title )
+			->willReturn( $target );
 
 		$permissionManager = $this->getPermissionManager( [
-			'revisionLookup' => $revisionLookup,
+			'redirectLookup' => $redirectLookup,
 		] );
 
 		// Override user rights

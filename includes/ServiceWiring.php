@@ -103,6 +103,8 @@ use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Page\RedirectStore;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
@@ -1290,13 +1292,13 @@ return [
 				PermissionManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getSpecialPageFactory(),
-			$services->getRevisionLookup(),
 			$services->getNamespaceInfo(),
 			$services->getGroupPermissionsLookup(),
 			$services->getUserGroupManager(),
 			$services->getBlockErrorFormatter(),
 			$services->getHookContainer(),
-			$services->getUserCache()
+			$services->getUserCache(),
+			$services->getRedirectLookup()
 		);
 	},
 
@@ -1337,6 +1339,14 @@ return [
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
 		);
+	},
+
+	'RedirectLookup' => static function ( MediaWikiServices $services ): RedirectLookup {
+		return $services->getRedirectStore();
+	},
+
+	'RedirectStore' => static function ( MediaWikiServices $services ): RedirectStore {
+		return new RedirectStore( $services->getWikiPageFactory() );
 	},
 
 	'RepoGroup' => static function ( MediaWikiServices $services ): RepoGroup {

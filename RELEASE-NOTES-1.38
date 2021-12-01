@@ -277,6 +277,11 @@ because of Phabricator reports.
   override ContentHandler::fillParserOutput.
 * Title::newFromIDs and TitleFactory::newFromIDs have been hard deprecated.
   Use a PageSelectQueryBuilder from a PageStore instead.
+* Content::getRedirectChain() and Content::getUltimateRedirectTarget() have
+  been deprecated with no replacement because support for $wgMaxRedirect
+  will be removed completely. See T296430 for more information.
+* WikiPage::getRedirectTarget() has been deprecated. Use the equivalent
+  RedirectLookup::getRedirectTarget() instead.
 * Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
   you only need to delete the article. If you also need things to happen
   with OutputPage, you may want to check the hooks in DeleteAction instead.

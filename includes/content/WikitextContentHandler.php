@@ -298,9 +298,9 @@ class WikitextContentHandler extends TextContentHandler {
 			// Make sure to include the redirect link in pagelinks
 			$output->addLink( $redir );
 			if ( $cpoParams->getGenerateHtml() ) {
-				$chain = $content->getRedirectChain();
+				$redirTarget = $content->getRedirectTarget();
 				$output->setText(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
+					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $redirTarget, false ) .
 					$output->getRawText()
 				);
 				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );

@@ -294,6 +294,8 @@ interface Content {
 	 * have been resolved (up to $wgMaxRedirects times).
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title[]|null List of Titles, with the destination last.
 	 */
@@ -323,6 +325,8 @@ interface Content {
 	 * want to implement redirects should override getRedirectTarget().
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title|null
 	 */
