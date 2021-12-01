@@ -88,7 +88,7 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		$newPath = $this->getNewTempFile();
 		$maintenanceScript = new GenerateSchemaSql();
 		$maintenanceScript->loadWithArgv(
-			[ '--json=' . $abstractSchemaPath, '--sql=' . $newPath, '--type=' . $type ]
+			[ '--json=' . $abstractSchemaPath, '--sql=' . $newPath, '--type=' . $type, '--quiet' ]
 		);
 		$maintenanceScript->execute();
 		$this->assertEquals(
