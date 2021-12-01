@@ -2139,9 +2139,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *   Default values set via $wgDefaultUserOptions / UserGetDefaultOptions take precedence.
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
 	 * @return mixed|null User's current value for the option
-	 * @deprecated since 1.35 Use UserOptionsLookup::getOption instead
+	 * @deprecated since 1.35 Hard-deprecated since 1.39.
+	 * Use UserOptionsLookup::getOption instead.
 	 */
 	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $oname === null ) {
 			return null; // b/c
 		}

@@ -472,6 +472,8 @@ because of Phabricator reports.
   - .animation-delay()
   - .transform-rotate()
 * Skin::getAction is deprecated. Use IContextSource::getActionName instead.
+* User::getOption, deprecated since 1.35, now emits deprecation warnings.
+  Use UserOptionsLookup::getOption instead.
 * ILBFactory::forEachLB() is deprecated. Use ::getAllLBs().
 * LoadBalancer::forEachOpenConnection() and ::forEachOpenPrimaryConnection()
   are deprecated without replacement.
