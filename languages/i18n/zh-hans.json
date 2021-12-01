@@ -1054,7 +1054,7 @@
 	"revdelete-show-no-access": "显示日期为$1 $2的项目时出错：这个项目已经标示为\"已限制\"。\n您无权访问它。",
 	"revdelete-modify-no-access": "修改日期为$1 $2的项目时出错：这个项目已标示为\"已限制\"。\n您无权访问它。",
 	"revdelete-modify-missing": "修改项目ID $1时出错：它从数据库中丢失！",
-	"revdelete-no-change": "<strong>警告：</strong>日期为$1 $2的项目已经请求了可见性的设置。",
+	"revdelete-no-change": "<strong>警告：</strong>日期为$1 $2的项目已具有所提交的可见性设置。",
 	"revdelete-concurrent-change": "修改日期为$1 $2的项目时出错：当我们尝试更改它的设置时，已经被其他人更改。\n请检查日志。",
 	"revdelete-only-restricted": "在隐藏$1 $2的项目时发生错误：您不能在不选择其他可见性选项之一的情况下禁止管理员查看项目。",
 	"revdelete-reason-dropdown": "*常用删除理由\n** 侵犯版权\n** 不适当的评论\n** 不适当的用户名\n** 潜在毁谤性信息",

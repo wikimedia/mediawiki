@@ -4097,5 +4097,7 @@
 	"paramvalidator-help-type-title": "Typ: Seitenname",
 	"paramvalidator-help-type-title-must-exist": "Es werden nur Seiten akzeptiert, die existieren.",
 	"paramvalidator-help-type-title-no-must-exist": "Akzeptiert nicht existierende Seiten.",
-	"nonmain-slot-differences-therefore-readonly": "Du kannst den Wikitext auf dieser Version der Seite nicht bearbeiten, da er seit dieser Version Änderungen an den Daten auf der Seite gegeben hat, die nicht Wikitext-basiert sind. [$1 Um diese Version wiederherzustellen, klicke hier.]"
+	"nonmain-slot-differences-therefore-readonly": "Du kannst den Wikitext auf dieser Version der Seite nicht bearbeiten, da er seit dieser Version Änderungen an den Daten auf der Seite gegeben hat, die nicht Wikitext-basiert sind. [$1 Um diese Version wiederherzustellen, klicke hier.]",
+	"config-missing-key": "Fehlender MediaWiki-Konfigurationsparameter „$1“",
+	"config-invalid-key": "Ungültiger MediaWiki-Konfigurationsparameter „$1“: $2"
 }

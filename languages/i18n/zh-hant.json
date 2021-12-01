@@ -1001,7 +1001,7 @@
 	"revdelete-show-no-access": "檢視於 $1 $2 的項目錯誤：此項目已設為 \"已限制\"。\n您沒有權限存取。",
 	"revdelete-modify-no-access": "修改於 $1 $2 的項目錯誤：此項目已設為 \"已限制\"。\n您沒有權限存取。",
 	"revdelete-modify-missing": "修改項目 ID $1 錯誤：資料庫中無該資料！",
-	"revdelete-no-change": "<strong>警告：</strong>於 $1 $2 的項目已請求修改顯示設定。",
+	"revdelete-no-change": "<strong>警告：</strong>於 $1 $2 的項目已有請求的顯示設定。",
 	"revdelete-concurrent-change": "修改於 $1 $2 的項目錯誤：在您嘗試修改之前，狀態已被修改。\n請檢查日誌。",
 	"revdelete-only-restricted": "在隱藏於 $1 $2 的項目時發生錯誤：您不可在未選擇顯示設定的情況下禁止管理員檢視項目。",
 	"revdelete-reason-dropdown": "*常見的刪除原因\n** 侵犯版權\n** 不合適的評論\n** 不當的使用者名稱\n** 隱含誹謗的資訊",
