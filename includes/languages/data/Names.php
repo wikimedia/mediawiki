@@ -179,6 +179,7 @@ class Names {
 		'gcr' => 'kriyòl gwiyannen', # Guianan Creole
 		'gd' => 'Gàidhlig', # Scots Gaelic
 		'gl' => 'galego', # Galician
+		'gld' => 'на̄ни', # Nanai
 		'glk' => 'گیلکی', # Gilaki
 		'gn' => 'Avañe\'ẽ', # Guaraní, Paraguayan
 		'gom' => 'गोंयची कोंकणी / Gõychi Konknni', # Goan Konkani
@@ -338,6 +339,7 @@ class Names {
 		'niu' => 'Niuē', # Niuean
 		'nl' => 'Nederlands', # Dutch
 		'nl-informal' => 'Nederlands (informeel)', # Dutch (informal address ("je"))
+		'nmz' => 'nawdm', # Nawdm
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial

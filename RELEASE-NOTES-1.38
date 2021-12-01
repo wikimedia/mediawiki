@@ -113,6 +113,8 @@ because of Phabricator reports.
 * (T296286) Added language support for Skolt Sámi (sms).
 * (T296612) Added language support for Makhuwa (vmw).
 * (T296707) Added language support for Ga (gaa).
+* (T297073) Added language support for Nanai (gld).
+* (T297074) Added language support for Nawdm (nmz).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
