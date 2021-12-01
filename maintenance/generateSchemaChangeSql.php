@@ -109,7 +109,7 @@ class GenerateSchemaChangeSql extends Maintenance {
 		if ( $this->getOption( 'type', 'mysql' ) === 'sqlite' ) {
 			// Doctrine prepends __temp__ to the table name and we set the table with the schema prefix causing invalid
 			// sqlite.
-			$sql = str_replace( '__temp__  /*_*/', '/*_*/__temp__', $sql );
+			$sql = preg_replace( '/__temp__\s*\/\*_\*\//', '/*_*/__temp__', $sql );
 		}
 
 		file_put_contents( $sqlPath, $sql );
