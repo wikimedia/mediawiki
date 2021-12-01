@@ -1027,7 +1027,8 @@ class DifferenceEngine extends ContextSource {
 								&& $this->getAuthority()->probablyCan(
 									'edit',
 									$this->mNewRevisionRecord->getPage()
-								)
+								),
+							'absoluteURLs' => $this->slotDiffOptions['expand-url'] ?? false
 						] );
 					}
 				}
@@ -1082,6 +1083,9 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		} else {
 			$this->showDiffStyle();
+			if ( $this->slotDiffOptions['expand-url'] ?? false ) {
+				$diff = Linker::expandLocalLinks( $diff );
+			}
 			$this->getOutput()->addHTML( $diff );
 
 			return true;
@@ -1364,7 +1368,8 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @param array $options for the difference engine - accepts keys 'diff-type'
+	 * @param array $options for the difference engine.
+	 * Accepts keys 'diff-type' and 'expand-url'
 	 */
 	public function setSlotDiffOptions( $options ) {
 		$this->slotDiffOptions = $options;

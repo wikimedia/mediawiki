@@ -886,7 +886,8 @@ class Article implements Page {
 			$unhide
 		);
 		$de->setSlotDiffOptions( [
-			'diff-type' => $request->getVal( 'diff-type' )
+			'diff-type' => $request->getVal( 'diff-type' ),
+			'expand-url' => $this->viewIsRenderAction
 		] );
 		$de->showDiffPage( $diffOnly );
 
