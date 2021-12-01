@@ -250,6 +250,7 @@ because of Phabricator reports.
   post-parse and can be included by providing 'includeDebugInfo' option
   to ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
   ::getEnableLimitReport methods were deprecated.
+* Ajax action that was deprecated in 1.27 now has been removed.
 * …
 
 === Deprecations in 1.38 ===

@@ -129,6 +129,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				}
 				$skinHtml .=
 					'<div class="config-skins-item">' .
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 					$this->parent->getCheckBox( [
 						'var' => "skin-$skin",
 						'rawtext' => $screenshotText,
@@ -222,6 +223,7 @@ class WebInstallerOptions extends WebInstallerPage {
 					} else {
 						$text = $ext;
 					}
+					// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 					$extHtml .= $this->parent->getCheckBox( [
 						'var' => "ext-$ext",
 						'rawtext' => $text,
