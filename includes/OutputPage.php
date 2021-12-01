@@ -2231,7 +2231,7 @@ class OutputPage extends ContextSource {
 	public function couldBePublicCached() {
 		if ( !$this->cacheIsFinal ) {
 			// - The entry point handles its own caching and/or doesn't use OutputPage.
-			//   (such as load.php, AjaxDispatcher, or MediaWiki\Rest\EntryPoint).
+			//   (such as load.php, or MediaWiki\Rest\EntryPoint).
 			//
 			// - Or, we haven't finished processing the main part of the request yet
 			//   (e.g. Action::show, SpecialPage::execute), and the state may still

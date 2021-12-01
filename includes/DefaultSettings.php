@@ -9212,12 +9212,8 @@ $wgExemptFromUserRobotsControl = null;
 // endregion End robot policy
 
 /***************************************************************************/
-// region   AJAX, Action API and REST API
-/** @name   AJAX, Action API and REST API
- *
- * Note: The AJAX entry point which this section refers to is gradually being
- * replaced by the Action API entry point, api.php. They are essentially
- * equivalent. Both of them are used for dynamic client-side features, via XHR.
+// region   Action API and REST API
+/** @name   Action API and REST API
  */
 
 /**
@@ -9353,20 +9349,6 @@ $wgAPIUselessQueryPages = [
 	'MIMEsearch', // aiprop=mime
 	'LinkSearch', // list=exturlusage
 ];
-
-/**
- * Enable AJAX framework
- *
- * @deprecated (officially) since MediaWiki 1.31 and ignored since 1.32
- */
-$wgUseAjax = true;
-
-/**
- * List of Ajax-callable functions.
- * Extensions acting as Ajax callbacks must register here
- * @deprecated (officially) since 1.27; use the API instead
- */
-$wgAjaxExportList = [];
 
 /**
  * Enable AJAX check for file overwrite, pre-upload

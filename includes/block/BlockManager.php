@@ -196,6 +196,7 @@ class BlockManager {
 		} elseif ( count( $blocks ) === 1 ) {
 			return $blocks[ 0 ];
 		} else {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return new CompositeBlock( [
 				'address' => $ip,
 				'reason' => new Message( 'blockedtext-composite-reason' ),
@@ -253,12 +254,14 @@ class BlockManager {
 		if ( !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) ) {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$blocks[] = new SystemBlock( [
 					'reason' => new Message( 'proxyblockreason' ),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$blocks[] = new SystemBlock( [
 					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
@@ -270,6 +273,7 @@ class BlockManager {
 
 		// Soft blocking
 		if ( $isAnon && IPUtils::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) ) ) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
 				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
