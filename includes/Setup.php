@@ -171,7 +171,7 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 }
 
 // All settings should be loaded now.
-unset( $wgSettings );
+$wgSettings->finalize();
 
 // Start time limit
 if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {

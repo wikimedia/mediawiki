@@ -50,6 +50,25 @@ class SettingsBuilderTest extends TestCase {
 		$this->assertSame( 'TEST', $config->get( 'Something' ) );
 	}
 
+	public function testLoadingAndApplyingFromFileAfterFinalize() {
+		$configBuilder = new ArrayConfigBuilder();
+
+		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
+		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
+
+		$setting = $this->newSettingsBuilder( $configBuilder, $phpIniSinkMock );
+		$setting->loadFile( 'fixtures/settings.json' )->apply();
+
+		$config = $configBuilder->build();
+		$this->assertSame( 'TEST', $config->get( 'Something' ) );
+
+		// Finalize and lock loading & applying anymore settings
+		$setting->finalize();
+
+		$this->expectException( SettingsBuilderException::class );
+		$setting->loadFile( 'fixtures/settings.json' )->apply();
+	}
+
 	public function provideConfigOverrides() {
 		yield 'sets a value from a single settings file' => [
 			'settingsBatches' => [
