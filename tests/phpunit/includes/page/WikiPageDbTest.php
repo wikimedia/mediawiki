@@ -2146,11 +2146,13 @@ more stuff
 		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
 	) {
 		// suppress differences caused by a clock tick between generating the two PreparedEdits
-		if ( abs( $edit->timestamp - $edit2->timestamp ) < 3 ) {
-			$edit2 = clone $edit2;
-			$edit2->timestamp = $edit->timestamp;
+		$editTimestamp = $edit->timestamp;
+		$edit2Timetamp = $edit2->timestamp;
+		if ( abs( $editTimestamp - $edit2Timetamp ) < 3 ) {
+			$edit2Timetamp = $editTimestamp;
 		}
 		$this->assertEquals( $edit, $edit2, $message );
+		$this->assertEquals( $editTimestamp, $edit2Timetamp, $message );
 	}
 
 	protected function assertPreparedEditNotEquals(

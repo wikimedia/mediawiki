@@ -1345,7 +1345,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			: $this->revision->getContent( SlotRecord::MAIN ); // XXX: can we just remove this?
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : null;
-		$preparedEdit->timestamp = $preparedEdit->output->getCacheTime();
 		$preparedEdit->format = $preparedEdit->pstContent->getDefaultFormat();
 
 		return $preparedEdit;
