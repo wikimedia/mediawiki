@@ -1583,14 +1583,6 @@ interface IDatabase {
 	public function strreplace( $orig, $old, $new );
 
 	/**
-	 * Determines how long the server has been up
-	 *
-	 * @return int
-	 * @throws DBError
-	 */
-	public function getServerUptime();
-
-	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
 	 * Note that during a deadlock, the prior transaction will have been lost
