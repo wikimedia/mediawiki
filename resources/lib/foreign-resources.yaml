@@ -186,11 +186,6 @@ jquery.i18n:
     jquery.i18n-1.0.7/README.md:
     jquery.i18n-1.0.7/src:
 
-jquery.jStorage:
-  type: file
-  src: https://raw.githubusercontent.com/andris9/jStorage/v0.4.12/jstorage.js
-  integrity: sha384-geMeN8k803kPp6cqRL4VNfuSM1L8DcbKRk0St/KHJzxgpX9S0y9FA6HxA/JgucrJ
-
 jquery.throttle-debounce:
   type: file
   src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
