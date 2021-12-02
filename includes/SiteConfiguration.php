@@ -156,7 +156,7 @@ class SiteConfiguration {
 	 * if suffix and lang are passed they will be used for the return value of
 	 * self::siteFromDB() and self::$suffixes will be ignored
 	 *
-	 * @var string|array
+	 * @var callable|null
 	 */
 	public $siteParamsCallback = null;
 
@@ -490,7 +490,7 @@ class SiteConfiguration {
 	 * Work out the site and language name from a database name
 	 * @param string $wiki Wiki ID
 	 *
-	 * @return array
+	 * @return array [ string|null $site, string|null $languageCode ]
 	 */
 	public function siteFromDB( $wiki ) {
 		// Allow override
@@ -523,7 +523,7 @@ class SiteConfiguration {
 	 * scripts are setup to handle the --wiki parameter such as in wiki farms.
 	 *
 	 * @param string $wiki
-	 * @param array|string $settings A setting name or array of setting names
+	 * @param string|string[] $settings A setting name or array of setting names
 	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
 	 * @throws MWException
 	 * @since 1.21
