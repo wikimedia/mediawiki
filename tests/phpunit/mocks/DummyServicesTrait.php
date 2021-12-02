@@ -392,9 +392,7 @@ trait DummyServicesTrait {
 		// php `ucfirst` should be enough.
 		$contentLang = $this->createMock( Language::class, [ 'ucfirst' ] );
 		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( static function ( $str ) {
-				return ucfirst( $str );
-			} );
+			->willReturnCallback( 'ucfirst' );
 
 		$logger = $options['logger'] ?? new NullLogger();
 
