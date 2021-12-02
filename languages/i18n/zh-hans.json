@@ -62,6 +62,7 @@
 			"Hzy980512",
 			"Impartial just",
 			"Impersonator 1",
+			"Interestinghe",
 			"Irati",
 			"Jding2010",
 			"Jetlag",
@@ -3861,7 +3862,7 @@
 	"feedback-thanks-title": "谢谢您！",
 	"feedback-useragent": "用户代理：",
 	"searchsuggest-search": "在{{SITENAME}}搜索",
-	"searchsuggest-containing": "搜索包含此内容的页面：",
+	"searchsuggest-containing": "搜索包含此内容的页面",
 	"search-match-redirect-label": "搜索时，跳转到完全匹配的项目",
 	"search-match-redirect-help": "当搜索关键词与页面标题匹配时提供跳转选项",
 	"api-clientside-error-noconnect": "无法连接到服务器。请确保您正常连接到互联网，并重试。",
@@ -4203,5 +4204,7 @@
 	"paramvalidator-help-type-title": "类型：页面标题",
 	"paramvalidator-help-type-title-must-exist": "仅接受存在的页面。",
 	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。",
-	"nonmain-slot-differences-therefore-readonly": "您无法编辑此页面修订上的wikitext，因为自此修订以来，页面上的数据发生了不基于wikitext的更改。[$1 要恢复此修订，请单击此处。]"
+	"nonmain-slot-differences-therefore-readonly": "您无法编辑此页面修订上的wikitext，因为自此修订以来，页面上的数据发生了不基于wikitext的更改。[$1 要恢复此修订，请单击此处。]",
+	"config-missing-key": "缺少MediaWiki配置参数”$1“",
+	"config-invalid-key": "无效的MediaWiki配置参数“$1”：$2"
 }
