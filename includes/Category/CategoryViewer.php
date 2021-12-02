@@ -586,17 +586,29 @@ class CategoryViewer extends ContextSource {
 			// from the database.The next link should have a from parameter pointing
 			// to the until parameter of the current page.
 			if ( $this->nextPage[$type] !== null ) {
-				return $this->pagingLinks( $this->prevPage[$type], $this->until[$type], $type );
-			} else {
-				// If the nextPage variable is null, it means that we have reached the first page
-				// and therefore the previous link should be disabled.
-				return $this->pagingLinks( '', $this->until[$type], $type );
+				return $this->pagingLinks(
+					$this->prevPage[$type] ?? '',
+					$this->until[$type],
+					$type
+				);
 			}
+
+			// If the nextPage variable is null, it means that we have reached the first page
+			// and therefore the previous link should be disabled.
+			return $this->pagingLinks(
+				'',
+				$this->until[$type],
+				$type
+			);
 		} elseif ( $this->nextPage[$type] !== null || isset( $this->from[$type] ) ) {
-			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );
-		} else {
-			return '';
+			return $this->pagingLinks(
+				$this->from[$type] ?? '',
+				$this->nextPage[$type],
+				$type
+			);
 		}
+
+		return '';
 	}
 
 	/**
