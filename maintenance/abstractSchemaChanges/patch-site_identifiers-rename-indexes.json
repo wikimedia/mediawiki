@@ -18,7 +18,7 @@
 			},
 			{
 				"name": "si_site",
-				"comment": "Key on site.site_id",
+				"comment": "Key on sites.site_id",
 				"type": "integer",
 				"options": { "unsigned": true, "notnull": true }
 			}
@@ -47,7 +47,7 @@
 			},
 			{
 				"name": "si_site",
-				"comment": "Key on site.site_id",
+				"comment": "Key on sites.site_id",
 				"type": "integer",
 				"options": { "unsigned": true, "notnull": true }
 			}
