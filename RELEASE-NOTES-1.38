@@ -84,6 +84,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* jquery.jStorage, deprecated since MW 1.28; use "mediawiki.storage" instead.
 * …
 
 === Bug fixes in 1.38 ===
