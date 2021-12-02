@@ -4,6 +4,7 @@ namespace MediaWiki\HookContainer;
 
 use Article;
 use Config;
+use File;
 use IContextSource;
 use ManualLogEntry;
 use MediaWiki\Linker\LinkRenderer;
@@ -12,6 +13,7 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use Parser;
 use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
@@ -287,6 +289,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserLimitReportFormatHook,
 	\MediaWiki\Hook\ParserLimitReportPrepareHook,
 	\MediaWiki\Hook\ParserMakeImageParamsHook,
+	\MediaWiki\Hook\ParserModifyImageHTML,
 	\MediaWiki\Hook\ParserOptionsRegisterHook,
 	\MediaWiki\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Hook\ParserPreSaveTransformCompleteHook,
@@ -2912,6 +2915,16 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserMakeImageParams',
 			[ $title, $file, &$params, $parser ]
+		);
+	}
+
+	public function onParserModifyImageHTML( Parser $parser, File $file,
+		array $params, string &$html
+	): void {
+		$this->container->run(
+			'ParserModifyImageHTML',
+			[ $parser, $file, $params, &$html ],
+			[ 'abortable' => false ]
 		);
 	}
 
