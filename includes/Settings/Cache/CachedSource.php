@@ -12,16 +12,11 @@ use Psr\SimpleCache\CacheInterface;
  * @todo mark as stable before the 1.38 release
  */
 class CachedSource implements SettingsSource {
-	private const DEFAULT_TTL = 60 * 60 * 24;
-
 	/** @var CacheInterface */
 	private $cache;
 
 	/** @var CacheableSource */
 	private $source;
-
-	/** @var float */
-	private $ttl;
 
 	/**
 	 * Constructs a new CachedSource using an instantiated cache and
@@ -29,16 +24,13 @@ class CachedSource implements SettingsSource {
 	 *
 	 * @param CacheInterface $cache
 	 * @param CacheableSource $source
-	 * @param int $ttl
 	 */
 	public function __construct(
 		CacheInterface $cache,
-		CacheableSource $source,
-		int $ttl = self::DEFAULT_TTL
+		CacheableSource $source
 	) {
 		$this->cache = $cache;
 		$this->source = $source;
-		$this->ttl = $ttl;
 	}
 
 	/**
@@ -57,7 +49,7 @@ class CachedSource implements SettingsSource {
 
 		if ( $miss ) {
 			$item = $this->loadWithMetadata();
-			$this->cache->set( $key, $item );
+			$this->cache->set( $key, $item, $this->source->getExpiryTtl() );
 		}
 
 		// This shouldn't be possible but let's make phan happy
@@ -116,8 +108,8 @@ class CachedSource implements SettingsSource {
 
 		return [
 			'value' => $value,
-			'expiry' => $start + $this->ttl,
-			'generation' => $start - $finish,
+			'expiry' => $start + $this->source->getExpiryTtl(),
+			'generation' => $finish - $start,
 		];
 	}
 }

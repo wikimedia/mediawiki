@@ -16,11 +16,18 @@ use Wikimedia\AtEase\AtEase;
  * @since 1.38
  */
 class FileSource implements CacheableSource {
-
 	private const BUILT_IN_FORMATS = [
 		JsonFormat::class,
 		YamlFormat::class,
 	];
+
+	/**
+	 * Cache expiry TTL for file sources (24 hours).
+	 *
+	 * @see getExpiryTtl()
+	 * @see CacheableSource::getExpiryTtl()
+	 */
+	private const EXPIRY_TTL = 60 * 60 * 24;
 
 	/**
 	 * Early expiry weight. This value influences the margin by which
@@ -110,6 +117,15 @@ class FileSource implements CacheableSource {
 				'path' => $this->path,
 			]
 		);
+	}
+
+	/**
+	 * The cache expiry TTL (in seconds) for this file source.
+	 *
+	 * @return int
+	 */
+	public function getExpiryTtl(): int {
+		return self::EXPIRY_TTL;
 	}
 
 	/**

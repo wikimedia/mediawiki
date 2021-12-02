@@ -13,6 +13,13 @@ use MediaWiki\Settings\Source\SettingsSource;
  */
 interface CacheableSource extends SettingsSource {
 	/**
+	 * Returns the cache TTL (in seconds) for this source.
+	 *
+	 * @return int
+	 */
+	public function getExpiryTtl(): int;
+
+	/**
 	 * Coefficient used in determining early expiration of cached settings to
 	 * avoid stampedes.
 	 *
