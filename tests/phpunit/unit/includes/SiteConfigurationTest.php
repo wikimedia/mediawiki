@@ -289,7 +289,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration::siteFromDB
 	 */
 	public function testSiteFromDbWithCallback() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
 		$this->assertEquals(
 			[ 'wiki', 'en' ],
@@ -312,7 +312,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration
 	 */
 	public function testParameterReplacement() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
 		$this->assertEquals(
 			'en wiki enwiki',
@@ -363,7 +363,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration::getAll
 	 */
 	public function testGetAllGlobals() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
 		$getall = [
 			'SimpleKey' => 'enwiki',
