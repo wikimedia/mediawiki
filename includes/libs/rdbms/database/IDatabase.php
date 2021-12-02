@@ -348,14 +348,6 @@ interface IDatabase {
 	public function pendingWriteCallers();
 
 	/**
-	 * Get the number of affected rows from pending write queries
-	 *
-	 * @return int
-	 * @since 1.30
-	 */
-	public function pendingWriteRowsAffected();
-
-	/**
 	 * @return bool Whether a connection to the database open
 	 */
 	public function isOpen();
