@@ -1464,6 +1464,7 @@
 	"apihelp-none-summary": "Ничего не выводить.",
 	"apihelp-php-summary": "Выводить данные в сериализованном формате PHP.",
 	"apihelp-php-param-formatversion": "Форматирование вывода",
+	"apihelp-php-paramvalue-formatversion-2": "Современный формат.",
 	"apihelp-phpfm-summary": "Выводить данные в сериализованном формате PHP (отформатированном в HTML).",
 	"apihelp-rawfm-summary": "Выводить данные, включая элементы отладки, в формате JSON (отформатированном в HTML).",
 	"apihelp-xml-summary": "Выводить данные в формате XML.",

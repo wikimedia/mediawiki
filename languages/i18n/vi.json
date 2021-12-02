@@ -2440,7 +2440,7 @@
 	"changecontentmodel": "Thay đổi kiểu nội dung của một trang",
 	"changecontentmodel-legend": "Thay đổi kiểu nội dung",
 	"changecontentmodel-title-label": "Tên trang:",
-	"changecontentmodel-current-label": "Mô hình nội dung hiện tại:",
+	"changecontentmodel-current-label": "Kiểu nội dung hiện tại:",
 	"changecontentmodel-model-label": "Kiểu nội dung mới:",
 	"changecontentmodel-reason-label": "Lý do:",
 	"changecontentmodel-submit": "Thay đổi",
