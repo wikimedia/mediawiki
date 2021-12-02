@@ -41,7 +41,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	/**
 	 * Returns a new instance of the special page under test.
 	 *
-	 * @return SpecialPage
+	 * @return SpecialWatchlist
 	 */
 	protected function newSpecialPage() {
 		$services = MediaWikiServices::getInstance();
@@ -73,6 +73,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		// $defaults and $allFalse are just to make the expected values below
 		// shorter by hiding the background.
 
+		/** @var SpecialWatchlist $page */
 		$page = TestingAccessWrapper::newFromObject(
 			$this->newSpecialPage()
 		);
