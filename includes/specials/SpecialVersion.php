@@ -189,7 +189,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
-				$out->addWikiTextAsInterface( $this->getWgHooks() );
+				$out->addWikiTextAsInterface( $this->getHooks() );
 				$out->addHTML( $this->IPInfo() );
 
 				break;
@@ -937,12 +937,10 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string Wikitext
 	 */
-	private function getWgHooks() {
-		global $wgSpecialVersionShowHooks, $wgHooks;
-
-		if ( $wgSpecialVersionShowHooks && count( $wgHooks ) ) {
-			$myWgHooks = $wgHooks;
-			ksort( $myWgHooks );
+	private function getHooks() {
+		if ( $this->getConfig()->get( 'SpecialVersionShowHooks' ) && count( $this->getConfig()->get( 'Hooks' ) ) ) {
+			$myHooks = $this->getConfig()->get( 'Hooks' );
+			ksort( $myHooks );
 
 			$ret = [];
 			$ret[] = '== {{int:version-hooks}} ==';
@@ -952,7 +950,7 @@ class SpecialVersion extends SpecialPage {
 			$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
 			$ret[] = Html::closeElement( 'tr' );
 
-			foreach ( $myWgHooks as $hook => $hooks ) {
+			foreach ( $myHooks as $hook => $hooks ) {
 				$ret[] = Html::openElement( 'tr' );
 				$ret[] = Html::element( 'td', [], $hook );
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
