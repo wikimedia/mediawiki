@@ -1317,7 +1317,7 @@
 	"right-rollback": "Revocă rapid modificările ultimului utilizator care a modificat o pagină particulară",
 	"right-markbotedits": "Marchează revenirea ca modificare efectuată de robot",
 	"right-noratelimit": "Neafectat de limitele raportului",
-	"right-import": "Importă pagini de la alte wikiuri",
+	"right-import": "Importă pagini de la alte wiki-uri",
 	"right-importupload": "Importă pagini dintr-o încărcare de fișier",
 	"right-patrol": "Marchează modificările altora ca patrulate",
 	"right-autopatrol": "Modificările proprii marcate ca patrulate",
