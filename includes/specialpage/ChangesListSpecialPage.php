@@ -1526,12 +1526,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$namespaces = $this->expandSymbolicNamespaceFilters( $namespaces );
 
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-			$namespaces = array_filter(
-				$namespaces,
-				static function ( $ns ) use ( $namespaceInfo ) {
-					return $namespaceInfo->exists( $ns );
-				}
-			);
+			$namespaces = array_filter( $namespaces, [ $namespaceInfo, 'exists' ] );
 
 			if ( $namespaces !== [] ) {
 				// Namespaces are just ints, use them as int when acting with the database
@@ -1539,15 +1534,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 				if ( $opts[ 'associated' ] ) {
 					$associatedNamespaces = array_map(
-						static function ( $ns ) use ( $namespaceInfo ){
-							return $namespaceInfo->getAssociated( $ns );
-						},
-						array_filter(
-							$namespaces,
-							static function ( $ns ) use ( $namespaceInfo ) {
-								return $namespaceInfo->hasTalkNamespace( $ns );
-							}
-						)
+						[ $namespaceInfo, 'getAssociated' ],
+						array_filter( $namespaces, [ $namespaceInfo, 'hasTalkNamespace' ] )
 					);
 					$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
 				}
