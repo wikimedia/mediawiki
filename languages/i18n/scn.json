@@ -820,7 +820,7 @@
 	"shown-title": "Ammustra {{PLURAL:$1|nu risultatu|$1 risultati}} pi pàggina",
 	"viewprevnext": "Talìa ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "* Pàggina '''[[$1]]'''",
-	"searchmenu-new": "<strong>Crea la pàggina \"[[:$1]]\" supra a sta wiki!<strong> {{PLURAL:$2|0=|Talìa macari la pàggina attruvata câ tò arricerca.|Talìa macari li pàggini attruvati câ tò arricerca.}}",
+	"searchmenu-new": "<strong>Crea la pàggina \"[[:$1]]\" supra a stu wiki!</strong> {{PLURAL:$2|0=|Talìa macari la pàggina attruvata câ tò arricerca.|Talìa macari li pàggini attruvati câ tò arricerca.}}",
 	"searchprofile-articles": "Pàggini di cuntinutu",
 	"searchprofile-images": "File Multimidiali",
 	"searchprofile-everything": "Tuttu",

@@ -231,7 +231,7 @@
 	"edit-local": "Sửa miêu tả địa phương",
 	"create": "Tạo",
 	"create-local": "Thêm miêu tả địa phương",
-	"delete": "Xóa một trang",
+	"delete": "Xóa",
 	"undelete_short": "Phục hồi {{PLURAL:$1|một sửa đổi|$1 sửa đổi}}",
 	"viewdeleted_short": "Xem {{PLURAL:$1|sửa đổi|$1 sửa đổi}} đã xóa",
 	"protect": "Khóa",
