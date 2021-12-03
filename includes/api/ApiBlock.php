@@ -148,9 +148,10 @@ class ApiBlock extends ApiBase {
 
 		$restrictions = [];
 		if ( $params['partial'] ) {
-			$pageRestrictions = array_map( static function ( $title ) {
-				return PageRestriction::newFromTitle( $title );
-			}, (array)$params['pagerestrictions'] );
+			$pageRestrictions = array_map(
+				[ PageRestriction::class, 'newFromTitle' ],
+				(array)$params['pagerestrictions']
+			);
 
 			$namespaceRestrictions = array_map( static function ( $id ) {
 				return new NamespaceRestriction( 0, $id );

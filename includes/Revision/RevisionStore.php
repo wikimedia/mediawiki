@@ -2121,9 +2121,10 @@ class RevisionStore
 			}
 
 			$roleIdField = $slotQueryInfo['keys']['role_id'];
-			$slotQueryConds[$roleIdField] = array_map( function ( $slot_name ) {
-				return $this->slotRoleStore->getId( $slot_name );
-			}, $options['slots'] );
+			$slotQueryConds[$roleIdField] = array_map(
+				[ $this->slotRoleStore, 'getId' ],
+				$options['slots']
+			);
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
