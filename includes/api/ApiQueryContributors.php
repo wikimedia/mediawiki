@@ -79,8 +79,6 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'group', 'excludegroup', 'rights', 'excluderights' );
@@ -115,12 +113,15 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// For SCHEMA_COMPAT_READ_TEMP, target indexes on the
 		// revision_actor_temp table, otherwise on the revision table.
-		$pageField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
-			? 'revactor_page' : 'rev_page';
-		$idField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
-			? 'revactor_actor' : 'rev_actor';
-		$countField = ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
-			? 'revactor_actor' : 'rev_actor';
+		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
+			$pageField = 'revactor_page';
+			$idField = 'revactor_actor';
+			$countField = 'revactor_actor';
+		} else {
+			$pageField = 'rev_page';
+			$idField = 'rev_actor';
+			$countField = 'rev_actor';
+		}
 
 		// First, count anons
 		$this->addTables( $revQuery['tables'] );

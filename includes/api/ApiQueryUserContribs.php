@@ -309,15 +309,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * @param int $limit
 	 */
 	private function prepareQuery( array $users, $limit ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
+		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
 			$orderUserField = 'rev_actor';
 			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
 			$tsField = 'revactor_timestamp';

@@ -365,8 +365,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	private function redirectOnExactMatch() {
-		global $wgSearchMatchRedirectPreference;
-		if ( !$wgSearchMatchRedirectPreference ) {
+		if ( !$this->getConfig()->get( 'SearchMatchRedirectPreference' ) ) {
 			// If the preference for whether to redirect is disabled, use the default setting
 			$defaultOptions = $this->userOptionsManager->getDefaultOptions();
 			return $defaultOptions['search-match-redirect'];

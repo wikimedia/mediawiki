@@ -130,21 +130,18 @@ class ImageHistoryList extends ContextSource {
 		$uploader = $file->getUploader( File::FOR_THIS_USER, $user );
 
 		$local = $this->current->isLocal();
-		$row = $selected = '';
+		$row = '';
 
 		// Deletion link
 		if ( $local && ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
 			$row .= '<td>';
 			# Link to remove from history
 			if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
-				$q = [ 'action' => 'delete' ];
-				if ( !$iscur ) {
-					$q['oldimage'] = $img;
-				}
 				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
 					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->text(),
-					[], $q
+					[],
+					[ 'action' => 'delete', 'oldimage' => $iscur ? null : $img ]
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
@@ -156,18 +153,16 @@ class ImageHistoryList extends ContextSource {
 				}
 				// If file is top revision or locked from this user, don't link
 				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
-					$del = Linker::revDeleteLinkDisabled( $canHide );
+					$row .= Linker::revDeleteLinkDisabled( $canHide );
 				} else {
-					list( $ts, ) = explode( '!', $img, 2 );
 					$query = [
 						'type' => 'oldimage',
 						'target' => $this->title->getPrefixedText(),
-						'ids' => $ts,
+						'ids' => explode( '!', $img, 2 )[0],
 					];
-					$del = Linker::revDeleteLink( $query,
+					$row .= Linker::revDeleteLink( $query,
 						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 				}
-				$row .= $del;
 			}
 			$row .= '</td>';
 		}
@@ -196,9 +191,9 @@ class ImageHistoryList extends ContextSource {
 		$row .= '</td>';
 
 		// Date/time and image link
-		if ( $file->getTimestamp() === $this->img->getTimestamp() ) {
-			$selected = "class='filehistory-selected'";
-		}
+		$selected = $file->getTimestamp() === $this->img->getTimestamp()
+			? "class='filehistory-selected'"
+			: '';
 		$row .= "<td $selected style='white-space: nowrap;'>";
 		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
 			# Don't link to unviewable files
@@ -209,10 +204,9 @@ class ImageHistoryList extends ContextSource {
 			$timeAndDate = $lang->userTimeAndDate( $timestamp, $user );
 			if ( $local ) {
 				$this->setPreventClickjacking( true );
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
 				$url = $linkRenderer->makeKnownLink(
-					$revdel,
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
 					$timeAndDate,
 					[],
 					[
@@ -275,11 +269,7 @@ class ImageHistoryList extends ContextSource {
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></td>';
 		} else {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			$row .= Html::rawElement(
-				'td',
-				[ 'dir' => $contLang->getDir() ],
-				$formattedComment
-			);
+			$row .= Html::rawElement( 'td', [ 'dir' => $contLang->getDir() ], $formattedComment );
 		}
 
 		$rowClass = null;
@@ -299,13 +289,9 @@ class ImageHistoryList extends ContextSource {
 		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE, $user )
 			&& !$file->isDeleted( File::DELETED_FILE )
 		) {
-			$params = [
-				'width' => '120',
-				'height' => '120',
-			];
 			$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 
-			$thumbnail = $file->transform( $params );
+			$thumbnail = $file->transform( [ 'width' => '120', 'height' => '120' ] );
 			$options = [
 				'alt' => $this->msg( 'filehist-thumbtext',
 					$lang->userTimeAndDate( $timestamp, $user ),
