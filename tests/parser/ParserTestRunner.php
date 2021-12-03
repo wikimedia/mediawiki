@@ -276,6 +276,7 @@ class ParserTestRunner {
 
 		// Some settings which influence HTML output
 		$setup['wgSitename'] = 'MediaWiki';
+		$setup['wgMetaNamespace'] = "TestWiki";
 		$setup['wgServer'] = 'http://example.org';
 		$setup['wgServerName'] = 'example.org';
 		$setup['wgScriptPath'] = '';
@@ -592,6 +593,12 @@ class ParserTestRunner {
 				'iw_url' => 'http://doesnt.matter.org/$1',
 				'iw_local' => 0,
 			],
+			// Local interwiki that matches a namespace name (T228616)
+			[
+				'iw_prefix' => 'project',
+				'iw_url' => 'http://doesnt.matter.org/$1',
+				'iw_local' => 0,
+			],
 			[
 				'iw_prefix' => 'wikipedia',
 				'iw_url' => 'http://en.wikipedia.org/wiki/$1',
@@ -680,7 +687,7 @@ class ParserTestRunner {
 
 		// This affects title normalization in links. It invalidates
 		// MediaWikiTitleCodec objects.
-		$setup['wgLocalInterwikis'] = [ 'local', 'mi' ];
+		$setup['wgLocalInterwikis'] = [ 'local', 'project', 'mi' ];
 		$reset = function () {
 			$this->resetTitleServices();
 		};
