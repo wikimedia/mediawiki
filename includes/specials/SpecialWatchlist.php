@@ -517,7 +517,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
@@ -557,7 +557,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				}
 			} );
 		}
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$s = $list->beginRecentChangesList();
 
