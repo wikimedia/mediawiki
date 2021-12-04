@@ -782,7 +782,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @note Calling this method after prepareUpdate() has been called will cause an exception.
 	 *
 	 * @param UserIdentity $user The user to act as context for pre-save transformation (PST).
-	 *        Type hint should be reduced to UserIdentity at some point.
 	 * @param RevisionSlotsUpdate $slotsUpdate The new content of the slots to be updated
 	 *        by this edit, before PST.
 	 * @param bool $useStash Whether to use stashed ParserOutput
