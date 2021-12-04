@@ -708,4 +708,62 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
 	}
+
+	public function provideFormatSummaryRow() {
+		yield 'nothing' => [ '', [ '', [] ] ];
+		yield 'valid tag' => [
+			'tag1',
+			[
+				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
+				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)</span>'
+				. ')</span>',
+				[ 'mw-tag-tag1' ]
+			]
+		];
+		yield '0 tag' => [
+			'0',
+			[
+				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
+				. '<span class="mw-tag-marker mw-tag-marker-0">(tag-0)</span>'
+				. ')</span>',
+				[ 'mw-tag-0' ]
+			]
+		];
+		yield 'hidden tag' => [
+			'hidden-tag',
+			[
+				'',
+				[ 'mw-tag-hidden-tag' ]
+			]
+		];
+		yield 'mutliple tags' => [
+			'tag1,0,,hidden-tag',
+			[
+				'<span class="mw-tag-markers">(tag-list-wrapper: 2, '
+				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)</span>'
+				. ' <span class="mw-tag-marker mw-tag-marker-0">(tag-0)</span>'
+				. ')</span>',
+				[ 'mw-tag-tag1', 'mw-tag-0', 'mw-tag-hidden-tag' ]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideFormatSummaryRow
+	 */
+	public function testFormatSummaryRow( $tags, $expected ) {
+		$qqx = new MockMessageLocalizer();
+		$localizer = $this->createMock( MessageLocalizer::class );
+		$localizer->method( 'msg' )
+			->willReturnCallback( static function ( $key, ...$params ) use ( $qqx ) {
+				if ( $key === 'tag-hidden-tag' ) {
+					return new RawMessage( '-' );
+				}
+				return $qqx->msg( $key, ...$params );
+			} );
+
+		$out = ChangeTags::formatSummaryRow( $tags, 'dummy', $localizer );
+		$this->assertSame( $expected, $out );
+	}
+
 }
