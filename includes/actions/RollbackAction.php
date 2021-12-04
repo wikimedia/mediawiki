@@ -127,6 +127,8 @@ class RollbackAction extends FormAction {
 	 * @throws ThrottledError
 	 */
 	public function show() {
+		$this->setHeaders();
+
 		if ( !$this->userOptionsLookup->getOption( $this->getUser(), 'showrollbackconfirmation' ) ||
 			$this->getRequest()->wasPosted()
 		) {
