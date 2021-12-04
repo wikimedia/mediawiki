@@ -1238,7 +1238,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @param string $name
-	 * @param string $subpage
+	 * @param string|bool $subpage false for no subpage
 	 * @param string|array $urlaction
 	 * @return string
 	 */
@@ -1544,12 +1544,20 @@ abstract class Skin extends ContextSource {
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
 				$canChange = $sur->userCanChangeRights( $user );
+				$delimiter = $this->getConfig()->get( 'UserrightsInterwikiDelimiter' );
+				if ( str_contains( $rootUser, $delimiter ) ) {
+					// Username contains interwiki delimiter, link it via the
+					// #{userid} syntax. (T260222)
+					$linkArgs = [ false, [ 'user' => "#{$user->getId()}" ] ];
+				} else {
+					$linkArgs = [ $rootUser ];
+				}
 				$nav_urls['userrights'] = [
 					'text' => $this->msg(
 						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
 						$rootUser
 					)->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
+					'href' => self::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
 				];
 			}
 		}
