@@ -116,7 +116,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitTitle( $page, $pattern );
 		$this->limitAction( $action );
 		$this->getDateCond( $year, $month, $day );
-		$this->mTagFilter = $tagFilter;
+		$this->mTagFilter = (string)$tagFilter;
 	}
 
 	public function getDefaultQuery() {
@@ -376,7 +376,7 @@ class LogPager extends ReverseChronologicalPager {
 		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
 		// Tell it not to reorder the query. But not when tag filtering or log_search was used, as it
 		// seems as likely to be harmed as helped in that case.
-		if ( !$this->mTagFilter && !array_key_exists( 'ls_field', $this->mConds ) ) {
+		if ( $this->mTagFilter === '' && !array_key_exists( 'ls_field', $this->mConds ) ) {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
