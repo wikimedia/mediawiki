@@ -74,7 +74,7 @@ class DeleteLogFormatter extends LogFormatter {
 			if (
 				( $subtype === 'event' && count( $params ) === 6 )
 				|| (
-					$subtype === 'revision' && isset( $params[3] )
+					$subtype === 'revision' && isset( $params[3] ) && count( $params ) === 7
 					&& in_array( $params[3], [ 'revision', 'archive', 'oldimage', 'filearchive' ] )
 				)
 			) {
