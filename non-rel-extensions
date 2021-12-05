@@ -29,7 +29,6 @@ extensions/HAWelcome
 extensions/QuizGame
 extensions/WikiDiscover
 skins/pivot
-skins/liberty
 extensions/MatomoAnalytics
 extensions/PollNY
 extensions/VoteNY

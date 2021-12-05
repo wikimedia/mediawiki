@@ -838,11 +838,6 @@
 	url = https://github.com/Hutchy68/pivot
 	ignore = dirty
 	branch = master
-[submodule "skins/liberty"]
-	path = skins/liberty
-	url = https://gitlab.com/librewiki/Liberty-MW-Skin
-	ignore = dirty
-	branch = master
 [submodule "extensions/GeoData"]
 	path = extensions/GeoData
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoData
