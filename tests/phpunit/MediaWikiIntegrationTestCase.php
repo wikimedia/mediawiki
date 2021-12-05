@@ -2483,5 +2483,3 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 }
-
-class_alias( 'MediaWikiIntegrationTestCase', 'MediaWikiTestCase' );
