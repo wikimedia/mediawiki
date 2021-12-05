@@ -461,6 +461,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'UserGroupManager',
 				'LanguageConverterFactory',
+				'GroupPermissionsLookup',
 			]
 		],
 		'Listgrants' => [
