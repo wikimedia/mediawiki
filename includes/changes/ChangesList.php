@@ -571,9 +571,9 @@ class ChangesList extends ContextSource {
 			[ 'class' => 'mw-changeslist-title' ],
 			$params
 		);
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
 			$class = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
 				$class .= ' mw-history-suppressed';
 			}
 			$articlelink = '<span class="' . $class . '">' . $articlelink . '</span>';
@@ -670,9 +670,9 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
 			$deletedClass = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
 				$deletedClass .= ' mw-history-suppressed';
 			}
 			$s .= ' <span class="' . $deletedClass . '">' .
@@ -714,9 +714,9 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
 			$deletedClass = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
 				$deletedClass .= ' mw-history-suppressed';
 			}
 			return ' <span class="' . $deletedClass . ' comment">' .
