@@ -325,10 +325,10 @@ trait LanguageNameUtilsTestTrait {
 		return [
 			[],
 			[ AUTONYMS ],
-			[ AUTONYMS, 'mw' ],
+			[ AUTONYMS, DEFINED ],
 			[ AUTONYMS, ALL ],
 			[ AUTONYMS, SUPPORTED ],
-			[ 'he', 'mw' ],
+			[ 'he', DEFINED ],
 			[ 'he', ALL ],
 			[ 'he', SUPPORTED ],
 		];

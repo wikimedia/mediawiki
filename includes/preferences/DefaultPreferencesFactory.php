@@ -510,7 +510,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'personal/info',
 		];
 
-		$languages = $this->languageNameUtils->getLanguageNames( null, 'mwfile' );
+		$languages = $this->languageNameUtils->getLanguageNames(
+			LanguageNameUtils::AUTONYMS,
+			LanguageNameUtils::SUPPORTED
+		);
 		$languageCode = $this->options->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
