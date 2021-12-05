@@ -702,10 +702,19 @@
 		},
 		"ContentHandlers": {
 			"type": "object",
-			"description": "Mapping of model ID to class name",
+			"description": "Mapping of model ID to class name or an ObjectFactory specification.",
 			"patternProperties": {
 				"^[A-Za-z]+$": {
-					"type": "string"
+					"oneOf": [
+						{
+							"type": "string",
+							"description": "Class name of the ContentHandler."
+						},
+						{
+							"type": "object",
+							"description": "ObjectFactory specification of the ContentHandler."
+						}
+					]
 				}
 			}
 		},
