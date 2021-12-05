@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -210,7 +211,7 @@ class Xml {
 	) {
 		global $wgLanguageCode;
 
-		$include = $customisedOnly ? 'mwfile' : 'mw';
+		$include = $customisedOnly ? LanguageNameUtils::SUPPORTED : LanguageNameUtils::DEFINED;
 		$languages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
 			->getLanguageNames( $inLanguage, $include );

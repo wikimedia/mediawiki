@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -523,7 +524,7 @@ class WebInstaller extends Installer {
 
 		$mwLanguages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
-			->getLanguageNames( null, 'mwfile' );
+			->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED );
 		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
 
 		foreach ( $headerLanguages as $lang ) {

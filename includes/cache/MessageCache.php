@@ -1347,7 +1347,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Mainly used after a mass rebuild
 	 */
 	public function clear() {
-		$langs = $this->languageNameUtils->getLanguageNames( null, 'mw' );
+		$langs = $this->languageNameUtils->getLanguageNames();
 		foreach ( array_keys( $langs ) as $code ) {
 			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
@@ -1365,7 +1365,11 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		$lang = array_pop( $pieces );
-		if ( !$this->languageNameUtils->getLanguageName( $lang, null, 'mw' ) ) {
+		if ( !$this->languageNameUtils->getLanguageName(
+			$lang,
+			LanguageNameUtils::AUTONYMS,
+			LanguageNameUtils::DEFINED
+		) ) {
 			return [ $key, $this->contLangCode ];
 		}
 

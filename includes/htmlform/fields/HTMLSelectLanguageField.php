@@ -26,7 +26,7 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 
 		$languages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
-			->getLanguageNames( null, 'mw' );
+			->getLanguageNames();
 
 		// Make sure the site language is in the list;
 		// a custom language code might not have a defined name…
