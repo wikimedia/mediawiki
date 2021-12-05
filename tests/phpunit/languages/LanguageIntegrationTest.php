@@ -1866,6 +1866,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ],
 			[ 'de-formal', null, 'de does not have converter' ],
 			[ 'de', null, 'de does not have converter' ],
+			[ 'ike-cans', 'iu', 'do not simply strip out the subcode' ],
 		];
 	}
 
