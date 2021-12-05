@@ -30,6 +30,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -134,7 +135,7 @@ class RebuildLocalisationCache extends Maintenance {
 
 		$allCodes = array_keys( $services
 			->getLanguageNameUtils()
-			->getLanguageNames( null, 'mwfile' ) );
+			->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ) );
 		if ( $this->hasOption( 'lang' ) ) {
 			# Validate requested languages
 			$codes = array_intersect( $allCodes,

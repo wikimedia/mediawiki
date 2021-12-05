@@ -852,16 +852,16 @@ class Language {
 	 * 		Use LanguageNameUtils::AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
 	 * 		LanguageNameUtils::AUTONYMS all available languages
-	 * 		'mw' only if the language is defined in MediaWiki
-	 * 		 or wgExtraLanguageNames (default)
-	 * 		LanguageNameUtils::SUPPORTED only if the language is in 'mw' *and*
-	 * 		 has a message file
+	 * 		LanguageNameUtils::DEFINED only if the language is defined in
+	 *               MediaWiki or wgExtraLanguageNames (default)
+	 * 		LanguageNameUtils::SUPPORTED only if the language is in
+	 *               LanguageNameUtils::DEFINED *and* has a message file
 	 * @return array Language code => language name (sorted by key)
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames(
 		$inLanguage = LanguageNameUtils::AUTONYMS,
-		$include = 'mw'
+		$include = LanguageNameUtils::DEFINED
 	) {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( $inLanguage, $include );
