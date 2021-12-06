@@ -39,6 +39,13 @@ class SettingsBuilder {
 	private $phpIniSink;
 
 	/**
+	 * When we're done applying all settings.
+	 *
+	 * @var bool
+	 */
+	private $finished = false;
+
+	/**
 	 * @param string $baseDir
 	 * @param ConfigBuilder $configSink
 	 * @param PhpIniSink $phpIniSink
@@ -70,6 +77,8 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function load( SettingsSource $source ): self {
+		$this->assertNotFinished();
+
 		if ( $this->cache !== null && $source instanceof CacheableSource ) {
 			$source = new CachedSource( $this->cache, $source );
 		}
@@ -153,8 +162,11 @@ class SettingsBuilder {
 	 * This may however not be the case in the future.
 	 *
 	 * @return $this
+	 * @throws SettingsBuilderException
 	 */
 	public function apply(): self {
+		$this->assertNotFinished();
+
 		foreach ( $this->currentBatch as $source ) {
 			$settings = $source->load();
 			$this->configSchema->addSchemas( $settings['config-schema'] ?? [], (string)$source );
@@ -198,5 +210,25 @@ class SettingsBuilder {
 
 	private function reset() {
 		$this->currentBatch = [];
+	}
+
+	private function assertNotFinished(): void {
+		if ( $this->finished ) {
+			throw new SettingsBuilderException(
+				"Tried applying settings too late after applying settings have finalized."
+			);
+		}
+	}
+
+	/**
+	 * Settings can't be loaded & applied after calling this
+	 * method.
+	 *
+	 * @internal Most likely called only in Setup.php.
+	 *
+	 * @return void
+	 */
+	public function finalize(): void {
+		$this->finished = true;
 	}
 }
