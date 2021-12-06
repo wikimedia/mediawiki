@@ -4164,7 +4164,9 @@ $wgMangleFlashPolicy = true;
  *   to use this mechanism (use `packageFiles` instead). See also
  *   [Coding conventions/JavaScript](https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Exporting).
  *
- *   Extended options:
+ *   Default: `[]`
+ *
+ *   Extended options, concatenated in this order:
  *
  *   - languageScripts `{string[]|string}`: Scripts to include in specific language contexts.
  *     Array is keyed by language code with file path or list of file path.
@@ -4172,8 +4174,6 @@ $wgMangleFlashPolicy = true;
  *     Array keyed is by skin name with file path or list of file paths.
  *   - debugScripts `{string[]|string}`: Scripts to include in debug contexts.
  *     %File path or list of file paths.
- *
- *   Default: `[]`
  *
  * - messages `{string[]}`
  *   Localisation messages to bundle with this module, for client-side use

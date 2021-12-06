@@ -51,7 +51,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			'watchToken' => $user->getEditToken( 'watch' ),
 			'csrfToken' => $user->getEditToken(),
 		];
-		$script = 'mw.user.tokens.set(' . $context->encodeJson( $tokens ) . ');';
+		$script = 'mw.user.tokens.set(' . $context->encodeJson( $tokens ) . ');' . "\n";
 
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 
@@ -62,7 +62,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 		// Optimisation: Only output this function call if the user has non-default settings.
 		if ( $options ) {
-			$script .= 'mw.user.options.set(' . $context->encodeJson( $options ) . ');';
+			$script .= 'mw.user.options.set(' . $context->encodeJson( $options ) . ');' . "\n";
 		}
 
 		return $script;

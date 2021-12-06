@@ -795,6 +795,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string[] List of file paths
 	 */
 	private function getScriptFiles( ResourceLoaderContext $context ) {
+		// Execution order, as documented at $wgResourceModules:
+		// scripts, languageScripts, skinScripts, debugScripts.
 		$files = array_merge(
 			$this->scripts,
 			$this->getLanguageScripts( $context->getLanguage() ),
