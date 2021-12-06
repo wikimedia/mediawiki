@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Unit\Page;
 
-use BacklinkCache;
 use BadMethodCallException;
 use BagOStuff;
 use CommentStore;
@@ -81,9 +80,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
-		$blc = $this->createMock( BacklinkCache::class );
-		$blcFactory = $this->createMock( BacklinkCacheFactory::class );
-		$blcFactory->method( 'getBacklinkCache' )->willReturn( $blc );
 
 		$ret = new DeletePage(
 			$this->createHookContainer(),
@@ -97,9 +93,9 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			'req-foo-bar',
 			$wpFactory,
 			$this->createMock( UserFactory::class ),
+			$this->createMock( BacklinkCacheFactory::class ),
 			$page,
-			$deleter,
-			$blcFactory
+			$deleter
 		);
 		$ret->setIsDeletePageUnitTest( true );
 		return $ret;
@@ -193,7 +189,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			$this->createMock( Authority::class )
 		);
 		$delPage->deleteUnsafe( 'foo' );
-		$this->assertIsArray( $delPage->getSuccessfulDeletionsIDs() );
+		$this->assertArrayHasKey( DeletePage::PAGE_BASE, $delPage->getSuccessfulDeletionsIDs() );
 	}
 
 	/**
@@ -209,26 +205,26 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::deletionWasScheduled
+	 * @covers ::deletionsWereScheduled
 	 */
-	public function testDeletionWasScheduled(): void {
+	public function testDeletionsWereScheduled(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
 			$this->createMock( Authority::class )
 		);
 		$delPage->deleteUnsafe( 'foo' );
-		$this->assertIsBool( $delPage->deletionWasScheduled() );
+		$this->assertFalse( $delPage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
 	}
 
 	/**
-	 * @covers ::deletionWasScheduled
+	 * @covers ::deletionsWereScheduled
 	 */
-	public function testDeletionWasScheduled__notAttempted(): void {
+	public function testDeletionsWereScheduled__notAttempted(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
 			$this->createMock( Authority::class )
 		);
 		$this->expectException( BadMethodCallException::class );
-		$delPage->deletionWasScheduled();
+		$delPage->deletionsWereScheduled();
 	}
 }

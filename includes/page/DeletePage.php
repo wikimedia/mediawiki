@@ -53,6 +53,11 @@ class DeletePage {
 		'DeleteRevisionsLimit',
 	];
 
+	/**
+	 * Constants used for the return value of getSuccessfulDeletionsIDs() and deletionsWereScheduled()
+	 */
+	public const PAGE_BASE = 'base';
+
 	/** @var HookRunner */
 	private $hookRunner;
 	/** @var RevisionStore */
@@ -100,9 +105,15 @@ class DeletePage {
 	/** @var bool */
 	private $mergeLegacyHookErrors = true;
 
-	/** @var int[]|null */
+	/**
+	 * @var array<int|null>|null Keys are the self::PAGE_* constants. Values are null if the deletion couldn't happen
+	 * (e.g. due to lacking perms) or was scheduled.
+	 */
 	private $successfulDeletionsIDs;
-	/** @var bool|null */
+	/**
+	 * @var array<bool|null>|null Keys are the self::PAGE_* constants. Values are null if the deletion couldn't happen
+	 * (e.g. due to lacking perms).
+	 */
 	private $wasScheduled;
 	/** @var bool Whether a deletion was attempted */
 	private $attemptedDeletion = false;
@@ -119,9 +130,9 @@ class DeletePage {
 	 * @param string $webRequestID
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param UserFactory $userFactory
+	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
-	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
@@ -135,9 +146,9 @@ class DeletePage {
 		string $webRequestID,
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
+		BacklinkCacheFactory $backlinkCacheFactory,
 		ProperPageIdentity $page,
-		Authority $deleter,
-		BacklinkCacheFactory $backlinkCacheFactory
+		Authority $deleter
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revisionStore = $revisionStore;
@@ -151,10 +162,10 @@ class DeletePage {
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
 		$this->userFactory = $userFactory;
+		$this->backlinkCacheFactory = $backlinkCacheFactory;
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
-		$this->backlinkCacheFactory = $backlinkCacheFactory;
 	}
 
 	/**
@@ -236,8 +247,8 @@ class DeletePage {
 	 */
 	private function setDeletionAttempted(): void {
 		$this->attemptedDeletion = true;
-		$this->successfulDeletionsIDs = [];
-		$this->wasScheduled = false;
+		$this->successfulDeletionsIDs = [ self::PAGE_BASE => null ];
+		$this->wasScheduled = [ self::PAGE_BASE => null ];
 	}
 
 	/**
@@ -262,8 +273,20 @@ class DeletePage {
 	/**
 	 * @return bool Whether (part of) the deletion was scheduled
 	 * @throws BadMethodCallException If no deletions were attempted
+	 * @deprecated since 1.38, use ::deletionsWereScheduled() instead.
 	 */
 	public function deletionWasScheduled(): bool {
+		wfDeprecated( __METHOD__, '1.38' );
+		$this->assertDeletionAttempted();
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+		return $this->wasScheduled[self::PAGE_BASE];
+	}
+
+	/**
+	 * @return bool[] Whether the deletions were scheduled
+	 * @throws BadMethodCallException If no deletions were attempted
+	 */
+	public function deletionsWereScheduled(): array {
 		$this->assertDeletionAttempted();
 		return $this->wasScheduled;
 	}
@@ -382,7 +405,7 @@ class DeletePage {
 			return $status;
 		}
 
-		return $this->deleteInternal( $reason );
+		return $this->deleteInternal( self::PAGE_BASE, $reason );
 	}
 
 	/**
@@ -393,11 +416,16 @@ class DeletePage {
 	 * Deletions can often be completed inline without involving the job queue.
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
+	 * @param string $pageRole
 	 * @param string $reason
 	 * @param string|null $webRequestId
 	 * @return Status
 	 */
-	public function deleteInternal( string $reason, ?string $webRequestId = null ): Status {
+	public function deleteInternal(
+		string $pageRole,
+		string $reason,
+		?string $webRequestId = null
+	): Status {
 		// The following is necessary for direct calls from the outside
 		$this->setDeletionAttempted();
 
@@ -480,13 +508,15 @@ class DeletePage {
 				'userId' => $this->deleter->getUser()->getId(),
 				'tags' => json_encode( $this->tags ),
 				'logsubtype' => $this->logSubtype,
+				'pageRole' => $pageRole,
 			];
 
 			$job = new DeletePageJob( $jobParams );
 			$this->jobQueueGroup->push( $job );
-			$this->wasScheduled = true;
+			$this->wasScheduled[$pageRole] = true;
 			return $status;
 		}
+		$this->wasScheduled[$pageRole] = false;
 
 		// Get archivedRevisionCount by db query, because there's no better alternative.
 		// Jobs cannot pass a count of archived revisions to the next job, because additional
@@ -559,7 +589,7 @@ class DeletePage {
 			$logEntry,
 			$archivedRevisionCount
 		);
-		$this->successfulDeletionsIDs[] = $logid;
+		$this->successfulDeletionsIDs[$pageRole] = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
 		$key = $this->recentDeletesCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );

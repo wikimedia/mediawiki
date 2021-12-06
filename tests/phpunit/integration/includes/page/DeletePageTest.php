@@ -231,13 +231,14 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $status->isGood(), 'Deletion should succeed' );
 
 		if ( $immediate ) {
-			$this->assertFalse( $deletePage->deletionWasScheduled() );
+			$this->assertFalse( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
 			$logIDs = $deletePage->getSuccessfulDeletionsIDs();
 			$this->assertCount( 1, $logIDs );
-			$logID = $logIDs[0];
+			$logID = $logIDs[DeletePage::PAGE_BASE];
 			$this->assertIsInt( $logID );
 		} else {
-			$this->assertTrue( $deletePage->deletionWasScheduled() );
+			$this->assertTrue( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
+			$this->assertNull( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE] );
 			$this->runJobs();
 			$logID = wfGetDB( DB_REPLICA )->selectField(
 				'logging',

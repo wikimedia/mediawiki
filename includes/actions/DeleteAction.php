@@ -21,6 +21,7 @@
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
@@ -143,7 +144,7 @@ class DeleteAction extends FormlessAction {
 			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			if ( !$deletePage->deletionWasScheduled() ) {
+			if ( !$deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
 				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
