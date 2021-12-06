@@ -4251,9 +4251,13 @@ class EditPage implements IEditObject {
 		$scopedCallback = $parserOptions->setupFakeRevision( $this->mTitle, $pstContent, $user );
 		$parserOutput = $contentRenderer->getParserOutput( $pstContent, $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
+		$out = $this->context->getOutput();
+		$skin = $out->getSkin();
+		$skinOptions = $skin->getOptions();
 		return [
 			'parserOutput' => $parserOutput,
 			'html' => $parserOutput->getText( [
+				'injectTOC' => $skinOptions['toc'],
 				'enableSectionEditLinks' => false,
 				'includeDebugInfo' => true,
 			] )
