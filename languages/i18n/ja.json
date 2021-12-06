@@ -906,7 +906,7 @@
 	"unstrip-depth-category": "\"unstrip\" の深さ制限を超えたページ",
 	"unstrip-depth-category-desc": "ページが\"unstrip\"の深さ上限を超えています。",
 	"unstrip-size-warning": "\"unstrip\" のサイズが上限 ($1) を超えました",
-	"unstrip-size-category": "ページの  \"unstrip\" サイズが上限を超えました",
+	"unstrip-size-category": "「unstrip」サイズ上限を超えているページ",
 	"unstrip-size-category-desc": "ページの \"unstrip\" サイズが上限を超えています。",
 	"converter-manual-rule-error": "手動の言語変換規則でエラーを検出しました。",
 	"undo-success": "この編集を取り消せます。\n下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を公開して取り消しを完了してください。",
@@ -4243,5 +4243,7 @@
 	"paramvalidator-help-type-title": "タイプ : ページタイトル",
 	"paramvalidator-help-type-title-must-exist": "既存のページのみ。",
 	"paramvalidator-help-type-title-no-must-exist": "存在しないページでも可。",
-	"nonmain-slot-differences-therefore-readonly": "ページのこの版以降に、ページのデータにウィキテキストに基づいていない変更が発生したため、この版のウィキテキストを編集できません。[$1 ここをクリックして版を復元できます。]"
+	"nonmain-slot-differences-therefore-readonly": "ページのこの版以降に、ページのデータにウィキテキストに基づいていない変更が発生したため、この版のウィキテキストを編集できません。[$1 ここをクリックして版を復元できます。]",
+	"config-missing-key": "MediaWiki設定パラメータ「$1」が不足しています",
+	"config-invalid-key": "無効なMediaWiki設定パラメータ「$1」：$2"
 }
