@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -88,7 +89,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers SkinTemplate::buildSearchProps
 	 */
 	public function testGetTemplateData() {
-		$config = new HashConfig();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$bodytext = '<p>hello</p>';
 		$context = new RequestContext();
 		$title = Title::newFromText( 'Mustache skin' );
@@ -99,6 +100,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 			'name' => 'test',
 			'templateDirectory' => __DIR__,
 		] );
+		$context->setConfig( $config );
 		$skin->setContext( $context );
 		$data = $skin->getTemplateData();
 
