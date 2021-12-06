@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 
 /**
  * Class JobRunnerTest
@@ -44,6 +45,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 			'userId' => $this->getTestUser()->getUser()->getId(),
 			'tags' => json_encode( [] ),
 			'logsubtype' => 'delete',
+			'pageRole' => DeletePage::PAGE_BASE,
 		];
 		$this->deletePageJob = new DeletePageJob( $jobParams );
 	}

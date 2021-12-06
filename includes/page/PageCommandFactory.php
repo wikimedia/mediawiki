@@ -240,9 +240,9 @@ class PageCommandFactory implements
 			$this->webRequestID,
 			$this->wikiPageFactory,
 			$this->userFactory,
+			$this->backlinkCacheFactory,
 			$page,
-			$deleter,
-			$this->backlinkCacheFactory
+			$deleter
 		);
 	}
 
