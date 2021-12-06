@@ -2089,7 +2089,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		];
 		$this->setMwGlobals( $config );
 		$namespaces = $lang->getNamespaces();
-		$this->assertEquals( $expected, $namespaces );
+		$this->assertArraySubmapSame( $expected, $namespaces );
 	}
 
 	public function provideGetNamespaces() {
