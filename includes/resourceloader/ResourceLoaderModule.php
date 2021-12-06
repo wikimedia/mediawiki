@@ -286,20 +286,26 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the URLs to load this module's JS code in debug mode.
+	 * Get alternative script URLs for legacy debug mode.
 	 *
-	 * The default behavior is to return a `load.php?only=scripts` URL for
-	 * the module. File-based modules may override this to load underlying
-	 * files directly.
+	 * The default behavior is to return a `load.php?only=scripts&module=<name>` URL.
 	 *
-	 * This function must only be called when:
+	 * Module classes that merely wrap one or more other script files in prodution mode, may
+	 * override this method to return an array of raw URLs for those underlying scripts,
+	 * if those are individually web-accessible.
+	 *
+	 * The mw.loader client will load and execute each URL consecutively. This has the caveat of
+	 * executing legacy debug scripts in the global scope, which is why non-package file modules
+	 * tend to use file closures (T50886).
+	 *
+	 * This function MUST NOT be called, unless all the following are true:
 	 *
 	 * 1. We're in debug mode,
-	 * 2. There is no `only=` parameter and,
-	 * 3. self::supportsURLLoading() returns true.
+	 * 2. There is no `only=` parameter in the context,
+	 * 3. self::supportsURLLoading() has returned true.
 	 *
-	 * Point 2 is prevents an infinite loop, therefore this function
-	 * MUST return either an URL with an `only=` query, or a non-load.php URL.
+	 * Point 2 prevents an infinite loop since we use the `only=` mechanism in the return value.
+	 * Overrides must similarly return with `only`, or return or a non-load.php URL.
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext $context
@@ -769,11 +775,10 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$content = [];
 
 		// Scripts
-		// If we are in debug mode, we'll want to return an array of URLs if possible
-		// However, we can't do this if the module doesn't support it.
-		// We also can't do this if there is an only= parameter, because we have to give
-		// the module a way to return a load.php URL without causing an infinite loop
-		if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
+		if ( $context->getDebug() === $context::DEBUG_LEGACY && !$context->getOnly() && $this->supportsURLLoading() ) {
+			// In legacy debug mode, let supporting modules like FileModule replace the bundled
+			// script closure with an array of alternative script URLs to consecutively load instead.
+			// See self::getScriptURLsForDebug() more details.
 			$scripts = $this->getScriptURLsForDebug( $context );
 		} else {
 			$scripts = $this->getScript( $context );

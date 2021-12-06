@@ -364,7 +364,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// (such as when using the default lang/skin).
 			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
-			'$VARS.maxQueryLength' => $context->encodeJson( $this->getMaxQueryLength() ),
+			'$VARS.maxQueryLength' => $context->encodeJson(
+				// In debug mode (except legacy debug mode), let the client fetch each module in
+				// its own dedicated request (T85805).
+				// This is effectively the equivalent of ResourceLoaderClientHtml::makeLoad,
+				// which does this for stylesheets.
+				( !$context->getDebug() || $context->getDebug() === $context::DEBUG_LEGACY ) ?
+					$this->getMaxQueryLength() :
+					0
+			),
 			// The client-side module cache can be disabled by site configuration.
 			// It is also always disabled in debug mode.
 			'$VARS.storeDisabled' => $context->encodeJson(
