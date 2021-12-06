@@ -2348,7 +2348,7 @@
 	"rollback-missingparam": "V požiadavke chýbajú povinné parametre.",
 	"rollback-missingrevision": "Nepodarilo sa načítať údaje k revízii.",
 	"cantrollback": "Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.",
-	"alreadyrolled": "Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.\n\nAutorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"alreadyrolled": "Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.\n\nAutorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|diskusia]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Zhrnutie úpravy bolo: <em>$1</em>.",
 	"revertpage": "Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1",
 	"revertpage-anon": "Posledné úpravy používateľa [[Special:Contributions/$2|$2]] vrátené; bola obnovená posledná úprava [[User:$1|$1]]",

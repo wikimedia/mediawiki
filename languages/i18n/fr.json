@@ -3907,7 +3907,7 @@
 	"logentry-import-upload-details": "$1{{GENDER:$2|}} a importé $3 par téléversement de fichier ($4 version{{PLURAL:$4||s}})",
 	"logentry-import-interwiki": "$1{{GENDER:$2|}} a importé $3 depuis un autre wiki",
 	"logentry-import-interwiki-details": "$1{{GENDER:$2|}} a importé $3 depuis $5 ($4 version{{PLURAL:$4||s}})",
-	"logentry-merge-merge": "$1{{GENDER:$2|}} a fusionné $3 en $4 (versions jusqu’à $5)",
+	"logentry-merge-merge": "$1{{GENDER:$2|}} a fusionné $3 dans $4 (les versions jusqu’au $5)",
 	"logentry-move-move": "$1{{GENDER:$2|}} a déplacé la page $3 vers $4",
 	"logentry-move-move-noredirect": "$1{{GENDER:$2|}} a déplacé la page $3 vers $4 sans laisser de redirection",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|a déplacé}} la page $3 vers $4 par-dessus une redirection",
