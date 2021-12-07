@@ -242,6 +242,13 @@ class BlockManager {
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock (T221075)
 			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
+
+			// (T285159) Exclude autoblocks from XFF headers to prevent spoofed
+			// headers uncovering the IPs of autoblocked users
+			$xffblocks = array_filter( $xffblocks, static function ( $block ) {
+				return $block->getType() !== AbstractBlock::TYPE_AUTO;
+			} );
+
 			$blocks = array_merge( $blocks, $xffblocks );
 		}
 	}
