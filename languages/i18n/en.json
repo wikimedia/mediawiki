@@ -27,7 +27,7 @@
 	"tog-enotifrevealaddr": "Reveal my email address in notification emails",
 	"tog-shownumberswatching": "Show the number of watching users",
 	"tog-oldsig": "Your existing signature:",
-	"tog-fancysig": "Treat signature as wikitext (without an automatic link)",
+	"tog-fancysig": "Treat signature as wikitext (without an automatic link to your user page)",
 	"tog-uselivepreview": "Show previews without reloading the page",
 	"tog-forceeditsummary": "Prompt me when entering a blank edit summary (or the default undo summary)",
 	"tog-watchlisthideown": "Hide my edits from the watchlist",
