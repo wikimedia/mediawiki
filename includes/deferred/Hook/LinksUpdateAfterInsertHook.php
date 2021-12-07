@@ -8,7 +8,7 @@ use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "LinksUpdateAfterInsert" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.38 Use LinksUpdate or LinksUpdateComplete
  * @ingroup Hooks
  */
 interface LinksUpdateAfterInsertHook {
