@@ -285,7 +285,6 @@ CREATE TABLE /*_*/page_restrictions (
   pr_type VARBINARY(60) NOT NULL,
   pr_level VARBINARY(60) NOT NULL,
   pr_cascade TINYINT NOT NULL,
-  pr_user INT UNSIGNED DEFAULT NULL,
   pr_expiry VARBINARY(14) DEFAULT NULL,
   UNIQUE INDEX pr_pagetype (pr_page, pr_type),
   INDEX pr_typelevel (pr_type, pr_level),

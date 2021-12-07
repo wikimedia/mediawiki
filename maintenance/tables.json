@@ -944,12 +944,6 @@
 				"options": { "notnull": true }
 			},
 			{
-				"name": "pr_user",
-				"comment": "Field for future support of per-user restriction.",
-				"type": "integer",
-				"options": { "notnull": false, "unsigned": true }
-			},
-			{
 				"name": "pr_expiry",
 				"comment": "Field for time-limited protection.",
 				"type": "mwtimestamp",

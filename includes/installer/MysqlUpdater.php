@@ -248,6 +248,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.38
 			[ 'doConvertDjvuMetadata' ],
+			[ 'dropField', 'page_restrictions', 'pr_user', 'patch-drop-page_restrictions-pr_user.sql' ],
 		];
 	}
 
@@ -344,8 +345,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'table' => 'bot_passwords', 'field' => 'bp_user', 'file' => 'patch-bot_passwords-bp_user-unsigned.sql' ],
 			[ 'table' => 'change_tag', 'field' => 'ct_log_id', 'file' => 'patch-change_tag-ct_log_id-unsigned.sql' ],
 			[ 'table' => 'change_tag', 'field' => 'ct_rev_id', 'file' => 'patch-change_tag-ct_rev_id-unsigned.sql' ],
-			[ 'table' => 'page_restrictions', 'field' => 'pr_user',
-				'file' => 'patch-page_restrictions-pr_user-unsigned.sql' ],
 			[ 'table' => 'user_newtalk', 'field' => 'user_id', 'file' => 'patch-user_newtalk-user_id-unsigned.sql' ],
 			[ 'table' => 'user_properties', 'field' => 'up_user',
 				'file' => 'patch-user_properties-up_user-unsigned.sql' ],

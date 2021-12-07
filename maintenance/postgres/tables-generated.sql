@@ -316,7 +316,6 @@ CREATE TABLE page_restrictions (
   pr_type TEXT NOT NULL,
   pr_level TEXT NOT NULL,
   pr_cascade SMALLINT NOT NULL,
-  pr_user INT DEFAULT NULL,
   pr_expiry TIMESTAMPTZ DEFAULT NULL,
   PRIMARY KEY(pr_id)
 );
