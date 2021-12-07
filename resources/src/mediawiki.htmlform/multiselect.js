@@ -60,7 +60,8 @@
 		menuTagOptions = checkboxesOptions.map( function ( option ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: option.getData(),
-				label: option.getLabel()
+				label: option.getLabel(),
+				disabled: option.isDisabled()
 			} );
 		} );
 		menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
@@ -71,14 +72,16 @@
 		} );
 		menuTagWidget.setValue( checkboxesWidget.getValue() );
 
-		// Data from CapsuleMultiselectWidget will not be submitted with the form, so keep the original
+		// Data from TagMultiselectWidget will not be submitted with the form, so keep the original
 		// CheckboxMultiselectInputWidget up-to-date.
 		menuTagWidget.on( 'change', function () {
 			checkboxesWidget.setValue( menuTagWidget.getValue() );
 		} );
+		// Change the connected fieldWidget to the new one, so other scripts can infuse the layout
+		// and make changes to this widget.
+		fieldLayout.fieldWidget = menuTagWidget;
 
-		// Hide original widget and add new one in its place. This is a bit hacky, since the FieldLayout
-		// still thinks it's connected to the old widget.
+		// Hide original widget and add new one in its place.
 		checkboxesWidget.toggle( false );
 		checkboxesWidget.$element.after( menuTagWidget.$element );
 	}
@@ -90,7 +93,11 @@
 				var $el = $( this ),
 					data, modules, extraModules;
 				if ( $el.is( '[data-ooui]' ) ) {
-					// Load 'oojs-ui-widgets' for CapsuleMultiselectWidget
+					// Avoid kicks in multiple times and causing a mess
+					if ( $el.find( '.oo-ui-menuTagMultiselectWidget' ).length ) {
+						return;
+					}
+					// Load 'oojs-ui-widgets' for TagMultiselectWidget
 					modules = [ 'mediawiki.htmlform.ooui', 'oojs-ui-widgets' ];
 					data = $el.data( 'mw-modules' );
 					if ( data ) {
