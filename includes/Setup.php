@@ -127,7 +127,13 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 }
 
 // Define $wgSettings for use in DefaultSettings.php and in LocalSettings.php
-$wgSettings = new SettingsBuilder( $IP, new GlobalConfigBuilder( 'wg' ), new PhpIniSink() );
+global $wgSettings; // explicitly global, so it works with wfRequireOnceInGlobalScope()
+$wgSettings = new SettingsBuilder(
+	$IP,
+	ExtensionRegistry::getInstance(),
+	new GlobalConfigBuilder( 'wg' ),
+	new PhpIniSink()
+);
 
 require_once "$IP/includes/DefaultSettings.php";
 require_once "$IP/includes/GlobalFunctions.php";
