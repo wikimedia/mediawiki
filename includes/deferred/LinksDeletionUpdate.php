@@ -19,6 +19,7 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**

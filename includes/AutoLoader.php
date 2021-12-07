@@ -148,6 +148,7 @@ class AutoLoader {
 			'MediaWiki\\Config\\' => __DIR__ . '/config/',
 			'MediaWiki\\Content\\' => __DIR__ . '/content/',
 			'MediaWiki\\DB\\' => __DIR__ . '/db/',
+			'MediaWiki\\Deferred\\LinksUpdate\\' => __DIR__ . '/deferred/LinksUpdate/',
 			'MediaWiki\\Diff\\' => __DIR__ . '/diff/',
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
