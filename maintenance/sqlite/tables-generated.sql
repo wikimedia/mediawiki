@@ -303,7 +303,6 @@ CREATE TABLE /*_*/page_restrictions (
   pr_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   pr_page INTEGER NOT NULL, pr_type BLOB NOT NULL,
   pr_level BLOB NOT NULL, pr_cascade SMALLINT NOT NULL,
-  pr_user INTEGER UNSIGNED DEFAULT NULL,
   pr_expiry BLOB DEFAULT NULL
 );
 

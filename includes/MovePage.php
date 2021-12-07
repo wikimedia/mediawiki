@@ -728,7 +728,7 @@ class MovePage {
 			# Protect the redirect title as the title used to be...
 			$res = $dbw->select(
 				'page_restrictions',
-				[ 'pr_type', 'pr_level', 'pr_cascade', 'pr_user', 'pr_expiry' ],
+				[ 'pr_type', 'pr_level', 'pr_cascade', 'pr_expiry' ],
 				[ 'pr_page' => $pageid ],
 				__METHOD__,
 				'FOR UPDATE'
@@ -740,7 +740,6 @@ class MovePage {
 					'pr_type' => $row->pr_type,
 					'pr_level' => $row->pr_level,
 					'pr_cascade' => $row->pr_cascade,
-					'pr_user' => $row->pr_user,
 					'pr_expiry' => $row->pr_expiry
 				];
 			}
