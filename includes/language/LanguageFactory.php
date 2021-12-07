@@ -189,20 +189,19 @@ class LanguageFactory {
 	public function getParentLanguage( $code ) {
 		// We deliberately use array_key_exists() instead of isset() because we cache null.
 		if ( !array_key_exists( $code, $this->parentLangCache ) ) {
-			$codeBase = explode( '-', $code )[0];
-			if ( !in_array( $codeBase, LanguageConverter::$languagesWithVariants ) ) {
+			if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
 				$this->parentLangCache[$code] = null;
 				return null;
 			}
-
-			$lang = $this->getLanguage( $codeBase );
-			$converter = $this->langConverterFactory->getLanguageConverter( $lang );
-			if ( !$converter->hasVariant( $code ) ) {
-				$this->parentLangCache[$code] = null;
-				return null;
+			foreach ( LanguageConverter::$languagesWithVariants as $mainCode ) {
+				$lang = $this->getLanguage( $mainCode );
+				$converter = $this->langConverterFactory->getLanguageConverter( $lang );
+				if ( $converter->hasVariant( $code ) ) {
+					$this->parentLangCache[$code] = $lang;
+					return $lang;
+				}
 			}
-
-			$this->parentLangCache[$code] = $lang;
+			$this->parentLangCache[$code] = null;
 		}
 
 		return $this->parentLangCache[$code];
