@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 
 /**
  * Class DeletePageJob
@@ -27,7 +28,11 @@ class DeletePageJob extends Job implements GenericParameterJob {
 				->setTags( json_decode( $this->params['tags'] ) )
 				->setLogSubtype( $this->params['logsubtype'] )
 				->deleteInternal(
-					$this->params['pageRole'], $this->params['reason'], $this->getRequestId() );
+					// Use a fallback for BC with queued jobs.
+					$this->params['pageRole'] ?? DeletePage::PAGE_BASE,
+					$this->params['reason'],
+					$this->getRequestId()
+				);
 		}
 		return true;
 	}
