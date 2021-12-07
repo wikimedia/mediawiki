@@ -2,10 +2,10 @@
 
 namespace phpunit\unit\includes\Settings;
 
+use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
-use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
@@ -19,21 +19,16 @@ use Psr\SimpleCache\CacheInterface;
 class SettingsBuilderTest extends TestCase {
 
 	/**
-	 * @param ConfigBuilder|null $configBuilder
-	 * @param PhpIniSink|null $phpIniSink
-	 * @param CacheInterface|null $cache
+	 * @param array $params
 	 * @return SettingsBuilder
 	 */
-	private function newSettingsBuilder(
-		ConfigBuilder $configBuilder = null,
-		PhpIniSink $phpIniSink = null,
-		CacheInterface $cache = null
-	): SettingsBuilder {
+	private function newSettingsBuilder( $params = [] ): SettingsBuilder {
 		return new SettingsBuilder(
 			__DIR__,
-			$configBuilder ?? new ArrayConfigBuilder(),
-			$phpIniSink ?? new PhpIniSink(),
-			$cache
+			$params['extensionRegistry'] ?? $this->createMock( ExtensionRegistry::class ),
+			$params['configBuilder'] ?? new ArrayConfigBuilder(),
+			$params['phpIniSink'] ?? $this->createMock( PhpIniSink::class ),
+			$params['cache'] ?? null
 		);
 	}
 
@@ -43,7 +38,10 @@ class SettingsBuilderTest extends TestCase {
 		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
 		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
 
-		$setting = $this->newSettingsBuilder( $configBuilder, $phpIniSinkMock );
+		$setting = $this->newSettingsBuilder( [
+			'configBuilder' => $configBuilder,
+			'phpIniSink' => $phpIniSinkMock
+		] );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
 
 		$config = $configBuilder->build();
@@ -56,7 +54,10 @@ class SettingsBuilderTest extends TestCase {
 		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
 		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
 
-		$setting = $this->newSettingsBuilder( $configBuilder, $phpIniSinkMock );
+		$setting = $this->newSettingsBuilder( [
+			'configBuilder' => $configBuilder,
+			'phpIniSink' => $phpIniSinkMock
+		] );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
 
 		$config = $configBuilder->build();
@@ -67,6 +68,24 @@ class SettingsBuilderTest extends TestCase {
 
 		$this->expectException( SettingsBuilderException::class );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
+	}
+
+	public function testLoadingExtensions() {
+		$extensionRegistryMock = $this->createMock( ExtensionRegistry::class );
+		$extensionRegistryMock
+			->expects( $this->exactly( 3 ) )
+			->method( 'queue' )->withConsecutive(
+				[ '/test/extensions/Foo/extension.json' ],
+				[ '/test/extensions/Bar/extension.json' ],
+				[ '/test/skins/Quux/skin.json' ]
+			);
+
+		$setting = $this->newSettingsBuilder( [
+			'extensionRegistry' => $extensionRegistryMock,
+		] );
+		$setting->loadFile( 'fixtures/default-schema.json' );
+		$setting->loadFile( 'fixtures/settings.json' );
+		$setting->apply();
 	}
 
 	public function provideConfigOverrides() {
@@ -187,7 +206,7 @@ class SettingsBuilderTest extends TestCase {
 	 */
 	public function testConfigOverrides( array $settingsBatches, array $expectedGlobals ) {
 		$configBuilder = new ArrayConfigBuilder();
-		$setting = $this->newSettingsBuilder( $configBuilder );
+		$setting = $this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] );
 		foreach ( $settingsBatches as $batch ) {
 			$setting->loadArray( $batch );
 		}
@@ -199,7 +218,7 @@ class SettingsBuilderTest extends TestCase {
 
 	public function testApplyPurgesState() {
 		$configBuilder = new ArrayConfigBuilder();
-		$setting = $this->newSettingsBuilder( $configBuilder );
+		$setting = $this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] );
 		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )
 			->apply();
 		$this->assertSame( 'MyValue', $configBuilder->build()->get( 'MySetting' ) );
@@ -213,7 +232,7 @@ class SettingsBuilderTest extends TestCase {
 	public function testApplyDefaultDoesNotOverwriteExisting() {
 		$configBuilder = new ArrayConfigBuilder();
 		$configBuilder->set( 'MySetting', 'existing' );
-		$this->newSettingsBuilder( $configBuilder )
+		$this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->apply();
 		$this->assertSame( 'existing', $configBuilder->build()->get( 'MySetting' ) );
@@ -292,7 +311,10 @@ class SettingsBuilderTest extends TestCase {
 		$mockCache = $this->createMock( CacheInterface::class );
 		$configBuilder = new ArrayConfigBuilder();
 		$builder = $this
-			->newSettingsBuilder( $configBuilder, null, $mockCache )
+			->newSettingsBuilder( [
+				'configBuilder' => $configBuilder,
+				'cache' => $mockCache
+			] )
 			->load( $mockSource );
 
 		// Mock a cache miss
