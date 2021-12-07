@@ -26577,7 +26577,7 @@ Serialize interwiki links pointing to the current wiki as plain wiki links (T678
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p><a rel="mw:ExtLink" href="http://mi.wikipedia.org/wiki/Foo">Foo</a></p>
+<p><a rel="mw:ExtLink" href="http://example.org/wiki/Foo">Foo</a></p>
 !! wikitext
 [[Foo]]
 !! end
