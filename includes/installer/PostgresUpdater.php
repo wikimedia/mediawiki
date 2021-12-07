@@ -387,7 +387,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'querycache_info', 'qci_timestamp', 'NOT NULL', true ],
 			[ 'addIndex', 'querycache_info', 'querycache_info_pkey', 'patch-querycache_info-pk.sql' ],
 			[ 'setDefault', 'watchlist', 'wl_title', '' ],
-			[ 'changeField', 'watchlist', 'wl_namespace', 'INT', 0 ],
+			[ 'changeField', 'watchlist', 'wl_namespace', 'INT', 'wl_namespace::INT DEFAULT 0' ],
 			[ 'dropFkey', 'watchlist', 'wl_user' ],
 			[ 'dropPgIndex', 'watchlist', 'wl_user_namespace_title' ],
 			[ 'addPgIndex', 'watchlist', 'namespace_title', '(wl_namespace, wl_title)' ],
