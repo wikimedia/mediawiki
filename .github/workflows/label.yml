@@ -1,0 +1,53 @@
+name: "Pull Request Labeler"
+on:
+- pull_request
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'REL1_36'
+
+    - run: |
+        submodule=$(echo $(echo ${GITHUB_HEAD_REF} | cut -d'/' -f4,5 ) | cut -d'-' -f1 )
+        git submodule update --init $submodule
+        git pull https://github.com/${GITHUB_REPOSITORY} ${GITHUB_HEAD_REF}
+        list=$(git -c color.diff=false diff --submodule=diff $submodule | sed -n -e s/^diff\ --git\ a\\///p)
+        pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+        buildFiles=$(echo .github/* extensions/**/tests/* skins/**/tests/* extensions/**/composer.json extensions/**/package.json extensions/**/package-lock.json extensions/**/composer.lock)
+        i18nFiles=$(echo extensions/**/i18n/*.json skins/**/i18n/*.json)
+        codechangeFiles=$(echo extensions/**/*.php skins/**/*.php extensions/**/**/*.php skins/**/**/*.php extensions/**/extnesion.json skins/**/skin.json )
+
+        for file in $list; do
+          if [ $(echo $file | cut -d'/' -f1 ) != b ]; then
+            if [[ $buildFiles[*] =~ $file ]]; then
+              curl \
+              -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
+              -d '{"labels":["build"]}'
+            fi
+
+            if [[ $i18nFiles[*] =~ $file ]]; then
+              curl \
+              -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
+              -d '{"labels":["i18n-only"]}'
+            fi
+
+            if [[ $codechangeFiles[*] =~ $file ]]; then
+              curl \
+              -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
+              -d '{"labels":["reviewed-codechange"]}'
+            fi
+          fi
+        done
