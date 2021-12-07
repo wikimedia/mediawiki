@@ -1059,6 +1059,20 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
+	 * Get the page_id of the page being updated
+	 *
+	 * @since 1.38
+	 * @return int
+	 */
+	public function getPageId() {
+		if ( $this->mId ) {
+			return $this->mId;
+		} else {
+			return $this->mTitle->getArticleID();
+		}
+	}
+
+	/**
 	 * Returns parser output
 	 * @since 1.19
 	 * @return ParserOutput
