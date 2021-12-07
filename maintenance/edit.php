@@ -45,6 +45,11 @@ class EditCLI extends Maintenance {
 		$this->addOption( 'nocreate', 'Don\'t create new pages', false, false );
 		$this->addOption( 'createonly', 'Only create new pages', false, false );
 		$this->addOption( 'slot', 'Slot role name', false, true );
+		$this->addOption(
+			'parse-title',
+			'Parse title input as a message, e.g. "{{int:mainpage}}" or "News_{{CURRENTYEAR}}',
+			false, false, 'p'
+		);
 		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
@@ -71,7 +76,13 @@ class EditCLI extends Maintenance {
 		}
 		StubGlobalUser::setUser( $user );
 
-		$title = Title::newFromText( $this->getArg( 0 ) );
+		$titleInput = $this->getArg( 0 );
+
+		if ( $this->hasOption( 'parse-title' ) ) {
+			$titleInput = ( new RawMessage( '$1' ) )->params( $titleInput )->text();
+		}
+
+		$title = Title::newFromText( $titleInput );
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
 		}
