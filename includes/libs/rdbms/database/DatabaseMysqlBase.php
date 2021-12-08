@@ -1211,17 +1211,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Determines how long the server has been up
-	 *
-	 * @return int
-	 */
-	public function getServerUptime() {
-		$vars = $this->getMysqlStatus( 'Uptime' );
-
-		return (int)$vars['Uptime'];
-	}
-
-	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
 	 * @return bool
@@ -1320,27 +1309,6 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		return $endArray;
-	}
-
-	/**
-	 * Get status information from SHOW STATUS in an associative array
-	 *
-	 * @param string $which
-	 * @return array
-	 */
-	private function getMysqlStatus( $which = "%" ) {
-		$res = $this->query(
-			"SHOW STATUS LIKE '{$which}'",
-			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
-
-		$status = [];
-		foreach ( $res as $row ) {
-			$status[$row->Variable_name] = $row->Value;
-		}
-
-		return $status;
 	}
 
 	/**
