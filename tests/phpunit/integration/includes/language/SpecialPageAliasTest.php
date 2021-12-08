@@ -18,17 +18,25 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @coversNothing
-	 * @dataProvider validSpecialPageAliasesProvider
 	 */
-	public function testValidSpecialPageAliases( $code, $specialPageAliases ) {
-		foreach ( $specialPageAliases as $specialPage => $aliases ) {
-			foreach ( $aliases as $alias ) {
-				$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
-				$this->assertStringNotContainsString( '/', $alias, $msg );
+	public function testValidSpecialPageAliases() {
+		foreach ( $this->validSpecialPageAliasesProvider() as $expected ) {
+			$code = $expected[0];
+			$specialPageAliases = $expected[1];
+			foreach ( $specialPageAliases as $specialPage => $aliases ) {
+				foreach ( $aliases as $alias ) {
+					$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
+					$this->assertStringNotContainsString( '/', $alias, $msg );
+				}
 			}
 		}
 	}
 
+	/**
+	 * FIXME: Cannot access MW services in a dataProvider.
+	 *
+	 * @return Generator
+	 */
 	public function validSpecialPageAliasesProvider() {
 		$codes = array_keys( MediaWikiServices::getInstance()
 				->getLanguageNameUtils()
