@@ -28,14 +28,43 @@
 		<testsuite name="skins:unit">
 			<directory>skins/*/tests/phpunit/unit</directory>
 		</testsuite>
-		<testsuite name="core:integration">
+		<testsuite name="includes">
+			<directory>tests/phpunit/includes</directory>
+		</testsuite>
+		<testsuite name="languages">
+			<directory>tests/phpunit/languages</directory>
+		</testsuite>
+		<testsuite name="parsertests">
+			<file>tests/phpunit/suites/CoreParserTestSuite.php</file>
+			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
+		</testsuite>
+		<testsuite name="skins">
+			<directory>tests/phpunit/skins</directory>
+			<directory>tests/phpunit/structure</directory>
+			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
+			<file>tests/phpunit/suites/LessTestSuite.php</file>
+		</testsuite>
+		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
+		<testsuite name="maintenance_suite">
+			<directory>tests/phpunit/maintenance</directory>
+		</testsuite>
+		<testsuite name="structure">
+			<directory>tests/phpunit/structure</directory>
+		</testsuite>
+		<testsuite name="tests">
+			<directory>tests/phpunit/tests</directory>
+		</testsuite>
+		<testsuite name="extensions">
+			<directory>tests/phpunit/structure</directory>
+			<file>tests/phpunit/suites/ExtensionsTestSuite.php</file>
+			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>
+			<file>tests/phpunit/suites/LessTestSuite.php</file>
+		</testsuite>
+		<testsuite name="documentation">
+			<directory>tests/phpunit/documentation</directory>
+		</testsuite>
+		<testsuite name="integration">
 			<directory>tests/phpunit/integration</directory>
-		</testsuite>
-		<testsuite name="extensions:integration">
-			<directory>extensions/**/tests/phpunit/integration</directory>
-		</testsuite>
-		<testsuite name="skins:integration">
-			<directory>skins/**/tests/phpunit/integration</directory>
 		</testsuite>
 	</testsuites>
 	<groups>
@@ -72,4 +101,7 @@
 			</arguments>
 		</listener>
 	</listeners>
+	<extensions>
+		<extension class="MediaWikiLoggerPHPUnitExtension" />
+	</extensions>
 </phpunit>
