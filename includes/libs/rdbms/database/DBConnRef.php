@@ -386,6 +386,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function factorConds( $condsArray ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

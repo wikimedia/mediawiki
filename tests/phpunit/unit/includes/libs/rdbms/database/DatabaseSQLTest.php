@@ -1538,6 +1538,80 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideFactorConds
+	 * @covers Wikimedia\Rdbms\Database::factorConds
+	 */
+	public function testFactorConds( $input, $expected ) {
+		if ( $expected === 'invalid' ) {
+			$this->expectException( InvalidArgumentException::class );
+		}
+		$this->assertSame( $this->database->factorConds( $input ), $expected );
+	}
+
+	public static function provideFactorConds() {
+		return [
+			[
+				[],
+				'invalid'
+			],
+			[
+				[ [] ],
+				'invalid'
+			],
+			[
+				[ [ 'a' => 1 ] ],
+				"a = 1"
+			],
+			[
+				[ [ 'a' => null ] ],
+				"a IS NULL"
+			],
+			[
+				[ [ 'a' => 1 ], [ 'b' => 2 ] ],
+				'a = 1 OR b = 2'
+			],
+			[
+				[ [ 'a' => 1 ], [ 'a' => 2 ] ],
+				'a IN (1,2) '
+			],
+			[
+				[ [ 'a' => 1, 'b' => 2 ], [ 'a' => 1, 'b' => 3 ] ],
+				'(a = 1 AND b IN (2,3) )'
+			],
+			[
+				[ [ 'a' => 1, 'b' => 2 ], [ 'a' => 1, 'b' => 3 ], [ 'c' => 4 ] ],
+				'(a = 1 AND b IN (2,3) ) OR c = 4'
+			],
+			[
+				[ [ 'a' => null, 'b' => 2 ], [ 'a' => null, 'b' => 3 ] ],
+				'(a IS NULL AND b IN (2,3) )'
+			],
+			[
+				[ [ 'a' => null, 'b' => 2 ], [ 'a' => 1, 'b' => 3 ] ],
+				'(a = 1 AND b = 3) OR (a IS NULL AND b = 2)'
+			],
+			[
+				[ [ 'a' => 1, 'b' => 2 ], [ 'a' => 2, 'b' => 2 ] ],
+				'(a = 1 AND b = 2) OR (a = 2 AND b = 2)'
+			],
+			[
+				[
+					[ 'a' => 1, 'b' => 1, 'c' => 1 ],
+					[ 'a' => 1, 'b' => 1, 'c' => 2 ],
+					[ 'a' => 1, 'b' => 2, 'c' => 1 ],
+					[ 'a' => 1, 'b' => 2, 'c' => 2 ],
+					[ 'a' => 2, 'b' => 1, 'c' => 1 ],
+					[ 'a' => 2, 'b' => 1, 'c' => 2 ],
+					[ 'a' => 2, 'b' => 2, 'c' => 1 ],
+					[ 'a' => 2, 'b' => 2, 'c' => 2 ],
+				],
+				'(a = 1 AND (b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) )) OR ' .
+				'(a = 2 AND (b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) ))'
+			]
+		];
+	}
+
+	/**
 	 * @covers Wikimedia\Rdbms\Database::getTempTableWrites
 	 */
 	public function testSessionTempTables() {
