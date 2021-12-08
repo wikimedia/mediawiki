@@ -877,13 +877,15 @@ class SessionManager implements SessionManagerInterface {
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
+			$ep = defined( 'MW_ENTRY_POINT' ) ? MW_ENTRY_POINT : 'this';
+
 			if ( MW_NO_SESSION === 'warn' ) {
 				// Undocumented safety case for converting existing entry points
 				$this->logger->error( 'Sessions are supposed to be disabled for this entry point', [
-					'exception' => new \BadMethodCallException( 'Sessions are disabled for this entry point' ),
+					'exception' => new \BadMethodCallException( "Sessions are disabled for $ep entry point" ),
 				] );
 			} else {
-				throw new \BadMethodCallException( 'Sessions are disabled for this entry point' );
+				throw new \BadMethodCallException( "Sessions are disabled for $ep entry point" );
 			}
 		}
 		// @codeCoverageIgnoreEnd
