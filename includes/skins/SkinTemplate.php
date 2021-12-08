@@ -236,11 +236,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 
-		// Deprecated since 1.36
-		$searchLink = $this->getSearchPageTitle()->getLocalURL();
+		// The template variable `searchaction` is deprecated since 1.36
+		$searchTitle = SpecialPage::newSearchPage( $this->getUser() );
+		$searchLink = $searchTitle->getLocalURL();
 		$tpl->set( 'searchaction', $searchLink );
 
-		$tpl->set( 'searchtitle', $this->getSearchPageTitle()->getPrefixedDBkey() );
+		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
 		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
@@ -905,7 +906,9 @@ class SkinTemplate extends Skin {
 			),
 			'html-input' => $this->makeSearchInput( [ 'id' => 'searchInput' ] ),
 			'msg-search' => $this->msg( 'search' )->text(),
-			'page-title' => $this->getSearchPageTitle()->getPrefixedDBkey(),
+			'page-title' => SpecialPage::newSearchPage(
+				$this->getUser()
+			)->getPrefixedDBkey(),
 			// @since 1.38
 			'html-button-go-attributes' => Html::expandAttributes(
 				$searchButtonAttributes + $buttonAttributes + [
