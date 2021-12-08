@@ -56,6 +56,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Settings\Source\PhpSettingsSource;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -137,6 +138,9 @@ $wgSettings = new SettingsBuilder(
 
 require_once "$IP/includes/DefaultSettings.php";
 require_once "$IP/includes/GlobalFunctions.php";
+
+// This is temporary until we transition to config-schema.yaml
+$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
 
 HeaderCallback::register();
 
