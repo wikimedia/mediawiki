@@ -1,12 +1,4 @@
-/* global VueCompositionAPI */
-// eslint-disable-next-line no-implicit-globals
-var Vue = require( 'vue' );
-
-// vue-composition-api.js requires the window.Vue global
-window.Vue = Vue;
-
-// Unfortunately, vue-composition-api.js creates a VueCompositionAPI global rather than exporting it
-require( '../../lib/vue-composition-api/vue-composition-api.js' );
-Vue.use( VueCompositionAPI );
-
-module.exports = VueCompositionAPI;
+// For backwards compatibility, export Vue
+// In Vue 3, the main Vue object contains all properties that callers would expect from the
+// VueCompositionAPI object.
+module.exports = require( 'vue' );

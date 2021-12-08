@@ -1,83 +1,91 @@
 ( function () {
-	var Vue = require( '../../lib/vue/vue.js' );
+	const Vue = require( '../../lib/vue/vue.js' );
+	const errorLogger = require( './errorLogger.js' );
+	const i18n = require( './i18n.js' );
 
-	Vue.use( require( './errorLogger.js' ) );
-	Vue.use( require( './i18n.js' ) );
+	/**
+	 * Replace the given DOM element with its children.
+	 *
+	 * This changes the DOM structure resulting from a Vue 3-style mount to mimic the result of a
+	 * Vue 2-style mount.
+	 *
+	 * @param {HTMLElement} el DOM element the component was mounted to
+	 */
+	function unwrapElement( el ) {
+		if ( !el.parentNode ) {
+			return;
+		}
+		while ( el.firstChild ) {
+			el.parentNode.insertBefore( el.firstChild, el );
+		}
+		el.parentNode.removeChild( el );
+	}
+
+	// Only needed for Vue 2 compatibility; remove this when migrating away from the Vue 3 compat build
+	Vue.use( errorLogger );
+	Vue.use( i18n );
 
 	/**
 	 * @class Vue
 	 */
 	/**
-	 * Wrapper that imitates Vue.createApp(), to make the Vue 2 -> Vue 3 migration smoother.
+	 * Wrapper around Vue.createApp() that adds the i18n plugin and the error handler.
 	 *
-	 * Vue.createApp() is introduced in Vue 3. This returns an object that provides part of the
-	 * same API, so that we can swap out Vue 3 for Vue 2 without needing to change callers.
-	 * After the Vue 3 migration, this function will stay as a wrapper around Vue.createApp()
-	 * that adds the i18n plugin and the error handler, because those can't be added globally
-	 * in Vue 3.
+	 * These were added globally in Vue 2, but Vue 3 does not support global plugins.
+	 * To ensure all Vue code has the i18n plugin and the error handler installed, use of
+	 * Vue.createMwApp() is recommended anywhere one would normally use Vue.createApp().
 	 *
-	 * To create and mount an app that doesn't use Vuex:
-	 *     var RootComponent = require( './RootComponent.vue' ),
-	 *     Vue.createMwApp( RootComponent )
-	 *         .mount( '#foo' ); // CSS selector of mount point, or DOM element
-	 *
-	 * To create and mount an app with Vuex:
-	 *     var RootComponent = require( './RootComponent.vue' ),
-	 *         store = require( './store.js' );
-	 *     Vue.createMwApp( RootComponent )
-	 *         .use( store )
-	 *         .mount( '#foo' );
-	 *
-	 * To pass props to the component, pass them as the second parameter to createMwApp():
-	 *    Vue.createMwApp( RootComponent, { pageName: 'foo', disabled: false } );
-	 *
-	 * @param {Object} componentOptions Vue component options object
-	 * @param {Object} [propsData] Props to pass to the component
-	 * @return {Object} Object that pretends to be a Vue 3 app object, supports .use() and .mount()
+	 * @param {...Mixed} args
+	 * @return {Object} Vue app instance
 	 */
-	Vue.createMwApp = function ( componentOptions, propsData ) {
-		var App = Vue.extend( componentOptions ),
-			finalOptions = {};
-
-		if ( propsData ) {
-			finalOptions.propsData = propsData;
-		}
-
-		// Wrap .use(), so we can redirect app.use( VuexStore )
-		App.use = function ( plugin ) {
-			if (
-				typeof plugin !== 'function' && typeof plugin.install !== 'function' &&
-				// eslint-disable-next-line no-underscore-dangle
-				plugin._actions && plugin._mutations
-			) {
-				// This looks like a Vuex store, store it for later use.
-				finalOptions.store = plugin;
-				return this;
-			}
-			Vue.use.apply( Vue, arguments );
-			return App;
-		};
-
-		App.mount = function ( elementOrSelector, hydrating ) {
-			// Mimic the Vue 3 behavior of appending to the element rather than replacing it
-			// Add a div to the element, and pass that to .$mount() so that it gets replaced.
-			var wrapperElement = document.createElement( 'div' ),
-				parentElement = typeof elementOrSelector === 'string' ?
-					document.querySelector( elementOrSelector ) : elementOrSelector;
-			if ( !parentElement || !parentElement.appendChild ) {
-				throw new Error( 'Cannot find element: ' + elementOrSelector );
-			}
-			// Remove any existing children from parentElement.
-			while ( parentElement.firstChild ) {
-				parentElement.removeChild( parentElement.firstChild );
-			}
-			parentElement.appendChild( wrapperElement );
-			var app = new App( finalOptions );
-			app.$mount( wrapperElement, hydrating );
-			return app;
-		};
-		return App;
+	Vue.createMwApp = function ( ...args ) {
+		const app = Vue.createApp( ...args );
+		app.use( errorLogger );
+		app.use( i18n );
+		return app;
 	};
 
-	module.exports = Vue;
+	// Proxy the Vue object to intercept its constructor and the .$mount() method, to make the
+	// mounting API backwards compatible with Vue 2 (the Vue 3 migration build chose not to do this
+	// for some reason)
+	const proxiedVue = new Proxy( Vue, {
+		construct( Target, constructorArgs ) {
+			mw.log.warn( 'Use of new Vue(...) is deprecated. Use Vue.createMwApp() instead.' );
+			mw.track( 'mw.deprecate', 'Vue.new' );
+
+			// Call the real Vue constructor
+			const vueInstance = new Target( ...constructorArgs );
+
+			// If this was a call like new Vue( { el: '#foo' } ), mimic Vue 2's behavior by
+			// unwrapping #foo
+			const [ options ] = constructorArgs;
+			if ( options && options.el ) {
+				// vueInstance.$el is the first child of the node identified by options.el
+				unwrapElement( vueInstance.$el.parentNode );
+			}
+
+			// Proxy calls to vueInstance.$mount() so that they also mimic Vue 2's behavior
+			return new Proxy( vueInstance, {
+				get( target, key ) {
+					if ( key === '$mount' ) {
+						return function ( ...mountArgs ) {
+							const mountResult = target.$mount( ...mountArgs );
+							// target.$el is the first child of the node that was mounted to
+							unwrapElement( target.$el.parentNode );
+							return mountResult;
+						};
+					} else {
+						return target[ key ];
+					}
+				}
+			} );
+		}
+	} );
+
+	// HACK: the global build of Vue that we're using assumes that Vue is globally available
+	// in eval()ed code, because it expects var Vue = ...; to run in the global scope
+	// Satisfy that assumption
+	window.Vue = proxiedVue;
+
+	module.exports = proxiedVue;
 }() );

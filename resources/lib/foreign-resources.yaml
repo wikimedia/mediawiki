@@ -310,14 +310,14 @@ sinonjs:
 
 vue:
   type: tar
-  src: https://codeload.github.com/vuejs/vue/tar.gz/v2.6.11
-  integrity: sha384-BEkoIZmPWNcsSd1uY37iJdjLDsPjpVT0Ai6yq6chddUw0UkuIKwIruXGMUsi4tb9
-
+  # This is the migration build of Vue 3.2.23 which provides compatibility for Vue 2 code
+  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.23.tgz
+  integrity: sha512-ap/aO8V1j3dveHGcELRQZdb3dlnMgCK5N5Ur6Q37RRtMcB1glJldqUP46aAhY7kMberaUVWwYehMothocsF6Dg==
   dest:
-    vue-2.6.11/README.md:
-    vue-2.6.11/LICENSE:
-    vue-2.6.11/dist/vue.common.prod.js:
-    vue-2.6.11/dist/vue.common.dev.js:
+    package/README.md:
+    package/LICENSE:
+    package/dist/vue.global.js:
+    package/dist/vue.global.prod.js:
 
 vue-composition-api:
   type: tar
