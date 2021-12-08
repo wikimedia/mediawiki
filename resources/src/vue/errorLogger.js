@@ -2,10 +2,7 @@
  * Plugin that captures errors from Vue code and logs them to mw.errorLogger
  */
 module.exports = {
-	install: function ( Vue ) {
-		/**
-		 * @class Vue
-		 */
+	install: function ( app ) {
 		/**
 		 * Track component errors that bubble up to the Vue.js runtime on the `error.vue` analytics
 		 * event topic for one or more subscribers to send to an error logging service. Also log those
@@ -16,7 +13,7 @@ module.exports = {
 		 * @ignore
 		 * @param {Error} error
 		 */
-		Vue.config.errorHandler = function ( error ) {
+		app.config.errorHandler = function ( error ) {
 			mw.errorLogger.logError( error, 'error.vue' );
 
 			mw.log.error( error );

@@ -1,6 +1,5 @@
 /* global Vuex */
-// eslint-disable-next-line no-implicit-globals
-var Vue = require( 'vue' );
+const Vue = require( 'vue' );
 
 // Unfortunately, vuex.js creates a Vuex global rather than exporting it
 require( '../../lib/vuex/vuex.js' );

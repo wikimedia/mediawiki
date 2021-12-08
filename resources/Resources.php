@@ -566,31 +566,33 @@ return [
 			[
 				'name' => 'resources/lib/vue/vue.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					global $IP;
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
-						'resources/lib/vue/vue.common.dev.js' :
-						'resources/lib/vue/vue.common.prod.js';
+						'resources/lib/vue/vue.global.js' :
+						'resources/lib/vue/vue.global.prod.js';
+					// The file shipped by Vue does var Vue = ...;, but doesn't export it
+					// Add module.exports = Vue; programmatically
+					return file_get_contents( "$IP/$file" ) .
+						';module.exports=Vue;';
+				},
+				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+						'resources/lib/vue/vue.global.js' :
+						'resources/lib/vue/vue.global.prod.js';
 					return new ResourceLoaderFilePath( $file );
 				}
 			],
 
 		],
+		'es6' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	// Alias for 'vue', for backwards compatibility
 	'@vue/composition-api' => [
 		'packageFiles' => [
-			'resources/src/vue/composition-api.js',
-			[
-				'name' => 'resources/lib/vue-composition-api/vue-composition-api.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					// Use the development version if development mode is enabled, or if we're in debug mode
-					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
-						'resources/lib/vue-composition-api/vue-composition-api.js' :
-						'resources/lib/vue-composition-api/vue-composition-api.prod.js';
-					return new ResourceLoaderFilePath( $file );
-				}
-			]
+			'resources/src/vue/composition-api.js'
 		],
 		'dependencies' => [
 			'vue'
