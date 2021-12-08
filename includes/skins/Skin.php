@@ -147,6 +147,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$user = $this->getUser();
 		$isMainPage = $title->isMainPage();
+		$blankedHeading = false;
 
 		if ( $isMainPage ) {
 			// Special casing for the main page to allow more freedom to editors, to
@@ -157,6 +158,7 @@ abstract class Skin extends ContextSource {
 				$this->msg( 'mainpage-title' ) :
 				$this->msg( 'mainpage-title-loggedin', $user->getName() );
 
+			$blankedHeading = $titleMsg->isBlank();
 			if ( !$titleMsg->isDisabled() ) {
 				$htmlTitle = $titleMsg->parse();
 			} else {
@@ -165,13 +167,24 @@ abstract class Skin extends ContextSource {
 		} else {
 			$htmlTitle = $out->getPageTitle();
 		}
+
 		$data = [
 			// raw HTML
+			'html-title-heading' => Html::rawElement(
+				'h1',
+				[
+					'id' => 'firstHeading',
+					'class' => 'firstHeading mw-first-heading',
+					'style' => $blankedHeading ? 'display: none' : null
+				] + $this->getUserLanguageAttributes(),
+				$htmlTitle
+			),
 			'html-title' => $htmlTitle,
 			// Array values
 			'array-sections' => $this->getSectionsData(),
 
 			// Boolean values
+			'is-title-blank' => $blankedHeading, // @since 1.38
 			'is-anon' => $user->isAnon(),
 			'is-article' => $out->isArticle(),
 			'is-mainpage' => $isMainPage,
@@ -2554,11 +2567,11 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Prepare user language attribute links
-	 * @since 1.38 on Skin and 1.35 on classes extending SkinTemplate
-	 * @return string HTML attributes
+	 * Get user language attribute links array
+	 *
+	 * @return array HTML attributes
 	 */
-	final protected function prepareUserLanguageAttributes() {
+	private function getUserLanguageAttributes() {
 		$userLang = $this->getLanguage();
 		$userLangCode = $userLang->getHtmlCode();
 		$userLangDir = $userLang->getDir();
@@ -2567,13 +2580,23 @@ abstract class Skin extends ContextSource {
 			$userLangCode !== $contLang->getHtmlCode() ||
 			$userLangDir !== $contLang->getDir()
 		) {
-			$escUserlang = htmlspecialchars( $userLangCode );
-			$escUserdir = htmlspecialchars( $userLangDir );
-			// Attributes must be in double quotes because htmlspecialchars() doesn't
-			// escape single quotes
-			return " lang=\"$escUserlang\" dir=\"$escUserdir\"";
+			return [
+				'lang' => $userLangCode,
+				'dir' => $userLangDir,
+			];
 		}
-		return '';
+		return [];
+	}
+
+	/**
+	 * Prepare user language attribute links
+	 * @since 1.38 on Skin and 1.35 on classes extending SkinTemplate
+	 * @return string HTML attributes
+	 */
+	final protected function prepareUserLanguageAttributes() {
+		return Html::expandAttributes(
+			$this->getUserLanguageAttributes()
+		);
 	}
 
 	/**
