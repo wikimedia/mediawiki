@@ -31,7 +31,7 @@ use MediaWiki\User\UserIdentity;
 class UserPasswordPolicy {
 
 	/**
-	 * @var array
+	 * @var array[]
 	 */
 	private $policies;
 
@@ -39,13 +39,13 @@ class UserPasswordPolicy {
 	 * Mapping of statements to the function that will test the password for compliance. The
 	 * checking functions take the policy value, the user, and password, and return a Status
 	 * object indicating compliance.
-	 * @var array
+	 * @var callable[]
 	 */
 	private $policyCheckFunctions;
 
 	/**
-	 * @param array $policies
-	 * @param array $checks mapping statement to its checking function. Checking functions are
+	 * @param array[] $policies List of lists of policies per user group
+	 * @param callable[] $checks mapping statement to its checking function. Checking functions are
 	 *   called with the policy value for this user, the user object, and the password to check.
 	 */
 	public function __construct( array $policies, array $checks ) {
@@ -92,7 +92,7 @@ class UserPasswordPolicy {
 	 * be used in the installer.
 	 * @param UserIdentity $user whose policy we are checking
 	 * @param string $password the password to check
-	 * @param array $groups list of groups to which we assume the user belongs
+	 * @param string[] $groups list of groups to which we assume the user belongs
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
 	 *   indicate the user shouldn't be allowed to login. The status value will be an array,
 	 *   potentially with the following keys:
@@ -116,8 +116,8 @@ class UserPasswordPolicy {
 	/**
 	 * @param UserIdentity $user
 	 * @param string $password
-	 * @param array $policies
-	 * @param array $policyCheckFunctions
+	 * @param array $policies List of policy statements for the group the user belongs to
+	 * @param callable[] $policyCheckFunctions
 	 * @return Status
 	 */
 	private function checkPolicies( UserIdentity $user, $password, $policies, $policyCheckFunctions ) {
@@ -196,8 +196,8 @@ class UserPasswordPolicy {
 	/**
 	 * Utility function to get the effective policy from a list of policies, based
 	 * on a list of groups.
-	 * @param array $policies list of policies to consider
-	 * @param array $userGroups the groups from which we calculate the effective policy
+	 * @param array[] $policies List of lists of policies per user group
+	 * @param string[] $userGroups the groups from which we calculate the effective policy
 	 * @param array $defaultPolicy the default policy to start from
 	 * @return array effective policy
 	 */

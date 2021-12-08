@@ -39,7 +39,7 @@ class SimpleAuthority implements Authority {
 	/** @var UserIdentity */
 	private $actor;
 
-	/** @var array permissions (stored in the keys, values are ignored) */
+	/** @var true[] permissions (stored in the keys, values are ignored) */
 	private $permissions;
 
 	/**

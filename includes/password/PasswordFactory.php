@@ -39,7 +39,7 @@ final class PasswordFactory {
 	/**
 	 * Mapping of password types to classes
 	 *
-	 * @var array
+	 * @var array[]
 	 * @see PasswordFactory::register
 	 * @see Setup.php
 	 */
@@ -121,7 +121,7 @@ final class PasswordFactory {
 	/**
 	 * Get the list of types of passwords
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getTypes(): array {
 		return $this->types;

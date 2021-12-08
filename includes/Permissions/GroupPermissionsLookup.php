@@ -38,10 +38,10 @@ class GroupPermissionsLookup {
 		'RevokePermissions',
 	];
 
-	/** @var array */
+	/** @var array[] */
 	private $groupPermissions;
 
-	/** @var array */
+	/** @var array[] */
 	private $revokePermissions;
 
 	/*

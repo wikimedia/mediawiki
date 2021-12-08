@@ -608,7 +608,7 @@ class NamespaceInfo {
 	 * @deprecated since 1.34 User PermissionManager::getNamespaceRestrictionLevels instead.
 	 * @param int $index Index to check
 	 * @param User|null $user User to check
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRestrictionLevels( $index, User $user = null ) {
 		// PermissionManager is not injected because adding an explicit dependency

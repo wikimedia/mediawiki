@@ -47,7 +47,7 @@ abstract class ParameterizedPassword extends Password {
 	/**
 	 * Extra arguments that were found in the hash. This may or may not make
 	 * the hash invalid.
-	 * @var array
+	 * @var string[]
 	 */
 	protected $args = [];
 
