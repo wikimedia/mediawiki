@@ -773,10 +773,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->trxLevel() ? $this->trxWriteCallers : [];
 	}
 
-	public function pendingWriteRowsAffected() {
-		return $this->trxWriteAffectedRows;
-	}
-
 	/**
 	 * List the methods that have write queries or callbacks for the current transaction
 	 *
