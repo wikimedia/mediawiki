@@ -4,14 +4,14 @@ use Wikimedia\TestingAccessWrapper;
 
 class EtcdConfigTest extends MediaWikiUnitTestCase {
 
-	private function createConfigMock( array $options = [] ) {
+	private function createConfigMock( array $options = [], ?array $methods = null ) {
 		return $this->getMockBuilder( EtcdConfig::class )
 			->setConstructorArgs( [ $options + [
 				'host' => 'etcd-tcp.example.net',
 				'directory' => '/',
 				'timeout' => 0.1,
 			] ] )
-			->onlyMethods( [ 'fetchAllFromEtcd' ] )
+			->onlyMethods( $methods ?? [ 'fetchAllFromEtcd' ] )
 			->getMock();
 	}
 
@@ -33,6 +33,13 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 				'modifiedIndex' => $index,
 			] ) );
 		return $mock;
+	}
+
+	private function createCallableMock() {
+		return $this
+			->getMockBuilder( \stdClass::class )
+			->addMethods( [ '__invoke' ] )
+			->getMock();
 	}
 
 	/**
@@ -614,5 +621,141 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 			$expected,
 			$conf->fetchAllFromEtcdServer( 'etcd-tcp.example.net' )
 		);
+	}
+
+	/**
+	 * @covers EtcdConfig::fetchAllFromEtcdServer
+	 */
+	public function testFetchFromServerWithoutPort() {
+		$conf = $this->getMockBuilder( EtcdConfig::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$http = $this->getMockBuilder( MultiHttpClient::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$conf = TestingAccessWrapper::newFromObject( $conf );
+		$conf->protocol = 'https';
+		$conf->http = $http;
+
+		$http
+			->expects( $this->once() )
+			->method( 'run' )
+			->with(
+				$this->logicalAnd(
+					$this->arrayHasKey( 'url' ),
+					$this->callback( function ( $request ) {
+						$this->assertStringStartsWith(
+							'https://etcd.example/',
+							$request['url']
+						);
+						return true;
+					} )
+				)
+			);
+
+		$conf->fetchAllFromEtcdServer( 'etcd.example' );
+	}
+
+	/**
+	 * @covers EtcdConfig::fetchAllFromEtcdServer
+	 */
+	public function testFetchFromServerWithPort() {
+		$conf = $this->getMockBuilder( EtcdConfig::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$http = $this->getMockBuilder( MultiHttpClient::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$conf = TestingAccessWrapper::newFromObject( $conf );
+		$conf->protocol = 'https';
+		$conf->http = $http;
+
+		$http
+			->expects( $this->once() )
+			->method( 'run' )
+			->with(
+				$this->logicalAnd(
+					$this->arrayHasKey( 'url' ),
+					$this->callback( function ( $request ) {
+						$this->assertStringStartsWith(
+							'https://etcd.example:4001/',
+							$request['url']
+						);
+						return true;
+					} )
+				)
+			);
+
+		$conf->fetchAllFromEtcdServer( 'etcd.example', 4001 );
+	}
+
+	/**
+	 * @covers EtcdConfig::fetchAllFromEtcd
+	 */
+	public function testServiceDiscovery() {
+		$conf = $this->createConfigMock(
+			[ 'host' => 'an.example' ],
+			[ 'fetchAllFromEtcdServer' ]
+		);
+		$conf = TestingAccessWrapper::newFromObject( $conf );
+
+		$conf->dsd = TestingAccessWrapper::newFromObject( $conf->dsd );
+		$conf->dsd->resolver = $this->createCallableMock();
+		$conf->dsd->resolver
+			->expects( $this->once() )
+			->method( '__invoke' )
+			->with( '_etcd._tcp.an.example' )
+			->willReturn( [
+				[
+					'target' => 'etcd-target.an.example',
+					'port' => '2379',
+					'pri' => '1',
+					'weight' => '1',
+				],
+			] );
+
+		$conf->expects( $this->once() )
+			->method( 'fetchAllFromEtcdServer' )
+			->with( 'etcd-target.an.example', 2379 )
+			->willReturn( self::createEtcdResponse( [ 'foo' => true ] ) );
+
+		$conf->fetchAllFromEtcd();
+	}
+
+	/**
+	 * @covers EtcdConfig::fetchAllFromEtcd
+	 */
+	public function testServiceDiscoverySrvRecordAsHost() {
+		$conf = $this->createConfigMock(
+			[ 'host' => '_etcd-client-ssl._tcp.an.example' ],
+			[ 'fetchAllFromEtcdServer' ]
+		);
+		$conf = TestingAccessWrapper::newFromObject( $conf );
+
+		$conf->dsd = TestingAccessWrapper::newFromObject( $conf->dsd );
+		$conf->dsd->resolver = $this->createCallableMock();
+		$conf->dsd->resolver
+			->expects( $this->once() )
+			->method( '__invoke' )
+			->with( '_etcd-client-ssl._tcp.an.example' )
+			->willReturn( [
+				[
+					'target' => 'etcd-target.an.example',
+					'port' => '2379',
+					'pri' => '1',
+					'weight' => '1',
+				],
+			] );
+
+		$conf->expects( $this->once() )
+			->method( 'fetchAllFromEtcdServer' )
+			->with( 'etcd-target.an.example', 2379 )
+			->willReturn( self::createEtcdResponse( [ 'foo' => true ] ) );
+
+		$conf->fetchAllFromEtcd();
 	}
 }

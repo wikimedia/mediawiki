@@ -7,138 +7,106 @@ class DnsSrvDiscovererTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @dataProvider provideRecords
-	 */
-	public function testPickServer( $params, $expected ) {
-		$discoverer = new DnsSrvDiscoverer( 'etcd-tcp.example.net' );
-		$record = $discoverer->pickServer( $params );
+	public function testGetSrvName() {
+		$dsd = new DnsSrvDiscoverer( 'etcd', 'tcp', 'an.example' );
 
-		$this->assertEquals( $expected, $record );
+		$this->assertSame( '_etcd._tcp.an.example', $dsd->getSrvName() );
 	}
 
-	public static function provideRecords() {
-		return [
-			[
-				[ // record list
-					[
-						'target' => 'conf03.example.net',
-						'port' => 'SRV',
-						'pri' => 0,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf02.example.net',
-						'port' => 'SRV',
-						'pri' => 1,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf01.example.net',
-						'port' => 'SRV',
-						'pri' => 2,
-						'weight' => 1,
-					],
-				], // selected record
-				[
-					'target' => 'conf03.example.net',
-					'port' => 'SRV',
-					'pri' => 0,
-					'weight' => 1,
-				]
-			],
-			[
-				[ // record list
-					[
-						'target' => 'conf03or2.example.net',
-						'port' => 'SRV',
-						'pri' => 0,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf03or2.example.net',
-						'port' => 'SRV',
-						'pri' => 0,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf01.example.net',
-						'port' => 'SRV',
-						'pri' => 2,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf04.example.net',
-						'port' => 'SRV',
-						'pri' => 2,
-						'weight' => 1,
-					],
-					[
-						'target' => 'conf05.example.net',
-						'port' => 'SRV',
-						'pri' => 3,
-						'weight' => 1,
-					],
-				], // selected record
-				[
-					'target' => 'conf03or2.example.net',
-					'port' => 'SRV',
-					'pri' => 0,
-					'weight' => 1,
-				]
-			],
-		];
+	public function testGetSrvNameWithoutDomain() {
+		$dsd = new DnsSrvDiscoverer( 'etcd', 'tcp' );
+
+		$this->assertSame( '_etcd._tcp', $dsd->getSrvName() );
 	}
 
-	public function testRemoveServer() {
-		$dsd = new DnsSrvDiscoverer( 'localhost' );
+	public function testGetRecords() {
+		$resolver = $this->mockResolver();
 
-		$servers = [
-			[
-				'target' => 'conf01.example.net',
-				'port' => 35,
-				'pri' => 2,
-				'weight' => 1,
-			],
-			[
-				'target' => 'conf04.example.net',
-				'port' => 74,
-				'pri' => 2,
-				'weight' => 1,
-			],
-			[
-				'target' => 'conf05.example.net',
-				'port' => 77,
-				'pri' => 3,
-				'weight' => 1,
-			],
-		];
-		$server = $servers[1];
+		$dsd = new DnsSrvDiscoverer( 'etcd', 'tcp', 'an.example', $resolver );
 
-		$expected = [
-			[
-				'target' => 'conf01.example.net',
-				'port' => 35,
-				'pri' => 2,
-				'weight' => 1,
-			],
-			[
-				'target' => 'conf05.example.net',
-				'port' => 77,
-				'pri' => 3,
-				'weight' => 1,
-			],
-		];
+		$resolver
+			->expects( $this->once() )
+			->method( '__invoke' )
+			->with( '_etcd._tcp.an.example' )
+			->willReturn( [
+				[ 'target' => 'foo', 'port' => '123', 'pri' => '1', 'weight' => '1' ],
+				[ 'target' => 'qux', 'port' => '322', 'pri' => '2', 'weight' => '2' ],
+				[ 'target' => 'bar', 'port' => '124', 'pri' => '1', 'weight' => '2' ],
+				[ 'target' => 'baz', 'port' => '321', 'pri' => '2', 'weight' => '1' ],
+			] );
 
-		$this->assertEquals(
-			$expected,
-			$dsd->removeServer( $server, $servers ),
-			"Correct server removed"
+		$this->assertSame(
+			[
+				[ 'target' => 'foo', 'port' => 123, 'pri' => 1, 'weight' => 1 ],
+				[ 'target' => 'qux', 'port' => 322, 'pri' => 2, 'weight' => 2 ],
+				[ 'target' => 'bar', 'port' => 124, 'pri' => 1, 'weight' => 2 ],
+				[ 'target' => 'baz', 'port' => 321, 'pri' => 2, 'weight' => 1 ],
+			],
+			$dsd->getRecords()
 		);
-		$this->assertEquals(
-			$expected,
-			$dsd->removeServer( $server, $servers ),
-			"Nothing to remove"
+	}
+
+	public function testGetServers() {
+		$resolver = $this->mockResolver();
+
+		$dsd = new DnsSrvDiscoverer( 'etcd', 'tcp', 'an.example', $resolver );
+
+		$resolver
+			->expects( $this->once() )
+			->method( '__invoke' )
+			->with( '_etcd._tcp.an.example' )
+			->willReturn( [
+				[ 'target' => 'foo', 'port' => '123', 'pri' => '1', 'weight' => '1' ],
+				[ 'target' => 'qux', 'port' => '322', 'pri' => '2', 'weight' => '2' ],
+				[ 'target' => 'bar', 'port' => '124', 'pri' => '1', 'weight' => '2' ],
+				[ 'target' => 'baz', 'port' => '321', 'pri' => '2', 'weight' => '1' ],
+			] );
+
+		$servers = $dsd->getServers();
+		$prio1 = array_slice( $servers, 0, 2 );
+		$prio2 = array_slice( $servers, 2, 2 );
+
+		$this->assertContains(
+			[ 'foo', 123 ],
+			$prio1
 		);
+
+		$this->assertContains(
+			[ 'bar', 124 ],
+			$prio1
+		);
+
+		$this->assertContains(
+			[ 'baz', 321 ],
+			$prio2
+		);
+
+		$this->assertContains(
+			[ 'qux', 322 ],
+			$prio2
+		);
+	}
+
+	public function testGetServersNoDiscoveryResultsRfc2782() {
+		$resolver = $this->mockResolver();
+
+		$dsd = new DnsSrvDiscoverer( 'etcd', 'tcp', 'an.example', $resolver );
+
+		$resolver
+			->expects( $this->once() )
+			->method( '__invoke' )
+			->with( '_etcd._tcp.an.example' )
+			->willReturn( [
+				[ 'target' => '.', 'port' => '1', 'pri' => '1', 'weight' => '1' ],
+			] );
+
+		$this->assertEmpty( $dsd->getServers() );
+	}
+
+	private function mockResolver() {
+		return $this
+			->getMockBuilder( \stdClass::class )
+			->addMethods( [ '__invoke' ] )
+			->getMock();
 	}
 }
