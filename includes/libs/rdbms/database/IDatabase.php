@@ -319,12 +319,6 @@ interface IDatabase {
 	public function writesPending();
 
 	/**
-	 * @return bool Whether there is a transaction open with pre-commit callbacks pending
-	 * @since 1.32
-	 */
-	public function preCommitCallbacksPending();
-
-	/**
 	 * Whether there is a transaction open with either possible write queries
 	 * or unresolved pre-commit/commit/resolution callbacks pending
 	 *
