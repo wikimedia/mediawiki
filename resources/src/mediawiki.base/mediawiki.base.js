@@ -221,7 +221,7 @@ Message.prototype = {
 	 */
 	escaped: function () {
 		this.format = 'escaped';
-		return this.toString();
+		return this.toString( this.format );
 	},
 
 	/**
