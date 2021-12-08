@@ -308,7 +308,7 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpFrom( $cond = '', $orderRevs = false ) {
-		if ( $this->history & self::LOGS ) {
+		if ( is_int( $this->history ) && ( $this->history & self::LOGS ) ) {
 			$this->dumpLogs( $cond );
 		} else {
 			$this->dumpPages( $cond, $orderRevs );
