@@ -591,11 +591,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRootMaster;
 	}
 
-	public function getTopologyRootMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->topologyRootMaster;
-	}
-
 	final public function trxLevel() {
 		return ( $this->trxId != '' ) ? 1 : 0;
 	}
@@ -883,10 +878,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function fieldName( IResultWrapper $res, $n ) {
 		return $res->getFieldNames()[$n];
-	}
-
-	public function dataSeek( IResultWrapper $res, $pos ) {
-		$res->seek( $pos );
 	}
 
 	public function freeResult( IResultWrapper $res ) {
@@ -4149,14 +4140,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 */
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->primaryPosWait( $pos, $timeout );
-	}
-
-	/**
-	 * @inheritDoc
 	 * @stable to override
 	 */
 	public function getReplicaPos() {
@@ -4171,11 +4154,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function getPrimaryPos() {
 		# Stub
 		return false;
-	}
-
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
 	}
 
 	/**
@@ -4214,10 +4192,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw $dbErrors[0];
 			}
 		}
-	}
-
-	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		$this->onTransactionCommitOrIdle( $callback, $fname );
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
