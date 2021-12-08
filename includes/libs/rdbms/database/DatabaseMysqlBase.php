@@ -26,6 +26,8 @@ use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
 /**
  * Database abstraction object for MySQL.
@@ -81,6 +83,9 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var float Warn if lag estimates are made for transactions older than this many seconds */
 	private const LAG_STALE_WARN_THRESHOLD = 0.100;
 
+	/** @var ISQLPlatform */
+	protected $platform;
+
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
@@ -114,6 +119,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
 		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
 			? (bool)$params['insertSelectIsSafe'] : null;
+		$this->platform = new MySQLPlatform();
 
 		parent::__construct( $params );
 	}
@@ -164,7 +170,7 @@ abstract class DatabaseMysqlBase extends Database {
 				if ( !is_int( $val ) && !is_float( $val ) ) {
 					$val = $this->addQuotes( $val );
 				}
-				$set[] = $this->addIdentifierQuotes( $var ) . ' = ' . $val;
+				$set[] = $this->platform->addIdentifierQuotes( $var ) . ' = ' . $val;
 			}
 
 			// @phan-suppress-next-next-line PhanRedundantCondition
@@ -205,7 +211,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( $database !== $this->getDBname() ) {
-			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
+			$sql = 'USE ' . $this->platform->addIdentifierQuotes( $database );
 			list( $res, $err, $errno ) =
 				$this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 
@@ -365,7 +371,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		// If the database has been specified (such as for shared tables), use "FROM"
 		if ( $database !== '' ) {
-			$encDatabase = $this->addIdentifierQuotes( $database );
+			$encDatabase = $this->platform->addIdentifierQuotes( $database );
 			$sql = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
 		} else {
 			$sql = "SHOW TABLES LIKE '$encLike'";
@@ -459,15 +465,15 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlRealEscapeString( $s );
 
 	/**
-	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
-	 *
 	 * @param string $s
 	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
-		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
-		// Remove NUL bytes and escape backticks by doubling
-		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
+		// Tests disabling constructor
+		if ( !$this->platform ) {
+			$this->platform = new MySQLPlatform();
+		}
+		return $this->platform->addIdentifierQuotes( $s );
 	}
 
 	/**

@@ -22,6 +22,7 @@ namespace Wikimedia\Rdbms;
 use Exception;
 use InvalidArgumentException;
 use stdClass;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -35,7 +36,7 @@ use Wikimedia\ScopedCallback;
  * @note IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
-interface IDatabase {
+interface IDatabase extends ISQLPlatform {
 	/** @var int Callback triggered immediately due to no active transaction */
 	public const TRIGGER_IDLE = 1;
 	/** @var int Callback triggered by COMMIT */
@@ -991,26 +992,6 @@ interface IDatabase {
 	public function factorConds( $condsArray );
 
 	/**
-	 * @param string|int $field
-	 * @return string
-	 */
-	public function bitNot( $field );
-
-	/**
-	 * @param string|int $fieldLeft
-	 * @param string|int $fieldRight
-	 * @return string
-	 */
-	public function bitAnd( $fieldLeft, $fieldRight );
-
-	/**
-	 * @param string|int $fieldLeft
-	 * @param string|int $fieldRight
-	 * @return string
-	 */
-	public function bitOr( $fieldLeft, $fieldRight );
-
-	/**
 	 * Build a concatenation list to feed into a SQL query
 	 * @param string[] $stringList Raw SQL expression list; caller is responsible for escaping
 	 * @return string
@@ -1209,17 +1190,6 @@ interface IDatabase {
 	 * @return string
 	 */
 	public function addQuotes( $s );
-
-	/**
-	 * Escape a SQL identifier (e.g. table, column, database) for use in a SQL query
-	 *
-	 * Depending on the database this will either be `backticks` or "double quotes"
-	 *
-	 * @param string $s
-	 * @return string
-	 * @since 1.33
-	 */
-	public function addIdentifierQuotes( $s );
 
 	/**
 	 * LIKE statement wrapper
