@@ -6,6 +6,9 @@
  * @stable to extend
  */
 class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
+	/* @var string */
+	private $mPlaceholder;
+
 	/**
 	 * @stable to call
 	 *
@@ -28,6 +31,11 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 		if ( isset( $params['dropdown'] ) ) {
 			$this->mClass .= ' mw-htmlform-dropdown';
+			if ( isset( $params['placeholder'] ) ) {
+				$this->mPlaceholder = $params['placeholder'];
+			} elseif ( isset( $params['placeholder-message'] ) ) {
+				$this->mPlaceholder = $this->msg( $params['placeholder-message'] )->text();
+			}
 		}
 
 		if ( isset( $params['flatlist'] ) ) {
@@ -235,9 +243,14 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 
 		if ( !$hasSections && $out ) {
+			if ( $this->mPlaceholder ) {
+				$out[0]->setData( ( $out[0]->getData() ?: [] ) + [
+					'placeholder' => $this->mPlaceholder,
+				] );
+			}
 			// Directly return the only OOUI\CheckboxMultiselectInputWidget.
 			// This allows it to be made infusable and later tweaked by JS code.
-			return $out[ 0 ];
+			return $out[0];
 		}
 
 		return implode( '', $out );

@@ -68,7 +68,8 @@
 			$overlay: true,
 			menu: {
 				items: menuTagOptions
-			}
+			},
+			placeholder: ( checkboxesWidget.data || {} ).placeholder || ''
 		} );
 		menuTagWidget.setValue( checkboxesWidget.getValue() );
 
