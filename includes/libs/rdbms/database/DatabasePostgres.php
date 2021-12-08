@@ -802,10 +802,6 @@ __INDEXATTR__;
 		return $output;
 	}
 
-	public function aggregateValue( $valuedata, $valuename = 'value' ) {
-		return $valuedata;
-	}
-
 	public function getSoftwareLink() {
 		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
