@@ -722,10 +722,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
-	public function preCommitCallbacksPending() {
-		return $this->trxLevel() && $this->trxPreCommitOrIdleCallbacks;
-	}
-
 	/**
 	 * @return string|null ID of the active explicit transaction round being participating in
 	 */
@@ -775,10 +771,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function pendingWriteCallers() {
 		return $this->trxLevel() ? $this->trxWriteCallers : [];
-	}
-
-	public function pendingWriteRowsAffected() {
-		return $this->trxWriteAffectedRows;
 	}
 
 	/**

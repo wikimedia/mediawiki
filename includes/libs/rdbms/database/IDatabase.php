@@ -319,12 +319,6 @@ interface IDatabase {
 	public function writesPending();
 
 	/**
-	 * @return bool Whether there is a transaction open with pre-commit callbacks pending
-	 * @since 1.32
-	 */
-	public function preCommitCallbacksPending();
-
-	/**
 	 * Whether there is a transaction open with either possible write queries
 	 * or unresolved pre-commit/commit/resolution callbacks pending
 	 *
@@ -352,14 +346,6 @@ interface IDatabase {
 	 * @since 1.27
 	 */
 	public function pendingWriteCallers();
-
-	/**
-	 * Get the number of affected rows from pending write queries
-	 *
-	 * @return int
-	 * @since 1.30
-	 */
-	public function pendingWriteRowsAffected();
 
 	/**
 	 * @return bool Whether a connection to the database open

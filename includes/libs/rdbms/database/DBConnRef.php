@@ -165,10 +165,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function preCommitCallbacksPending() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function writesOrCallbacksPending() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -178,10 +174,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function pendingWriteCallers() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function pendingWriteRowsAffected() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

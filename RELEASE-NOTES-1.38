@@ -258,6 +258,10 @@ because of Phabricator reports.
   to ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
   ::getEnableLimitReport methods were deprecated.
 * Ajax action that was deprecated in 1.27 now has been removed.
+* IDatabase::preCommitCallbacksPending() is removed without deprecation as it's
+  unused.
+* IDatabase::pendingWriteRowsAffected() is removed without deprecation as it's
+  unused.
 * …
 
 === Deprecations in 1.38 ===
