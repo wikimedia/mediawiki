@@ -19,7 +19,7 @@ jobs:
 
         buildFiles=$(echo .github/* extensions/**/tests/* skins/**/tests/* extensions/**/composer.json extensions/**/package.json extensions/**/package-lock.json extensions/**/composer.lock)
         i18nFiles=$(echo extensions/**/i18n/*.json skins/**/i18n/*.json)
-        codechangeFiles=$(echo extensions/**/*.php skins/**/*.php extensions/**/**/*.php skins/**/**/*.php extensions/**/extnesion.json skins/**/skin.json )
+        codechangeFiles=$(echo extensions/**/*.php skins/**/*.php extensions/**/**/*.php skins/**/**/*.php extensions/**/extnesion.json skins/**/skin.json)
 
         for file in $list; do
           if [ $(echo $file | cut -d'/' -f1 ) != b ]; then
