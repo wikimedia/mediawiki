@@ -1085,7 +1085,7 @@
 	ignore = dirty
 [submodule "extensions/Preloader"]
 	path = extensions/Preloader
-	url = https://gitlab.com/troyengel/Preloader
+	url = https://github.com/Universal-Omega/Preloader
 	branch = master
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
