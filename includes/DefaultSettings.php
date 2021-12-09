@@ -9372,6 +9372,8 @@ $wgAPIUselessQueryPages = [
 
 /**
  * Enable AJAX check for file overwrite, pre-upload
+ *
+ * @deprecated since MediaWiki 1.38 and ignored
  */
 $wgAjaxUploadDestCheck = true;
 

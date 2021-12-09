@@ -88,16 +88,10 @@ class ImageHistoryList extends ContextSource {
 		// Styles for class=history-deleted
 		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
+		$html = '';
 		$canDelete = $this->current->isLocal() &&
 			$this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' );
 
-		$html = Xml::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
-		. "\n"
-		. "<div id=\"mw-imagepage-section-filehistory\">\n"
-		. $this->msg( 'filehist-help' )->parseAsBlock()
-		. $navLinks . "\n"
-		. Xml::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
-		. '<tr>';
 		foreach ( [
 			'',
 			$canDelete ? '' : null,
@@ -108,10 +102,17 @@ class ImageHistoryList extends ContextSource {
 			'filehist-comment',
 		] as $key ) {
 			if ( $key !== null ) {
-				$html .= '<th>' . ( $key ? $this->msg( $key )->escaped() : '' ) . '</th>';
+				$html .= Html::element( 'th', [], $key ? $this->msg( $key )->text() : '' );
 			}
 		}
-		return $html . "</tr>\n";
+
+		return Html::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
+			. "\n"
+			. Html::openElement( 'div', [ 'id' => 'mw-imagepage-section-filehistory' ] ) . "\n"
+			. $this->msg( 'filehist-help' )->parseAsBlock()
+			. $navLinks . "\n"
+			. Html::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
+			. Html::rawElement( 'tr', [], $html ) . "\n";
 	}
 
 	/**
@@ -119,7 +120,9 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function endImageHistoryList( $navLinks = '' ) {
-		return "</table>\n$navLinks\n</div>\n";
+		return Html::closeElement( 'table' ) . "\n" .
+			$navLinks . "\n" .
+			Html::closeElement( 'div' ) . "\n";
 	}
 
 	/**
@@ -143,7 +146,7 @@ class ImageHistoryList extends ContextSource {
 
 		// Deletion link
 		if ( $local && ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
-			$row .= '<td>';
+			$row .= Html::openElement( 'td' );
 			# Link to remove from history
 			if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
 				$row .= $linkRenderer->makeKnownLink(
@@ -158,26 +161,28 @@ class ImageHistoryList extends ContextSource {
 			if ( $canHide || ( $this->getAuthority()->isAllowed( 'deletedhistory' )
 					&& $file->getVisibility() ) ) {
 				if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
-					$row .= '<br />';
+					$row .= Html::element( 'br' );
 				}
 				// If file is top revision or locked from this user, don't link
 				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
 					$row .= Linker::revDeleteLinkDisabled( $canHide );
 				} else {
-					$query = [
-						'type' => 'oldimage',
-						'target' => $this->title->getPrefixedText(),
-						'ids' => explode( '!', $img, 2 )[0],
-					];
-					$row .= Linker::revDeleteLink( $query,
-						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
+					$row .= Linker::revDeleteLink(
+						[
+							'type' => 'oldimage',
+							'target' => $this->title->getPrefixedText(),
+							'ids' => explode( '!', $img, 2 )[0],
+						],
+						$file->isDeleted( File::DELETED_RESTRICTED ),
+						$canHide
+					);
 				}
 			}
-			$row .= '</td>';
+			$row .= Html::closeElement( 'td' );
 		}
 
 		// Reversion link/current indicator
-		$row .= '<td>';
+		$row .= Html::openElement( 'td' );
 		if ( $iscur ) {
 			$row .= $this->msg( 'filehist-current' )->escaped();
 		} elseif ( $local && $this->getAuthority()->probablyCan( 'edit', $this->title )
@@ -197,13 +202,14 @@ class ImageHistoryList extends ContextSource {
 				);
 			}
 		}
-		$row .= '</td>';
+		$row .= Html::closeElement( 'td' );
 
 		// Date/time and image link
-		$selected = $file->getTimestamp() === $this->img->getTimestamp()
-			? "class='filehistory-selected'"
-			: '';
-		$row .= "<td $selected style='white-space: nowrap;'>";
+		$selected = $file->getTimestamp() === $this->img->getTimestamp();
+		$row .= Html::openElement( 'td', [
+			'class' => $selected ? 'filehistory-selected' : null,
+			'style' => 'white-space: nowrap;'
+		] );
 		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
 			# Don't link to unviewable files
 			$row .= Html::element( 'span', [ 'class' => 'history-deleted' ],
@@ -227,56 +233,59 @@ class ImageHistoryList extends ContextSource {
 			} else {
 				$url = htmlspecialchars( $timeAndDate );
 			}
-			$row .= '<span class="history-deleted">' . $url . '</span>';
+			$row .= Html::rawElement( 'span', [ 'class' => 'history-deleted' ], $url );
 		} elseif ( !$file->exists() ) {
 			$row .= Html::element( 'span', [ 'class' => 'mw-file-missing' ],
 				$lang->userTimeAndDate( $timestamp, $user )
 			);
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
-			$row .= Xml::element(
-				'a',
-				[ 'href' => $url ],
+			$row .= Html::element( 'a', [ 'href' => $url ],
 				$lang->userTimeAndDate( $timestamp, $user )
 			);
 		}
-		$row .= "</td>";
+		$row .= Html::closeElement( 'td' );
 
 		// Thumbnail
 		if ( $this->showThumb ) {
-			$thumb = $this->getThumbForLine( $file );
-			$row .= '<td>' . ( $thumb ?? $this->msg( 'filehist-nothumb' )->escaped() ) . '</td>';
+			$row .= Html::rawElement( 'td', [],
+				$this->getThumbForLine( $file ) ?? $this->msg( 'filehist-nothumb' )->escaped()
+			);
 		}
 
 		// Image dimensions + size
-		$row .= '<td>';
+		$row .= Html::openElement( 'td' );
 		$row .= htmlspecialchars( $file->getDimensionsString() );
 		$row .= $this->msg( 'word-separator' )->escaped();
-		$row .= '<span style="white-space: nowrap;">';
-		$row .= $this->msg( 'parentheses' )->sizeParams( $file->getSize() )->escaped();
-		$row .= '</span>';
-		$row .= '</td>';
+		$row .= Html::element( 'span', [ 'style' => 'white-space: nowrap;' ],
+			$this->msg( 'parentheses' )->sizeParams( $file->getSize() )->text()
+		);
+		$row .= Html::closeElement( 'td' );
 
 		// Uploading user
-		$row .= '<td>';
+		$row .= Html::openElement( 'td' );
 		// Hide deleted usernames
 		if ( $uploader && $local ) {
 			$row .= Linker::userLink( $uploader->getId(), $uploader->getName() );
-			$row .= '<span style="white-space: nowrap;">';
-			$row .= Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
-			$row .= '</span>';
+			$row .= Html::rawElement( 'span', [ 'style' => 'white-space: nowrap;' ],
+				Linker::userToolLinks( $uploader->getId(), $uploader->getName() )
+			);
 		} elseif ( $uploader ) {
 			$row .= htmlspecialchars( $uploader->getName() );
 		} else {
-			$row .= '<span class="history-deleted">'
-				. $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
+			$row .= Html::element( 'span', [ 'class' => 'history-deleted' ],
+				$this->msg( 'rev-deleted-user' )->text()
+			);
 		}
-		$row .= '</td>';
+		$row .= Html::closeElement( 'td' );
 
 		// Don't show deleted descriptions
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$row .= '<td><span class="history-deleted">' .
-				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></td>';
+			$row .= Html::rawElement( 'td', [],
+				Html::element( 'span', [ 'class' => 'history-deleted' ],
+					$this->msg( 'rev-deleted-comment' )->text()
+				)
+			);
 		} else {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$row .= Html::rawElement( 'td', [ 'dir' => $contLang->getDir() ], $formattedComment );
@@ -284,9 +293,8 @@ class ImageHistoryList extends ContextSource {
 
 		$rowClass = null;
 		$this->getHookRunner()->onImagePageFileHistoryLine( $this, $file, $row, $rowClass );
-		$classAttr = $rowClass ? " class='$rowClass'" : '';
 
-		return "<tr{$classAttr}>{$row}</tr>\n";
+		return Html::rawElement( 'tr', [ 'class' => $rowClass ], $row ) . "\n";
 	}
 
 	/**
