@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
@@ -167,6 +168,16 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
+	 * Notify LinksUpdate that a move has just been completed and set the
+	 * original title
+	 *
+	 * @param PageReference $oldPage
+	 */
+	public function setMoveDetails( PageReference $oldPage ) {
+		$this->tableFactory->setMoveDetails( $oldPage );
+	}
+
+	/**
 	 * Update link tables with outgoing links from an updated article
 	 *
 	 * @note this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
@@ -197,8 +208,8 @@ class LinksUpdate extends DataUpdate {
 		// Calling getAll() here has the side-effect of calling
 		// LinksUpdateBatch::setParserOutput() on all subclasses, allowing
 		// those methods to also do pre-lock operations.
-		foreach ( $this->tableFactory->getAll() as $batch ) {
-			$batch->beforeLock();
+		foreach ( $this->tableFactory->getAll() as $table ) {
+			$table->beforeLock();
 		}
 
 		if ( $this->ticket ) {
