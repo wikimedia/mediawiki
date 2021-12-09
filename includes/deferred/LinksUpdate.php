@@ -143,14 +143,17 @@ class LinksUpdate extends DataUpdate {
 		$this->mRecursive = $recursive;
 
 		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 		$this->tableFactory = new LinksTableGroup(
 			$services->getObjectFactory(),
 			$services->getDBLoadBalancerFactory(),
+			$services->getCollationFactory(),
 			$page,
-			$services->getMainConfig()->get( 'UpdateRowsPerQuery' ),
+			$config->get( 'UpdateRowsPerQuery' ),
 			function ( $table, $rows ) {
 				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );
-			}
+			},
+			$config->get( 'TempCategoryCollations' )
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );
@@ -188,6 +191,14 @@ class LinksUpdate extends DataUpdate {
 
 			// nothing to do
 			return;
+		}
+
+		// Do any setup that needs to be done prior to acquiring the lock
+		// Calling getAll() here has the side-effect of calling
+		// LinksUpdateBatch::setParserOutput() on all subclasses, allowing
+		// those methods to also do pre-lock operations.
+		foreach ( $this->tableFactory->getAll() as $batch ) {
+			$batch->beforeLock();
 		}
 
 		if ( $this->ticket ) {

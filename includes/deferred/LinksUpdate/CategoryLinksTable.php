@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\Collation\CollationFactory;
+use Collation;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageReferenceValue;
@@ -24,7 +24,8 @@ use Title;
 class CategoryLinksTable extends TitleLinksTable {
 	/**
 	 * @var array Associative array of new links, with the category name in the
-	 *   key and the sort key prefix in the value
+	 *   key. The value is a list consisting of the sort key prefix and the sort
+	 *   key.
 	 */
 	private $newLinks = [];
 
@@ -43,6 +44,12 @@ class CategoryLinksTable extends TitleLinksTable {
 	/** @var string The collation name for cl_collation */
 	private $collationName;
 
+	/** @var string The table name */
+	private $tableName = 'categorylinks';
+
+	/** @var bool */
+	private $isTempTable;
+
 	/** @var string The category type, which depends on the source page */
 	private $categoryType;
 
@@ -52,17 +59,31 @@ class CategoryLinksTable extends TitleLinksTable {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/**
+	 * @param LanguageConverterFactory $converterFactory
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param Collation $collation
+	 * @param string $collationName
+	 * @param string $tableName
+	 * @param bool $isTempTable
+	 */
 	public function __construct(
 		LanguageConverterFactory $converterFactory,
-		CollationFactory $collationFactory,
 		NamespaceInfo $namespaceInfo,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		Collation $collation,
+		$collationName,
+		$tableName,
+		$isTempTable
 	) {
 		$this->languageConverter = $converterFactory->getLanguageConverter();
-		$this->collation = $collationFactory->getCategoryCollation();
-		$this->collationName = $collationFactory->getDefaultCollationName();
 		$this->namespaceInfo = $namespaceInfo;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->collation = $collation;
+		$this->collationName = $collationName;
+		$this->tableName = $tableName;
+		$this->isTempTable = $isTempTable;
 	}
 
 	/**
@@ -75,16 +96,32 @@ class CategoryLinksTable extends TitleLinksTable {
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		$this->newLinks = [];
-		foreach ( $parserOutput->getCategories() as $name => $sortKey ) {
-			// If the sortkey is longer then 255 bytes, it is truncated by DB, and then doesn't match
-			// when comparing existing vs current categories, causing T27254.
-			$sortKey = mb_strcut( $sortKey, 0, 255 );
-			$this->newLinks[(string)$name] = $sortKey;
+		$sourceTitle = Title::castFromPageIdentity( $this->getSourcePage() );
+		$sortKeyInputs = [];
+		foreach ( $parserOutput->getCategories() as $name => $sortKeyPrefix ) {
+			// If the sort key is longer then 255 bytes, it is truncated by DB,
+			// and then doesn't match when comparing existing vs current
+			// categories, causing T27254.
+			$sortKeyPrefix = mb_strcut( $sortKeyPrefix, 0, 255 );
+
+			$targetTitle = Title::makeTitleSafe( NS_CATEGORY, $name );
+			$this->languageConverter->findVariantLink( $name, $targetTitle, true );
+
+			// Treat custom sort keys as a prefix, so that if multiple
+			// things are forced to sort as '*' or something, they'll
+			// sort properly in the category rather than in page_id
+			// order or such.
+			$sortKeyInputs[$name] = $sourceTitle->getCategorySortkey( $sortKeyPrefix );
+			$this->newLinks[$name] = [ $sortKeyPrefix ];
+		}
+		$sortKeys = $this->collation->getSortKeys( $sortKeyInputs );
+		foreach ( $sortKeys as $name => $sortKey ) {
+			$this->newLinks[$name][1] = $sortKey;
 		}
 	}
 
 	protected function getTableName() {
-		return 'categorylinks';
+		return $this->tableName;
 	}
 
 	protected function getFromField() {
@@ -102,8 +139,8 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * @return iterable<array>
 	 */
 	protected function getNewLinkIDs() {
-		foreach ( $this->newLinks as $name => $sortkey ) {
-			yield [ $name, $sortkey ];
+		foreach ( $this->newLinks as $name => [ $prefix, $sortKey ] ) {
+			yield [ $name, $prefix ];
 		}
 	}
 
@@ -141,25 +178,16 @@ class CategoryLinksTable extends TitleLinksTable {
 	protected function isInNewSet( $linkId ) {
 		[ $name, $prefix ] = $linkId;
 		return \array_key_exists( $name, $this->newLinks )
-			&& $this->newLinks[$name] === $prefix;
+			&& $this->newLinks[$name][0] === $prefix;
 	}
 
 	protected function insertLink( $linkId ) {
 		[ $name, $prefix ] = $linkId;
-		$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-		$this->languageConverter->findVariantLink( $name, $nt, true );
-
-		// Treat custom sortkeys as a prefix, so that if multiple
-		// things are forced to sort as '*' or something, they'll
-		// sort properly in the category rather than in page_id
-		// order or such.
-		$sortkey = $this->collation->getSortKey(
-			Title::castFromPageIdentity( $this->getSourcePage() )
-				->getCategorySortkey( $prefix ) );
+		$sortKey = $this->newLinks[$name][1];
 
 		$this->insertRow( [
 			'cl_to' => $name,
-			'cl_sortkey' => $sortkey,
+			'cl_sortkey' => $sortKey,
 			'cl_timestamp' => $this->getDB()->timestamp(),
 			'cl_sortkey_prefix' => $prefix,
 			'cl_collation' => $this->collationName,
@@ -190,6 +218,10 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	protected function finishUpdate() {
+		if ( $this->isTempTable ) {
+			// Don't do invalidations for temporary collations
+			return;
+		}
 		$this->invalidateCategories();
 		$this->updateCategoryCounts();
 	}

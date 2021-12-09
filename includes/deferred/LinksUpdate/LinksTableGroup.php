@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
+use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -21,16 +22,18 @@ class LinksTableGroup {
 	 *   - serviceOptions: An array of configuration variable names. If this is
 	 *     set, the specified configuration will be sent to the subclass
 	 *     constructor as a ServiceOptions object.
+	 *   - needCollation: If true, the following additional args will be added:
+	 *     Collation, collation name and table name.
 	 */
 	private const CORE_LIST = [
 		'categorylinks' => [
 			'class' => CategoryLinksTable::class,
 			'services' => [
 				'LanguageConverterFactory',
-				'CollationFactory',
 				'NamespaceInfo',
 				'WikiPageFactory'
-			]
+			],
+			'needCollation' => true,
 		],
 		'externallinks' => [
 			'class' => ExternalLinksTable::class
@@ -65,6 +68,9 @@ class LinksTableGroup {
 	/** @var LBFactory */
 	private $lbFactory;
 
+	/** @var CollationFactory */
+	private $collationFactory;
+
 	/** @var PageIdentity */
 	private $page;
 
@@ -86,25 +92,37 @@ class LinksTableGroup {
 	/** @var LinksTable[] */
 	private $tables = [];
 
+	/** @var array */
+	private $tempCollations;
+
 	/**
 	 * @param ObjectFactory $objectFactory
 	 * @param LBFactory $lbFactory
+	 * @param CollationFactory $collationFactory
 	 * @param PageIdentity $page
 	 * @param int $batchSize
 	 * @param callable|null $afterUpdateHook
+	 * @param array $tempCollations
 	 */
 	public function __construct(
 		ObjectFactory $objectFactory,
 		LBFactory $lbFactory,
+		CollationFactory $collationFactory,
 		PageIdentity $page,
 		$batchSize,
-		$afterUpdateHook
+		$afterUpdateHook,
+		array $tempCollations
 	) {
 		$this->objectFactory = $objectFactory;
 		$this->lbFactory = $lbFactory;
+		$this->collationFactory = $collationFactory;
 		$this->page = $page;
 		$this->batchSize = $batchSize;
 		$this->afterUpdateHook = $afterUpdateHook;
+		$this->tempCollations = [];
+		foreach ( $tempCollations as $info ) {
+			$this->tempCollations[$info['table']] = $info;
+		}
 	}
 
 	/**
@@ -161,11 +179,46 @@ class LinksTableGroup {
 	 * @return array
 	 */
 	private function getSpec( $tableName ) {
-		if ( !isset( self::CORE_LIST[$tableName] ) ) {
-			throw new \InvalidArgumentException(
-				__CLASS__ . ": unknown table name \"$tableName\"" );
+		if ( isset( self::CORE_LIST[$tableName] ) ) {
+			$spec = self::CORE_LIST[$tableName];
+			return $this->addCollationArgs( $spec, $tableName, false );
 		}
-		return self::CORE_LIST[$tableName];
+		if ( isset( $this->tempCollations[$tableName] ) ) {
+			$info = $this->tempCollations[$tableName];
+			$spec = self::CORE_LIST['categorylinks'];
+			return $this->addCollationArgs( $spec, $tableName, true, $info );
+		}
+		throw new \InvalidArgumentException(
+			__CLASS__ . ": unknown table name \"$tableName\"" );
+	}
+
+	/**
+	 * Add extra args to the spec of a table that needs collation information
+	 *
+	 * @param array $spec
+	 * @param string $tableName
+	 * @param bool $isTempTable
+	 * @param array $info Temporary collation info
+	 * @return array ObjectFactory spec
+	 */
+	private function addCollationArgs( $spec, $tableName, $isTempTable, $info = [] ) {
+		if ( isset( $spec['needCollation'] ) ) {
+			if ( isset( $info['collation'] ) ) {
+				$collation = $this->collationFactory->makeCollation( $info['collation'] );
+				$collationName = $info['fakeCollation'] ?? $info['collation'];
+			} else {
+				$collation = $this->collationFactory->getCategoryCollation();
+				$collationName = $this->collationFactory->getDefaultCollationName();
+			}
+			$spec['args'] = [
+				$collation,
+				$info['fakeCollation'] ?? $collationName,
+				$tableName,
+				$isTempTable
+			];
+			unset( $spec['needCollation'] );
+		}
+		return $spec;
 	}
 
 	/**
@@ -212,6 +265,9 @@ class LinksTableGroup {
 	 */
 	public function getAll() {
 		foreach ( self::CORE_LIST as $tableName => $spec ) {
+			yield $this->get( $tableName );
+		}
+		foreach ( $this->tempCollations as $tableName => $collation ) {
 			yield $this->get( $tableName );
 		}
 	}
