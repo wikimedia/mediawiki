@@ -151,6 +151,16 @@ class CollationFactory {
 					$match[1],
 				]
 			] );
+		} elseif ( preg_match( '/^remote-uca-([A-Za-z@=-]+)$/', $collationName, $match ) ) {
+			return $this->instantiateCollation( [
+				'class' => \RemoteIcuCollation::class,
+				'services' => [
+					'ShellboxClientFactory'
+				],
+				'args' => [
+					$match[1]
+				]
+			] );
 		}
 
 		// Provide a mechanism for extensions to hook in.

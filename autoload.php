@@ -1326,6 +1326,7 @@ $wgAutoloadLocalClasses = [
 	'RefreshLinksJob' => __DIR__ . '/includes/jobqueue/jobs/RefreshLinksJob.php',
 	'RefreshSecondaryDataUpdate' => __DIR__ . '/includes/deferred/RefreshSecondaryDataUpdate.php',
 	'RemexStripTagHandler' => __DIR__ . '/includes/parser/RemexStripTagHandler.php',
+	'RemoteIcuCollation' => __DIR__ . '/includes/collation/RemoteIcuCollation.php',
 	'RemoveInvalidEmails' => __DIR__ . '/maintenance/removeInvalidEmails.php',
 	'RemoveUnusedAccounts' => __DIR__ . '/maintenance/removeUnusedAccounts.php',
 	'RenameDbPrefix' => __DIR__ . '/maintenance/renameDbPrefix.php',
