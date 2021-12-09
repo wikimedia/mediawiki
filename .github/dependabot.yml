@@ -2,6 +2,7 @@ version: 2
 updates:
 - package-ecosystem: gitsubmodule
   directory: "/"
+  labels: []
   schedule:
     interval: weekly
     time: "00:00"
