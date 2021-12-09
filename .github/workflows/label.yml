@@ -38,7 +38,7 @@ jobs:
           fi
         done
 
-        for label in $labels; do
+        for label in "${labels[@]}"; do
           curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
