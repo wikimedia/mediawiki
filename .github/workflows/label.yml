@@ -38,7 +38,8 @@ jobs:
           fi
         done
 
-        for label in $labels; do
+        labels=($(echo "${labels[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+        for label in ${labels[*]}; do
           curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
