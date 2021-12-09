@@ -35,13 +35,14 @@ jobs:
             if [[ $file =~ $i18nFiles ]] && [[ ! $labels[*] =~ "i18n" ]]; then
               labels+=("i18n")
             fi
+
+            for label in $labels; do
+              curl \
+              -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
+              -d '{"labels":["$label"]}'
+            done
           fi
-        done
-        for label in $labels; do
-          curl \
-          -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-          https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
-          -d '{"labels":["$label"]}'
         done
