@@ -1,4 +1,5 @@
 /* stylelint-disable selector-class-pattern */
+@import 'variables.less';
 
 /* @noflip */
 table.floatright,
@@ -22,17 +23,16 @@ div.thumb {
 }
 
 div.thumbinner {
-	background-color: #fff;
-	border: 0;
+	border: @border-thumbinner-print;
+	background-color: @background-color-thumbinner-print;
+	font-size: @font-size-thumbinner-print;
+	color: @color-thumbinner-print;
 	border-radius: 2px;
-	padding: 5px;
-	font-size: 10pt;
-	color: #666;
 	min-width: 100px;
 }
 
 .thumbborder {
-	border: 1pt solid #ddd;
+	border: @border-thumbborder-print;
 }
 
 .magnify {

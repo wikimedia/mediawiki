@@ -1,0 +1,92 @@
+@import 'variables.less';
+
+figure[ typeof~='mw:Image/Thumb' ],
+figure[ typeof~='mw:Video/Thumb' ],
+figure[ typeof~='mw:Audio/Thumb' ],
+figure[ typeof~='mw:Image/Frame' ],
+figure[ typeof~='mw:Video/Frame' ],
+figure[ typeof~='mw:Audio/Frame' ] {
+	border: @border-thumbinner-screen;
+	border-bottom: 0;  // No border to figcaption
+	background-color: @background-color-thumbinner-screen;
+
+	> *:first-child {
+		> audio,
+		> img,
+		> video {
+			border: @border-thumbimage-screen;
+			background: @background-color-thumbimage-screen;
+		}
+	}
+
+	> figcaption {
+		border: @border-thumbinner-screen;
+		border-top: 0;
+		background-color: @background-color-thumbinner-screen;
+
+		/* In mw-core the font-size is duplicated, 94% in thumbinner
+		 * and again 94% in thumbcaption. 88.4% for font size of the
+		 * caption results in the same behavior. */
+		font-size: 88.4%;  // @font-size-thumbinner-screen * @font-size-thumbcaption-screen
+	}
+}
+
+.mw-image-border > *:first-child {
+	> audio,
+	> img,
+	> video {
+		border: @border-thumbborder-screen;
+	}
+}
+
+/* Magnify clip, not present for broken media */
+figure[ typeof~='mw:Image/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Video/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
+	> figcaption:before {
+		content: '';
+		width: 15px;
+		height: 11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			margin-left: 3px;
+			/* @noflip */
+			float: right;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			margin-right: 3px;
+			/* @noflip */
+			float: left;
+		}
+	}
+
+	> a {
+		display: inline-block;
+		position: relative;
+	}
+
+	> a:after {
+		content: '';
+		width: 15px;
+		height: 11px;
+		position: absolute;
+		bottom: -11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			right: 6px;
+			/* @noflip */
+			background-image: @background-image-magnify-ltr;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			left: 6px;
+			/* @noflip */
+			background-image: @background-image-magnify-rtl;
+		}
+	}
+}

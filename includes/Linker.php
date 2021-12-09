@@ -395,7 +395,7 @@ class Linker {
 		) {
 			if ( $enableLegacyMediaDOM ) {
 				// This is no longer needed in our new media output, since the
-				// default styling in content.media.less takes care of it;
+				// default styling in content.media-common.less takes care of it;
 				// see T269704.
 
 				# Create a thumbnail. Alignment depends on the writing direction of
