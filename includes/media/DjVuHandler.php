@@ -35,6 +35,7 @@ class DjVuHandler extends ImageHandler {
 	private const STATE_DJVU_IMAGE = 'djvuImage';
 	private const STATE_TEXT_TREE = 'djvuTextTree';
 	private const STATE_META_TREE = 'djvuMetaTree';
+	private const CACHE_VERSION = 'v2';
 
 	/**
 	 * @return bool
@@ -351,7 +352,7 @@ class DjVuHandler extends ImageHandler {
 	protected function getDimensionInfo( File $file ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
-			$cache->makeKey( 'file-djvu', 'dimensions', $file->getSha1() ),
+			$cache->makeKey( 'file-djvu', 'dimensions', self::CACHE_VERSION, $file->getSha1() ),
 			$cache::TTL_INDEFINITE,
 			function () use ( $file ) {
 				$tree = $this->getMetaTree( $file );
