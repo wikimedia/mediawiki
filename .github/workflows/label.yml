@@ -17,8 +17,8 @@ jobs:
         list=$(git -c color.diff=false diff --submodule=diff $submodule | sed -n -e s/^diff\ --git\ a\\///p)
         pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
-        codechangeFiles="(extensions|skins)\/.*\/(.*\.php|extension\.json|skin\.json)"
-        buildFiles="(extensions|skins)\/.*\/(\.github\/.*|\.phan\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json|\.phpcs\.xml|\.stylelintrc\.json|\.eslintrc\.json|Gruntfile\.js)"
+        codechangeFiles="(extensions|skins)\/.*\/(.*\.php|.*\.js|.*\.css|.*\.less|.*\.scss|.*\.vue|.*\.d\.ts|extension(\-(repo|client))?\.json|skin\.json)"
+        buildFiles="(extensions|skins)\/.*\/(\.github\/.*|\.phan\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json|\.phpcs\.xml|\.stylelintrc\.json|\.eslintrc\.json|\.stylelintignore|\.eslintignore|\.nvmrc|\.svgo\.config\.js|Gruntfile\.js|bundlesize\.config\.json|jsdoc\.json|tsconfig\.json)"
         i18nFiles="(extensions|skins)\/.*\/i18n\/.*\.json"
 
         labels=()
