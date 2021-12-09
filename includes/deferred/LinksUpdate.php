@@ -122,6 +122,8 @@ class LinksUpdate extends DataUpdate {
 	/** @var IDatabase */
 	private $db;
 
+	private $isStrictTestMode = false;
+
 	/**
 	 * @param PageIdentity $page The page we're updating
 	 * @param ParserOutput $parserOutput Output from a full parse of this page
@@ -544,7 +546,8 @@ class LinksUpdate extends DataUpdate {
 
 		$insertBatches = array_chunk( $insertions, $bSize );
 		foreach ( $insertBatches as $insertBatch ) {
-			$this->getDB()->insert( $table, $insertBatch, __METHOD__, [ 'IGNORE' ] );
+			$this->getDB()->insert( $table, $insertBatch, __METHOD__,
+				$this->getConflictOption() );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
 			);
@@ -552,6 +555,27 @@ class LinksUpdate extends DataUpdate {
 
 		if ( count( $insertions ) ) {
 			$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $insertions );
+		}
+	}
+
+	/**
+	 * Omit conflict resolution options from the insert query so that testing
+	 * can confirm that the incremental update logic was correct.
+	 *
+	 * @param bool $mode
+	 */
+	public function setStrictTestMode( $mode = true ) {
+		$this->isStrictTestMode = $mode;
+	}
+
+	/**
+	 * @return array
+	 */
+	private function getConflictOption() {
+		if ( $this->isStrictTestMode ) {
+			return [];
+		} else {
+			return [ 'IGNORE' ];
 		}
 	}
 
