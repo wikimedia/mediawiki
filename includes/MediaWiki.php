@@ -305,6 +305,17 @@ class MediaWiki {
 								'wgInternalRedirectTargetUrl' => $target->getLinkURL( $query ),
 							] );
 							$output->addModules( 'mediawiki.action.view.redirect' );
+
+							// If the title is invalid, redirect but show the correct bad title error - T297407
+							if ( !$target->isValid() ) {
+								try {
+									MediaWikiServices::getInstance()->getTitleParser()
+										->parseTitle( $target->getPrefixedText() );
+								} catch ( MalformedTitleException $ex ) {
+									throw new BadTitleError( $ex );
+								}
+								throw new BadTitleError();
+							}
 						}
 					}
 				}
