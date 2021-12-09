@@ -473,34 +473,34 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	 * @return \Status
 	 */
 	protected function sendPasswordResetEmail( TemporaryPasswordAuthenticationRequest $req ) {
-			$user = User::newFromName( $req->username );
-			if ( !$user ) {
-				return \Status::newFatal( 'noname' );
-			}
-			$userLanguage = $user->getOption( 'language' );
-			$callerIsAnon = IPUtils::isValid( $req->caller );
-			$callerName = $callerIsAnon ? $req->caller : User::newFromName( $req->caller )->getName();
-			$passwordMessage = wfMessage( 'passwordreset-emailelement', $user->getName(),
-				$req->password )->inLanguage( $userLanguage );
-			$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
-				: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
-			$body = $emailMessage->params( $callerName, $passwordMessage->text(), 1,
-				'<' . \Title::newMainPage()->getCanonicalURL() . '>',
-				round( $this->newPasswordExpiry / 86400 ) )->text();
+		$user = User::newFromName( $req->username );
+		if ( !$user ) {
+			return \Status::newFatal( 'noname' );
+		}
+		$userLanguage = $user->getOption( 'language' );
+		$callerIsAnon = IPUtils::isValid( $req->caller );
+		$callerName = $callerIsAnon ? $req->caller : User::newFromName( $req->caller )->getName();
+		$passwordMessage = wfMessage( 'passwordreset-emailelement', $user->getName(),
+			$req->password )->inLanguage( $userLanguage );
+		$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
+			: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
+		$body = $emailMessage->params( $callerName, $passwordMessage->text(), 1,
+			'<' . \Title::newMainPage()->getCanonicalURL() . '>',
+			round( $this->newPasswordExpiry / 86400 ) )->text();
 
-			if ( $this->allowRequiringEmail && !MediaWikiServices::getInstance()->getUserOptionsLookup()
-				->getBoolOption( $user, 'requireemail' )
-			) {
-				$body .= "\n\n";
-				$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
-					->getCanonicalURL();
-				$body .= wfMessage( 'passwordreset-emailtext-require-email' )
-					->inLanguage( $userLanguage )
-					->params( "<$url>" )
-					->text();
-			}
+		if ( $this->allowRequiringEmail && !MediaWikiServices::getInstance()->getUserOptionsLookup()
+			->getBoolOption( $user, 'requireemail' )
+		) {
+			$body .= "\n\n";
+			$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
+				->getCanonicalURL();
+			$body .= wfMessage( 'passwordreset-emailtext-require-email' )
+				->inLanguage( $userLanguage )
+				->params( "<$url>" )
+				->text();
+		}
 
-			$emailTitle = wfMessage( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
-			return $user->sendMail( $emailTitle->text(), $body );
+		$emailTitle = wfMessage( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
+		return $user->sendMail( $emailTitle->text(), $body );
 	}
 }
