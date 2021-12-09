@@ -361,8 +361,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 					!$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ||
 					$this->getConfig()->get( 'UseContentMediaStyles' )
 				) ) {
+					$featureFilePaths['all'][] = new ResourceLoaderFilePath(
+						'resources/src/mediawiki.skinning/content.media-common.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
 					$featureFilePaths['screen'][] = new ResourceLoaderFilePath(
-						'resources/src/mediawiki.skinning/content.media.less',
+						'resources/src/mediawiki.skinning/content.media-screen.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
+					$featureFilePaths['print'][] = new ResourceLoaderFilePath(
+						'resources/src/mediawiki.skinning/content.media-print.less',
 						$defaultLocalBasePath,
 						$defaultRemoteBasePath
 					);
