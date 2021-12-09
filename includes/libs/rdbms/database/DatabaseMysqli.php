@@ -188,9 +188,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	protected function closeConnection() {
-		$conn = $this->getBindingHandle();
-
-		return $conn->close();
+		return ( $this->conn instanceof mysqli ) ? mysqli_close( $this->conn ) : true;
 	}
 
 	public function insertId() {
