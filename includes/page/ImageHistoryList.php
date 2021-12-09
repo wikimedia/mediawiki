@@ -88,21 +88,30 @@ class ImageHistoryList extends ContextSource {
 		// Styles for class=history-deleted
 		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
-		return Xml::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
+		$canDelete = $this->current->isLocal() &&
+			$this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' );
+
+		$html = Xml::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
 		. "\n"
 		. "<div id=\"mw-imagepage-section-filehistory\">\n"
 		. $this->msg( 'filehist-help' )->parseAsBlock()
 		. $navLinks . "\n"
 		. Xml::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
-		. '<tr><th></th>'
-		. ( $this->current->isLocal()
-		&& ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
-		. '<th>' . $this->msg( 'filehist-datetime' )->escaped() . '</th>'
-		. ( $this->showThumb ? '<th>' . $this->msg( 'filehist-thumb' )->escaped() . '</th>' : '' )
-		. '<th>' . $this->msg( 'filehist-dimensions' )->escaped() . '</th>'
-		. '<th>' . $this->msg( 'filehist-user' )->escaped() . '</th>'
-		. '<th>' . $this->msg( 'filehist-comment' )->escaped() . '</th>'
-		. "</tr>\n";
+		. '<tr>';
+		foreach ( [
+			'',
+			$canDelete ? '' : null,
+			'filehist-datetime',
+			$this->showThumb ? 'filehist-thumb' : null,
+			'filehist-dimensions',
+			'filehist-user',
+			'filehist-comment',
+		] as $key ) {
+			if ( $key !== null ) {
+				$html .= '<th>' . ( $key ? $this->msg( $key )->escaped() : '' ) . '</th>';
+			}
+		}
+		return $html . "</tr>\n";
 	}
 
 	/**
@@ -235,7 +244,8 @@ class ImageHistoryList extends ContextSource {
 
 		// Thumbnail
 		if ( $this->showThumb ) {
-			$row .= '<td>' . $this->getThumbForLine( $file ) . '</td>';
+			$thumb = $this->getThumbForLine( $file );
+			$row .= '<td>' . ( $thumb ?? $this->msg( 'filehist-nothumb' )->escaped() ) . '</td>';
 		}
 
 		// Image dimensions + size
@@ -281,33 +291,31 @@ class ImageHistoryList extends ContextSource {
 
 	/**
 	 * @param File $file
-	 * @return string
+	 * @return string|null
 	 */
 	protected function getThumbForLine( $file ) {
-		$lang = $this->getLanguage();
 		$user = $this->getUser();
-		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE, $user )
-			&& !$file->isDeleted( File::DELETED_FILE )
+		if ( !$file->allowInlineDisplay() ||
+			$file->isDeleted( File::DELETED_FILE ) ||
+			!$file->userCan( File::DELETED_FILE, $user )
 		) {
-			$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
-
-			$thumbnail = $file->transform( [ 'width' => '120', 'height' => '120' ] );
-			$options = [
-				'alt' => $this->msg( 'filehist-thumbtext',
-					$lang->userTimeAndDate( $timestamp, $user ),
-					$lang->userDate( $timestamp, $user ),
-					$lang->userTime( $timestamp, $user ) )->text(),
-				'file-link' => true,
-			];
-
-			if ( !$thumbnail ) {
-				return $this->msg( 'filehist-nothumb' )->escaped();
-			}
-
-			return $thumbnail->toHtml( $options );
-		} else {
-			return $this->msg( 'filehist-nothumb' )->escaped();
+			return null;
 		}
+
+		$thumbnail = $file->transform( [ 'width' => '120', 'height' => '120' ] );
+		if ( !$thumbnail ) {
+			return null;
+		}
+
+		$lang = $this->getLanguage();
+		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
+		$alt = $this->msg(
+			'filehist-thumbtext',
+			$lang->userTimeAndDate( $timestamp, $user ),
+			$lang->userDate( $timestamp, $user ),
+			$lang->userTime( $timestamp, $user )
+		)->text();
+		return $thumbnail->toHtml( [ 'alt' => $alt, 'file-link' => true ] );
 	}
 
 	/**
