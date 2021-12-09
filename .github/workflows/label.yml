@@ -18,7 +18,7 @@ jobs:
         pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
         codechangeFiles="(extensions|skins)\/.*\/(.*\.php|extension\.json|skin\.json)"
-        buildFiles="(extensions|skins)\/.*\/(\.github\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json)"
+        buildFiles="(extensions|skins)\/.*\/(\.github\/.*|\.phan\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json|\.phpcs\.xml|\.stylelintrc\.json|\.eslintrc\.json|Gruntfile\.js)"
         i18nFiles="(extensions|skins)\/.*\/i18n\/.*\.json"
 
         for file in $list; do
