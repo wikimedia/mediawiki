@@ -60,6 +60,19 @@ class ForeignAPIRepo extends FileRepo {
 	/** @var int Redownload thumbnail files after this expiry */
 	protected $fileCacheExpiry = 2592000; // 1 month (30*24*3600)
 
+	/**
+	 * @var int API metadata cache time.
+	 * @since 1.38
+	 *
+	 * This is often the performance bottleneck for ForeignAPIRepo. For
+	 * each file used, we must fetch file metadata for it and every high-dpi
+	 * variant, in serial, during the parse. This is slow if a page has many
+	 * files, with RTT of the handshake often being significant. The metadata
+	 * rarely changes, but if a new version of the file was uploaded, it might
+	 * be displayed incorrectly until its metadata entry falls out of cache.
+	 */
+	protected $apiMetadataExpiry = 14400; // 4 hours
+
 	/** @var array */
 	protected $mFileExists = [];
 
@@ -81,6 +94,9 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		if ( isset( $info['fileCacheExpiry'] ) ) {
 			$this->fileCacheExpiry = $info['fileCacheExpiry'];
+		}
+		if ( isset( $info['apiMetadataExpiry'] ) ) {
+			$this->apiMetadataExpiry = $info['apiMetadataExpiry'];
 		}
 		if ( !$this->scriptDirUrl ) {
 			// hack for description fetches
@@ -199,7 +215,7 @@ class ForeignAPIRepo extends FileRepo {
 			$query['uselang'] = $wgLanguageCode;
 		}
 
-		$data = $this->httpGetCached( 'Metadata', $query );
+		$data = $this->httpGetCached( 'Metadata', $query, $this->apiMetadataExpiry );
 
 		if ( $data ) {
 			return FormatJson::decode( $data, true );
@@ -576,6 +592,8 @@ class ForeignAPIRepo extends FileRepo {
 			$cacheTTL,
 			function ( $curValue, &$ttl ) use ( $url ) {
 				$html = self::httpGet( $url, 'default', [], $mtime );
+				// FIXME: This should use the mtime from the api response body
+				// not the mtime from the last-modified header which usually is not set.
 				if ( $html !== false ) {
 					$ttl = $mtime ? $this->wanCache->adaptiveTTL( $mtime, $ttl ) : $ttl;
 				} else {
