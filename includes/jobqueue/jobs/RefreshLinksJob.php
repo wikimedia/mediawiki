@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;

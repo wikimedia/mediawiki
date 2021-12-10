@@ -20,12 +20,14 @@
  * @file
  */
 
-use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
-use MediaWiki\Deferred\LinksUpdate\LinksTable;
-use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
-use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\PagePropsTable;
-use MediaWiki\Deferred\LinksUpdate\TitleLinksTable;
+namespace MediaWiki\Deferred\LinksUpdate;
+
+use AutoCommitUpdate;
+use BacklinkCache;
+use DataUpdate;
+use DeferredUpdates;
+use Job;
+use JobQueueGroup;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -34,6 +36,11 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use MWException;
+use ParserOutput;
+use RefreshLinksJob;
+use RuntimeException;
+use Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -596,3 +603,6 @@ class LinksUpdate extends DataUpdate {
 		return $this->mRecursive;
 	}
 }
+
+/** @deprecated since 1.38 */
+class_alias( LinksUpdate::class, 'LinksUpdate' );

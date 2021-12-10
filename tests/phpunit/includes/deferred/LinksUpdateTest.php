@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
