@@ -3885,3 +3885,22 @@ wgParserEnableLegacyMediaDOM=false
 <figure class="mw-default-size mw-halign-left" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"left","ak":"left"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption></figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption>Left</figcaption></figure>
 !! end
+
+!! test
+Exercise selser on native galleries
+!! options
+parsoid= {
+  "modes": ["selser"],
+  "changes": [
+    ["div.gallerytext", "contents", "text", "456"]
+  ]
+}
+!! wikitext
+<gallery>
+File:Foobar.jpg|123
+</gallery>
+!! wikitext/edited
+<gallery>
+File:Foobar.jpg|456
+</gallery>
+!! end
