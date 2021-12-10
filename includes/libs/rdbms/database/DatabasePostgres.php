@@ -578,10 +578,6 @@ __INDEXATTR__;
 		}
 	}
 
-	public function tableName( $name, $format = 'quoted' ) {
-		return parent::tableName( $name, $format );
-	}
-
 	/**
 	 * @param string $name
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
