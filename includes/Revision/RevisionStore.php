@@ -2666,7 +2666,7 @@ class RevisionStore
 			return null;
 		}
 
-		return $this->getRevisionById( intval( $revId ) );
+		return $this->getRevisionById( intval( $revId ), $flags );
 	}
 
 	/**
