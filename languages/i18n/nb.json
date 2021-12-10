@@ -83,7 +83,7 @@
 	"tog-enotifrevealaddr": "Vis min e-postadresse i utgående meldinger",
 	"tog-shownumberswatching": "Vis antall brukere som overvåker",
 	"tog-oldsig": "Gjeldende signatur:",
-	"tog-fancysig": "Behandle signaturen som wikitekst (uten automatisk lenke)",
+	"tog-fancysig": "Behandle signaturen som wikitekst (uten automatisk lenke til din brukerside)",
 	"tog-uselivepreview": "Vis forhåndsvisninger uten å laste siden på nytt",
 	"tog-forceeditsummary": "Advar meg når jeg ikke gir noen redigeringsforklaring",
 	"tog-watchlisthideown": "Skjul mine endringer fra overvåkningslisten",
@@ -831,8 +831,10 @@
 	"parser-unstrip-loop-warning": "«Unstrip»-loop påvist",
 	"unstrip-depth-warning": "Rekursjonsgrense for taggfjerning overskredet ($1)",
 	"unstrip-depth-category": "Sider hvor dybdegrensen for unstrip er nådd",
+	"unstrip-depth-category-desc": "Siden overskrider dybdegrensen for unstrip.",
 	"unstrip-size-warning": "Størrelsesgrensen for unstrip er nådd ($1)",
 	"unstrip-size-category": "Sider hvor størrelsesgrensen for unstrip er nådd",
+	"unstrip-size-category-desc": "Siden overskrider størrelsesgrensen for unstrip.",
 	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",
 	"undo-success": "Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og publisere endringene for å fullføre omgjøringen.",
 	"undo-failure": "Redigeringen kunne ikke omgjøres på grunn av konflikterende etterfølgende redigeringer.",
@@ -1833,6 +1835,7 @@
 	"lockmanager-fail-db-release": "Kunne ikke frigi låser på databasen $1.",
 	"lockmanager-fail-svr-acquire": "Klarte ikke å hente lås på tjeneren $1.",
 	"lockmanager-fail-svr-release": "Kunne ikke frigi låser på tjeneren $1.",
+	"lockmanager-fail-conflict": "Lot seg ikke låse. Noen andre arbeider med filen.",
 	"zip-file-open-error": "Det oppsto en feil under åpning av filen for ZIP-sjekking.",
 	"zip-wrong-format": "Den angitte filen var ikke en ZIP-fil.",
 	"zip-bad": "Filen er en skadd eller på annen måte uleselig ZIP-fil.\nDen kan ikke sikkerhetskontrolleres.",
@@ -4041,5 +4044,7 @@
 	"paramvalidator-help-type-title": "Type: sidetittel",
 	"paramvalidator-help-type-title-must-exist": "Godtar kun sider som finnes.",
 	"paramvalidator-help-type-title-no-must-exist": "Godtar ikke-eksisterende sider.",
-	"nonmain-slot-differences-therefore-readonly": "Du kan ikke redigere wikiteksten for denne revisjonen av siden, fordi det har vært endringer i dataene på siden som ikke er wikitekstbaserte. [$1 Trykk her for å gjenopprette denne revisjonen.]"
+	"nonmain-slot-differences-therefore-readonly": "Du kan ikke redigere wikiteksten for denne revisjonen av siden, fordi det har vært endringer i dataene på siden som ikke er wikitekstbaserte. [$1 Trykk her for å gjenopprette denne revisjonen.]",
+	"config-missing-key": "Mangler MediaWiki-konfigurasjonsparameteret «$1»",
+	"config-invalid-key": "Ugyldig MediaWiki-konfigurasjonsparameter «$1»: $2"
 }
