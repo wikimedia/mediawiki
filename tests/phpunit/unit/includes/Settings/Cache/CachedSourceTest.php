@@ -2,34 +2,41 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Cache;
 
+use BagOStuff;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use PHPUnit\Framework\TestCase;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * @covers \MediaWiki\Settings\Cache\CachedSource
  */
 class CachedSourceTest extends TestCase {
 	public function testLoadWithMiss() {
-		$cache = $this->createMock( CacheInterface::class );
+		$cache = $this->createMock( BagOStuff::class );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
-		$key = 'abc123';
+		$hashKey = 'abc123';
+		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
 		$ttl = 123;
 
 		$source
 			->expects( $this->once() )
 			->method( 'getHashKey' )
+			->willReturn( $hashKey );
+
+		$cache
+			->expects( $this->once() )
+			->method( 'makeGlobalKey' )
+			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
 			->willReturn( $key );
 
 		$cache
 			->expects( $this->once() )
 			->method( 'get' )
-			->with( $key, null )
-			->willReturn( null );
+			->with( $key )
+			->willReturn( false );
 
 		$source
 			->expects( $this->atLeastOnce() )
@@ -65,22 +72,29 @@ class CachedSourceTest extends TestCase {
 	}
 
 	public function testLoadWithHit() {
-		$cache = $this->createMock( CacheInterface::class );
+		$cache = $this->createMock( BagOStuff::class );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
-		$key = 'abc123';
+		$hashKey = 'abc123';
+		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
 
 		$source
 			->expects( $this->once() )
 			->method( 'getHashKey' )
-			->willReturn( 'abc123' );
+			->willReturn( $hashKey );
+
+		$cache
+			->expects( $this->once() )
+			->method( 'makeGlobalKey' )
+			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
+			->willReturn( $key );
 
 		$cache
 			->expects( $this->once() )
 			->method( 'get' )
-			->with( $key, null )
+			->with( $key )
 			->willReturn(
 				[
 					'value' => $settings,
