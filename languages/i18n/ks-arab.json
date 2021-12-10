@@ -466,6 +466,8 @@
 	"rcfilters-activefilters": "عَملہِ مَنٛز فِلٹَر",
 	"rcfilters-activefilters-hide": "کٔھٹِتھ تھٲیو",
 	"rcfilters-activefilters-show": "وُچھِو",
+	"rcfilters-days-title": "دۄہ",
+	"rcfilters-hours-title": "گَنٛٹہٕ",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|دۄہ}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|گَنٛٹہٕ}}",
 	"rcfilters-savedqueries-remove": "مِٹٲیو",

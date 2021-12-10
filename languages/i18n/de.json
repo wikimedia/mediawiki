@@ -142,7 +142,7 @@
 	"tog-enotifrevealaddr": "Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen",
 	"tog-shownumberswatching": "Anzahl der beobachtenden Benutzer anzeigen",
 	"tog-oldsig": "Die genutzte Signatur:",
-	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung)",
+	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung zu deiner Benutzerseite)",
 	"tog-uselivepreview": "Vorschau ohne Neuladen der Seite anzeigen",
 	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt (oder es sich um die Standardzusammenfassung beim Zurücksetzen handelt)",
 	"tog-watchlisthideown": "Eigene Bearbeitungen in der Beobachtungsliste ausblenden",

@@ -202,7 +202,7 @@
 	"createacct-email-ph": "ኣድራሻ ኢመይልካ ኣእትው",
 	"createacct-submit": "መለለዪ መንነትካ ፍጠር",
 	"createacct-another-submit": "መለለዪ መንነት ፍጠር",
-	"createacct-benefit-heading": "{{SITENAME}} ብኸማኻ ዝኣመሰሉ ሰባት ዝተሰርሐ እዩ።",
+	"createacct-benefit-heading": "ከማኻ ዝኣመሰሉ ሰባት እዮም ን{{SITENAME}} ዝሃንጹ።",
 	"createacct-benefit-body1": "{{PLURAL:$1|ኣርትዖት|ኣርትዖታት}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|ገጽ|ገጻት}}",
 	"createacct-benefit-body3": "ናይ ቀረባ ግዜ {{PLURAL:$1|ኣበርካቲ|ኣበርከትቲ}}",

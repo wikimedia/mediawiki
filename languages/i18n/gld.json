@@ -154,7 +154,7 @@
 	"confirmable-no": "Аба",
 	"red-link-title": "$1 (нирухэ дяка абани)",
 	"nstab-main": "Страница",
-	"nstab-user": "{{GENDER:$1Най}}",
+	"nstab-user": "{{GENDER:$1|Най страница}}",
 	"nstab-special": "Специальнай страница",
 	"nstab-project": "Эй проектава",
 	"nstab-image": "Файл",

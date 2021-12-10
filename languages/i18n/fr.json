@@ -214,7 +214,7 @@
 	"tog-enotifrevealaddr": "Afficher mon adresse électronique dans les courriels de notification",
 	"tog-shownumberswatching": "Afficher le nombre d’utilisateurs qui suivent la page",
 	"tog-oldsig": "Votre signature actuelle :",
-	"tog-fancysig": "Traiter la signature comme du wikitexte (sans lien automatique)",
+	"tog-fancysig": "Traiter la signature comme du wikitexte (sans lien automatique à la votre page d’utilisateur)",
 	"tog-uselivepreview": "Afficher les aperçus sans recharger la page",
 	"tog-forceeditsummary": "M’avertir lorsque je n’ai pas spécifié de résumé de modification (ou qu’il s'agit du résumé d’annulation par défaut)",
 	"tog-watchlisthideown": "Masquer mes propres modifications dans la liste de suivi",

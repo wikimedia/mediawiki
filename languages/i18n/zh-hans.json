@@ -198,7 +198,7 @@
 	"tog-enotifrevealaddr": "在通知电子邮件中显示我的电子邮件地址",
 	"tog-shownumberswatching": "显示监视用户数",
 	"tog-oldsig": "您当前的签名：",
-	"tog-fancysig": "将签名视为wikitext（不自动添加至用户页的链接）",
+	"tog-fancysig": "将签名视为wikitext（不自动添加至您用户页的链接）",
 	"tog-uselivepreview": "在不重新加载页面的情况下显示预览",
 	"tog-forceeditsummary": "输入空白编辑摘要（或默认的撤消摘要）时提示我",
 	"tog-watchlisthideown": "在监视列表中隐藏我的编辑",

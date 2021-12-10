@@ -44,7 +44,7 @@
 	"tog-enotifrevealaddr": "Revelar mi adresse de e-mail in messages de notification",
 	"tog-shownumberswatching": "Monstrar le numero de usatores que observa le pagina",
 	"tog-oldsig": "Tu signatura existente:",
-	"tog-fancysig": "Tractar signatura como wikitexto (sin ligamine automatic)",
+	"tog-fancysig": "Tractar signatura como wikitexto (sin ligamine automatic a tu pagina de usator)",
 	"tog-uselivepreview": "Previsualisar sin recargar le pagina",
 	"tog-forceeditsummary": "Avisar me si io non entra un summario de modification (o si io non modifica le summario predefinite)",
 	"tog-watchlisthideown": "Celar mi proprie modificationes in le observatorio",
