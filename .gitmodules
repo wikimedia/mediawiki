@@ -536,7 +536,7 @@
 [submodule "extensions/Maps"]
 	path = extensions/Maps
 	url = https://github.com/JeroenDeDauw/Maps
-	branch = master
+	branch = 8.0.0
 	ignore = dirty
 [submodule "extensions/MassEditRegex"]
 	path = extensions/MassEditRegex

@@ -91,6 +91,9 @@ skins/Evelution
 extensions/SnapProjectEmbed
 skins/snapwikiskin
 
+# 8.0.0
+extensions/Maps
+
 # ada69e7fd80bc01bcfd518588559a4ff23f51834
 extensions/NumberedHeadings
 
