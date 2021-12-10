@@ -77,7 +77,9 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
 		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
 		if ( $getToken && $value !== false ) {
-			$casToken = $blob; // don't bother hashing this
+			// Note that if the driver handles serialization then this uses the PHP value
+			// as the token. This might require inspection or re-serialization in doCas().
+			$casToken = $blob;
 		}
 
 		return $value;
