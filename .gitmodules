@@ -1003,11 +1003,6 @@
 	url = https://github.com/miraheze/IncidentReporting
 	branch = master
 	ignore = dirty
-[submodule "extensions/NumberedHeadings"]
-	path = extensions/NumberedHeadings
-	url = https://github.com/staspika/mediawiki-numberedheadings
-	branch = master
-	ignore = dirty
 [submodule "extensions/DataDump"]
 	path = extensions/DataDump
 	url = https://github.com/miraheze/DataDump
