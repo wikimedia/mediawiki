@@ -39,7 +39,6 @@ extensions/DummyFandoomMainpageTags
 extensions/PortableInfobox
 extensions/MobileDetect
 extensions/IncidentReporting
-extensions/NumberedHeadings
 extensions/DataDump
 extensions/WikiCategoryTagCloud
 extensions/HeaderFooter
@@ -93,6 +92,3 @@ skins/snapwikiskin
 
 # 8.0.0
 extensions/Maps
-
-# 2f3e5f0fb7775f1e8415399cdc266ddefa1bd620
-extensions/ShortDescription
