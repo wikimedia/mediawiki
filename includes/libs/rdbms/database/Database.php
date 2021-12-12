@@ -2848,14 +2848,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function aggregateValue( $valuedata, $valuename = 'value' ) {
-		return $valuename;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function bitNot( $field ) {
 		return "(~$field)";
 	}

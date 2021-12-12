@@ -390,10 +390,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function aggregateValue( $valuedata, $valuename = 'value' ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function bitNot( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
