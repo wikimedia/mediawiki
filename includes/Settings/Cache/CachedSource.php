@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Settings\Cache;
 
+use BagOStuff;
 use MediaWiki\Settings\Source\SettingsSource;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Provides a caching layer for a {@link CacheableSource}.
@@ -12,7 +12,7 @@ use Psr\SimpleCache\CacheInterface;
  * @todo mark as stable before the 1.38 release
  */
 class CachedSource implements SettingsSource {
-	/** @var CacheInterface */
+	/** @var BagOStuff */
 	private $cache;
 
 	/** @var CacheableSource */
@@ -22,11 +22,11 @@ class CachedSource implements SettingsSource {
 	 * Constructs a new CachedSource using an instantiated cache and
 	 * {@link CacheableSource}.
 	 *
-	 * @param CacheInterface $cache
+	 * @param BagOStuff $cache
 	 * @param CacheableSource $source
 	 */
 	public function __construct(
-		CacheInterface $cache,
+		BagOStuff $cache,
 		CacheableSource $source
 	) {
 		$this->cache = $cache;
@@ -40,11 +40,14 @@ class CachedSource implements SettingsSource {
 	 * @return array
 	 */
 	public function load(): array {
-		$key = $this->source->getHashKey();
-		$item = $this->cache->get( $key, null );
+		$key = $this->cache->makeGlobalKey(
+			__CLASS__,
+			$this->source->getHashKey()
+		);
+		$item = $this->cache->get( $key );
 
 		$miss =
-			$item === null ||
+			$item === false ||
 			$this->expiresEarly( $item, $this->source->getExpiryWeight() );
 
 		if ( $miss ) {

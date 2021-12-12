@@ -2,6 +2,7 @@
 
 namespace phpunit\unit\includes\Settings;
 
+use BagOStuff;
 use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Settings\Cache\CacheableSource;
@@ -11,7 +12,6 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * @covers \MediaWiki\Settings\SettingsBuilder
@@ -308,7 +308,7 @@ class SettingsBuilderTest extends TestCase {
 
 	public function testLoadsCacheableSource() {
 		$mockSource = $this->createMock( CacheableSource::class );
-		$mockCache = $this->createMock( CacheInterface::class );
+		$mockCache = $this->createMock( BagOStuff::class );
 		$configBuilder = new ArrayConfigBuilder();
 		$builder = $this
 			->newSettingsBuilder( [
@@ -317,17 +317,26 @@ class SettingsBuilderTest extends TestCase {
 			] )
 			->load( $mockSource );
 
+		$hashKey = 'abc123';
+		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
+
 		// Mock a cache miss
 		$mockSource
 			->expects( $this->once() )
 			->method( 'getHashKey' )
-			->willReturn( 'abc123' );
+			->willReturn( $hashKey );
+
+		$mockCache
+			->expects( $this->once() )
+			->method( 'makeGlobalKey' )
+			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
+			->willReturn( $key );
 
 		$mockCache
 			->expects( $this->once() )
 			->method( 'get' )
-			->with( 'abc123' )
-			->willReturn( null );
+			->with( $key )
+			->willReturn( false );
 
 		$mockSource
 			->expects( $this->once() )

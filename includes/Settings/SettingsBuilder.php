@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings;
 
+use BagOStuff;
 use ExtensionRegistry;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
@@ -13,7 +14,6 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\SettingsSource;
-use Psr\SimpleCache\CacheInterface;
 use StatusValue;
 
 /**
@@ -27,7 +27,7 @@ class SettingsBuilder {
 	/** @var ExtensionRegistry */
 	private $extensionRegistry;
 
-	/** @var CacheInterface */
+	/** @var BagOStuff */
 	private $cache;
 
 	/** @var ConfigBuilder */
@@ -54,17 +54,17 @@ class SettingsBuilder {
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param ConfigBuilder $configSink
 	 * @param PhpIniSink $phpIniSink
-	 * @param CacheInterface|null $cache PSR-16 compliant cache interface used
-	 *  to cache settings loaded from each source. The caller should beware
-	 *  that secrets contained in any source passed to {@link load} or {@link
-	 *  loadFile} will be cached as well.
+	 * @param BagOStuff|null $cache BagOStuff used to cache settings loaded
+	 *  from each source. The caller should beware that secrets contained in
+	 *  any source passed to {@link load} or {@link loadFile} will be cached as
+	 *  well.
 	 */
 	public function __construct(
 		string $baseDir,
 		ExtensionRegistry $extensionRegistry,
 		ConfigBuilder $configSink,
 		PhpIniSink $phpIniSink,
-		CacheInterface $cache = null
+		BagOStuff $cache = null
 	) {
 		$this->baseDir = $baseDir;
 		$this->extensionRegistry = $extensionRegistry;
