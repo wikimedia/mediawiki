@@ -1092,17 +1092,6 @@ interface IDatabase {
 	public function factorConds( $condsArray );
 
 	/**
-	 * Return aggregated value alias
-	 *
-	 * @param array $valuedata
-	 * @param string $valuename
-	 *
-	 * @return array|string
-	 * @deprecated Since 1.33
-	 */
-	public function aggregateValue( $valuedata, $valuename = 'value' );
-
-	/**
 	 * @param string|int $field
 	 * @return string
 	 */

@@ -267,6 +267,7 @@ because of Phabricator reports.
   - ::preCommitCallbacksPending()
   - ::pendingWriteRowsAffected()
   - ::getServerUptime()
+  - ::aggregateValue()
 * …
 
 === Deprecations in 1.38 ===
