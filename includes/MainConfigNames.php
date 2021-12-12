@@ -3821,6 +3821,24 @@ class MainConfigNames {
 	public const XmlDumpSchemaVersion = 'XmlDumpSchemaVersion';
 
 	/**
+	 * Name constant for the WikiFarmSettingsDirectory setting, for use with Config::get()
+	 * @see MainConfigSchema::WikiFarmSettingsDirectory
+	 */
+	public const WikiFarmSettingsDirectory = 'WikiFarmSettingsDirectory';
+
+	/**
+	 * Name constant for the WikiFarmSettingsExtension setting, for use with Config::get()
+	 * @see MainConfigSchema::WikiFarmSettingsExtension
+	 */
+	public const WikiFarmSettingsExtension = 'WikiFarmSettingsExtension';
+
+	/**
+	 * Name constant for the WikiFarmSiteDetector setting, for use with Config::get()
+	 * @see MainConfigSchema::WikiFarmSiteDetector
+	 */
+	public const WikiFarmSiteDetector = 'WikiFarmSiteDetector';
+
+	/**
 	 * Name constant for the ExtensionFunctions setting, for use with Config::get()
 	 * @see MainConfigSchema::ExtensionFunctions
 	 */

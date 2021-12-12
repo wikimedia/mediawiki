@@ -27,10 +27,8 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 * @covers WebRequest::detectProtocol
 	 */
 	public function testDetectServer( $expected, $input, $description ) {
-		$this->setMwGlobals( 'wgAssumeProxiesUseDefaultProtocolPorts', true );
-
 		$this->setServerVars( $input );
-		$result = WebRequest::detectServer();
+		$result = WebRequest::detectServer( true );
 		$this->assertEquals( $expected, $result, $description );
 	}
 

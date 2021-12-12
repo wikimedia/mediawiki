@@ -59,6 +59,7 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
+use MediaWiki\Settings\WikiFarmSettingsLoader;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -242,6 +243,13 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
 	// Make any additional settings available in globals for use here
 	$wgSettings->apply();
+}
+
+// If in a wiki-farm, load site-specific settings
+if ( $wgSettings->getConfig()->get( 'WikiFarmSettingsDirectory' ) ) {
+	$wikiFarmSettingsLoader = new WikiFarmSettingsLoader( $wgSettings );
+	$wikiFarmSettingsLoader->loadWikiFarmSettings();
+	unset( $wikiFarmSettingsLoader );
 }
 
 // All settings should be loaded now.
