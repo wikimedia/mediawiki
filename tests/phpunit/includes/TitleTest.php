@@ -1804,6 +1804,23 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Regression test for T297571
+	 *
+	 * @covers Title::newMainPage
+	 */
+	public function testNewMainPageNoRecursion() {
+		$mock = $this->createMock( MessageCache::class );
+		$mock->method( 'get' )->willReturn( 'localtestiw:' );
+		$mock->method( 'transform' )->willReturn( 'localtestiw:' );
+		$this->setService( 'MessageCache', $mock );
+
+		$this->assertSame(
+			'Main Page',
+			Title::newMainPage()->getPrefixedText()
+		);
+	}
+
+	/**
 	 * @covers Title::newMainPage
 	 */
 	public function testNewMainPageWithLocal() {
