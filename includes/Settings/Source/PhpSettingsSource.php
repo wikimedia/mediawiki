@@ -10,7 +10,7 @@ use Wikimedia\AtEase\AtEase;
  *
  * @since 1.38
  */
-class PhpSettingsSource implements SettingsSource {
+class PhpSettingsSource implements SettingsSource, SettingsIncludeLocator {
 	/**
 	 * Path to the PHP file.
 	 * @var string
@@ -80,6 +80,10 @@ class PhpSettingsSource implements SettingsSource {
 	 */
 	public function __toString(): string {
 		return $this->path;
+	}
+
+	public function locateInclude( string $location ): string {
+		return SettingsFileUtils::resolveRelativeLocation( $location, dirname( $this->path ) );
 	}
 
 }

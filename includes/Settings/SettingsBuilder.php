@@ -13,6 +13,8 @@ use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
+use MediaWiki\Settings\Source\SettingsFileUtils;
+use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use StatusValue;
 
@@ -33,7 +35,7 @@ class SettingsBuilder {
 	/** @var ConfigBuilder */
 	private $configSink;
 
-	/** @var array */
+	/** @var SettingsSource[] */
 	private $currentBatch;
 
 	/** @var ConfigSchemaAggregator */
@@ -86,11 +88,7 @@ class SettingsBuilder {
 	public function load( SettingsSource $source ): self {
 		$this->assertNotFinished();
 
-		if ( $this->cache !== null && $source instanceof CacheableSource ) {
-			$source = new CachedSource( $this->cache, $source );
-		}
-
-		$this->currentBatch[] = $source;
+		$this->currentBatch[] = $this->wrapSource( $source );
 
 		return $this;
 	}
@@ -117,12 +115,32 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function loadFile( string $path ): self {
-		// Qualify the path if it isn't already absolute
-		if ( !preg_match( '!^[a-zA-Z]:\\\\!', $path ) && $path[0] != DIRECTORY_SEPARATOR ) {
-			$path = $this->baseDir . DIRECTORY_SEPARATOR . $path;
-		}
+		return $this->load( $this->makeSource( $path ) );
+	}
 
-		return $this->load( new FileSource( $path ) );
+	/**
+	 * @param SettingsSource $source
+	 *
+	 * @return SettingsSource
+	 */
+	private function wrapSource( SettingsSource $source ): SettingsSource {
+		if ( $this->cache !== null && $source instanceof CacheableSource ) {
+			$source = new CachedSource( $this->cache, $source );
+		}
+		return $source;
+	}
+
+	/**
+	 * @param string $location
+	 * @return SettingsSource
+	 */
+	private function makeSource( $location ): SettingsSource {
+		// NOTE: Currently, files are the only kind of location, but we could add others.
+		//       The set of supported source locations will be hard-coded here.
+		//       Custom SettingsSource would have to be instantiated directly and passed to load().
+		$path = SettingsFileUtils::resolveRelativeLocation( $location, $this->baseDir );
+
+		return $this->wrapSource( new FileSource( $path ) );
 	}
 
 	/**
@@ -174,13 +192,62 @@ class SettingsBuilder {
 	public function apply(): self {
 		$this->assertNotFinished();
 
-		foreach ( $this->currentBatch as $source ) {
-			$settings = $source->load();
-			$this->configSchema->addSchemas( $settings['config-schema'] ?? [], (string)$source );
+		$allSettings = $this->loadRecursive( $this->currentBatch );
+
+		foreach ( $allSettings as $settings ) {
+			$this->configSchema->addSchemas(
+				$settings['config-schema'] ?? [],
+				$settings['source-name']
+			);
 			$this->applySettings( $settings );
 		}
 		$this->reset();
 		return $this;
+	}
+
+	/**
+	 * Loads all sources in the current batch, recursively resolving includes.
+	 *
+	 * @param SettingsSource[] $batch The batch of sources to load
+	 * @param string[] $stack The current stack of includes, for cycle detection
+	 *
+	 * @return array[] an array of settings arrays
+	 */
+	private function loadRecursive( array $batch, array $stack = [] ): array {
+		$allSettings = [];
+
+		// Depth-first traversal of settings sources.
+		foreach ( $batch as $source ) {
+			$sourceName = (string)$source;
+
+			if ( in_array( $sourceName, $stack ) ) {
+				throw new SettingsBuilderException(
+					'Recursive include chain detected: ' . implode( ', ', $stack )
+				);
+			}
+
+			$settings = $source->load();
+			$settings['source-name'] = $sourceName;
+
+			$allSettings[] = $settings;
+
+			$nextBatch = [];
+			foreach ( $settings['includes'] ?? [] as $location ) {
+				// Try to resolve the include relative to the source,
+				// if the source supports that.
+				if ( $source instanceof SettingsIncludeLocator ) {
+					$location = $source->locateInclude( $location );
+				}
+
+				$nextBatch[] = $this->makeSource( $location );
+			}
+
+			$nextStack = array_merge( $stack, [ $settings['source-name'] ] );
+			$nextSettings = $this->loadRecursive( $nextBatch, $nextStack );
+			$allSettings = array_merge( $allSettings, $nextSettings );
+		}
+
+		return $allSettings;
 	}
 
 	/**

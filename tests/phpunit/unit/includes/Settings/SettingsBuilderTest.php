@@ -48,6 +48,56 @@ class SettingsBuilderTest extends TestCase {
 		$this->assertSame( 'TEST', $config->get( 'Something' ) );
 	}
 
+	public function testLoadingIncludesRecursiveFromFile() {
+		$configBuilder = new ArrayConfigBuilder();
+
+		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
+		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
+
+		// Make sure the cache is hit twice, once for each file!
+		$mockCache = $this->createMock( BagOStuff::class );
+		$mockCache
+			->expects( $this->exactly( 2 ) )
+			->method( 'get' )
+			->willReturn( false );
+
+		$setting = $this->newSettingsBuilder( [
+			'configBuilder' => $configBuilder,
+			'phpIniSink' => $phpIniSinkMock,
+			'cache' => $mockCache,
+		] );
+		$setting->loadFile( 'fixtures/settings-with-includes.json' )->apply();
+
+		$config = $configBuilder->build();
+		$this->assertSame( 'TEST', $config->get( 'Something' ) );
+	}
+
+	/**
+	 * Ensure that includes work in a source that is not a SettingsIncludeLocator
+	 */
+	public function testLoadingIncludesRecursiveFromArray() {
+		$configBuilder = new ArrayConfigBuilder();
+
+		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
+		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
+
+		$setting = $this->newSettingsBuilder( [
+			'configBuilder' => $configBuilder,
+			'phpIniSink' => $phpIniSinkMock,
+		] );
+		$setting->loadArray( [ 'includes' => [ 'fixtures/settings.json' ] ] )->apply();
+
+		$config = $configBuilder->build();
+		$this->assertSame( 'TEST', $config->get( 'Something' ) );
+	}
+
+	public function testLoadingIncludesRecursiveLoop() {
+		$setting = $this->newSettingsBuilder();
+
+		$this->expectException( SettingsBuilderException::class );
+		$setting->loadFile( 'fixtures/settings-with-self-includes.json' )->apply();
+	}
+
 	public function testLoadingAndApplyingFromFileAfterFinalize() {
 		$configBuilder = new ArrayConfigBuilder();
 
