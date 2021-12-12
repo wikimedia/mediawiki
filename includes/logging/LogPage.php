@@ -240,10 +240,23 @@ class LogPage {
 	) {
 		global $wgLang;
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$logActions = $config->get( MainConfigNames::LogActions );
+		$logActionsHandlers = $config->get( MainConfigNames::LogActionsHandlers );
 		$key = "$type/$action";
 
-		if ( isset( $logActions[$key] ) ) {
+		if ( isset( $logActionsHandlers[$key] ) ) {
+			$args = func_get_args();
+			$rv = call_user_func_array( $logActionsHandlers[$key], $args );
+		} else {
+			$logActions = $config->get( MainConfigNames::LogActions );
+
+			if ( isset( $logActions[$key] ) ) {
+				$message = $logActions[$key];
+			} else {
+				wfDebug( "LogPage::actionText - unknown action $key" );
+				$message = "log-unknown-action";
+				$params = [ $key ];
+			}
+
 			if ( $skin === null ) {
 				$langObj = MediaWikiServices::getInstance()->getContentLanguage();
 				$langObjOrNull = null;
@@ -254,29 +267,19 @@ class LogPage {
 				$langObjOrNull = $wgLang;
 			}
 			if ( $title === null ) {
-				$rv = wfMessage( $logActions[$key] )->inLanguage( $langObj )->escaped();
+				$rv = wfMessage( $message )->inLanguage( $langObj )->escaped();
 			} else {
 				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
-					$rv = wfMessage( $logActions[$key] )->rawParams( $titleLink )
+					$rv = wfMessage( $message )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
 					array_unshift( $params, $titleLink );
 
-					$rv = wfMessage( $logActions[$key] )->rawParams( $params )
+					$rv = wfMessage( $message )->rawParams( $params )
 							->inLanguage( $langObj )->escaped();
 				}
-			}
-		} else {
-			$logActionsHandlers = $config->get( MainConfigNames::LogActionsHandlers );
-
-			if ( isset( $logActionsHandlers[$key] ) ) {
-				$args = func_get_args();
-				$rv = call_user_func_array( $logActionsHandlers[$key], $args );
-			} else {
-				wfDebug( "LogPage::actionText - unknown action $key" );
-				$rv = "$action";
 			}
 		}
 

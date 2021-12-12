@@ -4550,5 +4550,6 @@
 	"renameuser-move-log": "Automatically moved page while renaming the {{GENDER:$2|user}} \"[[User:$1|$1]]\" to \"[[User:$2|$2]]\"",
 	"action-renameuser": "rename users",
 	"right-renameuser": "Rename users",
-	"renameuser-renamed-notice": "This user has been renamed.\nThe rename log is provided below for reference."
+	"renameuser-renamed-notice": "This user has been renamed.\nThe rename log is provided below for reference.",
+	"log-unknown-action": "performed unknown action \"$2\" on [[$1]]"
 }

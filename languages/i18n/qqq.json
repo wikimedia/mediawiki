@@ -4801,5 +4801,6 @@
 	"renameuser-move-log": "Reason for a page move when a page is moved because of a user rename. Parameters:\n* $1 - the old username\n* $2 - the new username, can be used for GENDER",
 	"action-renameuser": "{{Doc-action|renameuser}}\n{{Identical|Rename user}}",
 	"right-renameuser": "Message for renameuser right\n{{Doc-right|renameuser}}",
-	"renameuser-renamed-notice": "Parameters:\n* $1 - (Optional) username, for GENDER support"
+	"renameuser-renamed-notice": "Parameters:\n* $1 - (Optional) username, for GENDER support",
+	"log-unknown-action": "Fallback message used to display an unknown action in the log. Parameters:\n* $1 - Page title.\n* $2 - Key of the action."
 }
