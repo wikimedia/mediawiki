@@ -605,11 +605,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$signature = $this->userOptionsManager->getOption( $user, 'nickname' );
 		$useFancySig = $this->userOptionsManager->getBoolOption( $user, 'fancysig' );
 		if ( $useFancySig && $signature !== '' ) {
-			$validator = new SignatureValidator(
-				$user,
-				$context,
-				ParserOptions::newFromContext( $context )
-			);
+			$parserOpts = ParserOptions::newFromContext( $context );
+			$validator = MediaWikiServices::getInstance()->getSignatureValidatorFactory()
+				->newSignatureValidator( $user, $context, $parserOpts );
 			$signatureErrors = $validator->validateSignature( $signature );
 			if ( $signatureErrors ) {
 				$sigValidation = $this->options->get( 'SignatureValidation' );
@@ -1625,11 +1623,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
 			// Validate everything
-			$validator = new SignatureValidator(
-				$user,
-				$form->getContext(),
-				ParserOptions::newFromContext( $form->getContext() )
-			);
+			$parserOpts = ParserOptions::newFromContext( $form->getContext() );
+			$validator = MediaWikiServices::getInstance()->getSignatureValidatorFactory()
+				->newSignatureValidator( $user, $form->getContext(), $parserOpts );
 			$errors = $validator->validateSignature( $signature );
 			if ( $errors ) {
 				return $errors;

@@ -22,7 +22,6 @@ namespace MediaWiki\Preferences;
 
 use Html;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
@@ -40,8 +39,8 @@ use VirtualRESTServiceClient;
  */
 class SignatureValidator {
 
-	/** @var array */
-	private const CONSTRUCTOR_OPTIONS = [
+	/** @var array Made public for use in services */
+	public const CONSTRUCTOR_OPTIONS = [
 		'SignatureAllowedLintErrors',
 		'VirtualRestConfig',
 	];
@@ -62,30 +61,34 @@ class SignatureValidator {
 	private $titleFactory;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param UserIdentity $user
 	 * @param ?MessageLocalizer $localizer
 	 * @param ParserOptions $popts
+	 * @param Parser $parser
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param TitleFactory $titleFactory
 	 */
-	public function __construct( UserIdentity $user, ?MessageLocalizer $localizer, ParserOptions $popts ) {
+	public function __construct(
+		ServiceOptions $options,
+		UserIdentity $user,
+		?MessageLocalizer $localizer,
+		ParserOptions $popts,
+		Parser $parser,
+		SpecialPageFactory $specialPageFactory,
+		TitleFactory $titleFactory
+	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
-
-		// TODO inject these
-		$services = MediaWikiServices::getInstance();
 		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
-		$this->parser = $services->getParser();
+		$this->parser = $parser;
 		// Configuration
-		$this->serviceOptions = new ServiceOptions(
-			self::CONSTRUCTOR_OPTIONS,
-			$services->getMainConfig()
-		);
+		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		// Services
-		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->titleFactory = $services->getTitleFactory();
-
 		// TODO SpecialPage::getTitleFor should also be available via SpecialPageFactory
+		$this->specialPageFactory = $specialPageFactory;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**

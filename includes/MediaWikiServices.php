@@ -83,6 +83,7 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
@@ -1578,6 +1579,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getShellCommandFactory(): CommandFactory {
 		return $this->getService( 'ShellCommandFactory' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return SignatureValidatorFactory
+	 */
+	public function getSignatureValidatorFactory(): SignatureValidatorFactory {
+		return $this->getService( 'SignatureValidatorFactory' );
 	}
 
 	/**
