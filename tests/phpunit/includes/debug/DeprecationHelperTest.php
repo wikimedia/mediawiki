@@ -40,6 +40,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'protectedDeprecated', 0, null ],
 			[ 'privateDeprecated', null, null ],
 			[ 'fallbackDeprecated', null, null ],
+			[ 'fallbackDeprecatedMethodName', null, null ],
 			[ 'fallbackGetterOnly', null, null ],
 			[ 'protectedNonDeprecated', E_USER_ERROR,
 				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
@@ -89,7 +90,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideSet
 	 */
-	public function testSet( $propName, $expectedLevel, $expectedMessage ) {
+	public function testSet( $propName, $expectedLevel, $expectedMessage, $expectedValue = 0 ) {
 		$this->assertPropertySame( 1, $this->testClass, $propName );
 		if ( $expectedLevel ) {
 			$this->assertErrorTriggered( function () use ( $propName ) {
@@ -106,6 +107,8 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			}
 			$this->assertPropertySame( 0, $this->testClass, $propName );
 		}
+
+		$this->assertPropertySame( $expectedValue, $this->testClass, $propName );
 	}
 
 	public function provideSet() {
@@ -113,12 +116,13 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'protectedDeprecated', null, null ],
 			[ 'privateDeprecated', null, null ],
 			[ 'fallbackDeprecated', null, null ],
+			[ 'fallbackDeprecatedMethodName', null, null ],
 			[ 'fallbackGetterOnly', E_USER_ERROR,
 				'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
 			[ 'protectedNonDeprecated', E_USER_ERROR,
-				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated', 1 ],
 			[ 'privateNonDeprecated', E_USER_ERROR,
-				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
+				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated', 1 ],
 			[ 'nonExistent', null, null ],
 		];
 	}
