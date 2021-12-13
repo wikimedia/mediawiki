@@ -1380,7 +1380,36 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
 
-	/**
+	public function selectSQLText(
+		$table,
+		$vars,
+		$conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	) {
+		$sql = parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		// https://dev.mysql.com/doc/refman/5.7/en/optimizer-hints.html
+		// https://mariadb.com/kb/en/library/aborting-statements/
+		$timeoutMsec = intval( $options['MAX_EXECUTION_TIME'] ?? 0 );
+		if ( $timeoutMsec > 0 ) {
+			list( $vendor, $number ) = $this->getMySqlServerVariant();
+			if ( $vendor === 'MariaDB' && version_compare( $number, '10.1.2', '>=' ) ) {
+				$timeoutSec = $timeoutMsec / 1000;
+				$sql = "SET STATEMENT max_statement_time=$timeoutSec FOR $sql";
+			} elseif ( $vendor === 'MySQL' && version_compare( $number, '5.7.0', '>=' ) ) {
+				$sql = preg_replace(
+					'/^SELECT(?=\s)/',
+					"SELECT /*+ MAX_EXECUTION_TIME($timeoutMsec)*/",
+					$sql
+				);
+			}
+		}
+
+		return $sql;
+	}
+
+	/*
 	 * @return bool Whether GTID support is used (mockable for testing)
 	 */
 	protected function useGTIDs() {

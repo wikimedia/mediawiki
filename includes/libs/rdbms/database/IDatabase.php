@@ -767,6 +767,9 @@ interface IDatabase {
 	 *   - EXPLAIN: In MySQL, this causes an EXPLAIN SELECT query to be run,
 	 *     instead of SELECT.
 	 *
+	 *   - MAX_EXECUTION_TIME: (only in MySQL/MariaDB) maximum allowed time to
+	 *     run the query in milliseconds (if database supports it).
+	 *
 	 * And also the following boolean MySQL extensions, see the MySQL manual
 	 * for documentation:
 	 *
