@@ -185,7 +185,6 @@ because of Phabricator reports.
   - Skin::makeUrl()
   - Skin::getSearchLink()
   - Skin::mainPageLink()
-    For these, use Skin::getSearchPageTitle() instead.
 * Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
   since 1.37, has been removed.
 * Parser::$mStripState, deprecated in 1.35, has been made private.  Use
@@ -280,11 +279,14 @@ because of Phabricator reports.
 * User::setOption(), deprecated since 1.35, now emits deprecation warnings.
 * Linker::formatComment(), ::formatLinksInComment(), ::commentBlock() and
   revComment() were deprecated. Use the new CommentFormatter service.
-* Skin::getSkinStylePath now triggers deprecation warnings. Direct string path
+* Several Skin methods have been deprecated.
+  - Skin::setSearchPageTitle(), Skin::getSearchPageTitle(). For these,
+    use SpecialPage::newSearchPage() or associated user preference instead.
+  - Skin::getSkinStylePath now triggers deprecation warnings. Direct string path
   should be used instead.
-* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
+  - SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
   deprecation warnings.
-* SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
+* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
   deprecation warnings.
 * The following methods from the User class now trigger deprecation warnings:
    - ::blockedBy

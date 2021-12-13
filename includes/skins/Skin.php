@@ -74,8 +74,6 @@ abstract class Skin extends ContextSource {
 	/** The current major version of the skin specification. */
 	protected const VERSION_MAJOR = 1;
 
-	private $searchPageTitle = null;
-
 	/** @var string cached action for cheap lookup */
 	protected $action;
 
@@ -2657,12 +2655,30 @@ abstract class Skin extends ContextSource {
 		return Html::rawElement( 'div', $realBodyAttribs, $html );
 	}
 
+	/**
+	 * @deprecated 1.38 Use SpecialPage::newSearchPage instead.
+	 */
 	public function getSearchPageTitle(): Title {
-		return $this->searchPageTitle ?? SpecialPage::getTitleFor( 'Search' );
+		wfDeprecated( __METHOD__, '1.38 Use SpecialPage::newSearchPage' );
+		return SpecialPage::newSearchPage( $this->getUser() );
 	}
 
+	/**
+	 * @deprecated 1.38 to change the search page title change the value of the
+	 *  preference 'search-special-page' instead.
+	 */
 	public function setSearchPageTitle( Title $title ) {
-		$this->searchPageTitle = $title;
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$user = $this->getUser();
+		$currentTitle = $userOptionsManager->getOption( $user, 'search-special-page' );
+		$newTitle = $title->getText();
+		if ( $currentTitle !== $newTitle ) {
+			$userOptionsManager->setOption( $user, 'search-special-page', $newTitle );
+			if ( !$user->isAnon() ) {
+				// avoid this check for logged in users on future visits.
+				$userOptionsManager->saveOptions( $user );
+			}
+		}
 	}
 
 	/**

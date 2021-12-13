@@ -1390,6 +1390,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function searchPreferences( &$defaultPreferences ) {
+		$defaultPreferences['search-special-page'] = [
+			'type' => 'api',
+		];
+
 		foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
 			$defaultPreferences['searchNs' . $n] = [
 				'type' => 'api',

@@ -5698,6 +5698,7 @@ $wgDefaultUserOptions = [
 	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
 	'search-match-redirect' => true,
+	'search-special-page' => 'Search',
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showrollbackconfirmation' => 0,

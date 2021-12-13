@@ -91,6 +91,30 @@ class SpecialPage implements MessageLocalizer {
 	private $specialPageFactory;
 
 	/**
+	 * Get the users prefered search page.
+	 *
+	 * It will fall back to Special:Search if the preference points to a page
+	 * that doesn't exist or is not defined.
+	 *
+	 * @since 1.38
+	 * @param User $user Search page can be customized by user preference.
+	 * @return Title
+	 */
+	public static function newSearchPage( User $user ) {
+		// Try user preference first
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$title = $userOptionsManager->getOption( $user, 'search-special-page' );
+		if ( $title ) {
+			$page = self::getTitleFor( $title );
+			$factory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			if ( $factory->exists( $page->getText() ) ) {
+				return $page;
+			}
+		}
+		return self::getTitleFor( 'Search' );
+	}
+
+	/**
 	 * Get a localised Title object for a specified special page name
 	 * If you don't need a full Title object, consider using TitleValue through
 	 * getTitleValueFor() below.
