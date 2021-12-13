@@ -163,6 +163,24 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	}
 
 	/**
+	 * Filter based on user hidden status
+	 *
+	 * @param bool $hidden True - only hidden users, false - no hidden users
+	 * @return $this
+	 */
+	public function hidden( bool $hidden ): self {
+		$this->leftJoin( 'ipblocks', null, [ "actor_user=ipb_user" ] );
+		if ( $hidden ) {
+			// only hidden users
+			$this->conds( [ 'ipb_deleted = 1' ] );
+		} else {
+			// filter out hidden users
+			$this->conds( [ 'ipb_deleted = 0 OR ipb_deleted IS NULL' ] );
+		}
+		return $this;
+	}
+
+	/**
 	 * Fetch a single UserIdentity that matches specified criteria.
 	 *
 	 * @return UserIdentity|null
