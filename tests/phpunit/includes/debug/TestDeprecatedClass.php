@@ -10,6 +10,8 @@ class TestDeprecatedClass {
 	private $privateNonDeprecated = 1;
 	private $fallbackDeprecated = 1;
 
+	private $foo = 'FOO';
+
 	public function __construct() {
 		$this->deprecatePublicProperty( 'protectedDeprecated', '1.23' );
 		$this->deprecatePublicProperty( 'privateDeprecated', '1.24' );
@@ -21,6 +23,10 @@ class TestDeprecatedClass {
 			function ( $value ) {
 				$this->fallbackDeprecated = $value;
 			}
+		);
+		$this->deprecatePublicPropertyFallback( 'fallbackDeprecatedMethodName', '1.26',
+			'getFoo',
+			'setFoo'
 		);
 		$this->deprecatePublicPropertyFallback( 'fallbackGetterOnly', '1.25',
 			static function () {
@@ -45,4 +51,11 @@ class TestDeprecatedClass {
 		];
 	}
 
+	public function getFoo() {
+		return $this->foo;
+	}
+
+	public function setFoo( $foo ) {
+		$this->foo = $foo;
+	}
 }

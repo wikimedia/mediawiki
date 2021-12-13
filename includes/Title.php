@@ -218,43 +218,25 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	private function __construct() {
-		$this->deprecatePublicProperty( 'mTextform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mUrlform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mDbkeyform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNamespace', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInterwiki', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mFragment', '1.37', __CLASS__ );
+		// Phan is being silly about callable|string, see T297352.
+		// Note that the silliness doesn't trigger for 'getText', because gettext() exists
+		// as a global built-in function.
+		$this->deprecatePublicPropertyFallback( 'mTextform', '1.38', 'getText' );
 
-		$this->deprecatePublicPropertyFallback( 'mTextform', '1.38', function () {
-			return $this->getText();
-		} );
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mUrlform', '1.38', 'getPartialURL' );
 
-		$this->deprecatePublicPropertyFallback( 'mUrlform', '1.38', function () {
-			return $this->getPartialURL();
-		} );
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mDbkeyform', '1.38', 'getDBkey' );
 
-		$this->deprecatePublicPropertyFallback( 'mDbkeyform', '1.38', function () {
-			return $this->getDBkey();
-		} );
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mNamespace', '1.38', 'getNamespace' );
 
-		$this->deprecatePublicPropertyFallback( 'mNamespace', '1.38', function () {
-			return $this->getNamespace();
-		} );
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mInterwiki', '1.38', 'getInterwiki' );
 
-		$this->deprecatePublicPropertyFallback( 'mInterwiki', '1.38', function () {
-			return $this->getInterwiki();
-		} );
-
-		$this->deprecatePublicPropertyFallback(
-			'mFragment',
-			'1.38',
-			function () {
-				return $this->getFragment();
-			},
-			function ( $fragment ) {
-				$this->setFragment( $fragment );
-			}
-		);
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mFragment', '1.38', 'getFragment', 'setFragment' );
 	}
 
 	/**
