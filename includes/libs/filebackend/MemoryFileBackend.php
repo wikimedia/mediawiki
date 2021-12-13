@@ -253,7 +253,7 @@ class MemoryFileBackend extends FileBackendStore {
 	/**
 	 * Get the absolute file system path for a storage path
 	 *
-	 * @param string $storagePath Storage path
+	 * @param string $storagePath
 	 * @return string|null
 	 */
 	protected function resolveHashKey( $storagePath ) {

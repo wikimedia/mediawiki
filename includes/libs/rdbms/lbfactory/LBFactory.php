@@ -765,7 +765,7 @@ abstract class LBFactory implements ILBFactory {
 	/**
 	 * Build a string conveying the client and write index of the chronology protector data
 	 *
-	 * @param int $writeIndex Write index
+	 * @param int $writeIndex
 	 * @param int $time UNIX timestamp; can be used to detect stale cookies (T190082)
 	 * @param string $clientId Client ID hash from ILBFactory::shutdown()
 	 * @return string Value to use for "cpPosIndex" cookie

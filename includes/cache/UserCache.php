@@ -69,7 +69,7 @@ class UserCache {
 	/**
 	 * Get a property of a user based on their user ID
 	 *
-	 * @param int $userId User ID
+	 * @param int $userId
 	 * @param string $prop User property
 	 * @return mixed|bool The property or false if the user does not exist
 	 */

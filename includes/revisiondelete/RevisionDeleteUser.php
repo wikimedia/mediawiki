@@ -38,7 +38,7 @@ class RevisionDeleteUser {
 	 * Update *_deleted bitfields in various tables to hide or unhide usernames
 	 *
 	 * @param string $name Username
-	 * @param int $userId User id
+	 * @param int $userId
 	 * @param string $op Operator '|' or '&'
 	 * @param null|IDatabase $dbw If you happen to have one lying around
 	 * @return bool True on success, false on failure (e.g. invalid user ID)

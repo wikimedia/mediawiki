@@ -373,7 +373,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string|null $password User password {@see connectionParams}
 	 * @param string|null $db Database name
 	 * @param string|null $schema Database schema name
-	 * @param string $tablePrefix Table prefix
+	 * @param string $tablePrefix
 	 * @throws DBConnectionError
 	 */
 	abstract protected function open( $server, $user, $password, $db, $schema, $tablePrefix );
@@ -588,11 +588,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getTopologyRootPrimary() {
-		return $this->topologyRootMaster;
-	}
-
-	public function getTopologyRootMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
 		return $this->topologyRootMaster;
 	}
 
@@ -883,10 +878,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function fieldName( IResultWrapper $res, $n ) {
 		return $res->getFieldNames()[$n];
-	}
-
-	public function dataSeek( IResultWrapper $res, $pos ) {
-		$res->seek( $pos );
 	}
 
 	public function freeResult( IResultWrapper $res ) {
@@ -3787,8 +3778,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @stable to override
-	 * @param array $insertOptions INSERT options
-	 * @param array $selectOptions SELECT options
+	 * @param array $insertOptions
+	 * @param array $selectOptions
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
 	 * @since 1.31
 	 */
@@ -4149,14 +4140,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 */
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->primaryPosWait( $pos, $timeout );
-	}
-
-	/**
-	 * @inheritDoc
 	 * @stable to override
 	 */
 	public function getReplicaPos() {
@@ -4171,11 +4154,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function getPrimaryPos() {
 		# Stub
 		return false;
-	}
-
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
 	}
 
 	/**
@@ -4214,10 +4192,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw $dbErrors[0];
 			}
 		}
-	}
-
-	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		$this->onTransactionCommitOrIdle( $callback, $fname );
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {

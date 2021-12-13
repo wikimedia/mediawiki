@@ -53,8 +53,8 @@ class SearchSuggestion {
 	/**
 	 * @param float $score the suggestion score
 	 * @param string|null $text the suggestion text
-	 * @param Title|null $suggestedTitle the suggested title
-	 * @param int|null $suggestedTitleID the suggested title ID
+	 * @param Title|null $suggestedTitle
+	 * @param int|null $suggestedTitleID
 	 */
 	public function __construct( $score, $text = null, Title $suggestedTitle = null,
 			$suggestedTitleID = null ) {

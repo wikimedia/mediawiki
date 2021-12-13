@@ -35,8 +35,8 @@ interface BlockUserFactory {
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
-	 * @param array $blockOptions Block options
-	 * @param array $blockRestrictions Block restrictions
+	 * @param array $blockOptions
+	 * @param array $blockRestrictions
 	 * @param array|null $tags Tags that should be assigned to the log entry
 	 *
 	 * @return BlockUser

@@ -206,14 +206,6 @@ interface IDatabase {
 	public function getTopologyRootPrimary();
 
 	/**
-	 * @deprecated since 1.37; use getTopologyRootPrimary() instead.
-	 * @return string|null Readable server name; null if unknown or if co-primaries are defined
-	 * @throws DBQueryError
-	 * @since 1.34
-	 */
-	public function getTopologyRootMaster();
-
-	/**
 	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no
@@ -475,17 +467,6 @@ interface IDatabase {
 	 * @param IResultWrapper $res A SQL result
 	 */
 	public function freeResult( IResultWrapper $res );
-
-	/**
-	 * Change the position of the cursor in a result object
-	 * @see https://www.php.net/mysql_data_seek
-	 *
-	 * @deprecated since 1.37 use IResultWrapper::seek()
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 * @param int $row
-	 */
-	public function dataSeek( IResultWrapper $res, $row );
 
 	// endregion -- Deprecated IResultWrapper accessors
 	/***************************************************************************/
@@ -1664,17 +1645,6 @@ interface IDatabase {
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout );
 
 	/**
-	 * @deprecated since 1.37; use primaryPosWait() instead.
-	 * @param DBPrimaryPos $pos
-	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return int|null Zero if the replica DB was past that position already,
-	 *   greater than zero if we waited for some period of time, less than
-	 *   zero if it timed out, and null on error
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function masterPosWait( DBPrimaryPos $pos, $timeout );
-
-	/**
 	 * Get the replication position of this replica DB
 	 *
 	 * @return DBPrimaryPos|bool False if this is not a replica DB
@@ -1690,13 +1660,6 @@ interface IDatabase {
 	 * @since 1.37
 	 */
 	public function getPrimaryPos();
-
-	/**
-	 * @deprecated since 1.37; use getPrimaryPos() instead.
-	 * @return DBPrimaryPos|bool False if this is not a primary DB
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function getMasterPos();
 
 	/**
 	 * @return bool Whether the DB is marked as read-only server-side
@@ -1774,16 +1737,6 @@ interface IDatabase {
 	 * @since 1.32
 	 */
 	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ );
-
-	/**
-	 * Alias for onTransactionCommitOrIdle() for backwards-compatibility
-	 *
-	 * @param callable $callback
-	 * @param string $fname
-	 * @since 1.20
-	 * @deprecated Since 1.32
-	 */
-	public function onTransactionIdle( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback before the current transaction commits or now if there is none

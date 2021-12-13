@@ -348,7 +348,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Request an additional field from the page table.
 	 * Must be called before execute()
-	 * @param string $fieldName Field name
+	 * @param string $fieldName
 	 */
 	public function requestField( $fieldName ) {
 		$this->mRequestedPageFields[$fieldName] = null;
@@ -357,7 +357,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get the value of a custom field previously requested through
 	 * requestField()
-	 * @param string $fieldName Field name
+	 * @param string $fieldName
 	 * @return mixed Field value
 	 */
 	public function getCustomField( $fieldName ) {

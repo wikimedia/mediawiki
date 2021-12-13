@@ -470,7 +470,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a sub-element under the page element with the given page ID
-	 * @param int $pageId Page ID
+	 * @param int $pageId
 	 * @param array $data Data array à la ApiResult
 	 * @return bool Whether the element fit in the result
 	 */
@@ -485,7 +485,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Same as addPageSubItems(), but one element of $data at a time
-	 * @param int $pageId Page ID
+	 * @param int $pageId
 	 * @param mixed $item Data à la ApiResult
 	 * @param string|null $elemname XML element name. If null, getModuleName()
 	 *  is used
@@ -522,7 +522,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * $namespace should always be specified in order to handle per-namespace
 	 * capitalization settings.
 	 *
-	 * @param string $titlePart Title part
+	 * @param string $titlePart
 	 * @param int $namespace Namespace of the title
 	 * @return string DBkey (no namespace prefix)
 	 */
@@ -548,7 +548,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Convert an input title or title prefix into a TitleValue.
 	 *
 	 * @since 1.35
-	 * @param string $titlePart Title part
+	 * @param string $titlePart
 	 * @param int $defaultNamespace Default namespace if none is given
 	 * @return TitleValue
 	 */
