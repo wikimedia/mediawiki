@@ -72,6 +72,20 @@ abstract class Collation {
 	abstract public function getSortKey( $string );
 
 	/**
+	 * Get multiple sort keys
+	 *
+	 * @param string[] $strings
+	 * @return string[]
+	 */
+	public function getSortKeys( $strings ) {
+		$ret = [];
+		foreach ( $strings as $key => $s ) {
+			$ret[$key] = $this->getSortKey( $s );
+		}
+		return $ret;
+	}
+
+	/**
 	 * Given a string, return the logical "first letter" to be used for
 	 * grouping on category pages and so on.  This has to be coordinated
 	 * carefully with convertToSortkey(), or else the sorted list might jump

@@ -1,11 +1,11 @@
 /*
  * HTMLForm enhancements:
- * Set up 'hide-if' behaviors for form fields that have them.
+ * Set up 'hide-if' and 'disable-if' behaviors for form fields that have them.
  */
 ( function () {
 
 	/**
-	 * Helper function for hide-if to find the nearby form field.
+	 * Helper function for conditional states to find the nearby form field.
 	 *
 	 * Find the closest match for the given name, "closest" being the minimum
 	 * level of parents to go to find a form field matching the given name or
@@ -18,7 +18,7 @@
 	 * @param {string} name
 	 * @return {jQuery|OO.ui.Widget|null}
 	 */
-	function hideIfGetField( $el, name ) {
+	function conditionGetField( $el, name ) {
 		var $found, $p, $widget,
 			suffix = name.replace( /^([^[]+)/, '[$1]' );
 
@@ -42,8 +42,8 @@
 	}
 
 	/**
-	 * Helper function for hide-if to return a test function and list of
-	 * dependent fields for a hide-if specification.
+	 * Helper function for conditional states to return a test function and list of
+	 * dependent fields for a conditional states specification.
 	 *
 	 * @ignore
 	 * @private
@@ -53,7 +53,7 @@
 	 * @return {Array} return.0 Dependent fields, array of jQuery objects or OO.ui.Widgets
 	 * @return {Function} return.1 Test function
 	 */
-	function hideIfParse( $el, spec ) {
+	function conditionParse( $el, spec ) {
 		var op, i, l, v, field, $field, fields, func, funcs, getVal;
 
 		op = spec[ 0 ];
@@ -69,7 +69,7 @@
 					if ( !Array.isArray( spec[ i ] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
-					v = hideIfParse( $el, spec[ i ] );
+					v = conditionParse( $el, spec[ i ] );
 					fields = fields.concat( v[ 0 ] );
 					funcs.push( v[ 1 ] );
 				}
@@ -134,7 +134,7 @@
 				if ( !Array.isArray( spec[ 1 ] ) ) {
 					throw new Error( 'NOT parameters must be arrays' );
 				}
-				v = hideIfParse( $el, spec[ 1 ] );
+				v = conditionParse( $el, spec[ 1 ] );
 				fields = v[ 0 ];
 				func = v[ 1 ];
 				return [ fields, function () {
@@ -146,7 +146,7 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				field = hideIfGetField( $el, spec[ 1 ] );
+				field = conditionGetField( $el, spec[ 1 ] );
 				if ( !field ) {
 					return [ [], function () {
 						return false;
@@ -202,7 +202,7 @@
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var
-			$fields = $root.find( '.mw-htmlform-hide-if' ),
+			$fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ),
 			$oouiFields = $fields.filter( '[data-ooui]' ),
 			modules = [];
 
@@ -223,46 +223,53 @@
 
 		mw.loader.using( modules ).done( function () {
 			$fields.each( function () {
-				var v, i, fields, test, func, spec, $elOrLayout,
+				var v, i, fields = [], test = [], func, spec, $elOrLayout,
 					$el = $( this );
 
 				if ( $el.is( '[data-ooui]' ) ) {
 					// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
 					$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
-					spec = $elOrLayout.hideIf;
+					spec = $elOrLayout.condState;
 					// The original element has been replaced with infused one
 					$el = $elOrLayout.$element;
 				} else {
 					$elOrLayout = $el;
-					spec = $el.data( 'hideIf' );
+					spec = $el.data( 'condState' );
 				}
 
 				if ( !spec ) {
 					return;
 				}
 
-				v = hideIfParse( $el, spec );
-				fields = v[ 0 ];
-				test = v[ 1 ];
-				// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
+				[ 'hide', 'disable' ].forEach( function ( type ) {
+					if ( spec[ type ] ) {
+						v = conditionParse( $el, spec[ type ] );
+						fields = fields.concat( fields, v[ 0 ] );
+						test[ type ] = v[ 1 ];
+					}
+				} );
 				func = function () {
-					var shouldHide = test();
-					$elOrLayout.toggle( !shouldHide );
+					var shouldHide = spec.hide ? test.hide() : false;
+					var shouldDisable = shouldHide || ( spec.disable ? test.disable() : false );
+					if ( spec.hide ) {
+						// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
+						$elOrLayout.toggle( !shouldHide );
+					}
 
-					// It is impossible to submit a form with hidden fields failing validation, e.g. one that
-					// is required. However, validity is not checked for disabled fields, as these are not
-					// submitted with the form. So we should also disable fields when hiding them.
+					// Disable fields with either 'disable-if' or 'hide-if' rules
+					// Hidden fields should be disabled to avoid users meet validation failure on these fields,
+					// because disabled fields will not be submitted with the form.
 					if ( $elOrLayout instanceof $ ) {
 						// This also finds elements inside any nested fields (in case of HTMLFormFieldCloner),
 						// which is problematic. But it works because:
-						// * HTMLFormFieldCloner::createFieldsForKey() copies 'hide-if' rules to nested fields
+						// * HTMLFormFieldCloner::createFieldsForKey() copies '*-if' rules to nested fields
 						// * jQuery collections like $fields are in document order, so we register event
 						//   handlers for parents first
 						// * Event handlers are fired in the order they were registered, so even if the handler
 						//   for parent messed up the child, the handle for child will run next and fix it
 						$elOrLayout.find( 'input, textarea, select' ).each( function () {
 							var $this = $( this );
-							if ( shouldHide ) {
+							if ( shouldDisable ) {
 								if ( $this.data( 'was-disabled' ) === undefined ) {
 									$this.data( 'was-disabled', $this.prop( 'disabled' ) );
 								}
@@ -273,7 +280,7 @@
 						} );
 					} else {
 						// $elOrLayout is a OO.ui.FieldLayout
-						if ( shouldHide ) {
+						if ( shouldDisable ) {
 							if ( $elOrLayout.wasDisabled === undefined ) {
 								$elOrLayout.wasDisabled = $elOrLayout.fieldWidget.isDisabled();
 							}

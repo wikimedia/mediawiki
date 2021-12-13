@@ -102,15 +102,21 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			} else {
 				$info['id'] = Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--$fieldname" );
 			}
-			// Copy the hide-if rules to "child" fields, so that the JavaScript code handling them
-			// (resources/src/mediawiki/htmlform/hide-if.js) doesn't have to handle nested fields.
-			if ( $this->mHideIf ) {
-				if ( isset( $info['hide-if'] ) ) {
-					// Hide child field if either its rules say it's hidden, or parent's rules say it's hidden
-					$info['hide-if'] = [ 'OR', $info['hide-if'], $this->mHideIf ];
-				} else {
-					// Hide child field if parent's rules say it's hidden
-					$info['hide-if'] = $this->mHideIf;
+			// Copy the hide-if and disable-if rules to "child" fields, so that the JavaScript code handling them
+			// (resources/src/mediawiki.htmlform/cond-state.js) doesn't have to handle nested fields.
+			if ( $this->mCondState['class'] ) {
+				foreach ( [ 'hide', 'disable' ] as $type ) {
+					if ( !isset( $this->mCondState[$type] ) ) {
+						continue;
+					}
+					$field = $type . '-if';
+					if ( isset( $info[$field] ) ) {
+						// Hide or disable child field if either its rules say so, or parent's rules say so.
+						$info[$field] = [ 'OR', $info[$field], $this->mCondState[$type] ];
+					} else {
+						// Hide or disable child field if parent's rules say so.
+						$info[$field] = $this->mCondState[$type];
+					}
 				}
 			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );

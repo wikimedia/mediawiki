@@ -143,29 +143,9 @@
 	}
 
 	/**
-	 * Keep watchlinks in sync when other watchlinks for the same page are pressed
-	 *
 	 * @private
-	 * @param {Object} $links
-	 * @param {boolean} isWatched
-	 * @param {string} title
 	 */
-	function syncWatchlinks( $links, isWatched, title ) {
-		if ( title === pageTitle ) {
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( $links, function ( index, link ) {
-				updateWatchLink( $( link ), isWatched ? 'unwatch' : 'watch' );
-			} );
-		}
-	}
-
-	/**
-	 * Query and return watchlink elements
-	 *
-	 * @private
-	 * @return {jQuery}
-	 */
-	function getWatchLinks() {
+	function init() {
 		var $links = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
 		if ( !$links.length ) {
 			// Fallback to the class-based exclusion method for backwards-compatibility
@@ -173,24 +153,9 @@
 			// Restrict to core interfaces, ignore user-generated content
 			$links = $links.filter( ':not( #bodyContent *, #content * )' );
 		}
-		return $links;
-	}
-
-	/**
-	 * @private
-	 */
-	function init() {
-		var $links = getWatchLinks();
 		if ( $links.length ) {
 			// eslint-disable-next-line no-use-before-define
-			watchstar( $links, pageTitle );
-			// Keep watchlinks in sync when other watchlinks are pressed
-			mw.hook( 'wikipage.watchstarUpdate' ).add( function ( $watchlink, isWatched, title ) {
-				syncWatchlinks( getWatchLinks(), isWatched, title );
-
-				if ( title !== pageTitle ) {
-					return;
-				}
+			watchstar( $links, pageTitle, function ( $link, isWatched ) {
 				// Update the "Watch this page" checkbox on action=edit when the
 				// page is watched or unwatched via the tab (T14395).
 				if ( document.getElementById( 'wpWatchthisWidget' ) ) {
@@ -215,10 +180,6 @@
 	 * "current page" watchstars picked up by #init (and not use #watchstar) sync it manually
 	 * from the callback #watchstar provides.
 	 *
-	 * The 'wikipage.watchstarUpdate' hook is also provided to help sync multiple watchstars.
-	 * It uses the same parameters as the callback, but adds an additional 'title' parameter
-	 * to help distinguish between watchlist updates on arbitrary pages.
-	 *
 	 * @param {jQuery} $links One or more anchor elements that must have an href
 	 *  with a url containing a `action=watch` or `action=unwatch` query parameter,
 	 *  from which the current state will be learned (e.g. link to unwatch is currently watched)
@@ -233,8 +194,6 @@
 		// This is set outside the click handler so that it's already present when the user clicks.
 		var notificationId = 'mw-watchlink-notification';
 		$links.attr( 'aria-controls', notificationId );
-		// Allow links to be queried later.
-		$links.attr( 'data-mw', 'interface' );
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
@@ -328,17 +287,13 @@
 					}
 
 					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
-					var isWatched = watchResponse.watched === true;
 					// The notifications are stored as a promise and the watch link is only updated
 					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
 					// OOUI could cause a race condition and the link is updated before the popup
 					// actually is shown. See T263135
 					notifyPromise.then( function () {
 						updateWatchLink( $link, otherAction );
-						if ( callback ) {
-							callback( $link, isWatched );
-						}
-						mw.hook( 'wikipage.watchstarUpdate' ).fire( $link, isWatched, title );
+						callback( $link, watchResponse.watched === true );
 					} );
 				} )
 				.fail( function ( code, data ) {
