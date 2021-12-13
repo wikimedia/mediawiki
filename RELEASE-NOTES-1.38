@@ -57,6 +57,9 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Added a deleteUserEmail maintenance script - This file enables the deletion
   of a given user's associated email address. It can be helpful for
   privacy-preserving operations.
+* Description array for constructing HTMLForm now can use 'disable-if' to
+  disable fields on condition easily, supported expressions are the same
+  as 'hide-if'.
 * …
 
 === External library changes in 1.38 ===
