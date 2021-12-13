@@ -45,11 +45,7 @@
 				'A%23B',
 				'A%2523B',
 				// XML/HTML character entity references
-				// Note: The ones with # are commented out as those are interpreted as fragment and
-				// as such end up being valid.
 				'A &eacute; B',
-				// 'A &#233; B',
-				// 'A &#x00E9; B',
 				// Subject of NS_TALK does not roundtrip to NS_MAIN
 				'Talk:File:Example.svg',
 				// Directory navigation

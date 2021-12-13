@@ -599,8 +599,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 				'|%[0-9A-Fa-f]{2}' .
 				# XML/HTML character references produce similar issues.
 				'|&[A-Za-z0-9\x80-\xff]+;' .
-				'|&#[0-9]+;' .
-				'|&#x[0-9A-Fa-f]+;' .
 				'/S';
 		}
 
