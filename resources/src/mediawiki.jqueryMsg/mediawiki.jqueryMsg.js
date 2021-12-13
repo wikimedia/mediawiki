@@ -17,7 +17,8 @@ var slice = Array.prototype.slice,
 		// Magic words and their expansions. Server-side data is added to this below.
 		magic: {
 			PAGENAME: mw.config.get( 'wgPageName' ),
-			PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
+			PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
+			SERVERNAME: mw.config.get( 'wgServerName' )
 		},
 		// Whitelist for allowed HTML elements in wikitext.
 		// Self-closing tags are not currently supported.

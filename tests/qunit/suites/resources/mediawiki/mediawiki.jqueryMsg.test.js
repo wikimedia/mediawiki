@@ -23,9 +23,13 @@
 			this.parserDefaults = mw.jqueryMsg.getParserDefaults();
 			mw.jqueryMsg.setParserDefaults( {
 				magic: {
-					PAGENAME: '2 + 2',
-					PAGENAMEE: mw.util.wikiUrlencode( '2 + 2' ),
-					SITENAME: 'Wiki'
+					SITENAME: 'Wiki',
+					// Repeat parserDefaults.magic from mediawiki.jqueryMsg.js. The original
+					// runs before the mock config is set up.
+					PAGENAME: mw.config.get( 'wgPageName' ),
+					PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
+					SERVERNAME: mw.config.get( 'wgServerName' )
+
 				}
 			} );
 
@@ -51,6 +55,8 @@
 			mw.jqueryMsg.setParserDefaults( this.parserDefaults );
 		},
 		config: {
+			wgPageName: '2 + 2',
+			wgServerName: 'wiki.xyz',
 			wgArticlePath: '/wiki/$1',
 			wgNamespaceIds: {
 				template: 10,
@@ -338,6 +344,17 @@
 
 		mw.messages.set( 'grammar-msg-wrong-syntax', 'Przeszukaj {{GRAMMAR:grammar_case_xyz}}' );
 		assert.strictEqual( formatParse( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ', 'Grammar Test with wrong grammar template syntax' );
+	} );
+
+	QUnit.test( 'Variables', function ( assert ) {
+		mw.messages.set( 'variables-pagename', '{{PAGENAME}}' );
+		assert.strictEqual( formatParse( 'variables-pagename' ), '2 + 2', 'PAGENAME' );
+		mw.messages.set( 'variables-pagenamee', '{{PAGENAMEE}}' );
+		assert.strictEqual( formatParse( 'variables-pagenamee' ), mw.util.wikiUrlencode( '2 + 2' ), 'PAGENAMEE' );
+		mw.messages.set( 'variables-sitename', '{{SITENAME}}' );
+		assert.strictEqual( formatParse( 'variables-sitename' ), 'Wiki', 'SITENAME' );
+		mw.messages.set( 'variables-servername', '{{SERVERNAME}}' );
+		assert.strictEqual( formatParse( 'variables-servername' ), 'wiki.xyz', 'SERVERNAME' );
 	} );
 
 	QUnit.test( 'Bi-di', function ( assert ) {
