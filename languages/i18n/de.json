@@ -547,7 +547,7 @@
 	"createacct-reason": "Begründung (öffentlich geloggt)",
 	"createacct-reason-ph": "Warum erstellst du ein anderes Benutzerkonto?",
 	"createacct-reason-help": "Im Neuanmeldungs-Logbuch angezeigte Nachricht",
-	"createacct-reason-confirm": "Der eingegebene Grund war eine E-Mail-Adresse. Wenn dies beabsichtigt ist, klicke bitte erneut auf \"Konto erstellen\".",
+	"createacct-reason-confirm": "Der eingegebene Grund war eine E-Mail-Adresse. Wenn dies beabsichtigt ist, klicke bitte erneut auf „Benutzerkonto erstellen“.",
 	"createacct-submit": "Benutzerkonto erstellen",
 	"createacct-another-submit": "Benutzerkonto erstellen",
 	"createacct-continue-submit": "Benutzerkontenerstellung fortfahren",

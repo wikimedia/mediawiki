@@ -2148,7 +2148,7 @@
 	"imagetypemismatch": "La estensioni nova dû file cun currispunni â sò estensioni riali",
 	"imageinvalidfilename": "Lu nomu dû file di distinazzioni nun è validu",
 	"fix-double-redirects": "Aggiorna tutti li redirect chi puntanu ô titulu urigginali",
-	"move-leave-redirect": "Lassa darreri nu redirect",
+	"move-leave-redirect": "Lassa darreri nu rimannu",
 	"protectedpagemovewarning": "<strong>Accura:</strong> Sta pàggina fu prutiggiuta di manera chi sulu l'utenti cu privileggi d'amministraturi la ponnu spustari.\nPi rifirimentu, ccassutta è arripurtata l'ùrtima vuci dû riggistru:",
 	"semiprotectedpagemovewarning": "<strong>Nota:</strong> Sta pàggina fu prutiggiuta di manera chi sulu l'utenti riggistrati la ponnu spustari.\nPi rifirimentu, ccassutta è arripurtata l'ùrtima vuci dû riggistru:",
 	"move-over-sharedrepo": "== Lu file già esisti ==\n[[:$1]] già esisti ntôn dipòsitu cunnivisu. Spustari nu file nta stu titulu suprascrivi lu file cunnivisu.",
