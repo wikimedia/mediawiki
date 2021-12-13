@@ -189,7 +189,7 @@ class BlockUser {
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
-	 * @param bool[] $blockOptions Block options
+	 * @param bool[] $blockOptions
 	 *    Valid options:
 	 *    - isCreateAccountBlocked      : Are acount creations prevented?
 	 *    - isEmailBlocked              : Is emailing other users prevented?
@@ -200,7 +200,7 @@ class BlockUser {
 	 *    - isHideUser                  : Should blocked user's name be hiden (needs hideuser)?
 	 *    - isPartial                   : Is this block partial? This is ignored when
 	 *                                    blockRestrictions is not an empty array.
-	 * @param array $blockRestrictions Block restrictions
+	 * @param array $blockRestrictions
 	 * @param string[] $tags Tags that should be assigned to the log entry
 	 */
 	public function __construct(

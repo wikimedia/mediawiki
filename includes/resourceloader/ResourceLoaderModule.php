@@ -1057,7 +1057,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * If the file does not exist or cannot be read, returns an empty string.
 	 *
 	 * @since 1.26 Uses MD4 instead of SHA1.
-	 * @param string $filePath File path
+	 * @param string $filePath
 	 * @return string Hash
 	 */
 	protected static function safeFileHash( $filePath ) {

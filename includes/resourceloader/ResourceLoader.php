@@ -117,7 +117,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Load information stored in the database and dependency tracking store about modules
 	 *
-	 * @param string[] $moduleNames Module names
+	 * @param string[] $moduleNames
 	 * @param ResourceLoaderContext $context ResourceLoader-specific context of the request
 	 */
 	public function preloadModuleInfo( array $moduleNames, ResourceLoaderContext $context ) {
@@ -514,7 +514,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
-	 * @param string $moduleName Module name
+	 * @param string $moduleName
 	 * @param string $variant Language/skin variant
 	 * @return string[] List of absolute file paths
 	 */
@@ -526,7 +526,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
-	 * @param string $moduleName Module name
+	 * @param string $moduleName
 	 * @param string $variant Language/skin variant
 	 * @param string[] $paths List of relative paths referenced during computation
 	 * @param string[] $priorPaths List of relative paths tracked in the dependency store

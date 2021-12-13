@@ -1694,7 +1694,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Container dirs like "a", where the container shards on "x/xy",
 	 * can reside on several shards. Such paths are tricky to handle.
 	 *
-	 * @param string $storagePath Storage path
+	 * @param string $storagePath
 	 * @return bool
 	 */
 	final public function isSingleShardPathInternal( $storagePath ) {

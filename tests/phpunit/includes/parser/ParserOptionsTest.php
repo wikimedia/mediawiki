@@ -130,7 +130,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideOptionsHash
-	 * @param array $usedOptions Used options
+	 * @param array $usedOptions
 	 * @param string $expect Expected value
 	 * @param array $options Options to set
 	 * @param array $globals Globals to set

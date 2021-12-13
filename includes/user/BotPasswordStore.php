@@ -366,7 +366,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 	/**
 	 * Invalidate all passwords for a user, by name
-	 * @param string $username User name
+	 * @param string $username
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public function invalidateUserPasswords( string $username ): bool {
@@ -395,7 +395,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 	/**
 	 * Remove all passwords for a user, by name
-	 * @param string $username User name
+	 * @param string $username
 	 * @return bool Whether any passwords were removed
 	 */
 	public function removeUserPasswords( string $username ): bool {

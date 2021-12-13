@@ -17,7 +17,7 @@ interface ArticleMergeCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Title $targetTitle Target title
+	 * @param Title $targetTitle
 	 * @param Title $destTitle Destination title
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

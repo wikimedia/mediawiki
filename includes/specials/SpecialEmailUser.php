@@ -260,7 +260,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Check whether a user is allowed to send email
 	 *
 	 * @param User $user
-	 * @param string $editToken Edit token
+	 * @param string $editToken
 	 * @param Config|null $config optional for backwards compatibility
 	 * @return null|string|array Null on success, string on error, or array on
 	 *  hook error

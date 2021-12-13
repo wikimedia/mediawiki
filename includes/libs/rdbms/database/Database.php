@@ -373,7 +373,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string|null $password User password {@see connectionParams}
 	 * @param string|null $db Database name
 	 * @param string|null $schema Database schema name
-	 * @param string $tablePrefix Table prefix
+	 * @param string $tablePrefix
 	 * @throws DBConnectionError
 	 */
 	abstract protected function open( $server, $user, $password, $db, $schema, $tablePrefix );
@@ -3787,8 +3787,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @stable to override
-	 * @param array $insertOptions INSERT options
-	 * @param array $selectOptions SELECT options
+	 * @param array $insertOptions
+	 * @param array $selectOptions
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
 	 * @since 1.31
 	 */

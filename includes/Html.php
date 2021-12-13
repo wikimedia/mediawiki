@@ -1026,7 +1026,7 @@ class Html {
 	/**
 	 * Determines if the given MIME type is xml.
 	 *
-	 * @param string $mimetype MIME type
+	 * @param string $mimetype
 	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {
