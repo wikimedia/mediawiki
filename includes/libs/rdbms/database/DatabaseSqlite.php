@@ -156,7 +156,7 @@ class DatabaseSqlite extends Database {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
 
-		$attributes = [];
+		$attributes = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT ];
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
