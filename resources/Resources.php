@@ -2177,7 +2177,6 @@ return [
 			'resources/src/mediawiki.special.preferences.ooui/signature.js',
 			'resources/src/mediawiki.special.preferences.ooui/tabs.js',
 			'resources/src/mediawiki.special.preferences.ooui/timezone.js',
-			'resources/src/mediawiki.special.preferences.ooui/personalEmail.js',
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
