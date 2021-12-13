@@ -92,11 +92,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getTopologyRootMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -249,10 +244,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function insertId() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function dataSeek( $res, $row ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -583,22 +574,12 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function getReplicaPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function getPrimaryPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
 	}
 
 	public function serverIsReadOnly() {
@@ -613,10 +594,6 @@ class DBConnRef implements IDatabase {
 	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		// DB_REPLICA role: caller might want to refresh cache after a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		return $this->onTransactionCommitOrIdle( $callback, $fname );
 	}
 
 	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {

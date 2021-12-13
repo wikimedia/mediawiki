@@ -444,7 +444,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		static $abstractMethods = [
 			'fetchAffectedRowCount',
 			'closeConnection',
-			'dataSeek',
 			'doQuery',
 			'fetchObject',
 			'fetchRow',

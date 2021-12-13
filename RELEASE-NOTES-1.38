@@ -266,7 +266,13 @@ because of Phabricator reports.
   - ::preCommitCallbacksPending()
   - ::pendingWriteRowsAffected()
   - ::getServerUptime()
-  - ::aggregateValue()
+* The following deprecated methods have been removed from IDatabase:
+  - ::aggregateValue() soft-deprecated since 1.33
+  - ::getTopologyRootMaster() since 1.37
+  - ::masterPosWait() since 1.37
+  - ::dataSeek() soft-deprecated since 1.37
+  - ::onTransactionIdle() soft-deprecated since 1.32
+  - ::getMasterPos() since 1.37
 * …
 
 === Deprecations in 1.38 ===
