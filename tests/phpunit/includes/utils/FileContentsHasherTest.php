@@ -13,25 +13,24 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
 	}
 
-	public function provideMultipleFiles() {
-		return [
-			[ $this->provideSingleFile() ]
-		];
-	}
-
 	/**
 	 * @covers FileContentsHasher::getFileContentsHash
 	 * @covers FileContentsHasher::getFileContentsHashInternal
 	 * @dataProvider provideSingleFile
 	 */
 	public function testSingleFileHash( $fileName, $contents ) {
-		foreach ( [ 'md4', 'md5' ] as $algo ) {
-			$expectedHash = hash( $algo, $contents );
-			$actualHash = FileContentsHasher::getFileContentsHash( $fileName, $algo );
-			$this->assertEquals( $expectedHash, $actualHash );
-			$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileName, $algo );
-			$this->assertEquals( $expectedHash, $actualHashRepeat );
-		}
+		$expected = hash( 'md4', $contents );
+		$actualHash = FileContentsHasher::getFileContentsHash( $fileName );
+		$this->assertEquals( $expected, $actualHash );
+
+		$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileName );
+		$this->assertEquals( $expected, $actualHashRepeat );
+	}
+
+	public function provideMultipleFiles() {
+		return [
+			[ $this->provideSingleFile() ]
+		];
 	}
 
 	/**
@@ -44,13 +43,14 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 		$hashes = [];
 		foreach ( $files as [ $fileName, $contents ] ) {
 			$fileNames[] = $fileName;
-			$hashes[] = md5( $contents );
+			$hashes[] = hash( 'md4', $contents );
 		}
 
-		$expectedHash = md5( implode( '', $hashes ) );
-		$actualHash = FileContentsHasher::getFileContentsHash( $fileNames, 'md5' );
+		$expectedHash = hash( 'md4', implode( '', $hashes ) );
+		$actualHash = FileContentsHasher::getFileContentsHash( $fileNames );
 		$this->assertEquals( $expectedHash, $actualHash );
-		$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileNames, 'md5' );
+
+		$actualHashRepeat = FileContentsHasher::getFileContentsHash( $fileNames );
 		$this->assertEquals( $expectedHash, $actualHashRepeat );
 	}
 }
