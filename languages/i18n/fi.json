@@ -107,7 +107,7 @@
 	"tog-enotifrevealaddr": "Näytä sähköpostiosoitteeni muille lähetetyissä ilmoituksissa",
 	"tog-shownumberswatching": "Näytä sivua tarkkailevien käyttäjien määrä",
 	"tog-oldsig": "Nykyinen allekirjoituksesi:",
-	"tog-fancysig": "Käsittele allekirjoitusta wikitekstinä (ilman automaattista linkkiä)",
+	"tog-fancysig": "Käsittele allekirjoitusta wikitekstinä (ilman automaattista linkkiä käyttäjäsivullesi)",
 	"tog-uselivepreview": "Näytä esikatselu lataamatta sivua uudelleen",
 	"tog-forceeditsummary": "Huomauta minua, jos en ole kirjoittanut yhteenvetoa (tai muuttanut kumoamisen oletusyhteenvetoa)",
 	"tog-watchlisthideown": "Piilota omat muokkaukset tarkkailulistalta",

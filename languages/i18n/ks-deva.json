@@ -38,6 +38,7 @@
 	"november": "नवम्बर",
 	"december": "दिसम्बर",
 	"pagecategories": "{{PLURAL:$1|ज़ाथ|ज़ऻच़}}",
+	"category-article-count": "{{PLURAL:$2|यथ ज़ऻच़ मंज़ छु सिरिफ़ यिहॊय सफ़ॖ।|{{PLURAL:$1|यि सफ़ॖ छु|$1 सफ़ॖ छि}} यथ ज़ऻच़ मंज़, कुल $2।}}",
 	"tagline": "{{SITENAME}} प्यठॖ",
 	"help": "मदथ",
 	"newpage": "नॊव सफ़ॖ",
@@ -76,6 +77,10 @@
 	"newpages": "नऺव्य सफ़ॖ",
 	"categories": "ज़ाच़ि",
 	"watchlist": "नज़रतल फ़िहरिस्त",
+	"contributions": "रुकुन शरकऺच़",
+	"mycontris": "शरकऺच़",
+	"anoncontribs": "शरकऺच़",
+	"whatlinkshere": "योर क्याह छु यिवान",
 	"whatlinkshere-page": "सफ़ॖ:",
 	"specialpages": "ख़ास सफ़ॖ",
 	"specialpages-group-other": "बाक़ॖय ख़ास सफ़ॖ"
