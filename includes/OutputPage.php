@@ -1385,11 +1385,16 @@ class OutputPage extends ContextSource {
 
 		# Set all the values to 'normal'.
 		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+		$pageData = [];
 
 		# Mark hidden categories
 		foreach ( $res as $row ) {
 			if ( isset( $row->pp_value ) ) {
 				$categories[$row->page_title] = 'hidden';
+			}
+			// Page exists, cache results
+			if ( isset( $row->page_id ) ) {
+				$pageData[$row->page_title] = $row;
 			}
 		}
 
@@ -1405,7 +1410,11 @@ class OutputPage extends ContextSource {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
 				$origcategory = $category;
-				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				if ( array_key_exists( $category, $pageData ) ) {
+					$title = Title::newFromRow( $pageData[$category] );
+				} else {
+					$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				}
 				if ( !$title ) {
 					continue;
 				}
