@@ -2674,10 +2674,6 @@ abstract class Skin extends ContextSource {
 		$newTitle = $title->getText();
 		if ( $currentTitle !== $newTitle ) {
 			$userOptionsManager->setOption( $user, 'search-special-page', $newTitle );
-			if ( !$user->isAnon() ) {
-				// avoid this check for logged in users on future visits.
-				$userOptionsManager->saveOptions( $user );
-			}
 		}
 	}
 
