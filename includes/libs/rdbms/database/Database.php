@@ -1129,7 +1129,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isWriteQuery( $sql, $flags ) {
 		if (
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
 		) {
 			return true;
 		} elseif ( $this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ) {
@@ -3720,8 +3721,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
-		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\"";
-		$res = $this->query( $sql, __METHOD__, self::QUERY_CHANGE_NONE );
+		$res = $this->query(
+			"SHOW COLUMNS FROM $table LIKE \"$field\"",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchObject( $res );
 
 		$m = [];
@@ -5795,7 +5799,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
 		// https://www.postgresql.org/docs/9.2/sql-truncate.html
 		$sql = "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
-		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 	}
 
 	public function truncate( $tables, $fname = __METHOD__ ) {
