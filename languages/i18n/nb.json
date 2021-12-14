@@ -1155,7 +1155,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Flere ikke-lukkede formateringstagger på siden",
 	"linterror-obsolete-tag": "Avleggs HTML-tagg",
 	"linterror-pwrap-bug-workaround": "Løsning på paragrafinnpakningsfeil",
-	"linterror-self-closed-tag": "Selvslukkende tagger",
+	"linterror-self-closed-tag": "Selvlukkende tagger",
 	"linterror-stripped-tag": "Fjernet tagg",
 	"linterror-tidy-font-bug": "Font-tagg prøver å endre lenkefarge",
 	"linterror-tidy-whitespace-bug": "Tomromsfeil",
@@ -4045,6 +4045,6 @@
 	"paramvalidator-help-type-title-must-exist": "Godtar kun sider som finnes.",
 	"paramvalidator-help-type-title-no-must-exist": "Godtar ikke-eksisterende sider.",
 	"nonmain-slot-differences-therefore-readonly": "Du kan ikke redigere wikiteksten for denne revisjonen av siden, fordi det har vært endringer i dataene på siden som ikke er wikitekstbaserte. [$1 Trykk her for å gjenopprette denne revisjonen.]",
-	"config-missing-key": "Mangler MediaWiki-konfigurasjonsparameteret «$1»",
+	"config-missing-key": "Mangler MediaWiki-konfigurasjonsparameteren «$1»",
 	"config-invalid-key": "Ugyldig MediaWiki-konfigurasjonsparameter «$1»: $2"
 }

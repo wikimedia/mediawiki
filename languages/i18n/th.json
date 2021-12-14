@@ -2374,7 +2374,7 @@
 	"changecontentmodel-current-label": "แบบเนื้อหาปัจจุบัน:",
 	"changecontentmodel-model-label": "ตัวแบบเนื้อหาใหม่:",
 	"changecontentmodel-reason-label": "เหตุผล:",
-	"changecontentmodel-submit": "ความเปลี่ยนแปลง",
+	"changecontentmodel-submit": "เปลี่ยน",
 	"changecontentmodel-success-title": "เปลี่ยนตัวแบบเนื้อหาแล้ว",
 	"changecontentmodel-success-text": "เปลี่ยนชนิดเนื้อหาของ [[:$1]] แล้ว",
 	"changecontentmodel-cannot-convert": "เนื้อหาของ [[:$1]] ไม่สามารถแปลเป็นชนิด $2",
