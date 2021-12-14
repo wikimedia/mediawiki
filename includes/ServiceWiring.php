@@ -1322,7 +1322,8 @@ return [
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
-			$services->getMainConfig()->get( 'WatchlistExpiry' )
+			$services->getMainConfig()->get( 'WatchlistExpiry' ),
+			$services->getMainConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
 		);
 	},
 

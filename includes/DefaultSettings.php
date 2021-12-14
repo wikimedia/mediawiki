@@ -2303,6 +2303,12 @@ $wgSlaveLagWarning = 10;
  */
 $wgSlaveLagCritical = 30;
 
+/**
+ * Max execution time for queries of several expensive special pages such as RecentChanges
+ * in milliseconds.
+ * @since 1.35.6
+ */
+$wgMaxExecutionTimeForExpensiveQueries = 0;
 /** @} */ # End of DB settings }
 
 /************************************************************************//**
