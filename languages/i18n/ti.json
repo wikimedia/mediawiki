@@ -299,6 +299,7 @@
 	"search-interwiki-default": "ውጽኢታት ካብ $1፦",
 	"search-interwiki-more": "(ተወሳኺ)",
 	"searchall": "ምሉእ",
+	"search-showingresults": "{{PLURAL:$4|ውጽኢት <strong>$1</strong> ናይ <strong>$3</strong>|ውጽኢታት <strong>$1 – $2</strong> ናይ <strong>$3</strong>}}",
 	"powersearch-legend": "ዝማዕበለ ምድላይ",
 	"powersearch-toggleall": "ምሉእ",
 	"preferences": "ምርጫታት",

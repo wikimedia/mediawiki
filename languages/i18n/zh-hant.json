@@ -768,7 +768,7 @@
 	"nosuchsectiontext": "您嘗試編輯的章節並不存在。\n可能在您檢視頁面時已經移動或刪除。",
 	"loginreqtitle": "需要登入",
 	"loginreqlink": "登入",
-	"loginreqpagetext": "請先 $1 方可檢視其他頁面。",
+	"loginreqpagetext": "請先$1方可檢視其他頁面。",
 	"accmailtitle": "密碼已寄出",
 	"accmailtext": "[[User talk:$1|$1]] 的隨機密碼已經寄送至 $2 ，可登入後至<em>[[Special:ChangePassword|變更密碼]]頁面變更</em>。",
 	"newarticle": "(新)",
