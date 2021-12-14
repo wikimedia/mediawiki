@@ -235,6 +235,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$order
 		);
 
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
 		 * in My Contributions as well. Extensions should append their results to the $data array.

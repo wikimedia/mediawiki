@@ -2346,6 +2346,12 @@ $wgDatabaseReplicaLagWarning = 10;
  */
 $wgDatabaseReplicaLagCritical = 30;
 
+/**
+ * Max execution time for queries of several expensive special pages such as RecentChanges
+ * in milliseconds.
+ * @since 1.36.4
+ */
+$wgMaxExecutionTimeForExpensiveQueries = 0;
 // endregion -- End of DB settings
 
 /***************************************************************************/

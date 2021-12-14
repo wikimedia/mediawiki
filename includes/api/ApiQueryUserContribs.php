@@ -449,6 +449,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$this->addWhere( '1=0' );
 			}
 		}
+		$this->addOption(
+			'MAX_EXECUTION_TIME',
+			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+		);
 	}
 
 	/**

@@ -249,7 +249,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				' ORDER BY rc_timestamp DESC';
 			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
-
 		return $dbr->query( $sql, __METHOD__ );
 	}
 

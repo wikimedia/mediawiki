@@ -387,6 +387,8 @@ class LogPager extends ReverseChronologicalPager {
 			$options['IGNORE INDEX'] = [ 'logging' => [ $index ] ];
 		}
 
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+
 		$info = [
 			'tables' => $tables,
 			'fields' => $fields,

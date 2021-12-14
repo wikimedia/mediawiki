@@ -1591,7 +1591,8 @@ return [
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
 			$services->getUserFactory(),
-			$services->getMainConfig()->get( 'WatchlistExpiry' )
+			$services->getMainConfig()->get( 'WatchlistExpiry' ),
+			$services->getMainConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
 		);
 	},
 

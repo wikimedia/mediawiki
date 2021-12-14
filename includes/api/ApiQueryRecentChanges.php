@@ -457,6 +457,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
+		$this->addOption(
+			'MAX_EXECUTION_TIME',
+			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+		);
 
 		$hookData = [];
 		$count = 0;

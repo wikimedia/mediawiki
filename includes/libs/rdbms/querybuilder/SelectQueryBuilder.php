@@ -373,6 +373,17 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
+	 * Set MAX_EXECUTION_TIME for queries.
+	 *
+	 * @param int $time maximum allowed time in milliseconds
+	 * @return $this
+	 */
+	public function setMaxExecutionTime( int $time ) {
+		$this->options['MAX_EXECUTION_TIME'] = $time;
+		return $this;
+	}
+
+	/**
 	 * Add a GROUP BY clause. May be either an SQL fragment string naming a
 	 * field or expression to group by, or an array of such SQL fragments.
 	 *
