@@ -399,6 +399,16 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
+	 * Indicates whether this action requires read rights
+	 * @since 1.35.5
+	 * @stable to override
+	 * @return bool
+	 */
+	public function needsReadRights() {
+		return true;
+	}
+
+	/**
 	 * Checks if the given user (identified by an object) can perform this action.  Can be
 	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
 	 * must throw subclasses of ErrorPageError
