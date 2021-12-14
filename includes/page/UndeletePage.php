@@ -71,6 +71,10 @@ class UndeletePage {
 	private $revisionStore;
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
 
 	/** @var ProperPageIdentity */
 	private $page;
@@ -88,10 +92,6 @@ class UndeletePage {
 	private $unsuppress = false;
 	/** @var string[] */
 	private $tags = [];
-	/** @var PageUpdaterFactory */
-	private $pageUpdaterFactory;
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -102,10 +102,10 @@ class UndeletePage {
 	 * @param LoggerInterface $logger
 	 * @param RevisionStore $revisionStore
 	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ProperPageIdentity $page
-	 * @param Authority $performer
 	 * @param PageUpdaterFactory $pageUpdaterFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ProperPageIdentity $page
+	 * @param Authority $performer
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
@@ -116,10 +116,10 @@ class UndeletePage {
 		LoggerInterface $logger,
 		RevisionStore $revisionStore,
 		WikiPageFactory $wikiPageFactory,
-		ProperPageIdentity $page,
-		Authority $performer,
 		PageUpdaterFactory $pageUpdaterFactory,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		ProperPageIdentity $page,
+		Authority $performer
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->jobQueueGroup = $jobQueueGroup;
@@ -129,11 +129,11 @@ class UndeletePage {
 		$this->logger = $logger;
 		$this->revisionStore = $revisionStore;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		$this->page = $page;
 		$this->performer = $performer;
-		$this->pageUpdaterFactory = $pageUpdaterFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
