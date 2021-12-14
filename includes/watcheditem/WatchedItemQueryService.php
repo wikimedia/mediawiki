@@ -78,18 +78,25 @@ class WatchedItemQueryService {
 	 */
 	private $expiryEnabled;
 
+	/**
+	 * @var int Max query execution time
+	 */
+	private $maxQueryExecutionTime;
+
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		WatchedItemStoreInterface $watchedItemStore,
 		HookContainer $hookContainer,
-		bool $expiryEnabled = false
+		bool $expiryEnabled = false,
+		int $maxQueryExecutionTime = 0
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->expiryEnabled = $expiryEnabled;
+		$this->maxQueryExecutionTime = $maxQueryExecutionTime;
 	}
 
 	/**
@@ -712,7 +719,9 @@ class WatchedItemQueryService {
 		if ( array_key_exists( 'limit', $options ) ) {
 			$dbOptions['LIMIT'] = (int)$options['limit'] + 1;
 		}
-
+		if ( $this->maxQueryExecutionTime ) {
+			$dbOptions['MAX_EXECUTION_TIME'] = $this->maxQueryExecutionTime;
+		}
 		return $dbOptions;
 	}
 
@@ -729,6 +738,9 @@ class WatchedItemQueryService {
 		}
 		if ( array_key_exists( 'limit', $options ) ) {
 			$dbOptions['LIMIT'] = (int)$options['limit'];
+		}
+		if ( $this->maxQueryExecutionTime ) {
+			$dbOptions['MAX_EXECUTION_TIME'] = $this->maxQueryExecutionTime;
 		}
 		return $dbOptions;
 	}

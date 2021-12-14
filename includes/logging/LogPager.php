@@ -380,6 +380,8 @@ class LogPager extends ReverseChronologicalPager {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+
 		$info = [
 			'tables' => $tables,
 			'fields' => $fields,
