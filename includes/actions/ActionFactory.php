@@ -312,8 +312,7 @@ class ActionFactory {
 		// Trying to get a WikiPage for NS_SPECIAL etc. will result
 		// in WikiPageFactory::newFromTitle throwing "Invalid or virtual namespace -1 given."
 		// For SpecialPages et al, default to action=view.
-		$title = $context->getTitle();
-		if ( $title === null || !( $title->canExist() ) ) {
+		if ( !$context->canUseWikiPage() ) {
 			return 'view';
 		}
 
@@ -385,8 +384,7 @@ class ActionFactory {
 	 * @return Article
 	 */
 	protected function getArticle( IContextSource $context ): Article {
-		$title = $context->getTitle();
-		return Article::newFromTitle( $title, $context );
+		return Article::newFromWikiPage( $context->getWikiPage(), $context );
 	}
 
 }

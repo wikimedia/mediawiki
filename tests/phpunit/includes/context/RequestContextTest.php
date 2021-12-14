@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;
 
@@ -20,8 +19,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 
 		$curTitle = Title::newFromText( "A" );
 		$context->setTitle( $curTitle );
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $context->getTitle() );
-		$this->assertTrue( $curTitle->equals( $wikiPage->getTitle() ),
+		$this->assertTrue( $curTitle->equals( $context->getWikiPage()->getTitle() ),
 			"When a title is first set WikiPage should be created on-demand for that title." );
 
 		$curTitle = Title::newFromText( "B" );
@@ -31,9 +29,8 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 
 		$curTitle = Title::newFromText( "C" );
 		$context->setTitle( $curTitle );
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $context->getTitle() );
 		$this->assertTrue(
-			$curTitle->equals( $wikiPage->getTitle() ),
+			$curTitle->equals( $context->getWikiPage()->getTitle() ),
 			"When a title is updated the WikiPage should be purged "
 				. "and recreated on-demand with the new title."
 		);
