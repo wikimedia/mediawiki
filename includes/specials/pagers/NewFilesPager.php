@@ -165,7 +165,10 @@ class NewFilesPager extends RangeChronologicalPager {
 		// We're ordering by img_timestamp, but MariaDB sometimes likes to query other tables first
 		// and filesort the result set later.
 		// See T124205 / https://mariadb.atlassian.net/browse/MDEV-8880, and T244533
-		$options[] = 'STRAIGHT_JOIN';
+		// Twist: This would cause issues if the user is set and we need to check user existence first
+		if ( $user === '' ) {
+			$options[] = 'STRAIGHT_JOIN';
+		}
 
 		$query = [
 			'tables' => $tables,
