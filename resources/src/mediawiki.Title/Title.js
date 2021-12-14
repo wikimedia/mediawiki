@@ -148,9 +148,7 @@ var toUpperMap,
 		// to round-trip titles -- you can't link to them consistently.
 		'|%[\\dA-Fa-f]{2}' +
 		// XML/HTML character references produce similar issues.
-		'|&[\\dA-Za-z\u0080-\uFFFF]+;' +
-		'|&#\\d+;' +
-		'|&#x[\\dA-Fa-f]+;'
+		'|&[\\dA-Za-z\u0080-\uFFFF]+;'
 	),
 
 	// From MediaWikiTitleCodec::splitTitleString() in PHP
