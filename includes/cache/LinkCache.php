@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageStoreRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -394,14 +395,14 @@ class LinkCache implements LoggerAwareInterface {
 	public static function getSelectFields() {
 		global $wgPageLanguageUseDB;
 
-		$fields = [
-			'page_id',
-			'page_len',
-			'page_is_redirect',
-			'page_latest',
-			'page_restrictions',
-			'page_content_model',
-		];
+		$fields = array_merge(
+			PageStoreRecord::REQUIRED_FIELDS,
+			[
+				'page_len',
+				'page_restrictions',
+				'page_content_model',
+			]
+		);
 
 		if ( $wgPageLanguageUseDB ) {
 			$fields[] = 'page_lang';

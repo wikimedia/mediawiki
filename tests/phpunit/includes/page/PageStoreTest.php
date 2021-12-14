@@ -288,42 +288,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * Test that we get a PageRecord when an incomplete row exists in the cache
 	 * @covers \MediaWiki\Page\PageStore::getPageByName
 	 */
-	public function testGetPageByName_cachedIncompleteRow() {
-		$existingPage = $this->getExistingTestPage();
-		$ns = $existingPage->getNamespace();
-		$dbkey = $existingPage->getDBkey();
-
-		$linkCache = $this->getServiceContainer()->getLinkCache();
-		$linkCache->clearLink( $existingPage );
-
-		// Has all fields needed by LinkCache, but not all fields needed by PageStore.
-		// This may happen when legacy code injects rows directly into LinkCache.
-		// LinkCache::addLinkObj itself produces incomplete rows as well.
-		$row = (object)[
-			'page_id' => 8,
-			'page_is_redirect' => 0,
-			'page_latest' => 118,
-			'page_len' => 155,
-			'page_content_model' => CONTENT_FORMAT_TEXT,
-			'page_lang' => 'xyz',
-			'page_restrictions' => 'test'
-		];
-
-		$linkCache->addGoodLinkObjFromRow( $existingPage, $row );
-
-		$pageStore = $this->getPageStore();
-		$page = $pageStore->getPageByName( $ns, $dbkey );
-
-		$this->assertSame( $existingPage->getId(), $page->getId() );
-		$this->assertSame( $existingPage->getNamespace(), $page->getNamespace() );
-		$this->assertSame( $existingPage->getDBkey(), $page->getDBkey() );
-		$this->assertSame( $existingPage->getLatest(), $page->getLatest() );
-	}
-
-	/**
-	 * Test that we get a PageRecord when an incomplete row exists in the cache
-	 * @covers \MediaWiki\Page\PageStore::getPageByName
-	 */
 	public function testGetPageByName_cachedFakeRow() {
 		$nonexistingPage = $this->getNonexistingTestPage();
 		$ns = $nonexistingPage->getNamespace();

@@ -42,11 +42,14 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	private function getPageRow( $offset = 0 ) {
 		return (object)[
 			'page_id' => 8 + $offset,
+			'page_namespace' => 0,
+			'page_title' => 'Test ' . $offset,
 			'page_len' => 18,
 			'page_is_redirect' => 0,
 			'page_latest' => 118 + $offset,
 			'page_content_model' => CONTENT_MODEL_TEXT,
 			'page_lang' => 'xyz',
+			'page_is_new' => 0,
 			'page_restrictions' => 'test',
 			'page_touched' => '20200202020202',
 		];
