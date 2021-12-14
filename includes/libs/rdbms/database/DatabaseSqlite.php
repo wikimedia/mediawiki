@@ -57,10 +57,10 @@ class DatabaseSqlite extends Database {
 	private $sessionAttachedDbs = [];
 
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
-	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
+	private const VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
 
 	/** @var string[][] */
-	private static $VALID_PRAGMAS = [
+	private const VALID_PRAGMAS = [
 		// Optimizations or requirements regarding fsync() usage
 		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
 		// Optimizations for TEMPORARY tables
@@ -152,7 +152,7 @@ class DatabaseSqlite extends Database {
 		// Check if the database file already exists but is non-readable
 		if ( !self::isProcessMemoryPath( $path ) && is_file( $path ) && !is_readable( $path ) ) {
 			throw $this->newExceptionAfterConnectError( 'SQLite database file is not readable' );
-		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
+		} elseif ( !in_array( $this->trxMode, self::VALID_TRX_MODES, true ) ) {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
 
@@ -184,10 +184,10 @@ class DatabaseSqlite extends Database {
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
 			// Set any connection-level custom PRAGMA options
-			$pragmas = array_intersect_key( $this->connectionVariables, self::$VALID_PRAGMAS );
+			$pragmas = array_intersect_key( $this->connectionVariables, self::VALID_PRAGMAS );
 			$pragmas += $this->getDefaultPragmas();
 			foreach ( $pragmas as $name => $value ) {
-				$allowed = self::$VALID_PRAGMAS[$name];
+				$allowed = self::VALID_PRAGMAS[$name];
 				if ( in_array( $value, $allowed, true ) ) {
 					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
 				}
