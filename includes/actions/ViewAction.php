@@ -37,6 +37,12 @@ class ViewAction extends FormlessAction {
 		return null;
 	}
 
+	public function needsReadRights() {
+		// Pages in $wgWhitelistRead can be viewed without having the 'read'
+		// right. We rely on Article::view() to properly check read access.
+		return false;
+	}
+
 	public function show() {
 		$config = $this->context->getConfig();
 
