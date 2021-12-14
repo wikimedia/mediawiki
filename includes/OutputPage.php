@@ -3368,9 +3368,10 @@ class OutputPage extends ContextSource {
 			list( $canonicalSpecialPageName, /*...*/ ) =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );
-		} elseif ( $title->canExist() ) {
-			$curRevisionId = $title->getLatestRevID();
-			$articleId = $title->getArticleID();
+		} elseif ( $this->canUseWikiPage() ) {
+			$wikiPage = $this->getWikiPage();
+			$curRevisionId = $wikiPage->getLatest();
+			$articleId = $wikiPage->getId();
 		}
 
 		$lang = $title->getPageViewLanguage();

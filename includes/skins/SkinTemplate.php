@@ -1257,12 +1257,8 @@ class SkinTemplate extends Skin {
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
 				}
-				$page = false;
-				$title = $this->getTitle();
-				if ( $title->canExist() ) {
-					$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-				}
 
+				$page = $this->canUseWikiPage() ? $this->getWikiPage() : false;
 				$isRemoteContent = $page && !$page->isLocal();
 
 				// If it is a non-local file, show a link to the file in its own repository

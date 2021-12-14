@@ -409,22 +409,26 @@ class MediaWiki {
 	 * Initialize the main Article object for "standard" actions (view, etc)
 	 * Create an Article object for the page, following redirects if needed.
 	 *
-	 * @throws MWException
 	 * @return Article|string An Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
 		$title = $this->context->getTitle();
 		$services = MediaWikiServices::getInstance();
-		if ( $title !== null && $title->canExist() ) {
-			$wikiPage = $services->getWikiPageFactory()->newFromTitle( $title );
-			$this->context->setWikiPage( $wikiPage );
+		if ( $this->context->canUseWikiPage() ) {
+			// Try to use request context wiki page, as there
+			// is already data from db saved in per process
+			// cache there from this->getAction() call.
+			$page = $this->context->getWikiPage();
 		} else {
-			// This case should not happen.
-			throw new MWException( "This is not an article: '$title'." );
+			// This case should not happen, but just in case.
+			// @TODO: remove this or use an exception
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
+			$this->context->setWikiPage( $page );
+			wfWarn( "RequestContext::canUseWikiPage() returned false" );
 		}
 
 		// Make GUI wrapper for the WikiPage
-		$article = Article::newFromWikiPage( $wikiPage, $this->context );
+		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
 		if ( !$services->getContentHandlerFactory()
@@ -438,8 +442,8 @@ class MediaWiki {
 
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$action = $request->getVal( 'action', 'view' );
-		$file = ( $wikiPage instanceof WikiFilePage ) ? $wikiPage->getFile() : null;
+		$action = $request->getRawVal( 'action', 'view' );
+		$file = ( $page instanceof WikiFilePage ) ? $page->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
 			&& !$request->getCheck( 'oldid' ) // ... and are not old revisions
 			&& !$request->getCheck( 'diff' ) // ... and not when showing diff
@@ -881,8 +885,7 @@ class MediaWiki {
 				}
 				// Do any stats increment/watchlist stuff, assuming user is viewing the
 				// latest revision (which should always be the case for file cache)
-				$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-				$wikiPage->doViewUpdates( $this->context->getUser() );
+				$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 				// Tell OutputPage that output is taken care of
 				$output->disable();
 

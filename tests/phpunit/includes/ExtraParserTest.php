@@ -62,12 +62,13 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		$options = ParserOptions::newFromUser( new User() );
 
 		RequestContext::getMain()->setTitle( $title );
+		RequestContext::getMain()->getWikiPage()->CustomTestProp = true;
 
 		$parsed = $this->parser->parse( $text, $title, $options )->getText();
 		$this->assertStringContainsString( 'apihelp-header', $parsed );
 
 		// Verify that this property wasn't wiped out by the parse
-		$this->assertEquals( $title, RequestContext::getMain()->getTitle() );
+		$this->assertTrue( RequestContext::getMain()->getWikiPage()->CustomTestProp );
 	}
 
 	/**

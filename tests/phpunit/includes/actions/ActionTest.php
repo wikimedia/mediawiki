@@ -105,7 +105,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
 		$context->setWikiPage( $this->getPage() );
-		$context->setTitle( $this->getPage()->getTitle() );
 
 		return $context;
 	}

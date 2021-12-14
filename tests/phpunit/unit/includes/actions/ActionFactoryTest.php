@@ -275,9 +275,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		array $hooks = []
 	) {
 		$context = $this->createMock( IContextSource::class );
-		$title = $this->createMock( Title::class );
-		$title->method( 'canExist' )->willReturn( true );
-		$context->method( 'getTitle' )->willReturn( $title );
+		$context->method( 'canUseWikiPage' )->willReturn( true );
 
 		$request = new FauxRequest( [
 			'action' => $requestAction,
