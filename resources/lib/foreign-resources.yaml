@@ -103,11 +103,11 @@ jquery:
   files:
     # Integrities from link modals https://code.jquery.com/jquery/
     jquery.migrate.js:
-      src: https://code.jquery.com/jquery-migrate-3.1.0.js
-      integrity: sha256-oA/lsZCgEPkbv/byAkeXSTEZTsGOPZCrtbyFBHmcGKM=
+      src: https://code.jquery.com/jquery-migrate-3.3.2.js
+      integrity: sha256-BDmtN+79VRrkfamzD16UnAoJP8zMitAz093tvZATdiE=
     jquery.js:
-      src: https://code.jquery.com/jquery-3.4.1.js
-      integrity: sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=
+      src: https://code.jquery.com/jquery-3.6.0.js
+      integrity: sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=
 
 jquery.chosen:
   type: multi-file

@@ -90,7 +90,7 @@ function resolveStub( $id, $stubText, $flags ) {
 		'text',
 		[ 'old_text' ],
 		[
-			'old_id' => $stub->mOldId,
+			'old_id' => $stub->getLocation(),
 			'old_flags' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() )
 		],
 		$fname
@@ -113,7 +113,7 @@ function resolveStub( $id, $stubText, $flags ) {
 	$dbw->update( 'text',
 		[ /* SET */
 			'old_flags' => $newFlags,
-			'old_text' => $externalRow->old_text . '/' . $stub->mHash
+			'old_text' => $externalRow->old_text . '/' . $stub->getHash()
 		],
 		[ /* WHERE */
 			'old_id' => $id

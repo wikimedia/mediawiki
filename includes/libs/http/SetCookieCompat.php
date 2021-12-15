@@ -8,11 +8,19 @@ namespace Wikimedia\Http;
  */
 class SetCookieCompat {
 	/**
-	 * Temporary emulation for setcookie() with a SameSite option
+	 * Temporary emulation for setcookie() with a SameSite option and encoding
+	 * spaces in values as "%20" rather than "+".
 	 *
-	 * Once MediaWiki requires PHP 7.3, this can be replaced with a setcookie()
+	 * Prior to PHP 7.4.3, setcookie() encoded spaces in cookie values as plus
+	 * signs. PHP 7.4.2 and later no longer decode plus signs as spaces, which
+	 * is a backward incompatible change that poses a problem when upgrading a
+	 * live site, especially if not all servers are to be upgraded at once.
+	 *
+	 * Once MediaWiki requires PHP 7.4.3, this can be replaced with a setcookie()
 	 * call in the caller.
 	 *
+	 * @see https://phabricator.wikimedia.org/T291127
+	 * @see https://bugs.php.net/bug.php?id=79174
 	 * @param string $name The full cookie name
 	 * @param string $value The cookie value
 	 * @param array $options The options as passed to setcookie() in PHP 7.3+
@@ -48,45 +56,38 @@ class SetCookieCompat {
 	public function setCookieInternal( $urlEncode, $name, $value, $options = [] ) {
 		$supportsAssoc = version_compare( PHP_VERSION, '7.3.0', '>=' );
 		if ( $supportsAssoc ) {
-			if ( $urlEncode ) {
+			if ( $urlEncode && version_compare( PHP_VERSION, '7.4.3', '>=' ) ) {
 				return setcookie( $name, $value, $options );
+			} elseif ( $urlEncode ) {
+				return setrawcookie( $name, rawurlencode( $value ), $options );
 			} else {
 				return setrawcookie( $name, $value, $options );
 			}
 		}
 
 		if ( !isset( $options['samesite'] ) || !strlen( $options['samesite'] ) ) {
-			if ( $urlEncode ) {
-				return setcookie(
-					$name,
-					$value,
-					$options['expires'],
-					$options['path'],
-					$options['domain'],
-					$options['secure'],
-					$options['httponly']
-				);
-			} else {
-				return setrawcookie(
-					$name,
-					$value,
-					$options['expires'],
-					$options['path'],
-					$options['domain'],
-					$options['secure'],
-					$options['httponly']
-				);
-			}
+			return setrawcookie(
+				$name,
+				$urlEncode ? rawurlencode( $value ) : $value,
+				$options['expires'],
+				$options['path'],
+				$options['domain'],
+				$options['secure'],
+				$options['httponly']
+			);
 		}
 
 		return self::setCookieEmulated( $urlEncode, $name, $value, $options );
 	}
 
 	/**
-	 * Temporary emulation for setcookie() with a SameSite option
+	 * Temporary emulation for setcookie() or setrawcookie() to match PHP 7.4.3
 	 *
-	 * Once MediaWiki requires PHP 7.3, this can be replaced with a setcookie()
-	 * call in the caller.
+	 * This function corresponds to php_head_parse_cookie_options_array() and
+	 * php_setcookie() in the PHP source code:
+	 *
+	 * https://github.com/php/php-src/blob/PHP-7.4.3/ext/standard/head.c#L189-L226
+	 * https://github.com/php/php-src/blob/PHP-7.4.3/ext/standard/head.c#L79-L187
 	 *
 	 * @internal
 	 * @param bool $urlEncode True for setcookie(), false for setrawcookie()
@@ -165,7 +166,7 @@ class SetCookieCompat {
 		} else {
 			$buf .= "Set-Cookie: $name=";
 			if ( $urlEncode ) {
-				$buf .= urlencode( $value );
+				$buf .= rawurlencode( $value );
 			} else {
 				$buf .= $value;
 			}

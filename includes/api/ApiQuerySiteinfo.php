@@ -677,9 +677,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendRightsInfo( $property ) {
 		$config = $this->getConfig();
 		$rightsPage = $config->get( 'RightsPage' );
-		if ( is_string( $rightsPage ) ) {
+		// The default value is null, but the installer sets it to empty string
+		if ( strlen( $rightsPage ) ) {
 			$title = Title::newFromText( $rightsPage );
-			$url = wfExpandUrl( $title, PROTO_CURRENT );
+			$url = wfExpandUrl( $title->getLinkURL(), PROTO_CURRENT );
 		} else {
 			$title = false;
 			$url = $config->get( 'RightsUrl' );
