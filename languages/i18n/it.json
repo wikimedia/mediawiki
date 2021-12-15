@@ -1012,7 +1012,7 @@
 	"revdelete-log": "Motivo:",
 	"revdelete-submit": "Applica {{PLURAL:$1|alla versione selezionata|alle versioni selezionate}}",
 	"revdelete-success": "Visibilità della versione aggiornata.",
-	"revdelete-failure": "'''La visibilità della versione non può essere aggiornata:'''\n$1",
+	"revdelete-failure": "La visibilità della versione non può essere aggiornata:\n$1",
 	"logdelete-success": "Impostata visibilità dell'evento.",
 	"logdelete-failure": "'''La visibilità dell'evento non può essere impostata:'''\n$1",
 	"revdel-restore": "cambia la visibilità",

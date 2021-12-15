@@ -959,7 +959,7 @@
 	"nextn-title": "Наступны{{PLURAL:$1| вынік|я $1 вынікі(аў)}}",
 	"shown-title": "Паказваць $1 {{PLURAL:$1|вынік|вынікі(аў)}} на старонку",
 	"viewprevnext": "Гл. ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "'''На вікі ёсць старонка \"[[:$1]]\"'''",
+	"searchmenu-exists": "<strong>У гэтай вікі ёсць старонка «[[:$1]]».</strong> {{PLURAL:$2|0=|Гл. таксама вынікі пошуку.}}",
 	"searchmenu-new": "<strong>Стварыць старонку «[[:$1]]» у гэтым вікі-праекце!</strong> {{PLURAL:$2|0=|Гл. таксама вынік пошуку.|Гл. таксама вынікі пошуку.}}",
 	"searchprofile-articles": "Артыкулы",
 	"searchprofile-images": "Мультымедыя",
