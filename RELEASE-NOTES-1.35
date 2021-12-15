@@ -14,6 +14,32 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.4 ===
+* (T290697) Add symfony/polyfill-php80.
+* IcuCollation: Add some more icu to unicode version mappings.
+* ApiBase: Annotate deprecated constants individually.
+* PHPVersionCheck: Mark PHP 7.4.0 - 7.4.2 as buggy.
+* (T293044) installer: Fix 5th param to sourceFile() in DatabaseUpdater.
+* (T291127) Always encode spaces in cookie values as "%20".
+* Use LocalFile::getHookRunner instead of LocalFile::hookRunner.
+* HistoryBlobStub: add getLocation() to get $mOldId.
+* Fix checkStorage.php.
+* checkStorage: pass no parameters to WikiRevision::getContent().
+* (T292763) Do not cache private wiki completion results.
+* (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
+* (T250068) resources: Upgrade jQuery from 3.4.1 to 3.6.0.
+* (T250068) resources: Upgrade jquery-migrate from 3.1.0 (patched) to 3.3.2
+  (patched).
+* (T294796) JobQueueRedis: Replace deprecated zSize with zCard.
+* (T212428, T267468) Allow populateContentTables to continue when there are
+  bad blobs.
+* (T295191) ApiQuerySiteinfo: Fix "rightsinfo"/"url" when $wgRightsPage is
+  set.
+* Update pear/mail_mime to 1.10.11.
+* Update deprecated Guzzle Psr7 function calls.
+* Tweak error message for missing composer dependencies.
+* (T296112) Allow inserting new sections named '0'.
+* nukeNS: don't run purgeRedundantText() after every change.
+* (T225888) RollbackAction: fix missing pagetitle.
 
 == MediaWiki 1.35.4 ==
 
@@ -655,6 +681,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
+* Added symfony/symfony/polyfill-php80 1.23.1.
 
 ===== New development-only external libraries =====
 * Added doctrine/dbal 3.0.0.
@@ -667,8 +694,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated oojs from 3.0.0 to 5.0.0.
 * Updated OOUI from 0.35.1 to 0.39.3.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.5.
-* Updated jQuery from v3.3.1 to v3.4.1.
-* Updated jQuery Migrate from v3.0.1 to v3.1.0.
+* Updated jQuery from v3.3.1 to v3.6.0.
+* Updated jQuery Migrate from v3.0.1 to v3.3.2.
 * Updated wikimedia/assert from 0.2.2 to 0.5.0.
 * Updated pear/net_smtp from 1.8.1 from to 1.9.1.
 * Updated psr/log from 1.0.2 to 1.1.3.
