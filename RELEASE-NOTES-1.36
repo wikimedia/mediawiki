@@ -5,6 +5,36 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.36.2 ===
+* (T280363) mediawiki.page.ready: Introduce wikipage.indicators hook.
+* (T290697) Add symfony/polyfill-php80.
+* IcuCollation: Add some more icu to unicode version mappings.
+* ApiBase: Annotate deprecated constants individually.
+* PHPVersionCheck: Mark PHP 7.4.0 - 7.4.2 as buggy.
+* (T293044) installer: Fix 5th param to sourceFile() in DatabaseUpdater.
+* (T291127) Always encode spaces in cookie values as "%20".
+* Use LocalFile::getHookRunner instead of LocalFile::hookRunner.
+* (T293564) mediawiki.page.ready: Fire hook 'wikipage.indicators' with
+  children.
+* HistoryBlobStub: add getLocation() to get $mOldId.
+* Fix checkStorage.php.
+* checkStorage: pass no parameters to WikiRevision::getContent().
+* (T292763) Do not cache private wiki completion results.
+* (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
+* (T294796) JobQueueRedis: Replace deprecated zSize with zCard.
+* (T278037) NoLocalSettings: Pass an EmptyBagOStuff to TemplateParser.
+* (T212428, T267468) Allow populateContentTables to continue when there are
+  bad blobs.
+* (T295191) ApiQuerySiteinfo: Fix "rightsinfo"/"url" when $wgRightsPage is
+  set.
+* Update pear/mail_mime to 1.10.11.
+* Update deprecated Guzzle Psr7 function calls.
+* (T281972) Follow-Up: I10fbd4b6a: Update @since tags as those were backported.
+* Tweak error message for missing composer dependencies.
+* (T296112) Allow inserting new sections named '0'.
+* nukeNS: don't run purgeRedundantText() after every change.
+* (T286779, T297031) installer: Fix Postgres mistakes in using changeField
+  method.
+* (T225888) RollbackAction: fix missing pagetitle.
 
 == MediaWiki 1.36.2 ==
 
@@ -210,6 +240,7 @@ This is no longer encouraged, and the option has been removed.
 * Added wikimedia/request-timeout 1.1.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
+* Added symfony/symfony/polyfill-php80 1.23.1.
 
 ==== Changed external libraries ====
 * Updated composer/semver from 1.5.1 to 3.2.4.
