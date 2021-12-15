@@ -5,6 +5,12 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.37.0 ===
+* (T296112) Allow inserting new sections named '0'.
+* Fix path for ZhConversion.php.
+* nukeNS: don't run purgeRedundantText() after every change.
+* (T286779, T297031) installer: Fix Postgres mistakes in using changeField
+  method.
+* (T225888) RollbackAction: fix missing pagetitle.
 
 == MediaWiki 1.37.0 ==
 
