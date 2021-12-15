@@ -1,7 +1,4 @@
 <?php
-/**
- * @defgroup ExternalStorage ExternalStorage
- */
 
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
@@ -9,6 +6,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
+ * @see ExternalStoreAccess
+ * @internal Use the ExternalStoreAccess service instead.
+ * @since 1.31
  * @ingroup ExternalStorage
  */
 class ExternalStoreFactory implements LoggerAwareInterface {

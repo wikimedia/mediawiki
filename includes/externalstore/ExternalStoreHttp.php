@@ -1,7 +1,5 @@
 <?php
 /**
- * External storage using HTTP requests.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,9 +21,12 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * External storage using HTTP requests.
+ *
  * Example class for HTTP accessible external objects.
  * Only supports reading, not storing.
  *
+ * @see ExternalStoreAccess
  * @ingroup ExternalStorage
  */
 class ExternalStoreHttp extends ExternalStoreMedium {
