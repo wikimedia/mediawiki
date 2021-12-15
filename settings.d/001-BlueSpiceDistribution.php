@@ -2,7 +2,7 @@
 
 wfLoadExtension( 'Arrays' );
 wfLoadExtension( 'CategoryTree' );
-wfLoadExtension( 'DynamicPageList3' );
+wfLoadExtension( 'DynamicPageList' );
 require_once __DIR__ . "/../extensions/HitCounters/HitCounters.php";
 require_once __DIR__ . "/../extensions/ImageMapEdit/ImageMapEdit.php";
 wfLoadExtension( 'RSS' );
