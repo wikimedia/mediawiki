@@ -2,7 +2,7 @@
 
 == MediaWiki 1.36.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.36 branch.
 
 === Changes since MediaWiki 1.36.2 ===
 * (T280363) mediawiki.page.ready: Introduce wikipage.indicators hook.
@@ -18,7 +18,8 @@ THIS IS NOT A RELEASE YET
 * HistoryBlobStub: add getLocation() to get $mOldId.
 * Fix checkStorage.php.
 * checkStorage: pass no parameters to WikiRevision::getContent().
-* (T292763) Do not cache private wiki completion results.
+* (T292763, CVE-2021-44854) SECURITY: Do not cache private wiki completion
+  results.
 * (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
 * (T294796) JobQueueRedis: Replace deprecated zSize with zCard.
 * (T278037) NoLocalSettings: Pass an EmptyBagOStuff to TemplateParser.
@@ -35,6 +36,12 @@ THIS IS NOT A RELEASE YET
 * (T286779, T297031) installer: Fix Postgres mistakes in using changeField
   method.
 * (T225888) RollbackAction: fix missing pagetitle.
+* (T297322, CVE-2021-44858, CVE-2021-44857) SECURITY: Fix permissions checks in
+  undo actions.
+* (T297574, CVE-2021-45038) SECURITY: Fix permissions check in action=rollback.
+* (T34716, T297416) SECURITY: Require 'read' right for most actions.
+* (T271037, CVE-2021-44856) SECURITY: Fix use of EditFilterMergedContent hook
+  when changing content model.
 
 == MediaWiki 1.36.2 ==
 
