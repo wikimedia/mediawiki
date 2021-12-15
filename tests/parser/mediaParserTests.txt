@@ -2261,6 +2261,7 @@ wgParserEnableLegacyMediaDOM=false
 <p><a rel="mw:WikiLink" href="./File:No_such.jpg" title="File:No such.jpg" class="new">Image:No such.jpg</a></p>
 !! end
 
+## FIXME: The legacy parser output doesn't match Parsoid here
 !! test
 Fuzz testing: image with bogus manual thumbnail
 !! config
@@ -2275,17 +2276,19 @@ wgParserEnableLegacyMediaDOM=false
 
 !! test
 Gallery with valid attributes
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 <gallery type="123" summary="345">
 File:File:Foobar.jpg
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional" type="123">
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">File:Foobar.jpg</div>
 			<div class="gallerytext">
 			</div>
-		</div></li>
+		</li>
 </ul>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{}}'>
@@ -2300,6 +2303,8 @@ Gallery
 parsoid={
   "modes": ["wt2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 <gallery>
 image1.png |
@@ -2313,40 +2318,40 @@ image4    |300px| centre
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image1.png</div>
 			<div class="gallerytext">
 			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		</li>
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image2.gif</div>
 			<div class="gallerytext">
 			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		</li>
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image3</div>
 			<div class="gallerytext">
 			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		</li>
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image4</div>
 			<div class="gallerytext">
 <pre>centre
 </pre>
 			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		</li>
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image5.svg</div>
 			<div class="gallerytext">
 <p><a rel="nofollow" class="external free" href="http://///////">http://///////</a>
 </p>
 			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+		</li>
+		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="height: 150px;">* image6</div>
 			<div class="gallerytext">
 			</div>
-		</div></li>
+		</li>
 </ul>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
