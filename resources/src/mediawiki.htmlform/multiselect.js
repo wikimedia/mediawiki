@@ -61,7 +61,7 @@
 			return new OO.ui.MenuOptionWidget( {
 				data: option.getData(),
 				label: option.getLabel(),
-				disabled: option.isDisabled()
+				disabled: option.disabled // Don't take the state of parent elements into account.
 			} );
 		} );
 		menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
@@ -76,6 +76,10 @@
 		// CheckboxMultiselectInputWidget up-to-date.
 		menuTagWidget.on( 'change', function () {
 			checkboxesWidget.setValue( menuTagWidget.getValue() );
+		} );
+		// Synchronize the disable state for submission, and set the proper state of the label.
+		menuTagWidget.on( 'disable', function ( isDisabled ) {
+			checkboxesWidget.setDisabled( isDisabled );
 		} );
 		// Change the connected fieldWidget to the new one, so other scripts can infuse the layout
 		// and make changes to this widget.
