@@ -147,7 +147,7 @@ abstract class RevDelList extends RevisionListBase {
 			return $status;
 		}
 
-		$dbw->startAtomic( __METHOD__ );
+		$dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 		$dbw->onTransactionResolution(
 			function () {
 				// Release locks on commit or error
@@ -278,7 +278,7 @@ abstract class RevDelList extends RevisionListBase {
 		$status->merge( $this->doPreCommitUpdates() );
 		if ( !$status->isOK() ) {
 			// Fatal error, such as no configured archive directory or I/O failures
-			$this->lbFactory->rollbackPrimaryChanges( __METHOD__ );
+			$dbw->cancelAtomic( __METHOD__ );
 			return $status;
 		}
 
