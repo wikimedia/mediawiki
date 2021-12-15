@@ -2489,45 +2489,51 @@ $wgTextModelsToParse = [
  * We can also compress text stored in the 'text' table. If this is set on, new
  * revisions will be compressed on page save if zlib support is available. Any
  * compressed revisions will be decompressed on load regardless of this setting,
- * but will not be readable at all* if zlib support is not available.
+ * but will not be readable at all if zlib support is not available.
  */
 $wgCompressRevisions = false;
 
 /**
- * External stores allow including content
- * from non database sources following URL links.
+ * List of enabled ExternalStore protocols.
  *
- * Short names of ExternalStore classes may be specified in an array here:
+ * @see ExternalStoreAccess
+ *
+ * @par Example:
  * @code
- * $wgExternalStores = [ "http","file","custom" ]...
+ * $wgExternalStores = [ "DB" ];
  * @endcode
  *
- * CAUTION: Access to database might lead to code execution
+ * @var array
  */
 $wgExternalStores = [];
 
 /**
- * An array of external MySQL servers.
+ * Shortcut for setting `$wgLBFactoryConf["externalClusters"]`.
+ *
+ * This is only applicable when using the default LBFactory
+ * of {@link Wikimedia::Rdbms::LBFactorySimple LBFactorySimple}.
+ * It is ignored if a different LBFactory is set, or if `externalClusters`
+ * is already set explicitly.
+ *
+ * @see ExternalStoreAccess
  *
  * @par Example:
- * Create a cluster named 'cluster1' containing three servers:
+ * Create a cluster named `blobs_cluster1`:
  * @code
  * $wgExternalServers = [
- *     'cluster1' => <array in the same format as $wgDBservers>
+ *     'blobs_cluster1' => <array in the same format as $wgDBservers>
  * ];
  * @endcode
  *
- * Used by \Wikimedia\Rdbms\LBFactorySimple, may be ignored if $wgLBFactoryConf is set to
- * another class.
+ * @var array
  */
 $wgExternalServers = [];
 
 /**
- * The place to put new revisions, false to put them in the local text table.
- * Part of a URL, e.g. DB://cluster1
+ * The place to put new text blobs or false to put them in the text table
+ * of the local wiki database.
  *
- * Can be an array instead of a single string, to enable data distribution. Keys
- * must be consecutive integers, starting at zero.
+ * @see ExternalStoreAccess
  *
  * @par Example:
  * @code

@@ -1,7 +1,5 @@
 <?php
 /**
- * External storage in a file backend.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +19,13 @@
  */
 
 /**
- * File backend accessible external objects.
+ * External storage in a FileBackend.
  *
  * In this system, each store "location" maps to the name of a file backend.
  * The file backends must be defined in $wgFileBackends and must be global
  * and fully qualified with a global "wikiId" prefix in the configuration.
  *
+ * @see ExternalStoreAccess
  * @ingroup ExternalStorage
  * @since 1.21
  */
@@ -89,9 +88,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		return $blobs;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function store( $backend, $data ) {
 		$be = $this->fbGroup->get( $backend );
 		// Get three random base 36 characters to act as shard directories
@@ -119,9 +115,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		throw new MWException( __METHOD__ . ": operation failed: $status" );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function isReadOnly( $backend ) {
 		if ( parent::isReadOnly( $backend ) ) {
 			return true;

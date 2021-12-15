@@ -1,7 +1,5 @@
 <?php
 /**
- * External storage in SQL database.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,11 +28,12 @@ use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\ScopedCallback;
 
 /**
- * DB accessible external objects.
+ * External storage in a SQL database.
  *
  * In this system, each store "location" maps to a database "cluster".
  * The clusters must be defined in the normal LBFactory configuration.
  *
+ * @see ExternalStoreAccess
  * @ingroup ExternalStorage
  */
 class ExternalStoreDB extends ExternalStoreMedium {
@@ -55,8 +54,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * The provided URL is in the form of DB://cluster/id
-	 * or DB://cluster/id/itemid for concatened storage.
+	 * Fetch data from given external store URL.
+	 *
+	 * The provided URL is in the form of `DB://cluster/id` or `DB://cluster/id/itemid`
+	 * for concatened storage if ConcatenatedGzipHistoryBlob was used.
 	 *
 	 * @param string $url
 	 * @return string|bool False if missing
@@ -74,9 +75,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Fetch data from given external store URLs.
-	 * The provided URLs are in the form of DB://cluster/id
-	 * or DB://cluster/id/itemid for concatened storage.
+	 * Fetch multiple URLs from given external store.
+	 *
+	 * The provided URLs are in the form of `DB://cluster/id`, or `DB://cluster/id/itemid`
+	 * for concatened storage if ConcatenatedGzipHistoryBlob was used.
 	 *
 	 * @param array $urls An array of external store URLs
 	 * @return array A map from url to stored content. Failed results

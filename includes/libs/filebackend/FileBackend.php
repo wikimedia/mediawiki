@@ -4,6 +4,7 @@
  *
  * File backend is used to interact with file storage systems,
  * such as the local file system, NFS, or cloud storage systems.
+ * See [the architecture doc](@ref filebackendarch) for more information.
  */
 
 /**
