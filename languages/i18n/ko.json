@@ -3782,7 +3782,7 @@
 	"mediastatistics": "미디어 통계",
 	"mediastatistics-summary": "올려진 파일 유형에 대한 통계입니다. 이 통계는 파일의 가장 최신 판만을 포함합니다. 오래되거나 삭제된 파일의 판은 제외됩니다.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 바이트}} ($2; $3%)",
-	"mediastatistics-bytespertype": "이 문단의 총 파일 크기: {{PLURAL:$1|$1}} 바이트 ($2; $3%).",
+	"mediastatistics-bytespertype": "이 문단의 {{PLURAL:$4|$4개}} 파일의 총 크기 ($5%): {{PLURAL:$1|$1}} 바이트 ($2; $3%).",
 	"mediastatistics-allbytes": "모든 {{PLURAL:$3|$3개 파일}}의 총 파일 크기: {{PLURAL:$1|$1 바이트}} ($2).",
 	"mediastatistics-table-mimetype": "MIME 종류",
 	"mediastatistics-table-extensions": "가능한 확장 기능",

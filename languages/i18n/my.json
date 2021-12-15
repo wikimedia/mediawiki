@@ -2014,6 +2014,7 @@
 	"autoblocklist-otherblocks": "အခြား {{PLURAL:$1|အလိုအလျောက် ပိတ်ပင်မှု|အလိုအလျောက် ပိတ်ပင်မှုများ}}",
 	"ipblocklist": "ပိတ်ပင်ထားသော အသုံးပြုသူများ",
 	"ipblocklist-legend": "ပိတ်ပင်ထားသော အသုံးပြုသူတစ်ဦးကို ရှာရန်",
+	"blocklist-autoblocks": "အလိုအလျောက်ပိတ်ပင်မှုများကို ဝှက်",
 	"blocklist-userblocks": "အကောင့်ပိတ်ပင်မှုများ ဝှက်",
 	"blocklist-tempblocks": "ယာယီပိတ်ပင်မှုများ ဝှက်",
 	"blocklist-indefblocks": "သတ်မှတ်ချက်မရှိသောပိတ်ပင်မှုများကို ဝှက်",

@@ -121,7 +121,8 @@
 			"고솜",
 			"아라",
 			"Lapos.demia.olecu",
-			"RYOUMA1117"
+			"RYOUMA1117",
+			"カッパ鳥"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -906,7 +907,7 @@
 	"unstrip-depth-warning": "unstrip の再帰 ($1) が上限を超えました",
 	"unstrip-depth-category": "\"unstrip\" の深さ制限を超えたページ",
 	"unstrip-size-warning": "\"unstrip\" のサイズが上限 ($1) を超えました",
-	"unstrip-size-category": "ページの  \"unstrip\" サイズが上限を超えました",
+	"unstrip-size-category": "「unstrip」サイズ上限を超えているページ",
 	"converter-manual-rule-error": "手動の言語変換規則でエラーを検出しました。",
 	"undo-success": "この編集を取り消せます。\n下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を公開して取り消しを完了してください。",
 	"undo-failure": "中間の版での編集と競合したため、取り消せませんでした。",
