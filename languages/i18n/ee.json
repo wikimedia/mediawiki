@@ -10,7 +10,8 @@
 			"Latercio2000",
 			"Natsubee",
 			"Savh",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Flitete ɖe kadodo te:",
@@ -537,11 +538,11 @@
 	"tool-link-contributions": "{{GENDER:$1|Ezãla}} ƒe asikpeɖeŋuwo",
 	"contributions-title": "$1 ƒe nuŋɔŋlɔwo",
 	"mycontris": "Nyeƒe nuŋɔŋlɔwo",
-	"contribsub2": "Na $1 ($2)",
+	"contribsub2": "Na {{GENDER:$3|$1}} ($2)",
 	"uctop": "tametɔ",
 	"month": "Tso ɣleti (kple do ŋgɔ):",
 	"year": "Tso ƒe (kple do ŋgɔ):",
-	"sp-contributions-talk": "Nyamedzroƒe",
+	"sp-contributions-talk": "dzeɖoƒe",
 	"sp-contributions-search": "Di nuŋɔŋlɔwo",
 	"sp-contributions-submit": "Dii",
 	"whatlinkshere": "Kadodo si le afi sia",
@@ -651,7 +652,7 @@
 	"version": "Tata",
 	"fileduplicatesearch-submit": "Dii",
 	"specialpages": "Axa tɔxewo",
-	"tag-list-wrapper": "[[Tɔxɛ: Desidenyawo|{{PLURAL:$1|Desidenya|Desidenyawo}}]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Desidenya|Desidenyawo}}]]: $2",
 	"tags-edit": "trɔ asi le eŋu",
 	"logentry-move-move": "$1 {{GENDER:$2|moved}} axa $3 yi $4",
 	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{GENDER:$2|wɔ vɔ}}",
