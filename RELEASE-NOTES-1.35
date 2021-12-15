@@ -11,7 +11,7 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
 == MediaWiki 1.35.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.4 ===
 * (T290697) Add symfony/polyfill-php80.
@@ -24,7 +24,8 @@ THIS IS NOT A RELEASE YET
 * HistoryBlobStub: add getLocation() to get $mOldId.
 * Fix checkStorage.php.
 * checkStorage: pass no parameters to WikiRevision::getContent().
-* (T292763) Do not cache private wiki completion results.
+* (T292763, CVE-2021-44854) SECURITY: Do not cache private wiki completion
+  results.
 * (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
 * (T250068) resources: Upgrade jQuery from 3.4.1 to 3.6.0.
 * (T250068) resources: Upgrade jquery-migrate from 3.1.0 (patched) to 3.3.2
@@ -40,6 +41,12 @@ THIS IS NOT A RELEASE YET
 * (T296112) Allow inserting new sections named '0'.
 * nukeNS: don't run purgeRedundantText() after every change.
 * (T225888) RollbackAction: fix missing pagetitle.
+* (T297322, CVE-2021-44858, CVE-2021-44857) SECURITY: Fix permissions checks in
+  undo actions.
+* (T297574, CVE-2021-45038) SECURITY: Fix permissions check in action=rollback.
+* (T34716, T297416) SECURITY: Require 'read' right for most actions.
+* (T271037, CVE-2021-44856) SECURITY: Fix use of EditFilterMergedContent hook
+  when changing content model.
 
 == MediaWiki 1.35.4 ==
 
