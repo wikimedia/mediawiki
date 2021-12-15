@@ -17308,12 +17308,14 @@ Media link to nonexistent file (T3702)
 
 !! test
 Media link with nested wikilinks
+!! config
+wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Media:Foobar.jpg|[[Test]]]]
 [[Media:Foobar.jpg|[[File:Foobar.jpg]]]]
 !! html/php
 <p>[[Media:Foobar.jpg|<a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>]]
-[[Media:Foobar.jpg|<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>]]
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:Image"><a href="/wiki/File:Foobar.jpg"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>]]
 </p>
 !! html/parsoid
 <p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" class="new">Test</a>]]
