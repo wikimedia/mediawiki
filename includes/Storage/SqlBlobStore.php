@@ -421,7 +421,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		foreach ( $rows as $row ) {
 			$blobAddress = $textIdToBlobAddress[$row->old_id];
-			$blob = $this->expandBlob( $row->old_text, $row->old_flags, $blobAddress );
+			$blob = false;
+			if ( $row->old_text !== null ) {
+				$blob = $this->expandBlob( $row->old_text, $row->old_flags, $blobAddress );
+			}
 			if ( $blob === false ) {
 				$errors[$blobAddress] = "Bad data in text row {$row->old_id}.";
 			}

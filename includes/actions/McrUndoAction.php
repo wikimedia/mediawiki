@@ -42,6 +42,11 @@ class McrUndoAction extends FormAction {
 		return '';
 	}
 
+	public function getRestriction() {
+		// Require 'edit' permission to even see this action (T297322)
+		return 'edit';
+	}
+
 	public function show() {
 		// Send a cookie so anons get talk message notifications
 		// (copied from SubmitAction)
@@ -114,8 +119,10 @@ class McrUndoAction extends FormAction {
 
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
-		$undoRev = $revisionLookup->getRevisionById( $this->undo );
-		$oldRev = $revisionLookup->getRevisionById( $this->undoafter );
+		// We use getRevisionByTitle to verify the revisions belong to this page (T297322)
+		$title = $this->getTitle();
+		$undoRev = $revisionLookup->getRevisionByTitle( $title, $this->undo );
+		$oldRev = $revisionLookup->getRevisionByTitle( $title, $this->undoafter );
 
 		if ( $undoRev === null || $oldRev === null ||
 			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
@@ -321,8 +328,44 @@ class McrUndoAction extends FormAction {
 			return Status::newFatal( 'mcrundo-changed' );
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$errors = $permissionManager->getPermissionErrors(
+			'edit', $this->context->getUser(), $this->getTitle()
+		);
+		if ( count( $errors ) ) {
+			throw new PermissionsError( 'edit', $errors );
+		}
+
 		$newRev = $this->getNewRevision();
 		if ( !$newRev->hasSameContent( $curRev ) ) {
+			$hookRunner = Hooks::runner();
+			foreach ( $newRev->getSlotRoles() as $slotRole ) {
+				$slot = $newRev->getSlot( $slotRole, RevisionRecord::RAW );
+
+				$status = new Status();
+				$hookResult = $hookRunner->onEditFilterMergedContent(
+					$this->getContext(),
+					$slot->getContent(),
+					$status,
+					trim( $this->getRequest()->getVal( 'wpSummary' ) ),
+					$this->getUser(),
+					false
+				);
+
+				if ( !$hookResult ) {
+					if ( $status->isGood() ) {
+						$status->error( 'hookaborted' );
+					}
+
+					return $status;
+				} elseif ( !$status->isOK() ) {
+					if ( !$status->getErrors() ) {
+						$status->error( 'hookaborted' );
+					}
+					return $status;
+				}
+			}
+
 			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 			// Copy new slots into the PageUpdater, and remove any removed slots.

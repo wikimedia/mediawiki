@@ -93,6 +93,8 @@ class PHPVersionCheck {
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
 		$knownBad = array(
+			// https://bugs.php.net/bug.php?id=79174 as a regression from https://bugs.php.net/bug.php?id=78929
+			'T243667, T291127' => '7.4.0 - 7.4.2'
 		);
 
 		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
@@ -167,9 +169,9 @@ HTML;
 			$web['longHtml'] = <<<HTML
 		<p>
 		MediaWiki also has some external dependencies that need to be installed via
-		composer or from a separate git repo. Please see
-		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a>
-		for help on installing the required components.
+		composer or from a separate git repo. Please see the
+		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">instructions
+		for installing libraries</a> on mediawiki.org for help on installing the required components.
 		</p>
 HTML;
 			// phpcs:enable Generic.Files.LineLength

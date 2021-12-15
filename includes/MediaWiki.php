@@ -505,6 +505,11 @@ class MediaWiki {
 		$action = Action::factory( $act, $article, $this->context );
 
 		if ( $action instanceof Action ) {
+			// Check read permissions
+			if ( $action->needsReadRights() && !$user->isAllowed( 'read' ) ) {
+				throw new PermissionsError( 'read' );
+			}
+
 			// Narrow DB query expectations for this HTTP request
 			$trxLimits = $this->config->get( 'TrxProfilerLimits' );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();

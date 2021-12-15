@@ -282,6 +282,12 @@ class ContentModelChange {
 			}
 			return $status;
 		}
+		if ( !$status->isOK() ) {
+			if ( !$status->getErrors() ) {
+				$status->fatal( 'hookaborted' );
+			}
+			return $status;
+		}
 
 		// Make the edit
 		$flags = $this->latestRevId ? EDIT_UPDATE : EDIT_NEW;
