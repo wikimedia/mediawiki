@@ -1436,7 +1436,7 @@ class RevisionStore
 					'trace' => wfBacktrace( true )
 				]
 			);
-			return $this->loadSlotRecords(
+			return $this->loadSlotRecordsFromDb(
 				$revId,
 				$queryFlags | self::READ_LATEST,
 				$page

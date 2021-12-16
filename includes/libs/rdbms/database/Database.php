@@ -223,43 +223,43 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public const STATUS_TRX_NONE = 3;
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
-	private static $NOT_APPLICABLE = 'n/a';
+	private const NOT_APPLICABLE = 'n/a';
 	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
-	private static $SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
+	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
 	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
-	private static $TEMP_NORMAL = 1;
+	private const TEMP_NORMAL = 1;
 	/** @var int Writes to this temporary table effect lastDoneWrites() */
-	private static $TEMP_PSEUDO_PERMANENT = 2;
+	private const TEMP_PSEUDO_PERMANENT = 2;
 
 	/** @var int Number of times to re-try an operation in case of deadlock */
-	private static $DEADLOCK_TRIES = 4;
+	private const DEADLOCK_TRIES = 4;
 	/** @var int Minimum time to wait before retry, in microseconds */
-	private static $DEADLOCK_DELAY_MIN = 500000;
+	private const DEADLOCK_DELAY_MIN = 500000;
 	/** @var int Maximum time to wait before retry */
-	private static $DEADLOCK_DELAY_MAX = 1500000;
+	private const DEADLOCK_DELAY_MAX = 1500000;
 
 	/** @var float How long before it is worth doing a dummy query to test the connection */
-	private static $PING_TTL = 1.0;
+	private const PING_TTL = 1.0;
 	/** @var string Dummy SQL query */
-	private static $PING_QUERY = 'SELECT 1 AS ping';
+	private const PING_QUERY = 'SELECT 1 AS ping';
 
 	/** @var float Guess of how many seconds it takes to replicate a small insert */
-	private static $TINY_WRITE_SEC = 0.010;
+	private const TINY_WRITE_SEC = 0.010;
 	/** @var float Consider a write slow if it took more than this many seconds */
-	private static $SLOW_WRITE_SEC = 0.500;
+	private const SLOW_WRITE_SEC = 0.500;
 	/** @var int Assume an insert of this many rows or less should be fast to replicate */
-	private static $SMALL_WRITE_ROWS = 100;
+	private const SMALL_WRITE_ROWS = 100;
 
 	/** @var string[] List of DBO_* flags that can be changed after connection */
-	protected static $MUTABLE_FLAGS = [
+	protected const MUTABLE_FLAGS = [
 		'DBO_DEBUG',
 		'DBO_NOBUFFER',
 		'DBO_TRX',
 		'DBO_DDLMODE',
 	];
 	/** @var int Bit field of all DBO_* flags that can be changed after connection */
-	protected static $DBO_MUTABLE = (
+	protected const DBO_MUTABLE = (
 		self::DBO_DEBUG | self::DBO_NOBUFFER | self::DBO_TRX | self::DBO_DDLMODE
 	);
 
@@ -759,7 +759,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
 		// For omitted queries, make them count as something at least
 		$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
-		$applyTime += self::$TINY_WRITE_SEC * $omitted;
+		$applyTime += self::TINY_WRITE_SEC * $omitted;
 
 		return $applyTime;
 	}
@@ -806,10 +806,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( $flag & ~static::$DBO_MUTABLE ) {
+		if ( $flag & ~static::DBO_MUTABLE ) {
 			throw new DBUnexpectedError(
 				$this,
-				"Got $flag (allowed: " . implode( ', ', static::$MUTABLE_FLAGS ) . ')'
+				"Got $flag (allowed: " . implode( ', ', static::MUTABLE_FLAGS ) . ')'
 			);
 		}
 
@@ -821,10 +821,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( $flag & ~static::$DBO_MUTABLE ) {
+		if ( $flag & ~static::DBO_MUTABLE ) {
 			throw new DBUnexpectedError(
 				$this,
-				"Got $flag (allowed: " . implode( ', ', static::$MUTABLE_FLAGS ) . ')'
+				"Got $flag (allowed: " . implode( ', ', static::MUTABLE_FLAGS ) . ')'
 			);
 		}
 
@@ -1239,7 +1239,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $queryTables as $table ) {
 			if ( $queryVerb === 'CREATE' ) {
 				// Record the type of temporary table being created
-				$tableType = $pseudoPermanent ? self::$TEMP_PSEUDO_PERMANENT : self::$TEMP_NORMAL;
+				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
 			} else {
 				$tableType = $this->sessionTempTables[$table] ?? null;
 			}
@@ -1346,7 +1346,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
 			$isPermWrite = !$tempTableChanges;
 			foreach ( $tempTableChanges as list( $tmpType ) ) {
-				$isPermWrite = $isPermWrite || ( $tmpType !== self::$TEMP_NORMAL );
+				$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
 			}
 
 			// Permit temporary table writes on replica DB connections
@@ -1490,7 +1490,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$recoverableSR = $this->wasKnownStatementRollbackError();
 		}
 
-		if ( $sql === self::$PING_QUERY ) {
+		if ( $sql === self::PING_QUERY ) {
 			$this->lastRoundTripEstimate = $queryRuntime;
 		}
 
@@ -1556,13 +1556,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function updateTrxWriteQueryTime( $sql, $runtime, $affected ) {
 		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
 		$indicativeOfReplicaRuntime = true;
-		if ( $runtime > self::$SLOW_WRITE_SEC ) {
+		if ( $runtime > self::SLOW_WRITE_SEC ) {
 			$verb = $this->getQueryVerb( $sql );
 			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
 			if ( $verb === 'INSERT' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::$SMALL_WRITE_ROWS;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS;
 			} elseif ( $verb === 'REPLACE' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::$SMALL_WRITE_ROWS / 2;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
 			}
 		}
 
@@ -4095,7 +4095,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function deadlockLoop( ...$args ) {
 		$function = array_shift( $args );
-		$tries = self::$DEADLOCK_TRIES;
+		$tries = self::DEADLOCK_TRIES;
 
 		$this->begin( __METHOD__ );
 
@@ -4109,7 +4109,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} catch ( DBQueryError $e ) {
 				if ( $this->wasDeadlock() ) {
 					// Retry after a randomized delay
-					usleep( mt_rand( self::$DEADLOCK_DELAY_MIN, self::$DEADLOCK_DELAY_MAX ) );
+					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
 				} else {
 					// Throw the error back up
 					throw $e;
@@ -4592,7 +4592,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	private function nextSavepointId( $fname ) {
-		$savepointId = self::$SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
+		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
 		if ( strlen( $savepointId ) > 30 ) {
 			// 30 == Oracle's identifier length limit (pre 12c)
 			// With a 22 character prefix, that puts the highest number at 99999999.
@@ -4641,7 +4641,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $sectionOwnsTrx ) {
 				// This atomic section is synonymous with the whole transaction; just
 				// use full COMMIT/ROLLBACK in endAtomic()/cancelAtomic(), respectively
-				$savepointId = self::$NOT_APPLICABLE;
+				$savepointId = self::NOT_APPLICABLE;
 			} else {
 				// This atomic section is only part of the whole transaction; use a SAVEPOINT
 				// query so that its changes can be cancelled without losing the rest of the
@@ -4696,7 +4696,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 				$this->commit( $fname, self::FLUSHING_INTERNAL );
 				$runPostCommitCallbacks = true;
-			} elseif ( $savepointId !== null && $savepointId !== self::$NOT_APPLICABLE ) {
+			} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
 				$this->doReleaseSavepoint( $savepointId, $fname );
 			}
 		} catch ( DBError $e ) {
@@ -4786,7 +4786,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			if ( $savepointId !== null ) {
 				// Rollback the transaction changes proposed within this atomic section
-				if ( $savepointId === self::$NOT_APPLICABLE ) {
+				if ( $savepointId === self::NOT_APPLICABLE ) {
 					// Atomic section started the transaction; rollback the whole transaction
 					// and trigger cancellation callbacks for all active atomic sections
 					$this->rollback( $fname, self::FLUSHING_INTERNAL );
@@ -5163,7 +5163,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function ping( &$rtt = null ) {
 		// Avoid hitting the server if it was hit recently
-		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::$PING_TTL ) {
+		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
 			if ( !func_num_args() || $this->lastRoundTripEstimate > 0 ) {
 				$rtt = $this->lastRoundTripEstimate;
 				return true; // don't care about $rtt
@@ -5172,7 +5172,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// This will reconnect if possible or return false if not
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE;
-		$ok = ( $this->query( self::$PING_QUERY, __METHOD__, $flags ) !== false );
+		$ok = ( $this->query( self::PING_QUERY, __METHOD__, $flags ) !== false );
 		if ( $ok ) {
 			$rtt = $this->lastRoundTripEstimate;
 		}
