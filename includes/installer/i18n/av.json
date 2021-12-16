@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gazimagomedov"
+			"Gazimagomedov",
+			"Omarov M."
 		]
 	},
-	"config-page-welcome": "ЛъикI щварал МедиаВикиялда!",
+	"config-page-welcome": "ЛъикӀ щварал MediaWiki-ялде!",
 	"config-page-name": "ЦӀар",
-	"config-page-options": "Рекъезаби",
-	"config-page-complete": "ЛъугӀана!"
+	"config-page-options": "Опционал",
+	"config-page-complete": "ХӀадурана!"
 }

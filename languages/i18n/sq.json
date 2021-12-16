@@ -44,7 +44,8 @@
 			"Vinie007",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ftillimi"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1093,8 +1094,8 @@
 	"grouppage-interface-admin": "{{ns:project}}:Administratorët e ndërfaqes",
 	"grouppage-bureaucrat": "{{ns:project}}:Burokratë",
 	"grouppage-suppress": "{{ns:project}}:Shtypur",
-	"right-read": "Lexo faqe",
-	"right-edit": "Të përpunojë faqe",
+	"right-read": "Lexo faqet",
+	"right-edit": "Redakto faqet",
 	"right-createpage": "Hap faqe (që nuk janë faqe diskutimi)",
 	"right-createtalk": "Hap faqe diskutimi",
 	"right-createaccount": "Hap llogari të re",
