@@ -716,7 +716,7 @@
 				fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam );
 				result = moduleParam.exports;
 			} else {
-				// fileContent is raw data, just pass it through
+				// fileContent is raw data (such as a JSON object), just pass it through
 				result = fileContent;
 			}
 			moduleObj.packageExports[ fileName ] = result;
