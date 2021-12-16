@@ -45,7 +45,6 @@
 			throw new Error( 'Invalid action' );
 		}
 
-		var msgKey = state === 'loading' ? action + 'ing' : action;
 		var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 		var $li = $link.closest( 'li' );
 
@@ -80,18 +79,19 @@
 			}
 		}
 
+		var msgKey = state === 'loading' ? action + 'ing' : action;
 		$link
 			// The following messages can be used here:
 			// * watch
-			// * tooltip-ca-watch
 			// * watching
-			// * tooltip-ca-watching
 			// * unwatch
+			// * unwatching
+			.text( mw.msg( msgKey ) )
+			// The following messages can be used here:
+			// * tooltip-ca-watch
 			// * tooltip-ca-unwatch
 			// * tooltip-ca-unwatch-expiring
 			// * tooltip-ca-unwatch-expiring-hours
-			// * unwatching
-			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + tooltipAction, daysLeftExpiry ) )
 			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
