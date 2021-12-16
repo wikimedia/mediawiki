@@ -81,6 +81,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/** @var array List of page names that contain JavaScript */
 	protected $scripts = [];
 
+	/** @var array List of page names that contain JSON */
+	protected $datas = [];
+
 	/** @var string|null Group of module */
 	protected $group;
 
@@ -97,6 +100,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			switch ( $member ) {
 				case 'styles':
 				case 'scripts':
+				case 'datas':
 				case 'group':
 				case 'targets':
 					$this->{$member} = $option;
@@ -109,13 +113,14 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * Subclasses should return an associative array of resources in the module.
 	 * Keys should be the title of a page in the MediaWiki or User namespace.
 	 *
-	 * Values should be a nested array of options.  The supported keys are 'type' and
-	 * (CSS only) 'media'.
+	 * Values should be a nested array of options.
+	 * The supported keys are 'type' and (CSS only) 'media'.
 	 *
 	 * For scripts, 'type' should be 'script'.
-	 *
+	 * For JSON files, 'type' should be 'data'.
 	 * For stylesheets, 'type' should be 'style'.
-	 * There is an optional media key, the value of which can be the
+	 *
+	 * There is an optional 'media' key, the value of which can be the
 	 * medium ('screen', 'print', etc.) of the stylesheet.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -130,6 +135,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( $config->get( 'UseSiteJs' ) ) {
 			foreach ( $this->scripts as $script ) {
 				$pages[$script] = [ 'type' => 'script' ];
+			}
+			foreach ( $this->datas as $data ) {
+				$pages[$data] = [ 'type' => 'data' ];
 			}
 		}
 
@@ -192,6 +200,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$format = CONTENT_FORMAT_CSS;
 		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
 			$format = CONTENT_FORMAT_JAVASCRIPT;
+		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JSON ) ) {
+			$format = CONTENT_FORMAT_JSON;
 		} else {
 			return null; // Bad content model
 		}
@@ -231,7 +241,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 			if ( !$content ) {
 				$this->getLogger()->error(
-					'Failed to load content of JS/CSS page "{title}" in ' . __METHOD__,
+					'Failed to load content of CSS/JS/JSON page "{title}" in ' . __METHOD__,
 					[ 'title' => (string)$page ]
 				);
 				return null;
@@ -271,21 +281,107 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string JavaScript code
+	 * @return string|array JavaScript code, or a package files array
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$scripts = '';
+		if ( $this->isPackaged() ) {
+			return $this->getPackageFiles( $context );
+		} else {
+			$scripts = '';
+			foreach ( $this->getPages( $context ) as $titleText => $options ) {
+				if ( $options['type'] !== 'script' ) {
+					continue;
+				}
+				$script = $this->getContent( $titleText, $context );
+				if ( strval( $script ) !== '' ) {
+					$script = $this->validateScriptFile( $titleText, $script );
+					$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
+				}
+			}
+			return $scripts;
+		}
+	}
+
+	/**
+	 * Get whether this module is a packaged module.
+	 *
+	 * If false (the default), JavaScript pages are concatenated and executed as a single
+	 * script. JSON pages are not supported.
+	 *
+	 * If true, the pages are bundled such that each page gets a virtual file name, where only
+	 * the "main" script will be executed at first, and other JS or JSON pages may be be imported
+	 * in client-side code through the `require()` function.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return bool
+	 */
+	protected function isPackaged(): bool {
+		// Packaged mode is disabled by default for backwards compatibility.
+		// Subclasses may opt-in to this feature.
+		return false;
+	}
+
+	/**
+	 * Convert a namespace-formatted page title to a virtual package file name.
+	 *
+	 * This determines how the page may be imported in client-side code via `require()`.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @param string $titleText
+	 * @return string
+	 */
+	protected function getRequireKey( string $titleText ): string {
+		return $titleText;
+	}
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 * @phan-return array{main:string,files:string[][]}
+	 */
+	private function getPackageFiles( ResourceLoaderContext $context ): array {
+		$main = null;
+
+		$files = [];
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
-			if ( $options['type'] !== 'script' ) {
+			if ( $options['type'] !== 'script' && $options['type'] !== 'data' ) {
 				continue;
 			}
-			$script = $this->getContent( $titleText, $context );
-			if ( strval( $script ) !== '' ) {
-				$script = $this->validateScriptFile( $titleText, $script );
-				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
+			$content = $this->getContent( $titleText, $context );
+			if ( strval( $content ) !== '' ) {
+				$fileKey = $this->getRequireKey( $titleText );
+				if ( $options['type'] === 'script' ) {
+					$script = $this->validateScriptFile( $titleText, $content );
+					$files[$fileKey] = [
+						'type' => 'script',
+						'content' => $script,
+					];
+					// First script becomes the "main" script
+					if ( $main === null ) {
+						$main = $fileKey;
+					}
+				} elseif ( $options['type'] === 'data' ) {
+					$data = FormatJson::decode( $content );
+					if ( $data == null ) {
+						// This is unlikely to happen since we only load JSON from
+						// wiki pages with a JSON content model, which are validated
+						// during edit save.
+						$data = [ 'error' => 'Invalid JSON' ];
+					}
+					$files[$fileKey] = [
+						'type' => 'data',
+						'content' => $data,
+					];
+				}
 			}
 		}
-		return $scripts;
+
+		return [
+			'main' => $main,
+			'files' => $files,
+		];
 	}
 
 	/**
