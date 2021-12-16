@@ -5453,6 +5453,9 @@ class Parser {
 		if ( $handler ) {
 			$handler->parserTransformHook( $this, $file );
 		}
+		if ( $file ) {
+			$this->modifyImageHtml( $file, $params, $ret );
+		}
 
 		return $ret;
 	}
@@ -5498,6 +5501,17 @@ class Parser {
 			}
 		}
 		return [ $type, $target ];
+	}
+
+	/**
+	 * Give hooks a chance to modify image thumbnail HTML
+	 *
+	 * @param File $file
+	 * @param array $params
+	 * @param string &$html
+	 */
+	public function modifyImageHtml( File $file, array $params, string &$html ) {
+		$this->hookRunner->onParserModifyImageHTML( $this, $file, $params, $html );
 	}
 
 	/**

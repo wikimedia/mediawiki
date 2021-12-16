@@ -197,10 +197,16 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					], $thumbhtml );
 
 					// Call parser transform hook
-					/** @var MediaHandler $handler */
-					$handler = $img->getHandler();
-					if ( $resolveFilesViaParser && $handler ) {
-						$handler->parserTransformHook( $this->mParser, $img );
+					if ( $resolveFilesViaParser ) {
+						/** @var MediaHandler $handler */
+						$handler = $img->getHandler();
+						if ( $handler ) {
+							$handler->parserTransformHook( $this->mParser, $img );
+						}
+						if ( $img ) {
+							$this->mParser->modifyImageHtml(
+								$img, [ 'handler' => $imageParameters ], $thumbhtml );
+						}
 					}
 				}
 			}
