@@ -71,7 +71,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		$opts = new FormOptions();
 
-		$opts->add( 'like', '' );
 		$opts->add( 'user', '' );
 		$opts->add( 'showbots', false );
 		$opts->add( 'hidepatrolled', false );
@@ -84,7 +83,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
 		if ( $par !== null ) {
-			$opts->setValue( is_numeric( $par ) ? 'limit' : 'like', $par );
+			$opts->setValue( 'limit', $par );
 		}
 
 		// If start date comes after end date chronologically, swap them.
@@ -155,12 +154,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		ksort( $mediaTypesOptions );
 
 		$formDescriptor = [
-			'like' => [
-				'type' => 'text',
-				'label-message' => 'newimages-label',
-				'name' => 'like',
-			],
-
 			'user' => [
 				'class' => HTMLUserTextField::class,
 				'label-message' => 'newimages-user',
@@ -212,10 +205,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'name' => 'end',
 			],
 		];
-
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			unset( $formDescriptor['like'] );
-		}
 
 		if ( !$this->getUser()->useFilePatrol() ) {
 			unset( $formDescriptor['hidepatrolled'] );
