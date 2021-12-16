@@ -104,7 +104,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected static $debugMode = null;
 
 	/** @var int */
-	public const CACHE_VERSION = 8;
+	public const CACHE_VERSION = 9;
 
 	/** @var string */
 	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
