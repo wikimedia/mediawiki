@@ -73,6 +73,7 @@ wfRequireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 
 TestSetup::applyInitialConfig();
+MediaWikiCliOptions::initialize();
 
 // Populate classes and namespaces from extensions and skins present in filesystem.
 $directoryToJsonMap = [
