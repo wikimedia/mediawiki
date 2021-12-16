@@ -229,6 +229,12 @@ class ExtensionProcessor implements Processor {
 		// Record the extension name in the ParsoidModules property
 		if ( isset( $info['ParsoidModules'] ) ) {
 			foreach ( $info['ParsoidModules'] as &$module ) {
+				if ( is_string( $module ) ) {
+					$className = $module;
+					$module = [
+						'class' => $className,
+					];
+				}
 				$module['name'] = $name;
 			}
 		}
