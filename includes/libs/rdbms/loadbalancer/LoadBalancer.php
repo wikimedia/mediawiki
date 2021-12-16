@@ -1751,10 +1751,15 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		$this->forEachOpenPrimaryConnection( function ( IDatabase $conn ) use ( $limit ) {
-			// If atomic sections or explicit transactions are still open, some caller must have
-			// caught an exception but failed to properly rollback any changes. Detect that and
-			// throw an error (causing rollback).
-			$conn->assertNoOpenTransactions();
+			// Any atomic sections should have been closed by now and there definitely should
+			// not be any open transactions started by begin() from callers outside Database.
+			if ( $conn->explicitTrxActive() ) {
+				throw new DBTransactionError(
+					$conn,
+					"Explicit transaction still active; a caller might have failed to call " .
+					"endAtomic() or cancelAtomic()."
+				);
+			}
 			// Assert that the time to replicate the transaction will be reasonable.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );

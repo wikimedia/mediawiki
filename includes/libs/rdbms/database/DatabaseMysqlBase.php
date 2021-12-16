@@ -174,7 +174,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->query(
 					'SET ' . implode( ', ', $set ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
+					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 		} catch ( RuntimeException $e ) {
@@ -1027,10 +1027,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function setSessionOptions( array $options ) {
 		if ( isset( $options['connTimeout'] ) ) {
-			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX;
 			$timeout = (int)$options['connTimeout'];
-			$this->query( "SET net_read_timeout=$timeout", __METHOD__, $flags );
-			$this->query( "SET net_write_timeout=$timeout", __METHOD__, $flags );
+			$this->query( "SET net_read_timeout=$timeout", __METHOD__, self::QUERY_CHANGE_TRX );
+			$this->query( "SET net_write_timeout=$timeout", __METHOD__, self::QUERY_CHANGE_TRX );
 		}
 	}
 
@@ -1151,7 +1150,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query(
 			"SET sql_big_selects=" . ( $value ? '1' : '0' ),
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
+			self::QUERY_CHANGE_TRX
 		);
 	}
 

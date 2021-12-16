@@ -1619,16 +1619,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	public function assertNoOpenTransactions() {
-		if ( $this->explicitTrxActive() ) {
-			throw new DBTransactionError(
-				$this,
-				"Explicit transaction still active. A caller may have caught an error. "
-				. "Open transactions: " . $this->flatAtomicSectionList()
-			);
-		}
-	}
-
 	/**
 	 * Determine whether it is safe to retry queries after a database connection is lost
 	 *

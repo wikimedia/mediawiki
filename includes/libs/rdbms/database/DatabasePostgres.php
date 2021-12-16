@@ -131,7 +131,7 @@ class DatabasePostgres extends Database {
 				$this->query(
 					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
+					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 			$this->determineCoreSchema( $schema );
@@ -877,7 +877,7 @@ __INDEXATTR__;
 		$this->query(
 			"SET search_path = " . implode( ", ", $search_path ),
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
+			self::QUERY_CHANGE_TRX
 		);
 	}
 
