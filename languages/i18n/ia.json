@@ -3956,5 +3956,7 @@
 	"paramvalidator-help-type-title": "Typo: titulo de pagina",
 	"paramvalidator-help-type-title-must-exist": "Accepta solmente paginas que existe.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepta paginas non existente.",
-	"nonmain-slot-differences-therefore-readonly": "Non es possibile modificar le wikitexto de iste version del pagina perque le datos sur le pagina ha essite modificate post iste version de un maniera non basate sur wikitexto. [$1 Pro restaurar iste version, clicca hic.]"
+	"nonmain-slot-differences-therefore-readonly": "Non es possibile modificar le wikitexto de iste version del pagina perque le datos sur le pagina ha essite modificate post iste version de un maniera non basate sur wikitexto. [$1 Pro restaurar iste version, clicca hic.]",
+	"config-missing-key": "Le parametro de configuration MediaWiki \"$1\" es mancante.",
+	"config-invalid-key": "Parametro de configuration MediaWiki \"$1\" non valide: $2"
 }
