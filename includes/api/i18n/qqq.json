@@ -1444,6 +1444,7 @@
 	"apihelp-undelete-param-fileids": "{{doc-apihelp-param|undelete|fileids}}",
 	"apihelp-undelete-param-watchlist": "{{doc-apihelp-param|undelete|watchlist}}",
 	"apihelp-undelete-param-watchlistexpiry": "{{doc-apihelp-param|undelete|watchlistexpiry}}",
+	"apihelp-undelete-param-undeletetalk": "{{doc-apihelp-param|undelete|undeletetalk}}",
 	"apihelp-undelete-example-page": "{{doc-apihelp-example|undelete}}",
 	"apihelp-undelete-example-revisions": "{{doc-apihelp-example|undelete}}",
 	"apihelp-unlinkaccount-summary": "{{doc-apihelp-summary|unlinkaccount}}",

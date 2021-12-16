@@ -95,16 +95,23 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$undeletePage = $this->undeletePageFactory->newUndeletePage(
-			$this->wikiPageFactory->newFromTitle( $titleObj ),
-			$this->getAuthority()
-		);
-		$status = $undeletePage
+				$this->wikiPageFactory->newFromTitle( $titleObj ),
+				$this->getAuthority()
+			)
 			->setUndeleteOnlyTimestamps( $params['timestamps'] ?? [] )
 			->setUndeleteOnlyFileVersions( $params['fileids'] ?: [] )
-			->setTags( $params['tags'] ?: [] )
-			->undeleteIfAllowed( $params['reason'] );
-		if ( !$status->isGood() ) {
-			$this->dieStatus( $status );
+			->setTags( $params['tags'] ?: [] );
+
+		if ( $params['undeletetalk'] ) {
+			$undeletePage->setUndeleteAssociatedTalk( true );
+		}
+
+		$status = $undeletePage->undeleteIfAllowed( $params['reason'] );
+		if ( $status->isOK() ) {
+			// in case there are warnings
+			$this->addMessagesFromStatus( $status );
+		} else {
+			$this->dieWithError( $status );
 		}
 
 		$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
@@ -160,6 +167,7 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
 			],
+			'undeletetalk' => false,
 		] + $this->getWatchlistParams();
 	}
 
