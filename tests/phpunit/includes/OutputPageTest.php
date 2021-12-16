@@ -2699,7 +2699,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -2710,7 +2710,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
 			],
 		];
 		// phpcs:enable
