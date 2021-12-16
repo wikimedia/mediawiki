@@ -170,7 +170,7 @@
 	"apihelp-rollback-summary": "Déi lescht Ännerung vun der Säit zrécksetzen.",
 	"apihelp-rsd-example-simple": "Den RSD-Schema exportéieren",
 	"apihelp-setpagelanguage-summary": "D'Sprooch vun enger Säit änneren",
-	"apihelp-setpagelanguage-extended-description-disabled": "Aschalten\n<var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> fir dëse Aktioun ze benotzen",
+	"apihelp-setpagelanguage-extended-description-disabled": "D'Ännere vun der Sprooch vun enger Säit ass op dëser Wiki net erlaabt.\n\nAschalten\n<var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> fir dëse Aktioun ze benotzen",
 	"apihelp-setpagelanguage-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-setpagelanguage-example-language": "Ännert d'Sprooch vun der <kbd>Main Page</kbd> op baskesch.",
 	"apihelp-stashedit-param-title": "Titel vun der Säit déi geännert gëtt.",

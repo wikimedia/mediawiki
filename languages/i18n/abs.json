@@ -5,7 +5,8 @@
 			"Bonaditya",
 			"Matěj Suchánek",
 			"Mnam23",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"DDPAT"
 		]
 	},
 	"tog-oldsig": "Ale pung tanda tangan yang su ada:",
@@ -132,7 +133,7 @@
 	"jumptonavigation": "penentu arah",
 	"jumptosearch": "cari",
 	"view-pool-error": "Aoe, mohon maaf jua e, server dong sakaran ada sibuk. Talalu banya pangguna yang coba mo balia akang kintal. Tunggu sadiki do sabalong Ale coba akses akang kintal sakali lai.\n\n$1",
-	"generic-pool-error": "Aoe, mohon maaf jua e, server dong sakaran ada sibuk. Talalu banya pangguna yang coba mo balia akang sumber. Tunggu sadiki do sabalong Ale coba akses akang kintal sakali lai.\n\n$1",
+	"generic-pool-error": "Aoe, mohon maaf jua e, server dong sakaran ada sibuk. Talalu banya pangguna yang coba mo balia akang sumber. Tunggu sadiki do sabalong Ale coba akses akang kintal sakali lai.",
 	"pool-timeout": "Waktu su talewat par batunggu konci",
 	"aboutsite": "Tentang {{SITENAME}}",
 	"aboutpage": "Project:Tentang",

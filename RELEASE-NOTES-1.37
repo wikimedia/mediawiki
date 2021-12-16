@@ -1,10 +1,28 @@
 = MediaWiki 1.37 =
 
-== MediaWiki 1.37.1 ==
+== MediaWiki 1.37.2 ==
 
 THIS IS NOT A RELEASE YET
 
+=== Changes since MediaWiki 1.37.1 ===
+
+== MediaWiki 1.37.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.37 branch.
+
 === Changes since MediaWiki 1.37.0 ===
+* (T296112) Allow inserting new sections named '0'.
+* Fix path for ZhConversion.php.
+* nukeNS: don't run purgeRedundantText() after every change.
+* (T286779, T297031) installer: Fix Postgres mistakes in using changeField
+  method.
+* (T225888) RollbackAction: fix missing pagetitle.
+* (T297322, CVE-2021-44858, CVE-2021-44857) SECURITY: Fix permissions checks in
+  undo actions.
+* (T297574, CVE-2021-45038) SECURITY: Fix permissions check in action=rollback.
+* (T34716, T297416) SECURITY: Require 'read' right for most actions.
+* (T271037, CVE-2021-44856) SECURITY: Fix use of EditFilterMergedContent hook
+  when changing content model.
 
 == MediaWiki 1.37.0 ==
 
@@ -30,7 +48,8 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.37.0-rc.0 ===
 * (T294043) checkStorage: pass no parameters to WikiRevision::getContent().
-* (T292763) Do not cache private wiki completion results.
+* (T292763, CVE-2021-44856) SECURITY: Do not cache private wiki completion
+  results.
 * (T293783) ApiQueryImageInfo: don't show empty comments as deleted.
 * (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
 * (T294796) JobQueueRedis: Replace deprecated zSize with zCard.

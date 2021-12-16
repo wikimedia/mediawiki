@@ -5,6 +5,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -70,6 +71,11 @@ class McrUndoAction extends FormAction {
 
 	public function getDescription() {
 		return '';
+	}
+
+	public function getRestriction() {
+		// Require 'edit' permission to even see this action (T297322)
+		return 'edit';
 	}
 
 	public function show() {
@@ -142,8 +148,10 @@ class McrUndoAction extends FormAction {
 
 		$this->initFromParameters();
 
-		$undoRev = $this->revisionLookup->getRevisionById( $this->undo );
-		$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
+		// We use getRevisionByTitle to verify the revisions belong to this page (T297322)
+		$title = $this->getTitle();
+		$undoRev = $this->revisionLookup->getRevisionByTitle( $title, $this->undo );
+		$oldRev = $this->revisionLookup->getRevisionByTitle( $title, $this->undoafter );
 
 		if ( $undoRev === null || $oldRev === null ||
 			$undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
@@ -347,8 +355,44 @@ class McrUndoAction extends FormAction {
 			return Status::newFatal( 'mcrundo-changed' );
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$errors = $permissionManager->getPermissionErrors(
+			'edit', $this->context->getUser(), $this->getTitle()
+		);
+		if ( count( $errors ) ) {
+			throw new PermissionsError( 'edit', $errors );
+		}
+
 		$newRev = $this->getNewRevision();
 		if ( !$newRev->hasSameContent( $curRev ) ) {
+			$hookRunner = Hooks::runner();
+			foreach ( $newRev->getSlotRoles() as $slotRole ) {
+				$slot = $newRev->getSlot( $slotRole, RevisionRecord::RAW );
+
+				$status = new Status();
+				$hookResult = $hookRunner->onEditFilterMergedContent(
+					$this->getContext(),
+					$slot->getContent(),
+					$status,
+					trim( $this->getRequest()->getVal( 'wpSummary' ) ),
+					$this->getUser(),
+					false
+				);
+
+				if ( !$hookResult ) {
+					if ( $status->isGood() ) {
+						$status->error( 'hookaborted' );
+					}
+
+					return $status;
+				} elseif ( !$status->isOK() ) {
+					if ( !$status->getErrors() ) {
+						$status->error( 'hookaborted' );
+					}
+					return $status;
+				}
+			}
+
 			// Copy new slots into the PageUpdater, and remove any removed slots.
 			// TODO: This interface is awful, there should be a way to just pass $newRev.
 			// TODO: MCR: test this once we can store multiple slots

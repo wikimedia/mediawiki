@@ -120,6 +120,10 @@ class RollbackAction extends FormAction {
 	 * @throws ThrottledError
 	 */
 	public function show() {
+		$this->setHeaders();
+		// This will throw exceptions if there's a problem
+		$this->checkCanExecute( $this->getUser() );
+
 		if ( !$this->userOptionsLookup->getOption( $this->getUser(), 'showrollbackconfirmation' ) ||
 			$this->getRequest()->wasPosted()
 		) {
@@ -149,7 +153,7 @@ class RollbackAction extends FormAction {
 		if ( $from !== $userText ) {
 			throw new ErrorPageError( 'rollbackfailed', 'alreadyrolled', [
 				$this->getTitle()->getPrefixedText(),
-				$from,
+				wfEscapeWikiText( $from ),
 				$userText
 			] );
 		}
