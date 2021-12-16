@@ -831,7 +831,7 @@
 	"content-model-javascript": "جاوااسکریپت",
 	"content-model-css": "سی‌اس‌اس",
 	"content-model-json": "جی‌سان",
-	"content-json-empty-object": "ابجکت خالی",
+	"content-json-empty-object": "شیء خالی",
 	"content-json-empty-array": "آرایهٔ خالی",
 	"unsupported-content-model": "<strong>هشدار:</strong> مدل محتوای $1 در این ویکی پشتیبانی نمی‌شود.",
 	"unsupported-content-diff": "تفاوت‌ها برای مدل محتوای $1 پشتیبانی نمی‌شوند.",
