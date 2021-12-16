@@ -30,9 +30,7 @@
  */
 .mw-prefs-buttons {
 	background-color: #fff;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	position: -webkit-sticky;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	position: sticky;
 	bottom: 0;
 	margin-top: -1px;
@@ -45,7 +43,6 @@
 // Support Edge: The `position: sticky` rule above causes the buttons to
 // disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
 #preferences {
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	filter: brightness( 1 );
 }
 
@@ -146,6 +143,13 @@
 			display: none;
 		}
 	}
+}
+
+// Highlight section header when linking to a section, e.g. Special:Preferences#mw-prefsection-editing-preview.
+.oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+	width: 100%;
+	background-color: #eaf3ff;
+	outline: 4px solid #eaf3ff;
 }
 
 /* Make the "Basic information" section more compact */
