@@ -17,16 +17,28 @@ class GlobalConfigBuilder extends ArrayConfigBuilder {
 	 * @param string $prefix
 	 */
 	public function __construct( string $prefix = self::DEFAULT_PREFIX ) {
-		$this->config = &$GLOBALS;
 		$this->prefix = $prefix;
 	}
 
 	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		return parent::set( $this->prefix . $key, $value, $mergeStrategy );
+		parent::set( $this->makeKey( $key ), $value, $mergeStrategy );
+		$this->propagateGlobal( $key );
+		return $this;
 	}
 
 	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		return parent::setDefault( $this->prefix . $key, $value, $mergeStrategy );
+		parent::setDefault( $this->makeKey( $key ), $value, $mergeStrategy );
+		$this->propagateGlobal( $key );
+		return $this;
+	}
+
+	private function propagateGlobal( string $key ): void {
+		$varKey = $this->makeKey( $key );
+		$GLOBALS[$varKey] = $this->config[$varKey];
+	}
+
+	private function makeKey( string $key ): string {
+		return $this->prefix . $key;
 	}
 
 	public function build(): Config {
