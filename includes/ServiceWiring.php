@@ -1489,6 +1489,7 @@ return [
 			$services->getNameTableStoreFactory(),
 			$services->getSlotRoleRegistry(),
 			$services->getMainWANObjectCache(),
+			$services->getLocalServerObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
 			$services->getActorStoreFactory(),
