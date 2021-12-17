@@ -27,6 +27,7 @@ use MediaWiki\Page\UndeletePage;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -112,6 +113,9 @@ class SpecialUndelete extends SpecialPage {
 	/** @var UndeletePageFactory */
 	private $undeletePageFactory;
 
+	/** @var ArchivedRevisionLookup */
+	private $archivedRevisionLookup;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionStore $revisionStore
@@ -125,6 +129,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param UndeletePageFactory $undeletePageFactory
+	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -138,7 +143,8 @@ class SpecialUndelete extends SpecialPage {
 		UserOptionsLookup $userOptionsLookup,
 		WikiPageFactory $wikiPageFactory,
 		SearchEngineFactory $searchEngineFactory,
-		UndeletePageFactory $undeletePageFactory
+		UndeletePageFactory $undeletePageFactory,
+		ArchivedRevisionLookup $archivedRevisionLookup
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -153,6 +159,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->undeletePageFactory = $undeletePageFactory;
+		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
 
 	public function doesWrites() {
@@ -346,14 +353,13 @@ class SpecialUndelete extends SpecialPage {
 	 * redirect the request
 	 */
 	private function redirectToRevDel() {
-		$archive = new PageArchive( $this->mTargetObj );
-
 		$revisions = [];
 
 		foreach ( $this->getRequest()->getValues() as $key => $val ) {
 			$matches = [];
 			if ( preg_match( "/^ts(\d{14})$/", $key, $matches ) ) {
-				$revisionRecord = $archive->getRevisionRecordByTimestamp( $matches[1] );
+				$revisionRecord = $this->archivedRevisionLookup
+					->getRevisionRecordByTimestamp( $this->mTargetObj, $matches[1] );
 				if ( $revisionRecord ) {
 					// Can return null
 					$revisions[ $revisionRecord->getId() ] = 1;
@@ -510,7 +516,7 @@ class SpecialUndelete extends SpecialPage {
 		) {
 			return;
 		}
-		$revRecord = $archive->getRevisionRecordByTimestamp( $timestamp );
+		$revRecord = $this->archivedRevisionLookup->getRevisionRecordByTimestamp( $this->mTargetObj, $timestamp );
 
 		$out = $this->getOutput();
 		$user = $this->getUser();
@@ -549,7 +555,8 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mDiff ) {
-			$previousRevRecord = $archive->getPreviousRevisionRecord( $timestamp );
+			$previousRevRecord = $this->archivedRevisionLookup
+				->getPreviousRevisionRecord( $this->mTargetObj, $timestamp );
 			if ( $previousRevRecord ) {
 				$this->showDiff( $previousRevRecord, $revRecord );
 				if ( $this->mDiffOnly ) {
@@ -878,7 +885,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'div' ) );
 
 		# List all stored revisions
-		$revisions = $archive->listRevisions();
+		$revisions = $this->archivedRevisionLookup->listRevisions( $this->mTargetObj );
 		$files = $archive->listFiles();
 
 		$haveRevisions = $revisions && $revisions->numRows() > 0;
