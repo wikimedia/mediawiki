@@ -279,32 +279,32 @@ class SearchFormWidget {
 				$name = $this->specialSearch->msg( 'blanknamespace' )->text();
 			}
 
+			$inputId = "mw-search-ns{$namespace}";
+			$inputCheckLabel = Xml::check(
+				"ns{$namespace}",
+				in_array( $namespace, $activeNamespaces ),
+				[ 'id' => $inputId ]
+				) .
+				"\u{00A0}" .
+				Xml::label( $name, $inputId );
+
 			$rows[$subject] .= Html::rawElement(
-				'td',
-				[],
-				Xml::checkLabel(
-					$name,
-					"ns{$namespace}",
-					"mw-search-ns{$namespace}",
-					in_array( $namespace, $activeNamespaces )
-				)
+				'div',
+				[ 'class' => 'mw-ui-checkbox' ],
+				$inputCheckLabel
 			);
 		}
 
-		// Lays out namespaces in multiple floating two-column tables so that they'll
-		// be arranged nicely while still accommodating different screen widths
-		$tableRows = [];
-		foreach ( $rows as $row ) {
-			$tableRows[] = Html::rawElement( 'tr', [], $row );
-		}
 		$namespaceTables = [];
-		foreach ( array_chunk( $tableRows, 4 ) as $chunk ) {
+		foreach ( array_chunk( $rows, 4 ) as $chunk ) {
 			$namespaceTables[] = implode( '', $chunk );
 		}
 
 		$showSections = [
-			'namespaceTables' => "<table>" . implode( '</table><table>', $namespaceTables ) . '</table>',
+			'namespaceTables' => '<div class="checkbox-container">' .
+				implode( '</div><div class="checkbox-container">', $namespaceTables ) . '</div>',
 		];
+
 		$this->getHookRunner()->onSpecialSearchPowerBox( $showSections, $term, $opts );
 
 		$hidden = '';
