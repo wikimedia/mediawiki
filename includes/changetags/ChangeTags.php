@@ -221,7 +221,7 @@ class ChangeTags {
 		}
 
 		if ( !$displayTags ) {
-			return [ '', [] ];
+			return [ '', $classes ];
 		}
 
 		$markers = $context->msg( 'tag-list-wrapper' )

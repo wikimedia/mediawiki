@@ -484,6 +484,7 @@ class CommentParser {
 		// Defer page link
 		if ( !$this->linkBatch ) {
 			$this->linkBatch = $this->linkBatchFactory->newLinkBatch();
+			$this->linkBatch->setCaller( __METHOD__ );
 		}
 		$this->linkBatch->addObj( $target );
 		return $this->addLinkMarker( function () use ( $target, $text ) {
