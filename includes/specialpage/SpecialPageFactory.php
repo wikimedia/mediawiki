@@ -793,6 +793,7 @@ class SpecialPageFactory {
 				'WikiPageFactory',
 				'SearchEngineFactory',
 				'UndeletePageFactory',
+				'ArchivedRevisionLookup',
 			],
 		],
 		'Whatlinkshere' => [
