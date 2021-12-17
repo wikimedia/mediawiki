@@ -714,8 +714,13 @@ class Linker {
 			);
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {
-			// FIXME(T169975): Add "mw:Error"?
-			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+			if ( $enableLegacyMediaDOM ) {
+				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
+			} else {
+				$s .= self::makeBrokenImageLinkObj(
+					$title, '', '', '', '', (bool)$time, $handlerParams
+				);
+			}
 			$zoomIcon = '';
 		} else {
 			if ( !$noscale && !$manualthumb ) {
@@ -768,7 +773,7 @@ class Linker {
 				$rdfaType = 'mw:Image' . $rdfaType;
 		}
 
-		if ( !$exists ) {
+		if ( !$exists || !$thumb ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 		}
 

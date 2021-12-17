@@ -2261,7 +2261,6 @@ wgParserEnableLegacyMediaDOM=false
 <p><a rel="mw:WikiLink" href="./File:No_such.jpg" title="File:No such.jpg" class="new">Image:No such.jpg</a></p>
 !! end
 
-## FIXME: The legacy parser output doesn't match Parsoid here
 !! test
 Fuzz testing: image with bogus manual thumbnail
 !! config
@@ -2269,7 +2268,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Image/Thumb">Error creating thumbnail: <figcaption></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foobar.jpg" class="new" title="File:Foobar.jpg"><span data-width="180">File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"attribs":[["manualthumb",{"txt":""}]],"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}]}'><a href="./Special:FilePath/Foobar.jpg"><span resource="./File:Foobar.jpg" data-parsoid='{"a":{"resource":"./File:Foobar.jpg"},"sa":{"resource":"Image:foobar.jpg"}}'>File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! end
