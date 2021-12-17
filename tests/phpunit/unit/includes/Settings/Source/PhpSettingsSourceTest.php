@@ -7,7 +7,7 @@ use MediaWiki\Settings\Source\PhpSettingsSource;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \MediaWiki\Settings\Source\FileSource
+ * @covers \MediaWiki\Settings\Source\PhpSettingsSource
  */
 class PhpSettingsSourceTest extends TestCase {
 	public function testLoad() {
