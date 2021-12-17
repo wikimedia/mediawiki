@@ -285,7 +285,7 @@
 	"sort-descending": "Òrdina dicriscennu",
 	"sort-ascending": "Òrdina criscennu",
 	"nstab-main": "Pàggina",
-	"nstab-user": "{{GENDER:$1|Utenti}}",
+	"nstab-user": "{{GENDER:$1|Pàggina di l'utenti}}",
 	"nstab-media": "Pàggina dû file multimidiali",
 	"nstab-special": "Pàggina spiciali",
 	"nstab-project": "Pàggina di sirvizziu",
