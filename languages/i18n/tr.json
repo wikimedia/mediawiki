@@ -3746,7 +3746,7 @@
 	"logentry-newusers-autocreate": "$1 kullanıcı hesabı otomatik olarak {{GENDER:$2|oluşturuldu}}",
 	"logentry-protect-move_prot": "$1 kullanıcısı koruma ayarlarını $4 adlı sayfadan $3 adlı sayfaya {{GENDER:$2|taşıdı}}",
 	"logentry-protect-unprotect": "$1 kullanıcısı $3 adlı sayfanın korumasını {{GENDER:$2|kaldırdı}}",
-	"logentry-protect-protect": "$1 kullanıcısı $3 adlı sayfayı {{GENDER:$2|korumaya aldı}} $4",
+	"logentry-protect-protect": "$1, $3 adlı sayfayı {{GENDER:$2|korumaya aldı}} $4",
 	"logentry-protect-protect-cascade": "$1 kullanıcısı $3 adlı sayfayı {{GENDER:$2|korumaya aldı}} $4 [kademeli]",
 	"logentry-protect-modify": "$1, $3 sayfasının koruma ayarını {{GENDER:$2|değiştirdi}} $4",
 	"logentry-protect-modify-cascade": "$1, $3 sayfasının koruma ayarını {{GENDER:$2|değiştirdi}} $4 [kademeli]",

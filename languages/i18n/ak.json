@@ -13,8 +13,8 @@
 	"tog-hidepatrolled": "Suma nsesae a wɔapatrole wɔn ndansa yi ara",
 	"tog-newpageshidepatrolled": "Suma nkrataafa a wɔapatrole wɔn fi krataafa-foforo lest no so",
 	"tog-extendwatchlist": "San list-nhwɛso no mu ama wo ehu nsesae nyinara a wɔakɔ so",
-	"tog-usenewrc": "Fa ndansa nsesae a woetu mpon fa di dwuma (wo hia JavaScript)",
-	"tog-editondblclick": "Sesa nkrataafa sɛ womia klik mpɛn mienu a (wo hia JavaScript)",
+	"tog-usenewrc": "Fa ndansa nsesae a woetu mpon fa di dwuma",
+	"tog-editondblclick": "Sesa nkrataafa sɛ womia klik mpɛn mienu a",
 	"sunday": "Kwasiada",
 	"monday": "Ɛdwoada",
 	"tuesday": "Ɛbenada",
@@ -57,6 +57,6 @@
 	"searchresultshead": "Hwehwɛ",
 	"hist": "abakɔsɛm",
 	"watch": "Hwɛ",
-	"sp-contributions-talk": "Kasa",
+	"sp-contributions-talk": "kasa",
 	"contribslink": "ntoboa"
 }
