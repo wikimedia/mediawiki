@@ -78,7 +78,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 			$fileQuery['tables'],
 			$fileQuery['fields'],
 			[
-				'fa_name' => $this->title->getDBkey(),
+				'fa_name' => $this->page->getDBkey(),
 				'fa_id' => $ids
 			],
 			__METHOD__,
