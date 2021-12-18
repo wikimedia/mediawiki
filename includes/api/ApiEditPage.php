@@ -68,6 +68,13 @@ class ApiEditPage extends ApiBase {
 	private $redirectLookup;
 
 	/**
+	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
+	 */
+	private function persistGlobalSession() {
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+	}
+
+	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
@@ -563,6 +570,7 @@ class ApiEditPage extends ApiBase {
 						$r['watchlistexpiry'] = $watchlistExpiry;
 					}
 				}
+				$this->persistGlobalSession();
 				break;
 
 			default:
