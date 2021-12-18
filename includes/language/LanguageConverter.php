@@ -89,7 +89,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mVarSeparatorPattern', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mLangObj', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mVariantFallbacks', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTablesLoaded', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTables', '1.35', __CLASS__ );
 
