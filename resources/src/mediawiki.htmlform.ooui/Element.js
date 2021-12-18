@@ -18,14 +18,6 @@
 
 		// Properties
 		this.condState = config.condState;
-
-		// Initialization
-		if ( this.condState && this.condState.class.length ) {
-			// The following classes are used here:
-			// * mw-htmlform-hide-if
-			// * mw-htmlform-disable-if
-			this.$element.addClass( this.condState.class );
-		}
 	};
 
 	mw.htmlform.FieldLayout = function ( config ) {

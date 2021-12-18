@@ -215,9 +215,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
 		$moreClass = '';
 		$moreAttributes = [];
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$moreAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$moreClass = implode( ' ', $this->mCondState['class'] );
+			$moreClass = implode( ' ', $this->mCondStateClass );
 		}
 
 		$label = $this->getLabelHtml( $cellAttributes );
