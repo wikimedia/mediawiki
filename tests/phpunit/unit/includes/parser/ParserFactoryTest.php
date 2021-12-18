@@ -17,8 +17,8 @@ use Wikimedia\TestingAccessWrapper;
 class ParserFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {
 		$options = $this->getMockBuilder( ServiceOptions::class )
-		->disableOriginalConstructor()
-		->onlyMethods( [ 'assertRequiredOptions', 'get' ] )->getMock();
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'assertRequiredOptions', 'get' ] )->getMock();
 
 		$options->expects( $this->never() )
 			->method( $this->anythingBut( 'assertRequiredOptions', 'get' ) );
@@ -34,9 +34,9 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$mwFactory
 			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
 				$mw = $this->getMockBuilder( MagicWord::class )
-				->disableOriginalConstructor()
-				->onlyMethods( [ 'getSynonyms' ] )
-				->getMock();
+					->disableOriginalConstructor()
+					->onlyMethods( [ 'getSynonyms' ] )
+					->getMock();
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;
 			} ) );
