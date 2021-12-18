@@ -1634,7 +1634,7 @@ class PermissionManager {
 	 *
 	 * @param int $index Namespace ID (index) to check
 	 * @param UserIdentity|null $user User to check
-	 * @return array
+	 * @return string[]
 	 */
 	public function getNamespaceRestrictionLevels( $index, UserIdentity $user = null ) {
 		if ( !isset( $this->options->get( 'NamespaceProtection' )[$index] ) ) {
