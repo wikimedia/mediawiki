@@ -29,7 +29,7 @@ class ReleaseNotesTest extends MediaWikiUnitTestCase {
 			'Repo has a Release Notes file for the current MW_VERSION.'
 		);
 
-		foreach ( $notesFiles as $index => $fileName ) {
+		foreach ( $notesFiles as $fileName ) {
 			$this->assertFileLength( "Release Notes", $fileName );
 		}
 	}
@@ -66,24 +66,23 @@ class ReleaseNotesTest extends MediaWikiUnitTestCase {
 			"$type file '$fileName' is inaccessible."
 		);
 
+		// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
+		$maxLength = 80;
+
 		$errors = [];
 		foreach ( $lines as $i => $line ) {
-			$num = $i + 1;
-
-			// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
-			$max_length = 80;
-
 			$length = mb_strlen( $line );
-			if ( $length <= $max_length ) {
+			if ( $length <= $maxLength ) {
 				continue;
 			}
-			$errors[] = "line $num: length $length > $max_length:\n$line";
+			$num = $i + 1;
+			$errors[] = "line $num: length $length > $maxLength:\n$line";
 		}
 		// Use assertSame() instead of assertEqual(), to show the full line in the diff
 		$this->assertSame(
 			[],
 			$errors,
-			"$type file '$fileName' lines have at most $max_length characters"
+			"$type file '$fileName' lines have at most $maxLength characters"
 		);
 	}
 }
