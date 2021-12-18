@@ -163,7 +163,7 @@ trait DeprecationHelper {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
 			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
-			wfDeprecated( $qualifiedName, $version, $component, 3 );
+			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $getter ) {
 				return $this->deprecationHelperCallGetter( $getter );
 			}
@@ -178,7 +178,7 @@ trait DeprecationHelper {
 			if ( $this->dynamicPropertiesAccessDeprecated ) {
 				[ $version, $class, $component ] = $this->dynamicPropertiesAccessDeprecated;
 				$qualifiedName = $class . '::$' . $name;
-				wfDeprecated( $qualifiedName, $version, $component, 3 );
+				wfDeprecated( $qualifiedName, $version, $component, 2 );
 			}
 			return false;
 		}
@@ -188,7 +188,7 @@ trait DeprecationHelper {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
 			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
-			wfDeprecated( $qualifiedName, $version, $component, 3 );
+			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $getter ) {
 				return $this->deprecationHelperCallGetter( $getter );
 			}
@@ -217,7 +217,7 @@ trait DeprecationHelper {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
 			list( $version, $class, $component, , $setter ) = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
-			wfDeprecated( $qualifiedName, $version, $component, 3 );
+			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $setter ) {
 				$this->deprecationHelperCallSetter( $setter, $value );
 			} elseif ( property_exists( $this, $name ) ) {
@@ -237,7 +237,7 @@ trait DeprecationHelper {
 			if ( $this->dynamicPropertiesAccessDeprecated ) {
 				[ $version, $class, $component ] = $this->dynamicPropertiesAccessDeprecated;
 				$qualifiedName = $class . '::$' . $name;
-				wfDeprecated( $qualifiedName, $version, $component, 3 );
+				wfDeprecated( $qualifiedName, $version, $component, 2 );
 			}
 			// Non-existing property. Try to behave like PHP would.
 			$this->$name = $value;
