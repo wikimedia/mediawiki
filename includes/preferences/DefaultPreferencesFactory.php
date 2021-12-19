@@ -97,7 +97,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	private $hookRunner;
 
 	/** @var UserOptionsManager */
-	private $userOptionsManager;
+	protected $userOptionsManager;
 
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
