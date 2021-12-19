@@ -44,7 +44,8 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
-			$services->getPageUpdaterFactory()
+			$services->getPageUpdaterFactory(),
+			$services->getUserFactory()
 		);
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );

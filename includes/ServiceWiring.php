@@ -1103,7 +1103,8 @@ return [
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
-			$services->getPageUpdaterFactory()
+			$services->getPageUpdaterFactory(),
+			$services->getUserFactory()
 		);
 	},
 
@@ -1985,7 +1986,8 @@ return [
 			$services->getRevisionStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
-			$services->getPageUpdaterFactory()
+			$services->getPageUpdaterFactory(),
+			$services->getUserFactory()
 		);
 	},
 
