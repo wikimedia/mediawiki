@@ -165,6 +165,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	/**
 	 * Filter based on user hidden status
 	 *
+	 * @since 1.38
 	 * @param bool $hidden True - only hidden users, false - no hidden users
 	 * @return $this
 	 */
