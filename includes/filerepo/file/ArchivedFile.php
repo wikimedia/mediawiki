@@ -299,10 +299,12 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = MediaWikiServices::getInstance()->getCommentStore()
+		$services = MediaWikiServices::getInstance();
+		$this->description = $services->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
-		$this->user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
+		$this->user = $services->getUserFactory()
+			->newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 		$this->timestamp = $row->fa_timestamp;
 		$this->deleted = $row->fa_deleted;
 		if ( isset( $row->fa_sha1 ) ) {
