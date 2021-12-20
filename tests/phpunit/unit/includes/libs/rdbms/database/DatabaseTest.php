@@ -456,7 +456,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'insertId',
 			'lastError',
 			'lastErrno',
-			'numFields',
 			'numRows',
 			'open',
 			'strencode',

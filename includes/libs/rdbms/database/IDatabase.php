@@ -426,17 +426,6 @@ interface IDatabase {
 	public function numRows( $res );
 
 	/**
-	 * Get the number of fields in a result object
-	 * @see https://www.php.net/mysql_num_fields
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 * @return int
-	 */
-	public function numFields( IResultWrapper $res );
-
-	/**
 	 * Get a field name in a result object
 	 * @see https://www.php.net/mysql_field_name
 	 *

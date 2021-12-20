@@ -195,10 +195,6 @@ class DatabaseTestHelper extends Database {
 		return -1;
 	}
 
-	public function numFields( $res ) {
-		return -1;
-	}
-
 	public function fieldName( $res, $n ) {
 		return 'test';
 	}
