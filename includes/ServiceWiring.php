@@ -117,6 +117,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Preferences\SignatureValidator;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
@@ -1576,6 +1578,18 @@ return [
 		$factory->logStderr();
 
 		return $factory;
+	},
+
+	'SignatureValidatorFactory' => static function ( MediaWikiServices $services ): SignatureValidatorFactory {
+		return new SignatureValidatorFactory(
+			new ServiceOptions(
+				SignatureValidator::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getParser(),
+			$services->getSpecialPageFactory(),
+			$services->getTitleFactory()
+		);
 	},
 
 	'SiteLookup' => static function ( MediaWikiServices $services ): SiteLookup {

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\SignatureValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -40,10 +39,10 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	 * @return SignatureValidator
 	 */
 	protected function getSignatureValidator() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-		$user = User::newFromName( 'SignatureValidatorTest' );
-
-		$validator = new SignatureValidator(
+		$services = $this->getServiceContainer();
+		$lang = $services->getLanguageFactory()->getLanguage( 'en' );
+		$user = $services->getUserFactory()->newFromName( 'SignatureValidatorTest' );
+		$validator = $services->getSignatureValidatorFactory()->newSignatureValidator(
 			$user,
 			null,
 			ParserOptions::newFromUserAndLang( $user, $lang )
