@@ -872,10 +872,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	public function fieldName( IResultWrapper $res, $n ) {
-		return $res->getFieldNames()[$n];
-	}
-
 	public function freeResult( IResultWrapper $res ) {
 		$res->free();
 	}
