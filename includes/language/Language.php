@@ -41,13 +41,6 @@ use Wikimedia\Assert\Assert;
  */
 class Language {
 	/**
-	 * Return autonyms in fetchLanguageName(s).
-	 * @since 1.32
-	 * @deprecated since 1.34, LanguageNameUtils::AUTONYMS
-	 */
-	public const AS_AUTONYMS = LanguageNameUtils::AUTONYMS;
-
-	/**
 	 * Return all known languages in fetchLanguageName(s).
 	 * @since 1.32
 	 * @deprecated since 1.34, use LanguageNameUtils::ALL
@@ -143,21 +136,11 @@ class Language {
 	];
 
 	/**
-	 * @deprecated since 1.35, use the WEEKDAY_MESSAGES constant
-	 */
-	public static $mWeekdayMsgs = self::WEEKDAY_MESSAGES;
-
-	/**
 	 * @since 1.35
 	 */
 	public const WEEKDAY_ABBREVIATED_MESSAGES = [
 		'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'
 	];
-
-	/**
-	 * @deprecated since 1.35, use the WEEKDAY_ABBREVIATED_MESSAGES constant
-	 */
-	public static $mWeekdayAbbrevMsgs = self::WEEKDAY_ABBREVIATED_MESSAGES;
 
 	/**
 	 * @since 1.35
@@ -183,11 +166,6 @@ class Language {
 	];
 
 	/**
-	 * @deprecated since 1.35, use the MONTH_GENITIVE_MESSAGES constant
-	 */
-	public static $mMonthGenMsgs = self::MONTH_GENITIVE_MESSAGES;
-
-	/**
 	 * @since 1.35
 	 */
 	public const MONTH_ABBREVIATED_MESSAGES = [
@@ -211,11 +189,6 @@ class Language {
 	];
 
 	/**
-	 * @deprecated since 1.35, use the IRANIAN_CALENDAR_MONTHS_MESSAGES constant
-	 */
-	public static $mIranianCalendarMonthMsgs = self::IRANIAN_CALENDAR_MONTHS_MESSAGES;
-
-	/**
 	 * @since 1.35
 	 */
 	public const HEBREW_CALENDAR_MONTHS_MESSAGES = [
@@ -225,11 +198,6 @@ class Language {
 		'hebrew-calendar-m10', 'hebrew-calendar-m11', 'hebrew-calendar-m12',
 		'hebrew-calendar-m6a', 'hebrew-calendar-m6b'
 	];
-
-	/**
-	 * @deprecated since 1.35, use the HEBREW_CALENDAR_MONTHS_MESSAGES constant
-	 */
-	public static $mHebrewCalendarMonthMsgs = self::HEBREW_CALENDAR_MONTHS_MESSAGES;
 
 	/**
 	 * @since 1.35
@@ -243,11 +211,6 @@ class Language {
 	];
 
 	/**
-	 * @deprecated since 1.35, use the HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES constant
-	 */
-	public static $mHebrewCalendarMonthGenMsgs = self::HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES;
-
-	/**
 	 * @since 1.35
 	 */
 	public const HIJRI_CALENDAR_MONTH_MESSAGES = [
@@ -256,11 +219,6 @@ class Language {
 		'hijri-calendar-m7', 'hijri-calendar-m8', 'hijri-calendar-m9',
 		'hijri-calendar-m10', 'hijri-calendar-m11', 'hijri-calendar-m12'
 	];
-
-	/**
-	 * @deprecated since 1.35, use the HIJRI_CALENDAR_MONTH_MESSAGES constant
-	 */
-	public static $mHijriCalendarMonthMsgs = self::HIJRI_CALENDAR_MONTH_MESSAGES;
 
 	/**
 	 * @since 1.35

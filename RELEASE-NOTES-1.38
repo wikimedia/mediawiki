@@ -276,6 +276,17 @@ because of Phabricator reports.
   - ::dataSeek() soft-deprecated since 1.37
   - ::onTransactionIdle() soft-deprecated since 1.32
   - ::getMasterPos() since 1.37
+* Language::AS_AUTONYMS, deprecated since 1.34, has been removed. You can use
+  the LanguageNameUtils::AUTONYMS constant instead.
+* Several Language class variables deprecated in 1.35 have been removed; they
+  are each replaced by a constant, as listed after the arrow:
+  - ::$mWeekdayMsgs → WEEKDAY_MESSAGES
+  - ::$mWeekdayAbbrevMsg → WEEKDAY_ABBREVIATED_MESSAGES
+  - ::$mMonthGenMsgs → MONTH_GENITIVE_MESSAGES
+  - ::$mIranianCalendarMonthMsgs → IRANIAN_CALENDAR_MONTHS_MESSAGES
+  - ::$mHebrewCalendarMonthMsgs → HEBREW_CALENDAR_MONTHS_MESSAGES
+  - ::$mHebrewCalendarMonthGenMsgs → HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES
+  - ::$mHijriCalendarMonthMsgs → HIJRI_CALENDAR_MONTH_MESSAGES
 * …
 
 === Deprecations in 1.38 ===
