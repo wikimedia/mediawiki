@@ -43,6 +43,10 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$mwFactory
 			->method( 'getVariableIDs' )->willReturn( [] );
 
+		$languageConverterFactory = $this->getMockBuilder( LanguageConverterFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+
 		$factory = new ParserFactory(
 			$options,
 			$mwFactory,
@@ -53,7 +57,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( NamespaceInfo::class ),
 			new TestLogger(),
 			$this->createNoOpMock( BadFileLookup::class ),
-			$this->createNoOpMock( LanguageConverterFactory::class ),
+			$languageConverterFactory,
 			$this->createHookContainer(),
 			$this->createNoOpMock( TidyDriverBase::class ),
 			$this->createNoOpMock( WANObjectCache::class ),

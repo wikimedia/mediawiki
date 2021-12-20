@@ -411,7 +411,6 @@ class Parser {
 		'EnableScaryTranscluding',
 		'ExtraInterlanguageLinkPrefixes',
 		'FragmentMode',
-		'LanguageCode',
 		'MaxSigChars',
 		'MaxTocLevel',
 		'MiserMode',
@@ -424,7 +423,6 @@ class Parser {
 		'StylePath',
 		'TranscludeCacheExpiry',
 		'PreprocessorCacheThreshold',
-		'DisableLangConversion',
 	];
 
 	/**
@@ -508,7 +506,7 @@ class Parser {
 			$wanCache,
 			[
 				'cacheThreshold' => $svcOptions->get( 'PreprocessorCacheThreshold' ),
-				'disableLangConversion' => $svcOptions->get( 'DisableLangConversion' ),
+				'disableLangConversion' => $languageConverterFactory->isConversionDisabled(),
 			]
 		);
 
