@@ -55,7 +55,10 @@ use Psr\Log\NullLogger;
 class MultiHttpClient implements LoggerAwareInterface {
 	/** Regex for headers likely to contain tokens, etc. that we want to redact from logs */
 	private const SENSITIVE_HEADERS = '/(^|-|_)(authorization|auth|password|cookie)($|-|_)/';
-	/** @var resource curl_multi_init() handle */
+	/**
+	 * @phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.ObjectTypeHintVar
+	 * @var resource|object curl_multi_init() handle
+	 */
 	protected $cmh;
 	/** @var string|null SSL certificates path */
 	protected $caBundlePath;
@@ -346,7 +349,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
 	 *   - httpVersion: default HTTP version
-	 * @return resource
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+	 * @return resource|object
 	 * @throws Exception
 	 */
 	protected function getCurlHandle( array &$req, array $opts ) {
@@ -477,7 +481,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @param array $opts
-	 * @return resource
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+	 * @return resource|object
 	 * @throws Exception
 	 */
 	protected function getCurlMulti( array $opts ) {
@@ -521,7 +526,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * Get a time in seconds, formatted with microsecond resolution, or fall back to second
 	 * resolution on PHP 7.2
 	 *
-	 * @param resource $ch
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param resource|object $ch
 	 * @param int $oldOption
 	 * @param string $newConstName
 	 * @return string

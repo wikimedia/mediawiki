@@ -2142,7 +2142,6 @@ function wfRelativePath( $path, $from ) {
 	}
 
 	// relative dots to bump us to the parent
-	// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 	while ( count( $against ) ) {
 		array_unshift( $pieces, '..' );
 		array_shift( $against );

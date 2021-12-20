@@ -510,7 +510,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	/**
 	 * Callback for transformGd when transforming jpeg images.
 	 *
-	 * @param resource $dst_image Image resource of the original image
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param resource|object $dst_image Image resource of the original image
 	 * @param string $thumbPath File path to write the thumbnail image to
 	 * @param int|null $quality Quality of the thumbnail from 1-100,
 	 *    or null to use default quality.
