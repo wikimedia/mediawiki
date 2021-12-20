@@ -655,10 +655,11 @@ class LocalFile extends File {
 		$this->name = $unprefixed['name'];
 		$this->media_type = $unprefixed['media_type'];
 
-		$this->description = MediaWikiServices::getInstance()->getCommentStore()
+		$services = MediaWikiServices::getInstance();
+		$this->description = $services->getCommentStore()
 			->getComment( "{$prefix}description", $row )->text;
 
-		$this->user = User::newFromAnyId(
+		$this->user = $services->getUserFactory()->newFromAnyId(
 			$unprefixed['user'] ?? null,
 			$unprefixed['user_text'] ?? null,
 			$unprefixed['actor'] ?? null
