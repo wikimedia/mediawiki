@@ -275,7 +275,7 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isHidden( $alldata ) {
-		if ( $this->mCondState['class'] || !isset( $this->mCondState['hide'] ) ) {
+		if ( !$this->mCondState['class'] || !isset( $this->mCondState['hide'] ) ) {
 			return false;
 		}
 
@@ -514,7 +514,7 @@ abstract class HTMLFormField {
 
 		if ( $this->mCondState['class'] ) {
 			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$rowClasses = implode( ' ', $this->mCondState['class'] );
+			$rowClasses .= implode( ' ', $this->mCondState['class'] );
 		}
 
 		if ( $verticalLabel ) {
@@ -579,7 +579,7 @@ abstract class HTMLFormField {
 		];
 		if ( $this->mCondState['class'] ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$wrapperAttributes['class'] += $this->mCondState['class'];
+			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondState['class'] );
 		}
 		$html = Html::rawElement( 'div', $wrapperAttributes, $label . $field );
 		$html .= $helptext;
@@ -833,7 +833,7 @@ abstract class HTMLFormField {
 		}
 		if ( $this->mCondState['class'] ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$wrapperAttributes['class'] += $this->mCondState['class'];
+			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondState['class'] );
 		}
 		$div = Html::rawElement( 'div', $wrapperAttributes, $helptext );
 

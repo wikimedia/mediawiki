@@ -343,10 +343,10 @@ class PageCommandFactory implements
 			$this->undeletePageLogger,
 			$this->revisionStore,
 			$this->wikiPageFactory,
-			$page,
-			$authority,
 			$this->pageUpdaterFactory,
-			$this->contentHandlerFactory
+			$this->contentHandlerFactory,
+			$page,
+			$authority
 		);
 	}
 }
