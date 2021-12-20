@@ -2501,6 +2501,7 @@
 	"tag-mw-removed-redirect": "ပြန်ညွှန်းကို ဖယ်ရှားခဲ့သည်",
 	"tag-mw-changed-redirect-target": "ပြန်ညွှန်းကို ပြောင်းလဲခဲ့သည်",
 	"tag-mw-blank": "ဗလာပြုလုပ်ခြင်း",
+	"tag-mw-blank-description": "စာမျက်နှာတခုအား ဗလာပြုလုပ်သော တည်းဖြတ်မှုများ",
 	"tag-mw-replace": "အစားထိုးခဲ့သည်",
 	"tag-mw-rollback": "နောက်ပြန် ပြန်ပြင်ခြင်း",
 	"tag-mw-undo": "နောက်ပြန် ပြန်ပြင်ခြင်း",

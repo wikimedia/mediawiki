@@ -861,7 +861,7 @@
 	"expensive-parserfunction-warning": "<strong>Uwaga:</strong> Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.\n\nPowinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.",
 	"expensive-parserfunction-category": "Strony ze zbyt dużą liczbą wywołań kosztownych funkcji parsera",
 	"post-expand-template-inclusion-warning": "<strong>Uwaga:</strong> Zbyt duża wielkość wykorzystanych szablonów.\nNiektóre szablony nie zostaną użyte.",
-	"post-expand-template-inclusion-category": "Strony w których przekroczone jest ograniczenie wielkości użytych szablonów",
+	"post-expand-template-inclusion-category": "Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów",
 	"post-expand-template-argument-warning": "<strong>Uwaga:</strong> strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.\nArgument ten będzie pominięty.",
 	"post-expand-template-argument-category": "Strony, w których użyto szablonu z pominięciem argumentów",
 	"template-equals-category": "Strony używające = jako szablonu",
