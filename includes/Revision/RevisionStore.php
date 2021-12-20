@@ -28,6 +28,7 @@
 namespace MediaWiki\Revision;
 
 use ActorMigration;
+use BagOStuff;
 use CommentStore;
 use CommentStoreComment;
 use Content;
@@ -41,7 +42,6 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -121,6 +121,11 @@ class RevisionStore
 	private $cache;
 
 	/**
+	 * @var BagOStuff
+	 */
+	private $localCache;
+
+	/**
 	 * @var CommentStore
 	 */
 	private $commentStore;
@@ -172,6 +177,7 @@ class RevisionStore
 	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
 	 *        of the cache's default key space.
+	 * @param BagOStuff $localCache Another layer of cache, best to use APCu here.
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
@@ -191,6 +197,7 @@ class RevisionStore
 		ILoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
+		BagOStuff $localCache,
 		CommentStore $commentStore,
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
@@ -208,6 +215,7 @@ class RevisionStore
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
+		$this->localCache = $localCache;
 		$this->commentStore = $commentStore;
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
@@ -1374,15 +1382,14 @@ class RevisionStore
 		}
 
 		// TODO: These caches should not be needed. See T297147#7563670
-		$localCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
-		$res = $localCache->getWithSetCallback(
-			$localCache->makeKey(
+		$res = $this->localCache->getWithSetCallback(
+			$this->localCache->makeKey(
 				'revision-slots',
 				$page->getWikiId(),
 				$page->getId( $page->getWikiId() ),
 				$revId
 			),
-			$localCache::TTL_HOUR,
+			$this->localCache::TTL_HOUR,
 			function () use ( $revId, $queryFlags, $page ) {
 				return $this->cache->getWithSetCallback(
 					$this->cache->makeKey(

@@ -41,6 +41,7 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->getNameTableStoreFactory(),
 			$this->getMockSlotRoleRegistry(),
 			$this->getHashWANObjectCache(),
+			new HashBagOStuff(),
 			$this->getMockCommentStore(),
 			$this->getMockActorMigration(),
 			$this->getMockActorStoreFactory(),
@@ -69,6 +70,7 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 		$nameTableStoreFactory = $this->getNameTableStoreFactory();
 		$slotRoleRegistry = $this->getMockSlotRoleRegistry();
 		$cache = $this->getHashWANObjectCache();
+		$localCache = new HashBagOStuff();
 		$commentStore = $this->getMockCommentStore();
 		$actorMigration = $this->getMockActorMigration();
 		$actorStoreFactory = $this->getMockActorStoreFactory();
@@ -84,6 +86,7 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$nameTableStoreFactory,
 			$slotRoleRegistry,
 			$cache,
+			$localCache,
 			$commentStore,
 			$actorMigration,
 			$actorStoreFactory,
