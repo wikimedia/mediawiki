@@ -199,10 +199,6 @@ class DatabaseTestHelper extends Database {
 		return -1;
 	}
 
-	public function dataSeek( $res, $row ) {
-		/* nop */
-	}
-
 	public function lastErrno() {
 		return $this->lastError ? $this->lastError['errno'] : -1;
 	}
