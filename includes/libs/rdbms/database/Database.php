@@ -5320,14 +5320,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function maxListLen() {
-		return 0;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function encodeBlob( $b ) {
 		return $b;
 	}
