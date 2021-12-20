@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Storage;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
@@ -33,10 +34,14 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
 		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
 
+		$wikiPageFactory = $this->createNoOpMock( WikiPageFactory::class, [ 'newFromTitle' ] );
+		$wikiPageFactory->method( 'newFromTitle' )->willReturnArgument( 0 );
+
 		return $this->newServiceInstance(
 			PageUpdaterFactory::class,
 			[
 				'loadbalancerFactory' => $lbFactory,
+				'wikiPageFactory' => $wikiPageFactory,
 				'options' => new ServiceOptions(
 					PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
 					$config

@@ -152,6 +152,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::prepareContentForEdit
+	 * @covers WikiPage::getCurrentUpdate
 	 */
 	public function testPrepareContentForEdit() {
 		$performer = $this->mockUserAuthorityWithPermissions(
@@ -196,16 +197,26 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $edit->popts, $edit->popts, "popts field" );
 		$this->assertSame( null, $edit->revid, "revid field" );
 
+		// PreparedUpdate matches PreparedEdit
+		$update = $page->getCurrentUpdate();
+		$this->assertSame( $edit->output, $update->getCanonicalParserOutput() );
+
 		// Re-using the prepared info if possible
 		$sameEdit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
 		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
 
+		// re-using the same PreparedUpdate
+		$this->assertSame( $update, $page->getCurrentUpdate() );
+
 		// Not re-using the same PreparedEdit if not possible
 		$edit2 = $page->prepareContentForEdit( $content2, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
+
+		// Not re-using the same PreparedUpdate
+		$this->assertNotSame( $update, $page->getCurrentUpdate() );
 
 		// Check pre-safe transform
 		$this->assertStringContainsString( '[[gubergren]]', $edit2->pstContent->serialize() );
@@ -2063,6 +2074,7 @@ more stuff
 		$this->setService( 'ContentRenderer', $contentRenderer );
 
 		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user );
+		$preparedUpdateBefore = $page->getCurrentUpdate();
 
 		// provide context, so the cache can be kept in place
 		$slotsUpdate = new revisionSlotsUpdate();
@@ -2073,11 +2085,23 @@ more stuff
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'test' ), EDIT_NEW );
 
 		$preparedEditAfter = $page->prepareContentForEdit( $content, $revision, $user );
+		$preparedUpdateAfter = $page->getCurrentUpdate();
 
 		$this->assertSame( $revision->getId(), $page->getLatest() );
 
 		// Parsed output must remain cached throughout.
-		$this->assertSame( $preparedEditBefore->output, $preparedEditAfter->output );
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedEditAfter->output
+		);
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedUpdateBefore->getCanonicalParserOutput()
+		);
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedUpdateAfter->getCanonicalParserOutput()
+		);
 	}
 
 	/**

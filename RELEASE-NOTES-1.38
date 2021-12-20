@@ -371,6 +371,7 @@ because of Phabricator reports.
      ::getLastRevisionId.
    - Use ArchivedRevisionLookup::hasArchivedRevisions instead of ::isDeleted.
 * LinkCache::addGoodLinkObj() has been hard deprecated.
+* ApiStashEdit::parseAndStash has been hard deprecated.
 * Content::prepareSave was hard-deprecated, now emits deprecation warnings.
   Use ContentHandler::validateSave instead.
 * …
