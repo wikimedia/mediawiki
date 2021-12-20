@@ -28,7 +28,7 @@ use RuntimeException;
 /**
  * Represents information returned by WikiPage::prepareContentForEdit()
  *
- * @deprecated since 1.32, use DerivedPageDataUpdater instead.
+ * @deprecated since 1.32; Since 1.37, use PreparedUpdate instead.
  *
  * @since 1.30
  */

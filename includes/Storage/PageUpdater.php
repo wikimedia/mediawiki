@@ -294,13 +294,14 @@ class PageUpdater {
 	/**
 	 * Prepare the update.
 	 * This sets up the RevisionRecord to be saved.
-	 *
 	 * @since 1.37
 	 *
 	 * @param int $flags Bitfield, will be combined with flags set via setFlags().
 	 *        EDIT_FORCE_BOT and EDIT_INTERNAL will bypass the edit stash.
+	 *
+	 * @return PreparedUpdate
 	 */
-	public function prepareUpdate( int $flags = 0 ) {
+	public function prepareUpdate( int $flags = 0 ): PreparedUpdate {
 		$this->setFlags( $flags );
 
 		// Load the data from the primary database if needed. Needed to check flags.
@@ -315,6 +316,8 @@ class PageUpdater {
 				$useStashed
 			);
 		}
+
+		return $this->derivedDataUpdater;
 	}
 
 	/**
@@ -384,7 +387,7 @@ class PageUpdater {
 	 * Get the page we're currently updating.
 	 * @return PageIdentity
 	 */
-	private function getPage(): PageIdentity {
+	public function getPage(): PageIdentity {
 		return $this->wikiPage;
 	}
 

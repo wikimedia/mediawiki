@@ -28,6 +28,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -133,6 +135,9 @@ class PageUpdaterFactory {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/** @var string[] */
 	private $softwareTags;
 
@@ -159,6 +164,7 @@ class PageUpdaterFactory {
 	 * @param TalkPageNotificationManager $talkPageNotificationManager
 	 * @param WANObjectCache $mainWANObjectCache
 	 * @param PermissionManager $permissionManager
+	 * @param WikiPageFactory $wikiPageFactory
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
@@ -184,6 +190,7 @@ class PageUpdaterFactory {
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WANObjectCache $mainWANObjectCache,
 		PermissionManager $permissionManager,
+		WikiPageFactory $wikiPageFactory,
 		array $softwareTags
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -211,6 +218,7 @@ class PageUpdaterFactory {
 		$this->mainWANObjectCache = $mainWANObjectCache;
 		$this->permissionManager = $permissionManager;
 		$this->softwareTags = $softwareTags;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -221,16 +229,18 @@ class PageUpdaterFactory {
 	 * and WikiPage::getCurrentUpdate() have been removed. For now, the WikiPage instance is
 	 * used to make the state of an ongoing edit available to hook handlers.
 	 *
-	 * @param WikiPage $page
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user
 	 *
 	 * @return PageUpdater
 	 * @since 1.37
 	 */
 	public function newPageUpdater(
-		WikiPage $page,
+		PageIdentity $page,
 		UserIdentity $user
 	): PageUpdater {
+		$page = $this->wikiPageFactory->newFromTitle( $page );
+
 		return $this->newPageUpdaterForDerivedPageDataUpdater(
 			$page,
 			$user,

@@ -43,6 +43,7 @@ use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -964,8 +965,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Determine whether a page would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param PreparedEdit|bool $editInfo (false): object returned by prepareTextForEdit(),
-	 *   if false, the current database state will be used
+	 * @param PreparedEdit|PreparedUpdate|bool $editInfo (false):
+	 *   An object returned by prepareTextForEdit() or getCurrentUpdate() respectively;
+	 *   If false is given, the current database state will be used.
+	 *
 	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
@@ -977,9 +980,12 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return false;
 		}
 
-		if ( $editInfo ) {
+		if ( $editInfo instanceof PreparedEdit ) {
 			// NOTE: only the main slot can make a page a redirect
 			$content = $editInfo->pstContent;
+		} elseif ( $editInfo instanceof PreparedUpdate ) {
+			// NOTE: only the main slot can make a page a redirect
+			$content = $editInfo->getRawContent( SlotRecord::MAIN );
 		} else {
 			$content = $this->getContent();
 		}
@@ -1269,14 +1275,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * XXX merge this with updateParserCache()?
 	 *
 	 * @since 1.19
-	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
+	 * @param ParserOptions|null $parserOptions ParserOptions to use for the parse operation
 	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
 	 *   get the current revision (default value)
 	 * @param bool $noCache Do not read from or write to caches.
 	 * @return bool|ParserOutput ParserOutput or false if the revision was not found or is not public
 	 */
 	public function getParserOutput(
-		ParserOptions $parserOptions, $oldid = null, $noCache = false
+		?ParserOptions $parserOptions = null, $oldid = null, $noCache = false
 	) {
 		if ( $oldid ) {
 			$revision = $this->getRevisionStore()->getRevisionByTitle( $this->getTitle(), $oldid );
@@ -1286,6 +1292,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			}
 		} else {
 			$revision = $this->getRevisionRecord();
+		}
+
+		if ( !$parserOptions ) {
+			$parserOptions = ParserOptions::newCanonical( 'canonical' );
 		}
 
 		$options = $noCache ? ParserOutputAccess::OPT_NO_CACHE : 0;
@@ -2015,7 +2025,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * Prior to 1.30, this returned a stdClass.
 	 *
-	 * @deprecated since 1.32, use getDerivedDataUpdater instead.
+	 * @deprecated since 1.32, use newPageUpdater() or getCurrentUpdate() instead.
 	 * @note Calling without a UserIdentity is separately deprecated since 1.37
 	 *
 	 * @param Content $content
@@ -2023,7 +2033,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *        Used with vary-revision or vary-revision-id.
 	 * @param UserIdentity|null $user
 	 * @param string|null $serialFormat IGNORED
-	 * @param bool $useCache Check shared prepared edit cache
+	 * @param bool $useStash Use prepared edit stash
 	 *
 	 * @return PreparedEdit
 	 *
@@ -2034,7 +2044,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		RevisionRecord $revision = null,
 		UserIdentity $user = null,
 		$serialFormat = null,
-		$useCache = true
+		$useStash = true
 	) {
 		if ( !$user ) {
 			wfDeprecated( __METHOD__ . ' without a UserIdentity', '1.37' );
@@ -2047,7 +2057,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$updater = $this->getDerivedDataUpdater( $user, $revision, $slots );
 
 		if ( !$updater->isUpdatePrepared() ) {
-			$updater->prepareContent( $user, $slots, $useCache );
+			$updater->prepareContent( $user, $slots, $useStash );
 
 			if ( $revision ) {
 				$updater->prepareUpdate(
@@ -2449,6 +2459,35 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$logEntry->publish( $logId );
 
 		return Status::newGood( $logId );
+	}
+
+	/**
+	 * Get the state of an ongoing update, shortly before or just after it is saved to the database.
+	 * If there is no ongoing edit tracked by this WikiPage instance, this methods throws a
+	 * PreconditionException.
+	 *
+	 * If possible, state is shared with subsequent calls of getPreparedUpdate(),
+	 * prepareContentForEdit(), and newPageUpdater().
+	 *
+	 * @note This method should generally be avoided, since it forces WikiPage to maintain state
+	 *       representing ongoing edits. Code that initiates an edit should use newPageUpdater()
+	 *       instead. Hooks that interact with the edit should have a the relevant
+	 *       information provided as a PageUpdater, PreparedUpdate, or RenderedRevision.
+	 *
+	 * @throws PreconditionException if there is no ongoing update. This method must only be
+	 *         called after newPageUpdater() had already been called, typically while executing
+	 *         a handler for a hook that is triggered during a page edit.
+	 * @return PreparedUpdate
+	 *
+	 * @since 1.38
+	 */
+	public function getCurrentUpdate(): PreparedUpdate {
+		Assert::precondition(
+			$this->derivedDataUpdater !== null,
+			'There is no ongoing update tracked by this instance of WikiPage!'
+		);
+
+		return $this->derivedDataUpdater;
 	}
 
 	/**

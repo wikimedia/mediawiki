@@ -29,6 +29,7 @@ class ApiStashEditTest extends ApiTestCase {
 			new NullStatsdDataFactory(),
 			MediaWikiServices::getInstance()->getUserEditTracker(),
 			MediaWikiServices::getInstance()->getUserFactory(),
+			MediaWikiServices::getInstance()->getWikiPageFactory(),
 			MediaWikiServices::getInstance()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );

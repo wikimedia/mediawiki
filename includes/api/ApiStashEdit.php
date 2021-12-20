@@ -195,7 +195,8 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} else {
-			$status = $this->pageEditStash->parseAndCache( $page, $content, $user, $params['summary'] );
+			$updater = $page->newPageUpdater( $user );
+			$status = $this->pageEditStash->parseAndCache( $updater, $content, $user, $params['summary'] );
 			$this->pageEditStash->stashInputText( $text, $textHash );
 		}
 
@@ -217,10 +218,12 @@ class ApiStashEdit extends ApiBase {
 	 * @param string $summary Edit summary
 	 * @return string ApiStashEdit::ERROR_* constant
 	 * @since 1.25
-	 * @deprecated Since 1.34
+	 * @deprecated Since 1.34, hard deprecated since 1.38
 	 */
 	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
-		return $this->pageEditStash->parseAndCache( $page, $content, $user, $summary ?? '' );
+		wfDeprecated( __METHOD__, '1.34' );
+		$updater = $page->newPageUpdater( $user );
+		return $this->pageEditStash->parseAndCache( $updater, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {
