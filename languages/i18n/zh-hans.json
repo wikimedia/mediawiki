@@ -598,7 +598,7 @@
 	"userlogin-loggedin": "您已经以{{GENDER:$1|$1}}的身份登录。\n使用下面的表单以其他用户的身份登录。",
 	"userlogin-reauth": "您必须再次登录以证明您是{{GENDER:$1|$1}}。",
 	"userlogin-createanother": "创建另一个账户",
-	"createacct-emailrequired": "电子邮件地址",
+	"createacct-emailrequired": "电子邮箱地址",
 	"createacct-emailoptional": "电子邮件地址（可选）",
 	"createacct-email-ph": "请输入您的电子邮件地址",
 	"createacct-another-email-ph": "输入电子邮件地址",
