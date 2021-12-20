@@ -1275,11 +1275,15 @@ class EditPage implements IEditObject {
 				$content = $this->toEditContent( $msg );
 			}
 			if ( $content === false ) {
-				# If requested, preload some text.
-				$preload = $request->getVal( 'preload',
-					// Custom preload text for new sections
-					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
-				$params = $request->getArray( 'preloadparams', [] );
+				// Custom preload text for new sections
+				$preload = $this->section === 'new' ? 'MediaWiki:addsection-preload' : '';
+				$params = [];
+
+				// T297725: Don't trick users into making edits to e.g. .js subpages
+				if ( $this->mTitle->hasContentModel( CONTENT_MODEL_WIKITEXT ) ) {
+					$preload = $request->getVal( 'preload', $preload );
+					$params = $request->getArray( 'preloadparams', $params );
+				}
 
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
