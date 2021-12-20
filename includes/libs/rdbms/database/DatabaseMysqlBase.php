@@ -340,7 +340,7 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res === false ) {
 			return false;
 		}
-		if ( !$this->numRows( $res ) ) {
+		if ( !$res->numRows() ) {
 			return 0;
 		}
 

@@ -112,7 +112,7 @@ class CleanupSpam extends Maintenance {
 					$conds,
 					__METHOD__
 				);
-				$count = $dbr->numRows( $res );
+				$count = $res->numRows();
 				$this->output( "Found $count articles containing $spec\n" );
 				foreach ( $res as $row ) {
 					$this->cleanupArticle(
