@@ -36,7 +36,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -4652,11 +4651,10 @@ class Parser {
 			# New validator
 			$sigValidation = $this->svcOptions->get( 'SignatureValidation' );
 			if ( $isValid && $sigValidation === 'disallow' ) {
-				$validator = new SignatureValidator(
-					$user,
-					null,
-					$this->mOptions
-				);
+				$services = MediaWikiServices::getInstance();
+				$parserOpts = $services->getParser()->getOptions();
+				$validator = $services->getSignatureValidatorFactory()
+					->newSignatureValidator( $user, null, $parserOpts );
 				$isValid = !$validator->validateSignature( $nickname );
 			}
 
