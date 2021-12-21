@@ -448,7 +448,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'fetchObject',
 			'fetchRow',
 			'fieldInfo',
-			'fieldName',
 			'getSoftwareLink',
 			'getServerVersion',
 			'getType',
