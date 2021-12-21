@@ -33,7 +33,7 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$backend = new FSFileBackend( [
 				'name' => 'local-testing',
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'containerPaths' => [
 					'unittests-public' => "{$tmpPrefix}/public",
 					'unittests-thumb' => "{$tmpPrefix}/thumb",

@@ -9,7 +9,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	use FileBackendGroupTestTrait;
 
 	private static function getWikiID() {
-		return wfWikiID();
+		return WikiMap::getCurrentWikiId();
 	}
 
 	private function getLockManagerGroupFactory( $domain ): LockManagerGroupFactory {

@@ -441,7 +441,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$db = $lb->getConnectionRef( DB_PRIMARY );
 		$this->assertEquals(
-			wfWikiID(),
+			WikiMap::getCurrentWikiId(),
 			$db->getDomainID()
 		);
 		unset( $db );
@@ -677,7 +677,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$conn1 = $lb->getConnectionRef( DB_PRIMARY );
 		$this->assertEquals(
-			wfWikiID(),
+			WikiMap::getCurrentWikiId(),
 			$conn1->getDomainID()
 		);
 		unset( $conn1 );

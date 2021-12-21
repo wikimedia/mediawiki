@@ -239,9 +239,9 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public function provideGetWikiIdFromDbDomain() {
 		return [
 			[ 'db-prefix_', 'db-prefix_' ],
-			[ wfWikiID(), wfWikiID() ],
+			[ WikiMap::getCurrentWikiId(), WikiMap::getCurrentWikiId() ],
 			[ new DatabaseDomain( 'db-dash', null, 'prefix_' ), 'db-dash-prefix_' ],
-			[ wfWikiID(), wfWikiID() ],
+			[ WikiMap::getCurrentWikiId(), WikiMap::getCurrentWikiId() ],
 			[ new DatabaseDomain( 'db-dash', null, 'prefix_' ), 'db-dash-prefix_' ],
 			[ new DatabaseDomain( 'db', 'mediawiki', 'prefix_' ), 'db-prefix_' ], // schema ignored
 			[ new DatabaseDomain( 'db', 'custom', 'prefix_' ), 'db-custom-prefix_' ],

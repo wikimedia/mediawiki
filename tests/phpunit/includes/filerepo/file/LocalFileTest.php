@@ -34,7 +34,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'containerPaths' => [
 					'cont1' => "/testdir/local-backend/tempimages/cont1",
 					'cont2' => "/testdir/local-backend/tempimages/cont2"
