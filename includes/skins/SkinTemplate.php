@@ -236,10 +236,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 
-		// The template variable `searchaction` is deprecated since 1.36
 		$searchTitle = SpecialPage::newSearchPage( $this->getUser() );
 		$searchLink = $searchTitle->getLocalURL();
 		$tpl->set( 'searchaction', $searchLink );
+		$tpl->deprecate( 'searchaction', '1.36' );
 
 		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
@@ -286,10 +286,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 
 		$tpl->set( 'copyrightico', BaseTemplate::getCopyrightIconHTML( $config, $this ) );
+		$tpl->deprecate( 'copyrightico', '1.37' ); // [[phab:T290583]]
 		$poweredBy = BaseTemplate::getPoweredByHTML( $config );
 		// Run deprecated hook.
 		$this->getHookRunner()->onSkinGetPoweredBy( $poweredBy, $this );
 		$tpl->set( 'poweredbyico', $poweredBy );
+		$tpl->deprecate( 'poweredbyico', '1.37' ); // [[phab:T290583]]
 
 		$tpl->set( 'disclaimer', $footerData['places']['disclaimer'] ?? false );
 		$tpl->set( 'privacy', $footerData['places']['privacy'] ?? false );
