@@ -123,6 +123,7 @@ because of Phabricator reports.
 * (T296707) Added language support for Ga (gaa).
 * (T297073) Added language support for Nanai (gld).
 * (T297074) Added language support for Nawdm (nmz).
+* (T298075) Added language support for Northern Thai (nod).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
@@ -373,6 +374,8 @@ because of Phabricator reports.
   deprecation warnings.
 * All external access to ParserOutput and CacheTime classes properties will now
   emit deprecation warnings. Use getters and setters instead.
+* The custom jQuery event `watchpage.mw` emitted on #ca-watch and #ca-unwatch is
+  now deprecated in favour of the new `wikipage.watchlistChange` hook.
 * The global function wfLogProfilingData() has been deprecated without a
   replacement. The logic has been moved to the MediaWiki class.
 * The PageArchive class has had several methods deprecated. The replacements

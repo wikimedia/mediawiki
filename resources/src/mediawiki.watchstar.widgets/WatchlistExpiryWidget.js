@@ -109,13 +109,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 					// Resume the mw.notify once the label has been updated
 					notif.resume();
 
-					updateWatchLink( $link, 'unwatch', 'idle', watchResponse.expiry );
-
-					// Update the "Watch this page" checkbox on action=edit when the
-					// page is watched or unwatched via the tab.
-					if ( document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( value );
-					}
+					updateWatchLink( mwTitle, 'unwatch', 'idle', watchResponse.expiry, value );
 				} )
 				.fail( function ( code, data ) {
 					// Format error message
