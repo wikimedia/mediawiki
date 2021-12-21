@@ -117,3 +117,10 @@
 .client-js .mw_metadata.collapsed tr.collapsable {
 	display: none;
 }
+
+@supports (aspect-ratio: 16 / 9) {
+	#file img {
+		max-width: 100%;
+		height: auto;
+	}
+}
