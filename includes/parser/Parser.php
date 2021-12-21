@@ -191,7 +191,7 @@ class Parser {
 	 *  *not* directly reference TOC_PLACEHOLDER but instead use
 	 *  Parser::replaceTableOfContentsMarker().
 	 */
-	public const TOC_PLACEHOLDER = '<mw:tocplace></mw:tocplace>';
+	public const TOC_PLACEHOLDER = '<meta property="mw:PageProp/toc" />';
 
 	# Persistent:
 	private $mTagHooks = [];
@@ -4853,11 +4853,9 @@ class Parser {
 		return str_replace(
 			self::TOC_PLACEHOLDER,
 			$toc,
-			// For forwards compatibility during transition period,
-			// also replace "new" TOC_PLACEHOLDER value (to be used
-			// in the future, but might show up in the cache
-			// during a rollback to this version).
-			str_replace( '<meta property="mw:PageProp/toc" />', $toc, $text )
+			// For backwards compatibility during transition period,
+			// also replace "old" TOC_PLACEHOLDER value
+			str_replace( '<mw:tocplace></mw:tocplace>', $toc, $text )
 		);
 	}
 

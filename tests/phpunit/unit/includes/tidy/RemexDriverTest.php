@@ -304,6 +304,11 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'<mw:toc>foo</mw:toc>',
 		],
 		[
+			'TOC_PLACEHOLDER should survive tidy',
+			'<meta property="mw:PageProp/toc" />',
+			'<meta property="mw:PageProp/toc" />',
+		],
+		[
 			'<link> should survive tidy',
 			'<link foo="bar"/>foo',
 			"<link foo=\"bar\" /><p>foo</p>",
