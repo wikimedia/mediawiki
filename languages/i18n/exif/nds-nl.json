@@ -148,7 +148,7 @@
 	"exif-iimcategory": "Kategory",
 	"exif-iimsupplementalcategory": "Anvüllende kategoryen",
 	"exif-datetimeexpires": "Neet te gebruken nå",
-	"exif-datetimereleased": "Uutbröcht up",
+	"exif-datetimereleased": "Uutbracht up",
 	"exif-originaltransmissionref": "Oorsprungelike språklokatykode",
 	"exif-identifier": "ID",
 	"exif-lens": "Brukede lense",
@@ -354,5 +354,12 @@
 	"exif-urgency-normal": "Normaal ($1)",
 	"exif-urgency-low": "Leeg ($1)",
 	"exif-urgency-high": "Hoog ($1)",
-	"exif-urgency-other": "Deur gebruker in-estelde prioriteit ($1)"
+	"exif-urgency-other": "Deur gebruker in-estelde prioriteit ($1)",
+	"exif-firstphotodate": "Datum van de eyrste foto",
+	"exif-lastphotodate": "Datum van de lätste foto",
+	"exif-projectiontype": "Projektytype",
+	"exif-projectiontype-equirectangular": "Rechthokig",
+	"exif-usepanoramaviewer-true": "Ja",
+	"exif-usepanoramaviewer-false": "Ney",
+	"exif-sourcephotoscount": "Antal bronfotos"
 }

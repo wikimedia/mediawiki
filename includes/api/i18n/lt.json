@@ -216,7 +216,7 @@
 	"apihelp-query+fileusage-example-simple": "Gauti sąrašą puslapių, kurie naudoja [[:File:Example.jpg]].",
 	"apihelp-query+fileusage-example-generator": "Gauti informaciją apie puslapius, kurie naudoja [[:File:Example.jpg]].",
 	"apihelp-query+imageinfo-summary": "Gražina failo informaciją ir įkėlimų istoriją.",
-	"apihelp-query+imageinfo-param-prop": "Kurią failo informaciją gauti:",
+	"apihelp-query+imageinfo-param-prop": "Kokią failo informaciją gauti:",
 	"apihelp-query+imageinfo-paramvalue-prop-timestamp": "Prideda laiko žymę įkeltai versijai.",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Prideda vartotoją, kuris įkėlę kiekvieną failo versiją.",
 	"apihelp-query+imageinfo-paramvalue-prop-userid": "Prideda vartotojo ID, kuris įkėlė kiekvieną failo versiją.",

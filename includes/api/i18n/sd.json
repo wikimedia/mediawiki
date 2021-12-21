@@ -5,6 +5,7 @@
 			"Mehtab ahmed"
 		]
 	},
+	"apihelp-edit-param-minor": "ھن سنوار کي معمولي سنوار طور نشان لڳايو.",
 	"apihelp-edit-param-contentmodel": "نئين مواد جو مواد نمونو.",
 	"apihelp-feedcontributions-summary": "ڪنھن واپرائيندڙ جي ڀاڱيدارين جي رسد ورائي ٿو.",
 	"apihelp-feedcontributions-param-deletedonly": "رڳو ڊٿل ڀاڱيداريون ڏيکاريو",
@@ -21,7 +22,7 @@
 	"apihelp-query+usercontribs-example-user": "ڪنھن واپرائيندڙ جون ڀاڱيداريون ڏيکاريو <kbd>مثال</kbd>.",
 	"apihelp-query+watchlist-param-type": "ڪهڙن قسمن جون تبديليون ڏيکارجن:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "روزاني صفحي سنوارون.",
-	"apihelp-query+watchlist-paramvalue-type-external": "خارجي تبديليون.",
+	"apihelp-query+watchlist-paramvalue-type-external": "ٻاھريون تبديليون.",
 	"apihelp-query+watchlist-paramvalue-type-new": "صفحي سرجايون.",
 	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون.",
 	"apihelp-rollback-summary": "صفحي ۾ آخري سنوار اڻڪريو.",

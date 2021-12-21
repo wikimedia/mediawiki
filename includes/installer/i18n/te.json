@@ -134,7 +134,7 @@
 	"config-admin-error-user": "\"<nowiki>$1</nowiki>\" పేరుతో నిర్వాహకుణ్ణి సృష్టించబోతే అంతర్గత లోపం దొర్లింది.",
 	"config-admin-error-password": "నిర్వాహకుడు \"<nowiki>$1</nowiki>\" కు సంకేతపదాన్ని ఇవ్వబోతే అంతర్గత లోపం దొర్లింది: <pre>$2</pre>",
 	"config-admin-error-bademail": "మీరు చెల్లని ఈమెయిలు చిరునామా ఇచ్చారు.",
-	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce విడుదల ప్రకటనల మెయిలింగు జాబితా] కు చందాదారులు కండి.",
+	"config-subscribe": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ విడుదల ప్రకటనల మెయిలింగు జాబితా] కు చందాదారులు కండి.",
 	"config-almost-done": "దాదాపు పూర్తైనట్లే!\nమిగతా కాన్ఫిగరేషన్ను దాటేసి, ఇప్పుడే వికీని స్థాపించుకోవచ్చు.",
 	"config-optional-continue": "నన్ను మరిన్ని ప్రశ్నలు అడుగు.",
 	"config-optional-skip": "నాకు బోరు కొట్టేసింది, ఇక వికీని స్థాపించేయ్.",
@@ -143,7 +143,7 @@
 	"config-profile-no-anon": "ఖాతా సృష్టింపు తప్పనిసరి",
 	"config-profile-fishbowl": "అధీకృత వాడుకరులు మాత్రమే",
 	"config-profile-private": "అంతరంగిక వికీ",
-	"config-license": "కాపీహక్కులు మరియు లైసెన్సు:",
+	"config-license": "కాపీహక్కులు, లైసెన్సు:",
 	"config-license-none": "లైసెన్సు పాదపీఠిక వద్దు",
 	"config-license-pd": "సార్వజనీనం",
 	"config-email-settings": "ఈ-మెయిల్ అమరికలు",
@@ -210,5 +210,5 @@
 	"config-help": "సహాయం",
 	"config-nofile": "\"$1\" ఫైలు దొరకలేదు. దాన్ని గానీ తొలగించారా?",
 	"mainpagetext": "'''మీడియా వికీని విజయవంతంగా ప్రతిష్టించాం.'''",
-	"mainpagedocfooter": "వికీ సాఫ్టువేరును వాడటనికి కావలిసిన సమాచారం కోసం [https://meta.wikimedia.org/wiki/Help:Contents వాడుకరుల గైడు]ను సందర్శించండి.\n\n== మొదలు పెట్టండి ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]"
+	"mainpagedocfooter": "వికీ సాఫ్టువేరును వాడటనికి కావలిసిన సమాచారం కోసం [https://meta.wikimedia.org/wiki/Help:Contents వాడుకరుల గైడు]ను సందర్శించండి.\n\n== మొదలు పెట్టండి ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]"
 }

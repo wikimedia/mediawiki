@@ -19,7 +19,8 @@
 			"Rhcastilhos",
 			"Rodrigo codignoli",
 			"TheEduGobi",
-			"Warley Felipe C."
+			"Warley Felipe C.",
+			"Stanglavine"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> A API MediaWiki é uma interface madura e estável que é ativamente suportada e aprimorada. Enquanto tentamos evitá-lo, talvez ocortamente precisemos fazer mudanças de ruptura; se inscrever [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\">\n<strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].\n</p>",
@@ -902,7 +903,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "Obter informações sobre páginas que ligam para [[wikibooks:Test]].",
 	"apihelp-query+iwlinks-summary": "Retorna todos os links interwiki das páginas fornecidas.",
 	"apihelp-query+iwlinks-param-url": "Obter o URL completo (não pode ser usado com $1prop).",
-	"apihelp-query+iwlinks-param-prop": "Quais propriedades adicionais obter para cada link interlanguage:",
+	"apihelp-query+iwlinks-param-prop": "Quais propriedades adicionais obter para cada link interwiki:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Adiciona o URL completo.",
 	"apihelp-query+iwlinks-param-limit": "Quantos interwiki links a serem retornados.",
 	"apihelp-query+iwlinks-param-prefix": "Retornar apenas links interwiki com este prefixo.",

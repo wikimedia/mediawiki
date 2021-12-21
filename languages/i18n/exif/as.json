@@ -192,6 +192,10 @@
 	"exif-compression-4": "CCITT দল ৪ ফেক্স এনক'ডিং",
 	"exif-copyrighted-true": "কপিৰাইট আছে",
 	"exif-copyrighted-false": "কপিৰাইট সংক্ৰান্ত তথ্য নাই",
+	"exif-photometricinterpretation-0": "ক'লা আৰু বগা (বগা হৈছে 0)",
+	"exif-photometricinterpretation-1": "ক'লা আৰু বগা (ক'লা হৈছে 0)",
+	"exif-photometricinterpretation-3": "পেলেট",
+	"exif-photometricinterpretation-5": "পৃথকীকৃত (সম্ভৱতঃ CMYK)",
 	"exif-unknowndate": "অজ্ঞাত তাৰিখ",
 	"exif-orientation-1": "সাধাৰণ",
 	"exif-orientation-2": "আনুভূমিকভাৱে লুটিওৱা হল",
@@ -262,6 +266,7 @@
 	"exif-scenetype-1": "এখন প্ৰত্যক্ষভাৱে তোলা ছবি",
 	"exif-customrendered-0": "স্বাভাবিক প্রক্রিয়া",
 	"exif-customrendered-1": "স্বনিৰ্বাচিত প্ৰক্ৰিয়া",
+	"exif-customrendered-6": "পেনোৰামা",
 	"exif-exposuremode-0": "স্বচালিত উন্মুক্তকৰণ",
 	"exif-exposuremode-1": "হস্তচালিত উন্মুক্তকৰণ",
 	"exif-exposuremode-2": "স্বচালিত বন্ধনী",
@@ -347,5 +352,9 @@
 	"exif-urgency-normal": "সাধাৰণ ($1)",
 	"exif-urgency-low": "নিম্ন ($1)",
 	"exif-urgency-high": "উচ্চ ($1)",
-	"exif-urgency-other": "ব্যৱহাৰকাৰী-বিৱৰিত প্ৰাথমিকতা ($1)"
+	"exif-urgency-other": "ব্যৱহাৰকাৰী-বিৱৰিত প্ৰাথমিকতা ($1)",
+	"exif-usepanoramaviewer-true": "হয়",
+	"exif-usepanoramaviewer-false": "নহয়",
+	"exif-exposurelockused-true": "হয়",
+	"exif-exposurelockused-false": "নহয়"
 }

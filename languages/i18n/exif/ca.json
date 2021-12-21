@@ -13,7 +13,8 @@
 			"Qllach",
 			"SMP",
 			"Toniher",
-			"Vriullop"
+			"Vriullop",
+			"Galactic Thrasher"
 		]
 	},
 	"exif-imagewidth": "Amplada",
@@ -371,5 +372,16 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Baixa ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Prioritat definida per l'usuari ($1)"
+	"exif-urgency-other": "Prioritat definida per l'usuari ($1)",
+	"exif-firstphotodate": "Data de la primera foto",
+	"exif-lastphotodate": "Data de la darrera foto",
+	"exif-projectiontype": "Tipus de projecció",
+	"exif-projectiontype-equirectangular": "Equirectangular",
+	"exif-usepanoramaviewer": "Utilitza el visor panoràmic",
+	"exif-usepanoramaviewer-true": "Sí",
+	"exif-usepanoramaviewer-false": "No",
+	"exif-exposurelockused": "S'ha utilitzat el bloqueig d'exposició",
+	"exif-exposurelockused-true": "Sí",
+	"exif-exposurelockused-false": "No",
+	"exif-stitchingsoftware": "Programari per cosir"
 }

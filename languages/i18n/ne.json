@@ -34,7 +34,9 @@
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
 			"हिमाल सुबेदी",
-			"아라"
+			"아라",
+			"McDutchie",
+			"MinecraftAustralia"
 		]
 	},
 	"tog-underline": "रेखाङ्कित सूत्र:",
@@ -1001,7 +1003,7 @@
 	"default": "पूर्वनिर्धारित",
 	"prefs-files": "फाइलहरू",
 	"prefs-custom-css": "अनुकुलित CSS",
-	"prefs-custom-js": "अनुकुलित JS",
+	"prefs-custom-js": "अनुकुलित JavaScript",
 	"prefs-common-config": "साझा CSS/जाभा स्क्रिप्ट सबै त्वचा(स्किन)को लागि:",
 	"prefs-reset-intro": "तपाईं यो पृष्ठलाई आफ्नो अभिरुचीहरू साइट पूर्वावस्थामा फर्काउन प्रयोग गर्न सक्नुहुन्छ । त्यस पछि यसलाई रद्द गर्न सक्नुहुन्न ।",
 	"prefs-emailconfirm-label": "इ-मेल एकिन प्रक्रिया :",
@@ -2098,6 +2100,7 @@
 	"namespace_association": "सम्बन्धित नामपद",
 	"tooltip-namespace_association": "वार्तालाप या विषय नामपदहरूलाई सम्बन्धित नामपदको रुपमा लिनको लागि सन्दुकमा चिनो लगाउनुहोस्।",
 	"blanknamespace": "(मुख्य)",
+	"contributions": "प्रयोगकर्ता योगदान",
 	"tool-link-contributions": "{{GENDER:$1|प्रयोगकर्ता}}का योगदानहरू",
 	"contributions-title": "$1को प्रयोगकर्ता योगदानहरू",
 	"mycontris": "योगदानहरू",
