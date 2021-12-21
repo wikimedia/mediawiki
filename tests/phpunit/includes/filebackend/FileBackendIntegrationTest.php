@@ -86,7 +86,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->singleBackend = new FSFileBackend( [
 				'name' => 'localtesting',
 				'lockManager' => $lockManagerGroup->get( 'fsLockManager' ),
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 				'containerPaths' => [
 					'unittest-cont1' => "{$tmpDir}/localtesting-cont1",
@@ -2506,7 +2506,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiID() . mt_rand(),
+				'wikiId' => WikiMap::getCurrentWikiId() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
@@ -2556,7 +2556,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiID() . mt_rand(),
+				'wikiId' => WikiMap::getCurrentWikiId() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
@@ -2601,7 +2601,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testSanitizeOpHeaders() {
 		$be = TestingAccessWrapper::newFromObject( new MemoryFileBackend( [
 			'name' => 'localtesting',
-			'wikiId' => wfWikiID()
+			'wikiId' => WikiMap::getCurrentWikiId()
 		] ) );
 
 		$input = [

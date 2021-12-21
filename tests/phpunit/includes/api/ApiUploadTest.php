@@ -23,7 +23,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 				'name' => 'temp',
 				'backend' => new FSFileBackend( [
 					'name' => 'temp-backend',
-					'wikiId' => wfWikiID(),
+					'wikiId' => WikiMap::getCurrentWikiId(),
 					'basePath' => $this->getNewTempDirectory()
 				] )
 			],

@@ -263,7 +263,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			new PageIdentityValue( 17, NS_MEDIAWIKI, 'Common.css', PageIdentity::LOCAL ),
 			null,
 			null,
-			wfWikiID()
+			WikiMap::getCurrentWikiId()
 		);
 		TestResourceLoaderWikiModule::preloadTitleInfo(
 			$context,

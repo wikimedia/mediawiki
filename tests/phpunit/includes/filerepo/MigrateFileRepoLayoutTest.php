@@ -18,7 +18,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 
 		$backend = new FSFileBackend( [
 			'name' => 'local-migratefilerepolayouttest',
-			'wikiId' => wfWikiID(),
+			'wikiId' => WikiMap::getCurrentWikiId(),
 			'containerPaths' => [
 				'migratefilerepolayouttest-original' => "{$this->tmpPrefix}-original",
 				'migratefilerepolayouttest-public' => "{$this->tmpPrefix}-public",
