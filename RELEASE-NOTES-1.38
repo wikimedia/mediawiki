@@ -391,6 +391,10 @@ because of Phabricator reports.
 * ApiStashEdit::parseAndStash has been hard deprecated.
 * Content::prepareSave was hard-deprecated, now emits deprecation warnings.
   Use ContentHandler::validateSave instead.
+* The `button` parameter for `bindUpdateAriaExpandedOnInput` and
+  `updateAriaExpanded` in checkboxHack.js have been deprecated.
+  `bindToggleOnSpaceEnter` has also been deprecated in favor of
+  `bindToggleOnEnter`.
 * …
 
 === Other changes in 1.38 ===
