@@ -323,6 +323,14 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function supportsURLLoading() {
+		// If package files are involved, don't support URL loading
+		return !$this->isPackaged();
+	}
+
+	/**
 	 * Convert a namespace-formatted page title to a virtual package file name.
 	 *
 	 * This determines how the page may be imported in client-side code via `require()`.
