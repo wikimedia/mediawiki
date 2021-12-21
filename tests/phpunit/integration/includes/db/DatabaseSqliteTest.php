@@ -532,24 +532,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::numFields
-	 */
-	public function testNumFields() {
-		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
-
-		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
-		$res = $db->select( 'a', '*' );
-		$this->assertSame( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
-		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
-		$this->assertTrue( $insertion, "Insertion failed" );
-		$res = $db->select( 'a', '*' );
-		$this->assertSame( 1, $db->numFields( $res ), "wrong number of fields" );
-
-		$this->assertTrue( $db->close(), "closing database" );
-	}
-
-	/**
 	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::__toString
 	 */
 	public function testToString() {
