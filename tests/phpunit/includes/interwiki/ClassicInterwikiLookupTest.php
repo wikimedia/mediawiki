@@ -93,7 +93,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function populateHash( $thisSite, $local, $global ) {
 		$hash = [];
-		$hash[ '__sites:' . wfWikiID() ] = $thisSite;
+		$hash[ '__sites:' . WikiMap::getCurrentWikiId() ] = $thisSite;
 
 		$globals = [];
 		$locals = [];

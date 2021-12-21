@@ -29,7 +29,7 @@ trait FileBackendGroupTestTrait {
 	abstract protected function getLockManagerGroupFactory( $domain ): LockManagerGroupFactory;
 
 	/**
-	 * @return string As from wfWikiID()
+	 * @return string As from WikiMap::getCurrentWikiId()
 	 */
 	abstract protected static function getWikiID();
 

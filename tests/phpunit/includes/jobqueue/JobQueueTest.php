@@ -75,7 +75,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
 		}
-		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
+		$this->assertEquals( WikiMap::getCurrentWikiId(), $queue->getWiki(), "Proper wiki ID ($desc)" );
 		$this->assertEquals(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
 			$queue->getDomain(),

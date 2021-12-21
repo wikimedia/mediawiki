@@ -437,7 +437,7 @@ class ParserTestRunner {
 			}
 			$backend = new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'basePath' => $this->uploadDir,
 				'tmpDirectory' => wfTempDir()
 			] );
@@ -463,7 +463,7 @@ class ParserTestRunner {
 			# informations.
 			$backend = new MockFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiID()
+				'wikiId' => WikiMap::getCurrentWikiId()
 			] );
 		}
 

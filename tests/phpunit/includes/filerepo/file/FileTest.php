@@ -139,7 +139,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 */
 	public function testGetThumbnailSource( $data ) {
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
-			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => WikiMap::getCurrentWikiId() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
@@ -252,7 +252,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgThumbnailBuckets', $data['buckets'] );
 
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
-			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => WikiMap::getCurrentWikiId() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
