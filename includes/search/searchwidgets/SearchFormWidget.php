@@ -118,8 +118,6 @@ class SearchFormWidget {
 		$offset,
 		array $options = []
 	) {
-		$html = '';
-
 		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',
 			'name' => 'search',
@@ -130,15 +128,13 @@ class SearchFormWidget {
 			'infusable' => true,
 		] );
 
-		$layout = new \OOUI\ActionFieldLayout( $searchWidget, new \OOUI\ButtonInputWidget( [
+		$html = new \OOUI\ActionFieldLayout( $searchWidget, new \OOUI\ButtonInputWidget( [
 			'type' => 'submit',
 			'label' => $this->specialSearch->msg( 'searchbutton' )->text(),
 			'flags' => [ 'progressive', 'primary' ],
 		] ), [
 			'align' => 'top',
 		] );
-
-		$html .= $layout;
 
 		if ( $this->specialSearch->getPrefix() !== '' ) {
 			$html .= Html::hidden( 'prefix', $this->specialSearch->getPrefix() );
@@ -213,9 +209,7 @@ class SearchFormWidget {
 	protected function startsWithImage( $term ) {
 		$parts = explode( ':', $term );
 		return count( $parts ) > 1
-			? $this->specialSearch->getContentLanguage()->getNsIndex( $parts[0] ) ===
-				NS_FILE
-			: false;
+			&& $this->specialSearch->getContentLanguage()->getNsIndex( $parts[0] ) === NS_FILE;
 	}
 
 	/**
@@ -253,15 +247,13 @@ class SearchFormWidget {
 	 * @return string HTML
 	 */
 	protected function optionsHtml( $term, $isPowerSearch, $profile ) {
-		$html = '';
-
 		if ( $isPowerSearch ) {
-			$html .= $this->powerSearchBox( $term, [] );
+			$html = $this->powerSearchBox( $term, [] );
 		} else {
-			$form = '';
+			$html = '';
 			$this->getHookRunner()->onSpecialSearchProfileForm(
-				$this->specialSearch, $form, $profile, $term, [] );
-			$html .= $form;
+				$this->specialSearch, $html, $profile, $term, []
+			);
 		}
 
 		return $html;
@@ -299,8 +291,8 @@ class SearchFormWidget {
 			);
 		}
 
-		// Lays out namespaces in multiple floating two-column tables so they'll
-		// be arranged nicely while still accomodating diferent screen widths
+		// Lays out namespaces in multiple floating two-column tables so that they'll
+		// be arranged nicely while still accommodating different screen widths
 		$tableRows = [];
 		foreach ( $rows as $row ) {
 			$tableRows[] = Html::rawElement( 'tr', [], $row );
