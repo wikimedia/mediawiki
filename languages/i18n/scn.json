@@ -993,6 +993,7 @@
 	"saveusergroups": "Sarva li gruppi di l'{{GENDER:$1|utenti}}",
 	"userrights-groupsmember": "Mèmmiru di:",
 	"userrights-groupsmember-auto": "Membru mplìcitu di:",
+	"userrights-systemuser": "{{GENDER:$1|St'utenti}} è n'utenti di sistema",
 	"userrights-groups-help": "Poi canciari li gruppi unni è assignatu l'utenti:\n* Na casedda scigghiuta voli diri chi l'utenti fa parti dû gruppu.\n* Na casedda nun scigghiuta voli diri chi l'utenti nun fa parti dû gruppu.\n* Lu sìmmulu * voli diri chi nun si pò cchiù livari l'utenti dûn gruppu na vota chi fu agghiunciutu, o vici versa.",
 	"userrights-reason": "Mutivu:",
 	"userrights-no-interwiki": "Nun hai lu pirmissu di canciari li dritti di l'utenti nta l'àutri wiki.",

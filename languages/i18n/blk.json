@@ -1957,6 +1957,8 @@
 	"blocklist-editing-ns": "ယီးနယ်မိဉ်ꩻဖိုင်ႏ",
 	"blocklist-editing-action": "ခွုမ်မာꩻချက်ဖိုင်ႏ",
 	"blocklink": "ပေ့ꩻထိုꩻ",
+	"unblocklink": "ပေ့ꩻဗိဉ်ႏတဝ်းဒုမ်",
+	"change-blocklink": "ပြောင်ꩻလုဲင်ႏပေ့ꩻဗိဉ်ႏ",
 	"contribslink": "စွဲးကမ်း",
 	"emaillink": "ပသာအီးမေး",
 	"block-log-flags-nocreate": "ပေ့ꩻခါꩻဒျာႏ ဖန်ဆင်ꩻအကောက်သွူ",
