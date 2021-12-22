@@ -1137,20 +1137,6 @@ SQL;
 		return PostgresField::fromText( $this, $table, $field );
 	}
 
-	/**
-	 * pg_field_type() wrapper
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param PostgresResultWrapper $res ResultWrapper or PostgreSQL query result resource
-	 * @param int $index Field number, starting from 0
-	 * @return string
-	 */
-	public function fieldType( $res, $index ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return pg_field_type( $res->getInternalResult(), $index );
-	}
-
 	public function encodeBlob( $b ) {
 		return new PostgresBlob( pg_escape_bytea( $b ) );
 	}

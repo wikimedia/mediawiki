@@ -65,17 +65,6 @@ class MysqliResultWrapper extends ResultWrapper {
 		$this->result->data_seek( $pos );
 	}
 
-	/**
-	 * Get the underlying result object or array
-	 *
-	 * @since 1.37
-	 * @deprecated since 1.37 Only exists to support deprecated methods
-	 * @return mysqli_result
-	 */
-	public function getInternalResult() {
-		return $this->result;
-	}
-
 	protected function doFree() {
 		$this->result = null;
 	}

@@ -166,17 +166,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli_result $res
-	 * @param int $n
-	 * @return string
-	 */
-	protected function mysqlFieldType( $res, $n ) {
-		$field = $res->fetch_field_direct( $n );
-
-		return $field->type;
-	}
-
-	/**
 	 * @param mysqli|null $conn Optional connection object
 	 * @return string
 	 */

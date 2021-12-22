@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use mysqli_result;
 use RuntimeException;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
@@ -230,33 +229,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBConnectionError
 	 */
 	abstract protected function mysqlConnect( $server, $user, $password, $db );
-
-	/**
-	 * mysql_field_type() wrapper
-	 *
-	 * Not part of the interface and apparently not called by anything.
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param MysqliResultWrapper $res
-	 * @param int $n
-	 * @return string
-	 */
-	public function fieldType( $res, $n ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mysqlFieldType( $res->getInternalResult(), $n );
-	}
-
-	/**
-	 * Get the type of the specified field in a result
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param mysqli_result $res
-	 * @param int $n
-	 * @return string
-	 */
-	abstract protected function mysqlFieldType( $res, $n );
 
 	/**
 	 * @return string
