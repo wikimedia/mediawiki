@@ -788,7 +788,10 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->assertSame(
 			// Now we return in display order rather than markup order
-			[ 'a' => 'aaa', 'b' => 'BBB!' ],
+			[
+				'a' => '<div class="mw-parser-output">aaa</div>',
+				'b' => '<div class="mw-parser-output">BBB!</div>',
+			],
 			$res[0]['parse']['indicators']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
