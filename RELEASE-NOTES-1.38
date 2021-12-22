@@ -276,6 +276,8 @@ because of Phabricator reports.
   - ::getTopologyRootMaster() since 1.37
   - ::masterPosWait() since 1.37
   - ::dataSeek() soft-deprecated since 1.37
+  - ::numFields() soft-deprecated since 1.37
+  - ::fieldName() soft-deprecated since 1.37
   - ::onTransactionIdle() soft-deprecated since 1.32
   - ::getMasterPos() since 1.37
 * Language::AS_AUTONYMS, deprecated since 1.34, has been removed. You can use

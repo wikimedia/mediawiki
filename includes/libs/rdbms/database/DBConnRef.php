@@ -231,14 +231,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function numFields( $res ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function fieldName( $res, $n ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function insertId() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
