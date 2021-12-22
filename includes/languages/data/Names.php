@@ -239,6 +239,7 @@ class Names {
 		'kbd-cyrl' => 'адыгэбзэ', # Kabardian (Cyrillic)
 		'kbp' => 'Kabɩyɛ', # Kabiyè
 		'kcg' => 'Tyap', # Tyap
+		'kea' => 'kabuverdianu', # Cape Verdean Creole
 		'kg' => 'Kongo', # Kongo, (FIXME!) should probably be KiKongo or KiKoongo
 		'khw' => 'کھوار', # Khowar
 		'ki' => 'Gĩkũyũ', # Gikuyu
