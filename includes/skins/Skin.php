@@ -146,8 +146,12 @@ abstract class Skin extends ContextSource {
 		$user = $this->getUser();
 		$isMainPage = $title->isMainPage();
 		$blankedHeading = false;
+		// Heading can only be blanked on "views". It should
+		// still show on action=edit, diff pages and action=history
+		$isHeadingOverridable = $this->getAction() === 'view' &&
+			!$this->getRequest()->getRawVal( 'diff' );
 
-		if ( $isMainPage ) {
+		if ( $isMainPage && $isHeadingOverridable ) {
 			// Special casing for the main page to allow more freedom to editors, to
 			// design their home page differently. This came up in T290480.
 			// The parameter for logged in users is optional and may
