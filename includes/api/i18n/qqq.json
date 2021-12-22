@@ -1756,7 +1756,7 @@
 	"apierror-permissiondenied-patrolflag": "{{doc-apierror}}\n\nSee also:\n* {{msg-mw|apierror-permissiondenied}}",
 	"apierror-permissiondenied-unblock": "{{doc-apierror}}\n\nSee also:\n* {{msg-mw|apierror-permissiondenied}}",
 	"apierror-prefixsearchdisabled": "{{doc-apierror}}",
-	"apierror-promised-nonwrite-api": "{{doc-apierror}}",
+	"apierror-promised-nonwrite-api": "{{doc-apierror}}\n\nDo not translate 'Promise-Non-Write-API-Action', it refers to a name which is always in English.\n\nSee also: {{msg-mw|nonwrite-api-promise-error}}",
 	"apierror-protect-invalidaction": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied protection type.",
 	"apierror-protect-invalidlevel": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied protection level.",
 	"apierror-ratelimited": "{{doc-apierror}}",

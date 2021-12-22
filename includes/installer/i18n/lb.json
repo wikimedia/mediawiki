@@ -116,7 +116,7 @@
 	"config-admin-error-user": "Interne Feeler beim Uleeë vun engem Administrateur mam Numm \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interne Feeler beim Setze vum Passwuert fir den Admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Dir hutt eng E-Mail-Adress aginn déi net valabel ass",
-	"config-subscribe": "Sech op d'[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ukënnegunge vun neie Versiounen] abonnéieren.",
+	"config-subscribe": "Sech op d'[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Ukënnegunge vun neie Versiounen] abonnéieren.",
 	"config-pingback-help": "Wann Dir dës Optioun auswielt schéckt MediaWiki regelméisseg https://www.mediawiki.org Basisdaten iwwer dës MediaWiki-Instanz. An dësen Daten sinn zum Beispill de Systemtyp, d'PHP-Versioun an déi erausgesicht Datebank-Backend. D'Wikimedia Foundation gëtt dës Daten un d'MediaWiki-Entwéckler, fir ze hëllefen d'Entwécklung an der Zukunft efficace z'organiséieren. Dës Date gi fir Äre System geschéckt:\n<pre>$1</pre>",
 	"config-almost-done": "Dir sidd bal fäerdeg!\nDir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki elo direkt installéieren.",
 	"config-optional-continue": "Stellt mir méi Froen.",
@@ -187,5 +187,5 @@
 	"config-extensions-requires": "$1 (brauch $2)",
 	"config-screenshot": "Screenshot",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
-	"mainpagedocfooter": "Kuckt wgl. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
+	"mainpagedocfooter": "Kuckt wgl. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
 }

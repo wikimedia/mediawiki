@@ -13,7 +13,8 @@
 			"Steafan31",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"MinecraftAustralia"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -285,7 +286,7 @@
 	"sort-descending": "Seòrsaich a' tèarnadh",
 	"sort-ascending": "Seòrsaich a' dìreadh",
 	"nstab-main": "Duilleag",
-	"nstab-user": "Duilleag a' chleachdaiche",
+	"nstab-user": "{{GENDER:$1|Ainm-cleachdaiche}}",
 	"nstab-media": "Meadhanan",
 	"nstab-special": "Duilleag shònraichte",
 	"nstab-project": "Duilleag a' phròiseict",

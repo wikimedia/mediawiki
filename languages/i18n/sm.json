@@ -2,7 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Irus",
-			"sm.wikipedia.org sysops"
+			"sm.wikipedia.org sysops",
+			"Amire80",
+			"MinecraftAustralia",
+			"Tok Pisin"
 		]
 	},
 	"sunday": "Aso sa",
@@ -40,18 +43,18 @@
 	"october-gen": "Oketopa",
 	"november-gen": "Novema",
 	"december-gen": "Tesema",
-	"jan": "Ianuari",
-	"feb": "Fepuari",
+	"jan": "Ian",
+	"feb": "Fep",
 	"mar": "Mati",
-	"apr": "Aperila",
+	"apr": "Ape",
 	"may": "Me",
 	"jun": "Iuni",
-	"jul": "Iulai",
-	"aug": "Aokuso",
+	"jul": "Iul",
+	"aug": "Aok",
 	"sep": "Setema",
-	"oct": "Oketopa",
-	"nov": "Novema",
-	"dec": "Tesema",
+	"oct": "Oke",
+	"nov": "Nov",
+	"dec": "Tes",
 	"cancel": "Toe tape",
 	"mytalk": "La'u talanoa",
 	"anontalk": "Talanoaga",

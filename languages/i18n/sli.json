@@ -19,7 +19,8 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -603,7 +604,7 @@
 	"allowemail": "E-Mail-Empfang vu andern Benutzern ermeeglichn",
 	"prefs-searchoptions": "Sichoptiona",
 	"prefs-namespaces": "Noamasräume",
-	"prefs-custom-js": "Nutzerdefiniertes JS",
+	"prefs-custom-js": "Nutzerdefiniertes JavaScript",
 	"youremail": "E-Mail-Adresse:",
 	"username": "Benutzernoame:",
 	"prefs-memberingroups": "Mitglied dar {{PLURAL:$1|Nutzergruppe|Nutzergruppen}}:",

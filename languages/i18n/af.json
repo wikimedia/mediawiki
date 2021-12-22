@@ -32,7 +32,10 @@
 			"Winstonza",
 			"Xethron",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Ajeje Brazorf",
+			"McDutchie",
+			"MinecraftAustralia"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -920,7 +923,7 @@
 	"default": "verstek",
 	"prefs-files": "Lêers",
 	"prefs-custom-css": "Persoonlike CSS",
-	"prefs-custom-js": "Persoonlike JS",
+	"prefs-custom-js": "Persoonlike JavaScript",
 	"prefs-common-config": "Gedeelde CSS/JS vir al die omslae:",
 	"prefs-reset-intro": "U kan die blad gebruik om u voorkeure terug te stel na die webwerf se verstekwaardes.\nDie aksie kan nie ongedaan gemaak word nie.",
 	"prefs-emailconfirm-label": "E-posbevestiging:",
@@ -2676,7 +2679,7 @@
 	"tags-activate-submit": "Aktiveer",
 	"tags-deactivate-reason": "Rede:",
 	"tags-deactivate-submit": "Deaktiveer",
-	"tags-edit-existing-tags-none": "''Geen''",
+	"tags-edit-existing-tags-none": "<em>Geen</em>",
 	"tags-edit-reason": "Rede:",
 	"comparepages": "Vergelyk bladsye",
 	"compare-page1": "Bladsy 1",

@@ -10,7 +10,9 @@
 			"Pitke",
 			"Pyscowicz",
 			"Silvonen",
-			"Stryn"
+			"Stryn",
+			"MITO",
+			"Yupik"
 		]
 	},
 	"apihelp-main-param-action": "Mikä toiminto suoritetaan.",
@@ -119,9 +121,13 @@
 	"api-help-license-unknown": "Lisenssi: <span class=\"apihelp-unknown\">tuntematon</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametri|Parametrit}}:",
 	"api-help-param-default-empty": "Oletus: <span class=\"apihelp-empty\">(tyhjä)</span>",
+	"api-help-examples": "{{PLURAL:$1|esimerkki|esimerkkiä}}:",
 	"api-help-open-in-apisandbox": "<small>[avaa hiekkalaatikossa]</small>",
 	"apierror-badtoken": "Virheellinen CSRF-poletti.",
 	"apierror-invalidlang": "Virheellinen kielikoodi parametrille <var>$1</var>.",
+	"apierror-mustbeloggedin-generic": "Sinun täytyy olla sisäänkirjautuneena.",
 	"apierror-noapiwrite": "Tämän wikin muokkaaminen APIn kautta on estetty.",
+	"apierror-unknownerror-nocode": "Tuntematon virhe.",
+	"apierror-unknownerror": "Tuntematon virhe: \"$1\".",
 	"api-feed-error-title": "Virhe ($1)"
 }

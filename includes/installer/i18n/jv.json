@@ -6,7 +6,7 @@
 			"Sumbukompor"
 		]
 	},
-	"config-install-mainpage-failed": "Ora bisa nglebokaké tepas: $1",
+	"config-install-mainpage-failed": "Ora bisa nglebokaké pendhapa: $1",
 	"mainpagetext": "'''Prangkat empuk wiki wis suksès dipasang.'''",
-	"mainpagedocfooter": "Wacanen [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Gegaraning Naraguna] ngenani katerangan carané nganggo piranti alus wiki.\n\n== Miwiti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pratélaning setèlaning konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pitakon-Kerep ngenani MédiaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Pratélaning layang sing dibabar MédiaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Mertal MédiaWiki menyang basané panjenengan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sinau carané ngatasi spam ing wikiné panjenengan]"
+	"mainpagedocfooter": "Wacanen [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Gegaraning Naraguna] ngenani katerangan carané nganggo piranti alus wiki.\n\n== Miwiti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pratélaning setèlaning konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pitakon-Kerep ngenani MédiaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Pratélaning layang sing dibabar MédiaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Mertal MédiaWiki menyang basané panjenengan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sinau carané ngatasi spam ing wikiné panjenengan]"
 }

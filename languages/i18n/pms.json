@@ -22,7 +22,8 @@
 			"Vlad5250",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1083,7 +1084,7 @@
 	"prefs-files": "Archivi",
 	"prefs-custom-css": "CSS përsonaj",
 	"prefs-custom-json": "JSON përsonalisà",
-	"prefs-custom-js": "JS përsonaj",
+	"prefs-custom-js": "JavaScript përsonaj",
 	"prefs-common-config": "CSS/JSON/JavaScript condividù për tute le gràfiche:",
 	"prefs-reset-intro": "A peul dovré costa pàgina për amposté torna ij sò gust a coj dë stàndard.\nSòn a peul pa esse anulà.",
 	"prefs-emailconfirm-label": "Conferma dl'adrëssa ëd pòsta eletrònica:",

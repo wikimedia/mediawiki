@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Pall Mall (on pih.wikipedia.org)",
-			"Xð"
+			"Xð",
+			"MinecraftAustralia"
 		]
 	},
 	"january": "Jaenyuweri",
@@ -42,19 +43,19 @@
 	"editsection": "edet",
 	"editold": "edet",
 	"nstab-main": "Artikal",
-	"nstab-user": "User paij",
+	"nstab-user": "{{GENDER:$1|Yusa paij}}",
 	"nstab-image": "Faail",
 	"nstab-help": "Hiiwp Paij",
 	"mainpage-nstab": "Mien paij",
 	"loginlanguagelabel": "Laenghwij: $1",
 	"editing": "Edeting $1",
 	"prefs-rc": "Dem Riisent Chayng",
-	"recentchanges": "Dem Riisent Chayng",
-	"recentchangeslinked": "Dem Riilated Chayng",
+	"recentchanges": "Riis'nt chienjs",
+	"recentchangeslinked": "Reliet'd chienjs",
 	"recentchangeslinked-feed": "Dem Riilated Chayng",
-	"recentchangeslinked-toolbox": "Dem Riilated Chayng",
+	"recentchangeslinked-toolbox": "Reliet'd chienjs",
 	"upload": "Upload Faail",
-	"imgfile": "faail",
+	"imgfile": "fail",
 	"file-anchor-link": "Faail",
 	"randompage": "Raandum Paij",
 	"restriction-edit": "Edet",

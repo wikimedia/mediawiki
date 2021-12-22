@@ -6,7 +6,8 @@
 			"Event",
 			"Jon Harald Søby",
 			"Jóna Þórunn",
-			"Nghtwlkr"
+			"Nghtwlkr",
+			"Abuluntu"
 		]
 	},
 	"exif-imagewidth": "Bredde",
@@ -376,6 +377,18 @@
 	"exif-poseheadingdegrees": "Horisontal retning (grader)",
 	"exif-posepitchdegrees": "Stampingsvinkel (grader)",
 	"exif-poserolldegrees": "Slingringsvinkel (grader)",
+	"exif-initialviewheadingdegrees": "Opprinnelig synsretning (grader)",
+	"exif-initialviewpitchdegrees": "Opprinnelig synshelning (grader)",
+	"exif-initialviewrolldegrees": "Opprinnelig synsvridning (grader)",
+	"exif-initialhorizontalfovdegrees": "Opprinnelig synsfelt (horisontale grader)",
+	"exif-initialverticalfovdegrees": "Opprinnelig synsfelt (vertikale grader)",
 	"exif-sourcephotoscount": "Antall kildefotografier",
+	"exif-croppedareaimagewidthpixels": "Panorama-bredde etter beskjæring",
+	"exif-croppedareaimageheightpixels": "Panorama-høyde etter beskjæring",
+	"exif-fullpanowidthpixels": "Ṕanorama med full bredde",
+	"exif-fullpanoheightpixels": "Panorama med full høyde",
+	"exif-croppedarealeftpixels": "Panorama beskåret venstre",
+	"exif-croppedareatoppixels": "Panorama beskåret topp",
+	"exif-initialcameradolly": "Opprinnelig kameraposisjon",
 	"exif-stitchingsoftware": "Fletteprogramvare"
 }

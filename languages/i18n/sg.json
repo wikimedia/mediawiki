@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ice201 (on sg.wikipedia.org)",
-			"Mdkidiri"
+			"Mdkidiri",
+			"Laurent Bouvier"
 		]
 	},
 	"tog-underline": "Gbënëngö-gbê",
@@ -91,7 +92,7 @@
 	"category-media-header": "Kuru tî kôtevungä na yâ tî fündä \"$1\"",
 	"category-empty": "\"Fündä sô ayeke na lêmbëtï, wala gbefündä, wala kuru tî kôtevungä, ôko pëpe.\"",
 	"hidden-categories": "Höndëngö {{PLURAL:$1|fündä|âfündä}}",
-	"hidden-category-category": "Âhöndëngö âf¨¨undä",
+	"hidden-category-category": "Âhöndëngö âfündä",
 	"index-category": "Âlêmbëtï sô akpo nî",
 	"noindex-category": "Âlêmbëtï sô a kpö nî pëpe",
 	"broken-file-category": "Âlêmbëtï sô ayeke na âfängö gbê tî kuru",

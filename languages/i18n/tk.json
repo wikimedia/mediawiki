@@ -14,7 +14,8 @@
 			"Stephanecbisson",
 			"The Evil IP address",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -707,7 +708,7 @@
 	"default": "gaýybana",
 	"prefs-files": "Faýllar",
 	"prefs-custom-css": "Hususy CSS",
-	"prefs-custom-js": "Hususy JS",
+	"prefs-custom-js": "Hususy JavaScript",
 	"prefs-common-config": "Ähli bezegler üçin paýlaşylýan CSS/JavaScript:",
 	"prefs-reset-intro": "Bu sahypada öz ileri tutmalaryňyzy saýtyň gaýybana ýagdaýyna getirip bilersiňiz. Yzyna dikeldip bolmaýar.",
 	"prefs-emailconfirm-label": "E-poçta tassyklamasy:",

@@ -24,7 +24,8 @@
 			"Tarikozket",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Hedda"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -173,7 +174,7 @@
 	"exif-iimcategory": "Kategori",
 	"exif-iimsupplementalcategory": "Tamamlayıcı kategoriler",
 	"exif-datetimeexpires": "Bu tarihten sonra kullanmayın:",
-	"exif-datetimereleased": "Tarihinde yayınlandı",
+	"exif-datetimereleased": "Yayımlanma tarihi:",
 	"exif-originaltransmissionref": "Orijinal iletim konum kodu",
 	"exif-identifier": "Tanımlayıcı",
 	"exif-lens": "Kullanılan objektif",
