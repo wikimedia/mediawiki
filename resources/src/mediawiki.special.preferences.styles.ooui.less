@@ -1,3 +1,4 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 /* Uses standard message block colors, compare mediawiki.legacy/shared.css */
@@ -152,24 +153,26 @@
 	outline: 4px solid #eaf3ff;
 }
 
-/* Make the "Basic information" section more compact */
-/* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
-#mw-htmlform-info {
-	> .oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-		display: inline-block;
-		width: 20%;
-		padding: 0;
-		vertical-align: middle;
-	}
+@media all and ( min-width: @width-breakpoint-tablet ) {
+	/* Make the "Basic information" section more compact */
+	/* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
+	#mw-htmlform-info {
+		> .oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+			display: inline-block;
+			width: 20%;
+			padding: 0;
+			vertical-align: middle;
+		}
 
-	> .oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
-		margin-right: 0;
-	}
+		> .oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
+			margin-right: 0;
+		}
 
-	> .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
-		display: inline-block;
-		width: 80%;
-		vertical-align: middle;
+		> .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+			display: inline-block;
+			width: 80%;
+			vertical-align: middle;
+		}
 	}
 }
 
