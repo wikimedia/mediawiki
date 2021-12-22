@@ -2234,6 +2234,8 @@
 	"apisandbox-request-url-label": "Request URL:",
 	"apisandbox-request-format-json-label": "JSON",
 	"apisandbox-request-json-label": "Request JSON:",
+	"apisandbox-request-format-php-label": "PHP array",
+	"apisandbox-request-php-label": "Request PHP array:",
 	"apisandbox-request-time": "Request time: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Correct token and resubmit",
 	"apisandbox-results-fixtoken-fail": "Failed to fetch \"$1\" token.",
