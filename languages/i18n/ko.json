@@ -115,7 +115,7 @@
 	"tog-enotifrevealaddr": "알림 메일에 내 이메일 주소를 밝히기",
 	"tog-shownumberswatching": "주시하는 사용자 수 보이기",
 	"tog-oldsig": "기존 서명:",
-	"tog-fancysig": "서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)",
+	"tog-fancysig": "서명을 위키텍스트로 취급 (자동으로 사용자 문서 링크를 걸지 않음)",
 	"tog-uselivepreview": "페이지를 다시 불러오지 않고 미리 보기 표시",
 	"tog-forceeditsummary": "기본 편집 취소 편집 요약을 썼거나 편집 요약을 쓰지 않았을 때 내게 물어보기",
 	"tog-watchlisthideown": "주시문서 목록에서 내 편집을 숨기기",

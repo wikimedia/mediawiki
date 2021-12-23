@@ -4200,7 +4200,7 @@
 	"specialmute-header": "<b>{{BIDI:[[User:$1|$1]]}}</b>さんに対するミュートを個人設定で選択してください。",
 	"specialmute-error-invalid-user": "あなたが要求した利用者名は見つかりませんでした。",
 	"specialmute-error-no-options": "ミュート機能はご使用になれません。いくつかの理由が考えられます: メールアドレスをまだ確認されていないか、このウィキの管理者がメールの機能もしくはこのウィキのメールのブラックリストを無効にしているか、です。",
-	"specialmute-email-footer": "{{BIDI:$2}}のメール発信者の個人設定を変更するには<$1>を開いてください。",
+	"specialmute-email-footer": "{{BIDI:$2}}のメール発信者の個人設定を変更するには <$1> を開いてください。",
 	"specialmute-login-required": "ミュートの個人設定を変更するにはログインしてください。",
 	"mute-preferences": "ミュート設定",
 	"revid": "版 $1",
