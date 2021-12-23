@@ -136,6 +136,7 @@
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
+		"releasenotes": "@phpunit:entrypoint --group ReleaseNotes",
 		"test": [
 			"@lint .",
 			"@phpcs ."
