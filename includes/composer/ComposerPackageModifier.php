@@ -29,7 +29,7 @@ class ComposerPackageModifier {
 	}
 
 	private function setLinkAsProvides( Link $link ) {
-		$this->package->setProvides( [ $link ] );
+		$this->package->setProvides( [ self::MEDIAWIKI_PACKAGE_NAME => $link ] );
 	}
 
 	private function newMediaWikiLink() {
