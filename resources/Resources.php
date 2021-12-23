@@ -1989,6 +1989,8 @@ return [
 			'apisandbox-request-url-label',
 			'apisandbox-request-format-json-label',
 			'apisandbox-request-json-label',
+			'apisandbox-request-format-php-label',
+			'apisandbox-request-php-label',
 			'apisandbox-request-time',
 			'apisandbox-results-fixtoken',
 			'apisandbox-results-fixtoken-fail',

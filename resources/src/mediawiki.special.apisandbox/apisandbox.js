@@ -623,7 +623,7 @@
 		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
 		 */
 		formatRequest: function ( displayParams, rawParams ) {
-			var jsonLayout,
+			var jsonLayout, phpLayout,
 				apiUrl = new mw.Uri( mw.util.wikiScript( 'api' ) ).toString(),
 				items = [
 					new OO.ui.MenuOptionWidget( {
@@ -650,6 +650,31 @@
 								// because the latter has weird caching
 								// behavior and the former bypasses it.
 								jsonLayout.textInput.updatePosition();
+							}
+						} )
+					} ),
+					new OO.ui.MenuOptionWidget( {
+						label: Util.parseMsg( 'apisandbox-request-format-php-label' ),
+						data: phpLayout = new mw.widgets.CopyTextLayout( {
+							label: Util.parseMsg( 'apisandbox-request-php-label' ),
+							copyText: '[\n' +
+								Object.keys( displayParams ).map( function ( param ) {
+									// displayParams is a diction or strings or numbers
+									return '\t' + JSON.stringify( param ) + ' => ' + JSON.stringify( displayParams[ param ] );
+								} ).join( ',\n' ) +
+								'\n]',
+							multiline: true,
+							textInput: {
+								classes: [ 'mw-apisandbox-textInputCode' ],
+								autosize: true,
+								maxRows: 6
+							}
+						} ).on( 'toggle', function ( visible ) {
+							if ( visible ) {
+								// Call updatePosition instead of adjustSize
+								// because the latter has weird caching
+								// behavior and the former bypasses it.
+								phpLayout.textInput.updatePosition();
 							}
 						} )
 					} )
