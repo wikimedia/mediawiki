@@ -148,7 +148,10 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"prepend-autoloader": false
+		"prepend-autoloader": false,
+		"allow-plugins": {
+			"wikimedia/composer-merge-plugin": true
+		}
 	},
 	"extra": {
 		"merge-plugin": {
