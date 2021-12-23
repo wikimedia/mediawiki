@@ -2704,6 +2704,7 @@
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}的貢獻",
 	"ipb-blocklist-duration-left": "剩下 $1",
 	"block-actions": "封鎖類型：",
+	"block-details": "詳細封鎖資訊",
 	"block-expiry": "到期時間：",
 	"block-options": "額外選項：",
 	"block-reason": "原因：",
@@ -3601,6 +3602,7 @@
 	"specialeditpage-submit": "前往頁面",
 	"deletepage": "刪除頁面",
 	"specialdeletepage-page": "目標頁面",
+	"specialdeletepage-submit": "前往頁面",
 	"pageinfo": "頁面資訊",
 	"specialpageinfo-page": "目標頁面",
 	"specialpageinfo-submit": "前往頁面",
@@ -3609,6 +3611,7 @@
 	"specialpagehistory-submit": "前往頁面",
 	"protectpage": "保護頁面",
 	"specialprotectpage-page": "目標頁面",
+	"specialprotectpage-submit": "前往頁面",
 	"purge": "更新快取",
 	"specialpurge-page": "目標頁面",
 	"specialpurge-submit": "前往頁面",
@@ -4091,5 +4094,7 @@
 	"paramvalidator-help-type-title": "類型：首頁標題",
 	"paramvalidator-help-type-title-must-exist": "僅接受存在的頁面。",
 	"paramvalidator-help-type-title-no-must-exist": "接受不存在的頁面。",
-	"nonmain-slot-differences-therefore-readonly": "您無法在頁面上的此修訂編輯維基語法，因為自該修訂以來頁面上的資料已被更改，而且更改內容不是基於維基語法。[$1 要還原該修訂請點此]。"
+	"nonmain-slot-differences-therefore-readonly": "您無法在頁面上的此修訂編輯維基語法，因為自該修訂以來頁面上的資料已被更改，而且更改內容不是基於維基語法。[$1 要還原該修訂請點此]。",
+	"config-missing-key": "缺少 MediaWiki 組態參數「$1」",
+	"config-invalid-key": "無效的 MediaWiki 組態參數「$1」：$2"
 }
