@@ -49,7 +49,7 @@ class ComposerPackageModifier {
 			$version->getPrettyString()
 		);
 
-		$this->package->setProvides( [ $link ] );
+		$this->package->setProvides( [ self::MEDIAWIKI_PACKAGE_NAME => $link ] );
 	}
 
 }
