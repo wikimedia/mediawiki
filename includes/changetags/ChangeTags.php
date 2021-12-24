@@ -202,6 +202,11 @@ class ChangeTags {
 		$classes = [];
 
 		$tags = explode( ',', $tags );
+		$order = array_flip( self::listDefinedTags() );
+		usort( $tags, static function ( $a, $b ) use ( $order ) {
+			return ( $order[ $a ] ?? INF ) <=> ( $order[ $b ] ?? INF );
+		} );
+
 		$displayTags = [];
 		foreach ( $tags as $tag ) {
 			if ( !$tag ) {
