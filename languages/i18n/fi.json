@@ -2177,6 +2177,7 @@
 	"apisandbox-request-url-label": "Pyynnön URL",
 	"apisandbox-request-format-json-label": "JSON",
 	"apisandbox-request-json-label": "Pyydetty JSON:",
+	"apisandbox-request-format-php-label": "PHP-joukko",
 	"apisandbox-request-time": "Pyyntöön kulunut aika: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Korjaa poletti ja lähetä uudelleen",
 	"apisandbox-results-fixtoken-fail": "$1-poletin haku epäonnistui.",

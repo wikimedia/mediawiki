@@ -2213,6 +2213,8 @@
 	"apisandbox-request-format-url-label": "URL-Abfrage-Zeichenfolge",
 	"apisandbox-request-url-label": "Anforderungs-URL:",
 	"apisandbox-request-json-label": "Anfragen-JSON:",
+	"apisandbox-request-format-php-label": "PHP-Array",
+	"apisandbox-request-php-label": "PHP-Array anfordern:",
 	"apisandbox-request-time": "Dauer der Anfrage: {{PLURAL:$1|Eine Millisekunde|$1 Millisekunden}}",
 	"apisandbox-results-fixtoken": "Token korrigieren und erneut übertragen",
 	"apisandbox-results-fixtoken-fail": "Der „$1“-Token konnte nicht abgerufen werden.",

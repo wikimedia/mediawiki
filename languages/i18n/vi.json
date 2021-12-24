@@ -841,6 +841,7 @@
 	"unstrip-depth-category-desc": "Trang vượt quá giới hạn về độ sâu đệ quy unstrip.",
 	"unstrip-size-warning": "Đã vượt quá giới hạn về kích thước unstrip ($1)",
 	"unstrip-size-category": "Trang vượt quá giới hạn về kích thước unstrip",
+	"unstrip-size-category-desc": "Trang vượt quá giới hạn về độ sâu đệ quy unstrip.",
 	"converter-manual-rule-error": "Lỗi được phát hiện trong quy tắc chuyển đổi ngôn ngữ thủ công",
 	"undo-success": "Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó xuất bản thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.",
 	"undo-failure": "Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.",

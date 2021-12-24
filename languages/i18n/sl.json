@@ -2112,6 +2112,8 @@
 	"apisandbox-request-format-url-label": "Niz poizvedbe URL",
 	"apisandbox-request-url-label": "URL zahteve:",
 	"apisandbox-request-json-label": "Zahteva JSON:",
+	"apisandbox-request-format-php-label": "Polje PHP",
+	"apisandbox-request-php-label": "Zahtevaj polje PHP:",
 	"apisandbox-request-time": "Trajanje zahteve: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Popravite žeton in ponovno pošljite",
 	"apisandbox-results-fixtoken-fail": "Pridobivanje žetona »$1« je spodletelo.",
