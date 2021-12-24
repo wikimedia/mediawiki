@@ -2204,6 +2204,8 @@
 	"apisandbox-request-format-url-label": "URL query string",
 	"apisandbox-request-url-label": "Verzoek-URL:",
 	"apisandbox-request-json-label": "Verzoek JSON:",
+	"apisandbox-request-format-php-label": "PHP-array",
+	"apisandbox-request-php-label": "Verzoek PHP-array:",
 	"apisandbox-request-time": "Doorlooptijd verzoek: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Token corrigeren en opnieuw verzenden",
 	"apisandbox-results-fixtoken-fail": "Het ophalen van het token van type \"$1\" is mislukt.",

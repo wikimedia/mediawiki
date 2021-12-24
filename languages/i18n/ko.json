@@ -4041,5 +4041,7 @@
 	"paramvalidator-help-type-title": "유형: 문서 제목",
 	"paramvalidator-help-type-title-must-exist": "존재하는 문서만 허용합니다.",
 	"paramvalidator-help-type-title-no-must-exist": "존재하지 않는 문서를 허용합니다.",
-	"nonmain-slot-differences-therefore-readonly": "이 문서 판의 위키텍스트를 편집할 수 없습니다. 위키텍스트 기반이 아닌 이 판부터 데이터의 변경이 있습니다. [$1 이 판을 복구하려면 여기를 클릭하십시오.]"
+	"nonmain-slot-differences-therefore-readonly": "이 문서 판의 위키텍스트를 편집할 수 없습니다. 위키텍스트 기반이 아닌 이 판부터 데이터의 변경이 있습니다. [$1 이 판을 복구하려면 여기를 클릭하십시오.]",
+	"config-missing-key": "미디어위키 설정 변수 \"$1\"이 없습니다",
+	"config-invalid-key": "미디어위키 설정 변수 \"$1\"이 잘못되었습니다: $2"
 }

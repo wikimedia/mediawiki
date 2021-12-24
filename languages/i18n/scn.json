@@ -1670,6 +1670,7 @@
 	"apisandbox-submit": "Addumanna",
 	"apisandbox-examples": "Asempi",
 	"apisandbox-add-multi": "Agghiunci",
+	"apisandbox-request-format-php-label": "Array PHP",
 	"apisandbox-multivalue-all-namespaces": "$1 (Tutti li namespace)",
 	"booksources": "Fonti libbrarî",
 	"booksources-search-legend": "Arricerca di fonti libbrarî",
