@@ -668,9 +668,11 @@
 	 * @private
 	 * @param {string} src URL to script, will be used as the src attribute in the script tag
 	 * @param {Function} [callback] Callback to run after request resolution
+	 * @param {string[]} [modules] List of modules being requested, for state to be marked as error
+	 * in case the script fails to load
 	 * @return {HTMLElement}
 	 */
-	function addScript( src, callback ) {
+	function addScript( src, callback, modules ) {
 		// Use a <script> element rather than XHR. Using XHR changes the request
 		// headers (potentially missing a cache hit), and reduces caching in general
 		// since browsers cache XHR much less (if at all). And XHR means we retrieve
@@ -679,13 +681,22 @@
 		// only given after downloading, parsing, and execution have completed.
 		var script = document.createElement( 'script' );
 		script.src = src;
-		script.onload = script.onerror = function () {
+		function onComplete() {
 			if ( script.parentNode ) {
 				script.parentNode.removeChild( script );
 			}
 			if ( callback ) {
 				callback();
 				callback = null;
+			}
+		}
+		script.onload = onComplete;
+		script.onerror = function () {
+			onComplete();
+			if ( modules ) {
+				for ( var i = 0; i < modules.length; i++ ) {
+					setAndPropagate( modules[ i ], 'error' );
+				}
 			}
 		};
 		document.head.appendChild( script );
@@ -1110,7 +1121,7 @@
 			// query string in-order. (T188076)
 			query.version = getCombinedVersion( packed.list );
 			query = sortQuery( query );
-			addScript( sourceLoadScript + '?' + makeQueryString( query ) );
+			addScript( sourceLoadScript + '?' + makeQueryString( query ), null, packed.list );
 		}
 
 		// Always order modules alphabetically to help reduce cache

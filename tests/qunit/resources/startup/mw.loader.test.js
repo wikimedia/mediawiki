@@ -752,6 +752,46 @@
 		);
 	} );
 
+	// Regresion test for T68598
+	QUnit.test( 'Network failure', function ( assert ) {
+		// Modules named "test.*Dump" always exist via load.mock.php (testloader)
+		mw.loader.register( [
+			// [module, version, dependencies, group, source, skip]
+			[ 'testNetfailBadDump', '1', [], 'unlucky', 'testloader' ],
+			[ 'testNetfailGoodDump', '1', [], 'lucky', 'testloader' ],
+			[ 'testNetfailDump', '1', [ 'testNetfailBadDump', 'testNetfailGoodDump' ], null, 'testloader' ]
+		] );
+
+		// Simulate network failure
+		var appendSuper = document.head.appendChild;
+		var appendStub = this.sandbox.stub( document.head, 'appendChild', function ( node ) {
+			if ( node.nodeName === 'SCRIPT' && node.src.indexOf( 'testNetfailBadDump' ) !== -1 ) {
+				Promise.resolve().then( node.onerror );
+				appendStub.restore();
+				return;
+			}
+			return appendSuper.apply( this, arguments );
+		} );
+
+		return mw.loader.using( [ 'testNetfailDump' ] ).then(
+			function () {
+				throw new Error( 'Unexpected success.' );
+			},
+			function ( e, modules ) {
+				assert.propEqual( {
+					testNetfailDump: mw.loader.getState( 'testNetfailDump' ),
+					testNetfailBadDump: mw.loader.getState( 'testNetfailBadDump' )
+				}, {
+					testNetfailDump: 'error',
+					testNetfailBadDump: 'error'
+				}, 'module state' );
+
+				assert.strictEqual( e.message, 'Failed dependency: testNetfailBadDump', 'error message' );
+				assert.true( modules.indexOf( 'testNetfailBadDump' ) !== -1, 'attribute failure' );
+			}
+		);
+	} );
+
 	QUnit.test( 'Skip-function handling', function ( assert ) {
 		mw.loader.register( [
 			// [module, version, dependencies, group, source, skip]
