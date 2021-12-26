@@ -711,17 +711,17 @@
 			{
 				"name": "cat_pages",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "cat_subcats",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "cat_files",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			}
 		],
 		"indexes": [
@@ -809,7 +809,7 @@
 				"name": "ir_ipb_id",
 				"comment": "The ipb_id from ipblocks",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true }
 			},
 			{
 				"name": "ir_type",
@@ -821,7 +821,7 @@
 				"name": "ir_value",
 				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true }
 			}
 		],
 		"indexes": [
@@ -853,7 +853,7 @@
 			{
 				"name": "qc_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qc_title",
@@ -885,7 +885,7 @@
 			{
 				"name": "qcc_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qcc_title",
@@ -895,7 +895,7 @@
 			{
 				"name": "qcc_namespacetwo",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qcc_titletwo",
@@ -1034,7 +1034,7 @@
 			{
 				"name": "wl_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "wl_title",
@@ -1410,7 +1410,7 @@
 			{
 				"name": "pp_page",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true }
 			},
 			{
 				"name": "pp_propname",
