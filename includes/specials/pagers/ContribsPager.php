@@ -203,7 +203,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
-		// with extra user based indexes or partioning by user.
+		// with extra user based indexes or partitioning by user.
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'contributions' );
 		// Needed by call to getIndexField -> getTargetTable from parent constructor

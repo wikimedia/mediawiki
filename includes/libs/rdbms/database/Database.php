@@ -85,7 +85,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $user;
 	/** @var string|null Password used to establish the current connection */
 	protected $password;
-	/** @var string|null Readible name or host/IP of the database server */
+	/** @var string|null Readable name or host/IP of the database server */
 	protected $serverName;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
@@ -392,14 +392,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      The database must exist or an error might be thrown. Setting this to an empty string
 	 *      will avoid any such errors and make the handle have no implicit database scope. This is
 	 *      useful for queries like SHOW STATUS, CREATE DATABASE, or DROP DATABASE. Note that a
-	 *      "database" in Postgres is rougly equivalent to an entire MySQL server. This the domain
+	 *      "database" in Postgres is roughly equivalent to an entire MySQL server. This the domain
 	 *      in which user names and such are defined, e.g. users are database-specific in Postgres.
 	 *   - schema : The database schema to use (if supported). A "schema" in Postgres is roughly
 	 *      equivalent to a "database" in MySQL. Note that MySQL and SQLite do not use schemas.
 	 *   - tablePrefix : Optional table prefix that is implicitly added on to all table names
 	 *      recognized in queries. This can be used in place of schemas for handle site farms.
 	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
-	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
+	 *      buffering, and transaction behavior. It is STRONGLY advised to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this database simply acts as a key/value store.
 	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
 	 *      'mysqli' driver; the old one 'mysql' has been removed.
@@ -1642,7 +1642,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Transaction was automatically rolled back, breaking the expectations of
 			// callers relying on that transaction to provide atomic writes, serializability,
 			// or read results consistent with a single point-in-time snapshot. Disconnection
-			// on ROLLBACK is not an issue, since the intented result of rolling back the
+			// on ROLLBACK is not an issue, since the intended result of rolling back the
 			// transaction was in fact achieved. Disconnection on COMMIT of an empty transaction
 			// is also not an issue, for similar reasons (T127428).
 			$blockers[] = 'explicit transaction';
@@ -2578,7 +2578,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$valueTuples = [];
 		foreach ( $rows as $row ) {
 			$rowColumns = array_keys( $row );
-			// VALUES(...) requires a uniform correspondance of (column => value)
+			// VALUES(...) requires a uniform correspondence of (column => value)
 			if ( $rowColumns !== $tupleColumns ) {
 				throw new DBUnexpectedError(
 					$this,
@@ -4064,7 +4064,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
-	 *   order to ignore problems like duplicate key errors or foriegn key violations
+	 *   order to ignore problems like duplicate key errors or foreign key violations
 	 * @since 1.31
 	 */
 	protected function wasKnownStatementRollbackError() {

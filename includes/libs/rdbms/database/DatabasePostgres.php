@@ -828,7 +828,7 @@ __INDEXATTR__;
 	 * @see getSearchPath()
 	 * @see setSearchPath()
 	 * @since 1.19
-	 * @return array List of actual schemas for the current sesson
+	 * @return array List of actual schemas for the current session
 	 */
 	public function getSchemas() {
 		$res = $this->query(
@@ -884,7 +884,7 @@ __INDEXATTR__;
 	/**
 	 * Determine default schema for the current application
 	 * Adjust this session schema search path if desired schema exists
-	 * and is not alread there.
+	 * and is not already there.
 	 *
 	 * We need to have name of the core schema stored to be able
 	 * to query database metadata.

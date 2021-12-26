@@ -287,7 +287,7 @@ class ChangesList extends ContextSource {
 
 		$context = $context ?: RequestContext::getMain();
 
-		// Inconsistent naming, kepted for b/c
+		// Inconsistent naming, kept for b/c
 		if ( isset( $map[$flag] ) ) {
 			$flag = $map[$flag];
 		}
@@ -638,7 +638,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function getTimestamp( $rc ) {
 		// This uses the semi-colon separator unless there's a watchlist expiry date for the entry,
-		// because in that case the timestamp is preceeded by a clock icon.
+		// because in that case the timestamp is preceded by a clock icon.
 		// A space is important after mw-changeslist-separator--semicolon to make sure
 		// that whatever comes before it is distinguishable.
 		// (Otherwise your have the text of titles pushing up against the timestamp)
@@ -684,7 +684,7 @@ class ChangesList extends ContextSource {
 			$s .= Linker::userToolLinks(
 				$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
 				false, 0, null,
-				// The text content of tools is not wrapped with parenthesises or "piped".
+				// The text content of tools is not wrapped with parentheses or "piped".
 				// This will be handled in CSS (T205581).
 				false
 			);
