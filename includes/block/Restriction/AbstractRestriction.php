@@ -25,13 +25,13 @@ namespace MediaWiki\Block\Restriction;
 abstract class AbstractRestriction implements Restriction {
 
 	/**
-	 * String constant identifying the type of restriction. Expected to be overriden in subclasses
+	 * String constant identifying the type of restriction. Expected to be overridden in subclasses
 	 * with a non-empty string value.
 	 */
 	public const TYPE = '';
 
 	/**
-	 * Numeric type identifier. Expected to be overriden in subclasses with a non-zero integer
+	 * Numeric type identifier. Expected to be overridden in subclasses with a non-zero integer
 	 * number. Must not exceed 127 to fit into a TINYINT database field.
 	 */
 	public const TYPE_ID = 0;

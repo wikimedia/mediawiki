@@ -198,7 +198,7 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * Reset the iterator to the begining of the table.
+	 * Reset the iterator to the beginning of the table.
 	 */
 	public function rewind() {
 		$this->key = -1; // self::next() will turn this into 0
