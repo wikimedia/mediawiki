@@ -2222,7 +2222,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	public function testMsg() {
 		$lang = TestingAccessWrapper::newFromObject( $this->getLang() );
-		$this->assertSame( 'December 1', $lang->msg( 'december-date', '1' )->text() );
+		$this->assertSame( 'Line 1:', $lang->msg( 'lineno', '1' )->text() );
 	}
 
 }
