@@ -322,7 +322,7 @@
 	"versionrequired": "نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است",
 	"versionrequiredtext": "برای دیدن این صفحه به نسخهٔ $1 از نرم‌افزار مدیاویکی نیاز دارید.\nبه [[Special:Version|این صفحه]] مراجعه کنید.",
 	"ok": "تأیید",
-	"backlinksubtitle": "← $1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "برگرفته از «$1»",
 	"youhavenewmessages": "$1 {{PLURAL:$3|دارید}} ($2)",
 	"youhavenewmessagesfromusers": "شما از {{PLURAL:$3|یک کاربر دیگر|$3 کاربر}} $1 {{PLURAL:$4|دارید}} ($2).",

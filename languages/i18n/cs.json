@@ -326,7 +326,6 @@
 	"site-atom-feed": "Atom kanál {{grammar:2sg|$1}}.",
 	"page-rss-feed": "RSS kanál stránky „$1“",
 	"page-atom-feed": "Atom kanál stránky „$1“",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (stránka neexistuje)",
 	"sort-descending": "Seřadit sestupně",
 	"sort-ascending": "Seřadit vzestupně",

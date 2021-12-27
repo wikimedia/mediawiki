@@ -292,7 +292,6 @@
 	"site-atom-feed": "Flux Atom de $1",
 	"page-rss-feed": "Flux RSS de \"$1\"",
 	"page-atom-feed": "Flux Atom de \"$1\"",
-	"feed-atom": "Atom",
 	"red-link-title": "$1 (la pagina existís pas)",
 	"sort-descending": "Botar en òrdre creissent",
 	"sort-ascending": "Botar en òrdre descreissent",

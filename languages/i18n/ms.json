@@ -301,8 +301,6 @@
 	"site-atom-feed": "Suapan Atom $1",
 	"page-rss-feed": "Suapan RSS \"$1\"",
 	"page-atom-feed": "Suapan Atom \"$1\"",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (laman tidak wujud)",
 	"sort-descending": "Menyusun secara menurun",
 	"sort-ascending": "Menyusun secara menaik",

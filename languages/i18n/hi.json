@@ -341,7 +341,6 @@
 	"versionrequiredtext": "यह पृष्ठ प्रयोग करने के लिये मीडियाविकी का $1 अवतरण ज़रूरी है।\nदेखें [[Special:Version|अवतरण पृष्ठ]]।",
 	"ok": "ठीक है",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" से लिया गया",
 	"youhavenewmessages": "{{PLURAL:$3|आपके लिए}} $1 हैं। ($2)",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|आपके लिये}} {{PLURAL:$3|एक अन्य सदस्य|$3 अन्य सदस्यों}} के $1 हैं। ($2)",

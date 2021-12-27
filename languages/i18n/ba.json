@@ -271,7 +271,6 @@
 	"versionrequired": "MediaWiki-ның $1 версияһы кәрәк",
 	"versionrequiredtext": "Был бит менән эшләү өсөн MediaWiki-ның $1 версияһы кәрәк. [[Special:Version|Ҡулланылған версия тураһында мәғлүмәт битен]] ҡара.",
 	"ok": "Тамам",
-	"pagetitle": "{{SITENAME}} проектынан",
 	"retrievedfrom": "Сығанағы — «$1»",
 	"youhavenewmessages": "{{PLURAL:$3|Һеҙгә}} $1 ($2) бар.",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Һеҙгә}} {{PLURAL:$3|$3 ҡатнашыусыһынан}} $1 килде ($2).",

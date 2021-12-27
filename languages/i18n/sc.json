@@ -274,8 +274,6 @@
 	"site-atom-feed": "Feed Atom de $1",
 	"page-rss-feed": "Feed RSS pro \"$1\"",
 	"page-atom-feed": "Feed Atom pro \"$1\"",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (sa pàgina no esistit)",
 	"sort-descending": "Òrdine in falada",
 	"sort-ascending": "Òrdine in artziada",

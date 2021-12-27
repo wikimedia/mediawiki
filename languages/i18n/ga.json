@@ -254,8 +254,6 @@
 	"site-atom-feed": "Fotha Atom $1",
 	"page-rss-feed": "\"$1\" Fotha RSS",
 	"page-atom-feed": "\"$1\" Fotha Atom",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (níl an leathanach ann)",
 	"nstab-main": "Alt",
 	"nstab-user": "{{GENDER:$1|Leathanach úsáideora}}",
