@@ -1012,7 +1012,7 @@
 				"name": "qci_timestamp",
 				"comment": "Timestamp of last update",
 				"type": "mwtimestamp",
-				"options": { "length": 14, "notnull": true, "default": "19700101000000" }
+				"options": { "notnull": true, "default": "19700101000000" }
 			}
 		],
 		"indexes": [],
@@ -1816,8 +1816,7 @@
 				"comment": "the date/time on which the file was added",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -2003,8 +2002,7 @@
 				"name": "fa_deleted_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": false,
-					"length": 14
+					"notnull": false
 				}
 			},
 			{
@@ -2107,8 +2105,7 @@
 				"name": "fa_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": false,
-					"length": 14
+					"notnull": false
 				}
 			},
 			{
@@ -2297,8 +2294,7 @@
 				"name": "oi_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -2792,8 +2788,7 @@
 				"comment": "Time of the upload.",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -2874,8 +2869,7 @@
 				"name": "rc_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -3222,8 +3216,7 @@
 				"comment": "Basic revision stuff.",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -3486,7 +3479,7 @@
 				"name": "user_newpass_time",
 				"comment": "Timestamp of the last time when a new password was sent, for throttling and expiring purposes. Emailed passwords will expire $wgNewPasswordExpiry (a week) after being set. If user_newpass_time is NULL (eg. created by mail) it doesn't expire.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_email",
@@ -3498,7 +3491,7 @@
 				"name": "user_touched",
 				"comment": "If the browser sends an If-Modified-Since header, a 304 response is suppressed if the value in this field for the current user is later than the value in the IMS header. That is, this field is an invalidation timestamp for the browser cache of logged-in users. Among other things, it is used to prevent pages generated for a previously logged in user from being displayed after a session expiry followed by a fresh login.",
 				"type": "mwtimestamp",
-				"options": { "notnull": true, "length": 14 }
+				"options": { "notnull": true }
 			},
 			{
 				"name": "user_token",
@@ -3510,7 +3503,7 @@
 				"name": "user_email_authenticated",
 				"comment": "Initially NULL; when a user's e-mail address has been validated by returning with a mailed token, this is set to the current timestamp.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_email_token",
@@ -3522,13 +3515,13 @@
 				"name": "user_email_token_expires",
 				"comment": "Expiration date for the user_email_token.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_registration",
 				"comment": "Timestamp of account registration. Accounts predating this schema addition may contain NULL.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_editcount",
