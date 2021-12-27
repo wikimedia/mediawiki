@@ -23,7 +23,8 @@
 			"Selven",
 			"The Polish",
 			"Tosky",
-			"아라"
+			"아라",
+			"Ajeje Brazorf"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -188,10 +189,10 @@
 	"config-admin-error-user": "Errore interno durante la creazione di un amministratore con il nome \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Errore interno durante l'impostazione di una password per amministratore \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "È stato inserito un indirizzo email non valido.",
-	"config-subscribe": "Sottoscrivi la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list degli annunci di rilasci].",
+	"config-subscribe": "Sottoscrivi la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mailing list degli annunci di rilasci].",
 	"config-subscribe-help": "Si tratta di una mailing list a basso traffico dedicata agli annunci di nuove versioni, compresi importanti segnalazioni riguardanti la sicurezza.\nÈ consigliato iscriversi e aggiornare la propria installazione di MediaWiki quando una nuova versione viene resa pubblica.",
 	"config-subscribe-noemail": "Hai provato ad iscriverti alla mailing list dedicata agli annunci delle nuove versioni senza fornire un indirizzo email.\nInserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing list.",
-	"config-pingback": "Condividi i dati su questa installazione con gli sviluppatori di MediaWiki.",
+	"config-pingback": "Condividi i dati su questa installazione con gli sviluppatori di MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Politica sulla privacy].",
 	"config-pingback-help": "Se si seleziona questa opzione, MediaWiki contatterà periodicamente https://www.mediawiki.org con i dati base su questa istanza MediaWiki. In questa categoria di dati rientrano, per esempio, il tipo di sistema, la versione di PHP e database di backend scelto. La Wikimedia Foundation condivide questi dati con gli sviluppatori Mediawiki per aiutarla a guidare i futuri sforzi di sviluppo. Per il tuo sistema saranno inviati i seguenti dati:\n<pre>$1</pre>",
 	"config-almost-done": "Hai quasi finito!\nAdesso puoi saltare la rimanente parte della configurazione e semplicemente installare il wiki.",
 	"config-optional-continue": "Fammi altre domande.",
@@ -247,7 +248,7 @@
 	"config-memcached-help": "Elenco di indirizzi IP da utilizzare per Memcached.\nDovresti specificarne uno per riga e indicare la porta da utilizzare. Per esempio:\n 127.0.0.1:11211\n 192.168.1.25:1234",
 	"config-memcache-needservers": "È stato selezionato il tipo di caching Memcached, ma non è stato impostato alcun server.",
 	"config-memcache-badip": "È stato inserito un indirizzo IP non valido per Memcached: $1.",
-	"config-memcache-noport": "Non è stata specificata una porta da utilizzare per il server Memcached: $1.\nSe non sai qual'è la porta, il valore di default è 11211.",
+	"config-memcache-noport": "Non è stata specificata una porta da utilizzare per il server Memcached: $1.\nSe non sai qual è la porta, il valore di default è 11211.",
 	"config-memcache-badport": "I numeri di porta per memcached dovrebbero essere tra $1 e $2.",
 	"config-extensions": "Estensioni",
 	"config-extensions-help": "Le estensioni elencate sopra sono state rilevate nella tua directory <code>./extensions</code>.\n\nQueste potrebbero richiedere ulteriore configurazione, ma è possibile attivarle ora",
@@ -291,7 +292,7 @@
 	"config-install-updates": "Impedire l'esecuzione di aggiornamenti non necessari",
 	"config-install-updates-failed": "<strong>Errore:</strong> l'inserimento delle chiavi di aggiornamento nelle tabelle non è riuscito con il seguente errore: $1",
 	"config-install-sysop": "Creazione dell'account utente per l'amministratore",
-	"config-install-subscribe-fail": "Impossibile sottoscrivere mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Impossibile sottoscrivere [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL non è installato e <code>allow_url_fopen</code> non è disponibile.",
 	"config-install-mainpage": "Creazione della pagina principale con contenuto predefinito",
 	"config-install-mainpage-exists": "La pagina principale già esiste, saltata",
@@ -312,5 +313,5 @@
 	"config-extension-not-found": "Impossibile trovare il file di registrazione per l'estensione \"$1\"",
 	"config-extension-dependency": "Si è verificato un errore di dipendenza durante l'installazione dell'estensione \"$1\": $2",
 	"mainpagetext": "<strong>MediaWiki è stato installato.</strong>",
-	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guida utente] per maggiori informazioni sull'uso di questo software wiki.\n\n== Per iniziare ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostazioni di configurazione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequenti su MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Trova MediaWiki nella tua lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imparare a combattere lo spam sul tuo wiki]"
+	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guida utente] per maggiori informazioni sull'uso di questo software wiki.\n\n== Per iniziare ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostazioni di configurazione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequenti su MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailing list annunci MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Trova MediaWiki nella tua lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imparare a combattere lo spam sul tuo wiki]"
 }

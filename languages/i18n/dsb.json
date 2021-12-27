@@ -23,7 +23,8 @@
 			"Tlustulimu",
 			"Tlustulimu Nepl1",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -506,6 +507,8 @@
 	"minoredit": "Snadna změna",
 	"watchthis": "Toś ten bok wobglědowaś",
 	"savearticle": "Bok składowaś",
+	"publishchanges": "Změny wózjawiś",
+	"publishchanges-start": "Změny wózjawiś...",
 	"preview": "Pśeglěd",
 	"showpreview": "Pśeglěd pokazaś",
 	"showdiff": "Pśeměnjenja pokazaś",
@@ -860,7 +863,7 @@
 	"default": "Standard",
 	"prefs-files": "Dataje",
 	"prefs-custom-css": "Swójski CSS",
-	"prefs-custom-js": "Swójski JS",
+	"prefs-custom-js": "Swójski JavaScript",
 	"prefs-common-config": "Zgromadny CSS/JS za wšykne suknje:",
 	"prefs-reset-intro": "You can use this page to reset your preferences to the site defaults. This cannot be undone.\nMóžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standardne gódnoty sedła. To njedajo se anulěrowaś.",
 	"prefs-emailconfirm-label": "E-mailowe wobkšuśenje:",

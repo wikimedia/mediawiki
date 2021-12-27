@@ -3,7 +3,9 @@
 		"authors": [
 			"Chase me ladies, I'm the Cavalry",
 			"Macofe",
-			"Reedy"
+			"Reedy",
+			"Bjh21",
+			"Samwilson"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -31,9 +33,12 @@
 	"apihelp-query+revisions+base-param-difftotext": "Text to diff each revision to. Only diffs a limited number of revisions. Overrides <var>$1diffto</var>. If <var>$1section</var> is set, only that section will be diffed against this text",
 	"apihelp-query+revisions+base-param-contentformat": "Serialisation format used for <var>$1difftotext</var> and expected for output of content.",
 	"apihelp-query+search-example-generator": "Get page information about the pages returned for a search for <kbd>meaning</kbd>.",
+	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Returns wiki rights (licence) information if available.",
 	"apihelp-query+watchlist-example-simple": "List the top revision for recently changed pages on the watchlist of the current user.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the watchlist of the current user.",
 	"apihelp-php-summary": "Output data in serialised PHP format.",
 	"apihelp-phpfm-summary": "Output data in serialised PHP format (pretty-print in HTML).",
+	"api-help-license": "Licence: [[$1|$2]]",
+	"api-help-license-unknown": "Licence: <span class=\"apihelp-unknown\">unknown</span>",
 	"api-help-param-multi-separate": "Separate values with <kbd>|</kbd>."
 }

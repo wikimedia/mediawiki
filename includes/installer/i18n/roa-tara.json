@@ -30,7 +30,7 @@
 	"config-page-upgradedoc": "Aggiornamende",
 	"config-page-existingwiki": "Uicchi esistende",
 	"config-restart": "Sìne, falle repartì",
-	"config-sidebar": "* [https://www.mediawiki.org Pàgena Prengepàle MediaUicchi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l'utende]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Guide de l'amministratore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]",
+	"config-sidebar": "* [https://www.mediawiki.org Pàgena Prengepàle MediaUicchi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l'utende]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Guide de l'amministratore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication Aijute de recerche]\n* [https://phabricator.wikimedia.org/ Tracciatore de errore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Condrebbuisce]",
 	"config-sidebar-relnotes": "Note de rilasce",
 	"config-sidebar-license": "Stoche a copie",
 	"config-sidebar-upgrade": "Aggiornamende",
@@ -60,5 +60,5 @@
 	"config-help": "ajute",
 	"config-help-tooltip": "cazze pe spannere",
 	"mainpagetext": "<strong>MediaUicchi ha state 'nstallate.</strong>",
-	"mainpagedocfooter": "Vè 'ndruche [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer uicchi.\n\n== Pe accumenzà ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenghe de le 'mbostaziune pa configurazione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ de MediaUicchi]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Elenghe d'a poste de MediaUicchi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione de MediaUicchi pa lènga toje]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 'Mbare accume combattere condre a 'u rummate sus 'a uicchi toje]"
+	"mainpagedocfooter": "Vè 'ndruche [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer uicchi.\n\n== Pe accumenzà ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenghe de le 'mbostaziune pa configurazione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ de MediaUicchi]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Elenghe d'a poste de MediaUicchi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione de MediaUicchi pa lènga toje]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 'Mbare accume combattere condre a 'u rummate sus 'a uicchi toje]"
 }

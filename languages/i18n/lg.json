@@ -4,7 +4,8 @@
 			"Erinamukuta",
 			"Kizito",
 			"Macofe",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Enyunzi ebengako olukoloboze?",
@@ -153,7 +154,7 @@
 	"protect_change": "lusibe/lusumulule",
 	"unprotect": "Kyusa ebikugizo",
 	"newpage": "Lupapula lupya",
-	"talkpagelinktext": "Yogera nange",
+	"talkpagelinktext": "yogera nange",
 	"specialpage": "Olupapula olwawule",
 	"personaltools": "Ebikola ku akawunti n'enfo yo",
 	"talk": "Emboozi",
@@ -172,7 +173,7 @@
 	"viewcount": "Luno olupapula lwakasomebwa {{PLURAL:$1|omurundi gumu|emirundi $1}}.",
 	"protectedpage": "Luno olupapula terukyusibwamu",
 	"jumpto": "Genda ku:",
-	"jumptonavigation": "Ndagiriro",
+	"jumptonavigation": "ndagiriro",
 	"jumptosearch": "kunoonya",
 	"view-pool-error": "Tukwetondera olw'obutasabola okukuwereza olupapula lw'oyagala okulaba ku saawa eno.\nOlw'obungi bw'abakebera olupapula olwo, kompyuta zaffe tezisobola kwongerako mulala.\nLindako akaseera oddemu ogezeeko okulukebera.\n\n$1",
 	"pool-timeout": "Obudde obugere obw'okulinda okufuna obuyinza obw'okulukozesa buweddeko",

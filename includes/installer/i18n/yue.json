@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hello903hello"
+			"Hello903hello",
+			"Moon0319"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
@@ -13,7 +14,7 @@
 	"config-wiki-language-help": "揀將要安裝嘅wiki多數情況主要用嘅語言。",
 	"config-back": "← 返去",
 	"config-continue": "繼續 →",
-	"config-page-language": "語言",
+	"config-page-language": "話",
 	"config-page-welcome": "歡迎使用MediaWiki!",
 	"config-page-dbconnect": "連線到資料庫",
 	"config-page-upgrade": "升級安裝咗嘅版本",
@@ -23,7 +24,6 @@
 	"config-page-install": "安裝",
 	"config-page-complete": "搞掂！",
 	"config-page-restart": "重新開始安裝",
-	"config-page-readme": "讀我",
 	"config-page-releasenotes": "發行解",
 	"config-page-copying": "複製緊",
 	"config-page-upgradedoc": "升級緊",
@@ -44,5 +44,5 @@
 	"config-skins-screenshots": "$1（螢幕截圖： $2）",
 	"config-screenshot": "螢幕截圖",
 	"mainpagetext": "<strong>MediaWiki已經裝好。</strong>",
-	"mainpagedocfooter": "請睇[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用戶指引]（英文），裏面有資料講點用wiki軟件。\n\n==開始使用==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置設定清單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常見問題]（英文）\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 用你講嘅文來本地化MediaWiki]\t\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 學下點樣喺你嘅wiki度對付破壞]"
+	"mainpagedocfooter": "請睇[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用戶指引]（英文），裏面有資料講點用wiki軟件。\n\n==開始使用==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置設定清單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常見問題]（英文）\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki 發佈郵件名單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 用你講嘅文來本地化MediaWiki]\t\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 學下點樣喺你嘅wiki度對付破壞]"
 }

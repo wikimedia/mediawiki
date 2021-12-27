@@ -4,8 +4,28 @@
 			"Joetaras"
 		]
 	},
+	"apihelp-main-param-action": "Ce azione ste da fà.",
+	"apihelp-main-param-format": "'U formate d'u resultate.",
+	"apihelp-block-summary": "Blocche 'n'utende.",
 	"apihelp-block-param-reason": "Mutive pu blocche.",
-	"apihelp-createaccount-param-name": "Nome de l'utende.",
+	"apihelp-block-param-nocreate": "No fà ccrejà le cunde utinde.",
+	"apihelp-block-param-autoblock": "Automaticamende blocche l'urteme indirizze IP e tutte le sottosequenze de le IP ca onne state ausate da 'u module pe trasè.",
+	"apihelp-checktoken-param-token": "Gettone da testà.",
+	"apihelp-checktoken-param-maxtokenage": "Età massime d'u gettone, in seconde.",
+	"apihelp-checktoken-example-simple": "Verifiche 'a validità d'u gettone <kbd>csrf</kbd>.",
+	"apihelp-compare-param-fromtitle": "Prime titole da combrondà.",
+	"apihelp-compare-param-fromid": "Prime ID de pàgene da combrondà.",
+	"apihelp-compare-param-fromrev": "Prima revisione da combrondà.",
+	"apihelp-compare-param-totitle": "Seconde titole da combrondà.",
+	"apihelp-compare-param-toid": "Seconde ID de pàgene da combrondà.",
+	"apihelp-compare-param-torev": "Seconda revisione da combrondà.",
+	"apihelp-compare-paramvalue-prop-diff": "Differenze jndr'à l'HTML.",
+	"apihelp-delete-summary": "Scangille 'na pàgene.",
 	"apihelp-edit-param-text": "Vôsce.",
-	"apihelp-edit-example-edit": "Cange 'na pàgene"
+	"apihelp-edit-example-edit": "Cange 'na pàgene",
+	"apihelp-emailuser-param-text": "Cuèrpe d'a mail.",
+	"apihelp-expandtemplates-param-title": "Titole d'a pàgene",
+	"apihelp-purge-param-forcelinkupdate": "Aggionr le tabbelle de collegaminde e fà otre aggiornamende secondarie de date.",
+	"api-help-param-internal": "Inderne.",
+	"apierror-compare-relative-to-deleted": "Non ge se pò ausà <kbd>torelative=$1</kbd> relative a 'na revisione scangellate."
 }

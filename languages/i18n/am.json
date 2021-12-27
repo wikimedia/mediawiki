@@ -16,7 +16,8 @@
 			"Stephanecbisson",
 			"Teferra",
 			"Yeniesil",
-			"아라"
+			"아라",
+			"MuratTheTurkish"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -815,7 +816,7 @@
 	"recentchangeslinked-feed": "የተዛመዱ ለውጦች",
 	"recentchangeslinked-toolbox": "የተዛመዱ ለውጦች",
 	"recentchangeslinked-title": "በ«$1» በተዛመዱ ገጾች ቅርብ ለውጦች",
-	"recentchangeslinked-summary": "ከዚሁ ገጽ የተያየዙት ሌሎች ጽሑፎች ቅርብ ለውጦች ከታች ይዘረዝራሉ።\n\nበሚከታተሉት ገጾች መካከል ያሉት ሁሉ በ'''ጉልህ ፊደላት''' ይታያሉ።",
+	"recentchangeslinked-summary": "ከዚያ ገጽ ጋር በተገናኙ ወይም ከነሱ ገጾች ላይ ለውጦችን ለማየት የገጽ ስም ያስገቡ። (የአንድ ምድብ አባላትን ለማየት ያስገቡ {{ns:categoey}}:የምድብ ስም). በ [[Special:Watchlist|የእርስዎ የክትትል ዝርዝር]] ላይ ባሉ ገጾች ላይ የተደረጉ ለውጦች <strong>ደፋር</strong> ውስጥ ናቸው።",
 	"recentchangeslinked-page": "አርዕስት፡",
 	"recentchangeslinked-to": "(ወዲህ በተያያዙት መጣጥፎች ላይ)",
 	"upload": "ፋይል / ሥዕል ለመላክ",
@@ -1298,7 +1299,7 @@
 	"block": "ተጠቃሚ ለማገድ",
 	"unblock": "ከተጠቃሚ ማገጃ ለማንሣት",
 	"blockip": "ተጠቃሚውን ለማገድ",
-	"blockiptext": "ከዚህ ታች ያለው ማመልከቻ በአንድ ቁጥር አድርሻ ወይም ብዕር ስም ላይ ማገጃ (ማዕቀብ) ለመጣል ይጠቀማል።  ይህ በ[[{{MediaWiki:Policy-url}}|መርመርያዎቻችን]] መሠረት ተንኮል ወይም ጉዳት ለመከልከል ብቻ እንዲደረግ ይገባል። ከዚህ ታች የተለየ ምክንያት (ለምሣሌ የተጎዳው ገጽ በማጠቆም) ይጻፉ።",
+	"blockiptext": "ከዚህ ታች ያለው ማመልከቻ በአንድ ቁጥር አድርሻ ወይም ብዕር ስም ላይ ማገጃ (ማዕቀብ) ለመጣል ይጠቀማል።  ይህ በ[[{{MediaWiki:Policy-url}}|መርመርያዎቻችን]] መሠረት ተንኮል ወይም ጉዳት ለመከልከል ብቻ እንዲደረግ ይገባል። ከዚህ ታች የተለየ ምክንያት (ለምሣሌ የተጎዳው ገጽ በማጠቆም) ይጻፉ።\nየ [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] አገባብ በመጠቀም የአይፒ አድራሻ ክልሎችን ማገድ ይችላሉ ፤ ትልቁ የተፈቀደው ክልል ለ IPv4 /$1 እና ለ $2 ለ IPv6 ነው፡፡",
 	"ipaddressorusername": "የቁ. አድራሻ ወይም የብዕር ስም፦",
 	"ipbreason": "ምክንያቱ፦",
 	"ipbreason-dropdown": "*ተራ የማገጃ ምክንያቶች\n** የሀሠት መረጃ መጨምር\n** ከገጾች ይዞታውን መደምሰስ\n** የ'ስፓም' ማያያዣ ማብዛት\n** እንቶ ፈንቶ መጨምር\n** ዛቻ ማብዛት\n** በአድራሻዎች ብዛት መተንኮል\n** የማይገባ ብዕር ስም",
@@ -1554,7 +1555,7 @@
 	"file-info-size": "$1 × $2 ፒክስል፤ መጠን፦ $3፤ የMIME ዓይነት፦ $4",
 	"file-nohires": "ከዚህ በላይ ማጉላት አይቻልም።",
 	"svg-long-desc": "የSVG ፋይል፡ በተግባር $1 × $2 ፒክስል፤ መጠን፦ $3",
-	"show-big-image": "በሙሉ ጒልህነት ለመመልከት",
+	"show-big-image": "ዋና ፋይል",
 	"newimages": "የአዳዲስ ሥዕሎች ማሳያ አዳራሽ",
 	"imagelisttext": "$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።",
 	"newimages-legend": "ማጣሪያ",

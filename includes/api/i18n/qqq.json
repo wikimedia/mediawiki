@@ -15,7 +15,11 @@
 			"Siebrand",
 			"Tacsipacsi",
 			"Umherirrender",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"FF-11",
+			"FF11",
+			"Kizule",
+			"MuratTheTurkish"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1138,8 +1142,8 @@
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "{{doc-apihelp-paramvalue|query+search|prop|categorysnippet}}",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "{{doc-apihelp-paramvalue|query+search|prop|isfilematch}}",
 	"apihelp-query+search-paramvalue-prop-extensiondata": "{{doc-apihelp-paramvalue|query+search|prop|extensiondata}}",
-	"apihelp-query+search-paramvalue-prop-score": "{{doc-apihelp-paramvalue|query+search|prop|score}}\n{{Identical|Ignored}}",
-	"apihelp-query+search-paramvalue-prop-hasrelated": "{{doc-apihelp-paramvalue|query+search|prop|hasrelated}}\n{{Identical|Ignored}}",
+	"apihelp-query+search-paramvalue-prop-score": "{{doc-apihelp-paramvalue|query+search|prop|score}}",
+	"apihelp-query+search-paramvalue-prop-hasrelated": "{{doc-apihelp-paramvalue|query+search|prop|hasrelated}}",
 	"apihelp-query+search-param-limit": "{{doc-apihelp-param|query+search|limit}}",
 	"apihelp-query+search-param-interwiki": "{{doc-apihelp-param|query+search|interwiki}}",
 	"apihelp-query+search-param-backend": "{{doc-apihelp-param|query+search|backend}}",
@@ -1744,7 +1748,7 @@
 	"apierror-permissiondenied-patrolflag": "{{doc-apierror}}\n\nSee also:\n* {{msg-mw|apierror-permissiondenied}}",
 	"apierror-permissiondenied-unblock": "{{doc-apierror}}\n\nSee also:\n* {{msg-mw|apierror-permissiondenied}}",
 	"apierror-prefixsearchdisabled": "{{doc-apierror}}",
-	"apierror-promised-nonwrite-api": "{{doc-apierror}}",
+	"apierror-promised-nonwrite-api": "{{doc-apierror}}\n\nDo not translate 'Promise-Non-Write-API-Action', it refers to a name which is always in English.\n\nSee also: {{msg-mw|nonwrite-api-promise-error}}",
 	"apierror-protect-invalidaction": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied protection type.",
 	"apierror-protect-invalidlevel": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied protection level.",
 	"apierror-ratelimited": "{{doc-apierror}}",

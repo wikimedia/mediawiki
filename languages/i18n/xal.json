@@ -7,7 +7,8 @@
 			"Huuchin",
 			"ОйЛ",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Заалһиг татасллһн:",
@@ -434,7 +435,7 @@
 	"prefs-searchoptions": "Хәәвр",
 	"prefs-namespaces": "Нернә ус",
 	"prefs-custom-css": "Онц CSS",
-	"prefs-custom-js": "Онц JS",
+	"prefs-custom-js": "Онц JavaScript",
 	"prefs-emailconfirm-label": "E-mail лавллт:",
 	"youremail": "E-mail хайг:",
 	"username": "Демнәчнә нерн:",

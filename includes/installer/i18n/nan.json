@@ -55,5 +55,5 @@
 	"config-outdated-sqlite": "<strong>Kéng-kò:</strong> Lí í-keng an-chng SQLite $1, m̄-koh i--ê pán-pún pí thang-chng--ê pán-pún $2 khah kū. Só͘-í lí bô-hoat-tō͘ ēng SQLite.",
 	"config-no-fts3": "<strong>Kéng-kò: </strong> SQLite tī pian-e̍k--ê sî-chūn bô pau-koat  [//sqlite.org/fts3.html FTS3 module], āu-tâi chhiau-chhoē kong-lêng tiō ē bô-hoat-tō͘ iōng.",
 	"mainpagetext": "'''MediaWiki已經裝好矣。'''",
-	"mainpagedocfooter": "請查看[https://meta.wikimedia.org/wiki/Help:Contents 用者說明書]的資料通使用wiki 軟體\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置的設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki時常問答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]"
+	"mainpagedocfooter": "請查看[https://meta.wikimedia.org/wiki/Help:Contents 用者說明書]的資料通使用wiki 軟體\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置的設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki時常問答]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki的公布列單]"
 }

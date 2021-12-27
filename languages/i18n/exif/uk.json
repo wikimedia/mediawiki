@@ -11,7 +11,9 @@
 			"Ua2004",
 			"Ата",
 			"Максим Підліснюк",
-			"Тест"
+			"Тест",
+			"Base",
+			"DDPAT"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -218,6 +220,8 @@
 	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-кодування)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-кодування)",
+	"exif-photometricinterpretation-32803": "Масив кольорового фільтра",
+	"exif-photometricinterpretation-34892": "Лінійний необроблений",
 	"exif-unknowndate": "Невідома дата",
 	"exif-orientation-1": "Нормальна",
 	"exif-orientation-2": "Відображено по горизонталі",

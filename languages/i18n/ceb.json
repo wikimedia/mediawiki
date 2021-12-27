@@ -13,7 +13,8 @@
 			"Palang hernan",
 			"Reedy",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Binadlisan nga mga sumpay:",
@@ -436,7 +437,7 @@
 	"revdelete-concurrent-change": "Sayop sa pagmodipikar sa item sa petsa $2, $1: ang status basin nausab na sa laing gumagamit samtang imo gi-attempt ang pagmodipikar niini.\nPalihog og tsek sa mga log.",
 	"revdelete-only-restricted": "Dili ka maka-suppress sa mga item gikan sa pagtan-aw sa mga tagdumala kon dili ka mopili og usa sa ubang opsyon sa supresyon.",
 	"suppressionlog": "Log sa supresyon",
-	"suppressionlogtext": "Sa ubos mao ang talaan sa mga pagpapas ug sa mga block kabahin sa mga sulod nga nakatago sa mga tagdumala.\nTan-awa ang [[Special:IPBlockList|IP block list]] para sa talaan sa kasamtangang mga ban ug block.",
+	"suppressionlogtext": "Sa ubos mao ang talaan sa mga pagpapas ug sa mga block kabahin sa mga sulod nga nakatago sa mga tagdumala.\nTan-awa ang [[Special:BlockList|block list]] para sa talaan sa kasamtangang mga ban ug block.",
 	"mergehistory": "I-merge ang mga kaagi sa panid",
 	"mergehistory-header": "Ang kining panid motugot nimo pag-merge sa mga rebisyon sa kaagi sa usa ka panid sa ginikananng panid ngadto sa mas bag-ong panid. Siguradoha nga kining pag-usab mo-meynteyn sa continuity sa kaaging panid.",
 	"mergehistory-box": "I-merge ang rebisyon sa duha ka panid:",
@@ -534,7 +535,7 @@
 	"default": "default",
 	"prefs-files": "Mga payl",
 	"prefs-custom-css": "Kustom nga CSS",
-	"prefs-custom-js": "Kustom nga JS",
+	"prefs-custom-js": "Kustom nga JavaScript",
 	"prefs-reset-intro": "Puyde nimo gamiton ang kining panid aron ma-reset ang imong mga preprensiya ngadto sa default sa sayt.\nDili kini puyde mabalik.",
 	"prefs-emailconfirm-label": "Kompirmasyon sa e-mail:",
 	"youremail": "E-mail:",

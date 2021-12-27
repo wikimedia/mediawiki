@@ -3,7 +3,8 @@
 		"authors": [
 			"Movses",
 			"Piramidion",
-			"Ата"
+			"Ата",
+			"Base"
 		]
 	},
 	"rest-prefix-mismatch": "Зазначений шлях ($1) не знайдено всередині кореневого шляху REST API ($2)",
@@ -12,6 +13,9 @@
 	"rest-nonexistent-title": "Зазначеної назви ($1) не існує",
 	"rest-nonexistent-title-revision": "Зазначена версія ($1) не існує для зазначеної сторінки ($2)",
 	"rest-nonexistent-revision": "Запитувана версія ($1) не існує.",
+	"rest-nonexistent-user": "Вказаний користувач ($1) не існує",
+	"rest-invalid-user": "Вказане ім'я користувача ($1) недопустиме",
+	"rest-permission-denied-anon": "Не доступно анонімним користувачам",
 	"rest-permission-denied-title": "Цей користувач не має прав читати назву сторінки ($1)",
 	"rest-permission-denied-revision": "Користувач не має доступу до запитуваної версії ($1).",
 	"rest-pagehistory-incompatible-params": "Параметри \"older_than\" та \"newer_than\" не можуть бути вказаними одночасно",

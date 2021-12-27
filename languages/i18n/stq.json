@@ -14,7 +14,8 @@
 			"Reedy",
 			"Urhixidur",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -703,7 +704,7 @@
 	"default": "Standoardienstaalenge",
 	"prefs-files": "Doatäie",
 	"prefs-custom-css": "Benutserdefinierde CSS",
-	"prefs-custom-js": "Benutserdefinierd JS",
+	"prefs-custom-js": "Benutserdefinierd JavaScript",
 	"prefs-common-config": "Gemeensoam CSS/JS foar aal Skins:",
 	"prefs-reset-intro": "Du koast disse Siede bruuke, uum do Ienstaalengen ap do Standoarde touräächtousätten.\nDät kon nit moor tourääch troald wäide.",
 	"prefs-emailconfirm-label": "E-Mail-Bestäätigenge:",

@@ -162,7 +162,7 @@
 	"config-admin-error-user": "Eror antern an creand n'aministrator con lë stranòm \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Eror antern an ampostand na ciav për l'admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "A l'ha butà n'adrëssa ëd pòsta eletrònica pa bon-a.",
-	"config-subscribe": "Ch'a sot-scriva la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista ëd discussion ëd j'anonsi ëd publicassion].",
+	"config-subscribe": "Ch'a sot-scriva la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lista ëd discussion ëd j'anonsi ëd publicassion].",
 	"config-subscribe-help": "Costa a l'é na lista ëd discussion a bass tràfich dovrà për j'anonsi ëd publicassion, comprèis d'amportant anonsi ëd sicurëssa.\nA dovrìa sot-ëscrivla e agiorné soa instalassion mediaWiki quand che ëd version neuve a rivo.",
 	"config-subscribe-noemail": "A l'ha provà a abonesse a la lista ëd difusion dij comunicà sensa dé n'adrëssa ëd pòsta eletrònica.\nPër piasì, ch'a fornissa n'adrëssa ëd pòsta eletrònica s'a veul abonesse a la lista ëd pòsta.",
 	"config-almost-done": "A l'ha bele che fàit!\nA peul adess sauté la configurassion rimanenta e instalé dlongh la wiki.",
@@ -252,7 +252,7 @@
 	"config-install-stats": "Inissialisassion dle statìstiche",
 	"config-install-keys": "Generassion ëd le ciav segrete",
 	"config-install-sysop": "Creassion dël cont ëd l'utent aministrator",
-	"config-install-subscribe-fail": "As peul pa sot-scrivse mediawiki-announce: $1",
+	"config-install-subscribe-fail": "As peul pa sot-scrivse mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL a l'é pa istalà e <code>allow_url_fopen</code> a l'é pa disponìbil.",
 	"config-install-mainpage": "Creassion ëd la pàgina prinsipal con un contnù predefinì",
 	"config-install-extension-tables": "Creassion ëd tàule për j'estension abilità",
@@ -262,5 +262,5 @@
 	"config-help": "agiut",
 	"config-nofile": "L'archivi «$1» as treuva nen. A l'é stàit ëscancelà?",
 	"mainpagetext": "'''MediaWiki a l'é staita anstalà a la përfession.'''",
-	"mainpagedocfooter": "Che a varda la [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.\n\n== Për anandiesse a travajé ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista dij paràmeter ëd configurassion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Chestion frequente su MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista ëd discussion an sla distribussion ëd MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Ch'a localisa MediaWiki për toa lenga]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Amprende coma combate contra la rumenta su soa wiki]"
+	"mainpagedocfooter": "Che a varda la [https://meta.wikimedia.org/wiki/Help:Contents guida dl'utent] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.\n\n== Për anandiesse a travajé ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista dij paràmeter ëd configurassion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Chestion frequente su MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista ëd discussion an sla distribussion ëd MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Ch'a localisa MediaWiki për soa lenga]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Amprende coma combate contra la rumenta su soa wiki]"
 }

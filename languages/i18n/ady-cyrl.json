@@ -14,7 +14,8 @@
 			"SamGamgee",
 			"SmartNart12",
 			"TheRossatron",
-			"Vlad5250"
+			"Vlad5250",
+			"MuratTheTurkish"
 		]
 	},
 	"tog-underline": "Зэпыщэхэм якIэгъэтхъын:",
@@ -1042,6 +1043,7 @@
 	"contributions": "{{GENDER:$1|ХэлэжьакIом}} и лэжьыгъэ Iахь",
 	"contributions-title": "$1 нэбгырэм и лэжьыгъэ",
 	"mycontris": "Лэжьыгъэ",
+	"anoncontribs": "Лэжьыгъэ",
 	"contribsub2": "{{GENDER:$3|$1}} пае ($2)",
 	"contributions-userdoesnotexist": "Аккаунтэу \"$1\" регистрацие шIыгъэп.",
 	"uctop": "джырэ",
@@ -1183,7 +1185,7 @@
 	"logentry-newusers-create": "ХэлэжьэкIо аккаунтэу $1 {{GENDER:$2|ублагъэ}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|къырищыгъ}} $3",
 	"feedback-message": "Мессадж:",
-	"searchsuggest-search": "Лъыхъу",
+	"searchsuggest-search": "{{SITENAME}}-ым лъыхъу",
 	"api-error-badtoken": "ЫкIоцI фыкъуагъэ: Токен дэй.",
 	"expand_templates_input": "Ихьэрэ текст:",
 	"expand_templates_output": "Резултат",

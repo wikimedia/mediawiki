@@ -10,6 +10,9 @@
 	"rest-nonexistent-title": "Den gitte tittelen ($1) finnes ikke",
 	"rest-nonexistent-title-revision": "Den gitte revisjonen ($1) eksisterer ikke for den gitte siden ($2)",
 	"rest-nonexistent-revision": "Den etterspurte revisjonen ($1) finnes ikke.",
+	"rest-nonexistent-user": "Den angitte brukeren ($1) finnes ikke",
+	"rest-invalid-user": "Det angitte brukernavnet ($1) er ugyldig",
+	"rest-permission-denied-anon": "Ikke tilgjengelig for anonyme brukere",
 	"rest-permission-denied-title": "Brukeren har ikke rett til å lese tittelen ($1)",
 	"rest-permission-denied-revision": "Brukeren har ikke tilgang til den etterspurte revisjonen ($1).",
 	"rest-pagehistory-incompatible-params": "Parameterne «older_than» og «newer_than» kan ikke spesifiseres samtidig",
@@ -28,5 +31,12 @@
 	"rest-page-source-type-error": "Innholdstypen til den forespurte sidekilden støttes ikke",
 	"rest-no-revision": "Kunne ikke hente revisjon for tittelen $1",
 	"rest-media-too-many-links": "For mange medielenker funnet i tittelen $1 ($2 er tillatt)",
-	"rest-html-backend-error": "Kunne ikke hente Parsoid-HTML"
+	"rest-html-backend-error": "Kunne ikke hente Parsoid-HTML",
+	"rest-bad-json-body": "Ugyldig forespørselsinnhold, må være JSON-objekt.",
+	"rest-json-body-parse-error": "Tolkning av forespørselsinnhold som JSON feilet: $1",
+	"rest-missing-body-field": "Påkrevd felt «$1» mangler fra forespørselsinnholdet.",
+	"rest-bad-content-model": "Ugyldig innholdsmodell: $1",
+	"rest-update-cannot-create-page": "Siden «$1» kan ikke opprettes fordi den allerede finnes. For å oppdatere den eksisterende siden, angi grunnrevisjons-ID-en i strukturen under «latest»-nøkkelen i forespørselsinnholdet.",
+	"rest-extraneous-csrf-token": "Overflødig CSRF-nøkkel funnet. CSRF-nøkler må ikke brukes når man bruker autentiseringsmekanismer som OAuth som er trygge mot CSRF-angrep.",
+	"rest-cannot-load-file": "Fila for tittelen «$1» kan ikke lastes."
 }

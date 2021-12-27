@@ -6,5 +6,9 @@
 	},
 	"apihelp-main-param-action": "וועלכע אקציע אויסצופירן.",
 	"apihelp-main-param-format": "פארמאט פונעם אויסגאב.",
-	"api-help-source": "מקור: $1"
+	"apihelp-feedcontributions-param-newonly": "נאר ווייזן רעדאַקטירונגען וואס זענען בלאַט־שאַפֿונגען",
+	"api-login-fail-badsessionprovider": "קענט נישט ארײַנלאגירן ווען מען ניצט $1.",
+	"api-help-source": "מקור: $1",
+	"api-help-parameters": "{{PLURAL:$1| פאַראַמעטער| פאַראַמעטערס}}:",
+	"apierror-unrecognizedparams": "{{PLURAL:$2|אומבאקאנטער פאראמעטער| אומבאקאנטע פאראמעטערס}}: $1."
 }

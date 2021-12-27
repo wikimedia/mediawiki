@@ -9,7 +9,8 @@
 			"MokaAkashiyaPT",
 			"Romaine",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Sublinhar lhigaçones:",
@@ -546,7 +547,7 @@
 	"default": "padron",
 	"prefs-files": "Fexeiros",
 	"prefs-custom-css": "CSS personalizada",
-	"prefs-custom-js": "JS personalizado",
+	"prefs-custom-js": "JavaScript personalizado",
 	"prefs-common-config": "CSS/JS partilhado por todas las maçcarilhas:",
 	"prefs-emailconfirm-label": "Cunfirmaçon de l correio eiletrónico:",
 	"youremail": "Morada de correio eiletrónico:",

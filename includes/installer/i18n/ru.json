@@ -30,7 +30,8 @@
 			"Александр Сигачёв",
 			"Ильнар",
 			"Сrower",
-			"아라"
+			"아라",
+			"Urfiner"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -196,12 +197,13 @@
 	"config-admin-email-help": "Введите адрес электронной почты, чтобы получать сообщения от других пользователей вики, иметь возможность восстановить пароль, а также получать уведомления об изменениях страниц из списка наблюдения. Вы можете оставить это поле пустым.",
 	"config-admin-error-user": "Внутренняя ошибка при создании учётной записи администратора с именем «<nowiki>$1</nowiki>».",
 	"config-admin-error-password": "Внутренняя ошибка при установке пароля для учётной записи администратора «<nowiki>$1</nowiki>»: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Неверный пароль администратора вики-проекта: $1",
 	"config-admin-error-bademail": "Вы ввели неправильный адрес электронной почты",
-	"config-subscribe": "Подписаться на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce рассылку новостей о появлении новых версий MediaWiki].",
+	"config-subscribe": "Подписаться на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/  рассылку новостей о появлении новых версий MediaWiki].",
 	"config-subscribe-help": "Это список рассылки с малым числом сообщений, используется для анонса новых выпусков и сообщений о проблемах с безопасностью.\nВам следует подписаться на него и обновлять движок MediaWiki, по мере выхода новых версий.",
 	"config-subscribe-noemail": "Вы попытались подписаться на список рассылки уведомлений о новых выпусках без указания адреса электронной почты.\nУкажите адрес электронной почты, если вы хотите подписаться на список рассылки.",
-	"config-pingback": "Поделиться сведениями об этой установке с разработчикам MediaWiki.",
-	"config-pingback-help": "Если вы выберите этот вариант, MediaWiki будет периодически отправлять на https://www.mediawiki.org основные сведения об этом экземпляре MediaWiki. К этим данным относятся, в частности, тип операционной системы, версия PHP и выбранная СУБД. Фонда Викимедиа делится этими данными с разработчиками MediaWiki, чтобы помочь им в проведении будущих разработок. Следующие данные будут отправлены для вашей системы:\n<pre>$1</pre>",
+	"config-pingback": "Поделиться сведениями об этой установке с разработчикам MediaWiki.\n[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Политика конфиденциальности].",
+	"config-pingback-help": "Если вы выберите этот вариант, MediaWiki будет периодически отправлять на https://www.mediawiki.org основные сведения об этом экземпляре MediaWiki. К этим данным относятся, в частности, тип операционной системы, версия PHP и выбранная СУБД. Фонд Викимедиа делится этими данными с разработчиками MediaWiki, чтобы помочь им в дальнейшей разработке. Следующие данные будут отправлены для вашей системы:\n<pre>$1</pre>\n\nПолитика конфиденциальности находится по адресу  https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nПочитать подробнее об этой функции вы можете здесь: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nАгрегированные pingback данные можно найти тут: https://pingback.wmflabs.org/",
 	"config-almost-done": "Вы почти у цели!\nОстальные настройки можно пропустить и приступить к установке вики.",
 	"config-optional-continue": "Произвести тонкую настройку",
 	"config-optional-skip": "Хватит, установить вики",
@@ -286,6 +288,7 @@
 	"config-install-user-grant-failed": "Ошибка предоставления прав пользователю «$1»: $2",
 	"config-install-user-missing": "Указанного пользователя «$1» не существует.",
 	"config-install-user-missing-create": "Указанного пользователя «$1» не существует.\nПожалуйста поставьте ниже отметку «Создать учётную запись», если вы хотите создать его.",
+	"config-install-logo-blank": "Введите действительный URL-адрес логотипа.",
 	"config-install-restore-services": "Восстановление сервисов MediaWiki",
 	"config-install-tables": "Создание таблиц, первый шаг",
 	"config-install-tables-exist": "'''Предупреждение''': таблицы MediaWiki, возможно, уже существуют.\nПропуск повторного создания.",
@@ -301,8 +304,11 @@
 	"config-install-updates": "Предотвращение запуска ненужных обновлений",
 	"config-install-updates-failed": "<strong>Ошибка:</strong> Вставка ключей обновления в таблицы завершилась со следующей ошибкой: $1",
 	"config-install-sysop": "Создание учётной записи администратора",
-	"config-install-subscribe-fail": "Не удаётся подписаться на mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Не удаётся подписаться на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL не установлен и не доступна опция <code>allow_url_fopen</code>.",
+	"config-install-subscribe-alreadysubscribed": "Вы уже подписаны на mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ Просмотр или изменение настроек подписки].",
+	"config-install-subscribe-alreadypending": "Запрос на подписку на mediawiki-announce уже подан. Пожалуйста, ответьте на электронное письмо с подтверждением, которое было отправлено ранее.",
+	"config-install-subscribe-possiblefail": "Возможно, ваш запрос на подписку на mediawiki-announce не был принят. Если вы не получите электронное письмо с подтверждением в течение нескольких минут, перейдите на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] и попробуйте отправить ваш запрос ещё раз.",
 	"config-install-mainpage": "Создание главной страницы с содержимым по умолчанию",
 	"config-install-mainpage-exists": "Главная страница уже существует, пропускаем",
 	"config-install-extension-tables": "Создание таблиц для включённых расширений",
@@ -322,5 +328,5 @@
 	"config-extension-not-found": "Не удалось найти файл регистрации для расширения «$1»",
 	"config-extension-dependency": "При установке расширения «$1» возникла ошибка зависимости: $2",
 	"mainpagetext": "<strong>MediaWiki успешно установлена.</strong>",
-	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents справочном руководстве].\n\n== Некоторые полезные ресурсы ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Узнайте, как бороться со спамом в вашей вики]"
+	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents справочном руководстве].\n\n== Начало работы ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Рассылка уведомлений о выходе новых версий MediaWiki].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Узнайте, как бороться со спамом в вашей вики]"
 }

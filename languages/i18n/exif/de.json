@@ -10,7 +10,9 @@
 			"Red Baron",
 			"Tobi 406",
 			"Umherirrender",
-			"W (aka Wuzur)"
+			"W (aka Wuzur)",
+			"Soued031",
+			"Umlaut"
 		]
 	},
 	"exif-imagewidth": "Breite",
@@ -335,7 +337,7 @@
 	"exif-gpsdirection-t": "Tatsächliche Richtung",
 	"exif-gpsdirection-m": "Magnetische Richtung",
 	"exif-ycbcrpositioning-1": "Zentriert",
-	"exif-ycbcrpositioning-2": "Benachbart",
+	"exif-ycbcrpositioning-2": "Benachbaart",
 	"exif-dc-contributor": "Beteiligte",
 	"exif-dc-coverage": "Örtlicher oder zeitlicher Rahmen des Mediums",
 	"exif-dc-date": "Datumsangaben",

@@ -14,7 +14,8 @@
 			"Smeira",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -1746,7 +1747,7 @@
 	"confirmemail_send": "Sedön fümedakoti me pot leäktronik",
 	"confirmemail_sent": "Fümedapened pesedon.",
 	"confirmemail_oncreate": "Fümedakot pesedon lü ladet leäktronik ola. Kot at no zesüdon ad nunädön oli, ab omutol klavön oni büä okanol gebön ladeti leäktronik ola in vük at.",
-	"confirmemail_sendfailed": "{{SUTENAME}} no eplöpon ad sedön fümedapenedi. Ba ädabinons malats no lonöföls in ladet leäktronik ola.\n\nPotanünöm egesedon: $1",
+	"confirmemail_sendfailed": "{{SITENAME}} no eplöpon ad sedön fümedapenedi. Ba ädabinons malats no lonöföls in ladet leäktronik ola.\n\nPotanünöm egesedon: $1",
 	"confirmemail_invalid": "Fümedakot no lonöfon. Jiniko binon tu bäldik.",
 	"confirmemail_needlogin": "Nedol $1 ad fümedön ladeti leäktronik ola.",
 	"confirmemail_success": "Ladet leäktronik ola pefümedon. Nu kanol nunädön oli e juitön vüki at.",

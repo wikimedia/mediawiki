@@ -12,7 +12,8 @@
 			"Str4nd",
 			"Surjection",
 			"Tarmo",
-			"Wix"
+			"Wix",
+			"MITO"
 		]
 	},
 	"exif-imagewidth": "Leveys",
@@ -280,6 +281,7 @@
 	"exif-customrendered-3": "HDR (alkuperäinen tallennettu)",
 	"exif-customrendered-4": "Alkuperäinen (HDR:lle)",
 	"exif-customrendered-6": "Panoraama",
+	"exif-customrendered-8": "Muotokuva",
 	"exif-exposuremode-0": "Automaattinen valotus",
 	"exif-exposuremode-1": "Käsinsäädetty valotus",
 	"exif-exposuremode-2": "Automaattinen haarukointi",

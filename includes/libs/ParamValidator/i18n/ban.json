@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinamoonroll"
+		]
+	},
+	"paramvalidator-badbool": "Aji tan patut \"$2\" antuk paraméter boolean \"$1\". Liwat $3 antuk beneh, utawi $5 antuk iwang.",
+	"paramvalidator-badexpiry": "Aji tan patut \"$2\" antuk paraméter kadaluwarsa \"$1\".",
+	"paramvalidator-badexpiry-duration": "Baang aji \"$2\" antuk paraméter <var>$1</var> ngaliwatin maksimum \"$3\".",
+	"paramvalidator-emptystring": "string puyung",
+	"paramvalidator-help-default": "Baku: $1",
+	"paramvalidator-help-default-empty": "Baku: (puyung)",
+	"paramvalidator-help-type-boolean": "Soroh: {{PLURAL:$1|1=boolean|2=lis boolean}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Patut puyung|Prasida puyung, utawi $1}}",
+	"paramvalidator-help-type-limit": "Soroh: integer utawi \"maks\"",
+	"paramvalidator-help-type-presenceboolean": "Soroh: boolean"
+}

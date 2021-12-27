@@ -47,6 +47,7 @@
 	"exif-meteringmode-4": "MultiLuzi",
 	"exif-meteringmode-5": "Taurozza basi",
 	"exif-meteringmode-255": "Althru",
+	"exif-lightsource-0": "Ischunisciddu",
 	"exif-lightsource-1": "Luzi diurna",
 	"exif-lightsource-4": "Lampu",
 	"exif-lightsource-17": "Luzi standard A",
@@ -67,5 +68,6 @@
 	"exif-sharpness-1": "Minori nitiddèzia",
 	"exif-sharpness-2": "Maggiori nitiddèzia",
 	"exif-subjectdistancerange-0": "Ischuniscidda",
-	"exif-gpsspeed-n": "Nodi"
+	"exif-gpsspeed-n": "Nodi",
+	"exif-iimcategory-lab": "Trabàgliu"
 }

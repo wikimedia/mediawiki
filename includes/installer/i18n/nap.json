@@ -166,7 +166,7 @@
 	"config-admin-error-user": "Errore interno quanno se steva a crià n'ammenistratore c' 'o nomme \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Errore interno quanno se steva a mpustà na password pe ll'ammenistratore \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Avite miso n'indirizzo e-mail invalido.",
-	"config-subscribe": "Mettiteve dint' 'a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list 'e ll'annunciazione 'e verziune d' 'o software rilassate].",
+	"config-subscribe": "Mettiteve dint' 'a [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mailing list 'e ll'annunciazione 'e verziune d' 'o software rilassate].",
 	"config-subscribe-help": "Chest'è na mailing list a basso traffeco ca se dedicasse a se ffà annunzie 'e verziune nove, piglianno pure mpurtante nutarelle ca riguardassero 'a sicurezza.\nFosse cunzigliato 'e se nzegnà e s'agghiurnà l'installazione 'e MediaWiki quanno na verziona nova fosse pubbreca.",
 	"config-subscribe-noemail": "Vuje avite tentato 'e ve trasì dint' 'a mailing list addedecata a se fà annunzie ncopp' 'e verziune nove senza ve dà n'indirizzo email.\nNzertanno n'indirizzo email se vulite affettuà l'iscrizione dint'a mailing list.",
 	"config-pingback": "Sparte 'e date 'e st'installazione ch' 'e sviluppature 'e MediaWiki.",
@@ -266,7 +266,7 @@
 	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie",
 	"config-install-updates-failed": "<strong>Errore:</strong> l'inserimento d' 'e chiave 'agghiurnamiento dint' 'e tabbelle nun è asciuto pecché se cunfermaje l'errore ccà annanze: $1",
 	"config-install-sysop": "Crianno nu cunto utente ammenistratore",
-	"config-install-subscribe-fail": "Nun se pò sottoscrivere mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Nun se pò sottoscrivere mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL nun è installato e <code>allow_url_fopen</code> nun è disponibbele.",
 	"config-install-mainpage": "Crianno 'a paggena prencepale ch' 'e cuntenute predefinite",
 	"config-install-mainpage-exists": "'A paggena principale esiste già, è zumpata",
@@ -284,5 +284,5 @@
 	"config-extensions-requires": "$1 (vuless' 'o $2)",
 	"config-screenshot": "screenshot",
 	"mainpagetext": "<strong>MediaWiki è stato installato.</strong>",
-	"mainpagedocfooter": "Iate a cunzultà [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe' n'avé nfurmaziune ncopp' 'o modo aùso d' 'o software wiki.\n\n== P'accummincià ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenco 'e mpustaziune pe' sta configuraziona]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ 'e Mediawiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Elenco 'e nutizie 'e Mediawiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione 'e MediaWiki p' 'a lengua vuosta]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Mparate a cumbattere 'o spammo dint' 'a wiki d' 'a vosta]"
+	"mainpagedocfooter": "Iate a cunzultà [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] pe' n'avé nfurmaziune ncopp' 'o modo aùso d' 'o software wiki.\n\n== P'accummincià ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Elenco 'e mpustaziune pe' sta configuraziona]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ 'e Mediawiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Elenco 'e nutizie 'e Mediawiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione 'e MediaWiki p' 'a lengua vuosta]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Mparate a cumbattere 'o spammo dint' 'a wiki d' 'a vosta]"
 }

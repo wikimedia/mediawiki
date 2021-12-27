@@ -9,7 +9,8 @@
 			"Michawiki",
 			"Node ue",
 			"Sajasazi (on got.wikipedia.org)",
-			"Zylbath"
+			"Zylbath",
+			"Iohanen"
 		]
 	},
 	"tog-underline": "𐌲𐌰𐍅𐌹𐍃𐌰𐌹𐍃 𐌿𐍆𐍃𐍄𐍂𐌹𐌺𐍃:",
@@ -433,7 +434,7 @@
 	"shown-title": "𐌱𐌰𐌽𐌳𐍅𐌴𐌹 $1 {{PLURAL:$1|𐍄𐌰𐌿𐌹|𐍄𐍉𐌾𐌰}} 𐍈𐌰𐍂𐌾𐌰𐌼𐌼𐌴𐌷 𐌻𐌰𐌿𐌱𐌰.",
 	"viewprevnext": "𐍃𐌹𐌿𐌽𐌴𐌹𐍃 ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>𐌹𐍃𐍄 𐌻𐌰𐌿𐍆𐍃 𐌷𐌰𐌹𐍄𐌰𐌽𐍃 \"[[:$1]]\" 𐌰𐌽𐌰 𐌸𐌰𐌼𐌼𐌰 𐍅𐌹𐌺𐌾𐌰.</strong> {{PLURAL:$2|0=|𐍃𐌰𐌹𐍈 𐌾𐌰𐌷 𐌰𐌽𐌸𐌰𐍂𐌰 𐍄𐍉𐌾𐌰 𐍃𐍉𐌺𐌴𐌹𐌽𐌰𐌹𐍃 𐌸𐍉𐌴𐌹 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐌰 𐍃𐌹𐌽𐌳.}}",
-	"searchmenu-new": "<strong>𐍃𐌺𐌰𐍀𐌴𐌹 𐌻𐌰𐌿𐍆 \"[[:$1]]\" 𐌰𐌽𐌰 𐌸𐌰𐌼𐌼𐌰 𐍅𐌹𐌺𐌾𐌰!</strong> {{{{PLURAL:$2|0=|𐍃𐌰𐌹 𐌾𐌰𐌷 𐌻𐌰𐌿𐍆 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐌰 𐌸𐌴𐌹𐌽𐌰𐌹 𐍃𐍉𐌺𐌴𐌹𐌽𐌰𐌹.|𐍃𐌰𐌹 𐌾𐌰𐌷 𐍄𐍉𐌾𐌰 𐍃𐍉𐌺𐌴𐌹𐌽𐌰𐌹𐍃 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐌰.}}",
+	"searchmenu-new": "<strong>𐍃𐌺𐌰𐍀𐌴𐌹 𐌻𐌰𐌿𐍆 \"[[:$1]]\" 𐌰𐌽𐌰 𐌸𐌰𐌼𐌼𐌰 𐍅𐌹𐌺𐌾𐌰!</strong> {{{{PLURAL:$2|0=|𐍃𐌰𐌹 𐌾𐌰𐌷 𐌻𐌰𐌿𐍆 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐌰 𐌸𐌴𐌹𐌽𐌰𐌹 𐍃𐍉𐌺𐌴𐌹𐌽𐌰𐌹.|𐍃𐌰𐌹 𐌾𐌰𐌷 𐍄𐍉𐌾𐌰 𐍃𐍉𐌺𐌴𐌹𐌽𐌰𐌹𐍃 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐌰.}}}}",
 	"searchprofile-articles": "𐌷𐌰𐌱𐌰𐌽𐌳𐌰𐌽𐍃 𐌻𐌰𐌿𐌱𐍉𐍃",
 	"searchprofile-images": "𐌼𐌰𐌽𐌰𐌲𐌼𐌰𐌹𐌳𐌾𐌰",
 	"searchprofile-everything": "𐌰𐌻𐌻",
@@ -619,7 +620,8 @@
 	"blanknamespace": "(𐌷𐌰𐌿𐌱𐌹𐌸)",
 	"contributions": "𐌱𐌹𐌰𐌿𐌺𐌰𐌹𐌽𐌴𐌹𐍃 𐌱𐍂𐌿𐌺𐌾𐌰𐌽𐌳𐌹𐍃 {{{{GENDER:$1|User}}",
 	"mycontris": "𐌱𐌹𐌰𐌿𐌺𐌰𐌹𐌽𐌴𐌹𐍃",
-	"contribsub2": "𐍆𐌰𐌿𐍂 $1 ($2)",
+	"anoncontribs": "𐌱𐌹𐌰𐌿𐌺𐌰𐌹𐌽𐌴𐌹𐍃",
+	"contribsub2": "𐍆𐌰𐌿𐍂 {{GENDER:$3|$1}} ($2)",
 	"nocontribs": "𐌽𐌹 𐌱𐌹𐌲𐌹𐍄𐌰𐌽𐍉𐍃 𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐍉𐍃 𐌲𐌰𐌻𐌴𐌹𐌺𐍉𐌽𐌳𐌴𐌹𐌽𐍃 𐌸𐌰𐌹𐌼 𐌱𐌹𐌳𐍉𐌼.",
 	"uctop": "𐌷𐌰𐌿𐌱𐌹𐌸",
 	"month": "𐍆𐍂𐌰𐌼 𐌼𐌴𐌽𐍉𐌸 (𐌾𐌰𐌷 𐌰𐌹𐍂𐌹𐍃):",

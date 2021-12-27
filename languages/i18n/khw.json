@@ -9,7 +9,8 @@
 			"Obaid Raza",
 			"Rachitrali",
 			"Saraiki",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -662,7 +663,7 @@
 	"default": "طے شدہ",
 	"prefs-files": "فائل",
 	"prefs-custom-css": "خودساختہ CSS",
-	"prefs-custom-js": "خودساختہ JS",
+	"prefs-custom-js": "خودساختہ JavaScript",
 	"prefs-emailconfirm-label": "برقی پتو تصدیق:",
 	"youremail": "بشلی کغاز",
 	"username": "صارف:",
