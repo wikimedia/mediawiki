@@ -2113,6 +2113,8 @@
 	"apisandbox-request-format-url-label": "Радок запыту URL",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
 	"apisandbox-request-json-label": "Запыт JSON:",
+	"apisandbox-request-format-php-label": "Масіў PHP",
+	"apisandbox-request-php-label": "Запытаць масіў PHP:",
 	"apisandbox-request-time": "Час запыту: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-results-fixtoken": "Выпраўце токен і паўтарыце адпраўку",
 	"apisandbox-results-fixtoken-fail": "Памылка пры атрыманьні токену «$1».",

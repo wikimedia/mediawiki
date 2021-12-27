@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abdeaitali",
+			"Amire80",
 			"Anass Sedrati",
 			"Ayoubbouamri",
 			"Daoudata",
@@ -247,7 +248,7 @@
 	"versionrequiredtext": "خلثك النسخة $1 د ميدياويكي باش تقدر تخدًم هاد الصفحة. شوف [[Special:Version|صفحة معلومات الإصدارة]]",
 	"ok": "واخا",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "← $1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "مرجّعة من \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|عندك}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|عندك}} $1 من {{PLURAL:$3|خدايمي آخر|$3 د لخدايمية}} ($2).",
@@ -277,8 +278,6 @@
 	"site-atom-feed": "تلقيمة ديال أتوم $1",
 	"page-rss-feed": "تلقيمة ديال آر إس إس للباج \"$1\"",
 	"page-atom-feed": "تلقيمة ديال أتوم للباج \"$1\"",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (الصفحة ما كايناش)",
 	"sort-descending": "رتب بلهبوط",
 	"sort-ascending": "رتب بطلوع",

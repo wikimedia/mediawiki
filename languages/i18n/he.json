@@ -2144,6 +2144,8 @@
 	"apisandbox-request-format-url-label": "מחרוזת השאילתה (query string) של כתובת ה־URL",
 	"apisandbox-request-url-label": "כתובת ה־URL של הבקשה:",
 	"apisandbox-request-json-label": "ייצוג הבקשה כ־JSON:",
+	"apisandbox-request-format-php-label": "מערך PHP",
+	"apisandbox-request-php-label": "ייצוג הבקשה כמערך PHP:",
 	"apisandbox-request-time": "זמן הבקשה: {{PLURAL:$1|מילישנייה אחת|$1 מילישניות}}",
 	"apisandbox-results-fixtoken": "יש לתקן את האסימון ולשלוח שוב",
 	"apisandbox-results-fixtoken-fail": "קבלת האסימון \"$1\" נכשלה.",

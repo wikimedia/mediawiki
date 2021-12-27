@@ -297,8 +297,6 @@
 	"site-atom-feed": "$1个Atom订阅",
 	"page-rss-feed": "“$1”個RSS訂閱",
 	"page-atom-feed": "\"$1\" 个Atom订阅",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1（页面弗存在）",
 	"sort-descending": "倒排",
 	"sort-ascending": "顺排",
