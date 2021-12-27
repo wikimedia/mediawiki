@@ -31,9 +31,8 @@
 	"config-db-type": "Билии олоҕун көрүҥэ:",
 	"config-db-wiki-settings": "Бу биики тэҥнэбилэ",
 	"config-db-name": "Билии олоҕун аата:",
-	"config-db-name-oracle": "Билии олоҕун исхиэмэтэ:",
 	"config-db-install-account": "Туруорууга анаммыт бэлиэ-аат",
 	"config-db-username": "Билии олоҕун туһанааччы аата:",
 	"mainpagetext": "'''«MediaWiki» сөпкө туруорулунна.'''",
-	"mainpagedocfooter": "Биики программатын туһунан [https://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.\n\n== Саҕаланыыта ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki релизтарын почтовай испииһэгэ]"
+	"mainpagedocfooter": "Биики программатын туһунан [https://meta.wikimedia.org/wiki/Help:Contents справочникка] көрүөххүн сөп.\n\n== Саҕаланыыта ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Конфигурация уларытыытын параметрдара]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki релизтарын почтовай испииһэгэ]"
 }

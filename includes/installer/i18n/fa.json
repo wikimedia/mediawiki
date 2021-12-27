@@ -21,7 +21,8 @@
 			"Reza1615",
 			"Seb35",
 			"درفش کاویانی",
-			"กิ๊ฟ เลิกล่ะ สายแข็ง"
+			"กิ๊ฟ เลิกล่ะ สายแข็ง",
+			"Darafsh"
 		]
 	},
 	"config-desc": "نصب‌کنندهٔ مدیاویکی",
@@ -59,9 +60,9 @@
 	"config-page-existingwiki": "ویکی موجود",
 	"config-help-restart": "آیا می‌خواهید همهٔ اطلاعات ذخیره‌شده‌ای که وارد کرده‌اید را پاک کنید و دوباره روند نصب را شروع کنید؟",
 	"config-restart": "بله، دوباره شروع کن",
-	"config-welcome": "===بررسی‌های محیطی===\nبرای فهمیدن اینکه این محیط برای نصب مدیاویکی مناسب است، اکنون بررسی‌های اساسی انجام خواهد‌ شد.\nاگر به‌دنبال پشتیبانی در چگونگی تکمیل نصب هستید، به یاد داشته باشید این اطلاعات را بگنجانید.",
+	"config-welcome": "ویکی‌مدیا یک بسته نرم‌افزاری آزاد و متن‌باز است که در PHP نوشته شده‌است که به عنوان پلت فرم برای ویکی‌پدیا و دیگر پروژه‌های ویکی‌مدیا به کار می‌رود که هر ماه توسط صدها میلیون نفر استفاده می‌شود. بیش از ۳۵۰ زبان محلی از ویکی‌مدیا استفاده می‌کنند و قابل اطمینان بودنش، باعث شده که یک جامعه پر جنب و جوش از کاربران و توسعه دهندگان شخص ثالث ایجاد شده‌است.\n===بررسی‌های محیطی===\nبرای فهمیدن اینکه این محیط برای نصب مدیاویکی مناسب است، اکنون بررسی‌های اساسی انجام خواهد‌ شد.\nاگر به‌دنبال پشتیبانی در چگونگی تکمیل نصب هستید، به یاد داشته باشید این اطلاعات را بگنجانید.",
 	"config-welcome-section-copyright": "=== حق رونوشت و شرایط ===\n\n$1\n\nاین برنامه، نرم‌افزاری آزاد است. می‌توانید تحت شرایط نگارش ۲ یا (بنا به نظر خود) هر نگارش جدیدتری از پروانهٔ جامع همگانی گنو که توسط بنیاد نرم‌افزار آزاد منتشر شده، بازنشرش کرده و/یا تغییرش دهید.\n\n\nاین برنامه با این امید توزیع شده که مفید باشد، ولی <strong>بدون هیچ ضمانتی</strong>، حتا ضمانت ضمنی <strong>معامله‌پذیری</strong> یا <strong>تناسب برای کاربردی خاص</strong>.\n\nبرای جزئیات بیشتر، پروانهٔ جامع همگانی گنو را ببینید.\n\n\nباید همراه این برنامه، [$2 نگارشی از پروانهٔ جامع همگانی گنو] را گرفته باشید. اگر چنین نیست، با بنیاد نرم‌افزار آزاد به نشانی 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA مکاتبه کرده یا [https://www.gnu.org/copyleft/gpl.html پروانه را برخط بخوانید].",
-	"config-sidebar": "* [//www.mediawiki.org صفحهٔ اصلی مدیاویکی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربر]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents راهنمای مدیر]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول]\n----\n* <doclink href=Readme>مرا بخوان</doclink>\n* <doclink href=ReleaseNotes>یادداشت‌های انتشار</doclink>\n* <doclink href=Copying>کپی‌برداری</doclink>\n* <doclink href=UpgradeDoc>به‌روزرسانی</doclink>",
+	"config-sidebar": "* [//www.mediawiki.org صفحهٔ اصلی مدیاویکی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربر]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents راهنمای مدیر]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication جستجوی کمک]\n* [https://phabricator.wikimedia.org/ پیگیری باگ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute مشارکت]\n----\n* <doclink href=Readme>مرا بخوان</doclink>\n* <doclink href=ReleaseNotes>یادداشت‌های انتشار</doclink>\n* <doclink href=Copying>کپی‌برداری</doclink>\n* <doclink href=UpgradeDoc>به‌روزرسانی</doclink>",
 	"config-sidebar-relnotes": "یادداشت‌های انتشار",
 	"config-sidebar-license": "کپی‌برداری",
 	"config-sidebar-upgrade": "به‌روزرسانی",
@@ -185,8 +186,9 @@
 	"config-admin-email-help": "یک آدرس ایمیل برای اجازهٔ دریافت ایمیل از دیگر کاربران ویکی، اینجا وارد کنید، رمز عبور خود را دوباره تنظیم کنید، و از تغییرات صفحه در فهرست پیگیری‌ها مطلع باشید. می‌توانید این بخش را خالی بگذارید.",
 	"config-admin-error-user": "خطای داخلی هنگام ایجاد یک مدیر با نام \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "خطای داخلی هنگام تنظیم یک رمز عبور برای مدیر \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
+	"config-admin-error-password-invalid": "گذرواژه نامعتبر مدیر ویکی: $1",
 	"config-admin-error-bademail": "شما آدرس ایمیل نامعتبر وارد کرده‌اید.",
-	"config-subscribe": "عضویت در [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].",
+	"config-subscribe": "عضویت در [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release announcements mailing list].",
 	"config-subscribe-help": "این یک فهرست پستی کم‌حجم است که برای اطلاع‌رسانی کاربرد دارد و شامل اطلاعیه‌های امنیتی می‌شود.\nشما باید در آن ثبت نام کنید و وقتی نسخهٔ جدید مدیاویکی ارائه شد آن را روزآمد کنید.",
 	"config-subscribe-noemail": "شما بدون ثبت نشانی پست الکترونیکی قصد داشتید در فهرست اطلاع‌رسانی پخش نرم‌افزار ثبت‌نام کنید.\nاگر قصد ثبت‌نام دارید لطفاً یک نشانی پست الکترونیکی مشخص کنید.",
 	"config-pingback": "اشتراک گذاری داده‌های نصب با توسعه‌دهندگان مدیاویکی",
@@ -275,6 +277,7 @@
 	"config-install-user-grant-failed": "اعطای مجوز به کاربر \"$1\" با شکست روبه‌رو شد: $2",
 	"config-install-user-missing": "کاربر تعیین شدهٔ \"$1\" وجود ندارد.",
 	"config-install-user-missing-create": "کاربر تعیین شدهٔ \"$1\" وجود ندارد.\nاگر می‌خواهید حساب ایجاد کنید،لطفاً جعبهٔ بررسی \"ایجاد حساب\" را کلیک کنید.",
+	"config-install-logo-blank": "لوگوی نشانی اینترنتی معتبر را وارد کنید.",
 	"config-install-restore-services": "بازیابی خدمات مدیاویکی",
 	"config-install-tables": "ایجاد جدول‌ها، گام نخست",
 	"config-install-tables-exist": "'''هشدار:''' جداول مدیاویکی به نظر می‌رسد در حال حاضر وجود دارد.\nصرف نظر از ایجاد.",
@@ -311,5 +314,5 @@
 	"config-extension-not-found": "پرونده ثبت افزونه «$1» پیدا نشد.",
 	"config-extension-dependency": "خطای وابسته در حین نصب افزونه «$1» رخ داد: $2",
 	"mainpagetext": "'''مدیاویکی با موفقیت نصب شد.'''",
-	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources محلی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
+	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources محلی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
 }

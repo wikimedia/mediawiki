@@ -1,9 +1,30 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aefgh39622"
+			"Aefgh39622",
+			"Patsagorn Y."
 		]
 	},
+	"apihelp-main-param-action": "การกระทำที่ต้องการให้ดำเนินการ",
+	"apihelp-main-param-format": "รูปแบบของผลลัพธ์",
+	"apihelp-main-param-smaxage": "ตั้งส่วนหัวควบคุมแคช HTTP <code>s-maxage</code> เป็นจำนวนวินาทีต่อไปนี้ ข้อผิดพลาดจะไม่ถูกแคช",
+	"apihelp-main-param-maxage": "ตั้งส่วนหัวควบคุมแคช HTTP <code>max-age</code> เป็นจำนวนวินาทีต่อไปนี้ ข้อผิดพลาดจะไม่ถูกแคช",
+	"apihelp-main-param-assert": "ยืนยันว่าผู้ใช้ล็อกอินแล้วถ้าตั้งเป็น <kbd>user</kbd> หรือให้มีสิทธิ์ผู้ใช้บอตถ้าตั้งเป็น <kbd>bot</kbd>",
+	"apihelp-main-param-requestid": "ค่าใด ๆ ก็ตามที่กำหนดไว้ที่นี่จะถูกรวมไว้ในการตอบกลับด้วย อาจใช้เพื่อแยกแยะคำขอได้",
+	"apihelp-main-param-servedby": "รวมชื่อโฮสต์ที่ทำหน้าที่ร้องขอไว้ในผลลัพธ์",
+	"apihelp-main-param-curtimestamp": "รวมประทับเวลาปัจจุบันไว้ในผลลัพธ์",
+	"apihelp-main-param-uselang": "ภาษาที่จะใช้สำหรับการแปลข้อความ <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> พร้อม <kbd>siprop=languages</kbd> แสดงรายชื่อรหัสภาษา หรือระบุ <kbd>user</kbd> เพื่อใช้การตั้งค่าภาษาปัจจุบันของผู้ใช้ หรือระบุ <kbd>content</kbd> เพื่อใช้ภาษาเนื้อหาของวิกินี้",
+	"apihelp-block-summary": "บล็อกผู้ใช้",
+	"apihelp-block-param-user": "ชื่อผู้ใช้ ที่อยู่ไอพี หรือช่วงที่อยู่ไอพีที่ต้องการบล็อก ไม่สามารถใช้ร่วมกับ <var>$1userid</var> ได้",
+	"apihelp-block-param-userid": "ไอดีผู้ใช้ที่ต้องการบล็อก ไม่สามารถใช้ร่วมกับ <var>$1user</var> ได้",
+	"apihelp-block-param-reason": "เหตุผลสำหรับการบล็อก",
+	"apihelp-delete-summary": "ลบหน้า",
+	"apihelp-disabled-summary": "โมดูลนี้ได้ถูกปิดใช้งานแล้ว",
+	"apihelp-edit-summary": "สร้างและแก้ไขหน้า",
+	"apihelp-edit-example-edit": "แก้ไขหน้า",
+	"apihelp-expandtemplates-param-title": "ชื่อของหน้า",
+	"apihelp-expandtemplates-param-text": "ข้อความวิกิที่ต้องการแปลง",
 	"apihelp-imagerotate-summary": "หมุนรูปภาพอย่างน้อยหนึ่งรูป",
-	"api-help-param-continue": "เมื่อมีผลลัพธ์เพิ่มเติมพร้อมใช้งาน ใช้ตัวเลือกนี้เพื่อดำเนินการต่อ"
+	"api-help-param-continue": "เมื่อมีผลลัพธ์เพิ่มเติมพร้อมใช้งาน ใช้ตัวเลือกนี้เพื่อดำเนินการต่อ",
+	"apierror-readonly": "วิกินี้กำลังอยู่ในโหมดอ่านอย่างเดียว"
 }

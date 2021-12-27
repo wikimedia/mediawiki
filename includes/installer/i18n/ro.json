@@ -10,7 +10,9 @@
 			"Strainu",
 			"Tuxilina",
 			"WebSourceContentRO",
-			"XXN"
+			"XXN",
+			"Andreyyshore",
+			"NGC 54"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -38,10 +40,10 @@
 	"config-page-upgrade": "Extinde instalarea existentă",
 	"config-page-dbsettings": "Setări ale bazei de date",
 	"config-page-name": "Nume",
-	"config-page-options": "Opţiuni",
+	"config-page-options": "Opțiuni",
 	"config-page-install": "Instalare",
 	"config-page-complete": "Finalizat!",
-	"config-page-restart": "Reporneşte instalarea",
+	"config-page-restart": "Repornește instalarea",
 	"config-page-releasenotes": "Note de lansare",
 	"config-page-copying": "Copiere",
 	"config-page-upgradedoc": "Actualizare",
@@ -163,7 +165,7 @@
 	"config-install-user-alreadyexists": "Utilizatorul „$1” există deja",
 	"config-install-user-create-failed": "Crearea utilizatorului „$1” a eșuat: $2",
 	"config-install-user-missing": "Utilizatorul „$1” specificat nu există.",
-	"config-install-tables": "Se creează tabelele",
+	"config-install-tables": "Se creează tabelele, pasul unu",
 	"config-install-stats": "Se inițializează statisticile",
 	"config-install-keys": "Se generează cheile secrete",
 	"config-install-sysop": "Se creează contul de administrator",
@@ -172,5 +174,5 @@
 	"config-help": "ajutor",
 	"config-help-tooltip": "clic pentru a extinde",
 	"mainpagetext": "<strong>Programul Wiki a fost instalat.</strong>",
-	"mainpagedocfooter": "Consultați [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Ghidul utilizatorului] pentru informații despre utilizarea software-ului wiki.\n\n== Primii pași ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de setări de configurare]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Întrebări frecvente despre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de e-mail pentru release-urile MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizați MediaWiki în limba dumneavoastră]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Învățați cum să combateți spamul pe wikiul dumneavoastră]"
+	"mainpagedocfooter": "Consultați [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Ghidul utilizatorului] pentru informații despre utilizarea software-ului wiki.\n\n== Primii pași ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de setări de configurare]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Întrebări frecvente despre MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/  Lista de e-mail pentru release-urile MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizați MediaWiki în limba dumneavoastră]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Învățați cum să combateți spamul pe wikiul dumneavoastră]"
 }

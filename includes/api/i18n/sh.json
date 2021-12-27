@@ -1,8 +1,34 @@
 {
 	"@metadata": {
 		"authors": [
-			"Conquistador"
+			"Conquistador",
+			"Vlad5250"
 		]
 	},
-	"apihelp-login-param-password": "Lozinka."
+	"apihelp-main-param-action": "Koju akciju izvesti.",
+	"apihelp-main-param-format": "Format izlaza.",
+	"apihelp-main-param-smaxage": "Dajte joj nekoliko sekundi na zaglavlje za kontrolu HTTP-međuspremnik <code>s-maxage</code>. Greške se nikada ne pohranjuju u međuspremniku.",
+	"apihelp-main-param-maxage": "Dajte joj nekoliko sekundi na zaglavlje za kontrolu HTTP-međuspremnik <code>max-age</code>. Greške se nikada ne pohranjuju u međuspremniku.",
+	"apihelp-main-param-assert": "Provjerite je li korisnik prijavljen ako je zadan <kbd>user</kbd> ili ima li korisničko pravo bota, ako je zadan <kbd>bot</kbd>.",
+	"apihelp-main-param-requestid": "Ovdje unesena vrijednost će biti uključena u izvještaju. Može se koristiti za razlikovanje zahtjeva.",
+	"apihelp-main-param-uselang": "Jezik za prevođenje poruka. Popis kodova jezika možete pronaći na <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> s <kbd>siprop=languages</kbd> ili navedite <kbd>user</kbd> da biste koristili trenutni korisnički zadani jezik, ili odredite <kbd>content</kbd> da biste koristili jezik sadržaja ovog wikija.",
+	"apihelp-help-param-wrap": "Zaobići izlaz kao standardnu ​​strukturu odaziva aplikacije.",
+	"apihelp-login-param-password": "Lozinka.",
+	"apihelp-paraminfo-summary": "Nabavi informacije o izvršničkim (API) modulima.",
+	"apihelp-jsonfm-summary": "Daj izlaz u JSON formatu (poboljšani izlaz u HTML).",
+	"api-format-title": "Rezultat Izvršnika MediaWikija",
+	"api-format-prettyprint-header": "Ovo je HTML predstava formata $1. HTML je dobar za rješavanje problema, ali nije prikladan za korištenje izvršnika.\n\nNavedite parametar <var>format</var> za promjenu izlaznog formata. Da biste vidjeli prikaze formata $1 izvan HTML-a, postavite <kbd>format=$2</kbd>.\n\nViše informacija naći ćete na [[mw:Special:MyLanguage/API|cjelokupnoj dokumentaciji]], ili pak [[Special:ApiHelp/main|pomoć s izvršnikom]].",
+	"api-help-title": "Pomoć s Izvršnikom MediaWikija",
+	"api-help-lead": "Ovo je samonapravljena stranica s dokumentacijom izvršnika MediaWikija.\n\nDokumentacija i primjeri: https://www.mediawiki.org/wiki/API",
+	"api-help-main-header": "Glavni modul",
+	"api-help-flag-deprecated": "Ovaj modul je zastario.",
+	"api-help-flag-internal": "<strong>Ovaj modul je unutarnji ili nestabilan.</strong> Rad se može promijeniti bez upozorenja.",
+	"api-help-flag-readrights": "Ovaj modul zahtijeva prava na čitanje.",
+	"api-help-flag-writerights": "Ovaj modul zahtijeva prava na pisanje.",
+	"api-help-flag-mustbeposted": "Ovaj modul prihvaća samo POST zahtjevi.",
+	"api-help-flag-generator": "Ovaj se modul može koristiti kao generator.",
+	"api-help-parameters": "{{PLURAL:$1|Parametar|Parametri}}:",
+	"api-help-param-deprecated": "Zastaren.",
+	"api-help-right-apihighlimits": "Korištenje viših ograničenja u aplikacijskim zahtjevima (spori zahtjevi: $1; promptni zahtjevi: $2). Ograničenja sporih zahtjeva primjenjuju se na parametre s više vrijednosti.",
+	"api-credits": "Razvijači Izvršnika:\n* Yuri Astrakhan (tvorac, glavni razvijač od rujna 2006. do rujna 2007.)\n* Roan Kattouw (glavni razvijač od rujna 2007. do 2009.)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (glavni razvijač od 2013. do danas)\n\nPošaljite svoje komentare, prijedloge i pitanja na mediawiki-api@lists.wikimedia.org\ni prijavite pogreške na https://bugzilla.wikimedia.org/."
 }

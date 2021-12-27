@@ -6,7 +6,8 @@
 			"Jim-by",
 			"Red Winged Duck",
 			"Wizardist",
-			"Zedlik"
+			"Zedlik",
+			"W"
 		]
 	},
 	"exif-imagewidth": "Шырыня",
@@ -272,6 +273,8 @@
 	"exif-scenetype-1": "Непасрэдна сфатаграфаваная выява",
 	"exif-customrendered-0": "Звычайны працэс",
 	"exif-customrendered-1": "Нестандартны працэс",
+	"exif-customrendered-6": "Панарама",
+	"exif-customrendered-8": "Партрэт",
 	"exif-exposuremode-0": "Аўтаматычны лад насьвятленьня",
 	"exif-exposuremode-1": "Ручная наладка парамэтраў насьвятленьня",
 	"exif-exposuremode-2": "Брэкетынг",

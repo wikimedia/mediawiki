@@ -3,7 +3,8 @@
 		"authors": [
 			"Ravi Mundkur",
 			"VASANTH S.N.",
-			"Vishwanatha Badikana"
+			"Vishwanatha Badikana",
+			"Chidananda Kampa"
 		]
 	},
 	"config-desc": "ಮೀಡಿಯ ವಿಕಿದ ಪ್ರತಿಸ್ಟಾಪನೆ",
@@ -13,7 +14,7 @@
 	"config-localsettings-cli-upgrade": "ಒಂಜಿ<code>LocalSettings.php</code>ದ ಕಡತೊ ಪತ್ತೆ ಆತ್ಂಡ್.  ಈ ಪ್ರತಿಸ್ಟಾಪನೆನ್ ಪೊಸತ್ ಮಲ್ಪೆರೆ, ದಯದೀಡ್ದ್ ತಿರ್ತ್‌ದ ಪಟ್ಟಿಗೆದ <code>$wgUpgradeKey</code>ದ ಬಿಲೆನ್ ನಮೂದಿಸಲೆ.\nದಯಮಲ್ತ್ <code>LocalSettings.php</code>ಗ್ ಬದಲಾದ್  ಬಲಿಪಾಲೆ",
 	"config-localsettings-key": "ಏಲಿಗೆದ ಕೀ",
 	"config-session-error": "ಸಬೆ ಸುರುಮಲ್ಪುನ ದೋಸೊ: $1",
-	"config-your-language": "ಇರೆನಾ ಬಾಸೆ",
+	"config-your-language": "ಇರೆನಾ ಬಾಸೆ:",
 	"config-wiki-language": "ವಿಕಿ ಬಾಸೆ:",
 	"config-back": "← ಪಿರ",
 	"config-continue": "ಮುಂದುವರೆಸಾಲೆ →",
@@ -38,16 +39,18 @@
 	"config-db-prefix": "ಮಾಹಿತಿಕೋಶ ಪಟ್ಟಿದ ಸುರುಪದ (ಕೂಡುಗೆರೆ ದಾಂತೆ)",
 	"config-db-schema": "ಮೀಡಿಯಾವಿಕಿತ ರೂಪರೇಷೆ (ಕೂಡುಗೆರೆ ದಾಂತೆ)",
 	"config-ns-generic": "ಯೋಜನೆ",
-	"config-admin-password": "ಪ್ರವೇಶ ಪದೊ",
+	"config-admin-name": "ಇರೆನಾ ಬಳಕೆದಾರೆರೆಪುದರ್:",
+	"config-admin-password": "ಪ್ರವೇಶ ಪದೊ:",
 	"config-admin-password-confirm": "ಪುನಃ ಪ್ರವೇಶ ಪದೊ:",
 	"config-admin-password-mismatch": "ಈರ್ ಕೊರ್ನ ಪ್ರವೇಶ ಪದೆ ಬೇತೆ ಬೇತೆ ಅತ್ಂಡ್",
-	"config-admin-email": "ಇ-ಅಂಚೆ ವಿಳಾಸೊ",
+	"config-admin-email": "ಇ-ಅಂಚೆ ವಿಳಾಸೊ:",
 	"config-license": "ಕೃತಿಸ್ವಾಮ್ಯ ಬೊಕ್ಕ ಪರವಾನಗಿ:",
 	"config-license-pd": "ಸಾರ್ವಜನಿಕೊ ಕ್ಷೇತ್ರೊ",
 	"config-extensions": "ವಿಸ್ತರಣೆಲು",
+	"config-install-step-done": "ಆಂಡ್",
 	"config-install-step-failed": "ವಿಫಲವಾತ್‍ಂಡ್",
 	"config-install-extensions": "ವಿಸ್ತರಣೆಲೆನ್ ಸೇರಾದ್",
 	"config-help": "ಸಹಾಯೊ",
 	"mainpagetext": "'''ಮೀಡಿಯವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಸ್ಥಾಪನೆ ಆಂಡ್.'''",
-	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [https://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.\n\n== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [https://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.\n\n== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

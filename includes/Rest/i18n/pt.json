@@ -11,6 +11,8 @@
 	"rest-nonexistent-title": "O título especificado ($1) não existe",
 	"rest-nonexistent-title-revision": "A revisão especificada ($1) não existe para a página especificada ($2)",
 	"rest-nonexistent-revision": "A revisão especificada ($1) não existe.",
+	"rest-nonexistent-user": "O utilizador especificado ($1) não existe",
+	"rest-invalid-user": "O nome de utilizador especificado ($1) é inválido",
 	"rest-permission-denied-anon": "Não acessível por um utilizador anónimo",
 	"rest-permission-denied-title": "O utilizador não tem os direitos para ler o título ($1)",
 	"rest-permission-denied-revision": "O utilizador não tem acesso à revisão pedida ($1).",

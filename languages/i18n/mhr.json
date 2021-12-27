@@ -14,7 +14,8 @@
 			"Сай",
 			"Санюн Вадик",
 			"Сергей Иванов",
-			"아라"
+			"아라",
+			"Kareyac"
 		]
 	},
 	"tog-underline": "Кылверлам ӱлыч удыралмаш:",
@@ -545,6 +546,7 @@
 	"longpages": "Кужу лаштык-влак",
 	"deadendpages": "Ончыко наҥгайдыме лаштык-влак",
 	"protectedpages": "Тӧрлатымаш деч аралыме лаштык-влак",
+	"protectedpages-page": "Лаштык",
 	"usercreated": "$1, $2 шагатлан {{GENDER:$3|регистрацийым эртен|регистрацийым эртен}}",
 	"newpages": "У лаштык-влак",
 	"newpages-username": "Пайдаланышын лӱмжӧ:",
@@ -798,5 +800,6 @@
 	"logentry-newusers-create": "Пайдаланыше {{GENDER:$2}} $1 лаштыкым ыштен.",
 	"searchsuggest-search": "кычалаш",
 	"expand_templates_ok": "Йӧра",
-	"expand_templates_preview": "Ончылгоч ончымаш"
+	"expand_templates_preview": "Ончылгоч ончымаш",
+	"pagelang-name": "Лаштык"
 }

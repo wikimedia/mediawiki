@@ -4,7 +4,8 @@
 			"Milicevic01",
 			"Obsuser",
 			"Zoranzoki21",
-			"Сербијана"
+			"Сербијана",
+			"Kizule"
 		]
 	},
 	"config-desc": "Instalacioni program za MediaWiki",
@@ -152,7 +153,7 @@
 	"config-admin-error-user": "Došlo je do unutrašnje greške pri pravljenju administratora pod imenom „<nowiki>$1</nowiki>”.",
 	"config-admin-error-password": "Došlo je do unutrašnje greške pri postavljanju lozinke za administratora „<nowiki>$1</nowiki>”: <pre>$2</pre>",
 	"config-admin-error-bademail": "Uneli ste nevažeću adresu e-pošte.",
-	"config-subscribe": "Pretplatite se na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements dopisnu listu].",
+	"config-subscribe": "Pretplatite se na [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release announcements dopisnu listu].",
 	"config-subscribe-noemail": "Pokušali ste da se pretplatite na dopisnu listu za objave o novim izdanjima bez pružanja adrese e-pošte.\nPružite adresu e-pošte ako želite da se pretplatite na nju.",
 	"config-pingback": "Deli podatke o ovoj instalaciji sa MediaWiki programerima.",
 	"config-almost-done": "Skoro ste gotovi!\nSada možete preskočiti preostalu konfiguraciju i odmah instalirati viki.",
@@ -241,7 +242,7 @@
 	"config-install-updates": "Spreči pokretanje nepotrebnih ažuriranja",
 	"config-install-updates-failed": "<strong>Greška:</strong> Umetanje klučeva za ažuriranje u tabele nije uspelo zbog sledeće greške: $1",
 	"config-install-sysop": "Otvaranje korisničkog naloga administratora",
-	"config-install-subscribe-fail": "Nije moguće pretplatiti se na mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Nije moguće pretplatiti se na mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL nije instaliran, a parametar <code>allow_url_fopen</code> nije dostupan.",
 	"config-install-mainpage": "Pravljenje glavne strane sa podrazumevanim sadržajem",
 	"config-install-mainpage-exists": "Glavna strana već postoji, preskakanje",
@@ -263,5 +264,5 @@
 	"config-extension-not-found": "Nije moguće pronaći datoteku registracije za dodatak „$1”",
 	"config-extension-dependency": "Došlo je do greške zavisnosti pri instaliranju dodatka „$1”: $2",
 	"mainpagetext": "<strong>MediaWiki je instaliran.</strong>",
-	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike] za informacije o tome kako koristiti viki softver.\n\n== Uvod ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki konfiguracije]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ČPP]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Dopisna lista o MediaWiki izdanjima]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučite kako da se borite protiv nepoželjnog sadržaja na svom vikiju]"
+	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike] za informacije o tome kako koristiti viki softver.\n\n== Uvod ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki konfiguracije]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ČPP]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Dopisna lista o MediaWiki izdanjima]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučite kako da se borite protiv nepoželjnog sadržaja na svom vikiju]"
 }

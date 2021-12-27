@@ -66,7 +66,7 @@
 	"config-mysql-old": "MySQL $1 অথবা পরেরগুলি প্রয়োজন। আপনার আছে $2।",
 	"config-db-port": "ডেটাবেজ পোর্ট:",
 	"config-db-schema": "মিডিয়াউইকির জন্য স্কিমা (হাইফেন ছাড়া):",
-	"config-pg-test-error": "উপাত্তশালা $1-এর সাথে সংযোগ দেয়া সম্ভব হয়নি। কারন:$2",
+	"config-pg-test-error": "ডাটাবেজ <strong>$1</strong>-এর সাথে সংযোগ দেওয়া সম্ভব হয়নি: $2",
 	"config-sqlite-dir": "SQLite উপাত্ত ডিরেক্টরি:",
 	"config-type-mysql": "MariaDB, MySQL, বা উপযুক্তগুলি",
 	"config-dbsupport-postgres": "* MySQL-এর বিকল্প হিসেবে [{{int:version-db-postgres-url}} PostgreSQL] হচ্ছে একটি জনপ্রিয় মুক্ত উৎসের ডাটাবেস ব্যবস্থা। ([https://www.php.net/manual/en/pgsql.installation.php PostgreSQL সমর্থনসহ কিভাবে PHP সঙ্কলন করবেন])",
@@ -99,6 +99,7 @@
 	"config-admin-password-blank": "প্রশাসক অ্যাকাউন্টের জন্য পাসওয়ার্ড প্রবেশ করান।",
 	"config-admin-password-mismatch": "আপনি যে দুটি পাসওয়ার্ড দিয়েছেন তারা পরস্পর মেলেনি।",
 	"config-admin-email": "ইমেইল ঠিকানা:",
+	"config-admin-error-password-invalid": "উইকি প্রশাসক পাস‌ওয়ার্ড অবৈধ: $1",
 	"config-admin-error-bademail": "আপনি একটি অবৈধ ইমেল ঠিকানা দিয়েছেন।",
 	"config-optional-continue": "আরও প্রশ্ন জিজ্ঞেস করুন।",
 	"config-optional-skip": "আমি ইতিমধ্যেই বিরক্ত হয়ে গেছি, শুধু উইকিটি ইন্সটল করুন।",
@@ -149,5 +150,5 @@
 	"config-screenshot": "স্ক্রিনশট",
 	"config-extension-not-found": "\"$1\" এক্সটেনশনটির জন্য নিবন্ধন ফাইল খুঁজে পাওয়া যায়নি।",
 	"mainpagetext": "<strong>মিডিয়াউইকি ইনস্টল করা হয়েছে।</strong>",
-	"mainpagedocfooter": "কীভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।\n\n== কোথা থেকে শুরু করবেন ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings কনফিগারেশন সেটিং তালিকা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ প্রশ্নোত্তরে মিডিয়াউইকি]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি মুক্তির মেইলিং লিস্ট]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources আপনার ভাষার জন্য মিডিয়াউইকি স্থানীয়করণ করুন]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam আপনার উইকিতে স্প্যামের সাথে লড়াই করার উপায় সম্পর্কে জানুন]"
+	"mainpagedocfooter": "কীভাবে উইকি সফটওয়্যারটি ব্যবহার করবেন, তা জানতে [https://www.mediawiki.org/wiki/Help:Contents/bn ব্যবহারকারী সহায়িকা] দেখুন।\n\n== শুরু করুন ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings কনফিগারেশন সেটিংয়ের তালিকা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ মিডিয়াউইকি প্রাজিপ্র]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ মিডিয়াউইকি মুক্তির মেইলিং লিস্ট]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources আপনার ভাষার জন্য মিডিয়াউইকি স্থানীয়করণ করুন]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam আপনার উইকিতে স্প্যামের সাথে লড়াই করার উপায় সম্পর্কে জানুন]"
 }

@@ -8,7 +8,8 @@
 			"Renessaince",
 			"Wizardist",
 			"Zedlik",
-			"아라"
+			"아라",
+			"W"
 		]
 	},
 	"config-desc": "Праграма ўсталяваньня MediaWiki",
@@ -174,12 +175,13 @@
 	"config-admin-email-help": "Увядзіце тут адрас электроннай пошты, каб атрымліваць электронныя лісты ад іншых удзельнікаў вікі, скідваць Ваш пароль і атрымліваць абвешчаньні пра зьмены старонак, якія знаходзяцца ў Вашым сьпісе назіраньня. Вы можаце пакінуць гэтае поле пустым.",
 	"config-admin-error-user": "Унутраная памылка падчас стварэньня рахунку адміністратара зь іменем «<nowiki>$1</nowiki>».",
 	"config-admin-error-password": "Унутраная памылка падчас устаноўкі паролю для адміністратара «<nowiki>$1</nowiki>»: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Непрыдатны пароль вікіадміна: $1",
 	"config-admin-error-bademail": "Вы ўвялі няслушны адрас электроннай пошты",
-	"config-subscribe": "Падпісацца на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў].",
+	"config-subscribe": "Падпісацца на [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў].",
 	"config-subscribe-help": "Гэта ня вельмі актыўны сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў, які ўключаючы важныя навіны пра бясьпеку.\nВам неабходна падпісацца на яго і абнавіць Вашае ўсталяваньне MediaWiki, калі зьявяцца новыя вэрсіі.",
 	"config-subscribe-noemail": "Вы спрабавалі падпісацца на рассылку паведамленьняў пра выхад новых вэрсіяў, не пазначыўшы адрас электроннай пошты.\nКалі ласка, падайце слушны адрас, калі Вы жадаеце падпісацца на рассылку.",
-	"config-pingback": "Дзяліцца зьвесткамі пра гэтую ўсталёўку з распрацоўнікамі MediaWiki.",
-	"config-pingback-help": "Калі вы абярэце гэтую наладу, MediaWiki будзе час ад часу дасылаць базавыя зьвесткі пра гэтую ўсталёўку на https://www.mediawiki.org. Гэтыя зьвесткі ўключаюць, напрыклад, тып сыстэмы, вэрсію PHP і абраную базу зьвестак. Фундацыя «Вікімэдыя» дзеліцца гэтымі зьвесткамі з распрацоўнікамі MediaWiki, каб скіраваць далейшыя шляхі распрацоўкі. Наступныя зьвесткі будуць дасланыя для вашай сыстэмы:\n<pre>$1</pre>",
+	"config-pingback": "Дзяліцца зьвесткамі пра гэтую ўсталёўку з распрацоўнікамі MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Палітыка прыватнасьці].",
+	"config-pingback-help": "Калі вы абярэце гэтую наладу, MediaWiki будзе час ад часу дасылаць базавыя зьвесткі пра гэтую ўсталёўку на https://www.mediawiki.org. Гэтыя зьвесткі ўключаюць, напрыклад, тып сыстэмы, вэрсію PHP і абраную базу зьвестак. Фундацыя «Вікімэдыя» дзеліцца гэтымі зьвесткамі з распрацоўнікамі MediaWiki, каб скіраваць далейшыя шляхі распрацоўкі. Наступныя зьвесткі будуць дасланыя для вашай сыстэмы:\n<pre>$1</pre>\n\nПалітыку прыватнасьці для гэтай функцыі можна паглядзець на https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nКаб пачытаць больш інфармацыі пра гэтую функцыю, глядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nАгрэгаваныя зьвесткі пра паведамленьні ў адказ глядзіце на https://pingback.wmflabs.org/.",
 	"config-almost-done": "Вы амаль што скончылі!\nАстатнія налады можна прапусьціць і пачаць усталяваньне вікі.",
 	"config-optional-continue": "Задаць болей пытаньняў.",
 	"config-optional-skip": "Хопіць, проста ўсталяваць вікі.",
@@ -264,9 +266,14 @@
 	"config-install-user-grant-failed": "Немагчыма даць правы удзельніку «$1»: $2",
 	"config-install-user-missing": "Пазначаны карыстальнік «$1» не існуе.",
 	"config-install-user-missing-create": "Пазначаны карыстальнік «$1» не існуе.\nКалі ласка, пазначце «стварыць рахунак», калі Вы жадаеце яго стварыць.",
+	"config-install-logo-blank": "Увесьці прыдатны УЛР эмблемы",
+	"config-install-restore-services": "Аднаўленьне паслугаў мэдыявікі",
 	"config-install-tables": "Стварэньне табліцаў, першы крок",
 	"config-install-tables-exist": "'''Папярэджаньне''': Выглядае, што табліцы MediaWiki ужо існуюць.\nСтварэньне прапушчанае.",
 	"config-install-tables-failed": "'''Памылка''': немагчыма стварыць табліцы з-за наступнай памылкі: $1",
+	"config-install-tables-manual": "Стварэньне табліцаў, другі крок",
+	"config-install-manual-tables-exist": "<strong>Папярэджаньне</strong>: Выглядае, што табліцы МэдыяВікі ўжо існуюць.\nПропуск стварэньня.",
+	"config-install-manual-tables-failed": "<strong>Памылка</strong>: Стварэньне табліцы не ўдалося праз наступную памылку: $1",
 	"config-install-interwiki": "Запаўненьне табліцы інтэрвікі па змоўчваньні",
 	"config-install-interwiki-list": "Немагчыма знайсьці файл <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Папярэджаньне''': выглядае, што табліца інтэрвікі ўжо запоўненая.\nСьпіс па змоўчваньні прапушчаны.",
@@ -275,7 +282,7 @@
 	"config-install-updates": "Прадухіленьне запуску непатрэбных абнаўленьняў",
 	"config-install-updates-failed": "<strong>Памылка</strong>: устаўка ключоў абнаўленьня ў табліцы завершылася наступнай памылкай: $1",
 	"config-install-sysop": "Стварэньне рахунку адміністратара",
-	"config-install-subscribe-fail": "Немагчыма падпісацца на «mediawiki-announce»: $1",
+	"config-install-subscribe-fail": "Немагчыма падпісацца на «[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]»: $1",
 	"config-install-subscribe-notpossible": "cURL не ўсталяваны, <code>allow_url_fopen</code> недаступны.",
 	"config-install-mainpage": "Стварэньне галоўнай старонкі са зьместам па змоўчваньні",
 	"config-install-mainpage-exists": "Галоўная старонка ўжо існуе, прапускаем",
@@ -296,5 +303,5 @@
 	"config-extension-not-found": "Не атрымалася знайсьці файл рэгістрацыі для пашырэньня «$1»",
 	"config-extension-dependency": "Памылка залежнасьці ўзьнікла падчас усталяваньня пашырэньня «$1»: $2",
 	"mainpagetext": "<strong>MediaWiki была ўсталяваная.</strong>",
-	"mainpagedocfooter": "Глядзіце [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
+	"mainpagedocfooter": "Глядзіце [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
 }

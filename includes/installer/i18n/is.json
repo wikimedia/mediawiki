@@ -2,13 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Snævar",
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Danniel07",
+			"Þjarkur"
 		]
 	},
 	"config-desc": "Uppsetningarforrit fyrir MediaWiki",
 	"config-title": "MediaWiki $1 uppsetning",
 	"config-information": "Upplýsingar",
 	"config-localsettings-key": "Uppfærslulykill:",
+	"config-localsettings-badkey": "Uppfærslulykillinn sem þú gafst upp er rangur.",
+	"config-localsettings-connection-error": "Villa kom upp við tengingu við gagnagrunninn með því að nota stillingarnar sem tilgreindar eru í <code>LocalSettings.php</code>. Vinsamlegast lagfærðu þessar stillingar og reyndu aftur.\n\n$1",
 	"config-session-error": "Villa við að ræsa setu: $1",
 	"config-your-language": "Tungumálið þitt:",
 	"config-your-language-help": "Veldu tungumál að nota við uppsetninguna.",
@@ -30,7 +34,11 @@
 	"config-page-upgradedoc": "Uppfærsla",
 	"config-page-existingwiki": "Fyrirliggjandi wiki",
 	"config-restart": "Já, endurræsa",
-	"config-welcome-section-copyright": "=== Höfundarréttur og skilmálar ===\n\n$1\n\nÞetta er frjáls hugbúnaður; þú mátt dreifa honum og/eða breyta samkvæmt skilmálum í almenna GNU GPL notkunarleyfinu eins og það er gefið út af Frjálsu hugbúnaðarstofnuninni; annaðhvort útgáfu 2 af GPL-leyfinu, eða (ef þér sýnist svo) einhverri nýrri útgáfu leyfisins.\n\nHugbúnaði þessum er dreift í þeirri von að hann geti verið gagnlegur, en <strong>ÁN ALLRAR ÁBYRGÐAR</strong>; einnig án þeirrar ábyrgðar sem gefin er í skyn með <strong>SELJANLEIKA</strong> eða <strong>EIGINLEIKUM TIL TILTEKINNA NOTA</strong>. Sjá almenna GNU GPL notkunarleyfið fyrir nánari upplýsingar.\n\nÞað ætti að hafa fylgt afrit af almenna [$2 GNU GPL notkunarleyfinu] með forritinu; ef ekki skrifið þá Fjálsu hugbúnarstofnuninni: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, eða [https://www.gnu.org/copyleft/gpl.html lestu það á netinu].",
+	"config-welcome-section-copyright": "=== Höfundaréttur og skilmálar ===\n\n$1\n\nÞetta er frjáls hugbúnaður; þú mátt dreifa honum og/eða breyta samkvæmt skilmálum í almenna GNU GPL notkunarleyfinu eins og það er gefið út af Frjálsu hugbúnaðarstofnuninni; annaðhvort útgáfu 2 af GPL-leyfinu, eða (ef þér sýnist svo) einhverri nýrri útgáfu leyfisins.\n\nHugbúnaði þessum er dreift í þeirri von að hann geti verið gagnlegur, en <strong>ÁN ALLRAR ÁBYRGÐAR</strong>; einnig án þeirrar ábyrgðar sem gefin er í skyn með <strong>SELJANLEIKA</strong> eða <strong>EIGINLEIKUM TIL TILTEKINNA NOTA</strong>. Sjá almenna GNU GPL notkunarleyfið fyrir nánari upplýsingar.\n\nÞað ætti að hafa fylgt afrit af almenna [$2 GNU GPL notkunarleyfinu] með forritinu; ef ekki skrifið þá Fjálsu hugbúnarstofnuninni: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, eða [https://www.gnu.org/copyleft/gpl.html lestu það á netinu].",
+	"config-sidebar-license": "Afritun",
+	"config-sidebar-upgrade": "Uppfærsla",
+	"config-env-good": "Umhverfið hefur verið athugað.\nÞú getur halað niður MediaWiki.",
+	"config-env-bad": "Umhverfið hefur verið athugað.\nÞú getur ekki hlaðið niður MediaWiki.",
 	"config-env-php": "PHP $1 er uppsett.",
 	"config-apc": "[https://www.php.net/apc APC] er uppsett",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] er uppsett",
@@ -39,9 +47,15 @@
 	"config-using-uri": "Nota \"<nowiki>$1$2</nowiki>\" sem slóð á þjón.",
 	"config-db-type": "Tegund gagnagrunns:",
 	"config-db-host": "Netþjónn gagnagrunns:",
+	"config-db-wiki-settings": "Sláðu inn auðkennandi eða aðgreind gögn fyrir þessa wiki",
 	"config-db-name": "Heiti gagnagrunns (engin bandstrik):",
+	"config-db-name-help": "Veldu nafn sem auðkennir wiki þinn.\nÞað ætti ekki að innihalda bil.\n\nEf þú ert að nota sameiginlega vefhýsingu mun hýsingaraðilinn þinn annað hvort gefa þér ákveðið gagnagrunnsheiti til að nota eða láta þig búa til gagnagrunna í gegnum stjórnborð.",
+	"config-db-install-account": "Notandareikningur til að sækja",
 	"config-db-username": "Notandanafn á gagnagrunni:",
 	"config-db-password": "Lykilorð gagnagrunns:",
+	"config-db-install-username": "Sláðu inn notandanafnið sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.\nÞetta er ekki notendanafn MediaWiki reikningsins; þetta er notendanafnið fyrir gagnagrunninn þinn.",
+	"config-db-install-password": "Sláðu inn lykilorðið sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.\nÞetta er ekki lykilorðið fyrir MediaWiki reikninginn; þetta er lykilorðið fyrir gagnagrunninn þinn.",
+	"config-db-install-help": "Sláðu inn notandanafn og lykilorð sem verður notað til að tengjast gagnagrunninum meðan á uppsetningarferlinu stendur.",
 	"config-db-port": "Gátt gagnagrunns:",
 	"config-sqlite-dir": "Gagnamappa SQLite:",
 	"config-type-mysql": "MariaDB, MySQL, eða samhæft",
@@ -84,5 +98,5 @@
 	"config-help": "hjálp",
 	"config-help-tooltip": "Smella til að þenja út",
 	"mainpagetext": "'''Uppsetning á MediaWiki heppnaðist.'''",
-	"mainpagedocfooter": "Ráðfærðu þig við [https://meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.\n\n== Fyrir byrjendur ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listi yfir uppsetningarstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Læra hvernig á að berjast við amapóst á þínum wiki]"
+	"mainpagedocfooter": "Ráðfærðu þig við [https://meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.\n\n== Fyrir byrjendur ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listi yfir uppsetningarstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Póstlisti MediaWiki-útgáfa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Læra hvernig á að berjast við amapóst á þínum wiki]"
 }

@@ -173,7 +173,7 @@
 	"config-admin-error-user": "Възникна вътрешна грешка при създаване на администратор с името „<nowiki>$1</nowiki>“.",
 	"config-admin-error-password": "Възникна вътрешна грешка при задаване на парола за администратора „<nowiki>$1</nowiki>“: <pre>$2</pre>",
 	"config-admin-error-bademail": "Въведен е невалиден адрес за електронна поща.",
-	"config-subscribe": "Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].",
+	"config-subscribe": "Абониране за [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ пощенския списък за нови версии].",
 	"config-subscribe-help": "Това е пощенски списък с малко трафик, който се използва за съобщения при излизане на нови версии, както и за важни проблеми със сигурността.\nАбонирането е препоръчително, както и надграждането на инсталацията на МедияУики при излизането на нова версия.",
 	"config-subscribe-noemail": "Опитахте да се абонирате за пощенския списък за нови версии без да посочите адрес за електронна поща.\nНеобходимо е да се предостави адрес за електронна поща, в случай че желаете да се абонирате за пощенския списък.",
 	"config-pingback": "Споделяне на данни за инсталацията с разработчиците на МедияУики.",
@@ -273,7 +273,7 @@
 	"config-install-updates": "Предотвратяване стартирането на ненужни актуализации",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Вмъкването на обновяващи ключове в таблиците се провали по следната причина: $1",
 	"config-install-sysop": "Създаване на администраторска сметка",
-	"config-install-subscribe-fail": "Невъзможно е абонирането за mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Невъзможно е абонирането за mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "Не е инсталиран cURL и <code>allow_url_fopen</code> не е налична.",
 	"config-install-mainpage": "Създаване на Началната страница със съдържание по подразбиране",
 	"config-install-mainpage-exists": "Главната страница вече съществува, преминаване напред",
@@ -294,5 +294,5 @@
 	"config-extension-not-found": "Регистрационният файл за разширение „$1“ не може да бъде намерен",
 	"config-extension-dependency": "Възникна грешка на зависимостите по време на инсталация на разширение „$1“: $2",
 	"mainpagetext": "<strong>МедияУики беше успешно инсталирано.</strong>",
-	"mainpagedocfooter": "Разгледайте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ръководството] за подробна информация относно използването на уики софтуера.\n\n== Първи стъпки ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Настройки за конфигуриране]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧЗВ за МедияУики]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализиране на МедияУики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научете как да се справяте със спама във вашето уики]"
+	"mainpagedocfooter": "Разгледайте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ръководството] за подробна информация относно използването на уики софтуера.\n\n== Първи стъпки ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Настройки за конфигуриране]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧЗВ за МедияУики]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Пощенски списък относно нови версии на МедияУики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализиране на МедияУики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научете как да се справяте със спама във вашето уики]"
 }

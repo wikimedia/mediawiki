@@ -13,7 +13,8 @@
 			"The Evil IP address",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -848,7 +849,7 @@
 	"default": "kikinmanta",
 	"prefs-files": "Willañiqikuna",
 	"prefs-custom-css": "Munakusqa CSS",
-	"prefs-custom-js": "Munakusqa JS",
+	"prefs-custom-js": "Munakusqa JavaScript",
 	"prefs-common-config": "Tukuy qarakunapaq rakinakusqa CSS/JS:",
 	"prefs-reset-intro": "Kay p'anqataqa llamk'achiyta atinki allinkachinaykikunata kikinmanta kasqaman kutichinaykipaq.\nChaytataq manam kutichiyta atinkichu.",
 	"prefs-emailconfirm-label": "E-chaskita takyachiy:",

@@ -30,19 +30,17 @@
 	"config-page-install": "Installeer",
 	"config-page-complete": "Vaerdig!",
 	"config-page-restart": "Begin installering oppernuuj",
-	"config-page-readme": "Laes mich",
 	"config-page-releasenotes": "Gaef ópmèrkinge vrie",
 	"config-page-copying": "Kopieer",
 	"config-page-upgradedoc": "Wirk bie",
 	"config-page-existingwiki": "Bestäönde wiki",
 	"config-restart": "Jao, begin oppernuuj",
 	"config-env-php": "PHP $1 is geïnstalleerd.",
-	"config-env-hhvm": "HHVM $1 is geïnstalleerd.",
 	"config-diff3-bad": "GNU diff3 neet gevónje.",
 	"config-db-type": "Databanksaort:",
 	"config-db-host": "Databankgashieër:",
 	"config-db-wiki-settings": "Identificeer deze wiki",
 	"config-db-name": "Databanknaam:",
 	"mainpagetext": "<strong>MediaWiki software geïnsjtalleerd.</strong>",
-	"mainpagedocfooter": "Raodpleeg de [https://meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.\n\n== Mieë hölp ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lies mit instellinge]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki VGV (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki besjikbaar in dien spraok]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lieër wie se spam kans verkómme op diene wiki]"
+	"mainpagedocfooter": "Raodpleeg de [https://meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.\n\n== Mieë hölp ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lies mit instellinge]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki VGV (FAQ)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki mailinglies veur nuuj versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki besjikbaar in dien spraok]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lieër wie se spam kans verkómme op diene wiki]"
 }

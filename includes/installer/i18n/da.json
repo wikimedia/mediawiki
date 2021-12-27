@@ -43,6 +43,7 @@
 	"config-page-existingwiki": "Eksisterende wiki",
 	"config-help-restart": "Vil du rydde alle gemte data, du har indtastet og genstarte installationen?",
 	"config-restart": "Ja, genstart den",
+	"config-sidebar-license": "Kopiering",
 	"config-sidebar-upgrade": "Opgraderer",
 	"config-env-php": "PHP $1 er installeret.",
 	"config-apc": "[https://www.php.net/apc APC] er installeret",
@@ -111,5 +112,5 @@
 	"config-extensions-requires": "$1 (kræver $2)",
 	"config-screenshot": "skærmbillede",
 	"mainpagetext": "<strong>MediaWiki er nu installeret.</strong>",
-	"mainpagedocfooter": "Se [https://meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.\n\n== At komme i gang ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listen over opsætningsmuligheder]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ofte stillede spørgsmål]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Oversæt MediaWiki til dit sprog]"
+	"mainpagedocfooter": "Se [https://meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.\n\n== At komme i gang ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listen over opsætningsmuligheder]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ofte stillede spørgsmål]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Postliste angående udgivelser af MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Oversæt MediaWiki til dit sprog]"
 }

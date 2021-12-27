@@ -253,7 +253,7 @@
 	"config-install-keys": "Genel an alc'hwezioù kuzh",
 	"config-install-updates": "Mirout da lakaat hizivadennoù diezhomm da vont en-dro",
 	"config-install-sysop": "Krouidigezh kont ar merour",
-	"config-install-subscribe-fail": "N'haller ket koumanantiñ da mediawiki-announce : $1",
+	"config-install-subscribe-fail": "N'haller ket koumanantiñ da mediawiki-announce [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL n'eo ket staliet ha ne c'haller ket ober gant <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
 	"config-install-mainpage-exists": "Bez' ez eus eus ar bajenn bennañ c'hoazh, lezel a-gostez",
@@ -264,5 +264,5 @@
 	"config-help-tooltip": "klikañ evit astenn",
 	"config-nofile": "N'eus ket bet gallet kavout ar restr \"$1\". Daoust ha dilamet eo bet ?",
 	"mainpagetext": "<strong>Staliet eo bet MediaWiki.</strong>",
-	"mainpagedocfooter": "Sellit ouzh [https://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh"
+	"mainpagedocfooter": "Sellit ouzh [https://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh"
 }

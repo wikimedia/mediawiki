@@ -1164,6 +1164,7 @@
 	"recentchanges-label-plusminus": "صفحه‌نین اؤلچوسو بایت میقداری ایله تعیین ائدیلیر",
 	"recentchanges-legend-heading": "<strong>قیسالتمالار:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (بیرده [[Special:NewPages|یئنی صفحه‌لرین لیستینه]] باخین)",
+	"recentchanges-legend-watchlistexpiry": "موقتی ایزله‌نن صفحه",
 	"rcfilters-other-review-tools": "داها یوخلاما آلتلری",
 	"rcfilters-group-results-by-page": "دییشیکلیکلری صفحه‌لرینه گؤره سیرالا",
 	"rcfilters-activefilters": "چالیشقان فیلترلر",

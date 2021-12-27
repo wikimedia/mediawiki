@@ -21,7 +21,8 @@
 			"Tibor",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -1011,7 +1012,7 @@
 	"prefs-files": "Bestenj",
 	"prefs-custom-css": "Persoonlijke CSS",
 	"prefs-custom-json": "Aangepasde JSON",
-	"prefs-custom-js": "Persoonlijke JS",
+	"prefs-custom-js": "Persoonlijke JavaScript",
 	"prefs-common-config": "Gedeilde CSS/JSON/JavaScrip veur eder vormgaeving:",
 	"prefs-reset-intro": "Gebroek dees functie om dien veurkäöre te herstelle nao de standaardinstellinge.\nDees hanjeling kin neet ongedaon gemaak waere.",
 	"prefs-emailconfirm-label": "E-mailbevestiging:",

@@ -14,7 +14,8 @@
 			"Stephanecbisson",
 			"Vlad5250",
 			"Къарачайлы",
-			"아라"
+			"아라",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Джибериулени черт:",
@@ -828,7 +829,7 @@
 	"default": "тынгылау бла",
 	"prefs-files": "Файлла",
 	"prefs-custom-css": "Энчи CSS",
-	"prefs-custom-js": "Энчи JS",
+	"prefs-custom-js": "Энчи JavaScript",
 	"prefs-common-config": "Бир CSS/JS-ле, халны бары темаларына да:",
 	"prefs-reset-intro": "Бу бетни джарашдырыуларыгъызны тынгылыау бла салыннган джарашдырыулагъа кёчюрюрге хайырланаллыкъсыз.\nБу ишлемни къабыл этсегиз, ызына къайтараллыкъ тюлсюз.",
 	"prefs-emailconfirm-label": "Электрон почтаны бегитиу:",

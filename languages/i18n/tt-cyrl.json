@@ -29,7 +29,9 @@
 			"Исмаил Садуев",
 			"Рашат Якупов",
 			"Умар",
-			"아라"
+			"아라",
+			"Amire80",
+			"McDutchie"
 		]
 	},
 	"tog-underline": "Сылтамаларны ассызымлау:",
@@ -889,7 +891,7 @@
 	"prefs-files": "Файллар",
 	"prefs-custom-css": "Шәхси CSS",
 	"prefs-custom-json": "Шәхси JSON",
-	"prefs-custom-js": "Шәхси JS",
+	"prefs-custom-js": "Шәхси JavaScript",
 	"prefs-common-config": "Барлык бизәлешләр өчен гомуми CSS/JSON/JavaScript:",
 	"prefs-reset-intro": "Бу бит сезнең көйләнмәләрегезне бетерү өчен кулланыла. Бу эшне башкару нәтиҗәсендә сез яңадан үз көйләнмәләрне яңадан кайтара алмыйсыз.",
 	"prefs-emailconfirm-label": "E-mail раслау",

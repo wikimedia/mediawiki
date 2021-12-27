@@ -21,13 +21,11 @@
 	"config-page-options": "ಆಯ್ಕೆಗಳು",
 	"config-page-install": "ಸ್ಥಾಪಿಸು",
 	"config-page-complete": "ಪೂರ್ಣ!",
-	"config-page-readme": "ನನ್ನನ್ನು ಓದಿ",
 	"config-page-copying": "ನಕಲಿಸುತ್ತಿದೆ..",
 	"config-page-upgradedoc": "ಪರಿಷ್ಕರಿಸಲ್ಪಡುತ್ತಿದೆ",
 	"config-page-existingwiki": "ಪ್ರಸ್ತುತ ವಿಕಿ",
 	"config-restart": "ಸರಿ,ಪುನಃ ಪ್ರಾರಂಭಿಸಿ",
 	"config-db-type": "ದತ್ತಾಂಶಸಂಚಯ ಮಾದರಿ:",
-	"config-db-host-oracle": "ದತ್ತಾಂಶಸಂಚಯ TNS:",
 	"config-db-wiki-settings": "ಈ ವಿಕಿಯನ್ನು ಗುರುತಿಸಿ",
 	"config-db-name": "ದತ್ತಾಂಶಸಂಚಯ ಹೆಸರು:",
 	"config-db-username": "ದತ್ತಾಂಶಸಂಚಯ ಬಳಕೆದಾರಹೆಸರು:",
@@ -44,5 +42,5 @@
 	"config-install-step-failed": "ವಿಫಲವಾಗಿದೆ",
 	"config-help": "ಸಹಾಯ",
 	"mainpagetext": "'''ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.'''",
-	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [https://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.\n\n== ಪ್ರಾರಂಭಿಸುವುದು ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [https://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.\n\n== ಪ್ರಾರಂಭಿಸುವುದು ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

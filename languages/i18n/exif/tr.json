@@ -22,7 +22,10 @@
 			"Tarikozket",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Hedda",
+			"MuratTheTurkish",
+			"Sezgin İbiş"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -171,7 +174,7 @@
 	"exif-iimcategory": "Kategori",
 	"exif-iimsupplementalcategory": "Tamamlayıcı kategoriler",
 	"exif-datetimeexpires": "Bu tarihten sonra kullanmayın:",
-	"exif-datetimereleased": "Tarihinde yayınlandı",
+	"exif-datetimereleased": "Yayımlanma tarihi:",
 	"exif-originaltransmissionref": "Orijinal iletim konum kodu",
 	"exif-identifier": "Tanımlayıcı",
 	"exif-lens": "Kullanılan objektif",
@@ -207,7 +210,7 @@
 	"exif-compression-2": "CCITT Grup 3 1-Boyutlu Değiştirilmiş Huffman koşu uzunluğu kodlaması",
 	"exif-compression-3": "CCITT Grup 3 faks kodlaması",
 	"exif-compression-4": "CCITT Grup 4 faks kodlaması",
-	"exif-compression-6": "JPEG",
+	"exif-compression-6": "JPEG (eski)",
 	"exif-copyrighted-true": "Telif hakkılı",
 	"exif-copyrighted-false": "Telif hakkı durumu belirtilmemiş",
 	"exif-photometricinterpretation-0": "Siyah ve beyaz (Beyaz 0)",
@@ -243,7 +246,7 @@
 	"exif-componentsconfiguration-5": "G",
 	"exif-componentsconfiguration-6": "B",
 	"exif-exposureprogram-0": "Tanımlanmadı",
-	"exif-exposureprogram-1": "Manüel",
+	"exif-exposureprogram-1": "Kılavuz",
 	"exif-exposureprogram-2": "Normal program",
 	"exif-exposureprogram-3": "Açıklık önceliği",
 	"exif-exposureprogram-4": "Denklanşör önceliği",

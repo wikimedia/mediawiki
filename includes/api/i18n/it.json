@@ -19,7 +19,8 @@
 			"Sannita",
 			"Toadino2",
 			"Urielejh",
-			"Valepert"
+			"Valepert",
+			"Ajeje Brazorf"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentazione]] (in inglese)\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]] (in inglese)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> l'API MediaWiki è un'interfaccia matura e stabile che è attivamente supportata e migliorata. Anche se cerchiamo di evitarlo, potremmo dover fare delle modifiche che causano malfunzionamenti; iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<p class=\"mw-apisandbox-link\"><strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].</p>",
@@ -29,7 +30,7 @@
 	"apihelp-main-param-requestid": "Tutti i valori forniti saranno implementati nella risposta. Potrebbero venir utilizzati per distinguere le richieste.",
 	"apihelp-main-param-servedby": "Includi nel risultato il nome dell'host che ha servito la richiesta.",
 	"apihelp-main-param-curtimestamp": "Includi nel risultato il timestamp attuale.",
-	"apihelp-block-summary": "Blocca  un utente.",
+	"apihelp-block-summary": "Blocca un utente.",
 	"apihelp-block-param-user": "Utente da bloccare.",
 	"apihelp-block-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> invece.",
 	"apihelp-block-param-expiry": "Tempo di scadenza. Può essere relativo (ad esempio, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o assoluto (ad esempio <kbd>2014-09-18T12:34:56Z</kbd>). Se impostato a <kbd>infinite</kbd>, <kbd>indefinite</kbd> o <kbd>never</kbd>, il blocco non scadrà mai.",
@@ -418,6 +419,7 @@
 	"apihelp-query+fileusage-param-show": "Mostra solo gli elementi che soddisfano questi criteri:\n;redirect:mostra solo i redirect.\n;!redirect:mostra solo i non redirect.",
 	"apihelp-query+fileusage-example-simple": "Ottieni un elenco di pagine che usano [[:File:Example.jpg]].",
 	"apihelp-query+imageinfo-summary": "Restituisce informazione sul file sulla cronologia di caricamento.",
+	"apihelp-query+imageinfo-param-prop": "Quali informazioni sul file ottenere:",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Aggiunge il tipo MIME del file. Se il file è stato cancellato dalla versione, sarà restituita una proprietà <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-param-start": "Il timestamp da cui iniziare l'elenco.",
 	"apihelp-query+imageinfo-param-urlheight": "Simile a $1urlwidth.",
@@ -619,7 +621,7 @@
 	"apihelp-userrights-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> invece.",
 	"apihelp-userrights-param-add": "Aggiungere l'utente a questi gruppi, o se sono già membri, aggiornare la scadenza della loro appartenenza a quel gruppo.",
 	"apihelp-userrights-param-remove": "Rimuovi l'utente da questi gruppi.",
-	"apihelp-userrights-param-reason": "Motivo del cambiamento.",
+	"apihelp-userrights-param-reason": "Motivo per la modifica.",
 	"apihelp-validatepassword-summary": "Convalida una password seguendo le politiche del wiki sulle password.",
 	"apihelp-validatepassword-extended-description": "La validità è riportata come <samp>Good</samp> se la password è accettabile, <samp>Change</samp> se la password può essere utilizzata per l'accesso ma deve essere modificata, o <samp>Invalid</samp> se la password non è utilizzabile.",
 	"apihelp-validatepassword-param-password": "Password da convalidare.",
@@ -680,7 +682,13 @@
 	"apierror-invaliduserid": "L'ID utente <var>$1</var> non è valido.",
 	"apierror-maxbytes": "Il parametro <var>$1</var> non può essere più lungo di $2 {{PLURAL:$2|byte}}",
 	"apierror-maxchars": "Il parametro <var>$1</var> non può essere più lungo di $2 {{PLURAL:$2|carattere|caratteri}}",
+	"apierror-missingtitle-byname": "La pagina $1 non esiste.",
+	"apierror-mustbeloggedin": "È necessario effettuare l'accesso per $1.",
 	"apierror-nosuchuserid": "Non c'è alcun utente con ID $1.",
+	"apierror-permissiondenied": "Non si dispone dei permessi necessari per $1.",
 	"apierror-toomanyvalues": "Troppi valori forniti per il parametro <var>$1</ var>. Il limite è $2.",
+	"apiwarn-notfile": "\"$1\" non è un file.",
+	"api-feed-error-title": "Errore ($1)",
+	"api-exception-trace": "$1 a $2($3)\n$4",
 	"api-credits-header": "Crediti"
 }

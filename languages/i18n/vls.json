@@ -3,7 +3,8 @@
 		"authors": [
 			"DasRakel",
 			"Tbc",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"MinecraftAustralia"
 		]
 	},
 	"tog-underline": "Links ounderstreepn:",
@@ -69,7 +70,6 @@
 	"mypage": "Myn gebrukersblad",
 	"mytalk": "Myn discuusjeblad",
 	"and": "&#32;en",
-	"qbedit": "Bewerkn",
 	"tagline": "Van {{SITENAME}}",
 	"help": "Ulpe",
 	"search": "Zoekn",
@@ -81,15 +81,10 @@
 	"print": "Drukn",
 	"edit": "Bewerk'n",
 	"create": "Anmoakn",
-	"editthispage": "Da blad ier bewerkn",
-	"create-this-page": "Da blad ier anmoakn",
 	"delete": "Wegdoen",
-	"deletethispage": "Da blad ier verwydern",
 	"undelete_short": "{{PLURAL:$1|êen bewerkinge|$1 bewerkingn}} werekêern",
 	"protect": "Beveilign",
-	"protectthispage": "Da blad ier beveilign",
 	"unprotect": "beveiliginge wegdoen",
-	"unprotectthispage": "De beveiliginge van da blad ier ofleggn",
 	"newpage": "Nieuw blad",
 	"talkpagelinktext": "Discuusje",
 	"specialpage": "Specioal blad",
@@ -127,11 +122,9 @@
 	"undeletepage": "Weggedoane bloadn erstelln of bekykn",
 	"undeletehistorynoadmin": "'t Artikel is weggedoan. De reden davôorn ku je zien in de soamnvattienge ieronder, tôpe me uutleg over wie dat 't blad bewerkt èt vôorn dat weggedoan es gewist. Den tekst van die weggedoane versies kan allêene door sysops gelezen wordn.",
 	"undeletebtn": "Erstelln",
-	"undeletedfiles": "{{PLURAL:$1|1 bestand|$1 bestandn}} ersteld",
 	"mycontris": "Myn bydroagn",
-	"uctop": "(latste veranderienge)",
+	"uctop": "latste veranderienge",
 	"contribslink": "bydroagn",
-	"delete_and_move": "Wegdoen en ernoemn",
 	"tooltip-n-mainpage": "Noar 't voorblad goane",
 	"newimages": "Nieuwe ofbeeldiengn"
 }

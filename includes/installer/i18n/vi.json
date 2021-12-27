@@ -172,9 +172,10 @@
 	"config-admin-email": "Địa chỉ thư điện tử:",
 	"config-admin-email-help": "Nhập một địa chỉ thư điện tử vào đây để cho phép bạn nhận được thư điện tử từ những người dùng khác trên wiki, đặt lại mật khẩu của bạn, và được thông báo về những thay đổi trong các trang nằm trong danh sách theo dõi của bạn. Bạn có thể để trống trường này.",
 	"config-admin-error-user": "Lỗi nội bộ khi tạo một admin với tên <nowiki>$1</nowiki>\".",
-	"config-admin-error-password": "Lỗi nội bộ khi thiết lập một mật khẩu cho admin \" <nowiki>$1</nowiki>\": <pre>$2</pre>",
+	"config-admin-error-password": "Lỗi nội bộ khi thiết lập một mật khẩu cho bảo quản viên “<nowiki>$1</nowiki>”: <pre>$2</pre>",
+	"config-admin-error-password-invalid": "Mật khẩu bảo quản viên wiki không hợp lệ: $1",
 	"config-admin-error-bademail": "Bạn đã nhập một địa chỉ thư điện tử không hợp lệ.",
-	"config-subscribe": "Theo dõi [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce danh sách thư thông báo phát hành].",
+	"config-subscribe": "Theo dõi [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ danh sách thư thông báo phát hành].",
 	"config-subscribe-help": "thông báo an ninh.\nBạn nên đồng ý với nó và cập nhật bản cài đặt MediaWiki của bạn khi phiên bản mới xuất hiện.",
 	"config-subscribe-noemail": "Bạn đã cố gắng để đăng ký vào danh sách thư thông báo phát hành mà không cung cấp một địa chỉ thư điện tử nào cả.\nVui lòng cung cấp một địa chỉ thư điện tử nếu bạn muốn đăng ký vào danh sách thư.",
 	"config-pingback": "Chia sẻ dữ liệu về bản cài đặt này với nhóm phát triển MediaWiki.",
@@ -263,6 +264,7 @@
 	"config-install-user-grant-failed": "Thất bại khi cấp quyền cho người dùng “$1”: $2",
 	"config-install-user-missing": "Người dùng chỉ định “$1” không tồn tại.",
 	"config-install-user-missing-create": "Người dùng chỉ định “$1” không tồn tại.\nKiểm hộp “mở tài khoản” ở dưới để tạo ra nó.",
+	"config-install-logo-blank": "Hãy nhập URL biểu trưng hợp lệ.",
 	"config-install-restore-services": "Đang phục hồi các dịch vụ MediaWiki",
 	"config-install-tables": "Đang tạo các bảng, bước đầu",
 	"config-install-tables-exist": "'''Cảnh báo:''' Các bảng MediaWiki hình như đã tồn tại.\nĐã bỏ qua việc tạo ra các bảng.",
@@ -278,7 +280,7 @@
 	"config-install-updates": "Tránh các cập nhật không cần thiết",
 	"config-install-updates-failed": "<strong>Lỗi:</strong> Chèn phím cập nhật vào các bảng không thành công với các lỗi sau:1$",
 	"config-install-sysop": "Đang mở tài khoản người dùng bảo quản viên",
-	"config-install-subscribe-fail": "Không thể theo dõi mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Không thể theo dõi mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL không được cài đặt và <code>allow_url_fopen</code> không có sẵn.",
 	"config-install-mainpage": "Đang tạo trang đầu với nội dung mặc định",
 	"config-install-mainpage-exists": "Bỏ qua trang chính đã tồn tại",
@@ -299,5 +301,5 @@
 	"config-extension-not-found": "Không tìm thấy tập tin đăng ký của bộ mở rộng \"$1$",
 	"config-extension-dependency": "Lỗi thiếu phần phụ thuộc xảy ra khi đang cài đặt bộ mở rộng \"$1\": $2",
 	"mainpagetext": "'''MediaWiki đã được cài đặt.'''",
-	"mainpagedocfooter": "Xin đọc [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.\n\n== Để bắt đầu ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Danh sách các thiết lập cấu hình]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Các câu hỏi thường gặp MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tìm hiểu cách chống spam tại wiki của bạn]"
+	"mainpagedocfooter": "Xin đọc [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.\n\n== Để bắt đầu ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Danh sách các thiết lập cấu hình]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Các câu hỏi thường gặp MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Danh sách gửi thư về việc phát hành MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tìm hiểu cách chống spam tại wiki của bạn]"
 }

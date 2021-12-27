@@ -164,7 +164,7 @@
 	"config-admin-error-user": "Internal mistak whan makin aen admeen wi the name \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Internal mistak whan settin ae passwaird fer the admeen \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Ye'v entered aen onvalid wab-mail address.",
-	"config-subscribe": "Subscribe til the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release annooncements mailin leet].",
+	"config-subscribe": "Subscribe til the [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ release annooncements mailin leet].",
 	"config-subscribe-help": "This is ae low-volume mailin leet uised fer release annooncements, inclæding important securitie annooncements.\nYe shid subscribe til it an update yer MediaWiki installâtion whan new versions come oot.",
 	"config-subscribe-noemail": "Ye tried tae subscribe til the release annooncements mailin let wioot giein ae wab-mail address.\nPlease gei ae wab-mail address gif ye wish tae subscribe til the mailin leet.",
 	"config-almost-done": "Ye'r awmaist dun!\nYe can nou skip the remainin confeegurâtion n install the wiki stricht awa.",
@@ -262,7 +262,7 @@
 	"config-install-updates": "Hinder the runnin o onneedit updates.",
 	"config-install-updates-failed": "<strong>Mistak:</strong> Insertin update keys intae the buirds failed wi the folleain mistak: $1",
 	"config-install-sysop": "Makin admeenistrâter uiser accoont",
-	"config-install-subscribe-fail": "Onable tae subscribe til mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Onable tae subscribe til mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL isna instawed n <code>allow_url_fopen</code> is na available.",
 	"config-install-mainpage": "Cræftin main page wi defaut content",
 	"config-install-extension-tables": "Makin buirds fer enabled extensions",
@@ -274,5 +274,5 @@
 	"config-nofile": "File \"$1\" coudna be foond. Haes it been delytit?",
 	"config-extension-link": "Did ye ken that yer wiki supports [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYe can brouse [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions bi categorie] or the [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] tae see the full leet o extensions.",
 	"mainpagetext": "<strong>MediaWiki haes been installed.</strong>",
-	"mainpagedocfooter": "Consult the [https://meta.wikimedia.org/wiki/Help:Contents/sco Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailin leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
+	"mainpagedocfooter": "Consult the [https://meta.wikimedia.org/wiki/Help:Contents/sco Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailin leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
 }

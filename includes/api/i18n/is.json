@@ -4,7 +4,9 @@
 			"Sveinn í Felli"
 		]
 	},
+	"apihelp-feedrecentchanges-param-showlinkedto": "Sýna í staðinn breytingar á síðum sem tengjast í völdu síðuna.",
 	"api-help-license": "Notkunarleyfi: [[$1|$2]]",
 	"api-help-license-noname": "Notkunarleyfi: [[$1|Sjá tengil]]",
-	"api-help-license-unknown": "Notkunarleyfi: <span class=\"apihelp-unknown\">óþekkt</span>"
+	"api-help-license-unknown": "Notkunarleyfi: <span class=\"apihelp-unknown\">óþekkt</span>",
+	"api-help-datatypes-header": "Gagnagerðir"
 }

@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Anggoro",
-			"NoiX180"
+			"NoiX180",
+			"Sumbukompor"
 		]
 	},
-	"config-install-mainpage-failed": "Ora bisa nglebokaké tepas: $1",
+	"config-install-mainpage-failed": "Ora bisa nglebokaké pendhapa: $1",
 	"mainpagetext": "'''Prangkat empuk wiki wis suksès dipasang.'''",
-	"mainpagedocfooter": "Mangga maca [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki\n== Miwiti panggunan  ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Daftar pangaturan préférènsi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
+	"mainpagedocfooter": "Wacanen [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Gegaraning Naraguna] ngenani katerangan carané nganggo piranti alus wiki.\n\n== Miwiti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pratélaning setèlaning konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pitakon-Kerep ngenani MédiaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Pratélaning layang sing dibabar MédiaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Mertal MédiaWiki menyang basané panjenengan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sinau carané ngatasi spam ing wikiné panjenengan]"
 }

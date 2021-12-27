@@ -8,7 +8,10 @@
 			"Wantok",
 			"Wytukaze",
 			"לערי ריינהארט",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Amire80",
+			"MinecraftAustralia",
+			"Tok Pisin"
 		]
 	},
 	"tog-underline": "Putim lain ananit long ol link:",
@@ -110,7 +113,7 @@
 	"cancel": "Toromwe senis",
 	"moredotdotdot": "Moa...",
 	"mypage": "Pes bilong mi",
-	"mytalk": "Toktok bilong mi",
+	"mytalk": "Toktok",
 	"anontalk": "Toktok bilong dispela IP",
 	"navigation": "Ol bikpela pes",
 	"and": "&#32;na",
@@ -137,7 +140,7 @@
 	"personaltools": "Ol pes bilong mi",
 	"talk": "Toktok",
 	"views": "Ol lukluk",
-	"toolbox": "Sipesol bokis",
+	"toolbox": "Ol tul:",
 	"imagepage": "Lukim pes bilong fail",
 	"mediawikipage": "Lukim pes bilong toksave",
 	"templatepage": "Lukim templet pes",
@@ -591,6 +594,6 @@
 	"compare-page2": "Pes 2",
 	"htmlform-selectorother-other": "Narapela",
 	"rightsnone": "i nogat wanpela",
-	"searchsuggest-search": "Painim",
+	"searchsuggest-search": "Painim long {{SITENAME}}",
 	"expand_templates_ok": "OK"
 }

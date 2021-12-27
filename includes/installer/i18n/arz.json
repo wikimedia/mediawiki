@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ghaly"
+			"Ghaly",
+			"Meno25"
 		]
 	},
 	"config-your-language": "اللغه بتاعتك:",
@@ -13,6 +14,6 @@
 	"config-page-welcome": "اهلا ف ميديا ويكى",
 	"config-page-name": "الاسم:",
 	"config-page-install": "تركيب",
-	"mainpagetext": "''' ميدياويكى اتنزلت بنجاح.'''",
-	"mainpagedocfooter": "اسال [https://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings لستة اعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]"
+	"mainpagetext": "<strong>ميدياويكى اتنزلت بنجاح.</strong>",
+	"mainpagedocfooter": "استشر [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ القائمة البريدية الخاصة بإصدار ميدياويكي]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam تعلم كيفية مكافحة السخام في الويكي الخاص بك]"
 }

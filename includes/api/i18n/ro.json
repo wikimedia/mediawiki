@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"ANDROBETA"
+			"ANDROBETA",
+			"NGC 54",
+			"Wintereu"
 		]
 	},
-	"apihelp-createaccount-param-email": "Adresa de e-mail a utilizatorului (opțional).",
-	"apihelp-createaccount-param-realname": "Numele real al utilizatorului (opțional).",
-	"apihelp-createaccount-param-mailpassword": "Dacă este setat la orice valoare, o parolă aleatoare va fi trimisă utilizatorului prin e-mail.",
+	"apihelp-block-summary": "Blochează un utilizator.",
+	"apihelp-block-param-reason": "Motivul blocării.",
 	"apihelp-delete-summary": "Șterge o pagină.",
 	"apihelp-delete-param-title": "Titlul paginii de șters. Nu poate fi folosit împreună cu <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "ID-ul paginii de șters. Nu poate fi folosit împreună cu <var>$1title</var>.",
@@ -15,5 +16,6 @@
 	"apihelp-edit-summary": "Creează și modifică pagini.",
 	"apihelp-edit-example-edit": "Modifică o pagină.",
 	"apihelp-expandtemplates-param-title": "Titlul paginii.",
-	"apihelp-expandtemplates-param-text": "Wikitext de convertit."
+	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
+	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }
