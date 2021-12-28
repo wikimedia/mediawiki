@@ -361,6 +361,7 @@
 	"recentchanges-label-newpage": "Tät muuttâs raaji ođđ seeid",
 	"recentchanges-label-minor": "Tät lij siõm muttsaž",
 	"recentchanges-legend-heading": "<strong>Čiʹlǧǧtõs:</strong>",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ǩiõčč [[Special:NewPages|liist ođđ seeidain]] še)",
 	"recentchanges-submit": "Čuäʹjet",
 	"rcfilters-tag-remove": "Jaukkâd '$1'",
 	"rcfilters-legend-heading": "<strong>Listt vuännõõzzin:</strong>",

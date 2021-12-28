@@ -367,5 +367,10 @@
 	"exif-urgency-normal": "보통 ($1)",
 	"exif-urgency-low": "낮음 ($1)",
 	"exif-urgency-high": "높음 ($1)",
-	"exif-urgency-other": "사용자 정의 ($1)"
+	"exif-urgency-other": "사용자 정의 ($1)",
+	"exif-usepanoramaviewer-true": "예",
+	"exif-usepanoramaviewer-false": "아니오",
+	"exif-exposurelockused": "노출 잠금 사용",
+	"exif-exposurelockused-true": "예",
+	"exif-exposurelockused-false": "아니오"
 }
