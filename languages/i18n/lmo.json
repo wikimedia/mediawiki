@@ -2114,6 +2114,8 @@
 	"apisandbox-request-format-url-label": "Stringa de richiesta URL",
 	"apisandbox-request-url-label": "URL de richiestaː",
 	"apisandbox-request-json-label": "Richiesta JSONː",
+	"apisandbox-request-format-php-label": "matris PHP",
+	"apisandbox-request-php-label": "Domanda de matris PHPː",
 	"apisandbox-request-time": "Temp necessari: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Corensg el token e manda de noeuv",
 	"apisandbox-results-fixtoken-fail": "Impossibil recuperà el token \"$1\".",
