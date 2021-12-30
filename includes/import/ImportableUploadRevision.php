@@ -43,7 +43,7 @@ interface ImportableUploadRevision {
 
 	/**
 	 * @since 1.31
-	 * @return string|bool sha1 of the revision, false if not set or errors occour.
+	 * @return string|bool sha1 of the revision, false if not set or errors occur.
 	 */
 	public function getSha1();
 

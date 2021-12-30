@@ -47,7 +47,7 @@ use LogicException;
  * Every iteration of beginPrimaryChanges()/commitPrimaryChanges() is called a "transaction round".
  * Rounds are useful on the primary DB connections because they make single-DB (and by and large
  * multi-DB) updates in web requests all-or-nothing. Also, transactions on replica DBs are useful
- * when REPEATABLE-READ or SERIALIZABLE isolation is used because all foriegn keys and constraints
+ * when REPEATABLE-READ or SERIALIZABLE isolation is used because all foreign keys and constraints
  * hold across separate queries in the DB transaction since the data appears within a consistent
  * point-in-time snapshot.
  *
@@ -204,7 +204,7 @@ interface ILoadBalancer {
 	 * This takes into account load ratios and lag times. It should return a consistent
 	 * index during the life time of the load balancer. This initially checks replica DBs
 	 * for connectivity to avoid returning an unusable server. This means that connections
-	 * might be attempted by calling this method (usally one at the most but possibly more).
+	 * might be attempted by calling this method (usually one at the most but possibly more).
 	 * Subsequent calls with the same $group will not need to make new connection attempts
 	 * since the acquired connection for each group is preserved.
 	 *
@@ -232,7 +232,7 @@ interface ILoadBalancer {
 	/**
 	 * Set the primary wait position and wait for a generic replica DB to catch up to it
 	 *
-	 * This method is only intented for use a throttling mechanism for high-volume updates.
+	 * This method is only intended for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
 	 * This can be used a faster proxy for waitForAll()
@@ -246,7 +246,7 @@ interface ILoadBalancer {
 	/**
 	 * Set the primary wait position and wait for ALL replica DBs to catch up to it
 	 *
-	 * This method is only intented for use a throttling mechanism for high-volume updates.
+	 * This method is only intended for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
 	 * @param DBPrimaryPos|bool $pos Primary position or false
@@ -539,7 +539,7 @@ interface ILoadBalancer {
 	 * at least as up-to-date as queries (prior to this method call) on the old connections.
 	 *
 	 * This can be useful for implementing session consistency, where the session
-	 * will be resumed accross multiple HTTP requests or CLI script instances.
+	 * will be resumed across multiple HTTP requests or CLI script instances.
 	 *
 	 * @return DBPrimaryPos|bool Replication position or false if not applicable
 	 * @since 1.34
@@ -585,7 +585,7 @@ interface ILoadBalancer {
 	/**
 	 * Run pre-commit callbacks and defer execution of post-commit callbacks
 	 *
-	 * Use this only for mutli-database commits
+	 * Use this only for multi-database commits
 	 *
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
@@ -605,7 +605,7 @@ interface ILoadBalancer {
 	/**
 	 * Perform all pre-commit checks for things like replication safety
 	 *
-	 * Use this only for mutli-database commits
+	 * Use this only for multi-database commits
 	 *
 	 * @param array $options Includes:
 	 *   - maxWriteDuration : max write query duration time in seconds
@@ -824,7 +824,7 @@ interface ILoadBalancer {
 
 	/**
 	 * Checks whether the database for generic connections this request was both:
-	 *   - a) Already choosen due to a prior connection attempt
+	 *   - a) Already chosen due to a prior connection attempt
 	 *   - b) Considered highly "lagged"
 	 *
 	 * @note This method will never cause a new DB connection

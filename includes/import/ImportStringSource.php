@@ -26,7 +26,7 @@
 
 /**
  * Used for importing XML dumps where the content of the dump is in a string.
- * This class is ineffecient, and should only be used for small dumps.
+ * This class is inefficient, and should only be used for small dumps.
  * For larger dumps, ImportStreamSource should be used instead.
  *
  * @ingroup SpecialPage

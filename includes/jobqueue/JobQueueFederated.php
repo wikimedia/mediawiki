@@ -176,7 +176,7 @@ class JobQueueFederated extends JobQueue {
 		// Local ring variable that may be changed to point to a new ring on failure
 		$partitionRing = $this->partitionRing;
 		// Try to insert the jobs and update $partitionsTry on any failures.
-		// Retry to insert any remaning jobs again, ignoring the bad partitions.
+		// Retry to insert any remaining jobs again, ignoring the bad partitions.
 		$jobsLeft = $jobs;
 		for ( $i = $this->maxPartitionsTry; $i > 0 && count( $jobsLeft ); --$i ) {
 			try {
