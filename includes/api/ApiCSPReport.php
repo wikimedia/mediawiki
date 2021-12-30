@@ -290,7 +290,7 @@ class ApiCSPReport extends ApiBase {
 	}
 
 	/**
-	 * Doesn't touch db, so max lag should be rather irrelavent.
+	 * Doesn't touch db, so max lag should be rather irrelevant.
 	 *
 	 * Also, this makes sure that reports aren't lost during lag events.
 	 * @return bool

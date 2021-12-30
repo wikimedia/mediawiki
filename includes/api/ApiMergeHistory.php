@@ -54,7 +54,7 @@ class ApiMergeHistory extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'from', 'fromid' );
 		$this->requireOnlyOneParameter( $params, 'to', 'toid' );
 
-		// Get page objects (nonexistant pages get caught in MergeHistory::isValidMerge())
+		// Get page objects (nonexistent pages get caught in MergeHistory::isValidMerge())
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
 			if ( !$fromTitle || $fromTitle->isExternal() ) {

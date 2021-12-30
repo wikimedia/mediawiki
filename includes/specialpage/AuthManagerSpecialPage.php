@@ -791,7 +791,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Apply defaults to a form descriptor, without creating non-existend fields.
+	 * Apply defaults to a form descriptor, without creating non-existent fields.
 	 *
 	 * Overrides $formDescriptor fields with their $defaultFormDescriptor equivalent, but
 	 * only if the field is defined in $fieldInfo, uses the special 'basefield' property to

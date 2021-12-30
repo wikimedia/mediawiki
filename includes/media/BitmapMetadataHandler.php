@@ -118,7 +118,7 @@ class BitmapMetadataHandler {
 
 	/**
 	 * Merge together the various types of metadata
-	 * the different types have different priorites,
+	 * the different types have different priorities,
 	 * and are merged in order.
 	 *
 	 * This function is generally called by the media handlers' getMetadata()

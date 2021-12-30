@@ -363,7 +363,7 @@ class ApiParamValidator {
 	}
 
 	/**
-	 * Valiate a parameter value using a settings array
+	 * Validate a parameter value using a settings array
 	 *
 	 * @param ApiBase $module
 	 * @param string $name Parameter name, unprefixed

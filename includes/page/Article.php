@@ -1168,7 +1168,7 @@ class Article implements Page {
 			__METHOD__
 		);
 
-		// New page patrol: Get the timestamp of the oldest revison which
+		// New page patrol: Get the timestamp of the oldest revision which
 		// the revision table holds for the given page. Then we look
 		// whether it's within the RC lifespan and if it is, we try
 		// to get the recentchanges row belonging to that entry

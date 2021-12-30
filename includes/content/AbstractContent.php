@@ -205,7 +205,7 @@ abstract class AbstractContent implements Content {
 	 * Two Content objects MUST not be considered equal if they do not share the same content model.
 	 * Two Content objects that are equal SHOULD have the same serialization.
 	 *
-	 * This default implementation relies on equalsInternal() to determin whether the
+	 * This default implementation relies on equalsInternal() to determine whether the
 	 * Content objects are logically equivalent. Subclasses that need to implement a custom
 	 * equality check should consider overriding equalsInternal(). Subclasses that override
 	 * equals() itself MUST make sure that the implementation returns false for $that === null,

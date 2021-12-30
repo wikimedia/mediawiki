@@ -381,7 +381,7 @@ class BlockManager {
 	 *
 	 * @param DatabaseBlock $block
 	 * @param bool $isAnon The user is logged out
-	 * @return bool The block sould be applied
+	 * @return bool The block should be applied
 	 */
 	private function shouldApplyCookieBlock( DatabaseBlock $block, $isAnon ) {
 		if ( !$block->isExpired() ) {
@@ -603,7 +603,7 @@ class BlockManager {
 	 *
 	 * @param AbstractBlock $block
 	 * @param bool $isAnon The user is logged out
-	 * @return bool The block sould be tracked with a cookie
+	 * @return bool The block should be tracked with a cookie
 	 */
 	private function shouldTrackBlockWithCookie( AbstractBlock $block, $isAnon ) {
 		if ( $block instanceof DatabaseBlock ) {
