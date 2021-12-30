@@ -504,6 +504,7 @@ class Names {
 		'xsy' => 'saisiyat', # SaiSiyat - T216479
 		'yi' => 'ייִדיש', # Yiddish
 		'yo' => 'Yorùbá', # Yoruba
+		'yrl' => 'Nhẽẽgatú', # Nheengatu
 		'yue' => '粵語', # Cantonese
 		'za' => 'Vahcuengh', # Zhuang
 		'zea' => 'Zeêuws', # Zeeuws/Zeaws
