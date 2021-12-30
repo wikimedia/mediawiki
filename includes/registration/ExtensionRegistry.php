@@ -300,7 +300,7 @@ class ExtensionRegistry {
 	}
 
 	/**
-	 * Queries information about the software environment and constructs an appropiate version checker
+	 * Queries information about the software environment and constructs an appropriate version checker
 	 *
 	 * @return VersionChecker
 	 */
@@ -551,7 +551,7 @@ class ExtensionRegistry {
 	 * Whether a thing has been loaded
 	 * @param string $name
 	 * @param string $constraint The required version constraint for this dependency
-	 * @throws LogicException if a specific contraint is asked for,
+	 * @throws LogicException if a specific constraint is asked for,
 	 *                        but the extension isn't versioned
 	 * @return bool
 	 */

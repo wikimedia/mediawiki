@@ -31,7 +31,7 @@ interface EditFilterMergedContentHook {
 	 * @param User $user User whois performing the edit
 	 * @param bool $minoredit Whether the edit was marked as minor by the user.
 	 * @return bool|void False or no return value with not $status->isOK() to abort the edit
-	 *   and show the edit form, true to continue. But because mutiple triggers of this hook
+	 *   and show the edit form, true to continue. But because multiple triggers of this hook
 	 *   may have different behavior in different version (T273354), you'd better return false
 	 *   and set $status->value to EditPage::AS_HOOK_ERROR_EXPECTED or any other customized value.
 	 */

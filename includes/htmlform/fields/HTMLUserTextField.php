@@ -9,8 +9,8 @@ use Wikimedia\IPUtils;
  *
  * Optional parameters:
  * 'exists' - Whether to validate that the user already exists
- * 'ipallowed' - Whether an IP adress is interpreted as "valid"
- * 'iprange' - Whether an IP adress range is interpreted as "valid"
+ * 'ipallowed' - Whether an IP address is interpreted as "valid"
+ * 'iprange' - Whether an IP address range is interpreted as "valid"
  * 'iprangelimits' - Specifies the valid IP ranges for IPv4 and IPv6 in an array.
  *  defaults to IPv4 => 16; IPv6 => 32.
  *

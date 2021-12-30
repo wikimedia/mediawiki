@@ -62,7 +62,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.19
  */
 class FSFileBackend extends FileBackendStore {
-	/** @var MapCacheLRU Cache for known prepared/usable directorries */
+	/** @var MapCacheLRU Cache for known prepared/usable directories */
 	protected $usableDirCache;
 
 	/** @var string Directory holding the container directories */
@@ -812,7 +812,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @param string $fsSrcPath Absolute file system path
 	 * @param string $fsDstPath Absolute file system path
-	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existant
+	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existent
 	 * @return string Command
 	 */
 	private function makeCopyCommand( $fsSrcPath, $fsDstPath, $ignoreMissing ) {

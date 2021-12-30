@@ -517,7 +517,7 @@ class Exif {
 
 	/**
 	 * Convert gps in exif form to a single floating point number
-	 * for example 10 degress 20`40`` S -> -10.34444
+	 * for example 10 degrees 20`40`` S -> -10.34444
 	 * @param string $prop A GPS coordinate exif tag name (like GPSLongitude)
 	 */
 	private function exifGPStoNumber( $prop ) {

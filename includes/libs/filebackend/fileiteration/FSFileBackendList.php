@@ -21,7 +21,7 @@
 
 /**
  * Wrapper around RecursiveDirectoryIterator/DirectoryIterator that
- * catches exception or does any custom behavoir that we may want.
+ * catches exception or does any custom behavior that we may want.
  * Do not use this class from places outside FSFileBackend.
  *
  * @ingroup FileBackend

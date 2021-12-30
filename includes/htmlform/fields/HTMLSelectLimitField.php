@@ -19,7 +19,7 @@ class HTMLSelectLimitField extends HTMLSelectField {
 			return true;
 		}
 
-		// Let folks pick an explicit limit not from our list, as long as it's a real numbr.
+		// Let folks pick an explicit limit not from our list, as long as it's a real number.
 		if ( !in_array( $value, $this->mParams['options'] )
 			&& $value == intval( $value )
 			&& $value > 0
