@@ -43,9 +43,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		// Fallback to the content language
 		$this->makePage( 'FallbackLanguageTest-ContLang', 'de' );
 
-		// Add customizations for an existing message.
-		$this->makePage( 'sunday', 'ru' );
-
 		// Full key tests -- always want russian
 		$this->makePage( 'MessageCacheTest-FullKeyTest', 'ab' );
 		$this->makePage( 'MessageCacheTest-FullKeyTest', 'ru' );
@@ -100,9 +97,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],
 			[ 'FallbackLanguageTest-ContLang', 'ab', 'de' ],
 			[ 'FallbackLanguageTest-None', 'ab', false ],
-
-			// Existing message with customizations on the fallbacks
-			[ 'sunday', 'ab', 'амҽыш' ],
 
 			// T48579
 			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
