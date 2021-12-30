@@ -522,7 +522,7 @@ class GlobalIdGenerator {
 				$msecCounter = (int)$data[2] % $msecCounterSize;
 				// Bump the counter if the time has not changed yet
 				if ( ++$msecCounter >= $msecCounterSize ) {
-					// More IDs generated with the same time than counterSize can accomodate
+					// More IDs generated with the same time than counterSize can accommodate
 					flock( $handle, LOCK_UN );
 					throw new RuntimeException( "Counter overflow for timestamp value." );
 				}

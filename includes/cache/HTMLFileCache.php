@@ -176,7 +176,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * Save this cache object with the given text.
 	 * Use this as an ob_start() handler.
 	 *
-	 * Normally this is only registed as a handler if $wgUseFileCache is on.
+	 * Normally this is only registered as a handler if $wgUseFileCache is on.
 	 * If can be explicitly called by rebuildFileCache.php when it takes over
 	 * handling file caching itself, disabling any automatic handling the
 	 * process.

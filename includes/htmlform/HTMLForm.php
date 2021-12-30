@@ -121,7 +121,7 @@ use MediaWiki\Page\PageReference;
  *    'disable-if'          -- expression given as an array stating when the field
  *                             should be disabled. See 'hide-if' for supported expressions.
  *                             The 'hide-if' logic would also disable fields, you don't need
- *                             to set this attribute with the same condiction manually.
+ *                             to set this attribute with the same condition manually.
  *                             You can pass both 'disabled' and this attribute to omit extra
  *                             ckeck, but this would function only for not 'disabled' fields.
  *    'section'             -- A string name for the section of the form to which the field
@@ -1946,7 +1946,7 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getAction() {
-		// If an action is alredy provided, return it
+		// If an action is already provided, return it
 		if ( $this->mAction !== false ) {
 			return $this->mAction;
 		}

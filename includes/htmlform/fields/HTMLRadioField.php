@@ -9,7 +9,7 @@ class HTMLRadioField extends HTMLFormField {
 	/**
 	 * @stable to call
 	 * @param array $params
-	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   In addition to the usual HTMLFormField parameters, this can take the following fields:
 	 *   - flatlist: If given, the options will be displayed on a single line (wrapping to following
 	 *     lines if necessary), rather than each one on a line of its own. This is desirable mostly
 	 *     for very short lists of concisely labelled options.

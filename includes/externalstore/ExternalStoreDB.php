@@ -57,7 +57,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Fetch data from given external store URL.
 	 *
 	 * The provided URL is in the form of `DB://cluster/id` or `DB://cluster/id/itemid`
-	 * for concatened storage if ConcatenatedGzipHistoryBlob was used.
+	 * for concatenated storage if ConcatenatedGzipHistoryBlob was used.
 	 *
 	 * @param string $url
 	 * @return string|bool False if missing
@@ -78,7 +78,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Fetch multiple URLs from given external store.
 	 *
 	 * The provided URLs are in the form of `DB://cluster/id`, or `DB://cluster/id/itemid`
-	 * for concatened storage if ConcatenatedGzipHistoryBlob was used.
+	 * for concatenated storage if ConcatenatedGzipHistoryBlob was used.
 	 *
 	 * @param array $urls An array of external store URLs
 	 * @return array A map from url to stored content. Failed results
