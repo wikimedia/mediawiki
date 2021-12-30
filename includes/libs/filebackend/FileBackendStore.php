@@ -983,7 +983,7 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
-		// Fetch local references of any remaning files...
+		// Fetch local references of any remaining files...
 		$params['srcs'] = array_diff( $params['srcs'], array_keys( $fsFiles ) );
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
 			if ( $fsFile instanceof FSFile ) {

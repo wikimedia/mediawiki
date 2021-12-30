@@ -1409,7 +1409,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$wikiPage = $this->getWikiPage();
 		$wikiPage->loadPageData( WikiPage::READ_LATEST );
 		if ( !$wikiPage->exists() ) {
-			// page deleted while defering the update
+			// page deleted while deferring the update
 			return [];
 		}
 

@@ -111,7 +111,7 @@ class HookContainer implements SalvageableService {
 	 * @param string $hook Name of the hook
 	 * @param array $args Arguments to pass to hook handler
 	 * @param array $options options map:
-	 *   - abortable: (bool) If false, handlers will not be allowed to abort the call sequenece.
+	 *   - abortable: (bool) If false, handlers will not be allowed to abort the call sequence.
 	 *     An exception will be raised if a handler returns anything other than true or null.
 	 *   - deprecatedVersion: (string) Version of MediaWiki this hook was deprecated in. For supporting
 	 *     Hooks::run() legacy $deprecatedVersion parameter. New core code should add deprecated

@@ -399,7 +399,7 @@ class HashRing implements Serializable {
 		$now = $this->getCurrentTime();
 
 		if ( $this->liveRing === null || min( $this->ejectExpiryByLocation ) <= $now ) {
-			// Live ring needs to be regerenated...
+			// Live ring needs to be regenerated...
 			$this->ejectExpiryByLocation = array_filter(
 				$this->ejectExpiryByLocation,
 				static function ( $expiry ) use ( $now ) {

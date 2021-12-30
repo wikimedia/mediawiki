@@ -1090,7 +1090,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Set any .htaccess files or equivilent for storage repos
+	 * Set any .htaccess files or equivalent for storage repos
 	 *
 	 * Some zones (e.g. "temp") used to be public and may have been initialized as such
 	 */

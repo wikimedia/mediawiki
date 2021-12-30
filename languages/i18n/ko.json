@@ -2176,6 +2176,8 @@
 	"apisandbox-request-format-url-label": "URL 쿼리 문자열",
 	"apisandbox-request-url-label": "요청 URL:",
 	"apisandbox-request-json-label": "JSON 요청:",
+	"apisandbox-request-format-php-label": "PHP 배열",
+	"apisandbox-request-php-label": "요청 PHP 배열:",
 	"apisandbox-request-time": "요청 처리 시간: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "토큰 수정 후 다시 제출",
 	"apisandbox-results-fixtoken-fail": "\"$1\" 토크을 가져오는데 실패했습니다.",

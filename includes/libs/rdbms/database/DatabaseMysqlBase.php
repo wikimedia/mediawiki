@@ -1062,7 +1062,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		// Unlike NOW(), SYSDATE() gets the time at invokation rather than query start.
+		// Unlike NOW(), SYSDATE() gets the time at invocation rather than query start.
 		// The precision argument is silently ignored for MySQL < 5.6 and MariaDB < 5.3.
 		// https://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html#function_sysdate
 		// https://dev.mysql.com/doc/refman/5.6/en/fractional-seconds.html

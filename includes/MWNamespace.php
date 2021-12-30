@@ -61,7 +61,7 @@ class MWNamespace {
 	 * @return bool
 	 */
 	public static function isTalk( $index ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isTalk( $index );
 	}
 
@@ -117,7 +117,7 @@ class MWNamespace {
 	 * @deprecated since 1.34, hard deprecated since 1.38
 	 */
 	public static function exists( $index ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $index );
 	}
 
@@ -170,7 +170,7 @@ class MWNamespace {
 	 * @deprecated since 1.34, hard deprecated since 1.38
 	 */
 	public static function getCanonicalNamespaces() {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalNamespaces();
 	}
 
@@ -183,7 +183,7 @@ class MWNamespace {
 	 * @return string|bool If no canonical definition.
 	 */
 	public static function getCanonicalName( $index ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalName( $index );
 	}
 
@@ -197,7 +197,7 @@ class MWNamespace {
 	 * @return int
 	 */
 	public static function getCanonicalIndex( $name ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalIndex( $name );
 	}
 
@@ -210,7 +210,7 @@ class MWNamespace {
 	 * @return array
 	 */
 	public static function getValidNamespaces() {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
 	}
 
@@ -238,7 +238,7 @@ class MWNamespace {
 	 * @return bool
 	 */
 	public static function isContent( $index ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isContent( $index );
 	}
 
@@ -278,7 +278,7 @@ class MWNamespace {
 	 * @return bool
 	 */
 	public static function hasSubpages( $index ) {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->hasSubpages( $index );
 	}
 
@@ -290,7 +290,7 @@ class MWNamespace {
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getContentNamespaces() {
-		wfDeprecated( __METHOD__, '1.38' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
 	}
 

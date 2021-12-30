@@ -45,7 +45,7 @@ use MediaWiki\User\UserIdentity;
  * concrete functions are also typically overridden by child classes.
  *
  * Note that only the repo object knows what its file class is called. You should
- * never name a file class explictly outside of the repo class. Instead use the
+ * never name a file class explicitly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
  *
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
@@ -973,7 +973,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * This is a dummy function right now and always returns false. It could be
 	 * implemented to extract a flag from the database. The trusted flag could be
 	 * set on upload, if the user has sufficient privileges, to bypass script-
-	 * and html-filters. It may even be coupled with cryptographics signatures
+	 * and html-filters. It may even be coupled with cryptographic signatures
 	 * or such.
 	 *
 	 * @return bool

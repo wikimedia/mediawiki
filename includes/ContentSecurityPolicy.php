@@ -235,7 +235,7 @@ class ContentSecurityPolicy {
 			$reportUri = $this->getReportUri( $mode );
 		}
 
-		// Only send an img-src, if we're sending a restricitve default.
+		// Only send an img-src, if we're sending a restrictive default.
 		if ( !is_array( $defaultSrc )
 			|| !in_array( '*', $defaultSrc )
 			|| !in_array( 'data:', $defaultSrc )

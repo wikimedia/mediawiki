@@ -308,7 +308,7 @@ function bindToggleOnSpaceEnter( checkbox, button ) {
 }
 
 /**
- * Manually change the checkbox state when the button is focused and SPACE is pressed.
+ * Manually change the checkbox state when the button is focused and Enter is pressed.
  *
  * @param {HTMLInputElement} checkbox
  * @return {function(): void} Cleanup function that removes the added event listeners.
@@ -411,6 +411,7 @@ module.exports = {
 	bindUpdateAriaExpandedOnInput: bindUpdateAriaExpandedOnInput,
 	bindToggleOnClick: bindToggleOnClick,
 	bindToggleOnSpaceEnter: bindToggleOnSpaceEnter,
+	bindToggleOnEnter: bindToggleOnEnter,
 	bindDismissOnClickOutside: bindDismissOnClickOutside,
 	bindDismissOnFocusLoss: bindDismissOnFocusLoss,
 	bind: bind

@@ -45,7 +45,7 @@ class Argon2Password extends Password {
 	}
 
 	/**
-	 * @return mixed[] Array of 2nd and third parmeters to password_hash()
+	 * @return mixed[] Array of 2nd and third parameters to password_hash()
 	 */
 	private function prepareParams(): array {
 		switch ( $this->config['algo'] ) {
