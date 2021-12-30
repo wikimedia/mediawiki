@@ -46,7 +46,7 @@ use MediaWiki\Storage\NameTableAccessException;
  * That might change after PageTypeHandler gets introduced.
  *
  * In the past, the class was also used for slot-level diff generation, and extensions might still
- * subclass it and add such functionality. When that is the case (sepcifically, when a
+ * subclass it and add such functionality. When that is the case (specifically, when a
  * ContentHandler returns a standard SlotDiffRenderer but a nonstandard DifferenceEngine)
  * DifferenceEngineSlotDiffRenderer will be used to convert the old behavior into the new one.
  *
@@ -162,7 +162,7 @@ class DifferenceEngine extends ContextSource {
 	 * If the content was overridden, most internal state (e.g. mOldid or mOldRev) should be ignored
 	 * and only mOldContent and mNewContent is reliable.
 	 * (Note that setRevisions() does not set this flag as in that case all properties are
-	 * overriden and remain consistent with each other, so no special handling is needed.)
+	 * overridden and remain consistent with each other, so no special handling is needed.)
 	 * @var bool
 	 */
 	protected $isContentOverridden = false;

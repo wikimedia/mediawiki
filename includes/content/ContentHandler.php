@@ -669,7 +669,7 @@ abstract class ContentHandler {
 	 */
 	protected function getSlotDiffRendererWithOptions( IContextSource $context, $options = [] ) {
 		$internalRenderer = $this->getSlotDiffRendererInternal( $context );
-		// `getSlotDiffRendererInternal` has been overriden by a class using the deprecated method.
+		// `getSlotDiffRendererInternal` has been overridden by a class using the deprecated method.
 		// Options will not work so exit early!
 		if ( $internalRenderer !== null ) {
 			return $internalRenderer;

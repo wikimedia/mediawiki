@@ -36,7 +36,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * This class tries to hide visible effects of database lag. It does this by temporarily remembering
  * the database positions after a client makes a write, and on their next web request we will prefer
- * non-lagged database replicas. When replica connections are establshed, we wait up to a few seconds
+ * non-lagged database replicas. When replica connections are established, we wait up to a few seconds
  * for sufficient replication to have occurred, if they were not yet caught up to that same point.
  *
  * This ensures a consistent ordering of events as seen by a client. Kind of like Hawking's
@@ -98,11 +98,11 @@ use Wikimedia\WaitConditionLoop;
  *   of one millisecond.
  * - Best effort persistence, without active eviction pressure. Data stored here cannot be
  *   obtained elsewhere or recomputed. As such, under normal operating conditions, this store
- *   should not be full, and should not evict values before their intended expiry time ellapsed.
+ *   should not be full, and should not evict values before their intended expiry time elapsed.
  * - No replication, local consistency. Each DC may have a fully independent dc-local store
  *   associated with ChronologyProtector (no replication across DCs is needed). Local writes
  *   must be immediately reflected in subsequent local reads. No intra-dc read lag is allowed.
- * - No redundancy, fast failure. Loss of data will likely be noticable and disruptive to
+ * - No redundancy, fast failure. Loss of data will likely be noticeable and disruptive to
  *   clients, but the data is not considered essential. Under maintenance or unprecedented load,
  *   it is recommended to lose some data, instead of compromising other requirements such as
  *   latency or availability for new writes. The fallback is that users may be temporary

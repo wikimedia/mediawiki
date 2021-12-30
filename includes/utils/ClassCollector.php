@@ -133,7 +133,7 @@ class ClassCollector {
 		switch ( $this->startToken[0] ) {
 			case T_DOUBLE_COLON:
 				// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
-				// "self::static" which accesses the class name. It doens't define a new class.
+				// "self::static" which accesses the class name. It doesn't define a new class.
 				$this->startToken = null;
 				break;
 			case T_NEW:
