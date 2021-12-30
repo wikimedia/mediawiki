@@ -252,7 +252,7 @@
 	"versionrequiredtext": "ورژن $1 چہ مدیاویکی کہ لۏٹ ایت. ادا بہ چار [[Special:Version|version page]].",
 	"ok": "شہ!",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "$1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "درگݔجگ بیت چہ  \"$1\"‌ئا",
 	"youhavenewmessages": "شما هست  $1 ($2).",
 	"youhavenewmessagesfromusers": "شما چه {{PLURAL:$3|یک دگرین کاربر|$3  کاربر}} $1 داریت ($2).",

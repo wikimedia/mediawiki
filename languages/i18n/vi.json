@@ -2781,7 +2781,7 @@
 	"locknoconfirm": "Bạn đã không đánh vào ô xác nhận.",
 	"lockdbsuccesssub": "Đã khóa cơ sở dữ liệu thành công.",
 	"unlockdbsuccesssub": "Đã mở khóa cơ sở dữ liệu thành công",
-	"lockdbsuccesstext": "Cơ sở dữ liệu đã bị khóa.\n<br />Nhớ [[Special:UnlockDB|mở khóa]] sau khi bảo trì xong.",
+	"lockdbsuccesstext": "Cơ sở dữ liệu đã bị khóa.<br />\nHãy nhớ [[Special:UnlockDB|mở khóa]] sau khi bảo trì xong.",
 	"unlockdbsuccesstext": "Cơ sở dữ liệu đã được mở khóa.",
 	"lockfilenotwritable": "Tập tin khóa của cơ sở dữ liệu không cho phép ghi. Để khóa hay mở khóa cơ sở dữ liệu, máy chủ web phải có khả năng ghi tập tin.",
 	"databaselocked": "Cơ sở dữ liệu đã được khóa rồi.",
