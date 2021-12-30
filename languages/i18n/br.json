@@ -199,7 +199,7 @@
 	"edit-local": "Kemmañ an deskrivadur lec'hel",
 	"create": "Krouiñ",
 	"create-local": "Ouzhpennañ un deskrivadur lec'hel",
-	"delete": "Diverkañ",
+	"delete": "Dilemel",
 	"undelete_short": "Diziverkañ {{PLURAL:$1|ur c'hemm|$1 kemm}}",
 	"viewdeleted_short": "Gwelet {{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
 	"protect": "Gwareziñ",
