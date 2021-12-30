@@ -31,7 +31,7 @@ use InvalidArgumentException;
  * @since 1.28
  */
 interface ILBFactory {
-	/** Idion for "no special shutdown flags" */
+	/** Idiom for "no special shutdown flags" */
 	public const SHUTDOWN_NORMAL = 0;
 	/** Do not save "session consistency" DB replication positions */
 	public const SHUTDOWN_NO_CHRONPROT = 1;
@@ -306,7 +306,7 @@ interface ILBFactory {
 	/**
 	 * Check if transaction rounds can be started, committed, or rolled back right now
 	 *
-	 * This can be used as a recusion guard to avoid exceptions in transaction callbacks.
+	 * This can be used as a recursion guard to avoid exceptions in transaction callbacks.
 	 *
 	 * @return bool
 	 * @since 1.32
@@ -330,7 +330,7 @@ interface ILBFactory {
 	public function hasMasterChanges();
 
 	/**
-	 * Detemine if any lagged replica DB connection was used
+	 * Determine if any lagged replica DB connection was used
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *

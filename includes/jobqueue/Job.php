@@ -27,7 +27,7 @@ use MediaWiki\Page\PageReference;
  * Class to both describe a background job and handle jobs.
  * To push jobs onto queues, use JobQueueGroup::singleton()->push();
  *
- * Job objects are constructed by the job queue, and must have an approriate
+ * Job objects are constructed by the job queue, and must have an appropriate
  * constructor signature; see IJobSpecification.
  *
  * @stable to extend

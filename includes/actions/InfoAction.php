@@ -220,7 +220,7 @@ class InfoAction extends FormlessAction {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
 		}
 
-		// TODO we shouldn't be adding styles manually like thes
+		// TODO we shouldn't be adding styles manually like this
 		// Hide "This page is a member of # hidden categories" explanation
 		$content .= Html::element(
 			'style',

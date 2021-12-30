@@ -206,14 +206,14 @@ class JpegHandler extends ExifBitmapHandler {
 			 *   (other profiles will be left untouched)
 			 * * without color space or profile, in which case browsers
 			 *   should assume sRGB, but don't always do (e.g. on wide-gamut
-			 *   monitors (unless it's meant for low bandwith)
+			 *   monitors (unless it's meant for low bandwidth)
 			 * @see https://phabricator.wikimedia.org/T134498
 			 */
 			$colorSpaces = [ self::SRGB_EXIF_COLOR_SPACE, '-' ];
 			$profiles = [ self::SRGB_ICC_PROFILE_DESCRIPTION ];
 
 			// we'll also add TinyRGB profile to images lacking a profile, but
-			// only if they're not low quality (which are meant to save bandwith
+			// only if they're not low quality (which are meant to save bandwidth
 			// and we don't want to increase the filesize by adding a profile)
 			if ( isset( $params['quality'] ) && $params['quality'] > 30 ) {
 				$profiles[] = '-';

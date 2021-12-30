@@ -76,7 +76,7 @@ interface IDatabase {
 	/** @var string Estimate time to apply (scanning, applying) */
 	public const ESTIMATE_DB_APPLY = 'apply';
 
-	/** @var int Combine list with comma delimeters */
+	/** @var int Combine list with comma delimiters */
 	public const LIST_COMMA = 0;
 	/** @var int Combine list with AND clauses */
 	public const LIST_AND = 1;
@@ -132,7 +132,7 @@ interface IDatabase {
 	/** @var int Query is known to be a Data Definition Language command */
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
 
-	/** Flag to return the lock acquision timestamp (null if not acquired) */
+	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
@@ -1431,7 +1431,7 @@ interface IDatabase {
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
-	 *   IDatabase::ALL_ROWS should be passed explicitely in order to delete all rows.
+	 *   IDatabase::ALL_ROWS should be passed explicitly in order to delete all rows.
 	 * @param string $fname Name of the calling function
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
@@ -1655,7 +1655,7 @@ interface IDatabase {
 	 *
 	 * Use this method only for the following purposes:
 	 *   - (a) Release of cooperative locks on resources
-	 *   - (b) Cancellation of in-proccess deferred tasks
+	 *   - (b) Cancellation of in-process deferred tasks
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the current atomic section (if any) or overall transaction (otherwise) ended
@@ -1902,7 +1902,7 @@ interface IDatabase {
 	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null );
 
 	/**
-	 * Perform an atomic section of reversable SQL statements from a callback
+	 * Perform an atomic section of reversible SQL statements from a callback
 	 *
 	 * The $callback takes the following arguments:
 	 *   - This database object
@@ -1931,7 +1931,7 @@ interface IDatabase {
 	 *         // Figure out where to store the data based on the new row's ID
 	 *         $path = $this->recordDirectory . '/' . $dbw->insertId();
 	 *         // Write the record data to the storage system;
-	 *         // blob store throughs StoreFailureException on failure
+	 *         // blob store throws StoreFailureException on failure
 	 *         $this->blobStore->create( $path, $record->getJSON() );
 	 *         // Try to cleanup files orphaned by transaction rollback
 	 *         $dbw->onTransactionResolution(
@@ -2191,7 +2191,7 @@ interface IDatabase {
 	 *
 	 * Named locks are not related to transactions
 	 *
-	 * @param string $lockName Name of lock to aquire
+	 * @param string $lockName Name of lock to acquire
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
 	 * @param int $flags Bit field of IDatabase::LOCK_* constants

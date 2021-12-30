@@ -62,7 +62,7 @@ class ImageListPager extends TablePager {
 	private $userCache;
 
 	/**
-	 * The unique sort fields for the sort options for unique pagniate
+	 * The unique sort fields for the sort options for unique paginate
 	 */
 	private const INDEX_FIELDS = [
 		'img_timestamp' => [ 'img_timestamp', 'img_name' ],
@@ -239,7 +239,7 @@ class ImageListPager extends TablePager {
 			return false;
 		}
 		$sortable = array_keys( self::INDEX_FIELDS );
-		/* For reference, the indicies we can use for sorting are:
+		/* For reference, the indices we can use for sorting are:
 		 * On the image table: img_actor_timestamp, img_size, img_timestamp
 		 * On oldimage: oi_actor_timestamp, oi_name_timestamp
 		 *
