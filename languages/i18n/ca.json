@@ -2636,7 +2636,7 @@
 	"ipb-confirm": "Confirma el blocatge",
 	"ipb-sitewide": "A tot el lloc web",
 	"ipb-partial": "Parcial",
-	"ipb-sitewide-help": "Bloca l'edició en totes les pàgines i espais de noms. També bloca les accions per defecte ([https://www.mediawiki.org/wiki/Help:Blocking_users Més informació])",
+	"ipb-sitewide-help": "Bloca l'edició en totes les pàgines i espais de noms. També bloca les accions per defecte ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Més informació])",
 	"ipb-partial-help": "Permet seleccionar les pàgines i espais de noms per blocar. No bloca les accions per defecte, però us deixa bloca certes accions específiques.",
 	"ipb-action-create": "Creació de pàgines noves",
 	"ipb-action-move": "Reanomenament de pàgines",

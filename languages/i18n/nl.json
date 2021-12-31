@@ -2671,7 +2671,7 @@
 	"ipb-confirm": "Blokkade bevestigen",
 	"ipb-sitewide": "Van de hele site",
 	"ipb-partial": "Gedeeltelijk",
-	"ipb-sitewide-help": "Blokkeert bewerking op alle pagina's en naamruimten. Blokkeert ook standaardacties. ([https://www.mediawiki.org/wiki/Help:Blocking_users Zie hulp])",
+	"ipb-sitewide-help": "Blokkeert bewerking op alle pagina's en naamruimten. Blokkeert ook standaardacties. ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Zie hulp])",
 	"ipb-partial-help": "Hiermee kunt u pagina's en naamruimten kiezen om te blokkeren. Blokkeert geen standaardacties, maar laat u wel bepaalde specifieke acties blokkeren.",
 	"ipb-action-create": "Nieuwe pagina's maken",
 	"ipb-action-move": "Pagina's hernoemen",

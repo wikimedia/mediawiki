@@ -2653,7 +2653,7 @@
 	"ipb-confirm": "Confirmar o bloqueio",
 	"ipb-sitewide": "Em todo o site",
 	"ipb-partial": "Parcial",
-	"ipb-sitewide-help": "Bloqueia a edição em todas as páginas e espaços nominais. Também bloqueia operações padrão ([https://www.mediawiki.org/wiki/Help:Blocking_users/pt ver ajuda])",
+	"ipb-sitewide-help": "Bloqueia a edição em todas as páginas e espaços nominais. Também bloqueia operações padrão ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users/pt ver ajuda])",
 	"ipb-partial-help": "Permite selecionar páginas e espaços nominais a bloquear. Não bloqueia as operações padrão mas permite-lhe bloquear certas operações específicas.",
 	"ipb-action-create": "Criação de novas páginas",
 	"ipb-action-move": "\nRenomeando páginas",

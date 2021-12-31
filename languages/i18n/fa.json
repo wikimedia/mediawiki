@@ -2645,7 +2645,7 @@
 	"ipb-confirm": "تأیید قطع دسترسی",
 	"ipb-sitewide": "کلی",
 	"ipb-partial": "موردی",
-	"ipb-sitewide-help": "قطع دسترسی ویرایش در تمام صفحه‌ها و فضاهای نام و نیز جلوگیری از انجام کنش‌های پیش‌فرض ([https://www.mediawiki.org/wiki/Help:Blocking_users/fa راهنما را ببینید])",
+	"ipb-sitewide-help": "قطع دسترسی ویرایش در تمام صفحه‌ها و فضاهای نام و نیز جلوگیری از انجام کنش‌های پیش‌فرض ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users/fa راهنما را ببینید])",
 	"ipb-partial-help": "امکان انتخاب صفحه‌ها یا فضاهای نام برای بستن دسترسی ویرایشی را فراهم می‌کند. جلوی انجام کنش‌های پیش‌فرض را نمی‌گیرد، اما به شما امکان مسدود کردن کنش‌های مشخص را می‌دهد.",
 	"ipb-action-create": "ایجاد صفحه‌های تازه",
 	"ipb-action-move": "صفحه‌های باقی‌مانده",

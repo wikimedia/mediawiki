@@ -2579,7 +2579,7 @@
 	"ipb-confirm": "Potrdi blokado",
 	"ipb-sitewide": "Po celotni strani",
 	"ipb-partial": "Delno",
-	"ipb-sitewide-help": "Blokira urejanje na vseh straneh in v vseh imenskih prostorih. Blokira tudi privzeta dejanja ([https://www.mediawiki.org/wiki/Help:Blocking_users Oglejte si pomoč])",
+	"ipb-sitewide-help": "Blokira urejanje na vseh straneh in v vseh imenskih prostorih. Blokira tudi privzeta dejanja ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Oglejte si pomoč])",
 	"ipb-partial-help": "Omogoča vam, da izberete strani in imenske prostore, ki jih želite blokirati. Ne blokira privzetih dejanj, vendar vam omogoča blokiranje nekaterih dejanj.",
 	"ipb-action-create": "Ustvarjanje novih strani",
 	"ipb-action-move": "Preimenovanje strani",

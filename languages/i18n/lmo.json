@@ -2580,7 +2580,7 @@
 	"ipb-confirm": "Conferma el bloch",
 	"ipb-sitewide": "In tut el sit",
 	"ipb-partial": "Parzial",
-	"ipb-sitewide-help": "El bloca i modifeghe de tute i pagine e i spazzi di nom. El bloca anca i azzion predefinide ([https://www.mediawiki.org/wiki/Help:Blocking_users See help])",
+	"ipb-sitewide-help": "El bloca i modifeghe de tute i pagine e i spazzi di nom. El bloca anca i azzion predefinide ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users See help])",
 	"ipb-partial-help": "El te permet de catà foeura i pagine ei spazzi di nom de blocà. El bloca no i azzion predefinide ma 'l te permet de blocà di azzion specifeghe.",
 	"ipb-action-create": "Creazzion de pagine noeuve",
 	"ipb-action-move": "Adree a rinominà i pagine.",

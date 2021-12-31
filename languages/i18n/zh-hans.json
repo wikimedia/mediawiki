@@ -2749,7 +2749,7 @@
 	"ipb-confirm": "确认封禁",
 	"ipb-sitewide": "全站范围",
 	"ipb-partial": "部分页面",
-	"ipb-sitewide-help": "阻止对所有页面和命名空间进行编辑。还会阻止默认操作（[https://www.mediawiki.org/wiki/Help:Blocking_users 查看帮助]）",
+	"ipb-sitewide-help": "阻止对所有页面和命名空间进行编辑。还会阻止默认操作（[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users 查看帮助]）",
 	"ipb-partial-help": "允许您选择要阻止的页面和命名空间。不阻止默认操作，但允许您阻止某些特定操作。",
 	"ipb-action-create": "创建新页面",
 	"ipb-action-move": "重命名页面",

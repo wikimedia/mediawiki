@@ -2573,7 +2573,7 @@
 	"ipb-confirm": "Confirmar blocada",
 	"ipb-sitewide": "Sur tote le sito",
 	"ipb-partial": "Partial",
-	"ipb-sitewide-help": "Bloca le modification sur tote le paginas e spatios de nomines. Bloca etiam le actiones predefinite. ([https://www.mediawiki.org/wiki/Help:Blocking_users Adjuta])",
+	"ipb-sitewide-help": "Bloca le modification sur tote le paginas e spatios de nomines. Bloca etiam le actiones predefinite. ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Adjuta])",
 	"ipb-partial-help": "Permitte seliger paginas e spatios de nomines a blocar. Non bloca actiones predefinite, ma permitte blocar certe actiones specific.",
 	"ipb-action-create": "Crear nove paginas",
 	"ipb-action-move": "Renomination de paginas",

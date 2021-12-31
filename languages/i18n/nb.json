@@ -2616,7 +2616,7 @@
 	"ipb-confirm": "Bekreft blokkering",
 	"ipb-sitewide": "Hele nettstedet",
 	"ipb-partial": "Delvis",
-	"ipb-sitewide-help": "Blokkerer redigering av alle sider og navnerom. Blokkerer også standardhandlinger ([https://www.mediawiki.org/wiki/Help:Blocking_users Se hjelp])",
+	"ipb-sitewide-help": "Blokkerer redigering av alle sider og navnerom. Blokkerer også standardhandlinger ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Se hjelp])",
 	"ipb-partial-help": "Lar deg velge sider og navnerom som skal blokkeres. Blokkerer ikke standardhandlinger, men lar deg blokkere visse spesifikke handlinger.",
 	"ipb-action-create": "Opprette nye sider",
 	"ipb-action-move": "Endre navn på sider",

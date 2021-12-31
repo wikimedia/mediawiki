@@ -2768,7 +2768,7 @@
 	"ipb-confirm": "Confirmer le blocage",
 	"ipb-sitewide": "À tout le site",
 	"ipb-partial": "Partiel",
-	"ipb-sitewide-help": "Bloque la modification de tous les pages et espaces de nom. Bloque aussi les actions par défaut ([https://www.mediawiki.org/wiki/Help:Blocking_users Voir l’aide])",
+	"ipb-sitewide-help": "Bloque la modification de tous les pages et espaces de nom. Bloque aussi les actions par défaut ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Voir l’aide])",
 	"ipb-partial-help": "Vous permet de sélectionner les pages et les espaces de nom à bloquer. Ne bloque pas les actions par défaut, mais vous laisse bloquer certaines actions spécifiques.",
 	"ipb-action-create": "Création de nouvelles pages",
 	"ipb-action-move": "Renommer les pages",

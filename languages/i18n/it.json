@@ -2699,7 +2699,7 @@
 	"ipb-confirm": "Conferma il blocco",
 	"ipb-sitewide": "Completo",
 	"ipb-partial": "Parziale",
-	"ipb-sitewide-help": "Blocca la modifica di tutte le pagine e i namespace. Blocca anche le azioni predefinite ([https://www.mediawiki.org/wiki/Help:Blocking_users vedi aiuto])",
+	"ipb-sitewide-help": "Blocca la modifica di tutte le pagine e i namespace. Blocca anche le azioni predefinite ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users vedi aiuto])",
 	"ipb-partial-help": "Consente di selezionare le pagine ed i namespace da bloccare. Non blocca le azioni predefinite ma ti consente di bloccare determinate azioni specifiche.",
 	"ipb-action-create": "Creazione nuove pagine",
 	"ipb-action-move": "Ridenominazione di pagine",

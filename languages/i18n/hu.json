@@ -2595,7 +2595,7 @@
 	"ipb-confirm": "Blokk megerősítése",
 	"ipb-sitewide": "Teljes körű",
 	"ipb-partial": "Részleges",
-	"ipb-sitewide-help": "A szerkesztés blokkolása minden lapon és névtérben. Az alapértelmezett műveleteket is blokkolja ([https://www.mediawiki.org/wiki/Help:Blocking_users súgó])",
+	"ipb-sitewide-help": "A szerkesztés blokkolása minden lapon és névtérben. Az alapértelmezett műveleteket is blokkolja ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users súgó])",
 	"ipb-partial-help": "Meghatározott lapok vagy névterek.",
 	"ipb-action-create": "Új oldalak létrehozása",
 	"ipb-action-move": "Oldalak átnevezése",

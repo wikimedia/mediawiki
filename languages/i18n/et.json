@@ -2126,6 +2126,8 @@
 	"apisandbox-request-format-url-label": "URL-päringusõne",
 	"apisandbox-request-url-label": "Päringu URL:",
 	"apisandbox-request-json-label": "Päringu JSON:",
+	"apisandbox-request-format-php-label": "PHP massiiv",
+	"apisandbox-request-php-label": "Päringu PHP massiiv:",
 	"apisandbox-request-time": "Päringuaeg: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-results-fixtoken": "Paranda luba ja saada uuesti",
 	"apisandbox-results-fixtoken-fail": "$1-luba ei õnnestunud hankida.",
@@ -2591,7 +2593,7 @@
 	"ipb-confirm": "Kinnita blokeering",
 	"ipb-sitewide": "Saidiülene",
 	"ipb-partial": "Osaline",
-	"ipb-sitewide-help": "Blokeeritakse lehekülgede redigeerimine kõigis nimeruumides ning ka muud toimingud, mis on muidu lubatud ([https://www.mediawiki.org/wiki/Help:Blocking_users loe lähemalt]).",
+	"ipb-sitewide-help": "Blokeeritakse lehekülgede redigeerimine kõigis nimeruumides ning ka muud toimingud, mis on muidu lubatud ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users loe lähemalt]).",
 	"ipb-partial-help": "Saad valida leheküljed ja nimeruumid, mille muutmine keelata. Ei blokeerita kõiki toiminguid, mis on muidu lubatud. Saad keelata teatud toimingud.",
 	"ipb-action-create": "Uute lehekülgede alustamine",
 	"ipb-action-move": "Lehekülgede teisaldamine",
@@ -3996,5 +3998,7 @@
 	"paramvalidator-help-type-title": "Tüüp: lehekülje pealkiri",
 	"paramvalidator-help-type-title-must-exist": "Nõustub ainult olemasolevate lehekülgedega.",
 	"paramvalidator-help-type-title-no-must-exist": "Nõustub lehekülgedega, mida pole.",
-	"nonmain-slot-differences-therefore-readonly": "Lehekülje selle redaktsiooni vikiteksti ei saa redigeerida, sest leheküljel on hiljem muudetud andmeid, mis pole vikitekstipõhised. [$1 Klõpsa siia, et see redaktsioon taastada.]"
+	"nonmain-slot-differences-therefore-readonly": "Lehekülje selle redaktsiooni vikiteksti ei saa redigeerida, sest leheküljel on hiljem muudetud andmeid, mis pole vikitekstipõhised. [$1 Klõpsa siia, et see redaktsioon taastada.]",
+	"config-missing-key": "MediaWiki häälestuse parameeter \"$1\" puudub",
+	"config-invalid-key": "Vigane MediaWiki häälestuse parameeter \"$1\": $2"
 }
