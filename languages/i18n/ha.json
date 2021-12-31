@@ -666,7 +666,7 @@
 	"ipbreason": "Dalili:",
 	"ipbenableautoblock": "Nan take an toshe adireshin IP na ƙarshe da wannan mai amfani yayi amfani da shi, da kowane adireshin IP na gaba da suke ƙoƙarin gyarawa daga, na tsawon $1",
 	"ipboptions": "awa 2:2 hours,kwana 1:1 day,kwana 3:3 days,mako 1:1 week,mako 2:2 weeks,wata 1:1 month,wata 3:3 months,wata 6:6 months,shekara 1:1 year,illa masha allahu:infinite",
-	"ipb-sitewide-help": "Kulle gyara a dukkan shafuka da sunaye. Haka nan goge asalin aiyuka ([https://www.mediawiki.org/wiki/Help:Blocking_users See help])",
+	"ipb-sitewide-help": "Kulle gyara a dukkan shafuka da sunaye. Haka nan goge asalin aiyuka ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users See help])",
 	"ipb-partial-help": "Yana ba ku damar zaɓar shafuka da wuraren suna don toshewa.  Ba ya toshe ayyukan tsoho amma yana ba ku damar toshe takamaiman ayyuka.",
 	"block-actions": "irin kullewa",
 	"block-details": "Bayanan kullewa",

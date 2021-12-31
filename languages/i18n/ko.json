@@ -2645,7 +2645,7 @@
 	"ipb-confirm": "차단 확인",
 	"ipb-sitewide": "사이트 전체",
 	"ipb-partial": "부분",
-	"ipb-sitewide-help": "모든 문서와 이름공간의 편집을 차단합니다. 기본적인 행위 역시도 차단합니다.([https://www.mediawiki.org/wiki/Help:Blocking_users/ko 도움말 보기])",
+	"ipb-sitewide-help": "모든 문서와 이름공간의 편집을 차단합니다. 기본적인 행위 역시도 차단합니다.([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users/ko 도움말 보기])",
 	"ipb-partial-help": "차단할 문서와 이름공간을 선택할 수 있습니다. 기본 행위를 차단하지는 않고 특정한 행위를 차단할 수 있습니다.",
 	"ipb-action-create": "새 문서 만들기",
 	"ipb-action-move": "문서 이름 바꾸기",

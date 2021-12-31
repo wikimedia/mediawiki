@@ -2406,7 +2406,7 @@
 	"ipb-confirm": "Potvrdi blokiranje",
 	"ipb-sitewide": "Na cijelom wikiju",
 	"ipb-partial": "Djelomično",
-	"ipb-sitewide-help": "Blokira uređivanje na svim stranicama i imenskim prostorima. Također blokira zadane radnje ([https://www.mediawiki.org/wiki/Help:Blocking_users Vidi pomoć])",
+	"ipb-sitewide-help": "Blokira uređivanje na svim stranicama i imenskim prostorima. Također blokira zadane radnje ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Vidi pomoć])",
 	"ipb-partial-help": "Omogućuje odabir stranica i imenskih prostora za blokiranje. Ne blokira zadane radnje, ali omogućuje blokiranje određenih radnji.",
 	"ipb-pages-label": "Stranice",
 	"ipb-namespaces-label": "Imenski prostori",

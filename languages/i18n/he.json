@@ -2614,7 +2614,7 @@
 	"ipb-confirm": "אישור החסימה",
 	"ipb-sitewide": "כל האתר",
 	"ipb-partial": "חלקית",
-	"ipb-sitewide-help": "חוסמת עריכה בכל הדפים ומרחבי השם. חוסמת גם פעולות ברירת מחדל ([https://www.mediawiki.org/wiki/Help:Blocking_users ר' עזרה])",
+	"ipb-sitewide-help": "חוסמת עריכה בכל הדפים ומרחבי השם. חוסמת גם פעולות ברירת מחדל ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users ר' עזרה])",
 	"ipb-partial-help": "מאפשרת לך לבחור אילו דפים ומרחבי שם לחסום. לא חוסמת פעולות ברירת מחדל, אבל מאפשרת לך לחסום פעולות מוגדרות מסוימות.",
 	"ipb-action-create": "יצירת דפים חדשים",
 	"ipb-action-move": "שינוי שמות דפים",

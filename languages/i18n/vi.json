@@ -2633,7 +2633,7 @@
 	"ipb-confirm": "Xác nhận cấm",
 	"ipb-sitewide": "Toàn website",
 	"ipb-partial": "Một phần",
-	"ipb-sitewide-help": "Cấm sửa đổi trên tất cả các trang và không gian tên. Ngoài ra còn cấm các hành động mặc định ([https://www.mediawiki.org/wiki/Help:Blocking_users Xem trợ giúp])",
+	"ipb-sitewide-help": "Cấm sửa đổi trên tất cả các trang và không gian tên. Ngoài ra còn cấm các hành động mặc định ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Xem trợ giúp])",
 	"ipb-partial-help": "Cho phép bạn chọn các trang và không gian tên để cấm. Không cấm các hành động mặc định nhưng cho phép bạn chặn một số hành động cụ thể nhất định.",
 	"ipb-action-create": "Tạo trang mới",
 	"ipb-action-move": "Đổi tên trang",

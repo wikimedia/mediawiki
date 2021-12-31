@@ -2581,7 +2581,7 @@
 	"ipb-confirm": "Пацьвердзіць блякаваньне",
 	"ipb-sitewide": "На ўсім сайце",
 	"ipb-partial": "Частковая",
-	"ipb-sitewide-help": "Блякуе рэдагаваньне на ўсіх старонках і прасторах імёнаў. Таксама блякуе дзеяньні па змаўчаньні ([https://www.mediawiki.org/wiki/Help:Blocking_users See help])",
+	"ipb-sitewide-help": "Блякуе рэдагаваньне на ўсіх старонках і прасторах імёнаў. Таксама блякуе дзеяньні па змаўчаньні ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users See help])",
 	"ipb-partial-help": "Дазваляе выбіраць старонкі і прасторы назваў для блякаваньня. Не блякуе дапомныя дзеяньні, але дазваляе блякаваць некаторыя пэўныя дзеяньні.",
 	"ipb-action-create": "Стварэньне новых старонак",
 	"ipb-action-move": "Перайменаванне старонак",

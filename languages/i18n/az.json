@@ -2034,7 +2034,7 @@
 	"ipb-confirm": "Bloku təsdiqlə",
 	"ipb-sitewide": "Bütün layihə üzrə",
 	"ipb-partial": "Qismən",
-	"ipb-sitewide-help": "Bütün səhifələrdə və ad fəzalarında redaktə etməyi bloklayır. Defolt funksiyaları da bloklayır\n([https://www.mediawiki.org/wiki/Help:Blocking_users Daha ətraflı])",
+	"ipb-sitewide-help": "Bütün səhifələrdə və ad fəzalarında redaktə etməyi bloklayır. Defolt funksiyaları da bloklayır\n([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Daha ətraflı])",
 	"ipb-partial-help": "Blok ediləcək səhifələri və ad fəzalarını seçməyə imkan verir. Defolt funksiyaları bloklamır, ancaq müəyyən funksiyaları bloklamağa imkan verir.",
 	"ipb-pages-label": "Səhifələr",
 	"ipb-namespaces-label": "Adlar fəzası",

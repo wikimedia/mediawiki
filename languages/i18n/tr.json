@@ -2697,7 +2697,7 @@
 	"ipb-confirm": "Engeli onayla",
 	"ipb-sitewide": "Site çapında",
 	"ipb-partial": "Kısmi",
-	"ipb-sitewide-help": "Tüm sayfalarda ve ad alanlarında düzenlemeyi engeller. Ayrıca, varsayılan eylemleri de engeller\n([https://www.mediawiki.org/wiki/Help:Blocking_users Yardıma bakın])",
+	"ipb-sitewide-help": "Tüm sayfalarda ve ad alanlarında düzenlemeyi engeller. Ayrıca, varsayılan eylemleri de engeller\n([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Yardıma bakın])",
 	"ipb-partial-help": "Engellenecek sayfaları ve ad alanlarını seçmenize izin verir. Varsayılan eylemleri engellemez ancak belirli eylemleri engellemenize izin verir.",
 	"ipb-action-create": "Yeni sayfa oluşturma",
 	"ipb-action-move": "Sayfaları yeniden adlandırmak",

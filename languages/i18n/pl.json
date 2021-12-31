@@ -2666,7 +2666,7 @@
 	"ipb-confirm": "Potwierdzam blokadę",
 	"ipb-sitewide": "Całkowicie",
 	"ipb-partial": "Częściowo",
-	"ipb-sitewide-help": "Blokada edycji wszystkich stron i przestrzeni nazw. Dodatkowo uniemożliwia wykonywanie pewnych innych akcji ([https://www.mediawiki.org/wiki/Help:Blocking_users/pl Szczegóły])",
+	"ipb-sitewide-help": "Blokada edycji wszystkich stron i przestrzeni nazw. Dodatkowo uniemożliwia wykonywanie pewnych innych akcji ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users/pl Szczegóły])",
 	"ipb-partial-help": "Pozwala wybrać strony i przestrzenie nazw, których edycja zostanie zablokowana. Nie uniemożliwia innych akcji, chyba, że ustalisz, które zablokować.",
 	"ipb-action-create": "Tworzenie nowych stron",
 	"ipb-action-move": "Przenoszenie stron",

@@ -2649,7 +2649,7 @@
 	"ipb-confirm": "Bekräfta blockering",
 	"ipb-sitewide": "Hela webbplatsen",
 	"ipb-partial": "Partiell",
-	"ipb-sitewide-help": "Blockerar redigering på alla sidor och namnrymder. Blockerar också standardåtgärder ([https://www.mediawiki.org/wiki/Help:Blocking_users Se hjälp])",
+	"ipb-sitewide-help": "Blockerar redigering på alla sidor och namnrymder. Blockerar också standardåtgärder ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Se hjälp])",
 	"ipb-partial-help": "Låter dig välja sidor och namnrymder att blockera. Blockerar inte standardåtgärder men låter dig blockera vissa specifika åtgärder.",
 	"ipb-action-create": "Skapa nya sidor",
 	"ipb-action-move": "Byta namn på sidor",

@@ -2681,7 +2681,7 @@
 	"ipb-confirm": "Sperrung bestätigen",
 	"ipb-sitewide": "Auf der gesamten Website",
 	"ipb-partial": "Teilweise",
-	"ipb-sitewide-help": "Sperrt die Bearbeitung auf allen Seiten und in allen Namensräumen. Sperrt auch Standardaktionen ([https://www.mediawiki.org/wiki/Help:Blocking_users Hilfe])",
+	"ipb-sitewide-help": "Sperrt die Bearbeitung auf allen Seiten und in allen Namensräumen. Sperrt auch Standardaktionen ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users Hilfe])",
 	"ipb-partial-help": "Ermöglicht die Auswahl der zu sperrenden Seiten und Namensräume. Sperrt keine Standardaktionen, sondern lässt dich bestimmte spezifische Aktionen sperren.",
 	"ipb-action-create": "Neue Seiten erstellen",
 	"ipb-action-move": "Seiten verschieben",
