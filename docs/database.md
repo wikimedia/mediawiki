@@ -58,7 +58,7 @@ To avoid excessive lag, queries which write large numbers of rows should be spli
 
 ## Working with lag
 
-Despite our best efforts, it's not practical to guarantee a low-lag environment. Lag will usually be less than one second, but may occasionally be up to 30 seconds. For scalability, it's very important to keep load on the primary low, so simply sending all your queries to the masprimaryter is not the answer. So when you have a genuine need for up-to-date data, the following approach is advised:
+Despite our best efforts, it's not practical to guarantee a low-lag environment. Lag will usually be less than one second, but may occasionally be up to 30 seconds. For scalability, it's very important to keep load on the primary low, so simply sending all your queries to the primary is not the answer. So when you have a genuine need for up-to-date data, the following approach is advised:
 
 1) Do a quick query to the primary for a sequence number or timestamp
 2) Run the full query on the replica and check if it matches the data you got
@@ -86,7 +86,7 @@ Instead of locking reads, combine your existence checks into your write queries,
 
 ## Query groups
 
-MediaWiki supports database query groups, a way to indicate a preferred group of database hosts to use for a given query. Query groups are only supported for connections to child (non-primary) databases, making them only viable for read operations. It should be noted that using query groups does not _guarantee_ a given group of hosts will be used, but rather that the query prefers such group. Making use of query groups can be benficial in many cases.
+MediaWiki supports database query groups, a way to indicate a preferred group of database hosts to use for a given query. Query groups are only supported for connections to child (non-primary) databases, making them only viable for read operations. It should be noted that using query groups does not _guarantee_ a given group of hosts will be used, but rather that the query prefers such group. Making use of query groups can be beneficial in many cases.
 
 One benefit is a reduction of cache misses. Directing reads for a category of queries (e.g. all logging queries) to a given host can result in more deterministic and faster performing queries.
 

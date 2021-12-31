@@ -54,7 +54,7 @@ provided by the class describes a more feature rich logging configuration.
   backed by the monolog logging library
 * MediaWiki.Logger.Monolog.LegacyHandler: Monolog handler that replicates the
   udp2log and file logging functionality of wfErrorLog()
-* MediaWiki.Logger.Monolog.WikiProcessor: Monolog log processer that adds host:
+* MediaWiki.Logger.Monolog.WikiProcessor: Monolog log processor that adds host:
   wfHostname() and wiki: wfWikiID() to all records
 
 # Globals
