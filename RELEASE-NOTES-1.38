@@ -125,6 +125,7 @@ because of Phabricator reports.
 * (T297074) Added language support for Nawdm (nmz).
 * (T298075) Added language support for Northern Thai (nod).
 * (T298182) Added language support for Cape Verdean Creole (kea).
+* (T298385) Added language support for Nheengatu (yrl).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
