@@ -1272,7 +1272,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/migrateActors.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'MigrateActors', 'migrateActors.php' );
+			$task = $this->maintenance->runChild( MigrateActors::class, 'migrateActors.php' );
 			$ok = $task->execute();
 			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
 		}
@@ -1306,7 +1306,7 @@ abstract class DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "Populating ar_rev_id.\n" );
-			$task = $this->maintenance->runChild( 'PopulateArchiveRevId', 'populateArchiveRevId.php' );
+			$task = $this->maintenance->runChild( PopulateArchiveRevId::class, 'populateArchiveRevId.php' );
 			if ( $task->execute() ) {
 				$this->applyPatch( 'patch-ar_rev_id-not-null.sql', false,
 					'Making ar_rev_id not nullable' );
@@ -1325,7 +1325,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateExternallinksIndex60.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'PopulateExternallinksIndex60',
+			$task = $this->maintenance->runChild( PopulateExternallinksIndex60::class,
 				'populateExternallinksIndex60.php' );
 			$task->execute();
 			$this->output( "done.\n" );
