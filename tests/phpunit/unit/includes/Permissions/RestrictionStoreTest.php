@@ -719,7 +719,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' ),
 			],
 			'Nonexistent file' => [
-				[ 'create', 'upload' ],
+				[ 'create' ],
 				PageIdentityValue::localIdentity( 0, NS_FILE, 'X' ),
 			],
 			'Existing file' => [
@@ -764,7 +764,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				[ 'RestrictionTypes' => $expandedRestrictions ],
 			],
 			'Nonexistent file with extra type' => [
-				[ 'create', 'upload' ],
+				[ 'create' ],
 				PageIdentityValue::localIdentity( 0, NS_FILE, 'X' ),
 				[ 'RestrictionTypes' => $expandedRestrictions ],
 			],
@@ -820,7 +820,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		return [
 			'Exists' => [ [ 'edit', 'move', 'upload' ], [ true ] ],
 			'Default is exists' => [ [ 'edit', 'move', 'upload' ], [] ],
-			'Nonexistent' => [ [ 'create', 'upload' ], [ false ] ],
+			'Nonexistent' => [ [ 'create' ], [ false ] ],
 
 			'Exists with extra restriction type' => [
 				[ 'edit', 'move', 'upload', 'solidify' ],
@@ -833,7 +833,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				[ 'RestrictionTypes' => $expandedRestrictions ],
 			],
 			'Nonexistent with extra restriction type' => [
-				[ 'create', 'upload' ],
+				[ 'create' ],
 				[ false ],
 				[ 'RestrictionTypes' => $expandedRestrictions ],
 			],
@@ -849,7 +849,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				[ 'RestrictionTypes' => [ 'create' ] ],
 			],
 			'Nonexistent with no create' => [
-				[ 'upload' ],
+				[],
 				[ false ],
 				[ 'RestrictionTypes' => [ 'edit', 'move', 'upload', 'solidify' ] ],
 			],
