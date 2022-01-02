@@ -1073,22 +1073,6 @@ function wfLogProfilingData() {
 }
 
 /**
- * Increment a statistics counter
- *
- * @param string $key
- * @param int $count
- * @return void
- *
- * @deprecated since 1.36 (emits deprecation warnings since 1.37),
- * use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
- */
-function wfIncrStats( $key, $count = 1 ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-	$stats->updateCount( $key, $count );
-}
-
-/**
  * Check whether the wiki is in read-only mode.
  *
  * @deprecated since 1.38, use ReadOnlyMode::isReadOnly() instead
