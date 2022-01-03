@@ -109,6 +109,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "O coménto in scê revixoîn 'from' e 'to'. Se a revixón do coménto a l'é stæta cancelâ, 'na propiêtæ <samp>fromcommenthidden</samp> ò <samp>tocommenthidden</samp> a saiâ restitoîa.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "O coménto analizòu da-e revixoîn 'from' e 'to'. Se a revixón do coménto a l'é stæta cancelâ, 'na propiêtæ <samp>fromcommenthidden</samp> ò <samp>tocommenthidden</samp> a saiâ restitoîa.",
 	"apihelp-compare-paramvalue-prop-size": "E dimenscioîn de revixoîn 'from' e 'to'.",
+	"apihelp-compare-param-slots": "O restitoìsce i dif de ògni séncio spàçio, ciufîto che 'n sôlo dif pe tùtti i spàççi cónbinæ.",
 	"apihelp-compare-example-1": "Crea un diff tra revixon 1 e revixon 2.",
 	"apihelp-createaccount-summary": "Crea una noeuva utença.",
 	"apihelp-createaccount-param-preservestate": "Se <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> o l'ha restituto true pe <samp>hasprimarypreservedstate</samp>, e receste contrssegnæ comme <samp>primary-required</samp> dovieivan ese omisse. Se invece o l'ha restituio un valô non voeuo pe <samp>preservedusername</samp>, quello nomme utente o dev'ese doeuviou pe-o parammetro <var>username</var>.",

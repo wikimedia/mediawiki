@@ -3625,5 +3625,6 @@
 	"paramvalidator-help-type-user-subtype-name": "suradničko ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP-adresa",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-opseg",
-	"paramvalidator-help-type-user-subtype-id": "suradnički ID (npr. »#123«)"
+	"paramvalidator-help-type-user-subtype-id": "suradnički ID (npr. »#123«)",
+	"nonmain-slot-differences-therefore-readonly": "Ne možete uređivati ​​wiki tekst na ovoj izmjeni stranice jer su na njoj napravljene promjene podataka koji se ne temelje na wiki tekstu. [$1 Da biste vratili na ovu izmjenu, kliknite ovdje.]"
 }
