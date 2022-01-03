@@ -670,13 +670,15 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * @since 1.37 for non-SkinMustache base classes. Available since 1.36 for SkinMustache
-	 * @stable to override
+	 * @internal read only function, not for extension. Support for extending this method is
+	 *  deprecated in 1.38. Please use getTemplateData instead.
 	 * @param string $name of the portal e.g. p-personal the name is personal.
 	 * @param array $items that are accepted input to Skin::makeListItem
 	 * @return array data that can be passed to a Mustache template that
 	 *   represents a single menu.
 	 */
 	protected function getPortletData( $name, array $items ) {
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getPortletData', '1.38' );
 		// Monobook and Vector historically render this portal as an element with ID p-cactions
 		// This inconsistency is regretful from a code point of view
 		// However this ensures compatibility with gadgets.
