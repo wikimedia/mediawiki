@@ -351,6 +351,7 @@
 	"sort-descending": "Sortér faldende",
 	"sort-ascending": "Sortér stigende",
 	"sort-initial": "Sortér initial",
+	"sort-rowspan-error": "Denne side indeholder en tabel med en rowspan-attribut som dækker flere rækker end tabellen faktisk har. Du kan rette dette ved at redigere siden.",
 	"nstab-main": "Side",
 	"nstab-user": "{{GENDER:$1|Brugerside}}",
 	"nstab-media": "Medieside",
