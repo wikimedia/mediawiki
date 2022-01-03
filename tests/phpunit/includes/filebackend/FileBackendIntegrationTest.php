@@ -166,7 +166,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			"Store from $source to $dest succeeded ($backendName)." );
 		$this->assertEquals( [ 0 => true ], $status->success,
 			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
-		$this->assertTrue( file_exists( $source ),
+		$this->assertTrue( is_file( $source ),
 			"Source file $source still exists ($backendName)." );
 		$this->assertTrue( $this->backend->fileExists( [ 'src' => $dest ] ),
 			"Destination file $dest exists ($backendName)." );

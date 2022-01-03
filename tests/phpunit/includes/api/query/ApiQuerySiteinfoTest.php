@@ -386,7 +386,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		global $IP;
 
 		$path = "$IP/vendor/composer/installed.json";
-		if ( !file_exists( $path ) ) {
+		if ( !is_file( $path ) ) {
 			$this->markTestSkipped( 'No installed libraries' );
 		}
 

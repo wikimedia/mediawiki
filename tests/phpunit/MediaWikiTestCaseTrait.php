@@ -159,7 +159,7 @@ trait MediaWikiTestCaseTrait {
 		$msg = ''
 	) {
 		if ( $createIfMissing ) {
-			if ( !file_exists( $fileName ) ) {
+			if ( !is_file( $fileName ) ) {
 				file_put_contents( $fileName, $actualData );
 				$this->markTestSkipped( "Data file $fileName does not exist" );
 			}

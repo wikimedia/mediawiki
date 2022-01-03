@@ -1113,7 +1113,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		}
 		$status = $backend->$method( $op );
 
-		$this->assertTrue( file_exists( $path ) );
+		$this->assertTrue( is_file( $path ) );
 	}
 
 	/**

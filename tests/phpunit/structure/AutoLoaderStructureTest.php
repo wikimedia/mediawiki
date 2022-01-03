@@ -101,7 +101,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 				$filePath = self::fixSlashes( $file );
 			}
 
-			if ( !file_exists( $filePath ) ) {
+			if ( !is_file( $filePath ) ) {
 				$actual[$class] = "[file '$filePath' does not exist]";
 				continue;
 			}

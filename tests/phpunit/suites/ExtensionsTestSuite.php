@@ -29,7 +29,7 @@ class ExtensionsTestSuite extends TestSuite {
 				$fileIterator = new Facade();
 				$matchingFiles = $fileIterator->getFilesAsArray( $path, $suffixes );
 				$this->addTestFiles( $matchingFiles );
-			} elseif ( file_exists( $path ) ) {
+			} elseif ( is_file( $path ) ) {
 				// Add a single test case or suite class
 				$this->addTestFile( $path );
 			}

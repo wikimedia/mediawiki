@@ -108,7 +108,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	 */
 	protected function fakeUploadFile( $fieldName, $fileName, $type, $filePath ) {
 		$tmpName = $this->getNewTempFile();
-		if ( !file_exists( $filePath ) ) {
+		if ( !is_file( $filePath ) ) {
 			throw new Exception( "$filePath doesn't exist!" );
 		}
 
