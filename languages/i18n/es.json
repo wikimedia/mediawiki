@@ -2862,7 +2862,7 @@
 	"empty-username": "(nombre de usuario no disponible)",
 	"contribslink": "contribs.",
 	"emaillink": "enviar correo electrónico",
-	"autoblocker": "Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]».\nEl motivo por el que se bloqueó a [[User:$1|$1]] es «$2».",
+	"autoblocker": "Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]».\nEl motivo del bloqueo a $1 es «$2».",
 	"blocklogpage": "Registro de bloqueos",
 	"blocklog-showlog": "Este usuario ha sido bloqueado previamente. Debajo se provee el registro de bloqueos para mayor referencia:",
 	"blocklog-showsuppresslog": "Este usuario ha sido bloqueado y ocultado con anterioridad.\nEl registro de supresiones se muestra debajo como referencia:",

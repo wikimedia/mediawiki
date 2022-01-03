@@ -457,7 +457,7 @@
 	"recentchanges-label-unpatrolled": "Taat nubástus ij lah vala tärhistum.",
 	"recentchanges-label-plusminus": "Siijđo stuáruduv nubástus stavâlij mield.",
 	"recentchanges-legend-heading": "<strong>Čielgiittâs:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (Keejâ meid [[Special:NewPages|listo uđđá siijđoin]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (keejâ meid [[Special:NewPages|listo uđđá siijđoin]])",
 	"recentchanges-submit": "Čääiti",
 	"rcfilters-legend-heading": "<strong>Listo uánádâsâin:</strong>",
 	"rcfilters-activefilters-hide": "Čievâ",

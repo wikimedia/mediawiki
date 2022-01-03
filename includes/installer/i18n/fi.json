@@ -26,7 +26,8 @@
 			"VezonThunder",
 			"아라",
 			"Nwme",
-			"Veikk0.ma"
+			"Veikk0.ma",
+			"MITO"
 		]
 	},
 	"config-desc": "Asennin MediaWikiä varten",
@@ -84,6 +85,7 @@
 	"config-apc": "[https://www.php.net/apc APC] on asennettu",
 	"config-apcu": "[https://www.php.net/apcu APCu] on asennettu",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] on asennettu",
+	"config-no-cache-apcu": "<strong>Warning:</strong> [https://www.php.net/apcu APCu:ta] tai [https://www.iis.net/downloads/microsoft/wincache-extension WinCache:a] ei löytynyt. Objektien välimuisti ei ole käytössä.",
 	"config-diff3-bad": "GNU diff3 -tekstinvertailutyökalua ei löytynyt. Voit sivuuttaa tämän viestin toistaiseksi, mutta päällekkäisiä muutoksia saattaa tapahtua useammin.",
 	"config-git": "Löydetty Git-versionhallintaohjelmisto: <code>$1</code>",
 	"config-git-bad": "Git-versionhallintaohjelmistoa ei löytynyt. Voit sivuuttaa tämän viestin toistaiseksi. Huom.: Special:Version ei tule näyttämään versiotiivisteitä.",

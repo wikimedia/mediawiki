@@ -833,6 +833,8 @@
 	"content-json-empty-object": "Tyhjä objekti",
 	"content-json-empty-array": "Tyhjä array",
 	"unsupported-content-model": "<strong>Varoitus:</strong> Sisältömallia $1 ei tueta tässä wikissä.",
+	"unsupported-content-diff": "Eroja ei tueta sisältömallille $1.",
+	"unsupported-content-diff2": "Tämä wiki ei tue versioeroja sisältömallien $1 ja $2 välillä.",
 	"duplicate-args-warning": "<strong>Varoitus:</strong> [[:$1]] kutsuu mallinetta [[:$2]] niin, että parametrille ”$3” on annettu enemmän kuin yksi arvo. Ainoastaan viimeksi annettu arvo otetaan huomioon.",
 	"duplicate-args-category": "Sivut, jotka käyttävät kaksinkertaisia argumentteja mallinekutsuissa",
 	"duplicate-args-category-desc": "Tämä sivu sisältää sellaisia mallinekutsuja, jotka käyttävät kaksi kertaa samaa argumenttia kuten <nowiki>{{foo|bar=1|bar=2}}</nowiki></code> taikka <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

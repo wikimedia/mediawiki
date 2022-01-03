@@ -2626,7 +2626,7 @@
 	"undelete-fieldset-title": "还原版本",
 	"undeleteextrahelp": "要恢复该页面的整个历史记录时，不选中任何复选框直接点击<strong><em>{{int:undeletebtn}}</em></strong>。\n要选择性地恢复部分版本时，请选中相应版本前的复选框再点击<strong><em>{{int:undeletebtn}}</em></strong>。",
 	"undeleterevisions": "$1个{{PLURAL:$1|修订版本}}已删除",
-	"undeletehistory": "如果您恢复了该页面，所有版本都会被恢复到版本历史中。\n如果本页删除后有一个同名的新页面建立，被恢复的版本将会出现在先前的历史中。",
+	"undeletehistory": "如果您恢复了该页面，所有版本都会恢复到版本历史中。\n如果本页删除后有一个同名的新页面建立，恢复的版本将会出现在先前的历史中。",
 	"undeleterevdel": "如果把最新版本部分删除，反删除将会无法进行。\n如果遇到这种情况，您必须反选或反隐藏最新已删除的版本。",
 	"undeletehistorynoadmin": "这个页面已被删除。删除原因显示在下方编辑摘要中，被删除前的所有版本文本连同删除前贡献用户的细节信息只对管理员可见。",
 	"undelete-revision": "$1由$3（在$4 $5）所编辑的已删除版本：",

@@ -7,7 +7,8 @@
 			"Kenrick95",
 			"Presidenvolksraad",
 			"Iwan Novirion",
-			"Rachmat04"
+			"Rachmat04",
+			"Daud I.F. Argana"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
@@ -22,7 +23,7 @@
 	"apihelp-block-param-autoblock": "Blokir alamat IP terakhir yang digunakan pengguna ini, dan semua alamat IP berikutnya yang mereka coba gunakan untuk menyunting.",
 	"apihelp-block-param-noemail": "Cegah pengguna mengirimkan surel melalui wiki. (Membutuhkan hak <code>blockemail</code>).",
 	"apihelp-block-param-reblock": "Jika pengguna tersebut sudah diblokir, atur ulang setelah pemblokirannya.",
-	"apihelp-block-example-ip-simple": "Blokir alamat IP <kbd>192.0.2.5</kbd> selama tiga hari dengan alasan <kbd>Serangan pertama</kbd>.",
+	"apihelp-block-example-ip-simple": "Blokir alamat IP <kbd>192.0.2.5</kbd> selama tiga hari dengan sebuah alasan.",
 	"apihelp-compare-param-fromtitle": "Judul pertama untuk dibandingkan.",
 	"apihelp-compare-param-fromid": "ID halaman pertama untuk dibandingkan.",
 	"apihelp-compare-param-fromrev": "Revisi pertama untuk dibandingkan.",
@@ -54,7 +55,7 @@
 	"apihelp-edit-param-minor": "Tandai ini sebagai suntingan kecil",
 	"apihelp-edit-param-notminor": "Jangan tandai suntingan ini sebagai suntingan kecil bahkan jika preferensi pengguna \"{{int:tog-minordefault}}\" disetel.",
 	"apihelp-edit-param-bot": "Tandai suntingan ini sebagai suntingan bot.",
-	"apihelp-edit-param-basetimestamp": "Stempel waktu dari revisi asal, digunakan untuk mendeteksi konflik penyuntingan. Dapat ditemukan di [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
+	"apihelp-edit-param-basetimestamp": "Stempel waktu dari revisi asal, digunakan untuk mendeteksi konflik penyuntingan. Dapat ditemukan di [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]. Konflik dengan diri sendiri diabaikan.",
 	"apihelp-edit-param-starttimestamp": "Stempel waktu ketika proses penyuntingan dimulai, digunakan untuk mendeteksi konflik penyuntingan. Nilai yang cocok dapat ditemukan dengan menggunakan <var>[[Special:ApiHelp/main|curtimestamp]]</var> ketika memulai proses penyuntingan (seperti ketika memuat isi konten yang akan disunting).",
 	"apihelp-edit-param-recreate": "Batalkan galat yang terjadi tentang halaman yang sudah dihapus pada saat itu.",
 	"apihelp-edit-param-createonly": "Jangan sunting halaman itu jika sudah ada.",

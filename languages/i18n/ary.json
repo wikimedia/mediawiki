@@ -19,7 +19,8 @@
 			"Ayoubbouamri",
 			"Ideophagous",
 			"Meno25",
-			"Tifratin"
+			"Tifratin",
+			"Amire80"
 		]
 	},
 	"tog-underline": "صطر ليانات:",
@@ -248,7 +249,7 @@
 	"versionrequiredtext": "خلثك النسخة $1 د ميدياويكي باش تقدر تخدًم هاد الصفحة. شوف [[Special:Version|صفحة معلومات الإصدارة]]",
 	"ok": "واخا",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "← $1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "مرجّعة من \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|عندك}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|عندك}} $1 من {{PLURAL:$3|خدايمي آخر|$3 د لخدايمية}} ($2).",

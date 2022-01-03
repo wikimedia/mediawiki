@@ -331,7 +331,7 @@
 	"versionrequiredtext": "تلزم الإصدارة $1 من ميدياويكي لاستعمال هذه الصفحة. طالع [[Special:Version|صفحة معلومات الإصدارة]]",
 	"ok": "موافق",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "← $1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "مجلوبة من «$1»",
 	"youhavenewmessages": "{{PLURAL:$3|لديك}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|لديك}} $1 من {{PLURAL:$3|مستخدم واحد|مستخدم واحد|مستخدمين اثنين|$3 مستخدمين|$3 مستخدما|$3 مستخدم}} ($2).",
