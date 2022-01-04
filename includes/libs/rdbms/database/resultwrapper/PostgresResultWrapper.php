@@ -24,17 +24,6 @@ class PostgresResultWrapper extends ResultWrapper {
 		$this->result = $result;
 	}
 
-	/**
-	 * Get the underlying result object or array
-	 *
-	 * @since 1.37
-	 * @deprecated since 1.37 Only exists to support deprecated methods
-	 * @return resource
-	 */
-	public function getInternalResult() {
-		return $this->result;
-	}
-
 	protected function doNumRows() {
 		return pg_num_rows( $this->result );
 	}
