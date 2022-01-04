@@ -65,6 +65,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 === External library changes in 1.38 ===
 
 ==== New external libraries ====
+* symfony/yaml was promoted from development-only.
 * …
 
 ===== New development-only external libraries =====
