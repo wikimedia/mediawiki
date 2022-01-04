@@ -72,27 +72,28 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated guzzlehttp/guzzle from 7.2.0 to 7.4.0.
 * Updated OOUI from v0.42.0 to v0.42.1
 * Updated WVUI from v0.3.0 to v0.3.4
 * Upgraded Vue from 2.6.11 to 3.2.23
-* Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
-* Updated wikimedia/purtle from 1.0.7 to 1.0.8.
-* Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
+* Updated composer/semver from 3.2.5 to 3.2.6.
+* Updated guzzlehttp/guzzle from 7.2.0 to 7.4.0.
 * Updated pear/mail_mime from 1.10.9 to 1.10.11.
 * Updated pear/net_smtp from 1.9.2 to 1.10.0.
 * Updated psr/log from 1.1.3 to 1.1.4.
 * Updated wikimedia/assert from 0.5.0 to 0.5.1.
+* Updated wikimedia/cdb from 1.4.1 to 2.0.0.
 * Updated wikimedia/minify from 2.2.4 to 2.2.6.
+* Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
+* Updated wikimedia/purtle from 1.0.7 to 1.0.8.
+* Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
-* Updated composer/semver from 3.2.5 to 3.2.6.
 * …
 
 ===== Changed development-only external libraries =====
+* Updated composer/semver from 3.5.4 to 3.5.5.
+* Updated composer/spdx-licenses from 1.5.4 to 1.5.5.
 * Updated doctrine/dbal for PHP < 7.3 from 2.10.4 to 2.13.4.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.0.0 to 3.1.3.
-* Updated composer/spdx-licenses from 1.5.4 to 1.5.5.
-* Updated composer/semver from 3.5.4 to 3.5.5.
 * …
 
 ==== Removed external libraries ====

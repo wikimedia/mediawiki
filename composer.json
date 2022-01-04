@@ -50,7 +50,7 @@
 		"wikimedia/assert": "0.5.1",
 		"wikimedia/at-ease": "2.1.0",
 		"wikimedia/base-convert": "2.0.1",
-		"wikimedia/cdb": "1.4.1",
+		"wikimedia/cdb": "2.0.0",
 		"wikimedia/cldr-plural-rule-parser": "2.0.0",
 		"wikimedia/common-passwords": "0.3.0",
 		"wikimedia/composer-merge-plugin": "2.0.1",
