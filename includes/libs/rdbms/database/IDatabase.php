@@ -2124,13 +2124,6 @@ interface IDatabase {
 	public function getSessionLagStatus();
 
 	/**
-	 * Return the maximum number of items allowed in a list, or 0 for unlimited
-	 *
-	 * @return int
-	 */
-	public function maxListLen();
-
-	/**
 	 * Some DBMSs have a special format for inserting into blob fields, they
 	 * don't allow simple quoted strings to be inserted. To insert into such
 	 * a field, pass the data through this function before passing it to
