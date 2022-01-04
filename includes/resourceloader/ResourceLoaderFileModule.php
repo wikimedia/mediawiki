@@ -1052,7 +1052,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Get and register local file references
 		$localFileRefs = CSSMin::getLocalFileReferences( $style, $localDir );
 		foreach ( $localFileRefs as $file ) {
-			if ( file_exists( $file ) ) {
+			if ( is_file( $file ) ) {
 				$this->localFileRefs[] = $file;
 			} else {
 				$this->missingLocalFileRefs[] = $file;

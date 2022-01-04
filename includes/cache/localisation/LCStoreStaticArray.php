@@ -43,7 +43,7 @@ class LCStoreStaticArray implements LCStore {
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
+		if ( !is_dir( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			throw new MWException( "Unable to create the localisation store " .
 				"directory \"{$this->directory}\"" );
 		}
@@ -51,7 +51,7 @@ class LCStoreStaticArray implements LCStore {
 		$this->currentLang = $code;
 		$this->fname = $this->directory . '/' . $code . '.l10n.php';
 		$this->data[$code] = [];
-		if ( file_exists( $this->fname ) ) {
+		if ( is_file( $this->fname ) ) {
 			$this->data[$code] = require $this->fname;
 		}
 	}
@@ -152,7 +152,7 @@ class LCStoreStaticArray implements LCStore {
 	public function get( $code, $key ) {
 		if ( !array_key_exists( $code, $this->data ) ) {
 			$fname = $this->directory . '/' . $code . '.l10n.php';
-			if ( !file_exists( $fname ) ) {
+			if ( !is_file( $fname ) ) {
 				return null;
 			}
 			$this->data[$code] = require $fname;
