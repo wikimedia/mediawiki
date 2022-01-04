@@ -659,10 +659,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function maxListLen() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function encodeBlob( $b ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
