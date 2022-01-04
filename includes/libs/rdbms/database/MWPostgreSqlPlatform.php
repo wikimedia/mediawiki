@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
 namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
