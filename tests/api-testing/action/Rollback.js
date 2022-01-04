@@ -169,7 +169,8 @@ describe( 'The rollback action', function testEditRollback() {
 		assert.equal( error.code, 'mustpostparams' );
 	} );
 
-	it( 'should mark the revert as a bot edit', async () => {
+	// Skipped due a concurrency issue when using Apache - T298514
+	it.skip( 'should mark the revert as a bot edit', async () => {
 		const title = utils.title( 'Rollback_' );
 
 		const firstEdit = await alice.edit( title, { text: 'One', summary: 'first' } );
