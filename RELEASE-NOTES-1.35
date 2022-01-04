@@ -697,7 +697,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added symfony/symfony/polyfill-php80 1.23.1.
 
 ===== New development-only external libraries =====
-* Added doctrine/dbal 3.0.0.
+* Added doctrine/dbal 3.1.5.
 * Added doctrine/sql-formatter 1.1.0.
 * Added pimple/pimple 3.3.1.
 
