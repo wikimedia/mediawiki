@@ -107,6 +107,7 @@ class RefreshImageMetadata extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption( 'oldimage', 'Run and refresh on oldimage table.' );
 	}
 
 	public function execute() {
@@ -117,6 +118,14 @@ class RefreshImageMetadata extends Maintenance {
 		$split = $this->hasOption( 'split' );
 		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$reserialize = $this->hasOption( 'convert-to-json' );
+		$oldimage = $this->hasOption( 'oldimage' );
+		if ( $oldimage ) {
+			$fieldPrefix = 'oi_';
+			$fileQuery = OldLocalFile::getQueryInfo();
+		} else {
+			$fieldPrefix = 'img_';
+			$fileQuery = LocalFile::getQueryInfo();
+		}
 
 		$upgraded = 0;
 		$leftAlone = 0;
@@ -129,20 +138,19 @@ class RefreshImageMetadata extends Maintenance {
 		}
 
 		$repo = $this->newLocalRepo( $force, $brokenOnly, $reserialize, $split );
-		$conds = $this->getConditions( $dbw );
+		$conds = $this->getConditions( $dbw, $fieldPrefix );
 
 		// For the WHERE img_name > 'foo' condition that comes after doing a batch
 		$conds2 = [];
 		if ( $start !== false ) {
-			$conds2[] = 'img_name >= ' . $dbw->addQuotes( $start );
+			$conds2[] = $fieldPrefix . 'name >= ' . $dbw->addQuotes( $start );
 		}
 
 		$options = [
 			'LIMIT' => $batchSize,
-			'ORDER BY' => 'img_name ASC',
+			'ORDER BY' => $fieldPrefix . 'name ASC',
 		];
 
-		$fileQuery = LocalFile::getQueryInfo();
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		do {
@@ -155,9 +163,10 @@ class RefreshImageMetadata extends Maintenance {
 				$fileQuery['joins']
 			);
 
+			$nameField = $fieldPrefix . 'name';
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();
-				$this->output( "Processing next {$res->numRows()} row(s) starting with {$row1->img_name}.\n" );
+				$this->output( "Processing next {$res->numRows()} row(s) starting with {$row1->$nameField}.\n" );
 				$res->rewind();
 			}
 
@@ -169,26 +178,26 @@ class RefreshImageMetadata extends Maintenance {
 					if ( $file->getUpgraded() ) {
 						// File was upgraded.
 						$upgraded++;
-						$this->output( "Refreshed File:{$row->img_name}.\n" );
+						$this->output( "Refreshed File:{$row->$nameField}.\n" );
 					} else {
 						$leftAlone++;
 						if ( $force ) {
 							$file->upgradeRow();
 							if ( $verbose ) {
-								$this->output( "Forcibly refreshed File:{$row->img_name}.\n" );
+								$this->output( "Forcibly refreshed File:{$row->$nameField}.\n" );
 							}
 						} else {
 							if ( $verbose ) {
-								$this->output( "Skipping File:{$row->img_name}.\n" );
+								$this->output( "Skipping File:{$row->$nameField}.\n" );
 							}
 						}
 					}
 				} catch ( Exception $e ) {
-					$this->output( "{$row->img_name} failed. {$e->getMessage()}\n" );
+					$this->output( "{$row->$nameField} failed. {$e->getMessage()}\n" );
 				}
 			}
 			if ( $res->numRows() > 0 ) {
-				$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
+				$conds2 = [ $fieldPrefix . 'name > ' . $dbw->addQuotes( $row->$nameField ) ];
 			}
 			$lbFactory->waitForReplication();
 			if ( $sleep ) {
@@ -210,9 +219,10 @@ class RefreshImageMetadata extends Maintenance {
 
 	/**
 	 * @param IDatabase $dbw
+	 * @param string $fieldPrefix like img_ or oi_
 	 * @return array
 	 */
-	private function getConditions( $dbw ) {
+	private function getConditions( $dbw, $fieldPrefix ) {
 		$conds = [];
 
 		$end = $this->getOption( 'end', false );
@@ -221,20 +231,20 @@ class RefreshImageMetadata extends Maintenance {
 		$like = $this->getOption( 'metadata-contains', false );
 
 		if ( $end !== false ) {
-			$conds[] = 'img_name <= ' . $dbw->addQuotes( $end );
+			$conds[] = $fieldPrefix . 'name <= ' . $dbw->addQuotes( $end );
 		}
 		if ( $mime !== false ) {
 			list( $major, $minor ) = File::splitMime( $mime );
-			$conds['img_major_mime'] = $major;
+			$conds[$fieldPrefix . 'major_mime'] = $major;
 			if ( $minor !== '*' ) {
-				$conds['img_minor_mime'] = $minor;
+				$conds[$fieldPrefix . 'minor_mime'] = $minor;
 			}
 		}
 		if ( $mediatype !== false ) {
-			$conds['img_media_type'] = $mediatype;
+			$conds[$fieldPrefix . 'media_type'] = $mediatype;
 		}
 		if ( $like ) {
-			$conds[] = 'img_metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() );
+			$conds[] = $fieldPrefix . 'metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() );
 		}
 
 		return $conds;
