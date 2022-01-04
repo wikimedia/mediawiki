@@ -65,6 +65,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 === External library changes in 1.38 ===
 
 ==== New external libraries ====
+* symfony/yaml was promoted from development-only.
 * …
 
 ===== New development-only external libraries =====
@@ -84,6 +85,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/assert from 0.5.0 to 0.5.1.
 * Updated wikimedia/minify from 2.2.4 to 2.2.6.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
+* Updated composer/semver from 3.2.5 to 3.2.6.
 * …
 
 ===== Changed development-only external libraries =====
