@@ -223,7 +223,7 @@ class SerializationTestUtils {
 			'ext' => $this->ext,
 			'path' => $path,
 			'currentVersionPath' => $curPath,
-			'data' => file_exists( $path ) ? file_get_contents( $path ) : null,
+			'data' => is_file( $path ) ? file_get_contents( $path ) : null,
 		];
 	}
 

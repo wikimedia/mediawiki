@@ -184,7 +184,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	final public static function mediaWikiSetUpBeforeClass(): void {
 		global $IP;
-		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
+		if ( !is_file( "$IP/LocalSettings.php" ) ) {
 				echo "File \"$IP/LocalSettings.php\" could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
 				. "which requires a working MediaWiki installation.\n"
@@ -2268,7 +2268,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		# This check may also protect against code injection in
 		# case of broken installations.
 		Wikimedia\suppressWarnings();
-		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+		$haveDiff3 = $wgDiff3 && is_file( $wgDiff3 );
 		Wikimedia\restoreWarnings();
 
 		if ( !$haveDiff3 ) {
