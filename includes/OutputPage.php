@@ -4069,7 +4069,7 @@ class OutputPage extends ContextSource {
 		// This MUST match the equivalent logic in CSSMin::remapOne()
 		$localFile = "$localPath/$file";
 		$url = "$remotePathPrefix/$file";
-		if ( file_exists( $localFile ) ) {
+		if ( is_file( $localFile ) ) {
 			$hash = md5_file( $localFile );
 			if ( $hash === false ) {
 				wfLogWarning( __METHOD__ . ": Failed to hash $localFile" );

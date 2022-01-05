@@ -54,7 +54,7 @@ class LCStoreCDB implements LCStore {
 			$fileName = $this->getFileName( $code );
 
 			$this->readers[$code] = false;
-			if ( file_exists( $fileName ) ) {
+			if ( is_file( $fileName ) ) {
 				try {
 					$this->readers[$code] = Reader::open( $fileName );
 				} catch ( Exception $e ) {
@@ -82,7 +82,7 @@ class LCStoreCDB implements LCStore {
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
+		if ( !is_dir( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			throw new MWException( "Unable to create the localisation store " .
 				"directory \"{$this->directory}\"" );
 		}
