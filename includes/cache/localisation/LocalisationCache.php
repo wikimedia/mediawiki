@@ -725,7 +725,7 @@ class LocalisationCache {
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = $this->langNameUtils->getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
+		if ( !is_file( $fileName ) ) {
 			$data = [];
 		} else {
 			$deps[] = new FileDependency( $fileName );

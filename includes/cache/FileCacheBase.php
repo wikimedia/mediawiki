@@ -92,7 +92,7 @@ abstract class FileCacheBase {
 	 */
 	public function isCached() {
 		if ( $this->mCached === null ) {
-			$this->mCached = file_exists( $this->cachePath() );
+			$this->mCached = is_file( $this->cachePath() );
 		}
 
 		return $this->mCached;

@@ -79,7 +79,7 @@ class AutoLoader {
 						'/' .
 						strtr( $relativeClass, '\\', '/' ) .
 						'.php';
-					if ( file_exists( $file ) ) {
+					if ( is_file( $file ) ) {
 						$filename = $file;
 						break;
 					}
