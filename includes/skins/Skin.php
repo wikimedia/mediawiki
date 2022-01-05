@@ -664,50 +664,7 @@ abstract class Skin extends ContextSource {
 			);
 		}
 
-		# optional 'dmoz-like' category browser. Will be shown under the list
-		# of categories an article belong to
-		if ( $this->getConfig()->get( 'UseCategoryBrowser' ) ) {
-			$s .= '<br /><hr />';
-
-			# get a big array of the parents tree
-			$parenttree = $title->getParentCategoryTree();
-			# Skin object passed by reference cause it can not be
-			# accessed under the method subfunction drawCategoryBrowser
-			$tempout = explode( "\n", $this->drawCategoryBrowser( $parenttree ) );
-			# Clean out bogus first entry and sort them
-			unset( $tempout[0] );
-			asort( $tempout );
-			# Output one per line
-			$s .= implode( "<br />\n", $tempout );
-		}
-
 		return $s;
-	}
-
-	/**
-	 * Render the array as a series of links.
-	 * @param array $tree Categories tree returned by Title::getParentCategoryTree
-	 * @return string Separated by &gt;, terminate with "\n"
-	 */
-	protected function drawCategoryBrowser( $tree ) {
-		$return = '';
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
-		foreach ( $tree as $element => $parent ) {
-			if ( empty( $parent ) ) {
-				# element start a new list
-				$return .= "\n";
-			} else {
-				# grab the others elements
-				$return .= $this->drawCategoryBrowser( $parent ) . ' &gt; ';
-			}
-
-			# add our current element to the list
-			$eltitle = Title::newFromText( $element );
-			$return .= $linkRenderer->makeLink( $eltitle, $eltitle->getText() );
-		}
-
-		return $return;
 	}
 
 	/**
