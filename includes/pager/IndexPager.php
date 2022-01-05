@@ -630,6 +630,17 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return string[]
+	 */
+	public function getModuleStyles() {
+		return [ 'mediawiki.pager.styles' ];
+	}
+
+	/**
 	 * Make a self-link
 	 *
 	 * @stable to override

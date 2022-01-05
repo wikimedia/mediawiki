@@ -919,10 +919,18 @@ return [
 		'scripts' => 'resources/src/mediawiki.String.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.pager.tablePager' => [
+	'mediawiki.pager.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
-			'resources/src/mediawiki.pager.tablePager/TablePager.less',
-			'resources/src/mediawiki.pager.tablePager/DataTable.less',
+			'resources/src/mediawiki.pager.styles/TablePager.less',
+			'resources/src/mediawiki.pager.styles/DataTable.less',
+		],
+	],
+	'mediawiki.pager.tablePager' => [
+		'deprecated' => 'Deprecated in 1.38. Use `mediawiki.pager.styles`',
+		'styles' => [
+			'resources/src/mediawiki.pager.styles/TablePager.less',
+			'resources/src/mediawiki.pager.styles/DataTable.less',
 		],
 	],
 	'mediawiki.pulsatingdot' => [
