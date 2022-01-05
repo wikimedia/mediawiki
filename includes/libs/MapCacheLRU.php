@@ -146,7 +146,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 				// Optimization: Avoid expensive getAge/getCurrentTime for common case (T275673)
 				$maxAge === INF
 				|| $maxAge <= 0
-				|| $this->getAge( $key ) <= $maxAge
+				|| $this->getKeyAge( $key ) <= $maxAge
 			);
 	}
 
@@ -219,7 +219,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 			&& (
 				$maxAge === INF
 				|| $maxAge <= 0
-				|| $this->getAge( $key, $field ) <= $maxAge
+				|| $this->getKeyFieldAge( $key, $field ) <= $maxAge
 			);
 	}
 
@@ -336,15 +336,21 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 
 	/**
 	 * @param string|int $key
-	 * @param string|int|null $field [optional]
-	 * @return float UNIX timestamp; the age of the given entry or entry field
+	 * @return float UNIX timestamp; the age of the given entry
 	 */
-	private function getAge( $key, $field = null ) {
-		if ( $field !== null ) {
-			$mtime = $this->timestamps[$key][self::FIELDS][$field] ?? $this->epoch;
-		} else {
-			$mtime = $this->timestamps[$key][self::SIMPLE] ?? $this->epoch;
-		}
+	private function getKeyAge( $key ) {
+		$mtime = $this->timestamps[$key][self::SIMPLE] ?? $this->epoch;
+
+		return ( $this->getCurrentTime() - $mtime );
+	}
+
+	/**
+	 * @param string|int $key
+	 * @param string|int|null $field
+	 * @return float UNIX timestamp; the age of the given entry field
+	 */
+	private function getKeyFieldAge( $key, $field ) {
+		$mtime = $this->timestamps[$key][self::FIELDS][$field] ?? $this->epoch;
 
 		return ( $this->getCurrentTime() - $mtime );
 	}
