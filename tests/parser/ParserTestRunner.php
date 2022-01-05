@@ -199,7 +199,7 @@ class ParserTestRunner {
 		$registry = ExtensionRegistry::getInstance();
 		foreach ( $registry->getAllThings() as $info ) {
 			$dir = dirname( $info['path'] ) . '/tests/parser';
-			if ( !file_exists( $dir ) ) {
+			if ( !is_dir( $dir ) ) {
 				continue;
 			}
 			$counter = 1;
