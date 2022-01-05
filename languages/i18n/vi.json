@@ -2513,7 +2513,7 @@
 	"undeleterevdel": "Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trang hoặc tập tin trên cùng bị xóa mất một phần.\nTrong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.",
 	"undeletehistorynoadmin": "Trang này đã bị xóa.\nLý do xóa trang được hiển thị dưới đây, cùng với thông tin về những người đã sửa đổi trang này trước khi bị xóa.\nChỉ có bảo quản viên mới xem được văn bản của những phiên bản trang bị xóa.",
 	"undelete-revision": "Phiên bản đã xóa của $1 (vào lúc $4 tại $5) do $3 sửa đổi:",
-	"undeleterevision-missing": "Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.",
+	"undeleterevision-missing": "Phiên bản không hợp lệ hoặc không tồn tại.\nBạn có thể đã truy cập một địa chỉ sai, hoặc phiên bản này đã được phục hồi hay đã bị xóa khỏi kho lưu trữ.",
 	"undeleterevision-duplicate-revid": "Không thể phục hồi {{PLURAL:$1|một phiên bản|$1 phiên bản}} vì <code>rev_id</code> của {{PLURAL:$1|nó|chúng}} đã được sử dụng.",
 	"undelete-nodiff": "Không tìm thấy phiên bản cũ hơn.",
 	"undeletebtn": "Phục hồi",
