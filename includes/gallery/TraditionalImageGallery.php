@@ -178,7 +178,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$meta = [];
 			if ( $img ) {
 				if ( $this->mShowDimensions ) {
-					$meta[] = $img->getDimensionsString();
+					$meta[] = htmlspecialchars( $img->getDimensionsString() );
 				}
 				if ( $this->mShowBytes ) {
 					$meta[] = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
