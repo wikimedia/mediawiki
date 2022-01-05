@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -165,9 +166,9 @@ class ParserFuzzTest extends Maintenance {
 	public function guessVarSize( $var ) {
 		$length = 0;
 		try {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$length = strlen( serialize( $var ) );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		} catch ( Exception $e ) {
 		}
 		return $length;

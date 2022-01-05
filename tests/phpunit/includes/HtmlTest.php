@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\AtEase\AtEase;
+
 class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
 
@@ -69,7 +71,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	protected function tearDown(): void {
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 
 		parent::tearDown();
@@ -868,7 +870,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInlineScript( $code, $expected, $error = false ) {
 		if ( $error ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$this->restoreWarnings = true;
 		}
 		$this->assertSame( $expected, Html::inlineScript( $code ) );

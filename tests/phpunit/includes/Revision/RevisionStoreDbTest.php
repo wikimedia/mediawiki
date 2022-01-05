@@ -38,6 +38,7 @@ use TitleFactory;
 use User;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseSqlite;
@@ -1533,9 +1534,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_actor' => null,
 		];
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$record = $store->newRevisionFromArchiveRow( $row );
-		\Wikimedia\suppressWarnings( true );
+		AtEase::suppressWarnings( true );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1582,9 +1583,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$row->ar_actor = $this->db->insertId();
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$record = $store->newRevisionFromArchiveRow( $row );
-		\Wikimedia\suppressWarnings( true );
+		AtEase::suppressWarnings( true );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1621,9 +1622,9 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$record = $store->newRevisionFromRow( $row, 0, $title );
-		\Wikimedia\suppressWarnings( true );
+		AtEase::suppressWarnings( true );
 
 		$this->assertNotNull( $record );
 		$this->assertNotNull( $record->getUser() );

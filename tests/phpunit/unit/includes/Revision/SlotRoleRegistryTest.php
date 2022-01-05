@@ -14,6 +14,7 @@ use MediaWikiUnitTestCase;
 use Title;
 use TitleFactory;
 use Wikimedia\Assert\PostconditionException;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @covers \MediaWiki\Revision\SlotRoleRegistry
@@ -133,11 +134,11 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 			$this->makeNameTableStore( [ 1 => 'foo' ] )
 		);
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$handler = $registry->getRoleHandler( 'foo' );
 		$this->assertSame( 'foo', $handler->getRole() );
 
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 
 	/**

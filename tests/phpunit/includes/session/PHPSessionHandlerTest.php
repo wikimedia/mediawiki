@@ -6,6 +6,7 @@ use BadMethodCallException;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use UnexpectedValueException;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -130,9 +131,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 		$wrap->setEnableFlags( 'warn' );
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		ini_set( 'session.serialize_handler', $handler );
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( ini_get( 'session.serialize_handler' ) !== $handler ) {
 			$this->markTestSkipped( "Cannot set session.serialize_handler to \"$handler\"" );
 		}
