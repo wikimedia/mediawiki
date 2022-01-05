@@ -2392,7 +2392,7 @@ class WANObjectCache implements
 	 *     );
 	 * @endcode
 	 *
-	 * @param int|float $mtime UNIX timestamp
+	 * @param int|float|string|null $mtime UNIX timestamp; null if none
 	 * @param int $maxTTL Maximum TTL (seconds)
 	 * @param int $minTTL Minimum TTL (seconds); Default: 30
 	 * @param float $factor Value in the range (0,1); Default: .2
@@ -2400,15 +2400,12 @@ class WANObjectCache implements
 	 * @since 1.28
 	 */
 	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = 0.2 ) {
-		if ( is_float( $mtime ) || ctype_digit( $mtime ) ) {
-			$mtime = (int)$mtime; // handle fractional seconds and string integers
-		}
-
-		if ( !is_int( $mtime ) || $mtime <= 0 ) {
+		$mtime = (int)$mtime; // handle fractional seconds and string integers
+		if ( $mtime <= 0 ) {
 			return $minTTL; // no last-modified time provided
 		}
 
-		$age = $this->getCurrentTime() - $mtime;
+		$age = (int)$this->getCurrentTime() - $mtime;
 
 		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
 	}
