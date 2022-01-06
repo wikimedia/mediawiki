@@ -373,6 +373,41 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 	};
 }
 
+var checkboxes = {};
+function uncheckCheckboxes() {
+	Object.keys( checkboxes ).forEach( function ( i ) {
+		checkboxes[ i ].checked = false;
+	} );
+}
+
+/**
+ * Close checkboxes when page is unloaded to prevent them from
+ * being open when navigating back to a page.
+ *
+ * @param {Window} window
+ * @param {HTMLInputElement} checkbox
+ * @return {function(): void} Cleanup function that removes the added event listeners.
+ * @ignore
+ */
+function bindCloseOnUnload( window, checkbox ) {
+	var currIndex = Object.keys( checkboxes ).length;
+	// Add checkbox to list of checkboxes to be closed on unload
+	checkboxes[ currIndex ] = checkbox;
+
+	// Add event listener once
+	if ( currIndex === 1 ) {
+		window.addEventListener( 'beforeunload', uncheckCheckboxes );
+	}
+
+	return function () {
+		delete checkboxes[ currIndex ];
+		// Remove event listener if there are no checkboxes to close
+		if ( Object.keys( checkboxes ).length === 0 ) {
+			window.removeEventListener( 'beforeunload', uncheckCheckboxes );
+		}
+	};
+}
+
 /**
  * Dismiss the target when clicking or focusing elsewhere and update the `aria-expanded` attribute
  * based on checkbox state (target visibility) changes made by **the user.** When tapping the button
@@ -396,7 +431,8 @@ function bind( window, checkbox, button, target ) {
 		bindToggleOnClick( checkbox, button ),
 		bindToggleOnEnter( checkbox ),
 		bindDismissOnClickOutside( window, checkbox, button, target ),
-		bindDismissOnFocusLoss( window, checkbox, button, target )
+		bindDismissOnFocusLoss( window, checkbox, button, target ),
+		bindCloseOnUnload( window, checkbox )
 	];
 
 	return function () {
