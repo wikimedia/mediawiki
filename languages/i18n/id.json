@@ -1853,6 +1853,7 @@
 	"lockmanager-fail-db-release": "Tidak dapat melepaskan penguncian pada basis data $1.",
 	"lockmanager-fail-svr-acquire": "Gagal memperoleh kunci di server $1.",
 	"lockmanager-fail-svr-release": "Tidak dapat melepaskan penguncian pada server $1.",
+	"lockmanager-fail-conflict": "Tidak dapat mendapatkan kunci. Orang lain sedang mengerjakan sesuatu dengan berkas ini.",
 	"zip-file-open-error": "Timbul galat saat membuka berkas untuk pengecekan ZIP.",
 	"zip-wrong-format": "Berkas yang diberikan bukanlah berkas ZIP.",
 	"zip-bad": "Berkas adalah berkas ZIP yang rusak atau tidak terbaca.\nBerkas tersebut tidak dapat diperiksa keamanannya dengan baik.",
