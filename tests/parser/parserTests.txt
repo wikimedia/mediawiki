@@ -776,6 +776,7 @@ The first monolingual dictionary written in a Romance language was ''Sebastián 
 ###
 ### 2-quote opening sequence tests
 ###
+
 !! test
 Italics and bold: 2-quote opening sequence: (2,2)
 !! wikitext
@@ -783,7 +784,7 @@ Italics and bold: 2-quote opening sequence: (2,2)
 !! html
 <p><i>foo</i>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 2-quote opening sequence: (2,3)
@@ -792,7 +793,7 @@ Italics and bold: 2-quote opening sequence: (2,3)
 !! html/*
 <p><i>foo'</i>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 2-quote opening sequence: (2,4)
@@ -803,7 +804,7 @@ parsoid=wt2html
 !! html/*
 <p><i>foo''</i>
 </p>
-!!end
+!! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
@@ -824,16 +825,18 @@ parsoid=wt2html
 !! html
 <p><i>foo</i><b></b>
 </p>
-!!end
+!! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
-Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
-!! wikitext
-''foo'''''<nowiki/>'''
-!! html
+Italics and bold: 2-quote opening sequence: (2,5-3)
+!! options
+parsoid=html2wt
+!! html/parsoid
 <p><i>foo</i><b></b>
 </p>
+!! wikitext
+''foo''
 !! end
 
 
@@ -848,7 +851,7 @@ Italics and bold: 3-quote opening sequence: (3,2)
 !! html
 <p>'<i>foo</i>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 3-quote opening sequence: (3,3)
@@ -857,7 +860,7 @@ Italics and bold: 3-quote opening sequence: (3,3)
 !! html
 <p><b>foo</b>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 3-quote opening sequence: (3,4)
@@ -866,7 +869,7 @@ Italics and bold: 3-quote opening sequence: (3,4)
 !! html
 <p><b>foo'</b>
 </p>
-!!end
+!! end
 
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
@@ -878,16 +881,18 @@ parsoid=wt2html
 !! html
 <p><b>foo</b><i></i>
 </p>
-!!end
+!! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
-Italics and bold: 3-quote opening sequence: (3,5+2) w/ nowiki
-!! wikitext
-'''foo'''''<nowiki/>''
-!! html
+Italics and bold: 3-quote opening sequence: (3,5-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
 <p><b>foo</b><i></i>
 </p>
+!! wikitext
+'''foo'''
 !! end
 
 
@@ -960,12 +965,14 @@ parsoid=wt2html
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
-Italics and bold: 4-quote opening sequence: (4,5+2) w/ nowiki
-!! wikitext
-'<nowiki/>'''foo'''''<nowiki/>''
-!! html
+Italics and bold: 4-quote opening sequence: (4,5-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
 <p>'<b>foo</b><i></i>
 </p>
+!! wikitext
+''''foo'''
 !! end
 
 
@@ -982,7 +989,7 @@ parsoid=wt2html
 !! html/*
 <p><b><i>foo</i></b>
 </p>
-!!end
+!! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
@@ -1003,7 +1010,7 @@ parsoid=wt2html
 !! html/*
 <p><i><b>foo</b></i>
 </p>
-!!end
+!! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
@@ -1024,7 +1031,7 @@ parsoid=wt2html
 !! html/*
 <p><i><b>foo'</b></i>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 5-quote opening sequence: (5,5)
@@ -1033,7 +1040,7 @@ Italics and bold: 5-quote opening sequence: (5,5)
 !! html
 <p><i><b>foo</b></i>
 </p>
-!!end
+!! end
 
 !! test
 Italics and bold: 5-quote opening sequence: (5,6)
@@ -1127,12 +1134,14 @@ parsoid=wt2html
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
-Italics and bold: multiple quote sequences: (3,4,2+2) w/ nowiki
-!! wikitext
-'''foo''''bar''<nowiki/>''
-!! html
+Italics and bold: multiple quote sequences: (3,4,2-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
 <p><b>foo'</b>bar<i></i>
 </p>
+!! wikitext
+'''foo''''bar
 !! end
 
 !! test
@@ -1148,17 +1157,20 @@ parsoid=wt2html
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
-Italics and bold: multiple quote sequences: (3,4,3+3) w/ nowiki
-!! wikitext
-'''foo''''bar'''<nowiki/>'''
-!! html
+Italics and bold: multiple quote sequences: (3,4,3-3)
+!! options
+parsoid=html2wt
+!! html/parsoid
 <p><b>foo'</b>bar<b></b>
 </p>
+!! wikitext
+'''foo''''bar
 !! end
 
 ###
 ### other quote tests
 ###
+
 !! test
 Italics and bold: other quote tests: (2,3,5)
 !! wikitext
@@ -1166,8 +1178,7 @@ Italics and bold: other quote tests: (2,3,5)
 !! html
 <p><i>this is about <b>foo's family</b></i>
 </p>
-!!end
-
+!! end
 
 !! test
 Italics and bold: other quote tests: (2,(3,3),2)
@@ -1176,8 +1187,7 @@ Italics and bold: other quote tests: (2,(3,3),2)
 !! html
 <p><i>this is about <b>foo's</b> family</i>
 </p>
-!!end
-
+!! end
 
 !! test
 Italics and bold: other quote tests: (3,2,3,2)
@@ -1190,7 +1200,6 @@ parsoid=wt2html
 </p>
 !!end
 
-
 # same html as previous, but wikitext adjusted to match parsoid html2wt
 !! test
 Italics and bold: other quote tests: (3,2,3+2+2,2)
@@ -1201,7 +1210,6 @@ Italics and bold: other quote tests: (3,2,3+2+2,2)
 </p>
 !! end
 
-
 !! test
 Italics and bold: other quote tests: (3,2,3,3)
 !! wikitext
@@ -1211,7 +1219,6 @@ Italics and bold: other quote tests: (3,2,3,3)
 </p>
 !!end
 
-
 !! test
 Italics and bold: other quote tests: (3,(2,2),3)
 !! wikitext
@@ -1220,7 +1227,6 @@ Italics and bold: other quote tests: (3,(2,2),3)
 <p><b>this is about <i>foo's</i> family</b>
 </p>
 !!end
-
 
 !! test
 Italicized possessive
@@ -1268,18 +1274,19 @@ parsoid=wt2html
 ### Non-html5 tags
 ###
 
+## The attribute on the font tag is so Parsoid won't normalize it away
 !! test
 Non-html5 tags should be accepted
 !! wikitext
 <center>''foo''</center>
 <big>''foo''</big>
-<font>''foo''</font>
+<font style="123">''foo''</font>
 <strike>''foo''</strike>
 <tt>''foo''</tt>
 !! html
 <center><i>foo</i></center>
 <p><big><i>foo</i></big>
-<font><i>foo</i></font>
+<font style="123"><i>foo</i></font>
 <strike><i>foo</i></strike>
 <tt><i>foo</i></tt>
 </p>
@@ -2510,6 +2517,7 @@ Tabs don't trigger preformatted text
 	So is this.</pre>
 !! end
 
+## FIXME: This test is less useful now that the leading space is normalized away
 !! test
 Space before tab needs nowiki pre protection
 !! options
@@ -2517,7 +2525,7 @@ parsoid=html2wt
 !! html/parsoid
 <p> 	a</p>
 !! wikitext
-<nowiki> </nowiki>	a
+a
 !! end
 
 !! test
@@ -5695,7 +5703,7 @@ External links: link text with spaces
 !! test
 External links: wiki links within external link (T5695)
 !! options
-parsoid=wt2html,html2html
+parsoid=wt2html
 !! wikitext
 [http://example.com [[wikilink]] embedded in ext link]
 
@@ -7510,9 +7518,9 @@ Table-cell after a comment-only-empty-line
 </td></tr></tbody></table>
 !! html/parsoid
 <table>
-<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{}'>a</td>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{}'>a
 <!--c1-->
-<!--c2--><td data-parsoid='{}'>b</td></tr>
+<!--c2--></td><td data-parsoid='{}'>b</td></tr>
 </tbody></table>
 !! end
 
@@ -7825,7 +7833,7 @@ parsoid=html2wt
 {|
 |foo
 |}
-<nowiki> </nowiki>bar
+bar
 {|
 |baz
 |}
@@ -8103,17 +8111,28 @@ Piped link with no link text
 Piped link with empty link text
 !! wikitext
 [[Main Page|<nowiki/>]] - empty nowiki
-[[Main Page| ]] - empty space
 [[Main Page|&nbsp;]] - empty non breaking space
 !! html/php
 <p><a href="/wiki/Main_Page" title="Main Page"></a> - empty nowiki
-<a href="/wiki/Main_Page" title="Main Page"> </a> - empty space
 <a href="/wiki/Main_Page" title="Main Page">&#160;</a> - empty non breaking space
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page"><span typeof="mw:Nowiki"></span></a> - empty nowiki
-<a rel="mw:WikiLink" href="./Main_Page" title="Main Page"> </a> - empty space
 <a rel="mw:WikiLink" href="./Main_Page" title="Main Page"><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span></a> - empty non breaking space</p>
+!! end
+
+## Separate from the above because Parsoid normalizes the empty link away
+!! test
+Piped link with empty link text - 2
+!! options
+parsoid=wt2html
+!! wikitext
+[[Main Page| ]] - empty space
+!! html/php
+<p><a href="/wiki/Main_Page" title="Main Page"> </a> - empty space
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page"> </a> - empty space</p>
 !! end
 
 !! test
@@ -19857,30 +19876,24 @@ parsoid=wt2html
 !! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
-# note that wt2html and html2html will put the <i> before the <b>
+# note that wt2html will put the <i> before the <b>
 !! test
-5 quotes, code coverage +1 line w/ nowiki (1)
+5 quotes, code coverage +1 line (1)
 !! options
-parsoid=wt2wt,html2wt
-!! wikitext
-'''''<nowiki/>'''''
-!! html/php
-<p><i><b></b></i>
-</p>
+parsoid=html2wt
 !! html/parsoid
 <p><b><i></i></b></p>
+!! wikitext
 !! end
 
-# same as previous, just swapping the <i> and <b> in Parsoid output
+# same as previous, just swapping the <i> and <b>
 !! test
-5 quotes, code coverage +1 line w/ nowiki (2)
-!! wikitext
-'''''<nowiki/>'''''
-!! html/php
-<p><i><b></b></i>
-</p>
+5 quotes, code coverage +1 line (2)
+!! options
+parsoid=html2wt
 !! html/parsoid
 <p><i><b></b></i></p>
+!! wikitext
 !! end
 
 !! test
@@ -20168,12 +20181,14 @@ RFC   983&#x20;987
 
 !! test
 Another italics / bold test
+!! options
+parsoid=wt2html
 !! wikitext
  ''' ''x'
-!! html
+!! html/*
 <pre>'<i> </i>x'
 </pre>
-!!end
+!! end
 
 !! test
 dt/dd/dl test
@@ -24031,6 +24046,7 @@ Empty TR nodes should not be stripped if they have any attributes set
 #### 5. Empty headings <h1></h1>
 #### 6. Heading chars in SOL context
 #### ----------------------------------------
+
 !! test
 Headings: 0. Unnested
 !! options
@@ -24046,7 +24062,7 @@ parsoid=html2wt
 !! wikitext
 <nowiki>=foo=</nowiki>
 
-<nowiki> </nowiki>=foo=
+<nowiki/>=foo=
 <!--cmt-->
 <nowiki>=foo=</nowiki>
 
@@ -24218,18 +24234,7 @@ parsoid=html2wt
 
 <h6 data-parsoid='{}'></h6>
 !! wikitext
-=<nowiki/>=
-
-==<nowiki/>==
-
-===<nowiki/>===
-
-====<nowiki/>====
-
-=====<nowiki/>=====
-
-======<nowiki/>======
-!!end
+!! end
 
 !! test
 Headings: 6a. Heading chars in SOL context (with trailing spaces)
@@ -24781,7 +24786,7 @@ parsoid=html2wt
 {|
 !-bar
 |-
-|<nowiki>-bar</nowiki>
+| -bar
 |}
 !! end
 
@@ -24801,7 +24806,7 @@ parsoid=html2wt
 {|
 !+bar
 |-
-|<nowiki>+bar</nowiki>
+| +bar
 |}
 !! end
 
@@ -24861,6 +24866,7 @@ bar|baz
 </td></tr></tbody></table>
 !! end
 
+## FIXME: Looks like normalizing needs to learn about attrSepSrc
 !! test
 Tables: 4d. No escaping needed
 !! options
@@ -24899,7 +24905,7 @@ parsoid=html2wt
 </table>
 !! wikitext
 {|
-|<nowiki>}</nowiki>
+| }
 |-
 |x||}
 |}
@@ -25519,8 +25525,9 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 !!end
 
 #### ----------------------- PRE --------------------------
+
 !! test
-1. Leading whitespace in SOL context should be escaped
+1. Leading whitespace in SOL context should be stripped
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25543,18 +25550,18 @@ parsoid=html2wt
 <p>a
 	 b</p>
 !! wikitext
-<nowiki> </nowiki>a
+a
 
-<nowiki> </nowiki> a
+a
 
 	a(tab)
 
-<nowiki> </nowiki>	a
+a
 <!--cmt-->
-<nowiki>  </nowiki>a
+a
 
 a
-<nowiki> </nowiki>b
+b
 
 a
 	b
@@ -25562,13 +25569,13 @@ a
 a
 	 b
 !! html/php
-<p> a
-</p><p>  a
-</p><p>	a(tab)
-</p><p> 	a
-  a
+<p>a
 </p><p>a
- b
+</p><p>	a(tab)
+</p><p>a
+a
+</p><p>a
+b
 </p><p>a
 	b
 </p><p>a
@@ -25649,8 +25656,7 @@ parsoid=html2wt
 Whitespace scrubbing in SOL position should account for SOL-sensitive wikitext markup
 !! options
 parsoid = {
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p> foo</p>
@@ -25744,7 +25750,7 @@ __TOC__
 
 # last two <meta> tags test case-insensitivity
 !! test
-During serialization, escape output when given a SOL-transparent prefix
+During serialization, normalize output when given a SOL-transparent prefix
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25753,13 +25759,13 @@ parsoid=html2wt
 <p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NotoC__","magicSrc":"__NotoC__"}'/> z</p>
 <p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/> p</p>
 !! wikitext
-<nowiki> </nowiki>x
+x
 
-__NOTOC__<nowiki> </nowiki>y
+__NOTOC__y
 
-__NOTOC__<nowiki> </nowiki>z
+__NOTOC__z
 
-__notoc__<nowiki> </nowiki>p
+__notoc__p
 !! end
 
 #### --------------- HTML tags ---------------
@@ -25825,6 +25831,7 @@ parsoid=html2wt
 baz<nowiki></ref></nowiki>
 !! end
 
+## FIXME: This test is less useful now that the leading space is normalized away
 !! test
 Parsoid: newline inducing block nodes don't suppress <nowiki>
 !! options
@@ -25832,12 +25839,13 @@ parsoid=html2wt
 !! html/parsoid
  a<h1>foo</h1>
 !! wikitext
-<nowiki> </nowiki>a
+a
 
 = foo =
 !! end
 
 #### --------------- Others ---------------
+
 !! test
 Escaping nowikis
 !! options
@@ -26260,16 +26268,18 @@ new para
 
 ## PHP emits broken html for this, and since this is primarily
 ## a Parsoid serializer test, marking this Parsoid only
-!!test
+!! test
 Improperly nested inline or quotes tags with whitespace in between
-!! wikitext
-<span> <s>x</span> </s>
-''' ''x''' ''
+!! options
+parsoid=html2wt
 !! html/parsoid
 <p><span> <s>x</s></span><s> </s>
 <b> <i>x</i></b><i> </i>
 </p>
-!!end
+!! wikitext
+<span> <s>x</s></span><s> </s>
+''' ''x'''''
+!! end
 
 !!test
 Encapsulate protected attributes from wt
@@ -26831,7 +26841,7 @@ foo
 !! end
 
 !! test
-Nowiki-wrap leading whitespace when handling indent-pre inducing tags
+Strip leading whitespace when handling indent-pre inducing tags
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -26853,13 +26863,13 @@ foo
 <span>bar</span>
 
 <span>foo2
-<nowiki> </nowiki></span>bar2
+</span>bar2
 
 <div>foo</div>
-<nowiki> </nowiki><span>bar</span>
+<span>bar</span>
 
 <div>
-<nowiki> </nowiki><span>foo</span>
+<span>foo</span>
 </div>
 !! end
 
@@ -26875,42 +26885,10 @@ parsoid=html2wt
 !! end
 
 !! test
-1. Headings: Force sol-transparent links and behavior switches to serialize before/after
+Headings: Force sol-transparent links and behavior switches to serialize before/after
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<h2>hello there<link href="./Category:A1" rel="mw:PageProp/Category" /></h2>
-<h2><link href="./Category:A2" rel="mw:PageProp/Category" />hi pal</h2>
-
-<h2><!--foo-->  <link href="./Category:A3" rel="mw:PageProp/Category" />   how goes it</h2>
-<h2>it goes well   <link href="./Category:A4" rel="mw:PageProp/Category" />  <!--bar--></h2>
-
-<h2 data-parsoid='{}'>howdy<link href="./Category:A5" rel="mw:PageProp/Category" /></h2>
-
-<h2><meta property="mw:PageProp/toc" /> ok</h2>
-!! wikitext
-== hello there [[Category:A1]] ==
-
-== [[Category:A2]] hi pal ==
-
-== <!--foo-->  [[Category:A3]]    how goes it ==
-
-== it goes well    [[Category:A4]]  <!--bar--> ==
-
-==howdy [[Category:A5]]==
-
-==  __TOC__  ok ==
-!! end
-
-!! test
-2. Headings: Force sol-transparent links and behavior switches to serialize before/after
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2>hello there<link href="./Category:A1" rel="mw:PageProp/Category" /></h2>
@@ -26943,8 +26921,7 @@ __TOC__
 Headings: Don't hoist metas that come from templates
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2><span about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo [[Category:Foo]]"}},"i":0}}]}'>foo </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" data-parsoid="{}" /></h2>
@@ -26956,8 +26933,7 @@ parsoid={
 Headings: Category in ref isn't hoisted
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2> foo <span about="#mwt2" class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> </h2>
@@ -27291,8 +27267,7 @@ parsoid={
 1. Merge adjacent link nodes as long as at least one element is new
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Football">Foot</a><a rel="mw:WikiLink" href="./Football">ball</a>
@@ -27308,8 +27283,7 @@ parsoid={
 2. Merge adjacent link nodes and enable additional normalizations
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Football"><i>Foot</i></a><a rel="mw:WikiLink" href="./Football"><i>ball</i></a>
@@ -27318,24 +27292,10 @@ parsoid={
 !! end
 
 !! test
-3. Don't merge adjacent link nodes if scrubWikitext is false
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<a rel="mw:WikiLink" href="./Football">Foot</a><a rel="mw:WikiLink" href="./Football">ball</a>
-!! wikitext
-[[Football|Foot]][[Football|ball]]
-!! end
-
-!! test
 1. Move format tags outside of WikiLink
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Football"><i>Football</i></a>
@@ -27351,8 +27311,7 @@ parsoid={
 2. Move format tags outside of WikiLink with mergable A tags
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Football"><i><b>Foot</b></i></a><a rel="mw:WikiLink" href="./Football"><i><b>ball</b></i></a>
@@ -27364,8 +27323,7 @@ parsoid={
 3. Move format tags outside of WikiLink while preserving formats already outside WikiLink
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <font color="red"><a rel="mw:WikiLink" href="./Foo" title="Foo" class="mw-redirect"><u><b>Foo</b></u></a></font>
@@ -27377,8 +27335,7 @@ parsoid={
 4. Do not move format tags outside of WikiLink which includes attributes color, style and class
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Foo" title="Foo" class="mw-redirect"><font color="red">Foo</font></a>
@@ -27391,11 +27348,10 @@ parsoid={
 !! end
 
 !! test
-5. T194083 Regression test: Manual edit test that also enables scrubWikitext to move format tags outside wikilinks
+5. T194083 Regression test: Manual edit test to move format tags outside wikilinks
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     ["a", "html", "<i>Foo</i>"]
   ]
@@ -27411,7 +27367,6 @@ parsoid={
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     ["i", "wrap", "<a href='./Foo' rel='mw:WikiLink'></a>"]
   ]
@@ -27427,7 +27382,6 @@ parsoid={
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     ["div", "after", "\n<p><a href='./Foo' rel='mw:WikiLink'>Foo </a>, placeholder</p>"]
   ]
@@ -28272,8 +28226,7 @@ foo {{1x|<span>bar</span> [[Category:baz]]}} bar
 RTL (\u200f) and LTR (\u200e) markers around category tags should be stripped
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p>‏<link rel="mw:PageProp/Category" href="./קטגוריה:טקסים" />‏
@@ -28287,8 +28240,7 @@ parsoid={
 RTL (\u200f) and LTR (\u200e) markers should not be stripped if followed by a text node
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p>‏<link rel="mw:PageProp/Category" href="./קטגוריה:טקסים" />‏y</p>
@@ -28336,8 +28288,7 @@ parsoid=html2wt
 2. Headings: Add space before/after == even after hoisted content
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2> <link href="./Category:A2" rel="mw:PageProp/Category" />ok</h2>
@@ -28351,8 +28302,7 @@ parsoid={
 1. Headings: suppress newly created empty headings
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2></h2>
@@ -28360,21 +28310,10 @@ parsoid={
 !! end
 
 !! test
-2. Headings: don't suppress empty headings if scrubWikitext is false
-!! options
-parsoid=html2wt
-!! html/parsoid
-<h2></h2>
-!! wikitext
-==<nowiki/>==
-!! end
-
-!! test
-3. Headings: suppress empty headings on edits
+2. Headings: suppress empty headings on edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "remove"]
   ]
@@ -28385,11 +28324,10 @@ parsoid={
 !! end
 
 !! test
-Headings: Replace <br/> with a single whitespace char (when scrubWikitext = true)
+Headings: Replace <br/> with a single whitespace char
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2>foo<br/>bar</h2>
@@ -28401,24 +28339,10 @@ parsoid={
 !! end
 
 !! test
-Headings: Replace <br/> with a single whitespace char (when scrubWikitext = false)
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<h2>foo<br/>bar</h2>
-!! wikitext
-== foo<br />bar ==
-!! end
-
-!! test
 1. WT Quote Tags: suppress newly created empty style tags
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <i></i><b></b>
@@ -28426,21 +28350,10 @@ parsoid={
 !! end
 
 !! test
-2. WT Quote Tags: don't suppress empty style tags if scrubWikitext is false
-!! options
-parsoid=html2wt
-!! html/parsoid
-<i></i><b></b>
-!! wikitext
-''<nowiki/>'''''<nowiki/>'''
-!! end
-
-!! test
-3. WT Quote Tags: suppress empty style tags on edits
+2. WT Quote Tags: suppress empty style tags on edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "remove"]
   ]
@@ -28454,8 +28367,7 @@ parsoid={
 1. Anchors: suppress newly created empty anchors
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Test" title="Test"></a>
@@ -28463,24 +28375,10 @@ parsoid={
 !! end
 
 !! test
-2. Anchors: don't suppress empty anchors if scrubWikitext is false
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<a rel="mw:WikiLink" href="./Test" title="Test"></a>
-!! wikitext
-[[Test|<nowiki/>]]
-!! end
-
-!! test
-3. Anchors: suppress empty anchors on edits
+2. Anchors: suppress empty anchors on edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "remove"]
   ]
@@ -28494,8 +28392,7 @@ parsoid={
 3a. Anchors: do not suppress numbered extlinks
 !! options
 parsoid={
-  "modes": ["wt2wt"],
-  "scrubWikitext": true
+  "modes": ["wt2wt"]
 }
 !! wikitext
 [http://foo.com]
@@ -28508,7 +28405,6 @@ parsoid={
 !! options
 parsoid={
   "modes": ["wt2wt"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "remove"]
   ]
@@ -28524,7 +28420,6 @@ Normalizations should be restricted to edited content
 !!options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "h1", "before", "<i></i>"]
   ]
@@ -28543,8 +28438,7 @@ b
 1. Multiple normalizations (html2wt)
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <h2><i></i></h2>
@@ -28561,7 +28455,6 @@ x
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "after", "<h1><i></i></h1>\n<p> bar<b></b></p>"]
   ]
@@ -28577,8 +28470,7 @@ bar
 1. Indent Pre Nowiki: suppress whitespace at the start of new paragraph
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p> hi</p>
@@ -28590,24 +28482,10 @@ hello
 !! end
 
 !! test
-2. Indent Pre Nowiki: don't suppress whitespace at the start of new paragraph if scrubWikitext is false
-!! options
-parsoid=html2wt
-!! html/parsoid
-<p> hi</p>
-<p>    hello</p>
-!! wikitext
-<nowiki> </nowiki>hi
-
-<nowiki> </nowiki>   hello
-!! end
-
-!! test
-3. Indent Pre Nowiki: suppress whitespace after newlines in new paragraph or table cell
+2. Indent Pre Nowiki: suppress whitespace after newlines in new paragraph or table cell
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p>Foo
@@ -28642,11 +28520,10 @@ bar<span>boo</span>
 !! end
 
 !! test
-4. Indent Pre Nowiki: suppress leading whitespace in edited paragraphs
+3. Indent Pre Nowiki: suppress leading whitespace in edited paragraphs
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "p", "html", " a\n b" ]
   ]
@@ -28659,30 +28536,10 @@ b
 !! end
 
 !! test
-1. New links that end in spaces
+New links that end in spaces
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Berlin" title="Berlin">Berlin </a>is the capital of Germany.</p>
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo </a><b>bar</b></p>
-<p><a rel="mw:WikiLink" href="./Boston" title="Boston">Boston </a> is a city.</p>
-!! wikitext
-[[Berlin ]]<nowiki/>is the capital of Germany.
-
-[[Foo ]]'''bar'''
-
-[[Boston ]] is a city.
-!! end
-
-!! test
-2. New links that end in spaces
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Berlin" title="Berlin">Berlin </a>is the capital of Germany.</p>
@@ -28700,34 +28557,7 @@ parsoid={
 1. Table cells with escapable prefixes
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<table>
-<tr><td>a</td></tr>
-<tr><td>-</td></tr>
-<tr><td>+</td></tr>
-<tr><td>}</td></tr>
-</table>
-!! wikitext
-{|
-|a
-|-
-|<nowiki>-</nowiki>
-|-
-|<nowiki>+</nowiki>
-|-
-|<nowiki>}</nowiki>
-|}
-!! end
-
-!! test
-2. Table cells with escapable prefixes
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <table>
@@ -28749,11 +28579,10 @@ parsoid={
 !! end
 
 !! test
-3a. Table cells with escapable prefixes after edits
+2a. Table cells with escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "table tbody tr:first-child td:first-child", "remove"]
   ]
@@ -28769,11 +28598,10 @@ parsoid={
 !! end
 
 !! test
-3b. Table cells with escapable prefixes after edits
+2b. Table cells with escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "table tbody tr:first-child td:first-child", "html", "-" ],
     [ "#x", "remove" ]
@@ -28795,11 +28623,10 @@ parsoid={
 # normalization doesn't realize that the id attribute
 # will eliminate the escapable scenario
 !! test
-4a. Table cells without escapable prefixes after edits
+3a. Table cells without escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "#x", "html", "-" ]
   ]
@@ -28817,11 +28644,10 @@ parsoid={
 ## This tests normalizer's ability to discriminate between
 ## cells having identical content.
 !! test
-4b. Table cells without escapable prefixes after edits
+3b. Table cells without escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "td", "html", "-" ]
   ]
@@ -28839,11 +28665,10 @@ parsoid={
 ## This tests normalizer's ability to not be tripped by
 ## comments (and whitespace)
 !! test
-4c. Table cells without escapable prefixes after edits
+3c. Table cells without escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "table tbody tr td:first-child", "remove" ]
   ]
@@ -28862,11 +28687,10 @@ parsoid={
 
 ## This tests normalizer's ability to handle HTML cells
 !! test
-4d. Table cells without escapable prefixes after edits
+3d. Table cells without escapable prefixes after edits
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "td", "html", "-" ]
   ]
@@ -28883,11 +28707,10 @@ parsoid={
 
 ## T111151 Remove font elements without attributes
 !! test
-5a. font tags without attributes should be dropped in scrubWikitext mode
+4. font tags without attributes should be dropped
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <font>foo</font>
@@ -28900,73 +28723,10 @@ bar
 !! end
 
 !! test
-5b. font tags should not be dropped without scrubWikitext being enabled
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<font>foo</font>
-!! wikitext
-<font>foo</font>
-!! end
-
-!! test
-Ignore empty <p></p> when scrubWikitext is false
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": false
-}
-!! html/parsoid
-<div>1</div>
-<p>a</p><p></p><p>b</p>
-<div>2</div>
-<p>a</p>
-<p></p>
-<p>b</p>
-<div>3</div>
-<p>a</p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p>b</p>
-!! wikitext
-<div>1</div>
-a
-
-b
-<div>2</div>
-a
-
-b
-<div>3</div>
-a
-
-b
-!! html/php
-<div>1</div>
-<p>a
-</p><p>b
-</p>
-<div>2</div>
-<p>a
-</p><p>b
-</p>
-<div>3</div>
-<p>a
-</p><p>b
-</p>
-!! end
-
-!! test
 Normalize empty paragraphs to HTML form that html2wt expects
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <div>1</div>
@@ -29036,8 +28796,7 @@ b
 Templated content should be skipped over by normalization
 !! options
 parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
+  "modes": ["html2wt"]
 }
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SomeTemplate1","href":"./Template:SomeTemplate1"},"params":{"1":{"wt":"boo"}},"i":0}}]}'>foobar</p><p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SomeTemplate2","href":"./Template:SomeTemplate2"},"params":{"1":{"wt":"booboo"}},"i":0}}]}'>foobar</p><span about="#mwt2">
@@ -29180,6 +28939,7 @@ parsoid=html2wt
 {{1x|foo}}
 !! end
 
+## FIXME: This test is less useful now that the leading space is normalized away
 !! test
 Only html p-tag is strong indent pre suppressing
 !! options
@@ -29190,7 +28950,7 @@ parsoid=html2wt
 </span></p>
 !! wikitext
 test2<span>
-<nowiki> </nowiki>test3
+test3
 </span>
 !! end
 
@@ -29884,17 +29644,17 @@ __NOTOC__
 <table>
 <caption><!--c1--><!--c2-->Table Caption<!--c3--><!--c4--></caption>
 <tbody><tr>
-<th><!--c1--><!--c2-->Table Heading 1<!--c3--><!--c4--></th><th>Table Heading 2</th></tr><!--c5-->
+<th><!--c1--><!--c2-->Table Heading 1<!--c3--><!--c4--></th><th>Table Heading 2<!--c5--></th></tr>
 <tr>
-<td><!--c1--><!--c2-->Table Cell 1<!--c3--><!--c4--></td><td>Table Cell 2</td></tr><!--c5-->
+<td><!--c1--><!--c2-->Table Cell 1<!--c3--><!--c4--></td><td>Table Cell 2<!--c5--></td></tr>
 <tr>
-<td>class="foo"</td><td><!--c1--><!--c2-->Table Cell 3<!--c3--></td></tr><!--c4-->
+<td>class="foo"</td><td><!--c1--><!--c2-->Table Cell 3<!--c3--><!--c4--></td></tr>
 <tr>
 <td><!--c1-->testing <a rel="mw:WikiLink" href="./One" title="One" class="new">two</a> <!--c2--> | <!--c3--> some content</td></tr>
 </tbody></table>
 <dl><dd><table>
-  <tbody><tr><td><!--c1--><!--c2-->Table Cell 1<!--c3--><!--c4--></td><td>Table Cell 2</td></tr><!--c5-->
-  </tbody></table> foo<!--c1--></dd></dl>
+  <tbody><tr><td><!--c1--><!--c2-->Table Cell 1<!--c3--><!--c4--></td><td>Table Cell 2 <!--c5-->
+  </td></tr></tbody></table> foo<!--c1--></dd></dl>
 !! end
 
 # Looks like <caption> is not accepted in HTML
@@ -29964,7 +29724,6 @@ Selser preserves lack of newline before list and allows newline after the list
 !! options
 parsoid={
   "modes": ["selser"],
-  "scrubWikitext": true,
   "changes": [
     [ "ul", "after", "<p>footer</p>" ]
   ]
