@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, utils } = require( 'api-testing' );
+const { action, assert, utils, wiki } = require( 'api-testing' );
 
 describe( "Testing site statistics' edits value", function () {
 	const siteStatsParams = {
@@ -27,6 +27,7 @@ describe( "Testing site statistics' edits value", function () {
 	} );
 
 	it( 'should GET an increased site edits stat', async () => {
+		await wiki.runAllJobs();
 		const stats = await wikiuser.action( 'query', siteStatsParams );
 		const edits = parseInt( stats.query.statistics.edits, 10 );
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, utils } = require( 'api-testing' );
+const { action, assert, utils, wiki } = require( 'api-testing' );
 
 describe( 'The edit action', function testEditAction() {
 	let alice;
@@ -128,6 +128,8 @@ describe( 'The edit action', function testEditAction() {
 			summary: 'botting',
 			bot: true
 		} );
+
+		await wiki.runAllJobs();
 
 		const rc1 = await alice.getChangeEntry( { rctitle: pageA } );
 		assert.exists( rc1.bot );
