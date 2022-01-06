@@ -61,7 +61,7 @@ class DeleteDefaultMessages extends Maintenance {
 			[ 'revision' => [ 'JOIN', 'page_latest=rev_id' ] ] + $actorQuery['joins']
 		);
 
-		if ( $dbr->numRows( $res ) == 0 ) {
+		if ( $res->numRows() == 0 ) {
 			// No more messages left
 			$this->output( "done.\n" );
 			return;

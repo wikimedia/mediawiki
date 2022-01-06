@@ -624,10 +624,10 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$conn->clearFlag( $conn::DBO_TRX );
 
 			$res = $conn->query( $sql, __METHOD__ );
-			$this->assertEquals( $v, $conn->fetchRow( $res ) );
+			$this->assertEquals( $v, $res->fetchRow() );
 
 			$res = $conn->query( $sql, __METHOD__, $conn::QUERY_REPLICA_ROLE );
-			$this->assertEquals( $v, $conn->fetchRow( $res ) );
+			$this->assertEquals( $v, $res->fetchRow() );
 		}
 
 		$wConn->getScopedLockAndFlush( 'key', __METHOD__, 1 );

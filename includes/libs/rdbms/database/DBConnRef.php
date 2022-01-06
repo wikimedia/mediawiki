@@ -220,14 +220,17 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function fetchObject( $res ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function fetchRow( $res ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function numRows( $res ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -269,6 +272,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function freeResult( $res ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
