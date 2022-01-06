@@ -1175,7 +1175,6 @@ $wgAutoloadLocalClasses = [
 	'OldRevisionImporter' => __DIR__ . '/includes/import/OldRevisionImporter.php',
 	'OrderedStreamingForkController' => __DIR__ . '/includes/OrderedStreamingForkController.php',
 	'OrphanStats' => __DIR__ . '/maintenance/storage/orphanStats.php',
-	'Orphans' => __DIR__ . '/maintenance/orphans.php',
 	'OutputPage' => __DIR__ . '/includes/OutputPage.php',
 	'PHPVersionCheck' => __DIR__ . '/includes/PHPVersionCheck.php',
 	'PNGHandler' => __DIR__ . '/includes/media/PNGHandler.php',
