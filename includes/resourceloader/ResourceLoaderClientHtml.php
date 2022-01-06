@@ -256,33 +256,33 @@ class ResourceLoaderClientHtml {
 		$nojsClass = $nojsClass ?? $this->getDocumentAttributes()['class'];
 		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
 		$jsClassJson = $this->context->encodeJson( $jsClass );
-		$script = <<<JAVASCRIPT
+		$script = "
 document.documentElement.className = {$jsClassJson};
-JAVASCRIPT;
+";
 
 		// Inline script: Declare mw.config variables for this page.
 		if ( $this->config ) {
 			$confJson = $this->context->encodeJson( $this->config );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLCONF = {$confJson};
-JAVASCRIPT;
+";
 		}
 
 		// Inline script: Declare initial module states for this page.
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
 			$stateJson = $this->context->encodeJson( $states );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLSTATE = {$stateJson};
-JAVASCRIPT;
+";
 		}
 
 		// Inline script: Declare general modules to load on this page.
 		if ( $data['general'] ) {
 			$pageModulesJson = $this->context->encodeJson( $data['general'] );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLPAGEMODULES = {$pageModulesJson};
-JAVASCRIPT;
+";
 		}
 
 		if ( !$this->context->getDebug() ) {
@@ -472,7 +472,7 @@ JAVASCRIPT;
 							// - startup (naturally because this is what will define mw.loader)
 							$chunk = Html::element( 'script', [
 								'async' => true,
-								'src' => $url
+								'src' => $url,
 							] );
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(

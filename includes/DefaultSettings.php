@@ -4164,7 +4164,9 @@ $wgMangleFlashPolicy = true;
  *   to use this mechanism (use `packageFiles` instead). See also
  *   [Coding conventions/JavaScript](https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Exporting).
  *
- *   Extended options:
+ *   Default: `[]`
+ *
+ *   Extended options, concatenated in this order:
  *
  *   - languageScripts `{string[]|string}`: Scripts to include in specific language contexts.
  *     Array is keyed by language code with file path or list of file path.
@@ -4172,8 +4174,6 @@ $wgMangleFlashPolicy = true;
  *     Array keyed is by skin name with file path or list of file paths.
  *   - debugScripts `{string[]|string}`: Scripts to include in debug contexts.
  *     %File path or list of file paths.
- *
- *   Default: `[]`
  *
  * - messages `{string[]}`
  *   Localisation messages to bundle with this module, for client-side use
@@ -4425,20 +4425,24 @@ $wgResourceLoaderSources = [];
 $wgResourceBasePath = null;
 
 /**
- * Maximum time in seconds to cache resources served by ResourceLoader.
- * Used to set last modified headers (max-age/s-maxage).
+ * How long a CDN or browser may cache a ResourceLoader HTTP response.
  *
- * Following options to distinguish:
- * - versioned: Used for modules with a version, because changing version
- *   numbers causes cache misses. This normally has a long expiry time.
- * - unversioned: Used for modules without a version to propagate changes
- *   quickly to clients. Also used for modules with errors to recover quickly.
- *   This normally has a short expiry time.
+ * Maximum time in seconds. Used for the `max-age` and `s-maxage` Cache-Control
+ * headers.
  *
- * Expiry time for the options to distinguish:
- * - server: Squid/Varnish but also any other public proxy cache between the
- *   client and MediaWiki.
- * - client: On the client side (e.g. in the browser cache).
+ * Valid keys:
+ *
+ * - versioned: Used for URLs carrying a "version" parameter.
+ *   This applies to the bulk of load.php transfers, and may have a long cache
+ *   duration (e.g. weeks or months), because a change in the module bundle will
+ *   naturally produce a different URL and thus automatically bust the cache.
+ *
+ * - unversioned: Used for URLs that must not carry a "version" parameter.
+ *   This includes the startup manifest and controls how quickly changes (in
+ *   the module registry, dependency tree, and module version) will propagate
+ *   to clients. This should have a short cache duration (e.g. minutes).
+ *
+ * @since 1.35
  */
 $wgResourceLoaderMaxage = [
 	'versioned' => 30 * 24 * 60 * 60, // 30 days

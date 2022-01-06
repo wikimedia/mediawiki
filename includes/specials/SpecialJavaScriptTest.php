@@ -61,7 +61,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query = [
 			'lang' => 'qqx',
 			'skin' => 'fallback',
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'debug' => (string)ResourceLoader::inDebugMode(),
 			'target' => 'test',
 		];
 		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
@@ -139,7 +139,7 @@ JAVASCRIPT
 			->parseAsBlock();
 
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'debug' => (string)ResourceLoader::inDebugMode(),
 		] );
 		$script = Html::linkedScript( $scriptUrl );
 
