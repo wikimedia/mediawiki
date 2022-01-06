@@ -145,14 +145,6 @@ abstract class Profiler {
 		return $this->context ?? RequestContext::getMain();
 	}
 
-	public function profileIn( $functionname ) {
-		wfDeprecated( __METHOD__, '1.33' );
-	}
-
-	public function profileOut( $functionname ) {
-		wfDeprecated( __METHOD__, '1.33' );
-	}
-
 	/**
 	 * Mark the start of a custom profiling frame (e.g. DB queries).
 	 * The frame ends when the result of this method falls out of scope.

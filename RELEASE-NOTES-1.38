@@ -302,6 +302,7 @@ because of Phabricator reports.
   - ::$mHebrewCalendarMonthGenMsgs → HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES
   - ::$mHijriCalendarMonthMsgs → HIJRI_CALENDAR_MONTH_MESSAGES
 * wfIncrStats, deprecated since 1.36, has been removed.
+* Profiler::profileIn and ::profileOut, deprecated in 1.33, has been removed.
 * …
 
 === Deprecations in 1.38 ===
