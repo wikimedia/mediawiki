@@ -784,7 +784,7 @@ class LogEventsList extends ContextSource {
 	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
-		global $wgLogRestrictions;
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 
 		if ( $audience != 'public' && $performer === null ) {
 			throw new InvalidArgumentException(
@@ -796,7 +796,7 @@ class LogEventsList extends ContextSource {
 		$hiddenLogs = [];
 
 		// Don't show private logs to unprivileged users
-		foreach ( $wgLogRestrictions as $logType => $right ) {
+		foreach ( $logRestrictions as $logType => $right ) {
 			if ( $audience == 'public' || !$performer->isAllowed( $right )
 			) {
 				$hiddenLogs[] = $logType;

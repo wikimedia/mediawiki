@@ -1009,11 +1009,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		global $wgPasswordPolicy;
+		$passwordPolicy = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordPolicy' );
 
 		$upp = new UserPasswordPolicy(
-			$wgPasswordPolicy['policies'],
-			$wgPasswordPolicy['checks']
+			$passwordPolicy['policies'],
+			$passwordPolicy['checks']
 		);
 
 		$status = Status::newGood( [] );
@@ -1450,8 +1450,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if rate limited
 	 */
 	public function isPingLimitable() {
-		global $wgRateLimitsExcludedIPs;
-		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		$rateLimitsExcludedIPs = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimitsExcludedIPs' );
+		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $rateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -1485,14 +1485,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return $result;
 		}
 
-		global $wgRateLimits;
-		if ( !isset( $wgRateLimits[$action] ) ) {
+		$rateLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimits' );
+		if ( !isset( $rateLimits[$action] ) ) {
 			return false;
 		}
 
 		$limits = array_merge(
 			[ '&can-bypass' => true ],
-			$wgRateLimits[$action]
+			$rateLimits[$action]
 		);
 
 		// Some groups shouldn't trigger the ping limiter, ever
@@ -2168,7 +2168,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string|null Token
 	 */
 	public function getToken( $forceCreation = true ) {
-		global $wgAuthenticationTokenVersion;
+		$authenticationTokenVersion = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'AuthenticationTokenVersion' );
 
 		$this->load();
 		if ( !$this->mToken && $forceCreation ) {
@@ -2186,13 +2187,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		}
 
-		if ( $wgAuthenticationTokenVersion === null ) {
+		if ( $authenticationTokenVersion === null ) {
 			// $wgAuthenticationTokenVersion not in use, so return the raw secret
 			return $this->mToken;
 		}
 
 		// $wgAuthenticationTokenVersion in use, so hmac it.
-		$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
+		$ret = MWCryptHash::hmac( $authenticationTokenVersion, $this->mToken, false );
 
 		// The raw hash can be overly long. Shorten it up.
 		$len = max( 32, self::TOKEN_LENGTH );
@@ -2268,9 +2269,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function setEmailWithConfirmation( string $str ) {
-		global $wgEnableEmail, $wgEmailAuthentication;
-
-		if ( !$wgEnableEmail ) {
+		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		if ( !$enableEmail ) {
 			return Status::newFatal( 'emaildisabled' );
 		}
 
@@ -2282,7 +2283,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$type = $oldaddr != '' ? 'changed' : 'set';
 		$notificationResult = null;
 
-		if ( $wgEmailAuthentication && $type === 'changed' ) {
+		if ( $emailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
 			// email address on their previous email address
 			$change = $str != '' ? 'changed' : 'removed';
@@ -2297,7 +2298,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$this->setEmail( $str );
 
-		if ( $str !== '' && $wgEmailAuthentication ) {
+		if ( $str !== '' && $emailAuthentication ) {
 			// Send a confirmation request to the new address if needed
 			$result = $this->sendConfirmationMail( $type );
 
@@ -2367,10 +2368,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.26 Applications should use the OAuth extension
 	 */
 	public function getTokenFromOption( $oname ) {
-		global $wgHiddenPrefs;
+		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
 
 		$id = $this->getId();
-		if ( !$id || in_array( $oname, $wgHiddenPrefs ) ) {
+		if ( !$id || in_array( $oname, $hiddenPrefs ) ) {
 			return false;
 		}
 
@@ -2395,8 +2396,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @see setOption()
 	 */
 	public function resetTokenFromOption( $oname ) {
-		global $wgHiddenPrefs;
-		if ( in_array( $oname, $wgHiddenPrefs ) ) {
+		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
+		if ( in_array( $oname, $hiddenPrefs ) ) {
 			return false;
 		}
 
@@ -2432,11 +2433,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		global $wgForceHTTPS, $wgSecureLogin;
-		if ( $wgForceHTTPS ) {
+		$forceHTTPS = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceHTTPS' );
+		$secureLogin = MediaWikiServices::getInstance()->getMainConfig()->get( 'SecureLogin' );
+		if ( $forceHTTPS ) {
 			return true;
 		}
-		if ( !$wgSecureLogin ) {
+		if ( !$secureLogin ) {
 			return false;
 		}
 		return MediaWikiServices::getInstance()
@@ -2589,8 +2591,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useRCPatrol() {
-		global $wgUseRCPatrol;
-		return $wgUseRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		return $useRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
 	}
 
 	/**
@@ -2598,9 +2600,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useNPPatrol() {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
 		return (
-			( $wgUseRCPatrol || $wgUseNPPatrol )
+			( $useRCPatrol || $useNPPatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}
@@ -2610,9 +2613,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useFilePatrol() {
-		global $wgUseRCPatrol, $wgUseFilePatrol;
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useFilePatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFilePatrol' );
 		return (
-			( $wgUseRCPatrol || $wgUseFilePatrol )
+			( $useRCPatrol || $useFilePatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}
@@ -2635,11 +2639,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string|false 'newcomer', 'learner', or 'experienced', false for anonymous users
 	 */
 	public function getExperienceLevel() {
-		global $wgLearnerEdits,
-			$wgExperiencedUserEdits,
-			$wgLearnerMemberSince,
-			$wgExperiencedUserMemberSince;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$learnerEdits = $mainConfig->get( 'LearnerEdits' );
+		$experiencedUserEdits = $mainConfig->get( 'ExperiencedUserEdits' );
+		$learnerMemberSince = $mainConfig->get( 'LearnerMemberSince' );
+		$experiencedUserMemberSince = $mainConfig->get( 'ExperiencedUserMemberSince' );
 		if ( $this->isAnon() ) {
 			return false;
 		}
@@ -2647,20 +2651,20 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$editCount = $this->getEditCount();
 		$registration = $this->getRegistration();
 		$now = time();
-		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
-		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
+		$learnerRegistration = wfTimestamp( TS_MW, $now - $learnerMemberSince * 86400 );
+		$experiencedRegistration = wfTimestamp( TS_MW, $now - $experiencedUserMemberSince * 86400 );
 		if ( $registration === null ) {
 			// for some very old accounts, this information is missing in the database
 			// treat them as old enough to be 'experienced'
 			$registration = $experiencedRegistration;
 		}
 
-		if ( $editCount < $wgLearnerEdits ||
+		if ( $editCount < $learnerEdits ||
 		$registration > $learnerRegistration ) {
 			return 'newcomer';
 		}
 
-		if ( $editCount > $wgExperiencedUserEdits &&
+		if ( $editCount > $experiencedUserEdits &&
 			$registration <= $experiencedRegistration
 		) {
 			return 'experienced';
@@ -3263,12 +3267,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		global $wgPasswordSender;
+		$passwordSender = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordSender' );
 
 		if ( $from instanceof User ) {
 			$sender = MailAddress::newFromUser( $from );
 		} else {
-			$sender = new MailAddress( $wgPasswordSender,
+			$sender = new MailAddress( $passwordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		}
 		$to = MailAddress::newFromUser( $this );
@@ -3289,9 +3293,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string New token
 	 */
 	protected function confirmationToken( &$expiration ) {
-		global $wgUserEmailConfirmationTokenExpiry;
+		$userEmailConfirmationTokenExpiry = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UserEmailConfirmationTokenExpiry' );
 		$now = time();
-		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
+		$expires = $now + $userEmailConfirmationTokenExpiry;
 		$expiration = wfTimestamp( TS_MW, $expires );
 		$this->load();
 		$token = MWCryptRand::generateHex( 32 );
@@ -3390,8 +3395,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function canSendEmail() {
-		global $wgEnableEmail, $wgEnableUserEmail;
-		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
+		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
+		$enableUserEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableUserEmail' );
+		if ( !$enableEmail || !$enableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
 		$hookErr = $this->isEmailConfirmed();
@@ -3419,7 +3425,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmed(): bool {
-		global $wgEmailAuthentication;
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
 		$this->load();
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
@@ -3431,7 +3437,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			if ( !Sanitizer::validateEmail( $this->getEmail() ) ) {
 				return false;
 			}
-			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
+			if ( $emailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
 				return false;
 			}
 			return true;
@@ -3445,8 +3451,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmationPending() {
-		global $wgEmailAuthentication;
-		return $wgEmailAuthentication &&
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		return $emailAuthentication &&
 			!$this->isEmailConfirmed() &&
 			$this->mEmailToken &&
 			$this->mEmailTokenExpires > wfTimestamp();

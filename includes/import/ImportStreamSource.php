@@ -23,6 +23,7 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -112,7 +113,7 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	public static function newFromURL( $url, $method = 'GET' ) {
-		global $wgHTTPImportTimeout;
+		$httpImportTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPImportTimeout' );
 		wfDebug( __METHOD__ . ": opening $url" );
 		# Use the standard HTTP fetch function; it times out
 		# quicker and sorts out user-agent problems which might
@@ -123,7 +124,7 @@ class ImportStreamSource implements ImportSource {
 			$url,
 			[
 				'followRedirects' => true,
-				'timeout' => $wgHTTPImportTimeout
+				'timeout' => $httpImportTimeout
 			],
 			__METHOD__
 		);

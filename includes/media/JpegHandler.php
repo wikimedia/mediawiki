@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -141,12 +142,12 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @return bool|MediaTransformError
 	 */
 	public function rotate( $file, $params ) {
-		global $wgJpegTran;
+		$jpegTran = MediaWikiServices::getInstance()->getMainConfig()->get( 'JpegTran' );
 
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
-		if ( $wgJpegTran && is_executable( $wgJpegTran ) ) {
-			$command = Shell::command( $wgJpegTran,
+		if ( $jpegTran && is_executable( $jpegTran ) ) {
+			$command = Shell::command( $jpegTran,
 				'-rotate',
 				$rotation,
 				'-outfile',
@@ -188,7 +189,8 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @inheritDoc
 	 */
 	protected function transformImageMagick( $image, $params ) {
-		global $wgUseTinyRGBForJPGThumbnails;
+		$useTinyRGBForJPGThumbnails = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseTinyRGBForJPGThumbnails' );
 
 		$ret = parent::transformImageMagick( $image, $params );
 
@@ -196,7 +198,7 @@ class JpegHandler extends ExifBitmapHandler {
 			return $ret;
 		}
 
-		if ( $wgUseTinyRGBForJPGThumbnails ) {
+		if ( $useTinyRGBForJPGThumbnails ) {
 			// T100976 If the profile embedded in the JPG is sRGB, swap it for the smaller
 			// (and free) TinyRGB
 
@@ -244,14 +246,14 @@ class JpegHandler extends ExifBitmapHandler {
 	public function swapICCProfile( $filepath, array $colorSpaces,
 		array $oldProfileStrings, $profileFilepath
 	) {
-		global $wgExiftool;
+		$exiftool = MediaWikiServices::getInstance()->getMainConfig()->get( 'Exiftool' );
 
-		if ( !$wgExiftool || !is_executable( $wgExiftool ) ) {
+		if ( !$exiftool || !is_executable( $exiftool ) ) {
 			return false;
 		}
 
 		$result = Shell::command(
-			$wgExiftool,
+			$exiftool,
 			'-EXIF:ColorSpace',
 			'-ICC_Profile:ProfileDescription',
 			'-S',
@@ -282,7 +284,7 @@ class JpegHandler extends ExifBitmapHandler {
 			return false;
 		}
 
-		$command = Shell::command( $wgExiftool,
+		$command = Shell::command( $exiftool,
 			'-overwrite_original',
 			'-icc_profile<=' . $profileFilepath,
 			$filepath

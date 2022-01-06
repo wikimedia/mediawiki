@@ -25,6 +25,7 @@
  * @file
  * @ingroup Media
  */
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -174,8 +175,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		if ( $image->isTransformedLocally() && !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
-			global $wgMaxImageArea;
-			return new TransformTooBigImageAreaError( $params, $wgMaxImageArea );
+			$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
+			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
@@ -525,9 +526,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			$cache->makeGlobalKey( 'imagemagick-version' ),
 			$cache::TTL_HOUR,
 			static function () use ( $method ) {
-				global $wgImageMagickConvertCommand;
+				$imageMagickConvertCommand = MediaWikiServices::getInstance()
+					->getMainConfig()->get( 'ImageMagickConvertCommand' );
 
-				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';
+				$cmd = Shell::escape( $imageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version" );
 				$retval = '';
 				$return = wfShellExecWithStderr( $cmd, $retval );
@@ -608,7 +610,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @since 1.25
 	 */
 	public function isImageAreaOkForThumbnaling( $file, &$params ) {
-		global $wgMaxImageArea;
+		$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
@@ -620,7 +622,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return (bool)$checkImageAreaHookResult;
 		}
 
-		if ( $wgMaxImageArea === false ) {
+		if ( $maxImageArea === false ) {
 			// Checking is disabled, fine to thumbnail
 			return true;
 		}
@@ -628,7 +630,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		$srcWidth = $file->getWidth( $params['page'] );
 		$srcHeight = $file->getHeight( $params['page'] );
 
-		if ( $srcWidth * $srcHeight > $wgMaxImageArea
+		if ( $srcWidth * $srcHeight > $maxImageArea
 			&& !( $file->getMimeType() == 'image/jpeg'
 				&& $this->getScalerType( false, false ) == 'im' )
 		) {

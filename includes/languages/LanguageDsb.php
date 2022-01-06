@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Lower Sorbian (Dolnoserbski) specific code.
  *
@@ -22,6 +23,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Lower Sorbian (Dolnoserbski)
  *
@@ -37,9 +40,9 @@ class LanguageDsb extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['dsb'][$case][$word] ) ) {
-			return $wgGrammarForms['dsb'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['dsb'][$case][$word] ) ) {
+			return $grammarForms['dsb'][$case][$word];
 		}
 
 		switch ( $case ) {

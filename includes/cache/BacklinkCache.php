@@ -356,7 +356,7 @@ class BacklinkCache {
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
-		global $wgUpdateRowsPerJob;
+		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerJob' );
 
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
@@ -393,8 +393,8 @@ class BacklinkCache {
 		if ( is_infinite( $max ) ) { // no limit at all
 			// Use partition() since it will batch the query and skip the JOIN.
 			// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
-			$this->partition( $table, $wgUpdateRowsPerJob ); // updates $this->partitionCache
-			return $this->partitionCache[$table][$wgUpdateRowsPerJob]['numRows'];
+			$this->partition( $table, $updateRowsPerJob ); // updates $this->partitionCache
+			return $this->partitionCache[$table][$updateRowsPerJob]['numRows'];
 		} else {
 			// Fetch the full title info, since the caller will likely need it next
 			$count = iterator_count( $this->getLinkPages( $table, false, false, $max ) );

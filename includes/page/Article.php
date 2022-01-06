@@ -425,7 +425,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache;
+		$useFileCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFileCache' );
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -495,7 +495,7 @@ class Article implements Page {
 		# Try client and file cache
 		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
 			# Try to stream the output from file cache
-			if ( $wgUseFileCache && $this->tryFileCache() ) {
+			if ( $useFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
@@ -777,14 +777,14 @@ class Article implements Page {
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		global $wgCdnMaxageStale;
+		$cdnMaxageStale = MediaWikiServices::getInstance()->getMainConfig()->get( 'CdnMaxageStale' );
 		$ok = $renderStatus->isOK();
 
 		$pOutput = $ok ? $renderStatus->getValue() : null;
 
 		// Cache stale ParserOutput object with a short expiry
 		if ( $ok && $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
-			$outputPage->setCdnMaxage( $wgCdnMaxageStale );
+			$outputPage->setCdnMaxage( $cdnMaxageStale );
 			$outputPage->setLastModified( $pOutput->getCacheTime() );
 			$staleReason = $renderStatus->hasMessage( 'view-pool-contention' )
 				? $this->getContext()->msg( 'view-pool-contention' )
@@ -906,8 +906,10 @@ class Article implements Page {
 	 * @todo actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {
-		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$articleRobotPolicies = $mainConfig->get( 'ArticleRobotPolicies' );
+		$namespaceRobotPolicies = $mainConfig->get( 'NamespaceRobotPolicies' );
+		$defaultRobotPolicy = $mainConfig->get( 'DefaultRobotPolicy' );
 		$ns = $this->getTitle()->getNamespace();
 
 		# Don't index user and user talk pages for blocked users (T13443)
@@ -949,13 +951,13 @@ class Article implements Page {
 		}
 
 		# Otherwise, construct the policy based on the various config variables.
-		$policy = self::formatRobotPolicy( $wgDefaultRobotPolicy );
+		$policy = self::formatRobotPolicy( $defaultRobotPolicy );
 
-		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
+		if ( isset( $namespaceRobotPolicies[$ns] ) ) {
 			# Honour customised robot policies for this namespace
 			$policy = array_merge(
 				$policy,
-				self::formatRobotPolicy( $wgNamespaceRobotPolicies[$ns] )
+				self::formatRobotPolicy( $namespaceRobotPolicies[$ns] )
 			);
 		}
 		if ( $this->getTitle()->canUseNoindex() && is_object( $pOutput ) && $pOutput->getIndexPolicy() ) {
@@ -967,11 +969,11 @@ class Article implements Page {
 			);
 		}
 
-		if ( isset( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
+		if ( isset( $articleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
 			# (T16900) site config can override user-defined __INDEX__ or __NOINDEX__
 			$policy = array_merge(
 				$policy,
-				self::formatRobotPolicy( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] )
+				self::formatRobotPolicy( $articleRobotPolicies[$this->getTitle()->getPrefixedText()] )
 			);
 		}
 
@@ -1015,7 +1017,7 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showRedirectedFromHeader() {
-		global $wgRedirectSources;
+		$redirectSources = MediaWikiServices::getInstance()->getMainConfig()->get( 'RedirectSources' );
 
 		$context = $this->getContext();
 		$outputPage = $context->getOutput();
@@ -1065,7 +1067,7 @@ class Article implements Page {
 		} elseif ( $rdfrom ) {
 			// This is an externally redirected view, from some other wiki.
 			// If it was reported from a trusted site, supply a backlink.
-			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
+			if ( $redirectSources && preg_match( $redirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
 					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
@@ -1125,8 +1127,10 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
+		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
+		$useFilePatrol = $mainConfig->get( 'UseFilePatrol' );
 		// Allow hooks to decide whether to not output this at all
 		if ( !$this->getHookRunner()->onArticleShowPatrolFooter( $this ) ) {
 			return false;
@@ -1138,8 +1142,8 @@ class Article implements Page {
 		$rc = false;
 
 		if ( !$this->getContext()->getAuthority()->probablyCan( 'patrol', $title )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol
-				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
+			|| !( $useRCPatrol || $useNPPatrol
+				|| ( $useFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
@@ -1199,7 +1203,7 @@ class Article implements Page {
 		// to get the recentchanges row belonging to that entry
 		// (with rc_type = RC_LOG, rc_log_type = upload).
 		$recentFileUpload = false;
-		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseFilePatrol
+		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {
 			// Retrieve timestamp of most recent upload
 			$newestUploadTimestamp = $dbr->selectField(
@@ -1304,7 +1308,7 @@ class Article implements Page {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		global $wgSend404Code;
+		$send404Code = MediaWikiServices::getInstance()->getMainConfig()->get( 'Send404Code' );
 
 		$outputPage = $this->getContext()->getOutput();
 		// Whether the page is a root user page of an existing user (but not a subpage)
@@ -1402,7 +1406,7 @@ class Article implements Page {
 			);
 		}
 
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
+		if ( !$this->mPage->hasViewableContent() && $send404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$this->getContext()->getRequest()->response()->statusHeader( 404 );

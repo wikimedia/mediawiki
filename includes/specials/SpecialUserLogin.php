@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements Special:UserLogin
@@ -102,7 +103,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	 * @param StatusValue|null $extraMessages
 	 */
 	protected function successfulAction( $direct = false, $extraMessages = null ) {
-		global $wgSecureLogin;
+		$secureLogin = MediaWikiServices::getInstance()->getMainConfig()->get( 'SecureLogin' );
 
 		$user = $this->targetUser ?: $this->getUser();
 		$session = $this->getRequest()->getSession();
@@ -115,7 +116,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 			if ( $user->requiresHTTPS() ) {
 				$this->mStickHTTPS = true;
 			}
-			$session->setForceHTTPS( $wgSecureLogin && $this->mStickHTTPS );
+			$session->setForceHTTPS( $secureLogin && $this->mStickHTTPS );
 
 			// If the user does not have a session cookie at this point, they probably need to
 			// do something to their browser.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Handler for bitmap images with exif metadata.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Stuff specific to JPEG and (built-in) TIFF handler.
@@ -83,8 +86,8 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return bool|int
 	 */
 	public function isFileMetadataValid( $image ) {
-		global $wgShowEXIF;
-		if ( !$wgShowEXIF ) {
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		if ( !$showEXIF ) {
 			# Metadata disabled and so an empty field is expected
 			return self::METADATA_GOOD;
 		}

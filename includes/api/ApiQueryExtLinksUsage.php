@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
@@ -19,6 +20,8 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup API
@@ -249,9 +252,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public static function prepareProtocols() {
-		global $wgUrlProtocols;
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()->get( 'UrlProtocols' );
 		$protocols = [ '' ];
-		foreach ( $wgUrlProtocols as $p ) {
+		foreach ( $urlProtocols as $p ) {
 			if ( $p !== '//' ) {
 				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
 			}
@@ -262,9 +265,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	public static function getProtocolPrefix( $protocol ) {
 		// Find the right prefix
-		global $wgUrlProtocols;
-		if ( $protocol && !in_array( $protocol, $wgUrlProtocols ) ) {
-			foreach ( $wgUrlProtocols as $p ) {
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()->get( 'UrlProtocols' );
+		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
+			foreach ( $urlProtocols as $p ) {
 				if ( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
 					$protocol = $p;
 					break;

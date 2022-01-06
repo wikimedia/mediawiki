@@ -927,7 +927,8 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
-				global $wgActorTableSchemaMigrationStage;
+				$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
+					->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
@@ -939,7 +940,7 @@ class InfoAction extends FormlessAction {
 				);
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 					$tables = [ 'revision' ];
 					$field = 'rev_actor';
 					$pageField = 'rev_page';

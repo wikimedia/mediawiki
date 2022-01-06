@@ -39,8 +39,9 @@ class OutputHandler {
 	 * @return string
 	 */
 	public static function handle( $s, $phase ) {
-		global $wgDisableOutputCompression, $wgMangleFlashPolicy;
-
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$disableOutputCompression = $config->get( 'DisableOutputCompression' );
+		$mangleFlashPolicy = $config->get( 'MangleFlashPolicy' );
 		// Don't send headers if output is being discarded (T278579)
 		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
 			$logger = LoggerFactory::getInstance( 'output' );
@@ -52,7 +53,7 @@ class OutputHandler {
 			return $s;
 		}
 
-		if ( $wgMangleFlashPolicy ) {
+		if ( $mangleFlashPolicy ) {
 			$s = self::mangleFlashPolicy( $s );
 		}
 
@@ -73,7 +74,7 @@ class OutputHandler {
 			// Compression is not disabled by the application entry point
 			!defined( 'MW_NO_OUTPUT_COMPRESSION' ) &&
 			// Compression is not disabled by site configuration
-			!$wgDisableOutputCompression
+			!$disableOutputCompression
 		) {
 			$s = self::handleGzip( $s );
 		}

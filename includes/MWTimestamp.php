@@ -171,9 +171,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @return MWTimestamp The local instance
 	 */
 	public static function getLocalInstance( $ts = false ) {
-		global $wgLocaltimezone;
+		$localtimezone = MediaWikiServices::getInstance()->getMainConfig()->get( 'Localtimezone' );
 		$timestamp = new self( $ts );
-		$timestamp->setTimezone( $wgLocaltimezone );
+		$timestamp->setTimezone( $localtimezone );
 		return $timestamp;
 	}
 }

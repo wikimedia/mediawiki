@@ -1526,11 +1526,12 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function prerenderThumbnails() {
-		global $wgUploadThumbnailRenderMap;
+		$uploadThumbnailRenderMap = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UploadThumbnailRenderMap' );
 
 		$jobs = [];
 
-		$sizes = $wgUploadThumbnailRenderMap;
+		$sizes = $uploadThumbnailRenderMap;
 		rsort( $sizes );
 
 		foreach ( $sizes as $size ) {

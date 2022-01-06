@@ -340,7 +340,7 @@ class McrUndoAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		global $wgUseRCPatrol;
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
 
 		if ( !$this->getRequest()->getCheck( 'wpSave' ) ) {
 			// Diff or preview
@@ -409,7 +409,7 @@ class McrUndoAction extends FormAction {
 
 			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
-			if ( $wgUseRCPatrol && $this->getContext()->getAuthority()
+			if ( $useRCPatrol && $this->getContext()->getAuthority()
 					->authorizeWrite( 'autopatrol', $this->getTitle() )
 			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );

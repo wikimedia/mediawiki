@@ -476,8 +476,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
-		global $wgMaxMsgCacheEntrySize, $wgAdaptiveMessageCache;
-
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
+		$adaptiveMessageCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'AdaptiveMessageCache' );
 		// (T164666) The query here performs really poorly on WMF's
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
@@ -487,7 +487,7 @@ class MessageCache implements LoggerAwareInterface {
 		$cache = [];
 
 		$mostused = []; // list of "<cased message key>/<code>"
-		if ( $wgAdaptiveMessageCache && $code !== $this->contLangCode ) {
+		if ( $adaptiveMessageCache && $code !== $this->contLangCode ) {
 			if ( !$this->cache->has( $this->contLangCode ) ) {
 				$this->load( $this->contLangCode );
 			}
@@ -517,12 +517,12 @@ class MessageCache implements LoggerAwareInterface {
 		$res = $dbr->select(
 			'page',
 			[ 'page_title', 'page_latest' ],
-			array_merge( $conds, [ 'page_len > ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
+			array_merge( $conds, [ 'page_len > ' . intval( $maxMsgCacheEntrySize ) ] ),
 			__METHOD__ . "($code)-big"
 		);
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
 			) {
 				$cache[$row->page_title] = '!TOO BIG';
 			}
@@ -554,7 +554,7 @@ class MessageCache implements LoggerAwareInterface {
 			$revQuery['tables'],
 			$revQuery['fields'],
 			array_merge( $conds, [
-				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ),
+				'page_len <= ' . intval( $maxMsgCacheEntrySize ),
 				'page_latest = rev_id' // get the latest revision only
 			] ),
 			__METHOD__ . "($code)-small",
@@ -568,7 +568,7 @@ class MessageCache implements LoggerAwareInterface {
 		$revisions = $result->isOK() ? $result->getValue() : [];
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
 			) {
 				try {
 					$rev = $revisions[$row->rev_id] ?? null;
@@ -698,7 +698,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @throws MWException
 	 */
 	public function refreshAndReplaceInternal( $code, array $replacements ) {
-		global $wgMaxMsgCacheEntrySize;
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
 
 		// Allow one caller at a time to avoid race conditions
 		$scopedLock = $this->getReentrantScopedLock(
@@ -734,7 +734,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
 			if ( !is_string( $text ) ) {
 				$cache[$title] = '!NONEXISTENT';
-			} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+			} elseif ( strlen( $text ) > $maxMsgCacheEntrySize ) {
 				$cache[$title] = '!TOO BIG';
 				$newBigTitles[$title] = $page->getLatest();
 			} else {

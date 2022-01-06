@@ -275,9 +275,9 @@ class ChangesList extends ContextSource {
 		static $flagInfos = null;
 
 		if ( $flagInfos === null ) {
-			global $wgRecentChangesFlags;
+			$recentChangesFlags = MediaWikiServices::getInstance()->getMainConfig()->get( 'RecentChangesFlags' );
 			$flagInfos = [];
-			foreach ( $wgRecentChangesFlags as $key => $value ) {
+			foreach ( $recentChangesFlags as $key => $value ) {
 				$flagInfos[$key]['letter'] = $value['letter'];
 				$flagInfos[$key]['title'] = $value['title'];
 				// Allow customized class name, fall back to flag name

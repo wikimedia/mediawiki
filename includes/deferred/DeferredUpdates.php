@@ -117,7 +117,7 @@ class DeferredUpdates {
 	 * @since 1.28 Added the $stage parameter
 	 */
 	public static function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
-		global $wgCommandLineMode;
+		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
 
 		self::getScopeStack()->current()->addUpdate( $update, $stage );
 		// If CLI mode is active and no RDBMs transaction round is in the way, then run all
@@ -125,7 +125,7 @@ class DeferredUpdates {
 		// RDBMs layer, but that do modify systems via deferred updates. This logic avoids
 		// excessive pending update queue sizes when long-running scripts never trigger the
 		// basic RDBMs hooks for running pending updates.
-		if ( $wgCommandLineMode ) {
+		if ( $commandLineMode ) {
 			self::tryOpportunisticExecute( 'run' );
 		}
 	}

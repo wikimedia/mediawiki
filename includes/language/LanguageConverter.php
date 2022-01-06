@@ -21,6 +21,7 @@
  * @author shinjiman <shinjiman@gmail.com>
  * @author PhiLiP <philip.npc@gmail.com>
  */
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -253,8 +254,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string[] Contains all valid variants
 	 */
 	final public function getVariants() {
-		global $wgDisabledVariants;
-		return array_diff( $this->getLanguageVariants(), $wgDisabledVariants );
+		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisabledVariants' );
+		return array_diff( $this->getLanguageVariants(), $disabledVariants );
 	}
 
 	/**
@@ -285,7 +286,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		global $wgDefaultLanguageVariant;
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
 
 		$req = $this->getURLVariant();
 
@@ -302,8 +303,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !$req ) {
-			$req = $this->validateVariant( $wgDefaultLanguageVariant );
+		if ( $defaultLanguageVariant && !$req ) {
+			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
 		$req = $this->validateVariant( $req );
@@ -323,7 +324,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The default variant code
 	 */
 	public function getDefaultVariant() {
-		global $wgDefaultLanguageVariant;
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
 
 		$req = $this->getURLVariant();
 
@@ -331,8 +332,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !$req ) {
-			$req = $this->validateVariant( $wgDefaultLanguageVariant );
+		if ( $defaultLanguageVariant && !$req ) {
+			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
 		if ( $req ) {
@@ -1090,7 +1091,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param bool $fromCache Load from memcached? Defaults to true.
 	 */
 	protected function loadTables( $fromCache = true ) {
-		global $wgLanguageConverterCacheType;
+		$languageConverterCacheType = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'LanguageConverterCacheType' );
 
 		if ( $this->mTablesLoaded ) {
 			return;
@@ -1099,7 +1101,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->mTablesLoaded = true;
 		// Do not use null as starting value, as that would confuse phan a lot.
 		$this->mTables = [];
-		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
+		$cache = ObjectCache::getInstance( $languageConverterCacheType );
 		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode() );
 		if ( $fromCache ) {
 			$this->mTables = $cache->get( $cacheKey );

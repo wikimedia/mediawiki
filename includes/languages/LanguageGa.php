@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Irish (Gaeilge) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Irish (Gaeilge)
  *
@@ -37,9 +40,9 @@ class LanguageGa extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['ga'][$case][$word] ) ) {
-			return $wgGrammarForms['ga'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['ga'][$case][$word] ) ) {
+			return $grammarForms['ga'][$case][$word];
 		}
 
 		switch ( $case ) {

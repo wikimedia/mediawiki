@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Kazakh (Қазақша) specific code.
  *
@@ -20,7 +23,6 @@
  * @file
  * @ingroup Language
  */
-
 /**
  * Kazakh (Қазақша)
  *
@@ -40,12 +42,12 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_cyrl( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['kk-kz'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-kz'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['kk-kz'][$case][$word] ) ) {
+			return $grammarForms['kk-kz'][$case][$word];
 		}
-		if ( isset( $wgGrammarForms['kk-cyrl'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-cyrl'][$case][$word];
+		if ( isset( $grammarForms['kk-cyrl'][$case][$word] ) ) {
+			return $grammarForms['kk-cyrl'][$case][$word];
 		}
 		// Set up some constants...
 		// Vowels in last syllable
@@ -272,12 +274,12 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_latn( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['kk-tr'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-tr'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['kk-tr'][$case][$word] ) ) {
+			return $grammarForms['kk-tr'][$case][$word];
 		}
-		if ( isset( $wgGrammarForms['kk-latn'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-latn'][$case][$word];
+		if ( isset( $grammarForms['kk-latn'][$case][$word] ) ) {
+			return $grammarForms['kk-latn'][$case][$word];
 		}
 		// Set up some constants...
 		// Vowels in last syllable
@@ -504,12 +506,12 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_arab( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['kk-cn'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-cn'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['kk-cn'][$case][$word] ) ) {
+			return $grammarForms['kk-cn'][$case][$word];
 		}
-		if ( isset( $wgGrammarForms['kk-arab'][$case][$word] ) ) {
-			return $wgGrammarForms['kk-arab'][$case][$word];
+		if ( isset( $grammarForms['kk-arab'][$case][$word] ) ) {
+			return $grammarForms['kk-arab'][$case][$word];
 		}
 		// Set up some constants...
 		// Vowels in last syllable

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Radio checkbox fields.
  *
@@ -77,7 +79,8 @@ class HTMLRadioField extends HTMLFormField {
 	}
 
 	public function formatOptions( $options, $value ) {
-		global $wgUseMediaWikiUIEverywhere;
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
 
 		$html = '';
 
@@ -92,7 +95,7 @@ class HTMLRadioField extends HTMLFormField {
 			} else {
 				$id = Sanitizer::escapeIdForAttribute( $this->mID . "-$info" );
 				$classes = [ 'mw-htmlform-flatlist-item' ];
-				if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
+				if ( $useMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 					$classes[] = 'mw-ui-radio';
 				}
 				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + [ 'id' => $id ] );

@@ -22,6 +22,7 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -109,8 +110,9 @@ class Html {
 	 * @return array Modified attributes array
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
-		global $wgUseMediaWikiUIEverywhere;
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-button';
@@ -136,8 +138,9 @@ class Html {
 	 * @return array Modified attributes array
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
-		global $wgUseMediaWikiUIEverywhere;
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-input';
@@ -993,10 +996,12 @@ class Html {
 	 */
 	public static function htmlHeader( array $attribs = [] ) {
 		$ret = '';
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$html5Version = $mainConfig->get( 'Html5Version' );
+		$mimeType = $mainConfig->get( 'MimeType' );
+		$xhtmlNamespaces = $mainConfig->get( 'XhtmlNamespaces' );
 
-		global $wgHtml5Version, $wgMimeType, $wgXhtmlNamespaces;
-
-		$isXHTML = self::isXmlMimeType( $wgMimeType );
+		$isXHTML = self::isXmlMimeType( $mimeType );
 
 		if ( $isXHTML ) { // XHTML5
 			// XML MIME-typed markup should have an xml header.
@@ -1007,15 +1012,15 @@ class Html {
 			$attribs['xmlns'] = 'http://www.w3.org/1999/xhtml';
 
 			// And support custom namespaces
-			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
+			foreach ( $xhtmlNamespaces as $tag => $ns ) {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		} else { // HTML5
 			$ret .= "<!DOCTYPE html>\n";
 		}
 
-		if ( $wgHtml5Version ) {
-			$attribs['version'] = $wgHtml5Version;
+		if ( $html5Version ) {
+			$attribs['version'] = $html5Version;
 		}
 
 		$ret .= self::openElement( 'html', $attribs );

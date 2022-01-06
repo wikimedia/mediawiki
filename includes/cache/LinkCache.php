@@ -382,7 +382,7 @@ class LinkCache implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public static function getSelectFields() {
-		global $wgPageLanguageUseDB;
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
 
 		$fields = array_merge(
 			PageStoreRecord::REQUIRED_FIELDS,
@@ -393,7 +393,7 @@ class LinkCache implements LoggerAwareInterface {
 			]
 		);
 
-		if ( $wgPageLanguageUseDB ) {
+		if ( $pageLanguageUseDB ) {
 			$fields[] = 'page_lang';
 		}
 

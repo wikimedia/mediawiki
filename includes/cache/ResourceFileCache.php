@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourceLoader request result caching in the file system.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup Cache
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * ResourceLoader request result caching in the file system.
@@ -64,8 +67,11 @@ class ResourceFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( ResourceLoaderContext $context ) {
-		global $wgUseFileCache, $wgDefaultSkin, $wgLanguageCode;
-		if ( !$wgUseFileCache ) {
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$useFileCache = $mainConfig->get( 'UseFileCache' );
+		$defaultSkin = $mainConfig->get( 'DefaultSkin' );
+		$languageCode = $mainConfig->get( 'LanguageCode' );
+		if ( !$useFileCache ) {
 			return false;
 		}
 		// Get all query values
@@ -74,9 +80,9 @@ class ResourceFileCache extends FileCacheBase {
 			if ( in_array( $query, [ 'modules', 'image', 'variant', 'version' ] ) ) {
 				// Use file cache regardless of the value of this parameter
 				continue;
-			} elseif ( $query === 'skin' && $val === $wgDefaultSkin ) {
+			} elseif ( $query === 'skin' && $val === $defaultSkin ) {
 				continue;
-			} elseif ( $query === 'lang' && $val === $wgLanguageCode ) {
+			} elseif ( $query === 'lang' && $val === $languageCode ) {
 				continue;
 			} elseif ( $query === 'only' && in_array( $val, [ 'styles', 'scripts' ] ) ) {
 				continue;

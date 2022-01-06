@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slovenian (Slovenščina) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Slovenian (Slovenščina)
  *
@@ -39,9 +42,9 @@ class LanguageSl extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['sl'][$case][$word] ) ) {
-			return $wgGrammarForms['sl'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['sl'][$case][$word] ) ) {
+			return $grammarForms['sl'][$case][$word];
 		}
 
 		switch ( $case ) {

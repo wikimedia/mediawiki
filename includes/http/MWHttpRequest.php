@@ -115,8 +115,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
-			global $wgHTTPTimeout;
-			$this->timeout = $wgHTTPTimeout;
+			$httpTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPTimeout' );
+			$this->timeout = $httpTimeout;
 		}
 		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
 			$this->connectTimeout = $options['connectTimeout'];
@@ -124,8 +124,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
-			global $wgHTTPConnectTimeout;
-			$this->connectTimeout = $wgHTTPConnectTimeout;
+			$httpConnectTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPConnectTimeout' );
+			$this->connectTimeout = $httpConnectTimeout;
 		}
 		if ( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
@@ -224,7 +224,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function proxySetup() {
-		global $wgHTTPProxy, $wgLocalHTTPProxy;
+		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPProxy' );
+		$localHTTPProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalHTTPProxy' );
 		// If proxies are disabled, clear any other proxy
 		if ( $this->noProxy ) {
 			$this->proxy = '';
@@ -239,11 +240,11 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		// Otherwise, fallback to $wgLocalHTTPProxy for local URLs
 		// or $wgHTTPProxy for everything else
 		if ( self::isLocalURL( $this->url ) ) {
-			if ( $wgLocalHTTPProxy !== false ) {
-				$this->setReverseProxy( $wgLocalHTTPProxy );
+			if ( $localHTTPProxy !== false ) {
+				$this->setReverseProxy( $localHTTPProxy );
 			}
 		} else {
-			$this->proxy = (string)$wgHTTPProxy;
+			$this->proxy = (string)$httpProxy;
 		}
 	}
 
@@ -284,9 +285,9 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	private static function isLocalURL( $url ) {
-		global $wgCommandLineMode, $wgLocalVirtualHosts;
-
-		if ( $wgCommandLineMode ) {
+		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
+		$localVirtualHosts = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalVirtualHosts' );
+		if ( $commandLineMode ) {
 			return false;
 		}
 
@@ -309,7 +310,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 					$domain = $domainPart . '.' . $domain;
 				}
 
-				if ( in_array( $domain, $wgLocalVirtualHosts ) ) {
+				if ( in_array( $domain, $localVirtualHosts ) ) {
 					return true;
 				}
 			}

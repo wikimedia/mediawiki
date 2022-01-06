@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Base class for the output of file transformation methods.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Media transform output for images
@@ -111,8 +114,12 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	public function toHtml( $options = [] ) {
-		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming,
-			$wgNativeImageLazyLoading, $wgParserEnableLegacyMediaDOM;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$priorityHints = $mainConfig->get( 'PriorityHints' );
+		$priorityHintsRatio = $mainConfig->get( 'PriorityHintsRatio' );
+		$elementTiming = $mainConfig->get( 'ElementTiming' );
+		$nativeImageLazyLoading = $mainConfig->get( 'NativeImageLazyLoading' );
+		$parserEnableLegacyMediaDOM = $mainConfig->get( 'ParserEnableLegacyMediaDOM' );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -129,7 +136,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt
 		];
 
-		if ( !$wgParserEnableLegacyMediaDOM ) {
+		if ( !$parserEnableLegacyMediaDOM ) {
 			$attribs['resource'] = $options['resource'] ?? $descLinkAttribs['href'];
 		}
 
@@ -138,13 +145,13 @@ class ThumbnailImage extends MediaTransformOutput {
 			'decoding' => 'async',
 		];
 
-		if ( $options['loading'] ?? $wgNativeImageLazyLoading ) {
+		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
 			$attribs['loading'] = $options['loading'] ?? 'lazy';
 		}
 
 		$elementTimingName = 'thumbnail';
 
-		if ( $wgPriorityHints
+		if ( $priorityHints
 			&& !self::$firstNonIconImageRendered
 			&& $this->width * $this->height > 100 * 100 ) {
 			self::$firstNonIconImageRendered = true;
@@ -152,7 +159,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			// Generate a random number between 0.01 and 1.0, included
 			$random = rand( 1, 100 ) / 100.0;
 
-			if ( $random <= $wgPriorityHintsRatio ) {
+			if ( $random <= $priorityHintsRatio ) {
 				$attribs['importance'] = 'high';
 				$elementTimingName = 'thumbnail-high';
 			} else {
@@ -161,7 +168,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			}
 		}
 
-		if ( $wgElementTiming ) {
+		if ( $elementTiming ) {
 			$attribs['elementtiming'] = $elementTimingName;
 		}
 

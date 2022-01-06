@@ -96,7 +96,7 @@ class LogPage {
 	 * @return int The log_id of the inserted log entry
 	 */
 	protected function saveContent() {
-		global $wgLogRestrictions;
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 
 		$dbw = wfGetDB( DB_PRIMARY );
 
@@ -133,7 +133,7 @@ class LogPage {
 			);
 		} elseif ( $this->sendToUDP ) {
 			# Don't send private logs to UDP
-			if ( isset( $wgLogRestrictions[$this->type] ) && $wgLogRestrictions[$this->type] != '*' ) {
+			if ( isset( $logRestrictions[$this->type] ) && $logRestrictions[$this->type] != '*' ) {
 				return $newId;
 			}
 
@@ -206,9 +206,9 @@ class LogPage {
 	 * @return string[]
 	 */
 	public static function validTypes() {
-		global $wgLogTypes;
+		$logTypes = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogTypes' );
 
-		return $wgLogTypes;
+		return $logTypes;
 	}
 
 	/**
@@ -237,11 +237,11 @@ class LogPage {
 	public static function actionText( $type, $action, $title = null, $skin = null,
 		$params = [], $filterWikilinks = false
 	) {
-		global $wgLang, $wgLogActions;
-
+		global $wgLang;
+		$logActions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActions' );
 		$key = "$type/$action";
 
-		if ( isset( $wgLogActions[$key] ) ) {
+		if ( isset( $logActions[$key] ) ) {
 			if ( $skin === null ) {
 				$langObj = MediaWikiServices::getInstance()->getContentLanguage();
 				$langObjOrNull = null;
@@ -252,28 +252,27 @@ class LogPage {
 				$langObjOrNull = $wgLang;
 			}
 			if ( $title === null ) {
-				$rv = wfMessage( $wgLogActions[$key] )->inLanguage( $langObj )->escaped();
+				$rv = wfMessage( $logActions[$key] )->inLanguage( $langObj )->escaped();
 			} else {
 				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
 					// @phan-suppress-next-line SecurityCheck-XSS
-					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )
+					$rv = wfMessage( $logActions[$key] )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
 					array_unshift( $params, $titleLink );
 
-					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $params )
+					$rv = wfMessage( $logActions[$key] )->rawParams( $params )
 							->inLanguage( $langObj )->escaped();
 				}
 			}
 		} else {
-			global $wgLogActionsHandlers;
+			$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActionsHandlers' );
 
-			if ( isset( $wgLogActionsHandlers[$key] ) ) {
+			if ( isset( $logActionsHandlers[$key] ) ) {
 				$args = func_get_args();
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
-				$rv = call_user_func_array( $wgLogActionsHandlers[$key], $args );
+				$rv = call_user_func_array( $logActionsHandlers[$key], $args );
 			} else {
 				wfDebug( "LogPage::actionText - unknown action $key" );
 				$rv = "$action";
@@ -442,10 +441,10 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getName() {
-		global $wgLogNames;
+		$logNames = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogNames' );
 
 		// BC
-		$key = $wgLogNames[$this->type] ?? 'log-name-' . $this->type;
+		$key = $logNames[$this->type] ?? 'log-name-' . $this->type;
 
 		return wfMessage( $key );
 	}
@@ -456,9 +455,9 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getDescription() {
-		global $wgLogHeaders;
+		$logHeaders = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogHeaders' );
 		// BC
-		$key = $wgLogHeaders[$this->type] ?? 'log-description-' . $this->type;
+		$key = $logHeaders[$this->type] ?? 'log-description-' . $this->type;
 
 		return wfMessage( $key );
 	}
@@ -469,10 +468,10 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getRestriction() {
-		global $wgLogRestrictions;
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 		// The empty string fallback will
 		// always return true in permission check
-		return $wgLogRestrictions[$this->type] ?? '';
+		return $logRestrictions[$this->type] ?? '';
 	}
 
 	/**

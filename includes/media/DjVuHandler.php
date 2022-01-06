@@ -20,6 +20,7 @@
  * @file
  * @ingroup Media
  */
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -41,8 +42,9 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool
 	 */
 	public function isEnabled() {
-		global $wgDjvuRenderer, $wgDjvuDump;
-		if ( !$wgDjvuRenderer || !$wgDjvuDump ) {
+		$djvuRenderer = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuRenderer' );
+		$djvuDump = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuDump' );
+		if ( !$djvuRenderer || !$djvuDump ) {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump" );
 
 			return false;
@@ -146,8 +148,8 @@ class DjVuHandler extends ImageHandler {
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
 	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgDjvuRenderer, $wgDjvuPostProcessor;
-
+		$djvuRenderer = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuRenderer' );
+		$djvuPostProcessor = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuPostProcessor' );
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -204,13 +206,13 @@ class DjVuHandler extends ImageHandler {
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
 		$cmd = '(' . Shell::escape(
-			$wgDjvuRenderer,
+			$djvuRenderer,
 			"-format=ppm",
 			"-page={$page}",
 			"-size={$params['physicalWidth']}x{$params['physicalHeight']}",
 			$srcPath );
-		if ( $wgDjvuPostProcessor ) {
-			$cmd .= " | {$wgDjvuPostProcessor}";
+		if ( $djvuPostProcessor ) {
+			$cmd .= " | {$djvuPostProcessor}";
 		}
 		$cmd .= ' > ' . Shell::escape( $dstPath ) . ') 2>&1';
 		wfDebug( __METHOD__ . ": $cmd" );
@@ -301,14 +303,14 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	public function getThumbType( $ext, $mime, $params = null ) {
-		global $wgDjvuOutputExtension;
+		$djvuOutputExtension = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuOutputExtension' );
 		static $mime;
 		if ( !isset( $mime ) ) {
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$mime = $magic->getMimeTypeFromExtensionOrNull( $wgDjvuOutputExtension );
+			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$mime = $magic->getMimeTypeFromExtensionOrNull( $djvuOutputExtension );
 		}
 
-		return [ $wgDjvuOutputExtension, $mime ];
+		return [ $djvuOutputExtension, $mime ];
 	}
 
 	public function getSizeAndMetadata( $state, $path ) {

@@ -276,14 +276,14 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getRedirectChain
 	 */
 	public function getRedirectChain() {
-		global $wgMaxRedirects;
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
 		$title = $this->getRedirectTarget();
 		if ( $title === null ) {
 			return null;
 		}
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		// recursive check to follow double redirects
-		$recurse = $wgMaxRedirects;
+		$recurse = $maxRedirects;
 		$titles = [ $title ];
 		while ( --$recurse > 0 ) {
 			if ( $title->isRedirect() ) {

@@ -454,14 +454,14 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 */
 	public function getTitle() {
-		global $wgForceUIMsgAsContentMsg;
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$lang = $this->getLanguage();
 		$title = $this->key;
 		if (
 			!$lang->equals( $contLang )
-			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
+			&& in_array( $this->key, (array)$forceUIMsgAsContentMsg )
 		) {
 			$title .= '/' . $lang->getCode();
 		}
@@ -842,8 +842,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Message $this
 	 */
 	public function inContentLanguage() {
-		global $wgForceUIMsgAsContentMsg;
-		if ( in_array( $this->key, (array)$wgForceUIMsgAsContentMsg ) ) {
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		if ( in_array( $this->key, (array)$forceUIMsgAsContentMsg ) ) {
 			return $this;
 		}
 

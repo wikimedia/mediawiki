@@ -95,7 +95,8 @@ abstract class ContentHandler {
 	 * @return string|null Textual form of the content, if available.
 	 */
 	public static function getContentText( Content $content = null ) {
-		global $wgContentHandlerTextFallback;
+		$contentHandlerTextFallback = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ContentHandlerTextFallback' );
 
 		if ( $content === null ) {
 			return '';
@@ -107,14 +108,14 @@ abstract class ContentHandler {
 
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
 
-		if ( $wgContentHandlerTextFallback == 'fail' ) {
+		if ( $contentHandlerTextFallback == 'fail' ) {
 			throw new MWException(
 				"Attempt to get text from Content with model " .
 				$content->getModel()
 			);
 		}
 
-		if ( $wgContentHandlerTextFallback == 'serialize' ) {
+		if ( $contentHandlerTextFallback == 'serialize' ) {
 			return $content->serialize();
 		}
 

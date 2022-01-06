@@ -156,18 +156,18 @@ class ChangeTags {
 	 * @return array Array of all defined/enabled tags.
 	 */
 	public static function getSoftwareTags( $all = false ) {
-		global $wgSoftwareTags;
+		$coreTags = MediaWikiServices::getInstance()->getMainConfig()->get( 'SoftwareTags' );
 		$softwareTags = [];
 
-		if ( !is_array( $wgSoftwareTags ) ) {
+		if ( !is_array( $coreTags ) ) {
 			wfWarn( 'wgSoftwareTags should be associative array of enabled tags.
 			Please refer to documentation for the list of tags you can enable' );
 			return $softwareTags;
 		}
 
 		$availableSoftwareTags = !$all ?
-			array_keys( array_filter( $wgSoftwareTags ) ) :
-			array_keys( $wgSoftwareTags );
+			array_keys( array_filter( $coreTags ) ) :
+			array_keys( $coreTags );
 
 		$softwareTags = array_intersect(
 			$availableSoftwareTags,
@@ -896,7 +896,7 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = ''
 	) {
-		global $wgUseTagFilter;
+		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseTagFilter' );
 
 		// Normalize to arrays
 		$tables = (array)$tables;
@@ -919,7 +919,7 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		if ( $wgUseTagFilter && $filter_tag ) {
+		if ( $useTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 			$tagTable = self::getDisplayTableName();

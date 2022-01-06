@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -120,9 +121,9 @@ class GIFHandler extends BitmapHandler {
 	 * @return bool
 	 */
 	public function canAnimateThumbnail( $file ) {
-		global $wgMaxAnimatedGifArea;
+		$maxAnimatedGifArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxAnimatedGifArea' );
 
-		return $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
+		return $this->getImageArea( $file ) <= $maxAnimatedGifArea;
 	}
 
 	public function getMetadataType( $image ) {

@@ -1258,7 +1258,7 @@ class EditPage implements IEditObject {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgDisableAnonTalk;
+		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisableAnonTalk' );
 
 		$content = false;
 
@@ -1401,7 +1401,7 @@ class EditPage implements IEditObject {
 									$undoIsAnon = $undorev->getUser() ?
 										!$undorev->getUser()->isRegistered() :
 										true;
-									$undoMessage = ( $undoIsAnon && $wgDisableAnonTalk ) ?
+									$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
 										'undo-summary-anon' :
 										'undo-summary';
 									$undoSummary = $this->context->msg(
@@ -1917,8 +1917,8 @@ class EditPage implements IEditObject {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
-		global $wgUseNPPatrol, $wgUseRCPatrol;
-
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
 			$status = Status::newFatal( 'hookaborted' );
@@ -2366,7 +2366,7 @@ class EditPage implements IEditObject {
 				);
 		}
 
-		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->page->exists() );
+		$needsPatrol = $useRCPatrol || ( $useNPPatrol && !$this->page->exists() );
 		if ( $needsPatrol && $this->context->getAuthority()
 				->authorizeWrite( 'autopatrol', $this->getTitle() )
 		) {
@@ -3802,11 +3802,11 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	public static function getCopyrightWarning( $title, $format = 'plain', $langcode = null ) {
-		global $wgRightsText;
-		if ( $wgRightsText ) {
+		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( 'RightsText' );
+		if ( $rightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',
 				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]',
-				$wgRightsText ];
+				$rightsText ];
 		} else {
 			$copywarnMsg = [ 'copyrightwarning2',
 				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];

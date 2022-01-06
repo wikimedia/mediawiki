@@ -24,6 +24,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -249,24 +250,24 @@ class DjVuImage {
 	 * @return array|null|false
 	 */
 	public function retrieveMetaData() {
-		global $wgDjvuDump, $wgDjvuTxt;
-
+		$djvuDump = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuDump' );
+		$djvuTxt = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuTxt' );
 		if ( !$this->isValid() ) {
 			return false;
 		}
 
-		if ( isset( $wgDjvuDump ) ) {
+		if ( isset( $djvuDump ) ) {
 			# djvudump is faster than djvutoxml (now abandoned) as of version 3.5
 			# https://sourceforge.net/p/djvu/bugs/71/
-			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
+			$cmd = Shell::escape( $djvuDump ) . ' ' . Shell::escape( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$json = [ 'data' => $this->convertDumpToJSON( $dump ) ];
 		} else {
 			$json = null;
 		}
 		# Text layer
-		if ( isset( $wgDjvuTxt ) ) {
-			$cmd = Shell::escape( $wgDjvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
+		if ( isset( $djvuTxt ) ) {
+			$cmd = Shell::escape( $djvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
