@@ -130,6 +130,14 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->assertSQL( 'SELECT * FROM a LEFT JOIN b ON ((aa=bb))' );
 	}
 
+	public function testStraightJoin() {
+		$this->sqb
+			->table( 'a' )
+			->straightJoin( 'b', 'b', 'aa=bb' )
+			->fields( '*' );
+		$this->assertSQL( 'SELECT * FROM a JOIN b ON ((aa=bb))' );
+	}
+
 	public function testAutoAliasedJoin() {
 		$this->sqb
 			->table( 'a' )
@@ -411,9 +419,9 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->assertSQL( 'EXPLAIN SELECT * FROM t' );
 	}
 
-	public function testStraightJoin() {
+	public function testStraightJoinOption() {
 		$this->sqb
-			->straightJoin()
+			->straightJoinOption()
 			->select( '1' )
 			->from( 't' );
 		$this->assertSQL( 'SELECT /*! STRAIGHT_JOIN */ 1 FROM t' );

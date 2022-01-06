@@ -3317,7 +3317,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( isset( $join_conds[$alias] ) ) {
 				Assert::parameterType( 'array', $join_conds[$alias], "join_conds[$alias]" );
 				list( $joinType, $conds ) = $join_conds[$alias];
-				$tableClause = $joinType;
+				$tableClause = $this->normalizeJoinType( $joinType );
 				$tableClause .= ' ' . $joinedTable;
 				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
 					$use = $this->useIndexClause( implode( ',', (array)$use_index[$alias] ) );
@@ -3367,6 +3367,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Compile our final table clause
 		return implode( ' ', [ $implicitJoins, $explicitJoins ] );
+	}
+
+	/**
+	 * Validate and normalize a join type
+	 *
+	 * Subclasses may override this to add supported join types.
+	 *
+	 * @param string $joinType
+	 * @return string
+	 */
+	protected function normalizeJoinType( string $joinType ) {
+		switch ( strtoupper( $joinType ) ) {
+			case 'JOIN':
+			case 'INNER JOIN':
+				return 'JOIN';
+
+			case 'LEFT JOIN':
+				return 'LEFT JOIN';
+
+			case 'STRAIGHT_JOIN':
+			case 'STRAIGHT JOIN':
+				// MySQL only
+				return 'JOIN';
+
+			default:
+				return $joinType;
+		}
 	}
 
 	/**

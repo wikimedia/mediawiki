@@ -542,11 +542,11 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
-	 * Enable the STRAIGHT_JOIN option.
+	 * Enable the STRAIGHT_JOIN query option.
 	 *
 	 * @return $this
 	 */
-	public function straightJoin() {
+	public function straightJoinOption() {
 		$this->options[] = 'STRAIGHT_JOIN';
 		return $this;
 	}
