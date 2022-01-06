@@ -339,7 +339,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 			$field = $form->getField( $name );
 			$globalDefault = $defaultOptions[$name] ?? null;
-			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
+			$prefFromUser = static::getPreferenceForField( $name, $field, $userOptions );
 
 			// If it validates, set it as the default
 			// FIXME: That's not how the validate() function works! Values of nested fields
@@ -361,8 +361,37 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
+	 * Get preference values for the 'default' param of html form descriptor, compatible
+	 * with nested fields.
+	 *
+	 * @since 1.41
+	 * @param string $name
+	 * @param HTMLFormField $field
+	 * @param array $userOptions
+	 * @return array|string
+	 */
+	public static function getPreferenceForField( $name, HTMLFormField $field, array $userOptions ) {
+		$val = $userOptions[$name] ?? null;
+
+		if ( $field instanceof \HTMLNestedFilterable ) {
+			$val = [];
+			$prefix = $field->mParams['prefix'] ?? $name;
+			// Fetch all possible preference keys of the given field on this wiki.
+			$keys = array_keys( $field->filterDataForSubmit( [] ) );
+			foreach ( $keys as $key ) {
+				if ( $userOptions[$prefix . $key] ?? false ) {
+					$val[] = $key;
+				}
+			}
+		}
+
+		return $val;
+	}
+
+	/**
 	 * Pull option from a user account. Handles stuff like array-type preferences.
 	 *
+	 * @deprecated 1.41 Use getPreferenceForField() instead.
 	 * @param string $name
 	 * @param array $info
 	 * @param array $userOptions
