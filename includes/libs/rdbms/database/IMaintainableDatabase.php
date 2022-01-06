@@ -276,6 +276,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $method Name of caller
 	 * @return bool
 	 * @since 1.29
+	 * @deprecated Since 1.38
 	 */
 	public function lockTables( array $read, array $write, $method );
 
@@ -287,6 +288,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $method The caller
 	 * @return bool
+	 * @deprecated Since 1.38
 	 * @since 1.29
 	 */
 	public function unlockTables( $method );

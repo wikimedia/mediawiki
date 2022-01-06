@@ -440,6 +440,9 @@ generic `mediawiki.pager.styles`.
   `updateAriaExpanded` in checkboxHack.js have been deprecated.
   `bindToggleOnSpaceEnter` has also been deprecated in favor of
   `bindToggleOnEnter`.
+* IDatabase::lockTables() and IDatabase::unlockTables() have been deprecated
+  with no replacement. Instead, callers should batch updates into atomic
+  transactions, using FOR UPDATE for SELECT queries.
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
