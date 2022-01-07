@@ -678,7 +678,7 @@
 	"userpage-userdoesnotexist-view": "Akaun pengguna \"$1\" tidak berdaftar.",
 	"blocked-notice-logextract": "{{GENDER:$1|user}} ini sedang disekat.\nMasukan log sekatan terakhir yang disediakan di bawah sebagai rujukan:",
 	"clearyourcache": "<strong>Catatan:</strong> Selepas menyiarkan perubahan, anda mungkin perlu memintas cache pelayar untuk melihatnya.\n* <strong>Firefox / Safari:</strong> Tahan <em>Shift</em> sambil mengklik <em>Reload</em>, atau tekan sama ada <em>Ctrl-F5</em> atau <em>Ctrl-R</em> (<em>⌘-R</em> pada Mac)\n* <strong>Google Chrome:</strong> Tekan <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> pada Mac)\n* <strong>Internet Explorer / Edge:</strong> Tahan <em>Ctrl</em> sambil mengklik <em>Refresh</em>, atau tekan <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Tekan <em>Ctrl-F5</em>.",
-	"usercssyoucanpreview": "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
+	"usercssyoucanpreview": "<strong>Petua:</strong> Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menerbit.",
 	"userjsonyoucanpreview": "<strong>Petua:</strong> Gunakan butang \"{{int:showpreview}}\" untuk menguji JSON baru anda sebelum menyimpan.",
 	"userjsyoucanpreview": "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
 	"usercsspreview": "<strong>Ingat bahawa anda hanya sedang melihat pralihat CSS peribadi anda. Laman ini belum lagi disimpan!</strong>",
