@@ -1538,3 +1538,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-StandardDialogs
 	branch = master
 	ignore = dirty
+[submodule "extensions/Patroller"]
+	path = extensions/Patroller
+	url = https://github.com/wikimedia/mediawiki-extensions-Patroller
+	branch = REL1_37
+	ignore = dirty
