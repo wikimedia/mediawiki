@@ -44,8 +44,6 @@ class LBFactoryMulti extends LBFactory {
 	private $sectionsByDB;
 	/** @var int[][][] Map of (main section => group => server name => load ratio) */
 	private $groupLoadsBySection;
-	/** @var int[][][] Map of (database => group => server name => load ratio) */
-	private $groupLoadsByDB;
 	/** @var int[][] Map of (external cluster => server name => load ratio) */
 	private $externalLoadsByCluster;
 	/** @var array Server config map ("host", "serverName", "load", and "groupLoads" ignored) */
@@ -89,7 +87,6 @@ class LBFactoryMulti extends LBFactory {
 	 *      listed in each section is the primary DB server for that section. [optional]
 	 *   - groupLoadsBySection: map of (main section => group => server name => group load ratio).
 	 *      Any ILoadBalancer::GROUP_GENERIC group will be ignored. [optional]
-	 *   - groupLoadsByDB: map of (database => group => server name => load ratio) map. [optional]
 	 *   - externalLoads: map of (cluster => server name => load ratio) map. [optional]
 	 *   - serverTemplate: server config map for Database::factory().
 	 *      Note that "host", "serverName" and "load" entries will be overridden by
@@ -119,7 +116,6 @@ class LBFactoryMulti extends LBFactory {
 		foreach ( ( $conf['sectionLoads'] ?? [] ) as $section => $loadsByServerName ) {
 			$this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] = $loadsByServerName;
 		}
-		$this->groupLoadsByDB = $conf['groupLoadsByDB'] ?? [];
 		$this->externalLoadsByCluster = $conf['externalLoads'] ?? [];
 		$this->serverTemplate = $conf['serverTemplate'] ?? [];
 		$this->externalTemplateOverrides = $conf['externalTemplateOverrides'] ?? [];
@@ -155,15 +151,13 @@ class LBFactoryMulti extends LBFactory {
 			throw new UnexpectedValueException( "Section '$section' has no hosts defined." );
 		}
 
-		$dbGroupLoads = $this->groupLoadsByDB[$database] ?? [];
-		unset( $dbGroupLoads[ILoadBalancer::GROUP_GENERIC] ); // cannot override
 		return $this->newLoadBalancer(
 			$section,
 			array_merge(
 				$this->serverTemplate,
 				$this->templateOverridesBySection[$section] ?? []
 			),
-			array_merge( $this->groupLoadsBySection[$section], $dbGroupLoads ),
+			$this->groupLoadsBySection[$section],
 			// Use the LB-specific read-only reason if everything isn't already read-only
 			is_string( $this->readOnlyReason )
 				? $this->readOnlyReason
