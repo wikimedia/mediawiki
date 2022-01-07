@@ -95,7 +95,6 @@ abstract class TablePager extends IndexPager {
 
 		$pout = new ParserOutput;
 		$pout->setText( $body );
-		$pout->addModuleStyles( $this->getModuleStyles() );
 		return $pout;
 	}
 
@@ -339,14 +338,12 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
-	 *
-	 * @stable to override
-	 * @since 1.24
-	 * @return string[]
+	 * @inheritDoc
 	 */
 	public function getModuleStyles() {
-		return [ 'mediawiki.pager.tablePager', 'oojs-ui.styles.icons-movement' ];
+		return array_merge(
+			parent::getModuleStyles(), [ 'oojs-ui.styles.icons-movement' ]
+		);
 	}
 
 	/**
