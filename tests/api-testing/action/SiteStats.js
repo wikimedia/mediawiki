@@ -21,12 +21,9 @@ describe( "Testing site statistics' edits value", function () {
 		assert.isNumber( variables.editsStats );
 	} );
 
-	it( 'should edit a page', async () => {
+	it( 'should GET an increased site edits stat after editing a page', async () => {
 		const title = utils.title( 'TestingSiteStats_' );
 		await wikiuser.edit( title, { text: 'testing site stats ...' } );
-	} );
-
-	it( 'should GET an increased site edits stat', async () => {
 		await wiki.runAllJobs();
 		const stats = await wikiuser.action( 'query', siteStatsParams );
 		const edits = parseInt( stats.query.statistics.edits, 10 );
