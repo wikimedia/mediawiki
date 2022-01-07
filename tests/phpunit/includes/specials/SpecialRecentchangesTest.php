@@ -166,4 +166,73 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		$this->assertStringContainsString( 'registered summary', $html );
 		$this->assertStringNotContainsString( 'anon summary', $html );
 	}
+
+	/**
+	 * This integration test just tries to run the isDenseFilter() queries, to
+	 * check for syntax errors etc. It doesn't verify the logic.
+	 */
+	public function testIsDenseTagFilter() {
+		$this->tablesUsed[] = 'change_tag_def';
+		$this->tablesUsed[] = 'change_tag';
+		ChangeTags::defineTag( 'rc-test-tag' );
+		$req = new FauxRequest();
+		$req->setVal( 'tagfilter', 'rc-test-tag' );
+		$page = $this->getPage();
+
+		// Make sure thresholds are passed
+		$page->denseRcSizeThreshold = 0;
+		$this->setMwGlobals( [ 'wgMiserMode' => true ] );
+
+		( new SpecialPageExecutor() )->executeSpecialPage( $page, '', $req );
+		$this->assertTrue( true );
+	}
+
+	public static function provideDenseTagFilter() {
+		return [
+			[ false ],
+			[ true ]
+		];
+	}
+
+	/**
+	 * This integration test injects the return value of isDenseFilter(),
+	 * verifying the correctness of the resulting STRAIGHT_JOIN.
+	 *
+	 * @dataProvider provideDenseTagFilter
+	 */
+	public function testDenseTagFilter( $dense ) {
+		$this->tablesUsed[] = 'change_tag_def';
+		$this->tablesUsed[] = 'change_tag';
+		ChangeTags::defineTag( 'rc-test-tag' );
+		$req = new FauxRequest();
+		$req->setVal( 'tagfilter', 'rc-test-tag' );
+
+		$page = new class (
+			$dense,
+			$this->getServiceContainer()->getWatchedItemStore(),
+			$this->getServiceContainer()->getMessageCache(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getUserOptionsLookup()
+		)  extends SpecialRecentChanges {
+			private $dense;
+
+			public function __construct(
+				$dense,
+				WatchedItemStoreInterface $watchedItemStore = null,
+				MessageCache $messageCache = null, \Wikimedia\Rdbms\ILoadBalancer $loadBalancer = null,
+				\MediaWiki\User\UserOptionsLookup $userOptionsLookup = null
+			) {
+				parent::__construct( $watchedItemStore, $messageCache, $loadBalancer,
+					$userOptionsLookup );
+				$this->dense = $dense;
+			}
+
+			protected function isDenseTagFilter( $tagIds, $limit ) {
+				return $this->dense;
+			}
+		};
+
+		( new SpecialPageExecutor() )->executeSpecialPage( $page, '', $req );
+		$this->assertTrue( true );
+	}
 }
