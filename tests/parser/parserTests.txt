@@ -13709,6 +13709,23 @@ c
 </p>
 !! end
 
+!! test
+Content after <tr> like wikitext should get fully processed
+!! wikitext
+x
+|- [[Foo]] and {{1x|bar}}
+y
+!! html/php
+<p>x
+|- <a href="/wiki/Foo" title="Foo">Foo</a> and bar
+y
+</p>
+!! html/parsoid
+<p>x
+|- <a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo"}}'>Foo</a> and <span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"bar"}},"i":0}}]}'>bar</span>
+y</p>
+!! end
+
 ###
 ### Testing parsing of templates where a template arg
 ### has the same name as the template itself.
