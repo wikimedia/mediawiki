@@ -755,7 +755,7 @@
 	/**
 	 * Queue the loading and execution of a script for a particular module.
 	 *
-	 * This does for debug mode what runScript() does for production.
+	 * This does for legacy debug mode what runScript() does for production.
 	 *
 	 * @private
 	 * @param {string} src URL of the script
