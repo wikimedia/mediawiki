@@ -922,34 +922,7 @@ class ChangeTags {
 		if ( $wgUseTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-
-			$tagTable = 'change_tag';
-			if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
-				$db = wfGetDB( DB_REPLICA );
-
-				if ( $db->getType() === 'mysql' ) {
-					// When filtering by tag, we are using the change_tag table twice:
-					// Once in a join for filtering, and once in a sub-query to list all
-					// tags for each revision. This does not work with temporary tables
-					// on some versions of MySQL, which causes phpunit tests to fail.
-					// As a hacky workaround, we copy the temporary table, and join
-					// against the copy. It is acknowledged that this is quite horrific.
-					// Discuss at T256006.
-
-					$tagTable = 'change_tag_for_display_query';
-					$db->query(
-						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
-						. ' LIKE ' . $db->tableName( 'change_tag' ),
-						__METHOD__
-					);
-					$db->query(
-						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
-						. ' SELECT * FROM ' . $db->tableName( 'change_tag' ),
-						__METHOD__
-					);
-				}
-			}
-
+			$tagTable = self::getDisplayTableName();
 			$tables[] = $tagTable;
 			$join_conds[$tagTable] = [ 'JOIN', $join_cond ];
 			$filterTagIds = [];
@@ -975,6 +948,44 @@ class ChangeTags {
 				$options[] = 'DISTINCT';
 			}
 		}
+	}
+
+	/**
+	 * Get the name of the change_tag table to use for modifyDisplayQuery().
+	 * This also does first-call initialisation of the table in testing mode.
+	 *
+	 * @return string
+	 */
+	public static function getDisplayTableName() {
+		$tagTable = 'change_tag';
+		if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
+			$db = wfGetDB( DB_REPLICA );
+
+			if ( $db->getType() === 'mysql' ) {
+				// When filtering by tag, we are using the change_tag table twice:
+				// Once in a join for filtering, and once in a sub-query to list all
+				// tags for each revision. This does not work with temporary tables
+				// on some versions of MySQL, which causes phpunit tests to fail.
+				// As a hacky workaround, we copy the temporary table, and join
+				// against the copy. It is acknowledged that this is quite horrific.
+				// Discuss at T256006.
+
+				$tagTable = 'change_tag_for_display_query';
+				if ( !$db->tableExists( $tagTable ) ) {
+					$db->query(
+						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
+						. ' LIKE ' . $db->tableName( 'change_tag' ),
+						__METHOD__
+					);
+					$db->query(
+						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
+						. ' SELECT * FROM ' . $db->tableName( 'change_tag' ),
+						__METHOD__
+					);
+				}
+			}
+		}
+		return $tagTable;
 	}
 
 	/**
