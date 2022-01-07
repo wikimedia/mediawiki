@@ -160,6 +160,8 @@ abstract class Skin extends ContextSource {
 				$this->msg( 'mainpage-title' ) :
 				$this->msg( 'mainpage-title-loggedin', $user->getName() );
 
+			// Treat as config and get from content language
+			$titleMsg->inContentLanguage();
 			$blankedHeading = $titleMsg->isBlank();
 			if ( !$titleMsg->isDisabled() ) {
 				$htmlTitle = $titleMsg->parse();
