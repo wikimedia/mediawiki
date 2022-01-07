@@ -659,8 +659,11 @@
 							label: Util.parseMsg( 'apisandbox-request-php-label' ),
 							copyText: '[\n' +
 								Object.keys( displayParams ).map( function ( param ) {
-									// displayParams is a diction or strings or numbers
-									return '\t' + JSON.stringify( param ) + ' => ' + JSON.stringify( displayParams[ param ] );
+									// displayParams is a dictionary of strings or numbers
+									return '\t' +
+										JSON.stringify( param ) +
+										' => ' +
+										JSON.stringify( displayParams[ param ] ).replace( /\$/g, '\\$' );
 								} ).join( ',\n' ) +
 								'\n]',
 							multiline: true,
