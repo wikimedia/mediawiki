@@ -1533,3 +1533,8 @@
 	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender
 	branch = master
 	ignore = dirty
+[submodule "extensions/StandardDialogs"]
+	path = extensions/StandardDialogs
+	url = https://github.com/wikimedia/mediawiki-extensions-StandardDialogs
+	branch = master
+	ignore = dirty
