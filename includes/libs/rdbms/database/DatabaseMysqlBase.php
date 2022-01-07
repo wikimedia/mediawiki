@@ -436,6 +436,17 @@ abstract class DatabaseMysqlBase extends Database {
 		return $result ?: false;
 	}
 
+	protected function normalizeJoinType( string $joinType ) {
+		switch ( strtoupper( $joinType ) ) {
+			case 'STRAIGHT_JOIN':
+			case 'STRAIGHT JOIN':
+				return 'STRAIGHT_JOIN';
+
+			default:
+				return parent::normalizeJoinType( $joinType );
+		}
+	}
+
 	/**
 	 * @param string $s
 	 * @return string

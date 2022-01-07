@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -674,6 +675,57 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		/** @var IDatabase $db */
 		$output = $db->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS SIGNED )', $output );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::normalizeJoinType
+	 */
+	public function testNormalizeJoinType() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [] )
+			->getMock();
+
+		TestingAccessWrapper::newFromObject( $db )->currentDomain =
+			new DatabaseDomain( null, null, '' );
+
+		/** @var IDatabase $db */
+		$sql = $db->selectSQLText(
+			[ 'a', 'b' ],
+			'aa',
+			[],
+			'',
+			[],
+			[ 'b' => [ 'STRAIGHT_JOIN', 'bb=aa' ] ]
+		);
+		$this->assertSame(
+			'SELECT  aa  FROM `a` STRAIGHT_JOIN `b` ON ((bb=aa))    ',
+			$sql
+		);
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::normalizeJoinType
+	 */
+	public function testNormalizeJoinTypeSqb() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [] )
+			->getMock();
+
+		TestingAccessWrapper::newFromObject( $db )->currentDomain =
+			new DatabaseDomain( null, null, '' );
+
+		/** @var IDatabase $db */
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'aa' )
+			->from( 'a' )
+			->straightJoin( 'b', null, [ 'bb=aa' ] )
+			->getSQL();
+		$this->assertSame(
+			'SELECT  aa  FROM `a` STRAIGHT_JOIN `b` ON ((bb=aa))    ',
+			$sql
+		);
 	}
 
 	/**

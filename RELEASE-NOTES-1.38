@@ -303,6 +303,7 @@ because of Phabricator reports.
   - ::$mHijriCalendarMonthMsgs → HIJRI_CALENDAR_MONTH_MESSAGES
 * wfIncrStats, deprecated since 1.36, has been removed.
 * Profiler::profileIn and ::profileOut, deprecated in 1.33, has been removed.
+* SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
 * …
 
 === Deprecations in 1.38 ===

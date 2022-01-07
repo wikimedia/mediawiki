@@ -83,6 +83,22 @@ abstract class JoinGroupBase {
 	}
 
 	/**
+	 * Straight join a table or group of tables. This should be called after table().
+	 *
+	 * @param string|JoinGroup|SelectQueryBuilder $table The table name, or a
+	 *   JoinGroup containing multiple tables, or a SelectQueryBuilder
+	 *   representing a subquery.
+	 * @param string|null $alias The alias name, or null to automatically
+	 *   generate an alias which will be unique to this builder
+	 * @param string|array $conds The conditions for the ON clause
+	 * @return $this
+	 */
+	public function straightJoin( $table, $alias = null, $conds = [] ) {
+		$this->addJoin( 'STRAIGHT_JOIN', $table, $alias, $conds );
+		return $this;
+	}
+
+	/**
 	 * Private helper for functions that add joins
 	 * @param string $type
 	 * @param string|JoinGroup|SelectQueryBuilder $table
