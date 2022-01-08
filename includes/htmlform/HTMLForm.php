@@ -780,25 +780,60 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use setPreHtml() instead
 	 */
 	public function setIntro( $msg ) {
-		$this->setPreText( $msg );
+		return $this->setPreHtml( $msg );
+	}
+
+	/**
+	 * Set the introductory message HTML, overwriting any existing message.
+	 *
+	 * @param string $html Complete HTML of message to display
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function setPreHtml( $html ) {
+		$this->mPre = $html;
 
 		return $this;
 	}
 
 	/**
+	 * Add HTML to introductory message.
+	 *
+	 * @param string $html Complete HTML of message to display
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function addPreHtml( $html ) {
+		$this->mPre .= $html;
+
+		return $this;
+	}
+
+	/**
+	 * Get the introductory message HTML.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	public function getPreHtml() {
+		return $this->mPre;
+	}
+
+	/**
 	 * Set the introductory message HTML, overwriting any existing message.
-	 * @since 1.19
 	 *
 	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use setPreHtml() instead
 	 */
 	public function setPreText( $msg ) {
-		$this->mPre = $msg;
-
-		return $this;
+		return $this->setPreHtml( $msg );
 	}
 
 	/**
@@ -807,22 +842,78 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use addPreHtml() instead
 	 */
 	public function addPreText( $msg ) {
-		$this->mPre .= $msg;
-
-		return $this;
+		return $this->addPreHtml( $msg );
 	}
 
 	/**
 	 * Get the introductory message HTML.
 	 *
 	 * @since 1.32
-	 *
 	 * @return string
+	 * @deprecated since 1.38, use getPreHtml() instead
 	 */
 	public function getPreText() {
-		return $this->mPre;
+		return $this->getPreHtml();
+	}
+
+	/**
+	 * Add HTML to the header, inside the form.
+	 *
+	 * @param string $html Additional HTML to display in header
+	 * @param string|null $section The section to add the header to
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function addHeaderHtml( $html, $section = null ) {
+		if ( $section === null ) {
+			$this->mHeader .= $html;
+		} else {
+			if ( !isset( $this->mSectionHeaders[$section] ) ) {
+				$this->mSectionHeaders[$section] = '';
+			}
+			$this->mSectionHeaders[$section] .= $html;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set header HTML, inside the form.
+	 *
+	 * @param string $html Complete HTML of header to display
+	 * @param string|null $section The section to add the header to
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function setHeaderHtml( $html, $section = null ) {
+		if ( $section === null ) {
+			$this->mHeader = $html;
+		} else {
+			$this->mSectionHeaders[$section] = $html;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Get header HTML.
+	 * @stable to override
+	 *
+	 * @param string|null $section The section to get the header text for
+	 * @since 1.38
+	 * @return string HTML
+	 */
+	public function getHeaderHtml( $section = null ) {
+		if ( $section === null ) {
+			return $this->mHeader;
+		} else {
+			return $this->mSectionHeaders[$section] ?? '';
+		}
 	}
 
 	/**
@@ -832,37 +923,24 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use addHeaderHtml() instead
 	 */
 	public function addHeaderText( $msg, $section = null ) {
-		if ( $section === null ) {
-			$this->mHeader .= $msg;
-		} else {
-			if ( !isset( $this->mSectionHeaders[$section] ) ) {
-				$this->mSectionHeaders[$section] = '';
-			}
-			$this->mSectionHeaders[$section] .= $msg;
-		}
-
-		return $this;
+		return $this->addHeaderHtml( $msg, $section );
 	}
 
 	/**
 	 * Set header text, inside the form.
-	 * @since 1.19
 	 *
 	 * @param string $msg Complete HTML of header to display
 	 * @param string|null $section The section to add the header to
 	 *
+	 * @since 1.19
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use setHeaderHtml() instead
 	 */
 	public function setHeaderText( $msg, $section = null ) {
-		if ( $section === null ) {
-			$this->mHeader = $msg;
-		} else {
-			$this->mSectionHeaders[$section] = $msg;
-		}
-
-		return $this;
+		return $this->setHeaderHtml( $msg, $section );
 	}
 
 	/**
@@ -872,12 +950,65 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to get the header text for
 	 * @since 1.26
 	 * @return string HTML
+	 * @deprecated since 1.38, use getHeaderHtml() instead
 	 */
 	public function getHeaderText( $section = null ) {
+		return $this->getHeaderHtml( $section );
+	}
+
+	/**
+	 * Add footer HTML, inside the form.
+	 *
+	 * @param string $html Complete text of message to display
+	 * @param string|null $section The section to add the footer text to
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function addFooterHtml( $html, $section = null ) {
 		if ( $section === null ) {
-			return $this->mHeader;
+			$this->mFooter .= $html;
 		} else {
-			return $this->mSectionHeaders[$section] ?? '';
+			if ( !isset( $this->mSectionFooters[$section] ) ) {
+				$this->mSectionFooters[$section] = '';
+			}
+			$this->mSectionFooters[$section] .= $html;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Set footer HTML, inside the form.
+	 *
+	 * @param string $html Complete text of message to display
+	 * @param string|null $section The section to add the footer text to
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function setFooterHtml( $html, $section = null ) {
+		if ( $section === null ) {
+			$this->mFooter = $html;
+		} else {
+			$this->mSectionFooters[$section] = $html;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Get footer HTML.
+	 *
+	 * @param string|null $section The section to get the footer text for
+	 * @since 1.38
+	 * @return string
+	 */
+	public function getFooterHtml( $section = null ) {
+		if ( $section === null ) {
+			return $this->mFooter;
+		} else {
+			return $this->mSectionFooters[$section] ?? '';
 		}
 	}
 
@@ -888,18 +1019,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use addFooterHtml() instead
 	 */
 	public function addFooterText( $msg, $section = null ) {
-		if ( $section === null ) {
-			$this->mFooter .= $msg;
-		} else {
-			if ( !isset( $this->mSectionFooters[$section] ) ) {
-				$this->mSectionFooters[$section] = '';
-			}
-			$this->mSectionFooters[$section] .= $msg;
-		}
-
-		return $this;
+		return $this->addFooterHtml( $msg, $section );
 	}
 
 	/**
@@ -910,15 +1033,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use setFooterHtml() instead
 	 */
 	public function setFooterText( $msg, $section = null ) {
-		if ( $section === null ) {
-			$this->mFooter = $msg;
-		} else {
-			$this->mSectionFooters[$section] = $msg;
-		}
-
-		return $this;
+		return $this->setFooterHtml( $msg, $section );
 	}
 
 	/**
@@ -927,13 +1045,48 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to get the footer text for
 	 * @since 1.26
 	 * @return string
+	 * @deprecated since 1.38, use getFooterHtml() instead
 	 */
 	public function getFooterText( $section = null ) {
-		if ( $section === null ) {
-			return $this->mFooter;
-		} else {
-			return $this->mSectionFooters[$section] ?? '';
-		}
+		return $this->getFooterHtml( $section );
+	}
+
+	/**
+	 * Add HTML to the end of the display.
+	 *
+	 * @param string $html Complete text of message to display
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function addPostHtml( $html ) {
+		$this->mPost .= $html;
+
+		return $this;
+	}
+
+	/**
+	 * Set HTML at the end of the display.
+	 *
+	 * @param string $html Complete text of message to display
+	 *
+	 * @since 1.38
+	 * @return $this for chaining calls
+	 */
+	public function setPostHtml( $html ) {
+		$this->mPost = $html;
+
+		return $this;
+	}
+
+	/**
+	 * Get HTML at the end of the display.
+	 *
+	 * @since 1.38
+	 * @return string HTML
+	 */
+	public function getPostHtml() {
+		return $this->mPost;
 	}
 
 	/**
@@ -942,11 +1095,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use addPostHtml() instead
 	 */
 	public function addPostText( $msg ) {
-		$this->mPost .= $msg;
-
-		return $this;
+		return $this->addPostHtml( $msg );
 	}
 
 	/**
@@ -955,11 +1107,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 * @deprecated since 1.38, use setPostHtml() instead
 	 */
 	public function setPostText( $msg ) {
-		$this->mPost = $msg;
-
-		return $this;
+		return $this->setPostHtml( $msg );
 	}
 
 	/**

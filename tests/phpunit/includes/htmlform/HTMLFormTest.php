@@ -62,6 +62,13 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $preText, $form->getPreText() );
 	}
 
+	public function testGetPreHtml() {
+		$preHtml = 'TEST';
+		$form = $this->newInstance();
+		$form->setPreHtml( $preHtml );
+		$this->assertSame( $preHtml, $form->getPreHtml() );
+	}
+
 	public function testGetErrorsOrWarningsWithRawParams() {
 		$form = $this->newInstance();
 		$msg = new RawMessage( 'message with $1' );

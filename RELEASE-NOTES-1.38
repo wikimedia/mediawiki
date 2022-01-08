@@ -412,6 +412,12 @@ generic `mediawiki.pager.styles`.
   `updateAriaExpanded` in checkboxHack.js have been deprecated.
   `bindToggleOnSpaceEnter` has also been deprecated in favor of
   `bindToggleOnEnter`.
+* The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
+  setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
+  getFooterText, setFooterText and addFooterText have been renamed to
+  getPreHtml, setPreHtml, addPreHtml, getPostHtml, setPostHtml, addPostHtml,
+  getHeaderHtml, setHeaderHtml, addHeaderHtml, getFooterHtml, setFooterHtml
+  and addFooterHtml respectively.
 * …
 
 === Other changes in 1.38 ===
