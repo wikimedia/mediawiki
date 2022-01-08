@@ -3798,26 +3798,33 @@ class EditPage implements IEditObject {
 	 *
 	 * @param Title $title
 	 * @param string $format Output format, valid values are any function of a Message object
-	 * @param Language|string|null $langcode Language code or Language object.
+	 * @param MessageLocalizer|Language|string|null $localizer Context for localisation messages.
+	 *   For backwards-compatibility, a Language object, or a string language code, or omitting the
+	 *   parameter is also allowed, but is deprecated.
 	 * @return string
 	 */
-	public static function getCopyrightWarning( $title, $format = 'plain', $langcode = null ) {
+	public static function getCopyrightWarning( $title, $format = 'plain', $localizer = null ) {
+		if ( !$localizer instanceof MessageLocalizer ) {
+			$context = RequestContext::getMain();
+			if ( $localizer !== null ) {
+				$context = new DerivativeContext( $context );
+				$context->setLanguage( $localizer );
+			}
+			$localizer = $context;
+		}
 		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( 'RightsText' );
 		if ( $rightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',
-				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]',
+				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]',
 				$rightsText ];
 		} else {
 			$copywarnMsg = [ 'copyrightwarning2',
-				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];
+				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 
-		$msg = wfMessage( ...$copywarnMsg )->page( $title );
-		if ( $langcode ) {
-			$msg->inLanguage( $langcode );
-		}
+		$msg = $localizer->msg( ...$copywarnMsg )->page( $title );
 		return "<div id=\"editpage-copywarn\">\n" .
 			$msg->$format() . "\n</div>";
 	}
