@@ -256,7 +256,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * The callback function returns the new value given the current value
 	 * (which will be false if not present), and takes the arguments:
 	 * (this BagOStuff, cache key, current value, TTL).
-	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
+	 * The TTL parameter is reference set to $exptime. It can be overridden in the callback.
 	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key

@@ -195,7 +195,7 @@ class MWException extends Exception {
 			self::header( 'Content-Type: text/html; charset=utf-8' );
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
-				// Mimick OutputPage::setPageTitle behaviour
+				// Mimic OutputPage::setPageTitle behaviour
 				'<title>' .
 				htmlspecialchars( $this->msg( 'pagetitle', "$1 - $wgSitename", $this->getPageTitle() ) ) .
 				'</title>' .

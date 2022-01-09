@@ -1052,7 +1052,7 @@ class MediaWiki {
 			in_array( http_response_code(), [ 200, 404 ], true ) &&
 			// The queue of (post-send) deferred updates is non-empty
 			DeferredUpdates::pendingUpdatesCount() &&
-			// Any buffered output is not spread out accross multiple output buffers
+			// Any buffered output is not spread out across multiple output buffers
 			ob_get_level() <= 1 &&
 			// It is not too late to set additional HTTP headers
 			!headers_sent()

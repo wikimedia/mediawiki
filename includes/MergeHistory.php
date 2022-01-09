@@ -496,7 +496,7 @@ class MergeHistory {
 			// revisions are now tied to a different title and its content model
 			// does not support redirects, so we cannot leave a new revision on it.
 			// This deletion does not depend on userright but may still fails. If it
-			// fails, it will be communicated in the status reponse.
+			// fails, it will be communicated in the status response.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
 			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
 			// Notify callers that the source page has been deleted.

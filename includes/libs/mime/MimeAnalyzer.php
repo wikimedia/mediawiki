@@ -916,7 +916,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 	/**
 	 * Internal MIME type detection. Detection is done using the fileinfo
-	 * extension if it is available. It can be overriden by callback, which could
+	 * extension if it is available. It can be overridden by callback, which could
 	 * use an external program, for example. If detection fails and $ext is not false,
 	 * the MIME type is guessed from the file extension, using getMimeTypeFromExtensionOrNull.
 	 *
