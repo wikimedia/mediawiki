@@ -106,7 +106,7 @@ class LegacyLogFormatter extends LogFormatter {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
 
-		// Do nothing. The implementation is handled by the hook modifiying the
+		// Do nothing. The implementation is handled by the hook modifying the
 		// passed-by-ref parameters. This also changes the default value so that
 		// getComment() and getActionLinks() do not call them indefinitely.
 		$this->revert = '';

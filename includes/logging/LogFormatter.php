@@ -612,7 +612,7 @@ class LogFormatter {
 	 *     * number: Format value as number
 	 *     * list: Format value as a comma-separated list
 	 * @param mixed $value The parameter value that should be formatted
-	 * @return string|array Formated value
+	 * @return string|array Formatted value
 	 * @since 1.21
 	 */
 	protected function formatParameterValue( $type, $value ) {
@@ -814,7 +814,7 @@ class LogFormatter {
 					true, // redContribsWhenNoEdits
 					$toolFlags,
 					$editCount,
-					// do not render parenthesises in the HTML markup (CSS will provide)
+					// do not render parentheses in the HTML markup (CSS will provide)
 					false
 				);
 			}

@@ -224,7 +224,7 @@ class LegacyLogger extends AbstractLogger {
 
 		if ( $channel === 'wfLogDBError' ) {
 			// wfLogDBError messages are emitted if a database log location is
-			// specfied.
+			// specified.
 			$shouldEmit = (bool)$wgDBerrorLog;
 
 		} elseif ( $channel === 'wfDebug' ) {
@@ -248,7 +248,7 @@ class LegacyLogger extends AbstractLogger {
 					$shouldEmit = $level >= self::$levelMapping[$logConfig['level']];
 				}
 			} else {
-				// Emit unless the config value is explictly false.
+				// Emit unless the config value is explicitly false.
 				$shouldEmit = $logConfig !== false;
 			}
 

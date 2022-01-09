@@ -245,7 +245,7 @@ class LoadMonitor implements ILoadMonitor {
 			// Scale from 0% to 100% of nominal weight
 			$weightScales[$i] = max( $newScale, 0.0 );
 
-			// Mark replication lag on this server as "false" if it is unreacheable
+			// Mark replication lag on this server as "false" if it is unreachable
 			if ( !$conn ) {
 				$lagTimes[$i] = $isPrimary ? 0 : false;
 				$this->replLogger->error(
