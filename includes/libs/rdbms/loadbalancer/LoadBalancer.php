@@ -384,7 +384,7 @@ class LoadBalancer implements ILoadBalancer {
 				$this->connLogger->info( __METHOD__ . ": CONN_TRX_AUTOCOMMIT disallowed ($type)" );
 			} elseif ( isset( $this->tempTablesOnlyMode[$domain] ) ) {
 				// T202116: integration tests are active and queries should be all be using
-				// temporary clone tables (via prefix). Such tables are not visible accross
+				// temporary clone tables (via prefix). Such tables are not visible across
 				// different connections nor can there be REPEATABLE-READ snapshot staleness,
 				// so use the same connection for everything.
 				$flags &= ~self::CONN_TRX_AUTOCOMMIT;
@@ -452,7 +452,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $i !== $this->getWriterIndex() ) {
 				# How much lag this server nominally is allowed to have
 				$maxServerLag = $this->servers[$i]['max lag'] ?? $this->maxLag; // default
-				# Constrain that futher by $maxLag argument
+				# Constrain that further by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
 				$srvName = $this->getServerName( $i );
@@ -2040,7 +2040,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Assure that if this instance is owned, the caller is either the owner or is internal
 	 *
 	 * If an LBFactory owns the LoadBalancer, then certain methods should only called through
-	 * that LBFactory to avoid broken contracts. Otherwise, those methods can publically be
+	 * that LBFactory to avoid broken contracts. Otherwise, those methods can publicly be
 	 * called by anything. In any case, internal methods from the LoadBalancer itself should
 	 * always be allowed.
 	 *

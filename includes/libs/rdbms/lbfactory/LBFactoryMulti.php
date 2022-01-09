@@ -84,7 +84,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $conf Additional parameters include:
 	 *   - hostsByName: map of (server name => IP address). [optional]
 	 *   - sectionsByDB: map of (database => main section). The database name "DEFAULT" is
-	 *      interpeted as a catch-all for all databases not otherwise mentioned. [optional]
+	 *      interpreted as a catch-all for all databases not otherwise mentioned. [optional]
 	 *   - sectionLoads: map of (main section => server name => load ratio); the first host
 	 *      listed in each section is the primary DB server for that section. [optional]
 	 *   - groupLoadsBySection: map of (main section => group => server name => group load ratio).
@@ -286,7 +286,7 @@ class LBFactoryMulti extends LBFactory {
 		$groupLoadsByServerName = $this->reindexGroupLoadsByServerName( $groupLoads );
 		// Get the ordered map of (server name => load); the primary DB server is first
 		$genericLoads = $groupLoads[ILoadBalancer::GROUP_GENERIC];
-		// Implictly append any hosts that only appear in custom load groups
+		// Implicitly append any hosts that only appear in custom load groups
 		$genericLoads += array_fill_keys( array_keys( $groupLoadsByServerName ), 0 );
 		$servers = [];
 		foreach ( $genericLoads as $serverName => $load ) {

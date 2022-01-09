@@ -36,7 +36,7 @@ class LanguageBe_tarask extends Language {
 	 * The Belarusian language uses apostrophe sign,
 	 * but the characters used for this could be both U+0027 and U+2019.
 	 * This function unifies apostrophe sign in search index values
-	 * to enable seach using both apostrophe signs.
+	 * to enable search using both apostrophe signs.
 	 *
 	 * @param string $string
 	 *

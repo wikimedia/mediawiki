@@ -40,7 +40,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * to generate image thumbnails or for uploading.
  *
  * Note that only the repo object knows what its file class is called. You should
- * never name a file class explictly outside of the repo class. Instead use the
+ * never name a file class explicitly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
  *
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
@@ -688,7 +688,7 @@ class LocalFile extends File {
 
 		// Normalize some fields to integer type, per their database definition.
 		// Use unary + so that overflows will be upgraded to double instead of
-		// being trucated as with intval(). This is important to allow > 2 GiB
+		// being truncated as with intval(). This is important to allow > 2 GiB
 		// files on 32-bit systems.
 		$this->size = +$unprefixed['size'];
 		$this->width = +$unprefixed['width'];

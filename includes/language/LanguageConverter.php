@@ -248,7 +248,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Get all valid variants for current Coverter. It uses abstract
+	 * Get all valid variants for current Converter. It uses abstract
 	 *
 	 * @return string[] Contains all valid variants
 	 */
@@ -524,7 +524,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$htmlfix = '|<[^>\004]++(?=\004$)|^[^<>]*+>';
 
 			// Optimize for the common case where these tags have
-			// few or no children. Thus try and possesively get as much as
+			// few or no children. Thus try and possessively get as much as
 			// possible, and only engage in backtracking when we hit a '<'.
 
 			// disable convert to variants between <code> tags
@@ -1253,7 +1253,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 				if ( count( $m ) != 2 ) {
 					continue;
 				}
-				// trim any trailling comments starting with '//'
+				// trim any trailing comments starting with '//'
 				$tt = explode( '//', $m[1], 2 );
 				$ret[trim( $m[0] )] = trim( $tt[0] );
 			}
@@ -1330,7 +1330,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	public function getVarSeparatorPattern() {
 		if ( $this->mVarSeparatorPattern === null ) {
 			// varsep_pattern for preg_split:
-			// text should be splited by ";" only if a valid variant
+			// text should be split by ";" only if a valid variant
 			// name exist after the markup, for example:
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
 			//  <span style="font-size:120%;">yyy</span>;}-

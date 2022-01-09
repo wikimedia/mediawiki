@@ -93,7 +93,7 @@ class LCStoreStaticArray implements LCStore {
 			return [ 'v', $value ];
 		}
 		if ( is_array( $value ) || is_object( $value ) ) {
-			// Type: [s]seralized.
+			// Type: [s]serialized.
 			// Optimization: Avoid recursive decoding cost. Write arrays with an objects
 			// as one serialised value.
 			return [ 's', serialize( $value ) ];
