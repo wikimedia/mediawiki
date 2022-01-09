@@ -1164,7 +1164,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// Send the requested additional headers
 		foreach ( $params['headers'] as $header ) {
-			header( $header ); // aways send
+			header( $header ); // always send
 		}
 
 		if ( empty( $params['allowOB'] ) ) {

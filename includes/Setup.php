@@ -87,7 +87,7 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 }
 
 // The MW_ENTRY_POINT constant must always exists, to make it safe to access.
-// For compat, we do support older and custom MW entryoints that don't set this,
+// For compat, we do support older and custom MW entrypoints that don't set this,
 // in which case we assign a default here.
 if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	/**

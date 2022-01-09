@@ -48,7 +48,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	/**
 	 * Send the standalone JavaScript payload.
 	 *
-	 * Loaded by the GUI (on Special:JavacriptTest), and by the CLI (via grunt-karma).
+	 * Loaded by the GUI (on Special:JavaScriptTest), and by the CLI (via grunt-karma).
 	 */
 	private function exportJS() {
 		$out = $this->getOutput();

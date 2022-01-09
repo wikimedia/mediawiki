@@ -750,7 +750,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * If the current row for a key exists and has an integral UNIX timestamp of expiration
 	 * greater than that of the provided modification timestamp, then the write to that key
-	 * will be aborted with a "false" result. Aquisition of advisory key locks must be handled
+	 * will be aborted with a "false" result. Acquisition of advisory key locks must be handled
 	 * by calling functions.
 	 *
 	 * In multi-primary mode, if the current row for a key exists and has a modification token
@@ -814,7 +814,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * If the current row for a key exists, has an integral UNIX timestamp of expiration greater
 	 * than that of the provided modification timestamp, and the CAS token does not match, then
-	 * the write to that key will be aborted with a "false" result. Aquisition of advisory key
+	 * the write to that key will be aborted with a "false" result. Acquisition of advisory key
 	 * locks must be handled by calling functions.
 	 *
 	 * In multi-primary mode, if the current row for a key exists and has a modification token

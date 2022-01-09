@@ -349,7 +349,7 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Shows the "view X deleted revivions link""
+	 * Shows the "view X deleted revisions link""
 	 */
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );

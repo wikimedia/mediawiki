@@ -158,7 +158,7 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 			$result = [];
 			// This was an authentication request for work requests...
 			if ( $this->applyAuthResponse( $firstReq ) ) {
-				// If it succeeded, we can subsitute the work requests back.
+				// If it succeeded, we can substitute the work requests back.
 				// Call this recursively in order to munge and add headers.
 				$result = $this->onRequests( $firstReq['chain'], $idGeneratorFunc );
 			} else {

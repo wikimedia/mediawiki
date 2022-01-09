@@ -276,7 +276,7 @@ class SiteConfiguration {
 			}
 		}
 
-		// Type-safe string replacemens, don't do replacements on non-strings.
+		// Type-safe string replacements, don't do replacements on non-strings.
 		if ( is_string( $retval ) ) {
 			$retval = strtr( $retval, $params['replacements'] );
 		} elseif ( is_array( $retval ) ) {
@@ -611,7 +611,7 @@ class SiteConfiguration {
 					// It is important that we generally preserve numerical keys and only
 					// fallback to appending values if there are conflicts. This is needed
 					// by configuration variables that hold associative arrays with
-					// meaningul numerical keys, such as $wgNamespacesWithSubpages,
+					// meaningful numerical keys, such as $wgNamespacesWithSubpages,
 					// $wgNamespaceProtection, $wgNamespacesToBeSearchedDefault, etc.
 					$out[] = $value;
 				} elseif ( $out[$key] === false ) {

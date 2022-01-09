@@ -356,7 +356,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * parse the fake title format that this special page abuses querycache with.
 	 *
 	 * @param string $fakeTitle A string formatted as <media type>;<mime type>;<count>;<bytes>
-	 * @return array The constituant parts of $fakeTitle
+	 * @return array The constituent parts of $fakeTitle
 	 */
 	private function splitFakeTitle( $fakeTitle ) {
 		return explode( ';', $fakeTitle, 4 );

@@ -69,7 +69,7 @@ class SearchHighlighter {
 			return '';
 		}
 
-		// spli text into text + templates/links/tables
+		// split text into text + templates/links/tables
 		$spat = "/(\\{\\{)|(\\[\\[[^\\]:]+:)|(\n\\{\\|)";
 		// first capture group is for detecting nested templates/links/tables/references
 		$endPatterns = [
@@ -283,7 +283,7 @@ class SearchHighlighter {
 			} elseif ( $last + 1 == $index
 				&& $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] )
 			) {
-				$extract .= " " . $line; // continous lines
+				$extract .= " " . $line; // continuous lines
 			} else {
 				$extract .= '<b> ... </b>' . $line;
 			}
