@@ -426,7 +426,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * split up handling of individual modules. Including it here would massively fragment
 	 * the cache and decrease its usefulness.
 	 *
-	 * E.g. Used by RequestFileCache to form a cache key for storing the reponse output.
+	 * E.g. Used by RequestFileCache to form a cache key for storing the response output.
 	 *
 	 * @return string
 	 */

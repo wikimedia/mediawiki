@@ -955,7 +955,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Respond with HTTP 304 Not Modified if appropiate.
+	 * Respond with HTTP 304 Not Modified if appropriate.
 	 *
 	 * If there's an If-None-Match header, respond with a 304 appropriately
 	 * and clear out the output buffer. If the client cache is too old then do nothing.

@@ -21,7 +21,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
+ * Helper class to handle automatically marking connections as reusable (via RAII pattern)
  *
  * This class simply wraps the Redis class and can be used the same way
  *
@@ -144,7 +144,7 @@ class RedisConnRef implements LoggerAwareInterface {
 
 	/**
 	 * Key Scan
-	 * Handle this explicity due to needing the iterator passed by reference.
+	 * Handle this explicitly due to needing the iterator passed by reference.
 	 * See: https://github.com/phpredis/phpredis#scan
 	 *
 	 * @param int &$iterator
@@ -158,7 +158,7 @@ class RedisConnRef implements LoggerAwareInterface {
 
 	/**
 	 * Set Scan
-	 * Handle this explicity due to needing the iterator passed by reference.
+	 * Handle this explicitly due to needing the iterator passed by reference.
 	 * See: https://github.com/phpredis/phpredis#sScan
 	 *
 	 * @param string $key
@@ -173,7 +173,7 @@ class RedisConnRef implements LoggerAwareInterface {
 
 	/**
 	 * Hash Scan
-	 * Handle this explicity due to needing the iterator passed by reference.
+	 * Handle this explicitly due to needing the iterator passed by reference.
 	 * See: https://github.com/phpredis/phpredis#hScan
 	 *
 	 * @param string $key
@@ -188,7 +188,7 @@ class RedisConnRef implements LoggerAwareInterface {
 
 	/**
 	 * Sorted Set Scan
-	 * Handle this explicity due to needing the iterator passed by reference.
+	 * Handle this explicitly due to needing the iterator passed by reference.
 	 * See: https://github.com/phpredis/phpredis#hScan
 	 *
 	 * @param string $key

@@ -39,7 +39,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	private const DB_READONLY_ERROR = 'The watchlist is currently readonly.';
 
 	/**
-	 * Initialy set WatchedItemStore that will be used in cases where writing is not needed.
+	 * Initially set WatchedItemStore that will be used in cases where writing is not needed.
 	 * @param WatchedItemStoreInterface $actualStore
 	 */
 	public function __construct( WatchedItemStoreInterface $actualStore ) {

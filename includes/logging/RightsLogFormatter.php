@@ -149,7 +149,7 @@ class RightsLogFormatter extends LogFormatter {
 		}
 
 		// place all temporary memberships first, to avoid the ambiguity of
-		// "adinistrator, bureaucrat and importer (temporary, until X time)"
+		// "administrator, bureaucrat and importer (temporary, until X time)"
 		return $uiLanguage->listToText( array_merge( $tempList, $permList ) );
 	}
 

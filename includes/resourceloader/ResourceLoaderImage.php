@@ -144,7 +144,7 @@ class ResourceLoaderImage {
 	}
 
 	/**
-	 * @internal For unit testing overrride
+	 * @internal For unit testing override
 	 * @param string $lang
 	 * @return string[]
 	 */

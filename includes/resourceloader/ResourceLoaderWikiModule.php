@@ -484,7 +484,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		// T70488: For other modules (i.e. ones that are called in cached html output) only check
-		// page existance. This ensures that, if some pages in a module are temporarily blanked,
+		// page existence. This ensures that, if some pages in a module are temporarily blanked,
 		// we don't end omit the module's script or link tag on some pages.
 		return count( $revisions ) === 0;
 	}

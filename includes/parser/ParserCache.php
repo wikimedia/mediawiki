@@ -292,7 +292,7 @@ class ParserCache {
 	 *
 	 * @param PageRecord $page
 	 * @param ParserOptions $options
-	 * @param array|null $usedOptions Defaults to all cache verying options.
+	 * @param array|null $usedOptions Defaults to all cache varying options.
 	 * @return string
 	 * @internal
 	 * @since 1.36
