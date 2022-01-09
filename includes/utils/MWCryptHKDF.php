@@ -1,6 +1,6 @@
 <?php
 /**
- * Extract-and-Expand Key Derivation Function (HKDF). A cryptographicly
+ * Extract-and-Expand Key Derivation Function (HKDF). A cryptographically
  * secure key expansion function based on RFC 5869.
  *
  * This relies on the secrecy of $wgSecretKey (by default), or $wgHKDFSecret.
@@ -46,7 +46,7 @@ class MWCryptHKDF {
 	 * RFC5869 defines HKDF in 2 steps, extraction and expansion.
 	 * From http://eprint.iacr.org/2010/264.pdf:
 	 *
-	 * The scheme HKDF is specifed as:
+	 * The scheme HKDF is specified as:
 	 *   HKDF(XTS, SKM, CTXinfo, L) = K(1) || K(2) || ... || K(t)
 	 * where the values K(i) are defined as follows:
 	 *   PRK = HMAC(XTS, SKM)

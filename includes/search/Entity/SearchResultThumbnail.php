@@ -44,7 +44,7 @@ class SearchResultThumbnail {
 	private $height;
 
 	/**
-	 * String that represent file indentity in storage or null
+	 * String that represent file identity in storage or null
 	 * @var string|null
 	 */
 	private $name;
@@ -127,7 +127,7 @@ class SearchResultThumbnail {
 	}
 
 	/**
-	 * String that represent file indentity in storage or null
+	 * String that represent file identity in storage or null
 	 * @return string|null
 	 */
 	public function getName(): ?string {

@@ -81,7 +81,7 @@ class ScopedLock {
 	}
 
 	/**
-	 * Release a scoped lock and set any errors in the attatched StatusValue object.
+	 * Release a scoped lock and set any errors in the attached StatusValue object.
 	 * This is useful for early release of locks before function scope is destroyed.
 	 * This is the same as setting the lock object to null.
 	 *

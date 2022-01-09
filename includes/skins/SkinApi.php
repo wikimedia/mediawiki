@@ -33,6 +33,6 @@ class SkinApi extends SkinMustache {
 	/**
 	 * Extension of class methods is discouraged.
 	 * Developers are encouraged to improve the flexibility of SkinMustache
-	 * whereever possible.
+	 * wherever possible.
 	 */
 }

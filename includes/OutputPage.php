@@ -3123,7 +3123,7 @@ class OutputPage extends ContextSource {
 				'nonce' => $this->CSP->getNonce(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
 				// to only restrict modules to ORIGIN_CORE (ie. disallow ORIGIN_USER), the list of
-				// modules enqueud for loading on this page is filtered to just those.
+				// modules enqueued for loading on this page is filtered to just those.
 				// However, to make sure we also apply the restriction to dynamic dependencies and
 				// lazy-loaded modules at run-time on the client-side, pass 'safemode' down to the
 				// StartupModule so that the client-side registry will not contain any restricted
@@ -3248,7 +3248,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Explicily load or embed modules on a page.
+	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant

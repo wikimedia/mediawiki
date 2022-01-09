@@ -2122,7 +2122,7 @@ class RevisionStore
 	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
 	 *                         all slots are fetched
 	 *               'blobs' - whether the serialized content of each slot should be loaded.
-	 *                        If true, the serialiezd content will be present in the slot row
+	 *                        If true, the serialized content will be present in the slot row
 	 *                        in the blob_data field.
 	 * @param int $queryFlags
 	 *

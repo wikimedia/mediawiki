@@ -426,7 +426,7 @@ class SkinTemplate extends Skin {
 	 * build array of urls for personal toolbar
 	 * Please ensure setupTemplateContext is called before calling
 	 * this method.
-	 * @param bool $includeNotifications Sinc 1.36, notifications are optional
+	 * @param bool $includeNotifications Since 1.36, notifications are optional
 	 * @return array
 	 */
 	protected function buildPersonalUrls( bool $includeNotifications = true ) {
@@ -1127,7 +1127,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Run hooks relating to navigation menu data.
 	 * Skins should extend this if they want to run opinionated transformations to the data after all
-	 * hooks have been run. Note hooks are run in an arbitary order.
+	 * hooks have been run. Note hooks are run in an arbitrary order.
 	 *
 	 * @param SkinTemplate $skin
 	 * @param array &$content_navigation representing all menus.

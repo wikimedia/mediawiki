@@ -127,7 +127,7 @@ abstract class Skin extends ContextSource {
 	 * template data.
 	 *
 	 * The data keys should be valid English words. Compound words should
-	 * be hypenated except if they are normally written as one word. Each
+	 * be hyphenated except if they are normally written as one word. Each
 	 * key should be prefixed with a type hint, this may be enforced by the
 	 * class PHPUnit test.
 	 *

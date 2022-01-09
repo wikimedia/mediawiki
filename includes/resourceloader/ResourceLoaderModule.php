@@ -290,7 +290,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * The default behavior is to return a `load.php?only=scripts&module=<name>` URL.
 	 *
-	 * Module classes that merely wrap one or more other script files in prodution mode, may
+	 * Module classes that merely wrap one or more other script files in production mode, may
 	 * override this method to return an array of raw URLs for those underlying scripts,
 	 * if those are individually web-accessible.
 	 *
@@ -494,11 +494,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the indirect dependencies for this module persuant to the skin/language context
+	 * Get the indirect dependencies for this module pursuant to the skin/language context
 	 *
 	 * These are only image files referenced by the module's stylesheet
 	 *
-	 * If niether setFileDependencies() nor setDependencyLoadCallback() was called, this
+	 * If neither setFileDependencies() nor setDependencyLoadCallback() was called, this
 	 * will simply return a placeholder with an empty file list
 	 *
 	 * @see ResourceLoader::setFileDependencies()
@@ -525,7 +525,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set the indirect dependencies for this module persuant to the skin/language context
+	 * Set the indirect dependencies for this module pursuant to the skin/language context
 	 *
 	 * These are only image files referenced by the module's stylesheet
 	 *
@@ -541,7 +541,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Save the indirect dependencies for this module persuant to the skin/language context
+	 * Save the indirect dependencies for this module pursuant to the skin/language context
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @param string[] $curFileRefs List of newly computed indirect file dependencies
@@ -987,7 +987,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Check whether this module should be embeded rather than linked
+	 * Check whether this module should be embedded rather than linked
 	 *
 	 * Modules returning true here will be embedded rather than loaded by
 	 * ResourceLoaderClientHtml.

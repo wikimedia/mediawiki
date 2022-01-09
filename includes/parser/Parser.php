@@ -5992,7 +5992,7 @@ class Parser {
 			$revObject = $this->getRevisionRecordObject();
 
 			# if this variable is subst: the revision id will be blank,
-			# so just use the parser input size, because the own substituation
+			# so just use the parser input size, because the own substitution
 			# will change the size.
 			if ( $revObject ) {
 				$this->mRevisionSize = $revObject->getSize();
@@ -6138,7 +6138,7 @@ class Parser {
 	 * string and leaves only the resultant text (i.e. the result of
 	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
 	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
-	 * to create valid section anchors by mimicing the output of the
+	 * to create valid section anchors by mimicking the output of the
 	 * parser when headings are parsed.
 	 *
 	 * @param string $text Text string to be stripped of wikitext

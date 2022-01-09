@@ -38,7 +38,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 *   - forwardCookies : cookies to forward to RESTBase/Parsoid (as a Cookie
 	 *                       header string) or false (optional)
 	 *                       Note: forwardCookies will in the future be a boolean
-	 *                       only, signifing request cookies should be forwarded
+	 *                       only, signifying request cookies should be forwarded
 	 *                       to the service; the current state is due to the way
 	 *                       VE handles this particular parameter
 	 *   - HTTPProxy      : HTTP proxy to use (optional)

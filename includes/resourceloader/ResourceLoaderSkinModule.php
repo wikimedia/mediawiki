@@ -196,7 +196,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * Default for when the 'features' parameter is absent.
 	 *
-	 * For backward-compatiblity, when the parameter is not declared
+	 * For backward-compatibility, when the parameter is not declared
 	 * only 'logo' and 'legacy' styles are loaded.
 	 *
 	 * @var string[]
@@ -546,7 +546,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	}
 
 	/**
-	 * Modifies configured logo width/height to ensure they are present and scaleable
+	 * Modifies configured logo width/height to ensure they are present and scalable
 	 * with different font-sizes.
 	 * @param array $logoElement with width, height and src keys.
 	 * @return array modified version of $logoElement

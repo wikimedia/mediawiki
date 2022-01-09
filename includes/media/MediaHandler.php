@@ -816,7 +816,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Long description. Shown under image on image description page surounded by ().
+	 * Long description. Shown under image on image description page surrounded by ().
 	 *
 	 * @stable to override
 	 *

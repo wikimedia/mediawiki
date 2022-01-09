@@ -165,7 +165,7 @@ abstract class Password {
 	/**
 	 * Convert this hash to a string that can be stored in the database
 	 *
-	 * The resulting string should be considered the seralized representation
+	 * The resulting string should be considered the serialized representation
 	 * of this hash, i.e., if the return value were recycled back into
 	 * PasswordFactory::newFromCiphertext, the returned object would be equivalent to
 	 * this; also, if two objects return the same value from this function, they

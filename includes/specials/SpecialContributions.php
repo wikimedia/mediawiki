@@ -605,7 +605,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$sp->msg( 'sp-contributions-logs' )->text()
 			);
 
-			# Add link to deleted user contributions for priviledged users
+			# Add link to deleted user contributions for privileged users
 			# Todo: T183457
 			if ( $permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(

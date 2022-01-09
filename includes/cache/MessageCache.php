@@ -617,7 +617,7 @@ class MessageCache implements LoggerAwareInterface {
 	private function isLanguageLoaded( $lang ) {
 		// It is important that this only returns true if the cache was fully
 		// populated by load(), so that callers can assume all cache keys exist.
-		// It is possible for $this->cache to be only patially populated through
+		// It is possible for $this->cache to be only partially populated through
 		// methods like MessageCache::replace(), which must not make this method
 		// return true (T208897). And this method must cease to return true
 		// if the language was evicted by MapCacheLRU (T230690).

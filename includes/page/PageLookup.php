@@ -7,7 +7,7 @@ use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 
 /**
- * Service interface for looking up infermation about wiki pages
+ * Service interface for looking up information about wiki pages
  *
  * @since 1.36
  */

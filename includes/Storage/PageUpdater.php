@@ -1263,7 +1263,7 @@ class PageUpdater {
 				return $status->fatal( 'edit-conflict' );
 			}
 
-			// At this point we are now comitted to returning an OK
+			// At this point we are now committed to returning an OK
 			// status unless some DB query error or other exception comes up.
 			// This way callers don't have to call rollback() if $status is bad
 			// unless they actually try to catch exceptions (which is rare).
@@ -1394,7 +1394,7 @@ class PageUpdater {
 			return $status->fatal( 'edit-already-exists' );
 		}
 
-		// At this point we are now comitted to returning an OK
+		// At this point we are now committed to returning an OK
 		// status unless some DB query error or other exception comes up.
 		// This way callers don't have to call rollback() if $status is bad
 		// unless they actually try to catch exceptions (which is rare).

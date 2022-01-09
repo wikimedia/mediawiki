@@ -82,7 +82,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 			} else {
 				if ( !isset( $cacheInfo['args'] ) ) {
 					// B/C for when $cacheInfo was for ObjectCache::newFromParams().
-					// Callers intenting this to be for ObjectFactory::getObjectFromSpec
+					// Callers intending this to be for ObjectFactory::getObjectFromSpec
 					// should have set "args" per the docs above. Doings so avoids extra
 					// (likely harmless) params (factory/class/calls) ending up in "args".
 					$cacheInfo['args'] = [ $cacheInfo ];

@@ -538,7 +538,7 @@ class MysqlInstaller extends DatabaseInstaller {
 							$grantableNames[] = $fullName;
 							break;
 						} else {
-							// If we couldn't create for some bizzare reason and the
+							// If we couldn't create for some bizarre reason and the
 							// user probably doesn't exist, skip the grant
 							$this->db->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getMessage() );

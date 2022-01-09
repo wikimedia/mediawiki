@@ -610,7 +610,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$options = [];
 		foreach ( [
-			// The following properties are omitted because they don't affect the module reponse:
+			// The following properties are omitted because they don't affect the module response:
 			// - localBasePath (Per T104950; Changes when absolute directory name changes. If
 			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
 			// - remoteBasePath (Per T104950)
@@ -955,7 +955,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the contents of a list of JavaScript files. Helper for getScript().
 	 *
-	 * @param string[] $scripts List of file paths to scripts to read, remap and concetenate
+	 * @param string[] $scripts List of file paths to scripts to read, remap and concatenate
 	 * @return string Concatenated JavaScript data from $scripts
 	 * @throws RuntimeException
 	 */

@@ -91,7 +91,7 @@ class SpecialPage implements MessageLocalizer {
 	private $specialPageFactory;
 
 	/**
-	 * Get the users prefered search page.
+	 * Get the users preferred search page.
 	 *
 	 * It will fall back to Special:Search if the preference points to a page
 	 * that doesn't exist or is not defined.

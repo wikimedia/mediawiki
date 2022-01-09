@@ -135,7 +135,7 @@ class MWExceptionHandler {
 			try {
 				$services->getDBLoadBalancerFactory()->rollbackPrimaryChanges( __METHOD__ );
 			} catch ( DBError $e2 ) {
-				// If the DB is unreacheable, rollback() will throw an error
+				// If the DB is unreachable, rollback() will throw an error
 				// and the error report() method might need messages from the DB,
 				// which would result in an exception loop. PHP may escalate such
 				// errors to "Exception thrown without a stack frame" fatals, but
@@ -444,7 +444,7 @@ TXT;
 	 *
 	 * @since 1.26
 	 * @param array $trace Stacktrace
-	 * @return array Stacktrace with arugment values converted to data types
+	 * @return array Stacktrace with argument values converted to data types
 	 */
 	public static function redactTrace( array $trace ) {
 		return array_map( static function ( $frame ) {
@@ -603,7 +603,7 @@ TXT;
 		if ( $e instanceof ErrorException &&
 			( error_reporting() & $e->getSeverity() ) === 0
 		) {
-			// Flag surpressed errors
+			// Flag suppressed errors
 			$data['suppressed'] = true;
 		}
 
@@ -750,7 +750,7 @@ TXT;
 			);
 		}
 
-		// Include all errors in the json log (surpressed errors will be flagged)
+		// Include all errors in the json log (suppressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
@@ -758,7 +758,7 @@ TXT;
 			// and emits messages even if wikimedia/at-ease was used to suppress the
 			// error. To avoid clobbering Logstash dashboards with these, make sure
 			// those have their level casted to DEBUG so that they are excluded by
-			// level-based filteres automatically instead of requiring a dedicated filter
+			// level-based filters automatically instead of requiring a dedicated filter
 			// for this channel. To be improved: T193472.
 			$unfilteredLevel = $suppressed ? LogLevel::DEBUG : $level;
 			$logger->log( $unfilteredLevel, $json, [ 'private' => true ] );

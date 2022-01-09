@@ -955,7 +955,7 @@ class SpecialBlock extends FormSpecialPage {
 		$a = XmlSelect::parseOptionsMessage( $msg );
 
 		if ( $a && $includeOther ) {
-			// if options exist, add other to the end instead of the begining (which
+			// if options exist, add other to the end instead of the beginning (which
 			// is what happens by default).
 			$a[ wfMessage( 'ipbother' )->text() ] = 'other';
 		}

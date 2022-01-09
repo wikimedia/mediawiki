@@ -1200,7 +1200,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * Returns the main WAN cache, yielding EmptyBagOStuff if there is none
 	 *
-	 * The cache should relay any purge operations to all datacenterss
+	 * The cache should relay any purge operations to all datacenters
 	 *
 	 * @since 1.28
 	 * @return WANObjectCache

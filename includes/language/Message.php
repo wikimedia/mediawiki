@@ -1280,7 +1280,7 @@ class Message implements MessageSpecifier, Serializable {
 		// A temporary marker for $1 parameters that is only valid
 		// in non-attribute contexts. However if the entire message is escaped
 		// then we don't want to use it because it will be mangled in all contexts
-		// and its unnessary as ->escaped() messages aren't html.
+		// and its unnecessary as ->escaped() messages aren't html.
 		$marker = $format === self::FORMAT_ESCAPED ? '$' : '$\'"';
 		$replacementKeys = [];
 		foreach ( $this->parameters as $n => $param ) {

@@ -161,7 +161,7 @@ class MWExceptionRenderer {
 			$pageTitle = self::msg( 'internalerror', 'Internal error' );
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
-				// Mimick OutputPage::setPageTitle behaviour
+				// Mimic OutputPage::setPageTitle behaviour
 				'<title>' .
 				htmlspecialchars( self::msg( 'pagetitle', "$1 - $wgSitename", $pageTitle ) ) .
 				'</title>' .
