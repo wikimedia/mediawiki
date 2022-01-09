@@ -418,6 +418,8 @@ generic `mediawiki.pager.styles`.
   getPreHtml, setPreHtml, addPreHtml, getPostHtml, setPostHtml, addPostHtml,
   getHeaderHtml, setHeaderHtml, addHeaderHtml, getFooterHtml, setFooterHtml
   and addFooterHtml respectively.
+* The FormSpecialPage methods preText and postText have been renamed to
+  preHtml and postHtml respectively.
 * …
 
 === Other changes in 1.38 ===
