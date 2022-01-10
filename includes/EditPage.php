@@ -1455,15 +1455,9 @@ class EditPage implements IEditObject {
 			if ( $content === false ) {
 				// Custom preload text for new sections
 				$preload = $this->section === 'new' ? 'MediaWiki:addsection-preload' : '';
-				$params = [];
-
-				// T297725: Don't trick users into making edits to e.g. .js subpages
-				if ( $this->mTitle->hasContentModel( CONTENT_MODEL_WIKITEXT ) ) {
-					$preload = $request->getVal( 'preload', $preload );
-					$params = $request->getArray( 'preloadparams', $params );
-				}
-
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getVal does not return null here
+				$preload = $request->getVal( 'preload', $preload );
+				'@phan-var string $preload';
+				$params = $request->getArray( 'preloadparams', [] );
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
@@ -1750,7 +1744,8 @@ class EditPage implements IEditObject {
 	private function getPreloadedContent( string $preload, array $params ): Content {
 		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 
-		if ( $preload === '' ) {
+		// T297725: Don't trick users into making edits to e.g. .js subpages
+		if ( !$handler->supportsPreloadContent() || $preload === '' ) {
 			return $handler->makeEmptyContent();
 		}
 

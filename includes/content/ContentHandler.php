@@ -1265,6 +1265,20 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * If a non-existing page can be created with the contents from another (arbitrary) page being
+	 * preloaded in the editor, see {@see EditPage::getContentObject}. Only makes sense together
+	 * with {@see supportsDirectEditing}.
+	 *
+	 * @stable to override
+	 * @since 1.39
+	 *
+	 * @return bool
+	 */
+	public function supportsPreloadContent(): bool {
+		return false;
+	}
+
+	/**
 	 * Whether an edit on the content should trigger an HTML render and ParserCache entry.
 	 *
 	 * @stable to override

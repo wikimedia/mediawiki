@@ -55,6 +55,16 @@ class JsonContentHandler extends CodeContentHandler {
 		return new $class( '{}' );
 	}
 
+	/**
+	 * Enables EditPage's preload feature on .json pages as well as for extensions like MassMessage
+	 * that subclass {@see JsonContentHandler}.
+	 *
+	 * @return true
+	 */
+	public function supportsPreloadContent(): bool {
+		return true;
+	}
+
 	public function preSaveTransform(
 		Content $content,
 		PreSaveTransformParams $pstParams
