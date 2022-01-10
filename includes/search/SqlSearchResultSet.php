@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -52,7 +53,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		if ( $this->results === null ) {
 			$this->results = [];
 			$this->resultSet->rewind();
-			$terms = \MediaWiki\MediaWikiServices::getInstance()->getContentLanguage()
+			$terms = MediaWikiServices::getInstance()->getContentLanguage()
 				->convertForSearchResult( $this->terms );
 			while ( ( $row = $this->resultSet->fetchObject() ) !== false ) {
 				$result = new SqlSearchResult(

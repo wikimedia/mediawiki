@@ -194,8 +194,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return string
 	 */
 	public static function getSeparator() {
-		global $wgUserrightsInterwikiDelimiter;
-		return $wgUserrightsInterwikiDelimiter;
+		$userrightsInterwikiDelimiter = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UserrightsInterwikiDelimiter' );
+		return $userrightsInterwikiDelimiter;
 	}
 
 	/**
@@ -303,9 +304,9 @@ class BotPassword implements IDBAccessObject {
 	public static function invalidateAllPasswordsForCentralId( $centralId ) {
 		wfDeprecated( __METHOD__, '1.37' );
 
-		global $wgEnableBotPasswords;
+		$enableBotPasswords = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableBotPasswords' );
 
-		if ( !$wgEnableBotPasswords ) {
+		if ( !$enableBotPasswords ) {
 			return false;
 		}
 
@@ -341,9 +342,9 @@ class BotPassword implements IDBAccessObject {
 	public static function removeAllPasswordsForCentralId( $centralId ) {
 		wfDeprecated( __METHOD__, '1.37' );
 
-		global $wgEnableBotPasswords;
+		$enableBotPasswords = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableBotPasswords' );
 
-		if ( !$wgEnableBotPasswords ) {
+		if ( !$enableBotPasswords ) {
 			return false;
 		}
 
@@ -402,9 +403,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return Status On success, the good status's value is the new Session object
 	 */
 	public static function login( $username, $password, WebRequest $request ) {
-		global $wgEnableBotPasswords, $wgPasswordAttemptThrottle;
-
-		if ( !$wgEnableBotPasswords ) {
+		$enableBotPasswords = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableBotPasswords' );
+		$passwordAttemptThrottle = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordAttemptThrottle' );
+		if ( !$enableBotPasswords ) {
 			return Status::newFatal( 'botpasswords-disabled' );
 		}
 
@@ -431,8 +432,8 @@ class BotPassword implements IDBAccessObject {
 		}
 
 		$throttle = null;
-		if ( !empty( $wgPasswordAttemptThrottle ) ) {
-			$throttle = new Throttler( $wgPasswordAttemptThrottle, [
+		if ( !empty( $passwordAttemptThrottle ) ) {
+			$throttle = new Throttler( $passwordAttemptThrottle, [
 				'type' => 'botpassword',
 				'cache' => ObjectCache::getLocalClusterInstance(),
 			] );

@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -44,7 +45,8 @@ class RevisionDeleteUser {
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false;
@@ -76,7 +78,7 @@ class RevisionDeleteUser {
 			# write stage, because the stage determines how we find the rows to
 			# delete. The write stage determines whether or not to write to
 			# rev_actor and revision_actor_temp which is not relevant here.
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
 				$ids = $dbw->selectFieldValues(
 					'revision_actor_temp', 'revactor_rev', [ 'revactor_actor' => $actorId ], __METHOD__
 				);

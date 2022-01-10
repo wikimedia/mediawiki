@@ -2207,10 +2207,13 @@ class Parser {
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, LinkTarget $title = null ) {
-		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$noFollowLinks = $mainConfig->get( 'NoFollowLinks' );
+		$noFollowNsExceptions = $mainConfig->get( 'NoFollowNsExceptions' );
+		$noFollowDomainExceptions = $mainConfig->get( 'NoFollowDomainExceptions' );
 		$ns = $title ? $title->getNamespace() : false;
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions )
-			&& !wfMatchesDomainList( $url, $wgNoFollowDomainExceptions )
+		if ( $noFollowLinks && !in_array( $ns, $noFollowNsExceptions )
+			&& !wfMatchesDomainList( $url, $noFollowDomainExceptions )
 		) {
 			return 'nofollow';
 		}

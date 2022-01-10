@@ -109,9 +109,9 @@ class CssContentHandler extends CodeContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		global $wgTextModelsToParse;
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get( 'TextModelsToParse' );
 		'@phan-var CssContent $content';
-		if ( in_array( $content->getModel(), $wgTextModelsToParse ) ) {
+		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
 			$output = MediaWikiServices::getInstance()->getParser()
 				->parse(

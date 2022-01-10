@@ -592,10 +592,10 @@ class LocalRepo extends FileRepo {
 	 * @since 1.22
 	 */
 	public function getInfo() {
-		global $wgFavicon;
+		$favicon = MediaWikiServices::getInstance()->getMainConfig()->get( 'Favicon' );
 
 		return array_merge( parent::getInfo(), [
-			'favicon' => wfExpandUrl( $wgFavicon ),
+			'favicon' => wfExpandUrl( $favicon ),
 		] );
 	}
 

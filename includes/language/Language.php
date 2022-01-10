@@ -497,18 +497,21 @@ class Language {
 	 */
 	public function getNamespaces() {
 		if ( $this->namespaceNames === null ) {
-			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
-
+			$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+			$metaNamespace = $mainConfig->get( 'MetaNamespace' );
+			$metaNamespaceTalk = $mainConfig->get( 'MetaNamespaceTalk' );
+			$extraNamespaces = $mainConfig->get( 'ExtraNamespaces' );
 			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCanonicalNamespaces();
 
-			$this->namespaceNames = $wgExtraNamespaces +
+			$this->namespaceNames = $extraNamespaces +
 				$this->localisationCache->getItem( $this->mCode, 'namespaceNames' );
+			// @phan-suppress-next-line PhanTypeInvalidLeftOperand
 			$this->namespaceNames += $validNamespaces;
 
-			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
-			if ( $wgMetaNamespaceTalk ) {
-				$this->namespaceNames[NS_PROJECT_TALK] = $wgMetaNamespaceTalk;
+			$this->namespaceNames[NS_PROJECT] = $metaNamespace;
+			if ( $metaNamespaceTalk ) {
+				$this->namespaceNames[NS_PROJECT_TALK] = $metaNamespaceTalk;
 			} else {
 				$talk = $this->namespaceNames[NS_PROJECT_TALK];
 				$this->namespaceNames[NS_PROJECT_TALK] =
@@ -607,9 +610,9 @@ class Language {
 	 * @since 1.18
 	 */
 	public function getGenderNsText( $index, $gender ) {
-		global $wgExtraGenderNamespaces;
+		$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
 
-		$ns = $wgExtraGenderNamespaces +
+		$ns = $extraGenderNamespaces +
 			(array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 
 		return $ns[$index][$gender] ?? $this->getNsText( $index );
@@ -622,11 +625,12 @@ class Language {
 	 * @since 1.18
 	 */
 	public function needsGenderDistinction() {
-		global $wgExtraGenderNamespaces, $wgExtraNamespaces;
-		if ( count( $wgExtraGenderNamespaces ) > 0 ) {
+		$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
+		$extraNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraNamespaces' );
+		if ( count( $extraGenderNamespaces ) > 0 ) {
 			// $wgExtraGenderNamespaces overrides everything
 			return true;
-		} elseif ( isset( $wgExtraNamespaces[NS_USER] ) && isset( $wgExtraNamespaces[NS_USER_TALK] ) ) {
+		} elseif ( isset( $extraNamespaces[NS_USER] ) && isset( $extraNamespaces[NS_USER_TALK] ) ) {
 			// @todo There may be other gender namespace than NS_USER & NS_USER_TALK in the future
 			// $wgExtraNamespaces overrides any gender aliases specified in i18n files
 			return false;
@@ -670,8 +674,8 @@ class Language {
 				}
 			}
 
-			global $wgExtraGenderNamespaces;
-			$genders = $wgExtraGenderNamespaces + (array)$this->localisationCache
+			$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
+			$genders = $extraGenderNamespaces + (array)$this->localisationCache
 				->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
 				foreach ( $forms as $alias ) {
@@ -694,8 +698,8 @@ class Language {
 
 			// In the case of conflicts between $wgNamespaceAliases and other sources
 			// of aliasing, $wgNamespaceAliases wins.
-			global $wgNamespaceAliases;
-			$this->namespaceAliases = $wgNamespaceAliases + $this->namespaceAliases;
+			$namespaceAliases = MediaWikiServices::getInstance()->getMainConfig()->get( 'NamespaceAliases' );
+			$this->namespaceAliases = $namespaceAliases + $this->namespaceAliases;
 
 			# Filter out aliases to namespaces that don't exist, e.g. from extensions
 			# that aren't loaded here but are included in the l10n cache.
@@ -788,8 +792,8 @@ class Language {
 	public function getDefaultDateFormat() {
 		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
-			global $wgAmericanDates;
-			return $wgAmericanDates ? 'mdy' : 'dmy';
+			$americanDates = MediaWikiServices::getInstance()->getMainConfig()->get( 'AmericanDates' );
+			return $americanDates ? 'mdy' : 'dmy';
 		} else {
 			return $df;
 		}
@@ -2061,7 +2065,7 @@ class Language {
 	 * @return string
 	 */
 	public function userAdjust( $ts, $tz = false ) {
-		global $wgLocalTZoffset;
+		$localTZoffset = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalTZoffset' );
 
 		if ( $tz === false ) {
 			$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
@@ -2087,7 +2091,7 @@ class Language {
 
 		if ( $data[0] == 'System' || $tz == '' ) {
 			# Global offset in minutes.
-			$minDiff = $wgLocalTZoffset;
+			$minDiff = $localTZoffset;
 		} elseif ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
@@ -2672,9 +2676,10 @@ class Language {
 	 * @return string
 	 */
 	protected function mbUpperChar( $char ) {
-		global $wgOverrideUcfirstCharacters;
+		$overrideUcfirstCharacters = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'OverrideUcfirstCharacters' );
 
-		return $wgOverrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
+		return $overrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
 	}
 
 	/**
@@ -2957,11 +2962,11 @@ class Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		global $wgAllUnicodeFixes;
+		$allUnicodeFixes = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllUnicodeFixes' );
 
 		$s = UtfNormal\Validator::cleanUp( $s );
 		// Optimization: This is disabled by default to avoid negative performance impact.
-		if ( $wgAllUnicodeFixes ) {
+		if ( $allUnicodeFixes ) {
 			$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeAr::class, $s );
 			$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeMl::class, $s );
 		}
@@ -3194,7 +3199,7 @@ class Language {
 	private function formatNumInternal(
 		string $number, bool $noTranslate, bool $noSeparators
 	): string {
-		global $wgTranslateNumerals;
+		$translateNumerals = MediaWikiServices::getInstance()->getMainConfig()->get( 'TranslateNumerals' );
 
 		if ( $number === '' ) {
 			return $number;
@@ -3230,7 +3235,7 @@ class Language {
 			$separatorTransformTable = $this->separatorTransformTable();
 			$digitGroupingPattern = $this->digitGroupingPattern();
 			$code = $this->getCode();
-			if ( !( $wgTranslateNumerals && $this->langNameUtils->isValidCode( $code ) ) ) {
+			if ( !( $translateNumerals && $this->langNameUtils->isValidCode( $code ) ) ) {
 				$code = 'C'; // POSIX system default locale
 			}
 
@@ -3305,7 +3310,7 @@ class Language {
 		}
 
 		if ( !$noTranslate ) {
-			if ( $wgTranslateNumerals ) {
+			if ( $translateNumerals ) {
 				// This is often unnecessary: PHP's NumberFormatter will often
 				// do the digit transform itself (T267614)
 				$s = $this->digitTransformTable();
@@ -3828,9 +3833,9 @@ class Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
-			return $wgGrammarForms[$this->getCode()][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
+			return $grammarForms[$this->getCode()][$case][$word];
 		}
 
 		$grammarTransformations = $this->getGrammarTransformations();
@@ -3879,11 +3884,11 @@ class Language {
 	 * @since 1.20
 	 */
 	public function getGrammarForms() {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms[$this->getCode()] )
-			&& is_array( $wgGrammarForms[$this->getCode()] )
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms[$this->getCode()] )
+			&& is_array( $grammarForms[$this->getCode()] )
 		) {
-			return $wgGrammarForms[$this->getCode()];
+			return $grammarForms[$this->getCode()];
 		}
 
 		return [];
@@ -4511,8 +4516,8 @@ class Language {
 			return $talk;
 		}
 
-		global $wgMetaNamespace;
-		$talk = str_replace( '$1', $wgMetaNamespace, $talk );
+		$metaNamespace = MediaWikiServices::getInstance()->getMainConfig()->get( 'MetaNamespace' );
+		$talk = str_replace( '$1', $metaNamespace, $talk );
 
 		# Allow grammar transformations
 		# Allowing full message-style parsing would make simple requests

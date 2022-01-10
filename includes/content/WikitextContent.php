@@ -145,13 +145,13 @@ class WikitextContent extends TextContent {
 	 * @return array List of two elements: Title|null and string.
 	 */
 	public function getRedirectTargetAndText() {
-		global $wgMaxRedirects;
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
 
 		if ( $this->redirectTargetAndText !== null ) {
 			return $this->redirectTargetAndText;
 		}
 
-		if ( $wgMaxRedirects < 1 ) {
+		if ( $maxRedirects < 1 ) {
 			// redirects are disabled, so quit early
 			$this->redirectTargetAndText = [ null, $this->getText() ];
 			return $this->redirectTargetAndText;
@@ -239,13 +239,13 @@ class WikitextContent extends TextContent {
 	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
-		global $wgArticleCountMethod;
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
 
 		if ( $this->isRedirect() ) {
 			return false;
 		}
 
-		if ( $wgArticleCountMethod === 'link' ) {
+		if ( $articleCountMethod === 'link' ) {
 			if ( $hasLinks === null ) { # not known, find out
 				// @TODO: require an injected title
 				if ( !$title ) {

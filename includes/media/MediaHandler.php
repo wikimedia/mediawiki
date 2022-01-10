@@ -18,6 +18,7 @@
  * @file
  * @ingroup Media
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -472,7 +473,7 @@ abstract class MediaHandler {
 	 * @return array Thumbnail extension and MIME type
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
 			// The extension is not valid for this MIME type and we do
 			// recognize the MIME type

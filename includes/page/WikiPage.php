@@ -368,7 +368,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		global $wgPageLanguageUseDB;
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
 
 		$ret = [
 			'tables' => [ 'page' ],
@@ -389,7 +389,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			'joins' => [],
 		];
 
-		if ( $wgPageLanguageUseDB ) {
+		if ( $pageLanguageUseDB ) {
 			$ret['fields'][] = 'page_lang';
 		}
 
@@ -972,7 +972,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
-		global $wgArticleCountMethod;
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
 
 		// NOTE: Keep in sync with DerivedPageDataUpdater::isCountable.
 
@@ -996,7 +996,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		$hasLinks = null;
 
-		if ( $wgArticleCountMethod === 'link' ) {
+		if ( $articleCountMethod === 'link' ) {
 			// nasty special case to avoid re-parsing to detect links
 
 			if ( $editInfo ) {
@@ -1935,8 +1935,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$tags = [],
 		$undidRevId = 0
 	) {
-		global $wgUseNPPatrol, $wgUseRCPatrol;
-
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
 		if ( !( $summary instanceof CommentStoreComment ) ) {
 			$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
 		}
@@ -1965,7 +1965,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			);
 		}
 
-		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->exists() );
+		$needsPatrol = $useRCPatrol || ( $useNPPatrol && !$this->exists() );
 
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
@@ -2656,13 +2656,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
 	public function isBatchedDelete( $safetyMargin = 0 ) {
-		global $wgDeleteRevisionsBatchSize;
+		$deleteRevisionsBatchSize = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'DeleteRevisionsBatchSize' );
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$revCount = $this->getRevisionStore()->countRevisionsByPageId( $dbr, $this->getId() );
 		$revCount += $safetyMargin;
 
-		return $revCount >= $wgDeleteRevisionsBatchSize;
+		return $revCount >= $deleteRevisionsBatchSize;
 	}
 
 	/**
@@ -2981,9 +2982,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param Title $title
 	 */
 	private static function purgeInterwikiCheckKey( Title $title ) {
-		global $wgEnableScaryTranscluding;
+		$enableScaryTranscluding = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableScaryTranscluding' );
 
-		if ( !$wgEnableScaryTranscluding ) {
+		if ( !$enableScaryTranscluding ) {
 			return; // @todo: perhaps this wiki is only used as a *source* for content?
 		}
 
@@ -3294,8 +3295,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return string
 	 */
 	public function getWikiDisplayName() {
-		global $wgSitename;
-		return $wgSitename;
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		return $sitename;
 	}
 
 	/**

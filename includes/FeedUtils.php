@@ -42,20 +42,20 @@ class FeedUtils {
 	 * @return bool
 	 */
 	public static function checkFeedOutput( $type, $output = null ) {
-		global $wgFeed, $wgFeedClasses;
-
+		$feed = MediaWikiServices::getInstance()->getMainConfig()->get( 'Feed' );
+		$feedClasses = MediaWikiServices::getInstance()->getMainConfig()->get( 'FeedClasses' );
 		if ( $output === null ) {
 			// Todo update GoogleNewsSitemap and deprecate
 			global $wgOut;
 			$output = $wgOut;
 		}
 
-		if ( !$wgFeed ) {
+		if ( !$feed ) {
 			$output->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
-		if ( !isset( $wgFeedClasses[$type] ) ) {
+		if ( !isset( $feedClasses[$type] ) ) {
 			$output->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
@@ -131,7 +131,7 @@ class FeedUtils {
 	public static function formatDiffRow2( $title, $oldid, $newid, $timestamp,
 		$formattedComment, $actiontext = ''
 	) {
-		global $wgFeedDiffCutoff;
+		$feedDiffCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( 'FeedDiffCutoff' );
 
 		// log entries
 		$unwrappedText = implode(
@@ -163,7 +163,7 @@ class FeedUtils {
 		if ( $oldid ) {
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
-			if ( $wgFeedDiffCutoff > 0 ) {
+			if ( $feedDiffCutoff > 0 ) {
 				$revRecord = $revLookup->getRevisionById( $oldid );
 
 				if ( !$revRecord ) {
@@ -190,7 +190,7 @@ class FeedUtils {
 				}
 			}
 
-			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
+			if ( $feedDiffCutoff <= 0 || ( strlen( $diffText ) > $feedDiffCutoff ) ) {
 				// Omit large diffs
 				$diffText = self::getDiffLink( $title, $newid, $oldid );
 			} elseif ( $diffText === false ) {
@@ -207,7 +207,7 @@ class FeedUtils {
 			}
 		} else {
 			$revRecord = $revLookup->getRevisionById( $newid );
-			if ( $wgFeedDiffCutoff <= 0 || $revRecord === null ) {
+			if ( $feedDiffCutoff <= 0 || $revRecord === null ) {
 				$newContent = $contentHandlerFactory
 					->getContentHandler( $title->getContentModel() )
 					->makeEmptyContent();
@@ -219,7 +219,7 @@ class FeedUtils {
 				// only textual content has a "source view".
 				$text = $newContent->getText();
 
-				if ( $wgFeedDiffCutoff <= 0 || strlen( $text ) > $wgFeedDiffCutoff ) {
+				if ( $feedDiffCutoff <= 0 || strlen( $text ) > $feedDiffCutoff ) {
 					$html = null;
 				} else {
 					$html = nl2br( htmlspecialchars( $text ) );

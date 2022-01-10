@@ -281,7 +281,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 		$oldMime = $old->getMimeType();
 		$n = strrpos( $new, '.' );
 		$newExt = self::normalizeExtension( $n ? substr( $new, $n + 1 ) : '' );
-		$mimeMagic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$mimeMagic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		return $mimeMagic->isMatchingExtension( $newExt, $oldMime );
 	}
@@ -530,8 +530,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool|int
 	 */
 	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
-		global $wgThumbnailBuckets, $wgThumbnailMinimumBucketDistance;
-
+		$thumbnailBuckets = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ThumbnailBuckets' );
+		$thumbnailMinimumBucketDistance = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ThumbnailMinimumBucketDistance' );
 		$imageWidth = $this->getWidth( $page );
 
 		if ( $imageWidth === false ) {
@@ -542,11 +544,11 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			return false;
 		}
 
-		if ( !$wgThumbnailBuckets ) {
+		if ( !$thumbnailBuckets ) {
 			return false;
 		}
 
-		$sortedBuckets = $wgThumbnailBuckets;
+		$sortedBuckets = $thumbnailBuckets;
 
 		sort( $sortedBuckets );
 
@@ -555,7 +557,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 				return false;
 			}
 
-			if ( $bucket - $wgThumbnailMinimumBucketDistance > $desiredWidth ) {
+			if ( $bucket - $thumbnailMinimumBucketDistance > $desiredWidth ) {
 				return $bucket;
 			}
 		}
@@ -936,7 +938,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool
 	 */
 	protected function getIsSafeFileUncached() {
-		global $wgTrustedMediaFormats;
+		$trustedMediaFormats = MediaWikiServices::getInstance()->getMainConfig()->get( 'TrustedMediaFormats' );
 
 		if ( $this->allowInlineDisplay() ) {
 			return true;
@@ -951,14 +953,14 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 		if ( !$type || $type === MEDIATYPE_UNKNOWN ) {
 			return false; # unknown type, not trusted
 		}
-		if ( in_array( $type, $wgTrustedMediaFormats ) ) {
+		if ( in_array( $type, $trustedMediaFormats ) ) {
 			return true;
 		}
 
 		if ( $mime === "unknown/unknown" ) {
 			return false; # unknown type, not trusted
 		}
-		if ( in_array( $mime, $wgTrustedMediaFormats ) ) {
+		if ( in_array( $mime, $trustedMediaFormats ) ) {
 			return true;
 		}
 
@@ -1146,10 +1148,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return MediaTransformOutput
 	 */
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
-		global $wgIgnoreImageErrors;
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
 
 		$handler = $this->getHandler();
-		if ( $handler && $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+		if ( $handler && $ignoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
 			return $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
@@ -1167,7 +1169,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
 	public function transform( $params, $flags = 0 ) {
-		global $wgThumbnailEpoch;
+		$thumbnailEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbnailEpoch' );
 
 		do {
 			if ( !$this->canRender() ) {
@@ -1211,7 +1213,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 				wfDebug( __METHOD__ . ": Doing stat for $thumbPath" );
 				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
-					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
+					if ( $timestamp !== false && $timestamp >= $thumbnailEpoch ) {
 						// XXX: Pass in the storage path even though we are not rendering anything
 						// and the path is supposed to be an FS path. This is due to getScalerType()
 						// getting called on the path and clobbering $thumb->getUrl() if it's false.
@@ -1264,7 +1266,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool|MediaTransformOutput
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
-		global $wgIgnoreImageErrors;
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
 
 		if ( !$this->repo->canTransformLocally() ) {
 			return new MediaTransformError(
@@ -1310,7 +1312,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			'@phan-var MediaTransformError $thumb';
 			$this->lastError = $thumb->toText();
 			// Ignore errors if requested
-			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+			if ( $ignoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
 				$thumb = $handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 			}
 		} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
@@ -1536,8 +1538,9 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return ThumbnailImage|null
 	 */
 	public function iconThumb() {
-		global $wgResourceBasePath, $IP;
-		$assetsPath = "$wgResourceBasePath/resources/assets/file-type-icons/";
+		global $IP;
+		$resourceBasePath = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResourceBasePath' );
+		$assetsPath = "{$resourceBasePath}/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 
 		$try = [ 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' ];

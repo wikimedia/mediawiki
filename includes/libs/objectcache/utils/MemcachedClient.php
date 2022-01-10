@@ -68,6 +68,7 @@
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\IPUtils;
 
 // {{{ class MemcachedClient
 /**
@@ -785,7 +786,16 @@ class MemcachedClient {
 	 * @access private
 	 */
 	function _connect_sock( &$sock, $host ) {
-		list( $ip, $port ) = preg_split( '/:(?=\d)/', $host );
+		$port = null;
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+			if ( $hostAndPort[1] ) {
+				$port = $hostAndPort[1];
+			}
+		} else {
+			$ip = $host;
+		}
 		$sock = false;
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
@@ -834,7 +844,12 @@ class MemcachedClient {
 	 * @param string $host
 	 */
 	function _dead_host( $host ) {
-		$ip = explode( ':', $host )[0];
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+		} else {
+			$ip = $host;
+		}
 		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
 		unset( $this->_cache_sock[$host] );
@@ -1141,7 +1156,12 @@ class MemcachedClient {
 
 		$sock = null;
 		$now = time();
-		list( $ip, /* $port */) = explode( ':', $host );
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+		} else {
+			$ip = $host;
+		}
 		if ( isset( $this->_host_dead[$host] ) && $this->_host_dead[$host] > $now ||
 			isset( $this->_host_dead[$ip] ) && $this->_host_dead[$ip] > $now
 		) {

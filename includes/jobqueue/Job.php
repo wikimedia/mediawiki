@@ -21,6 +21,7 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -68,7 +69,7 @@ abstract class Job implements RunnableJob {
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {
-		global $wgJobClasses;
+		$jobClasses = MediaWikiServices::getInstance()->getMainConfig()->get( 'JobClasses' );
 
 		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
@@ -87,8 +88,8 @@ abstract class Job implements RunnableJob {
 			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		}
 
-		if ( isset( $wgJobClasses[$command] ) ) {
-			$handler = $wgJobClasses[$command];
+		if ( isset( $jobClasses[$command] ) ) {
+			$handler = $jobClasses[$command];
 
 			if ( is_callable( $handler ) ) {
 				$job = call_user_func( $handler, $title, $params );

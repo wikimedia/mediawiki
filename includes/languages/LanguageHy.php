@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Armenian (Հայերեն) specific code.
  *
@@ -22,6 +23,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Armenian (Հայերեն)
  *
@@ -38,9 +41,9 @@ class LanguageHy extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['hy'][$case][$word] ) ) {
-			return $wgGrammarForms['hy'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['hy'][$case][$word] ) ) {
+			return $grammarForms['hy'][$case][$word];
 		}
 
 		# These rules are not perfect, but they are currently only used for site names so it doesn't

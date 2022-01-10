@@ -163,16 +163,16 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function sitename() {
-		global $wgSitename;
-		return Xml::element( 'sitename', [], $wgSitename );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		return Xml::element( 'sitename', [], $sitename );
 	}
 
 	/**
 	 * @return string
 	 */
 	private function dbname() {
-		global $wgDBname;
-		return Xml::element( 'dbname', [], $wgDBname );
+		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( 'DBname' );
+		return Xml::element( 'dbname', [], $dbname );
 	}
 
 	/**
@@ -193,9 +193,9 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function caseSetting() {
-		global $wgCapitalLinks;
+		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get( 'CapitalLinks' );
 		// "case-insensitive" option is reserved for future
-		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
+		$sensitivity = $capitalLinks ? 'first-letter' : 'case-sensitive';
 		return Xml::element( 'case', [], $sensitivity );
 	}
 

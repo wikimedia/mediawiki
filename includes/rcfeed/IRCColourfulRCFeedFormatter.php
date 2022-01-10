@@ -36,8 +36,12 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,
-			$wgCanonicalServer, $wgScript;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
+		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
+		$localInterwikis = $mainConfig->get( 'LocalInterwikis' );
+		$canonicalServer = $mainConfig->get( 'CanonicalServer' );
+		$script = $mainConfig->get( 'Script' );
 		$attribs = $rc->getAttributes();
 		if ( $attribs['rc_type'] == RC_CATEGORIZE ) {
 			// Don't send RC_CATEGORIZE events to IRC feed (T127360)
@@ -57,13 +61,13 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		if ( $attribs['rc_type'] == RC_LOG ) {
 			$url = '';
 		} else {
-			$url = $wgCanonicalServer . $wgScript;
+			$url = $canonicalServer . $script;
 			if ( $attribs['rc_type'] == RC_NEW ) {
 				$query = '?oldid=' . $attribs['rc_this_oldid'];
 			} else {
 				$query = '?diff=' . $attribs['rc_this_oldid'] . '&oldid=' . $attribs['rc_last_oldid'];
 			}
-			if ( $wgUseRCPatrol || ( $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
+			if ( $useRCPatrol || ( $attribs['rc_type'] == RC_NEW && $useNPPatrol ) ) {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 
@@ -100,7 +104,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			$comment = self::cleanupForIRC( $store->getComment( 'rc_comment', $attribs )->text );
 			$flag = '';
 			if ( !$attribs['rc_patrolled']
-				&& ( $wgUseRCPatrol || $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol )
+				&& ( $useRCPatrol || $attribs['rc_type'] == RC_NEW && $useNPPatrol )
 			) {
 				$flag .= '!';
 			}
@@ -108,9 +112,9 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				. ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
 		}
 
-		if ( $feed['add_interwiki_prefix'] === true && $wgLocalInterwikis ) {
+		if ( $feed['add_interwiki_prefix'] === true && $localInterwikis ) {
 			// we use the first entry in $wgLocalInterwikis in recent changes feeds
-			$prefix = $wgLocalInterwikis[0];
+			$prefix = $localInterwikis[0];
 		} elseif ( $feed['add_interwiki_prefix'] ) {
 			$prefix = $feed['add_interwiki_prefix'];
 		} else {

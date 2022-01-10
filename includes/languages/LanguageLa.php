@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Latin (lingua Latina) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Latin (lingua Latina)
  *
@@ -41,9 +44,9 @@ class LanguageLa extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['la'][$case][$word] ) ) {
-			return $wgGrammarForms['la'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['la'][$case][$word] ) ) {
+			return $grammarForms['la'][$case][$word];
 		}
 
 		switch ( $case ) {

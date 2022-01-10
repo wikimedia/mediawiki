@@ -147,21 +147,21 @@ trait MediaFileTrait {
 	 * @since 1.35
 	 */
 	public static function getImageLimitsFromOption( UserIdentity $user, string $optionName ) {
-		global $wgImageLimits;
+		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ImageLimits' );
 		$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$option = $optionsLookup->getIntOption( $user, $optionName );
-		if ( !isset( $wgImageLimits[$option] ) ) {
+		if ( !isset( $imageLimits[$option] ) ) {
 			$option = $optionsLookup->getDefaultOption( $optionName );
 		}
 
 		// The user offset might still be incorrect, specially if
 		// $wgImageLimits got changed (see T10858).
-		if ( !isset( $wgImageLimits[$option] ) ) {
+		if ( !isset( $imageLimits[$option] ) ) {
 			// Default to the first offset in $wgImageLimits
 			$option = 0;
 		}
 
 		// if nothing is set, fallback to a hardcoded default
-		return $wgImageLimits[$option] ?? [ 800, 600 ];
+		return $imageLimits[$option] ?? [ 800, 600 ];
 	}
 }

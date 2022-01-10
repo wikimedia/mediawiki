@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Karakalpak (Qaraqalpaqsha) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Karakalpak (Qaraqalpaqsha)
  *
@@ -40,9 +43,9 @@ class LanguageKaa extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['kaa'][$case][$word] ) ) {
-			return $wgGrammarForms['kaa'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['kaa'][$case][$word] ) ) {
+			return $grammarForms['kaa'][$case][$word];
 		}
 		/* Full code of function convertGrammar() is in development. Updates coming soon. */
 		return $word;

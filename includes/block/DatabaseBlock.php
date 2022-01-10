@@ -417,11 +417,11 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	protected static function getIpFragment( $hex ) {
-		global $wgBlockCIDRLimit;
+		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'BlockCIDRLimit' );
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
-			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
+			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $blockCIDRLimit['IPv6'] / 4 ) );
 		} else {
-			return substr( $hex, 0, floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
+			return substr( $hex, 0, floor( $blockCIDRLimit['IPv4'] / 4 ) );
 		}
 	}
 
@@ -812,9 +812,9 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
-		global $wgAutoblockExpiry;
+		$autoblockExpiry = MediaWikiServices::getInstance()->getMainConfig()->get( 'AutoblockExpiry' );
 
-		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
+		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
 	}
 
 	/**

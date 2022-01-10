@@ -20,8 +20,7 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 			$config = $this->mParent->getConfig();
 			$languageCode = $config->get( 'LanguageCode' );
 		} else {
-			global $wgLanguageCode;
-			$languageCode = $wgLanguageCode;
+			$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
 		}
 
 		$languages = MediaWikiServices::getInstance()

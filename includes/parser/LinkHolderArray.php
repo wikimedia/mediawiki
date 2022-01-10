@@ -109,8 +109,8 @@ class LinkHolderArray {
 	 * @return bool
 	 */
 	public function isBig() {
-		global $wgLinkHolderBatchSize;
-		return $this->size > $wgLinkHolderBatchSize;
+		$linkHolderBatchSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'LinkHolderBatchSize' );
+		return $this->size > $linkHolderBatchSize;
 	}
 
 	/**

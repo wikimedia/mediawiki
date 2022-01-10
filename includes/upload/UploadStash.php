@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -207,7 +208,7 @@ class UploadStash {
 			);
 		}
 
-		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+		$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$fileProps = $mwProps->getPropsFromPath( $path, true );
 		wfDebug( __METHOD__ . " stashing file at '$path'" );
 
@@ -472,7 +473,8 @@ class UploadStash {
 	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
-		global $wgProhibitedFileExtensions;
+		$prohibitedFileExtensions = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ProhibitedFileExtensions' );
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
 
@@ -480,13 +482,13 @@ class UploadStash {
 			$extension = $n ? substr( $path, $n + 1 ) : '';
 		} else {
 			// If not, assume that it should be related to the MIME type of the original file.
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mimeType = $magic->guessMimeType( $path );
 			$extension = $magic->getExtensionFromMimeTypeOrNull( $mimeType );
 		}
 
 		$extension = File::normalizeExtension( $extension );
-		if ( in_array( $extension, $wgProhibitedFileExtensions ) ) {
+		if ( in_array( $extension, $prohibitedFileExtensions ) ) {
 			// The file should already be checked for being evil.
 			// However, if somehow we got here, we definitely
 			// don't want to give it an extension of .php and

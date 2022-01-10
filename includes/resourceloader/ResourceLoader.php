@@ -1074,9 +1074,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Sanitized text that can be returned to the user
 	 */
 	protected static function formatExceptionNoComment( Throwable $e ) {
-		global $wgShowExceptionDetails;
+		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
 
-		if ( !$wgShowExceptionDetails ) {
+		if ( !$showExceptionDetails ) {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
@@ -1709,9 +1709,10 @@ MESSAGE;
 	 */
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
-			global $wgRequest, $wgResourceLoaderDebug;
+			global $wgRequest;
+			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResourceLoaderDebug' );
 			$str = $wgRequest->getRawVal( 'debug',
-				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ? 'true' : '' )
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' )
 			);
 			self::$debugMode = ResourceLoaderContext::debugFromString( $str );
 		}

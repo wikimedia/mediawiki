@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hungarian (magyar) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Hungarian localisation for MediaWiki
  *
@@ -34,9 +37,9 @@ class LanguageHu extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
-			return $wgGrammarForms[$this->getCode()][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
+			return $grammarForms[$this->getCode()][$case][$word];
 		}
 
 		switch ( $case ) {

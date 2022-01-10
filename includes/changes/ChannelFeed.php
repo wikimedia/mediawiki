@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
@@ -20,6 +21,8 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
@@ -87,19 +90,19 @@ abstract class ChannelFeed extends FeedItem {
 	 * but can also be called separately.
 	 */
 	public function httpHeaders() {
-		global $wgOut, $wgVaryOnXFP;
-
+		global $wgOut;
+		$varyOnXFP = MediaWikiServices::getInstance()->getMainConfig()->get( 'VaryOnXFP' );
 		# We take over from $wgOut, excepting its cache header info
 		$wgOut->disable();
 		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
 
 		// Set a sensible filename
-		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $mimetype ) ?? 'xml';
 		header( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
 
-		if ( $wgVaryOnXFP ) {
+		if ( $varyOnXFP ) {
 			$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 		$wgOut->sendCacheControl();

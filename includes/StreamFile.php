@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functions related to the output of file content.
  *
@@ -19,6 +20,8 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Functions related to the output of file content
@@ -70,14 +73,14 @@ class StreamFile {
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {
-		global $wgTrivialMimeDetection;
+		$trivialMimeDetection = MediaWikiServices::getInstance()->getMainConfig()->get( 'TrivialMimeDetection' );
 
 		$ext = strrchr( $filename, '.' );
 		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
 
 		# trivial detection by file extension,
 		# used for thumbnails (thumb.php)
-		if ( $wgTrivialMimeDetection ) {
+		if ( $trivialMimeDetection ) {
 			switch ( $ext ) {
 				case 'gif':
 					return 'image/gif';
@@ -91,7 +94,7 @@ class StreamFile {
 			return 'unknown/unknown';
 		}
 
-		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		// Use the extension only, rather than magic numbers, to avoid opening
 		// up vulnerabilities due to uploads of files with allowed extensions
 		// but disallowed types.
@@ -102,18 +105,23 @@ class StreamFile {
 		 * have changed since.
 		 */
 		if ( $safe ) {
-			global $wgProhibitedFileExtensions, $wgCheckFileExtensions, $wgStrictFileExtensions,
-				$wgFileExtensions, $wgVerifyMimeType, $wgMimeTypeExclusions;
+			$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+			$prohibitedFileExtensions = $mainConfig->get( 'ProhibitedFileExtensions' );
+			$checkFileExtensions = $mainConfig->get( 'CheckFileExtensions' );
+			$strictFileExtensions = $mainConfig->get( 'StrictFileExtensions' );
+			$fileExtensions = $mainConfig->get( 'FileExtensions' );
+			$verifyMimeType = $mainConfig->get( 'VerifyMimeType' );
+			$mimeTypeExclusions = $mainConfig->get( 'MimeTypeExclusions' );
 			list( , $extList ) = UploadBase::splitExtensions( $filename );
-			if ( UploadBase::checkFileExtensionList( $extList, $wgProhibitedFileExtensions ) ) {
+			if ( UploadBase::checkFileExtensionList( $extList, $prohibitedFileExtensions ) ) {
 				return 'unknown/unknown';
 			}
-			if ( $wgCheckFileExtensions && $wgStrictFileExtensions
-				&& !UploadBase::checkFileExtensionList( $extList, $wgFileExtensions )
+			if ( $checkFileExtensions && $strictFileExtensions
+				&& !UploadBase::checkFileExtensionList( $extList, $fileExtensions )
 			) {
 				return 'unknown/unknown';
 			}
-			if ( $wgVerifyMimeType && in_array( strtolower( $type ), $wgMimeTypeExclusions ) ) {
+			if ( $verifyMimeType && in_array( strtolower( $type ), $mimeTypeExclusions ) ) {
 				return 'unknown/unknown';
 			}
 		}

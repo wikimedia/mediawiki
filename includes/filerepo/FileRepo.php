@@ -1618,7 +1618,7 @@ class FileRepo {
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$fsFile = $this->getLocalReference( $virtualUrl );
-		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+		$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		if ( $fsFile ) {
 			$props = $mwProps->getPropsFromPath( $fsFile->getPath(), true );
 		} else {
@@ -1839,10 +1839,10 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		global $wgSitename;
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
 
 		if ( $this->isLocal() ) {
-			return $wgSitename;
+			return $sitename;
 		}
 
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true

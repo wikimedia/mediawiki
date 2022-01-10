@@ -83,7 +83,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param array|null $info
 	 */
 	public function __construct( $info ) {
-		global $wgLocalFileRepo;
+		$localFileRepo = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalFileRepo' );
 		parent::__construct( $info );
 
 		// https://commons.wikimedia.org/w/api.php
@@ -104,7 +104,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		// If we can cache thumbs we can guess sensible defaults for these
 		if ( $this->canCacheThumbs() && !$this->url ) {
-			$this->url = $wgLocalFileRepo['url'];
+			$this->url = $localFileRepo['url'];
 		}
 		if ( $this->canCacheThumbs() && !$this->thumbUrl ) {
 			$this->thumbUrl = $this->url . '/thumb';
@@ -202,7 +202,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return array|null
 	 */
 	public function fetchImageQuery( $query ) {
-		global $wgLanguageCode;
+		$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
 
 		$query = array_merge( $query,
 			[
@@ -212,7 +212,7 @@ class ForeignAPIRepo extends FileRepo {
 			] );
 
 		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
-			$query['uselang'] = $wgLanguageCode;
+			$query['uselang'] = $languageCode;
 		}
 
 		$data = $this->httpGetCached( 'Metadata', $query, $this->apiMetadataExpiry );
