@@ -364,6 +364,15 @@ abstract class LinksTable {
 	}
 
 	/**
+	 * Subclasses can override this to do any necessary setup before the lock
+	 * is acquired.
+	 *
+	 * @stable to override
+	 */
+	public function beforeLock() {
+	}
+
+	/**
 	 * Subclasses can override this to do any necessary setup before individual
 	 * write operations begin.
 	 *
