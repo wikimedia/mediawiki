@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+
 /**
  * @covers LinksDeletionUpdate
  * @covers LinksUpdate
