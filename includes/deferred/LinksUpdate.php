@@ -20,10 +20,17 @@
  * @file
  */
 
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PagePropsTable;
+use MediaWiki\Deferred\LinksUpdate\TitleLinksTable;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
@@ -84,37 +91,6 @@ class LinksUpdate extends DataUpdate {
 	private $mRevisionRecord;
 
 	/**
-	 * @var array[]|null Added links if calculated.
-	 * @phan-var array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>|null
-	 */
-	private $linkInsertions = null;
-
-	/**
-	 * @var null|array Deleted links if calculated.
-	 */
-	private $linkDeletions = null;
-
-	/**
-	 * @var null|array[] Added external links if calculated.
-	 */
-	private $externalLinkInsertions = null;
-
-	/**
-	 * @var null|array Deleted external links if calculated.
-	 */
-	private $externalLinkDeletions = null;
-
-	/**
-	 * @var null|array Added properties if calculated.
-	 */
-	private $propertyInsertions = null;
-
-	/**
-	 * @var null|array Deleted properties if calculated.
-	 */
-	private $propertyDeletions = null;
-
-	/**
 	 * @var UserIdentity|null
 	 */
 	private $user;
@@ -122,7 +98,8 @@ class LinksUpdate extends DataUpdate {
 	/** @var IDatabase */
 	private $db;
 
-	private $isStrictTestMode = false;
+	/** @var LinksTableGroup */
+	private $tableFactory;
 
 	/**
 	 * @param PageIdentity $page The page we're updating
@@ -165,7 +142,28 @@ class LinksUpdate extends DataUpdate {
 
 		$this->mRecursive = $recursive;
 
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$this->tableFactory = new LinksTableGroup(
+			$services->getObjectFactory(),
+			$services->getDBLoadBalancerFactory(),
+			$services->getCollationFactory(),
+			$page,
+			$config->get( 'UpdateRowsPerQuery' ),
+			function ( $table, $rows ) {
+				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );
+			},
+			$config->get( 'TempCategoryCollations' )
+		);
+		// TODO: this does not have to be called in LinksDeletionUpdate
+		$this->tableFactory->setParserOutput( $parserOutput );
+
 		$this->getHookRunner()->onLinksUpdateConstructed( $this );
+	}
+
+	public function setTransactionTicket( $ticket ) {
+		parent::setTransactionTicket( $ticket );
+		$this->tableFactory->setTransactionTicket( $ticket );
 	}
 
 	/**
@@ -193,6 +191,14 @@ class LinksUpdate extends DataUpdate {
 
 			// nothing to do
 			return;
+		}
+
+		// Do any setup that needs to be done prior to acquiring the lock
+		// Calling getAll() here has the side-effect of calling
+		// LinksUpdateBatch::setParserOutput() on all subclasses, allowing
+		// those methods to also do pre-lock operations.
+		foreach ( $this->tableFactory->getAll() as $batch ) {
+			$batch->beforeLock();
 		}
 
 		if ( $this->ticket ) {
@@ -244,100 +250,9 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	protected function doIncrementalUpdate() {
-		# Page links
-		$existingPL = $this->getExistingLinks();
-		$this->linkDeletions = $this->getLinkDeletions( $existingPL );
-		$this->linkInsertions = $this->getLinkInsertions( $existingPL );
-		$this->incrTableUpdate( 'pagelinks', 'pl', $this->linkDeletions, $this->linkInsertions );
-
-		# Image links
-		$existingIL = $this->getExistingImages();
-		$imageDeletes = $this->getImageDeletions( $existingIL );
-		$imageAdditions = $this->getImageAdditions( $existingIL );
-		$this->incrTableUpdate(
-			'imagelinks',
-			'il',
-			$imageDeletes,
-			$this->getImageInsertions( $existingIL ) );
-
-		# Image change tags
-		$enabledTags = ChangeTags::getSoftwareTags();
-		$mediaChangeTags = array_filter( [
-			count( $imageAdditions ) && in_array( 'mw-add-media', $enabledTags ) ? 'mw-add-media' : '',
-			count( $imageDeletes ) && in_array( 'mw-remove-media', $enabledTags ) ? 'mw-remove-media' : '',
-		] );
-		$revisionRecord = $this->getRevisionRecord();
-		if ( $revisionRecord && count( $mediaChangeTags ) ) {
-			ChangeTags::addTags( $mediaChangeTags, null, $revisionRecord->getId() );
+		foreach ( $this->tableFactory->getAll() as $table ) {
+			$table->update();
 		}
-
-		# Invalidate all image description pages which had links added or removed
-		$imageUpdates = $imageDeletes + $imageAdditions;
-		$this->invalidateImageDescriptions( $imageUpdates );
-
-		# External links
-		$existingEL = $this->getExistingExternals();
-		$this->externalLinkDeletions = $this->getExternalDeletions( $existingEL );
-		$this->externalLinkInsertions = $this->getExternalInsertions(
-			$existingEL );
-		$this->incrTableUpdate(
-			'externallinks',
-			'el',
-			$this->externalLinkDeletions,
-			$this->externalLinkInsertions );
-
-		# Language links
-		$existingLL = $this->getExistingInterlangs();
-		$this->incrTableUpdate(
-			'langlinks',
-			'll',
-			$this->getInterlangDeletions( $existingLL ),
-			$this->getInterlangInsertions( $existingLL ) );
-
-		# Inline interwiki links
-		$existingIW = $this->getExistingInterwikis();
-		$this->incrTableUpdate(
-			'iwlinks',
-			'iwl',
-			$this->getInterwikiDeletions( $existingIW ),
-			$this->getInterwikiInsertions( $existingIW ) );
-
-		# Template links
-		$existingTL = $this->getExistingTemplates();
-		$this->incrTableUpdate(
-			'templatelinks',
-			'tl',
-			$this->getTemplateDeletions( $existingTL ),
-			$this->getTemplateInsertions( $existingTL ) );
-
-		# Category links
-		$existingCL = $this->getExistingCategories();
-		$categoryDeletes = $this->getCategoryDeletions( $existingCL );
-		$this->incrTableUpdate(
-			'categorylinks',
-			'cl',
-			$categoryDeletes,
-			$this->getCategoryInsertions( $existingCL ) );
-		$categoryInserts = array_diff_assoc( $this->mCategories, $existingCL );
-		$categoryUpdates = $categoryInserts + $categoryDeletes;
-
-		# Page properties
-		$existingPP = $this->getExistingProperties();
-		$this->propertyDeletions = $this->getPropertyDeletions( $existingPP );
-		$this->incrTableUpdate(
-			'page_props',
-			'pp',
-			$this->propertyDeletions,
-			$this->getPropertyInsertions( $existingPP ) );
-
-		# Invalidate the necessary pages
-		$this->propertyInsertions = array_diff_assoc( $this->mProperties, $existingPP );
-		$changed = $this->propertyDeletions + $this->propertyInsertions;
-		$this->invalidateProperties( $changed );
-
-		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$this->invalidateCategories( $categoryUpdates );
-		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 
 		# Refresh links of all pages including this page
 		# This will be in a separate transaction
@@ -423,655 +338,13 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
-	 * @param array $cats
-	 */
-	private function invalidateCategories( $cats ) {
-		PurgeJobUtils::invalidatePages(
-			$this->getDB(), NS_CATEGORY, array_map( 'strval', array_keys( $cats ) )
-		);
-	}
-
-	/**
-	 * Update all the appropriate counts in the category table.
-	 * @param array $added Associative array of category name => sort key
-	 * @param array $deleted Associative array of category name => sort key
-	 */
-	private function updateCategoryCounts( array $added, array $deleted ) {
-		global $wgUpdateRowsPerQuery;
-
-		if ( !$added && !$deleted ) {
-			return;
-		}
-
-		$domainId = $this->getDB()->getDomainID();
-		$services = MediaWikiServices::getInstance();
-		$wp = $services->getWikiPageFactory()->newFromTitle( $this->mTitle );
-		$lbf = $services->getDBLoadBalancerFactory();
-		// T163801: try to release any row locks to reduce contention
-		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
-
-		foreach ( array_chunk( array_keys( $added ), $wgUpdateRowsPerQuery ) as $addBatch ) {
-			$wp->updateCategoryCounts( array_map( 'strval', $addBatch ), [], $this->mId );
-			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
-		}
-
-		foreach ( array_chunk( array_keys( $deleted ), $wgUpdateRowsPerQuery ) as $deleteBatch ) {
-			$wp->updateCategoryCounts( [], array_map( 'strval', $deleteBatch ), $this->mId );
-			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
-		}
-	}
-
-	/**
-	 * @param array $images
-	 */
-	private function invalidateImageDescriptions( array $images ) {
-		PurgeJobUtils::invalidatePages(
-			$this->getDB(), NS_FILE, array_map( 'strval', array_keys( $images ) )
-		);
-	}
-
-	/**
-	 * Update a table by doing a delete query then an insert query
-	 * @param string $table Table name
-	 * @param string $prefix Field name prefix
-	 * @param array $deletions
-	 * @param array $insertions Rows to insert
-	 */
-	private function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
-		$services = MediaWikiServices::getInstance();
-		$bSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
-		$lbf = $services->getDBLoadBalancerFactory();
-
-		if ( $table === 'page_props' ) {
-			$fromField = 'pp_page';
-		} else {
-			$fromField = "{$prefix}_from";
-		}
-
-		$deleteWheres = []; // list of WHERE clause arrays for each DB delete() call
-		if ( $table === 'pagelinks' || $table === 'templatelinks' || $table === 'iwlinks' ) {
-			$baseKey = ( $table === 'iwlinks' ) ? 'iwl_prefix' : "{$prefix}_namespace";
-
-			$curBatchSize = 0;
-			$curDeletionBatch = [];
-			$deletionBatches = [];
-			foreach ( $deletions as $ns => $dbKeys ) {
-				foreach ( $dbKeys as $dbKey => $unused ) {
-					$curDeletionBatch[$ns][$dbKey] = 1;
-					if ( ++$curBatchSize >= $bSize ) {
-						$deletionBatches[] = $curDeletionBatch;
-						$curDeletionBatch = [];
-						$curBatchSize = 0;
-					}
-				}
-			}
-			if ( $curDeletionBatch ) {
-				$deletionBatches[] = $curDeletionBatch;
-			}
-
-			foreach ( $deletionBatches as $deletionBatch ) {
-				$deleteWheres[] = [
-					$fromField => $this->mId,
-					$this->getDB()->makeWhereFrom2d( $deletionBatch, $baseKey, "{$prefix}_title" )
-				];
-			}
-		} else {
-			if ( $table === 'langlinks' ) {
-				$toField = 'll_lang';
-			} elseif ( $table === 'page_props' ) {
-				$toField = 'pp_propname';
-			} else {
-				$toField = $prefix . '_to';
-			}
-
-			$deletionBatches = array_chunk( array_keys( $deletions ), $bSize );
-			foreach ( $deletionBatches as $deletionBatch ) {
-				$deleteWheres[] = [
-					$fromField => $this->mId,
-					$toField => array_map( 'strval', $deletionBatch )
-				];
-			}
-		}
-
-		$domainId = $this->getDB()->getDomainID();
-
-		foreach ( $deleteWheres as $deleteWhere ) {
-			$this->getDB()->delete( $table, $deleteWhere, __METHOD__ );
-			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
-			);
-		}
-
-		$insertBatches = array_chunk( $insertions, $bSize );
-		foreach ( $insertBatches as $insertBatch ) {
-			$this->getDB()->insert( $table, $insertBatch, __METHOD__,
-				$this->getConflictOption() );
-			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
-			);
-		}
-
-		if ( count( $insertions ) ) {
-			$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $insertions );
-		}
-	}
-
-	/**
 	 * Omit conflict resolution options from the insert query so that testing
 	 * can confirm that the incremental update logic was correct.
 	 *
 	 * @param bool $mode
 	 */
 	public function setStrictTestMode( $mode = true ) {
-		$this->isStrictTestMode = $mode;
-	}
-
-	/**
-	 * @return array
-	 */
-	private function getConflictOption() {
-		if ( $this->isStrictTestMode ) {
-			return [];
-		} else {
-			return [ 'IGNORE' ];
-		}
-	}
-
-	/**
-	 * Get an array of pagelinks insertions for passing to the DB
-	 * Skips the titles specified by the 2-D array $existing
-	 * @param array $existing
-	 * @return array[]
-	 * @phan-return array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>
-	 */
-	private function getLinkInsertions( $existing = [] ) {
-		$arr = [];
-		foreach ( $this->mLinks as $ns => $dbkeys ) {
-			$diffs = isset( $existing[$ns] )
-				? array_diff_key( $dbkeys, $existing[$ns] )
-				: $dbkeys;
-			foreach ( $diffs as $dbk => $id ) {
-				$arr[] = [
-					'pl_from' => $this->mId,
-					'pl_from_namespace' => $this->mTitle->getNamespace(),
-					'pl_namespace' => $ns,
-					'pl_title' => $dbk
-				];
-			}
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of template insertions. Like getLinkInsertions()
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getTemplateInsertions( $existing = [] ) {
-		$arr = [];
-		foreach ( $this->mTemplates as $ns => $dbkeys ) {
-			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
-			foreach ( $diffs as $dbk => $id ) {
-				$arr[] = [
-					'tl_from' => $this->mId,
-					'tl_from_namespace' => $this->mTitle->getNamespace(),
-					'tl_namespace' => $ns,
-					'tl_title' => $dbk
-				];
-			}
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of image insertions
-	 * Skips the names specified in $existing
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getImageInsertions( $existing = [] ) {
-		$arr = [];
-		$diffs = $this->getImageAdditions( $existing );
-		foreach ( $diffs as $iname => $dummy ) {
-			$arr[] = [
-				'il_from' => $this->mId,
-				'il_from_namespace' => $this->mTitle->getNamespace(),
-				'il_to' => $iname
-			];
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of externallinks insertions. Skips the names specified in $existing
-	 * @param array $existing
-	 * @return array[]
-	 */
-	private function getExternalInsertions( $existing = [] ) {
-		$arr = [];
-		$diffs = array_diff_key( $this->mExternals, $existing );
-		foreach ( $diffs as $url => $dummy ) {
-			foreach ( LinkFilter::makeIndexes( $url ) as $index ) {
-				$arr[] = [
-					'el_from' => $this->mId,
-					'el_to' => $url,
-					'el_index' => $index,
-					'el_index_60' => substr( $index, 0, 60 ),
-				];
-			}
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of category insertions
-	 *
-	 * @param array $existing Mapping existing category names to sort keys. If both
-	 * match a link in $this, the link will be omitted from the output
-	 *
-	 * @return array
-	 */
-	private function getCategoryInsertions( $existing = [] ) {
-		global $wgCategoryCollation;
-		$diffs = array_diff_assoc( $this->mCategories, $existing );
-		$arr = [];
-
-		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
-
-		$collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
-		foreach ( $diffs as $name => $prefix ) {
-			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			$languageConverter->findVariantLink( $name, $nt, true );
-
-			$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getCategoryLinkType( $this->mTitle->getNamespace() );
-
-			# Treat custom sortkeys as a prefix, so that if multiple
-			# things are forced to sort as '*' or something, they'll
-			# sort properly in the category rather than in page_id
-			# order or such.
-			$sortkey = $collation->getSortKey( $this->mTitle->getCategorySortkey( $prefix ) );
-
-			$arr[] = [
-				'cl_from' => $this->mId,
-				'cl_to' => $name,
-				'cl_sortkey' => $sortkey,
-				'cl_timestamp' => $this->getDB()->timestamp(),
-				'cl_sortkey_prefix' => $prefix,
-				'cl_collation' => $wgCategoryCollation,
-				'cl_type' => $type,
-			];
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of interlanguage link insertions
-	 *
-	 * @param array $existing Mapping existing language codes to titles
-	 *
-	 * @return array
-	 */
-	private function getInterlangInsertions( $existing = [] ) {
-		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
-		$arr = [];
-		foreach ( $diffs as $lang => $title ) {
-			$arr[] = [
-				'll_from' => $this->mId,
-				'll_lang' => $lang,
-				'll_title' => $title
-			];
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of page property insertions
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getPropertyInsertions( $existing = [] ) {
-		$diffs = array_diff_assoc( $this->mProperties, $existing );
-
-		$arr = [];
-		foreach ( array_keys( $diffs ) as $name ) {
-			$arr[] = $this->getPagePropRowData( (string)$name );
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Returns an associative array to be used for inserting a row into
-	 * the page_props table. Besides the given property name, this will
-	 * include the page id from $this->mId and any property value from
-	 * $this->mProperties.
-	 *
-	 * The array returned will include the pp_sortkey field.
-	 * The sortkey value is currently determined by getPropertySortKeyValue().
-	 *
-	 * @note this assumes that $this->mProperties[$prop] is defined.
-	 *
-	 * @param string $prop The name of the property.
-	 *
-	 * @return array
-	 */
-	private function getPagePropRowData( $prop ) {
-		$value = $this->mProperties[$prop];
-
-		return [
-			'pp_page' => $this->mId,
-			'pp_propname' => $prop,
-			'pp_value' => $value,
-			'pp_sortkey' => $this->getPropertySortKeyValue( $value )
-		];
-	}
-
-	/**
-	 * Determines the sort key for the given property value.
-	 * This will return $value if it is a float or int,
-	 * 1 or resp. 0 if it is a bool, and null otherwise.
-	 *
-	 * @note In the future, we may allow the sortkey to be specified explicitly
-	 *       in ParserOutput::setProperty.
-	 *
-	 * @param mixed $value
-	 *
-	 * @return float|null
-	 */
-	private function getPropertySortKeyValue( $value ) {
-		if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
-			return floatval( $value );
-		}
-
-		return null;
-	}
-
-	/**
-	 * Get an array of interwiki insertions for passing to the DB
-	 * Skips the titles specified by the 2-D array $existing
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getInterwikiInsertions( $existing = [] ) {
-		$arr = [];
-		foreach ( $this->mInterwikis as $prefix => $dbkeys ) {
-			$diffs = isset( $existing[$prefix] )
-				? array_diff_key( $dbkeys, $existing[$prefix] )
-				: $dbkeys;
-
-			foreach ( $diffs as $dbk => $id ) {
-				$arr[] = [
-					'iwl_from' => $this->mId,
-					'iwl_prefix' => $prefix,
-					'iwl_title' => $dbk
-				];
-			}
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Given an array of existing images, returns $this images that are not in there
-	 * and thus should be added.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getImageAdditions( $existing ) {
-		return array_diff_key( $this->mImages, $existing );
-	}
-
-	/**
-	 * Given an array of existing links, returns those links which are not in $this
-	 * and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getLinkDeletions( $existing ) {
-		$del = [];
-		foreach ( $existing as $ns => $dbkeys ) {
-			if ( isset( $this->mLinks[$ns] ) ) {
-				$del[$ns] = array_diff_key( $dbkeys, $this->mLinks[$ns] );
-			} else {
-				$del[$ns] = $dbkeys;
-			}
-		}
-
-		return $del;
-	}
-
-	/**
-	 * Given an array of existing templates, returns those templates which are not in $this
-	 * and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getTemplateDeletions( $existing ) {
-		$del = [];
-		foreach ( $existing as $ns => $dbkeys ) {
-			if ( isset( $this->mTemplates[$ns] ) ) {
-				$del[$ns] = array_diff_key( $dbkeys, $this->mTemplates[$ns] );
-			} else {
-				$del[$ns] = $dbkeys;
-			}
-		}
-
-		return $del;
-	}
-
-	/**
-	 * Given an array of existing images, returns those images which are not in $this
-	 * and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getImageDeletions( $existing ) {
-		return array_diff_key( $existing, $this->mImages );
-	}
-
-	/**
-	 * Given an array of existing external links, returns those links which are not
-	 * in $this and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getExternalDeletions( $existing ) {
-		return array_diff_key( $existing, $this->mExternals );
-	}
-
-	/**
-	 * Given an array of existing categories, returns those categories which are not in $this
-	 * and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getCategoryDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mCategories );
-	}
-
-	/**
-	 * Given an array of existing interlanguage links, returns those links which are not
-	 * in $this and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getInterlangDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mInterlangs );
-	}
-
-	/**
-	 * Get array of properties which should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getPropertyDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mProperties );
-	}
-
-	/**
-	 * Given an array of existing interwiki links, returns those links which are not in $this
-	 * and thus should be deleted.
-	 * @param array $existing
-	 * @return array
-	 */
-	private function getInterwikiDeletions( $existing ) {
-		$del = [];
-		foreach ( $existing as $prefix => $dbkeys ) {
-			if ( isset( $this->mInterwikis[$prefix] ) ) {
-				$del[$prefix] = array_diff_key( $dbkeys, $this->mInterwikis[$prefix] );
-			} else {
-				$del[$prefix] = $dbkeys;
-			}
-		}
-
-		return $del;
-	}
-
-	/**
-	 * Get an array of existing links, as a 2-D array
-	 *
-	 * @return array
-	 */
-	private function getExistingLinks() {
-		$res = $this->getDB()->select( 'pagelinks', [ 'pl_namespace', 'pl_title' ],
-			[ 'pl_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			if ( !isset( $arr[$row->pl_namespace] ) ) {
-				$arr[$row->pl_namespace] = [];
-			}
-			$arr[$row->pl_namespace][$row->pl_title] = 1;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing templates, as a 2-D array
-	 *
-	 * @return array
-	 */
-	private function getExistingTemplates() {
-		$res = $this->getDB()->select( 'templatelinks', [ 'tl_namespace', 'tl_title' ],
-			[ 'tl_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			if ( !isset( $arr[$row->tl_namespace] ) ) {
-				$arr[$row->tl_namespace] = [];
-			}
-			$arr[$row->tl_namespace][$row->tl_title] = 1;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing images, image names in the keys
-	 *
-	 * @return array
-	 */
-	private function getExistingImages() {
-		$res = $this->getDB()->select( 'imagelinks', [ 'il_to' ],
-			[ 'il_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			$arr[$row->il_to] = 1;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing external links, URLs in the keys
-	 *
-	 * @return array
-	 */
-	private function getExistingExternals() {
-		$res = $this->getDB()->select( 'externallinks', [ 'el_to' ],
-			[ 'el_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			$arr[$row->el_to] = 1;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing categories, with the name in the key and sort key in the value.
-	 *
-	 * @return array
-	 */
-	private function getExistingCategories() {
-		$res = $this->getDB()->select( 'categorylinks', [ 'cl_to', 'cl_sortkey_prefix' ],
-			[ 'cl_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			$arr[$row->cl_to] = $row->cl_sortkey_prefix;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing interlanguage links, with the language code in the key and the
-	 * title in the value.
-	 *
-	 * @return array
-	 */
-	private function getExistingInterlangs() {
-		$res = $this->getDB()->select( 'langlinks', [ 'll_lang', 'll_title' ],
-			[ 'll_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			$arr[$row->ll_lang] = $row->ll_title;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing inline interwiki links, as a 2-D array
-	 * @return array [ prefix => [ dbkey => 1 ] ]
-	 */
-	private function getExistingInterwikis() {
-		$res = $this->getDB()->select( 'iwlinks', [ 'iwl_prefix', 'iwl_title' ],
-			[ 'iwl_from' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			if ( !isset( $arr[$row->iwl_prefix] ) ) {
-				$arr[$row->iwl_prefix] = [];
-			}
-			$arr[$row->iwl_prefix][$row->iwl_title] = 1;
-		}
-
-		return $arr;
-	}
-
-	/**
-	 * Get an array of existing categories, with the name in the key and sort key in the value.
-	 *
-	 * @return array Array of property names and values
-	 */
-	private function getExistingProperties() {
-		$res = $this->getDB()->select( 'page_props', [ 'pp_propname', 'pp_value' ],
-			[ 'pp_page' => $this->mId ], __METHOD__ );
-		$arr = [];
-		foreach ( $res as $row ) {
-			$arr[$row->pp_propname] = $row->pp_value;
-		}
-
-		return $arr;
+		$this->tableFactory->setStrictTestMode( $mode );
 	}
 
 	/**
@@ -1121,6 +394,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	public function setRevisionRecord( RevisionRecord $revisionRecord ) {
 		$this->mRevisionRecord = $revisionRecord;
+		$this->tableFactory->setRevision( $revisionRecord );
 	}
 
 	/**
@@ -1152,66 +426,49 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
-	 * Invalidate any necessary link lists related to page property changes
-	 * @param array $changed
+	 * @return PageLinksTable
 	 */
-	private function invalidateProperties( $changed ) {
-		global $wgPagePropLinkInvalidations;
+	protected function getPageLinksTable(): PageLinksTable {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->tableFactory->get( 'pagelinks' );
+	}
 
-		$jobs = [];
-		foreach ( $changed as $name => $value ) {
-			if ( isset( $wgPagePropLinkInvalidations[$name] ) ) {
-				$inv = $wgPagePropLinkInvalidations[$name];
-				if ( !is_array( $inv ) ) {
-					$inv = [ $inv ];
-				}
-				foreach ( $inv as $table ) {
-					$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-						$this->mTitle,
-						$table,
-						[ 'causeAction' => 'page-props' ]
-					);
-				}
-			}
-		}
+	/**
+	 * @return ExternalLinksTable
+	 */
+	protected function getExternalLinksTable(): ExternalLinksTable {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->tableFactory->get( 'externallinks' );
+	}
 
-		JobQueueGroup::singleton()->lazyPush( $jobs );
+	/**
+	 * @return PagePropsTable
+	 */
+	protected function getPagePropsTable(): PagePropsTable {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->tableFactory->get( 'page_props' );
 	}
 
 	/**
 	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete.
+	 *
 	 * @since 1.22
-	 * @return null|array Array of Titles
+	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray()
+	 * @return Title[] Array of Titles
 	 */
 	public function getAddedLinks() {
-		if ( $this->linkInsertions === null ) {
-			return null;
-		}
-		$result = [];
-		foreach ( $this->linkInsertions as $insertion ) {
-			$result[] = Title::makeTitle( $insertion['pl_namespace'], $insertion['pl_title'] );
-		}
-
-		return $result;
+		return $this->getPageLinksTable()->getTitleArray( LinksTable::INSERTED );
 	}
 
 	/**
 	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete.
+	 *
 	 * @since 1.22
-	 * @return null|array Array of Titles
+	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray()
+	 * @return Title[] Array of Titles
 	 */
 	public function getRemovedLinks() {
-		if ( $this->linkDeletions === null ) {
-			return null;
-		}
-		$result = [];
-		foreach ( $this->linkDeletions as $ns => $titles ) {
-			foreach ( $titles as $title => $unused ) {
-				$result[] = Title::makeTitle( $ns, $title );
-			}
-		}
-
-		return $result;
+		return $this->getPageLinksTable()->getTitleArray( LinksTable::DELETED );
 	}
 
 	/**
@@ -1221,10 +478,7 @@ class LinksUpdate extends DataUpdate {
 	 * @return null|array Array of Strings
 	 */
 	public function getAddedExternalLinks() {
-		if ( $this->externalLinkInsertions === null ) {
-			return null;
-		}
-		return array_column( $this->externalLinkInsertions, 'el_to' );
+		return $this->getExternalLinksTable()->getStringArray( LinksTable::INSERTED );
 	}
 
 	/**
@@ -1234,10 +488,7 @@ class LinksUpdate extends DataUpdate {
 	 * @return null|string[]
 	 */
 	public function getRemovedExternalLinks() {
-		if ( $this->externalLinkDeletions === null ) {
-			return null;
-		}
-		return array_keys( $this->externalLinkDeletions );
+		return $this->getExternalLinksTable()->getStringArray( LinksTable::DELETED );
 	}
 
 	/**
@@ -1247,7 +498,7 @@ class LinksUpdate extends DataUpdate {
 	 * @return null|array
 	 */
 	public function getAddedProperties() {
-		return $this->propertyInsertions;
+		return $this->getPagePropsTable()->getAssocArray( LinksTable::INSERTED );
 	}
 
 	/**
@@ -1257,7 +508,45 @@ class LinksUpdate extends DataUpdate {
 	 * @return null|array
 	 */
 	public function getRemovedProperties() {
-		return $this->propertyDeletions;
+		return $this->getPagePropsTable()->getAssocArray( LinksTable::DELETED );
+	}
+
+	/**
+	 * Get an iterator over PageReferenceValue objects corresponding to a given set
+	 * type in a given table.
+	 *
+	 * @since 1.38
+	 * @param string $tableName The name of any table that links to local titles
+	 * @param int $setType One of:
+	 *    - LinksTable::INSERTED: The inserted links
+	 *    - LinksTable::DELETED: The deleted links
+	 *    - LinksTable::CHANGED: Both the inserted and deleted links
+	 *    - LinksTable::OLD: The old set of links, loaded before the update
+	 *    - LinksTable::NEW: The new set of links from the ParserOutput
+	 * @return iterable<PageReferenceValue>
+	 * @phan-return \Traversable
+	 */
+	public function getPageReferenceIterator( $tableName, $setType ) {
+		$table = $this->tableFactory->get( $tableName );
+		if ( $table instanceof TitleLinksTable ) {
+			return $table->getPageReferenceIterator( $setType );
+		} else {
+			throw new \InvalidArgumentException(
+				__METHOD__ . ": $tableName does not have a list of titles" );
+		}
+	}
+
+	/**
+	 * Same as getPageReferenceIterator() but converted to an array for convenience
+	 * (at the expense of additional time and memory usage)
+	 *
+	 * @since 1.38
+	 * @param string $tableName
+	 * @param int $setType
+	 * @return PageReferenceValue[]
+	 */
+	public function getPageReferenceArray( $tableName, $setType ) {
+		return iterator_to_array( $this->getPageReferenceIterator( $tableName, $setType ) );
 	}
 
 	/**

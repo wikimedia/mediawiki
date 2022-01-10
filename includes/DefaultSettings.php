@@ -8858,6 +8858,17 @@ $wgCategoryPagingLimit = 200;
 $wgCategoryCollation = 'uppercase';
 
 /**
+ * Additional category collations to store during LinksUpdate. This can be used
+ * to perform online migration of categories from one collation to another. An
+ * array of associative arrays each having the following keys:
+ *  - table: (string) The table name
+ *  - collation: (string) The collation to use for cl_sortkey
+ *  - fakeCollation: (string) The collation name to insert into cl_collation
+ * @since 1.38
+ */
+$wgTempCategoryCollations = [];
+
+/**
  * Array holding default tracking category names.
  *
  * Array contains the system messages for each tracking category.
