@@ -2278,7 +2278,7 @@
 	"linksearch-text": "可使用萬用字元如 *.wikipedia.org。<br />\n支援的{{PLURAL:$2|通訊協定}}有：$1（若未指定則預設使用 http:// 通訊協定）。",
 	"linksearch-line": "$1 由 $2 所連結",
 	"linksearch-error": "萬用字元僅可在主機名稱的開頭使用。",
-	"listusersfrom": "顯示使用者開始自：",
+	"listusersfrom": "從此處開始顯示使用者：",
 	"listusers-submit": "顯示",
 	"listusers-noresult": "查無使用者。",
 	"listusers-blocked": "（已封鎖）",

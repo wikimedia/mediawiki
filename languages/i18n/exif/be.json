@@ -6,7 +6,8 @@
 			"Mikalai Udodau",
 			"Yury Tarasievich",
 			"Хомелка",
-			"Чаховіч Уладзіслаў"
+			"Чаховіч Уладзіслаў",
+			"Chadyka"
 		]
 	},
 	"exif-imagewidth": "Шырыня",
@@ -129,7 +130,7 @@
 	"exif-countrycodecreated": "Код краіны, дзе была зробленая фатаграфія",
 	"exif-provinceorstatecreated": "Вобласць, правінцыя ці штат, дзе была зробленая фатаграфія",
 	"exif-citycreated": "Горад, дзе была зробленая фатаграфія",
-	"exif-sublocationcreated": "Раён горада, дзе была зробленая фоторафия",
+	"exif-sublocationcreated": "Раён горада, дзе была зробленая фатаграфія",
 	"exif-worldregiondest": "Паказаны рэгіён свету",
 	"exif-countrydest": "Паказаная краіна",
 	"exif-countrycodedest": "Код паказанай краіны",

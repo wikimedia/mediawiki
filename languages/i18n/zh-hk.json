@@ -25,7 +25,8 @@
 			"和平至上",
 			"AT",
 			"Winston Sung",
-			"星海"
+			"星海",
+			"Tranve"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -194,10 +195,13 @@
 	"randompage": "隨機頁面",
 	"uncategorizedtemplates": "待分類模板",
 	"listusers": "用戶清單",
+	"listusers-editsonly": "只顯示有編輯的用戶",
+	"listusers-temporarygroupsonly": "僅顯示在臨時用戶組的用戶",
 	"newpages": "新頁面",
 	"newpages-username": "用戶名稱：",
 	"speciallogtitlelabel": "目標 (標題或用戶)：",
 	"checkbox-select": "選擇：$1",
+	"listusersfrom": "從此處開始顯示用戶：",
 	"emailuser": "Email 聯絡此用戶",
 	"emailusername": "用戶名稱：",
 	"wlshowhidebots": "機械人",

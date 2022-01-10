@@ -558,7 +558,7 @@
 	"botpasswords-insert-failed": "Ne mogu dodati bota pod nazivom \"$1\". Možda je već dodano?",
 	"botpasswords-update-failed": "Ne mogu ažurirati bota pod nazivom \"$1\". Možda je izbrisan?",
 	"botpasswords-created-title": "Napravljena lozinka bota",
-	"botpasswords-created-body": "Napravljena je lozinka za bota \"$1\" {{GENDER:$2|user}} \"$2\".",
+	"botpasswords-created-body": "Napravljena je lozinka za bota \"$1\" {{GENDER:$2|korisnika|korisnice|korisnika/-ce}} \"$2\".",
 	"botpasswords-updated-title": "Ažurirana lozinka bota",
 	"botpasswords-updated-body": "Ažurirana lozinka za bota \"$1\" korisnika \"$2\".",
 	"botpasswords-deleted-title": "Izbrisana lozinka bota",
