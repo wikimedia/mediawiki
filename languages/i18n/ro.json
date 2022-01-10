@@ -3949,7 +3949,7 @@
 	"specialmute": "Blocare notificări",
 	"specialmute-success": "Preferințele dvs. referitor la blocarea notificărilor au fost actualizate. Vedeți toți utilizatorii blocați în [[Special:Preferences|preferințe]]",
 	"specialmute-submit": "Confirmare",
-	"specialmute-label-mute-email": "Ascunde e-mailuri de la {{GENDER:$1|acest utilizator|această utilizatoare}}",
+	"specialmute-label-mute-email": "Blochează e-mailuri de la {{GENDER:$1|acest utilizator|această utilizatoare}}",
 	"specialmute-header": "Vă rugăm să alegeți preferințele dvs. de dezactivare a notificărilor dvs. pentru utilizatorul <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Numele de utilizator solicitat nu a putut fi găsit.",
 	"specialmute-error-no-options": "Funcțiile de dezactivare notificărilor nu sunt disponibile. Acest lucru se poate datora faptului că nu v-ați confirmat adresa de e-mail sau deoarece administratorul wiki a dezactivat funcțiile de e-mail sau lista de silențiere a adreselor de e-mail pentru acest wiki.",
