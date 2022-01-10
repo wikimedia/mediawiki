@@ -141,7 +141,7 @@
 	"dec": "Kan",
 	"period-am": "VD",
 	"period-pm": "BD",
-	"pagecategories": "{{PLURAL:$1|Kategori|Kategoriy}}",
+	"pagecategories": "{{PLURAL:$1|Kategoriye|Kategoriyi}}",
 	"category_header": "Pelê kategoriya \"$1\"'",
 	"subcategories": "Kategoriyê bınêni",
 	"category-media-header": "Medyay kategoriya \"$1\"",
