@@ -345,7 +345,6 @@ class EditPage implements IEditObject {
 	public $editFormTextBottom = '';
 	public $editFormTextAfterContent = '';
 	public $previewTextAfterContent = '';
-	public $mPreloadContent = null;
 
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
@@ -1565,10 +1564,6 @@ class EditPage implements IEditObject {
 	 * @since 1.21
 	 */
 	protected function getPreloadedContent( $preload, $params = [] ) {
-		if ( !empty( $this->mPreloadContent ) ) {
-			return $this->mPreloadContent;
-		}
-
 		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 
 		if ( $preload === '' ) {
