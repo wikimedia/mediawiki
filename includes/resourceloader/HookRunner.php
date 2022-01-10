@@ -4,12 +4,14 @@ namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\HookContainer\HookContainer;
 use ResourceLoader;
+use ResourceLoaderContext;
 
 /**
  * @internal
  * @ingroup ResourceLoader
  */
 class HookRunner implements
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderExcludeUserOptionsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderForeignApiModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook,
@@ -21,6 +23,14 @@ class HookRunner implements
 
 	public function __construct( HookContainer $container ) {
 		$this->container = $container;
+	}
+
+	public function onResourceLoaderExcludeUserOptions( array &$keysToExclude, ResourceLoaderContext $context ): void {
+		$this->container->run(
+			'ResourceLoaderExcludeUserOptions',
+			[ &$keysToExclude, $context ],
+			[ 'abortable' => false ]
+		);
 	}
 
 	public function onResourceLoaderForeignApiModules( &$dependencies, $context ): void {
