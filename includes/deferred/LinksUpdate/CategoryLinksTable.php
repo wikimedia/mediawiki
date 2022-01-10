@@ -35,6 +35,12 @@ class CategoryLinksTable extends TitleLinksTable {
 	 */
 	private $existingLinks;
 
+	/**
+	 * @var array Associative array of saved timestamps, if there is a force
+	 *   refresh due to a page move
+	 */
+	private $savedTimestamps = null;
+
 	/** @var \ILanguageConverter */
 	private $languageConverter;
 
@@ -129,7 +135,11 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	protected function getExistingFields() {
-		return [ 'cl_to', 'cl_sortkey_prefix' ];
+		$fields = [ 'cl_to', 'cl_sortkey_prefix' ];
+		if ( $this->needForcedLinkRefresh() ) {
+			$fields[] = 'cl_timestamp';
+		}
+		return $fields;
 	}
 
 	/**
@@ -145,6 +155,21 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	/**
+	 * Get the existing links from the database
+	 */
+	private function fetchExistingLinks() {
+		$this->existingLinks = [];
+		$this->savedTimestamps = [];
+		$force = $this->needForcedLinkRefresh();
+		foreach ( $this->fetchExistingRows() as $row ) {
+			$this->existingLinks[$row->cl_to] = $row->cl_sortkey_prefix;
+			if ( $force ) {
+				$this->savedTimestamps[$row->cl_to] = $row->cl_timestamp;
+			}
+		}
+	}
+
+	/**
 	 * Get the existing links as an associative array, with the category name
 	 * in the key and the sort key prefix in the value.
 	 *
@@ -152,12 +177,16 @@ class CategoryLinksTable extends TitleLinksTable {
 	 */
 	private function getExistingLinks() {
 		if ( $this->existingLinks === null ) {
-			$this->existingLinks = [];
-			foreach ( $this->fetchExistingRows() as $row ) {
-				$this->existingLinks[$row->cl_to] = $row->cl_sortkey_prefix;
-			}
+			$this->fetchExistingLinks();
 		}
 		return $this->existingLinks;
+	}
+
+	private function getSavedTimestamps() {
+		if ( $this->savedTimestamps === null ) {
+			$this->fetchExistingLinks();
+		}
+		return $this->savedTimestamps;
 	}
 
 	/**
@@ -184,11 +213,15 @@ class CategoryLinksTable extends TitleLinksTable {
 	protected function insertLink( $linkId ) {
 		[ $name, $prefix ] = $linkId;
 		$sortKey = $this->newLinks[$name][1];
+		$savedTimestamps = $this->getSavedTimestamps();
+
+		// Preserve cl_timestamp in the case of a forced refresh
+		$timestamp = $this->getDB()->timestamp( $savedTimestamps[$name] ?? 0 );
 
 		$this->insertRow( [
 			'cl_to' => $name,
 			'cl_sortkey' => $sortKey,
-			'cl_timestamp' => $this->getDB()->timestamp(),
+			'cl_timestamp' => $timestamp,
 			'cl_sortkey_prefix' => $prefix,
 			'cl_collation' => $this->collationName,
 			'cl_type' => $this->categoryType,
@@ -197,6 +230,11 @@ class CategoryLinksTable extends TitleLinksTable {
 
 	protected function deleteLink( $linkId ) {
 		$this->deleteRow( [ 'cl_to' => $linkId[0] ] );
+	}
+
+	protected function needForcedLinkRefresh() {
+		// cl_sortkey and possibly cl_type will change if it is a page move
+		return $this->isMove();
 	}
 
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {

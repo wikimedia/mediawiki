@@ -116,6 +116,10 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		] );
 	}
 
+	protected function needForcedLinkRefresh() {
+		return $this->isCrossNamespaceMove();
+	}
+
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {
 		return new PageReferenceValue( $linkId[0], $linkId[1], WikiAwareEntity::LOCAL );
 	}

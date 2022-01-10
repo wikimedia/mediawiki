@@ -20,7 +20,17 @@
  * @file
  */
 
+namespace MediaWiki\Deferred\LinksUpdate;
+
+use Category;
+use DeferredUpdates;
+use EnqueueableDataUpdate;
+use InvalidArgumentException;
+use JobSpecification;
 use MediaWiki\MediaWikiServices;
+use MWException;
+use ParserOutput;
+use WikiPage;
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
@@ -127,3 +137,6 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		];
 	}
 }
+
+/** @deprecated since 1.38 */
+class_alias( LinksDeletionUpdate::class, 'LinksDeletionUpdate' );

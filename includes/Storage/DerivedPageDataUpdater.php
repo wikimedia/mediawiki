@@ -31,10 +31,10 @@ use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
-use LinksUpdate;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -179,6 +179,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		'newrev' => false,
 		'created' => false,
 		'moved' => false,
+		'oldtitle' => null,
 		'restored' => false,
 		'oldrevision' => null,
 		'oldcountable' => null,
@@ -1135,6 +1136,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	 * - changed: bool, whether the revision changed the content (default true)
 	 * - created: bool, whether the revision created the page (default false)
 	 * - moved: bool, whether the page was moved (default false)
+	 * - oldtitle: PageIdentity, if the page was moved this is the source title (default null)
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
 	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
@@ -1424,6 +1426,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$parserOutput,
 			$recursive
 		);
+		if ( $this->options['moved'] ) {
+			$linksUpdate->setMoveDetails( $this->options['oldtitle'] );
+		}
 
 		$allUpdates[] = $linksUpdate;
 		// NOTE: Run updates for all slots, not just the modified slots! Otherwise,

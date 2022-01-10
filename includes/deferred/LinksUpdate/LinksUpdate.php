@@ -20,19 +20,27 @@
  * @file
  */
 
-use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
-use MediaWiki\Deferred\LinksUpdate\LinksTable;
-use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
-use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\PagePropsTable;
-use MediaWiki\Deferred\LinksUpdate\TitleLinksTable;
+namespace MediaWiki\Deferred\LinksUpdate;
+
+use AutoCommitUpdate;
+use BacklinkCache;
+use DataUpdate;
+use DeferredUpdates;
+use Job;
+use JobQueueGroup;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use MWException;
+use ParserOutput;
+use RefreshLinksJob;
+use RuntimeException;
+use Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -167,6 +175,16 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
+	 * Notify LinksUpdate that a move has just been completed and set the
+	 * original title
+	 *
+	 * @param PageReference $oldPage
+	 */
+	public function setMoveDetails( PageReference $oldPage ) {
+		$this->tableFactory->setMoveDetails( $oldPage );
+	}
+
+	/**
 	 * Update link tables with outgoing links from an updated article
 	 *
 	 * @note this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
@@ -197,8 +215,8 @@ class LinksUpdate extends DataUpdate {
 		// Calling getAll() here has the side-effect of calling
 		// LinksUpdateBatch::setParserOutput() on all subclasses, allowing
 		// those methods to also do pre-lock operations.
-		foreach ( $this->tableFactory->getAll() as $batch ) {
-			$batch->beforeLock();
+		foreach ( $this->tableFactory->getAll() as $table ) {
+			$table->beforeLock();
 		}
 
 		if ( $this->ticket ) {
@@ -585,3 +603,6 @@ class LinksUpdate extends DataUpdate {
 		return $this->mRecursive;
 	}
 }
+
+/** @deprecated since 1.38 */
+class_alias( LinksUpdate::class, 'LinksUpdate' );
