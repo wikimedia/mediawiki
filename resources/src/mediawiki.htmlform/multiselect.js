@@ -6,7 +6,7 @@
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-htmlform-dropdown)/g, '' ),
+			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-[A-Za-z]+|mw-htmlform-dropdown)/g, '' ),
 			$select = $( '<select>' ),
 			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
 		oldClass = oldClass.trim();
@@ -92,7 +92,7 @@
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var $dropdowns = $root.find( '.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-dropdown' );
+		var $dropdowns = $root.find( '.mw-htmlform-dropdown:not(.oo-ui-widget)' );
 		if ( $dropdowns.length ) {
 			$dropdowns.each( function () {
 				var $el = $( this ),
