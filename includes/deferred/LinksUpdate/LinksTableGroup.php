@@ -6,6 +6,7 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use ParserOutput;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -74,6 +75,9 @@ class LinksTableGroup {
 	/** @var PageIdentity */
 	private $page;
 
+	/** @var PageReference|null */
+	private $movedPage;
+
 	/** @var ParserOutput|null */
 	private $parserOutput;
 
@@ -134,6 +138,18 @@ class LinksTableGroup {
 		$this->parserOutput = $parserOutput;
 		foreach ( $this->tables as $table ) {
 			$table->setParserOutput( $parserOutput );
+		}
+	}
+
+	/**
+	 * Set the original title in the case of a page move.
+	 *
+	 * @param PageReference $oldPage
+	 */
+	public function setMoveDetails( PageReference $oldPage ) {
+		$this->movedPage = $oldPage;
+		foreach ( $this->tables as $table ) {
+			$table->setMoveDetails( $oldPage );
 		}
 	}
 
@@ -247,6 +263,9 @@ class LinksTableGroup {
 			);
 			if ( $this->parserOutput ) {
 				$table->setParserOutput( $this->parserOutput );
+			}
+			if ( $this->movedPage ) {
+				$table->setMoveDetails( $this->movedPage );
 			}
 			if ( $this->ticket ) {
 				$table->setTransactionTicket( $this->ticket );

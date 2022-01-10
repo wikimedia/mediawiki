@@ -3,6 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use ParserOutput;
 use Wikimedia\Rdbms\IDatabase;
@@ -84,6 +85,9 @@ abstract class LinksTable {
 	/** @var PageIdentity */
 	private $sourcePage;
 
+	/** @var PageReference|null */
+	private $movedPage;
+
 	/** @var int */
 	private $batchSize;
 
@@ -138,6 +142,16 @@ abstract class LinksTable {
 	 */
 	public function setRevision( RevisionRecord $revision ) {
 		$this->revision = $revision;
+	}
+
+	/**
+	 * Notify the object that the operation is a page move, and set the
+	 * original title.
+	 *
+	 * @param PageReference $movedPage
+	 */
+	public function setMoveDetails( PageReference $movedPage ) {
+		$this->movedPage = $movedPage;
 	}
 
 	/**
@@ -228,6 +242,17 @@ abstract class LinksTable {
 	abstract protected function deleteLink( $linkId );
 
 	/**
+	 * Subclasses can override this to return true in order to force
+	 * reinsertion of all the links due to some property of the link
+	 * changing for reasons not represented by the link ID.
+	 *
+	 * @return bool
+	 */
+	protected function needForcedLinkRefresh() {
+		return false;
+	}
+
+	/**
 	 * @stable to override
 	 * @return IDatabase
 	 */
@@ -259,6 +284,35 @@ abstract class LinksTable {
 	 */
 	protected function getSourcePage(): PageIdentity {
 		return $this->sourcePage;
+	}
+
+	/**
+	 * Determine whether the page was moved
+	 *
+	 * @return bool
+	 */
+	protected function isMove() {
+		return $this->movedPage !== null;
+	}
+
+	/**
+	 * Determine whether the page was moved to a different namespace.
+	 *
+	 * @return bool
+	 */
+	protected function isCrossNamespaceMove() {
+		return $this->movedPage !== null
+			&& $this->sourcePage->getNamespace() !== $this->movedPage->getNamespace();
+	}
+
+	/**
+	 * Assuming the page was moved, get the original page title before the move.
+	 * This will throw an exception if the page wasn't moved.
+	 *
+	 * @return PageReference
+	 */
+	protected function getMovedPage(): PageReference {
+		return $this->movedPage;
 	}
 
 	/**
@@ -315,19 +369,20 @@ abstract class LinksTable {
 	}
 
 	/**
-	 * Execute the update
+	 * Execute an edit/delete update
 	 */
 	final public function update() {
 		$this->startUpdate();
+		$force = $this->needForcedLinkRefresh();
 		foreach ( $this->getNewLinkIDs() as $link ) {
-			if ( !$this->isExisting( $link ) ) {
+			if ( $force || !$this->isExisting( $link ) ) {
 				$this->insertLink( $link );
 				$this->insertedLinks[] = $link;
 			}
 		}
 
 		foreach ( $this->getExistingLinkIDs() as $link ) {
-			if ( !$this->isInNewSet( $link ) ) {
+			if ( $force || !$this->isInNewSet( $link ) ) {
 				$this->deleteLink( $link );
 				$this->deletedLinks[] = $link;
 			}

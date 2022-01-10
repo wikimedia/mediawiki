@@ -693,35 +693,6 @@ class MovePage {
 			$nullRevision = $moveAttemptResult;
 		}
 
-		// Refresh the sortkey for this row.  Be careful to avoid resetting
-		// cl_timestamp, which may disturb time-based lists on some sites.
-		// @todo This block should be killed, it's duplicating code
-		// from LinksUpdate::getCategoryInsertions() and friends.
-		$prefixes = $dbw->select(
-			'categorylinks',
-			[ 'cl_sortkey_prefix', 'cl_to' ],
-			[ 'cl_from' => $pageid ],
-			__METHOD__
-		);
-		$type = $this->nsInfo->getCategoryLinkType( $this->newTitle->getNamespace() );
-		$collation = $this->collationFactory->getCategoryCollation();
-		foreach ( $prefixes as $prefixRow ) {
-			$prefix = $prefixRow->cl_sortkey_prefix;
-			$catTo = $prefixRow->cl_to;
-			$dbw->update( 'categorylinks',
-				[
-					'cl_sortkey' => $collation->getSortKey(
-							$this->newTitle->getCategorySortkey( $prefix ) ),
-					'cl_collation' => $this->options->get( 'CategoryCollation' ),
-					'cl_type' => $type,
-					'cl_timestamp=cl_timestamp' ],
-				[
-					'cl_from' => $pageid,
-					'cl_to' => $catTo ],
-				__METHOD__
-			);
-		}
-
 		$redirid = $this->oldTitle->getArticleID();
 
 		if ( $protected ) {
@@ -779,25 +750,6 @@ class MovePage {
 			$logEntry->addTags( $changeTags );
 			$logId = $logEntry->insert();
 			$logEntry->publish( $logId );
-		}
-
-		// Update *_from_namespace fields as needed
-		if ( $this->oldTitle->getNamespace() != $this->newTitle->getNamespace() ) {
-			$dbw->update( 'pagelinks',
-				[ 'pl_from_namespace' => $this->newTitle->getNamespace() ],
-				[ 'pl_from' => $pageid ],
-				__METHOD__
-			);
-			$dbw->update( 'templatelinks',
-				[ 'tl_from_namespace' => $this->newTitle->getNamespace() ],
-				[ 'tl_from' => $pageid ],
-				__METHOD__
-			);
-			$dbw->update( 'imagelinks',
-				[ 'il_from_namespace' => $this->newTitle->getNamespace() ],
-				[ 'il_from' => $pageid ],
-				__METHOD__
-			);
 		}
 
 		# Update watchlists
@@ -1028,6 +980,7 @@ class MovePage {
 		$options = [
 			'changed' => false,
 			'moved' => true,
+			'oldtitle' => $this->oldTitle,
 			'oldcountable' => $oldcountable,
 			'causeAction' => 'edit-page',
 			'causeAgent' => $user->getName(),

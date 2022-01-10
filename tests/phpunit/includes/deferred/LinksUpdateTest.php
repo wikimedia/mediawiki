@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -104,8 +105,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'pagelinks',
-			'pl_namespace,
-			pl_title',
+			[ 'pl_namespace', 'pl_title' ],
 			'pl_from = ' . self::$testingPageId,
 			[
 				[ NS_MAIN, 'Bar' ],
@@ -128,8 +128,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'pagelinks',
-			'pl_namespace,
-			pl_title',
+			[ 'pl_namespace', 'pl_title' ],
 			'pl_from = ' . self::$testingPageId,
 			[
 				[ NS_MAIN, 'Bar' ],
@@ -144,6 +143,36 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->assertArrayEquals( [
 			Title::makeTitle( NS_MAIN, 'Foo' ),
 		], $update->getRemovedLinks() );
+	}
+
+	public function testUpdate_pagelinks_move() {
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+
+		$po->addLink( Title::newFromText( "Foo" ) );
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'pagelinks',
+			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
+			'pl_from = ' . self::$testingPageId,
+			[
+				[ NS_MAIN, 'Foo', NS_MAIN ],
+			]
+		);
+
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
+		$po->addLink( Title::newFromText( "Foo" ) );
+		$this->assertMoveLinksUpdate(
+			$t,
+			new PageIdentityValue( 2, 0, "Foo", false ),
+			$po,
+			'pagelinks',
+			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
+			'pl_from = ' . self::$testingPageId,
+			[
+				[ NS_MAIN, 'Foo', NS_USER ],
+			]
+		);
 	}
 
 	/**
@@ -162,7 +191,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'externallinks',
-			'el_to, el_index',
+			[ 'el_to', 'el_index' ],
 			'el_from = ' . self::$testingPageId,
 			[
 				[ 'http://testing.com/wiki/Bar', 'http://com.testing./wiki/Bar' ],
@@ -183,7 +212,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'externallinks',
-			'el_to, el_index',
+			[ 'el_to', 'el_index' ],
 			'el_from = ' . self::$testingPageId,
 			[
 				[ 'http://testing.com/wiki/Bar', 'http://com.testing./wiki/Bar' ],
@@ -215,7 +244,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			'cl_to, cl_sortkey',
+			[ 'cl_to', 'cl_sortkey' ],
 			'cl_from = ' . self::$testingPageId,
 			[
 				[ 'Bar', "BAR\nTESTING" ],
@@ -242,7 +271,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			'cl_to, cl_sortkey',
+			[ 'cl_to', 'cl_sortkey' ],
 			'cl_from = ' . self::$testingPageId,
 			[
 				[ 'Bar', "BAR\nTESTING" ],
@@ -356,6 +385,56 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testUpdate_categorylinks_move() {
+		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+
+		/** @var ParserOutput $po */
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
+
+		$po->addCategory( "Foo", "FOO" );
+
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'categorylinks',
+			[ 'cl_to', 'cl_sortkey' ],
+			'cl_from = ' . self::$testingPageId,
+			[
+				[ 'Foo', "FOO\nOLD" ]
+			]
+		);
+
+		/** @var ParserOutput $po */
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "New", self::$testingPageId );
+
+		$po->addCategory( "Foo", "FOO" );
+
+		// An update to cl_sortkey is not expected if there was no move
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'categorylinks',
+			[ 'cl_to', 'cl_sortkey' ],
+			'cl_from = ' . self::$testingPageId,
+			[
+				[ 'Foo', "FOO\nOLD" ]
+			]
+		);
+
+		// With move notification, update to cl_sortkey is expected
+		$this->assertMoveLinksUpdate(
+			$t,
+			new PageIdentityValue( 2, 0, "new", false ),
+			$po,
+			'categorylinks',
+			[ 'cl_to', 'cl_sortkey' ],
+			'cl_from = ' . self::$testingPageId,
+			[
+				[ 'Foo', "FOO\nNEW" ]
+			]
+		);
+	}
+
 	/**
 	 * @covers ParserOutput::addInterwikiLink
 	 */
@@ -373,7 +452,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'iwlinks',
-			'iwl_prefix, iwl_title',
+			[ 'iwl_prefix', 'iwl_title' ],
 			'iwl_from = ' . self::$testingPageId,
 			[
 				[ 'linksupdatetest', 'T1' ],
@@ -391,7 +470,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'iwlinks',
-			'iwl_prefix, iwl_title',
+			[ 'iwl_prefix', 'iwl_title' ],
 			'iwl_from = ' . self::$testingPageId,
 			[
 				[ 'linksupdatetest', 'T2' ],
@@ -418,8 +497,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			'tl_namespace,
-			tl_title',
+			[ 'tl_namespace', 'tl_title' ],
 			'tl_from = ' . self::$testingPageId,
 			[
 				[ NS_TEMPLATE, 'T1' ],
@@ -437,8 +515,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			'tl_namespace,
-			tl_title',
+			[ 'tl_namespace', 'tl_title' ],
 			'tl_from = ' . self::$testingPageId,
 			[
 				[ NS_TEMPLATE, 'T2' ],
@@ -501,7 +578,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'langlinks',
-			'll_lang, ll_title',
+			[ 'll_lang', 'll_title' ],
 			'll_from = ' . self::$testingPageId,
 			[
 				[ 'De', '1' ],
@@ -518,7 +595,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'langlinks',
-			'll_lang, ll_title',
+			[ 'll_lang', 'll_title' ],
 			'll_from = ' . self::$testingPageId,
 			[
 				[ 'En', '2' ],
@@ -598,8 +675,19 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput,
 		$table, $fields, $condition, array $expectedRows
 	) {
+		return $this->assertMoveLinksUpdate( $title, null, $parserOutput,
+			$table, $fields, $condition, $expectedRows );
+	}
+
+	protected function assertMoveLinksUpdate(
+		Title $title, ?PageIdentityValue $oldTitle, ParserOutput $parserOutput,
+		$table, $fields, $condition, array $expectedRows
+	) {
 		$update = new LinksUpdate( $title, $parserOutput );
 		$update->setStrictTestMode();
+		if ( $oldTitle ) {
+			$update->setMoveDetails( $oldTitle );
+		}
 
 		$update->doUpdate();
 
@@ -612,7 +700,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	) {
 		$this->assertSelect(
 			[ 'recentchanges', 'comment' ],
-			'rc_title, comment_text',
+			[ 'rc_title', 'comment_text' ],
 			[
 				'rc_type' => RC_CATEGORIZE,
 				'rc_namespace' => NS_CATEGORY,

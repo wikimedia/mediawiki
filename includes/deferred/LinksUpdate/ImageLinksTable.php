@@ -78,6 +78,10 @@ class ImageLinksTable extends TitleLinksTable {
 		return \array_key_exists( $linkId, $this->newLinks );
 	}
 
+	protected function needExistingLinkRefresh() {
+		return $this->isCrossNamespaceMove();
+	}
+
 	protected function insertLink( $linkId ) {
 		$this->insertRow( [
 			'il_from_namespace' => $this->getSourcePage()->getNamespace(),
