@@ -2428,21 +2428,27 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 /**
  * Get a specific cache object.
  *
- * @deprecated since 1.32, use ObjectCache::getInstance() instead
+ * @deprecated since 1.32, hard deprecated since 1.38
+ * Use ObjectCache::getInstance() instead
+ *
  * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
 function wfGetCache( $cacheType ) {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return ObjectCache::getInstance( $cacheType );
 }
 
 /**
  * Get the main cache object
  *
- * @deprecated since 1.32, use ObjectCache::getLocalClusterInstance() instead
+ * @deprecated since 1.32, hard deprecated since 1.38
+ * Use ObjectCache::getLocalClusterInstance() instead
+ *
  * @return BagOStuff
  */
 function wfGetMainCache() {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return ObjectCache::getLocalClusterInstance();
 }
 
