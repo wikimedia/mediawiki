@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 /**
@@ -42,9 +43,9 @@ abstract class FileCacheBase {
 	private const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 
 	protected function __construct() {
-		global $wgUseGzip;
+		$useGzip = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseGzip' );
 
-		$this->mUseGzip = (bool)$wgUseGzip;
+		$this->mUseGzip = (bool)$useGzip;
 	}
 
 	/**
@@ -52,9 +53,9 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	final protected function baseCacheDirectory() {
-		global $wgFileCacheDirectory;
+		$fileCacheDirectory = MediaWikiServices::getInstance()->getMainConfig()->get( 'FileCacheDirectory' );
 
-		return $wgFileCacheDirectory;
+		return $fileCacheDirectory;
 	}
 
 	/**
@@ -117,16 +118,16 @@ abstract class FileCacheBase {
 	 * @return bool
 	 */
 	public function isCacheGood( $timestamp = '' ) {
-		global $wgCacheEpoch;
+		$cacheEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( 'CacheEpoch' );
 
 		if ( !$this->isCached() ) {
 			return false;
 		}
 
 		$cachetime = $this->cacheTimestamp();
-		$good = ( $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime );
+		$good = ( $timestamp <= $cachetime && $cacheEpoch <= $cachetime );
 		wfDebug( __METHOD__ .
-			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good" );
+			": cachetime $cachetime, touched '{$timestamp}' epoch {$cacheEpoch}, good $good" );
 
 		return $good;
 	}
@@ -212,12 +213,12 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	protected function hashSubdirectory() {
-		global $wgFileCacheDepth;
+		$fileCacheDepth = MediaWikiServices::getInstance()->getMainConfig()->get( 'FileCacheDepth' );
 
 		$subdir = '';
-		if ( $wgFileCacheDepth > 0 ) {
+		if ( $fileCacheDepth > 0 ) {
 			$hash = md5( $this->mKey );
-			for ( $i = 1; $i <= $wgFileCacheDepth; $i++ ) {
+			for ( $i = 1; $i <= $fileCacheDepth; $i++ ) {
 				$subdir .= substr( $hash, 0, $i ) . '/';
 			}
 		}

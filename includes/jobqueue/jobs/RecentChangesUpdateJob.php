@@ -18,6 +18,7 @@
  * @file
  * @ingroup JobQueue
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -71,8 +72,8 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function purgeExpiredRows() {
-		global $wgRCMaxAge, $wgUpdateRowsPerQuery;
-
+		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCMaxAge' );
+		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerQuery' );
 		$dbw = wfGetDB( DB_PRIMARY );
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
@@ -82,7 +83,7 @@ class RecentChangesUpdateJob extends Job {
 
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
-		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
+		$cutoff = $dbw->timestamp( time() - $rcMaxAge );
 		$rcQuery = RecentChange::getQueryInfo();
 		do {
 			$rcIds = [];
@@ -92,7 +93,7 @@ class RecentChangesUpdateJob extends Job {
 				$rcQuery['fields'],
 				[ 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ],
 				__METHOD__,
-				[ 'LIMIT' => $wgUpdateRowsPerQuery ],
+				[ 'LIMIT' => $updateRowsPerQuery ],
 				$rcQuery['joins']
 			);
 			foreach ( $res as $row ) {
@@ -116,12 +117,12 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function updateActiveUsers() {
-		global $wgActiveUserDays;
+		$activeUserDays = MediaWikiServices::getInstance()->getMainConfig()->get( 'ActiveUserDays' );
 
 		// Users that made edits at least this many days ago are "active"
-		$days = $wgActiveUserDays;
+		$days = $activeUserDays;
 		// Pull in the full window of active users in this update
-		$window = $wgActiveUserDays * 86400;
+		$window = $activeUserDays * 86400;
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

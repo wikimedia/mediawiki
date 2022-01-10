@@ -350,8 +350,8 @@ class Linker {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				global $wgSVGMaxSize;
-				$handlerParams['width'] = $wgSVGMaxSize;
+				$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMaxSize' );
+				$handlerParams['width'] = $svgMaxSize;
 			} else {
 				$handlerParams['width'] = $file->getWidth( $page );
 			}
@@ -362,24 +362,24 @@ class Linker {
 				|| isset( $frameParams['frameless'] )
 				|| !$handlerParams['width']
 			) {
-				global $wgThumbLimits, $wgThumbUpright;
-
-				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
+				$thumbLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbLimits' );
+				$thumbUpright = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbUpright' );
+				if ( $widthOption === null || !isset( $thumbLimits[$widthOption] ) ) {
 					$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 					$widthOption = $userOptionsLookup->getDefaultOption( 'thumbsize' );
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
 				if ( isset( $frameParams['upright'] ) && $frameParams['upright'] == 0 ) {
-					$frameParams['upright'] = $wgThumbUpright;
+					$frameParams['upright'] = $thumbUpright;
 				}
 
 				// For caching health: If width scaled down due to upright
 				// parameter, round to full __0 pixel to avoid the creation of a
 				// lot of odd thumbs.
 				$prefWidth = isset( $frameParams['upright'] ) ?
-					round( $wgThumbLimits[$widthOption] * $frameParams['upright'], -1 ) :
-					$wgThumbLimits[$widthOption];
+					round( $thumbLimits[$widthOption] * $frameParams['upright'], -1 ) :
+					$thumbLimits[$widthOption];
 
 				// Use width which is smaller: real image width or user preference width
 				// Unless image is scalable vector.
@@ -801,8 +801,8 @@ class Linker {
 	 * @param array $hp Image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
-		global $wgResponsiveImages;
-		if ( $wgResponsiveImages && $thumb && !$thumb->isError() ) {
+		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResponsiveImages' );
+		if ( $responsiveImages && $thumb && !$thumb->isError() ) {
 			$hp15 = $hp;
 			$hp15['width'] = round( $hp['width'] * 1.5 );
 			$hp20 = $hp;
@@ -846,8 +846,10 @@ class Linker {
 		}
 
 		$title = Title::castFromLinkTarget( $title );
-
-		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$enableUploads = $mainConfig->get( 'EnableUploads' );
+		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
+		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
@@ -867,7 +869,7 @@ class Linker {
 		$currentExists = $time
 			&& $repoGroup->findFile( $title ) !== false;
 
-		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
+		if ( ( $uploadMissingFileUrl || $uploadNavigationUrl || $enableUploads )
 			&& !$currentExists
 		) {
 			if ( $repoGroup->getLocalRepo()->checkRedirect( $title ) ) {
@@ -904,18 +906,19 @@ class Linker {
 	 * @return string Urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
-		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
+		$uploadMissingFileUrl = MediaWikiServices::getInstance()->getMainConfig()->get( 'UploadMissingFileUrl' );
+		$uploadNavigationUrl = MediaWikiServices::getInstance()->getMainConfig()->get( 'UploadNavigationUrl' );
 		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
 		}
 
-		if ( $wgUploadMissingFileUrl ) {
-			return wfAppendQuery( $wgUploadMissingFileUrl, $q );
+		if ( $uploadMissingFileUrl ) {
+			return wfAppendQuery( $uploadMissingFileUrl, $q );
 		}
 
-		if ( $wgUploadNavigationUrl ) {
-			return wfAppendQuery( $wgUploadNavigationUrl, $q );
+		if ( $uploadNavigationUrl ) {
+			return wfAppendQuery( $uploadNavigationUrl, $q );
 		}
 
 		$upload = SpecialPage::getTitleFor( 'Upload' );
@@ -1126,9 +1129,9 @@ class Linker {
 				'that need to be fixed?' );
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
-
-		global $wgDisableAnonTalk, $wgLang;
-		$talkable = !( $wgDisableAnonTalk && $userId == 0 );
+		global $wgLang;
+		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisableAnonTalk' );
+		$talkable = !( $disableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
 
@@ -1850,9 +1853,9 @@ class Linker {
 	 * @return int|false|null
 	 */
 	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
-		global $wgShowRollbackEditCount;
+		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowRollbackEditCount' );
 
-		if ( !is_int( $wgShowRollbackEditCount ) || !$wgShowRollbackEditCount > 0 ) {
+		if ( !is_int( $showRollbackEditCount ) || !$showRollbackEditCount > 0 ) {
 			// Nothing has happened, indicate this by returning 'null'
 			return null;
 		}
@@ -1873,7 +1876,7 @@ class Linker {
 			[
 				'USE INDEX' => [ 'revision' => $revIndex ],
 				'ORDER BY' => 'rev_timestamp DESC',
-				'LIMIT' => $wgShowRollbackEditCount + 1
+				'LIMIT' => $showRollbackEditCount + 1
 			],
 			$revQuery['joins']
 		);
@@ -1900,7 +1903,7 @@ class Linker {
 			$editCount++;
 		}
 
-		if ( $verify && $editCount <= $wgShowRollbackEditCount && !$moreRevs ) {
+		if ( $verify && $editCount <= $showRollbackEditCount && !$moreRevs ) {
 			// We didn't find at least $wgShowRollbackEditCount revisions made by the current user
 			// and there weren't any other revisions. That means that the current user is the only
 			// editor, so we can't rollback
@@ -1928,8 +1931,8 @@ class Linker {
 		IContextSource $context = null,
 		$editCount = false
 	) {
-		global $wgShowRollbackEditCount, $wgMiserMode;
-
+		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowRollbackEditCount' );
+		$miserMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'MiserMode' );
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
@@ -1961,7 +1964,7 @@ class Linker {
 		}
 
 		$disableRollbackEditCount = false;
-		if ( $wgMiserMode ) {
+		if ( $miserMode ) {
 			foreach ( $disableRollbackEditCountSpecialPage as $specialPage ) {
 				if ( $context->getTitle()->isSpecial( $specialPage ) ) {
 					$disableRollbackEditCount = true;
@@ -1971,16 +1974,16 @@ class Linker {
 		}
 
 		if ( !$disableRollbackEditCount
-			&& is_int( $wgShowRollbackEditCount )
-			&& $wgShowRollbackEditCount > 0
+			&& is_int( $showRollbackEditCount )
+			&& $showRollbackEditCount > 0
 		) {
 			if ( !is_numeric( $editCount ) ) {
 				$editCount = self::getRollbackEditCount( $revRecord, false );
 			}
 
-			if ( $editCount > $wgShowRollbackEditCount ) {
+			if ( $editCount > $showRollbackEditCount ) {
 				$html = $context->msg( 'rollbacklinkcount-morethan' )
-					->numParams( $wgShowRollbackEditCount )->parse();
+					->numParams( $showRollbackEditCount )->parse();
 			} else {
 				$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
 			}

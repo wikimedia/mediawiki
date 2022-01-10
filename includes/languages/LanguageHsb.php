@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Upper Sorbian (Hornjoserbsce) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Upper Sorbian (Hornjoserbsce)
  *
@@ -36,9 +39,9 @@ class LanguageHsb extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['hsb'][$case][$word] ) ) {
-			return $wgGrammarForms['hsb'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['hsb'][$case][$word] ) ) {
+			return $grammarForms['hsb'][$case][$word];
 		}
 
 		switch ( $case ) {

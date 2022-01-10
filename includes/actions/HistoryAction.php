@@ -203,8 +203,8 @@ class HistoryAction extends FormlessAction {
 
 		// Fail nicely if article doesn't exist.
 		if ( !$this->getWikiPage()->exists() ) {
-			global $wgSend404Code;
-			if ( $wgSend404Code ) {
+			$send404Code = MediaWikiServices::getInstance()->getMainConfig()->get( 'Send404Code' );
+			if ( $send404Code ) {
 				$out->setStatusCode( 404 );
 			}
 			$out->addWikiMsg( 'nohistory' );

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File without associated database record.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup FileAbstraction
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * A file object referring to either a standalone local file, or a file in a
@@ -159,7 +162,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	public function getMimeType() {
 		if ( !isset( $this->mime ) ) {
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$this->mime = $magic->guessMimeType( $this->getLocalRefPath() );
 		}
 

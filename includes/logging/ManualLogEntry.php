@@ -25,6 +25,7 @@
 
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -285,7 +286,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$this->timestamp = wfTimestampNow();
 		}
 
-		$actorId = \MediaWiki\MediaWikiServices::getInstance()->getActorStore()
+		$actorId = MediaWikiServices::getInstance()->getActorStore()
 			->acquireActorId( $this->getPerformerIdentity(), $dbw );
 
 		// Trim spaces on user supplied text

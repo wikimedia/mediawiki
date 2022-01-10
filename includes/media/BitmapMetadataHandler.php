@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
@@ -91,8 +92,8 @@ class BitmapMetadataHandler {
 	 * @param string $byteOrder
 	 */
 	public function getExif( $filename, $byteOrder ) {
-		global $wgShowEXIF;
-		if ( file_exists( $filename ) && $wgShowEXIF ) {
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		if ( file_exists( $filename ) && $showEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
 			if ( $data ) {

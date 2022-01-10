@@ -23,6 +23,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
@@ -87,7 +88,7 @@ abstract class MWLBFactory {
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
-		global $wgCommandLineMode;
+		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
 
 		$typesWithSchema = self::getDbTypesWithSchemas();
 
@@ -107,7 +108,7 @@ abstract class MWLBFactory {
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
-			'cliMode' => $wgCommandLineMode,
+			'cliMode' => $commandLineMode,
 			'readOnlyReason' => $readOnlyMode->getReason(),
 			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
 			'criticalSectionProvider' => $csProvider

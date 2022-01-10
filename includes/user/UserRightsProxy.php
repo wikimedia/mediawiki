@@ -72,8 +72,8 @@ class UserRightsProxy implements UserIdentity {
 	 * @return bool
 	 */
 	public static function validDatabase( $dbDomain ) {
-		global $wgLocalDatabases;
-		return in_array( $dbDomain, $wgLocalDatabases );
+		$localDatabases = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalDatabases' );
+		return in_array( $dbDomain, $localDatabases );
 	}
 
 	/**
@@ -125,12 +125,13 @@ class UserRightsProxy implements UserIdentity {
 	 * @return null|UserRightsProxy
 	 */
 	private static function newFromLookup( $dbDomain, $field, $value, $ignoreInvalidDB = false ) {
-		global $wgSharedDB, $wgSharedTables;
+		$sharedDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'SharedDB' );
+		$sharedTables = MediaWikiServices::getInstance()->getMainConfig()->get( 'SharedTables' );
 		// If the user table is shared, perform the user query on it,
 		// but don't pass it to the UserRightsProxy,
 		// as user rights are normally not shared.
-		if ( $wgSharedDB && in_array( 'user', $wgSharedTables ) ) {
-			$userdb = self::getDB( $wgSharedDB, $ignoreInvalidDB );
+		if ( $sharedDB && in_array( 'user', $sharedTables ) ) {
+			$userdb = self::getDB( $sharedDB, $ignoreInvalidDB );
 		} else {
 			$userdb = self::getDB( $dbDomain, $ignoreInvalidDB );
 		}

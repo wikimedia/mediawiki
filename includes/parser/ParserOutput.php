@@ -960,15 +960,16 @@ class ParserOutput extends CacheTime {
 
 	public function addExternalLink( $url ) {
 		# We don't register links pointing to our own server, unless... :-)
-		global $wgServer, $wgRegisterInternalExternals;
-
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$server = $config->get( 'Server' );
+		$registerInternalExternals = $config->get( 'RegisterInternalExternals' );
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
 		$url = Parser::normalizeLinkUrl( $url );
 
 		$registerExternalLink = true;
-		if ( !$wgRegisterInternalExternals ) {
-			$registerExternalLink = !self::isLinkInternal( $wgServer, $url );
+		if ( !$registerInternalExternals ) {
+			$registerExternalLink = !self::isLinkInternal( $server, $url );
 		}
 		if ( $registerExternalLink ) {
 			$this->mExternalLinks[$url] = 1;
@@ -1694,9 +1695,9 @@ class ParserOutput extends CacheTime {
 	 * @return bool
 	 */
 	public function hasReducedExpiry(): bool {
-		global $wgParserCacheExpireTime;
+		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get( 'ParserCacheExpireTime' );
 
-		return $this->getCacheExpiry() < $wgParserCacheExpireTime;
+		return $this->getCacheExpiry() < $parserCacheExpireTime;
 	}
 
 	/**

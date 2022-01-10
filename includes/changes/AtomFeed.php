@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
@@ -20,6 +21,8 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Generate an Atom feed.
@@ -87,13 +90,13 @@ class AtomFeed extends ChannelFeed {
 	 * @param FeedItem $item
 	 */
 	public function outItem( $item ) {
-		global $wgMimeType;
+		$mimeType = MediaWikiServices::getInstance()->getMainConfig()->get( 'MimeType' );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
 			"uniqueID" => $item->getUniqueID(),
 			"title" => $item->getTitle(),
-			"mimeType" => $this->xmlEncode( $wgMimeType ),
+			"mimeType" => $this->xmlEncode( $mimeType ),
 			"url" => $this->xmlEncode( wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ) ),
 			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
 			"description" => $item->getDescription(),

@@ -28,6 +28,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -1039,7 +1040,7 @@ class WikiImporter {
 	 * @throws MWException
 	 */
 	private function makeContent( Title $title, $revisionId, $contentInfo ) {
-		global $wgMaxArticleSize;
+		$maxArticleSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxArticleSize' );
 
 		if ( !isset( $contentInfo['text'] ) ) {
 			throw new MWException( 'Missing text field in import.' );
@@ -1058,13 +1059,13 @@ class WikiImporter {
 					'text',
 					''
 				] ) ) &&
-			strlen( $contentInfo['text'] ) > $wgMaxArticleSize * 1024
+			strlen( $contentInfo['text'] ) > $maxArticleSize * 1024
 		) {
 			throw new MWException( 'The text of ' .
 				( $revisionId ?
 					"the revision with ID $revisionId" :
 					'a revision'
-				) . " exceeds the maximum allowable size ($wgMaxArticleSize KiB)" );
+				) . " exceeds the maximum allowable size ({$maxArticleSize} KiB)" );
 		}
 
 		$role = $contentInfo['role'] ?? SlotRecord::MAIN;

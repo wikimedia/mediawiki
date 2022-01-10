@@ -72,8 +72,8 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	public function run() {
-		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
-
+		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerJob' );
+		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerQuery' );
 		if ( isset( $this->params['table'] ) && !isset( $this->params['pages'] ) ) {
 			$this->params['recursive'] = true; // b/c; base job
 		}
@@ -89,8 +89,8 @@ class HTMLCacheUpdateJob extends Job {
 			// jobs and possibly a recursive HTMLCacheUpdateJob job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
-				$wgUpdateRowsPerJob,
-				$wgUpdateRowsPerQuery, // jobs-per-title
+				$updateRowsPerJob,
+				$updateRowsPerQuery, // jobs-per-title
 				// Carry over information for de-duplication
 				[ 'params' => $extraParams ]
 			);

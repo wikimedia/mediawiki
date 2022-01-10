@@ -61,9 +61,9 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool
 	 */
 	public static function isEnabled() {
-		global $wgAllowCopyUploads;
+		$allowCopyUploads = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllowCopyUploads' );
 
-		return $wgAllowCopyUploads && parent::isEnabled();
+		return $allowCopyUploads && parent::isEnabled();
 	}
 
 	/**
@@ -75,8 +75,8 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool
 	 */
 	public static function isAllowedHost( $url ) {
-		global $wgCopyUploadsDomains;
-		if ( !count( $wgCopyUploadsDomains ) ) {
+		$copyUploadsDomains = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadsDomains' );
+		if ( !count( $copyUploadsDomains ) ) {
 			return true;
 		}
 		$parsedUrl = wfParseUrl( $url );
@@ -84,7 +84,7 @@ class UploadFromUrl extends UploadBase {
 			return false;
 		}
 		$valid = false;
-		foreach ( $wgCopyUploadsDomains as $domain ) {
+		foreach ( $copyUploadsDomains as $domain ) {
 			// See if the domain for the upload matches this allowed domain
 			$domainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
@@ -249,7 +249,8 @@ class UploadFromUrl extends UploadBase {
 	 * @return Status
 	 */
 	protected function reallyFetchFile( $httpOptions = [] ) {
-		global $wgCopyUploadProxy, $wgCopyUploadTimeout;
+		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadProxy' );
+		$copyUploadTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadTimeout' );
 		if ( $this->mTempPath === false ) {
 			return Status::newFatal( 'tmp-create-error' );
 		}
@@ -266,12 +267,12 @@ class UploadFromUrl extends UploadBase {
 
 		$options = $httpOptions + [ 'followRedirects' => false ];
 
-		if ( $wgCopyUploadProxy !== false ) {
-			$options['proxy'] = $wgCopyUploadProxy;
+		if ( $copyUploadProxy !== false ) {
+			$options['proxy'] = $copyUploadProxy;
 		}
 
-		if ( $wgCopyUploadTimeout && !isset( $options['timeout'] ) ) {
-			$options['timeout'] = $wgCopyUploadTimeout;
+		if ( $copyUploadTimeout && !isset( $options['timeout'] ) ) {
+			$options['timeout'] = $copyUploadTimeout;
 		}
 		wfDebugLog(
 			'fileupload',

@@ -63,7 +63,8 @@ class SearchHighlighter {
 		$contextlines = self::DEFAULT_CONTEXT_LINES,
 		$contextchars = self::DEFAULT_CONTEXT_CHARS
 	) {
-		global $wgSearchHighlightBoundaries;
+		$searchHighlightBoundaries = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'SearchHighlightBoundaries' );
 
 		if ( $text == '' ) {
 			return '';
@@ -168,7 +169,7 @@ class SearchHighlighter {
 			}
 		}
 		$anyterm = implode( '|', $terms );
-		$phrase = implode( "$wgSearchHighlightBoundaries+", $terms );
+		$phrase = implode( "{$searchHighlightBoundaries}+", $terms );
 		// @todo FIXME: A hack to scale contextchars, a correct solution
 		// would be to have contextchars actually be char and not byte
 		// length, and do proper utf-8 substrings and lengths everywhere,
@@ -176,8 +177,8 @@ class SearchHighlighter {
 		$scale = strlen( $anyterm ) / mb_strlen( $anyterm );
 		$contextchars = intval( $contextchars * $scale );
 
-		$patPre = "(^|$wgSearchHighlightBoundaries)";
-		$patPost = "($wgSearchHighlightBoundaries|$)";
+		$patPre = "(^|{$searchHighlightBoundaries})";
+		$patPost = "({$searchHighlightBoundaries}|$)";
 
 		$pat1 = "/(" . $phrase . ")/ui";
 		$pat2 = "/$patPre(" . $anyterm . ")$patPost/ui";

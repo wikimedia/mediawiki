@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @defgroup Feed Feed
  */
@@ -162,8 +164,8 @@ class FeedItem {
 	 * @return string
 	 */
 	public function getLanguage() {
-		global $wgLanguageCode;
-		return LanguageCode::bcp47( $wgLanguageCode );
+		$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
+		return LanguageCode::bcp47( $languageCode );
 	}
 
 	/**

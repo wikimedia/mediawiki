@@ -183,11 +183,11 @@ class Shell {
 	public static function makeScriptCommand(
 		string $script, array $parameters, $options = []
 	): Command {
-		global $wgPhpCli;
+		$phpCli = MediaWikiServices::getInstance()->getMainConfig()->get( 'PhpCli' );
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
 		Hooks::runner()->onWfShellWikiCmd( $script, $parameters, $options );
-		$cmd = [ $options['php'] ?? $wgPhpCli ];
+		$cmd = [ $options['php'] ?? $phpCli ];
 		if ( isset( $options['wrapper'] ) ) {
 			$cmd[] = $options['wrapper'];
 		}

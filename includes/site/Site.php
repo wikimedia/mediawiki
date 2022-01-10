@@ -654,10 +654,10 @@ class Site implements Serializable {
 	 * @return Site
 	 */
 	public static function newForType( $siteType ) {
-		global $wgSiteTypes;
+		$siteTypes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SiteTypes' );
 
-		if ( array_key_exists( $siteType, $wgSiteTypes ) ) {
-			return new $wgSiteTypes[$siteType]();
+		if ( array_key_exists( $siteType, $siteTypes ) ) {
+			return new $siteTypes[$siteType]();
 		}
 
 		return new Site();

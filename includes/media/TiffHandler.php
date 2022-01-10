@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -46,9 +47,9 @@ class TiffHandler extends ExifBitmapHandler {
 	 * @return bool
 	 */
 	public function canRender( $file ) {
-		global $wgTiffThumbnailType;
+		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()->get( 'TiffThumbnailType' );
 
-		return (bool)$wgTiffThumbnailType
+		return (bool)$tiffThumbnailType
 			|| $file->getRepo() instanceof ForeignAPIRepo;
 	}
 
@@ -70,13 +71,13 @@ class TiffHandler extends ExifBitmapHandler {
 	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		global $wgTiffThumbnailType;
+		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()->get( 'TiffThumbnailType' );
 
-		return $wgTiffThumbnailType;
+		return $tiffThumbnailType;
 	}
 
 	public function getSizeAndMetadata( $state, $filename ) {
-		global $wgShowEXIF;
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
 
 		try {
 			$meta = BitmapMetadataHandler::Tiff( $filename );
@@ -89,7 +90,7 @@ class TiffHandler extends ExifBitmapHandler {
 				'height' => $meta['ImageLength'] ?? 0,
 			];
 			$info = $this->applyExifRotation( $info, $meta );
-			if ( $wgShowEXIF ) {
+			if ( $showEXIF ) {
 				$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 				$info['metadata'] = $meta;
 			}

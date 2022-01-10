@@ -198,11 +198,11 @@ class DeleteAction extends FormlessAction {
 		);
 
 		if ( $title->isBigDeletion() ) {
-			global $wgDeleteRevisionsLimit;
+			$deleteRevisionsLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'DeleteRevisionsLimit' );
 			$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 				[
 					'delete-warning-toobig',
-					$context->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
+					$context->getLanguage()->formatNum( $deleteRevisionsLimit )
 				]
 			);
 		}

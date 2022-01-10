@@ -399,8 +399,8 @@ class ResourceLoaderImage {
 	 * @return string|bool PNG image data, or false on failure
 	 */
 	protected function rasterize( $svg ) {
-		global $wgSVGConverter, $wgSVGConverterPath;
-
+		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverter' );
+		$svgConverterPath = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverterPath' );
 		// This code should be factored out to a separate method on SvgHandler, or perhaps a separate
 		// class, with a separate set of configuration settings.
 		//
@@ -420,10 +420,10 @@ class ResourceLoaderImage {
 		$svg = $this->massageSvgPathdata( $svg );
 
 		// Sometimes this might be 'rsvg-secure'. Long as it's rsvg.
-		if ( strpos( $wgSVGConverter, 'rsvg' ) === 0 ) {
+		if ( strpos( $svgConverter, 'rsvg' ) === 0 ) {
 			$command = 'rsvg-convert';
-			if ( $wgSVGConverterPath ) {
-				$command = Shell::escape( "$wgSVGConverterPath/" ) . $command;
+			if ( $svgConverterPath ) {
+				$command = Shell::escape( "{$svgConverterPath}/" ) . $command;
 			}
 
 			$process = proc_open(

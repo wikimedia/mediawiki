@@ -20,6 +20,8 @@
  *
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Services\SalvageableService;
 
@@ -49,7 +51,7 @@ class ConfigFactory implements SalvageableService {
 	 * @return ConfigFactory
 	 */
 	public static function getDefaultInstance() {
-		return \MediaWiki\MediaWikiServices::getInstance()->getConfigFactory();
+		return MediaWikiServices::getInstance()->getConfigFactory();
 	}
 
 	/**

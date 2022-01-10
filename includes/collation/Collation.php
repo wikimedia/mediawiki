@@ -38,8 +38,8 @@ abstract class Collation {
 	public static function singleton() {
 		wfDeprecated( __METHOD__, '1.37' );
 		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
+			$categoryCollation = MediaWikiServices::getInstance()->getMainConfig()->get( 'CategoryCollation' );
+			self::$instance = self::factory( $categoryCollation );
 		}
 		return self::$instance;
 	}

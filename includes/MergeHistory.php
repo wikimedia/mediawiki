@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -302,7 +303,8 @@ class MergeHistory {
 	 * @return Status status of the history merge
 	 */
 	public function merge( Authority $performer, $reason = '' ) {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 		$status = new Status();
 
@@ -333,7 +335,7 @@ class MergeHistory {
 		}
 
 		// Update denormalized revactor_page too
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
 			$this->dbw->update(
 				'revision_actor_temp',
 				[ 'revactor_page' => $this->dest->getId() ],

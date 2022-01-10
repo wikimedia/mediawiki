@@ -45,8 +45,9 @@ class SvgHandler extends ImageHandler {
 	];
 
 	public function isEnabled() {
-		global $wgSVGConverters, $wgSVGConverter;
-		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
+		$svgConverters = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverters' );
+		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverter' );
+		if ( !isset( $svgConverters[$svgConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering." );
 
 			return false;
@@ -186,21 +187,21 @@ class SvgHandler extends ImageHandler {
 	 * @return array Modified $params
 	 */
 	protected function normaliseParamsInternal( $image, $params ) {
-		global $wgSVGMaxSize;
+		$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMaxSize' );
 
 		# Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
-			if ( $params['physicalWidth'] > $wgSVGMaxSize ) {
+			if ( $params['physicalWidth'] > $svgMaxSize ) {
 				$srcWidth = $image->getWidth( $params['page'] );
 				$srcHeight = $image->getHeight( $params['page'] );
-				$params['physicalWidth'] = $wgSVGMaxSize;
-				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $wgSVGMaxSize );
+				$params['physicalWidth'] = $svgMaxSize;
+				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $svgMaxSize );
 			}
-		} elseif ( $params['physicalHeight'] > $wgSVGMaxSize ) {
+		} elseif ( $params['physicalHeight'] > $svgMaxSize ) {
 			$srcWidth = $image->getWidth( $params['page'] );
 			$srcHeight = $image->getHeight( $params['page'] );
-			$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
-			$params['physicalHeight'] = $wgSVGMaxSize;
+			$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $svgMaxSize );
+			$params['physicalHeight'] = $svgMaxSize;
 		}
 		// To prevent the proliferation of thumbnails in languages not present in SVGs, unless
 		// explicitly forced by user.
@@ -310,13 +311,16 @@ class SvgHandler extends ImageHandler {
 	 * @return bool|MediaTransformError
 	 */
 	public function rasterize( $srcPath, $dstPath, $width, $height, $lang = false ) {
-		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$svgConverters = $mainConfig->get( 'SVGConverters' );
+		$svgConverter = $mainConfig->get( 'SVGConverter' );
+		$svgConverterPath = $mainConfig->get( 'SVGConverterPath' );
 		$err = false;
 		$retval = '';
-		if ( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-			if ( is_array( $wgSVGConverters[$wgSVGConverter] ) ) {
+		if ( isset( $svgConverters[$svgConverter] ) ) {
+			if ( is_array( $svgConverters[$svgConverter] ) ) {
 				// This is a PHP callable
-				$func = $wgSVGConverters[$wgSVGConverter][0];
+				$func = $svgConverters[$svgConverter][0];
 				if ( !is_callable( $func ) ) {
 					throw new MWException( "$func is not callable" );
 				}
@@ -325,19 +329,19 @@ class SvgHandler extends ImageHandler {
 					$width,
 					$height,
 					$lang,
-					...array_slice( $wgSVGConverters[$wgSVGConverter], 1 )
+					...array_slice( $svgConverters[$svgConverter], 1 )
 				);
 				$retval = (bool)$err;
 			} else {
 				// External command
 				$cmd = str_replace(
 					[ '$path/', '$width', '$height', '$input', '$output' ],
-					[ $wgSVGConverterPath ? Shell::escape( "$wgSVGConverterPath/" ) : "",
+					[ $svgConverterPath ? Shell::escape( "{$svgConverterPath}/" ) : "",
 						intval( $width ),
 						intval( $height ),
 						Shell::escape( $srcPath ),
 						Shell::escape( $dstPath ) ],
-					$wgSVGConverters[$wgSVGConverter]
+					$svgConverters[$svgConverter]
 				);
 
 				$env = [];
