@@ -240,7 +240,7 @@ class LocalFileRestoreBatch {
 					// This was originally a current version; we
 					// have to devise a new archive name for it.
 					// Format is <timestamp of archiving>!<name>
-					$timestamp = wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
+					$timestamp = (int)wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
 
 					do {
 						$archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;

@@ -531,7 +531,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$data[$name] = $this->$name;
 				}
 
-				$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
+				$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
 
 				if ( $wgFullyInitialised ) {
 					$groupMemberships = MediaWikiServices::getInstance()
@@ -543,7 +543,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					foreach ( $groupMemberships as $ugm ) {
 						if ( $ugm->getExpiry() ) {
 							$secondsUntilExpiry =
-								wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
+								(int)wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
 
 							if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
 								$ttl = $secondsUntilExpiry;
@@ -2012,9 +2012,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string Timestamp in TS_MW format
 	 */
 	private function newTouchedTimestamp() {
-		$time = ConvertibleTimestamp::now( TS_UNIX );
+		$time = (int)ConvertibleTimestamp::now( TS_UNIX );
 		if ( $this->mTouched ) {
-			$time = max( $time, ConvertibleTimestamp::convert( TS_UNIX, $this->mTouched ) + 1 );
+			$time = max( $time, (int)ConvertibleTimestamp::convert( TS_UNIX, $this->mTouched ) + 1 );
 		}
 
 		return ConvertibleTimestamp::convert( TS_MW, $time );

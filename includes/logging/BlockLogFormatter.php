@@ -63,7 +63,7 @@ class BlockLogFormatter extends LogFormatter {
 			$blockExpiry = $this->context->getLanguage()->translateBlockExpiry(
 				$params[4],
 				$this->context->getUser(),
-				wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
+				(int)wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
 			);
 			if ( $this->plaintext ) {
 				$params[4] = Message::rawParam( $blockExpiry );
@@ -276,7 +276,7 @@ class BlockLogFormatter extends LogFormatter {
 			}
 
 			if ( !wfIsInfinity( $params['5::duration'] ) ) {
-				$ts = wfTimestamp( TS_UNIX, $entry->getTimestamp() );
+				$ts = (int)wfTimestamp( TS_UNIX, $entry->getTimestamp() );
 				$expiry = strtotime( $params['5::duration'], $ts );
 				if ( $expiry !== false && $expiry > 0 ) {
 					$params[':timestamp:expiry'] = $expiry;

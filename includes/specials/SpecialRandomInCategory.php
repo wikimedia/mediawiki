@@ -290,7 +290,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			throw new MWException( 'No entries in category' );
 		}
 
-		return [ wfTimestamp( TS_UNIX, $res->low ), wfTimestamp( TS_UNIX, $res->high ) ];
+		return [ (int)wfTimestamp( TS_UNIX, $res->low ), (int)wfTimestamp( TS_UNIX, $res->high ) ];
 	}
 
 	/**
