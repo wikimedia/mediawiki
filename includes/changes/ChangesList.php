@@ -443,6 +443,7 @@ class ChangesList extends ContextSource {
 		$title = null
 	) {
 		$ts = $rev->getTimestamp();
+		$time = $lang->userTime( $ts, $performer->getUser() );
 		$date = $lang->userTimeAndDate( $ts, $performer->getUser() );
 		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $performer ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
@@ -458,7 +459,9 @@ class ChangesList extends ContextSource {
 			$deletedClass = Linker::getRevisionDeletedClass( $rev );
 			$link = "<span class=\"$deletedClass mw-changeslist-date\">$link</span>";
 		}
-		return $link;
+		return Html::element( 'span', [
+			'class' => 'mw-changeslist-time'
+		], $time ) . $link;
 	}
 
 	/**
