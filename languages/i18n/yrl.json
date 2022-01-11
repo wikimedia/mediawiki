@@ -241,6 +241,7 @@
 	"cannotloginnow-title": "Ti remurú reyumũdi kuiri",
 	"cannotloginnow-text": "Ti remurú reyumũdi umurú uikú $1.",
 	"cannotcreateaccount-title": "Ti remurú remunhã kũta'etá",
+	"password-change-forbidden": "Ti remurú resinimuka nhẽẽga'etá kabé kuá wiki upé.",
 	"login": "Log in",
 	"login-security": "Umaãkatú neyawepawa",
 	"nav-login-createaccount": "Ulogin / Umunhã yepé kũta",

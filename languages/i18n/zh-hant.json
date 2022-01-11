@@ -3705,7 +3705,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|已保護}} $3 $4 [連鎖]",
 	"logentry-protect-modify": "$1{{GENDER:$2|已變更}}$3的保護設定$4",
 	"logentry-protect-modify-cascade": "$1{{GENDER:$2|已變更}}$3的保護設定$4[連鎖]",
-	"logentry-rights-rights": "$1已將{{GENDER:$6|$3}}的使用者群組從$4{{GENDER:$2|更改}}至$5",
+	"logentry-rights-rights": "$1已將{{GENDER:$6|$3}}的使用者群組從$4{{GENDER:$2|變更}}為$5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|已變更}} $3 的群組成員資格",
 	"logentry-rights-autopromote": "$1 已自動{{GENDER:$2|提升}}從 $4 成為 $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|已上傳}} $3",
