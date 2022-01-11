@@ -595,6 +595,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string
 	 */
 	public function getBody() {
+		$this->getOutput()->addModuleStyles( $this->getModuleStyles() );
 		if ( !$this->mQueryDone ) {
 			$this->doQuery();
 		}
