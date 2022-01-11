@@ -626,13 +626,16 @@ abstract class HTMLFormField {
 		}
 
 		$config = [
-			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
+			'classes' => [ "mw-htmlform-field-$fieldType" ],
 			'align' => $this->getLabelAlignOOUI(),
 			'help' => ( $help !== null && $help !== '' ) ? new OOUI\HtmlSnippet( $help ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
 			'helpInline' => $this->isHelpInline(),
 		];
+		if ( $this->mClass !== '' ) {
+			$config['classes'][] = $this->mClass;
+		}
 
 		$preloadModules = false;
 
