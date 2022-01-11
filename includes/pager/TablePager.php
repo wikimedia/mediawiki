@@ -77,7 +77,6 @@ abstract class TablePager extends IndexPager {
 	 * @return string
 	 */
 	final public function getBody() {
-		$this->getOutput()->addModuleStyles( $this->getModuleStyles() );
 		return parent::getBody();
 	}
 
