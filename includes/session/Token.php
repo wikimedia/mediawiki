@@ -93,7 +93,7 @@ class Token {
 	 * @return string
 	 */
 	public function toString() {
-		return $this->toStringAtTimestamp( wfTimestamp() );
+		return $this->toStringAtTimestamp( (int)wfTimestamp( TS_UNIX ) );
 	}
 
 	public function __toString() {
@@ -114,7 +114,7 @@ class Token {
 		if ( $timestamp === null ) {
 			return false;
 		}
-		if ( $maxAge !== null && $timestamp < wfTimestamp() - $maxAge ) {
+		if ( $maxAge !== null && $timestamp < (int)wfTimestamp( TS_UNIX ) - $maxAge ) {
 			// Expired token
 			return false;
 		}

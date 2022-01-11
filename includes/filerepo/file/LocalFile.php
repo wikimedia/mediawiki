@@ -411,7 +411,7 @@ class LocalFile extends File {
 				}
 
 				if ( $this->fileExists ) {
-					$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
+					$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
 				} else {
 					$ttl = $cache::TTL_DAY;
 				}
@@ -1941,10 +1941,10 @@ class LocalFile extends File {
 
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
-				$lUnixtime = $row ? wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
+				$lUnixtime = $row ? (int)wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
-				if ( $lUnixtime && wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
+				if ( $lUnixtime && (int)wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
 					sleep( 1 ); // fast enough re-uploads would go far in the future otherwise
 					$timestamp = $dbw->timestamp( $lUnixtime + 1 );
 					$this->timestamp = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW

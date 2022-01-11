@@ -236,7 +236,7 @@ class RefreshLinksJob extends Job {
 			// For transclusion updates, the template changes must be reflected
 			$lagAwareTimestamp = wfTimestamp(
 				TS_MW,
-				wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
+				(int)wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
 			);
 		}
 
@@ -360,7 +360,7 @@ class RefreshLinksJob extends Job {
 				// For transclusion updates, the template changes must be reflected
 				$lagAwareTimestamp = wfTimestamp(
 					TS_MW,
-					wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
+					(int)wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
 				);
 			}
 

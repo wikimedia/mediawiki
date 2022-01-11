@@ -1277,7 +1277,7 @@ class RecentChange implements Taggable {
 	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {
 		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCMaxAge' );
 
-		return wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
+		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
 	}
 
 	/**

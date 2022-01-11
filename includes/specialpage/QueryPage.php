@@ -381,8 +381,7 @@ abstract class QueryPage extends SpecialPage {
 				foreach ( $res as $i => $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
-							$value = wfTimestamp( TS_UNIX,
-								$row->value );
+							$value = (int)wfTimestamp( TS_UNIX, $row->value );
 						} else {
 							$value = intval( $row->value ); // T16414
 						}

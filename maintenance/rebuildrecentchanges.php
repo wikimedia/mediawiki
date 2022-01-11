@@ -89,8 +89,8 @@ class RebuildRecentchanges extends Maintenance {
 		$commentStore = CommentStore::getStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
-			$this->cutoffFrom = wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
-			$this->cutoffTo = wfTimestamp( TS_UNIX, $this->getOption( 'to' ) );
+			$this->cutoffFrom = (int)wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
+			$this->cutoffTo = (int)wfTimestamp( TS_UNIX, $this->getOption( 'to' ) );
 
 			$sec = $this->cutoffTo - $this->cutoffFrom;
 			$days = $sec / 24 / 3600;

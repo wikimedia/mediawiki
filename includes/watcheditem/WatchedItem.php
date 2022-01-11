@@ -194,8 +194,8 @@ class WatchedItem {
 			return null;
 		}
 
-		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $expiry );
-		$diffInSeconds = $unixTimeExpiry - wfTimestamp();
+		$unixTimeExpiry = (int)MWTimestamp::convert( TS_UNIX, $expiry );
+		$diffInSeconds = $unixTimeExpiry - (int)wfTimestamp( TS_UNIX );
 		$diffInDays = $diffInSeconds / self::SECONDS_IN_A_DAY;
 
 		if ( $diffInDays < 1 ) {
