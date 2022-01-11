@@ -28,7 +28,8 @@ abstract class HTMLFormField {
 	/**
 	 * @var array Array to hold params for 'hide-if' or 'disable-if' statements
 	 */
-	protected $mCondState = [ 'class' => [] ];
+	protected $mCondState = [];
+	protected $mCondStateClass = [];
 
 	/**
 	 * @var bool If true will generate an empty div element with no label
@@ -275,7 +276,7 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isHidden( $alldata ) {
-		if ( !$this->mCondState['class'] || !isset( $this->mCondState['hide'] ) ) {
+		if ( !( $this->mCondState && isset( $this->mCondState['hide'] ) ) ) {
 			return false;
 		}
 
@@ -469,13 +470,13 @@ abstract class HTMLFormField {
 
 		if ( isset( $params['hide-if'] ) && $params['hide-if'] ) {
 			$this->mCondState['hide'] = $params['hide-if'];
-			$this->mCondState['class'][] = 'mw-htmlform-hide-if';
+			$this->mCondStateClass[] = 'mw-htmlform-hide-if';
 		}
 		if ( !( isset( $params['disabled'] ) && $params['disabled'] ) &&
 			isset( $params['disable-if'] ) && $params['disable-if']
 		) {
 			$this->mCondState['disable'] = $params['disable-if'];
-			$this->mCondState['class'][] = 'mw-htmlform-disable-if';
+			$this->mCondStateClass[] = 'mw-htmlform-disable-if';
 		}
 	}
 
@@ -512,9 +513,9 @@ abstract class HTMLFormField {
 			$inputHtml . "\n$errors"
 		);
 
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$rowClasses .= implode( ' ', $this->mCondState['class'] );
+			$rowClasses .= implode( ' ', $this->mCondStateClass );
 		}
 
 		if ( $verticalLabel ) {
@@ -577,9 +578,9 @@ abstract class HTMLFormField {
 		$wrapperAttributes = [
 			'class' => $divCssClasses,
 		];
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondState['class'] );
+			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
 		$html = Html::rawElement( 'div', $wrapperAttributes, $label . $field );
 		$html .= $helptext;
@@ -626,19 +627,25 @@ abstract class HTMLFormField {
 		}
 
 		$config = [
-			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
+			'classes' => [ "mw-htmlform-field-$fieldType" ],
 			'align' => $this->getLabelAlignOOUI(),
 			'help' => ( $help !== null && $help !== '' ) ? new OOUI\HtmlSnippet( $help ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
 			'helpInline' => $this->isHelpInline(),
 		];
+		if ( $this->mClass !== '' ) {
+			$config['classes'][] = $this->mClass;
+		}
 
 		$preloadModules = false;
 
 		if ( $infusable && $this->shouldInfuseOOUI() ) {
 			$preloadModules = true;
 			$config['classes'][] = 'mw-htmlform-autoinfuse';
+		}
+		if ( $this->mCondState ) {
+			$config['classes'] = array_merge( $config['classes'], $this->mCondStateClass );
 		}
 
 		// the element could specify, that the label doesn't need to be added
@@ -647,7 +654,7 @@ abstract class HTMLFormField {
 			$config['label'] = new OOUI\HtmlSnippet( $label );
 		}
 
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$preloadModules = true;
 			$config['condState'] = $this->mCondState;
 		}
@@ -797,9 +804,9 @@ abstract class HTMLFormField {
 		}
 
 		$rowAttributes = [];
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$rowAttributes['class'] = $this->mCondState['class'];
+			$rowAttributes['class'] = $this->mCondStateClass;
 		}
 
 		$tdClasses = [ 'htmlform-tip' ];
@@ -831,9 +838,9 @@ abstract class HTMLFormField {
 		if ( $this->mHelpClass !== false ) {
 			$wrapperAttributes['class'][] = $this->mHelpClass;
 		}
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
-			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondState['class'] );
+			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
 		$div = Html::rawElement( 'div', $wrapperAttributes, $helptext );
 
@@ -1234,7 +1241,7 @@ abstract class HTMLFormField {
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {
-		if ( $this->mCondState['class'] ) {
+		if ( $this->mCondState ) {
 			// This is probably more restrictive than it needs to be, but better safe than sorry
 			return true;
 		}

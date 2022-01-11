@@ -104,7 +104,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			}
 			// Copy the hide-if and disable-if rules to "child" fields, so that the JavaScript code handling them
 			// (resources/src/mediawiki.htmlform/cond-state.js) doesn't have to handle nested fields.
-			if ( $this->mCondState['class'] ) {
+			if ( $this->mCondState ) {
 				foreach ( [ 'hide', 'disable' ] as $type ) {
 					if ( !isset( $this->mCondState[$type] ) ) {
 						continue;

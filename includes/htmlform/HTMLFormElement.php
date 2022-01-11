@@ -16,13 +16,10 @@ trait HTMLFormElement {
 
 	public function initializeHTMLFormElement( array $config = [] ) {
 		// Properties
-		$this->condState = $config['condState'] ?? [ 'class' => [] ];
+		$this->condState = $config['condState'] ?? [];
 		$this->modules = $config['modules'] ?? [];
 
 		// Initialization
-		if ( $this->condState['class'] ) {
-			$this->addClasses( $this->condState['class'] );
-		}
 		if ( $this->modules ) {
 			// JS code must be able to read this before infusing (before OOUI is even loaded),
 			// so we put this in a separate attribute (not with the rest of the config).
@@ -30,7 +27,7 @@ trait HTMLFormElement {
 			$this->setAttributes( [ 'data-mw-modules' => implode( ',', $this->modules ) ] );
 		}
 		$this->registerConfigCallback( function ( &$config ) {
-			if ( $this->condState['class'] ) {
+			if ( $this->condState ) {
 				$config['condState'] = $this->condState;
 			}
 		} );
