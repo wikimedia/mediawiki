@@ -2048,7 +2048,7 @@ return [
 			$services->getCollationFactory(),
 			$services->getJobQueueGroup(),
 			$services->getCommentStore(),
-			ObjectCache::getInstance( 'db-replicated' ),
+			$services->getMainObjectStash(),
 			WikiMap::getCurrentWikiDbDomain()->getId(),
 			WebRequest::getRequestId(),
 			$services->getBacklinkCacheFactory(),
