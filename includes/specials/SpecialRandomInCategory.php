@@ -165,7 +165,6 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
 		$rand = (float)wfRandom();
-		$title = null;
 
 		// Given that timestamps are rather unevenly distributed, we also
 		// use an offset between 0 and 30 to make any biases less noticeable.
