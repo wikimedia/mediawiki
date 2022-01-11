@@ -136,7 +136,6 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		if ( $this->getOptions() ) {
 			$attribs['data-cond-state'] = FormatJson::encode( [
 				'hide' => [ '!==', $this->mName . '-select', 'other' ],
-				'class' => 'mw-htmlform-hide-if',
 			] );
 		}
 
