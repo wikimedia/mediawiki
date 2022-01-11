@@ -12,23 +12,20 @@ describe( 'Special:RecentChanges', function () {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( function () {
-		browser.deleteAllCookies();
+	beforeEach( async function () {
+		await browser.deleteAllCookies();
 		content = Util.getTestString();
 		name = Util.getTestString();
 	} );
 
-	it( 'shows page creation', function () {
+	it( 'shows page creation', async function () {
 		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
-		if ( Util.isTargetNotWikitext( name ) ) {
+		if ( await Util.isTargetNotWikitext( name ) ) {
 			this.skip();
 		}
 
-		browser.call( async () => {
-			await bot.edit( name, content );
-		} );
-
-		browser.waitUntil( async () => {
+		await bot.edit( name, content );
+		await browser.waitUntil( async () => {
 			const result = await bot.request( {
 				action: 'query',
 				list: 'recentchanges',
@@ -37,7 +34,7 @@ describe( 'Special:RecentChanges', function () {
 			return result.query.recentchanges.length > 0;
 		} );
 
-		RecentChangesPage.open();
+		await RecentChangesPage.open();
 
 		assert.strictEqual( RecentChangesPage.titles[ 0 ].getText(), name );
 	} );

@@ -17,9 +17,9 @@ class Page {
 	 * @param {string} [fragment] Fragment parameter
 	 * @return {void} This method runs a browser command.
 	 */
-	openTitle( title, query = {}, fragment = '' ) {
+	async openTitle( title, query = {}, fragment = '' ) {
 		query.title = title;
-		browser.url(
+		await browser.url(
 			browser.config.baseUrl + '/index.php?' +
 			querystring.stringify( query ) +
 			( fragment ? ( '#' + fragment ) : '' )

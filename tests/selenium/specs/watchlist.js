@@ -19,27 +19,23 @@ describe( 'Special:Watchlist', function () {
 		LoginPage.loginAdmin();
 	} );
 
-	it( 'should show page with new edit', function () {
+	it( 'should show page with new edit', async function () {
 		const title = Util.getTestString( 'Title-' );
 
 		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
-		if ( Util.isTargetNotWikitext( title ) ) {
+		if ( await Util.isTargetNotWikitext( title ) ) {
 			this.skip();
 		}
 
 		// create
-		browser.call( async () => {
-			await bot.edit( title, Util.getTestString() );
-		} );
+		await bot.edit( title, Util.getTestString() );
 
-		WatchablePage.watch( title );
+		await WatchablePage.watch( title );
 
 		// edit
-		browser.call( async () => {
-			await bot.edit( title, Util.getTestString() );
-		} );
+		await bot.edit( title, Util.getTestString() );
 
-		WatchlistPage.open();
+		await WatchlistPage.open();
 
 		// We are viewing Special:Watchlist with the same account that made the edit,
 		// but by default Special:Watchlist includes both seen and unseen changes, so
