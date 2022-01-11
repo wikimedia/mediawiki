@@ -55,7 +55,7 @@ provided by the class describes a more feature rich logging configuration.
 * MediaWiki.Logger.Monolog.LegacyHandler: Monolog handler that replicates the
   udp2log and file logging functionality of wfErrorLog()
 * MediaWiki.Logger.Monolog.WikiProcessor: Monolog log processor that adds host:
-  wfHostname() and wiki: wfWikiID() to all records
+  wfHostname() and wiki: WikiMap::getCurrentWikiId() to all records
 
 # Globals
 * $wgMWLoggerDefaultSpi: Specification for creating the default service provider
