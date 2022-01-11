@@ -87,7 +87,7 @@
 	//
 	// Most browsers that support native Promises also support all the ES6 features we need.
 	// The exceptions are:
-	// - Android 4.4.3, which supports almost no ES6 features besides Promise
+	// - Android 4.4.4, which supports almost no ES6 features besides Promise
 	// - Edge 17 and 18, which don't support RegExp-related features
 	// - Safari and iOS versions below 14, which don't support non-BMP characters in variable names
 	//   (older versions have other problems too)
@@ -97,7 +97,7 @@
 		// eslint-disable-next-line no-undef
 		Promise.prototype.finally &&
 
-		// Check for RegExp.prototype.flags (filters out Android 4.4.3 and Edge <= 18)
+		// Check for RegExp.prototype.flags (filters out Android 4.4.4 and Edge <= 18)
 		/./g.flags === 'g' &&
 
 		// Try a non-BMP variable name (filters out Safari < 14, iOS < 14)
