@@ -583,7 +583,11 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	public function wfWikiID() {
+	/**
+	 * @covers ::wfWikiID
+	 */
+	public function testWfWikiID() {
+		$this->hideDeprecated( 'wfWikiID' );
 		$this->setMwGlobals( [
 			'wgDBname' => 'example',
 			'wgDBprefix' => '',

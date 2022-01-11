@@ -254,10 +254,7 @@ class SiteConfiguration {
 					// Found a mergable override by Tag with "+" operator.
 					// Merge it with any "+wiki" or "+tag" matches from before,
 					// and keep looking for more merge candidates.
-					if ( $retval === null ) {
-						$retval = [];
-					}
-					$retval = self::arrayMerge( $retval, $thisSetting["+$tag"] );
+					$retval = self::arrayMerge( $retval ?? [], $thisSetting["+$tag"] );
 				}
 			}
 
@@ -280,9 +277,9 @@ class SiteConfiguration {
 		if ( is_string( $retval ) ) {
 			$retval = strtr( $retval, $params['replacements'] );
 		} elseif ( is_array( $retval ) ) {
-			foreach ( $retval as $key => $val ) {
+			foreach ( $retval as &$val ) {
 				if ( is_string( $val ) ) {
-					$retval[$key] = strtr( $val, $params['replacements'] );
+					$val = strtr( $val, $params['replacements'] );
 				}
 			}
 		}
@@ -302,12 +299,8 @@ class SiteConfiguration {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		$localSettings = [];
 		foreach ( $this->settings as $varname => $overrides ) {
-			$append = false;
-			$var = $varname;
-			if ( substr( $varname, 0, 1 ) == '+' ) {
-				$append = true;
-				$var = substr( $varname, 1 );
-			}
+			$append = substr( $varname, 0, 1 ) === '+';
+			$var = $append ? substr( $varname, 1 ) : $varname;
 
 			$value = $this->processSetting( $overrides, $wiki, $params );
 			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) ) {
@@ -507,24 +500,18 @@ class SiteConfiguration {
 			return [ $def['suffix'], $def['lang'] ];
 		}
 
-		$site = null;
-		$lang = null;
+		$languageCode = str_replace( '_', '-', $wiki );
 		foreach ( $this->suffixes as $altSite => $suffix ) {
 			if ( $suffix === '' ) {
-				$site = '';
-				$lang = $wiki;
-				break;
-			} elseif ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
-				$site = is_numeric( $altSite ) ? $suffix : $altSite;
-				$lang = substr( $wiki, 0, strlen( $wiki ) - strlen( $suffix ) );
-				break;
+				return [ '', $languageCode ];
+			} elseif ( substr( $wiki, -strlen( $suffix ) ) === $suffix ) {
+				$site = is_string( $altSite ) ? $altSite : $suffix;
+				$languageCode = substr( $languageCode, 0, -strlen( $suffix ) );
+				return [ $site, $languageCode ];
 			}
 		}
-		if ( $lang !== null ) {
-			$lang = str_replace( '_', '-', $lang );
-		}
 
-		return [ $site, $lang ];
+		return [ null, null ];
 	}
 
 	/**

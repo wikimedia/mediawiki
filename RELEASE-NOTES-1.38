@@ -73,7 +73,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.42.0 to v0.42.1
-* Updated WVUI from v0.3.0 to v0.3.4
+* Updated WVUI from v0.3.0 to v0.3.5
 * Upgraded Vue from 2.6.11 to 3.2.23
 * Updated composer/semver from 3.2.5 to 3.2.6.
 * Updated guzzlehttp/guzzle from 7.2.0 to 7.4.0.
@@ -410,6 +410,8 @@ generic `mediawiki.pager.styles`.
 * ApiStashEdit::parseAndStash has been hard deprecated.
 * Content::prepareSave was hard-deprecated, now emits deprecation warnings.
   Use ContentHandler::validateSave instead.
+* The global function wfWikiID(), deprecated since 1.35, now emits
+  deprecation warnings.
 * The `button` parameter for `bindUpdateAriaExpandedOnInput` and
   `updateAriaExpanded` in checkboxHack.js have been deprecated.
   `bindToggleOnSpaceEnter` has also been deprecated in favor of
