@@ -18,19 +18,19 @@ describe( 'Page', function () {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( function () {
-		browser.deleteAllCookies();
+	beforeEach( async function () {
+		await browser.deleteAllCookies();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
 
 		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
-		if ( Util.isTargetNotWikitext( name ) ) {
+		if ( await Util.isTargetNotWikitext( name ) ) {
 			this.skip();
 		}
 	} );
 
-	it( 'should be previewable', function () {
-		EditPage.preview( name, content );
+	it( 'should be previewable', async function () {
+		await EditPage.preview( name, content );
 
 		assert.strictEqual( EditPage.heading.getText(), 'Creating ' + name );
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
@@ -40,72 +40,63 @@ describe( 'Page', function () {
 		// T269566: Popup with text
 		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
 		// appears after the browser tries to leave the page with the preview.
-		browser.reloadSession();
+		await browser.reloadSession();
 	} );
 
-	it( 'should be creatable', function () {
+	it( 'should be creatable', async function () {
 		// create
-		EditPage.edit( name, content );
+		await EditPage.edit( name, content );
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be re-creatable', function () {
+	it( 'should be re-creatable', async function () {
 		const initialContent = Util.getTestString( 'initialContent-' );
 
 		// create and delete
-		browser.call( async () => {
-			await bot.edit( name, initialContent, 'create for delete' );
-			await bot.delete( name, 'delete prior to recreate' );
-		} );
+		await bot.edit( name, initialContent, 'create for delete' );
+		await bot.delete( name, 'delete prior to recreate' );
 
 		// re-create
-		EditPage.edit( name, content );
+		await EditPage.edit( name, content );
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be editable @daily', function () {
+	it( 'should be editable @daily', async function () {
 		// create
-		browser.call( async () => {
-			await bot.edit( name, content, 'create for edit' );
-		} );
+		await bot.edit( name, content, 'create for edit' );
 
 		// edit
 		const editContent = Util.getTestString( 'editContent-' );
-		EditPage.edit( name, editContent );
+		await EditPage.edit( name, editContent );
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
 		assert( EditPage.displayedContent.getText().includes( editContent ) );
 	} );
 
-	it( 'should have history @daily', function () {
+	it( 'should have history @daily', async function () {
 		// create
-		browser.call( async () => {
-			await bot.edit( name, content, `created with "${content}"` );
-		} );
+		await bot.edit( name, content, `created with "${content}"` );
 
 		// check
-		HistoryPage.open( name );
+		await HistoryPage.open( name );
 		assert.strictEqual( HistoryPage.comment.getText(), `created with "${content}"` );
 	} );
 
-	it( 'should be deletable', function () {
+	it( 'should be deletable', async function () {
 		// create
-		browser.call( async () => {
-			await bot.edit( name, content, 'create for delete' );
-		} );
+		await bot.edit( name, content, 'create for delete' );
 
 		// login
-		UserLoginPage.loginAdmin();
-
+		await UserLoginPage.loginAdmin();
 		// delete
-		DeletePage.delete( name, 'delete reason' );
+		await DeletePage.delete( name, 'delete reason' );
 
 		// check
 		assert.strictEqual(
@@ -114,59 +105,54 @@ describe( 'Page', function () {
 		);
 	} );
 
-	it( 'should be restorable', function () {
+	it( 'should be restorable', async function () {
 		// create and delete
-		browser.call( async () => {
-			await bot.edit( name, content, 'create for delete' );
-			await bot.delete( name, 'delete for restore' );
-		} );
+		await bot.edit( name, content, 'create for delete' );
+		await bot.delete( name, 'delete for restore' );
 
 		// login
-		UserLoginPage.loginAdmin();
+		await UserLoginPage.loginAdmin();
 
 		// restore
-		RestorePage.restore( name, 'restore reason' );
+		await RestorePage.restore( name, 'restore reason' );
 
 		// check
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be protectable', function () {
-		browser.call( async () => {
-			await bot.edit( name, content, 'create for protect' );
-		} );
+	it( 'should be protectable', async function () {
+
+		await bot.edit( name, content, 'create for protect' );
 
 		// login
-		UserLoginPage.loginAdmin();
+		await UserLoginPage.loginAdmin();
 
-		ProtectPage.protect(
+		await ProtectPage.protect(
 			name,
 			'protect reason',
 			'Allow only administrators'
 		);
 
 		// Logout
-		browser.deleteAllCookies();
+		await browser.deleteAllCookies();
 
 		// Check that we can't edit the page anymore
-		EditPage.openForEditing( name );
+		await EditPage.openForEditing( name );
 		assert.strictEqual( EditPage.save.isExisting(), false );
 		assert.strictEqual( EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
-	it.skip( 'should be undoable', function () {
-		let previousRev, undoRev;
-		browser.call( async () => {
-			// create
-			await bot.edit( name, content, 'create to edit and undo' );
+	it.skip( 'should be undoable', async function () {
 
-			// edit
-			const response = await bot.edit( name, Util.getTestString( 'editContent-' ) );
-			previousRev = response.edit.oldrevid;
-			undoRev = response.edit.newrevid;
-		} );
+		// create
+		await bot.edit( name, content, 'create to edit and undo' );
 
-		UndoPage.undo( name, previousRev, undoRev );
+		// edit
+		const response = await bot.edit( name, Util.getTestString( 'editContent-' ) );
+		const previousRev = response.edit.oldrevid;
+		const undoRev = response.edit.newrevid;
+
+		await UndoPage.undo( name, previousRev, undoRev );
 
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
