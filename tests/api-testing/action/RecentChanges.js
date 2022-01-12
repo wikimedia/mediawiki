@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, utils } = require( 'api-testing' );
+const { action, assert, utils, wiki } = require( 'api-testing' );
 
 describe( 'Recent Changes', function () {
 	const title = utils.title( 'Recent_Changes_' );
@@ -12,6 +12,7 @@ describe( 'Recent Changes', function () {
 
 	it( 'should create page and get new page recent changes', async () => {
 		const edit = await alice.edit( title, { text: 'Recent changes testing', createonly: true } );
+		await wiki.runAllJobs();
 		const results = await alice.list( 'recentchanges', { rctype: 'new', rctitle: title } );
 
 		assert.equal( results[ 0 ].type, 'new' );
@@ -22,6 +23,7 @@ describe( 'Recent Changes', function () {
 
 	it( 'should edit page and get most recent edit changes', async () => {
 		const rev1 = await alice.edit( title, { text: 'Recent changes testing..R1' } );
+		await wiki.runAllJobs();
 		const results = await alice.list( 'recentchanges', { rctype: 'edit', rctitle: title } );
 
 		assert.equal( results[ 0 ].type, 'edit' );
