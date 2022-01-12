@@ -85,6 +85,9 @@ class InfoAction extends FormlessAction {
 	/** @var RedirectLookup */
 	private $redirectLookup;
 
+	/** @var int */
+	private $actorTableSchemaMigrationStage;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
@@ -102,6 +105,7 @@ class InfoAction extends FormlessAction {
 	 * @param WANObjectCache $wanObjectCache
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param RedirectLookup $redirectLookup
+	 * @param Config $config
 	 */
 	public function __construct(
 		Page $page,
@@ -119,7 +123,8 @@ class InfoAction extends FormlessAction {
 		RevisionLookup $revisionLookup,
 		WANObjectCache $wanObjectCache,
 		WatchedItemStoreInterface $watchedItemStore,
-		RedirectLookup $redirectLookup
+		RedirectLookup $redirectLookup,
+		Config $config
 	) {
 		parent::__construct( $page, $context );
 		$this->contentLanguage = $contentLanguage;
@@ -136,6 +141,7 @@ class InfoAction extends FormlessAction {
 		$this->wanObjectCache = $wanObjectCache;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->redirectLookup = $redirectLookup;
+		$this->actorTableSchemaMigrationStage = $config->get( 'ActorTableSchemaMigrationStage' );
 	}
 
 	/**
@@ -927,9 +933,6 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
-				$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
-					->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
-
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -940,7 +943,7 @@ class InfoAction extends FormlessAction {
 				);
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+				if ( $this->actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 					$tables = [ 'revision' ];
 					$field = 'rev_actor';
 					$pageField = 'rev_page';

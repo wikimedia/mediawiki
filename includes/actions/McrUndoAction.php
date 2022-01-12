@@ -5,7 +5,6 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
@@ -46,24 +45,30 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
 
+	/** @var bool */
+	private $useRCPatrol;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
+	 * @param Config $config
 	 */
 	public function __construct(
 		Page $page,
 		IContextSource $context,
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
-		RevisionRenderer $revisionRenderer
+		RevisionRenderer $revisionRenderer,
+		Config $config
 	) {
 		parent::__construct( $page, $context );
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
+		$this->useRCPatrol = $config->get( 'UseRCPatrol' );
 	}
 
 	public function getName() {
@@ -341,8 +346,6 @@ class McrUndoAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
-
 		if ( !$this->getRequest()->getCheck( 'wpSave' ) ) {
 			// Diff or preview
 			return false;
@@ -408,7 +411,7 @@ class McrUndoAction extends FormAction {
 
 			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
-			if ( $useRCPatrol && $this->getContext()->getAuthority()
+			if ( $this->useRCPatrol && $this->getContext()->getAuthority()
 					->authorizeWrite( 'autopatrol', $this->getTitle() )
 			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
