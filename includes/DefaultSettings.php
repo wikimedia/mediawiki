@@ -8815,11 +8815,6 @@ $wgPagePropLinkInvalidations = [
 /** @name   Categories */
 
 /**
- * Use experimental, DMOZ-like category browser
- */
-$wgUseCategoryBrowser = false;
-
-/**
  * On category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
