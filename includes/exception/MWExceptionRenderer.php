@@ -39,7 +39,7 @@ class MWExceptionRenderer {
 	 * @param Throwable|null $eNew New throwable from attempting to show the first
 	 */
 	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
-		global $wgMimeType, $wgShowExceptionDetails;
+		global $wgShowExceptionDetails;
 
 		if ( $e instanceof RequestTimeoutException && headers_sent() ) {
 			// Excimer's flag check happens on function return, so, a timeout
@@ -69,7 +69,6 @@ class MWExceptionRenderer {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
 			ob_start();
 			if ( $e instanceof DBConnectionError ) {
 				self::reportOutageHTML( $e );
@@ -81,7 +80,7 @@ class MWExceptionRenderer {
 		} else {
 			ob_start();
 			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
+			self::header( 'Content-Type: text/html; charset=UTF-8' );
 			if ( $eNew ) {
 				$message = "MediaWiki internal error.\n\n";
 				if ( $wgShowExceptionDetails ) {
@@ -143,7 +142,7 @@ class MWExceptionRenderer {
 	 * @param Throwable $e
 	 */
 	private static function reportHTML( Throwable $e ) {
-		global $wgOut, $wgSitename;
+		global $wgOut;
 
 		if ( self::useOutputPage( $e ) ) {
 			$wgOut->prepareErrorPage( self::getExceptionTitle( $e ) );
@@ -154,16 +153,16 @@ class MWExceptionRenderer {
 				$wgOut->addHTML( Html::element( 'p', [], $customMessage ) );
 			}
 			$wgOut->addHTML( self::getHTML( $e ) );
-
+			// Content-Type is set by OutputPage::output
 			$wgOut->output();
 		} else {
-			self::header( 'Content-Type: text/html; charset=utf-8' );
+			self::header( 'Content-Type: text/html; charset=UTF-8' );
 			$pageTitle = self::msg( 'internalerror', 'Internal error' );
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				// Mimic OutputPage::setPageTitle behaviour
 				'<title>' .
-				htmlspecialchars( self::msg( 'pagetitle', "$1 - $wgSitename", $pageTitle ) ) .
+				htmlspecialchars( self::msg( 'pagetitle', '$1 - MediaWiki', $pageTitle ) ) .
 				'</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
@@ -224,17 +223,15 @@ class MWExceptionRenderer {
 	 * @return string Message with arguments replaced
 	 */
 	private static function msg( $key, $fallback, ...$params ) {
-		global $wgSitename;
-
 		// FIXME: Keep logic in sync with MWException::msg.
 		try {
 			$res = wfMessage( $key, ...$params )->text();
 		} catch ( Exception $e ) {
+			// Fallback to static message text and generic sitename.
+			// Avoid live config as this must work before Setup/MediaWikiServices finish.
 			$res = wfMsgReplaceArgs( $fallback, $params );
-			// If an exception happens inside message rendering,
-			// {{SITENAME}} sometimes won't be replaced.
 			$res = strtr( $res, [
-				'{{SITENAME}}' => $wgSitename,
+				'{{SITENAME}}' => 'MediaWiki',
 			] );
 		}
 		return $res;
@@ -355,7 +352,7 @@ class MWExceptionRenderer {
 	 * @param Throwable $e
 	 */
 	private static function reportOutageHTML( Throwable $e ) {
-		global $wgShowExceptionDetails, $wgShowHostnames, $wgSitename;
+		global $wgShowExceptionDetails, $wgShowHostnames;
 
 		$sorry = htmlspecialchars( self::msg(
 			'dberr-problems',
@@ -382,9 +379,7 @@ class MWExceptionRenderer {
 		MediaWikiServices::getInstance()->getMessageCache()->disable(); // no DB access
 		$html = "<!DOCTYPE html>\n" .
 				'<html><head>' .
-				'<title>' .
-				htmlspecialchars( $wgSitename ) .
-				'</title>' .
+				'<title>MediaWiki</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body><h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
@@ -394,6 +389,7 @@ class MWExceptionRenderer {
 		}
 
 		$html .= '</body></html>';
+		self::header( 'Content-Type: text/html; charset=UTF-8' );
 		echo $html;
 	}
 }
