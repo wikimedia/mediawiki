@@ -83,6 +83,15 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/** @var string Scripts and styles */
 	public const TYPE_COMBINED = 'combined';
 
+	/** @var string */
+	public const GROUP_SITE = 'site';
+	/** @var string */
+	public const GROUP_USER = 'user';
+	/** @var string */
+	public const GROUP_PRIVATE = 'private';
+	/** @var string */
+	public const GROUP_NOSCRIPT = 'noscript';
+
 	/** @var string Module only has styles (loaded via <style> or <link rel=stylesheet>) */
 	public const LOAD_STYLES = 'styles';
 	/** @var string Module may have other resources (loaded via mw.loader from a script) */
@@ -998,7 +1007,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	public function shouldEmbedModule( ResourceLoaderContext $context ) {
-		return $this->getGroup() === 'private';
+		return $this->getGroup() === self::GROUP_PRIVATE;
 	}
 
 	/**

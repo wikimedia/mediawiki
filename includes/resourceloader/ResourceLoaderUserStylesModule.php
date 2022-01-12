@@ -88,6 +88,6 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 	 * @return string
 	 */
 	public function getGroup() {
-		return 'user';
+		return self::GROUP_USER;
 	}
 }

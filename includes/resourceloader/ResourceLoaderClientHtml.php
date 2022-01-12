@@ -142,13 +142,14 @@ class ResourceLoaderClientHtml {
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_COMBINED );
 			$shouldEmbed = $module->shouldEmbedModule( $this->context );
 
-			if ( ( $group === 'user' || $shouldEmbed ) && $module->isKnownEmpty( $context ) ) {
+			if ( ( $group === ResourceLoaderModule::GROUP_USER || $shouldEmbed ) &&
+				$module->isKnownEmpty( $context ) ) {
 				// This is a user-specific or embedded module, which means its output
 				// can be specific to the current page or user. As such, we can optimise
 				// the way we load it based on the current version of the module.
 				// Avoid needless embed for empty module, preset ready state.
 				$data['states'][$name] = 'ready';
-			} elseif ( $group === 'user' || $shouldEmbed ) {
+			} elseif ( $group === ResourceLoaderModule::GROUP_USER || $shouldEmbed ) {
 				// - For group=user: We need to provide a pre-generated load.php
 				//   url to the client that has the 'user' and 'version' parameters
 				//   filled in. Without this, the client would wrongly use the static
@@ -184,7 +185,7 @@ class ResourceLoaderClientHtml {
 			// Optimization: Exclude state for "noscript" modules. Since these are also excluded
 			// from the startup registry, no need to send their states (T291735).
 			$group = $module->getGroup();
-			if ( $group !== 'noscript' ) {
+			if ( $group !== ResourceLoaderModule::GROUP_NOSCRIPT ) {
 				$data['states'][$name] = 'ready';
 			}
 
@@ -210,7 +211,7 @@ class ResourceLoaderClientHtml {
 			// * ... are used on page views not publicly cached.
 			// * ... are in their own group and thus a require a request we can avoid
 			// * ... have known-empty status preloaded by ResourceLoader.
-			} elseif ( $group !== 'user' || !$module->isKnownEmpty( $context ) ) {
+			} elseif ( $group !== ResourceLoaderModule::GROUP_USER || !$module->isKnownEmpty( $context ) ) {
 				// Load from load.php?only=styles via <link rel=stylesheet>
 				$data['styles'][] = $name;
 			}
@@ -370,7 +371,7 @@ RLPAGEMODULES = {$pageModulesJson};
 		// Set 'only' if not combined
 		$ret->setOnly( $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
 		// Remove user parameter in most cases
-		if ( $group !== 'user' && $group !== 'private' ) {
+		if ( $group !== ResourceLoaderModule::GROUP_USER && $group !== ResourceLoaderModule::GROUP_PRIVATE ) {
 			$ret->setUser( null );
 		}
 		if ( isset( $extraQuery['raw'] ) ) {
@@ -455,7 +456,7 @@ RLPAGEMODULES = {$pageModulesJson};
 						// timestamp of these user-changeable modules so we can ensure cache misses on change
 						// This should NOT be done for the site group (T29564) because anons get that too
 						// and we shouldn't be putting timestamps in CDN-cached HTML
-						if ( $group === 'user' ) {
+						if ( $group === ResourceLoaderModule::GROUP_USER ) {
 							$context->setVersion( $rl->makeVersionQuery( $context, $moduleSetNames ) );
 						}
 
@@ -481,7 +482,7 @@ RLPAGEMODULES = {$pageModulesJson};
 							);
 						}
 
-						if ( $group == 'noscript' ) {
+						if ( $group == ResourceLoaderModule::GROUP_NOSCRIPT ) {
 							$chunks[] = Html::rawElement( 'noscript', [], $chunk );
 						} else {
 							$chunks[] = $chunk;

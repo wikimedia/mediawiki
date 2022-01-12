@@ -785,7 +785,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			if ( $module ) {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see T36907.
-				if ( $module->getGroup() === 'private' ) {
+				if ( $module->getGroup() === ResourceLoaderModule::GROUP_PRIVATE ) {
 					// Not a serious error, just means something is trying to access it (T101806)
 					$this->logger->debug( "Request for private module '$name' denied" );
 					$this->errors[] = "Cannot build private module \"$name\"";

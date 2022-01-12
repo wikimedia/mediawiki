@@ -48,8 +48,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// for forward compatibility so that they can be safely referenced by mediawiki.js,
 		// even when the code is cached and the order of registrations (and implicit
 		// group ids) changes between versions of the software.
-		'user' => 0,
-		'private' => 1,
+		self::GROUP_USER => 0,
+		self::GROUP_PRIVATE => 1,
 	];
 
 	/**
@@ -205,7 +205,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			// Optimization: Exclude modules in the `noscript` group. These are only ever used
 			// directly by HTML without use of JavaScript (T291735).
-			if ( $module->getGroup() === 'noscript' ) {
+			if ( $module->getGroup() === self::GROUP_NOSCRIPT ) {
 				continue;
 			}
 
@@ -380,8 +380,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			),
 			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
-			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( 'user' ) ),
-			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( 'private' ) ),
+			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
+			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
 			// Only expose private mw.redefineFallbacksForTest in test mode.
 			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( 'EnableJavaScriptTest' ) ?
 				'mw.redefineFallbacksForTest = defineFallbacks;' :
