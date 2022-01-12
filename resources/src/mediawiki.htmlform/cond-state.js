@@ -201,10 +201,11 @@
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var
-			$fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ),
-			$oouiFields = $fields.filter( '[data-ooui]' ),
-			modules = [];
+		var $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
+			.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' );
+		var $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
+		var $oouiFields = $fields.filter( '[data-ooui]' );
+		var modules = [];
 
 		if ( $oouiFields.length ) {
 			modules.push( 'mediawiki.htmlform.ooui' );
