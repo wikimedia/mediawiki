@@ -645,7 +645,7 @@
 	"protectedpagewarning": "'''Paase üüb: Detdiar sidj as speret wurden. Bluas administratooren kön det bewerke.'''\nUun't logbuk stäänt muar diartu:",
 	"semiprotectedpagewarning": "<strong>Paase üüb:</strong> Detdiar sidj as dialwiis tu't bewerkin speret wurden. Bluas gudkäänd brükern kön det bewerke.\nUun't logbuk stäänt muar diartu:",
 	"cascadeprotectedwarning": "<strong>Paase üüb:</strong> Detdiar sidj koon bluas faan brükern mä [[Special:ListGroupRights|aparte rochten]] bewerket wurd. Hat as uun {{PLURAL:$1|detdiar ööder sidj|jodiar ööder sidjen}} iinbünjen, diar troch en kaskaadensper seekert {{PLURAL:$1|as|san}}:",
-	"titleprotectedwarning": "'''Paase üüb: \"Detdiar sidj mä didiar nööm koon ei faan arken bewerket wurd. Bluas enkelt brükern mä [[Special:ListGroupRights|was brükerrochten]] kön detdiar sidj nei maage of bewerke.'''\nUun't logbuk stäänt muar diartu:",
+	"titleprotectedwarning": "<strong>Paase üüb: Detdiar sidj mä didiar nööm koon ei faan arken bewerket wurd. Bluas enkelt brükern mä [[Special:ListGroupRights|was brükerrochten]] kön detdiar sidj nei maage of bewerke.</strong>\nUun't logbuk stäänt muar diartu:",
 	"templatesused": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} üüb detdiar sidj brükt:",
 	"templatesusedpreview": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} uun detdiar sidjenföörskau brükt:",
 	"templatesusedsection": "{{PLURAL:$1|Detdiar föörlaag woort|Jodiar föörlaagen wurd}} uun didiar kirew brükt:",

@@ -729,7 +729,7 @@
 	"clearyourcache": "<strong>Catatan:</strong>Setelah disimpan, Anda mungkin perlu melewati tembolok peramban web untuk melihat perubahan.\n* <strong>Firefox/Safari:</strong> Tekan dan tahan <em>Shift</em> sembari mengeklik <em>Reload</em>, atau tekan <em>Ctrl-F5</em> atau <em>Ctrl-R</em> (<em>⌘-R</em> di Mac)\n* <strong>Google Chrome:</strong> Tekan <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> di Mac)\n* <strong>Internet Explorer / Edge:</strong> Tahan <em>Ctrl</em> sembari mengeklik <em>Refresh</em>, atau tekan <em>Ctrl-F5</em>\n* <strong>Opera:</strong> Tekan <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 	"userjsonyoucanpreview": "<strong>Tips:</strong> Gunakan tombol \"{{int:showpreview}}\" untuk menguji coba JSON baru Anda sebelum menyimpannya.",
-	"userjsyoucanpreview": "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji Javascropt baru Anda sebelum menyimpannya.",
+	"userjsyoucanpreview": "<strong>Tips:</strong> Gunakan tombol \"{{int:showpreview}}\" untuk menguji Javascript baru Anda sebelum penerbitan.",
 	"usercsspreview": "<strong>Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.\nPratayang ini belum diterbitkan!</strong>",
 	"userjsonpreview": "<strong>Ingatlah bahwa Anda hanya menguji coba/melihat pratayang dari konfigurasi pengguna JSON Anda.\nPerubahan ini belum diterbitkan!</strong>",
 	"userjspreview": "<strong>Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum diterbitkan!</strong>",
