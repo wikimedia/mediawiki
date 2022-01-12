@@ -116,7 +116,8 @@ class ActionFactory {
 				'RevisionLookup',
 				'MainWANObjectCache',
 				'WatchedItemStore',
-				'RedirectLookup'
+				'RedirectLookup',
+				'MainConfig'
 			],
 		],
 		'markpatrolled' => [
@@ -131,6 +132,7 @@ class ActionFactory {
 				'ReadOnlyMode',
 				'RevisionLookup',
 				'RevisionRenderer',
+				'MainConfig',
 			],
 		],
 		'mcrrestore' => [
@@ -139,6 +141,7 @@ class ActionFactory {
 				'ReadOnlyMode',
 				'RevisionLookup',
 				'RevisionRenderer',
+				'MainConfig',
 			],
 		],
 		'raw' => [

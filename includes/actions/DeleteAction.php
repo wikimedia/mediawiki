@@ -66,6 +66,9 @@ class DeleteAction extends FormlessAction {
 	/** @var DeletePageFactory */
 	private $deletePageFactory;
 
+	/** @var int */
+	private $deleteRevisionsLimit;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -78,6 +81,7 @@ class DeleteAction extends FormlessAction {
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->deletePageFactory = $services->getDeletePageFactory();
+		$this->deleteRevisionsLimit = $services->getMainConfig()->get( 'DeleteRevisionsLimit' );
 	}
 
 	public function getName() {
@@ -198,11 +202,10 @@ class DeleteAction extends FormlessAction {
 		);
 
 		if ( $title->isBigDeletion() ) {
-			$deleteRevisionsLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'DeleteRevisionsLimit' );
 			$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 				[
 					'delete-warning-toobig',
-					$context->getLanguage()->formatNum( $deleteRevisionsLimit )
+					$context->getLanguage()->formatNum( $this->deleteRevisionsLimit )
 				]
 			);
 		}
