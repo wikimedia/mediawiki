@@ -134,11 +134,13 @@ abstract class BackupDumper extends Maintenance {
 			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
-		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
-			'Default: ' . WikiExporter::schemaVersion(), false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
 		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
 			'-mx option to 7za command.', false, true );
+		// NOTE: we can't know the default schema version yet, since configuration has not been
+		//       loaded when this constructor is called. To work around this, we re-declare
+		//       this option in validateParamsAndArgs().
+		$this->addOption( 'schema-version', 'Schema version to use for output.', false, true );
 
 		if ( $args ) {
 			// Args should be loaded and processed so that dump() can be called directly
@@ -146,6 +148,14 @@ abstract class BackupDumper extends Maintenance {
 			$this->loadWithArgv( $args );
 			$this->processOptions();
 		}
+	}
+
+	public function validateParamsAndArgs() {
+		// re-declare the --schema-version option to include the default schema version
+		// in the description.
+		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
+			'Default: ' . WikiExporter::schemaVersion(), false, true );
+		parent::validateParamsAndArgs();
 	}
 
 	/**
