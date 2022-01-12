@@ -6,6 +6,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -357,12 +358,10 @@ class McrUndoAction extends FormAction {
 			return Status::newFatal( 'mcrundo-changed' );
 		}
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$errors = $permissionManager->getPermissionErrors(
-			'edit', $this->context->getUser(), $this->getTitle()
-		);
-		if ( count( $errors ) ) {
-			throw new PermissionsError( 'edit', $errors );
+		$status = new PermissionStatus();
+		$this->getContext()->getAuthority()->authorizeWrite( 'edit', $this->getTitle(), $status );
+		if ( !$status->isOK() ) {
+			throw new PermissionsError( 'edit', $status );
 		}
 
 		$newRev = $this->getNewRevision();
