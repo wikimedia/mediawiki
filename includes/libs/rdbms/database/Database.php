@@ -2798,10 +2798,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 
 		}
+		$wrap = false;
 		$result = '';
 		foreach ( $expressionsByField1 as $value1 => $expressions ) {
 			if ( $result !== '' ) {
 				$result .= ' OR ';
+				$wrap = true;
 			}
 			$factored = $this->factorCondsWithCommonFields( $expressions );
 			$result .= "($field1 = " . $this->addQuotes( $value1 ) .
@@ -2811,10 +2813,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$factored = $this->factorCondsWithCommonFields( $nullExpressions );
 			if ( $result !== '' ) {
 				$result .= ' OR ';
+				$wrap = true;
 			}
 			$result .= "($field1 IS NULL AND $factored)";
 		}
-		return $result;
+		if ( $wrap ) {
+			return "($result)";
+		} else {
+			return $result;
+		}
 	}
 
 	/**
