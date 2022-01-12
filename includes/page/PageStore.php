@@ -205,6 +205,10 @@ class PageStore implements PageLookup {
 
 		if ( $row ) {
 			try {
+				// NOTE: LinkCache may not include namespace and title in the cached row,
+				//       since it's already used as the cache key!
+				$row->page_namespace = $namespace;
+				$row->page_title = $dbKey;
 				$page = $this->newPageRecordFromRow( $row );
 
 				// We were able to use the row we got from link cache.
