@@ -472,9 +472,9 @@ class JobQueueGroup {
 				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),
 				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
 				static function () use ( $wiki, $name ) {
-					$conf = MediaWikiServices::getInstance()->getMainConfig()->get( 'Conf' );
+					global $wgConf;
 					// @TODO: use the full domain ID here
-					return [ 'v' => $conf->getConfig( $wiki, $name ) ];
+					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];
 				},
 				[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 			);
