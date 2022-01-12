@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
@@ -42,7 +41,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	private function getMigration( $stage, $actorStoreFactory = null ) {
-		$mwServices = MediaWikiServices::getInstance();
+		$mwServices = $this->getServiceContainer();
 		return new ActorMigrationBase(
 			[
 				'am2_user' => [
@@ -696,7 +695,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				]
 			],
 			$stage,
-			MediaWikiServices::getInstance()->getActorStoreFactory()
+			$this->getServiceContainer()->getActorStoreFactory()
 		);
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
@@ -721,7 +720,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				]
 			],
 			$stage,
-			MediaWikiServices::getInstance()->getActorStoreFactory()
+			$this->getServiceContainer()->getActorStoreFactory()
 		);
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
@@ -823,7 +822,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				],
 			],
 			SCHEMA_COMPAT_TEMP,
-			MediaWikiServices::getInstance()->getActorStoreFactory()
+			$this->getServiceContainer()->getActorStoreFactory()
 		) extends ActorMigrationBase {
 			public function checkDeprecationForTest( $key ) {
 				$this->checkDeprecation( $key );

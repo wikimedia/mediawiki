@@ -120,7 +120,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	}
 
 	protected function newSpecialPage(): SpecialContributions {
-		$services = MediaWiki\MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		return new SpecialContributions(
 			$services->getLinkBatchFactory(),

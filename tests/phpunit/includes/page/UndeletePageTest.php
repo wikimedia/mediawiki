@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
@@ -122,7 +121,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$undeletePage = MediaWikiServices::getInstance()->getUndeletePageFactory()->newUndeletePage(
+		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
 			$this->page,
 			$this->getTestSysop()->getUser()
 		);

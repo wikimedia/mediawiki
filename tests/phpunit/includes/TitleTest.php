@@ -2,7 +2,6 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\RestrictionStore;
@@ -1354,7 +1353,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testExists() {
 		$title = Title::makeTitle( NS_PROJECT, 'New page' );
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$linkCache = $this->getServiceContainer()->getLinkCache();
 
 		$article = new Article( $title );
 		$page = $article->getPage();
@@ -1985,7 +1984,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRestrictions() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'restrictions' => [
@@ -2009,7 +2008,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'c' => [ 'sysop' ],
 		];
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'restrictions' => $restrictions
@@ -2025,7 +2024,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRestrictionExpiry() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'expiry' => [
@@ -2055,7 +2054,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
 		] );
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'restrictions' => [ 'edit' => [ 'sysop' ] ],
@@ -2084,7 +2083,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 			'wgRestrictionTypes' => [ 'create', 'edit', 'move', 'upload' ]
 		] );
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'restrictions' => [ 'edit' => [ 'sysop' ] ],
@@ -2124,7 +2123,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testIsCascadeProtected() {
 		$page = $this->getExistingTestPage( 'UTest1' );
 		$title = $page->getTitle();
-		$rs = MediaWikiServices::getInstance()->getRestrictionStore();
+		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
 		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $title ) => [
 			'has_cascading' => true,

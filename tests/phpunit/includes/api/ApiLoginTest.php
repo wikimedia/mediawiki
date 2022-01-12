@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\TestingAccessWrapper;
@@ -296,7 +295,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotSame( 0, $centralId );
 
 		$password = 'ngfhmjm64hv0854493hsj5nncjud2clk';
-		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
+		$passwordFactory = $this->getServiceContainer()->getPasswordFactory();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordHash = $passwordFactory->newFromPlaintext( $password );
 

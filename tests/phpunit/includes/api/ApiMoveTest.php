@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -51,7 +50,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertTrue( $fromTitle->isRedirect(),
 				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
 
-			$target = MediaWikiServices::getInstance()
+			$target = $this->getServiceContainer()
 				->getRevisionLookup()
 				->getRevisionByTitle( $fromTitle )
 				->getContent( SlotRecord::MAIN )
@@ -149,7 +148,7 @@ class ApiMoveTest extends ApiTestCase {
 		] );
 
 		// Fetched stored expiry (maximum duration may override '99990123000000').
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
 		$expiry = $store->getWatchedItem( $user, $title )->getExpiry();
 
 		// Move to new location, without changing the watched state.
@@ -207,7 +206,7 @@ class ApiMoveTest extends ApiTestCase {
 	public function testMoveWhileBlocked() {
 		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),
 			'by' => self::$users['sysop']->getUser(),

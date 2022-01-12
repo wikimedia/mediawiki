@@ -5,8 +5,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Tests for Serbian
  *
@@ -36,7 +34,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::hasVariant
 	 */
 	public function testHasVariant() {
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$langFactory = $this->getServiceContainer()->getLanguageFactory();
 		$langs = [
 			'sr' => $this->getLang(),
 			'sr-ec' => $langFactory->getLanguage( 'sr-ec' ),
@@ -62,7 +60,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::hasVariant
 	 */
 	public function testHasVariantBogus() {
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$langFactory = $this->getServiceContainer()->getLanguageFactory();
 		$langs = [
 			// Note that case matters when calling getLanguage(); these are all bogus language codes
 			'sr-EC' => $langFactory->getLanguage( 'sr-EC' ),

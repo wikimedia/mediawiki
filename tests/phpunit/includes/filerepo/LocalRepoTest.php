@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @coversDefaultClass LocalRepo
  * @group Database
@@ -226,7 +224,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 
 		$repo = $this->newRepo();
 
-		$tmpFileFactory = MediaWikiServices::getInstance()->getTempFSFileFactory();
+		$tmpFileFactory = $this->getServiceContainer()->getTempFSFileFactory();
 		foreach ( [ 'File1', 'File2', 'File3' ] as $name ) {
 			$fsFile = $tmpFileFactory->newTempFSFile( '' );
 			file_put_contents( $fsFile->getPath(), "$name contents" );
@@ -316,7 +314,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	public function testGetInfo_displayNameCustomMsg() {
 		$this->editPage( 'MediaWiki:Shared-repo-name-not-local', 'Name to display please' );
 		// Allow the message to take effect
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 
 		$this->assertSame( 'Name to display please',
 			$this->newRepo( [ 'name' => 'not-local' ] )->getInfo()['displayname'] );

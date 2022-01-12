@@ -2,7 +2,6 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -54,7 +53,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ 'Existent.jpg', 'Existent2.jpg', 'Existent-file-no-page.jpg' ]
 			),
 			$params['contentHandlerFactory']
-				?? MediaWikiServices::getInstance()->getContentHandlerFactory(),
+				?? $this->getServiceContainer()->getContentHandlerFactory(),
 			$this->getServiceContainer()->getRevisionStore(),
 			$this->getServiceContainer()->getSpamChecker(),
 			$this->getServiceContainer()->getHookContainer(),
@@ -113,7 +112,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers MovePage::__construct
 	 */
 	public function testConstructorDefaults() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->filterDeprecated( '/MovePage::__construct/' );
 
@@ -457,7 +456,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertTrue( $fromTitle->isRedirect(),
 				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
 
-			$target = MediaWikiServices::getInstance()
+			$target = $this->getServiceContainer()
 				->getRevisionLookup()
 				->getRevisionByTitle( $fromTitle )
 				->getContent( SlotRecord::MAIN )

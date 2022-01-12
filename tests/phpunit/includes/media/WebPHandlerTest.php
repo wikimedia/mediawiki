@@ -181,7 +181,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestGetMimeType
 	 */
 	public function testGuessMimeType( $path ) {
-		$mime = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$mime = $this->getServiceContainer()->getMimeAnalyzer();
 		$this->assertEquals( 'image/webp', $mime->guessMimeType( $path, false ) );
 	}
 

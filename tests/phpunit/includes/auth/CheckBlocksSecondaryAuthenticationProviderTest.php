@@ -4,7 +4,6 @@ namespace MediaWiki\Auth;
 
 use HashConfig;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use Wikimedia\TestingAccessWrapper;
 
@@ -74,7 +73,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$oldBlock = DatabaseBlock::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
@@ -162,7 +161,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			'sitewide' => false,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$user = \User::newFromName( 'UTNormalUser' );
 		if ( $user->getId() == 0 ) {

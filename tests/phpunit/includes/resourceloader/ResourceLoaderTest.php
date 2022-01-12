@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
@@ -28,7 +27,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			]
 		] );
 
-		MediaWikiServices::getInstance()->getResourceLoader();
+		$this->getServiceContainer()->getResourceLoader();
 
 		$this->assertSame( 1, $ranHook, 'Hook was called' );
 	}
@@ -269,7 +268,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$this->setMwGlobals( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
 		// Reset Skin::getSkinNames for ResourceLoaderContext
-		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'SkinFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'SkinFactory' );
 
 		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );
 		$module = new ResourceLoaderFileModule( [
@@ -959,7 +958,7 @@ END
 	public function testMakeModuleResponseStartupError() {
 		// This is an integration test that uses a lot of MediaWiki state,
 		// provide the full Config object here.
-		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
+		$rl = new EmptyResourceLoader( $this->getServiceContainer()->getMainConfig() );
 		$rl->register( [
 			'foo' => [ 'factory' => function () {
 				return $this->getSimpleModuleMock( 'foo();' );

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
 
@@ -12,7 +10,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$langFactory = $this->getServiceContainer()->getLanguageFactory();
 		$contLangObj = $langFactory->getLanguage( 'en' );
 
 		// Hardcode namespaces during test runs,

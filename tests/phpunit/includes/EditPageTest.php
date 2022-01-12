@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
@@ -20,7 +19,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getServiceContainer()->getContentLanguage();
 		$this->setContentLang( $contLang );
 
 		$this->setMwGlobals( [
@@ -662,7 +661,7 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( __METHOD__, $ns );
-		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
@@ -792,7 +791,7 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
-		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {

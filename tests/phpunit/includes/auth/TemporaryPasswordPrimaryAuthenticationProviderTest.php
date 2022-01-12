@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
@@ -33,7 +32,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $params = [] ) {
-		$mwServices = MediaWikiServices::getInstance();
+		$mwServices = $this->getServiceContainer();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig( [
 				'EmailEnabled' => true,
@@ -87,7 +86,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	protected function hookMailer( $func = null ) {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		if ( $func ) {
 			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', $func, true );
 		} else {
@@ -156,7 +155,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$user = self::getMutableTestUser()->getUser();
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$config = $this->getServiceContainer()->getMainConfig();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory = new \PasswordFactory( $config->get( 'PasswordConfig' ), 'A' );
 

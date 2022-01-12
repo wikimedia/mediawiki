@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\NullLogger;
 
@@ -29,7 +28,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestCases
 	 */
 	public function testImport( $expectedTags ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$title = Title::newFromText( __CLASS__ . rand() );
 		$revision = new WikiRevision( $services->getMainConfig() );

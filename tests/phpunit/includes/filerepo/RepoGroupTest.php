@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers RepoGroup
  */
@@ -9,12 +7,12 @@ class RepoGroupTest extends MediaWikiIntegrationTestCase {
 
 	public function testHasForeignRepoNegative() {
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );
-		$this->assertFalse( MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos() );
+		$this->assertFalse( $this->getServiceContainer()->getRepoGroup()->hasForeignRepos() );
 	}
 
 	public function testHasForeignRepoPositive() {
 		$this->setUpForeignRepo();
-		$this->assertTrue( MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos() );
+		$this->assertTrue( $this->getServiceContainer()->getRepoGroup()->hasForeignRepos() );
 	}
 
 	public function testForEachForeignRepo() {

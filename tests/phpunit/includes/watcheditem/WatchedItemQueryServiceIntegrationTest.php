@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  *
@@ -19,8 +17,8 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testGetWatchedItemsForUser(): void {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
+		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 		$user = self::getTestUser()->getUser();
 		$initialCount = count( $store->getWatchedItemsForUser( $user ) );
 
@@ -71,8 +69,8 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 
 	public function testGetWatchedItemsForUserWithExpiriesDisabled() {
 		$this->setMwGlobals( 'wgWatchlistExpiry', false );
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
+		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 		$user = self::getTestUser()->getUser();
 		$initialCount = count( $store->getWatchedItemsForUser( $user ) );
 		$store->addWatch( $user, new TitleValue( 0, __METHOD__ ), '1 week ago' );
@@ -81,8 +79,8 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testGetWatchedItemsWithRecentChangeInfo_watchlistExpiry(): void {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
+		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 		$user = self::getTestUser()->getUser();
 		$options = [];
 		$startFrom = null;
@@ -158,7 +156,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	public function testGetWatchedItemsWithRecentChangeInfo_watchlistOwnerAndInvalidToken( $token ) {
 		// Moved from the Unit test because the ApiUsageException call creates a Message object
 		// and down the line needs MediaWikiServices
-		$queryService = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 
 		$user = $this->createNoOpMock(
 			User::class,

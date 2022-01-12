@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Languages\LanguageFallback;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @coversDefaultClass MediaWiki\Languages\LanguageFallback
@@ -18,7 +17,7 @@ class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->setService( 'LocalisationCache', $this->getMockLocalisationCache(
 				1, $options['fallbackMap'] ) );
 		}
-		return MediaWikiServices::getInstance()->getLanguageFallback();
+		return $this->getServiceContainer()->getLanguageFallback();
 	}
 
 	private function getMessagesKey() {

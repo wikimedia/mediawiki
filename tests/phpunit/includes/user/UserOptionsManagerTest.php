@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
@@ -32,7 +31,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @return UserOptionsManager
 	 */
 	private function getManager( array $overrides = [] ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new UserOptionsManager(
 			new ServiceOptions(
 				UserOptionsManager::CONSTRUCTOR_OPTIONS,

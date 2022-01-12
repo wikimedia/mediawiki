@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers ChangeTags
  * @group Database
@@ -523,7 +521,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	public function testDeleteTags() {
 		$this->emptyChangeTagsTables();
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -611,7 +609,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	public function testTagUsageStatistics() {
 		$this->emptyChangeTagsTables();
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -547,7 +546,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$rollbackOutput = Linker::generateRollback( $page->getRevisionRecord(), $context );
 		$modules = $context->getOutput()->getModules();
 		$currentRev = $page->getRevisionRecord();
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$oldestRev = $revisionLookup->getFirstRevision( $page->getTitle() );
 
 		$this->assertEquals( $expectedModules, $modules );

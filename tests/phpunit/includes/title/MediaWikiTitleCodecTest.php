@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -103,7 +102,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	protected function makeCodec( $lang ) {
 		return new MediaWikiTitleCodec(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $lang ),
 			$this->getGenderCache(),
 			[ 'localtestiw' ],
 			$this->getInterwikiLookup(),

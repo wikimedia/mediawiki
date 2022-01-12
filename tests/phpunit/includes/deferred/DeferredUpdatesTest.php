@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
@@ -210,7 +208,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// clear anything
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
@@ -276,7 +274,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$x = false;
 		$y = false;
 		// clear anything
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
@@ -304,7 +302,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	public function testRunUpdateTransactionScope() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
 
 		$ran = 0;
@@ -325,7 +323,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	public function testRunOuterScopeUpdate() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
 
 		$ran = 0;
@@ -355,7 +353,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 			$calls[] = 2;
 		};
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lbFactory->beginPrimaryChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate( $callback1 );
@@ -385,7 +383,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	 * @covers DeferredUpdates::attemptUpdate
 	 */
 	public function testCallbackUpdateRounds() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		$fname = __METHOD__;
 		$called = false;

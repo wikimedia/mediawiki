@@ -566,7 +566,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 *   or false if there will be no such item.
 	 */
 	public function testLoadFromDBAndCache( $meta, $blobs, $largeItemSize ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$cache = new HashBagOStuff;
 		$this->setService(
@@ -926,7 +926,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testReserializeMetadata( $input, $expected ) {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
 		$actorId = $norm->acquireActorId( $user, $dbw );
@@ -996,7 +996,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			] )
 		] );
 		$dbw = wfGetDB( DB_PRIMARY );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
 		$actorId = $norm->acquireActorId( $user, $dbw );

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 
 /**
@@ -34,7 +33,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $this->page->exists(), 'The created page exists' );
 
-		$this->jobRunner = MediaWikiServices::getInstance()->getJobRunner();
+		$this->jobRunner = $this->getServiceContainer()->getJobRunner();
 		$jobParams = [
 			'namespace' => $this->page->getNamespace(),
 			'title' => $this->page->getDBkey(),

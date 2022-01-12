@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
@@ -58,7 +57,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getWatchAction( Article $article, IContextSource $context ) {
-		$mwServices = MediaWikiServices::getInstance();
+		$mwServices = $this->getServiceContainer();
 		return new WatchAction(
 			$article,
 			$context,
@@ -254,7 +253,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			->with( $msg, $prefixedTitle, $expiryLabel );
 		$testContext->method( 'getOutput' )->willReturn( $testOutput );
 		// Set language to anything non-English/default, to catch assumptions.
-		$langDe = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
+		$langDe = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
 		$testContext->method( 'getLanguage' )->willReturn( $langDe );
 		/** @var MockObject|WebRequest $testRequest */
 		$testRequest = $this->createMock( WebRequest::class );

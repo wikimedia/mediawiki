@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Revision;
 
 use ChangeTags;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -61,12 +60,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::$avoidReopeningTablesForTesting = true;
 
 		// MessageCache needs to be explicitly enabled to load changetag display text.
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 	}
 
 	public function tearDown(): void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
-		MediaWikiServices::getInstance()->getMessageCache()->disable();
+		$this->getServiceContainer()->getMessageCache()->disable();
 
 		parent::tearDown();
 	}

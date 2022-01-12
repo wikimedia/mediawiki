@@ -161,7 +161,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 				$bad["$title"] = $title;
 			} );
 
-		$services = \MediaWiki\MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$batch = new LinkBatch(
 			[],

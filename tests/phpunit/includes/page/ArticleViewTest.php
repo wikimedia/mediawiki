@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -128,7 +127,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article = new Article( $page->getTitle(), 0 );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
 
-		$cache = MediaWikiServices::getInstance()->getParserCache();
+		$cache = $this->getServiceContainer()->getParserCache();
 		$cache->save( $po, $page, $article->getParserOptions() );
 
 		$article->view();
@@ -604,7 +603,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getRevDelRevisionList( $title, $revisionId ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new RevDelRevisionList(
 			RequestContext::getMain(),
 			$title,

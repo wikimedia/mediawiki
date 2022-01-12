@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * TODO convert to a Unit test
  *
@@ -12,7 +10,7 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->collation = new CustomUppercaseCollation(
-			MediaWikiServices::getInstance()->getLanguageFactory(),
+			$this->getServiceContainer()->getLanguageFactory(),
 			[
 				'D',
 				'C',

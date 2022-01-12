@@ -1341,10 +1341,10 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$mockTrait->method( 'getLanguage' )->willReturn( $language );
 		$userInfoTrait = TestingAccessWrapper::newFromObject( $mockTrait );
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
@@ -1401,10 +1401,10 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$mockTrait->method( 'getLanguage' )->willReturn( $language );
 		$userInfoTrait = TestingAccessWrapper::newFromObject( $mockTrait );
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];

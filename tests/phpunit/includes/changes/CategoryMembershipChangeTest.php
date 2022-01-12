@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 
@@ -120,7 +119,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	public function testChangeAddedWithRev() {
-		$revision = MediaWikiServices::getInstance()
+		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( Title::newFromText( self::$pageName ) );
 		$change = $this->newChange( $revision );
@@ -143,7 +142,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	public function testChangeRemovedWithRev() {
-		$revision = MediaWikiServices::getInstance()
+		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( Title::newFromText( self::$pageName ) );
 		$change = $this->newChange( $revision );

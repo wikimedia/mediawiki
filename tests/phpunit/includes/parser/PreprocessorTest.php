@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers Preprocessor
  *
@@ -28,7 +26,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
-			MediaWikiServices::getInstance()->getContentLanguage() );
+			$this->getServiceContainer()->getContentLanguage() );
 
 		$wanCache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$parser = $this->getMockBuilder( Parser::class )

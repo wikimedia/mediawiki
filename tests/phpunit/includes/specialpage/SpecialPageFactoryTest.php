@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -28,7 +27,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	private function getFactory() {
-		return MediaWikiServices::getInstance()->getSpecialPageFactory();
+		return $this->getServiceContainer()->getSpecialPageFactory();
 	}
 
 	public function testHookNotCalledTwice() {
@@ -39,7 +38,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 					$count++;
 				}
 		] ] );
-		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$spf = $this->getServiceContainer()->getSpecialPageFactory();
 		$spf->getNames();
 		$spf->getNames();
 		$this->assertSame( 1, $count );
@@ -162,7 +161,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testConflictResolution(
 		$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
 	) {
-		$lang = clone MediaWikiServices::getInstance()->getContentLanguage();
+		$lang = clone $this->getServiceContainer()->getContentLanguage();
 		$wrappedLang = TestingAccessWrapper::newFromObject( $lang );
 		$wrappedLang->mExtendedSpecialPageAliases = $aliasesList;
 		$this->setMwGlobals( 'wgSpecialPages',
@@ -290,8 +289,8 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$called = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'SpecialPage_initList' => [
-				static function () use ( &$called ) {
-					MediaWikiServices::getInstance()
+				function () use ( &$called ) {
+					$this->getServiceContainer()
 						->getSpecialPageFactory()
 						->getLocalNameFor( 'Specialpages' );
 					$called = true;

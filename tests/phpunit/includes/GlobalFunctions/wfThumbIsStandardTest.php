@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Psr\Log\NullLogger;
 
 /**
@@ -95,7 +94,7 @@ class WfThumbIsStandardTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideThumbParams
 	 */
 	public function testIsStandard( $message, $expected, $params ) {
-		$handlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'ParserTestMediaHandlers' );
+		$handlers = $this->getServiceContainer()->getMainConfig()->get( 'ParserTestMediaHandlers' );
 		$this->setService(
 			'MediaHandlerFactory',
 			new MediaHandlerFactory( new NullLogger(), $handlers )

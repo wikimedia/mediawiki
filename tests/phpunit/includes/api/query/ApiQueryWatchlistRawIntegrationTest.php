@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group API
  * @group Database
@@ -34,7 +32,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	private function getWatchedItemStore() {
-		return MediaWikiServices::getInstance()->getWatchedItemStore();
+		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
 	private function doListWatchlistRawRequest( array $params = [] ) {

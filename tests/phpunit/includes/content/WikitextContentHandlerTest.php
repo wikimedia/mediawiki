@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 
 /**
@@ -15,7 +14,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->handler = MediaWikiServices::getInstance()->getContentHandlerFactory()
+		$this->handler = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_WIKITEXT );
 	}
 
@@ -26,9 +25,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		MediaWikiServices::getInstance()->getContentLanguage()->resetNamespaces();
+		$this->getServiceContainer()->getContentLanguage()->resetNamespaces();
 
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
 
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );

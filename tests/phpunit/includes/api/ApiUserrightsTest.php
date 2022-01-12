@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -141,7 +140,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$user = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user, ] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -158,7 +157,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setPermissions( true, true );
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user ] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
@@ -49,7 +48,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 		$context = RequestContext::getMain();
 		$resp = $context->getRequest()->response();
 		$conf = $context->getConfig();
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$csp = new ContentSecurityPolicy( $resp, $conf, $hookContainer );
 		$this->csp = TestingAccessWrapper::newFromObject( $csp );
 		$this->csp->nonce = 'secret';
