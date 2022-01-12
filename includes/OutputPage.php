@@ -3185,7 +3185,8 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::closeElement( 'head' );
 
-		$bodyClasses = $this->mAdditionalBodyClasses;
+		$skinOptions = $sk->getOptions();
+		$bodyClasses = array_merge( $this->mAdditionalBodyClasses, $skinOptions['bodyClasses'] );
 		$bodyClasses[] = 'mediawiki';
 
 		# Classes for LTR/RTL directionality support
