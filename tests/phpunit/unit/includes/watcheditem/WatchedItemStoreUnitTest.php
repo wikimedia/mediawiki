@@ -2231,7 +2231,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->willReturn( [] );
 
 		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )->method( 'get' );
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
@@ -2287,7 +2287,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			] );
 
 		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'set' )
 			->with(
@@ -2811,7 +2811,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			] );
 
 		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )->method( 'get' );
 		$mockCache->expects( $this->once() )
 			->method( 'set' )
 			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
