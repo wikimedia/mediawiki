@@ -2249,6 +2249,8 @@
 	"apisandbox-request-format-url-label": "Строка URL-запроса",
 	"apisandbox-request-url-label": "URL-адрес запроса:",
 	"apisandbox-request-json-label": "Запросить JSON:",
+	"apisandbox-request-format-php-label": "PHP-массив",
+	"apisandbox-request-php-label": "Запросить PHP-массив:",
 	"apisandbox-request-time": "Время запроса: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-results-fixtoken": "Исправьте токен и повторите отправку",
 	"apisandbox-results-fixtoken-fail": "Не удалось вызвать токен «$1».",

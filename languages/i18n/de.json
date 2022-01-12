@@ -1195,7 +1195,7 @@
 	"badsiglength": "Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen}} lang sein.",
 	"badsiglinebreak": "Deine Unterschrift muss aus einer einzigen Zeile Wikitext bestehen.",
 	"linterror-bogus-image-options": "Fehlerhafte Dateioption",
-	"linterror-deletable-table-tag": "Tabellen-Tag, das gelöscht werden soll.",
+	"linterror-deletable-table-tag": "Tabellen-Tag, das gelöscht werden soll",
 	"linterror-html5-misnesting": "Missbräuchliche Verschachtelung (jetzt kaputt)",
 	"linterror-misc-tidy-replacement-issues": "Verschiedene Auszeichnungsfehler",
 	"linterror-misnested-tag": "Falsch verschachtelte Tags, die ordnungsgemäß verschachtelt werden sollten.",
