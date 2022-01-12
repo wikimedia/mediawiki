@@ -84,16 +84,16 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		$expiry = $this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName );
-
-		// Even though we're never unwatching here, use WatchlistManager::setWatch() because it also checks for
-		// changed expiry.
-		return $this->watchlistManager->setWatch(
+		// Even though we're never unwatching here, use WatchlistManager::setWatch()
+		// because it also checks for changed expiry.
+		$result = $this->watchlistManager->setWatch(
 			true,
 			$this->getContext()->getAuthority(),
 			$this->getTitle(),
-			$expiry
+			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName )
 		);
+
+		return Status::wrap( $result );
 	}
 
 	protected function checkCanExecute( User $user ) {
