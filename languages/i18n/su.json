@@ -19,7 +19,8 @@
 			"Vlad5250",
 			"WikiKaruhun",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Daud I.F. Argana"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -586,6 +587,8 @@
 	"savechanges": "Simpen parobahan",
 	"publishpage": "Pedalkeun kaca",
 	"publishchanges": "Pedalkeun parobahan",
+	"publishpage-start": "Pedalkeun kaca…",
+	"publishchanges-start": "Pedalkeun parobahan…",
 	"preview": "Pramidang",
 	"showpreview": "Témbongkeun pramidang",
 	"showdiff": "Témbongkeun parobahan",
@@ -1588,7 +1591,7 @@
 	"filehist-comment": "Kamandang",
 	"imagelinks": "Pamakéan berkas",
 	"linkstoimage": "Ieu berkas dipaké ku {{PLURAL:$1|kaca|$1 kaca}} di handap:",
-	"linkstoimage-more": "Leuwih ti $1 {{PLURAL:$1|kaca maké|kaca maké}}  ieu berkas.\nBéréndélan di handap némbongkeun {{PLURAL:$1|kaca kahiji|$1 kaca mimiti}} nu maké ieu berkas hungkul.\n[[Special:WhatLinksHere/$2|Béréndélan lengkepna]] ogé aya.",
+	"linkstoimage-more": "Leuwih ti $1 {{PLURAL:$1|kaca maké}}  ieu berkas.\nBéréndélan di handap némbongkeun {{PLURAL:$1|kaca kahiji|$1 kaca mimiti}} nu maké ieu berkas hungkul.\n[[Special:WhatLinksHere/$2|Béréndélan lengkepna]] ogé aya.",
 	"nolinkstoimage": "Euweuh kaca anu maké ieu berkas.",
 	"morelinkstoimage": "Témbong [[Special:WhatLinksHere/$1|tutumbu lianna]] ka ieu berkas.",
 	"linkstoimage-redirect": "$1 (pangalihan berkas) $2",

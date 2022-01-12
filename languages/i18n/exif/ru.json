@@ -11,7 +11,8 @@
 			"MaxSem",
 			"Okras",
 			"Putnik",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"Chadyka"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -134,7 +135,7 @@
 	"exif-countrycodecreated": "Код страны, где была сделана фотография",
 	"exif-provinceorstatecreated": "Область, провинция или штат, где была сделана фотография",
 	"exif-citycreated": "Город, где была сделана фотография",
-	"exif-sublocationcreated": "Район города, где была сделана фоторафия",
+	"exif-sublocationcreated": "Район города, где была сделана фотография",
 	"exif-worldregiondest": "Изображённый регион мира",
 	"exif-countrydest": "Изображённая страна",
 	"exif-countrycodedest": "Код изображённой страны",
