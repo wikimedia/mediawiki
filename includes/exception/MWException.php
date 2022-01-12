@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +17,6 @@
  *
  * @file
  */
-
-use MediaWiki\MediaWikiServices;
 
 /**
  * MediaWiki exception
@@ -82,7 +79,7 @@ class MWException extends Exception {
 	 * @return string Message with arguments replaced
 	 */
 	public function msg( $key, $fallback, ...$params ) {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		global $wgSitename;
 
 		// FIXME: Keep logic in sync with MWExceptionRenderer::msg.
 		$res = false;
@@ -97,7 +94,7 @@ class MWException extends Exception {
 			// If an exception happens inside message rendering,
 			// {{SITENAME}} sometimes won't be replaced.
 			$res = strtr( $res, [
-				'{{SITENAME}}' => $sitename,
+				'{{SITENAME}}' => $wgSitename,
 			] );
 		}
 		return $res;
@@ -113,9 +110,9 @@ class MWException extends Exception {
 	 * @return string Html to output
 	 */
 	public function getHTML() {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		global $wgShowExceptionDetails;
 
-		if ( $showExceptionDetails ) {
+		if ( $wgShowExceptionDetails ) {
 			return '<p>' . nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $this ) ) ) .
 			'</p><p>Backtrace:</p><p>' .
 			nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
@@ -150,9 +147,9 @@ class MWException extends Exception {
 	 * @return string
 	 */
 	public function getText() {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		global $wgShowExceptionDetails;
 
-		if ( $showExceptionDetails ) {
+		if ( $wgShowExceptionDetails ) {
 			return MWExceptionHandler::getLogMessage( $this ) .
 			"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $this ) . "\n";
 		} else {
@@ -177,8 +174,7 @@ class MWException extends Exception {
 	 * @stable to override
 	 */
 	public function reportHTML() {
-		global $wgOut;
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		global $wgOut, $wgSitename;
 		if ( $this->useOutputPage() ) {
 			$wgOut->prepareErrorPage( $this->getPageTitle() );
 			// Manually set the html title, since sometimes
@@ -187,7 +183,7 @@ class MWException extends Exception {
 			$wgOut->setHTMLTitle(
 				$this->msg(
 					'pagetitle',
-					"$1 - {$sitename}",
+					"$1 - $wgSitename",
 					$this->getPageTitle()
 				)
 			);
@@ -201,7 +197,7 @@ class MWException extends Exception {
 				'<html><head>' .
 				// Mimic OutputPage::setPageTitle behaviour
 				'<title>' .
-				htmlspecialchars( $this->msg( 'pagetitle', "$1 - {$sitename}", $this->getPageTitle() ) ) .
+				htmlspecialchars( $this->msg( 'pagetitle', "$1 - $wgSitename", $this->getPageTitle() ) ) .
 				'</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
@@ -219,7 +215,7 @@ class MWException extends Exception {
 	 * @stable to override
 	 */
 	public function report() {
-		$mimeType = MediaWikiServices::getInstance()->getMainConfig()->get( 'MimeType' );
+		global $wgMimeType;
 
 		if ( defined( 'MW_API' ) ) {
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . static::class );
@@ -230,7 +226,7 @@ class MWException extends Exception {
 			$this->writeToCommandLine( $message );
 		} else {
 			self::statusHeader( 500 );
-			self::header( "Content-Type: {$mimeType}; charset=utf-8" );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 
 			$this->reportHTML();
 		}

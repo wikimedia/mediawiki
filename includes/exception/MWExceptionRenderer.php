@@ -39,8 +39,8 @@ class MWExceptionRenderer {
 	 * @param Throwable|null $eNew New throwable from attempting to show the first
 	 */
 	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
-		$mimeType = MediaWikiServices::getInstance()->getMainConfig()->get( 'MimeType' );
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		global $wgMimeType, $wgShowExceptionDetails;
+
 		if ( $e instanceof RequestTimeoutException && headers_sent() ) {
 			// Excimer's flag check happens on function return, so, a timeout
 			// can be thrown after exiting, say, `doPostOutputShutdown`, where
@@ -69,7 +69,7 @@ class MWExceptionRenderer {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
-			self::header( "Content-Type: {$mimeType}; charset=UTF-8" );
+			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
 			ob_start();
 			if ( $e instanceof DBConnectionError ) {
 				self::reportOutageHTML( $e );
@@ -81,10 +81,10 @@ class MWExceptionRenderer {
 		} else {
 			ob_start();
 			self::statusHeader( 500 );
-			self::header( "Content-Type: {$mimeType}; charset=UTF-8" );
+			self::header( "Content-Type: $wgMimeType; charset=UTF-8" );
 			if ( $eNew ) {
 				$message = "MediaWiki internal error.\n\n";
-				if ( $showExceptionDetails ) {
+				if ( $wgShowExceptionDetails ) {
 					$message .= 'Original exception: ' .
 						MWExceptionHandler::getLogMessage( $e ) .
 						"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $e ) .
@@ -98,7 +98,7 @@ class MWExceptionRenderer {
 						self::getShowBacktraceError( $e );
 				}
 				$message .= "\n";
-			} elseif ( $showExceptionDetails ) {
+			} elseif ( $wgShowExceptionDetails ) {
 				$message = MWExceptionHandler::getLogMessage( $e ) .
 					"\nBacktrace:\n" .
 					MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
@@ -143,8 +143,8 @@ class MWExceptionRenderer {
 	 * @param Throwable $e
 	 */
 	private static function reportHTML( Throwable $e ) {
-		global $wgOut;
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		global $wgOut, $wgSitename;
+
 		if ( self::useOutputPage( $e ) ) {
 			$wgOut->prepareErrorPage( self::getExceptionTitle( $e ) );
 
@@ -163,7 +163,7 @@ class MWExceptionRenderer {
 				'<html><head>' .
 				// Mimic OutputPage::setPageTitle behaviour
 				'<title>' .
-				htmlspecialchars( self::msg( 'pagetitle', "$1 - {$sitename}", $pageTitle ) ) .
+				htmlspecialchars( self::msg( 'pagetitle', "$1 - $wgSitename", $pageTitle ) ) .
 				'</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
@@ -183,9 +183,9 @@ class MWExceptionRenderer {
 	 * @return string Html to output
 	 */
 	public static function getHTML( Throwable $e ) {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		global $wgShowExceptionDetails;
 
-		if ( $showExceptionDetails ) {
+		if ( $wgShowExceptionDetails ) {
 			$html = "<div class=\"errorbox mw-content-ltr\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
@@ -219,7 +219,7 @@ class MWExceptionRenderer {
 	 * @return string Message with arguments replaced
 	 */
 	private static function msg( $key, $fallback, ...$params ) {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		global $wgSitename;
 
 		// FIXME: Keep logic in sync with MWException::msg.
 		try {
@@ -229,7 +229,7 @@ class MWExceptionRenderer {
 			// If an exception happens inside message rendering,
 			// {{SITENAME}} sometimes won't be replaced.
 			$res = strtr( $res, [
-				'{{SITENAME}}' => $sitename,
+				'{{SITENAME}}' => $wgSitename,
 			] );
 		}
 		return $res;
@@ -240,9 +240,9 @@ class MWExceptionRenderer {
 	 * @return string
 	 */
 	private static function getText( Throwable $e ) {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		global $wgShowExceptionDetails;
 
-		if ( $showExceptionDetails ) {
+		if ( $wgShowExceptionDetails ) {
 			return MWExceptionHandler::getLogMessage( $e ) .
 				"\nBacktrace:\n" .
 				MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
@@ -350,10 +350,8 @@ class MWExceptionRenderer {
 	 * @param Throwable $e
 	 */
 	private static function reportOutageHTML( Throwable $e ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$showExceptionDetails = $mainConfig->get( 'ShowExceptionDetails' );
-		$showHostnames = $mainConfig->get( 'ShowHostnames' );
-		$sitename = $mainConfig->get( 'Sitename' );
+		global $wgShowExceptionDetails, $wgShowHostnames, $wgSitename;
+
 		$sorry = htmlspecialchars( self::msg(
 			'dberr-problems',
 			'Sorry! This site is experiencing technical difficulties.'
@@ -363,7 +361,7 @@ class MWExceptionRenderer {
 			'Try waiting a few minutes and reloading.'
 		) );
 
-		if ( $showHostnames ) {
+		if ( $wgShowHostnames ) {
 			$info = str_replace(
 				'$1',
 				Html::element( 'span', [ 'dir' => 'ltr' ], $e->getMessage() ),
@@ -380,12 +378,12 @@ class MWExceptionRenderer {
 		$html = "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				'<title>' .
-				htmlspecialchars( $sitename ) .
+				htmlspecialchars( $wgSitename ) .
 				'</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body><h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
-		if ( $showExceptionDetails ) {
+		if ( $wgShowExceptionDetails ) {
 			$html .= '<p>Backtrace:</p><pre>' .
 				htmlspecialchars( $e->getTraceAsString() ) . '</pre>';
 		}
