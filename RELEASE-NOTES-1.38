@@ -48,6 +48,7 @@ For notes on 1.36.x and older releases, see HISTORY.
   a locale of C by default instead of respecting LC_CTYPE.
 * $wgLoggedOutMaxAge - Experiment removed, originally added in 1.35. (T293848)
 * $wgIncludejQueryMigrate - Deprecated in 1.36. We only support jQuery v3.
+* $wgUseCategoryBrowser - This experimental feature has been removed.
 * …
 
 === New user-facing features in 1.38 ===
