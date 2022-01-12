@@ -311,7 +311,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$table = $this->db->tableName( $s['table'] );
 			$field = $s['field'];
 			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'", __METHOD__ );
-			$row = $this->db->fetchObject( $res );
+			$row = $res->fetchObject();
 
 			if ( $row && $row->Type !== "varbinary(35)" ) {
 				$this->applyPatch(
