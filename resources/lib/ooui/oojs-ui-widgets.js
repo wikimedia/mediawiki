@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:37Z
+ * Date: 2022-01-12T17:10:58Z
  */
 ( function ( OO ) {
 
@@ -242,11 +242,12 @@ OO.ui.mixin.DraggableElement.prototype.getIndex = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string} [orientation] Item orientation: 'horizontal' or 'vertical'. The orientation
+ * @cfg {OO.ui.mixin.DraggableElement[]} items
+ * @cfg {string} [orientation='vertical'] Item orientation: 'horizontal' or 'vertical'. The orientation
  *  should match the layout of the items. Items displayed in a single row
  *  or in several rows should use horizontal orientation. The vertical orientation should only be
  *  used when the items are displayed in a single column. Defaults to 'vertical'
- * @cfg {boolean} [draggable] The items are draggable. This can change with #toggleDraggable
+ * @cfg {boolean} [draggable=true] The items are draggable. This can change with #toggleDraggable
  */
 OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( config ) {
 	// Configuration initialization
@@ -276,9 +277,7 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	} );
 
 	// Initialize
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
 		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
@@ -1361,9 +1360,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	if ( this.continuous ) {
 		this.$element.addClass( 'oo-ui-stackLayout-continuous' );
 	}
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -1416,19 +1413,23 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
  * specifies a different insertion point. Adding a panel that is already in the stack will move it
  * to the end of the array or the point specified by the index.
  *
- * @param {OO.ui.Layout[]} items Panels to add
+ * @param {OO.ui.Layout[]} [items] Panels to add
  * @param {number} [index] Index of the insertion point
  * @chainable
  * @return {OO.ui.StackLayout} The layout, for chaining
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
+	if ( !items || !items.length ) {
+		return this;
+	}
+
 	// Update the visibility
 	this.updateHiddenState( items, this.currentItem );
 
 	// Mixin method
 	OO.ui.mixin.GroupElement.prototype.addItems.call( this, items, index );
 
-	if ( !this.currentItem && items.length ) {
+	if ( !this.currentItem ) {
 		this.setItem( items[ 0 ] );
 	}
 
@@ -2253,7 +2254,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 		}
 	}
 
-	if ( this.outlined && items.length ) {
+	if ( this.outlined ) {
 		this.outlineSelectWidget.addItems( items, index );
 		// It's impossible to lose a selection here. Selecting something else is business logic.
 	}
@@ -3379,9 +3380,10 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {number} [level] Indentation level
- * @cfg {boolean} [movable] Allow modification from
+ * @cfg {number} [level=0] Indentation level
+ * @cfg {boolean} [movable=false] Allow modification from
  *  {@link OO.ui.OutlineControlsWidget outline controls}.
+ * @cfg {boolean} [removable=false]
  */
 OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( config ) {
 	// Configuration initialization
@@ -3391,7 +3393,6 @@ OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( config ) {
 	OO.ui.OutlineOptionWidget.super.call( this, config );
 
 	// Properties
-	this.level = 0;
 	this.movable = !!config.movable;
 	this.removable = !!config.removable;
 
@@ -3466,14 +3467,6 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 };
 
 /**
- * @inheritdoc
- */
-OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
-	OO.ui.OutlineOptionWidget.super.prototype.setPressed.call( this, state );
-	return this;
-};
-
-/**
  * Set movability.
  *
  * Movability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
@@ -3504,14 +3497,6 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 };
 
 /**
- * @inheritdoc
- */
-OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
-	OO.ui.OutlineOptionWidget.super.prototype.setSelected.call( this, state );
-	return this;
-};
-
-/**
  * Set indentation level.
  *
  * @param {number} [level=0] Indentation level, in the range of [0,#maxLevel]
@@ -3519,18 +3504,18 @@ OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
-	var levels = this.constructor.static.levels,
-		levelClass = this.constructor.static.levelClass,
-		i = levels;
-
-	this.level = level ? Math.max( 0, Math.min( levels - 1, level ) ) : 0;
-	while ( i-- ) {
-		if ( this.level === i ) {
-			this.$element.addClass( levelClass + i );
-		} else {
-			this.$element.removeClass( levelClass + i );
-		}
+	if ( this.level === level ) {
+		return this;
 	}
+
+	var levels = this.constructor.static.levels,
+		levelClass = this.constructor.static.levelClass;
+
+	if ( this.level !== undefined ) {
+		this.$element.removeClass( levelClass + this.level );
+	}
+	this.level = level > 0 ? Math.min( level, levels - 1 ) : 0;
+	this.$element.addClass( levelClass + this.level );
 	this.updateThemeClasses();
 
 	return this;
@@ -4107,7 +4092,7 @@ OO.mixinClass( OO.ui.TagItemWidget, OO.ui.mixin.DraggableElement );
 /**
  * Set this item as fixed, meaning it cannot be removed
  *
- * @param {string} [state] Item is fixed
+ * @param {boolean} [state] Item is fixed, omit to toggle
  * @fires fixed
  * @return {OO.ui.Widget} The widget, for chaining
  */
@@ -4217,7 +4202,7 @@ OO.ui.TagItemWidget.prototype.select = function () {
 /**
  * Set the valid state of this item
  *
- * @param {boolean} [valid] Item is valid
+ * @param {boolean} [valid] Item is valid, omit to toggle
  * @fires valid
  */
 OO.ui.TagItemWidget.prototype.toggleValid = function ( valid ) {
@@ -4283,7 +4268,7 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * @cfg {boolean} [allowEditTags=true] Allow editing of the tags by clicking them
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if
  *  not present in the menu.
- * @cfg {Object[]} [allowedValues] An array representing the allowed items
+ * @cfg {Mixed[]} [allowedValues] An array representing the allowed items
  *  by their datas.
  * @cfg {boolean} [allowDuplicates=false] Allow duplicate items to be added
  * @cfg {boolean} [allowDisplayInvalidTags=false] Allow the display of
@@ -4821,7 +4806,7 @@ OO.ui.TagMultiselectWidget.prototype.clearInput = function () {
  * Check whether the given value is a duplicate of an existing
  * tag already in the list.
  *
- * @param {string|Object} data Requested value
+ * @param {Mixed} data Requested value
  * @return {boolean} Value is duplicate
  */
 OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
@@ -4831,7 +4816,7 @@ OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
 /**
  * Check whether a given value is allowed to be added
  *
- * @param {string|Object} data Requested value
+ * @param {Mixed} data Requested value
  * @return {boolean} Value is allowed
  */
 OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
@@ -4861,7 +4846,7 @@ OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 /**
  * Get the allowed values list
  *
- * @return {string[]} Allowed data values
+ * @return {Mixed[]} Allowed data values
  */
 OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
 	return this.allowedValues;
@@ -4870,7 +4855,7 @@ OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
 /**
  * Add a value to the allowed values list
  *
- * @param {string} value Allowed data value
+ * @param {Mixed} value Allowed data value
  */
 OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
 	if ( this.allowedValues.indexOf( value ) === -1 ) {
@@ -4881,7 +4866,7 @@ OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
 /**
  * Get the datas of the currently selected items
  *
- * @return {string[]|Object[]} Datas of currently selected items
+ * @return {Mixed[]} Datas of currently selected items
  */
 OO.ui.TagMultiselectWidget.prototype.getValue = function () {
 	return this.getItems()
@@ -4915,10 +4900,10 @@ OO.ui.TagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 
 	this.clearItems();
 	valueObject.forEach( function ( obj ) {
-		if ( typeof obj === 'string' ) {
-			this.addTag( obj );
-		} else {
+		if ( typeof obj === 'object' ) {
 			this.addTag( obj.data, obj.label );
+		} else {
+			this.addTag( String( obj ) );
 		}
 	}.bind( this ) );
 };
@@ -4928,8 +4913,8 @@ OO.ui.TagMultiselectWidget.prototype.setValue = function ( valueObject ) {
  *
  * Performs a validation check on the tag to be added.
  *
- * @param {string|Object} data Tag data
- * @param {string} [label] Tag label. If no label is provided, the
+ * @param {Mixed} data Tag data
+ * @param {string} [label=data] Tag label. If no label is provided, the
  *  stringified version of the data will be used instead.
  * @return {boolean} Item was added successfully
  */
@@ -4973,14 +4958,12 @@ OO.ui.TagMultiselectWidget.prototype.removeTagByData = function ( data ) {
  * Construct a OO.ui.TagItemWidget (or a subclass thereof) from given label and data.
  *
  * @protected
- * @param {string} data Item data
- * @param {string} label The label text.
+ * @param {Mixed} data Item data
+ * @param {string} [label=data] The label text.
  * @return {OO.ui.TagItemWidget}
  */
 OO.ui.TagMultiselectWidget.prototype.createTagItemWidget = function ( data, label ) {
-	label = label || data;
-
-	return new OO.ui.TagItemWidget( { data: data, label: label } );
+	return new OO.ui.TagItemWidget( { data: data, label: label || data } );
 };
 
 /**
@@ -5099,7 +5082,7 @@ OO.ui.TagMultiselectWidget.prototype.updateInputSize = function () {
 				$lastItem.position().left;
 		}
 
-		// Some safety margin for sanity, because I *really* don't feel like finding out where the
+		// Some safety margin because I *really* don't feel like finding out where the
 		// few pixels this is off by are coming from.
 		bestWidth -= 13;
 		if ( contentWidth > bestWidth ) {
@@ -5144,7 +5127,7 @@ OO.ui.TagMultiselectWidget.prototype.checkValidity = function () {
 /**
  * Set the valid state of this item
  *
- * @param {boolean} [valid] Item is valid
+ * @param {boolean} [valid] Item is valid, omit to toggle
  * @fires valid
  */
 OO.ui.TagMultiselectWidget.prototype.toggleValid = function ( valid ) {

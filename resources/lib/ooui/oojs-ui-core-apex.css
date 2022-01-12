@@ -1,21 +1,17 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:47Z
+ * Date: 2022-01-12T17:11:07Z
  */
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-element-hidden {
   display: none !important;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonElement {
   display: inline-block;
   line-height: normal;
@@ -264,8 +260,6 @@
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-clippableElement-clippable {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -273,20 +267,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-floatableElement {
   position: absolute;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-labelElement .oo-ui-labelElement-label,
 .oo-ui-labelElement.oo-ui-labelElement-label {
   -moz-box-sizing: border-box;
@@ -307,8 +293,6 @@
   font-weight: bold;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-iconElement-icon {
   background-size: contain;
   background-position: center center;
@@ -332,8 +316,6 @@
   opacity: 0.8;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indicatorElement-indicator {
   background-size: contain;
   background-position: center center;
@@ -355,8 +337,6 @@
   opacity: 0.8;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-pendingElement-pending {
   background-color: #ddd;
   background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
@@ -381,20 +361,10 @@
   }
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-fieldLayout {
   display: block;
   margin-top: 0.75em;
@@ -416,9 +386,6 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   word-wrap: break-word;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
@@ -434,9 +401,6 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
   word-wrap: break-word;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
   display: table;
@@ -531,8 +495,6 @@
   margin-top: 0.3125em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
   display: table-cell;
@@ -569,8 +531,6 @@
   z-index: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-fieldsetLayout {
   position: relative;
   min-width: 0;
@@ -640,15 +600,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-formLayout + .oo-ui-fieldsetLayout,
 .oo-ui-formLayout + .oo-ui-formLayout {
   margin-top: 2em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-panelLayout {
   position: relative;
 }
@@ -674,8 +630,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 1em 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-horizontalLayout > .oo-ui-widget {
   display: inline-block;
   vertical-align: middle;
@@ -698,14 +652,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-bottom: 0.5em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-optionWidget {
   position: relative;
   display: block;
@@ -741,8 +689,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #ccc;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-decoratedOptionWidget {
   padding: 0.5em 2em 0.5em 3em;
 }
@@ -764,11 +710,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioOptionWidget {
   display: table;
   padding: 0.3125em 0;
@@ -794,8 +736,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-labelWidget {
   display: inline-block;
 }
@@ -805,8 +745,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: 0.9375em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-messageWidget {
   position: relative;
   -moz-box-sizing: border-box;
@@ -830,6 +768,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border: 1px solid;
   padding: 1.25em 1.875em;
   font-weight: normal;
+}
+.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-messageWidget-showClose {
+  padding-right: 4.375em;
+}
+.oo-ui-messageWidget.oo-ui-messageWidget-block > .oo-ui-messageWidget-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-error {
   background-color: #ffdcdc;
@@ -857,8 +803,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-top: 0.625em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-iconWidget {
   vertical-align: middle;
   -webkit-touch-callout: none;
@@ -880,8 +824,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indicatorWidget {
   vertical-align: middle;
   -webkit-touch-callout: none;
@@ -902,8 +844,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonWidget {
   margin-right: 0.5em;
 }
@@ -911,8 +851,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonGroupWidget {
   display: inline-block;
   border-radius: 3px;
@@ -964,8 +902,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   z-index: 3;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupWidget {
   position: absolute;
   z-index: 1;
@@ -1157,8 +1093,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 0.75em 1em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupButtonWidget {
   position: relative;
 }
@@ -1166,8 +1100,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: auto;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-inputWidget {
   margin-right: 0.5em;
 }
@@ -1175,8 +1107,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonInputWidget > button,
 .oo-ui-buttonInputWidget > input {
   background-color: transparent;
@@ -1185,8 +1115,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxInputWidget {
   display: inline-block;
 }
@@ -1194,8 +1122,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
 }
@@ -1206,8 +1132,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.5;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dropdownInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1264,14 +1188,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #f3f3f3;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioInputWidget {
   display: inline-block;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
 }
@@ -1282,8 +1202,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.5;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-textInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1408,6 +1326,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
   margin-left: 2.075em;
 }
+.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input {
+  /* stylelint-disable selector-no-vendor-prefix */
+  /* stylelint-enable selector-no-vendor-prefix */
+}
 .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input::-webkit-input-placeholder {
   color: #767676;
   opacity: 1;
@@ -1450,8 +1372,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   text-shadow: 0 1px 1px #fff;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuSelectWidget {
   position: absolute;
   width: 100%;
@@ -1470,8 +1390,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuOptionWidget .oo-ui-menuOptionWidget-checkIcon {
   display: none;
 }
@@ -1495,8 +1413,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #333;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuSectionOptionWidget {
   padding: 0.33em 0.75em;
   color: #767676;
@@ -1505,8 +1421,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: default;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dropdownWidget {
   display: inline-block;
   position: relative;
@@ -1589,8 +1503,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-comboBoxInputWidget {
   display: inline-block;
   position: relative;
@@ -1662,11 +1574,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-multioptionWidget {
   position: relative;
   display: block;
@@ -1690,11 +1598,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #ccc;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxMultioptionWidget {
   display: table;
   padding: 0.3125em 0;
@@ -1717,8 +1621,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-progressBarWidget {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1776,8 +1678,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   }
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-numberInputWidget {
   display: inline-block;
   position: relative;
@@ -1818,8 +1718,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-left-width: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-selectFileInputWidget {
   width: 100%;
   max-width: 50em;
@@ -1852,8 +1750,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: default;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-defaultOverlay {
   position: absolute;
   top: 0;

@@ -74,7 +74,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated OOUI from v0.42.0 to v0.42.1
+* Updated OOUI from v0.42.0 to v0.43.0.
 * Updated WVUI from v0.3.0 to v0.3.5
 * Upgraded Vue from 2.6.11 to 3.2.23
 * Updated composer/semver from 3.2.5 to 3.2.6.

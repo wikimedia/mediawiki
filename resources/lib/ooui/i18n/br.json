@@ -22,8 +22,11 @@
 	"ooui-dialog-process-retry": "Klask en-dro",
 	"ooui-dialog-process-continue": "Kenderc'hel",
 	"ooui-selectfile-button-select": "Diuzañ ur restr",
+	"ooui-selectfile-button-select-multiple": "Diuzañ restroù",
 	"ooui-selectfile-not-supported": "N'eo ket skoret an diuzañ restroù",
 	"ooui-selectfile-placeholder": "N'eus bet diuzet restr ebet",
 	"ooui-selectfile-dragdrop-placeholder": "Lezel ar restr amañ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Lakaat ar restroù amañ",
+	"ooui-popup-widget-close-button-aria-label": "Serriñ",
 	"ooui-field-help": "Skoazell"
 }

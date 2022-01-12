@@ -1,18 +1,14 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:47Z
+ * Date: 2022-01-12T17:11:07Z
  */
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-window {
   background-color: transparent;
   background-image: none;
@@ -52,8 +48,6 @@
   left: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
 .oo-ui-dialog-content > .oo-ui-window-foot {
@@ -83,8 +77,6 @@
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   position: relative;
   text-align: center;
@@ -206,8 +198,6 @@
   border-radius: 0 0 3px 3px;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-processDialog-location {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -357,8 +347,6 @@
   text-align: left;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   position: fixed;
   width: 0;
