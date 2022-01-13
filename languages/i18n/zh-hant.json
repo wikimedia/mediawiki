@@ -3255,7 +3255,7 @@
 	"confirmemail_oncreate": "確認碼已傳送至您的電子郵件地址。\n登入動作不需要使用此代碼，但開啟在 Wiki 中任何以電子郵件為基礎的功能會需要先提供此代碼。",
 	"confirmemail_sendfailed": "{{SITENAME}} 無法傳送您的確認郵件，請檢查電子郵件地址是否含有無效字元。\n\n寄件者傳回: $1",
 	"confirmemail_invalid": "無效的確認碼，該代碼可能已經過期。",
-	"confirmemail_needlogin": "請 $1 以確認您的電子郵件地址。",
+	"confirmemail_needlogin": "請$1以確認您的電子郵件地址。",
 	"confirmemail_success": "您的電子郵件已經被確認。您現在可以[[Special:UserLogin|登入]]並且享受此網站了。",
 	"confirmemail_loggedin": "已確認您的電子郵件地址。",
 	"confirmemail_subject": "{{SITENAME}}電子郵件地址確認",
