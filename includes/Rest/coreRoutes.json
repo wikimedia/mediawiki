@@ -50,7 +50,10 @@
 			"MainConfig",
 			"SearchEngineFactory",
 			"SearchEngineConfig",
-			"PermissionManager"
+			"PermissionManager",
+			"RedirectLookup",
+			"PageStore",
+			"TitleFormatter"
 		],
 		"mode": "fulltext"
 	},
@@ -61,7 +64,10 @@
 			"MainConfig",
 			"SearchEngineFactory",
 			"SearchEngineConfig",
-			"PermissionManager"
+			"PermissionManager",
+			"RedirectLookup",
+			"PageStore",
+			"TitleFormatter"
 		],
 		"mode": "completion"
 	},
