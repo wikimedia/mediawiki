@@ -290,7 +290,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$revId = $cpoParams->getRevId();
 
 		list( $redir, $text ) = $content->getRedirectTargetAndText();
-		$output = $services->getParser()
+		$output = $services->getParser()->getFreshParser()
 			->parse( $text, $title, $parserOptions, true, true, $revId );
 
 		// Add redirect indicator at the top
