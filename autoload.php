@@ -1352,6 +1352,7 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoader' => __DIR__ . '/includes/resourceloader/ResourceLoader.php',
 	'ResourceLoaderCircularDependencyError' => __DIR__ . '/includes/resourceloader/ResourceLoaderCircularDependencyError.php',
 	'ResourceLoaderClientHtml' => __DIR__ . '/includes/resourceloader/ResourceLoaderClientHtml.php',
+	'ResourceLoaderCodexModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderCodexModule.php',
 	'ResourceLoaderContext' => __DIR__ . '/includes/resourceloader/ResourceLoaderContext.php',
 	'ResourceLoaderFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderFileModule.php',
 	'ResourceLoaderFilePath' => __DIR__ . '/includes/resourceloader/ResourceLoaderFilePath.php',

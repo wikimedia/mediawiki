@@ -93,6 +93,27 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
+codex:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.1.0-alpha.2.tgz
+  integrity: sha512-ec03OegaOTTLDHCNtIp1NnYVo35UE7KoxWCYj32PggEoAhp+xs22xq1moOmMUieN0nCOktdishCZYHLY+/MclQ==
+  dest:
+    package/dist/codex.es.js:
+    package/dist/codex.umd.js:
+    package/dist/codex.style.css:
+    package/dist/codex.style-rtl.css:
+    package/LICENSE:
+    package/README.md:
+
+codex-icons:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.1.0-alpha.2.tgz
+  integrity: sha512-WGSNW2UbhNAeyh5Nq4nAVkz7i+DkIRZMeHbVmELrd1nqchLdYZDt10t2q93JxXEKjsqjNait1ZCiUhqr7e68Pg==
+  dest:
+    package/dist/codex-icons.json:
+    package/LICENSE:
+    package/README.md:
+
 fetch-polyfill:
   type: tar
   src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
