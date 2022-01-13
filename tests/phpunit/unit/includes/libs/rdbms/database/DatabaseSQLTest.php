@@ -1545,7 +1545,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		if ( $expected === 'invalid' ) {
 			$this->expectException( InvalidArgumentException::class );
 		}
-		$this->assertSame( $this->database->factorConds( $input ), $expected );
+		$this->assertSame( $expected, $this->database->factorConds( $input ) );
 	}
 
 	public static function provideFactorConds() {
@@ -1588,11 +1588,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				[ [ 'a' => null, 'b' => 2 ], [ 'a' => 1, 'b' => 3 ] ],
-				'(a = 1 AND b = 3) OR (a IS NULL AND b = 2)'
+				'((a = 1 AND b = 3) OR (a IS NULL AND b = 2))'
 			],
 			[
 				[ [ 'a' => 1, 'b' => 2 ], [ 'a' => 2, 'b' => 2 ] ],
-				'(a = 1 AND b = 2) OR (a = 2 AND b = 2)'
+				'((a = 1 AND b = 2) OR (a = 2 AND b = 2))'
 			],
 			[
 				[
@@ -1605,8 +1605,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					[ 'a' => 2, 'b' => 2, 'c' => 1 ],
 					[ 'a' => 2, 'b' => 2, 'c' => 2 ],
 				],
-				'(a = 1 AND (b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) )) OR ' .
-				'(a = 2 AND (b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) ))'
+				'((a = 1 AND ((b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) ))) OR ' .
+				'(a = 2 AND ((b = 1 AND c IN (1,2) ) OR (b = 2 AND c IN (1,2) ))))'
 			]
 		];
 	}
