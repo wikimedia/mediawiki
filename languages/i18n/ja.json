@@ -2219,6 +2219,7 @@
 	"apisandbox-request-format-json-label": "JSON",
 	"apisandbox-request-json-label": "JSONリクエスト:",
 	"apisandbox-request-format-php-label": "PHP配列",
+	"apisandbox-request-php-label": "リクエストのPHP配列：",
 	"apisandbox-request-time": "リクエスト時間: {{PLURAL:$1|$1ミリ秒}}",
 	"apisandbox-results-fixtoken": "トークンを訂正して再送信",
 	"apisandbox-results-fixtoken-fail": "\"$1\" トークンの取得に失敗しました。",
