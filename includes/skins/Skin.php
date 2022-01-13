@@ -2637,7 +2637,6 @@ abstract class Skin extends ContextSource {
 	 *  preference 'search-special-page' instead.
 	 */
 	public function setSearchPageTitle( Title $title ) {
-		wfDeprecated( __METHOD__, '1.38 Use SpecialPage::newSearchPage' );
 		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		$user = $this->getUser();
 		$currentTitle = $userOptionsManager->getOption( $user, 'search-special-page' );
