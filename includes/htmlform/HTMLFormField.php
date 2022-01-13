@@ -161,14 +161,14 @@ abstract class HTMLFormField {
 	}
 
 	/**
-	 * Helper function for isHidden to handle recursive data structures.
+	 * Helper function for isHidden and isDisabled to handle recursive data structures.
 	 *
 	 * @param array $alldata
 	 * @param array $params
 	 * @return bool
 	 * @throws MWException
 	 */
-	protected function isHiddenRecurse( array $alldata, array $params ) {
+	protected function checkStateRecurse( array $alldata, array $params ) {
 		$origParams = $params;
 		$op = array_shift( $params );
 
@@ -181,7 +181,7 @@ abstract class HTMLFormField {
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
-						if ( !$this->isHiddenRecurse( $alldata, $p ) ) {
+						if ( !$this->checkStateRecurse( $alldata, $p ) ) {
 							return false;
 						}
 					}
@@ -194,7 +194,7 @@ abstract class HTMLFormField {
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
-						if ( $this->isHiddenRecurse( $alldata, $p ) ) {
+						if ( $this->checkStateRecurse( $alldata, $p ) ) {
 							return true;
 						}
 					}
@@ -207,7 +207,7 @@ abstract class HTMLFormField {
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
-						if ( !$this->isHiddenRecurse( $alldata, $p ) ) {
+						if ( !$this->checkStateRecurse( $alldata, $p ) ) {
 							return true;
 						}
 					}
@@ -220,7 +220,7 @@ abstract class HTMLFormField {
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
-						if ( $this->isHiddenRecurse( $alldata, $p ) ) {
+						if ( $this->checkStateRecurse( $alldata, $p ) ) {
 							return false;
 						}
 					}
@@ -236,7 +236,7 @@ abstract class HTMLFormField {
 							"Expected array, found " . gettype( $p ) . " at index 0"
 						);
 					}
-					return !$this->isHiddenRecurse( $alldata, $p );
+					return !$this->checkStateRecurse( $alldata, $p );
 
 				case '===':
 				case '!==':
@@ -280,7 +280,27 @@ abstract class HTMLFormField {
 			return false;
 		}
 
-		return $this->isHiddenRecurse( $alldata, $this->mCondState['hide'] );
+		return $this->checkStateRecurse( $alldata, $this->mCondState['hide'] );
+	}
+
+	/**
+	 * Test whether this field is supposed to be disabled, based on the values of
+	 * the other form fields.
+	 *
+	 * @since 1.38
+	 * @param array $alldata The data collected from the form
+	 * @return bool
+	 */
+	public function isDisabled( $alldata ) {
+		if ( $this->mParams['disabled'] ?? false ) {
+			return true;
+		}
+		$hidden = $this->isHidden( $alldata );
+		if ( !$this->mCondState || !isset( $this->mCondState['disable'] ) ) {
+			return $hidden;
+		}
+
+		return $hidden || $this->checkStateRecurse( $alldata, $this->mCondState['disable'] );
 	}
 
 	/**
