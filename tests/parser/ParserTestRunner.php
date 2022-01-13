@@ -1085,7 +1085,6 @@ class ParserTestRunner {
 		$normOpts = [
 			'parsoidOnly' => $parsoidOnly,
 			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
-			'scrubWikitext' => isset( $opts['parsoid']['scrubWikitext'] ),
 		];
 
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
@@ -1160,7 +1159,6 @@ class ParserTestRunner {
 		$out = $parsoid->wikitext2html( $pageConfig, [
 			'body_only' => true,
 			'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
-			'scrubWikitext' => $normOpts['scrubWikitext'],
 		] );
 		$expected = $parsoidHtml;
 
