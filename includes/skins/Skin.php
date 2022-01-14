@@ -184,8 +184,8 @@ abstract class Skin extends ContextSource {
 				$htmlTitle
 			),
 			'html-title' => $htmlTitle,
-			// Array values
-			'array-sections' => $this->getSectionsData(),
+			// Array values - return data if TOC present T298796.
+			'array-sections' => $out->isTOCEnabled() ? $this->getSectionsData() : null,
 
 			// Boolean values
 			'is-title-blank' => $blankedHeading, // @since 1.38
