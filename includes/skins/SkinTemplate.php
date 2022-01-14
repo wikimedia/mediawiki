@@ -474,7 +474,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'mywatchlist' )->text(),
 					'href' => $href,
 					'active' => ( $href == $pageurl ),
-					'icon' => 'unStar'
+					'icon' => 'watchlist'
 				];
 			}
 
