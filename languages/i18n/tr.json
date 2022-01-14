@@ -722,7 +722,7 @@
 	"showpreview": "Önizlemeyi göster",
 	"showdiff": "Değişiklikleri göster",
 	"blankarticle": "<strong>Uyarı:</strong> Oluşturduğunuz sayfa boş.\nEğer \"$1\" düğmesine tekrar tıklarsanız, sayfa içerik olmadan oluşturulacaktır.",
-	"anoneditwarning": "<strong>Uyarı:</strong> Giriş yapmadınız. Herhangi bir değişiklik yapmanız durumunda IP adresiniz herkese gözükecektir. Eğer <strong>[$1 giriş yaparsanız]</strong> veya <strong>[$2 bir hesap oluşturursanız]</strong>, edineceğiniz çeşitli yararların yanı sıra yaptığınız değişiklikler de kullanıcı adınıza atfedilecektir.",
+	"anoneditwarning": "<strong>Uyarı:</strong> Giriş yapmadınız. Herhangi bir değişiklik yapmanız durumunda IP adresiniz herkese görünecektir. Eğer <strong>[$1 giriş yaparsanız]</strong> veya <strong>[$2 bir hesap oluşturursanız]</strong>, edineceğiniz çeşitli yararların yanı sıra yaptığınız değişiklikler de kullanıcı adınıza atfedilecektir.",
 	"anonpreviewwarning": "<em>Giriş yapmadınız. Yayınladığınız takdirde IP adresiniz bu sayfanın değişiklik geçmişine kaydedilir.</em>",
 	"missingsummary": "<strong>Uyarı:</strong> Bir düzenleme özeti sağlamadınız.\n\"$1\" seçeneği tekrar tıklarsanız, düzenlemeniz bir tane olmadan yayımlanacaktır.",
 	"selfredirect": "<strong>Uyarı:</strong> Bu sayfanın kendisine yönlendirme vardır.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz, veya yanlış sayfa düzenlemeye çalışmış olabilirsiniz.\n\nTekrar \"$1\" tuşuna tıklarsanız, yönlendirme yine de oluşturulur.",
