@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:37Z
+ * Date: 2022-01-12T17:10:58Z
  */
 ( function ( OO ) {
 
@@ -1762,8 +1762,9 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 			if ( stackDepth === 0 ) {
 				scrollWidth = window.innerWidth - document.documentElement.clientWidth;
 				bodyMargin = parseFloat( $body.css( 'margin-right' ) ) || 0;
-				$body.addClass( 'oo-ui-windowManager-modal-active' );
-				$body.css( 'margin-right', bodyMargin + scrollWidth );
+				$body
+					.addClass( 'oo-ui-windowManager-modal-active' )
+					.css( 'margin-right', bodyMargin + scrollWidth );
 			}
 			stackDepth++;
 			this.globalEvents = true;
@@ -1775,8 +1776,9 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 		} );
 		stackDepth--;
 		if ( stackDepth === 0 ) {
-			$body.removeClass( 'oo-ui-windowManager-modal-active' );
-			$body.css( 'margin-right', '' );
+			$body
+				.removeClass( 'oo-ui-windowManager-modal-active' )
+				.css( 'margin-right', '' );
 		}
 		this.globalEvents = false;
 	}

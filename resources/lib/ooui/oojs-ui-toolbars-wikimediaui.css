@@ -1,15 +1,13 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:47Z
+ * Date: 2022-01-12T17:11:07Z
  */
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tool {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -172,20 +170,14 @@
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupTool-popup.oo-ui-popupWidget {
   z-index: 4;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toolGroupTool > .oo-ui-toolGroup {
   border-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toolGroup {
   display: inline-block;
   vertical-align: middle;
@@ -210,8 +202,6 @@
   opacity: 0.34 !important;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-barToolGroup-tools > .oo-ui-tool {
   display: inline-block;
   position: relative;
@@ -258,8 +248,6 @@
   color: #72777d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupToolGroup {
   position: relative;
   min-width: 3em;
@@ -544,8 +532,6 @@
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
   -moz-box-sizing: border-box;
@@ -579,8 +565,6 @@
   opacity: 0.34;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuToolGroup {
   border-left: 1px solid #eaecf0;
   border-right: 1px solid #eaecf0;
@@ -614,8 +598,6 @@
   color: #72777d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toolbar {
   clear: both;
 }

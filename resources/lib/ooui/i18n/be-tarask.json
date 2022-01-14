@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chadyka",
 			"EugeneZelenko",
 			"Nerogaf",
 			"Red Winged Duck",
@@ -20,7 +21,7 @@
 	"ooui-dialog-message-accept": "Добра",
 	"ooui-dialog-message-reject": "Скасаваць",
 	"ooui-dialog-process-error": "Нешта пайшло ня так",
-	"ooui-dialog-process-dismiss": "Прапусьціць",
+	"ooui-dialog-process-dismiss": "Закрыць",
 	"ooui-dialog-process-retry": "Паспрабаваць зноў",
 	"ooui-dialog-process-continue": "Працягваць",
 	"ooui-combobox-button-label": "Пераключыць можнасьці",

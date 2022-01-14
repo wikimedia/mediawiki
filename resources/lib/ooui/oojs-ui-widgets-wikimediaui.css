@@ -1,15 +1,13 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:47Z
+ * Date: 2022-01-12T17:11:07Z
  */
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
@@ -38,14 +36,8 @@
   display: inline-block;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
   overflow: hidden;
 }
@@ -81,8 +73,6 @@
   border-right: 1px solid #c8ccd1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indexLayout {
   /* Use two classes to ensure increased specificity over menuLayout */
 }
@@ -106,8 +96,6 @@
   top: 2.64285714em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuLayout {
   top: 0;
   left: 0;
@@ -205,21 +193,13 @@
   bottom: 0 !important;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-stackLayout-continuous > .oo-ui-panelLayout {
   display: block;
   position: relative;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonSelectWidget {
   display: inline-block;
   border-radius: 2px;
@@ -267,8 +247,6 @@
   z-index: -1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonOptionWidget {
   display: inline-block;
 }
@@ -276,11 +254,7 @@
   cursor: default;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleButtonWidget {
   margin-right: 8px;
 }
@@ -295,8 +269,6 @@
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleSwitchWidget {
   position: relative;
   display: inline-block;
@@ -434,8 +406,6 @@
   background-color: #fff;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-selectFileWidget-dropTarget {
   position: relative;
   cursor: default;
@@ -552,8 +522,6 @@
   border-color: #c8ccd1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineSelectWidget {
   height: 100%;
 }
@@ -561,8 +529,6 @@
   box-shadow: inset 0 0 0 2px #36c;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineOptionWidget {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -610,8 +576,6 @@
   left: 4.429em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineControlsWidget {
   background-color: #fff;
 }
@@ -638,8 +602,6 @@
   /* stylelint-disable-line declaration-no-important */
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabSelectWidget {
   text-align: left;
   overflow-x: auto;
@@ -681,8 +643,6 @@
   outline: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabOptionWidget {
   display: inline-block;
   -moz-box-sizing: border-box;
@@ -766,8 +726,6 @@
   box-shadow: inset 0 0 0 2px #36c;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagMultiselectWidget {
   display: inline-block;
   position: relative;
@@ -841,6 +799,8 @@
   font-size: inherit;
   line-height: 1.42857143em;
   vertical-align: top;
+  /* stylelint-disable selector-no-vendor-prefix */
+  /* stylelint-enable selector-no-vendor-prefix */
 }
 .oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input::-webkit-input-placeholder {
   color: #72777d;
@@ -862,7 +822,8 @@
   outline: 0;
 }
 .oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:first-child {
-  margin-left: 0;
+  margin-left: 0.14285714em;
+  padding-left: 0;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle {
   padding-left: 2.02857143em;
@@ -931,11 +892,7 @@
   opacity: 0.15;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagItemWidget {
   position: relative;
   display: inline-block;
@@ -1040,8 +997,6 @@
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-searchWidget-query {
   position: absolute;
   top: 0;

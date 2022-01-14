@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:37Z
+ * Date: 2022-01-12T17:10:58Z
  */
 ( function ( OO ) {
 
@@ -449,7 +449,7 @@ OO.ui.isSafeUrl = function ( url ) {
 	var i, protocolAllowList;
 
 	function stringStartsWith( haystack, needle ) {
-		return haystack.substr( 0, needle.length ) === needle;
+		return haystack.slice( 0, needle.length ) === needle;
 	}
 
 	protocolAllowList = [
@@ -624,7 +624,13 @@ OO.ui.Element = function OoUiElement( config ) {
 	// Initialization
 	doc = OO.ui.Element.static.getDocument( this.$element );
 	if ( Array.isArray( config.classes ) ) {
-		this.$element.addClass( config.classes );
+		this.$element.addClass(
+			// Remove empty strings to work around jQuery bug
+			// https://github.com/jquery/jquery/issues/4998
+			config.classes.filter( function ( val ) {
+				return val;
+			} )
+		);
 	}
 	if ( config.id ) {
 		this.setElementId( config.id );
@@ -828,10 +834,13 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 		}
 		top.resolve();
 	}
-	obj.$element.data( 'ooui-infused', obj );
-	obj.$element.data( 'ooui-infused-children', infusedChildren );
-	// set the 'data-ooui' attribute so we can identify infused widgets
-	obj.$element.attr( 'data-ooui', '' );
+	obj.$element
+		.data( {
+			'ooui-infused': obj,
+			'ooui-infused-children': infusedChildren
+		} )
+		// set the 'data-ooui' attribute so we can identify infused widgets
+		.attr( 'data-ooui', '' );
 	// restore dynamic state after the new element is inserted into DOM
 	domPromise.done( obj.restorePreInfuseState.bind( obj, state ) );
 	return obj;
@@ -1169,7 +1178,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 	 *
 	 * This function smooths out browser inconsistencies (nicely described in the README at
 	 * <https://github.com/othree/jquery.rtl-scroll-type>) and produces a result consistent
-	 * with Firefox's 'scrollLeft', which seems the sanest.
+	 * with Firefox's 'scrollLeft', which seems the most sensible.
 	 *
 	 * (Firefox's scrollLeft handling is nice because it increases from left to right, consistently
 	 * with `getBoundingClientRect().left` and related APIs; because initial value is zero, so
@@ -1309,7 +1318,7 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 		}
 		$parent = $parent.parent();
 	}
-	// The element is unattached... return something mostly sane
+	// The element is unattached… return something moderately sensible.
 	return rootScrollableElement;
 };
 
@@ -1677,7 +1686,7 @@ OO.ui.Element.prototype.restorePreInfuseState = function () {
  * @class
  *
  * @constructor
- * @param {string} [content] HTML content
+ * @param {string} content HTML content
  */
 OO.ui.HtmlSnippet = function OoUiHtmlSnippet( content ) {
 	// Properties
@@ -1767,9 +1776,6 @@ OO.ui.Layout.prototype.resetScroll = function () {
  *  appearance reflects this state.
  */
 OO.ui.Widget = function OoUiWidget( config ) {
-	// Initialize config
-	config = $.extend( { disabled: false }, config );
-
 	// Parent constructor
 	OO.ui.Widget.super.call( this, config );
 
@@ -1782,7 +1788,7 @@ OO.ui.Widget = function OoUiWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-widget' );
-	this.setDisabled( !!config.disabled );
+	this.setDisabled( config && config.disabled );
 };
 
 /* Setup */
@@ -1830,18 +1836,16 @@ OO.ui.Widget.prototype.isDisabled = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
-	var isDisabled;
-
 	this.disabled = !!disabled;
-	isDisabled = this.isDisabled();
+	var isDisabled = this.isDisabled();
 	if ( isDisabled !== this.wasDisabled ) {
 		this.$element.toggleClass( 'oo-ui-widget-disabled', isDisabled );
 		this.$element.toggleClass( 'oo-ui-widget-enabled', !isDisabled );
-		this.$element.attr( 'aria-disabled', isDisabled.toString() );
+		this.$element.attr( 'aria-disabled', isDisabled ? 'true' : null );
 		this.emit( 'disable', isDisabled );
 		this.updateThemeClasses();
+		this.wasDisabled = isDisabled;
 	}
-	this.wasDisabled = isDisabled;
 
 	return this;
 };
@@ -2116,7 +2120,7 @@ OO.ui.mixin.TabIndexedElement.prototype.updateTabIndex = function () {
 				tabindex: this.isDisabled() ? -1 : this.tabIndex,
 				// Support: ChromeVox and NVDA
 				// These do not seem to inherit aria-disabled from parent elements
-				'aria-disabled': this.isDisabled().toString()
+				'aria-disabled': this.isDisabled() ? 'true' : null
 			} );
 		} else {
 			this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
@@ -2560,7 +2564,7 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
  * Only the first item with matching data will be returned. To return all matching items,
  * use the #findItemsFromData method.
  *
- * @param {Object} data Item data to search for
+ * @param {Mixed} data Item data to search for
  * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
  */
 OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
@@ -2583,7 +2587,7 @@ OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
  * All items with matching data will be returned. To return only the first match, use the
  * #findItemFromData method instead.
  *
- * @param {Object} data Item data to search for
+ * @param {Mixed} data Item data to search for
  * @return {OO.ui.Element[]} Items with equivalent data
  */
 OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
@@ -2608,14 +2612,13 @@ OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
  * specifies a different insertion point. Adding an existing item will move it to the end of the
  * array or the point specified by the `index`.
  *
- * @param {OO.ui.Element[]} items An array of items to add to the group
+ * @param {OO.ui.Element[]} [items] Elements to add to the group
  * @param {number} [index] Index of the insertion point
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
-
-	if ( items.length === 0 ) {
+	if ( !items || !items.length ) {
 		return this;
 	}
 
@@ -2789,7 +2792,7 @@ OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
 	// Properties
 	this.$label = null;
 	this.label = null;
-	this.invisibleLabel = null;
+	this.invisibleLabel = false;
 
 	// Initialization
 	this.setLabel( config.label || this.constructor.static.label );
@@ -2936,10 +2939,9 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
 			this.setLabelContent( label );
 		}
 		this.label = label;
+		this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
 		this.emit( 'labelChange' );
 	}
-
-	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
 
 	return this;
 };
@@ -2956,12 +2958,11 @@ OO.ui.mixin.LabelElement.prototype.setInvisibleLabel = function ( invisibleLabel
 
 	if ( this.invisibleLabel !== invisibleLabel ) {
 		this.invisibleLabel = invisibleLabel;
+		this.$label.toggleClass( 'oo-ui-labelElement-invisible', this.invisibleLabel );
+		// Pretend that there is no label, a lot of CSS has been written with this assumption
+		this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
 		this.emit( 'labelChange' );
 	}
-
-	this.$label.toggleClass( 'oo-ui-labelElement-invisible', this.invisibleLabel );
-	// Pretend that there is no label, a lot of CSS has been written with this assumption
-	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label && !this.invisibleLabel );
 
 	return this;
 };
@@ -3145,25 +3146,26 @@ OO.ui.mixin.IconElement.prototype.setIconElement = function ( $icon ) {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
-	icon = OO.isPlainObject( icon ) ? OO.ui.getLocalValue( icon, null, 'default' ) : icon;
-	icon = typeof icon === 'string' && icon.trim().length ? icon.trim() : null;
-
-	if ( this.icon !== icon ) {
-		if ( this.$icon ) {
-			if ( this.icon !== null ) {
-				this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
-			}
-			if ( icon !== null ) {
-				this.$icon.addClass( 'oo-ui-icon-' + icon );
-			}
-		}
-		this.icon = icon;
+	if ( icon && typeof icon !== 'string' ) {
+		icon = OO.ui.getLocalValue( icon, null, 'default' );
 	}
 
-	this.$element.toggleClass( 'oo-ui-iconElement', !!this.icon );
+	if ( this.icon === icon ) {
+		return this;
+	}
+
+	this.$element.toggleClass( 'oo-ui-iconElement', !!icon );
 	if ( this.$icon ) {
-		this.$icon.toggleClass( 'oo-ui-iconElement-noIcon', !this.icon );
+		if ( this.icon ) {
+			this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
+		}
+		if ( icon ) {
+			this.$icon.addClass( 'oo-ui-icon-' + icon );
+		}
+		this.$icon.toggleClass( 'oo-ui-iconElement-noIcon', !icon );
 	}
+
+	this.icon = icon;
 	this.updateThemeClasses();
 
 	return this;
@@ -3669,7 +3671,7 @@ OO.ui.mixin.TitledElement.prototype.updateTitle = function () {
 /**
  * Get title.
  *
- * @return {string} Title string
+ * @return {string|null} Title string
  */
 OO.ui.mixin.TitledElement.prototype.getTitle = function () {
 	return this.title;
@@ -3847,7 +3849,7 @@ OO.ui.mixin.RequiredElement = function OoUiMixinRequiredElement( config ) {
 	config = config || {};
 
 	// Properties
-	this.$required = null;
+	this.$required = config.$required || this.$input || this.$element;
 	this.required = false;
 	this.indicatorElement = config.indicatorElement !== undefined ? config.indicatorElement : this;
 	if ( this.indicatorElement && !this.indicatorElement.getIndicator ) {
@@ -3855,7 +3857,6 @@ OO.ui.mixin.RequiredElement = function OoUiMixinRequiredElement( config ) {
 	}
 
 	// Initialization
-	this.setRequiredElement( config.$required || this.$input || this.$element );
 	this.setRequired( !!config.required );
 };
 
@@ -3876,12 +3877,29 @@ OO.initClass( OO.ui.mixin.RequiredElement );
  * @param {jQuery} $required Element that should use the 'required' functionality
  */
 OO.ui.mixin.RequiredElement.prototype.setRequiredElement = function ( $required ) {
-	if ( this.$required ) {
-		this.$required.removeProp( 'required' ).removeAttr( 'aria-required' );
+	if ( this.$required === $required ) {
+		return;
+	}
+
+	if ( this.$required && this.required ) {
+		this.updateRequiredElement( false );
 	}
 
 	this.$required = $required;
-	this.setRequired( this.isRequired() );
+	this.updateRequiredElement();
+};
+
+/**
+ * @private
+ * @param {boolean} [state]
+ */
+OO.ui.mixin.RequiredElement.prototype.updateRequiredElement = function ( state ) {
+	if ( state === undefined ) {
+		state = this.required;
+	}
+
+	this.$required
+		.prop( 'required', state );
 };
 
 /**
@@ -3901,20 +3919,17 @@ OO.ui.mixin.RequiredElement.prototype.isRequired = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.mixin.RequiredElement.prototype.setRequired = function ( state ) {
+	if ( this.required === state ) {
+		return this;
+	}
+
 	this.required = !!state;
-	if ( this.required ) {
-		this.$required
-			.prop( 'required', true )
-			.attr( 'aria-required', 'true' );
-		if ( this.indicatorElement && this.indicatorElement.getIndicator() === null ) {
-			this.indicatorElement.setIndicator( 'required' );
-		}
-	} else {
-		this.$required
-			.prop( 'required', false )
-			.removeAttr( 'aria-required' );
-		if ( this.indicatorElement && this.indicatorElement.getIndicator() === 'required' ) {
-			this.indicatorElement.setIndicator( null );
+	this.updateRequiredElement();
+	if ( this.indicatorElement ) {
+		// Make sure to not destroy other, unrelated indicators
+		var expected = state ? null : 'required';
+		if ( this.indicatorElement.getIndicator() === expected ) {
+			this.indicatorElement.setIndicator( state ? 'required' : null );
 		}
 	}
 	return this;
@@ -3956,7 +3971,7 @@ OO.ui.mixin.RequiredElement.prototype.setRequired = function ( state ) {
  * @cfg {string} [href] Hyperlink to visit when the button is clicked.
  * @cfg {string} [target] The frame or window in which to open the hyperlink.
  * @cfg {boolean} [noFollow] Search engine traversal hint (default: true)
- * @cfg {string[]} [rel] Relationship attributes for the hyperlink
+ * @cfg {string|string[]} [rel] Relationship attributes for the hyperlink
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
@@ -4000,7 +4015,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	this.setActive( config.active );
 	this.setHref( config.href );
 	this.setTarget( config.target );
-	if ( config.rel ) {
+	if ( config.rel !== undefined ) {
 		this.setRel( config.rel );
 	} else {
 		this.setNoFollow( config.noFollow );
@@ -4038,7 +4053,7 @@ OO.ui.ButtonWidget.static.tagName = 'span';
 /**
  * Get hyperlink location.
  *
- * @return {string} Hyperlink location
+ * @return {string|null} Hyperlink location
  */
 OO.ui.ButtonWidget.prototype.getHref = function () {
 	return this.href;
@@ -4047,7 +4062,7 @@ OO.ui.ButtonWidget.prototype.getHref = function () {
 /**
  * Get hyperlink target.
  *
- * @return {string} Hyperlink target
+ * @return {string|null} Hyperlink target
  */
 OO.ui.ButtonWidget.prototype.getTarget = function () {
 	return this.target;
@@ -4148,21 +4163,18 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
-	var rel;
-
 	noFollow = typeof noFollow === 'boolean' ? noFollow : true;
 
 	if ( noFollow !== this.noFollow ) {
-		if ( !noFollow ) {
-			rel = this.rel.concat();
-			rel.splice(
-				this.rel.indexOf( 'nofollow' ),
-				1
-			);
-			this.setRel( rel );
+		var rel;
+		if ( noFollow ) {
+			rel = this.rel.concat( [ 'nofollow' ] );
 		} else {
-			this.setRel( this.rel.concat( [ 'nofollow' ] ) );
+			rel = this.rel.filter( function ( value ) {
+				return value !== 'nofollow';
+			} );
 		}
+		this.setRel( rel );
 	}
 
 	return this;
@@ -4171,23 +4183,18 @@ OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
 /**
  * Set the `rel` attribute of the hyperlink.
  *
- * @param {string|string[]} rel Relationship attributes for the hyperlink
+ * @param {string|string[]} [rel] Relationship attributes for the hyperlink, omit to remove
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setRel = function ( rel ) {
-	rel = Array.isArray( rel ) ? rel : typeof rel === 'string' ? [ rel ] : [];
-
-	if ( rel !== this.rel ) {
-		this.rel = rel;
-		// For backwards compatibility.
-		this.noFollow = rel.indexOf( 'nofollow' ) !== -1;
-
-		if ( rel.length > 0 ) {
-			this.$button.attr( 'rel', rel.join( ' ' ) );
-		} else {
-			this.$button.removeAttr( 'rel' );
-		}
+	if ( !Array.isArray( rel ) ) {
+		rel = rel ? [ rel ] : [];
 	}
+
+	this.rel = rel;
+	// For backwards compatibility.
+	this.noFollow = rel.indexOf( 'nofollow' ) !== -1;
+	this.$button.attr( 'rel', rel.join( ' ' ) || null );
 
 	return this;
 };
@@ -4250,9 +4257,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonGroupWidget' );
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -4543,6 +4548,7 @@ OO.ui.LabelWidget.static.tagName = 'label';
  *  'notice', 'error', 'warning', 'success'
  * @cfg {boolean} [inline] Set the notice as an inline notice. The default
  *  is not inline, or 'boxed' style.
+ * @cfg {boolean} [showClose] Show a close button. Can't be used with inline.
  */
 OO.ui.MessageWidget = function OoUiMessageWidget( config ) {
 	// Configuration initialization
@@ -4567,9 +4573,23 @@ OO.ui.MessageWidget = function OoUiMessageWidget( config ) {
 		this.setIcon( config.icon );
 	}
 
+	if ( !this.inline && config.showClose ) {
+		this.closeButton = new OO.ui.ButtonWidget( {
+			classes: [ 'oo-ui-messageWidget-close' ],
+			framed: false,
+			icon: 'close',
+			label: OO.ui.msg( 'ooui-popup-widget-close-button-aria-label' ),
+			invisibleLabel: true
+		} );
+		this.closeButton.connect( this, {
+			click: 'onCloseButtonClick'
+		} );
+		this.$element.addClass( 'oo-ui-messageWidget-showClose' );
+	}
+
 	// Build the widget
 	this.$element
-		.append( this.$icon, this.$label )
+		.append( this.$icon, this.$label, this.closeButton && this.closeButton.$element )
 		.addClass( 'oo-ui-messageWidget' );
 };
 
@@ -4580,6 +4600,12 @@ OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.IconElement );
 OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.FlaggedElement );
+
+/* Events */
+
+/**
+ * @event close
+ */
 
 /* Static Properties */
 
@@ -4619,13 +4645,11 @@ OO.ui.MessageWidget.prototype.setInline = function ( inline ) {
  * @param  {string} [type] Given type. Defaults to 'notice'
  */
 OO.ui.MessageWidget.prototype.setType = function ( type ) {
-	// Validate type
-	if ( Object.keys( this.constructor.static.iconMap ).indexOf( type ) === -1 ) {
-		type = 'notice'; // Default
+	if ( !this.constructor.static.iconMap[ type ] ) {
+		type = 'notice';
 	}
 
 	if ( this.type !== type ) {
-
 		// Flags
 		this.clearFlags();
 		this.setFlags( type );
@@ -4645,6 +4669,17 @@ OO.ui.MessageWidget.prototype.setType = function ( type ) {
 
 		this.type = type;
 	}
+};
+
+/**
+ * Handle click events on the close button
+ *
+ * @param {jQuery} e jQuery event
+ * @fires close
+ */
+OO.ui.MessageWidget.prototype.onCloseButtonClick = function () {
+	this.toggle( false );
+	this.emit( 'close' );
 };
 
 /**
@@ -5415,7 +5450,7 @@ OO.ui.mixin.ClippableElement.prototype.setIdealSize = function ( width, height )
  * (This can't be guessed from the actual CSS because the computed values for 'left'/'right' are
  * always in pixels, even if they were unset or set to 'auto'.)
  *
- * When in doubt, 'left' (or 'right' in RTL) is a sane fallback.
+ * When in doubt, 'left' (or 'right' in RTL) is a reasonable fallback.
  *
  * @return {string} 'left' or 'right'
  */
@@ -5437,7 +5472,7 @@ OO.ui.mixin.ClippableElement.prototype.getHorizontalAnchorEdge = function () {
  * (This can't be guessed from the actual CSS because the computed values for 'left'/'right' are
  * always in pixels, even if they were unset or set to 'auto'.)
  *
- * When in doubt, 'top' is a sane fallback.
+ * When in doubt, 'top' is a reasonable fallback.
  *
  * @return {string} 'top' or 'bottom'
  */
@@ -5685,6 +5720,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Popups#autocloseExample
  * @cfg {boolean} [head=false] Show a popup header that contains a #label (if specified) and close
  *  button.
+ * @cfg {boolean} [hideCloseButton=false]
  * @cfg {boolean} [padded=false] Add padding to the popup's body
  */
 OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
@@ -5759,7 +5795,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		}
 		this.$head = $( '<div>' )
 			.addClass( 'oo-ui-popupWidget-head' )
-			.append( this.$icon, this.$label, this.closeButton && this.closeButton.$element || '' );
+			.append( this.$icon, this.$label, this.closeButton && this.closeButton.$element );
 		this.$popup.prepend( this.$head );
 	}
 
@@ -6633,6 +6669,7 @@ OO.ui.mixin.ItemWidget.prototype.setElementGroup = function ( group ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [selected=false]
  */
 OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	// Configuration initialization
@@ -6657,8 +6694,10 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	this.$element
 		.data( 'oo-ui-optionWidget', this )
 		// Allow programmatic focussing (and by access key), but not tabbing
-		.attr( 'tabindex', '-1' )
-		.attr( 'role', 'option' )
+		.attr( {
+			tabindex: '-1',
+			role: 'option'
+		} )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
 };
@@ -6933,9 +6972,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 			'aria-multiselectable': this.multiselect.toString()
 		} );
 	this.setFocusOwner( this.$element );
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -7075,11 +7112,9 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
-	var item;
-
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.togglePressed( true );
-		item = this.findTargetItem( e );
+		var item = this.findTargetItem( e );
 		if ( item && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
@@ -7098,11 +7133,9 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
-	var item;
-
 	this.togglePressed( false );
 	if ( !this.selecting ) {
-		item = this.findTargetItem( e );
+		var item = this.findTargetItem( e );
 		if ( item && item.isSelectable() ) {
 			this.selecting = item;
 		}
@@ -7126,10 +7159,8 @@ OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
  * @param {MouseEvent} e Mouse move event
  */
 OO.ui.SelectWidget.prototype.onDocumentMouseMove = function ( e ) {
-	var item;
-
 	if ( !this.isDisabled() && this.pressed ) {
-		item = this.findTargetItem( e );
+		var item = this.findTargetItem( e );
 		if ( item && item !== this.selecting && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
@@ -7145,12 +7176,11 @@ OO.ui.SelectWidget.prototype.onDocumentMouseMove = function ( e ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
-	var item;
 	if ( this.blockMouseOverEvents ) {
 		return;
 	}
 	if ( !this.isDisabled() ) {
-		item = this.findTargetItem( e );
+		var item = this.findTargetItem( e );
 		this.highlightItem( item && item.isHighlightable() ? item : null );
 	}
 	return false;
@@ -7292,30 +7322,25 @@ OO.ui.SelectWidget.prototype.clearKeyPressBuffer = function () {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
-	var c, filter, item, selected;
-
 	if ( !e.charCode ) {
 		if ( e.keyCode === OO.ui.Keys.BACKSPACE && this.keyPressBuffer !== '' ) {
-			this.keyPressBuffer = this.keyPressBuffer.substr( 0, this.keyPressBuffer.length - 1 );
+			this.keyPressBuffer = this.keyPressBuffer.slice( 0, this.keyPressBuffer.length - 1 );
 			return false;
 		}
 		return;
 	}
+
 	// eslint-disable-next-line es/no-string-fromcodepoint
-	if ( String.fromCodePoint ) {
-		// eslint-disable-next-line es/no-string-fromcodepoint
-		c = String.fromCodePoint( e.charCode );
-	} else {
-		c = String.fromCharCode( e.charCode );
-	}
+	var c = String.fromCodePoint ? String.fromCodePoint( e.charCode ) :
+		String.fromCharCode( e.charCode );
 
 	if ( this.keyPressBufferTimer ) {
 		clearTimeout( this.keyPressBufferTimer );
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	selected = this.findSelectedItems();
-	item = this.findHighlightedItem() || (
+	var selected = this.findSelectedItems();
+	var item = this.findHighlightedItem() || (
 		Array.isArray( selected ) ? selected[ 0 ] : selected
 	);
 
@@ -7329,7 +7354,7 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		this.keyPressBuffer += c;
 	}
 
-	filter = this.getItemMatcher( this.keyPressBuffer, false );
+	var filter = this.getItemMatcher( this.keyPressBuffer, false );
 	if ( !item || !filter( item ) ) {
 		item = this.findRelativeSelectableItem( item, 1, filter );
 	}
@@ -7471,9 +7496,7 @@ OO.ui.SelectWidget.prototype.findSelectedItem = function () {
  * @return {OO.ui.OptionWidget|null} Highlighted item, `null` if no item is highlighted
  */
 OO.ui.SelectWidget.prototype.findHighlightedItem = function () {
-	var i, len;
-
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
+	for ( var i = 0; i < this.items.length; i++ ) {
 		if ( this.items[ i ].isHighlighted() ) {
 			return this.items[ i ];
 		}
@@ -7512,16 +7535,25 @@ OO.ui.SelectWidget.prototype.togglePressed = function ( pressed ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
-	var i, len, highlighted,
-		changed = false;
+	if ( item && item.isHighlighted() ) {
+		return this;
+	}
 
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		highlighted = this.items[ i ] === item;
+	var changed = false;
+
+	for ( var i = 0; i < this.items.length; i++ ) {
+		var highlighted = this.items[ i ] === item;
 		if ( this.items[ i ].isHighlighted() !== highlighted ) {
 			this.items[ i ].setHighlighted( highlighted );
-			changed = true;
+			if ( changed ) {
+				// This was the second change; there can only be two, a set and an unset
+				break;
+			}
+			// Un-highlighting can't fail, but highlighting can
+			changed = !highlighted || this.items[ i ].isHighlighted();
 		}
 	}
+
 	if ( changed ) {
 		if ( item ) {
 			this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
@@ -7542,7 +7574,7 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
  * @return {OO.ui.Element|null} Item with equivalent label, `null` if none exists
  */
 OO.ui.SelectWidget.prototype.getItemFromLabel = function ( label, prefix ) {
-	var i, item, found,
+	var i, item,
 		len = this.items.length,
 		filter = this.getItemMatcher( label, 'exact' );
 
@@ -7554,7 +7586,7 @@ OO.ui.SelectWidget.prototype.getItemFromLabel = function ( label, prefix ) {
 	}
 
 	if ( prefix ) {
-		found = null;
+		var found = null;
 		filter = this.getItemMatcher( label, 'prefix' );
 		for ( i = 0; i < len; i++ ) {
 			item = this.items[ i ];
@@ -7644,21 +7676,31 @@ OO.ui.SelectWidget.prototype.unselectItem = function ( unselectedItem ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
-	var i, len, selected,
-		changed = false;
-
-	if ( this.multiselect && item ) {
-		// Select the item directly
-		item.setSelected( true );
-	} else {
-		for ( i = 0, len = this.items.length; i < len; i++ ) {
-			selected = this.items[ i ] === item;
-			if ( this.items[ i ].isSelected() !== selected ) {
-				this.items[ i ].setSelected( selected );
-				changed = true;
-			}
+	if ( item ) {
+		if ( item.isSelected() ) {
+			return this;
+		} else if ( this.multiselect ) {
+			// We don't care about the state of the other items when multiselect is allowed
+			item.setSelected( true );
+			return this;
 		}
 	}
+
+	var changed = false;
+
+	for ( var i = 0; i < this.items.length; i++ ) {
+		var selected = this.items[ i ] === item;
+		if ( this.items[ i ].isSelected() !== selected ) {
+			this.items[ i ].setSelected( selected );
+			if ( changed && !this.multiselect ) {
+				// This was the second change; there can only be two, a set and an unset
+				break;
+			}
+			// Un-selecting can't fail, but selecting can
+			changed = !selected || this.items[ i ].isSelected();
+		}
+	}
+
 	if ( changed ) {
 		// TODO: When should a non-highlightable element be selected?
 		if ( item && !item.constructor.static.highlightable ) {
@@ -7687,16 +7729,25 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
-	var i, len, pressed,
-		changed = false;
+	if ( item && item.isPressed() ) {
+		return this;
+	}
 
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		pressed = this.items[ i ] === item;
+	var changed = false;
+
+	for ( var i = 0; i < this.items.length; i++ ) {
+		var pressed = this.items[ i ] === item;
 		if ( this.items[ i ].isPressed() !== pressed ) {
 			this.items[ i ].setPressed( pressed );
-			changed = true;
+			if ( changed ) {
+				// This was the second change; there can only be two, a set and an unset
+				break;
+			}
+			// Un-pressing can't fail, but pressing can
+			changed = !pressed || this.items[ i ].isPressed();
 		}
 	}
+
 	if ( changed ) {
 		this.emit( 'press', item );
 	}
@@ -7747,12 +7798,12 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
 OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direction, filter ) {
-	var currentIndex, nextIndex, i,
+	var nextIndex,
 		increase = direction > 0 ? 1 : -1,
 		len = this.items.length;
 
 	if ( item instanceof OO.ui.OptionWidget ) {
-		currentIndex = this.items.indexOf( item );
+		var currentIndex = this.items.indexOf( item );
 		nextIndex = ( currentIndex + increase + len ) % len;
 	} else {
 		// If no item is selected and moving forward, start at the beginning.
@@ -7760,7 +7811,7 @@ OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direc
 		nextIndex = direction > 0 ? 0 : len - 1;
 	}
 
-	for ( i = 0; i < len; i++ ) {
+	for ( var i = 0; i < len; i++ ) {
 		item = this.items[ nextIndex ];
 		if (
 			item instanceof OO.ui.OptionWidget && item.isSelectable() &&
@@ -7787,13 +7838,17 @@ OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
  * Add an array of options to the select. Optionally, an index number can be used to
  * specify an insertion point.
  *
- * @param {OO.ui.OptionWidget[]} items Items to add
+ * @param {OO.ui.OptionWidget[]} [items] Options to add
  * @param {number} [index] Index to insert items after
  * @fires add
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
+	if ( !items || !items.length ) {
+		return this;
+	}
+
 	// Mixin method
 	OO.ui.mixin.GroupWidget.prototype.addItems.call( this, items, index );
 
@@ -7814,11 +7869,9 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
-	var i, len, item;
-
 	// Deselect items being removed
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		item = items[ i ];
+	for ( var i = 0; i < items.length; i++ ) {
+		var item = items[ i ];
 		if ( item.isSelected() ) {
 			this.selectItem( null );
 		}
@@ -8105,6 +8158,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.hideOnChoose = config.hideOnChoose === undefined || !!config.hideOnChoose;
 	this.filterFromInput = !!config.filterFromInput;
+	this.previouslySelectedValue = null;
 	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
 	this.$autoCloseIgnore = config.$autoCloseIgnore || $( [] );
@@ -8241,62 +8295,53 @@ OO.ui.MenuSelectWidget.prototype.getVisibleItems = function () {
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
-	var i, item, items, visible, section, sectionEmpty, filter, exactFilter,
-		anyVisible = false,
-		len = this.items.length,
-		showAll = !this.isVisible(),
-		exactMatch = false;
+	if ( !this.filterFromInput || !this.$input ) {
+		this.clip();
+		return;
+	}
 
-	if ( this.$input && this.filterFromInput ) {
+	var i, item, section, sectionEmpty,
+		anyVisible = false;
+
+	var showAll = !this.isVisible() || this.previouslySelectedValue === this.$input.val(),
 		filter = showAll ? null : this.getItemMatcher( this.$input.val(), this.filterMode );
-		exactFilter = this.getItemMatcher( this.$input.val(), 'exact' );
-		// Hide non-matching options, and also hide section headers if all options
-		// in their section are hidden.
-		for ( i = 0; i < len; i++ ) {
-			item = this.items[ i ];
-			if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
-				if ( section ) {
-					// If the previous section was empty, hide its header
-					section.toggle( showAll || !sectionEmpty );
-				}
-				section = item;
-				sectionEmpty = true;
-			} else if ( item instanceof OO.ui.OptionWidget ) {
-				visible = showAll || filter( item );
-				exactMatch = exactMatch || exactFilter( item );
-				anyVisible = anyVisible || visible;
-				sectionEmpty = sectionEmpty && !visible;
-				item.toggle( visible );
+	// Hide non-matching options, and also hide section headers if all options
+	// in their section are hidden.
+	for ( i = 0; i < this.items.length; i++ ) {
+		item = this.items[ i ];
+		if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
+			if ( section ) {
+				// If the previous section was empty, hide its header
+				section.toggle( showAll || !sectionEmpty );
 			}
+			section = item;
+			sectionEmpty = true;
+		} else if ( item instanceof OO.ui.OptionWidget ) {
+			var visible = !filter || filter( item );
+			anyVisible = anyVisible || visible;
+			sectionEmpty = sectionEmpty && !visible;
+			item.toggle( visible );
 		}
-		// Process the final section
-		if ( section ) {
-			section.toggle( showAll || !sectionEmpty );
-		}
+	}
+	// Process the final section
+	if ( section ) {
+		section.toggle( showAll || !sectionEmpty );
+	}
 
-		if ( !anyVisible ) {
-			this.highlightItem( null );
-		}
+	if ( !anyVisible ) {
+		this.highlightItem( null );
+	}
 
-		this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
+	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
 
-		if (
-			this.highlightOnFilter &&
-			!( this.lastHighlightedItem && this.lastHighlightedItem.isVisible() ) &&
-			this.isVisible()
-		) {
-			// Highlight the first item on the list
-			item = null;
-			items = this.getItems();
-			for ( i = 0; i < items.length; i++ ) {
-				if ( items[ i ].isVisible() ) {
-					item = items[ i ];
-					break;
-				}
-			}
-			this.highlightItem( item );
-			this.lastHighlightedItem = item;
-		}
+	if ( this.highlightOnFilter &&
+		!( this.lastHighlightedItem && this.lastHighlightedItem.isSelectable() ) &&
+		this.isVisible()
+	) {
+		// Highlight the first selectable item in the list
+		item = this.findFirstSelectableItem();
+		this.highlightItem( item );
+		this.lastHighlightedItem = item;
 	}
 
 	// Reevaluate clipping
@@ -8335,6 +8380,10 @@ OO.ui.MenuSelectWidget.prototype.bindDocumentKeyPressListener = function () {
 				'keydown mouseup cut paste change input select',
 				this.onInputEditHandler
 			);
+			this.$input.one( 'keypress', function () {
+				this.previouslySelectedValue = null;
+			}.bind( this ) );
+			this.previouslySelectedValue = this.$input.val();
 			this.updateItemVisibility();
 		}
 	} else {
@@ -8385,6 +8434,10 @@ OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
+	if ( !items || !items.length ) {
+		return this;
+	}
+
 	// Parent method
 	OO.ui.MenuSelectWidget.super.prototype.addItems.call( this, items, index );
 
@@ -8784,6 +8837,7 @@ OO.ui.DropdownWidget.prototype.setLabelledBy = function ( id ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {Mixed} [data]
  */
 OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	// Configuration initialization
@@ -8800,8 +8854,7 @@ OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	this.radio.$input.attr( 'role', 'presentation' );
 	this.$element
 		.addClass( 'oo-ui-radioOptionWidget' )
-		.attr( 'role', 'radio' )
-		.attr( 'aria-checked', 'false' )
+		.attr( { role: 'radio', 'aria-checked': 'false' } )
 		.removeAttr( 'aria-selected' )
 		.prepend( this.radio.$element );
 };
@@ -8817,12 +8870,6 @@ OO.inheritClass( OO.ui.RadioOptionWidget, OO.ui.OptionWidget );
  * @inheritdoc
  */
 OO.ui.RadioOptionWidget.static.highlightable = false;
-
-/**
- * @static
- * @inheritdoc
- */
-OO.ui.RadioOptionWidget.static.scrollIntoViewOnSelect = true;
 
 /**
  * @static
@@ -9051,9 +9098,7 @@ OO.ui.MultiselectWidget = function OoUiMultiselectWidget( config ) {
 	} );
 
 	// Initialization
-	if ( config.items ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 	this.$group.addClass( 'oo-ui-multiselectWidget-group' );
 	this.$element.addClass( 'oo-ui-multiselectWidget' )
 		.append( this.$group );
@@ -11354,60 +11399,55 @@ OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
  * first time that the element gets attached to the documented.
  */
 OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
-	var mutationObserver, onRemove, topmostNode, fakeParentNode,
-		MutationObserver = window.MutationObserver ||
+	var MutationObserver = window.MutationObserver ||
 			window.WebKitMutationObserver ||
-			window.MozMutationObserver,
-		widget = this;
+			window.MozMutationObserver;
 
-	if ( MutationObserver ) {
-		// The new way. If only it wasn't so ugly.
+	if ( !MutationObserver || this.isElementAttached() ) {
+		// Widget is attached already, do nothing. This breaks the functionality of this
+		// function when the widget is detached and reattached. Alas, doing this correctly with
+		// MutationObserver would require observation of the whole document, which would hurt
+		// performance of other, more important code.
+		return;
+	}
 
-		if ( this.isElementAttached() ) {
-			// Widget is attached already, do nothing. This breaks the functionality of this
-			// function when the widget is detached and reattached. Alas, doing this correctly with
-			// MutationObserver would require observation of the whole document, which would hurt
-			// performance of other, more important code.
-			return;
-		}
-
-		// Find topmost node in the tree
+	var onRemove,
+		widget = this,
 		topmostNode = this.$element[ 0 ];
-		while ( topmostNode.parentNode ) {
-			topmostNode = topmostNode.parentNode;
-		}
+	while ( topmostNode.parentNode ) {
+		topmostNode = topmostNode.parentNode;
+	}
 
-		// We have no way to detect the $element being attached somewhere without observing the
-		// entire DOM with subtree modifications, which would hurt performance. So we cheat: we hook
-		// to the parent node of $element, and instead detect when $element is removed from it (and
-		// thus probably attached somewhere else). If there is no parent, we create a "fake" one. If
-		// it doesn't get attached, we end up back here and create the parent.
-		mutationObserver = new MutationObserver( function ( mutations ) {
-			var i, j, removedNodes;
-			for ( i = 0; i < mutations.length; i++ ) {
-				removedNodes = mutations[ i ].removedNodes;
-				for ( j = 0; j < removedNodes.length; j++ ) {
-					if ( removedNodes[ j ] === topmostNode ) {
-						setTimeout( onRemove, 0 );
-						return;
-					}
+	// We have no way to detect the $element being attached somewhere without observing the
+	// entire DOM with subtree modifications, which would hurt performance. So we cheat: we hook
+	// to the parent node of $element, and instead detect when $element is removed from it (and
+	// thus probably attached somewhere else). If there is no parent, we create a "fake" one. If
+	// it doesn't get attached, we end up back here and create the parent.
+	var mutationObserver = new MutationObserver( function ( mutations ) {
+		for ( var i = 0; i < mutations.length; i++ ) {
+			var removedNodes = mutations[ i ].removedNodes;
+			for ( var j = 0; j < removedNodes.length; j++ ) {
+				if ( removedNodes[ j ] === topmostNode ) {
+					setTimeout( onRemove, 0 );
+					return;
 				}
 			}
-		} );
+		}
+	} );
 
-		onRemove = function () {
-			// If the node was attached somewhere else, report it
-			if ( widget.isElementAttached() ) {
-				widget.onElementAttach();
-			}
-			mutationObserver.disconnect();
-			widget.installParentChangeDetector();
-		};
+	onRemove = function () {
+		// If the node was attached somewhere else, report it
+		if ( widget.isElementAttached() ) {
+			widget.onElementAttach();
+		}
+		mutationObserver.disconnect();
+		widget.installParentChangeDetector();
+	};
 
-		// Create a fake parent and observe it
-		fakeParentNode = $( '<div>' ).append( topmostNode )[ 0 ];
-		mutationObserver.observe( fakeParentNode, { childList: true } );
-	}
+	// Create a fake parent and observe it
+	var fakeParentNode = document.createElement( 'div' );
+	fakeParentNode.appendChild( topmostNode );
+	mutationObserver.observe( fakeParentNode, { childList: true } );
 };
 
 /**
@@ -11428,6 +11468,7 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  * Get sanitized value for 'type' for given config. Subclasses might support other types.
  *
  * @param {Object} config Configuration options
+ * @param {string} [config.type='text']
  * @return {string}
  * @protected
  */
@@ -11451,14 +11492,13 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
-	var isBackwards, start, end,
-		input = this.$input[ 0 ];
+	var input = this.$input[ 0 ];
 
 	to = to || from;
 
-	isBackwards = to < from;
-	start = isBackwards ? to : from;
-	end = isBackwards ? from : to;
+	var isBackwards = to < from,
+		start = isBackwards ? to : from,
+		end = isBackwards ? from : to;
 
 	this.focus();
 
@@ -11542,12 +11582,10 @@ OO.ui.TextInputWidget.prototype.moveCursorToEnd = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.insertContent = function ( content ) {
-	var start, end,
+	var value = this.getValue(),
 		range = this.getRange(),
-		value = this.getValue();
-
-	start = Math.min( range.from, range.to );
-	end = Math.max( range.from, range.to );
+		start = Math.min( range.from, range.to ),
+		end = Math.max( range.from, range.to );
 
 	this.setValue( value.slice( 0, start ) + content + value.slice( end ) );
 	this.selectRange( start + content.length );
@@ -11563,12 +11601,10 @@ OO.ui.TextInputWidget.prototype.insertContent = function ( content ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.encapsulateContent = function ( pre, post ) {
-	var start, end,
+	var offset = pre.length,
 		range = this.getRange(),
-		offset = pre.length;
-
-	start = Math.min( range.from, range.to );
-	end = Math.max( range.from, range.to );
+		start = Math.min( range.from, range.to ),
+		end = Math.max( range.from, range.to );
 
 	this.selectRange( start ).insertContent( pre );
 	this.selectRange( offset + end ).insertContent( post );
@@ -11588,11 +11624,9 @@ OO.ui.TextInputWidget.prototype.encapsulateContent = function ( pre, post ) {
  *  of a pattern (either ‘integer’ or ‘non-empty’) defined by the class.
  */
 OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
-	if ( validate instanceof RegExp || validate instanceof Function ) {
-		this.validate = validate;
-	} else {
-		this.validate = this.constructor.static.validationPatterns[ validate ] || /.*/;
-	}
+	this.validate = validate instanceof RegExp || validate instanceof Function ?
+		validate :
+		this.constructor.static.validationPatterns[ validate ];
 };
 
 /**
@@ -11631,37 +11665,35 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
  * @return {jQuery.Promise} A promise that resolves if the value is valid, rejects if not.
  */
 OO.ui.TextInputWidget.prototype.getValidity = function () {
-	var result;
-
 	function rejectOrResolve( valid ) {
-		if ( valid ) {
-			return $.Deferred().resolve().promise();
-		} else {
-			return $.Deferred().reject().promise();
-		}
+		var deferred = $.Deferred(),
+			promise = valid ? deferred.resolve() : deferred.reject();
+		return promise.promise();
 	}
 
 	// Check browser validity and reject if it is invalid
-	if (
-		this.$input[ 0 ].checkValidity !== undefined &&
-		this.$input[ 0 ].checkValidity() === false
-	) {
+	if ( this.$input[ 0 ].checkValidity && this.$input[ 0 ].checkValidity() === false ) {
 		return rejectOrResolve( false );
 	}
 
+	if ( !this.validate ) {
+		return rejectOrResolve( true );
+	}
+
 	// Run our checks if the browser thinks the field is valid
+	var result;
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
 		if ( result && typeof result.promise === 'function' ) {
 			return result.promise().then( function ( valid ) {
 				return rejectOrResolve( valid );
 			} );
-		} else {
-			return rejectOrResolve( result );
 		}
 	} else {
-		return rejectOrResolve( this.getValue().match( this.validate ) );
+		// The only other type we accept is a RegExp, see #setValidation
+		result = this.validate.test( this.getValue() );
 	}
+	return rejectOrResolve( result );
 };
 
 /**
@@ -11712,14 +11744,12 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.TextInputWidget.prototype.positionLabel = function () {
-	var after, rtl, property, newCss;
-
 	if ( this.isWaitingToBeAttached ) {
 		// #onElementAttach will be called soon, which calls this method
 		return this;
 	}
 
-	newCss = {
+	var newCss = {
 		'padding-right': '',
 		'padding-left': ''
 	};
@@ -11733,9 +11763,9 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 		return;
 	}
 
-	after = this.labelPosition === 'after';
-	rtl = this.$element.css( 'direction' ) === 'rtl';
-	property = after === rtl ? 'padding-left' : 'padding-right';
+	var after = this.labelPosition === 'after',
+		rtl = this.$element.css( 'direction' ) === 'rtl',
+		property = after === rtl ? 'padding-left' : 'padding-right';
 
 	newCss[ property ] = this.$label.outerWidth( true ) + ( after ? this.scrollWidth : 0 );
 	// We have to clear the padding on the other side, in case the element direction changed
@@ -11779,8 +11809,10 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 		disable: 'onDisable'
 	} );
 	this.$indicator
-		.attr( 'tabindex', -1 )
-		.attr( 'role', 'button' );
+		.attr( {
+			tabindex: -1,
+			role: 'button'
+		} );
 };
 
 /* Setup */
@@ -11920,6 +11952,8 @@ OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config )
 			.removeAttr( 'name' )
 			.insertAfter( this.$input )
 			.attr( 'aria-hidden', 'true' )
+			// Exclude scrollbars when calculating new size (T297963)
+			.css( 'overflow', 'hidden' )
 			.addClass( 'oo-ui-element-hidden' );
 	}
 
@@ -13049,9 +13083,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 			this.$header.append( helpWidget.$element );
 		}
 	}
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -13161,9 +13193,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 			action: action,
 			enctype: config.enctype
 		} );
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -13322,9 +13352,7 @@ OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-horizontalLayout' );
-	if ( Array.isArray( config.items ) ) {
-		this.addItems( config.items );
-	}
+	this.addItems( config.items );
 };
 
 /* Setup */
@@ -13478,8 +13506,7 @@ OO.ui.NumberInputWidget.prototype.setRange = function ( min, max ) {
 	}
 	this.min = min;
 	this.max = max;
-	this.$input.attr( 'min', this.min );
-	this.$input.attr( 'max', this.max );
+	this.$input.attr( { min: this.min, max: this.max } );
 	this.setValidityFlag();
 };
 
@@ -13950,9 +13977,9 @@ OO.ui.SelectFileInputWidget.prototype.filterFiles = function ( files ) {
 			mimeTest = accept[ i ];
 			if ( mimeTest === mimeType ) {
 				return true;
-			} else if ( mimeTest.substr( -2 ) === '/*' ) {
-				mimeTest = mimeTest.substr( 0, mimeTest.length - 1 );
-				if ( mimeType.substr( 0, mimeTest.length ) === mimeTest ) {
+			} else if ( mimeTest.slice( -2 ) === '/*' ) {
+				mimeTest = mimeTest.slice( 0, mimeTest.length - 1 );
+				if ( mimeType.slice( 0, mimeTest.length ) === mimeTest ) {
 					return true;
 				}
 			}

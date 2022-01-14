@@ -28,6 +28,12 @@
 				"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/userTalk-rtl.svg"
 			}
+		},
+		"watchlist": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/watchlist-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/watchlist-rtl.svg"
+			}
 		}
 	}
 }

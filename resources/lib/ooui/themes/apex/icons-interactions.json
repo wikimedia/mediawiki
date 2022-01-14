@@ -44,6 +44,9 @@
 				"rtl": "../wikimediaui/images/icons/funnel-rtl.svg"
 			}
 		},
+		"hand": {
+			"file": "../wikimediaui/images/icons/hand.svg"
+		},
 		"heart": {
 			"file": "../wikimediaui/images/icons/heart.svg"
 		},
@@ -117,7 +120,8 @@
 			"file": "../wikimediaui/images/icons/settings.svg"
 		},
 		"stopHand": {
-			"file": "../wikimediaui/images/icons/stopHand.svg"
+			"file": "../wikimediaui/images/icons/hand.svg",
+			"deprecated": "Renamed since v0.43.0, use 'hand' instead."
 		},
 		"subtract": {
 			"file": "../wikimediaui/images/icons/subtract.svg"

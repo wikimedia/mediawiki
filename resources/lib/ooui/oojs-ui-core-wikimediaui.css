@@ -1,21 +1,17 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:47Z
+ * Date: 2022-01-12T17:11:07Z
  */
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-element-hidden {
   display: none !important;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonElement {
   display: inline-block;
   line-height: normal;
@@ -376,8 +372,6 @@
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-clippableElement-clippable {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -385,20 +379,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-floatableElement {
   position: absolute;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-labelElement .oo-ui-labelElement-label,
 .oo-ui-labelElement.oo-ui-labelElement-label {
   -moz-box-sizing: border-box;
@@ -422,8 +408,6 @@
   font-weight: bold;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-iconElement-icon {
   background-size: contain;
   background-position: center center;
@@ -439,8 +423,6 @@
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indicatorElement-indicator {
   background-size: contain;
   background-position: center center;
@@ -456,8 +438,6 @@
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-pendingElement-pending {
   background-color: #eaecf0;
   background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
@@ -482,20 +462,10 @@
   }
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-fieldLayout {
   display: block;
   margin-top: 16px;
@@ -517,9 +487,6 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   word-wrap: break-word;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
@@ -535,9 +502,6 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
   word-wrap: break-word;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
   display: table;
@@ -643,8 +607,6 @@
   color: #72777d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
   display: table-cell;
@@ -686,8 +648,6 @@
   z-index: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-fieldsetLayout {
   position: relative;
   min-width: 0;
@@ -761,15 +721,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: transparent;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-formLayout + .oo-ui-fieldsetLayout,
 .oo-ui-formLayout + .oo-ui-formLayout {
   margin-top: 24px;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-panelLayout {
   position: relative;
 }
@@ -799,8 +755,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 12px 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-horizontalLayout > .oo-ui-widget {
   display: inline-block;
   vertical-align: middle;
@@ -823,14 +777,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-bottom: 8px;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-optionWidget {
   position: relative;
   display: block;
@@ -854,8 +802,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #72777d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-decoratedOptionWidget {
   padding: 6px 12px;
   line-height: 1;
@@ -890,8 +836,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.51;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioSelectWidget:focus {
   outline: 0;
 }
@@ -899,8 +843,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #fff;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioOptionWidget {
   display: table;
   padding: 4px 0;
@@ -926,8 +868,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-labelWidget {
   display: inline-block;
 }
@@ -937,8 +877,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: 0.92857143em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-messageWidget {
   position: relative;
   -moz-box-sizing: border-box;
@@ -961,6 +899,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block > .oo-ui-iconElement-icon {
   background-position: 0 16px;
+}
+.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-messageWidget-showClose {
+  padding-right: 56px;
+}
+.oo-ui-messageWidget.oo-ui-messageWidget-block > .oo-ui-messageWidget-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-error {
   background-color: #fee7e6;
@@ -988,8 +934,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-top: 8px;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-iconWidget {
   vertical-align: middle;
   -webkit-touch-callout: none;
@@ -1010,8 +954,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.51;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indicatorWidget {
   vertical-align: middle;
   -webkit-touch-callout: none;
@@ -1032,8 +974,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.51;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonWidget {
   margin-right: 8px;
 }
@@ -1041,8 +981,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonGroupWidget {
   display: inline-block;
   border-radius: 2px;
@@ -1096,8 +1034,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   z-index: 3;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupWidget {
   position: absolute;
   z-index: 1;
@@ -1293,8 +1229,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 9px 12px;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-popupButtonWidget {
   position: relative;
 }
@@ -1302,8 +1236,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   cursor: auto;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-inputWidget {
   margin-right: 8px;
 }
@@ -1311,8 +1243,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonInputWidget > button,
 .oo-ui-buttonInputWidget > input {
   background-color: transparent;
@@ -1321,8 +1251,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxInputWidget {
   display: inline-block;
   z-index: 0;
@@ -1418,8 +1346,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-shadow: inset 0 0 0 1px #2a4b8d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
   padding: 4px 0;
@@ -1428,8 +1354,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding-top: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dropdownInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1528,8 +1452,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #c8ccd1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioInputWidget {
   display: inline-block;
   z-index: 0;
@@ -1618,8 +1540,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #2a4b8d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
   padding: 4px 0;
@@ -1628,8 +1548,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding-top: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-textInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1756,6 +1674,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-shadow: inset 0 0 0 1px transparent;
   -webkit-transition: border-color 250ms, box-shadow 250ms;
   transition: border-color 250ms, box-shadow 250ms;
+  /* stylelint-disable selector-no-vendor-prefix */
+  /* stylelint-enable selector-no-vendor-prefix */
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input::-webkit-input-placeholder {
   color: #72777d;
@@ -1832,8 +1752,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   text-shadow: 0 1px 1px #fff;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuSelectWidget {
   position: absolute;
   width: 100%;
@@ -1852,8 +1770,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: none;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuOptionWidget {
   -webkit-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
@@ -1878,8 +1794,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #202122;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuSectionOptionWidget {
   color: #72777d;
   padding: 5px 12px 4px;
@@ -1898,8 +1812,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   left: 1.71428571em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-dropdownWidget {
   display: inline-block;
   position: relative;
@@ -2005,8 +1917,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.15;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-comboBoxInputWidget {
   display: inline-block;
   position: relative;
@@ -2089,11 +1999,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-multioptionWidget {
   position: relative;
   display: block;
@@ -2114,11 +2020,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #72777d;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-checkboxMultioptionWidget {
   display: table;
   padding: 4px 0;
@@ -2144,8 +2046,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-progressBarWidget {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2202,8 +2102,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   }
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-numberInputWidget {
   display: inline-block;
   position: relative;
@@ -2247,8 +2145,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 1;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-selectFileInputWidget {
   width: 100%;
   max-width: 50em;
@@ -2284,8 +2180,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 2.28571429em;
 }
 
-/* stylelint-disable selector-no-vendor-prefix */
-/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-defaultOverlay {
   position: absolute;
   top: 0;
