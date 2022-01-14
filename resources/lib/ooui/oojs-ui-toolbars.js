@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.42.1
+ * OOUI v0.43.0
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2021 OOUI Team and other contributors.
+ * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-11-04T01:18:37Z
+ * Date: 2022-01-12T17:10:58Z
  */
 ( function ( OO ) {
 
@@ -467,10 +467,13 @@ OO.ui.Toolbar.prototype.initialize = function () {
  * within that toolgroup. Please see {@link OO.ui.ToolGroup toolgroups} for more information about
  * including tools in toolgroups.
  *
- * @param {Object.<string,Array>} groups List of toolgroup configurations
- * @param {string} [groups.name] Symbolic name for this toolgroup
- * @param {string} [groups.type] Toolgroup type, should exist in the toolgroup factory
- * @param {Array|string} [groups.include] Tools to include in the toolgroup
+ * @param {Object[]} groups List of toolgroup configurations
+ * @param {string} groups.name Symbolic name for this toolgroup
+ * @param {string} [groups.type] Toolgroup type, e.g. "bar", "list", or "menu". Should exist in the
+ *  {@link OO.ui.ToolGroupFactory} provided via the constructor. Defaults to "list" for catch-all
+ *  groups where `include='*'`, otherwise "bar".
+ * @param {Array|string} [groups.include] Tools to include in the toolgroup, or "*" for catch-all,
+ *  see {@link OO.ui.ToolFactory#extract}
  * @param {Array|string} [groups.exclude] Tools to exclude from the toolgroup
  * @param {Array|string} [groups.promote] Tools to promote to the beginning of the toolgroup
  * @param {Array|string} [groups.demote] Tools to demote to the end of the toolgroup
@@ -1411,10 +1414,10 @@ OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
 /**
  * Get tools from the factory.
  *
- * @param {Array|string} [include] Included tools, see #extract for format
- * @param {Array|string} [exclude] Excluded tools, see #extract for format
- * @param {Array|string} [promote] Promoted tools, see #extract for format
- * @param {Array|string} [demote] Demoted tools, see #extract for format
+ * @param {Array|string} include Included tools, see #extract for format
+ * @param {Array|string} exclude Excluded tools, see #extract for format
+ * @param {Array|string} promote Promoted tools, see #extract for format
+ * @param {Array|string} demote Demoted tools, see #extract for format
  * @return {string[]} List of tools
  */
 OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, demote ) {
@@ -1458,7 +1461,7 @@ OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, dem
  *
  * @private
  * @param {Array|string} collection List of tools, see above
- * @param {Object} [used] Object containing information about used tools, see above
+ * @param {Object.<string,boolean>} [used] Object containing information about used tools, see above
  * @return {string[]} List of extracted tool names
  */
 OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
@@ -2018,8 +2021,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Initialization
 	this.$handle
 		.addClass( 'oo-ui-popupToolGroup-handle' )
-		.attr( 'role', 'button' )
-		.attr( 'aria-expanded', 'false' )
+		.attr( { role: 'button', 'aria-expanded': 'false' } )
 		.append( this.$icon, this.$label, this.$indicator );
 	// If the pop-up should have a header, add it to the top of the toolGroup.
 	// Note: If this feature is useful for other widgets, we could abstract it into an
@@ -2485,19 +2487,14 @@ OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 };
 
 OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
-	var i, icon, len;
-
-	if ( this.toolbar.position !== 'bottom' ) {
-		icon = this.expanded ? 'collapse' : 'expand';
-	} else {
-		icon = this.expanded ? 'expand' : 'collapse';
-	}
+	var inverted = this.toolbar.position === 'bottom',
+		icon = this.expanded === inverted ? 'expand' : 'collapse';
 
 	this.getExpandCollapseTool()
 		.setIcon( icon )
 		.setTitle( OO.ui.msg( this.expanded ? 'ooui-toolgroup-collapse' : 'ooui-toolgroup-expand' ) );
 
-	for ( i = 0, len = this.collapsibleTools.length; i < len; i++ ) {
+	for ( var i = 0; i < this.collapsibleTools.length; i++ ) {
 		this.collapsibleTools[ i ].toggle( this.expanded );
 	}
 

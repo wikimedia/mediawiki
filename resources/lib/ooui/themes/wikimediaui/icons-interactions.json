@@ -52,9 +52,7 @@
 			"file": "images/icons/clock.svg"
 		},
 		"close": {
-			"file": "images/icons/close.svg",
-			"variants": [ "destructive" ],
-			"deprecated": "The 'destructive' variant is deprecated since version 0.42.1."
+			"file": "images/icons/close.svg"
 		},
 		"ellipsis": {
 			"file": "images/icons/ellipsis.svg"
@@ -71,6 +69,12 @@
 				"rtl": "images/icons/funnel-rtl.svg"
 			},
 			"variants": [ "destructive" ]
+		},
+		"hand": {
+			"file": "images/icons/hand.svg",
+			"variants": [
+				"destructive"
+			]
 		},
 		"heart": {
 			"file": "images/icons/heart.svg"
@@ -145,8 +149,9 @@
 			"file": "images/icons/settings.svg"
 		},
 		"stopHand": {
-			"file": "images/icons/stopHand.svg",
-			"variants": [ "destructive" ]
+			"file": "images/icons/hand.svg",
+			"variants": [ "destructive" ],
+			"deprecated": "Renamed since v0.43.0, use 'hand' instead."
 		},
 		"subtract": {
 			"file": "images/icons/subtract.svg",
