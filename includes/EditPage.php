@@ -3889,7 +3889,7 @@ class EditPage implements IEditObject {
 			$tabindex,
 			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
 		);
-		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => $checkboxes ] );
+		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => array_values( $checkboxes ) ] );
 
 		$out->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
