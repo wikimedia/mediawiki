@@ -38,7 +38,7 @@ class WikiCategoryPage extends WikiPage {
 		} else {
 			$cat = Category::newFromTitle( $this->mTitle );
 			// If any of these are not 0, then has members
-			if ( $cat->getPageCount()
+			if ( $cat->getMemberCount()
 				|| $cat->getSubcatCount()
 				|| $cat->getFileCount()
 			) {
