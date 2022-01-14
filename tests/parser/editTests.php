@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Settings\SettingsBuilder;
+
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 define( 'MW_PARSER_TEST', true );
@@ -25,8 +27,8 @@ class ParserEditTests extends Maintenance {
 			'defaults.' );
 	}
 
-	public function finalSetup() {
-		parent::finalSetup();
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		parent::finalSetup( $settingsBuilder );
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
