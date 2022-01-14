@@ -693,7 +693,7 @@ class HTMLForm extends ContextSource {
 			if ( !array_key_exists( $fieldname, $this->mFieldData ) ) {
 				continue;
 			}
-			if ( $field->isHidden( $this->mFieldData ) ) {
+			if ( $field->isDisabled( $this->mFieldData ) ) {
 				continue;
 			}
 			$res = $field->validate( $this->mFieldData[$fieldname], $this->mFieldData );
@@ -2011,16 +2011,25 @@ class HTMLForm extends ContextSource {
 	 */
 	public function loadData() {
 		$fieldData = [];
+		$request = $this->getRequest();
 
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			$request = $this->getRequest();
 			if ( $field->skipLoadData( $request ) ) {
 				continue;
 			}
-			if ( !empty( $field->mParams['disabled'] ) ) {
+			if ( $field->mParams['disabled'] ?? false ) {
 				$fieldData[$fieldname] = $field->getDefault();
 			} else {
 				$fieldData[$fieldname] = $field->loadDataFromRequest( $request );
+			}
+		}
+
+		// Reset to default for fields that are supposed to be disabled.
+		// FIXME: Handle dependency chains, fields that a field checks on may need a reset too.
+		foreach ( $fieldData as $name => &$value ) {
+			$field = $this->mFlatFields[$name];
+			if ( $field->isDisabled( $fieldData ) ) {
+				$value = $field->getDefault();
 			}
 		}
 
