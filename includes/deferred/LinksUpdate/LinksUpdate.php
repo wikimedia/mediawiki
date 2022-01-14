@@ -26,6 +26,7 @@ use AutoCommitUpdate;
 use BacklinkCache;
 use DataUpdate;
 use DeferredUpdates;
+use DeprecationHelper;
 use Job;
 use JobQueueGroup;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -53,47 +54,21 @@ use Wikimedia\ScopedCallback;
  */
 class LinksUpdate extends DataUpdate {
 	use ProtectedHookAccessorTrait;
+	use DeprecationHelper;
 
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
-	public $mId;
+	protected $mId;
 
 	/** @var Title Title object of the article linked from */
-	public $mTitle;
+	protected $mTitle;
 
 	/** @var ParserOutput */
-	public $mParserOutput;
-
-	/**
-	 * @var int[][] Map of title strings to IDs for the links in the document
-	 * @phan-var array<int,array<string,int>>
-	 */
-	public $mLinks;
-
-	/** @var array DB keys of the images used, in the array key only */
-	public $mImages;
-
-	/** @var array Map of title strings to IDs for the template references, including broken ones */
-	public $mTemplates;
-
-	/** @var array URLs of external links, array key only */
-	public $mExternals;
-
-	/** @var array Map of category names to sort keys */
-	public $mCategories;
-
-	/** @var array Map of language codes to titles */
-	public $mInterlangs;
-
-	/** @var array 2-D map of (prefix => DBK => 1) */
-	public $mInterwikis;
-
-	/** @var array Map of arbitrary name to value */
-	public $mProperties;
+	protected $mParserOutput;
 
 	/** @var bool Whether to queue jobs for recursive updates */
-	public $mRecursive;
+	protected $mRecursive;
 
 	/** @var RevisionRecord Revision for which this update has been triggered */
 	private $mRevisionRecord;
@@ -119,36 +94,81 @@ class LinksUpdate extends DataUpdate {
 	public function __construct( PageIdentity $page, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
-		// NOTE: mTitle is public and used in hooks. Will need careful deprecation.
 		$this->mTitle = Title::castFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
 
-		$this->mLinks = $parserOutput->getLinks();
-		$this->mImages = $parserOutput->getImages();
-		$this->mTemplates = $parserOutput->getTemplates();
-		$this->mExternals = $parserOutput->getExternalLinks();
-		$this->mCategories = $parserOutput->getCategories();
-		$this->mProperties = $parserOutput->getPageProperties();
-		$this->mInterwikis = $parserOutput->getInterwikiLinks();
+		$this->deprecatePublicProperty( 'mId', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTitle', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mParserOutput', '1.38', __CLASS__ );
 
-		# Convert the format of the interlanguage links
-		# I didn't want to change it in the ParserOutput, because that array is passed all
-		# the way back to the skin, so either a skin API break would be required, or an
-		# inefficient back-conversion.
-		$ill = $parserOutput->getLanguageLinks();
-		$this->mInterlangs = [];
-		foreach ( $ill as $link ) {
-			list( $key, $title ) = explode( ':', $link, 2 );
-			$this->mInterlangs[$key] = $title;
-		}
-
-		foreach ( $this->mCategories as &$sortkey ) {
-			# If the sortkey is longer then 255 bytes, it is truncated by DB, and then doesn't match
-			# when comparing existing vs current categories, causing T27254.
-			$sortkey = mb_strcut( $sortkey, 0, 255 );
-		}
+		$this->deprecatePublicPropertyFallback( 'mLinks', '1.38',
+			function () {
+				return $this->getParserOutput()->getLinks();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mImages', '1.38',
+			function () {
+				return $this->getParserOutput()->getImages();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mTemplates', '1.38',
+			function () {
+				return $this->getParserOutput()->getTemplates();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mExternals', '1.38',
+			function () {
+				return $this->getParserOutput()->getExternalLinks();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mCategories', '1.38',
+			function () {
+				return $this->getParserOutput()->getCategories();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mProperties', '1.38',
+			function () {
+				return $this->getParserOutput()->getPageProperties();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mInterwikis', '1.38',
+			function () {
+				return $this->getParserOutput()->getInterwikiLinks();
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mInterlangs', '1.38',
+			function () {
+				$ill = $this->getParserOutput()->getLanguageLinks();
+				$res = [];
+				foreach ( $ill as $link ) {
+					list( $key, $title ) = explode( ':', $link, 2 );
+					$res[$key] = $title;
+				}
+				return $res;
+			},
+			null, __CLASS__
+		);
+		$this->deprecatePublicPropertyFallback( 'mCategories', '1.38',
+			function () {
+				$cats = $this->getParserOutput()->getCategories();
+				foreach ( $cats as &$sortkey ) {
+					# If the sortkey is longer then 255 bytes, it is truncated by DB, and then doesn't match
+					# when comparing existing vs current categories, causing T27254.
+					$sortkey = mb_strcut( $sortkey, 0, 255 );
+				}
+			},
+			null, __CLASS__
+		);
 
 		$this->mRecursive = $recursive;
+		$this->deprecatePublicProperty( 'mRecursive', '1.38', __CLASS__ );
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();

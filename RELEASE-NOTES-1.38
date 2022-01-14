@@ -414,6 +414,8 @@ generic `mediawiki.pager.styles`.
 * ApiStashEdit::parseAndStash has been hard deprecated.
 * Content::prepareSave was hard-deprecated, now emits deprecation warnings.
   Use ContentHandler::validateSave instead.
+* The hooks LinksUpdateAfterInsert and LinksUpdateConstructed were deprecated.
+* Access to all public properties in LinksUpdate was deprecated.
 * The global function wfWikiID(), deprecated since 1.35, now emits
   deprecation warnings.
 * The `button` parameter for `bindUpdateAriaExpandedOnInput` and
