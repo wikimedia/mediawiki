@@ -119,6 +119,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T292166) Updated namespace names for the Lombard language.
+* (T299201) Changed the autonym of the Angika language to अंगिका
 * (T291899) Added language support for Xiang Chinese (hsn).
 * (T292612) Added language support for S'gaw Karen (ksw).
 * (T293656) Added language support for Farefare (gur).

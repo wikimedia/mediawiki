@@ -60,7 +60,7 @@ class Names {
 		'ami' => 'Pangcah', # Amis
 		'an' => 'aragonés', # Aragonese
 		'ang' => 'Ænglisc', # Old English, T25283
-		'anp' => 'अङ्गिका', # Angika
+		'anp' => 'अंगिका', # Angika
 		'ar' => 'العربية', # Arabic
 		'arc' => 'ܐܪܡܝܐ', # Aramaic
 		'arn' => 'mapudungun', # Mapuche, Mapudungu, Araucanian (Araucano)
