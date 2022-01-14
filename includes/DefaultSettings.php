@@ -4879,15 +4879,15 @@ $wgMaxPPNodeCount = 1000000;
 /**
  * Maximum recursion depth for templates within templates.
  * The current parser adds two levels to the PHP call stack for each template,
- * and xdebug limits the call stack to 100 by default. So this should hopefully
+ * and xdebug limits the call stack to 256 by default. So this should hopefully
  * stop the parser before it hits the xdebug limit.
  */
-$wgMaxTemplateDepth = 40;
+$wgMaxTemplateDepth = 100;
 
 /**
  * @see $wgMaxTemplateDepth
  */
-$wgMaxPPExpandDepth = 40;
+$wgMaxPPExpandDepth = 100;
 
 /**
  * URL schemes that should be recognized as valid by wfParseUrl().
