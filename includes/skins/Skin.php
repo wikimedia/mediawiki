@@ -1927,7 +1927,7 @@ abstract class Skin extends ContextSource {
 		return Html::rawElement(
 			'div',
 			[
-				'id' => 'localNotice',
+				'class' => $name,
 				'lang' => $contLang->getHtmlCode(),
 				'dir' => $contLang->getDir()
 			],
@@ -1955,6 +1955,14 @@ abstract class Skin extends ContextSource {
 			if ( $siteNotice === false ) {
 				$siteNotice = $this->getCachedNotice( 'default' ) ?: '';
 			}
+			if ( $this->canUseWikiPage() ) {
+				$ns = $this->getWikiPage()->getNamespace();
+				$nsNotice = $this->getCachedNotice( "namespacenotice-$ns" );
+				if ( $nsNotice ) {
+					$siteNotice .= $nsNotice;
+				}
+			}
+			$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice' ], $siteNotice );
 		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
