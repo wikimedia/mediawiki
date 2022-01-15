@@ -2036,7 +2036,7 @@ class HTMLForm extends ContextSource {
 		# Filter data.
 		foreach ( $fieldData as $name => &$value ) {
 			$field = $this->mFlatFields[$name];
-			$value = $field->filter( $value, $this->mFlatFields );
+			$value = $field->filter( $value, $fieldData );
 		}
 
 		$this->mFieldData = $fieldData;
