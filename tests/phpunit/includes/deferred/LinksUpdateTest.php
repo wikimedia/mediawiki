@@ -36,6 +36,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				'page_props',
 				'pagelinks',
 				'categorylinks',
+				'category',
 				'langlinks',
 				'externallinks',
 				'imagelinks',
@@ -392,6 +393,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
 
+		$po->addCategory( "Bar", "BAR" );
 		$po->addCategory( "Foo", "FOO" );
 
 		$this->assertLinksUpdate(
@@ -401,13 +403,26 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ 'cl_to', 'cl_sortkey' ],
 			'cl_from = ' . self::$testingPageId,
 			[
-				[ 'Foo', "FOO\nOLD" ]
+				[ 'Bar', "BAR\nOLD" ],
+				[ 'Foo', "FOO\nOLD" ],
+			]
+		);
+
+		// Check category count
+		$this->assertSelect(
+			[ 'category' ],
+			[ 'cat_title', 'cat_pages' ],
+			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
+			[
+				[ 'Bar', '1' ],
+				[ 'Foo', '1' ],
 			]
 		);
 
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "New", self::$testingPageId );
 
+		$po->addCategory( "Bar", "BAR" );
 		$po->addCategory( "Foo", "FOO" );
 
 		// An update to cl_sortkey is not expected if there was no move
@@ -418,9 +433,27 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ 'cl_to', 'cl_sortkey' ],
 			'cl_from = ' . self::$testingPageId,
 			[
-				[ 'Foo', "FOO\nOLD" ]
+				[ 'Bar', "BAR\nOLD" ],
+				[ 'Foo', "FOO\nOLD" ],
 			]
 		);
+
+		// Check category count
+		$this->assertSelect(
+			[ 'category' ],
+			[ 'cat_title', 'cat_pages' ],
+			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
+			[
+				[ 'Bar', '1' ],
+				[ 'Foo', '1' ],
+			]
+		);
+
+		// A category changed on move
+		$po->setCategories( [
+			"Baz" => "BAZ",
+			"Foo" => "FOO",
+		] );
 
 		// With move notification, update to cl_sortkey is expected
 		$this->assertMoveLinksUpdate(
@@ -431,7 +464,19 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ 'cl_to', 'cl_sortkey' ],
 			'cl_from = ' . self::$testingPageId,
 			[
-				[ 'Foo', "FOO\nNEW" ]
+				[ 'Baz', "BAZ\nNEW" ],
+				[ 'Foo', "FOO\nNEW" ],
+			]
+		);
+
+		// Check category count
+		$this->assertSelect(
+			[ 'category' ],
+			[ 'cat_title', 'cat_pages' ],
+			[ 'cat_title' => [ 'Foo', 'Bar', 'Baz' ] ],
+			[
+				[ 'Baz', '1' ],
+				[ 'Foo', '1' ],
 			]
 		);
 	}
