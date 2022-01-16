@@ -45,7 +45,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$search->load();
 
 		# Without the parameter srbackend it would be a SearchEngineDummy
-		$this->assertInstanceOf( 'MockSearchEngine', $search->getSearchEngine() );
+		$this->assertInstanceOf( MockSearchEngine::class, $search->getSearchEngine() );
 	}
 
 	/**
