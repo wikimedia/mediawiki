@@ -284,7 +284,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::dieDebug( __METHOD__, 'Saw more duplicate rows than expected' );
 			}
 
-			if ( $params['activeusers'] && $row->recentactions === 0 ) {
+			if ( $params['activeusers'] && (int)$row->recentactions === 0 ) {
 				// activeusers cache was out of date
 				continue;
 			}
