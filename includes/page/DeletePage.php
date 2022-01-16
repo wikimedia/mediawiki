@@ -28,6 +28,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
 use Message;
+use NamespaceInfo;
 use RawMessage;
 use ResourceLoaderWikiModule;
 use SearchUpdate;
@@ -35,6 +36,8 @@ use SiteStatsUpdate;
 use Status;
 use StatusValue;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
@@ -57,6 +60,7 @@ class DeletePage {
 	 * Constants used for the return value of getSuccessfulDeletionsIDs() and deletionsWereScheduled()
 	 */
 	public const PAGE_BASE = 'base';
+	public const PAGE_TALK = 'talk';
 
 	/** @var HookRunner */
 	private $hookRunner;
@@ -82,6 +86,12 @@ class DeletePage {
 	private $userFactory;
 	/** @var BacklinkCacheFactory */
 	private $backlinkCacheFactory;
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+	/** @var ITextFormatter */
+	private $contLangMsgTextFormatter;
 
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
@@ -99,6 +109,8 @@ class DeletePage {
 	private $logSubtype = 'delete';
 	/** @var bool */
 	private $forceImmediate = false;
+	/** @var WikiPage|null If not null, it means that we have to delete it. */
+	private $associatedTalk;
 
 	/** @var string|array */
 	private $legacyHookErrors = '';
@@ -107,12 +119,12 @@ class DeletePage {
 
 	/**
 	 * @var array<int|null>|null Keys are the self::PAGE_* constants. Values are null if the deletion couldn't happen
-	 * (e.g. due to lacking perms) or was scheduled.
+	 * (e.g. due to lacking perms) or was scheduled. PAGE_TALK is only set when deleting the associated talk.
 	 */
 	private $successfulDeletionsIDs;
 	/**
 	 * @var array<bool|null>|null Keys are the self::PAGE_* constants. Values are null if the deletion couldn't happen
-	 * (e.g. due to lacking perms).
+	 * (e.g. due to lacking perms). PAGE_TALK is only set when deleting the associated talk.
 	 */
 	private $wasScheduled;
 	/** @var bool Whether a deletion was attempted */
@@ -131,6 +143,8 @@ class DeletePage {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param UserFactory $userFactory
 	 * @param BacklinkCacheFactory $backlinkCacheFactory
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ITextFormatter $contLangMsgTextFormatter
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
 	 */
@@ -147,6 +161,8 @@ class DeletePage {
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
 		BacklinkCacheFactory $backlinkCacheFactory,
+		NamespaceInfo $namespaceInfo,
+		ITextFormatter $contLangMsgTextFormatter,
 		ProperPageIdentity $page,
 		Authority $deleter
 	) {
@@ -161,8 +177,11 @@ class DeletePage {
 		$this->recentDeletesCache = $recentDeletesCache;
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
+		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
@@ -231,6 +250,53 @@ class DeletePage {
 	}
 
 	/**
+	 * Tests whether it's probably possible to delete the associated talk page. This checks the replica,
+	 * so it may not see the latest master change, and is useful e.g. for building the UI.
+	 *
+	 * @return StatusValue
+	 */
+	public function canProbablyDeleteAssociatedTalk(): StatusValue {
+		if ( $this->namespaceInfo->isTalk( $this->page->getNamespace() ) ) {
+			return StatusValue::newFatal( 'delete-error-associated-alreadytalk' );
+		}
+		// FIXME NamespaceInfo should work with PageIdentity
+		$talkPage = $this->wikiPageFactory->newFromLinkTarget(
+			$this->namespaceInfo->getTalkPage( $this->page->getTitle() )
+		);
+		if ( !$talkPage->exists() ) {
+			return StatusValue::newFatal( 'delete-error-associated-doesnotexist' );
+		}
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * If set to true and the page has a talk page, delete that one too. Callers should call
+	 * canProbablyDeleteAssociatedTalk first to make sure this is a valid operation. Note that the checks
+	 * here are laxer than those in canProbablyDeleteAssociatedTalk. In particular, this doesn't check
+	 * whether the page exists as that may be subject to race condition, and it's checked later on (in deleteInternal,
+	 * using latest data) anyway.
+	 *
+	 * @param bool $delete
+	 * @return self For chaining
+	 * @throws BadMethodCallException If $delete is true and the given page is not a talk page.
+	 */
+	public function setDeleteAssociatedTalk( bool $delete ): self {
+		if ( !$delete ) {
+			$this->associatedTalk = null;
+			return $this;
+		}
+
+		if ( $this->namespaceInfo->isTalk( $this->page->getNamespace() ) ) {
+			throw new BadMethodCallException( "Cannot delete associated talk page of a talk page! ($this->page)" );
+		}
+		// FIXME NamespaceInfo should work with PageIdentity
+		$this->associatedTalk = $this->wikiPageFactory->newFromLinkTarget(
+			$this->namespaceInfo->getTalkPage( $this->page->getTitle() )
+		);
+		return $this;
+	}
+
+	/**
 	 * @internal FIXME: Hack used when running the DeletePage unit test to disable some legacy code.
 	 * @codeCoverageIgnore
 	 * @param bool $test
@@ -244,11 +310,18 @@ class DeletePage {
 
 	/**
 	 * Called before attempting a deletion, allows the result getters to be used
+	 * @internal The only external caller allowed is DeletePageJob.
+	 * @return self
 	 */
-	private function setDeletionAttempted(): void {
+	public function setDeletionAttempted(): self {
 		$this->attemptedDeletion = true;
 		$this->successfulDeletionsIDs = [ self::PAGE_BASE => null ];
 		$this->wasScheduled = [ self::PAGE_BASE => null ];
+		if ( $this->associatedTalk ) {
+			$this->successfulDeletionsIDs[self::PAGE_TALK] = null;
+			$this->wasScheduled[self::PAGE_TALK] = null;
+		}
+		return $this;
 	}
 
 	/**
@@ -313,11 +386,14 @@ class DeletePage {
 	private function authorizeDeletion(): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
 		$this->deleter->authorizeWrite( 'delete', $this->page, $status );
-		if (
-			!$this->deleter->authorizeWrite( 'bigdelete', $this->page ) &&
-			$this->isBigDeletion()
-		) {
-			$status->fatal( 'delete-toobig', Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) ) );
+		if ( $this->associatedTalk ) {
+			$this->deleter->authorizeWrite( 'delete', $this->associatedTalk, $status );
+		}
+		if ( !$this->deleter->isAllowed( 'bigdelete' ) && $this->isBigDeletion() ) {
+			$status->fatal(
+				'delete-toomanyrevisions',
+				Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) )
+			);
 		}
 		if ( $this->tags ) {
 			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $this->tags, $this->deleter ) );
@@ -334,10 +410,11 @@ class DeletePage {
 			return false;
 		}
 
-		$revCount = $this->revisionStore->countRevisionsByPageId(
-			$this->loadBalancer->getConnectionRef( DB_REPLICA ),
-			$this->page->getId()
-		);
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
+		if ( $this->associatedTalk ) {
+			$revCount += $this->revisionStore->countRevisionsByPageId( $dbr, $this->associatedTalk->getId() );
+		}
 
 		return $revCount > $revLimit;
 	}
@@ -355,13 +432,20 @@ class DeletePage {
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
 	public function isBatchedDelete( int $safetyMargin = 0 ): bool {
-		$revCount = $this->revisionStore->countRevisionsByPageId(
-			$this->loadBalancer->getConnectionRef( DB_REPLICA ),
-			$this->page->getId()
-		);
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
 		$revCount += $safetyMargin;
 
-		return $revCount >= $this->options->get( 'DeleteRevisionsBatchSize' );
+		if ( $revCount >= $this->options->get( 'DeleteRevisionsBatchSize' ) ) {
+			return true;
+		} elseif ( !$this->associatedTalk ) {
+			return false;
+		}
+
+		$talkRevCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->associatedTalk->getId() );
+		$talkRevCount += $safetyMargin;
+
+		return $talkRevCount >= $this->options->get( 'DeleteRevisionsBatchSize' );
 	}
 
 	/**
@@ -371,16 +455,47 @@ class DeletePage {
 	 * @param string $reason Delete reason for deletion log
 	 * @return Status Status object:
 	 *   - If successful (or scheduled), a good Status
-	 *   - If the page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
+	 *   - If a page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
 	 *   - A fatal Status otherwise.
 	 */
 	public function deleteUnsafe( string $reason ): Status {
 		$this->setDeletionAttempted();
+		$origReason = $reason;
+		$hookStatus = $this->runPreDeleteHooks( $this->page, $reason );
+		if ( !$hookStatus->isGood() ) {
+			return $hookStatus;
+		}
+		if ( $this->associatedTalk ) {
+			$talkReason = $this->contLangMsgTextFormatter->format(
+				MessageValue::new( 'delete-talk-summary-prefix' )->params( $origReason )
+			);
+			$talkHookStatus = $this->runPreDeleteHooks( $this->associatedTalk, $talkReason );
+			if ( !$talkHookStatus->isGood() ) {
+				return $talkHookStatus;
+			}
+		}
+
+		$status = $this->deleteInternal( $this->page, self::PAGE_BASE, $reason );
+		if ( !$this->associatedTalk || !$status->isGood() ) {
+			return $status;
+		}
+		// NOTE: If the page deletion above failed because the page is no longer there (e.g. race condition) we'll
+		// still try to delete the talk page, since it was the user's intention anyway.
+		$status->merge( $this->deleteInternal( $this->associatedTalk, self::PAGE_TALK, $talkReason ) );
+		return $status;
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @param string &$reason
+	 * @return Status
+	 */
+	private function runPreDeleteHooks( WikiPage $page, string &$reason ): Status {
 		$status = Status::newGood();
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
 		if ( !$this->hookRunner->onArticleDelete(
-			$this->page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
+			$page, $legacyDeleter, $reason, $this->legacyHookErrors, $status, $this->suppress )
 		) {
 			if ( $this->mergeLegacyHookErrors && $this->legacyHookErrors !== '' ) {
 				if ( is_string( $this->legacyHookErrors ) ) {
@@ -399,13 +514,12 @@ class DeletePage {
 
 		// Use a new Status in case a hook handler put something here without aborting.
 		$status = Status::newGood();
-		$hookRes = $this->hookRunner->onPageDelete( $this->page, $this->deleter, $reason, $status, $this->suppress );
+		$hookRes = $this->hookRunner->onPageDelete( $page, $this->deleter, $reason, $status, $this->suppress );
 		if ( !$hookRes && !$status->isGood() ) {
 			// Note: as per the PageDeleteHook documentation, `return false` is ignored if $status is good.
 			return $status;
 		}
-
-		return $this->deleteInternal( self::PAGE_BASE, $reason );
+		return Status::newGood();
 	}
 
 	/**
@@ -416,33 +530,32 @@ class DeletePage {
 	 * Deletions can often be completed inline without involving the job queue.
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
+	 * @param WikiPage $page
 	 * @param string $pageRole
 	 * @param string $reason
 	 * @param string|null $webRequestId
 	 * @return Status
 	 */
 	public function deleteInternal(
+		WikiPage $page,
 		string $pageRole,
 		string $reason,
 		?string $webRequestId = null
 	): Status {
-		// The following is necessary for direct calls from the outside
-		$this->setDeletionAttempted();
-
-		$title = $this->page->getTitle();
+		$title = $page->getTitle();
 		$status = Status::newGood();
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
-		$this->page->loadPageData( WikiPage::READ_LATEST );
-		$id = $this->page->getId();
+		$page->loadPageData( WikiPage::READ_LATEST );
+		$id = $page->getId();
 		// T98706: lock the page from various other updates but avoid using
 		// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
 		// the revisions queries (which also JOIN on user). Only lock the page
 		// row and CAS check on page_latest to see if the trx snapshot matches.
-		$lockedLatest = $this->page->lockAndGetLatest();
-		if ( $id === 0 || $this->page->getLatest() !== $lockedLatest ) {
+		$lockedLatest = $page->lockAndGetLatest();
+		if ( $id === 0 || $page->getLatest() !== $lockedLatest ) {
 			$dbw->endAtomic( __METHOD__ );
 			// Page not there or trx snapshot is stale
 			$status->error( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) );
@@ -455,12 +568,12 @@ class DeletePage {
 		// unless they actually try to catch exceptions (which is rare).
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
-		$revisionRecord = $this->page->getRevisionRecord();
+		$revisionRecord = $page->getRevisionRecord();
 		if ( !$revisionRecord ) {
-			throw new LogicException( "No revisions for $this->page?" );
+			throw new LogicException( "No revisions for $page?" );
 		}
 		try {
-			$content = $this->page->getContent( RevisionRecord::RAW );
+			$content = $page->getContent( RevisionRecord::RAW );
 		} catch ( Exception $ex ) {
 			wfLogWarning( __METHOD__ . ': failed to load content during deletion! '
 				. $ex->getMessage() );
@@ -472,7 +585,7 @@ class DeletePage {
 		// one batch of revisions and defer archival of any others to the job queue.
 		$explictTrxLogged = false;
 		while ( true ) {
-			$done = $this->archiveRevisions( $id );
+			$done = $this->archiveRevisions( $page, $id );
 			if ( $done || !$this->forceImmediate ) {
 				break;
 			}
@@ -538,7 +651,7 @@ class DeletePage {
 		// Clone the title and wikiPage, so we have the information we need when
 		// we log and run the ArticleDeleteComplete hook.
 		$logTitle = clone $title;
-		$wikiPageBeforeDelete = clone $this->page;
+		$wikiPageBeforeDelete = clone $page;
 
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
@@ -568,7 +681,7 @@ class DeletePage {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$this->doDeleteUpdates( $revisionRecord );
+		$this->doDeleteUpdates( $page, $revisionRecord );
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
 		$this->hookRunner->onArticleDeleteComplete(
@@ -601,13 +714,14 @@ class DeletePage {
 	/**
 	 * Archives revisions as part of page deletion.
 	 *
+	 * @param WikiPage $page
 	 * @param int $id
 	 * @return bool
 	 */
-	private function archiveRevisions( int $id ): bool {
+	private function archiveRevisions( WikiPage $page, int $id ): bool {
 		// Given the lock above, we can be confident in the title and page ID values
-		$namespace = $this->page->getTitle()->getNamespace();
-		$dbKey = $this->page->getTitle()->getDBkey();
+		$namespace = $page->getTitle()->getNamespace();
+		$dbKey = $page->getTitle()->getDBkey();
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
@@ -716,13 +830,14 @@ class DeletePage {
 	 * @private Public for BC only
 	 * Do some database updates after deletion
 	 *
+	 * @param WikiPage $page
 	 * @param RevisionRecord $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
-	 *   $this->page->getRevisionRecord() may already return null when the page proper was deleted.
+	 *   $page->getRevisionRecord() may already return null when the page proper was deleted.
 	 */
-	public function doDeleteUpdates( RevisionRecord $revRecord ): void {
+	public function doDeleteUpdates( WikiPage $page, RevisionRecord $revRecord ): void {
 		try {
-			$countable = $this->page->isCountable();
+			$countable = $page->isCountable();
 		} catch ( Exception $ex ) {
 			// fallback for deleting broken pages for which we cannot load the content for
 			// some reason. Note that doDeleteArticleReal() already logged this problem.
@@ -737,7 +852,7 @@ class DeletePage {
 			) );
 
 			// Delete pagelinks, update secondary indexes, etc
-			$updates = $this->getDeletionUpdates( $revRecord );
+			$updates = $this->getDeletionUpdates( $page, $revRecord );
 			foreach ( $updates as $update ) {
 				DeferredUpdates::addUpdate( $update );
 			}
@@ -745,43 +860,43 @@ class DeletePage {
 
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable(
-			$this->page->getTitle(),
+			$page->getTitle(),
 			'templatelinks',
 			'delete-page',
 			$this->deleter->getUser()->getName(),
-			$this->backlinkCacheFactory->getBacklinkCache( $this->page->getTitle() )
+			$this->backlinkCacheFactory->getBacklinkCache( $page->getTitle() )
 		);
 		// Reparse any pages including this image
-		if ( $this->page->getTitle()->getNamespace() === NS_FILE ) {
+		if ( $page->getTitle()->getNamespace() === NS_FILE ) {
 			LinksUpdate::queueRecursiveJobsForTable(
-				$this->page->getTitle(),
+				$page->getTitle(),
 				'imagelinks',
 				'delete-page',
 				$this->deleter->getUser()->getName(),
-				$this->backlinkCacheFactory->getBacklinkCache( $this->page->getTitle() )
+				$this->backlinkCacheFactory->getBacklinkCache( $page->getTitle() )
 			);
 		}
 
 		if ( !$this->isDeletePageUnitTest ) {
 			// TODO Remove conditional once WikiPage::onArticleDelete is moved to a proper service
 			// Clear caches
-			WikiPage::onArticleDelete( $this->page->getTitle() );
+			WikiPage::onArticleDelete( $page->getTitle() );
 		}
 
 		ResourceLoaderWikiModule::invalidateModuleCache(
-			$this->page->getTitle(),
+			$page->getTitle(),
 			$revRecord,
 			null,
 			$this->localWikiID
 		);
 
 		// Reset the page object and the Title object
-		$this->page->loadFromRow( false, WikiPage::READ_LATEST );
+		$page->loadFromRow( false, WikiPage::READ_LATEST );
 
 		if ( !$this->isDeletePageUnitTest ) {
 			// TODO Remove conditional once DeferredUpdates is servicified (T265749)
 			// Search engine
-			DeferredUpdates::addUpdate( new SearchUpdate( $this->page->getId(), $this->page->getTitle() ) );
+			DeferredUpdates::addUpdate( new SearchUpdate( $page->getId(), $page->getTitle() ) );
 		}
 	}
 
@@ -791,15 +906,16 @@ class DeletePage {
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
 	 *
+	 * @param WikiPage $page
 	 * @param RevisionRecord $rev The revision being deleted.
 	 * @return DeferrableUpdate[]
 	 */
-	public function getDeletionUpdates( RevisionRecord $rev ): array {
+	public function getDeletionUpdates( WikiPage $page, RevisionRecord $rev ): array {
 		$slotContent = array_map( static function ( SlotRecord $slot ) {
 			return $slot->getContent();
 		}, $rev->getSlots()->getSlots() );
 
-		$allUpdates = [ new LinksDeletionUpdate( $this->page ) ];
+		$allUpdates = [ new LinksDeletionUpdate( $page ) ];
 
 		// NOTE: once Content::getDeletionUpdates() is removed, we only need the content
 		// model here, not the content object!
@@ -810,7 +926,7 @@ class DeletePage {
 			$handler = $content->getContentHandler();
 
 			$updates = $handler->getDeletionUpdates(
-				$this->page->getTitle(),
+				$page->getTitle(),
 				$role
 			);
 
@@ -818,10 +934,10 @@ class DeletePage {
 		}
 
 		$this->hookRunner->onPageDeletionDataUpdates(
-			$this->page->getTitle(), $rev, $allUpdates );
+			$page->getTitle(), $rev, $allUpdates );
 
 		// TODO: hard deprecate old hook in 1.33
-		$this->hookRunner->onWikiPageDeletionUpdates( $this->page, $content, $allUpdates );
+		$this->hookRunner->onWikiPageDeletionUpdates( $page, $content, $allUpdates );
 		return $allUpdates;
 	}
 }

@@ -5,11 +5,14 @@ namespace MediaWiki\Tests\Unit\Page;
 use BadMethodCallException;
 use BagOStuff;
 use CommentStore;
+use Generator;
 use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -21,7 +24,9 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -65,12 +70,16 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 	private function getDeletePage(
 		ProperPageIdentity $page,
-		Authority $deleter,
+		Authority $deleter = null,
 		ServiceOptions $options = null,
-		RevisionStore $revStore = null
+		RevisionStore $revStore = null,
+		WikiPageFactory $wpFactory = null,
+		NamespaceInfo $nsInfo = null
 	): DeletePage {
-		$wpFactory = $this->createMock( WikiPageFactory::class );
-		$wpFactory->method( 'newFromTitle' )->willReturn( $this->getMockPage() );
+		if ( !$wpFactory ) {
+			$wpFactory = $this->createMock( WikiPageFactory::class );
+			$wpFactory->method( 'newFromTitle' )->willReturn( $this->getMockPage() );
+		}
 
 		// NOTE: The following could be avoided if the relevant methods were return-typehinted
 		$db = $this->createMock( IDatabase::class );
@@ -94,8 +103,10 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			$wpFactory,
 			$this->createMock( UserFactory::class ),
 			$this->createMock( BacklinkCacheFactory::class ),
+			$nsInfo ?? $this->createMock( NamespaceInfo::class ),
+			$this->createMock( ITextFormatter::class ),
 			$page,
-			$deleter
+			$deleter ?? $this->createMock( Authority::class )
 		);
 		$ret->setIsDeletePageUnitTest( true );
 		return $ret;
@@ -132,7 +143,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$cannotDeleteAuthority = $this->mockAnonAuthority(
 			static function (
 				string $permission,
-				?PageIdentity $page,
+				PageIdentity $page = null,
 				PermissionStatus $status = null
 			) use ( $cannotDeleteMsg ): bool {
 				if ( $permission === 'delete' ) {
@@ -146,11 +157,11 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		);
 		yield 'Cannot delete' => [ $cannotDeleteAuthority, false, $cannotDeleteMsg ];
 
-		$cannotBigDeleteMsg = 'delete-toobig';
+		$cannotBigDeleteMsg = 'delete-toomanyrevisions';
 		$cannotBigDeleteAuthority = $this->mockAnonAuthority(
 			static function (
 				string $permission,
-				?PageIdentity $page,
+				PageIdentity $page = null,
 				PermissionStatus $status = null
 			) use ( $cannotBigDeleteMsg ): bool {
 				if ( $permission === 'bigdelete' ) {
@@ -226,5 +237,57 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		);
 		$this->expectException( BadMethodCallException::class );
 		$delPage->deletionsWereScheduled();
+	}
+
+	/**
+	 * @param ProperPageIdentity $page
+	 * @param WikiPageFactory $wpFactory
+	 * @param NamespaceInfo|null $nsInfo
+	 * @param string|null $expectedMsg
+	 * @covers ::canProbablyDeleteAssociatedTalk
+	 * @dataProvider provideAssociatedTalk
+	 */
+	public function testCanProbablyDeleteAssociatedTalk(
+		ProperPageIdentity $page,
+		WikiPageFactory $wpFactory,
+		?NamespaceInfo $nsInfo,
+		?string $expectedMsg
+	): void {
+		$delPage = $this->getDeletePage( $page, null, null, null, $wpFactory, $nsInfo );
+
+		$res = $delPage->canProbablyDeleteAssociatedTalk();
+		if ( $expectedMsg === null ) {
+			$this->assertTrue( $res->isGood() );
+		} else {
+			$this->assertFalse( $res->isOK() );
+			$this->assertTrue( $res->hasMessage( $expectedMsg ) );
+		}
+	}
+
+	public function provideAssociatedTalk(): Generator {
+		$getWpFactory = function ( bool $talkExists ): WikiPageFactory {
+			$wpFactory = $this->createMock( WikiPageFactory::class );
+			$wpFactory->method( 'newFromTitle' )->willReturnCallback( static function ( $t ) {
+				return new WikiPage( $t );
+			} );
+			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
+				function ( LinkTarget $t ) use ( $talkExists ) {
+					$existingTalk = $this->createMock( PageIdentity::class );
+					$existingTalk->expects( $this->atLeastOnce() )->method( 'exists' )->willReturn( $talkExists );
+					return $existingTalk;
+				}
+			);
+			return $wpFactory;
+		};
+		$nsInfo = new NamespaceInfo( $this->createMock( ServiceOptions::class ), $this->createHookContainer() );
+
+		$talkPage = new PageIdentityValue( 42, NS_TALK, 'Test talk page', PageIdentity::LOCAL );
+		yield 'Talk page' => [ $talkPage, $getWpFactory( false ), $nsInfo, 'delete-error-associated-alreadytalk' ];
+
+		$nonTalkPage = new PageIdentityValue( 44, NS_MAIN, 'Test article', PageIdentity::LOCAL );
+		yield 'Article without talk page' =>
+		[ $nonTalkPage, $getWpFactory( false ), $nsInfo, 'delete-error-associated-doesnotexist' ];
+
+		yield 'Article with talk page' => [ $nonTalkPage, $getWpFactory( true ), $nsInfo, null ];
 	}
 }

@@ -2758,7 +2758,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			->setTags( $tags )
 			->setLogSubtype( $logsubtype )
 			->forceImmediate( $immediate )
-			->deleteInternal( DeletePage::PAGE_BASE, $reason, $webRequestId );
+			->deleteInternal( $this, DeletePage::PAGE_BASE, $reason, $webRequestId );
 		if ( $status->isGood() ) {
 			// BC with old return format
 			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
@@ -2827,7 +2827,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$services->getUserFactory()->newFromUserIdentity( $user )
 		);
 
-		$deletePage->doDeleteUpdates( $revRecord );
+		$deletePage->doDeleteUpdates( $this, $revRecord );
 	}
 
 	/**
@@ -3271,7 +3271,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		} else {
 			$newRev = $rev;
 		}
-		return $deletePage->getDeletionUpdates( $newRev );
+		return $deletePage->getDeletionUpdates( $this, $newRev );
 	}
 
 	/**
