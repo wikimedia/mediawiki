@@ -284,7 +284,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		// Similar to MovePage logic
 		wfGetDB( DB_PRIMARY )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$this->getDeletePage( $page, $user )->doDeleteUpdates( $page->getRevisionRecord() );
+		$this->getDeletePage( $page, $user )->doDeleteUpdates( $page, $page->getRevisionRecord() );
 		$this->assertPageLinksUpdate( $id, true );
 	}
+
 }

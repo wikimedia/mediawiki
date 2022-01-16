@@ -42,12 +42,13 @@ class FileDeleteForm {
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param UserIdentity $user
 	 * @param string[] $tags Tags to apply to the deletion action
-	 * @throws MWException
+	 * @param bool $deleteTalk
 	 * @return Status The value can be an integer with the log ID of the deletion, or false in case of
 	 *   scheduled deletion.
+	 * @throws MWException
 	 */
 	public static function doDelete( Title $title, LocalFile $file, ?string $oldimage, $reason,
-		$suppress, UserIdentity $user, $tags = []
+		$suppress, UserIdentity $user, $tags = [], bool $deleteTalk = false
 	): Status {
 		if ( $oldimage ) {
 			$page = null;
@@ -81,6 +82,13 @@ class FileDeleteForm {
 			'@phan-var WikiFilePage $page';
 			$deleter = $services->getUserFactory()->newFromUserIdentity( $user );
 			$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $deleter );
+			if ( $deleteTalk ) {
+				$checkStatus = $deletePage->canProbablyDeleteAssociatedTalk();
+				if ( !$checkStatus->isGood() ) {
+					return Status::wrap( $checkStatus );
+				}
+				$deletePage->setDeleteAssociatedTalk( true );
+			}
 			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first

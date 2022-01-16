@@ -180,7 +180,7 @@ trait MockAuthorityTrait {
 	 * Create mock Authority for $user where permissions are determined by $callback.
 	 *
 	 * @param UserIdentity $user
-	 * @param callable $permissionCallback ( string $permission, ?PageIdentity $page )
+	 * @param callable $permissionCallback ( string $permission, PageIdentity $page = null )
 	 * @param Block|null $block
 	 *
 	 * @return Authority
