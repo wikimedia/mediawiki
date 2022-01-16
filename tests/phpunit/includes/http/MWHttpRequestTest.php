@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
 	public function testFactory() {
-		$this->assertInstanceOf( 'MWHttpRequest', MWHttpRequest::factory( 'http://example.test' ) );
+		$this->assertInstanceOf( MWHttpRequest::class, MWHttpRequest::factory( 'http://example.test' ) );
 	}
 
 	/**

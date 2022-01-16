@@ -92,7 +92,7 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testCreate() {
 		$factory = $this->newFactory();
-		$this->assertInstanceOf( 'MWHttpRequest', $factory->create( 'http://example.test' ) );
+		$this->assertInstanceOf( MWHttpRequest::class, $factory->create( 'http://example.test' ) );
 	}
 
 	public function testGetUserAgent() {
