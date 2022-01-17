@@ -99,7 +99,7 @@
 	"tog-enotifrevealaddr": "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 	"tog-shownumberswatching": "Mostra el nombre d'usuaris que hi vigilen",
 	"tog-oldsig": "La vostra signatura actual:",
-	"tog-fancysig": "Tractar la signatura com a text wiki (sense enllaç automàtic)",
+	"tog-fancysig": "Tracta la signatura com a text wiki (sense enllaç automàtic a la pàgina d'usuari)",
 	"tog-uselivepreview": "Mostra previsualitzacions sense recarregar la pàgina",
 	"tog-forceeditsummary": "Avisa'm quan deixi en blanc el resum de la modificació  (o el resum per defecte)",
 	"tog-watchlisthideown": "Amaga les meues edicions de la llista de seguiment",
