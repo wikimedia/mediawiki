@@ -123,7 +123,8 @@
 			"Tmv",
 			"UsagiNeko",
 			"Waki285",
-			"カッパ鳥"
+			"カッパ鳥",
+			"ひまり"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2339,7 +2340,7 @@
 	"restricted-displaytitle-ignored-desc": "実際のページ名と等価でないために <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> が無視されているページ。",
 	"noindex-category-desc": "このページは <code><nowiki>__NOINDEX__</nowiki></code> というマジックワードを含んでおり、その印が有効になっている名前空間にあるため、ロボットによる収集の対象になりません。",
 	"index-category-desc": "このページは <code><nowiki>__INDEX__</nowiki></code> というマジックワードを含んでおり、その印が有効になっている名前空間にあるため、通常と異なり、ロボットによる収集の対象になります。",
-	"post-expand-template-inclusion-category-desc": "テンプレートを展開したあとのページ サイズが <code>$wgMaxArticleSize</code> よりも大きいため、一部のテンプレートが展開されなかった",
+	"post-expand-template-inclusion-category-desc": "テンプレートを展開したあとのページ サイズが <code>$wgMaxArticleSize</code> よりも大きいため、一部のテンプレートが展開されなかったページ。",
 	"post-expand-template-argument-category-desc": "テンプレート引数 (<code>{{{Foo}}}</code> のような三重中括弧部分) を展開したあとのページが <code>$wgMaxArticleSize</code> よりも大きい",
 	"expensive-parserfunction-category-desc": "高負荷なパーサー関数 (<code>#ifexist</code> など) の呼び出し回数が多過ぎるページ。[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] を参照してください。",
 	"broken-file-category-desc": "リンク切れしたファイルを含むページ (ファイルを埋め込むリンクがあり、そのファイルが存在しない)。",
