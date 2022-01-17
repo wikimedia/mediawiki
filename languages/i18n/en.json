@@ -2193,7 +2193,7 @@
 	"apisandbox": "API sandbox",
 	"apisandbox-summary": "",
 	"apisandbox-jsonly": "JavaScript is required to use the API sandbox.",
-	"apisandbox-intro": "Use this page to experiment with the <strong>MediaWiki web service API</strong>.\nRefer to [[mw:Special:MyLanguage/API:Main page|the API documentation]] for further details of API usage. Example: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query search for page titles matching a certain keyword]. Select an action to see more examples.\n\nNote that, although this is a sandbox, actions you carry out on this page may modify the wiki.",
+	"apisandbox-intro": "Use this page to experiment with the <strong>MediaWiki web service API</strong>.\nRefer to [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation] for further details of API usage. Example: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query search for page titles matching a certain keyword]. Select an action to see more examples.\n\nNote that, although this is a sandbox, actions you carry out on this page may modify the wiki.",
 	"apisandbox-submit": "Make request",
 	"apisandbox-reset": "Clear",
 	"apisandbox-retry": "Retry",
