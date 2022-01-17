@@ -1483,7 +1483,6 @@ class OutputPage extends ContextSource {
 	 * page
 	 *
 	 * @return string[][]
-	 * @return-taint none
 	 */
 	public function getCategoryLinks() {
 		return $this->mCategoryLinks;
