@@ -130,7 +130,7 @@ class PageCommandFactory implements
 	private $commentStore;
 
 	/** @var BagOStuff */
-	private $dbReplicatedCache;
+	private $mainStash;
 
 	/** @var string */
 	private $localWikiID;
@@ -171,7 +171,7 @@ class PageCommandFactory implements
 		CollationFactory $collationFactory,
 		JobQueueGroup $jobQueueGroup,
 		CommentStore $commentStore,
-		BagOStuff $dbReplicatedCache,
+		BagOStuff $mainStash,
 		string $localWikiID,
 		string $webRequestID,
 		BacklinkCacheFactory $backlinkCacheFactory,
@@ -199,7 +199,7 @@ class PageCommandFactory implements
 		$this->collationFactory = $collationFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->commentStore = $commentStore;
-		$this->dbReplicatedCache = $dbReplicatedCache;
+		$this->mainStash = $mainStash;
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
@@ -241,7 +241,7 @@ class PageCommandFactory implements
 			$this->jobQueueGroup,
 			$this->commentStore,
 			new ServiceOptions( DeletePage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->dbReplicatedCache,
+			$this->mainStash,
 			$this->localWikiID,
 			$this->webRequestID,
 			$this->wikiPageFactory,
