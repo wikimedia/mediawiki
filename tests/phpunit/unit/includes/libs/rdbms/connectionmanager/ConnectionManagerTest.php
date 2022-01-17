@@ -140,6 +140,21 @@ class ConnectionManagerTest extends TestCase {
 		$this->assertSame( $database, $actual );
 	}
 
+	public function testGetLazyWriteConnectionRef() {
+		$database = $this->createMock( DBConnRef::class );
+		$lb = $this->getLoadBalancerMock();
+
+		$lb->expects( $this->once() )
+			->method( 'getLazyConnectionRef' )
+			->with( DB_PRIMARY, [ 'group1' ], 'someDbName' )
+			->willReturn( $database );
+
+		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
+		$actual = $manager->getLazyWriteConnectionRef();
+
+		$this->assertSame( $database, $actual );
+	}
+
 	public function testGetLazyReadConnectionRef_nullGroups() {
 		$database = $this->createMock( DBConnRef::class );
 		$lb = $this->getLoadBalancerMock();
