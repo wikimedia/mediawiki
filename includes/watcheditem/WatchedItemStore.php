@@ -1430,7 +1430,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$item = null;
 		if ( $force != 'force' ) {
-			$item = $this->loadWatchedItem( $user, $title );
+			$item = $this->getWatchedItem( $user, $title );
 			if ( !$item || $item->getNotificationTimestamp() === null ) {
 				return false;
 			}
