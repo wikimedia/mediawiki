@@ -1376,7 +1376,7 @@ class Article implements Page {
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
-		$dbCache = ObjectCache::getInstance( 'db-replicated' );
+		$dbCache = MediaWikiServices::getInstance()->getMainObjectStash();
 		$key = $dbCache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$isRegistered = $contextUser->isRegistered();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
