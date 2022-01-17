@@ -170,6 +170,17 @@ class ConnectionManager {
 	}
 
 	/**
+	 * Returns a lazy-connecting database connection ref for updating.
+	 *
+	 * @since 1.38
+	 *
+	 * @return DBConnRef
+	 */
+	public function getLazyWriteConnectionRef(): DBConnRef {
+		return $this->getLazyConnectionRef( DB_PRIMARY );
+	}
+
+	/**
 	 * Returns a lazy-connecting database connection ref for reading.
 	 *
 	 * @since 1.37
