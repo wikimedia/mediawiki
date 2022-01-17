@@ -406,6 +406,9 @@ class Names {
 		'sdc' => 'Sassaresu', # Sassarese
 		'sdh' => 'کوردی خوارگ', # Southern Kurdish
 		'se' => 'davvisámegiella', # Northern Sami
+		'se-fi' => 'davvisámegiella (Suoma bealde)', # Northern Sami (Finland)
+		'se-no' => 'davvisámegiella (Norgga bealde)', # Northern Sami (Norway)
+		'se-se' => 'davvisámegiella (Ruoŧa bealde)', # Northern Sami (Sweden)
 		'sei' => 'Cmique Itom', # Seri
 		'ses' => 'Koyraboro Senni', # Koyraboro Senni
 		'sg' => 'Sängö', # Sango/Sangho
