@@ -188,7 +188,8 @@
 			"Paraboule",
 			"Scratcheur-2020Send",
 			"Scriptance",
-			"Seudo"
+			"Seudo",
+			"Jules*"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -381,7 +382,7 @@
 	"toolbox": "Outils",
 	"tool-link-userrights": "Modifier les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
 	"tool-link-userrights-readonly": "Voir les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
-	"tool-link-emailuser": "Envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice| }}$1",
+	"tool-link-emailuser": "Envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice|$1}}",
 	"imagepage": "Voir la page du fichier",
 	"mediawikipage": "Voir la page du message",
 	"templatepage": "Voir la page du modèle",
@@ -2685,7 +2686,7 @@
 	"tooltip-namespace_association": "Cochez cette case pour inclure également l’espace de noms de discussion ou du sujet, associé à l’espace de noms sélectionné",
 	"blanknamespace": "(Principal)",
 	"contributions": "Contributions de l’utilisat{{GENDER:$1|eur|rice}}",
-	"contributions-title": "Contributions de {{GENDER:$1|l’utilisateur |l’utilisatrice |}}$1",
+	"contributions-title": "Contributions de $1",
 	"mycontris": "Contributions",
 	"anoncontribs": "Contributions",
 	"contribsub2": "Pour {{GENDER:$3|}}$1 ($2)",

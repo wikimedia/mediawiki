@@ -19,7 +19,8 @@
 			"Zinneke",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Talex42"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -291,6 +292,7 @@
 	"red-link-title": "$1 (Säit gëtt et net)",
 	"sort-descending": "Vu grouss op kleng zortéieren",
 	"sort-ascending": "Vu kleng op grouss zortéieren",
+	"sort-initial": "Ursprénglech Sortéierung",
 	"nstab-main": "Säit",
 	"nstab-user": "Benotzersäit",
 	"nstab-media": "Media Säit",
@@ -313,6 +315,7 @@
 	"databaseerror-query": "Ufro: $1",
 	"databaseerror-function": "Funktioun: $1",
 	"databaseerror-error": "Feeler: $1",
+	"transaction-duration-limit-exceeded": "Fir eng héich Verzögerung bei der Datereplikatioun zu evitéieren, ass dës Transaktioun ofgebrach ginn, well d'Schreiwdauer ($1) d'Limitt vu $2 Sekonnen iwwerschratt huet. Wann Dir vill Objete op eemol ännert, probéiert dat an e puer méi klenge Operatioune ze maachen.",
 	"laggedreplicamode": "<strong>Opgepasst:</strong> Dës Säit ass net onbedéngt um neiste Stand.",
 	"readonly": "D'Datebank ass gespaart",
 	"enterlockreason": "Gitt wgl. e Grond u firwat d'Datebank gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",

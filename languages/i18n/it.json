@@ -2670,7 +2670,7 @@
 	"whatlinkshere-hidelinks": "$1 collegamenti",
 	"whatlinkshere-hideimages": "$1 collegamenti da file",
 	"whatlinkshere-filters": "Filtri",
-	"whatlinkshere-sectionredir": "ridirezione alla sezione \"$1\"",
+	"whatlinkshere-sectionredir": "redirect alla sezione \"$1\"",
 	"whatlinkshere-submit": "Vai",
 	"autoblockid": "Autoblocco #$1",
 	"block": "Blocca utente",

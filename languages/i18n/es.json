@@ -951,7 +951,7 @@
 	"edit-gone-missing": "No se ha podido actualizar la página.\nParece haber sido borrada.",
 	"edit-conflict": "Conflicto de edición.",
 	"edit-no-change": "Se ignoró tu edición porque no se hizo ningún cambio en el texto.",
-	"edit-slots-cannot-add": "{{PLURAL:$1|La siguiente ranura no es soportada|Las siguientes ranuras no son soportadas}} aquí: $2.",
+	"edit-slots-cannot-add": "{{PLURAL:$1|El siguiente espacio|Los siguientes espacios}} no son compatibles: $2.",
 	"edit-slots-cannot-remove": "Se {{PLURAL:$1|requiere el siguiente espacio y no puede ser eliminado|requieren los siguientes espacios y no pueden ser eliminados}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Falta el siguiente espacio|Faltan los siguientes espacios}}: $2",
 	"postedit-confirmation-created": "Se ha creado la página.",
