@@ -383,7 +383,8 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $prevented, 'create() should fail' );
 
 		try {
-			$httpRequestFactory->createGuzzleClient();
+			$client = $httpRequestFactory->createGuzzleClient();
+			$client->get( 'http://0.0.0.0/' );
 			$prevented = false;
 		} catch ( AssertionFailedError $e ) {
 			// pass
