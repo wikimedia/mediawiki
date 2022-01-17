@@ -2124,8 +2124,6 @@ abstract class Skin extends ContextSource {
 	 * link from.
 	 * @param array $item Contains some of a specific set of keys.
 	 *
-	 * If "html" key is present, this will be returned. All other keys will be ignored.
-	 *
 	 * The text of the link will be generated either from the contents of the
 	 * "text" key in the $item array, if a "msg" key is present a message by
 	 * that name will be used, and if neither of those are set the $key will be
@@ -2178,10 +2176,6 @@ abstract class Skin extends ContextSource {
 	 */
 	final public function makeLink( $key, $item, $linkOptions = [] ) {
 		$options = $linkOptions + $this->defaultLinkOptions;
-		$html = $item['html'] ?? null;
-		if ( $html ) {
-			return $html;
-		}
 		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
 
 		$html = htmlspecialchars( $text );
@@ -2269,7 +2263,7 @@ abstract class Skin extends ContextSource {
 	 * if "active" contains a value of true a "active" class will also be appended to class.
 	 * The "class" key currently accepts both a string and an array of classes, but this will be
 	 * changed to only accept an array in the future.
-	 * @phan-param array{id?:string,html?:string,class?:string|string[],itemtitle?:string,active?:bool} $item
+	 * @phan-param array{id?:string,class?:string|string[],itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
 	 * @phan-param array{tag?:string} $options

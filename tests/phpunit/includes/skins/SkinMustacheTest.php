@@ -26,8 +26,6 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( OutputPage::class );
 		$mock->method( 'getHTML' )
 			->willReturn( $html );
-		$mock->method( 'getCategoryLinks' )
-			->willReturn( [] );
 		$mock->method( 'getIndicators' )
 			->willReturn( [
 				'id' => '<a>indicator</a>'
