@@ -164,6 +164,7 @@ class Names {
 		'fiu-vro' => 'võro', # Võro (deprecated code, 'vro' in ISO 639-3 since 2009-01-16)
 		'fj' => 'Na Vosa Vakaviti', # Fijian
 		'fo' => 'føroyskt', # Faroese
+		'fon' => 'fɔ̀ngbè', # Fon
 		'fr' => 'français', # French
 		'frc' => 'français cadien', # Cajun French
 		'frp' => 'arpetan', # Franco-Provençal/Arpitan
