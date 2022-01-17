@@ -176,12 +176,7 @@ abstract class HTMLFormField {
 			switch ( $op ) {
 				case 'AND':
 					foreach ( $params as $i => $p ) {
-						if ( !is_array( $p ) ) {
-							throw new MWException(
-								"Expected array, found " . gettype( $p ) . " at index $i"
-							);
-						}
-						if ( !$this->checkStateRecurse( $alldata, $p ) ) {
+						if ( !$this->checkValue( $p, $i, $alldata ) ) {
 							return false;
 						}
 					}
@@ -189,12 +184,7 @@ abstract class HTMLFormField {
 
 				case 'OR':
 					foreach ( $params as $i => $p ) {
-						if ( !is_array( $p ) ) {
-							throw new MWException(
-								"Expected array, found " . gettype( $p ) . " at index $i"
-							);
-						}
-						if ( $this->checkStateRecurse( $alldata, $p ) ) {
+						if ( $this->checkValue( $p, $i, $alldata ) ) {
 							return true;
 						}
 					}
@@ -202,12 +192,7 @@ abstract class HTMLFormField {
 
 				case 'NAND':
 					foreach ( $params as $i => $p ) {
-						if ( !is_array( $p ) ) {
-							throw new MWException(
-								"Expected array, found " . gettype( $p ) . " at index $i"
-							);
-						}
-						if ( !$this->checkStateRecurse( $alldata, $p ) ) {
+						if ( !$this->checkValue( $p, $i, $alldata ) ) {
 							return true;
 						}
 					}
@@ -215,12 +200,7 @@ abstract class HTMLFormField {
 
 				case 'NOR':
 					foreach ( $params as $i => $p ) {
-						if ( !is_array( $p ) ) {
-							throw new MWException(
-								"Expected array, found " . gettype( $p ) . " at index $i"
-							);
-						}
-						if ( $this->checkStateRecurse( $alldata, $p ) ) {
+						if ( $this->checkValue( $p, $i, $alldata ) ) {
 							return false;
 						}
 					}
@@ -230,13 +210,7 @@ abstract class HTMLFormField {
 					if ( count( $params ) !== 1 ) {
 						throw new MWException( "NOT takes exactly one parameter" );
 					}
-					$p = $params[0];
-					if ( !is_array( $p ) ) {
-						throw new MWException(
-							"Expected array, found " . gettype( $p ) . " at index 0"
-						);
-					}
-					return !$this->checkStateRecurse( $alldata, $p );
+					return !$this->checkValue( $params[0], 0, $alldata );
 
 				case '===':
 				case '!==':
@@ -265,6 +239,22 @@ abstract class HTMLFormField {
 				0, $ex
 			);
 		}
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param int $index
+	 * @param array $data
+	 * @return bool
+	 * @throws MWException
+	 */
+	private function checkValue( $value, $index, $data ) {
+		if ( !is_array( $value ) ) {
+			$type = gettype( $value );
+			throw new MWException( "Expected array, found $type at index $index" );
+		}
+
+		return $this->checkStateRecurse( $data, $value );
 	}
 
 	/**
