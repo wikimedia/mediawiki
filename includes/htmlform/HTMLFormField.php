@@ -115,6 +115,8 @@ abstract class HTMLFormField {
 	 * of $this, then a sibling of $this's parent, and so on. Keeping in mind
 	 * that $name itself might be referencing an array.
 	 *
+	 * @todo Refactor to make everything based on $this->mParent (if posible?)
+	 *
 	 * @param array $alldata
 	 * @param string $name
 	 * @return string
@@ -153,9 +155,18 @@ abstract class HTMLFormField {
 				}
 				$data = $data[$key];
 			}
-			$testValue = (string)$data;
+			$testValue = $data;
 			break;
 		}
+		// The logic above is complicated, make sure there is nothing wrong here.
+		if ( $this->mParent->hasField( $key ) ) {
+			// Check invert state for HTMLCheckField
+			$field = $this->mParent->getField( $key );
+			if ( $field instanceof HTMLCheckField && ( $field->mParams['invert'] ?? false ) ) {
+				$testValue = !$testValue;
+			}
+		}
+		$testValue = (string)$testValue;
 
 		return $testValue;
 	}
