@@ -29,6 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class for managing the deferral of updates within the scope of a PHP script invocation
@@ -82,6 +83,11 @@ use Wikimedia\Rdbms\LoadBalancer;
 class DeferredUpdates {
 	/** @var DeferredUpdatesScopeStack|null Queue states based on recursion level */
 	private static $scopeStack;
+
+	/**
+	 * @var int Nesting level for preventOpportunisticUpdates()
+	 */
+	private static $preventOpportunisticUpdates = 0;
 
 	/** @var int Process all updates; in web requests, use only after flushing output buffer */
 	public const ALL = 0;
@@ -281,7 +287,10 @@ class DeferredUpdates {
 	 */
 	public static function tryOpportunisticExecute( $mode = 'run' ) {
 		// Leave execution up to the current loop if an update is already in progress
-		if ( self::getRecursiveExecutionStackDepth() ) {
+		// or if updates are explicitly disabled
+		if ( self::getRecursiveExecutionStackDepth()
+			|| self::$preventOpportunisticUpdates
+		) {
 			return false;
 		}
 
@@ -308,6 +317,19 @@ class DeferredUpdates {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Prevent opportunistic updates until the returned ScopedCallback is
+	 * consumed.
+	 *
+	 * @return ScopedCallback
+	 */
+	public static function preventOpportunisticUpdates() {
+		self::$preventOpportunisticUpdates++;
+		return new ScopedCallback( static function () {
+			self::$preventOpportunisticUpdates--;
+		} );
 	}
 
 	/**

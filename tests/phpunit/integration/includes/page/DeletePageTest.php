@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Page;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
+use DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ProperPageIdentity;
@@ -16,6 +17,7 @@ use MediaWikiIntegrationTestCase;
 use PageArchive;
 use Title;
 use User;
+use Wikimedia\ScopedCallback;
 use WikiPage;
 
 /**
@@ -40,6 +42,11 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		'change_tag',
 		'change_tag_def',
 	];
+
+	private const PAGE_TEXT = "[[Stuart Little]]\n" .
+		"{{Multiple issues}}\n" .
+		"https://www.example.com/\n" .
+		"[[Category:Felis catus]]";
 
 	private function getDeletePage( ProperPageIdentity $page, Authority $deleter ): DeletePage {
 		return MediaWikiServices::getInstance()->getDeletePageFactory()->newDeletePage(
@@ -69,6 +76,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		if ( !$updater->wasSuccessful() ) {
 			$this->fail( $updater->getStatus()->getWikiText() );
 		}
+		DeferredUpdates::doUpdates();
+		$this->assertLinksUpdateSetup( $page->getId() );
 
 		return $page;
 	}
@@ -177,15 +186,62 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function assertLinksUpdateSetup( int $pageID ): void {
+		$this->assertSelect(
+			'pagelinks',
+			[ 'pl_namespace', 'pl_title' ],
+			[ 'pl_from' => $pageID ],
+			[ [ 0, 'Stuart_Little' ], [ NS_TEMPLATE, 'Multiple_issues' ] ]
+		);
+		$this->assertSelect(
+			'templatelinks',
+			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_from' => $pageID ],
+			[ [ NS_TEMPLATE, 'Multiple_issues' ] ]
+		);
+		$this->assertSelect(
+			'categorylinks',
+			'cl_to',
+			[ 'cl_from' => $pageID ],
+			[ [ 'Felis_catus' ] ]
+		);
+		$this->assertSelect(
+			'category',
+			'cat_pages',
+			[ 'cat_title' => 'Felis_catus' ],
+			[ [ 1 ] ]
+		);
+	}
+
 	private function assertPageLinksUpdate( int $pageID, bool $shouldRunJobs ): void {
 		if ( $shouldRunJobs ) {
 			$this->runJobs();
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $pageID ] );
-
-		$this->assertSame( 0, $res->numRows(), 'pagelinks should contain no more links from the page' );
+		$this->assertSelect(
+			'pagelinks',
+			[ 'pl_namespace', 'pl_title' ],
+			[ 'pl_from' => $pageID ],
+			[]
+		);
+		$this->assertSelect(
+			'templatelinks',
+			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_from' => $pageID ],
+			[]
+		);
+		$this->assertSelect(
+			'categorylinks',
+			'cl_to',
+			[ 'cl_from' => $pageID ],
+			[]
+		);
+		$this->assertSelect(
+			'category',
+			'cat_pages',
+			[ 'cat_title' => 'Felis_catus' ],
+			[]
+		);
 	}
 
 	private function assertDeletionTags( int $logId, array $tags ): void {
@@ -206,9 +262,10 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDeleteUnsafe
 	 */
 	public function testDeleteUnsafe( bool $suppress, array $tags, bool $immediate, string $logSubtype ) {
+		$teardownScope = DeferredUpdates::preventOpportunisticUpdates();
 		$deleterUser = static::getTestSysop()->getUser();
 		$deleter = new UltimateAuthority( $deleterUser );
-		$page = $this->createPage( __METHOD__, "[[original text]] foo" );
+		$page = $this->createPage( __METHOD__, self::PAGE_TEXT );
 		$id = $page->getId();
 
 		if ( !$immediate ) {
@@ -229,6 +286,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->deleteUnsafe( $reason );
 
 		$this->assertTrue( $status->isGood(), 'Deletion should succeed' );
+
+		DeferredUpdates::doUpdates();
 
 		if ( $immediate ) {
 			$this->assertFalse( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
@@ -261,6 +320,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertDeletionLogged( $page, $deleterUser, $reason, $suppress, $logSubtype, $logID );
 		$this->assertDeletionTags( $logID, $tags );
 		$this->assertPageLinksUpdate( $id, $immediate );
+
+		ScopedCallback::consume( $teardownScope );
 	}
 
 	public function provideDeleteUnsafe(): iterable {
@@ -276,16 +337,19 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @todo This test should go away if we don't want doDeleteUpdates to be public
 	 */
 	public function testDoDeleteUpdates() {
+		$teardownScope = DeferredUpdates::preventOpportunisticUpdates();
 		$user = static::getTestUser()->getUser();
-		$page = $this->createPage( __METHOD__, "[[original text]] foo" );
+		$page = $this->createPage( __METHOD__, self::PAGE_TEXT );
 		$id = $page->getId();
 		// make sure the current revision is cached.
 		$page->loadPageData();
+		$deletePage = $this->getDeletePage( $page, $user );
 
 		// Similar to MovePage logic
 		wfGetDB( DB_PRIMARY )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$this->getDeletePage( $page, $user )->doDeleteUpdates( $page, $page->getRevisionRecord() );
+		$deletePage->doDeleteUpdates( $page, $page->getRevisionRecord() );
 		$this->assertPageLinksUpdate( $id, true );
-	}
 
+		ScopedCallback::consume( $teardownScope );
+	}
 }
