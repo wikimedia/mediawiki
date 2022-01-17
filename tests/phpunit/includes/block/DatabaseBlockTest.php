@@ -4,6 +4,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -499,6 +500,48 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers ::insert
+	 */
+	public function testCrossWikiBlocking() {
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+
+		$blockOptions = [
+			'address' => UserIdentityValue::newExternal( 'm', 'UserOnForeignWiki', 'm' ),
+			'wiki' => 'm',
+			'reason' => 'testing crosswiki blocking',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => $this->db->getInfinity(),
+			'createAccount' => true,
+			'enableAutoblock' => true,
+			'hideName' => true,
+			'blockEmail' => true,
+			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
+		];
+		$block = new DatabaseBlock( $blockOptions );
+
+		$res = $blockStore->insertBlock( $block, $this->db );
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
+
+		$this->assertEquals(
+			'm>UserOnForeignWiki',
+			$block->getTargetName(),
+			'Correct blockee name'
+		);
+		$this->assertEquals(
+			'm>UserOnForeignWiki',
+			$block->getTargetUserIdentity()->getName(),
+			'Correct blockee name'
+		);
+		$this->assertTrue( $block->isBlocking( 'm>UserOnForeignWiki' ), 'Is blocking blockee' );
+		$this->assertEquals(
+			'm>MetaWikiUser',
+			$block->getBlocker()->getName(),
+			'Correct blocker name'
+		);
+		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+	}
+
+	/**
 	 * @covers ::equals
 	 */
 	public function testEquals() {
@@ -510,6 +553,16 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 		$this->assertFalse( $block->equals( $partial ) );
+	}
+
+	/**
+	 * @covers ::getWikiId
+	 */
+	public function testGetWikiId() {
+		$block = new DatabaseBlock( [ 'wiki' => 'foo' ] );
+		$this->assertSame( 'foo', $block->getWikiId() );
+		$localBlock = new DatabaseBlock();
+		$this->assertSame( WikiAwareEntity::LOCAL, $localBlock->getWikiId() );
 	}
 
 	/**
