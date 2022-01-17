@@ -560,6 +560,39 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testUpdate_imagelinks_move() {
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+
+		$po->addImage( "1.png" );
+		$po->addImage( "2.png" );
+
+		$fromNamespace = $t->getNamespace();
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'imagelinks',
+			[ 'il_to', 'il_from_namespace' ],
+			[ 'il_from' => self::$testingPageId ],
+			[ [ '1.png', $fromNamespace ], [ '2.png', $fromNamespace ] ]
+		);
+
+		$oldT = $t;
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
+		$po->addImage( "1.png" );
+		$po->addImage( "2.png" );
+
+		$fromNamespace = $t->getNamespace();
+		$this->assertMoveLinksUpdate(
+			$t,
+			$oldT->toPageIdentity(),
+			$po,
+			'imagelinks',
+			[ 'il_to', 'il_from_namespace' ],
+			[ 'il_from' => self::$testingPageId ],
+			[ [ '1.png', $fromNamespace ], [ '2.png', $fromNamespace ] ]
+		);
+	}
+
 	/**
 	 * @covers ParserOutput::addLanguageLink
 	 */

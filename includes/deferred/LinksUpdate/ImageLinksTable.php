@@ -78,7 +78,7 @@ class ImageLinksTable extends TitleLinksTable {
 		return \array_key_exists( $linkId, $this->newLinks );
 	}
 
-	protected function needExistingLinkRefresh() {
+	protected function needForcedLinkRefresh() {
 		return $this->isCrossNamespaceMove();
 	}
 
@@ -109,20 +109,29 @@ class ImageLinksTable extends TitleLinksTable {
 	}
 
 	protected function finishUpdate() {
-		$this->updateChangeTags();
-		$this->invalidateImageDescriptions();
+		// A update of namespace on cross namespace move is detected as insert + delete,
+		// but the updates are not needed there.
+		$allInsertedLinks = array_column( $this->insertedLinks, 0 );
+		$allDeletedLinks = array_column( $this->deletedLinks, 0 );
+		$insertedLinks = array_diff( $allInsertedLinks, $allDeletedLinks );
+		$deletedLinks = array_diff( $allDeletedLinks, $allInsertedLinks );
+
+		$this->updateChangeTags( $insertedLinks, $deletedLinks );
+		$this->invalidateImageDescriptions( $insertedLinks, $deletedLinks );
 	}
 
 	/**
 	 * Add the mw-add-media or mw-remove-media change tags to the edit if appropriate
+	 * @param array $insertedLinks
+	 * @param array $deletedLinks
 	 */
-	private function updateChangeTags() {
+	private function updateChangeTags( array $insertedLinks, array $deletedLinks ) {
 		$enabledTags = ChangeTags::getSoftwareTags();
 		$mediaChangeTags = [];
-		if ( count( $this->insertedLinks ) && in_array( 'mw-add-media', $enabledTags ) ) {
+		if ( count( $insertedLinks ) && in_array( 'mw-add-media', $enabledTags ) ) {
 			$mediaChangeTags[] = 'mw-add-media';
 		}
-		if ( count( $this->deletedLinks ) && in_array( 'mw-remove-media', $enabledTags ) ) {
+		if ( count( $deletedLinks ) && in_array( 'mw-remove-media', $enabledTags ) ) {
 			$mediaChangeTags[] = 'mw-remove-media';
 		}
 		$revisionRecord = $this->getRevision();
@@ -133,10 +142,12 @@ class ImageLinksTable extends TitleLinksTable {
 
 	/**
 	 * Invalidate all image description pages which had links added or removed
+	 * @param array $insertedLinks
+	 * @param array $deletedLinks
 	 */
-	private function invalidateImageDescriptions() {
+	private function invalidateImageDescriptions( array $insertedLinks, array $deletedLinks ) {
 		PurgeJobUtils::invalidatePages(
 			$this->getDB(), NS_FILE,
-			array_merge( $this->insertedLinks, $this->deletedLinks ) );
+			array_merge( $insertedLinks, $deletedLinks ) );
 	}
 }
