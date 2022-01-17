@@ -61,7 +61,9 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 
 		$fakePO = new ParserOutput();
 		$fakePO->setCacheTime( $timestamp );
-		parent::__construct( $page->getTitle(), $fakePO, false );
+		// Use immutable page identity to keep reference to the page id at time of deletion - T299244
+		$immutablePageIdentity = $page->getTitle()->toPageIdentity();
+		parent::__construct( $immutablePageIdentity, $fakePO, false );
 	}
 
 	protected function doIncrementalUpdate() {
