@@ -25,6 +25,7 @@ namespace MediaWiki\Block;
 use CommentStore;
 use Hooks;
 use Html;
+use InvalidArgumentException;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -115,7 +116,7 @@ class DatabaseBlock extends AbstractBlock {
 			$this->setBlocker( $options['by'] );
 		}
 
-		$this->setExpiry( wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
+		$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
@@ -444,7 +445,7 @@ class DatabaseBlock extends AbstractBlock {
 			->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ) );
 
 		// I wish I didn't have to do this
-		$db = wfGetDB( DB_REPLICA );
+		$db = $this->getDBConnection( DB_REPLICA );
 		$this->setExpiry( $db->decodeExpiry( $row->ipb_expiry ) );
 		$this->setReason(
 			CommentStore::getStore()
@@ -664,14 +665,14 @@ class DatabaseBlock extends AbstractBlock {
 			$this->setTimestamp( wfTimestamp() );
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $this->getDBConnection( DB_PRIMARY );
 			$dbw->update( 'ipblocks',
 				[ /* SET */
 					'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
 					'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
 				],
 				[ /* WHERE */
-					'ipb_id' => $this->getId(),
+					'ipb_id' => $this->getId( $this->getWikiId() ),
 				],
 				__METHOD__
 			);
@@ -730,7 +731,9 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getId(): ?int {
+	public function getId( $wikiId = self::LOCAL ): ?int {
+		// TODO: Enable deprecation warnings once cross-wiki accesses have been removed, see T274817
+		// $this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
 		return $this->mId;
 	}
 
@@ -972,8 +975,8 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getIdentifier() {
-		return $this->getId();
+	public function getIdentifier( $wikiId = self::LOCAL ) {
+		return $this->getId( $wikiId );
 	}
 
 	/**
@@ -1136,8 +1139,9 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getBy() {
-		return ( $this->blocker ) ? $this->blocker->getId() : 0;
+	public function getBy( $wikiId = self::LOCAL ): int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		return ( $this->blocker ) ? $this->blocker->getId( $wikiId ) : 0;
 	}
 
 	/**
@@ -1171,15 +1175,33 @@ class DatabaseBlock extends AbstractBlock {
 				'Blocker is neither a local user nor an invalid username',
 				[
 					'blocker' => (string)$user,
-					'blockId' => $this->getId(),
+					'blockId' => $this->getId( $this->getWikiId() ),
 				]
 			);
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				'Blocker must be a local user or a name that cannot be a local user'
+			);
+		}
+		if ( $user->getWikiId() !== $this->getWikiId() ) {
+			// throw new InvalidArgumentException(
+			$logger = LoggerFactory::getInstance( 'BlockManager' );
+			$logger->warning(
+				'Blocker domain \'' . $user->getWikiId() . '\' does not match \'' . $this->getWikiId() . '\''
 			);
 		}
 
 		$this->blocker = $user;
+	}
+
+	/**
+	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @return IDatabase
+	 */
+	private function getDBConnection( int $i ) {
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancerFactory()
+			->getMainLB( $this->getWikiId() )
+			->getConnectionRef( $i );
 	}
 }
 

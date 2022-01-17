@@ -388,7 +388,7 @@ class DatabaseBlockStore {
 		$expiry = $dbw->encodeExpiry( $block->getExpiry() );
 
 		if ( $block->getTargetUserIdentity() ) {
-			$userId = $block->getTargetUserIdentity()->getId();
+			$userId = $block->getTargetUserIdentity()->getId( $block->getWikiId() );
 		} else {
 			$userId = 0;
 		}
@@ -513,10 +513,9 @@ class DatabaseBlockStore {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$targetUser = $block->getTargetUserIdentity();
-		$actor = $targetUser ? $this->actorStoreFactory->getActorNormalization()->findActorId(
-			$targetUser,
-			$dbr
-		) : null;
+		$actor = $targetUser ? $this->actorStoreFactory
+			->getActorNormalization( $block->getWikiId() )
+			->findActorId( $targetUser, $dbr ) : null;
 
 		if ( !$actor ) {
 			$this->logger->debug( 'No actor found to retroactively autoblock' );

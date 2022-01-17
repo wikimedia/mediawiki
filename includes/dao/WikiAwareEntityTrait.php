@@ -39,6 +39,7 @@ trait WikiAwareEntityTrait {
 	 * @see RevisionRecord::getWikiId()
 	 * @see UserIdentity::getWikiId()
 	 * @see PageIdentity::getWikiId()
+	 * @see Block::getWikiId()
 	 *
 	 * @return string|false The wiki's logical name or WikiAwareEntity::LOCAL for the local wiki
 	 */
