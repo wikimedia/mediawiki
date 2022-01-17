@@ -2183,6 +2183,8 @@
 	"apisandbox-request-url-label": "URL-адреса запиту:",
 	"apisandbox-request-format-json-label": "JSON",
 	"apisandbox-request-json-label": "JSON запиту:",
+	"apisandbox-request-format-php-label": "PHP-масив",
+	"apisandbox-request-php-label": "Зробити запит на PHP-масив:",
 	"apisandbox-request-time": "Час запиту: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-results-fixtoken": "Виправте токен і надішліть ще раз",
 	"apisandbox-results-fixtoken-fail": "Не вдалося викликати токен «$1».",
