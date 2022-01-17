@@ -354,7 +354,7 @@ abstract class HTMLFormField {
 	 * @stable to override
 	 *
 	 * @param mixed $value
-	 * @param HTMLFormField[] $alldata
+	 * @param mixed[] $alldata
 	 *
 	 * @return mixed
 	 */
