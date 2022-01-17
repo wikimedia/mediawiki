@@ -120,6 +120,7 @@ because of Phabricator reports.
 
 * (T292166) Updated namespace names for the Lombard language.
 * (T299201) Changed the autonym of the Angika language to अंगिका
+* (T298309) Changed the autonym of the Abkhaz language to аԥсшәа
 * (T291899) Added language support for Xiang Chinese (hsn).
 * (T292612) Added language support for S'gaw Karen (ksw).
 * (T293656) Added language support for Farefare (gur).
