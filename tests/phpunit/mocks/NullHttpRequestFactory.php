@@ -62,8 +62,7 @@ class NullHttpRequestFactory extends HttpRequestFactory {
 	 * @return \GuzzleHttp\Client
 	 */
 	public function createGuzzleClient( array $config = [] ): \GuzzleHttp\Client {
-		// NOTE: if needed, we can also return a mock here, like we do in createMultiClient()
-		Assert::fail( "HTTP request blocked. Use MockHttpTrait." );
+		return new NullGuzzleClient( $config );
 	}
 
 }

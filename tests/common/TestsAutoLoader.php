@@ -203,6 +203,7 @@ $wgAutoloadClasses += [
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
 	'MockTitleTrait' => "$testDir/phpunit/mocks/MockTitleTrait.php",
+	'NullGuzzleClient' => "$testDir/phpunit/mocks/NullGuzzleClient.php",
 	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
 	'MediaWiki\\Tests\\Unit\\MockServiceDependenciesTrait'
