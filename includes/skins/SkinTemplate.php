@@ -648,6 +648,25 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * @param array $links return value from OutputPage::getCategoryLinks
+	 * @return array of data
+	 */
+	private function getCategoryPortletsData( array $links ): array {
+		$categories = [];
+		foreach ( $links as $group => $links ) {
+			$allLinks = [];
+			$groupName = 'category-' . $group;
+			foreach ( $links as $i => $link ) {
+				$allLinks[$groupName . '-' . $i] = [
+					'html' => $link,
+				];
+			}
+			$categories[ $groupName ] = $allLinks;
+		}
+		return $categories;
+	}
+
+	/**
 	 * @since 1.37 for non-SkinMustache base classes. Available since 1.36 for SkinMustache
 	 * @stable to override
 	 * @param string $name of the portal e.g. p-personal the name is personal.
@@ -671,10 +690,22 @@ class SkinTemplate extends Skin {
 			$name = 'personal';
 		}
 
-		$id = Sanitizer::escapeIdForAttribute( "p-$name" );
+		$legacyClasses = '';
+		if ( $name === 'category-normal' ) {
+			// retain historic category IDs and classes
+			$id = 'mw-normal-catlinks';
+			$legacyClasses .= ' mw-normal-catlinks';
+		} elseif ( $name === 'category-hidden' ) {
+			// retain historic category IDs and classes
+			$id = 'mw-hidden-catlinks';
+			$legacyClasses .= ' mw-hidden-catlinks mw-hidden-cats-hidden';
+		} else {
+			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
+		}
+
 		$data = [
 			'id' => $id,
-			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
+			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ) . $legacyClasses,
 			'html-tooltip' => Linker::tooltip( $id ),
 			'html-items' => '',
 			// Will be populated by SkinAfterPortlet hook.
@@ -707,6 +738,16 @@ class SkinTemplate extends Skin {
 		$data['class'] .= ( count( $items ) === 0 && $content === '' )
 			? ' emptyPortlet' : '';
 		return $data;
+	}
+
+	/**
+	 * Extends category links with Skin::getAfterPortlet functionality.
+	 * @return string HTML
+	 */
+	public function getCategoryLinks() {
+		$afterPortlet = $this->getPortletsTemplateData()['data-portlets']['data-category-normal']['html-after-portal']
+			?? '';
+		return parent::getCategoryLinks() . $afterPortlet;
 	}
 
 	/**
@@ -1193,8 +1234,8 @@ class SkinTemplate extends Skin {
 		$performer = $this->getAuthority();
 		$action = $this->getAction();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
-		$content_navigation = [
+		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
+		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
 			'user-page' => $this->loggedin ? [
@@ -1480,7 +1521,7 @@ class SkinTemplate extends Skin {
 		foreach ( $content_navigation as $section => &$links ) {
 			foreach ( $links as $key => &$link ) {
 				// Allow links to set their own id for backwards compatibility reasons.
-				if ( isset( $link['id'] ) ) {
+				if ( isset( $link['id'] ) || isset( $link['html' ] ) ) {
 					continue;
 				}
 				$xmlID = $key;
