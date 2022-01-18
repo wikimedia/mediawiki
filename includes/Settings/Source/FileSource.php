@@ -15,7 +15,7 @@ use Wikimedia\AtEase\AtEase;
  *
  * @since 1.38
  */
-class FileSource implements CacheableSource {
+class FileSource implements CacheableSource, SettingsIncludeLocator {
 	private const BUILT_IN_FORMATS = [
 		JsonFormat::class,
 		YamlFormat::class,
@@ -209,5 +209,9 @@ class FileSource implements CacheableSource {
 				]
 			);
 		}
+	}
+
+	public function locateInclude( string $location ): string {
+		return SettingsFileUtils::resolveRelativeLocation( $location, dirname( $this->path ) );
 	}
 }
