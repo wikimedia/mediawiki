@@ -588,6 +588,7 @@
 	"wlnote": "To odo {{PLURAL:$1|wẹ yin diọdo he gbọn godo lẹ|wẹ yin diọdo <strong>$1</strong> he gbọn godo}} to vivọnu {{PLURAL:$2|hour|<strong>$2</strong> ganhiho}}, taidi $3, $4.",
 	"watchlist-options": "Nuhe ajlo to nupinpọn lẹ mẹ",
 	"enotif_reset": "Do wuntun weda he koyin pinpọn lẹ go",
+	"delete-toomanyrevisions": "A to titẹnpọn nado sunsun {{PLURAL:$1|vọjlado|vọjlado lẹ}} he hugan dopo $1 to ojlẹ dopolọ mẹ.\nNuyiwa mọnkọ ko yin alọhẹndotena ma nado doalọtena {{SITENAME}} to ajiji mẹ.",
 	"rollback-confirmation-no": "Hònupla",
 	"rollbacklink": "lẹkọ",
 	"rollbacklinkcount": "lẹkọ $1 {{PLURAL:$1|vọjlado|vọjlado lẹ}}",

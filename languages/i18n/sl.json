@@ -2072,7 +2072,7 @@
 	"apihelp-no-such-module": "Modula »$1« nismo našli.",
 	"apisandbox": "Peskovnik API",
 	"apisandbox-jsonly": "Za uporabo peskovnika API je zahtevan JavaScript.",
-	"apisandbox-intro": "Uporabite to stran za preizkušanje <strong>API spletnih storitev MediaWiki</strong>.\nOglejte si [[mw:Special:MyLanguage/API:Main page|dokumentacijo API]] za nadaljnje podrobnosti o uporabi API. Primer: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query iskanje naslovov strani, ki vsebujejo določeno ključno besedo]. Izberite dejanje, da si ogledate več primerov.\n\nPomnite, da čeprav je to peskovnik, bodo dejanja, izvedena na tej strani, morda spremenila wiki.",
+	"apisandbox-intro": "Uporabite to stran za preizkušanje <strong>API spletnih storitev MediaWiki</strong>.\nOglejte si [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page dokumentacijo API-ja] za nadaljnje podrobnosti o uporabi API. Primer: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query iskanje naslovov strani, ki vsebujejo določeno ključno besedo]. Izberite dejanje, da si ogledate več primerov.\n\nPomnite, da čeprav je to peskovnik, bodo dejanja, izvedena na tej strani, morda spremenila wiki.",
 	"apisandbox-submit": "Izvedi zahtevo",
 	"apisandbox-reset": "Počisti",
 	"apisandbox-retry": "Poskusi znova",

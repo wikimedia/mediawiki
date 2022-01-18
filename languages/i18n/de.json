@@ -2174,7 +2174,7 @@
 	"apihelp-no-such-module": "Modul „$1“ nicht gefunden.",
 	"apisandbox": "API-Spielwiese",
 	"apisandbox-jsonly": "Zur Nutzung der API-Spielwiese ist JavaScript erforderlich.",
-	"apisandbox-intro": "Diese Seite kannst du für Versuche mit der <strong>MediaWiki-API</strong> verwenden.\nDie [[mw:Special:MyLanguage/API:Main page|Dokumentation zur API]] enthält weitere Hinweise zu ihrer Nutzung. Beispiel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page/de#Ein_einfaches_Beispiel Suche nach Seitennamen, die ein bestimmtes Stichwort enthalten]. Wähle für weitere Beispiele eine der verfügbaren Aktionen.\n\nObwohl dies eine Spielwiese ist, bedenke, dass Aktionen, die du auf dieser Seite durchführst, das Wiki verändern.",
+	"apisandbox-intro": "Diese Seite kannst du für Versuche mit der <strong>MediaWiki-API</strong> verwenden.\nDie [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page Dokumentation zur API] enthält weitere Hinweise zu ihrer Nutzung. Beispiel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page/de#Ein_einfaches_Beispiel Suche nach Seitennamen, die ein bestimmtes Stichwort enthalten]. Wähle für weitere Beispiele eine der verfügbaren Aktionen.\n\nObwohl dies eine Spielwiese ist, bedenke, dass Aktionen, die du auf dieser Seite durchführst, das Wiki verändern.",
 	"apisandbox-submit": "Anfrage ausführen",
 	"apisandbox-reset": "Leeren",
 	"apisandbox-retry": "Erneut versuchen",
