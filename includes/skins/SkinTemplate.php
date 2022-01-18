@@ -46,6 +46,7 @@ class SkinTemplate extends Skin {
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
+	private $templateContextSet = false;
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
@@ -85,6 +86,10 @@ class SkinTemplate extends Skin {
 	 * @since 1.35
 	 */
 	final protected function setupTemplateContext() {
+		if ( $this->templateContextSet ) {
+			return;
+		}
+
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
@@ -109,6 +114,8 @@ class SkinTemplate extends Skin {
 			# To save time, we check for existence
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
+
+		$this->templateContextSet = true;
 	}
 
 	/**
@@ -382,8 +389,6 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Get the HTML for the personal tools list
-	 * Please ensure setupTemplateContext is called before calling this method.
-	 *
 	 * @since 1.31
 	 *
 	 * @param array|null $personalTools
@@ -391,7 +396,6 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	public function makePersonalToolsList( $personalTools = null, $options = [] ) {
-		$this->setupTemplateContext();
 		$html = '';
 
 		if ( $personalTools === null ) {
@@ -415,21 +419,19 @@ class SkinTemplate extends Skin {
 	 * @return array[]
 	 */
 	public function getStructuredPersonalTools() {
-		// buildPersonalUrls requires the template context.
-		$this->setupTemplateContext();
 		return $this->getPersonalToolsForMakeListItem(
 			$this->buildPersonalUrls()
 		);
 	}
 
 	/**
-	 * build array of urls for personal toolbar
-	 * Please ensure setupTemplateContext is called before calling
-	 * this method.
+	 * Build array of urls for personal toolbar
+	 *
 	 * @param bool $includeNotifications Since 1.36, notifications are optional
 	 * @return array
 	 */
 	protected function buildPersonalUrls( bool $includeNotifications = true ) {
+		$this->setupTemplateContext();
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
