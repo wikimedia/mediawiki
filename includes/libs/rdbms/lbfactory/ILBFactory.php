@@ -252,13 +252,6 @@ interface ILBFactory {
 	public function beginPrimaryChanges( $fname = __METHOD__ );
 
 	/**
-	 * @deprecated since 1.37 Use beginPrimaryChanges() instead.
-	 * @param string $fname
-	 * @throws DBTransactionError
-	 */
-	public function beginMasterChanges( $fname = __METHOD__ );
-
-	/**
 	 * Commit changes and clear view snapshots on all primary connections
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
@@ -272,15 +265,6 @@ interface ILBFactory {
 	public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] );
 
 	/**
-	 * @deprecated since 1.37; please use commitPrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 * @param array $options Options map:
-	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
-	 * @throws DBTransactionError
-	 */
-	public function commitMasterChanges( $fname = __METHOD__, array $options = [] );
-
-	/**
 	 * Rollback changes on all primary connections
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
@@ -289,12 +273,6 @@ interface ILBFactory {
 	 * @since 1.37
 	 */
 	public function rollbackPrimaryChanges( $fname = __METHOD__ );
-
-	/**
-	 * @deprecated since 1.37; please use rollbackPrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 */
-	public function rollbackMasterChanges( $fname = __METHOD__ );
 
 	/**
 	 * Check if an explicit transaction round is active
@@ -325,12 +303,6 @@ interface ILBFactory {
 	public function hasPrimaryChanges();
 
 	/**
-	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
-	 * @return bool
-	 */
-	public function hasMasterChanges();
-
-	/**
 	 * Determine if any lagged replica DB connection was used
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
@@ -348,13 +320,6 @@ interface ILBFactory {
 	 * @return bool
 	 */
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
-
-	/**
-	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
-	 * @param float|null $age How many seconds ago is "recent" [defaults to LB lag wait timeout]
-	 * @return bool
-	 */
-	public function hasOrMadeRecentMasterChanges( $age = null );
 
 	/**
 	 * Waits for the replica DBs to catch up to the current primary position
