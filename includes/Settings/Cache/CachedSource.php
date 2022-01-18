@@ -3,6 +3,7 @@
 namespace MediaWiki\Settings\Cache;
 
 use BagOStuff;
+use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 
 /**
@@ -11,7 +12,7 @@ use MediaWiki\Settings\Source\SettingsSource;
  * @since 1.38
  * @todo mark as stable before the 1.38 release
  */
-class CachedSource implements SettingsSource {
+class CachedSource implements SettingsSource, SettingsIncludeLocator {
 	/** @var BagOStuff */
 	private $cache;
 
@@ -114,5 +115,14 @@ class CachedSource implements SettingsSource {
 			'expiry' => $start + $this->source->getExpiryTtl(),
 			'generation' => $finish - $start,
 		];
+	}
+
+	public function locateInclude( string $location ): string {
+		if ( $this->source instanceof SettingsIncludeLocator ) {
+			return $this->source->locateInclude( $location );
+		} else {
+			// Just return the location as-is
+			return $location;
+		}
 	}
 }
