@@ -36,9 +36,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Maintenance
  */
 class RecountCategories extends Maintenance {
-	/** @var string */
-	private $mode;
-
 	/** @var int */
 	private $minimumId;
 
@@ -52,13 +49,12 @@ table does not match the number of categorylinks rows for that category, and
 updates the category table accordingly.
 
 To fully refresh the data in the category table, you need to run this script
-three times: once in each mode. Alternatively, just one mode can be run if
-required.
+for all three modes. Alternatively, just one mode can be run if required.
 TEXT
 		);
 		$this->addOption(
 			'mode',
-			'(REQUIRED) Which category count column to recompute: "pages", "subcats" or "files".',
+			'(REQUIRED) Which category count column to recompute: "pages", "subcats", "files" or "all".',
 			true,
 			true
 		);
@@ -79,37 +75,52 @@ TEXT
 	}
 
 	public function execute() {
-		$this->mode = $this->getOption( 'mode' );
-		if ( !in_array( $this->mode, [ 'pages', 'subcats', 'files' ] ) ) {
-			$this->fatalError( 'Please specify a valid mode: one of "pages", "subcats" or "files".' );
+		$mode = $this->getOption( 'mode' );
+		if ( !in_array( $mode, [ 'pages', 'subcats', 'files', 'all' ] ) ) {
+			$this->fatalError( 'Please specify a valid mode: one of "pages", "subcats", "files" or "all".' );
 		}
 
-		$this->minimumId = intval( $this->getOption( 'begin', 0 ) );
-
-		// do the work, batch by batch
-		$affectedRows = 0;
-		while ( ( $result = $this->doWork() ) !== false ) {
-			$affectedRows += $result;
-			usleep( $this->getOption( 'throttle', 0 ) * 1000 );
+		if ( $mode === 'all' ) {
+			$modes = [ 'pages', 'subcats', 'files' ];
+		} else {
+			$modes = [ $mode ];
 		}
 
-		$this->output( "Done! Updated the {$this->mode} counts of $affectedRows categories.\n" .
-			"Now run the script using the other --mode options if you haven't already.\n" );
-		if ( $this->mode === 'pages' ) {
+		foreach ( $modes as $mode ) {
+			$this->output( "Starting to recount {$mode} counts.\n" );
+			$this->minimumId = intval( $this->getOption( 'begin', 0 ) );
+
+			// do the work, batch by batch
+			$affectedRows = 0;
+			while ( ( $result = $this->doWork( $mode ) ) !== false ) {
+				$affectedRows += $result;
+				usleep( $this->getOption( 'throttle', 0 ) * 1000 );
+			}
+
+			$this->output( "Updated the {$mode} counts of $affectedRows categories.\n" );
+		}
+
+		// Finished
+		$this->output( "Done!\n" );
+		if ( $mode !== 'all' ) {
+			$this->output( "Now run the script using the other --mode options if you haven't already.\n" );
+		}
+
+		if ( in_array( 'pages', $modes ) ) {
 			$this->output(
 				"Also run 'php cleanupEmptyCategories.php --mode remove' to remove empty,\n" .
 				"nonexistent categories from the category table.\n\n" );
 		}
 	}
 
-	protected function doWork() {
+	protected function doWork( $mode ) {
 		$this->output( "Finding up to {$this->getBatchSize()} drifted rows " .
 			"greater than cat_id {$this->minimumId}...\n" );
 
 		$countingConds = [ 'cl_to = cat_title' ];
-		if ( $this->mode === 'subcats' ) {
+		if ( $mode === 'subcats' ) {
 			$countingConds['cl_type'] = 'subcat';
-		} elseif ( $this->mode === 'files' ) {
+		} elseif ( $mode === 'files' ) {
 			$countingConds['cl_type'] = 'file';
 		}
 
@@ -127,7 +138,7 @@ TEXT
 			'cat_id',
 			[
 				'cat_id > ' . (int)$this->minimumId,
-				"cat_{$this->mode} != ($countingSubquery)"
+				"cat_{$mode} != ($countingSubquery)"
 			],
 			__METHOD__,
 			[ 'LIMIT' => $this->getBatchSize() ]
@@ -135,7 +146,7 @@ TEXT
 		if ( !$idsToUpdate ) {
 			return false;
 		}
-		$this->output( "Updating cat_{$this->mode} field on " .
+		$this->output( "Updating cat_{$mode} field on " .
 			count( $idsToUpdate ) . " rows...\n" );
 
 		// In the next batch, start where this query left off. The rows selected
@@ -159,10 +170,10 @@ TEXT
 		$affectedRows = 0;
 		foreach ( $res as $row ) {
 			$dbw->update( 'category',
-				[ "cat_{$this->mode}" => $row->count ],
+				[ "cat_{$mode}" => $row->count ],
 				[
 					'cat_id' => $row->cat_id,
-					"cat_{$this->mode} != " . (int)( $row->count ),
+					"cat_{$mode} != " . (int)( $row->count ),
 				],
 				__METHOD__ );
 			$affectedRows += $dbw->affectedRows();
