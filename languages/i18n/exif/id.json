@@ -404,6 +404,8 @@
 	"exif-exposurelockused": "Gunakan kunci pajanan",
 	"exif-exposurelockused-true": "Ya",
 	"exif-exposurelockused-false": "Tidak",
+	"exif-initialhorizontalfovdegrees": "Ruang pandang awal (derajat horizontal)",
+	"exif-initialverticalfovdegrees": "Ruang pandang awal (derajat vertikal)",
 	"exif-sourcephotoscount": "Banyak foto sumber",
 	"exif-croppedareaimagewidthpixels": "Lebar terpotong panorama",
 	"exif-croppedareaimageheightpixels": "Tinggi terpotong panorama",
