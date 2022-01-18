@@ -231,20 +231,6 @@ interface ILoadBalancer {
 	public function waitFor( $pos );
 
 	/**
-	 * Set the primary wait position and wait for a generic replica DB to catch up to it
-	 *
-	 * This method is only intended for use a throttling mechanism for high-volume updates.
-	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
-	 *
-	 * This can be used a faster proxy for waitForAll()
-	 *
-	 * @param DBPrimaryPos|bool $pos Primary position or false
-	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
-	 * @return bool Success (able to connect and no timeouts reached)
-	 */
-	public function waitForOne( $pos, $timeout = null );
-
-	/**
 	 * Set the primary wait position and wait for ALL replica DBs to catch up to it
 	 *
 	 * This method is only intended for use a throttling mechanism for high-volume updates.
@@ -841,13 +827,6 @@ interface ILoadBalancer {
 	public function getReadOnlyReason( $domain = false );
 
 	/**
-	 * Disables/enables lag checks
-	 * @param null|bool $mode
-	 * @return bool
-	 */
-	public function allowLagged( $mode = null );
-
-	/**
 	 * @return bool
 	 */
 	public function pingAll();
@@ -873,13 +852,6 @@ interface ILoadBalancer {
 	 * @param array $params
 	 */
 	public function forEachOpenMasterConnection( $callback, array $params = [] );
-
-	/**
-	 * Call a function with each open replica DB connection object
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachOpenReplicaConnection( $callback, array $params = [] );
 
 	/**
 	 * Get the name and lag time of the most-lagged replica server

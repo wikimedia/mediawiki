@@ -120,8 +120,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $readIndexByGroup = [];
 	/** @var bool|DBPrimaryPos Replication sync position or false if not set */
 	private $waitForPos;
-	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
-	private $allowLagged = false;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $laggedReplicaMode = false;
 	/** @var string The last DB selection or connection error */
@@ -627,7 +625,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Quickly look through the available servers for a server that meets criteria...
 		$currentLoads = $loads;
 		while ( count( $currentLoads ) ) {
-			if ( $this->allowLagged || $laggedReplicaMode ) {
+			if ( $laggedReplicaMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
 				$i = false;
@@ -717,36 +715,6 @@ class LoadBalancer implements ILoadBalancer {
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
 			$this->setWaitForPositionIfHigher( $oldPos );
-		}
-	}
-
-	public function waitForOne( $pos, $timeout = null ) {
-		$oldPos = $this->waitForPos;
-		try {
-			$this->waitForPos = $pos;
-
-			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
-			// If a generic reader connection was already established to a replica server,
-			// then use that server. Otherwise, just pick a random replica server.
-			if ( $genericIndex > $this->getWriterIndex() ) {
-				$i = $genericIndex;
-			} else {
-				$readLoads = $this->groupLoads[self::GROUP_GENERIC];
-				unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
-				$readLoads = array_filter( $readLoads ); // with non-zero load
-				$i = ArrayUtils::pickRandom( $readLoads );
-			}
-
-			if ( $i !== false ) {
-				$ok = $this->doWait( $i, $timeout );
-			} else {
-				$ok = true; // no applicable loads
-			}
-
-			return $ok;
-		} finally {
-			// Restore the old position; this is used for throttling, not lag-protection
-			$this->waitForPos = $oldPos;
 		}
 	}
 
@@ -2316,15 +2284,6 @@ class LoadBalancer implements ILoadBalancer {
 		);
 	}
 
-	public function allowLagged( $mode = null ) {
-		if ( $mode === null ) {
-			return $this->allowLagged;
-		}
-		$this->allowLagged = $mode;
-
-		return $this->allowLagged;
-	}
-
 	public function pingAll() {
 		$success = true;
 		$this->forEachOpenConnection( static function ( IDatabase $conn ) use ( &$success ) {
@@ -2363,14 +2322,14 @@ class LoadBalancer implements ILoadBalancer {
 		$this->forEachOpenPrimaryConnection( $callback, $params );
 	}
 
-	public function forEachOpenReplicaConnection( $callback, array $params = [] ) {
+	private function forEachOpenReplicaConnection( $callback ) {
 		foreach ( $this->conns as $connsByServer ) {
 			foreach ( $connsByServer as $i => $serverConns ) {
 				if ( $i === $this->getWriterIndex() ) {
 					continue; // skip primary DB
 				}
 				foreach ( $serverConns as $conn ) {
-					$callback( $conn, ...$params );
+					$callback( $conn );
 				}
 			}
 		}
