@@ -1153,27 +1153,38 @@
 					},
 					{
 						"type": "object",
-						"description": "An object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
+						"description": "Object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
 						"properties": {
 							"factory": {
 								"type": ["string", "array"],
 								"description": "A factory function to be called to create an ExtensionModule. This should be omitted if a class is specified."
-							},
+							}
+						},
+						"required": [ "factory" ]
+					},
+					{
+						"type": "object",
+						"description": "Object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
+						"properties": {
 							"class": {
 								"type": "string",
 								"description": "The fully-qualified class name of a class implemeting Wikimedia\\Parsoid\\Ext\\ExtensionModule. This should be omitted if a factory is specified."
-							},
-							"args": {
-								"type": "array",
-								"description": "The arguments passed to the ExtensionModule constructor or factory"
 							}
 						},
-						"additionalProperties": false
+						"required": [ "class" ]
 					},
 					{
 						"type": "object",
 						"description": "A Parsoid extension module configuration array",
 						"properties": {
+							"class": {
+								"type": "null",
+								"description": "This property must not be present in a configuration array"
+							},
+							"factory": {
+								"type": "null",
+								"description": "This property must not be present in a configuration array"
+							},
 							"domProcessors": {
 								"type": "array",
 								"items": {
@@ -1185,6 +1196,13 @@
 								"items": {
 									"type": "string",
 									"description": "Additional ResourceLoader styles to include"
+								}
+							},
+							"annotations": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"description": "The name of an annotation tag"
 								}
 							},
 							"tags": {
@@ -1208,8 +1226,7 @@
 									"required": ["name"]
 								}
 							}
-						},
-						"additionalProperties": false
+						}
 					}
 				]
 			}
