@@ -1706,7 +1706,7 @@ class LocalFile extends File {
 		}
 		$this->historyLine++;
 
-		return $dbr->fetchObject( $this->historyRes );
+		return $this->historyRes->fetchObject();
 	}
 
 	/**

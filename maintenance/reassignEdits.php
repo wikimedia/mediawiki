@@ -93,7 +93,7 @@ class ReassignEdits extends Maintenance {
 			[],
 			$revQueryInfo['joins']
 		);
-		$row = $dbw->fetchObject( $res );
+		$row = $res->fetchObject();
 		$cur = $row->count;
 		$this->output( "found {$cur}.\n" );
 
@@ -104,7 +104,7 @@ class ReassignEdits extends Maintenance {
 			[ 'ar_actor' => $fromActorId ],
 			__METHOD__
 		);
-		$row = $dbw->fetchObject( $res );
+		$row = $res->fetchObject();
 		$del = $row->count;
 		$this->output( "found {$del}.\n" );
 
@@ -117,7 +117,7 @@ class ReassignEdits extends Maintenance {
 				[ 'rc_actor' => $fromActorId ],
 				__METHOD__
 			);
-			$row = $dbw->fetchObject( $res );
+			$row = $res->fetchObject();
 			$rec = $row->count;
 			$this->output( "found {$rec}.\n" );
 		} else {

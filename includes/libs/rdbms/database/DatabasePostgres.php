@@ -628,7 +628,7 @@ __INDEXATTR__;
 			WHERE relname='$encTable' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
 		$res = $this->query( $sql, __METHOD__, $flags );
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row->ftype == 'varchar' ) {
 			$size = $row->size - 4;
 		} else {
@@ -693,7 +693,7 @@ __INDEXATTR__;
 			$fname,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row ) {
 			$field = $row->attname;
 			$newSeq = "{$newName}_{$field}_seq";
@@ -953,7 +953,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row ) {
 			$this->tempSchema = $row->nspname;
 			return [ $this->tempSchema, $this->getCoreSchema() ];
@@ -1276,7 +1276,7 @@ SQL;
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->unlocked === 't' );
 	}
@@ -1296,7 +1296,7 @@ SQL;
 					$method,
 					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 				);
-				$row = $this->fetchObject( $res );
+				$row = $res->fetchObject();
 
 				if ( $row->acquired !== null ) {
 					$acquired = (float)$row->acquired;
@@ -1322,7 +1322,7 @@ SQL;
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 		);
-		$row = $this->fetchObject( $result );
+		$row = $result->fetchObject();
 
 		return ( $row->released === 't' );
 	}
@@ -1333,7 +1333,7 @@ SQL;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
 	}

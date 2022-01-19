@@ -897,7 +897,7 @@ class DatabaseSqlite extends Database {
 			$fname,
 			$queryFlags
 		);
-		$obj = $this->fetchObject( $res );
+		$obj = $res->fetchObject();
 		if ( !$obj ) {
 			throw new RuntimeException( "Couldn't retrieve structure for table $oldName" );
 		}
