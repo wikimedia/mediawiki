@@ -44,8 +44,6 @@ class ImageListPager extends TablePager {
 	 */
 	protected $mUser = null;
 
-	protected $mSearch = '';
-
 	protected $mIncluding = false;
 
 	protected $mShowAll = false;
@@ -118,17 +116,6 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
-			$this->mSearch = $search;
-			$nt = Title::newFromText( $this->mSearch );
-
-			if ( $nt ) {
-				$this->mQueryConds[] = 'LOWER(img_name)' .
-					$dbr->buildLike( $dbr->anyString(),
-						strtolower( $nt->getDBkey() ), $dbr->anyString() );
-			}
-		}
-
 		if ( !$including ) {
 			if ( $this->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
 				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
@@ -185,16 +172,6 @@ class ImageListPager extends TablePager {
 		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
 			$conds['actor_name'] = $this->mUserName;
-		}
-
-		if ( $this->mSearch !== '' ) {
-			$nt = Title::newFromText( $this->mSearch );
-			if ( $nt ) {
-				$dbr = $this->getDatabase();
-				$conds[] = 'LOWER(' . $prefix . '_name)' .
-					$dbr->buildLike( $dbr->anyString(),
-						strtolower( $nt->getDBkey() ), $dbr->anyString() );
-			}
 		}
 
 		if ( $table === 'oldimage' ) {
@@ -552,18 +529,6 @@ class ImageListPager extends TablePager {
 			'options' => $this->getLimitSelectList(),
 			'default' => $this->mLimit,
 		];
-
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$formDescriptor['ilsearch'] = [
-				'type' => 'text',
-				'name' => 'ilsearch',
-				'id' => 'mw-ilsearch',
-				'label-message' => 'listfiles_search_for',
-				'default' => $this->mSearch,
-				'size' => '40',
-				'maxlength' => '255',
-			];
-		}
 
 		$formDescriptor['user'] = [
 			'type' => 'user',
