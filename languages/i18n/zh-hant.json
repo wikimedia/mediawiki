@@ -3477,7 +3477,7 @@
 	"tag-mw-undo-description": "使用復原連結來復原上一筆編輯的編輯數",
 	"tag-mw-manual-revert": "手動回退",
 	"tag-mw-manual-revert-description": "手動將頁面還原到先前某個狀態的編輯",
-	"tag-mw-reverted": "被回退",
+	"tag-mw-reverted": "已回退",
 	"tag-mw-reverted-description": "被之後另一個編輯回退的編輯",
 	"tag-mw-server-side-upload": "服務器端上傳",
 	"tag-mw-server-side-upload-description": "通過維護指令碼上傳的媒體檔案",

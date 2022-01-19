@@ -377,7 +377,7 @@
 	"navigation-heading": "Heading shown above the navigation menu (sidebar) for screen-readers (or in non-standard skins).",
 	"errorpagetitle": "Message shown in browser title bar when encountering error operation.\n\n{{Identical|Error}}",
 	"returnto": "{{Identical|Return to $1}}",
-	"tagline": "{{doc-important|Do not change <code><nowiki>{{SITENAME}}</nowiki></code>.}}\nUsed to identify the source of copied information.",
+	"tagline": "{{doc-important|Do not change <code><nowiki>{{SITENAME}}</nowiki></code>. Copy it to the translation, to the place where the site's name will appear in the sentence.}}\n\nUsed to identify the source of copied information.",
 	"help": "General text (noun).\n\nSee also {{msg-mw|Helppage}} and {{msg-mw|Edithelp}}.\n\nSee also:\n* {{msg-mw|Help}}\n* {{msg-mw|Accesskey-n-help}}\n* {{msg-mw|Tooltip-n-help}}\n{{Identical|Help}}",
 	"help-mediawiki": "Text ('Help' is a noun) used in the sidebar (by default) to link to the MediaWiki help on mediawiki.org.",
 	"search": "{{doc-special|Search}}\nNoun. Text of menu section shown on every page of the wiki above the search form.\n\nSee also:\n* {{msg-mw|Search}}\n* {{msg-mw|Accesskey-search}}\n* {{msg-mw|Tooltip-search}}\n{{Identical|Search}}",
