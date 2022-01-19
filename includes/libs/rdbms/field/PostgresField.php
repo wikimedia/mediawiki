@@ -46,7 +46,7 @@ SQL;
 				),
 				__METHOD__
 			);
-			$row = $db->fetchObject( $res );
+			$row = $res->fetchObject();
 			if ( !$row ) {
 				continue;
 			}

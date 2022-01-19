@@ -178,7 +178,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( $conn->tableExists( "revision", __METHOD__ ) ) {
 			$revision = $this->escapeLikeInternal( $this->getVar( 'wgDBprefix' ) . 'revision', '\\' );
 			$res = $conn->query( "SHOW TABLE STATUS LIKE '$revision'", __METHOD__ );
-			$row = $conn->fetchObject( $res );
+			$row = $res->fetchObject();
 			if ( !$row ) {
 				$this->parent->showMessage( 'config-show-table-status' );
 				$existingSchema = false;

@@ -868,7 +868,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SELECT @@server_id AS id", $fname, $flags );
 
-				return $this->fetchObject( $res )->id;
+				return $res->fetchObject()->id;
 			}
 		);
 	}
@@ -885,7 +885,7 @@ abstract class DatabaseMysqlBase extends Database {
 			function () use ( $fname ) {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'", $fname, $flags );
-				$row = $this->fetchObject( $res );
+				$row = $res->fetchObject();
 
 				return $row ? $row->Value : null;
 			}
@@ -931,7 +931,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Avoid SHOW to avoid internal temporary tables
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return $row ? (bool)$row->Value : false;
 	}
@@ -1038,7 +1038,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->unlocked == 1 );
 	}
@@ -1054,7 +1054,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->acquired !== null ) ? (float)$row->acquired : null;
 	}
@@ -1067,7 +1067,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->released == 1 );
 	}
