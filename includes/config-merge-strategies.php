@@ -2,40 +2,40 @@
 
 return [
 	'config-schema' => [
-		'wgAuthManagerAutoConfig' => [
+		'AuthManagerAutoConfig' => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'wgCapitalLinkOverrides' => [
+		'CapitalLinkOverrides' => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'wgExtraGenderNamespaces' => [
+		'ExtraGenderNamespaces' => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'wgGrantPermissions' => [
+		'GrantPermissions' => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'wgGroupPermissions' => [
+		'GroupPermissions' => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'wgHooks' => [
+		'Hooks' => [
 			'mergeStrategy' => 'array_merge_recursive'
 		],
-		'wgNamespaceContentModels' => [
+		'NamespaceContentModels' => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'wgNamespaceProtection' => [
+		'NamespaceProtection' => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'wgNamespacesWithSubpages' => [
+		'NamespacesWithSubpages' => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'wgPasswordPolicy' => [
+		'PasswordPolicy' => [
 			'mergeStrategy' => 'array_merge_recursive'
 		],
-		'wgRateLimits' => [
+		'RateLimits' => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'wgRevokePermissions' => [
+		'RevokePermissions' => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
 	]
