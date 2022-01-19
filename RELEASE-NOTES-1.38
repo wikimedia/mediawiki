@@ -309,6 +309,12 @@ because of Phabricator reports.
 * wfIncrStats, deprecated since 1.36, has been removed.
 * Profiler::profileIn and ::profileOut, deprecated in 1.33, has been removed.
 * SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
+* The following deprecated methods have been removed from ILBFactory:
+  - ::beginMasterChanges() since 1.37
+  - ::commitMasterChanges() since 1.37
+  - ::rollbackMasterChanges() since 1.37
+  - ::hasMasterChanges() since 1.37
+  - ::hasOrMadeRecentMasterChanges() since 1.37
 * The "groupLoadsByDB" option to LBFactoryMulti has been removed. Consider
   using "groupLoadsBySection" instead.
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
