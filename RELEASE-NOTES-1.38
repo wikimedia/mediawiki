@@ -311,6 +311,8 @@ because of Phabricator reports.
 * SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
 * The "groupLoadsByDB" option to LBFactoryMulti has been removed. Consider
   using "groupLoadsBySection" instead.
+* Special:ListFiles and Special:NewFiles no longer allows to search for parts
+  of file names (option was not available for $wgMiserMode = true)
 * …
 
 === Deprecations in 1.38 ===
