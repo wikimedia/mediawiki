@@ -3376,7 +3376,7 @@
 	"htmlform-int-toohigh": "Пададзенае значэнне большае за максімум $1",
 	"htmlform-multiselect-toomany": "Колькасць пазначаных вамі элементаў перавышае максімальнае значэнне ў $1.",
 	"htmlform-required": "Гэтае значэнне неабходнае",
-	"htmlform-submit": "Захаваць",
+	"htmlform-submit": "Адправіць",
 	"htmlform-reset": "Адкаціць змяненні",
 	"htmlform-selectorother-other": "Рознае",
 	"htmlform-no": "Не",

@@ -2194,7 +2194,7 @@
 	"apihelp-no-such-module": "Modulo \"$1\" non trovato.",
 	"apisandbox": "Pagina di prova API",
 	"apisandbox-jsonly": "È richiesto JavaScript per utilizzare la sandbox API.",
-	"apisandbox-intro": "Utilizza questa pagina per fare pratica con le <strong>API web service MediaWiki</strong>.\nPer ulteriori dettagli di utilizzo delle API, fai riferimento alla [[mw:Special:MyLanguage/API:Main page|documentazione API]]. Esempio: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ricerca di un titolo di pagina che corrisponde ad un certa parola chiave]. Seleziona un'azione per vedere altri esempi.\n\nNota che, anche se questa è una pagina per le prove, le azioni che esegui qui potrebbero modificare il wiki.",
+	"apisandbox-intro": "Utilizza questa pagina per fare pratica con le <strong>API web service MediaWiki</strong>.\nPer ulteriori dettagli di utilizzo delle API, fai riferimento alla [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page documentazione API]. Esempio: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ricerca di un titolo di pagina che corrisponde ad un certa parola chiave]. Seleziona un'azione per vedere altri esempi.\n\nNota che, anche se questa è una pagina per le prove, le azioni che esegui qui potrebbero modificare il wiki.",
 	"apisandbox-submit": "Inoltra richiesta",
 	"apisandbox-reset": "Pulisci",
 	"apisandbox-retry": "Riprova",

@@ -3352,7 +3352,7 @@
 	"logentry-import-interwiki": "$1, $3 ను వేరే వికీ నుండి {{GENDER:$2|దిగుమతి చేసారు}}",
 	"logentry-import-interwiki-details": "$1, $3 ను $5 నుండి {{GENDER:$2|దిగుమతి చేసారు}} ($4 {{PLURAL:$4|కూర్పు|కూర్పులు}})",
 	"logentry-merge-merge": "$1, $3 ను $4 లో {{GENDER:$2|విలీనం చేసారు}} ($5 దాకా కూర్పులు)",
-	"logentry-move-move": "$1, పేజీ $3 ను $4 కు {{GENDER:$2|తరలించారు}}",
+	"logentry-move-move": "$1, $3 పేజీని $4 కు {{GENDER:$2|తరలించారు}}",
 	"logentry-move-move-noredirect": "$1, పేజీ $3 ను $4 కు దారిమార్పు లేకుండా {{GENDER:$2|తరలించారు}}",
 	"logentry-move-move_redir": "$1, పేజీ $3 ను $4 కు దారిమార్పు ద్వారా {{GENDER:$2|తరలించారు}}",
 	"logentry-move-move_redir-noredirect": "$1, పేజీ $3 ను $4 కు దారిమార్పు ద్వారా దారిమార్పును ఉంచకుండా {{GENDER:$2|తరలించారు}}",
