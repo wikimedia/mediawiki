@@ -1486,11 +1486,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->lastRoundTripEstimate = $queryRuntime;
 		}
 
+		$numRows = 0;
+		if ( $ret instanceof IResultWrapper ) {
+			$numRows = $ret->numRows();
+		}
+
 		$this->trxProfiler->recordQueryCompletion(
 			$generalizedSql,
 			$startTime,
 			$isPermWrite,
-			$isPermWrite ? $this->affectedRows() : $this->numRows( $ret ),
+			$isPermWrite ? $this->affectedRows() : $numRows,
 			$this->trxId,
 			$this->getServerName()
 		);
