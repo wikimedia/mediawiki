@@ -1548,3 +1548,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-StructuredNavigation
 	branch = REL1_37
 	ignore = dirty
+[submodule "extensions/PropertySuggester"]
+	path = extensions/PropertySuggester
+	url = https://github.com/wikimedia/mediawiki-extensions-PropertySuggester
+	branch = REL1_37
+	ignore = dirty
