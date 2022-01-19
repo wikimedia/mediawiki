@@ -421,7 +421,7 @@ class LinksUpdate extends DataUpdate {
 	 * @return array
 	 */
 	public function getImages() {
-		return $this->mImages;
+		return $this->getParserOutput()->getImages();
 	}
 
 	/**
