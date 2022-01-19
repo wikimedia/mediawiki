@@ -73,8 +73,10 @@ class LinkRendererFactory {
 	}
 
 	/**
-	 * @param array $options optional array with flags for rendering
-	 *        * 'renderForComment' set to true if this LinkRender is to be used for edit summary comment
+	 * @param array $options optional flags for rendering
+	 *  - 'renderForComment': set to true if the created LinkRenderer will be used for
+	 *    links in an edit summary or log comments. An instance with renderForComment
+	 *    enabled must not be used for other links.
 	 *
 	 * @return LinkRenderer
 	 */
