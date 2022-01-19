@@ -188,7 +188,7 @@ class SpecialRandomPage extends SpecialPage {
 			$query['join_conds']
 		);
 
-		return $dbr->fetchObject( $res );
+		return $res->fetchObject();
 	}
 
 	protected function getGroupName() {

@@ -320,7 +320,7 @@ class CompressOld extends Maintenance {
 			if ( $pageRes->numRows() == 0 ) {
 				continue;
 			}
-			$pageRow = $dbr->fetchObject( $pageRes );
+			$pageRow = $pageRes->fetchObject();
 
 			# Display progress
 			$titleObj = Title::makeTitle( $pageRow->page_namespace, $pageRow->page_title );

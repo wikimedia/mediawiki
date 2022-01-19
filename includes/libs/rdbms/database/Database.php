@@ -2108,7 +2108,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return false;
 		}
 
-		return $this->fetchObject( $res );
+		return $res->fetchObject();
 	}
 
 	/**

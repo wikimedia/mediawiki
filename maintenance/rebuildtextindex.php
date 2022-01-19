@@ -81,7 +81,7 @@ class RebuildTextIndex extends Maintenance {
 	protected function populateSearchIndex() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$res = $dbw->select( 'page', 'MAX(page_id) AS count', [], __METHOD__ );
-		$s = $dbw->fetchObject( $res );
+		$s = $res->fetchObject();
 		$count = $s->count;
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
