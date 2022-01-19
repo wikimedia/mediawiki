@@ -329,7 +329,8 @@ class Linker {
 		}
 
 		$services = MediaWikiServices::getInstance();
-		$enableLegacyMediaDOM = $services->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+		$config = $services->getMainConfig();
+		$enableLegacyMediaDOM = $config->get( 'ParserEnableLegacyMediaDOM' );
 
 		$classes = [];
 		if ( !isset( $handlerParams['width'] ) ) {
@@ -350,7 +351,7 @@ class Linker {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMaxSize' );
+				$svgMaxSize = $config->get( 'SVGMaxSize' );
 				$handlerParams['width'] = $svgMaxSize;
 			} else {
 				$handlerParams['width'] = $file->getWidth( $page );
@@ -362,10 +363,10 @@ class Linker {
 				|| isset( $frameParams['frameless'] )
 				|| !$handlerParams['width']
 			) {
-				$thumbLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbLimits' );
-				$thumbUpright = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbUpright' );
+				$thumbLimits = $config->get( 'ThumbLimits' );
+				$thumbUpright = $config->get( 'ThumbUpright' );
 				if ( $widthOption === null || !isset( $thumbLimits[$widthOption] ) ) {
-					$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+					$userOptionsLookup = $services->getUserOptionsLookup();
 					$widthOption = $userOptionsLookup->getDefaultOption( 'thumbsize' );
 				}
 
@@ -846,7 +847,8 @@ class Linker {
 		}
 
 		$title = Title::castFromLinkTarget( $title );
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$enableUploads = $mainConfig->get( 'EnableUploads' );
 		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
 		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
@@ -860,8 +862,7 @@ class Linker {
 			'data-height' => $handlerParams['height'] ?? null,
 		], $label );
 
-		$services = MediaWikiServices::getInstance();
-		if ( $services->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' ) ) {
+		if ( $mainConfig->get( 'ParserEnableLegacyMediaDOM' ) ) {
 			$html = htmlspecialchars( $label );
 		}
 
@@ -906,8 +907,9 @@ class Linker {
 	 * @return string Urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
-		$uploadMissingFileUrl = MediaWikiServices::getInstance()->getMainConfig()->get( 'UploadMissingFileUrl' );
-		$uploadNavigationUrl = MediaWikiServices::getInstance()->getMainConfig()->get( 'UploadNavigationUrl' );
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
+		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
 		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
