@@ -1036,7 +1036,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT IS_FREE_LOCK($encName) AS unlocked",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $res->fetchObject();
 
@@ -1052,7 +1052,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT IF(GET_LOCK($encName,$timeout),UNIX_TIMESTAMP(SYSDATE(6)),NULL) AS acquired",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $res->fetchObject();
 
@@ -1065,7 +1065,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT RELEASE_LOCK($encName) AS released",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $res->fetchObject();
 

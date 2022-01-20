@@ -123,14 +123,16 @@ interface IDatabase {
 	public const QUERY_IGNORE_DBO_TRX = 8;
 	/** @var int Do not try to retry the query if the connection was lost */
 	public const QUERY_NO_RETRY = 16;
-	/** @var int Query is known to be a read-only Data Query Language query */
+	/** @var int Query is a read-only Data Query Language query */
 	public const QUERY_CHANGE_NONE = 32;
-	/** @var int Query is known to be a Transaction Control Language command */
+	/** @var int Query is a Transaction Control Language command (BEGIN, USE, SET, ...) */
 	public const QUERY_CHANGE_TRX = 64 | self::QUERY_IGNORE_DBO_TRX;
-	/** @var int Query is known to be a Data Manipulation Language command */
+	/** @var int Query is a Data Manipulation Language command (INSERT, DELETE, LOCK, ...) */
 	public const QUERY_CHANGE_ROWS = 128;
-	/** @var int Query is known to be a Data Definition Language command */
+	/** @var int Query is a Data Definition Language command */
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
+	/** @var int Query is a command for advisory locks */
+	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
 
 	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
