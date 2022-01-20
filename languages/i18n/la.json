@@ -1538,7 +1538,6 @@
 	"imagelisttext": "Subter est index {{PLURAL:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
 	"newimages-summary": "Haec pagina specialis monstrat fasciculos impositos ultimos.",
 	"newimages-legend": "Filtrum",
-	"newimages-label": "Nomen fasciculi (vel pars eius):",
 	"noimages": "Nullum videndum.",
 	"ilsubmit": "Quaerere",
 	"bydate": "ex die",

@@ -1640,7 +1640,6 @@
 	"upload_source_file": "(l'arkivo de vua komputero quon vu selektis)",
 	"listfiles-delete": "efacar",
 	"listfiles-summary": "Ca specala pagino montras omna arkivi sendita.",
-	"listfiles_search_for": "Serchar ''media'' per lua nomo:",
 	"listfiles-userdoesnotexist": "L'uzeronomo \"$1\" ne enrejistresis.",
 	"imgfile": "arkivo",
 	"listfiles": "Listo pri arkivi",
