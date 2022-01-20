@@ -50,6 +50,21 @@ class ConfigSchemaAggregator {
 	}
 
 	/**
+	 * Get default values for all the keys.
+	 *
+	 * @return array
+	 */
+	public function getDefaults(): array {
+		$defaults = [];
+		foreach ( $this->schema as $key => $schema ) {
+			if ( array_key_exists( 'default', $schema ) ) {
+				$defaults[$key] = $schema['default'];
+			}
+		}
+		return $defaults;
+	}
+
+	/**
 	 * Check if the $key has a default values set in the schema.
 	 *
 	 * @param string $key

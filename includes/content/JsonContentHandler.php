@@ -82,21 +82,21 @@ class JsonContentHandler extends CodeContentHandler {
 	 * @since 1.38
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
-	 * @param ParserOutput &$output The output object to fill (reference).
+	 * @param ParserOutput &$parserOutput The output object to fill (reference).
 	 */
 	protected function fillParserOutput(
 		Content $content,
 		ContentParseParams $cpoParams,
-		ParserOutput &$output
+		ParserOutput &$parserOutput
 	) {
 		'@phan-var JsonContent $content';
 		// FIXME: WikiPage::doEditContent generates parser output before validation.
 		// As such, native data may be invalid (though output is discarded later in that case).
 		if ( $cpoParams->getGenerateHtml() && $content->isValid() ) {
-			$output->setText( $content->rootValueTable( $content->getData()->getValue() ) );
-			$output->addModuleStyles( 'mediawiki.content.json' );
+			$parserOutput->setText( $content->rootValueTable( $content->getData()->getValue() ) );
+			$parserOutput->addModuleStyles( [ 'mediawiki.content.json' ] );
 		} else {
-			$output->setText( '' );
+			$parserOutput->setText( '' );
 		}
 	}
 }

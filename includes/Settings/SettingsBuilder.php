@@ -3,7 +3,9 @@
 namespace MediaWiki\Settings;
 
 use BagOStuff;
+use Config;
 use ExtensionRegistry;
+use HashConfig;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 use MediaWiki\Settings\Cache\CacheableSource;
@@ -176,6 +178,15 @@ class SettingsBuilder {
 			$validator->reset();
 		}
 		return $result;
+	}
+
+	/**
+	 * Return a Config object with all the default settings loaded so far.
+	 *
+	 * @return Config
+	 */
+	public function getDefaultConfig(): Config {
+		return new HashConfig( $this->configSchema->getDefaults() );
 	}
 
 	/**

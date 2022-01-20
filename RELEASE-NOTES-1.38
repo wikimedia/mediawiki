@@ -387,6 +387,12 @@ because of Phabricator reports.
    - ::getFlag() - use ::getOutputFlag()
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
+* The signatures of the following methods from the ParserOutput class
+  were narrowed, restricting the permitted argument types:
+   - ::addModules() - if you formerly passed a string, pass an array with
+     the string as the only element.
+   - ::addModuleStyles() - if you formerly passed a string, pass an array
+     with the string as the only element.
 * The following methods were deprecated; use ::setPreventClickjacking(..)
   instead:
    - OutputPage::preventClickjacking()
