@@ -139,7 +139,7 @@ class PPFrame_Hash implements PPFrame {
 							'duplicate-args-warning',
 							Message::plaintextParam( (string)$this->title ),
 							Message::plaintextParam( (string)$title ),
-							Message::plaintextParam( (string)$name )
+							Message::plaintextParam( $name )
 						);
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
