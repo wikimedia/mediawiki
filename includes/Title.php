@@ -1310,9 +1310,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Returns true if the title is inside the specified namespace.
 	 *
-	 * Please make use of this instead of comparing to getNamespace()
-	 * This function is much more resistant to changes we may make
-	 * to namespaces than code that makes direct comparisons.
 	 * @param int $ns The namespace
 	 * @return bool
 	 * @since 1.19

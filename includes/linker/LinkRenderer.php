@@ -35,7 +35,7 @@ use TitleValue;
 use Wikimedia\Assert\Assert;
 
 /**
- * Class that generates HTML <a> links for pages.
+ * Class that generates HTML anchor link elements for pages.
  *
  * @see https://www.mediawiki.org/wiki/Manual:LinkRenderer
  * @since 1.28
@@ -139,6 +139,7 @@ class LinkRenderer {
 	}
 
 	public function isForComment(): bool {
+		// This option only exists to power a hack in Wikibase's onHtmlPageLinkRendererEnd hook.
 		return $this->comment;
 	}
 
