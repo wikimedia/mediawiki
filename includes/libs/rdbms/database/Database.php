@@ -1010,7 +1010,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// errors and shutdown, then log any problems and move on since the request has to
 			// end one way or another. Throwing errors is not very useful at some point.
 			if ( $this->ownerId !== null && $owner === $this->ownerId ) {
-				$this->queryLogger->error( $error );
+				$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
 			} else {
 				throw new DBUnexpectedError( $this, $error );
 			}
@@ -1509,7 +1509,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					'method' => $fname,
 					'sql' => $sql,
 					'domain' => $this->getDomainID(),
-					'runtime' => round( $queryRuntime, 3 )
+					'runtime' => round( $queryRuntime, 3 ),
+					'db_log_category' => 'query'
 				] )
 			);
 		}
@@ -1659,7 +1660,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				"Silent reconnection to {db_server} could not be attempted: {error}",
 				$this->getLogContext( [
 					'error' => 'session state loss (' . implode( ', ', $blockers ) . ')',
-					'exception' => new RuntimeException()
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'connection'
 				] )
 			);
 
@@ -1759,7 +1761,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $ignore = false ) {
 		if ( $ignore ) {
-			$this->queryLogger->debug( "SQL ERROR (ignored): $error" );
+			$this->queryLogger->debug( "SQL ERROR (ignored): $error", [ 'db_log_category' => 'query' ] );
 		} else {
 			throw $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
 		}
@@ -1783,6 +1785,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'error' => $error,
 				'sql1line' => mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 ),
 				'fname' => $fname,
+				'db_log_category' => 'query',
 				'exception' => new RuntimeException()
 			] )
 		);
@@ -1818,7 +1821,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			"Error connecting to {db_server} as user {db_user}: {error}",
 			$this->getLogContext( [
 				'error' => $error,
-				'exception' => new RuntimeException()
+				'exception' => new RuntimeException(),
+				'db_log_category' => 'connection',
 			] )
 		);
 
@@ -2072,7 +2076,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				__METHOD__
 				. ' called from '
 				. $fname
-				. ' with incorrect parameters: $conds must be a string or an array'
+				. ' with incorrect parameters: $conds must be a string or an array',
+				[ 'db_log_category' => 'sql' ]
 			);
 			$conds = '';
 		}
@@ -2247,7 +2252,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				__METHOD__
 				. ' called from '
 				. $fname
-				. ' with incorrect parameters: $conds must be a string or an array'
+				. ' with incorrect parameters: $conds must be a string or an array',
+				[ 'db_log_category' => 'sql' ]
 			);
 			return [];
 		} elseif ( $conds === '' ) {
@@ -2275,7 +2281,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// For backwards compatibility, allow insertion of rows with no applicable key
 			$this->queryLogger->warning(
 				"upsert/replace called with no unique key",
-				[ 'exception' => new RuntimeException() ]
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'sql',
+				]
 			);
 			return null;
 		}
@@ -2287,7 +2296,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// values for the unique columns (e.g. for an AUTOINCREMENT column)
 				$this->queryLogger->warning(
 					"upsert/replace called with all-null values for unique key",
-					[ 'exception' => new RuntimeException() ]
+					[
+						'exception' => new RuntimeException(),
+						'db_log_category' => 'sql',
+					]
 				);
 				return null;
 			}
@@ -2319,7 +2331,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->queryLogger->warning( __METHOD__ .
 					" called with deprecated parameter style: " .
 					"the unique key array should be a string or array of string arrays",
-					[ 'exception' => new RuntimeException() ] );
+					[
+						'exception' => new RuntimeException(),
+						'db_log_category' => 'sql',
+					] );
 				return $uniqueKeys;
 			} elseif ( is_array( $uniqueKey ) ) {
 				return $uniqueKey;
@@ -2395,7 +2410,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					if ( $soleRow && array_key_exists( $k, $soleRow ) && $soleRow[$k] === $v ) {
 						$this->queryLogger->warning(
 							__METHOD__ . " called with redundant assignment to column '$k'",
-							[ 'exception' => new RuntimeException() ]
+							[
+								'exception' => new RuntimeException(),
+								'db_log_category' => 'sql',
+							]
 						);
 					} else {
 						throw new DBUnexpectedError(
@@ -3110,7 +3128,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
 			$this->queryLogger->warning(
 				__METHOD__ . ": use of subqueries is not supported this way",
-				[ 'exception' => new RuntimeException() ]
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'sql',
+				]
 			);
 
 			return $name;
@@ -4686,7 +4707,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$sectionId = new AtomicSectionIdentifier;
 		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
 		$this->queryLogger->debug( 'startAtomic: entering level ' .
-			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)" );
+			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
@@ -4701,7 +4722,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
 		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
-		$this->queryLogger->debug( "endAtomic: leaving level $pos ($fname)" );
+		$this->queryLogger->debug( "endAtomic: leaving level $pos ($fname)", [ 'db_log_category' => 'trx' ] );
 
 		if ( $savedFname !== $fname ) {
 			throw new DBUnexpectedError(
@@ -4790,9 +4811,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			if ( $excisedFnames ) {
 				$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname) " .
-					"and descendants " . implode( ', ', $excisedFnames ) );
+					"and descendants " . implode( ', ', $excisedFnames ),
+					[ 'db_log_category' => 'trx' ]
+				);
 			} else {
-				$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname)" );
+				$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname)",
+					[ 'db_log_category' => 'trx' ]
+				);
 			}
 
 			if ( $savedFname !== $fname ) {
@@ -4971,7 +4996,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( !$this->trxLevel() ) {
 			$this->queryLogger->error(
 				"$fname: no transaction to commit, something got out of sync",
-				[ 'exception' => new RuntimeException() ]
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'trx'
+				]
 			);
 
 			return; // nothing to do
@@ -5119,7 +5147,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->queryLogger->warning(
 				"$fname: Expected mass snapshot flush of all peer transactions " .
 				"in the explicit transactions round '{$this->getTransactionRoundId()}'",
-				[ 'exception' => new RuntimeException() ]
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'trx'
+				]
 			);
 		}
 
@@ -5231,14 +5262,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			$this->connLogger->warning(
 				$fname . ': lost connection to {db_server}; reconnected',
-				$this->getLogContext( [ 'exception' => new RuntimeException() ] )
+				$this->getLogContext( [
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'connection'
+				] )
 			);
 		} catch ( DBConnectionError $e ) {
 			$ok = false;
 
 			$this->connLogger->error(
 				$fname . ': lost connection to {db_server} permanently',
-				$this->getLogContext( [ 'exception' => new RuntimeException() ] )
+				$this->getLogContext( [
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'connection'
+				] )
 			);
 		}
 
@@ -5633,7 +5670,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			$locked = false;
 			$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
-				[ 'lockname' => $lockName ] );
+				[
+					'lockname' => $lockName,
+					'db_log_category' => 'locking'
+				] );
 		}
 
 		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
@@ -5665,7 +5705,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $released ) {
 			unset( $this->sessionNamedLocks[$lockName] );
 		} else {
-			$this->queryLogger->warning( __METHOD__ . " failed to release lock '$lockName'\n" );
+			$this->queryLogger->warning(
+				__METHOD__ . " failed to release lock '$lockName'\n",
+				[ 'db_log_category' => 'locking' ]
+			);
 		}
 
 		return $released;
@@ -6078,7 +6121,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function __clone() {
 		$this->connLogger->warning(
 			"Cloning " . static::class . " is not recommended; forking connection",
-			[ 'exception' => new RuntimeException() ]
+			[
+				'exception' => new RuntimeException(),
+				'db_log_category' => 'connection'
+			]
 		);
 
 		if ( $this->isOpen() ) {
