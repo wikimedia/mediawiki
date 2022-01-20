@@ -1,5 +1,9 @@
 ( function () {
 
+	// IE 9-11 calculates the width of the 'ch' unit without including the space around characters,
+	// causing fields sized to e.g. 4ch to be too narrow to fit 4 digits. https://caniuse.com/ch-unit
+	var digitWidth = $.client.profile().name === 'msie' ? 1.15 : 1;
+
 	/**
 	 * DateTimeInputWidgets can be used to input a date, a time, or a date and
 	 * time, in either UTC or the user's local timezone.
@@ -351,9 +355,7 @@
 			}
 
 			if ( spec.type === 'number' ) {
-				// Numbers ''should'' be the same width. But we need some extra for
-				// IE, apparently.
-				sz = ( spec.size * 1.15 ) + 'ch';
+				sz = ( spec.size * digitWidth ) + 'ch';
 			} else {
 				// Add a little for padding
 				sz = ( spec.size * 1.25 ) + 'ch';
@@ -459,12 +461,10 @@
 
 				if ( spec.intercalarySize ) {
 					if ( spec.type === 'number' ) {
-						// Numbers ''should'' be the same width. But we need some extra for
-						// IE, apparently.
-						$field.width( ( spec.size * 1.15 ) + 'ch' );
+						$field.width( ( spec.size * digitWidth ) + 'ch' );
 					} else {
 						// Add a little for padding
-						$field.width( ( spec.size * 1.15 ) + 'ch' );
+						$field.width( ( spec.size * 1.25 ) + 'ch' );
 					}
 				}
 			}
@@ -489,12 +489,10 @@
 					}
 					$field.toggleClass( 'oo-ui-element-hidden', sz <= 0 );
 					if ( spec.type === 'number' ) {
-						// Numbers ''should'' be the same width. But we need some extra for
-						// IE, apparently.
-						this.fields[ i ].width( ( sz * 1.15 ) + 'ch' );
+						this.fields[ i ].width( ( sz * digitWidth ) + 'ch' );
 					} else {
 						// Add a little for padding
-						this.fields[ i ].width( ( sz * 1.15 ) + 'ch' );
+						this.fields[ i ].width( ( sz * 1.25 ) + 'ch' );
 					}
 				}
 			}
