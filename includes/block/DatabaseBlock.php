@@ -1201,7 +1201,7 @@ class DatabaseBlock extends AbstractBlock {
 		return MediaWikiServices::getInstance()
 			->getDBLoadBalancerFactory()
 			->getMainLB( $this->getWikiId() )
-			->getConnectionRef( $i );
+			->getConnectionRef( $i, [], $this->getWikiId() );
 	}
 }
 
