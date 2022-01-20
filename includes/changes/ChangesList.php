@@ -642,14 +642,18 @@ class ChangesList extends ContextSource {
 	public function getTimestamp( $rc ) {
 		// This uses the semi-colon separator unless there's a watchlist expiry date for the entry,
 		// because in that case the timestamp is preceded by a clock icon.
-		// A space is important after mw-changeslist-separator--semicolon to make sure
+		// A space is important after `.mw-changeslist-separator--semicolon` to make sure
 		// that whatever comes before it is distinguishable.
 		// (Otherwise your have the text of titles pushing up against the timestamp)
-		// A specific element is used for this purpose as `mw-changeslist-date` is used in a variety
+		// A specific element is used for this purpose rather than styling `.mw-changeslist-date`
+		// as the `.mw-changeslist-date` class is used in a variety
 		// of other places with a different position and the information proceeding getTimestamp can vary.
+		// The `.mw-changeslist-time` class allows us to distinguish from `.mw-changeslist-date` elements that
+		// contain the full date (month, year) and adds consistency with Special:Contributions
+		// and other pages.
 		$separatorClass = $rc->watchlistExpiry ? 'mw-changeslist-separator' : 'mw-changeslist-separator--semicolon';
 		return Html::element( 'span', [ 'class' => $separatorClass ] ) . ' ' .
-			'<span class="mw-changeslist-date">' .
+			'<span class="mw-changeslist-date mw-changeslist-time">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
