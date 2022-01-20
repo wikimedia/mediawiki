@@ -9871,6 +9871,14 @@ $wgReportToEndpoints = [];
  */
 $wgFeaturePolicyReportOnly = [];
 
+/**
+ * List of preferred skins to be listed higher in Special:Preferences
+ *
+ * @since 1.38
+ * @var array
+ */
+$wgSkinsPreferred = [ 'vector-2022', 'vector' ];
+
 /*
  * This file uses VisualStudio style region/endregion fold markers which are
  * recognised by PHPStorm. If modelines are enabled, the following editor

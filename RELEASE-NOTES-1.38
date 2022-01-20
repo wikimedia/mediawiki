@@ -35,6 +35,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * $wgForeignApiRepos – ForeignAPIRepo now has a apiMetadataExpiry option
   to control how long file metadata is cached. Additionally the default changed
   from 1 hour to 4 hours.
+* $wgSkinsPreferred – List of preferred skins to be listed higher in
+  Special:Preferences
 * …
 
 ==== Changed configuration ====

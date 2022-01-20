@@ -182,6 +182,39 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ::sortSkinNames
+	 */
+	public function testSortSkinNames() {
+		/** @var DefaultPreferencesFactory $factory */
+		$factory = TestingAccessWrapper::newFromObject(
+			$this->getPreferencesFactory()
+		);
+		$validSkinNames = [
+			'minerva' => 'Minerva Neue',
+			'monobook' => 'Monobook',
+			'cologne-blue' => 'Cologne Blue',
+			'vector' => 'Vector',
+			'vector-2022' => 'Vector 2022',
+			'timeless' => 'Timeless',
+		];
+		$currentSkin = 'monobook';
+		$preferredSkins = [ 'vector-2022', 'invalid-skin', 'vector' ];
+
+		uksort( $validSkinNames, static function ( $a, $b ) use ( $factory, $currentSkin, $preferredSkins ) {
+			return $factory->sortSkinNames( $a, $b, $currentSkin, $preferredSkins );
+		} );
+
+		$this->assertArrayEquals( [
+			'monobook' => 'Monobook',
+			'vector-2022' => 'Vector 2022',
+			'vector' => 'Vector',
+			'cologne-blue' => 'Cologne Blue',
+			'minerva' => 'Minerva Neue',
+			'timeless' => 'Timeless',
+		], $validSkinNames );
+	}
+
+	/**
 	 * CSS classes for emailauthentication preference field when there's no email.
 	 * @see https://phabricator.wikimedia.org/T36302
 	 *
