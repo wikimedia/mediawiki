@@ -999,9 +999,9 @@ return [
 		$config = $services->getMainConfig();
 		return new MetricsFactory(
 			[
-				'prefix' => $config->get( 'MetricsPrefix' ),
 				'target' => $config->get( 'MetricsTarget' ),
-				'format' => $config->get( 'MetricsFormat' )
+				'format' => $config->get( 'MetricsFormat' ),
+				'prefix' => $config->get( 'MetricsPrefix' ),
 			],
 			LoggerFactory::getInstance( 'Metrics' )
 		);

@@ -7509,41 +7509,44 @@ $wgStatsdMetricPrefix = 'MediaWiki';
  * Sampling rate for statsd metrics as an associative array of patterns and rates.
  * Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
  * Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
+ *
  * @since 1.28
  */
 $wgStatsdSamplingRates = [];
 
 /**
- * Metrics output format
+ * Output target URI for the MetricsFactory service, e.g. udp://127.0.0.1:8125.
  *
- * If null, metrics will not be rendered nor sent.
- * Note: this only affects metrics instantiated by the MetricsFactory service
+ * If null, no metrics are collected.
  *
- * @see Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
- * @var string $wgMetricsFormat
- * @since 1.38
- */
-$wgMetricsFormat = null;
-
-/**
- * Metrics output target URI e.g. udp://127.0.0.1:8125
+ * Note: This does not affect the older StatsdDataFactory service.
  *
- * If null, metrics will not be sent.
- * Note: this only affects metrics instantiated by the MetricsFactory service
- *
- * @var string $wgMetricsTarget
+ * @var string|null
  * @since 1.38
  */
 $wgMetricsTarget = null;
 
 /**
- * Metrics service name prefix
+ * Output format for the MetricsFactory service, e.g. 'statsd'.
  *
- * Required.  Must not be zero-length.
- * Defaults to: 'mediawiki'
- * Note: this only affects metrics instantiated by the MetricsFactory service
+ * If null, no metrics are collected.
  *
- * @var string $wgMetricsPrefix
+ * Note: This does not affect the older StatsdDataFactory service.
+ *
+ * @see Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
+ * @var string|null
+ * @since 1.38
+ */
+$wgMetricsFormat = null;
+
+/**
+ * Service name prefix for the MetricsFactory service
+ *
+ * Must be a non non-empty string.
+ *
+ * Note: This does not affect the older StatsdDataFactory service.
+ *
+ * @var string
  * @since 1.38
  */
 $wgMetricsPrefix = 'mediawiki';
