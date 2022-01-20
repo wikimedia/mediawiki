@@ -36,7 +36,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'class' => ResourceLoaderWikiModule::class,
 		'styles' => [ 'MediaWiki:Noscript.css' ],
-		'group' => 'noscript',
+		'group' => ResourceLoaderModule::GROUP_NOSCRIPT,
 	],
 	'filepage' => [
 		'class' => ResourceLoaderWikiModule::class,

@@ -473,7 +473,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return false;
 		}
 		// For user modules, don't needlessly load if there are no non-empty pages
-		if ( $this->getGroup() === 'user' ) {
+		if ( $this->getGroup() === self::GROUP_USER ) {
 			foreach ( $revisions as $revision ) {
 				if ( $revision['page_len'] > 0 ) {
 					// At least one non-empty page, module should be loaded
