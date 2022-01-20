@@ -13,6 +13,20 @@ use MediaWiki\Settings\Source\SettingsSource;
  */
 interface CacheableSource extends SettingsSource {
 	/**
+	 * Allow the caching layer to attempt to return stale results in the event
+	 * that loading from the original source fails.
+	 *
+	 * Note that allowing stale results will result in cache items being
+	 * stored indefinitely regardless of the {@link getExpiryTtl()} value, and
+	 * since there is currently no pruning of cache items, it is advised that
+	 * sources allowing stale results also implement an immutable
+	 * `getHashKey()` based only on constructor arguments.
+	 *
+	 * @return bool
+	 */
+	public function allowsStaleLoad(): bool;
+
+	/**
 	 * Returns the cache TTL (in seconds) for this source.
 	 *
 	 * @return int

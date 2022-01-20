@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Settings\Cache;
 use BagOStuff;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
+use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -115,6 +116,52 @@ class CachedSourceTest extends TestCase {
 		$source
 			->expects( $this->never() )
 			->method( 'load' );
+
+		$this->assertSame( $settings, $cacheSource->load() );
+	}
+
+	public function testLoadStale() {
+		$cache = $this->createMock( BagOStuff::class );
+		$source = $this->createMock( CacheableSource::class );
+		$cacheSource = new CachedSource( $cache, $source );
+
+		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
+		$hashKey = 'abc123';
+		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
+		$expired = microtime( true ) - 1;
+
+		$source
+			->expects( $this->atLeastOnce() )
+			->method( 'allowsStaleLoad' )
+			->willReturn( true );
+
+		$source
+			->expects( $this->once() )
+			->method( 'getHashKey' )
+			->willReturn( $hashKey );
+
+		$cache
+			->expects( $this->once() )
+			->method( 'makeGlobalKey' )
+			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
+			->willReturn( $key );
+
+		$cache
+			->expects( $this->once() )
+			->method( 'get' )
+			->with( $key )
+			->willReturn(
+				[
+					'value' => $settings,
+					'expiry' => $expired,
+					'generation' => 1.0
+				]
+			);
+
+		$source
+			->expects( $this->once() )
+			->method( 'load' )
+			->will( $this->throwException( new SettingsBuilderException( 'foo' ) ) );
 
 		$this->assertSame( $settings, $cacheSource->load() );
 	}
