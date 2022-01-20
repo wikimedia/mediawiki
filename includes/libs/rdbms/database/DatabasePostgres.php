@@ -246,7 +246,7 @@ class DatabasePostgres extends Database {
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		return $row[0] === null ? null : (int)$row[0];
 	}
@@ -307,7 +307,7 @@ class DatabasePostgres extends Database {
 		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
 		$rows = -1;
 		if ( $res ) {
-			$row = $this->fetchRow( $res );
+			$row = $res->fetchRow();
 			$count = [];
 			if ( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
 				$rows = (int)$count[1];
@@ -614,7 +614,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$currval = $row[0];
 
 		return $currval;
@@ -815,7 +815,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		return $row[0];
 	}
@@ -836,7 +836,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$schemas = [];
 
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
@@ -859,7 +859,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		/* PostgreSQL returns SHOW values as strings */
 
@@ -1109,7 +1109,7 @@ SQL;
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
-		return ( $this->numRows( $res ) > 0 );
+		return ( $res->numRows() > 0 );
 	}
 
 	/**
@@ -1125,7 +1125,7 @@ SQL;
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
-		return ( $this->numRows( $res ) > 0 );
+		return ( $res->numRows() > 0 );
 	}
 
 	/**

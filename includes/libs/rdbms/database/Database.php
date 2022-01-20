@@ -2110,7 +2110,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
 
-		if ( !$this->numRows( $res ) ) {
+		if ( !$res->numRows() ) {
 			return false;
 		}
 
@@ -2133,7 +2133,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$res = $this->select(
 			$tables, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options, $join_conds
 		);
-		$row = $res ? $this->fetchRow( $res ) : [];
+		$row = $res ? $res->fetchRow() : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
@@ -2162,7 +2162,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			[],
 			$fname
 		);
-		$row = $res ? $this->fetchRow( $res ) : [];
+		$row = $res ? $res->fetchRow() : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
@@ -3726,7 +3726,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		$m = [];
 
