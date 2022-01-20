@@ -1790,7 +1790,6 @@
 	"upload_source_file": "(компьютерде файлды слер талдап алганар)",
 	"listfiles-delete": "јоголтор",
 	"listfiles-summary": "Бу аҥылу бӱкте ончо салынган файлдар кӧргӱзилет.",
-	"listfiles_search_for": "Файлдыҥ ады аайынча бедрер:",
 	"listfiles-userdoesnotexist": "\"$1\" атту аккаунт регистрациязы јок.",
 	"imgfile": "файл",
 	"listfiles": "Файлдардыҥ тизими",

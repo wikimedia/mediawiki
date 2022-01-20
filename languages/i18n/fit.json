@@ -1773,7 +1773,6 @@
 	"upload_source_file": "(valittemasi fiili sun omasta taattorista)",
 	"listfiles-delete": "ota poies",
 	"listfiles-summary": "Tämä spesiaalisivu näythää kaikki ylösladatut fiilit.",
-	"listfiles_search_for": "Eti fiilin nimelä:",
 	"listfiles-userdoesnotexist": "Käyttäjäkonttua ”$1” ei ole rekisteröity.",
 	"imgfile": "fiili",
 	"listfiles": "Fiililista",
