@@ -223,6 +223,8 @@ class SpecialExport extends SpecialPage {
 		} else {
 			$categoryName = '';
 		}
+		$canExportAll = $config->get( 'ExportAllowAll' );
+		$hideIf = $canExportAll ? [ 'hide-if' => [ '===', 'exportall', '1' ] ] : [];
 
 		$formDescriptor = [
 			'catname' => [
@@ -235,8 +237,7 @@ class SpecialExport extends SpecialPage {
 				'buttontype' => 'submit',
 				'buttonname' => 'addcat',
 				'buttondefault' => $this->msg( 'export-addcat' )->text(),
-				'hide-if' => [ '===', 'exportall', '1' ],
-			],
+			] + $hideIf,
 		];
 		if ( $config->get( 'ExportFromNamespaces' ) ) {
 			$formDescriptor += [
@@ -251,12 +252,11 @@ class SpecialExport extends SpecialPage {
 					'buttontype' => 'submit',
 					'buttonname' => 'addns',
 					'buttondefault' => $this->msg( 'export-addns' )->text(),
-					'hide-if' => [ '===', 'exportall', '1' ],
-				],
+				] + $hideIf,
 			];
 		}
 
-		if ( $config->get( 'ExportAllowAll' ) ) {
+		if ( $canExportAll ) {
 			$formDescriptor += [
 				'exportall' => [
 					'type' => 'check',
@@ -276,8 +276,7 @@ class SpecialExport extends SpecialPage {
 				'nodata' => true,
 				'rows' => 10,
 				'default' => $page,
-				'hide-if' => [ '===', 'exportall', '1' ],
-			],
+			] + $hideIf,
 		];
 
 		if ( $config->get( 'ExportAllowHistory' ) ) {
