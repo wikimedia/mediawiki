@@ -39,12 +39,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	public function toHTML() {
 		$resolveFilesViaParser = $this->mParser instanceof Parser;
 		if ( $resolveFilesViaParser ) {
-			$out = $this->mParser->getOutput();
+			$parserOutput = $this->mParser->getOutput();
 			$repoGroup = null;
 			$linkRenderer = $this->mParser->getLinkRenderer();
 			$badFileLookup = $this->mParser->getBadFileLookup();
 		} else {
-			$out = $this->getOutput();
+			$parserOutput = $this->getOutput();
 			$services = MediaWikiServices::getInstance();
 			$repoGroup = $services->getRepoGroup();
 			$linkRenderer = $services->getLinkRenderer();
@@ -60,8 +60,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$attribs = Sanitizer::mergeAttributes(
 			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
 
-		$out->addModules( $this->getModules() );
-		$out->addModuleStyles( 'mediawiki.page.gallery.styles' );
+		$parserOutput->addModules( $this->getModules() );
+		$parserOutput->addModuleStyles( [ 'mediawiki.page.gallery.styles' ] );
 		$output = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";

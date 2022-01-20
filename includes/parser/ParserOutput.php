@@ -1079,17 +1079,27 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * @see OutputPage::addModules
-	 * @param string|array $modules
+	 * @param string[] $modules
 	 */
-	public function addModules( $modules ) {
+	public function addModules( $modules ): void {
+		if ( !is_array( $modules ) ) {
+			// This method used to take string|array as an argument, but
+			// we're trying to simplify the API.
+			wfDeprecated( __METHOD__ . ' with non-array argument', '1.38' );
+		}
 		$this->mModules = array_merge( $this->mModules, (array)$modules );
 	}
 
 	/**
 	 * @see OutputPage::addModuleStyles
-	 * @param string|array $modules
+	 * @param string[] $modules
 	 */
-	public function addModuleStyles( $modules ) {
+	public function addModuleStyles( $modules ): void {
+		if ( !is_array( $modules ) ) {
+			// This method used to take string|array as an argument, but
+			// we're trying to simplify the API.
+			wfDeprecated( __METHOD__ . ' with non-array argument', '1.38' );
+		}
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
 	}
 
