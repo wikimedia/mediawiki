@@ -510,13 +510,6 @@ interface ILoadBalancer {
 	public function getPrimaryPos();
 
 	/**
-	 * @deprecated since 1.37 Use getPrimaryPos() instead.
-	 * @return DBPrimaryPos|bool Returns false if not applicable
-	 * @throws DBError
-	 */
-	public function getMasterPos();
-
-	/**
 	 * Get the highest DB replication position for chronology control purposes
 	 *
 	 * If there is only a primary server then this returns false. If replication is present
@@ -582,14 +575,6 @@ interface ILoadBalancer {
 	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37 Use finalizePrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return int Number of pre-commit callbacks run (since 1.32)
-	 */
-	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * Perform all pre-commit checks for things like replication safety
 	 *
 	 * Use this only for multi-database commits
@@ -602,16 +587,6 @@ interface ILoadBalancer {
 	 * @since 1.37
 	 */
 	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null );
-
-	/**
-	 * @deprecated since 1.37; please use approvePrimaryChanges() instead.
-	 * @param array $options Includes:
-	 *   - maxWriteDuration : max write query duration time in seconds
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBTransactionError
-	 */
-	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
@@ -630,14 +605,6 @@ interface ILoadBalancer {
 	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37; please use beginPrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 */
-	public function beginMasterChanges( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * Issue COMMIT on all open primary connections to flush changes and view snapshots
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
@@ -645,14 +612,6 @@ interface ILoadBalancer {
 	 * @since 1.37
 	 */
 	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * @deprecated since 1.37; please use commitPrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 */
-	public function commitMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks and commit dangling transactions
@@ -665,14 +624,6 @@ interface ILoadBalancer {
 	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37; please use runPrimaryTransactionIdleCallbacks() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 */
-	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * Run all recurring post-COMMIT/ROLLBACK listener callbacks
 	 *
 	 * @param string $fname Caller name
@@ -683,14 +634,6 @@ interface ILoadBalancer {
 	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37; please use runPrimaryTransactionListenerCallbacks() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 */
-	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * Issue ROLLBACK only on primary, only if queries were done on connection
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
@@ -698,14 +641,6 @@ interface ILoadBalancer {
 	 * @since 1.37
 	 */
 	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * @deprecated since 1.37; please use rollbackPrimaryChanges() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 */
-	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
@@ -727,23 +662,10 @@ interface ILoadBalancer {
 	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37; please use flushPrimarySnapshots() instead.
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * @return bool Whether a primary connection is already open
 	 * @since 1.37
 	 */
 	public function hasPrimaryConnection();
-
-	/**
-	 * @deprecated since 1.37; please use hasPrimaryConnection() instead.
-	 * @return bool Whether a primary connection is already open
-	 */
-	public function hasMasterConnection();
 
 	/**
 	 * Whether there are pending changes or callbacks in a transaction by this thread
@@ -753,23 +675,11 @@ interface ILoadBalancer {
 	public function hasPrimaryChanges();
 
 	/**
-	 * @deprecated since 1.37; please use hasPrimaryChanges() instead.
-	 * @return bool
-	 */
-	public function hasMasterChanges();
-
-	/**
 	 * Get the timestamp of the latest write query done by this thread
 	 * @return float|bool UNIX timestamp or false
 	 * @since 1.37
 	 */
 	public function lastPrimaryChangeTimestamp();
-
-	/**
-	 * @deprecated since 1.37; please use lastPrimaryChangeTimestamp() instead.
-	 * @return float|bool UNIX timestamp or false
-	 */
-	public function lastMasterChangeTimestamp();
 
 	/**
 	 * Check if this load balancer object had any recent or still
@@ -782,25 +692,12 @@ interface ILoadBalancer {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * @deprecated since 1.37; please use hasOrMadeRecentPrimaryChanges() instead.
-	 * @param float|null $age How many seconds ago is "recent" [defaults to mWaitTimeout]
-	 * @return bool
-	 */
-	public function hasOrMadeRecentMasterChanges( $age = null );
-
-	/**
 	 * Get the list of callers that have pending primary changes
 	 *
 	 * @return string[] List of method names
 	 * @since 1.37
 	 */
 	public function pendingPrimaryChangeCallers();
-
-	/**
-	 * @deprecated since 1.37; please use pendingPrimaryChangeCallers() instead.
-	 * @return string[] List of method names
-	 */
-	public function pendingMasterChangeCallers();
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
@@ -847,13 +744,6 @@ interface ILoadBalancer {
 	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
 
 	/**
-	 * @deprecated since 1.37; please use forEachOpenPrimaryConnection() instead.
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachOpenMasterConnection( $callback, array $params = [] );
-
-	/**
 	 * Get the name and lag time of the most-lagged replica server
 	 *
 	 * This is useful for maintenance scripts that need to throttle their updates.
@@ -891,16 +781,6 @@ interface ILoadBalancer {
 	 * @since 1.37
 	 */
 	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = 10 );
-
-	/**
-	 * @deprecated since 1.37; please use waitForPrimaryPos() instead.
-	 * @param IDatabase $conn Replica DB
-	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
-	 * @param int $timeout Timeout in seconds [optional]
-	 * @return bool Success
-	 * @since 1.34
-	 */
-	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on

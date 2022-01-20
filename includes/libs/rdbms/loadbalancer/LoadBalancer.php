@@ -1578,11 +1578,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
-	}
-
 	public function getReplicaResumePos() {
 		// Get the position of any existing primary DB server connection
 		$primaryConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
@@ -1702,11 +1697,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $total;
 	}
 
-	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->finalizePrimaryChanges( $fname, $owner );
-	}
-
 	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
@@ -1761,11 +1751,6 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_APPROVED;
 	}
 
-	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->approvePrimaryChanges( $options, $fname, $owner );
-	}
-
 	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundId !== false ) {
@@ -1793,11 +1778,6 @@ class LoadBalancer implements ILoadBalancer {
 			$this->applyTransactionRoundFlags( $conn );
 		} );
 		$this->trxRoundStage = self::ROUND_CURSORY;
-	}
-
-	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->beginPrimaryChanges( $fname, $owner );
 	}
 
 	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null ) {
@@ -1838,11 +1818,6 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
-	}
-
-	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
 	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
@@ -1917,11 +1892,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->runPrimaryTransactionIdleCallbacks( $fname, $owner );
-	}
-
 	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
@@ -1951,11 +1921,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->runPrimaryTransactionListenerCallbacks( $fname, $owner );
-	}
-
 	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		if ( $this->ownerId === null ) {
@@ -1976,11 +1941,6 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
-	}
-
-	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->rollbackPrimaryChanges( $fname, $owner );
 	}
 
 	/**
@@ -2081,11 +2041,6 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
-	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->flushPrimarySnapshots( $fname, $owner );
-	}
-
 	/**
 	 * @return string
 	 * @since 1.32
@@ -2098,11 +2053,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->isOpen( $this->getWriterIndex() );
 	}
 
-	public function hasMasterConnection() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->hasPrimaryConnection();
-	}
-
 	public function hasPrimaryChanges() {
 		$pending = false;
 		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$pending ) {
@@ -2110,11 +2060,6 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 
 		return $pending;
-	}
-
-	public function hasMasterChanges() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->hasPrimaryChanges();
 	}
 
 	public function lastPrimaryChangeTimestamp() {
@@ -2126,21 +2071,11 @@ class LoadBalancer implements ILoadBalancer {
 		return $lastTime;
 	}
 
-	public function lastMasterChangeTimestamp() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->lastPrimaryChangeTimestamp();
-	}
-
 	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
 		$age = $age ?? $this->waitTimeout;
 
 		return ( $this->hasPrimaryChanges()
 			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );
-	}
-
-	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
 	public function pendingPrimaryChangeCallers() {
@@ -2150,11 +2085,6 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 
 		return $fnames;
-	}
-
-	public function pendingMasterChangeCallers() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->pendingPrimaryChangeCallers();
 	}
 
 	public function getLaggedReplicaMode( $domain = false ) {
@@ -2317,11 +2247,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function forEachOpenMasterConnection( $callback, array $params = [] ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->forEachOpenPrimaryConnection( $callback, $params );
-	}
-
 	private function forEachOpenReplicaConnection( $callback ) {
 		foreach ( $this->conns as $connsByServer ) {
 			foreach ( $connsByServer as $i => $serverConns ) {
@@ -2455,11 +2380,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return $ok;
-	}
-
-	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->waitForPrimaryPos( $conn, $pos, $timeout );
 	}
 
 	public function setTransactionListener( $name, callable $callback = null ) {
