@@ -11,7 +11,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 	 * @covers HTMLFormField::isHidden
 	 * @covers HTMLFormField::isDisabled
 	 * @covers HTMLFormField::checkStateRecurse
-	 * @covers HTMLFormField::checkValue
+	 * @covers HTMLFormField::validateCondState
 	 * @covers HTMLFormField::getNearestFieldByName
 	 * @dataProvider provideCondState
 	 */
