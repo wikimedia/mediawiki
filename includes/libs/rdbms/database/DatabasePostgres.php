@@ -1252,14 +1252,14 @@ SQL;
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesWrite ) . ' IN EXCLUSIVE MODE',
 				$method,
-				self::QUERY_CHANGE_ROWS
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 			);
 		}
 		if ( $tablesRead ) {
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesRead ) . ' IN SHARE MODE',
 				$method,
-				self::QUERY_CHANGE_ROWS
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 			);
 		}
 
@@ -1274,7 +1274,7 @@ SQL;
 			"SELECT (CASE(pg_try_advisory_lock($key))
 			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $res->fetchObject();
 
@@ -1294,7 +1294,7 @@ SQL;
 						"ELSE NULL " .
 					"END) AS acquired",
 					$method,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+					self::QUERY_CHANGE_LOCKS
 				);
 				$row = $res->fetchObject();
 
@@ -1320,7 +1320,7 @@ SQL;
 		$result = $this->query(
 			"SELECT pg_advisory_unlock($key) AS released",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $result->fetchObject();
 

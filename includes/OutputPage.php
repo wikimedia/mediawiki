@@ -3082,7 +3082,12 @@ class OutputPage extends ContextSource {
 			] );
 
 			// Prepare exempt modules for buildExemptModules()
-			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
+			$exemptGroups = [
+				ResourceLoaderModule::GROUP_SITE => [],
+				ResourceLoaderModule::GROUP_NOSCRIPT => [],
+				ResourceLoaderModule::GROUP_PRIVATE => [],
+				ResourceLoaderModule::GROUP_USER => []
+			];
 			$exemptStates = [];
 			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
 
@@ -3104,7 +3109,7 @@ class OutputPage extends ContextSource {
 							// The `noscript` module is excluded from the client
 							// side registry, no need to set its state either.
 							// But we still output it. See T291735
-							if ( $group !== 'noscript' ) {
+							if ( $group !== ResourceLoaderModule::GROUP_NOSCRIPT ) {
 								$exemptStates[$name] = 'ready';
 							}
 							if ( !$module->isKnownEmpty( $context ) ) {

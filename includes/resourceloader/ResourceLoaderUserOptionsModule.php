@@ -79,6 +79,6 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getGroup() {
-		return 'private';
+		return self::GROUP_PRIVATE;
 	}
 }
