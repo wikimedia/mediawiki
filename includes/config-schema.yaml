@@ -6060,6 +6060,15 @@ config-schema:
             Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
             Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
             @since 1.28
+    MetricsTarget:
+        default: null
+        type: [ string, 'null' ]
+        description: |-
+            Metrics output target URI e.g. udp://127.0.0.1:8125
+
+            If null, metrics will not be sent.
+            Note: this only affects metrics instantiated by the MetricsFactory service
+            @since 1.38
     MetricsFormat:
         default: null
         type: [ string, 'null' ]
@@ -6069,15 +6078,6 @@ config-schema:
             If null, metrics will not be rendered nor sent.
             Note: this only affects metrics instantiated by the MetricsFactory service
             @see \Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
-            @since 1.38
-    MetricsTarget:
-        default: null
-        type: [ string, 'null' ]
-        description: |-
-            Metrics output target URI e.g. udp://127.0.0.1:8125
-
-            If null, metrics will not be sent.
-            Note: this only affects metrics instantiated by the MetricsFactory service
             @since 1.38
     MetricsPrefix:
         default: mediawiki
