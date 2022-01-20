@@ -27,6 +27,9 @@ For notes on 1.36.x and older releases, see HISTORY.
   detection and handling of formats. It's initially used to prevent auto-linking
   of possible telephone numbers in wiki pages' output in Safari on iOS; this can
   be re-enabled if you wish, or locally extended for other browsers' quirks.
+* (T240685) $wgMetricsTarget, $wgMetricsFormat, $wgMetricsPrefix - Configuration
+  for a new MetricsFactory service with support for the dogstatsd format,
+  intended for integration with Prometheus integration.
 * $wgGroupInheritsPermissions – This setting allows inheriting permissions, both
   granted and revoked, from another group.
 * $wgForeignApiRepos – ForeignAPIRepo now has a apiMetadataExpiry option

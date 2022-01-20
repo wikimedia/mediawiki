@@ -58,14 +58,14 @@ class MetricsFactory {
 	/** @var array<CounterMetric|GaugeMetric|TimingMetric> */
 	private $cache = [];
 
-	/** @var string */
-	private $prefix;
-
 	/** @var string|null */
 	private $target;
 
 	/** @var string */
 	private $format;
+
+	/** @var string */
+	private $prefix;
 
 	/** @var LoggerInterface */
 	private $logger;
