@@ -1,0 +1,47 @@
+{
+	"action": "get",
+	"node": {
+		"key": "/mediawiki",
+		"dir": true,
+		"nodes": [
+			{
+				"key": "/mediawiki/Fish",
+				"dir": true,
+				"nodes": [
+					{
+						"key": "/mediawiki/Fish/One",
+						"value": "{ \"val\": \"fish\" }",
+						"modifiedIndex": 1,
+						"createdIndex": 1
+					},
+					{
+						"key": "/mediawiki/Fish/Two",
+						"value": "{ \"val\": \"fish\" }",
+						"modifiedIndex": 1,
+						"createdIndex": 1
+					}
+				]
+			},
+			{
+				"key": "/mediawiki/MoreFish",
+				"dir": true,
+				"nodes": [
+					{
+						"key": "/mediawiki/MoreFish/Red",
+						"value": "{ \"val\": \"fish\" }",
+						"modifiedIndex": 1,
+						"createdIndex": 1
+					},
+					{
+						"key": "/mediawiki/MoreFish/Blue",
+						"value": "{ \"val\": \"fish\" }",
+						"modifiedIndex": 1,
+						"createdIndex": 1
+					}
+				]
+			}
+		],
+		"modifiedIndex": 1,
+		"createdIndex": 1
+	}
+}
