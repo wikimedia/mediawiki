@@ -722,6 +722,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
 * Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
+* Updated wikimedia/html-formatter from 1.0.2 to 2.0.1.
 
 ===== Changed development-only external libraries =====
 * Updated symfony/yaml from 3.4.28 to 5.0.5.
