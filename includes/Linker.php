@@ -1983,14 +1983,17 @@ class Linker {
 				$editCount = self::getRollbackEditCount( $revRecord, false );
 			}
 
-			if ( $editCount > $showRollbackEditCount ) {
-				$html = $context->msg( 'rollbacklinkcount-morethan' )
-					->numParams( $showRollbackEditCount )->parse();
-			} else {
-				$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
-			}
+			// The edit count can be 0 on replica lag, fall back to the generic rollbacklink message
+			if ( $editCount > 0 ) {
+				if ( $editCount > $showRollbackEditCount ) {
+					$html = $context->msg( 'rollbacklinkcount-morethan' )
+						->numParams( $showRollbackEditCount )->parse();
+				} else {
+					$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
+				}
 
-			return self::link( $title, $html, $attrs, $query, $options );
+				return self::link( $title, $html, $attrs, $query, $options );
+			}
 		}
 
 		$html = $context->msg( 'rollbacklink' )->escaped();
