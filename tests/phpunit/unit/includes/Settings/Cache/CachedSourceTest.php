@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Cache;
 
-use BagOStuff;
+use HashBagOStuff;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\SettingsBuilderException;
@@ -13,25 +13,18 @@ use PHPUnit\Framework\TestCase;
  */
 class CachedSourceTest extends TestCase {
 	public function testLoadWithMiss() {
-		$cache = $this->createMock( BagOStuff::class );
-		$source = $this->createMock( CacheableSource::class );
-		$cacheSource = new CachedSource( $cache, $source );
-
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
 		$hashKey = 'abc123';
-		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
 		$ttl = 123;
+
+		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		$source = $this->createMock( CacheableSource::class );
+		$cacheSource = new CachedSource( $cache, $source );
 
 		$source
 			->expects( $this->once() )
 			->method( 'getHashKey' )
 			->willReturn( $hashKey );
-
-		$cache
-			->expects( $this->once() )
-			->method( 'makeGlobalKey' )
-			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
-			->willReturn( $key );
 
 		$cache
 			->expects( $this->once() )
@@ -73,24 +66,17 @@ class CachedSourceTest extends TestCase {
 	}
 
 	public function testLoadWithHit() {
-		$cache = $this->createMock( BagOStuff::class );
-		$source = $this->createMock( CacheableSource::class );
-		$cacheSource = new CachedSource( $cache, $source );
-
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
 		$hashKey = 'abc123';
-		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
+
+		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		$source = $this->createMock( CacheableSource::class );
+		$cacheSource = new CachedSource( $cache, $source );
 
 		$source
 			->expects( $this->once() )
 			->method( 'getHashKey' )
 			->willReturn( $hashKey );
-
-		$cache
-			->expects( $this->once() )
-			->method( 'makeGlobalKey' )
-			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
-			->willReturn( $key );
 
 		$cache
 			->expects( $this->once() )
@@ -120,15 +106,14 @@ class CachedSourceTest extends TestCase {
 		$this->assertSame( $settings, $cacheSource->load() );
 	}
 
-	public function testLoadStale() {
-		$cache = $this->createMock( BagOStuff::class );
-		$source = $this->createMock( CacheableSource::class );
-		$cacheSource = new CachedSource( $cache, $source );
-
+	public function testLoadStaleOnSourceException() {
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
 		$hashKey = 'abc123';
-		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
 		$expired = microtime( true ) - 1;
+
+		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		$source = $this->createMock( CacheableSource::class );
+		$cacheSource = new CachedSource( $cache, $source );
 
 		$source
 			->expects( $this->atLeastOnce() )
@@ -139,12 +124,6 @@ class CachedSourceTest extends TestCase {
 			->expects( $this->once() )
 			->method( 'getHashKey' )
 			->willReturn( $hashKey );
-
-		$cache
-			->expects( $this->once() )
-			->method( 'makeGlobalKey' )
-			->with( 'MediaWiki\Settings\Cache\CachedSource', $hashKey )
-			->willReturn( $key );
 
 		$cache
 			->expects( $this->once() )
@@ -164,5 +143,69 @@ class CachedSourceTest extends TestCase {
 			->will( $this->throwException( new SettingsBuilderException( 'foo' ) ) );
 
 		$this->assertSame( $settings, $cacheSource->load() );
+	}
+
+	public function testLoadStaleOnLockFailure() {
+		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
+		$hashKey = 'abc123';
+		$expired = microtime( true ) - 1;
+
+		list( $cache, $key ) = $this->createCacheMock( $hashKey, [ 'lock' ] );
+		$source = $this->createMock( CacheableSource::class );
+		$cacheSource = new CachedSource( $cache, $source );
+
+		$source
+			->expects( $this->atLeastOnce() )
+			->method( 'allowsStaleLoad' )
+			->willReturn( true );
+
+		$source
+			->expects( $this->once() )
+			->method( 'getHashKey' )
+			->willReturn( $hashKey );
+
+		$cache
+			->expects( $this->once() )
+			->method( 'get' )
+			->with( $key )
+			->willReturn(
+				[
+					'value' => $settings,
+					'expiry' => $expired,
+					'generation' => 1.0
+				]
+			);
+
+		$cache
+			->expects( $this->once() )
+			->method( 'lock' )
+			->willReturn( false );
+
+		$this->assertSame( $settings, $cacheSource->load() );
+	}
+
+	/**
+	 * Creates a mock interface to the cache for the given key.
+	 *
+	 * @param string $hashKey Source hash key.
+	 * @param ?array $methods Additional methods to mock.
+	 *
+	 * @return array The cache mock and global cache key.
+	 */
+	private function createCacheMock( string $hashKey, ?array $methods = [] ): array {
+		$cache = $this->createPartialMock(
+			HashBagOStuff::class,
+			array_merge( [ 'get', 'makeGlobalKey', 'set' ], $methods )
+		);
+
+		$key = 'global:MediaWiki\Tests\Unit\Settings\Cache\CachedSourceTest:' . $hashKey;
+
+		$cache
+			->expects( $this->once() )
+			->method( 'makeGlobalKey' )
+			->with( CachedSource::class, $hashKey )
+			->willReturn( $key );
+
+		return [ $cache, $key ];
 	}
 }

@@ -53,10 +53,27 @@ class SettingsBuilderTest extends TestCase {
 
 		// Make sure the cache is hit twice, once for each file!
 		$mockCache = $this->createMock( BagOStuff::class );
+		$key = 'foo';
+
+		$mockCache
+			->expects( $this->atLeastOnce() )
+			->method( 'makeGlobalKey' )
+			->willReturn( $key );
+
 		$mockCache
 			->expects( $this->exactly( 2 ) )
 			->method( 'get' )
 			->willReturn( false );
+
+		$mockCache
+			->expects( $this->exactly( 2 ) )
+			->method( 'lock' )
+			->willReturn( true );
+
+		$mockCache
+			->expects( $this->exactly( 2 ) )
+			->method( 'unlock' )
+			->willReturn( true );
 
 		$setting = $this->newSettingsBuilder( [
 			'configBuilder' => $configBuilder,
@@ -400,6 +417,16 @@ class SettingsBuilderTest extends TestCase {
 			->method( 'get' )
 			->with( $key )
 			->willReturn( false );
+
+		$mockCache
+			->expects( $this->once() )
+			->method( 'lock' )
+			->willReturn( true );
+
+		$mockCache
+			->expects( $this->once() )
+			->method( 'unlock' )
+			->willReturn( true );
 
 		$mockSource
 			->expects( $this->once() )
