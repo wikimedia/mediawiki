@@ -594,8 +594,8 @@ EOF
 		$a = new ParserOutput();
 		$a->addHeadItem( '<foo1>' );
 		$a->addHeadItem( '<bar1>', 'bar' );
-		$a->addModules( 'test-module-a' );
-		$a->addModuleStyles( 'test-module-styles-a' );
+		$a->addModules( [ 'test-module-a' ] );
+		$a->addModuleStyles( [ 'test-module-styles-a' ] );
 		$a->addJsConfigVars( 'test-config-var-a', 'a' );
 		$a->addExtraCSPStyleSrc( 'css.com' );
 		$a->addExtraCSPStyleSrc( 'css2.com' );
@@ -606,8 +606,8 @@ EOF
 		$b->setIndexPolicy( 'noindex' );
 		$b->addHeadItem( '<foo2>' );
 		$b->addHeadItem( '<bar2>', 'bar' );
-		$b->addModules( 'test-module-b' );
-		$b->addModuleStyles( 'test-module-styles-b' );
+		$b->addModules( [ 'test-module-b' ] );
+		$b->addModuleStyles( [ 'test-module-styles-b' ] );
 		$b->addJsConfigVars( 'test-config-var-b', 'b' );
 		$b->addJsConfigVars( 'test-config-var-a', 'X' );
 		$b->addExtraCSPStyleSrc( 'https://css.ca' );
