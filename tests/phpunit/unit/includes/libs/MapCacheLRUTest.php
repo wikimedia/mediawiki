@@ -250,8 +250,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testHasInvalidKey( $key ) {
 		$cache = new MapCacheLRU( 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/should be either a string or an integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->has( $key );
 	}
 
@@ -261,8 +261,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetInvalidKey( $key ) {
 		$cache = new MapCacheLRU( 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/should be either a string or an integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->get( $key );
 	}
 
@@ -272,8 +272,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testSetInvalidKey( $key ) {
 		$cache = new MapCacheLRU( 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/should be either a string or an integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->set( $key, 'x' );
 	}
 
@@ -283,8 +283,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testHasFieldInvalidKey( $field ) {
 		$cache = MapCacheLRU::newFromArray( [ 'key' => [] ], 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/should be either a string or an integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->hasField( 'key', $field );
 	}
 
@@ -294,8 +294,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetFieldInvalidKey( $field ) {
 		$cache = MapCacheLRU::newFromArray( [ 'key' => [] ], 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/should be either a string or an integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->getField( 'key', $field );
 	}
 
@@ -305,8 +305,8 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testSetFieldInvalidKey( $field ) {
 		$cache = new MapCacheLRU( 3 );
-		$this->expectWarning();
-		$this->expectWarningMessageMatches( '/Field keys must be string or integer/' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'must be string or integer' );
 		$cache->setField( 'key', $field, 'x' );
 	}
 }
