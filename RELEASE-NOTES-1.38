@@ -325,6 +325,23 @@ because of Phabricator reports.
   - ::waitForOne()
   - ::allowLagged()
   - ::forEachOpenReplicaConnection()
+* The following deprecated methods have been removed from ILoadBalancer:
+  - ::getMasterPos() since 1.37
+  - ::finalizeMasterChanges() since 1.37
+  - ::approveMasterChanges() since 1.37
+  - ::beginMasterChanges() since 1.37
+  - ::commitMasterChanges() since 1.37
+  - ::runMasterTransactionIdleCallbacks() since 1.37
+  - ::runMasterTransactionListenerCallbacks() since 1.37
+  - ::rollbackMasterChanges() since 1.37
+  - ::flushMasterSnapshots() since 1.37
+  - ::hasMasterConnection() since 1.37
+  - ::hasMasterChanges() since 1.37
+  - ::lastMasterChangeTimestamp() since 1.37
+  - ::hasOrMadeRecentMasterChanges() since 1.37
+  - ::pendingMasterChangeCallers() since 1.37
+  - ::forEachOpenMasterConnection() since 1.37
+  - ::waitForMasterPos() since 1.37
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
   of file names (option was not available for $wgMiserMode = true)
 * …
