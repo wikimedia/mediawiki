@@ -1553,3 +1553,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PropertySuggester
 	branch = REL1_37
 	ignore = dirty
+[submodule "extensions/QuickInstantCommons"]
+	path = extensions/QuickInstantCommons
+	url = https://github.com/wikimedia/mediawiki-extensions-QuickInstantCommons
+	branch = master
+	ignore = dirty
