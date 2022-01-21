@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -8,7 +9,11 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * @group Database
@@ -500,27 +505,59 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers ::insert
+	 * @covers ::getTargetName()
+	 * @covers ::getTargetUserIdentity()
+	 * @covers ::isBlocking()
+	 * @covers ::getBlocker()
+	 * @covers ::getByName()
 	 */
 	public function testCrossWikiBlocking() {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$this->setMwGlobals( [
+			'wgLocalDatabases' => [ 'm' ],
+		] );
+		$dbMock = $this->createMock( DBConnRef::class );
+		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
+		$lbMock = $this->createMock( ILoadBalancer::class );
+		$lbMock->method( 'getConnectionRef' )
+			->with( DB_REPLICA, [], 'm' )
+			->willReturn( $dbMock );
+		$lbFactoryMock = $this->createMock( LBFactory::class );
+		$lbFactoryMock
+			->method( 'getMainLB' )
+			->with( 'm' )
+			->willReturn( $lbMock );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactoryMock );
+
+		$target = UserIdentityValue::newExternal( 'm', 'UserOnForeignWiki', 'm' );
+
+		$blockUtilsMock = $this->createMock( BlockUtils::class );
+		$blockUtilsMock
+			->method( 'parseBlockTarget' )
+			->with( $target )
+			->willReturn( [ $target, DatabaseBlock::TYPE_USER ] );
+		$this->setService( 'BlockUtils', $blockUtilsMock );
+
+		$blocker = UserIdentityValue::newExternal( 'm', 'MetaWikiUser', 'm' );
+
+		$userNameUtilsMock = $this->createMock( UserNameUtils::class );
+		$userNameUtilsMock
+			->method( 'isUsable' )
+			->with( $blocker->getName() )
+			->willReturn( false );
+		$this->setService( 'UserNameUtils', $userNameUtilsMock );
 
 		$blockOptions = [
-			'address' => UserIdentityValue::newExternal( 'm', 'UserOnForeignWiki', 'm' ),
+			'address' => $target,
 			'wiki' => 'm',
 			'reason' => 'testing crosswiki blocking',
 			'timestamp' => wfTimestampNow(),
-			'expiry' => $this->db->getInfinity(),
 			'createAccount' => true,
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
+			'by' => $blocker,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-
-		$res = $blockStore->insertBlock( $block, $this->db );
-		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 
 		$this->assertEquals(
 			'm>UserOnForeignWiki',
@@ -539,6 +576,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'Correct blocker name'
 		);
 		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+
+		$this->resetServices();
 	}
 
 	/**
@@ -559,8 +598,22 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::getWikiId
 	 */
 	public function testGetWikiId() {
+		$this->setMwGlobals( [
+			'wgLocalDatabases' => [ 'foo' ],
+		] );
+		$dbMock = $this->createMock( DBConnRef::class );
+		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
+		$lbMock = $this->createMock( ILoadBalancer::class );
+		$lbMock->method( 'getConnectionRef' )->willReturn( $dbMock );
+		$lbFactoryMock = $this->createMock( LBFactory::class );
+		$lbFactoryMock->method( 'getMainLB' )->willReturn( $lbMock );
+		$this->setService( 'DBLoadBalancerFactory', $lbFactoryMock );
+
 		$block = new DatabaseBlock( [ 'wiki' => 'foo' ] );
 		$this->assertSame( 'foo', $block->getWikiId() );
+
+		$this->resetServices();
+
 		$localBlock = new DatabaseBlock();
 		$this->assertSame( WikiAwareEntity::LOCAL, $localBlock->getWikiId() );
 	}
