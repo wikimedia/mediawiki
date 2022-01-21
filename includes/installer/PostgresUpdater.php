@@ -689,7 +689,7 @@ END;
 		if ( !$res ) {
 			return null;
 		}
-		$r = $this->db->fetchRow( $res );
+		$r = $res->fetchRow();
 		if ( !$r ) {
 			return null;
 		}
@@ -710,7 +710,7 @@ END;
 			if ( !$r2 ) {
 				return null;
 			}
-			$row2 = $this->db->fetchRow( $r2 );
+			$row2 = $r2->fetchRow();
 			if ( !$row2 ) {
 				return null;
 			}
@@ -735,7 +735,7 @@ END;
 			),
 			__METHOD__
 		);
-		$row = $this->db->fetchRow( $r );
+		$row = $r->fetchRow();
 		if ( !$row ) {
 			return null;
 		}
@@ -759,7 +759,7 @@ END;
 			),
 			__METHOD__
 		);
-		$row = $this->db->fetchRow( $r );
+		$row = $r->fetchRow();
 		if ( !$row ) {
 			return null;
 		}
