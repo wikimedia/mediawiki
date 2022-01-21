@@ -560,9 +560,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::findUsersByGroup
 	 */
 	public function testFindUsersByGroup() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$users = User::findUsersByGroup( [] );
 		$this->assertSame( 0, iterator_count( $users ) );
 
