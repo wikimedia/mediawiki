@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
+use MediaWiki\Settings\Config\MergeStrategy;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -38,5 +39,18 @@ class GlobalConfigBuilderTest extends TestCase {
 		$this->assertSame( 'bar', $GLOBALS['prefix_foo'] );
 		$this->assertSame( 'quu', $builder->build()->get( 'baz' ) );
 		$this->assertSame( 'quu', $GLOBALS['prefix_baz'] );
+	}
+
+	public function testMergeWithGlobal() {
+		$GLOBALS['prefix_foo'] = [ 'a' => 1, 'b' => 2 ];
+
+		$this->getConfigSink()
+			->set(
+				'foo',
+				[ 'a' => 11, 'c' => 33 ],
+				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
+			);
+		$this->assertKeyHasValue( 'foo', [ 'a' => 11, 'b' => 2, 'c' => 33 ] );
+		$this->assertSame( [ 'a' => 11, 'b' => 2, 'c' => 33 ], $GLOBALS['prefix_foo'] );
 	}
 }
