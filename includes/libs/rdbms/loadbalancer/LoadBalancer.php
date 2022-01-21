@@ -83,8 +83,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $servers;
 	/** @var array[] Map of (group => server index => weight) */
 	private $groupLoads;
-	/** @var int[] Map of (server index => seconds of lag considered "high") */
-	private $maxLagByIndex;
 	/** @var int Seconds to spend waiting on replica DB lag to resolve */
 	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
@@ -210,7 +208,6 @@ class LoadBalancer implements ILoadBalancer {
 				$this->groupLoads[$group][$i] = $ratio;
 			}
 			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
-			$this->maxLagByIndex[$i] = $server['max lag'] ?? $this->maxLag;
 		}
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
