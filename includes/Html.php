@@ -744,7 +744,26 @@ class Html {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
+		if ( is_array( $className ) ) {
+			$className[] = 'mw-message-box';
+		} else {
+			$className .= ' mw-message-box';
+		}
 		return self::rawElement( 'div', [ 'class' => $className ], $html );
+	}
+
+	/**
+	 * Return the HTML for a notice message box.
+	 * @since 1.38
+	 * @param string $html of contents of notice
+	 * @param string|array $className corresponding to notice
+	 * @return string of HTML representing the notice
+	 */
+	public static function noticeBox( $html, $className ) {
+		return self::messageBox( $html, [
+			'mw-message-box-notice',
+			$className
+		] );
 	}
 
 	/**
@@ -756,7 +775,12 @@ class Html {
 	 * @return string of HTML representing a warning box.
 	 */
 	public static function warningBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'warningbox', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-warning',
+			// Deprecated class kept for cached HTML. Will be removed shortly.
+			'warningbox',
+			$className
+		] );
 	}
 
 	/**
@@ -769,7 +793,12 @@ class Html {
 	 * @return string of HTML representing an error box.
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
-		return self::messageBox( $html, [ 'errorbox', $className ], $heading );
+		return self::messageBox( $html, [
+			'mw-message-box-error',
+			// Deprecated class kept for cached HTML. Will be removed shortly.
+			'errorbox',
+			$className
+		], $heading );
 	}
 
 	/**
@@ -781,7 +810,12 @@ class Html {
 	 * @return string of HTML representing a success box.
 	 */
 	public static function successBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'successbox', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-success',
+			// Deprecated class `successbox`. Kept for gadgets/user styles.
+			'successbox',
+			$className
+		] );
 	}
 
 	/**

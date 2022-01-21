@@ -64,7 +64,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->getSpecialPageFactory()
 			->executePath( $sp, $ctx );
 		$html = $ctx->getOutput()->getHTML();
-		$this->assertRegExp( '/class="warningbox"/', $html, 'must contain warnings' );
+		$this->assertRegExp( '/class="mw-message-box-warning warningbox/', $html, 'must contain warnings' );
 		$this->assertRegExp( '/Sort order of invalid is unrecognized/',
 			$html, 'must tell user sort order is invalid' );
 	}

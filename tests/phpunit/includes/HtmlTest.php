@@ -504,7 +504,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWarningBox() {
 		$this->assertEquals(
-			'<div class="warningbox">warn</div>',
+			'<div class="mw-message-box-warning warningbox mw-message-box">warn</div>',
 			Html::warningBox( 'warn' )
 		);
 	}
@@ -515,15 +515,15 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testErrorBox() {
 		$this->assertEquals(
-			'<div class="errorbox">err</div>',
+			'<div class="mw-message-box-error errorbox mw-message-box">err</div>',
 			Html::errorBox( 'err' )
 		);
 		$this->assertEquals(
-			'<div class="errorbox errorbox-custom-class"><h2>heading</h2>err</div>',
+			'<div class="mw-message-box-error errorbox errorbox-custom-class mw-message-box"><h2>heading</h2>err</div>',
 			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' )
 		);
 		$this->assertEquals(
-			'<div class="errorbox"><h2>0</h2>err</div>',
+			'<div class="mw-message-box-error errorbox mw-message-box"><h2>0</h2>err</div>',
 			Html::errorBox( 'err', '0', '' )
 		);
 	}
@@ -534,11 +534,11 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSuccessBox() {
 		$this->assertEquals(
-			'<div class="successbox">great</div>',
+			'<div class="mw-message-box-success successbox mw-message-box">great</div>',
 			Html::successBox( 'great' )
 		);
 		$this->assertEquals(
-			'<div class="successbox"><script>beware no escaping!</script></div>',
+			'<div class="mw-message-box-success successbox mw-message-box"><script>beware no escaping!</script></div>',
 			Html::successBox( '<script>beware no escaping!</script>' )
 		);
 	}
