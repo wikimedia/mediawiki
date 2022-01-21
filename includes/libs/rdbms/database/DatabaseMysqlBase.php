@@ -729,7 +729,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$start = microtime( true );
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( $sql, __METHOD__, $flags );
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$seconds = max( microtime( true ) - $start, 0 );
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
