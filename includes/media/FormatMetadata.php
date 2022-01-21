@@ -1175,8 +1175,7 @@ class FormatMetadata extends ContextSource {
 			switch ( $type ) {
 				case 'lang':
 					// Display default, followed by ContentLanguage,
-					// followed by the rest in no particular
-					// order.
+					// followed by the rest in no particular order.
 
 					// Todo: hide some items if really long list.
 
@@ -1187,12 +1186,9 @@ class FormatMetadata extends ContextSource {
 					$defaultLang = false;
 
 					// If default is set, save it for later,
-					// as we don't know if it's equal to
-					// one of the lang codes. (In xmp
-					// you specify the language for a
-					// default property by having both
-					// a default prop, and one in the language
-					// that are identical)
+					// as we don't know if it's equal to one of the lang codes.
+					// (In xmp you specify the language for a default property by having
+					// both a default prop, and one in the language that are identical)
 					if ( isset( $vals['x-default'] ) ) {
 						$defaultItem = $vals['x-default'];
 						unset( $vals['x-default'] );
@@ -1204,15 +1200,12 @@ class FormatMetadata extends ContextSource {
 								$defaultItem = false;
 								$isDefault = true;
 							}
-							$content .= $this->langItem(
-								$vals[$pLang], $pLang,
-								$isDefault, $noHtml );
+							$content .= $this->langItem( $vals[$pLang], $pLang, $isDefault, $noHtml );
 
 							unset( $vals[$pLang] );
 
 							if ( $this->singleLang ) {
-								return Html::rawElement( 'span',
-									[ 'lang' => $pLang ], $vals[$pLang] );
+								return Html::rawElement( 'span', [ 'lang' => $pLang ], $vals[$pLang] );
 							}
 						}
 					}
@@ -1223,17 +1216,13 @@ class FormatMetadata extends ContextSource {
 							$defaultLang = $lang;
 							continue;
 						}
-						$content .= $this->langItem( $item,
-							$lang, false, $noHtml );
+						$content .= $this->langItem( $item, $lang, false, $noHtml );
 						if ( $this->singleLang ) {
-							return Html::rawElement( 'span',
-								[ 'lang' => $lang ], $item );
+							return Html::rawElement( 'span', [ 'lang' => $lang ], $item );
 						}
 					}
 					if ( $defaultItem !== false ) {
-						$content = $this->langItem( $defaultItem,
-								$defaultLang, true, $noHtml ) .
-							$content;
+						$content = $this->langItem( $defaultItem, $defaultLang, true, $noHtml ) . $content;
 						if ( $this->singleLang ) {
 							return $defaultItem;
 						}
@@ -1242,9 +1231,7 @@ class FormatMetadata extends ContextSource {
 						return $content;
 					}
 
-					return '<ul class="metadata-langlist">' .
-					$content .
-					'</ul>';
+					return '<ul class="metadata-langlist">' . $content . '</ul>';
 				case 'ol':
 					if ( $noHtml ) {
 						return "\n#" . implode( "\n#", $vals );
@@ -1274,15 +1261,13 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
-			throw new MWException( '$lang and $default cannot both '
-				. 'be false.' );
+			throw new MWException( '$lang and $default cannot both be false.' );
 		}
 
 		if ( $noHtml ) {
 			$wrappedValue = $this->literal( $value );
 		} else {
-			$wrappedValue = '<span class="mw-metadata-lang-value">'
-				. $this->literal( $value ) . '</span>';
+			$wrappedValue = '<span class="mw-metadata-lang-value">' . $this->literal( $value ) . '</span>';
 		}
 
 		if ( $lang === false ) {
@@ -1291,9 +1276,7 @@ class FormatMetadata extends ContextSource {
 				return $msg->text() . "\n\n";
 			} /* else */
 
-			return '<li class="mw-metadata-lang-default">'
-				. $msg->text()
-				. "</li>\n";
+			return '<li class="mw-metadata-lang-default">' . $msg->text() . "</li>\n";
 		}
 
 		$lowLang = strtolower( $lang );
@@ -1315,8 +1298,7 @@ class FormatMetadata extends ContextSource {
 			return '*' . $msg->text();
 		} /* else: */
 
-		$item = '<li class="mw-metadata-lang-code-'
-			. $lang;
+		$item = '<li class="mw-metadata-lang-code-' . $lang;
 		if ( $default ) {
 			$item .= ' mw-metadata-lang-default';
 		}
@@ -1682,15 +1664,13 @@ class FormatMetadata extends ContextSource {
 			}
 			if ( isset( $vals['CiAdrPcode'] ) ) {
 				$postal = '<span class="postal-code">'
-					. $this->literal(
-						$vals['CiAdrPcode'] )
+					. $this->literal( $vals['CiAdrPcode'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiAdrRegion'] ) ) {
 				// Note this is province/state.
 				$region = '<span class="region">'
-					. $this->literal(
-						$vals['CiAdrRegion'] )
+					. $this->literal( $vals['CiAdrRegion'] )
 					. '</span>';
 			}
 			if ( isset( $vals['CiUrlWork'] ) ) {
@@ -1700,8 +1680,7 @@ class FormatMetadata extends ContextSource {
 			}
 
 			return $this->msg( 'exif-contact-value', $email, $url,
-				$street, $city, $region, $postal, $country,
-				$tel )->text();
+				$street, $city, $region, $postal, $country, $tel )->text();
 		}
 	}
 
