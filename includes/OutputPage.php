@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -28,7 +27,6 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Tidy\RemexDriver;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -994,15 +992,7 @@ class OutputPage extends ContextSource {
 
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
-		# == start explicit tidy ==
-		# T299722/T298401: The explicit tidy here can be removed once
-		# Sanitizer::removeHTMLtags() is made more robust.
-		$tidy = new RemexDriver( new ServiceOptions( [ 'TidyConfig' ], [
-			'TidyConfig' => [ 'pwrap' => false ],
-		] ) );
-		$nameWithTags = $tidy->tidy( $name, [ Sanitizer::class, 'armorFrenchSpaces' ] );
-		# == end explicit tidy ==
-		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $nameWithTags ) );
+		$nameWithTags = Sanitizer::removeSomeTags( $name );
 		$this->mPageTitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
@@ -1046,7 +1036,7 @@ class OutputPage extends ContextSource {
 			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
 
-		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $html ) );
+		return Sanitizer::removeSomeTags( $html );
 	}
 
 	/**

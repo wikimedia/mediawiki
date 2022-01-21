@@ -26,6 +26,28 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * @covers Sanitizer::removeSomeTags
+	 * @dataProvider provideHtml5Tags
+	 *
+	 * @param string $tag Name of an HTML5 element (ie: 'video')
+	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 */
+	public function testRemoveSomeTagsOnHtml5Tags( $tag, $escaped ) {
+		if ( $escaped ) {
+			$this->assertEquals( "&lt;$tag&gt;",
+				Sanitizer::removeSomeTags( "<$tag>" )
+			);
+		} else {
+			$this->assertEquals( "<$tag></$tag>\n",
+				Sanitizer::removeSomeTags( "<$tag></$tag>\n" )
+			);
+			$this->assertEquals( "<$tag></$tag>",
+				Sanitizer::removeSomeTags( "<$tag>" )
+			);
+		}
+	}
+
 	public static function provideHtml5Tags() {
 		$ESCAPED = true; # We want tag to be escaped
 		$VERBATIM = false; # We want to keep the tag
@@ -73,6 +95,14 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
+	}
+
+	/**
+	 * @dataProvider dataRemoveHTMLtags
+	 * @covers Sanitizer::removeSomeTags
+	 */
+	public function testRemoveSomeTags( $input, $output, $msg = null ) {
+		$this->assertEquals( $output, Sanitizer::removeSomeTags( $input ), $msg );
 	}
 
 	/**
