@@ -842,11 +842,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $pos;
 	}
 
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
-	}
-
 	/**
 	 * @inheritDoc
 	 * @return string|null 32 bit integer ID; null if not applicable or unknown
