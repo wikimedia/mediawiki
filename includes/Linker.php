@@ -1877,7 +1877,7 @@ class Linker {
 			__METHOD__,
 			[
 				'USE INDEX' => [ 'revision' => $revIndex ],
-				'ORDER BY' => 'rev_timestamp DESC',
+				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ],
 				'LIMIT' => $showRollbackEditCount + 1
 			],
 			$revQuery['joins']
