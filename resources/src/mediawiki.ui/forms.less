@@ -75,15 +75,15 @@
 	// Styles for information boxes
 	//
 	// Regular HTMLForm uses .error class, some special pages like
-	// SpecialUserlogin (login and create account) use .errorbox.
+	// SpecialUserlogin (login and create account) use Html::errorBox
 	//
 	// Markup:
 	// <form class="mw-ui-vform">
-	//   <div class="errorbox">
+	//   <div class="mw-message-box-error mw-message-box">
 	//     <ul><li>An error occurred. There are problems with some of your input.</li></ul>
 	//   </div>
-	//   <div class="warningbox">A warning to be noted</div>
-	//   <div class="successbox">Action successful!</div>
+	//   <div class="mw-message-box-warning mw-message-box">A warning to be noted</div>
+	//   <div class="mw-message-box-success mw-message-box">Action successful!</div>
 	//   <div class="mw-ui-vform-field">
 	//     <input type="text" value="input" class="mw-ui-input">
 	//   </div>
@@ -104,10 +104,7 @@
 	// some space between the field and the error message box.
 	.mw-ui-vform-field {
 		.mw-message-box-error,
-		.mw-message-box-warning,
-		/* The following classes are kept for cached HTML and will be removed shortly. */
-		.errorbox,
-		.warningbox {
+		.mw-message-box-warning {
 			margin-top: 5px;
 		}
 	}

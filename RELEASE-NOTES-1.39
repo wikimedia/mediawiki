@@ -107,6 +107,8 @@ because of Phabricator reports.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
     Use SkinTemplate methods with the same name or Skin::getTemplateData
     instead.
+  - Styles for the HTML classes `warningbox`, `errorbox` and `successbox` have
+    been removed in favor of Html class methods.
   - The feature `legacy` used inside ResourceLoaderSkinModule,
     deprecated in 1.37, will no longer ship any styles.
   - Skin::getSkinStylePath, deprecated since 1.36, has been removed.
