@@ -2471,6 +2471,7 @@
 	"delete-edit-reasonlist": "削除理由を編集",
 	"delete-edit-reasonlist-suppress": "秘匿理由を編集",
 	"delete-toobig": "このページには、$1版を超える編集履歴があります。\nこのようなページの削除は、{{SITENAME}}の偶発的な問題を避けるため、制限されています。",
+	"delete-toomanyrevisions": "$1件以上の{{PLURAL:$1|版}}を一括削除しようとしています。このような操作は、{{SITENAME}}に意外な混乱を招かないよう、制限されています。",
 	"delete-warning-toobig": "このページには、 $1版を超える編集履歴があります。\n削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。\n十分に注意してください。",
 	"delete-error-associated-alreadytalk": "議論ページの付随する議論ページを削除できません。",
 	"delete-error-associated-doesnotexist": "存在しない付随する議論ページを削除できません。",
@@ -4232,6 +4233,6 @@
 	"paramvalidator-help-type-title-must-exist": "既存のページのみ。",
 	"paramvalidator-help-type-title-no-must-exist": "存在しないページでも可。",
 	"nonmain-slot-differences-therefore-readonly": "ページのこの版以降に、ページのデータにウィキテキストに基づいていない変更が発生したため、この版のウィキテキストを編集できません。[$1 ここをクリックして版を復元できます。]",
-	"config-missing-key": "MediaWiki設定パラメータ「$1」が不足しています",
-	"config-invalid-key": "無効なMediaWiki設定パラメータ「$1」：$2"
+	"config-missing-key": "MediaWiki設定引数「$1」が不足しています",
+	"config-invalid-key": "不正なMediaWiki設定引数「$1」：$2"
 }
