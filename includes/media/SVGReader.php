@@ -80,7 +80,8 @@ class SVGReader {
 		// libxml_disable_entity_loader() to avoid arbitrary local file
 		// inclusion, or even arbitrary code execution if the expect
 		// extension is installed (T48859).
-		$oldDisable = libxml_disable_entity_loader( true );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisable = @libxml_disable_entity_loader( true );
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
@@ -103,8 +104,8 @@ class SVGReader {
 			// Should we consider it the default 512x512 instead?
 			throw $e;
 		} finally {
-			Wikimedia\restoreWarnings();
 			libxml_disable_entity_loader( $oldDisable );
+			Wikimedia\restoreWarnings();
 		}
 	}
 
