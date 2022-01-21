@@ -1735,7 +1735,7 @@
 	"uploaded-script-svg": "Tìm thấy phần tử “$1” có khả năng chạy kịch bản trong tập tin SVG được tải lên.",
 	"uploaded-hostile-svg": "Tìm thấy CSS nguy hiểm trong phần tử style của tập tin SVG được tải lên.",
 	"uploaded-event-handler-on-svg": "Không cho phép đặt thuộc tính xử lý sự kiện <code>$1=\"$2\"</code> trong tập tin SVG.",
-	"uploaded-href-attribute-svg": "Phần tử <a> chỉ có thể liên kết (đặc tính href) đến đích data: (tập tin nhúng), http:// hay https://, hoặc mảnh (#, cùng trang). Đối với các phần tử khác như <image>, chỉ cho phép data: và mảnh. Hãy thử nhúng hình ảnh khi xuất hình SVG. Đã tìm thấy <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "Phần tử <a> chỉ có thể liên kết (thuộc tính href) đến data: (tập tin nhúng), http:// hay https://, hoặc fragment (#, cùng trang). Đối với các phần tử khác như <image>, chỉ cho phép data: và mảnh. Hãy thử nhúng hình ảnh khi xuất SVG. Đã tìm thấy <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Tìm thấy href đến đích URI data: không an toàn <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",
 	"uploaded-animate-svg": "Tìm thấy thẻ “animate” có thể thay đổi href qua thuộc tính “from” <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",
 	"uploaded-setting-event-handler-svg": "Đã ngăn cản việc đặt thuộc tính xử lý sự kiện khi tìm thấy <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",

@@ -1802,6 +1802,8 @@
 	"uploadstash-bad-path": "Шлях не існуе.",
 	"uploadstash-bad-path-invalid": "Няслушны шлях.",
 	"uploadstash-bad-path-unknown-type": "Невядомы тып «$1».",
+	"uploadstash-bad-path-unrecognized-thumb-name": "Нераспазнаная назва драбніцы.",
+	"uploadstash-file-not-found-no-thumb": "Не атрымалася здабыць драбніцу.",
 	"uploadstash-file-not-found-no-local-path": "Не знойдзена лакальнага шляху да маштабаванага файлу.",
 	"uploadstash-file-not-found-missing-content-type": "Адсутнічае загаловак content-type.",
 	"uploadstash-file-not-found-not-exists": "Не атрымалася знайсці шлях, ці не просты файл.",

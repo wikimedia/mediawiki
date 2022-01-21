@@ -2521,7 +2521,7 @@
 	"delete-edit-reasonlist": "编辑删除原因",
 	"delete-edit-reasonlist-suppress": "编辑隐藏原因",
 	"delete-toobig": "此页面有大量的编辑历史，超过{{PLURAL:$1|$1个版本}}。\n删除此类页面的操作已被限制，以防止对{{SITENAME}}造成意外破坏。",
-	"delete-toomanyrevisions": "您正试图一次性删除超过$1个修订。此种操作已被限制，以防对{{SITENAME}}产生意外的破坏。",
+	"delete-toomanyrevisions": "您正试图一次性删除超过$1个{{PLURAL:$1|修订}}。此种操作已被限制，以防对{{SITENAME}}产生意外的破坏。",
 	"delete-warning-toobig": "此页面有大量的编辑历史，超过{{PLURAL:$1|$1个版本}}。\n删除它可能会破坏{{SITENAME}}的数据库操作；\n请谨慎考虑是否执行。",
 	"delete-error-associated-alreadytalk": "无法删除讨论页的关联讨论页。",
 	"delete-error-associated-doesnotexist": "无法删除不存在的关联讨论页。",
