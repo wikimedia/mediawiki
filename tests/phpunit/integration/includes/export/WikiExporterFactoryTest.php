@@ -9,7 +9,7 @@ use WikiExporter;
 use XmlDumpWriter;
 
 /**
- * @covers MediaWiki\Export\WikiExporterFactory
+ * @covers \MediaWiki\Export\WikiExporterFactory
  */
 class WikiExporterFactoryTest extends MediaWikiIntegrationTestCase {
 	use FactoryArgTestTrait;
@@ -35,5 +35,12 @@ class WikiExporterFactoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function getFactoryMethodName() {
 		return 'getWikiExporter';
+	}
+
+	protected function getOverriddenMockValueForParam( $param ) {
+		if ( $param->getName() === 'text' ) {
+			return [ WikiExporter::TEXT ];
+		}
+		return [];
 	}
 }

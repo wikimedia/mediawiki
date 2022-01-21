@@ -140,7 +140,10 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	 * @since 1.32 Added $maxAge
 	 */
 	public function has( $key, $maxAge = INF ) {
-		// Optimization: Forego type check because array_key_exists does it already (T275673)
+		if ( !is_int( $key ) && !is_string( $key ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ': invalid key; must be string or integer.' );
+		}
 		return array_key_exists( $key, $this->cache )
 			&& (
 				// Optimization: Avoid expensive getAge/getCurrentTime for common case (T275673)
@@ -195,8 +198,8 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		}
 
 		if ( !is_string( $field ) && !is_int( $field ) ) {
-			trigger_error( "Field keys must be string or integer (key '$key')", E_USER_WARNING );
-			return;
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
 		}
 
 		$this->cache[$key][$field] = $value;
@@ -213,8 +216,11 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	public function hasField( $key, $field, $maxAge = INF ) {
 		$value = $this->get( $key );
 
+		if ( !is_int( $field ) && !is_string( $field ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
+		}
 		return is_array( $value )
-			// Optimization: Forego $field type check because array_key_exists does it already (T275673)
 			&& array_key_exists( $field, $value )
 			&& (
 				$maxAge === INF
