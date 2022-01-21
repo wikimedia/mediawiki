@@ -2471,8 +2471,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( $ignoreFormat !== false ) {
 				$this->assertThat( $jobStatus['error'],
 					$this->logicalOr(
-						$this->matches( $ignoreFormat ),
-						$this->isNull()
+						$this->isNull(),
+						$this->matches( $ignoreFormat )
 					),
 					"Error for job of type {$jobStatus['type']}"
 				);
