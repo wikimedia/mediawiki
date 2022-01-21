@@ -366,13 +366,11 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'mw-rollback' => true,
 					'mw-blank' => true,
 					'mw-replace' => true,
-					'mw-add-media' => true,
 				],
 				[
 					'mw-rollback',
 					'mw-replace',
 					'mw-blank',
-					'mw-add-media',
 				]
 			],
 

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use ChangeTags;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReferenceValue;
 use ParserOutput;
@@ -116,28 +115,7 @@ class ImageLinksTable extends TitleLinksTable {
 		$insertedLinks = array_diff( $allInsertedLinks, $allDeletedLinks );
 		$deletedLinks = array_diff( $allDeletedLinks, $allInsertedLinks );
 
-		$this->updateChangeTags( $insertedLinks, $deletedLinks );
 		$this->invalidateImageDescriptions( $insertedLinks, $deletedLinks );
-	}
-
-	/**
-	 * Add the mw-add-media or mw-remove-media change tags to the edit if appropriate
-	 * @param array $insertedLinks
-	 * @param array $deletedLinks
-	 */
-	private function updateChangeTags( array $insertedLinks, array $deletedLinks ) {
-		$enabledTags = ChangeTags::getSoftwareTags();
-		$mediaChangeTags = [];
-		if ( count( $insertedLinks ) && in_array( 'mw-add-media', $enabledTags ) ) {
-			$mediaChangeTags[] = 'mw-add-media';
-		}
-		if ( count( $deletedLinks ) && in_array( 'mw-remove-media', $enabledTags ) ) {
-			$mediaChangeTags[] = 'mw-remove-media';
-		}
-		$revisionRecord = $this->getRevision();
-		if ( $revisionRecord && count( $mediaChangeTags ) ) {
-			ChangeTags::addTags( $mediaChangeTags, null, $revisionRecord->getId() );
-		}
 	}
 
 	/**

@@ -3533,8 +3533,6 @@ return [
 				'mw-manual-revert' => true,
 				'mw-reverted' => true,
 				'mw-server-side-upload' => true,
-				'mw-add-media' => false,
-				'mw-remove-media' => false,
 			],
 			'type' => 'object',
 			'additionalProperties' => [
