@@ -90,6 +90,17 @@ class FileSource implements CacheableSource, SettingsIncludeLocator {
 	}
 
 	/**
+	 * Disallow stale results from file sources in the case of load failure as
+	 * failing to read from disk would be quite catastrophic and worthy of
+	 * propagation.
+	 *
+	 * @return bool
+	 */
+	public function allowsStaleLoad(): bool {
+		return false;
+	}
+
+	/**
 	 * Loads contents from the file and decodes them using the first format
 	 * to claim support for the file's extension.
 	 *
