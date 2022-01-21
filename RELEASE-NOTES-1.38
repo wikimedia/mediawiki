@@ -342,6 +342,8 @@ because of Phabricator reports.
   - ::pendingMasterChangeCallers() since 1.37
   - ::forEachOpenMasterConnection() since 1.37
   - ::waitForMasterPos() since 1.37
+* LoadBalancer::safeGetLag() which has been soft-deprecated since 1.34 has been
+  removed.
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
   of file names (option was not available for $wgMiserMode = true)
 * …
