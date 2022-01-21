@@ -160,6 +160,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddLocalisedTitleTooltips( $input, $expected ) {
 		$this->setContentLang( 'qqx' );
+		/** @var DifferenceEngine $diffEngine */
 		$diffEngine = TestingAccessWrapper::newFromObject( new DifferenceEngine() );
 		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
 	}
