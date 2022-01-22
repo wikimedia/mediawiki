@@ -31,7 +31,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
@@ -164,7 +163,7 @@ class DatabaseBlockStore {
 				);
 			}
 		} else {
-			if ( $expectedWiki !== UserIdentity::LOCAL ) {
+			if ( $expectedWiki !== Block::LOCAL ) {
 				throw new InvalidArgumentException(
 					"Must provide a database connection for wiki '$expectedWiki'."
 				);
@@ -191,7 +190,7 @@ class DatabaseBlockStore {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
 
-		$this->checkDatabaseDomain( $database, $block->getBlocker()->getWikiId() );
+		$this->checkDatabaseDomain( $database, $block->getWikiId() );
 
 		$this->logger->debug( 'Inserting block; timestamp ' . $block->getTimestamp() );
 
@@ -270,8 +269,8 @@ class DatabaseBlockStore {
 
 		// We could allow cross-wiki updates here, just like we do in insertBlock().
 		Assert::parameter(
-			$block->getBlocker()->getWikiId() === UserIdentity::LOCAL,
-			'$block->getBlocker()',
+			$block->getWikiId() === Block::LOCAL,
+			'$block->getWikiId()',
 			'must belong to the local wiki.'
 		);
 
