@@ -1235,9 +1235,9 @@ SQL;
 	}
 
 	public function buildGroupConcatField(
-		$delimiter, $table, $field, $conds = '', $options = [], $join_conds = []
+		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
-		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delimiter ) . ')';
+		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
