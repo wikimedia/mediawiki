@@ -14,7 +14,7 @@ class MediaWikiIntegrationTestCaseSchema2Test extends MediaWikiIntegrationTestCa
 
 	protected function setUp(): void {
 		parent::setUp();
-		// FIXME: fails under postgres
+		// FIXME: fails under postgres - T198222
 		$this->markTestSkippedIfDbType( 'postgres' );
 	}
 
