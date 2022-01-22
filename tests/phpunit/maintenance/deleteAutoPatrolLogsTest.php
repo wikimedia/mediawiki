@@ -257,9 +257,6 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	 * @dataProvider runProvider
 	 */
 	public function testRun( $expected, $args ) {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$this->maintenance->loadWithArgv( $args );
 
 		$this->maintenance->execute();
