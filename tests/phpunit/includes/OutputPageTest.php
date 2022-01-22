@@ -727,15 +727,35 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// HTML title should change as well
 		$this->assertSame( $this->getMsgText( $op, 'pagetitle', 'foobar' ), $op->getHTMLTitle() );
 
-		// Test set to text with good and bad HTML.  We don't try to be comprehensive here, that
-		// belongs in Sanitizer tests.
-		$op->setPageTitle( '<script>a</script>&amp;<i>b</i>' );
+		// Test set to text with good and bad HTML.  We don't try to be *too*
+		// comprehensive here, that belongs in Sanitizer tests, but we'll
+		// address the issues specifically noted in T298401/T67747 at least...
+		$sanitizerTests = [
+			[
+				'input' => '<script>a</script>&amp;<i>b</i>',
+				'getPageTitle' => '&lt;script&gt;a&lt;/script&gt;&amp;<i>b</i>',
+				'getHTMLTitle' => '<script>a</script>&b',
+			],
+			[
+				'input' => '<code style="display:none">', # T298401
+				'getPageTitle' => '<code style="display:none"></code>',
+				'getHTMLTitle' => '',
+			],
+			[
+				'input' => '<b>Foo bar<b>', # T67747
+				'getPageTitle' => '<b>Foo bar<b></b></b>',
+				'getHTMLTitle' => 'Foo bar',
+			],
+		];
+		foreach ( $sanitizerTests as $case ) {
+			$op->setPageTitle( $case['input'] );
 
-		$this->assertSame( '&lt;script&gt;a&lt;/script&gt;&amp;<i>b</i>', $op->getPageTitle() );
-		$this->assertSame(
-			$this->getMsgText( $op, 'pagetitle', '<script>a</script>&b' ),
-			$op->getHTMLTitle()
-		);
+			$this->assertSame( $case['getPageTitle'], $op->getPageTitle() );
+			$this->assertSame(
+				$this->getMsgText( $op, 'pagetitle', $case['getHTMLTitle'] ),
+				$op->getHTMLTitle()
+			);
+		}
 
 		// Test set to message
 		$text = $this->getMsgText( $op, 'mainpage' );
