@@ -105,6 +105,9 @@ class SessionManager implements SessionManagerInterface {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
 	/** @var CachedBagOStuff|null */
 	private $store;
 
@@ -226,7 +229,9 @@ class SessionManager implements SessionManagerInterface {
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		$this->userNameUtils = MediawikiServices::getInstance()->getUserNameUtils();
+		$services = MediawikiServices::getInstance();
+		$this->userNameUtils = $services->getUserNameUtils();
+		$this->objectFactory = $services->getObjectFactory();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
 	}
@@ -462,7 +467,7 @@ class SessionManager implements SessionManagerInterface {
 			$this->sessionProviders = [];
 			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
 				/** @var SessionProvider */
-				$provider = ObjectFactory::getObjectFromSpec( $spec );
+				$provider = $this->objectFactory->createObject( $spec );
 				$provider->init(
 					$this->logger,
 					$this->config,
