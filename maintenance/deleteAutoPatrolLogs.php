@@ -119,7 +119,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			'log_id',
 			$conds,
 			__METHOD__,
-			[ 'LIMIT' => $this->getBatchSize() ]
+			[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'log_id' ]
 		);
 	}
 
@@ -148,7 +148,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			[ 'log_id', 'log_params' ],
 			$conds,
 			__METHOD__,
-			[ 'LIMIT' => $batchSize ]
+			[ 'LIMIT' => $batchSize, 'ORDER BY' => 'log_id' ]
 		);
 
 		$last = null;
