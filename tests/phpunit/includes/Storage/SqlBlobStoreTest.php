@@ -425,7 +425,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
 	 */
 	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncodingGzip( $blob ) {
-		// FIXME: fails under postgres
+		// FIXME: fails under postgres - T298692
 		$this->markTestSkippedIfDbType( 'postgres' );
 		$store = $this->getBlobStore();
 		$store->setLegacyEncoding( 'windows-1252' );

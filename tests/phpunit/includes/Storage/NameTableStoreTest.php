@@ -333,7 +333,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetAndAcquireIdInsertCallback() {
-		// FIXME: fails under postgres
+		// Postgres does not allow to specify the SERIAL column on insert to fake an id
 		$this->markTestSkippedIfDbType( 'postgres' );
 
 		$store = $this->getNameTableSqlStore(

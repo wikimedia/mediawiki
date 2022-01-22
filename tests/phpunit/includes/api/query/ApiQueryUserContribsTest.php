@@ -41,9 +41,6 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 	 * @param int $revs Number of revisions to expect
 	 */
 	public function testSorting( $params, $reverse, $revs ) {
-		// FIXME: fails under sqlite
-		$this->markTestSkippedIfDbType( 'sqlite' );
-
 		if ( isset( $params['ucuserids'] ) ) {
 			$params['ucuserids'] = implode( '|', array_map( [ User::class, 'idFromName' ], $params['ucuserids'] ) );
 		}
