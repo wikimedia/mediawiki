@@ -134,6 +134,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
 			'interlace' => $params['interlace'] ?? false,
+			'isFilePageThumb' => $params['isFilePageThumb'] ?? false,
 		];
 
 		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
@@ -343,7 +344,13 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'height' => $scalerParams['clientHeight']
 		];
 
-		return new ThumbnailImage( $image, $image->getUrl(), null, $params );
+		$url = $image->getUrl();
+		if ( isset( $scalerParams['isFilePageThumb'] ) && $scalerParams['isFilePageThumb'] ) {
+			// Use a versioned URL on file description pages
+			$url = $image->getFilePageThumbUrl( $url );
+		}
+
+		return new ThumbnailImage( $image, $url, null, $params );
 	}
 
 	/**

@@ -444,6 +444,7 @@ class ImagePage extends Article {
 
 				$params['width'] = $width;
 				$params['height'] = $height;
+				$params['isFilePageThumb'] = true;
 				// Allow the MediaHandler to handle query string parameters on the file page,
 				// e.g. start time for videos (T203994)
 				$params['imagePageParams'] = $request->getQueryValuesOnly();
@@ -497,7 +498,7 @@ class ImagePage extends Article {
 							$link,
 							$label,
 							'none',
-							[ 'page' => $page - 1 ]
+							[ 'page' => $page - 1, 'isFilePageThumb' => true ]
 						);
 					} else {
 						$thumb1 = '';
@@ -518,7 +519,7 @@ class ImagePage extends Article {
 							$link,
 							$label,
 							'none',
-							[ 'page' => $page + 1 ]
+							[ 'page' => $page + 1, 'isFilePageThumb' => true ]
 						);
 					} else {
 						$thumb2 = '';

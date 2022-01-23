@@ -249,7 +249,7 @@ class ImageHistoryList extends ContextSource {
 		// Thumbnail
 		if ( $this->showThumb ) {
 			$row .= Html::rawElement( 'td', [],
-				$this->getThumbForLine( $file ) ?? $this->msg( 'filehist-nothumb' )->escaped()
+				$this->getThumbForLine( $file, $iscur ) ?? $this->msg( 'filehist-nothumb' )->escaped()
 			);
 		}
 
@@ -299,9 +299,10 @@ class ImageHistoryList extends ContextSource {
 
 	/**
 	 * @param File $file
+	 * @param bool $iscur
 	 * @return string|null
 	 */
-	protected function getThumbForLine( $file ) {
+	protected function getThumbForLine( $file, $iscur ) {
 		$user = $this->getUser();
 		if ( !$file->allowInlineDisplay() ||
 			$file->isDeleted( File::DELETED_FILE ) ||
@@ -310,7 +311,13 @@ class ImageHistoryList extends ContextSource {
 			return null;
 		}
 
-		$thumbnail = $file->transform( [ 'width' => '120', 'height' => '120' ] );
+		$thumbnail = $file->transform(
+			[
+				'width' => '120',
+				'height' => '120',
+				'isFilePageThumb' => $iscur  // old revisions are already versioned
+			]
+		);
 		if ( !$thumbnail ) {
 			return null;
 		}
