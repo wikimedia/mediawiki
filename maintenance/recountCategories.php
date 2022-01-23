@@ -75,15 +75,15 @@ TEXT
 	}
 
 	public function execute() {
-		$mode = $this->getOption( 'mode' );
-		if ( !in_array( $mode, [ 'pages', 'subcats', 'files', 'all' ] ) ) {
+		$originalMode = $this->getOption( 'mode' );
+		if ( !in_array( $originalMode, [ 'pages', 'subcats', 'files', 'all' ] ) ) {
 			$this->fatalError( 'Please specify a valid mode: one of "pages", "subcats", "files" or "all".' );
 		}
 
-		if ( $mode === 'all' ) {
+		if ( $originalMode === 'all' ) {
 			$modes = [ 'pages', 'subcats', 'files' ];
 		} else {
-			$modes = [ $mode ];
+			$modes = [ $originalMode ];
 		}
 
 		foreach ( $modes as $mode ) {
@@ -102,7 +102,7 @@ TEXT
 
 		// Finished
 		$this->output( "Done!\n" );
-		if ( $mode !== 'all' ) {
+		if ( $originalMode !== 'all' ) {
 			$this->output( "Now run the script using the other --mode options if you haven't already.\n" );
 		}
 
