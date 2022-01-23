@@ -89,7 +89,7 @@ class HistoryAction extends FormlessAction {
 		// Precache various messages
 		if ( !isset( $this->message ) ) {
 			$this->message = [];
-			$msgs = [ 'cur', 'last', 'pipe-separator' ];
+			$msgs = [ 'cur', 'tooltip-cur', 'last', 'tooltip-last', 'pipe-separator' ];
 			foreach ( $msgs as $msg ) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
