@@ -93,7 +93,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$this->fileHandle = null;
-		if ( substr( $this->getOption( 'schema' ), 0, 2 ) === "--" ) {
+		if ( substr( $this->getOption( 'schema', '' ), 0, 2 ) === "--" ) {
 			$this->fatalError( "The --schema option requires a file as an argument.\n" );
 		} elseif ( $this->hasOption( 'schema' ) ) {
 			$file = $this->getOption( 'schema' );
