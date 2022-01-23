@@ -594,7 +594,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			return $this->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				new HtmlArmor( $cur ),
-				[],
+				[
+					'title' => $this->historyPage->message['tooltip-cur']
+				],
 				[
 					'diff' => $latest,
 					'oldid' => $rev->getId()
@@ -626,7 +628,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			return $linkRenderer->makeKnownLink(
 				$this->getTitle(),
 				new HtmlArmor( $last ),
-				[],
+				[
+					'title' => $this->historyPage->message['tooltip-last']
+				],
 				[
 					'diff' => $prevRev->getId(),
 					'oldid' => 'prev'
@@ -649,7 +653,9 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $linkRenderer->makeKnownLink(
 			$this->getTitle(),
 			new HtmlArmor( $last ),
-			[],
+			[
+				'title' => $this->historyPage->message['tooltip-last']
+			],
 			[
 				'diff' => $prevRev->getId(),
 				'oldid' => $next->rev_id
