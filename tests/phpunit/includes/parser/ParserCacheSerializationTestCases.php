@@ -185,8 +185,8 @@ abstract class ParserCacheSerializationTestCases {
 		);
 		$parserOutputWithMetadata->addExternalLink( 'https://test.org' );
 		$parserOutputWithMetadata->addHeadItem( 'head_item1', 'tag1' );
-		$parserOutputWithMetadata->addModules( 'module1' );
-		$parserOutputWithMetadata->addModuleStyles( 'module_style1' );
+		$parserOutputWithMetadata->addModules( [ 'module1' ] );
+		$parserOutputWithMetadata->addModuleStyles( [ 'module_style1' ] );
 		$parserOutputWithMetadata->addJsConfigVars( 'key1', 'value1' );
 		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
 		$parserOutputWithMetadata->addWarning( 'warning1' );
