@@ -126,7 +126,7 @@
 	"scripts": {
 		"mw-install:sqlite": "php maintenance/install.php --server=http://localhost:4000 --dbtype sqlite --dbpath cache/ --scriptpath '' --pass adminpassword MediaWiki Admin",
 		"serve": "php -S localhost:4000",
-		"lint": "parallel-lint --exclude vendor",
+		"lint": "parallel-lint --exclude node_modules --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s --cache",
 		"fix": [
