@@ -479,6 +479,9 @@ generic `mediawiki.pager.styles`.
   and addFooterHtml respectively.
 * The FormSpecialPage methods preText and postText have been renamed to
   preHtml and postHtml respectively.
+* The following Less mediawiki.mixins have been deprecated:
+  - .background-image()
+  - .list-style-image()
 * …
 
 === Other changes in 1.38 ===
