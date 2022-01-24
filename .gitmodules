@@ -1558,3 +1558,18 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-QuickInstantCommons
 	branch = master
 	ignore = dirty
+[submodule "extensions/Elastica"]
+	path = extensions/Elastica
+	url = https://github.com/wikimedia/mediawiki-extensions-Elastica
+	branch = REL1_37
+	ignore = dirty
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch
+	branch = REL1_37
+	ignore = dirty
+[submodule "extensions/AdvancedSearch"]
+	path = extensions/AdvancedSearch
+	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
+	branch = REL1_37
+	ignore = dirty
