@@ -84,7 +84,7 @@
 		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
-		"johnkary/phpunit-speedtrap": "^3.1",
+		"johnkary/phpunit-speedtrap": "^4.0",
 		"mediawiki/mediawiki-codesniffer": "38.0.0",
 		"mediawiki/mediawiki-phan-config": "0.11.0",
 		"nikic/php-parser": "^4.10.2",
