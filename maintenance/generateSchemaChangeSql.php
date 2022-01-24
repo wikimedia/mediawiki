@@ -60,6 +60,7 @@ class GenerateSchemaChangeSql extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		$platform = $this->getOption( 'type', 'mysql' );
 		$jsonPath = $this->getOption( 'json' );
 		$installPath = $IP;
 		// For windows
@@ -69,15 +70,17 @@ class GenerateSchemaChangeSql extends Maintenance {
 		}
 		$relativeJsonPath = str_replace( "$installPath/", '', $jsonPath );
 		$sqlPath = $this->getOption( 'sql' );
+		// Allow to specify a folder and build the name from the json filename
+		if ( is_dir( $sqlPath ) ) {
+			$sqlPath .= '/' . pathinfo( $relativeJsonPath, PATHINFO_FILENAME ) . '.sql';
+		}
 		$abstractSchemaChange = json_decode( file_get_contents( $jsonPath ), true );
 
 		if ( $abstractSchemaChange === null ) {
 			$this->fatalError( "'$jsonPath' seems to be invalid json. Check the syntax and try again!" );
 		}
 
-		$schemaChangeBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaChangeBuilder(
-			$this->getOption( 'type', 'mysql' )
-		);
+		$schemaChangeBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaChangeBuilder( $platform );
 
 		$schemaChangeSqls = $schemaChangeBuilder->getSchemaChangeSql( $abstractSchemaChange );
 
@@ -90,10 +93,12 @@ class GenerateSchemaChangeSql extends Maintenance {
 			// Temporary
 			$sql .= implode( ";\n\n", $schemaChangeSqls ) . ';';
 			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
+		} else {
+			$this->error( 'No schema changes detected!' );
 		}
 
 		// Postgres hacks
-		if ( $this->getOption( 'type', 'mysql' ) === 'postgres' ) {
+		if ( $platform === 'postgres' ) {
 			// Remove table prefixes from Postgres schema, people should not set it
 			// but better safe than sorry.
 			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
@@ -112,13 +117,22 @@ class GenerateSchemaChangeSql extends Maintenance {
 		$sql = str_replace( "/*_*/  ", "/*_*/", $sql );
 
 		// Sqlite hacks
-		if ( $this->getOption( 'type', 'mysql' ) === 'sqlite' ) {
+		if ( $platform === 'sqlite' ) {
 			// Doctrine prepends __temp__ to the table name and we set the table with the schema prefix causing invalid
 			// sqlite.
 			$sql = preg_replace( '/__temp__\s*\/\*_\*\//', '/*_*/__temp__', $sql );
 		}
 
+		// Give a hint, if nothing changed
+		if ( is_readable( $sqlPath ) ) {
+			$oldSql = file_get_contents( $sqlPath );
+			if ( $oldSql === $sql ) {
+				$this->output( "Schema change is unchanged.\n" );
+			}
+		}
+
 		file_put_contents( $sqlPath, $sql );
+		$this->output( 'Schema change generated and written to ' . $sqlPath . "\n" );
 	}
 
 }

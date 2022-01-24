@@ -61,19 +61,27 @@ class GenerateSchemaSql extends Maintenance {
 	public function execute() {
 		global $IP;
 		$platform = $this->getOption( 'type', 'mysql' );
-		$jsonPath = $this->getOption( 'json', __DIR__ . '/tables.json' );
+		$jsonPath = $this->getOption( 'json', __DIR__ );
 		$installPath = $IP;
 		// For windows
 		if ( DIRECTORY_SEPARATOR === '\\' ) {
 			$installPath = strtr( $installPath, '\\', '/' );
 			$jsonPath = strtr( $jsonPath, '\\', '/' );
 		}
+		// Allow to specify a folder and use a default name
+		if ( is_dir( $jsonPath ) ) {
+			$jsonPath .= '/tables.json';
+		}
 		$relativeJsonPath = str_replace(
 			[ "$installPath/extensions/", "$installPath/" ],
 			'',
 			$jsonPath
 		);
-		$sqlPath = $this->getOption( 'sql', __DIR__ . '/tables-generated.sql' );
+		$sqlPath = $this->getOption( 'sql', __DIR__ );
+		// Allow to specify a folder and use a default name
+		if ( is_dir( $sqlPath ) ) {
+			$sqlPath .= '/tables-generated.sql';
+		}
 		$abstractSchema = json_decode( file_get_contents( $jsonPath ), true );
 		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder( $platform );
 
@@ -130,7 +138,16 @@ class GenerateSchemaSql extends Maintenance {
 		);
 		$sql .= "\n";
 
+		// Give a hint, if nothing changed
+		if ( is_readable( $sqlPath ) ) {
+			$oldSql = file_get_contents( $sqlPath );
+			if ( $oldSql === $sql ) {
+				$this->output( "Schema is unchanged.\n" );
+			}
+		}
+
 		file_put_contents( $sqlPath, $sql );
+		$this->output( 'Schema generated and written to ' . $sqlPath . "\n" );
 	}
 
 }
