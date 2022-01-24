@@ -11,4 +11,11 @@
 	system: numeric;
 	symbols: '\1C50' '\1C51' '\1C52' '\1C53' '\1C54' '\1C55' '\1C56' '\1C57' '\1C58' '\1C59';
 }
+
+/* Taken from https://www.w3.org/TR/predefined-counter-styles/#myanmar-styles */
+@counter-style myanmar_with_period {
+	system: numeric;
+	symbols: '\1040' '\1041' '\1042' '\1043' '\1044' '\1045' '\1046' '\1047' '\1048' '\1049';
+	suffix: '\104B\0020';
+}
 /* stylelint-enable */
