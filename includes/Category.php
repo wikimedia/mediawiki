@@ -39,8 +39,16 @@ class Category {
 	 * @var PageIdentity
 	 */
 	private $mPage = null;
+
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */
-	private $mPages = null, $mSubcats = null, $mFiles = null;
+	/** @var int */
+	private $mPages = 0;
+
+	/** @var int */
+	private $mSubcats = 0;
+
+	/** @var int */
+	private $mFiles = 0;
 
 	protected const LOAD_ONLY = 0;
 	protected const LAZY_INIT_ROW = 1;
@@ -109,9 +117,9 @@ class Category {
 
 		$this->mID = $row->cat_id;
 		$this->mName = $row->cat_title;
-		$this->mPages = $row->cat_pages;
-		$this->mSubcats = $row->cat_subcats;
-		$this->mFiles = $row->cat_files;
+		$this->mPages = (int)$row->cat_pages;
+		$this->mSubcats = (int)$row->cat_subcats;
+		$this->mFiles = (int)$row->cat_files;
 
 		# (T15683) If the count is negative, then 1) it's obviously wrong
 		# and should not be kept, and 2) we *probably* don't have to scan many
@@ -213,9 +221,9 @@ class Category {
 		} else {
 			$cat->mName = $row->cat_title;
 			$cat->mID = $row->cat_id;
-			$cat->mSubcats = $row->cat_subcats;
-			$cat->mPages = $row->cat_pages;
-			$cat->mFiles = $row->cat_files;
+			$cat->mSubcats = (int)$row->cat_subcats;
+			$cat->mPages = (int)$row->cat_pages;
+			$cat->mFiles = (int)$row->cat_files;
 		}
 
 		return $cat;
@@ -236,21 +244,21 @@ class Category {
 	}
 
 	/**
-	 * @return mixed Total number of member pages, or false on failure
+	 * @return int Total number of member pages (include subcats and files)
 	 */
 	public function getPageCount() {
 		return $this->getX( 'mPages' );
 	}
 
 	/**
-	 * @return mixed Number of subcategories, or false on failure
+	 * @return int Number of subcategories
 	 */
 	public function getSubcatCount() {
 		return $this->getX( 'mSubcats' );
 	}
 
 	/**
-	 * @return mixed Number of member files, or false on failure
+	 * @return int Number of member files
 	 */
 	public function getFileCount() {
 		return $this->getX( 'mFiles' );
@@ -323,7 +331,7 @@ class Category {
 	 * @return mixed
 	 */
 	private function getX( $key ) {
-		if ( $this->{$key} === null && !$this->initialize( self::LAZY_INIT_ROW ) ) {
+		if ( !$this->{$key} && !$this->initialize( self::LAZY_INIT_ROW ) ) {
 			return false;
 		}
 		return $this->{$key};
@@ -435,9 +443,9 @@ class Category {
 		$dbw->endAtomic( __METHOD__ );
 
 		# Now we should update our local counts.
-		$this->mPages = $result->pages;
-		$this->mSubcats = $result->subcats;
-		$this->mFiles = $result->files;
+		$this->mPages = (int)$result->pages;
+		$this->mSubcats = (int)$result->subcats;
+		$this->mFiles = (int)$result->files;
 
 		return true;
 	}

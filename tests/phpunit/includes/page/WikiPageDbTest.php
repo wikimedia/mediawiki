@@ -1395,23 +1395,23 @@ more stuff
 		// Add an initial category
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
-		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
-		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
 		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'C' )->getPageCount() );
 	}
 
 	public function provideUpdateRedirectOn() {
