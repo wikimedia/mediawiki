@@ -62,8 +62,14 @@ class GenerateSchemaSql extends Maintenance {
 		global $IP;
 		$platform = $this->getOption( 'type', 'mysql' );
 		$jsonPath = $this->getOption( 'json', __DIR__ . '/tables.json' );
+		$installPath = $IP;
+		// For windows
+		if ( DIRECTORY_SEPARATOR === '\\' ) {
+			$installPath = strtr( $installPath, '\\', '/' );
+			$jsonPath = strtr( $jsonPath, '\\', '/' );
+		}
 		$relativeJsonPath = str_replace(
-			[ "$IP/extensions/", "$IP/" ],
+			[ "$installPath/extensions/", "$installPath/" ],
 			'',
 			$jsonPath
 		);
