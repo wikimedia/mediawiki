@@ -3400,7 +3400,7 @@
 	"duplicate-defaultsort": "Cảnh báo: Từ khóa xếp mặc định “$2” ghi đè từ khóa trước, “$1”.",
 	"duplicate-displaytitle": "<strong>Cảnh báo:</strong> Tên hiển thị “$2” ghi đè tên hiển thị “$1” bên trên.",
 	"restricted-displaytitle": "<strong>Chú ý:</strong> Tên hiển thị “$1” được bỏ qua vì nó không tương đương với tên thật của trang.",
-	"invalid-indicator-name": "<strong>Lỗi:</strong> Không thể để trống thuộc tính <code>name</code> của cái chỉ trạng thái trang.",
+	"invalid-indicator-name": "<strong>Lỗi:</strong> Không thể để trống thuộc tính <code>name</code> của chỉ báo trạng thái trang.",
 	"invalid-langconvert-attrs": "<strong>Lỗi:</strong> Các thuộc tính <code>from</code> và <code>to</code> của thẻ <code>langconvert</code> không được trống và phải chứa các mã BCP 47 của biến thể chuyển đổi của cùng ngôn ngữ.",
 	"version": "Phiên bản",
 	"version-extensions": "Các phần mở rộng được cài đặt",

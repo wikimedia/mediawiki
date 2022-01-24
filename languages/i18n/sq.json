@@ -2763,7 +2763,7 @@
 	"watchlistedit-normal-title": "Redakto listën mbikqyrëse",
 	"watchlistedit-normal-legend": "Largo titujt nga lista mbikqyrëse",
 	"watchlistedit-normal-explain": "Titujt në listën mbikëqyrëse janë treguar poshtë.\nLargo titullin duke shënuar kutizën dhe pastaj shtype butonin Largoj titujt.\nJu gjithashtu mundeni ta redaktoni listën [[Special:EditWatchlist/raw|këtu]].",
-	"watchlistedit-normal-submit": "Largo Titujt",
+	"watchlistedit-normal-submit": "Largo titujt",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 titull u larguan|$1 tituj u larguan}} u larguan nga lista mbikëqyrëse e juaj:",
 	"watchlistedit-raw-title": "Redakto listën mbikëqyrëse të papërpunuar",
 	"watchlistedit-raw-legend": "Redakto listën mbikëqyrëse të papërpunuar",

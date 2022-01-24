@@ -1968,7 +1968,7 @@
 	"logentry-upload-overwrite": "{{GENDER:$2|رفع|رفعت}} $1 نسخة جديدة من  $3",
 	"rightsnone": "(والو)",
 	"searchsuggest-search": "قلّب ف {{SITENAME}}",
-	"searchsuggest-containing": "قلب علا صفاحي فيهم",
+	"searchsuggest-containing": "فيه...",
 	"duration-days": "$1 {{PLURAL:$1|نهار|إيام/يوم}}",
 	"mw-widgets-titleinput-description-new-page": "هاد صفحة مازال ماكاينة",
 	"date-range-to": "حتال نهار:",
