@@ -1533,3 +1533,28 @@
 	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender
 	branch = master
 	ignore = dirty
+[submodule "extensions/StandardDialogs"]
+	path = extensions/StandardDialogs
+	url = https://github.com/wikimedia/mediawiki-extensions-StandardDialogs
+	branch = master
+	ignore = dirty
+[submodule "extensions/Patroller"]
+	path = extensions/Patroller
+	url = https://github.com/wikimedia/mediawiki-extensions-Patroller
+	branch = REL1_37
+	ignore = dirty
+[submodule "extensions/StructuredNavigation"]
+	path = extensions/StructuredNavigation
+	url = https://github.com/wikimedia/mediawiki-extensions-StructuredNavigation
+	branch = REL1_37
+	ignore = dirty
+[submodule "extensions/PropertySuggester"]
+	path = extensions/PropertySuggester
+	url = https://github.com/wikimedia/mediawiki-extensions-PropertySuggester
+	branch = REL1_37
+	ignore = dirty
+[submodule "extensions/QuickInstantCommons"]
+	path = extensions/QuickInstantCommons
+	url = https://github.com/wikimedia/mediawiki-extensions-QuickInstantCommons
+	branch = master
+	ignore = dirty
