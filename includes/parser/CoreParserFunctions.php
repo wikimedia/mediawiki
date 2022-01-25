@@ -229,7 +229,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -242,7 +242,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -255,7 +255,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -1146,7 +1146,8 @@ class CoreParserFunctions {
 			// we can't handle this tag (at least not now), so just re-emit it as an ordinary tag
 			$attrText = '';
 			foreach ( $attributes as $name => $value ) {
-				$attrText .= ' ' . htmlspecialchars( $name ) . '="' . htmlspecialchars( $value ) . '"';
+				$attrText .= ' ' . htmlspecialchars( $name ) .
+					'="' . htmlspecialchars( $value, ENT_COMPAT ) . '"';
 			}
 			if ( $inner === null ) {
 				return "<$tagName$attrText/>";
