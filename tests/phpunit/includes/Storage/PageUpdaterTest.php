@@ -7,6 +7,7 @@ use CommentStoreComment;
 use Content;
 use DeferredUpdates;
 use FormatJson;
+use LogicException;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -130,7 +131,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
 		$this->assertTrue( $updater->isNew(), 'isNew()' );
-		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
+		$this->assertTrue( $updater->wasRevisionCreated(), 'wasRevisionCreated()' );
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertInstanceOf(
 			RevisionRecord::class,
@@ -175,13 +176,13 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user )
 			->setContent( SlotRecord::MAIN, $content );
 
-		$summary = CommentStoreComment::newUnsavedComment( 'to to re-edit' );
+		$summary = CommentStoreComment::newUnsavedComment( 're-edit' );
 		$rev = $updater->saveRevision( $summary );
 		$status = $updater->getStatus();
 
 		$this->assertNull( $rev, 'getNewRevision()' );
 		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertTrue( $updater->isUnchanged(), 'isUnchanged' );
+		$this->assertFalse( $updater->wasRevisionCreated(), 'wasRevisionCreated' );
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertTrue( $status->isOK(), 'getStatus()->isOK()' );
 		$this->assertTrue( $status->hasMessage( 'edit-no-change' ), 'edit-no-change' );
@@ -234,7 +235,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::class,
 			$updater->getStatus()->value['revision-record']
 		);
-		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
+		$this->assertTrue( $updater->wasRevisionCreated(), 'wasRevisionCreated()' );
 
 		// check the EditResult object
 		$this->assertSame( 7, $updater->getEditResult()->getOriginalRevisionId(),
@@ -287,7 +288,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
-		$this->assertTrue( $updater->isUnchanged(), 'isUnchanged()' );
+		$this->assertFalse( $updater->wasRevisionCreated(), 'wasRevisionCreated()' );
 		$this->assertTrue(
 			$updater->getEditResult()->isNullEdit(),
 			'getEditResult()->isNullEdit()'
@@ -303,6 +304,45 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $stats, 'site_stats' );
 		$this->assertSame( $oldStats->ss_total_pages + 0, (int)$stats->ss_total_pages );
 		$this->assertSame( $oldStats->ss_total_edits + 2, (int)$stats->ss_total_edits );
+	}
+
+	public function testSetForceEmptyRevisionSetsOriginalRevisionId() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$this->insertPage( $title );
+		$page = WikiPage::factory( $title );
+		$parentId = $page->getLatest();
+		$updater = $page->newPageUpdater( $user );
+		$updater->setForceEmptyRevision( true );
+		// Saving without changing the content should now create a new revisiopns
+		$summary = CommentStoreComment::newUnsavedComment( 'dummy revision' );
+		$rev = $updater->saveRevision( $summary );
+		$status = $updater->getStatus();
+		$this->assertNotNull( $rev, 'getNewRevision()' );
+		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
+		$this->assertNotSame( $parentId, $rev->getId(), 'new revision ID' );
+		$this->assertTrue( $updater->wasRevisionCreated(), 'wasRevisionCreated' );
+		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
+		$this->assertTrue( $status->isOK(), 'getStatus()->isOK()' );
+		$this->assertFalse( $status->hasMessage( 'edit-no-change' ), 'edit-no-change' );
+		// Setting setForceEmptyRevision causes the original revision to be set.
+		$this->assertEquals( $parentId, $updater->getEditResult()->getOriginalRevisionId() );
+	}
+
+	public function testSetForceEmptyRevisionCausesSaveToFailWithChangedContent() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$this->insertPage( $title );
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setForceEmptyRevision( true );
+		// Setting setForceEmptyRevision causes saveRevision() to fail if the content is changed.
+		// The positive case with setForceEmptyRevision() causing a new revision to be created
+		// is tested
+		$this->expectException( LogicException::class );
+		$updater->setContent( 'main', new TextContent( 'Changed Content' ) );
+		$summary = CommentStoreComment::newUnsavedComment( 'dummy revision' );
+		$updater->saveRevision( $summary );
 	}
 
 	public function testRevert() {

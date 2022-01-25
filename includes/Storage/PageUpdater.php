@@ -161,6 +161,11 @@ class PageUpdater {
 	private $usePageCreationLog = true;
 
 	/**
+	 * @var bool Whether null-edits create a revision.
+	 */
+	private $forceEmptyRevision = false;
+
+	/**
 	 * @var array
 	 */
 	private $tags = [];
@@ -370,6 +375,37 @@ class PageUpdater {
 		return $this;
 	}
 
+	/**
+	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
+	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 *
+	 * Callers should typically also call setOriginalRevisionId() to indicate the ID of the revision
+	 * that is being repeated. That ID can be obtained from grabParentRevision()->getId().
+	 *
+	 * @since 1.38
+	 *
+	 * @note this calls $this->setOriginalRevisionId() with the ID of the current revision,
+	 * starting the CAS bracket by virtue of calling $this->grabParentRevision().
+	 *
+	 * @note saveRevision() will fail with a LogicException if setForceEmptyRevision( true )
+	 * was called and also content was changed via setContent(), removeSlot(), or inheritSlot().
+	 *
+	 * @param bool $forceEmptyRevision
+	 * @return $this
+	 */
+	public function setForceEmptyRevision( bool $forceEmptyRevision ): self {
+		$this->forceEmptyRevision = $forceEmptyRevision;
+
+		if ( $forceEmptyRevision ) {
+			// XXX: throw if there is no current/parent revision?
+			$original = $this->grabParentRevision();
+			$this->setOriginalRevisionId( $original ? $original->getId() : false );
+		}
+
+		$this->derivedDataUpdater->setForceEmptyRevision( $forceEmptyRevision );
+		return $this;
+	}
+
 	private function getWikiId() {
 		return false; // TODO: get from RevisionStore!
 	}
@@ -549,7 +585,7 @@ class PageUpdater {
 	 * Sets the ID of an earlier revision that is being repeated or restored by this update.
 	 * The new revision is expected to have the exact same content as the given original revision.
 	 * This is used with rollbacks and with dummy "null" revisions which are created to record
-	 * things like page moves.
+	 * things like page moves. setForceEmptyRevision() calls this implicitly.
 	 *
 	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
 	 * is known to be repeated or restored by this update.
@@ -763,7 +799,7 @@ class PageUpdater {
 	 * viewed as part of the CAS mechanism described above.
 	 *
 	 * @return RevisionRecord|null The new revision, or null if no new revision was created due
-	 *         to a failure or a null-edit. Use isUnchanged(), wasSuccessful() and getStatus()
+	 *         to a failure or a null-edit. Use wasRevisionCreated(), wasSuccessful() and getStatus()
 	 *         to determine the outcome of the revision creation.
 	 *
 	 * @throws MWException
@@ -897,7 +933,7 @@ class PageUpdater {
 	 * caches, optionally via the deferred update array. This does not check user permissions.
 	 * Does not do a PST.
 	 *
-	 * Use isUnchanged(), wasSuccessful() and getStatus() to determine the outcome of the
+	 * Use wasRevisionCreated(), wasSuccessful() and getStatus() to determine the outcome of the
 	 * revision update.
 	 *
 	 * @param int $revId
@@ -1005,7 +1041,10 @@ class PageUpdater {
 	}
 
 	/**
-	 * Whether saveRevision() completed successfully
+	 * Whether saveRevision() completed successfully. This is not the same as wasRevisionCreated():
+	 * when the new content is exactly the same as the old one (DerivedPageDataUpdater::isChange()
+	 * returns false) and setForceEmptyRevision( true ) is not set, no new revision is created, but
+	 * the save is considered successful. This behavior constitutes a "null edit".
 	 *
 	 * @return bool
 	 */
@@ -1023,16 +1062,30 @@ class PageUpdater {
 	}
 
 	/**
-	 * Whether saveRevision() did not create a revision because the content didn't change
-	 * (null-edit). Whether the content changed or not is determined by
-	 * DerivedPageDataUpdater::isChange().
+	 * Whether saveRevision() did create a revision because the content didn't change: (null-edit).
+	 * Whether the content changed or not is determined by DerivedPageDataUpdater::isChange().
 	 *
+	 * @deprecated since 1.38, use wasRevisionCreated() instead.
 	 * @return bool
 	 */
 	public function isUnchanged() {
+		return !$this->wasRevisionCreated();
+	}
+
+	/**
+	 * Whether saveRevision() did create a revision. This is not the same as wasSuccessful():
+	 * when the new content is exactly the same as the old one (DerivedPageDataUpdater::isChange()
+	 * returns false) and setForceEmptyRevision( true ) is not set, no new revision is created, but
+	 * the save is considered successful. This behavior constitutes a "null edit".
+	 *
+	 * @since 1.38
+	 *
+	 * @return bool
+	 */
+	public function wasRevisionCreated(): bool {
 		return $this->status
 			&& $this->status->isOK()
-			&& $this->status->value['revision-record'] === null;
+			&& $this->status->value['revision-record'] !== null;
 	}
 
 	/**
@@ -1231,8 +1284,13 @@ class PageUpdater {
 
 		$now = $newRevisionRecord->getTimestamp();
 
-		// XXX: we may want a flag that allows a null revision to be forced!
 		$changed = $this->derivedDataUpdater->isChange();
+
+		if ( $this->forceEmptyRevision && $changed ) {
+			throw new LogicException(
+				'Content was changed even though forceEmptyRevision() was called.'
+			);
+		}
 
 		// We build the EditResult before the $change if/else branch in order to pass
 		// the correct $newRevisionRecord to EditResultBuilder. In case this is a null
@@ -1246,7 +1304,7 @@ class PageUpdater {
 
 		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 
-		if ( $changed ) {
+		if ( $changed || $this->forceEmptyRevision ) {
 			$dbw->startAtomic( __METHOD__ );
 
 			// Get the latest page_latest value while locking it.

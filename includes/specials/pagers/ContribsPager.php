@@ -762,11 +762,15 @@ class ContribsPager extends RangeChronologicalPager {
 
 			$lang = $this->getLanguage();
 
-			$comment = $lang->getDirMark() . (
-				$this->formattedComments[$row->rev_id] ??
-				$this->commentFormatter->formatRevision(
-					$revRecord, $user, false, true, false
-				) );
+			$comment = $this->formattedComments[$row->rev_id];
+
+			if ( $comment === '' ) {
+				$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
+				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
+			}
+
+			$comment = $lang->getDirMark() . $comment;
+
 			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.

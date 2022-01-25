@@ -322,7 +322,21 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
 		$this->assertStringContainsString( '>' . $userName . '<', $html, 'signature ~~~' );
 
-		// TODO: MCR: test inheritance from parent
+		// prepare forced dummy revision
+		$emptyUpdate = new RevisionSlotsUpdate();
+		$updater1 = $this->getDerivedPageDataUpdater( $page );
+		$updater1->setForceEmptyRevision( true );
+		$updater1->prepareContent( $sysop, $emptyUpdate, false );
+
+		// dummy revision inherits slots, but not revision ID
+		$mainSlot0 = $rev->getSlot( SlotRecord::MAIN );
+		$dummyRev = $updater1->getRevision();
+		$dummySlot = $dummyRev->getSlot( SlotRecord::MAIN );
+		$this->assertSame( $mainSlot0->getAddress(), $dummySlot->getAddress() );
+		$this->assertNull( $dummyRev->getId() );
+		$this->assertSame( $rev->getId(), $dummyRev->getParentId() );
+
+		// prepare non-null
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( SlotRecord::MAIN, $mainContent2 );
 		$updater2 = $this->getDerivedPageDataUpdater( $page );

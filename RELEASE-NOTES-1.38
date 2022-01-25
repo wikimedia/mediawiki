@@ -451,8 +451,10 @@ because of Phabricator reports.
      ::getArchivedRevisionRecord, ::getPreviousRevisionRecord and
      ::getLastRevisionId.
    - Use ArchivedRevisionLookup::hasArchivedRevisions instead of ::isDeleted.
+* PageUpdater::isUnchanged() has been deprecated, use wasRevisionCreated()
+  instead.
 * The `mediawiki.pager.tablePager` module was deprecated in favor of the more
-generic `mediawiki.pager.styles`.
+  generic `mediawiki.pager.styles`.
 * wfGetCache() and wfGetMainCache(), both deprecated since 1.32, now emit
   deprecation warnings.
 * LinkCache::addGoodLinkObj() has been hard deprecated.
