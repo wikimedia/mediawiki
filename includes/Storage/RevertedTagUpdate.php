@@ -321,7 +321,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 */
 	protected function getChangeTags( int $revisionId ) {
 		return ChangeTags::getTags(
-			$this->loadBalancer->getConnection( DB_REPLICA ),
+			$this->loadBalancer->getConnectionRef( DB_REPLICA ),
 			null,
 			$revisionId
 		);

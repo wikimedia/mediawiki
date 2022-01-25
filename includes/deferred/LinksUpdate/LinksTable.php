@@ -120,7 +120,7 @@ abstract class LinksTable {
 		$afterUpdateHook
 	) {
 		$this->lbFactory = $lbFactory;
-		$this->db = $this->lbFactory->getMainLB()->getConnection( DB_PRIMARY );
+		$this->db = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$this->sourcePage = $sourcePage;
 		$this->batchSize = $batchSize;
 		$this->afterUpdateHook = $afterUpdateHook;
