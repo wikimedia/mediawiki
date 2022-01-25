@@ -71,6 +71,13 @@ TEXT
 			true
 		);
 
+		$this->addOption(
+			'skip-cleanup',
+			'Skip running cleanupEmptyCategories if the "page" mode is selected',
+			false,
+			false
+		);
+
 		$this->setBatchSize( 500 );
 	}
 
@@ -107,9 +114,21 @@ TEXT
 		}
 
 		if ( in_array( 'pages', $modes ) ) {
-			$this->output(
-				"Also run 'php cleanupEmptyCategories.php --mode remove' to remove empty,\n" .
-				"nonexistent categories from the category table.\n\n" );
+			if ( $this->hasOption( 'skip-cleanup' ) ) {
+				$this->output(
+					"Also run 'php cleanupEmptyCategories.php --mode remove' to remove empty,\n" .
+					"nonexistent categories from the category table.\n\n" );
+			} else {
+				$this->output( "Running cleanupEmptyCategories.php\n" );
+				$cleanup = $this->runChild( CleanupEmptyCategories::class );
+				'@phan-var CleanupEmptyCategories $cleanup';
+				// Pass no options into the child because of a parameter collision between "mode", which
+				// both scripts use but set to different values. We'll just use the defaults.
+				$cleanup->loadParamsAndArgs( $this->mSelf, [], [] );
+				// Force execution because we want to run it regardless of whether it's been run before.
+				$cleanup->setForce( true );
+				$cleanup->execute();
+			}
 		}
 	}
 

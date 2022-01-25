@@ -922,15 +922,15 @@ abstract class Maintenance {
 	 */
 	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
 		# If we were given opts or args, set those and return early
-		if ( $self ) {
+		if ( $self !== null ) {
 			$this->mSelf = $self;
 			$this->mInputLoaded = true;
 		}
-		if ( $opts ) {
+		if ( $opts !== null ) {
 			$this->mOptions = $opts;
 			$this->mInputLoaded = true;
 		}
-		if ( $args ) {
+		if ( $args !== null ) {
 			$this->mArgs = $args;
 			$this->mInputLoaded = true;
 		}
