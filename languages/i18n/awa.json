@@ -2019,7 +2019,7 @@
 	"apihelp-no-such-module": "मोड्युल \"$1\" नाइ मिला ।",
 	"apisandbox": "एपीआई प्रयोगस्थल",
 	"apisandbox-jsonly": "एपीआई प्रयोगपृष्ठ का उपयोग करने हेतु जावास्क्रिप्ट अनिवार्य है।",
-	"apisandbox-intro": "<Strong> MediaWiki वेब सेवा API </ strong> के साथे परयोग करय के ताईं एह पन्ना कय उपयोग करैं।\n एपीआई उपयोग कय जादा जानकारी के बरे [[mw:Special:MyLanguage/API:Main page|API documentation]] देखैं।  जइसे: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query एक निश्चित कीवर्ड से मेल खात पन्ना कय शिर्षक के लिए खोज]।  जादा उदाहरण देखय के बरे एक क्रिया चुनैं।\n\n ध्यान दियैं कि, वइसे तौ ई एक सैंडबॉक्स आय, एह पन्ना पय आपके दवारा करी जाय वाली क्रियाएं विकी का संशोधित कइ सकत हीं।",
+	"apisandbox-intro": "<strong>MediaWiki वेब सेवा API</strong> के साथे परयोग करय के ताईं एह पन्ना कय उपयोग करैं।\n एपीआई उपयोग कय जादा जानकारी के बरे [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API documentation] देखैं।  जइसे: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query एक निश्चित कीवर्ड से मेल खात पन्ना कय शिर्षक के लिए खोज]।  जादा उदाहरण देखय के बरे एक क्रिया चुनैं।\n\n ध्यान दियैं कि, वइसे तौ ई एक सैंडबॉक्स आय, एह पन्ना पय आपके दवारा करी जाय वाली क्रियाएं विकी का संशोधित कइ सकत हीं।",
 	"apisandbox-submit": "अनुरोध करा जाय",
 	"apisandbox-reset": "स्पष्ट",
 	"apisandbox-retry": "फिर कोशिश करा",

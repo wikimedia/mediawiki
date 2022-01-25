@@ -1813,7 +1813,7 @@
 	"apihelp-no-such-module": "ဢမ်ႇႁၼ် မေႃႇၵျူး \"$1\"။",
 	"apisandbox": "သႅၼ်ႉပွၵ်ႉ API",
 	"apisandbox-jsonly": "တွၼ်ႈတႃႇၸႂ်ႉ သႅၼ်ႉပွၵ်ႉ API ၼၼ်ႉ လူဝ်ႇလႆႈမီးဝႆႉ JavaScript.",
-	"apisandbox-intro": "ၸႂ်ႉၼႃးလိၵ်ႈဢၼ်ၼႆ့ တႃႇၸၢမ်းတူၺ်းတင်း <strong>MediaWiki web service API</strong>။  ယိူင်းၸူးထိုင်  [[mw:Special:MyLanguage/API:Main page|ၽိုၼ်လိၵ်ႈ API]] တွၼ်ႈတႃႇ လၢႆးၸႂ်ႉ API တီႈၵႂၢင်ႈမၼ်း။ ပိူင်ယၢင်ႇမၼ်း :\n[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ၶူၼ်ႉႁႃ တွၼ်ႈတႃႇ ႁူဝ်ၶေႃႈၼႃႈလိၵ်ႈ ငမ်ႇမႅၼ်ႈၵၼ်တင်း ၶေႃႈယမ်ဢၼ်ၼႄႉၼွၼ်း]။ လိူၵ်ႈပၼ်ၵၢၼ်သႃင်ႈ တွၼ်ႈတႃႇတူၺ်း ပိူင်ယၢင်ႇတီးၵႂၢင်ႈမၼ်း။\n\nမၢႆတွင်းပၼ်ဝႆႉ ႁူမ်ႈဝႃႈ ၼႆႉပဵၼ်တီႈ တူဝ်ၸၢမ်းၵူၺ်းသေတေႃႉ လွင်ႈႁဵတ်းသၢင်ႈ ၸိူဝ်းၸဝ်ႈၵဝ်ႇႁဵတ်းၵႂႃႇတီႈၼႃႈလိၵ်ႈၼႆႉ မၼ်းတေၵႂႃႇ မႄးၵုမ်းပႃးတီႈ ဝီႇၶီႇယဝ်ႉ။",
+	"apisandbox-intro": "ၸႂ်ႉၼႃးလိၵ်ႈဢၼ်ၼႆ့ တႃႇၸၢမ်းတူၺ်းတင်း <strong>MediaWiki web service API</strong>။  ယိူင်းၸူးထိုင်  [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page ၽိုၼ်လိၵ်ႈ API] တွၼ်ႈတႃႇ လၢႆးၸႂ်ႉ API တီႈၵႂၢင်ႈမၼ်း။ ပိူင်ယၢင်ႇမၼ်း :\n[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ၶူၼ်ႉႁႃ တွၼ်ႈတႃႇ ႁူဝ်ၶေႃႈၼႃႈလိၵ်ႈ ငမ်ႇမႅၼ်ႈၵၼ်တင်း ၶေႃႈယမ်ဢၼ်ၼႄႉၼွၼ်း]။ လိူၵ်ႈပၼ်ၵၢၼ်သႃင်ႈ တွၼ်ႈတႃႇတူၺ်း ပိူင်ယၢင်ႇတီးၵႂၢင်ႈမၼ်း။\n\nမၢႆတွင်းပၼ်ဝႆႉ ႁူမ်ႈဝႃႈ ၼႆႉပဵၼ်တီႈ တူဝ်ၸၢမ်းၵူၺ်းသေတေႃႉ လွင်ႈႁဵတ်းသၢင်ႈ ၸိူဝ်းၸဝ်ႈၵဝ်ႇႁဵတ်းၵႂႃႇတီႈၼႃႈလိၵ်ႈၼႆႉ မၼ်းတေၵႂႃႇ မႄးၵုမ်းပႃးတီႈ ဝီႇၶီႇယဝ်ႉ။",
 	"apisandbox-reset": "ၽဵဝ်ႈလၢင်ႉ",
 	"apisandbox-retry": "ၶိုၼ်းၶတ်းၸႂ်တူၺ်း",
 	"apisandbox-loading": "တိုၵ်ႉပိုတ်ႇ လွၼ်ႉၶၢဝ်ႇတႃႇ module APL \"$1\"...",

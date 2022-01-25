@@ -2143,7 +2143,7 @@
 	"apihelp-no-such-module": "Modulen ”$1” hittades inte",
 	"apisandbox": "API-sandlåda",
 	"apisandbox-jsonly": "JavaScript krävs för att använda API-sandlådan.",
-	"apisandbox-intro": "Använd den här sidan för att experimentera med <strong>MediaWikis API för webbtjänster</strong>.\nSe [[mw:Special:MyLanguage/API:Main page|API-dokumentationen]] för ytterligare detaljer kring API-användningen. Exempel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query sök efter sidtitlar som matchar ett särskilt nyckelord]. Välj en handling för att se fler exempel.\n\nObservera att även om detta är en sandlåda kan handlingar du utför på denna sida påverka wikin.",
+	"apisandbox-intro": "Använd den här sidan för att experimentera med <strong>MediaWikis API för webbtjänster</strong>.\nSe [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API-dokumentationen] för ytterligare detaljer kring API-användningen. Exempel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query sök efter sidtitlar som matchar ett särskilt nyckelord]. Välj en handling för att se fler exempel.\n\nObservera att även om detta är en sandlåda kan handlingar du utför på denna sida påverka wikin.",
 	"apisandbox-submit": "Utför begäran",
 	"apisandbox-reset": "Rensa",
 	"apisandbox-retry": "Försök igen",

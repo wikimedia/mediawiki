@@ -2286,7 +2286,7 @@
 	"apihelp-no-such-module": "No se encontró el módulo «$1».",
 	"apisandbox": "Zona de pruebas de la API",
 	"apisandbox-jsonly": "Se requiere JavaScript para utilizar la zona de pruebas de API.",
-	"apisandbox-intro": "Usa esta página para experimentar con la <strong>API de servicio web de MediaWiki</strong>.\nPara más detalles sobre el uso de la API, visita [[mw:Special:MyLanguage/API:Main page|su documentación]]. Ejemplo: [https://www.mediawiki.org/wiki/API#A_simple_example obtener el contenido de una Página principal]. Selecciona una acción para ver más ejemplos.\n\nObserva que, aunque sea una página de pruebas, las acciones que realices en esta página pueden modificar la wiki.",
+	"apisandbox-intro": "Usa esta página para experimentar con la <strong>API de servicio web de MediaWiki</strong>.\nPara más detalles sobre el uso de la API, visita [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page su documentación]. Ejemplo: [https://www.mediawiki.org/wiki/API#A_simple_example obtener el contenido de una Página principal]. Selecciona una acción para ver más ejemplos.\n\nObserva que, aunque sea una página de pruebas, las acciones que realices en esta página pueden modificar la wiki.",
 	"apisandbox-submit": "Realizar solicitud",
 	"apisandbox-reset": "Limpiar",
 	"apisandbox-retry": "Reintentar",

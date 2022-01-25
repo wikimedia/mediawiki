@@ -2134,7 +2134,7 @@
 	"apihelp-no-such-module": "Moduulia ”$1” ei löydy.",
 	"apisandbox": "API-hiekkalaatikko",
 	"apisandbox-jsonly": "JavaScript vaaditaan API-hiekkalaatikon käyttämiseen.",
-	"apisandbox-intro": "Käytä tätä sivua kokeillaksesi <strong>MediaWikin verkkopalvelun API:a</strong>.\n[[mw:Special:MyLanguage/API:Main page|API-dokumentaatio]] kertoo lisää API:en käytöstä. Esimerkki: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query etsi tiettyä avainsanaa vastaavia sivujen nimiä]. Valitse toiminto nähdäksesi lisää esimerkkejä.\n\nHuomioi, että vaikka tämä on hiekkalaatikko, sivulla suorittamasi toiminnot saattavat muokata wikiä.",
+	"apisandbox-intro": "Käytä tätä sivua kokeillaksesi <strong>MediaWikin verkkopalvelun API:a</strong>.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API-dokumentaatio] kertoo lisää API:en käytöstä. Esimerkki: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query etsi tiettyä avainsanaa vastaavia sivujen nimiä]. Valitse toiminto nähdäksesi lisää esimerkkejä.\n\nHuomioi, että vaikka tämä on hiekkalaatikko, sivulla suorittamasi toiminnot saattavat muokata wikiä.",
 	"apisandbox-submit": "Tee pyyntö",
 	"apisandbox-reset": "Tyhjennä",
 	"apisandbox-retry": "Yritä uudestaan",

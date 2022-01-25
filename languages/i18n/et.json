@@ -2085,7 +2085,7 @@
 	"apihelp-no-such-module": "Moodulit \"$1\" ei leitud.",
 	"apisandbox": "API liivakast",
 	"apisandbox-jsonly": "API liivakasti kasutamine nõuab JavaScripti.",
-	"apisandbox-intro": "Kasuta seda lehekülge <strong>MediaWiki API</strong> katsetamiseks.\nÜksikasjad API kasutamise kohta leiad [[mw:Special:MyLanguage/API:Main page|API dokumentatsioonist]]. Näide: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query otsisõnale vastavate lehepealkirjade otsimine]. Vali toiming, et näha veel näiteid.\n\nPane tähele, et kuigi siin on liivakast, võivad siin leheküljel tehtud toimingud vikit muuta.",
+	"apisandbox-intro": "Kasuta seda lehekülge <strong>MediaWiki API</strong> katsetamiseks.\nÜksikasjad API kasutamise kohta leiad [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API dokumentatsioonist]. Näide: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query otsisõnale vastavate lehepealkirjade otsimine]. Vali toiming, et näha veel näiteid.\n\nPane tähele, et kuigi siin on liivakast, võivad siin leheküljel tehtud toimingud vikit muuta.",
 	"apisandbox-submit": "Tee päring",
 	"apisandbox-reset": "Puhasta",
 	"apisandbox-retry": "Proovi uuesti",

@@ -2085,7 +2085,7 @@
 	"apihelp-no-such-module": "Модул „$1“ не беше намерен.",
 	"apisandbox": "Пясъчник за API",
 	"apisandbox-jsonly": "Необходим е JavaScript, за да използвате API пясъчника.",
-	"apisandbox-intro": "Използвайте тази страница за тестове с <strong>MediaWiki web service API</strong>.\nЗа повече информация относно употребата на API-то се обърнете към [[mw:Special:MyLanguage/API:Main page|документацията на API-то]]. Например: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query търсене на заглавия на страници по ключова дума]. Изберете действие, за да видите още примери.\n\nОбърнете внимание на това, че извършените от Вас действия в тази страница могат да доведат до промени в уикито, въпреки че това е пясъчник.",
+	"apisandbox-intro": "Използвайте тази страница за тестове с <strong>MediaWiki web service API</strong>.\nЗа повече информация относно употребата на API-то се обърнете към [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page документацията на API-то]. Например: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query търсене на заглавия на страници по ключова дума]. Изберете действие, за да видите още примери.\n\nОбърнете внимание на това, че извършените от Вас действия в тази страница могат да доведат до промени в уикито, въпреки че това е пясъчник.",
 	"apisandbox-submit": "Направи запитване",
 	"apisandbox-reset": "Изчистване",
 	"apisandbox-retry": "Повторен опит",
