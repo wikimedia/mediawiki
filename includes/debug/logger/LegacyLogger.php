@@ -453,6 +453,7 @@ class LegacyLogger extends AbstractLogger {
 			return '[Object ' . get_class( $item ) . ']';
 		}
 
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 		if ( is_resource( $item ) ) {
 			return '[Resource ' . get_resource_type( $item ) . ']';
 		}
