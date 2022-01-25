@@ -53,6 +53,7 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
@@ -70,6 +71,7 @@ use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
@@ -300,8 +302,12 @@ return [
 	},
 
 	'BlockRestrictionStore' => static function ( MediaWikiServices $services ): BlockRestrictionStore {
-		return new BlockRestrictionStore(
-			$services->getDBLoadBalancer()
+		return $services->getBlockRestrictionStoreFactory()->getBlockRestrictionStore( WikiAwareEntity::LOCAL );
+	},
+
+	'BlockRestrictionStoreFactory' => static function ( MediaWikiServices $services ): BlockRestrictionStoreFactory {
+		return new BlockRestrictionStoreFactory(
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 
