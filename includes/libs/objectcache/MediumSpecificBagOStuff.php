@@ -1026,46 +1026,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @since 1.35
 	 */
 	protected function guessSerialValueSize( $value, $depth = 0, &$loops = 0 ) {
-		// Include serialization format overhead estimates roughly based on serialize(),
-		// without counting . Also, int/float variables use the largest case
-		// byte size for numbers of that type; this avoids CPU overhead for large arrays.
-		switch ( gettype( $value ) ) {
-			case 'string':
-				// E.g. "<type><delim1><quote><value><quote><delim2>"
-				return strlen( $value ) + 5;
-			case 'integer':
-				// E.g. "<type><delim1><sign><2^63><delim2>";
-				// ceil(log10 (2^63)) = 19
-				return 23;
-			case 'double':
-				// E.g. "<type><delim1><sign><2^52><esign><2^10><delim2>"
-				// ceil(log10 (2^52)) = 16 and ceil(log10 (2^10)) = 4
-				return 25;
-			case 'boolean':
-				// E.g. "true" becomes "1" and "false" is not storable
-				return $value ? 1 : null;
-			case 'NULL':
-				return 1; // "\0"
-			case 'array':
-			case 'object':
-				// Give up and guess if there is too much depth
-				if ( $depth >= 5 && $loops >= 256 ) {
-					return 1024;
-				}
-
-				++$loops;
-				// E.g. "<type><delim1><brace><<Kn><Vn> for all n><brace><delim2>"
-				$size = 5;
-				// Note that casting to an array includes private object members
-				foreach ( (array)$value as $k => $v ) {
-					// Inline the recursive result here for performance
-					$size += is_string( $k ) ? ( strlen( $k ) + 5 ) : 23;
-					$size += $this->guessSerialValueSize( $v, $depth + 1, $loops );
-				}
-
-				return $size;
-			default:
-				return null; // invalid
+		if ( is_string( $value ) ) {
+			// E.g. "<type><delim1><quote><value><quote><delim2>"
+			return strlen( $value ) + 5;
+		} else {
+			return strlen( serialize( $value ) );
 		}
 	}
 
