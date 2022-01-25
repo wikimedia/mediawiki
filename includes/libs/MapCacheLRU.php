@@ -352,21 +352,28 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		return ( $this->getCurrentTime() - $mtime );
 	}
 
-	public function serialize() {
-		return serialize( [
+	public function __serialize() {
+		return [
 			'entries' => $this->cache,
 			'timestamps' => $this->timestamps,
 			'maxCacheKeys' => $this->maxCacheKeys,
-		] );
+		];
 	}
 
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
+	public function serialize() {
+		return serialize( $this->__serialize() );
+	}
+
+	public function __unserialize( $data ) {
 		$this->cache = $data['entries'] ?? [];
 		$this->timestamps = $data['timestamps'] ?? [];
 		// Fallback needed for serializations prior to T218511
 		$this->maxCacheKeys = $data['maxCacheKeys'] ?? ( count( $this->cache ) + 1 );
 		$this->epoch = $this->getCurrentTime();
+	}
+
+	public function unserialize( $serialized ) {
+		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	/**
