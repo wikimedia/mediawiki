@@ -36,6 +36,7 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	 *
 	 * @return int
 	 */
+	#[\ReturnTypeWillChange]
 	public function count();
 
 	/**
@@ -64,6 +65,7 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	 * @throws OutOfBoundsException
 	 * @param int $pos
 	 */
+	#[\ReturnTypeWillChange]
 	public function seek( $pos );
 
 	/**
@@ -77,17 +79,20 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	/**
 	 * @return stdClass|array|bool
 	 */
+	#[\ReturnTypeWillChange]
 	public function current();
 
 	/**
 	 * @return int
 	 */
+	#[\ReturnTypeWillChange]
 	public function key();
 
 	/**
 	 * @return stdClass
 	 * @suppress PhanParamSignatureMismatchInternal
 	 */
+	#[\ReturnTypeWillChange]
 	public function next();
 
 	/**
