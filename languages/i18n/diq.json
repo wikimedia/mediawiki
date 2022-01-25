@@ -2088,7 +2088,7 @@
 	"apihelp-no-such-module": "Modulê \"$1\" nêvineya.",
 	"apisandbox": "API qumdor",
 	"apisandbox-jsonly": "Heruna API sandbox 'i karıtışi rê  JavaScript lazımo.",
-	"apisandbox-intro": "<strong>MediaWiki API'a xızmeta webi</strong> cerbnayışi rê na pela bıkarnê.\nHeqa karnayışê API zêde melumati rê [[mw:Special:MyLanguage/API:Main page|API dokumani]] bıvênên . Misal: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query belı bıyaye çekuya kılitiya zey pê pelan cıgeyrayış]. Zêde kerdışan rê misal vinayışi rê yew kar weçinê. \n\nNo yew sandbox reyna zi ena pela de karê şıma xo vira mekerê ke şeno wiki bıvurno.",
+	"apisandbox-intro": "<strong>MediaWiki API'a xızmeta webi</strong> cerbnayışi rê na pela bıkarnê.\nHeqa karnayışê API zêde melumati rê [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API dokumani] bıvênên . Misal: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query belı bıyaye çekuya kılitiya zey pê pelan cıgeyrayış]. Zêde kerdışan rê misal vinayışi rê yew kar weçinê. \n\nNo yew sandbox reyna zi ena pela de karê şıma xo vira mekerê ke şeno wiki bıvurno.",
 	"apisandbox-submit": "Bıwazê",
 	"apisandbox-reset": "Bestere",
 	"apisandbox-retry": "Anciya bıcerrebne",

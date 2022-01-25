@@ -1968,7 +1968,7 @@
 	"apihelp-no-such-module": "Module \"$1\" none acchiate.",
 	"apisandbox": "Sandbox de l'API",
 	"apisandbox-jsonly": "'U JavaScript jè richieste pe ausà 'a sandbox API.",
-	"apisandbox-intro": "Ause sta pàgene pe sperimendà cu le <strong>API de le web service pe MediaUicchi</strong>.\nFà referimende a [[mw:Special:MyLanguage/API:Main page|'a documendazione de l'API]] pe cchiù dettaglie de l'ause de l'API.\nEsembie: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query cirche le titole de le vôsce ca s'accocchiane cu 'na certa parola chiave]. Scacchie 'n'azione pe 'ndrucà otre esembie.\n\nVide ca, pure ca queste jè 'na buatte de sabbie tu puè carrescià le cangiaminde de sta pàgene sus 'a uicchi.",
+	"apisandbox-intro": "Ause sta pàgene pe sperimendà cu le <strong>API de le web service pe MediaUicchi</strong>.\nFà referimende a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page 'a documendazione de l'API] pe cchiù dettaglie de l'ause de l'API.\nEsembie: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query cirche le titole de le vôsce ca s'accocchiane cu 'na certa parola chiave]. Scacchie 'n'azione pe 'ndrucà otre esembie.\n\nVide ca, pure ca queste jè 'na buatte de sabbie tu puè carrescià le cangiaminde de sta pàgene sus 'a uicchi.",
 	"apisandbox-submit": "Fà 'na richieste",
 	"apisandbox-reset": "Pulizze",
 	"apisandbox-retry": "Pruève arrete",

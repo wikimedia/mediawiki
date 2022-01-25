@@ -2073,7 +2073,7 @@
 	"apihelp-no-such-module": "Модуль «$1» ня знойдзены.",
 	"apisandbox": "Пясочніца API",
 	"apisandbox-jsonly": "Для выкарыстаньня API-пясочніцы патрэбны JavaScript.",
-	"apisandbox-intro": "Выкарыстоўвайце гэтую старонку для экспэрымэнтаў з <strong>API сеціўнай службы MediaWiki</strong>.\nЗьвяртайцеся да [[mw:Special:MyLanguage/API:Main page|the API documentation]] для дадатковых зьвестак па выкарыстаньні API. Напрыклад, [https://www.mediawiki.org/wiki/API#A_simple_example як атрымаць зьмест галоўнай старонкі]. Абярыце дзеяньне, каб пабачыць болей прыкладаў.\n\nЗьвярніце ўвагу, што нягледзячы на тое, што гэта пясочніца, вашыя дзеяньні могуць унесьці зьмены ў вікі.",
+	"apisandbox-intro": "Выкарыстоўвайце гэтую старонку для экспэрымэнтаў з <strong>API сеціўнай службы MediaWiki</strong>.\nЗьвяртайцеся да [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation] для дадатковых зьвестак па выкарыстаньні API. Напрыклад, [https://www.mediawiki.org/wiki/API#A_simple_example як атрымаць зьмест галоўнай старонкі]. Абярыце дзеяньне, каб пабачыць болей прыкладаў.\n\nЗьвярніце ўвагу, што нягледзячы на тое, што гэта пясочніца, вашыя дзеяньні могуць унесьці зьмены ў вікі.",
 	"apisandbox-submit": "Зрабіць запыт",
 	"apisandbox-reset": "Ачысьціць",
 	"apisandbox-retry": "Паўтарыць",

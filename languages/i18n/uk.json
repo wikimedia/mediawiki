@@ -2153,7 +2153,7 @@
 	"apihelp-no-such-module": "Модуль «$1» не знайдено.",
 	"apisandbox": "Майданчик для тестування API",
 	"apisandbox-jsonly": "Для використання API-пісочниці потрібен JavaScript.",
-	"apisandbox-intro": "Ця сторінка служить для експериментування з <strong>MediaWiki веб-API</strong>.\nЗверніться до [[mw:Special:MyLanguage/API:Main page|документації]] для докладнішої інформації про використання API. Приклад: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query пошук назв сторінок, що мають збіг із певним ключовим словом]. Виберіть дію, щоб побачити більше прикладів.\n\nЗверніть увагу, що, хоча це пісочниця, дії, виконані вами, на цій сторінці можуть змінити вікі.",
+	"apisandbox-intro": "Ця сторінка служить для експериментування з <strong>MediaWiki веб-API</strong>.\nЗверніться до [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page документації] для докладнішої інформації про використання API. Приклад: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query пошук назв сторінок, що мають збіг із певним ключовим словом]. Виберіть дію, щоб побачити більше прикладів.\n\nЗверніть увагу, що, хоча це пісочниця, дії, виконані вами, на цій сторінці можуть змінити вікі.",
 	"apisandbox-submit": "Зробити запит",
 	"apisandbox-reset": "Очистити",
 	"apisandbox-retry": "Повторити",

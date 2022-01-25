@@ -2108,7 +2108,7 @@
 	"apihelp-no-such-module": "La modulo „$1” ne estis trovita.",
 	"apisandbox": "API testejo",
 	"apisandbox-jsonly": "JavaScript estas postulita por uzi la API provejon.",
-	"apisandbox-intro": "Uzu tiun ĉi paĝon por eksperimenti kun <strong>Mediavikia retserva API</strong>.\nVidu [[mw:Special:MyLanguage/API:Main page|la API-dokumentadon]] por pli da detaloj pri la uzo de API. Ekzemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serĉo de paĝtitoloj, kiuj kongruas kun certa ŝlosilvorto]. Elektu agon por vidi pliajn ekzemplojn.\n\nNotu ke, kvankam ĉi tiu estas provejo, agoj kiun vi faros en ĉi tiu paĝo povas modifi la vikion.",
+	"apisandbox-intro": "Uzu tiun ĉi paĝon por eksperimenti kun <strong>Mediavikia retserva API</strong>.\nVidu [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page la API-dokumentadon] por pli da detaloj pri la uzo de API. Ekzemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serĉo de paĝtitoloj, kiuj kongruas kun certa ŝlosilvorto]. Elektu agon por vidi pliajn ekzemplojn.\n\nNotu ke, kvankam ĉi tiu estas provejo, agoj kiun vi faros en ĉi tiu paĝo povas modifi la vikion.",
 	"apisandbox-submit": "Fari mendon",
 	"apisandbox-reset": "Nuligi",
 	"apisandbox-retry": "Reprovi",

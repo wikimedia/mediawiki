@@ -2141,7 +2141,7 @@
 	"apihelp-no-such-module": "Modul \"$1\" tidak ditemukan.",
 	"apisandbox": "Bak pasir API",
 	"apisandbox-jsonly": "JavaScript dibutuhkan untuk menggunakan kotak pasir API.",
-	"apisandbox-intro": "Gunakan halaman ini untuk bereksperimen dengan <strong>API layanan web MediaWiki</strong>.\nLihat [[mw:Special:MyLanguage/API:Main page|dokumentasi API]] untuk perincian lanjut penggunaan API. Contoh: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query mencari judul halaman yang sesuai dengan kata kunci]. Pilih sebuah tindakan untuk melihat contoh lain.\n\nPerhatikan bahwa, meskipun ini adalah bak pasir, tindakan yang Anda lakukan pada halaman ini mungkin dapat mengubah wiki.",
+	"apisandbox-intro": "Gunakan halaman ini untuk bereksperimen dengan <strong>API layanan web MediaWiki</strong>.\nLihat [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page dokumentasi API] untuk perincian lanjut penggunaan API. Contoh: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query mencari judul halaman yang sesuai dengan kata kunci]. Pilih sebuah tindakan untuk melihat contoh lain.\n\nPerhatikan bahwa, meskipun ini adalah bak pasir, tindakan yang Anda lakukan pada halaman ini mungkin dapat mengubah wiki.",
 	"apisandbox-submit": "Kirim permintaan",
 	"apisandbox-reset": "Kosongkan",
 	"apisandbox-retry": "Coba lagi",

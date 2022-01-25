@@ -2064,7 +2064,7 @@
 	"apihelp-no-such-module": "Ël mòdol «$1» as treuva nen.",
 	"apisandbox": "Spassi dle preuve API",
 	"apisandbox-jsonly": "A-i va JavaScript për dovré la sabiera API.",
-	"apisandbox-intro": "Ch'a deuvra sta pàgina për sperimenté ël <strong>servissi an sl'aragnà MediaWiki API</strong>.\nCh'a fasa riferiment a [[mw:Special:MyLanguage/API:Main page|la documentassion ëd l'API]] për d'àutri detaj an sl'utilisassion ëd l'API. Për esempi: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serché dij titoj 'd pàgine ch'a conten-o na certa paròla]. Ch'a selession-a n'assion për vëdde d'àutri esempi.\n\nCh'a nòta che, combin che costa a sia na sabiera, j'assion fàite su sta pàgina a peulo modifiché la wiki.",
+	"apisandbox-intro": "Ch'a deuvra sta pàgina për sperimenté ël <strong>servissi an sl'aragnà MediaWiki API</strong>.\nCh'a fasa riferiment a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page la documentassion ëd l'API] për d'àutri detaj an sl'utilisassion ëd l'API. Për esempi: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serché dij titoj 'd pàgine ch'a conten-o na certa paròla]. Ch'a selession-a n'assion për vëdde d'àutri esempi.\n\nCh'a nòta che, combin che costa a sia na sabiera, j'assion fàite su sta pàgina a peulo modifiché la wiki.",
 	"apisandbox-submit": "Fé l'arcesta",
 	"apisandbox-reset": "Scancela",
 	"apisandbox-retry": "Prové torna",

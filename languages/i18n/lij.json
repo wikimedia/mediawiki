@@ -2012,7 +2012,7 @@
 	"apihelp-no-such-module": "Moddulo \"$1\" non trovou.",
 	"apisandbox": "Paggina de proeuva API",
 	"apisandbox-jsonly": "Pe doeuviâ a paggina de proeuva API ghe voeu o JavaScript.",
-	"apisandbox-intro": "Doeuvia sta paggina pe fâ prattica co-e <strong>API web service MediaWiki</strong>.\nPe di urteioî detaggi de utilizzo de API, amia a [[mw:Special:MyLanguage/API:Main page|the API documentation]]. Exempio: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serchia de 'n tittolo de paggina ch'o corisponde a 'na çerta poula ciave].. Seleçion-a un'açion pe vedde di atri exempi.\n\nNotta che, sciben che questa a segge 'na paggina pe-e prœuve, i açioin che ti ezegui chì porieivan modificâ a wiki.",
+	"apisandbox-intro": "Doeuvia sta paggina pe fâ prattica co-e <strong>API web service MediaWiki</strong>.\nPe di urteioî detaggi de utilizzo de API, amia a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page the API documentation]. Exempio: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query serchia de 'n tittolo de paggina ch'o corisponde a 'na çerta poula ciave].. Seleçion-a un'açion pe vedde di atri exempi.\n\nNotta che, sciben che questa a segge 'na paggina pe-e prœuve, i açioin che ti ezegui chì porieivan modificâ a wiki.",
 	"apisandbox-submit": "Inandia recesta",
 	"apisandbox-reset": "Nettezza",
 	"apisandbox-retry": "Ritenta",

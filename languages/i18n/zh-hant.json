@@ -2177,7 +2177,7 @@
 	"apihelp-no-such-module": "查無模組 \"$1\"。",
 	"apisandbox": "API 沙盒",
 	"apisandbox-jsonly": "需要 JavaScript 才能使用 API 沙箱。",
-	"apisandbox-intro": "使用此頁面可測試 <strong>MediaWiki web service API</strong>。\n請參考[[mw:Special:MyLanguage/API:Main page|API 說明文件]]以取得詳細資訊。例：[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query 搜尋標題符合特定關鍵字的頁面]。請選擇動作以取得更多範例。\n\n請注意，雖然此為沙盒，您在此頁所執行的動作仍有可能會修改到wiki。",
+	"apisandbox-intro": "使用此頁面可測試 <strong>MediaWiki web service API</strong>。\n請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API 說明文件]以取得詳細資訊。例：[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query 搜尋標題符合特定關鍵字的頁面]。請選擇動作以取得更多範例。\n\n請注意，雖然此為沙盒，您在此頁所執行的動作仍有可能會修改到wiki。",
 	"apisandbox-submit": "發出請求",
 	"apisandbox-reset": "清除",
 	"apisandbox-retry": "重試",

@@ -2059,7 +2059,7 @@
 	"apihelp-no-such-module": "Non se atopou o módulo \"$1\".",
 	"apisandbox": "Zona de probas API",
 	"apisandbox-jsonly": "É preciso activar o JavaScript para usar a zona de probas.",
-	"apisandbox-intro": "Use esta páxina para experimentar co <strong>servizo web da API de MediaWiki</strong>.\nConsulte a [[mw:Special:MyLanguage/API:Main page|documentación da API]] para obter máis información sobre o uso da API. Exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query obter os títulos de páxina correspondentes a unha palabra clave]. Seleccione unha acción para ollar máis exemplos.\n\nTeña en conta que, aínda que esta é unha páxina de probas, as accións que realice nesta páxina poden modificar o wiki.",
+	"apisandbox-intro": "Use esta páxina para experimentar co <strong>servizo web da API de MediaWiki</strong>.\nConsulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page documentación da API] para obter máis información sobre o uso da API. Exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query obter os títulos de páxina correspondentes a unha palabra clave]. Seleccione unha acción para ollar máis exemplos.\n\nTeña en conta que, aínda que esta é unha páxina de probas, as accións que realice nesta páxina poden modificar o wiki.",
 	"apisandbox-submit": "Facer a solicitude",
 	"apisandbox-reset": "Limpar",
 	"apisandbox-retry": "Reintentar",
