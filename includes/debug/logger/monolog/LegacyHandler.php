@@ -149,7 +149,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		}
 		restore_error_handler();
 
-		if ( !is_resource( $this->sink ) ) {
+		if ( !$this->sink ) {
 			$this->sink = null;
 			throw new UnexpectedValueException( sprintf(
 				'The stream or file "%s" could not be opened: %s',
@@ -223,7 +223,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 	}
 
 	public function close(): void {
-		if ( is_resource( $this->sink ) ) {
+		if ( $this->sink ) {
 			if ( $this->useUdp() ) {
 				socket_close( $this->sink );
 
