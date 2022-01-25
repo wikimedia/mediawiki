@@ -74,6 +74,13 @@ $wgEnableJavaScriptTest = true;
 // Enable development/experimental endpoints
 $wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
 
+// Greatly raise the limits on short/long term login attempts,
+// so that automated tests run in parallel don't error.
+$wgPasswordAttemptThrottle = [
+	[ 'count' => 1000, 'seconds' => 300 ],
+	[ 'count' => 100000, 'seconds' => 60 * 60 * 48 ],
+];
+
 /**
  * Experimental changes that may later become the default.
  * (Must reference a Phabricator ticket)
@@ -104,10 +111,3 @@ $wgEnableUploads = true;
 $wgVisualEditorEnableWikitext = true;
 // Currently the default, but repeated here for safety since it would break many source editor tests.
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 0;
-
-$wgPasswordAttemptThrottle = [
-	// Greatly raise the limits on short/long term login attempts,
-	// so that automated tests run in parallel don't error.
-	[ 'count' => 1000, 'seconds' => 300 ],
-	[ 'count' => 100000, 'seconds' => 60 * 60 * 48 ],
-];
