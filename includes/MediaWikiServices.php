@@ -34,6 +34,7 @@ use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
@@ -699,6 +700,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlockRestrictionStore(): BlockRestrictionStore {
 		return $this->getService( 'BlockRestrictionStore' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return BlockRestrictionStoreFactory
+	 */
+	public function getBlockRestrictionStoreFactory(): BlockRestrictionStoreFactory {
+		return $this->getService( 'BlockRestrictionStoreFactory' );
 	}
 
 	/**
