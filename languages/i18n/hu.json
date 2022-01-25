@@ -2089,7 +2089,7 @@
 	"apihelp-no-such-module": "A(z) „$1\" modul nem található.",
 	"apisandbox": "API homokozó",
 	"apisandbox-jsonly": "Az API-homokozó használatához JavaScriptre van szükség.",
-	"apisandbox-intro": "Ezen az oldalon kísérletezhetsz a <strong>MediaWiki web service API</strong>-val.\nA használattal kapcsolatos további részletek az [[mw:Special:MyLanguage/API:Main page|API-dokumentációnál]] találhatók. Példa: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query keress egy adott kulcsszóra illeszkedő lapcímeket]. További példákért válassz egy műveletet!\n\nFigyelj rá, hogy bár ez csak egy „homokozó”, ettől még az általad végzett műveletek módosíthatják a wikit!",
+	"apisandbox-intro": "Ezen az oldalon kísérletezhetsz a <strong>MediaWiki web service API</strong>-val.\nA használattal kapcsolatos további részletek az [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API-dokumentációnál] találhatók. Példa: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query keress egy adott kulcsszóra illeszkedő lapcímeket]. További példákért válassz egy műveletet!\n\nFigyelj rá, hogy bár ez csak egy „homokozó”, ettől még az általad végzett műveletek módosíthatják a wikit!",
 	"apisandbox-submit": "Kérés végrehajtása",
 	"apisandbox-reset": "Törlés",
 	"apisandbox-retry": "Újra",

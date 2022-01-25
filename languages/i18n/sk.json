@@ -2059,7 +2059,7 @@
 	"apihelp-no-such-module": "Modul „$1” nebol nájdený.",
 	"apisandbox": "API pieskovisko",
 	"apisandbox-jsonly": "Na použitie pieskoviska API je nutný JavaScript.",
-	"apisandbox-intro": "Pomocou tejto stránky môžete experimentovať s <strong>API webovej služby MediaWiki</strong>.\nPodrobnosti využitia API nájdete v [[mw:Special:MyLanguage/API:Main page|jeho dokumentácii]]. Príklad: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query hľadať názvy stránok zodpovedajúce určitému kľúčovému slovu]. Ďalšie príklady uvidíte vybraním operácie.\n\nBerte na vedomie, že napriek tomu, že ste na pieskovisku, môžu operácie vykonané na tejto stránke wiki zmeniť.",
+	"apisandbox-intro": "Pomocou tejto stránky môžete experimentovať s <strong>API webovej služby MediaWiki</strong>.\nPodrobnosti využitia API nájdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page jeho dokumentácii]. Príklad: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query hľadať názvy stránok zodpovedajúce určitému kľúčovému slovu]. Ďalšie príklady uvidíte vybraním operácie.\n\nBerte na vedomie, že napriek tomu, že ste na pieskovisku, môžu operácie vykonané na tejto stránke wiki zmeniť.",
 	"apisandbox-submit": "Odoslať dopyt",
 	"apisandbox-reset": "Vyčistiť",
 	"apisandbox-retry": "Skúsiť znova",

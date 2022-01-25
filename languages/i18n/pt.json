@@ -2147,7 +2147,7 @@
 	"apihelp-no-such-module": "Módulo \"$1\" não encontrado.",
 	"apisandbox": "Testes da API",
 	"apisandbox-jsonly": "Para usar a área de testes da API é necessário o JavaScript.",
-	"apisandbox-intro": "Use esta página para fazer experiências com a <strong>API operacional do MediaWiki</strong>.\nConsulte a [[mw:Special:MyLanguage/API:Main page|documentação da API]] para informações sobre o seu uso. Exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query pesquisar títulos de página que contêm uma determinada palavra-chave]. Selecione uma operação para ver mais exemplos.\n\nNote que, embora esta seja uma área de testes, as operações que executar nesta página podem modificar a wiki.",
+	"apisandbox-intro": "Use esta página para fazer experiências com a <strong>API operacional do MediaWiki</strong>.\nConsulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page documentação da API] para informações sobre o seu uso. Exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query pesquisar títulos de página que contêm uma determinada palavra-chave]. Selecione uma operação para ver mais exemplos.\n\nNote que, embora esta seja uma área de testes, as operações que executar nesta página podem modificar a wiki.",
 	"apisandbox-submit": "Fazer o pedido",
 	"apisandbox-reset": "Limpar",
 	"apisandbox-retry": "Tentar novamente",

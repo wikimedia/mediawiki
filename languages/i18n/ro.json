@@ -2107,7 +2107,7 @@
 	"apihelp-no-such-module": "Modulul „$1” nu a fost găsit.",
 	"apisandbox": "Pagina de teste pentru API",
 	"apisandbox-jsonly": "Este nevoie de JavaScript pentru a folosi pagina de teste pentru API.",
-	"apisandbox-intro": "Folosiți această pagină pentru a experimenta cu <strong>Serviciul web API MediaWiki</strong>. Recurgeți la [[mw:Special:MyLanguage/API:Main page|documentația API-ului]] pentru detalii ulterioare de utilizare a API-ului. Exemplu: [https://www.mediawiki.org/wiki/API#A_simple_example căutați după titluri de pagini care se potrivesc cu un anumit cuvânt cheie]. Selectați o acțiune pentru a vedea mai multe exemple.\n\nLuați în considerare că deși aceasta este o pagină de teste, acțiuni pe care le efectuați pe această pagină pot modifica wiki-ul.",
+	"apisandbox-intro": "Folosiți această pagină pentru a experimenta cu <strong>Serviciul web API MediaWiki</strong>. Recurgeți la [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page documentația API-ului] pentru detalii ulterioare de utilizare a API-ului. Exemplu: [https://www.mediawiki.org/wiki/API#A_simple_example căutați după titluri de pagini care se potrivesc cu un anumit cuvânt cheie]. Selectați o acțiune pentru a vedea mai multe exemple.\n\nLuați în considerare că deși aceasta este o pagină de teste, acțiuni pe care le efectuați pe această pagină pot modifica wiki-ul.",
 	"apisandbox-submit": "Efectuați cererea",
 	"apisandbox-reset": "Curăță",
 	"apisandbox-retry": "Reîncercare",

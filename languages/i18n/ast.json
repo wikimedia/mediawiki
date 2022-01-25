@@ -2027,7 +2027,7 @@
 	"apihelp-no-such-module": "Nun s'alcuentra'l módulu «$1».",
 	"apisandbox": "Zona de pruebes API",
 	"apisandbox-jsonly": "Necesítase JavaScript pa usar la zona de pruebes de la API.",
-	"apisandbox-intro": "Usa esta páxina pa esperimentar cola <strong>API de serviciu web de MediaWiki</strong>.\nConsulta [[mw:Special:MyLanguage/API:Main page|la documentación de la API]] pa más detalles del usu de la API. Exemplu: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query buscar títulos de páxina que casen con determinada palabra clave]. Seleiciona una aición pa ver más exemplos.\n\nTen presente que, anque esto ye una zona de pruebes, les aiciones que faigas nesta páxina puen camudar la wiki.",
+	"apisandbox-intro": "Usa esta páxina pa esperimentar cola <strong>API de serviciu web de MediaWiki</strong>.\nConsulta [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page la documentación de la API] pa más detalles del usu de la API. Exemplu: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query buscar títulos de páxina que casen con determinada palabra clave]. Seleiciona una aición pa ver más exemplos.\n\nTen presente que, anque esto ye una zona de pruebes, les aiciones que faigas nesta páxina puen camudar la wiki.",
 	"apisandbox-submit": "Facer solicitú",
 	"apisandbox-reset": "Llimpiar",
 	"apisandbox-retry": "Reintentar",

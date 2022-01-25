@@ -2080,7 +2080,7 @@
 	"apihelp-no-such-module": "Modul \"$1\" nénten katemu.",
 	"apisandbox": "Kotak bias API",
 	"apisandbox-jsonly": "JavaScript kaperluang antuk nganggén kotak bias API.",
-	"apisandbox-intro": "Anggén kaca puniki antuk matetilikan sareng <strong>API layanan wéb MédiaWiki</strong>.\nCingak [[mw:Special:MyLanguage/API:Main page|dokuméntasi API]] antuk rerincian lanturan pawigunaan API. Conto: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ngerereh murda kaca sané patut sareng kruna sereg]. Pilih satunggil tatindakan antuk nyingakin conto liyanan.\n\nCingakin punika, yadiastun puniki bak bias, tatindakan Ida laksanayang ring kaca puniki minab prasida nguah wiki.",
+	"apisandbox-intro": "Anggén kaca puniki antuk matetilikan sareng <strong>API layanan wéb MédiaWiki</strong>.\nCingak [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page dokuméntasi API] antuk rerincian lanturan pawigunaan API. Conto: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query ngerereh murda kaca sané patut sareng kruna sereg]. Pilih satunggil tatindakan antuk nyingakin conto liyanan.\n\nCingakin punika, yadiastun puniki bak bias, tatindakan Ida laksanayang ring kaca puniki minab prasida nguah wiki.",
 	"apisandbox-submit": "Ngardi pinunasan",
 	"apisandbox-reset": "Resikin",
 	"apisandbox-retry": "Indayang malih",

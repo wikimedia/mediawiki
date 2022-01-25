@@ -2221,7 +2221,7 @@
 	"apihelp-no-such-module": "Модуль «$1» не найден.",
 	"apisandbox": "Песочница API",
 	"apisandbox-jsonly": "Для использования API-песочницы требуется JavaScript.",
-	"apisandbox-intro": "Используйте эту страницу для экспериментов с <strong>MediaWiki API</strong>.\nОбратитесь к [[mw:Special:MyLanguage/API:Main page|документации API]] для получения дополнительной информации об использовании API. Например, о том, [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query как найти страницы с заданным словом в заголовке]. Выберите действие, чтобы увидеть другие примеры.\n\nОбратите внимание, что, хотя это и песочница, действия, выполненные на этой странице, могут внести изменения в вики.",
+	"apisandbox-intro": "Используйте эту страницу для экспериментов с <strong>MediaWiki API</strong>.\nОбратитесь к [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page документации API] для получения дополнительной информации об использовании API. Например, о том, [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query как найти страницы с заданным словом в заголовке]. Выберите действие, чтобы увидеть другие примеры.\n\nОбратите внимание, что, хотя это и песочница, действия, выполненные на этой странице, могут внести изменения в вики.",
 	"apisandbox-submit": "Сделать запрос",
 	"apisandbox-reset": "Очистить",
 	"apisandbox-retry": "Повторить",

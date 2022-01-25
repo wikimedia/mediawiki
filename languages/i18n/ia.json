@@ -2067,7 +2067,7 @@
 	"apihelp-no-such-module": "Modulo \"$1\" non trovate.",
 	"apisandbox": "Cassa de sablo pro API",
 	"apisandbox-jsonly": "JavaScript es necessari pro usar le cassa a sablo del API.",
-	"apisandbox-intro": "Usa iste pagina pro experimentar con le <strong>API de servicio web de MediaWiki</strong>.\nConsulta [[mw:Special:MyLanguage/API:Main page|le documentation del API]] pro ulterior detalios concernente le uso del API. Per exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query cercar titulos de pagina que corresponde a un certe parola-clave]. Selige un action pro vider altere exemplos.\n\nAttention: Ben que isto es un cassa a sablo, le actiones que tu exeque in iste pagina pote modificar tote le wiki.",
+	"apisandbox-intro": "Usa iste pagina pro experimentar con le <strong>API de servicio web de MediaWiki</strong>.\nConsulta [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page le documentation del API] pro ulterior detalios concernente le uso del API. Per exemplo: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query cercar titulos de pagina que corresponde a un certe parola-clave]. Selige un action pro vider altere exemplos.\n\nAttention: Ben que isto es un cassa a sablo, le actiones que tu exeque in iste pagina pote modificar tote le wiki.",
 	"apisandbox-submit": "Facer requesta",
 	"apisandbox-reset": "Rader",
 	"apisandbox-retry": "Reprobar",
