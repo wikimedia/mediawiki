@@ -379,7 +379,7 @@ class RollbackPage {
 		}
 
 		// Report if the edit was not created because it did not change the content.
-		if ( $updater->isUnchanged() ) {
+		if ( !$updater->wasRevisionCreated() ) {
 			$result = StatusValue::newGood( [
 				'current-revision-record' => $currentRevision
 			] );
