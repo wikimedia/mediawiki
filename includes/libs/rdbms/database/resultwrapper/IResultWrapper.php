@@ -54,6 +54,7 @@ interface IResultWrapper extends Iterator {
 	 *
 	 * @param int $pos
 	 */
+	#[\ReturnTypeWillChange]
 	public function seek( $pos );
 
 	/**
@@ -67,16 +68,19 @@ interface IResultWrapper extends Iterator {
 	/**
 	 * @return stdClass|array|bool
 	 */
+	#[\ReturnTypeWillChange]
 	public function current();
 
 	/**
 	 * @return int
 	 */
+	#[\ReturnTypeWillChange]
 	public function key();
 
 	/**
 	 * @return stdClass
 	 * @suppress PhanParamSignatureMismatchInternal
 	 */
+	#[\ReturnTypeWillChange]
 	public function next();
 }
