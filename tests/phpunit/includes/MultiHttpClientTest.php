@@ -1,6 +1,8 @@
 <?php
 
+use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * The urls herein are not actually called, because we mock the return results.
@@ -270,5 +272,17 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->addToAssertionCount( 1 );
+	}
+
+	public function testGetCurlMulti() {
+		$cm = TestingAccessWrapper::newFromObject( new MultiHttpClient( [] ) );
+		$resource = $cm->getCurlMulti( [ 'usePipelining' => true ] );
+		$this->assertThat(
+			$resource,
+			$this->logicalOr(
+				$this->isType( IsType::TYPE_RESOURCE ),
+				$this->isInstanceOf( 'CurlMultiHandle' )
+			)
+		);
 	}
 }
