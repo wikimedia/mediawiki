@@ -2623,7 +2623,7 @@
 	"watchlist": "Title of the Special:Watchlist page.\n\n{{Identical|Watchlist}}",
 	"watchlist-summary": "{{doc-specialpagesummary|watchlist}}",
 	"mywatchlist": "Link at the upper right corner of the screen.\n\nSee also:\n* {{msg-mw|Mywatchlist}}\n* {{msg-mw|Accesskey-pt-watchlist}}\n* {{msg-mw|Tooltip-pt-watchlist}}\n{{Identical|Watchlist}}",
-	"watchlistfor2": "Subtitle on [[Special:Watchlist]].\nParameters:\n* $1 - Username of current user\n* $2 - Tool links (View relevant changes | View and edit watchlist | Edit raw watchlist)\n{{Identical|For $1}}",
+	"watchlistfor2": "Subtitle on [[Special:Watchlist]].\nParameters:\n* $1 - Username of current user\n\n{{Identical|For $1}}",
 	"nowatchlist": "Displayed when there is no pages in the watchlist.",
 	"watchlistanontext": "Shown on Special:Userlogin when user tries to access their watchlist before logging in",
 	"watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",

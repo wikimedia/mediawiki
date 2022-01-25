@@ -49,6 +49,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	private $userOptionsLookup;
 
 	/**
+	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
+	 * constants (e.g. EDIT_NORMAL)
+	 */
+	private $currentMode;
+
+	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param WatchlistManager $watchlistManager
 	 * @param ILoadBalancer $loadBalancer
@@ -91,6 +97,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
+		$this->currentMode = $mode;
+
 		if ( $mode !== false ) {
 			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
@@ -622,11 +630,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$out = $this->getOutput();
 
 		$out->addSubtitle(
-			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools(
-					$this->getLanguage(),
-					$this->getLinkRenderer()
-				) )
+			Html::element(
+				'span',
+				[
+					'class' => 'mw-watchlist-owner'
+				],
+				// Previously the watchlistfor2 message took 2 parameters.
+				// It now only takes 1 so empty string is passed.
+				// Empty string parameter can be removed when all messages
+				// are updated to not use $2
+				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
+			) . ' ' .
+			SpecialEditWatchlist::buildTools(
+				$this->getLanguage(),
+				$this->getLinkRenderer(),
+				$this->currentMode
+			)
 		);
 
 		$this->setTopText( $opts );
