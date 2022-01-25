@@ -328,6 +328,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 		if ( $req['method'] === 'PUT' ) {
 			curl_setopt( $ch, CURLOPT_PUT, 1 );
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $req['body'] ) ) {
 				curl_setopt( $ch, CURLOPT_INFILE, $req['body'] );
 				if ( isset( $req['headers']['content-length'] ) ) {
@@ -358,6 +359,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			curl_setopt( $ch, CURLOPT_POST, 1 );
 			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
 		} else {
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
 				throw new Exception( "HTTP body specified for a non PUT/POST request." );
 			}

@@ -348,7 +348,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -390,7 +390,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -481,7 +481,7 @@ class MemcachedClient {
 
 		$sock = $this->get_sock( $key );
 
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -538,7 +538,7 @@ class MemcachedClient {
 		$socks = array();
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
-			if ( !is_resource( $sock ) ) {
+			if ( !$sock ) {
 				continue;
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
@@ -630,7 +630,7 @@ class MemcachedClient {
 	 * @return array Output array
 	 */
 	public function run_command( $sock, $cmd ) {
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return array();
 		}
 
@@ -892,7 +892,7 @@ class MemcachedClient {
 		for ( $tries = 0; $tries < 20; $tries++ ) {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
-			if ( is_resource( $sock ) ) {
+			if ( $sock ) {
 				return $sock;
 			}
 			$hv = $this->_hashfunc( $hv . $realkey );
@@ -938,7 +938,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return null;
 		}
 
@@ -1073,7 +1073,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -1309,7 +1309,7 @@ class MemcachedClient {
 	 * @param Resource $f
 	 */
 	function _flush_read_buffer( $f ) {
-		if ( !is_resource( $f ) ) {
+		if ( !$f ) {
 			return;
 		}
 		$r = array( $f );
