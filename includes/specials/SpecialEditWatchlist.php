@@ -77,6 +77,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
+	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
+	private $currentMode;
+
 	/**
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param TitleParser|null $titleParser
@@ -128,10 +131,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 
 		$this->outputHeader();
-		$this->outputSubtitle();
-		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.special'
+		] );
 
-		$mode = self::getMode( $this->getRequest(), $mode );
+		$mode = self::getMode( $this->getRequest(), $mode, self::EDIT_NORMAL );
+		$this->currentMode = $mode;
+		$this->outputSubtitle();
 
 		switch ( $mode ) {
 			case self::EDIT_RAW:
@@ -163,12 +170,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function outputSubtitle() {
 		$out = $this->getOutput();
-		$out->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName() )
-			->rawParams(
-				self::buildTools(
-					$this->getLanguage(),
-					$this->getLinkRenderer()
-				)
+		$out->addSubtitle(
+			Html::element(
+				'span',
+				[
+					'class' => 'mw-watchlist-owner'
+				],
+				// Previously the watchlistfor2 message took 2 parameters.
+				// It now only takes 1 so empty string is passed.
+				// Empty string parameter can be removed when all messages
+				// are updated to not use $2
+				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
+			) . ' ' .
+			self::buildTools(
+				$this->getLanguage(),
+				$this->getLinkRenderer(),
+				$this->currentMode
 			)
 		);
 	}
@@ -740,8 +757,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		return $link . ' ' .
-			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped() .
+		return $link . ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] ) .
+			implode(
+				'',
+				array_map( static function ( $tool ) {
+					return Html::rawElement( 'span', [], $tool );
+				}, $tools )
+			) .
+			Html::closeElement( 'span' ) .
 			$watchlistExpiringMessage;
 	}
 
@@ -798,9 +821,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param WebRequest $request
 	 * @param string|null $par
+	 * @param int|false $defaultValue to use if not known.
 	 * @return int|false
 	 */
-	public static function getMode( $request, $par ) {
+	public static function getMode( $request, $par, $defaultValue = false ) {
 		$mode = strtolower( $request->getRawVal( 'action', $par ) );
 
 		switch ( $mode ) {
@@ -814,7 +838,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			case self::EDIT_NORMAL:
 				return self::EDIT_NORMAL;
 			default:
-				return false;
+				return $defaultValue;
 		}
 	}
 
@@ -824,9 +848,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param Language $lang
 	 * @param LinkRenderer|null $linkRenderer
+	 * @param int|false $selectedMode result of self::getMode
 	 * @return string
 	 */
-	public static function buildTools( $lang, LinkRenderer $linkRenderer = null ) {
+	public static function buildTools( $lang, LinkRenderer $linkRenderer = null, $selectedMode = false ) {
 		if ( !$lang instanceof Language ) {
 			// back-compat where the first parameter was $unused
 			global $wgLang;
@@ -838,24 +863,34 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$tools = [];
 		$modes = [
-			'view' => [ 'Watchlist', false ],
-			'edit' => [ 'EditWatchlist', false ],
-			'raw' => [ 'EditWatchlist', 'raw' ],
-			'clear' => [ 'EditWatchlist', 'clear' ],
+			'view' => [ 'Watchlist', false, false ],
+			'edit' => [ 'EditWatchlist', false, self::EDIT_NORMAL ],
+			'raw' => [ 'EditWatchlist', 'raw', self::EDIT_RAW ],
+			'clear' => [ 'EditWatchlist', 'clear', self::EDIT_CLEAR ],
 		];
 
 		foreach ( $modes as $mode => $arr ) {
 			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
-			$tools[] = $linkRenderer->makeKnownLink(
+			$link = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( $arr[0], $arr[1] ),
 				wfMessage( "watchlisttools-{$mode}" )->text()
 			);
+			$isSelected = $selectedMode === $arr[2];
+			$classes = [
+				'mw-watchlist-toollink',
+				'mw-watchlist-toollink-' . $mode,
+				$isSelected ? 'mw-watchlist-toollink-active' :
+					'mw-watchlist-toollink-inactive'
+			];
+			$tools[] = Html::rawElement( 'span', [
+				'class' => $classes,
+			], $link );
 		}
 
 		return Html::rawElement(
 			'span',
-			[ 'class' => 'mw-watchlist-toollinks' ],
-			wfMessage( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped()
+			[ 'class' => 'mw-watchlist-toollinks mw-changeslist-links' ],
+			implode( '', $tools )
 		);
 	}
 }
