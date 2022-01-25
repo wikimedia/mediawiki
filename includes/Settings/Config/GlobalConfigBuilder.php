@@ -5,7 +5,8 @@ namespace MediaWiki\Settings\Config;
 use Config;
 use GlobalVarConfig;
 
-class GlobalConfigBuilder extends ArrayConfigBuilder {
+class GlobalConfigBuilder implements ConfigBuilder {
+	use ConfigBuilderTrait;
 
 	/** @var string */
 	public const DEFAULT_PREFIX = 'wg';
@@ -21,23 +22,25 @@ class GlobalConfigBuilder extends ArrayConfigBuilder {
 	}
 
 	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		parent::set( $this->makeKey( $key ), $value, $mergeStrategy );
-		$this->propagateGlobal( $key );
+		$var = $this->getVarName( $key );
+
+		$GLOBALS[ $var ] =
+			$this->getNewValue( $key, $GLOBALS[ $var ] ?? null, $value, $mergeStrategy );
 		return $this;
 	}
 
 	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		parent::setDefault( $this->makeKey( $key ), $value, $mergeStrategy );
-		$this->propagateGlobal( $key );
+		$var = $this->getVarName( $key );
+
+		if ( $mergeStrategy ) {
+			$this->set( $key, $value, $mergeStrategy->reverse() );
+		} elseif ( !array_key_exists( $var, $GLOBALS ) ) {
+			$GLOBALS[ $var ] = $value;
+		}
 		return $this;
 	}
 
-	private function propagateGlobal( string $key ): void {
-		$varKey = $this->makeKey( $key );
-		$GLOBALS[$varKey] = $this->config[$varKey];
-	}
-
-	private function makeKey( string $key ): string {
+	private function getVarName( string $key ): string {
 		return $this->prefix . $key;
 	}
 
