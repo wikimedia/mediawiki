@@ -4416,5 +4416,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Accepts non-existent pages.",
 	"nonmain-slot-differences-therefore-readonly": "You cannot edit the wikitext on this revision of the page, as there have been changes to the data on the page since this revision that are not wikitext-based. [$1 To restore this revision click here.]",
 	"config-missing-key": "Missing MediaWiki configuration parameter \"$1\"",
-	"config-invalid-key": "Invalid MediaWiki configuration parameter \"$1\": $2"
+	"config-invalid-key": "Invalid MediaWiki configuration parameter \"$1\": $2",
+	"changeslist-nocomment": "No edit summary"
 }

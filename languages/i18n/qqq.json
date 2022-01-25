@@ -4647,5 +4647,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that titles referring to non-existent pages are also valid.",
 	"nonmain-slot-differences-therefore-readonly": "Shown if user attempts to edit a revision of a page that contains non-main-slot differences from the current revision. Parameters:\n* $1 - link to the mcrrestore page to restore the revision",
 	"config-missing-key": "Shown if MediaWiki configuration parameter is missing. Parameters:\n* $1 - Parameter name.",
-	"config-invalid-key": "Shown if MediaWiki configuration parameter is set to an invalid value. Parameters:\n* $1 - Parameter name.\n* $2 - Validation error message."
+	"config-invalid-key": "Shown if MediaWiki configuration parameter is set to an invalid value. Parameters:\n* $1 - Parameter name.\n* $2 - Validation error message.",
+	"changeslist-nocomment": "Default summary that may be shown when a changelist row such as on contribution or history pages has no summary"
 }

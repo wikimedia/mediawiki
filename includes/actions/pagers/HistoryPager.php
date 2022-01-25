@@ -475,6 +475,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Text following the character difference is added just before running hooks
 		$s2 = $this->formattedComments[$resultOffset];
 
+		if ( $s2 === '' ) {
+			$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
+			$s2 = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
+		}
+
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
 			$classes[] = 'mw-history-line-updated';
@@ -547,9 +552,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		# Include separator between character difference and following text
-		if ( $s2 !== '' ) {
-			$s .= ' <span class="mw-changeslist-separator"></span> ' . $s2;
-		}
+		$s .= ' <span class="mw-changeslist-separator"></span> ' . $s2;
 
 		$attribs = [ 'data-mw-revid' => $revRecord->getId() ];
 
