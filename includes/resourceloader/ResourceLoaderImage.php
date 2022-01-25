@@ -432,7 +432,7 @@ class ResourceLoaderImage {
 				$pipes
 			);
 
-			if ( is_resource( $process ) ) {
+			if ( $process ) {
 				fwrite( $pipes[0], $svg );
 				fclose( $pipes[0] );
 				$png = stream_get_contents( $pipes[1] );
