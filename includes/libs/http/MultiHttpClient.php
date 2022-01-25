@@ -443,16 +443,30 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$this->cmh = $cmh;
 		}
 
+		$curlVersion = curl_version()['version'];
+
 		// CURLMOPT_MAX_HOST_CONNECTIONS is available since PHP 7.0.7 and cURL 7.30.0
-		if ( version_compare( curl_version()['version'], '7.30.0', '>=' ) ) {
+		if ( version_compare( $curlVersion, '7.30.0', '>=' ) ) {
 			// Limit the number of in-flight requests for any given host
 			$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
 			curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
 		}
 
-		// Configure when to multiplex multiple requests onto single TCP handles
-		$pipelining = $opts['usePipelining'] ?? $this->usePipelining;
-		curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining ? 3 : 0 );
+		if ( $opts['usePipelining'] ?? $this->usePipelining ) {
+			if ( version_compare( $curlVersion, '7.43', '<' ) ) {
+				// The option is a boolean
+				$pipelining = 1;
+			} elseif ( version_compare( $curlVersion, '7.62', '<' ) ) {
+				// The option is a bitfield and HTTP/1.x pipelining is supported
+				$pipelining = CURLPIPE_HTTP1 | CURLPIPE_MULTIPLEX;
+			} else {
+				// The option is a bitfield but HTTP/1.x pipelining has been removed
+				$pipelining = CURLPIPE_MULTIPLEX;
+			}
+			// Suppress deprecation, we know already (T264735)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			@curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining );
+		}
 
 		return $this->cmh;
 	}
