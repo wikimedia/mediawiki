@@ -27,7 +27,6 @@
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Settings\SettingsBuilder;
 
 class ParserTestsMaintenance extends Maintenance {
 	public function __construct() {
@@ -73,12 +72,12 @@ class ParserTestsMaintenance extends Maintenance {
 			'defaults.' );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup() {
 		// Some methods which are discouraged for normal code throw exceptions unless
 		// we declare this is just a test.
 		define( 'MW_PARSER_TEST', true );
 
-		parent::finalSetup( $settingsBuilder );
+		parent::finalSetup();
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -21,7 +20,7 @@ class ParserFuzzTest extends Maintenance {
 		$this->addOption( 'seed', 'Start the fuzz test from the specified seed', false, true );
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup() {
 		// Make RequestContext::resetMain() happy
 		define( 'MW_PARSER_TEST', 1 );
 
