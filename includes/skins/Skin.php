@@ -1919,7 +1919,9 @@ abstract class Skin extends ContextSource {
 					$siteNotice .= $nsNotice;
 				}
 			}
-			$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice' ], $siteNotice );
+			if ( $siteNotice !== '' ) {
+				$siteNotice = Html::rawElement( 'div', [ 'id' => 'localNotice' ], $siteNotice );
+			}
 		}
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
