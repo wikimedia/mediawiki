@@ -15,6 +15,7 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 				[
 					'content-media' => true,
 				],
+				true,
 				'The `content-thumbnails` feature is mapped to `content-media`.'
 			],
 			[
@@ -24,6 +25,7 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 				[
 					'content-body' => true,
 				],
+				true,
 				'The new `content-parser-output` module was renamed to `content-body`.'
 			],
 			[
@@ -33,6 +35,7 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 				[
 					'content-media' => true,
 				],
+				true,
 				'The `content` feature is mapped to `content-media`.'
 			],
 			[
@@ -43,6 +46,7 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 					'content-links-external' => true,
 					'content-links' => true,
 				],
+				true,
 				'The `content-links` feature will also enable `content-links-external` if it not specified.'
 			],
 			[
@@ -53,6 +57,7 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 					'element' => true,
 					'content-links' => true,
 				],
+				true,
 				'The `element` feature will turn on `content-links` if not specified.'
 			],
 			[
@@ -64,7 +69,31 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 					'content-links-external' => false,
 					'content-links' => true,
 				],
+				true,
 				'The `content-links` feature has no impact on content-links-external value.'
+			],
+			[
+				[
+					'content-links' => true,
+					'content-thumbnails' => true,
+				],
+				[
+					'content-links' => true,
+					'content-media' => true,
+				],
+				false,
+				'applyFeaturesCompatibility should not opt the skin into things it does not want.' .
+					'It should only rename features.'
+			],
+			[
+				[
+					'element' => true,
+				],
+				[
+					'element' => true,
+				],
+				false,
+				'applyFeaturesCompatibility should not opt the skin into things it does not want.'
 			],
 		];
 	}
@@ -73,10 +102,10 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideApplyFeaturesCompatibility
 	 * @covers ResourceLoaderSkinModule::applyFeaturesCompatibility
 	 */
-	public function testApplyFeaturesCompatibility( array $features, array $expected, $msg ) {
+	public function testApplyFeaturesCompatibility( array $features, array $expected, bool $optInPolicy, $msg ) {
 		// Test protected method
 		$class = TestingAccessWrapper::newFromClass( ResourceLoaderSkinModule::class );
-		$actual = $class->applyFeaturesCompatibility( $features );
+		$actual = $class->applyFeaturesCompatibility( $features, $optInPolicy );
 		$this->assertEquals( $expected, $actual, $msg );
 	}
 
