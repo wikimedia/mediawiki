@@ -270,6 +270,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$mrc = curl_multi_exec( $chm, $active );
 				$info = curl_multi_info_read( $chm );
 				if ( $info !== false ) {
+					// Note: cast to integer even works on PHP 8.0+ despite the
+					// handle being an object not a resource, because CurlHandle
+					// has a backwards-compatible cast_object handler.
 					$infos[(int)$info['handle']] = $info;
 				}
 			} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
