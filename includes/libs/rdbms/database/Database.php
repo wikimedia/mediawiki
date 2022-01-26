@@ -1447,7 +1447,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$prefix = $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $sql, $prefix );
+		$generalizedSql = new GeneralizedSql( $commentedSql, $prefix );
 
 		$startTime = microtime( true );
 		$ps = $this->profiler
