@@ -1185,14 +1185,7 @@ class DatabaseBlock extends AbstractBlock {
 				'Blocker must be a local user or a name that cannot be a local user'
 			);
 		}
-		if ( $user->getWikiId() !== $this->getWikiId() ) {
-			// throw new InvalidArgumentException(
-			$logger = LoggerFactory::getInstance( 'BlockManager' );
-			$logger->warning(
-				'Blocker domain \'' . $user->getWikiId() . '\' does not match \'' . $this->getWikiId() . '\''
-			);
-		}
-
+		$this->assertWiki( $user->getWikiId() );
 		$this->blocker = $user;
 	}
 
