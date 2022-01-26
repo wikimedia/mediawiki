@@ -2372,7 +2372,7 @@
 	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "İzleme listesi",
 	"mywatchlist": "İzleme listesi",
-	"watchlistfor2": "$1 için $2",
+	"watchlistfor2": "$1 için",
 	"nowatchlist": "İzleme listesinde hiçbir öğe bulunmuyor.",
 	"watchlistanontext": "Lütfen izleme listenizdeki öğeleri görmek ya da değiştirmek için oturum açın.",
 	"watchnologin": "Oturum açık değil",

@@ -1017,8 +1017,10 @@
 	"nextrevision": "Revisión siguiente →",
 	"currentrevisionlink": "Revisión actual",
 	"cur": "act",
+	"tooltip-cur": "Diferencia con respecto a la última revisión",
 	"next": "sig",
 	"last": "ant",
+	"tooltip-last": "Diferencia con respecto a la revisión anterior",
 	"page_first": "primeras",
 	"page_last": "últimas",
 	"histlegend": "Selección de diferencias: marca los botones correspondientes a las versiones a comparar y pulsa Intro o el botón de abajo.<br />\nLeyenda: <strong>({{int:cur}})</strong> = diferencias con la versión actual,\n<strong>({{int:last}})</strong> = diferencias con la versión anterior, <strong>{{int:minoreditletter}}</strong> = edición menor.",
@@ -2469,7 +2471,7 @@
 	"usermessage-editor": "Sistema de mensajería",
 	"watchlist": "Lista de seguimiento",
 	"mywatchlist": "Lista de seguimiento",
-	"watchlistfor2": "Para $1 $2",
+	"watchlistfor2": "Para $1",
 	"nowatchlist": "No tienes ninguna página en tu lista de seguimiento.",
 	"watchlistanontext": "Es necesario iniciar sesión para ver o editar los elementos de tu lista de seguimiento.",
 	"watchnologin": "No has accedido",
@@ -4195,5 +4197,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Acepta páginas inexistentes.",
 	"nonmain-slot-differences-therefore-readonly": "No puedes editar el wikitexto en esta revisión de página, ya que ha habido cambios en los datos de la página desde esta revisión que no están basados en wikitexto. [$1 Para restaurar esta revisión, has clic aquí.]",
 	"config-missing-key": "Falta el parámetro de configuración de MediaWiki «$1»",
-	"config-invalid-key": "Parámetro de configuración de MediaWiki inválido «$1»: $2"
+	"config-invalid-key": "Parámetro de configuración de MediaWiki inválido «$1»: $2",
+	"changeslist-nocomment": "Sin resumen de edición"
 }

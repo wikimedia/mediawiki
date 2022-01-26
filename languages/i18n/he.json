@@ -2290,7 +2290,7 @@
 	"usermessage-editor": "שולח הודעות המערכת",
 	"watchlist": "רשימת המעקב",
 	"mywatchlist": "רשימת המעקב",
-	"watchlistfor2": "עבור $1 $2",
+	"watchlistfor2": "עבור $1",
 	"nowatchlist": "אין דפים ברשימת המעקב שלך.",
 	"watchlistanontext": "נדרשת כניסה לחשבון כדי לצפות או לערוך פריטים ברשימת המעקב.",
 	"watchnologin": "לא נכנסת לחשבון",
@@ -4078,5 +4078,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "מקבל דפים שאינם קיימים.",
 	"nonmain-slot-differences-therefore-readonly": "אין באפשרותך לערוך את קוד הוויקי של הגרסה הזאת של הדף משום שנעשו שינויים לנתונים בדף מאז הגרסה הזאת שאינן מבוססות קוד ויקי. [$1 כדי לשחרר את הגרסה הזאת נא ללחוץ כאן.]",
 	"config-missing-key": "חסר פרמטר הגדרות מדיה־ויקי \"$1\"",
-	"config-invalid-key": "פרמטר הגדרות מדיה־ויקי בלתי־תקין \"$1\", שגיאה: $2"
+	"config-invalid-key": "פרמטר הגדרות מדיה־ויקי בלתי־תקין \"$1\", שגיאה: $2",
+	"changeslist-nocomment": "אין תקציר עריכה"
 }

@@ -1308,7 +1308,7 @@
 	"grouppage-sysop": "{{ns:project}}:管理員",
 	"grouppage-interface-admin": "{{ns:project}}:介面管理員",
 	"grouppage-bureaucrat": "{{ns:project}}:行政員",
-	"grouppage-suppress": "{{ns:project}}:監督",
+	"grouppage-suppress": "{{ns:project}}:監督員",
 	"right-read": "閱讀頁面",
 	"right-edit": "編輯頁面",
 	"right-createpage": "建立頁面（不含討論頁面）",

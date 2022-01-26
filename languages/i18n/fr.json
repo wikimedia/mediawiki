@@ -2449,7 +2449,7 @@
 	"usermessage-template": "MediaWiki:MessageUtilisateur",
 	"watchlist": "Liste de suivi",
 	"mywatchlist": "Liste de suivi",
-	"watchlistfor2": "Pour $1 $2",
+	"watchlistfor2": "Pour $1",
 	"nowatchlist": "Votre liste de suivi ne référence aucune page.",
 	"watchlistanontext": "Veuillez vous connecter pour visualiser ou modifier les éléments de votre liste de suivi.",
 	"watchnologin": "Non connecté{{GENDER:||e}}",
