@@ -479,6 +479,8 @@
 	"wlheader-showupdated": "Yɛda Nkrataafa a wo sesaeɛ wo berɛ a wohwɛɛ adi wɔ ha",
 	"watchlist-options": "Nea wopɛ wo nea w'ani wɔ ho nom",
 	"enotif_reset": "Hyɛ nkrataafa a wakɛm no nyinaa nso",
+	"delete-error-associated-alreadytalk": "Faako a yɛkasa no, wontumi nnyi mfiri hɔ.",
+	"delete-error-associated-doesnotexist": "Sɛ faako a yɛkasa nni hɔ a, wontumi nnyi mfiri hɔ.",
 	"rollbacklink": "san kɔ w'akyi",
 	"rollbacklinkcount": "san {{PLURAL:$1|sesa}} kɔ w'akyi",
 	"protectedarticle": "Yɛn abɔ ho ban \"[[$1]]\"",

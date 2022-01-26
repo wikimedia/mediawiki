@@ -1367,7 +1367,7 @@
 	"grouppage-sysop": "{{ns:project}}:管理员",
 	"grouppage-interface-admin": "{{ns:project}}:界面管理员",
 	"grouppage-bureaucrat": "{{ns:project}}:行政员",
-	"grouppage-suppress": "{{ns:project}}:监督",
+	"grouppage-suppress": "{{ns:project}}:监督员",
 	"right-read": "阅读页面",
 	"right-edit": "编辑页面",
 	"right-createpage": "创建页面（非讨论页）",
