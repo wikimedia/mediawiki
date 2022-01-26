@@ -1685,9 +1685,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					$humanTimeSec = round( $time, 3 );
 					throw new DBTransactionSizeError(
 						$conn,
-						"Transaction spent {$humanTimeSec}s in writes, exceeding the {$limit}s limit",
+						"Transaction spent {time}s in writes, exceeding the {$limit}s limit",
 						// Message parameters for: transaction-duration-limit-exceeded
-						[ $time, $limit ]
+						[ $time, $limit ],
+						null,
+						[ 'time' => $humanTimeSec ]
 					);
 				} elseif ( $time > 0 ) {
 					$timeMs = $time * 1000;
