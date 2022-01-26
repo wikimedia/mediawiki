@@ -105,11 +105,7 @@ class OrderedStreamingForkController extends ForkController {
 		}
 		$this->feedChildren( $childSockets );
 		foreach ( $childSockets as $socket ) {
-			// if a child has already shutdown the sockets will be closed,
-			// closing a second time would raise a warning.
-			if ( is_resource( $socket ) ) {
-				fclose( $socket );
-			}
+			fclose( $socket );
 		}
 		return 'parent';
 	}
