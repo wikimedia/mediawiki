@@ -134,13 +134,20 @@ class ForeignAPIFile extends File {
 		$otherParams = $this->handler->makeParamString( $params );
 		$width = $params['width'] ?? -1;
 		$height = $params['height'] ?? -1;
+		$thumbUrl = false;
 
-		$thumbUrl = $this->repo->getThumbUrlFromCache(
-			$this->getName(),
-			$width,
-			$height,
-			$otherParams
-		);
+		if ( $width > 0 && $height > 0 ) {
+			// Only query the remote if there are dimensions
+			$thumbUrl = $this->repo->getThumbUrlFromCache(
+				$this->getName(),
+				$width,
+				$height,
+				$otherParams
+			);
+		} elseif ( $this->getMediaType() === MEDIATYPE_AUDIO ) {
+			// This has no dimensions, but we still need to pass a value to getTransform()
+			$thumbUrl = '/';
+		}
 		if ( $thumbUrl === false ) {
 			global $wgLang;
 
