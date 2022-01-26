@@ -36,8 +36,6 @@
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
-use MediaWiki\Settings\SettingsBuilder;
-
 header( 'X-Content-Type-Options: nosniff' );
 
 # Valid web server entry point, enable includes.
@@ -76,7 +74,7 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 	}
 }
 
-function wfWebStartSetup( SettingsBuilder $settings ) {
+function wfWebStartSetup() {
 	// Initialise output buffering
 	// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
 	if ( ob_get_level() == 0 ) {

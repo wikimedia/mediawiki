@@ -33,7 +33,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Settings\SettingsBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -77,12 +76,13 @@ class RebuildLocalisationCache extends Maintenance {
 		);
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+	public function finalSetup() {
 		# This script needs to be run to build the initial l10n cache. But if
-		# LanguageCode is not 'en', it won't be able to run because there is
-		# no l10n cache. Break the cycle by forcing the LanguageCode setting to 'en'.
-		$settingsBuilder->setConfigValue( 'LanguageCode', 'en' );
-		parent::finalSetup( $settingsBuilder );
+		# $wgLanguageCode is not 'en', it won't be able to run because there is
+		# no l10n cache. Break the cycle by forcing $wgLanguageCode = 'en'.
+		global $wgLanguageCode;
+		$wgLanguageCode = 'en';
+		parent::finalSetup();
 	}
 
 	public function execute() {

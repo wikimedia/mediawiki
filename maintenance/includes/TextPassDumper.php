@@ -30,7 +30,6 @@ require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -152,8 +151,8 @@ TEXT
 		}
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		parent::finalSetup( $settingsBuilder );
+	public function finalSetup() {
+		parent::finalSetup();
 
 		SevenZipStream::register();
 	}

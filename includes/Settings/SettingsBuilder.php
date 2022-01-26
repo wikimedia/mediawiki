@@ -37,9 +37,6 @@ class SettingsBuilder {
 	/** @var ConfigBuilder */
 	private $configSink;
 
-	/** @var Config */
-	private $config;
-
 	/** @var SettingsSource[] */
 	private $currentBatch;
 
@@ -48,16 +45,6 @@ class SettingsBuilder {
 
 	/** @var PhpIniSink */
 	private $phpIniSink;
-
-	/**
-	 * Configuration that applies to SettingsBuilder itself.
-	 * Initialized by the constructor, may be overwritten by regular
-	 * config values. Merge strategies are currently not implemented
-	 * but can be added if needed.
-	 *
-	 * @var array
-	 */
-	private $settingsConfig;
 
 	/**
 	 * When we're done applying all settings.
@@ -89,10 +76,6 @@ class SettingsBuilder {
 		$this->configSink = $configSink;
 		$this->configSchema = new ConfigSchemaAggregator();
 		$this->phpIniSink = $phpIniSink;
-		$this->settingsConfig = [
-			'ExtensionDirectory' => "$baseDir/extensions",
-			'StyleDirectory' => "$baseDir/skins",
-		];
 		$this->reset();
 	}
 
@@ -170,7 +153,7 @@ class SettingsBuilder {
 	 * @return StatusValue
 	 */
 	public function validate(): StatusValue {
-		$config = $this->getConfig();
+		$config = $this->configSink->build();
 		$validator = new Validator();
 		$result = StatusValue::newGood();
 
@@ -200,12 +183,9 @@ class SettingsBuilder {
 	/**
 	 * Return a Config object with all the default settings loaded so far.
 	 *
-	 * @note This will implicitly call apply()
-	 *
 	 * @return Config
 	 */
 	public function getDefaultConfig(): Config {
-		$this->apply();
 		return new HashConfig( $this->configSchema->getDefaults() );
 	}
 
@@ -221,12 +201,7 @@ class SettingsBuilder {
 	 * @throws SettingsBuilderException
 	 */
 	public function apply(): self {
-		if ( !$this->currentBatch ) {
-			return $this;
-		}
-
 		$this->assertNotFinished();
-		$this->config = null;
 
 		$allSettings = $this->loadRecursive( $this->currentBatch );
 
@@ -292,16 +267,6 @@ class SettingsBuilder {
 	 * @param array $settings
 	 */
 	private function applySettings( array $settings ) {
-		// First extract config variables that change the behavior of SettingsBuilder.
-		// No merge strategies are applied, defaults are set in the constructor.
-		if ( isset( $settings['config'] ) ) {
-			foreach ( $this->settingsConfig as $key => $dummy ) {
-				if ( array_key_exists( $key, $settings['config'] ) ) {
-					$this->settingsConfig[$key] = $settings['config'][$key];
-				}
-			}
-		}
-
 		foreach ( $settings['config'] ?? [] as $key => $value ) {
 			$this->configSink->set(
 				$key,
@@ -333,8 +298,10 @@ class SettingsBuilder {
 		//       not just queued. We can't do this right now, because we need to preserve
 		//       interoperability with wfLoadExtension() being called from LocalSettings.php.
 
+		$config = $this->configSink->build();
+
 		if ( isset( $settings['extensions'] ) ) {
-			$extDir = $this->settingsConfig['ExtensionDirectory'];
+			$extDir = $config->get( 'ExtensionDirectory' );
 			foreach ( $settings['extensions'] ?? [] as $ext ) {
 				$path = "$extDir/$ext/extension.json"; // see wfLoadExtension
 				$this->extensionRegistry->queue( $path );
@@ -342,60 +309,12 @@ class SettingsBuilder {
 		}
 
 		if ( isset( $settings['skins'] ) ) {
-			$skinDir = $this->settingsConfig['StyleDirectory'];
+			$skinDir = $config->get( 'StyleDirectory' );
 			foreach ( $settings['skins'] ?? [] as $skin ) {
 				$path = "$skinDir/$skin/skin.json"; // see wfLoadSkin
 				$this->extensionRegistry->queue( $path );
 			}
 		}
-	}
-
-	/**
-	 * Sets the value of a config variable.
-	 * This is a shorthand for loadArray().
-	 * @unstable
-	 *
-	 * @param string $key the name of the config setting
-	 * @param mixed $value The value to set
-	 *
-	 * @return $this
-	 */
-	public function setConfigValue( string $key, $value ): self {
-		$this->loadArray( [ 'config' => [ $key => $value ] ] );
-		return $this;
-	}
-
-	/**
-	 * Sets the value of multiple config variables.
-	 * This is a shorthand for loadArray().
-	 * @unstable
-	 *
-	 * @param array $values An associative array mapping names to values.
-	 *
-	 * @return $this
-	 */
-	public function setConfigValues( array $values ): self {
-		$this->loadArray( [ 'config' => $values ] );
-		return $this;
-	}
-
-	/**
-	 * Returns the config loaded so far. Implicitly triggers apply() when needed.
-	 *
-	 * @note This will implicitly call apply()
-	 *
-	 * @unstable
-	 * @return Config
-	 */
-	public function getConfig(): Config {
-		if ( $this->config && !$this->currentBatch ) {
-			return $this->config;
-		}
-
-		$this->apply();
-		$this->config = $this->configSink->build();
-
-		return $this->config;
 	}
 
 	private function reset() {
