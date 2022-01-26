@@ -692,14 +692,7 @@ class LogEventsList extends ContextSource {
 					'lang' => $lang,
 				] );
 
-				// @phan-suppress-next-line PhanSuspiciousValueComparison
-				if ( count( $msgKey ) == 1 ) {
-					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
-				} else { // Process additional arguments
-					$args = $msgKey;
-					array_shift( $args );
-					$s .= $context->msg( $msgKey[0], $args )->parseAsBlock();
-				}
+				$s .= $context->msg( ...$msgKey )->parseAsBlock();
 			}
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
