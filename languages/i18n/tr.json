@@ -115,7 +115,8 @@
 			"Ömer Berkay",
 			"İnternion",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Can"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1253,7 +1254,7 @@
 	"prefs-timeoffset": "Saat farkı",
 	"prefs-advancedediting": "Genel seçenekler",
 	"prefs-developertools": "Geliştirici araçları",
-	"prefs-editor": "Editör",
+	"prefs-editor": "Düzenleyici",
 	"prefs-discussion": "Tartışma sayfaları",
 	"prefs-preview": "Önizleme",
 	"prefs-advancedrc": "Gelişmiş seçenekler",
