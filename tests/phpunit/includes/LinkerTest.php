@@ -524,8 +524,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCasesForRollbackGeneration
 	 */
 	public function testGenerateRollback( $rollbackEnabled, $expectedModules, $title ) {
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		$this->getServiceContainer()->getUserOptionsManager()->setOption(
