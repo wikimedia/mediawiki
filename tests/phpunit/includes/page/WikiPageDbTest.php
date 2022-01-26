@@ -1415,10 +1415,10 @@ more stuff
 	}
 
 	public function provideUpdateRedirectOn() {
-		yield [ '#REDIRECT [[Foo]]', true, null, true, true, 0 ];
-		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, 1 ];
-		yield [ 'SomeText', false, null, false, true, 0 ];
-		yield [ 'SomeText', false, 'Foo', false, true, 1 ];
+		yield [ '#REDIRECT [[Foo]]', true, null, true, true, [] ];
+		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, [ [ NS_MAIN, 'Foo' ] ] ];
+		yield [ 'SomeText', false, null, false, true, [] ];
+		yield [ 'SomeText', false, 'Foo', false, true, [ [ NS_MAIN, 'Foo' ] ] ];
 	}
 
 	/**
@@ -1430,7 +1430,7 @@ more stuff
 	 * @param string|null $redirectTitle
 	 * @param bool|null $lastRevIsRedirect
 	 * @param bool $expectedSuccess
-	 * @param int $expectedRowCount
+	 * @param array $expectedRows
 	 */
 	public function testUpdateRedirectOn(
 		$initialText,
@@ -1438,11 +1438,8 @@ more stuff
 		$redirectTitle,
 		$lastRevIsRedirect,
 		$expectedSuccess,
-		$expectedRowCount
+		$expectedRows
 	) {
-		// FIXME: fails under sqlite and postgres
-		$this->markTestSkippedIfDbType( 'sqlite' );
-		$this->markTestSkippedIfDbType( 'postgres' );
 		static $pageCounter = 0;
 		$pageCounter++;
 
@@ -1460,15 +1457,15 @@ more stuff
 		 * Most of core checks the page table for redirect status, so we have to be ugly and
 		 * assert a select from the table here.
 		 */
-		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRowCount );
+		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRows );
 	}
 
-	private function assertRedirectTableCountForPageId( $pageId, $expected ) {
+	private function assertRedirectTableCountForPageId( $pageId, $expectedRows ) {
 		$this->assertSelect(
 			'redirect',
-			'COUNT(*)',
+			[ 'rd_namespace', 'rd_title' ],
 			[ 'rd_from' => $pageId ],
-			[ [ strval( $expected ) ] ]
+			$expectedRows
 		);
 	}
 
@@ -1477,7 +1474,7 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_insertsRedirectEntry() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
 		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
@@ -1503,7 +1500,7 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_insertsRedirectEntryWithPageLatest() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
 		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
@@ -1529,14 +1526,14 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_doesNotInsertIfPageLatestIncorrect() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
 		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
 		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, 215251 );
 
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	/**
@@ -1544,13 +1541,13 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_T278367() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( '#Frag' );
 		$ok = $page->insertRedirectEntry( $targetTitle );
 
 		$this->assertFalse( $ok );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	private function getRow( array $overrides = [] ) {
