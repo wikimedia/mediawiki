@@ -6,6 +6,10 @@ use ExtensionRegistry;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Settings\Source\FileSource;
+use MediaWiki\Settings\Source\PhpSettingsSource;
+use MediaWiki\Settings\Source\SettingsSource;
+use MediaWiki\Shell\Shell;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -53,11 +57,39 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result->isGood(), $result->__toString() );
 	}
 
+	public function testConfigSchemaPhpGenerated() {
+		$schemaGenerator = Shell::makeScriptCommand(
+			__DIR__ . '/../../../maintenance/generateConfigSchema.php',
+			[ '--output', 'php://stdout' ]
+		);
+
+		$result = $schemaGenerator->execute();
+		$this->assertSame( 0, $result->getExitCode(), 'Config doc generation must finish successfully' );
+		$this->assertSame( '', $result->getStderr(), 'Config doc generation must not have errors' );
+
+		$oldGeneratedSchema = file(
+			__DIR__ . '/../../../includes/config-schema.php',
+			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+		);
+
+		$this->assertArrayEquals(
+			$oldGeneratedSchema,
+			preg_split( "/\\n/", $result->getStdout(), -1, PREG_SPLIT_NO_EMPTY ),
+			'Configuration schema was changed. Rerun maintenance/generateConfigSchema.php script!'
+		);
+	}
+
+	public function provideDefaultSettingsConsistency() {
+		yield 'YAML' => [ new FileSource( 'includes/config-schema.yaml' ) ];
+		yield 'PHP' => [ new PhpSettingsSource( 'includes/config-schema.php' ) ];
+	}
+
 	/**
 	 * Check that the result of loading config-schema.yaml is the same as DefaultSettings.php
 	 * This test can be removed when DefaultSettings.php is removed.
+	 * @dataProvider provideDefaultSettingsConsistency
 	 */
-	public function testDefaultSettingsConsistency() {
+	public function testDefaultSettingsConsistency( SettingsSource $source ) {
 		$defaultSettingsProps = ( static function () {
 			$IP = 'PLACEHOLDER_IP!';
 			require __DIR__ . '/../../../includes/DefaultSettings.php';
@@ -78,7 +110,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$configBuilder,
 			$this->createNoOpMock( PhpIniSink::class )
 		);
-		$settingsBuilder->loadFile( 'includes/config-schema.yaml' );
+		$settingsBuilder->load( $source );
 		$settingsBuilder->apply();
 
 		foreach ( $defaultSettingsProps as $key => $value ) {
