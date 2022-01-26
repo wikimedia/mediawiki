@@ -28,6 +28,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Settings\SettingsBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -109,14 +110,19 @@ abstract class DumpIterator extends Maintenance {
 		$this->error( "Memory peak usage of " . memory_get_peak_usage() . " bytes\n" );
 	}
 
-	public function finalSetup() {
-		parent::finalSetup();
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		parent::finalSetup( $settingsBuilder );
 
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {
-			global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
-			$wgUseDatabaseMessages = false;
-			$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
+			// TODO: Allow hooks to be registered via SettingsBuilder as well!
+			//       This matches the idea of unifying SettingsBuilder with ExtensionRegistry.
+			global $wgHooks;
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
+
+			$settingsBuilder->setConfigValues( [
+				'UseDatabaseMessages' => false,
+				'LocalisationCacheConf' => [ 'storeClass' => LCStoreNull::class ],
+			] );
 		}
 	}
 
