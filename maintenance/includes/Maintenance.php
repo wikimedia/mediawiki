@@ -22,7 +22,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -726,7 +725,7 @@ abstract class Maintenance {
 		$this->loadParamsAndArgs();
 
 		# Set the memory limit
-		# Note we need to set it again later in case LocalSettings changed it
+		# Note we need to set it again later in cache LocalSettings changed it
 		$this->adjustMemoryLimit();
 
 		# Set max execution time to 0 (no limit). PHP.net says that
@@ -1125,46 +1124,34 @@ abstract class Maintenance {
 
 	/**
 	 * Handle some last-minute setup here.
-	 *
 	 * @stable to override
-	 *
-	 * @param SettingsBuilder|null $settingsBuilder
 	 */
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		if ( !$settingsBuilder ) {
-			// HACK for backwards compatibility. All subclasses that override
-			// finalSetup() should be updated to pass $settingsBuilder along.
-			// XXX: We don't want the parameter to be nullable! How can we make it required
-			//      without breaking backwards compatibility?
-			$settingsBuilder = $GLOBALS['wgSettings'];
-		}
-
-		$config = $settingsBuilder->getConfig();
-		$overrides = [];
-		$overrides['DBadminuser'] = $config->get( 'DBadminuser' );
-		$overrides['DBadminpassword'] = $config->get( 'DBadminpassword' );
+	public function finalSetup() {
+		global $wgCommandLineMode, $wgServer, $wgShowExceptionDetails, $wgShowHostnames;
+		global $wgDBadminuser, $wgDBadminpassword, $wgDBDefaultGroup;
+		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
 		if ( ob_get_level() ) {
 			ob_end_flush();
 		}
 		# Same with these
-		$overrides['CommandLineMode'] = true;
+		$wgCommandLineMode = true;
 
 		# Override $wgServer
 		if ( $this->hasOption( 'server' ) ) {
-			$overrides['Server'] = $this->getOption( 'server', $config->get( 'Server' ) );
+			$wgServer = $this->getOption( 'server', $wgServer );
 		}
 
 		# If these were passed, use them
 		if ( $this->mDbUser ) {
-			$overrides['DBadminuser'] = $this->mDbUser;
+			$wgDBadminuser = $this->mDbUser;
 		}
 		if ( $this->mDbPass ) {
-			$overrides['DBadminpassword'] = $this->mDbPass;
+			$wgDBadminpassword = $this->mDbPass;
 		}
 		if ( $this->hasOption( 'dbgroupdefault' ) ) {
-			$overrides['DBDefaultGroup'] = $this->getOption( 'dbgroupdefault', null );
+			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
 			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
 			// and not deprecation warnings for premature access to service container,
 			// we can remove this line. This method is called before Setup.php,
@@ -1177,27 +1164,23 @@ abstract class Maintenance {
 			}
 		}
 
-		if ( $this->getDbType() == self::DB_ADMIN && isset( $overrides[ 'DBadminuser' ] ) ) {
-			$overrides['DBuser'] = $overrides[ 'DBadminuser' ];
-			$overrides['DBpassword'] = $overrides[ 'DBadminpassword' ];
+		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
+			$wgDBuser = $wgDBadminuser;
+			$wgDBpassword = $wgDBadminpassword;
 
-			/** @var array $dbServers */
-			$dbServers = $config->get( 'DBservers' );
-			if ( $dbServers ) {
-				foreach ( $dbServers as $i => $server ) {
-					$dbServers[$i]['user'] = $overrides['DBuser'];
-					$dbServers[$i]['password'] = $overrides['DBpassword'];
+			if ( $wgDBservers ) {
+				/**
+				 * @var array $wgDBservers
+				 */
+				foreach ( $wgDBservers as $i => $server ) {
+					$wgDBservers[$i]['user'] = $wgDBuser;
+					$wgDBservers[$i]['password'] = $wgDBpassword;
 				}
-				$overrides['DBservers'] = $dbServers;
 			}
-
-			$lbFactoryConf = $config->get( 'LBFactoryConf' );
-			if ( isset( $lbFactoryConf['serverTemplate'] ) ) {
-				$lbFactoryConf['serverTemplate']['user'] = $overrides['DBuser'];
-				$lbFactoryConf['serverTemplate']['password'] = $overrides['DBpassword'];
-				$overrides['LBFactoryConf'] = $lbFactoryConf;
+			if ( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
+				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
+				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
-
 			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
 			// and not deprecation warnings for premature access to service container,
 			// we can remove this line. This method is called before Setup.php,
@@ -1215,16 +1198,14 @@ abstract class Maintenance {
 
 		$this->afterFinalSetup();
 
-		$overrides['ShowExceptionDetails'] = true;
-		$overrides['ShowHostname'] = true;
+		$wgShowExceptionDetails = true;
+		$wgShowHostnames = true;
 
-		$ini = [
-			'max_execution_time' => 0,
-		];
+		Wikimedia\suppressWarnings();
+		set_time_limit( 0 );
+		Wikimedia\restoreWarnings();
 
 		$this->adjustMemoryLimit();
-
-		$settingsBuilder->loadArray( [ 'config' => $overrides, 'php-ini' => $ini ] );
 	}
 
 	/**

@@ -33,15 +33,18 @@ class SettingsBuilderTest extends TestCase {
 	}
 
 	public function testLoadingFromFile() {
+		$configBuilder = new ArrayConfigBuilder();
+
 		$phpIniSinkMock = $this->createMock( PhpIniSink::class );
 		$phpIniSinkMock->expects( $this->once() )->method( 'set' )->with( 'foo', 'bar' );
 
 		$setting = $this->newSettingsBuilder( [
+			'configBuilder' => $configBuilder,
 			'phpIniSink' => $phpIniSinkMock
 		] );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
 
-		$config = $setting->getConfig();
+		$config = $configBuilder->build();
 		$this->assertSame( 'TEST', $config->get( 'Something' ) );
 	}
 
@@ -263,26 +266,10 @@ class SettingsBuilderTest extends TestCase {
 		}
 	}
 
-	public function testSetConfig() {
-		$setting = $this->newSettingsBuilder();
-
-		$setting->setConfigValues( [ 'a' => 1, 'b' => 2 ] );
-
-		$config = $setting->getConfig();
-		$this->assertSame( 1, $config->get( 'a' ) );
-		$this->assertSame( 2, $config->get( 'b' ) );
-
-		$setting->setConfigValue( 'b', 22 );
-
-		$config = $setting->getConfig();
-		$this->assertSame( 1, $config->get( 'a' ) );
-		$this->assertSame( 22, $config->get( 'b' ) );
-	}
-
 	public function testApplyPurgesState() {
 		$configBuilder = new ArrayConfigBuilder();
 		$setting = $this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] );
-		$setting->setConfigValue( 'MySetting', 'MyValue' )
+		$setting->loadArray( [ 'config' => [ 'MySetting' => 'MyValue', ], ] )
 			->apply();
 		$this->assertSame( 'MyValue', $configBuilder->build()->get( 'MySetting' ) );
 		$configBuilder->set( 'MySetting', 'MyOtherValue' );
