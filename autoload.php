@@ -314,7 +314,6 @@ $wgAutoloadLocalClasses = [
 	'CssContentHandler' => __DIR__ . '/includes/content/CssContentHandler.php',
 	'CsvStatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
 	'CustomUppercaseCollation' => __DIR__ . '/includes/collation/CustomUppercaseCollation.php',
-	'DBAccessBase' => __DIR__ . '/includes/dao/DBAccessBase.php',
 	'DBAccessError' => __DIR__ . '/includes/libs/rdbms/exception/DBAccessError.php',
 	'DBAccessObjectUtils' => __DIR__ . '/includes/dao/DBAccessObjectUtils.php',
 	'DBConnRef' => __DIR__ . '/includes/libs/rdbms/database/DBConnRef.php',

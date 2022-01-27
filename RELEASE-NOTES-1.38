@@ -349,6 +349,7 @@ because of Phabricator reports.
   removed.
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
   of file names (option was not available for $wgMiserMode = true)
+* DBAccessBase, deprecated since 1.37, has been removed.
 * …
 
 === Deprecations in 1.38 ===
