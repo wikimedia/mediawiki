@@ -863,7 +863,7 @@ class Linker {
 		], $label );
 
 		if ( $mainConfig->get( 'ParserEnableLegacyMediaDOM' ) ) {
-			$html = htmlspecialchars( $label );
+			$html = htmlspecialchars( $label, ENT_COMPAT );
 		}
 
 		$repoGroup = $services->getRepoGroup();
@@ -1038,7 +1038,7 @@ class Linker {
 		$attribs['class'] = $class;
 
 		if ( $escape ) {
-			$text = htmlspecialchars( $text );
+			$text = htmlspecialchars( $text, ENT_COMPAT );
 		}
 
 		if ( !$title ) {
@@ -1739,10 +1739,10 @@ class Linker {
 	public static function makeHeadline( $level, $attribs, $anchor, $html,
 		$link, $fallbackAnchor = false
 	) {
-		$anchorEscaped = htmlspecialchars( $anchor );
+		$anchorEscaped = htmlspecialchars( $anchor, ENT_COMPAT );
 		$fallback = '';
 		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
-			$fallbackAnchor = htmlspecialchars( $fallbackAnchor );
+			$fallbackAnchor = htmlspecialchars( $fallbackAnchor, ENT_COMPAT );
 			$fallback = "<span id=\"$fallbackAnchor\"></span>";
 		}
 		return "<h$level$attribs"

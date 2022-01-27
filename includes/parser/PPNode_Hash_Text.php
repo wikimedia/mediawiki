@@ -49,7 +49,7 @@ class PPNode_Hash_Text implements PPNode {
 	}
 
 	public function __toString() {
-		return htmlspecialchars( $this->value );
+		return htmlspecialchars( $this->value, ENT_COMPAT );
 	}
 
 	public function getNextSibling() {

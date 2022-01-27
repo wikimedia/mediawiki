@@ -3973,7 +3973,7 @@ class Parser {
 			if ( isset( $params['attributes'] ) ) {
 				foreach ( $params['attributes'] as $attrName => $attrValue ) {
 					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
-						htmlspecialchars( $attrValue ) . '"';
+						htmlspecialchars( $attrValue, ENT_COMPAT ) . '"';
 				}
 			}
 			if ( $content === null ) {
@@ -4412,9 +4412,9 @@ class Parser {
 				// content block because the language converter is supposed to
 				// be able to convert that piece of data.
 				// Gets replaced with html in ParserOutput::getText
-				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage );
+				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage, ENT_COMPAT );
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
-				$editlink .= '" section="' . htmlspecialchars( $editsectionSection ) . '"';
+				$editlink .= '" section="' . htmlspecialchars( $editsectionSection, ENT_COMPAT ) . '"';
 				if ( $editsectionContent !== null ) {
 					$editlink .= '>' . $editsectionContent . '</mw:editsection>';
 				} else {
