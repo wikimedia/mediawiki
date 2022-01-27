@@ -79,6 +79,7 @@ extensions/RatePage
 skins/Flatbox
 skins/WMAU
 extensions/TemplateStylesExtender
+extensions/SemanticMediaWiki
 
 # main
 extensions/LinkTitles
