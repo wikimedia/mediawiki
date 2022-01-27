@@ -65,7 +65,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		// Now delete the template
-		$template->doDeleteArticleReal( 'Delete the template', $user );
+		$this->deletePage( $template, 'Delete the template', $user );
 
 		// Run the job queue
 		$this->runJobs();

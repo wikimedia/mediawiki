@@ -634,7 +634,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Test that nothing happens if the page was deleted in the meantime
 		// This can happen when started by the job queue
-		$page->doDeleteArticleReal( 'Test', $user );
+		$this->deletePage( $page );
 
 		$dataUpdates = $updater->getSecondaryDataUpdates();
 

@@ -54,8 +54,8 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 				return false;
 			}
 
-			$page = WikiPage::factory( $title );
-			$page->doDeleteArticleReal( "removing for test", $user );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			$this->deletePage( $page, "removing for test" );
 
 			// see if it now doesn't exist; reload
 			$title = Title::newFromText( $title->getText(), NS_FILE );

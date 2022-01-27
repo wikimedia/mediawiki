@@ -87,8 +87,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
-		// Delete the page
-		$page->doDeleteArticleReal( 'Just a test deletion', $user );
+		$this->deletePage( $page, '', $user );
 
 		$this->page = $page;
 	}
