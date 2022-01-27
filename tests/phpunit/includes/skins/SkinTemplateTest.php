@@ -325,6 +325,46 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $data, $expected );
 	}
 
+	public function provideGetTOCData() {
+		return [
+			[
+				false,
+				null,
+				'Data not provided when TOC is disabled'
+			],
+			[
+				true,
+				[
+					'array-sections' => []
+				],
+				'Data not provided when TOC is enabled'
+			],
+		];
+	}
+
+	/**
+	 * @covers Skin::getTOCData
+	 * @dataProvider provideGetTOCData
+	 */
+	public function testGetTOCData( $isTOCEnabled, $expected ) {
+		$skin = new SkinTemplate();
+		$context = new DerivativeContext( $skin->getContext() );
+		$mock = $this->createMock( OutputPage::class );
+		$mock->expects( $this->any() )
+			->method( 'isTOCEnabled' )
+			->willReturn( $isTOCEnabled );
+
+		$reflectionMethod = new ReflectionMethod( Skin::class, 'getTOCData' );
+		$reflectionMethod->setAccessible( true );
+
+		$context->setOutput( $mock );
+		$skin->setContext( $context );
+		$data = $reflectionMethod->invoke(
+			$skin
+		);
+		$this->assertEquals( $data, $expected );
+	}
+
 	public function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [
