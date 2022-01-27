@@ -944,8 +944,6 @@ CREATE TABLE revision (
   PRIMARY KEY(rev_id)
 );
 
-CREATE INDEX rev_page_id ON revision (rev_page, rev_id);
-
 CREATE INDEX rev_timestamp ON revision (rev_timestamp);
 
 CREATE INDEX rev_page_timestamp ON revision (rev_page, rev_timestamp);
