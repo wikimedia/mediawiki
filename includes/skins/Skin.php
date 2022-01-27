@@ -123,6 +123,21 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Get table of contents template data
+	 *
+	 * @return array|null
+	 */
+	private function getTOCData() {
+		// Return data only if TOC present T298796.
+		if ( !$this->getOutput()->isTOCEnabled() ) {
+			return null;
+		}
+		return [
+			'array-sections' => $this->getSectionsData(),
+		];
+	}
+
+	/**
 	 * Subclasses may extend this method to add additional
 	 * template data.
 	 *
@@ -184,9 +199,8 @@ abstract class Skin extends ContextSource {
 				$htmlTitle
 			),
 			'html-title' => $htmlTitle,
-			// Array values - return data if TOC present T298796.
-			'array-sections' => $out->isTOCEnabled() ? $this->getSectionsData() : null,
-
+			// Array values
+			'data-toc' => $this->getTOCData(),
 			// Boolean values
 			'is-title-blank' => $blankedHeading, // @since 1.38
 			'is-anon' => $user->isAnon(),
