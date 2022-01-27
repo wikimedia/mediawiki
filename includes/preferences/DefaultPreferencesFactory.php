@@ -1413,6 +1413,45 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 	}
 
+	/*
+	 * Custom skin string comparison function that takes into account current and preferred skins.
+	 *
+	 * @param string $a
+	 * @param string $b
+	 * @param string $currentSkin
+	 * @param array $preferredSkins
+	 * @return int
+	 */
+	private static function sortSkinNames( $a, $b, $currentSkin, $preferredSkins ) {
+		// Display the current skin first in the list
+		if ( strcasecmp( $a, $currentSkin ) === 0 ) {
+			return -1;
+		}
+		if ( strcasecmp( $b, $currentSkin ) === 0 ) {
+			return 1;
+		}
+		// Display preferred skins over other skins
+		if ( count( $preferredSkins ) ) {
+			$aPreferred = array_search( $a, $preferredSkins );
+			$bPreferred = array_search( $b, $preferredSkins );
+			// Cannot use ! operator because array_search returns the
+			// index of the array item if found (i.e. 0) and false otherwise
+			if ( $aPreferred !== false && $bPreferred === false ) {
+				return -1;
+			}
+			if ( $aPreferred === false && $bPreferred !== false ) {
+				return 1;
+			}
+			// When both skins are preferred, default to the ordering
+			// specified by the preferred skins config array
+			if ( $aPreferred !== false && $bPreferred !== false ) {
+				return strcasecmp( $aPreferred, $bPreferred );
+			}
+		}
+		// Use normal string comparison if both strings are not preferred
+		return strcasecmp( $a, $b );
+	}
+
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
@@ -1451,23 +1490,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
+		$preferredSkins = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkinsPreferred' );
+		// Sort by the internal name, so that the ordering is the same for each display language,
+		// especially if some skin names are translated to use a different alphabet and some are not.
+		uksort( $validSkinNames, function ( $a, $b ) use ( $currentUserSkin, $preferredSkins ) {
+			return $this->sortSkinNames( $a, $b, $currentUserSkin, $preferredSkins );
+		} );
+
 		$defaultSkin = $this->options->get( 'DefaultSkin' );
 		$allowUserCss = $this->options->get( 'AllowUserCss' );
 		$allowUserJs = $this->options->get( 'AllowUserJs' );
-
-		// Sort by the internal name, so that the ordering is the same for each display language,
-		// especially if some skin names are translated to use a different alphabet and some are not.
-		uksort( $validSkinNames, static function ( $a, $b ) use ( $defaultSkin ) {
-			// Display the default first in the list by comparing it as lesser than any other.
-			if ( strcasecmp( $a, $defaultSkin ) === 0 ) {
-				return -1;
-			}
-			if ( strcasecmp( $b, $defaultSkin ) === 0 ) {
-				return 1;
-			}
-			return strcasecmp( $a, $b );
-		} );
-
 		$foundDefault = false;
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = [];

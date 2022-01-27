@@ -1883,7 +1883,7 @@ config-schema:
         description: |-
             Max execution time for queries of several expensive special pages such as RecentChanges
             in milliseconds.
-            
+
             @since 1.38
     MultiContentRevisionSchemaMigrationStage:
         default: 768
@@ -1986,12 +1986,12 @@ config-schema:
         default: {}
         description: |-
             Shortcut for setting `$wgLBFactoryConf["externalClusters"]`.
-            
+
             This is only applicable when using the default LBFactory
             of {@link Wikimedia::Rdbms::LBFactorySimple LBFactorySimple}.
             It is ignored if a different LBFactory is set, or if `externalClusters`
             is already set explicitly.
-            
+
             @see ExternalStoreAccess
 
             **Example:**
@@ -2008,7 +2008,7 @@ config-schema:
         description: |-
             The place to put new text blobs or false to put them in the text table
             of the local wiki database.
-            
+
             @see ExternalStoreAccess
 
             **Example:**
@@ -3623,9 +3623,9 @@ config-schema:
         default: { versioned: 2592000, unversioned: 300 }
         description: |-
             How long a CDN or browser may cache a ResourceLoader HTTP response.
-            
+
             Maximum time in seconds. Used for the `max-age` and `s-maxage` Cache-Control headers.
-            
+
             Valid keys:
               - versioned: Used for URLs carrying a "version" parameter.
                 This applies to the bulk of load.php transfers, and may have a long cache
@@ -3635,7 +3635,7 @@ config-schema:
                 This includes the startup manifest and controls how quickly changes (in
                 the module registry, dependency tree, and module version) will propagate
                 to clients. This should have a short cache duration (e.g. minutes).
-            
+
             @since 1.35
     ResourceLoaderUseObjectCacheForDeps:
         default: false
@@ -4926,16 +4926,16 @@ config-schema:
             type: string
         description: |-
             Groups that should inherit permissions from another group
-            
+
             This allows defining a group that inherits its permissions
             from another group without having to copy all the permission
             grants over. For example, if you wanted a manual "confirmed"
             group that had the same permissions as "autoconfirmed":
-        
+
             ```
             $wgGroupInheritsPermissions['confirmed'] = 'autoconfirmed';
             ```
-             
+
             Recursive inheritance is currently not supported. In the above
             example, confirmed will only gain the permissions explicitly
             granted (or revoked) from autoconfirmed, not any permissions
@@ -7165,11 +7165,11 @@ config-schema:
             Additional category collations to store during LinksUpdate. This can be used
             to perform online migration of categories from one collation to another. An
             array of associative arrays each having the following keys:
-            
+
             - table: (string) The table name
             - collation: (string) The collation to use for cl_sortkey
             - fakeCollation: (string) The collation name to insert into cl_collation
-        
+
             @since 1.38
     TrackingCategories:
         default: {  }
@@ -7827,3 +7827,10 @@ config-schema:
             Each entry is turned into a Feature-Policy-Report-Only header.
             @warning EXPERIMENTAL!
             @since 1.34
+    SkinsPreferred:
+        default: [vector-2022, vector]
+        type: array
+        description: |-
+            List of preferred skins to be listed higher in Special:Preferences
+            @since 1.38
+            @var array
