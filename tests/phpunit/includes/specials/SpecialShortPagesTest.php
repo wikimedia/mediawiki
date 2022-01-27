@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Test class for SpecialShortPages class
  *
@@ -24,7 +22,7 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 			// empty hook handler
 		} );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$page = new SpecialShortPages(
 			$services->getNamespaceInfo(),
 			$services->getDBLoadBalancer(),

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  * @covers SpecialMyLanguage
@@ -38,7 +36,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFindTitle( $expected, $subpage, $langCode, $userLang ) {
 		$this->setContentLang( $langCode );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$special = new SpecialMyLanguage(
 			$services->getLanguageNameUtils(),
 			$services->getRedirectLookup()

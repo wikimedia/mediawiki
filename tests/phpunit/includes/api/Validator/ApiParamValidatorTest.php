@@ -8,7 +8,6 @@ use ApiMessage;
 use ApiTestCase;
 use ApiUsageException;
 use FauxRequest;
-use MediaWiki\MediaWikiServices;
 use Message;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
@@ -28,7 +27,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getUser() );
 		$main = new ApiMain( $context );
 		return [
-			new ApiParamValidator( $main, MediaWikiServices::getInstance()->getObjectFactory() ),
+			new ApiParamValidator( $main, $this->getServiceContainer()->getObjectFactory() ),
 			$main
 		];
 	}

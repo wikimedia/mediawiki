@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -1365,7 +1364,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$pageObj = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
@@ -1394,7 +1393,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'minor' => '',
 		] );
 
-		$revisionStore = \MediaWiki\MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$revision = $revisionStore->getRevisionByTitle( Title::newFromText( $name ) );
 		$this->assertTrue( $revision->isMinor() );
 	}
@@ -1406,7 +1405,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$pageObj = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
@@ -1570,7 +1569,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1595,7 +1594,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'The wiki is currently in read-only mode.' );
 
-		$svc = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$svc = $this->getServiceContainer()->getReadOnlyMode();
 		$svc->setReason( "Read-only for testing" );
 
 		try {

@@ -4,7 +4,6 @@ namespace MediaWiki\Session;
 
 use Config;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\AtEase\AtEase;
@@ -39,7 +38,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getHookContainer() {
 		// Need a real HookContainer to support modification of $wgHooks in the test
-		return MediaWikiServices::getInstance()->getHookContainer();
+		return $this->getServiceContainer()->getHookContainer();
 	}
 
 	/**

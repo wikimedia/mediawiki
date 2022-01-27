@@ -3,7 +3,6 @@
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
@@ -606,7 +605,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// Test deletion logging
 		$logId = $status->getValue();
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
@@ -652,7 +651,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// Test suppression logging
 		$logId = $status->getValue();
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
@@ -676,12 +675,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$commentQuery['joins']
 		);
 
-		$archive = new PageArchive( $page->getTitle(), MediaWikiServices::getInstance()->getMainConfig() );
+		$archive = new PageArchive( $page->getTitle(), $this->getServiceContainer()->getMainConfig() );
 		$archivedRevs = $archive->listRevisions();
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}
-		$archivedRev = MediaWikiServices::getInstance()->getRevisionStore()
+		$archivedRev = $this->getServiceContainer()->getRevisionStore()
 			->newRevisionFromArchiveRow( $archivedRevs->current() );
 
 		$this->assertNull(
@@ -1909,7 +1908,7 @@ more stuff
 
 		// Make sure the log entry looks good
 		// log_params is not checked here
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'],
 			[
@@ -2224,7 +2223,7 @@ more stuff
 		$this->assertFalse( $title->isRedirect() );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->newPage( $title );
 		$page->insertOn( $dbw );
 

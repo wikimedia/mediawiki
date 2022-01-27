@@ -2,7 +2,6 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -131,7 +130,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$block->setRestrictions( [
 			new PageRestriction( 0, Title::newFromText( self::$page )->getArticleID() )
 		] );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$revid = array_shift( $this->revs );
 

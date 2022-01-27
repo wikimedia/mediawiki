@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -397,7 +396,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			$target,
 			'Create the page that will be deleted'
 		);
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromLinkTarget( $target );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->deletePage( $wikiPage, 'Important Reason' );
 	}
 
@@ -648,7 +647,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			]
 		);
 		$title = Title::newFromLinkTarget( $subjectTarget );
-		$revision = MediaWikiServices::getInstance()
+		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
 

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -44,7 +43,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		bool $isReadOnly = false,
 		RevisionLookup $revisionLookup = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new TalkPageNotificationManager(
 			new ServiceOptions(
 				TalkPageNotificationManager::CONSTRUCTOR_OPTIONS,

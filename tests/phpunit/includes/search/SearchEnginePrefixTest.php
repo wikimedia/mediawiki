@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Search
  * @group Database
@@ -60,7 +58,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 			'wgHooks' => [],
 		] );
 
-		$this->search = MediaWikiServices::getInstance()->newSearchEngine();
+		$this->search = $this->getServiceContainer()->newSearchEngine();
 		$this->search->setNamespaces( [] );
 	}
 

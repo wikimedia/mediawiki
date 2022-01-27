@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Verifies that special page aliases are valid, with no slashes.
@@ -38,7 +37,7 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	 * @return Generator
 	 */
 	public function validSpecialPageAliasesProvider() {
-		$codes = array_keys( MediaWikiServices::getInstance()
+		$codes = array_keys( $this->getServiceContainer()
 				->getLanguageNameUtils()
 				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ) );
 

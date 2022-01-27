@@ -6,7 +6,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\DAO\WikiAwareEntity;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
@@ -41,7 +40,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @throws MWException
 	 */
 	private function addBlockForUser( UserIdentity $user ) {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
 		$oldBlock = DatabaseBlock::newFromTarget( $user );
 		if ( $oldBlock ) {
@@ -148,7 +147,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::newFromTarget
 	 */
 	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blocker = $this->getTestSysop()->getUser();
 
 		foreach ( $targets as $target ) {
@@ -254,7 +253,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		// Reload block from DB
 		$userBlock = DatabaseBlock::newFromTarget( $username );
@@ -283,7 +282,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::insert
 	 */
 	public function testCrappyCrossWikiBlocks() {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
 		$oldBlock = DatabaseBlock::newFromTarget( 'UserOnForeignWiki' );
 		if ( $oldBlock ) {
@@ -385,7 +384,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			],
 		];
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
 			$target = $insBlock['target'];
@@ -479,7 +478,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$blockQuery = DatabaseBlock::getQueryInfo();
@@ -661,7 +660,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::insert
 	 */
 	public function testRestrictionsFromDatabase() {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -690,7 +689,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::insert
 	 */
 	public function testInsertExistingBlock() {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -739,7 +738,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setTarget( new UserIdentityValue( $user->getId(), $user->getName() ) );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage( 'Foo' )->getTitle();
@@ -770,7 +769,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$pageFoo = $this->getExistingTestPage( 'Foo' );
@@ -806,7 +805,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage()->getTitle();
@@ -835,7 +834,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$title = $this->getExistingTestPage()->getTitle();
@@ -868,7 +867,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_MAIN );
@@ -897,6 +896,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @return BlockRestrictionStore
 	 */
 	protected function getBlockRestrictionStore(): BlockRestrictionStore {
-		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		return $this->getServiceContainer()->getBlockRestrictionStore();
 	}
 }

@@ -236,7 +236,7 @@ class TextContentHandler extends ContentHandler {
 				$html = $method->invoke( $content );
 			} else {
 				// Return an HTML representation of the content
-				$html = htmlspecialchars( $content->getText() );
+				$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
 			}
 		} else {
 			$html = '';

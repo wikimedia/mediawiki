@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  * @covers CoreParserFunctions
@@ -44,7 +42,7 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTalkpagename
 	 */
 	public function testTalkpagename( $expected, $title ) {
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 
 		$this->assertSame( $expected, CoreParserFunctions::talkpagename( $parser, $title ) );
 	}
@@ -70,7 +68,7 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSubjectpagename
 	 */
 	public function testSubjectpagename( $expected, $title ) {
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 
 		$this->assertSame( $expected, CoreParserFunctions::subjectpagename( $parser, $title ) );
 	}

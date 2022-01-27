@@ -6,7 +6,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
@@ -28,7 +27,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $userBlock );
 		$blockStore->insertBlock( $ipBlock );
 
@@ -39,7 +38,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	}
 
 	private function deleteBlocks( $blocks ) {
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		foreach ( $blocks as $block ) {
 			$blockStore->deleteBlock( $block );
 		}
@@ -289,7 +288,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			->willReturn( '1.2.3.4' );
 		$context->setRequest( $request );
 
-		$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
 		$message = $formatter->getMessage(
 			$compositeBlock,
 			$context->getUser(),
@@ -319,6 +318,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @return BlockRestrictionStore
 	 */
 	protected function getBlockRestrictionStore(): BlockRestrictionStore {
-		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		return $this->getServiceContainer()->getBlockRestrictionStore();
 	}
 }

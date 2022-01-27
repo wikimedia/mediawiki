@@ -6,7 +6,6 @@ use ExternalStoreAccess;
 use ExternalStoreFactory;
 use HashBagOStuff;
 use InvalidArgumentException;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
@@ -31,7 +30,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		WANObjectCache $cache = null,
 		ExternalStoreAccess $extStore = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$store = new SqlBlobStore(
 			$services->getDBLoadBalancer(),
@@ -695,7 +694,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$access = MediaWikiServices::getInstance()->getExternalStoreAccess();
+		$access = $this->getServiceContainer()->getExternalStoreAccess();
 
 		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 

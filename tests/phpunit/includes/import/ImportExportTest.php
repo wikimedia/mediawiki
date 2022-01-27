@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Maintenance\DumpAsserter;
 
@@ -16,7 +15,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 
 		if ( !$slotRoleRegistry->isDefinedRole( 'ImportExportTest' ) ) {
 			$slotRoleRegistry->defineRoleWithModel( 'ImportExportTest', CONTENT_MODEL_WIKITEXT );
@@ -121,7 +120,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 * @return RevisionRecord[]
 	 */
 	private function getRevisions( Title $title ) {
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 		$qi = $store->getQueryInfo();
 
 		$conds = [ 'rev_page' => $title->getArticleID() ];
@@ -185,14 +184,14 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 		$vars['site_name'] = $wgSitename;
 		$vars['project_namespace'] =
-			MediaWikiServices::getInstance()->getTitleFormatter()->getNamespaceName(
+			$this->getServiceContainer()->getTitleFormatter()->getNamespaceName(
 				NS_PROJECT,
 				'Dummy'
 			);
 		$vars['site_db'] = $wgDBname;
 		$vars['site_case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
 		$vars['site_base'] = Title::newMainPage()->getCanonicalURL();
-		$vars['site_language'] = MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode();
+		$vars['site_language'] = $this->getServiceContainer()->getContentLanguage()->getHtmlCode();
 
 		return $vars;
 	}

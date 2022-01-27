@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Logger\Spi as LoggerSpi;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -89,7 +88,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$work = $this->newPoolWorkArticleView( $page, $rev1, $options );
 		$work->execute();
 
-		$cache = MediaWikiServices::getInstance()->getParserCache();
+		$cache = $this->getServiceContainer()->getParserCache();
 		$out = $cache->get( $page, $options );
 
 		$this->assertNotNull( $out );

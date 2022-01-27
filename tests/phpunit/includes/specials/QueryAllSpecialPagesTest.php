@@ -7,8 +7,6 @@
  * @author Antoine Musso
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  * @covers QueryPage<extended>
@@ -44,7 +42,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 		foreach ( QueryPage::getPages() as [ $class, $name ] ) {
 			if ( !in_array( $class, $this->manualTest ) ) {
 				$this->queryPages[$class] =
-					MediaWikiServices::getInstance()->getSpecialPageFactory()->getPage( $name );
+					$this->getServiceContainer()->getSpecialPageFactory()->getPage( $name );
 			}
 		}
 	}

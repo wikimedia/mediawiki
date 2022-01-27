@@ -8,7 +8,6 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 
 class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
@@ -60,7 +59,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @return HookContainer
 	 */
 	private function getHookContainer() {
-		return MediaWikiServices::getInstance()->getHookContainer();
+		return $this->getServiceContainer()->getHookContainer();
 	}
 
 	private function newObj( array $options = [] ): NamespaceInfo {

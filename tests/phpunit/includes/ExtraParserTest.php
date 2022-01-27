@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -26,7 +25,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$contLang = $services->getContentLanguage();
 
@@ -274,7 +273,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 			'wgInterwikiCache',
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis )
 		);
-		MediaWikiServices::getInstance()->resetServiceForTesting(
+		$this->getServiceContainer()->resetServiceForTesting(
 			'InterwikiLookup'
 		);
 		Title::clearCaches();

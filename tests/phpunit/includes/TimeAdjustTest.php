@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class TimeAdjustTest extends MediaWikiLangTestCase {
 	/**
 	 * Test offset usage for a given Language::userAdjust
@@ -13,7 +11,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals(
 			$expected,
-			strval( MediaWikiServices::getInstance()->getContentLanguage()->
+			strval( $this->getServiceContainer()->getContentLanguage()->
 				userAdjust( $date, '' ) ),
 			"User adjust {$date} by {$localTZoffset} minutes should give {$expected}"
 		);

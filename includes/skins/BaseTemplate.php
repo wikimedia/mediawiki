@@ -46,12 +46,12 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( $copyright !== null ) {
 			$out = $skin->makeFooterIcon( $copyright );
 		} elseif ( $config->get( 'RightsIcon' ) ) {
-			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
+			$icon = htmlspecialchars( $config->get( 'RightsIcon' ), ENT_COMPAT );
 			$url = $config->get( 'RightsUrl' );
 			if ( $url ) {
-				$out .= '<a href="' . htmlspecialchars( $url ) . '">';
+				$out .= '<a href="' . htmlspecialchars( $url, ENT_COMPAT ) . '">';
 			}
-			$text = htmlspecialchars( $config->get( 'RightsText' ) );
+			$text = htmlspecialchars( $config->get( 'RightsText' ), ENT_COMPAT );
 			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
 			if ( $url ) {
 				$out .= '</a>';

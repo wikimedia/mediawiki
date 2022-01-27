@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use TestLogger;
@@ -203,7 +202,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			'MockSessionProvider sessions',
 			$provider->describe(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) )
+				$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) )
 		);
 	}
 

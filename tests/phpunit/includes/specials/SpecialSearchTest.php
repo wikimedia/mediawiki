@@ -13,7 +13,7 @@ use MediaWiki\MediaWikiServices;
 class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	private function newSpecialPage() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new SpecialSearch(
 			$services->getSearchEngineConfig(),
 			$services->getSearchEngineFactory(),
@@ -60,7 +60,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			'sort' => 'invalid',
 		] ) );
 		$sp = Title::makeTitle( NS_SPECIAL, 'Search' );
-		MediaWikiServices::getInstance()
+		$this->getServiceContainer()
 			->getSpecialPageFactory()
 			->executePath( $sp, $ctx );
 		$html = $ctx->getOutput()->getHTML();
@@ -273,7 +273,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$search = $this->getMockBuilder( SpecialSearch::class )
 			->setConstructorArgs( [
 				$services->getSearchEngineConfig(),
@@ -320,7 +320,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'getNearMatcher' )
 			->willReturn( $nearMatcherMock );
 
-		$mock->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		$mock->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 
 		return $mock;
 	}
@@ -335,7 +335,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$ctx = new RequestContext;
 		$sp = Title::newFromText( 'Special:Search/foo_bar' );
-		MediaWikiServices::getInstance()->getSpecialPageFactory()->executePath( $sp, $ctx );
+		$this->getServiceContainer()->getSpecialPageFactory()->executePath( $sp, $ctx );
 		$url = $ctx->getOutput()->getRedirect();
 
 		$parts = parse_url( $url );
@@ -380,7 +380,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			[ SearchResult::newFromTitle( Title::newMainPage() ) ]
 		);
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$search = $this->getMockBuilder( SpecialSearch::class )
 			->setConstructorArgs( [
 				$services->getSearchEngineConfig(),
@@ -450,7 +450,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$mockSearchEngineFactory->method( "create" )
 				->willReturn( $this->mockSearchEngine( new SpecialSearchTestMockResultSet() ) );
 
-			$services = MediaWikiServices::getInstance();
+			$services = $this->getServiceContainer();
 			$specialSearch = new SpecialSearch(
 				$services->getSearchEngineConfig(),
 				$mockSearchEngineFactory,

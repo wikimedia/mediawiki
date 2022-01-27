@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group ContentHandler
@@ -228,7 +227,7 @@ just a test"
 	 * @covers WikitextContent::matchMagicWord
 	 */
 	public function testMatchMagicWord() {
-		$mw = MediaWikiServices::getInstance()->getMagicWordFactory()->get( "staticredirect" );
+		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
 		$this->assertTrue( $content->matchMagicWord( $mw ), "should have matched magic word" );

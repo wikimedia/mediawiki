@@ -1046,7 +1046,7 @@ class Sanitizer {
 	public static function safeEncodeTagAttributes( $assoc_array ) {
 		$attribs = [];
 		foreach ( $assoc_array as $attribute => $value ) {
-			$encAttribute = htmlspecialchars( $attribute );
+			$encAttribute = htmlspecialchars( $attribute, ENT_COMPAT );
 			$encValue = self::safeEncodeAttribute( $value );
 
 			$attribs[] = "$encAttribute=\"$encValue\"";
@@ -1141,7 +1141,7 @@ class Sanitizer {
 			$ret = self::hexCharReference( $matches[3] );
 		}
 		if ( $ret === null ) {
-			return htmlspecialchars( $matches[0] );
+			return htmlspecialchars( $matches[0], ENT_COMPAT );
 		} else {
 			return $ret;
 		}

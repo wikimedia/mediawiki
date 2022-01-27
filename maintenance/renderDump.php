@@ -122,7 +122,7 @@ class DumpRenderer extends Maintenance {
 			"<html lang=\"en\" dir=\"ltr\">\n" .
 			"<head>\n" .
 			"<meta charset=\"UTF-8\" />\n" .
-			"<title>" . htmlspecialchars( $display ) . "</title>\n" .
+			"<title>" . htmlspecialchars( $display, ENT_COMPAT ) . "</title>\n" .
 			"</head>\n" .
 			"<body>\n" .
 			$output->getText() .

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 
 	public function preSaveTransformProvider() {
@@ -19,7 +17,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider preSaveTransformProvider
 	 */
 	public function testPreSaveTransform( $content, $expectedContainText ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$title = Title::newFromText( 'Test' );
 		$user = new User();
 		$user->setName( "127.0.0.1" );
@@ -44,7 +42,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider preloadTransformProvider
 	 */
 	public function testPreloadTransform( $content, $expectedContainText ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$title = Title::newFromText( 'Test' );
 		$options = ParserOptions::newFromAnon();
 

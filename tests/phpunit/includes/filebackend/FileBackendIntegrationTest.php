@@ -1548,7 +1548,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$url = $this->backend->getFileHttpUrl( [ 'src' => $source ] );
 
 		if ( $url !== null ) { // supported
-			$data = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+			$data = $this->getServiceContainer()->getHttpRequestFactory()->
 				get( $url, [], __METHOD__ );
 			$this->assertEquals( $content, $data,
 				"HTTP GET of URL has right contents ($backendName)." );

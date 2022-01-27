@@ -6,7 +6,6 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -49,7 +48,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		"[[Category:Felis catus]]";
 
 	private function getDeletePage( ProperPageIdentity $page, Authority $deleter ): DeletePage {
-		return MediaWikiServices::getInstance()->getDeletePageFactory()->newDeletePage(
+		return $this->getServiceContainer()->getDeletePageFactory()->newDeletePage(
 			$page,
 			$deleter
 		);
@@ -63,7 +62,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	private function createPage( string $titleText, string $content ): WikiPage {
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( $titleText, $ns );
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$performer = static::getTestUser()->getUser();
 
@@ -90,7 +89,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		string $logSubtype,
 		int $logID
 	): void {
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'],
 			[
@@ -121,12 +120,12 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			// in case of normal deletion.
 			return;
 		}
-		$archive = new PageArchive( $title, MediaWikiServices::getInstance()->getMainConfig() );
+		$archive = new PageArchive( $title, $this->getServiceContainer()->getMainConfig() );
 		$archivedRevs = $archive->listRevisions();
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}
-		$archivedRev = MediaWikiServices::getInstance()->getRevisionStore()
+		$archivedRev = $this->getServiceContainer()->getRevisionStore()
 			->newRevisionFromArchiveRow( $archivedRevs->current() );
 
 		$this->assertNotNull(
@@ -253,7 +252,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			'ct_tag_id',
 			[ 'ct_log_id' => $logId ]
 		);
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+		$changeTagDefStore = $this->getServiceContainer()->getChangeTagDefStore();
 		$expectedTags = array_map( [ $changeTagDefStore, 'acquireId' ], $tags );
 		$this->assertArrayEquals( $expectedTags, array_map( 'intval', $actualTags ) );
 	}

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers ClearUserWatchlistJob
  *
@@ -24,7 +22,7 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getWatchedItemStore() {
-		return MediaWikiServices::getInstance()->getWatchedItemStore();
+		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
 	public function testRun() {

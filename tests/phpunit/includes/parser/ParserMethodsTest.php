@@ -33,7 +33,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$user = new User();
 		$user->setName( "127.0.0.1" );
 		$popts = ParserOptions::newFromUser( $user );
-		$text = MediaWikiServices::getInstance()->getParser()
+		$text = $this->getServiceContainer()->getParser()
 			->preSaveTransform( $text, $title, $user, $popts );
 
 		$this->assertEquals( $expected, $text );
@@ -76,7 +76,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public function testRecursiveParse() {
 		$title = Title::newFromText( 'foo' );
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 		$po = ParserOptions::newFromAnon();
 		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
 		$this->expectException( MWException::class );
@@ -96,7 +96,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	public function testCallParserFunction() {
 		// Normal parses test passing PPNodes. Test passing an array.
 		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 		$parser->startExternalParse(
 			$title,
 			ParserOptions::newFromAnon(),
@@ -119,7 +119,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetSections() {
 		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
-		$out = MediaWikiServices::getInstance()->getParser()->parse(
+		$out = $this->getServiceContainer()->getParser()->parse(
 			"==foo==\n<h2>bar</h2>\n==baz==\n",
 			$title,
 			ParserOptions::newFromAnon()
@@ -203,7 +203,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	public function testWrapOutput() {
 		$title = Title::newFromText( 'foo' );
 		$po = ParserOptions::newFromAnon();
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 		$parser->parse( 'Hello World', $title, $po );
 		$text = $parser->getOutput()->getText();
 
@@ -320,7 +320,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$expectedInPst = null
 	) {
 		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
-			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
+			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
 		] );
 
 		$oldRevision = new MutableRevisionRecord( $title );
@@ -356,7 +356,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$this->setService( 'RevisionStore', $revisionStore );
 
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = $this->getServiceContainer()->getParser();
 		$parser->parse( $text, $title, $po, true, true, $revId );
 		$html = $parser->getOutput()->getText();
 
@@ -378,7 +378,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	/** @dataProvider provideGuessSectionNameFromWikiText */
 	public function testGuessSectionNameFromWikiText( $input, $mode, $expected ) {
 		$this->setMwGlobals( [ 'wgFragmentMode' => [ $mode ] ] );
-		$result = MediaWikiServices::getInstance()->getParser()
+		$result = $this->getServiceContainer()->getParser()
 			->guessSectionNameFromWikiText( $input );
 		$this->assertEquals( $result, $expected );
 	}

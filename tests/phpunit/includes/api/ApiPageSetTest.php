@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -242,7 +241,7 @@ class ApiPageSetTest extends ApiTestCase {
 
 		// Prepare the gender cache for testing - this is a fresh instance due to service override
 		$genderCache = TestingAccessWrapper::newFromObject(
-			MediaWikiServices::getInstance()->getGenderCache()
+			$this->getServiceContainer()->getGenderCache()
 		);
 		$genderCache->missLimit = 0;
 

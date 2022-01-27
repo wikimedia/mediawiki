@@ -1045,7 +1045,7 @@ TEXT
 			}
 			$this->checkpointJustWritten = false;
 		}
-		$this->buffer .= htmlspecialchars( $data );
+		$this->buffer .= htmlspecialchars( $data, ENT_COMPAT );
 	}
 
 	protected function clearOpenElement( $style ) {

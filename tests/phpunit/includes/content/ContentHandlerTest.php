@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Content\ValidationParams;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -39,12 +38,12 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// Reset LinkCache
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
+		$this->getServiceContainer()->resetServiceForTesting( 'LinkCache' );
 	}
 
 	protected function tearDown(): void {
 		// Reset LinkCache
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
+		$this->getServiceContainer()->resetServiceForTesting( 'LinkCache' );
 
 		parent::tearDown();
 	}
@@ -98,7 +97,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testGetForTitle( $title, $expectedContentModel ) {
 		$this->hideDeprecated( 'ContentHandler::getForTitle' );
 		$title = Title::newFromText( $title );
-		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
+		$this->getServiceContainer()->getLinkCache()->addBadLinkObj( $title );
 		$handler = ContentHandler::getForTitle( $title );
 		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
 	}
@@ -152,9 +151,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPageLanguage( $title, $expected ) {
 		$title = Title::newFromText( $title );
-		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
+		$this->getServiceContainer()->getLinkCache()->addBadLinkObj( $title );
 
-		$handler = MediaWikiServices::getInstance()
+		$handler = $this->getServiceContainer()
 			->getContentHandlerFactory()
 			->getContentHandler( $title->getContentModel() );
 		$lang = $handler->getPageLanguage( $title );
@@ -299,7 +298,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$expectedModelId, $shouldFail
 	) {
 		$title = Title::newFromText( $title );
-		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
+		$this->getServiceContainer()->getLinkCache()->addBadLinkObj( $title );
 		try {
 			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 
@@ -656,7 +655,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testValidateSave( $content, $expectedResult ) {
 		$page = new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL );
-		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$contentHandlerFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$contentHandler = $contentHandlerFactory->getContentHandler( $content->getModel() );
 		$validateParams = new ValidationParams( $page, 0 );
 

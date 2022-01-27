@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Abstract class to support upload tests
  */
@@ -35,7 +33,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	 */
 	public function deleteFileByTitle( $title ) {
 		if ( $title->exists() ) {
-			$file = MediaWikiServices::getInstance()->getRepoGroup()
+			$file = $this->getServiceContainer()->getRepoGroup()
 				->findFile( $title, [ 'ignoreRedirect' => true ] );
 			$noOldArchive = ""; // yes this really needs to be set this way
 			$comment = "removing for test";
@@ -54,7 +52,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 				return false;
 			}
 
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 			$this->deletePage( $page, "removing for test" );
 
 			// see if it now doesn't exist; reload
@@ -85,7 +83,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	 */
 	public function deleteFileByContent( $filePath ) {
 		$hash = FSFile::getSha1Base36FromPath( $filePath );
-		$dupes = MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $hash );
+		$dupes = $this->getServiceContainer()->getRepoGroup()->findBySha1( $hash );
 		$success = true;
 		foreach ( $dupes as $dupe ) {
 			$success &= $this->deleteFileByTitle( $dupe->getTitle() );

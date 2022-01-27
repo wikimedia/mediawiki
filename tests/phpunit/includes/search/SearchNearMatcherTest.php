@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers SearchNearMatcher
  */
@@ -75,7 +73,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		$titleText,
 		$enableSearchContributorsByIP = false
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => $enableSearchContributorsByIP,
@@ -101,7 +99,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	 * @covers SearchNearMatcher::getNearMatch
 	 */
 	public function testNearMatch_Hooks( $hook ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => false,
 		] );
@@ -127,7 +125,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	 * @covers SearchNearMatcher::getNearMatchResultSet
 	 */
 	public function testGetNearMatchResultSet() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->addGoodLinkObject( 42, Title::newFromText( "Test Link" ) );
 
 		$config = new HashConfig( [
