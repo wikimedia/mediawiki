@@ -3,6 +3,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -143,7 +144,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->getMockLoadBalancer( $mockDb )
+			$this->getMockLoadBalancer( $mockDb ),
+			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}
 

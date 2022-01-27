@@ -802,7 +802,8 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	},
 
