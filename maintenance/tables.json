@@ -3699,5 +3699,33 @@
 			"ENGINE=MyISAM",
 			"DEFAULT CHARSET=utf8"
 		]
+	},
+	{
+		"name": "linktarget",
+		"comment": "Holds immutable records of link targets, used mostly for links tables.",
+		"columns": [
+			{
+				"name": "lt_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "lt_namespace",
+				"comment": "Namespace of the link target",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "lt_title",
+				"comment": "Text part of link target excluding namespace",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "lt_namespace_title", "columns": [ "lt_namespace", "lt_title" ], "unique": true }
+		],
+		"pk": [ "lt_id" ]
 	}
 ]

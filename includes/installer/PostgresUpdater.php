@@ -636,6 +636,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.38
 			[ 'doConvertDjvuMetadata' ],
 			[ 'dropPgField', 'page_restrictions', 'pr_user' ],
+			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
 		];
 	}
 
