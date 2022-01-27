@@ -181,7 +181,7 @@ class EmailNotification {
 		}
 
 		if ( $sendEmail ) {
-			JobQueueGroup::singleton()->lazyPush( new EnotifNotifyJob(
+			$mwServices->getJobQueueGroup()->lazyPush( new EnotifNotifyJob(
 				$title,
 				[
 					'editor' => $editor->getUser()->getName(),

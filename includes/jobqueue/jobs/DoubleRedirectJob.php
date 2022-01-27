@@ -85,6 +85,7 @@ class DoubleRedirectJob extends Job {
 			return;
 		}
 		$jobs = [];
+		$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			if ( !$title ) {
@@ -99,11 +100,11 @@ class DoubleRedirectJob extends Job {
 			] );
 			# Avoid excessive memory usage
 			if ( count( $jobs ) > self::MAX_DR_JOBS_COUNTER ) {
-				JobQueueGroup::singleton()->push( $jobs );
+				$jobQueueGroup->push( $jobs );
 				$jobs = [];
 			}
 		}
-		JobQueueGroup::singleton()->push( $jobs );
+		$jobQueueGroup->push( $jobs );
 	}
 
 	/**

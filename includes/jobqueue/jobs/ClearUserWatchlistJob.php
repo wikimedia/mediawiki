@@ -95,7 +95,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		if ( count( $watchlistIds ) === (int)$batchSize ) {
 			// Until we get less results than the limit, recursively push
 			// the same job again.
-			JobQueueGroup::singleton()->push( new self( $this->getParams() ) );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push( new self( $this->getParams() ) );
 		}
 
 		return true;

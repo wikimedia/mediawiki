@@ -1511,7 +1511,8 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	private function getMaxLag() {
-		$dbLag = MediaWikiServices::getInstance()->getDBLoadBalancer()->getMaxLag();
+		$services = MediaWikiServices::getInstance();
+		$dbLag = $services->getDBLoadBalancer()->getMaxLag();
 		$lagInfo = [
 			'host' => $dbLag[0],
 			'lag' => $dbLag[1],
@@ -1521,7 +1522,7 @@ class ApiMain extends ApiBase {
 		$jobQueueLagFactor = $this->getConfig()->get( 'JobQueueIncludeInMaxLagFactor' );
 		if ( $jobQueueLagFactor ) {
 			// Turn total number of jobs into seconds by using the configured value
-			$totalJobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
+			$totalJobs = array_sum( $services->getJobQueueGroup()->getQueueSizes() );
 			$jobQueueLag = $totalJobs / (float)$jobQueueLagFactor;
 			if ( $jobQueueLag > $lagInfo['lag'] ) {
 				$lagInfo = [

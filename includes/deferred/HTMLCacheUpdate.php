@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -53,6 +54,6 @@ class HTMLCacheUpdate extends DataUpdate {
 			$this->table,
 			[ 'causeAction' => $this->getCauseAction(), 'causeAgent' => $this->getCauseAgent() ]
 		);
-		JobQueueGroup::singleton()->lazyPush( $job );
+		MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $job );
 	}
 }

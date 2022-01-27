@@ -190,7 +190,7 @@ class WikiFilePage extends WikiPage {
 				'imagelinks',
 				[ 'causeAction' => 'file-purge' ]
 			);
-			JobQueueGroup::singleton()->lazyPush( $job );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $job );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
 				. $this->mFile->getName() . "; limiting purge to cache only" );

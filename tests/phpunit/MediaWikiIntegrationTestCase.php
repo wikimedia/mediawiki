@@ -1407,9 +1407,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			);
 			// an edit always attempt to purge backlink links such as history
 			// pages. That is unnecessary.
-			JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+			$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
+			$jobQueueGroup->get( 'htmlCacheUpdate' )->delete();
 			// WikiPages::doEditUpdates randomly adds RC purges
-			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
+			$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
 			// doUserEditContent() probably started the session via
 			// User::loadFromSession(). Close it now.
@@ -1438,9 +1439,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		Hooks::runner()->onUnitTestsBeforeDatabaseTeardown();
 
+		$services = MediaWikiServices::getInstance();
+		$jobQueueGroup = $services->getJobQueueGroup();
 		foreach ( $wgJobClasses as $type => $class ) {
 			// Delete any jobs under the clone DB (or old prefix in other stores)
-			JobQueueGroup::singleton()->get( $type )->delete();
+			$jobQueueGroup->get( $type )->delete();
 		}
 
 		if ( self::$dbClone ) {
@@ -1450,7 +1453,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T219673: close any connections from code that failed to call reuseConnection()
 		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
+		$services->getDBLoadBalancerFactory()->closeAll();
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;

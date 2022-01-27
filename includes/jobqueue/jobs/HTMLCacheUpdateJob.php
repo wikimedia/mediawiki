@@ -94,7 +94,7 @@ class HTMLCacheUpdateJob extends Job {
 				// Carry over information for de-duplication
 				[ 'params' => $extraParams ]
 			);
-			JobQueueGroup::singleton()->push( $jobs );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push( $jobs );
 		// Job to purge pages for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
 			$this->invalidateTitles( $this->params['pages'] );
