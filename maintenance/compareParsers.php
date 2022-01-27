@@ -40,7 +40,7 @@ class CompareParsers extends DumpIterator {
 
 	private $count = 0;
 	/** @var bool */
-	private $saveFailed;
+	private $saveFailed = false;
 	/** @var bool */
 	private $stripParametersEnabled;
 	/** @var bool */
@@ -54,7 +54,6 @@ class CompareParsers extends DumpIterator {
 
 	public function __construct() {
 		parent::__construct();
-		$this->saveFailed = false;
 		$this->addDescription( 'Run a file or dump with several parsers' );
 		$this->addOption( 'parser1', 'The first parser to compare.', true, true );
 		$this->addOption( 'parser2', 'The second parser to compare.', true, true );

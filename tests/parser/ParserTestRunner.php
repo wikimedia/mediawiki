@@ -1000,33 +1000,7 @@ class ParserTestRunner {
 			] );
 			$out = preg_replace( '/\s+$/', '', $out );
 
-			if ( isset( $opts['showtitle'] ) ) {
-				if ( $output->getTitleText() ) {
-					$title = $output->getTitleText();
-				}
-
-				$out = "$title\n$out";
-			}
-
-			if ( isset( $opts['showindicators'] ) ) {
-				$indicators = '';
-				foreach ( $output->getIndicators() as $id => $content ) {
-					$indicators .= "$id=$content\n";
-				}
-				$out = $indicators . $out;
-			}
-
-			if ( isset( $opts['ill'] ) ) {
-				$out = implode( ' ', $output->getLanguageLinks() );
-			} elseif ( isset( $opts['cat'] ) ) {
-				$out = '';
-				foreach ( $output->getCategories() as $name => $sortkey ) {
-					if ( $out !== '' ) {
-						$out .= "\n";
-					}
-					$out .= "cat=$name sort=$sortkey";
-				}
-			}
+			$this->addParserOutputInfo( $out, $output, $opts, $title );
 		}
 
 		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
@@ -1046,6 +1020,69 @@ class ParserTestRunner {
 
 		$testResult = new ParserTestResult( $test, $expected, $out );
 		return $testResult;
+	}
+
+	/**
+	 * Add information from the parser output to the result string
+	 *
+	 * @param string &$out
+	 * @param ParserOutput $output
+	 * @param array $opts
+	 * @param Title $title
+	 */
+	private function addParserOutputInfo( &$out, ParserOutput $output, array $opts, Title $title ) {
+		if ( isset( $opts['showtitle'] ) ) {
+			if ( $output->getTitleText() ) {
+				$titleText = $output->getTitleText();
+			} else {
+				$titleText = $title->getPrefixedText();
+			}
+
+			$out = "$titleText\n$out";
+		}
+
+		if ( isset( $opts['showindicators'] ) ) {
+			$indicators = '';
+			foreach ( $output->getIndicators() as $id => $content ) {
+				$indicators .= "$id=$content\n";
+			}
+			$out = $indicators . $out;
+		}
+
+		if ( isset( $opts['ill'] ) ) {
+			$out = implode( ' ', $output->getLanguageLinks() );
+		} elseif ( isset( $opts['cat'] ) ) {
+			$out = '';
+			foreach ( $output->getCategories() as $name => $sortkey ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "cat=$name sort=$sortkey";
+			}
+		}
+
+		if ( isset( $opts['extension'] ) ) {
+			foreach ( explode( ',', $opts['extension'] ) as $ext ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "extension[$ext]=" .
+					json_encode(
+						$output->getExtensionData( $ext ),
+						JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+					);
+			}
+		}
+
+		if ( isset( $opts['property'] ) ) {
+			foreach ( explode( ',', $opts['property'] ) as $prop ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "property[$prop]=" .
+					$output->getPageProperty( $prop );
+			}
+		}
 	}
 
 	/**
