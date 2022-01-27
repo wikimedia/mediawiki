@@ -1316,20 +1316,39 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return;
 		}
 
-		// Update newtalk / watchlist notification status;
-		// Avoid outage if the primary DB is not reachable by using a deferred updated
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $performer, $oldid ) {
+			function () use ( $performer ) {
+				// In practice, these hook handlers simply debounce into a post-send
+				// to do their work since none of the use cases for this hook require
+				// a blocking pre-send callback.
+				//
+				// TODO: Move this hook to post-send.
+				//
+				// For now, it is unofficially possible for an extension to use
+				// onPageViewUpdates to try to insert JavaScript via global $wgOut.
+				// This isn't supported (the hook doesn't pass OutputPage), and
+				// can't be since OutputPage may be disabled or replaced on some
+				// pages that we do support page view updates for. We also run
+				// this hook after HTMLFileCache, which also naturally can't
+				// support modifying OutputPage. Handlers that modify the page
+				// may use onBeforePageDisplay instead, which runs behind
+				// HTMLFileCache and won't run on non-OutputPage responses.
 				$legacyUser = MediaWikiServices::getInstance()
 					->getUserFactory()
 					->newFromAuthority( $performer );
 				$this->getHookRunner()->onPageViewUpdates( $this, $legacyUser );
+			},
+			DeferredUpdates::PRESEND
+		);
 
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $performer, $oldid ) {
+				// Update newtalk and watchlist notification status
 				MediaWikiServices::getInstance()
 					->getWatchlistManager()
 					->clearTitleUserNotifications( $performer, $this, $oldid );
 			},
-			DeferredUpdates::PRESEND
+			DeferredUpdates::POSTSEND
 		);
 	}
 

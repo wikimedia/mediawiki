@@ -13,13 +13,18 @@ use MediaWiki\User\UserIdentity;
  */
 interface UserClearNewTalkNotificationHook {
 	/**
-	 * This hook is called before clearing the "You have new messages!" message.
+	 * This hook is called post-send when viewing a user talk page.
 	 *
+	 * The hook may be aborted, in which case the TalkPageNotificationManager service
+	 * will _not_ clear the "You have new messages!" notification, and if the page
+	 * is on the viewer's watchlist then WatchlistManager will also _not_ update the
+	 * "seen" marker.
+	 *
+	 * @see MediaWiki\Watchlist\WatchlistManager::clearTitleUserNotifications
 	 * @since 1.35
-	 *
 	 * @param UserIdentity $userIdentity User that will clear the message
-	 * @param int $oldid ID of the talk page revision being viewed (0 means the most recent one)
-	 * @return bool|void True or no return value to continue or false to abort (not clear the message)
+	 * @param int $oldid Revision ID of the talk page being viewed (0 means the most recent one)
+	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserClearNewTalkNotification( $userIdentity, $oldid );
 }
