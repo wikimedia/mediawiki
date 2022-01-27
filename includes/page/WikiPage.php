@@ -2847,13 +2847,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$services = MediaWikiServices::getInstance();
+		$hcu = $services->getHtmlCacheUpdater();
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
 		$title->deleteTitleProtection();
 
-		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
+		$services->getLinkCache()->invalidateTitle( $title );
 
 		// Invalidate caches of articles which include this page
 		$job = HTMLCacheUpdateJob::newForBacklinks(
@@ -2861,7 +2862,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			'templatelinks',
 			[ 'causeAction' => 'page-create' ]
 		);
-		JobQueueGroup::singleton()->lazyPush( $job );
+		$services->getJobQueueGroup()->lazyPush( $job );
 
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -2905,7 +2906,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'imagelinks',
 				[ 'causeAction' => 'page-delete' ]
 			);
-			JobQueueGroup::singleton()->lazyPush( $job );
+			$services->getJobQueueGroup()->lazyPush( $job );
 		}
 
 		// User talk pages
@@ -2957,9 +2958,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			'redirect',
 			[ 'causeAction' => 'page-edit' ]
 		);
-		JobQueueGroup::singleton()->lazyPush( $jobs );
+		$services = MediaWikiServices::getInstance();
+		$services->getJobQueueGroup()->lazyPush( $jobs );
 
-		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
+		$services->getLinkCache()->invalidateTitle( $title );
 
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
@@ -3203,7 +3205,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// wikitext supports conditional statements based on the current time, which enables
 			// transcluding of a different sub page based on which day it is, and then show that
 			// information on the Main Page, without the Main Page itself being edited.
-			JobQueueGroup::singleton()->lazyPush(
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
 		} elseif ( !$config->get( 'MiserMode' ) && $parserOutput->hasReducedExpiry() ) {
@@ -3220,7 +3222,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$key = $cache->makeKey( 'dynamic-linksupdate', 'last', $this->getId() );
 				$ttl = max( $parserOutput->getCacheExpiry(), 3600 );
 				if ( $cache->add( $key, time(), $ttl ) ) {
-					JobQueueGroup::singleton()->lazyPush(
+					MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush(
 						RefreshLinksJob::newDynamic( $this->mTitle, $params )
 					);
 				}

@@ -134,7 +134,7 @@ class JobRunner implements LoggerAwareInterface {
 
 		$this->options = $serviceOptions;
 		$this->lbFactory = $lbFactory ?? MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$this->jobQueueGroup = $jobQueueGroup ?? JobQueueGroup::singleton();
+		$this->jobQueueGroup = $jobQueueGroup ?? MediaWikiServices::getInstance()->getJobQueueGroup();
 		$this->readOnlyMode = $readOnlyMode ?: MediaWikiServices::getInstance()->getReadOnlyMode();
 		$this->linkCache = $linkCache ?? MediaWikiServices::getInstance()->getLinkCache();
 		$this->stats = $statsdDataFactory ?? MediaWikiServices::getInstance()->getStatsdDataFactory();

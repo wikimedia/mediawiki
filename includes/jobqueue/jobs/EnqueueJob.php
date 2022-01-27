@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Router job that takes jobs and enqueues them to their proper queues
  *
@@ -94,12 +96,13 @@ final class EnqueueJob extends Job implements GenericParameterJob {
 	public function run() {
 		$jobsByDomain = $this->params['jobsByDomain'] ?? $this->params['jobsByWiki']; // b/c
 
+		$jobQueueGroupFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
 		foreach ( $jobsByDomain as $domain => $jobMaps ) {
 			$jobSpecs = [];
 			foreach ( $jobMaps as $jobMap ) {
 				$jobSpecs[] = JobSpecification::newFromArray( $jobMap );
 			}
-			JobQueueGroup::singleton( $domain )->push( $jobSpecs );
+			$jobQueueGroupFactory->makeJobQueueGroup( $domain )->push( $jobSpecs );
 		}
 
 		return true;

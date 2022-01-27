@@ -13,7 +13,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testSuccess() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
-		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
+		$queue = $services->getJobQueueGroup()->get( 'refreshLinksPrioritized' );
 		$user = $this->getTestUser()->getUser();
 
 		$goodCalls = 0;
@@ -73,7 +73,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testEnqueueOnFailure() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
-		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
+		$queue = $services->getJobQueueGroup()->get( 'refreshLinksPrioritized' );
 		$user = $this->getTestUser()->getUser();
 
 		// T248189: DeferredUpdate will log the exception, don't fail because of that.

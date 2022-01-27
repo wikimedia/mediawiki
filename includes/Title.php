@@ -3712,7 +3712,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			);
 		}
 
-		JobQueueGroup::singleton()->lazyPush( $jobs );
+		MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
 	}
 
 	/**

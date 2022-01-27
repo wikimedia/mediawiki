@@ -746,7 +746,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	private function runAllRelatedJobs() {
-		$queueGroup = JobQueueGroup::singleton();
+		$queueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		while ( $job = $queueGroup->pop( 'refreshLinksPrioritized' ) ) {
 			$job->run();
 			$queueGroup->ack( $job );

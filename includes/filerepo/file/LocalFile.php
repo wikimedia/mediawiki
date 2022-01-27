@@ -1550,7 +1550,7 @@ class LocalFile extends File {
 		}
 
 		if ( $jobs ) {
-			JobQueueGroup::singleton()->lazyPush( $jobs );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
 		}
 	}
 
@@ -2203,7 +2203,7 @@ class LocalFile extends File {
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
 			}
 
-			JobQueueGroup::singleton()->lazyPush( $cacheUpdateJob );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $cacheUpdateJob );
 		}, __METHOD__ );
 
 		return Status::newGood();
