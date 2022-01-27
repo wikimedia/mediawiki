@@ -62,8 +62,7 @@ function wfWebStartNoLocalSettings( SettingsBuilder $settings ) {
 	# LocalSettings.php is the per-site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory. Give a hint, if it is not readable by the server.
-	global $IP;
-	require_once "$IP/includes/NoLocalSettings.php";
+	require_once MW_INSTALL_PATH . '/includes/NoLocalSettings.php';
 	die();
 }
 

@@ -27,6 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 global $wgResourceBasePath;
+global $wgBaseDirectory;
 
 return [
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
@@ -154,7 +155,7 @@ return [
 		'dependencies' => [ 'es6-polyfills' ]
 	],
 	'mediawiki.base' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.base",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.base",
 		'packageFiles' => [
 			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
 			'mediawiki.base.js',
@@ -583,14 +584,14 @@ return [
 			[
 				'name' => 'resources/lib/vue/vue.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					global $IP;
+					$baseDir = $config->get( 'BaseDirectory' );
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
 						'resources/lib/vue/vue.global.js' :
 						'resources/lib/vue/vue.global.prod.js';
 					// The file shipped by Vue does var Vue = ...;, but doesn't export it
 					// Add module.exports = Vue; programmatically
-					return file_get_contents( "$IP/$file" ) .
+					return file_get_contents( "$baseDir/$file" ) .
 						';module.exports=Vue;';
 				},
 				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
@@ -622,7 +623,7 @@ return [
 			[
 				'name' => 'resources/lib/vuex/vuex.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					global $IP;
+					$baseDir = $config->get( 'BaseDirectory' );
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
 						'resources/lib/vuex/vuex.global.js' :
@@ -630,7 +631,7 @@ return [
 					// The file shipped by Vuex does var Vuex = ...;, but doesn't export it
 					// Add module.exports = Vuex; programmatically, and import Vue
 					return "var Vue=require('vue');" .
-						file_get_contents( "$IP/$file" ) .
+						file_get_contents( "$baseDir/$file" ) .
 						';module.exports=Vuex;';
 				},
 				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
@@ -788,7 +789,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.feedback' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.feedback",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.feedback",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.feedback",
 		'packageFiles' => [
 			'feedback.js',
@@ -1009,7 +1010,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Title' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.Title",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.Title",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Title",
 		'packageFiles' => [
 			'Title.js',
@@ -1028,7 +1029,7 @@ return [
 		],
 	],
 	'mediawiki.ForeignUpload' => [
-		'localBasePath' => "$IP/resources/src",
+		'localBasePath' => "$wgBaseDirectory/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.ForeignUpload.js',
@@ -1049,7 +1050,7 @@ return [
 		]
 	],
 	'mediawiki.ForeignStructuredUpload' => [
-		'localBasePath' => "$IP/resources/src",
+		'localBasePath' => "$wgBaseDirectory/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.ForeignStructuredUpload.js',
@@ -1170,15 +1171,15 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Uri' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.Uri",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.Uri",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Uri",
 		'packageFiles' => [
 			'Uri.js',
 			[ 'name' => 'loose.regexp.js',
-				'callback' => static function () {
-					global $IP;
+				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					$baseDir = $config->get( 'BaseDirectory' );
 					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
-						file_get_contents( "$IP/resources/src/mediawiki.Uri/loose.regexp" )
+						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/loose.regexp" )
 					);
 				},
 				'versionCallback' => static function () {
@@ -1186,10 +1187,10 @@ return [
 				},
 			],
 			[ 'name' => 'strict.regexp.js',
-				'callback' => static function () {
-					global $IP;
+				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					$baseDir = $config->get( 'BaseDirectory' );
 					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
-						file_get_contents( "$IP/resources/src/mediawiki.Uri/strict.regexp" )
+						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/strict.regexp" )
 					);
 				},
 				'versionCallback' => static function () {
@@ -1219,7 +1220,7 @@ return [
 		]
 	],
 	'mediawiki.util' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.util",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.util",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.util",
 		'packageFiles' => [
 			'util.js',
@@ -1251,7 +1252,7 @@ return [
 		'styles' => 'resources/src/mediawiki.checkboxtoggle.styles.css',
 	],
 	'mediawiki.cookie' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.cookie",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.cookie",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.cookie",
 		'packageFiles' => [
 			'index.js',
@@ -1275,7 +1276,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.visibleTimeout' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.visibleTimeout",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.visibleTimeout",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.visibleTimeout",
 		'packageFiles' => [
 			'visibleTimeout.js'
@@ -1298,7 +1299,7 @@ return [
 	],
 	'mediawiki.action.edit' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'localBasePath' => "$IP/resources/src/mediawiki.action.edit",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action.edit",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action.edit",
 		'packageFiles' => [
 			'edit.js',
@@ -1395,7 +1396,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.action.protect' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.action",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
 		'packageFiles' => [
 			'mediawiki.action.protect.js',
@@ -1515,7 +1516,7 @@ return [
 	],
 
 	'mediawiki.jqueryMsg' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.jqueryMsg",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.jqueryMsg",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.jqueryMsg",
 		'packageFiles' => [
 			'mediawiki.jqueryMsg.js',
@@ -1563,7 +1564,7 @@ return [
 	],
 
 	'mediawiki.language.names' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.language",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.language",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
 		'packageFiles' => [
 			'mediawiki.language.names.js',
@@ -1578,7 +1579,7 @@ return [
 	],
 
 	'mediawiki.language.specialCharacters' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.language",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.language",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
 		'packageFiles' => [
 			'mediawiki.language.specialCharacters.js',
@@ -1657,7 +1658,7 @@ return [
 		]
 	],
 	'mediawiki.page.ready' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.page.ready",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.page.ready",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.page.ready",
 		'packageFiles' => [
 			'ready.js',
@@ -1688,7 +1689,7 @@ return [
 		]
 	],
 	'mediawiki.page.watch.ajax' => [
-		'localBasePath' => "$IP/resources/src",
+		'localBasePath' => "$wgBaseDirectory/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
@@ -1744,7 +1745,7 @@ return [
 	// mediawiki.rcfilters.filters.dm into mediawiki.rcfilters.filters.ui, see T256836
 	'mediawiki.rcfilters.filters.ui' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.rcfilters",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
 			'mw.rcfilters.js',
@@ -1977,7 +1978,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.special.apisandbox",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.apisandbox",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.apisandbox",
 		'styles' => 'apisandbox.less',
 		'packageFiles' => [
@@ -2071,7 +2072,7 @@ return [
 		],
 	],
 	'mediawiki.special.block' => [
-		'localBasePath' => "$IP/resources/src",
+		'localBasePath' => "$wgBaseDirectory/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.special.block.js',
@@ -2101,7 +2102,7 @@ return [
 	// - .. contain UI initialisation code (e.g. no public module exports, because
 	//      requiring or depending on this bundle is awkward)
 	'mediawiki.misc-authed-ooui' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-ooui",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.misc-authed-ooui",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-ooui",
 		'scripts' => [
 			'special.changecredentials.js',
@@ -2125,7 +2126,7 @@ return [
 	// - .. do NOT depend on OOUI.
 	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-pref' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-pref",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.misc-authed-pref",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-pref",
 		'scripts' => [
 			'rightClickEdit.js',
@@ -2142,7 +2143,7 @@ return [
 	// - .. do NOT depend on OOUI or other "large" modules.
 	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-curate' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-curate",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.misc-authed-curate",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-curate",
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => [
@@ -2358,7 +2359,7 @@ return [
 		],
 	],
 	'mediawiki.special.createaccount' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.special.createaccount",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.createaccount",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",
 		'packageFiles' => [
 			'signup.js',
@@ -2882,7 +2883,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.watchstar.widgets' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.watchstar.widgets",
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.watchstar.widgets",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.watchstar.widgets",
 		'packageFiles' => [
 			'WatchlistExpiryWidget.js',

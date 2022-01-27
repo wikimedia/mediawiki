@@ -546,6 +546,12 @@ because of Phabricator reports.
   Use ContentHandler::validateSave instead.
 * The hooks LinksUpdateAfterInsert and LinksUpdateConstructed were deprecated.
 * Access to all public properties in LinksUpdate was deprecated.
+* The global variable $IP has been deprecated for use in application logic.
+  It will remain available for use in LocalSettings.php for now, though
+  $wgBaseDirectory is preferred.
+  Application logic should use the BaseDirectory setting from the main config.
+  Tests and framework code that need to function without MediaWiki being
+  fully initialized should use the MW_INSTALL_PATH constant.
 * The global function wfWikiID(), deprecated since 1.35, now emits
   deprecation warnings.
 * AbstractBlock::getBy() now takes a wikiId as a parameter and emits

@@ -54,6 +54,7 @@ $IP = realpath( __DIR__ . '/../../' );
 // We don't use a settings file here but some code still assumes that one exists
 wfRequireOnceInGlobalScope( "$IP/includes/BootstrapHelperFunctions.php" );
 wfDetectLocalSettingsFile( $IP );
+define( 'MW_INSTALL_PATH', $IP );
 
 // these variables must be defined before setup runs
 $GLOBALS['IP'] = $IP;

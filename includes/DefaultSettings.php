@@ -257,6 +257,17 @@ $wgExtensionDirectory = null;
 $wgStyleDirectory = null;
 
 /**
+ * Absolute filesystem path of the root directory of the MediaWiki installation.
+ * The MW_INSTALL_PATH environment variable can be used to set this.
+ *
+ * @note Automatically set in Setup.php before loading local settings.
+ * @note Do not modify in settings files! Must remain equal to the MW_INSTALL_PATH constant
+ *       defined in Setup.php.
+ * @since 1.38
+ */
+$wgBaseDirectory = null;
+
+/**
  * The URL path for primary article page views. This path should contain $1,
  * which is replaced by the article title.
  *

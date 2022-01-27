@@ -285,10 +285,7 @@ CSS
 	 * @dataProvider provideGetLogoData
 	 * @covers ResourceLoaderSkinModule::getLogoData
 	 */
-	public function testGetLogoData( $config, $expected, $baseDir = null ) {
-		if ( $baseDir ) {
-			$this->setMwGlobals( 'IP', $baseDir );
-		}
+	public function testGetLogoData( $config, $expected ) {
 		// Allow testing of protected method
 		$module = TestingAccessWrapper::newFromObject( new ResourceLoaderSkinModule() );
 
@@ -302,6 +299,7 @@ CSS
 		return [
 			'wordmark' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -316,6 +314,7 @@ CSS
 			],
 			'simple' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -325,6 +324,7 @@ CSS
 			],
 			'default and 2x' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -338,6 +338,7 @@ CSS
 			],
 			'default and all HiDPIs' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -353,6 +354,7 @@ CSS
 			],
 			'default and SVG' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -366,6 +368,7 @@ CSS
 			],
 			'everything' => [
 				'config' => [
+					'BaseDirectory' => MW_INSTALL_PATH,
 					'ResourceBasePath' => '/w',
 					'Logos' => [
 						'1x' => '/img/default.png',
@@ -381,6 +384,7 @@ CSS
 			],
 			'versioned url' => [
 				'config' => [
+					'BaseDirectory' => dirname( dirname( __DIR__ ) ) . '/data/media',
 					'ResourceBasePath' => '/w',
 					'UploadPath' => '/w/images',
 					'Logos' => [
@@ -388,7 +392,6 @@ CSS
 					],
 				],
 				'expected' => '/w/test.jpg?edcf2',
-				'baseDir' => dirname( dirname( __DIR__ ) ) . '/data/media',
 			],
 		];
 	}
@@ -399,8 +402,7 @@ CSS
 	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 * @covers ResourceLoaderSkinModule::getLogoData
 	 */
-	public function testPreloadLinkHeaders( $config, $installPath, $result ) {
-		$this->setMwGlobals( [ 'IP' => $installPath ] );
+	public function testPreloadLinkHeaders( $config, $result ) {
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 		$module = new ResourceLoaderSkinModule();
@@ -413,6 +415,7 @@ CSS
 		return [
 			[
 				[
+					'BaseDirectory' => '/dummy',
 					'ResourceBasePath' => '/w',
 					'Logo' => false,
 					'LogoHD' => false,
@@ -422,7 +425,6 @@ CSS
 						'2x' => '/img/two-x.png',
 					],
 				],
-				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 1.5dppx),' .
 				'</img/one-point-five.png>;rel=preload;as=image;media=' .
@@ -431,6 +433,7 @@ CSS
 			],
 			[
 				[
+					'BaseDirectory' => '/dummy',
 					'ResourceBasePath' => '/w',
 					'Logo' => false,
 					'LogoHD' => false,
@@ -438,11 +441,11 @@ CSS
 						'1x' => '/img/default.png',
 					],
 				],
-				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
 				[
+					'BaseDirectory' => '/dummy',
 					'ResourceBasePath' => '/w',
 					'Logo' => false,
 					'LogoHD' => false,
@@ -451,13 +454,13 @@ CSS
 						'2x' => '/img/two-x.png',
 					],
 				],
-				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 2dppx),' .
 				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
 			],
 			[
 				[
+					'BaseDirectory' => '/dummy',
 					'ResourceBasePath' => '/w',
 					'Logo' => false,
 					'LogoHD' => false,
@@ -466,12 +469,12 @@ CSS
 						'svg' => '/img/vector.svg',
 					],
 				],
-				'/dummy',
 				'Link: </img/vector.svg>;rel=preload;as=image'
 
 			],
 			[
 				[
+					'BaseDirectory' => dirname( dirname( __DIR__ ) ) . '/data/media',
 					'ResourceBasePath' => '/w',
 					'Logo' => false,
 					'LogoHD' => false,
@@ -480,7 +483,6 @@ CSS
 					],
 					'UploadPath' => '/w/images',
 				],
-				dirname( dirname( __DIR__ ) ) . '/data/media',
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
 		];
