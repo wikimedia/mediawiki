@@ -53,7 +53,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestRun
 	 */
 	public function testRun( $options, $expectedVal ) {
-		JobQueueGroup::singleton()->push( $this->deletePageJob );
+		$this->getServiceContainer()->getJobQueueGroup()->push( $this->deletePageJob );
 
 		$results = $this->jobRunner->run( $options );
 

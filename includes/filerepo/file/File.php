@@ -1616,7 +1616,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 				'imagelinks',
 				[ 'causeAction' => 'file-purge' ]
 			);
-			JobQueueGroup::singleton()->lazyPush( $job );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $job );
 		}
 	}
 

@@ -21,7 +21,6 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
-use JobQueueGroup;
 use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -104,12 +103,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_former_groups';
 		$this->tablesUsed[] = 'logging';
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
-
-		// Workaround: Force instantiate JobQueueGroup before overriding ConfiguredReadOnlyMode.
-		// Setting read-only mode before JobQueueGroup instantiation will cache the read-only state
-		// inside JobQueueGroup and JobQueue instances and will prevent them from being reset by
-		// resetNonServiceCaches().
-		JobQueueGroup::singleton();
 	}
 
 	/**

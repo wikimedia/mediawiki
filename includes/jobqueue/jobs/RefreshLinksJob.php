@@ -120,7 +120,7 @@ class RefreshLinksJob extends Job {
 				1, // job-per-title
 				[ 'params' => $extraParams ]
 			);
-			JobQueueGroup::singleton()->push( $jobs );
+			$services->getJobQueueGroup()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
 			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {

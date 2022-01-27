@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -132,7 +134,7 @@ class FixDoubleRedirects extends Maintenance {
 
 	protected function queueJobs( $jobs, $dryrun = false ) {
 		$this->output( "Queuing batch of " . count( $jobs ) . " double redirects.\n" );
-		JobQueueGroup::singleton()->push( $dryrun ? [] : $jobs );
+		MediaWikiServices::getInstance()->getJobQueueGroup()->push( $dryrun ? [] : $jobs );
 	}
 }
 

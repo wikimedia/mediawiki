@@ -102,7 +102,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 				'jobReleaseTimestamp' => $immediatePurgeTimestamp + $delay
 			] );
 		}
-		JobQueueGroup::singleton()->lazyPush( $jobs );
+		MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
 	}
 
 	/**

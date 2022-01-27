@@ -1843,11 +1843,13 @@ class ParserTestRunner {
 			);
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		// Optionally use mock parser, to make debugging of actual parser tests simpler.
 		// But initialise the MessageCache clone first, don't let MessageCache
 		// get a reference to the mock object.
 		if ( $this->disableSaveParse ) {
-			MediaWikiServices::getInstance()->getMessageCache()->getParser();
+			$services->getMessageCache()->getParser();
 			$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
 		} else {
 			$restore = false;
@@ -1871,13 +1873,14 @@ class ParserTestRunner {
 
 		// an edit always attempt to purge backlink links such as history
 		// pages. That is unnecessary.
-		JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+		$jobQueueGroup = $services->getJobQueueGroup();
+		$jobQueueGroup->get( 'htmlCacheUpdate' )->delete();
 		// WikiPages::doEditUpdates randomly adds RC purges
-		JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
+		$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->inNamespace( NS_FILE ) ) {
-			MediaWikiServices::getInstance()->getRepoGroup()->clearCache( $title );
+			$services->getRepoGroup()->clearCache( $title );
 		}
 	}
 

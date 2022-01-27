@@ -543,7 +543,7 @@ class RecentChange implements Taggable {
 		if ( $this->mAttribs['rc_user'] > 0 ) {
 			$jobs[] = RecentChangesUpdateJob::newCacheUpdateJob();
 		}
-		JobQueueGroup::singleton()->lazyPush( $jobs );
+		MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
 	}
 
 	/**

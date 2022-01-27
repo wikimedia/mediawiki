@@ -28,7 +28,6 @@ use DataUpdate;
 use DeferredUpdates;
 use DeprecationHelper;
 use Job;
-use JobQueueGroup;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -309,7 +308,8 @@ class LinksUpdate extends DataUpdate {
 	 * using the job queue.
 	 */
 	protected function queueRecursiveJobs() {
-		$backlinkCache = MediaWikiServices::getInstance()->getBacklinkCacheFactory()
+		$services = MediaWikiServices::getInstance();
+		$backlinkCache = $services->getBacklinkCacheFactory()
 			->getBacklinkCache( $this->mTitle );
 		$action = $this->getCauseAction();
 		$agent = $this->getCauseAgent();
@@ -339,7 +339,7 @@ class LinksUpdate extends DataUpdate {
 				]
 			);
 		}
-		JobQueueGroup::singleton()->push( $jobs );
+		$services->getJobQueueGroup()->push( $jobs );
 	}
 
 	/**
@@ -371,7 +371,7 @@ class LinksUpdate extends DataUpdate {
 				) + [ 'causeAction' => $action, 'causeAgent' => $userName ]
 			);
 
-			JobQueueGroup::singleton()->push( $job );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push( $job );
 		}
 	}
 

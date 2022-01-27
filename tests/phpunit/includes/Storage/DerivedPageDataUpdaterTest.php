@@ -8,7 +8,6 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use DummyContentHandlerForTesting;
-use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -1229,7 +1228,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		$jobQueueGroup = JobQueueGroup::singleton();
+		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );
 		$this->assertSame(
 			$queueSize,
