@@ -175,7 +175,7 @@ $wgSettings->apply();
  */
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
-	call_user_func( MW_SETUP_CALLBACK );
+	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
 	// Make any additional settings available in globals for use here
 	$wgSettings->apply();
 }

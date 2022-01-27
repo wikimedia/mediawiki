@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 
 if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
@@ -70,18 +71,23 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 
-	function wfMaintenanceSetup() {
-		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
+	function wfMaintenanceSetup( SettingsBuilder $settingsBuilder ) {
+		global $maintenance;
+		$config = $settingsBuilder->getConfig();
+
 		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-			if ( $wgLocalisationCacheConf['storeClass'] === false
-				&& ( $wgLocalisationCacheConf['store'] == 'db'
-					|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
+			$cacheConf = $config->get( 'LocalisationCacheConf' );
+			if ( $cacheConf['storeClass'] === false
+				&& ( $cacheConf['store'] == 'db'
+					|| ( $cacheConf['store'] == 'detect'
+						&& !$config->get( 'CacheDirectory' ) ) )
 			) {
-				$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
+				$cacheConf['storeClass'] = LCStoreNull::class;
+				$settingsBuilder->setConfigValue( 'LocalisationCacheConf', $cacheConf );
 			}
 		}
 
-		$maintenance->finalSetup();
+		$maintenance->finalSetup( $settingsBuilder );
 	}
 
 	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );

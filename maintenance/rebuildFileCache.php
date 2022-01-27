@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -43,12 +44,11 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
-	public function finalSetup() {
-		global $wgUseFileCache;
-
-		$this->enabled = $wgUseFileCache;
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		$this->enabled = $settingsBuilder->getConfig()->get( 'UseFileCache' );
 		// Script will handle capturing output and saving it itself
-		$wgUseFileCache = false;
+		$settingsBuilder->setConfigValue( 'UseFileCache', false );
+
 		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
@@ -56,7 +56,7 @@ class RebuildFileCache extends Maintenance {
 		// Ensure no debug-specific logic ends up in the cache (must be after Setup.php)
 		MWDebug::deinit();
 
-		parent::finalSetup();
+		parent::finalSetup( $settingsBuilder );
 	}
 
 	public function execute() {

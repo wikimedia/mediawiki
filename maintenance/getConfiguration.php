@@ -23,6 +23,8 @@
  * @author Antoine Musso <hashar@free.fr>
  */
 
+use MediaWiki\Settings\SettingsBuilder;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -89,9 +91,11 @@ class GetConfiguration extends Maintenance {
 
 	/**
 	 * finalSetup() since we need MWException
+	 *
+	 * @param SettingsBuilder|null $settingsBuilder
 	 */
-	public function finalSetup() {
-		parent::finalSetup();
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		parent::finalSetup( $settingsBuilder );
 
 		$this->regex = $this->getOption( 'regex' ) ?: $this->getOption( 'iregex' );
 		if ( $this->regex ) {
