@@ -878,8 +878,6 @@ CREATE TABLE /*_*/revision (
   rev_sha1 BLOB DEFAULT '' NOT NULL
 );
 
-CREATE INDEX rev_page_id ON /*_*/revision (rev_page, rev_id);
-
 CREATE INDEX rev_timestamp ON /*_*/revision (rev_timestamp);
 
 CREATE INDEX rev_page_timestamp ON /*_*/revision (rev_page, rev_timestamp);

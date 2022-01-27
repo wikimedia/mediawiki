@@ -3615,12 +3615,6 @@
 		],
 		"indexes": [
 			{
-				"name": "rev_page_id",
-				"columns": [ "rev_page", "rev_id" ],
-				"comment": "The index is proposed for removal, do not use it in new code: T163532. Used for ordering revisions within a page by rev_id, which is usually incorrect, since rev_timestamp is normally the correct order. It can also be used by dumpBackup.php, if a page and rev_id range is specified.",
-				"unique": false
-			},
-			{
 				"name": "rev_timestamp",
 				"columns": [ "rev_timestamp" ],
 				"comment": "Used by ApiQueryAllRevisions",
