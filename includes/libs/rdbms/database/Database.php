@@ -1129,11 +1129,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isWriteQuery( $sql, $flags ) {
 		if (
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
 		) {
 			return true;
-		} elseif ( $this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ) {
+		} elseif (
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
+		) {
 			return false;
 		}
 		// BEGIN and COMMIT queries are considered read queries here.
