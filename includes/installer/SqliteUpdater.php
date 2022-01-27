@@ -222,6 +222,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'doConvertDjvuMetadata' ],
 			[ 'dropField', 'page_restrictions', 'pr_user', 'patch-drop-page_restrictions-pr_user.sql' ],
 			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
+			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
 		];
 	}
 
