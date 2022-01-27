@@ -1790,11 +1790,13 @@ class ParserTestRunner {
 		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
 		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$delPageFactory = MediaWikiServices::getInstance()->getDeletePageFactory();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info['name'] );
 			$title = Title::newFromText( $name );
-			$page = WikiPage::factory( $title );
-			$page->doDeleteArticleReal( 'cleaning up', $user );
+			$page = $wikiPageFactory->newFromTitle( $title );
+			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'cleaning up' );
 		}
 	}
 

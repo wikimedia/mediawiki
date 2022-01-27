@@ -63,14 +63,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown(): void {
-		$user = $this->getTestSysop()->getUser();
 		foreach ( $this->pagesToDelete as $p ) {
-			try {
-				if ( $p->canExist() && $p->exists() ) {
-					$p->doDeleteArticleReal( "testing done.", $user );
-				}
-			} catch ( MWException $ex ) {
-				// fail silently
+			if ( $p->exists() ) {
+				$this->deletePage( $p, "testing done." );
 			}
 		}
 		parent::tearDown();
@@ -856,7 +851,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $page->exists() );
 
 		# -----------------
-		$page->doDeleteArticleReal( "done testing", $this->getTestSysop()->getUser() );
+		$this->deletePage( $page, "done testing" );
 		$this->assertFalse( $page->exists() );
 
 		$page = new WikiPage( $page->getTitle() );
@@ -1724,7 +1719,7 @@ more stuff
 	public function testUpdateRevisionOn_NonExistingPage() {
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
-		$page->doDeleteArticleReal( 'reason', $user );
+		$this->deletePage( $page, '', $user );
 
 		$revisionRecord = new MutableRevisionRecord( $page );
 		$revisionRecord->setContent(

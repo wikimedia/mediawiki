@@ -116,7 +116,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		// Delete the page
 		$timestamp += 10;
 		MWTimestamp::setFakeTime( $timestamp );
-		$page->doDeleteArticleReal( 'Just a test deletion', $user );
+		$this->deletePage( $page, '', $user );
 	}
 
 	protected function getExpectedArchiveRows() {

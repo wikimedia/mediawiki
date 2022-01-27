@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -82,8 +83,9 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revG1'] = $this->addPage( 'G', "== Section 1 ==\nG 1.1", CONTENT_MODEL_TEXT );
 		self::$repl['pageG'] = Title::newFromText( 'ApiComparePagesTest G' )->getArticleID();
 
-		WikiPage::factory( Title::newFromText( 'ApiComparePagesTest C' ) )
-			->doDeleteArticleReal( 'Test for ApiComparePagesTest', $user );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()
+			->newFromTitle( Title::newFromText( 'ApiComparePagesTest C' ) );
+		$this->deletePage( $page, 'Test for ApiComparePagesTest', $user );
 
 		RevisionDeleter::createList(
 			'revision',

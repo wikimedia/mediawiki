@@ -65,12 +65,6 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		);
 	}
 
-	private function deletePage( LinkTarget $target, $reason ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doDeleteArticleReal( $reason, $this->getTestSysop()->getUser() );
-	}
-
 	/**
 	 * Performs a batch of page edits as a specified user
 	 * @param User $user
@@ -403,7 +397,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			$target,
 			'Create the page that will be deleted'
 		);
-		$this->deletePage( $target, 'Important Reason' );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromLinkTarget( $target );
+		$this->deletePage( $wikiPage, 'Important Reason' );
 	}
 
 	public function testLoginfoPropParameter() {
