@@ -1558,3 +1558,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-QuickInstantCommons
 	branch = master
 	ignore = dirty
+[submodule "extensions/SemanticMediaWiki"]
+	path = extensions/SemanticMediaWiki
+	url = https://github.com/SemanticMediaWiki/SemanticMediaWiki
+	branch = master
+	ignore = dirty
