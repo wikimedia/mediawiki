@@ -91,6 +91,34 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers ParserOutput::appendJsConfigVar
+	 * @covers ParserOutput::setJsConfigVar
+	 * @covers ParserOutput::getJsConfigVars
+	 */
+	public function testJsConfigVars() {
+		$po = new ParserOutput();
+
+		$po->setJsConfigVar( 'a', '1' );
+		$po->appendJsConfigVar( 'b', 'a' );
+		$po->appendJsConfigVar( 'b', '0' );
+
+		$this->assertEqualsCanonicalizing( [
+			'a' => 1,
+			'b' => [ 'a' => true, '0' => true ],
+		], $po->getJsConfigVars() );
+
+		$po->setJsConfigVar( 'c', '2' );
+		$po->appendJsConfigVar( 'b', 'b' );
+		$po->appendJsConfigVar( 'b', '1' );
+
+		$this->assertEqualsCanonicalizing( [
+			'a' => 1,
+			'b' => [ 'a' => true, 'b' => true, '0' => true, '1' => true ],
+			'c' => 2,
+		], $po->getJsConfigVars() );
+	}
+
+	/**
 	 * @covers ParserOutput::setExtensionData
 	 * @covers ParserOutput::getExtensionData
 	 */
@@ -596,7 +624,9 @@ EOF
 		$a->addHeadItem( '<bar1>', 'bar' );
 		$a->addModules( [ 'test-module-a' ] );
 		$a->addModuleStyles( [ 'test-module-styles-a' ] );
-		$a->addJsConfigVars( 'test-config-var-a', 'a' );
+		$a->setJsConfigVar( 'test-config-var-a', 'a' );
+		$a->appendJsConfigVar( 'test-config-var-c', 'abc' );
+		$a->appendJsConfigVar( 'test-config-var-c', 'def' );
 		$a->addExtraCSPStyleSrc( 'css.com' );
 		$a->addExtraCSPStyleSrc( 'css2.com' );
 		$a->addExtraCSPScriptSrc( 'js.com' );
@@ -608,13 +638,19 @@ EOF
 		$b->addHeadItem( '<bar2>', 'bar' );
 		$b->addModules( [ 'test-module-b' ] );
 		$b->addModuleStyles( [ 'test-module-styles-b' ] );
-		$b->addJsConfigVars( 'test-config-var-b', 'b' );
-		$b->addJsConfigVars( 'test-config-var-a', 'X' );
+		$b->setJsConfigVar( 'test-config-var-b', 'b' );
+		$b->setJsConfigVar( 'test-config-var-a', 'X' );
+		$a->appendJsConfigVar( 'test-config-var-c', 'xyz' );
+		$a->appendJsConfigVar( 'test-config-var-c', 'def' );
 		$b->addExtraCSPStyleSrc( 'https://css.ca' );
 		$b->addExtraCSPScriptSrc( 'jscript.com' );
 		$b->addExtraCSPScriptSrc( 'vbscript.com' );
 		$b->addExtraCSPDefaultSrc( 'img.com/foo.jpg' );
 
+		// Note that overwriting test-config-var-a during the merge
+		// (as this test case does) is deprecated and will eventually
+		// throw an exception. However, at the moment it is still worth
+		// testing this case to ensure backward compatibility. (T300307)
 		yield 'head items and friends' => [ $a, $b, [
 			'getHeadItems' => [
 				'<foo1>',
@@ -632,6 +668,9 @@ EOF
 			'getJsConfigVars' => [
 				'test-config-var-a' => 'X', // overwritten
 				'test-config-var-b' => 'b',
+				'test-config-var-c' => [ // merged safely
+					'abc' => true, 'def' => true, 'xyz' => true,
+				],
 			],
 			'getExtraCSPStyleSrcs' => [
 				'css.com',
@@ -740,14 +779,23 @@ EOF
 		$po = TestingAccessWrapper::newFromObject( $po );
 
 		foreach ( $expected as $method => $value ) {
+			$canonicalize = false;
 			if ( $method[0] === '$' ) {
 				$field = substr( $method, 1 );
 				$actual = $po->__get( $field );
 			} else {
 				$actual = $po->__call( $method, [] );
 			}
+			if ( $method === 'getJsConfigVars' ) {
+				$canonicalize = true;
+			}
 
-			$this->assertEquals( $value, $actual, $method );
+			if ( $canonicalize ) {
+				// order of entries isn't significant
+				$this->assertEqualsCanonicalizing( $value, $actual, $method );
+			} else {
+				$this->assertEquals( $value, $actual, $method );
+			}
 		}
 	}
 
