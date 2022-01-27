@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MultiConfig;
 use Wikimedia\TestingAccessWrapper;
@@ -124,7 +123,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			'InvalidPasswordReset' => true,
 		] );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$manager = new AuthManager(
 			new \FauxRequest(),
 			$services->getMainConfig(),

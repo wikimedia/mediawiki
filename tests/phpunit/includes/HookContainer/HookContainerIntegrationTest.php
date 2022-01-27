@@ -3,7 +3,6 @@
 namespace MediaWiki\HookContainer {
 
 	use ExtensionRegistry;
-	use MediaWiki\MediaWikiServices;
 	use Wikimedia\ScopedCallback;
 
 	class HookContainerIntegrationTest extends \MediaWikiIntegrationTestCase {
@@ -12,7 +11,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 */
 		public function testHookRunsWhenExtensionRegistered() {
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$extensionRegistry = ExtensionRegistry::getInstance();
 			$numHandlersExecuted = 0;
 			$handlers = [ 'FooHook' => [ [
@@ -33,7 +32,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testPreviouslyRegisteredHooksAreReAppliedAfterScopedRegisterRemovesThem() {
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 			// Some handlers for FooHook have been previously set
 			$reset = $hookContainer->register( 'FooHook', static function () {
@@ -66,7 +65,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testHookRunsWithMultipleMixedHandlerTypes() {
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$numHandlersExecuted = 0;
 			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
@@ -104,7 +103,7 @@ namespace MediaWiki\HookContainer {
 				'extensionPath' => '/path/to/extension.json'
 			];
 			$hooks = [ 'Mash' => [ $handler ] ];
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
 			$arg = 0;
 			$ret = $hookContainer->run( 'Mash', [ &$arg ] );
@@ -125,7 +124,7 @@ namespace MediaWiki\HookContainer {
 				'extensionPath' => '/path/to/extension.json'
 			];
 			$hooks = [ 'Mash' => [ $handler ] ];
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
 			$this->expectException( \UnexpectedValueException::class );
 			$arg = 0;

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Test class for ImageListPagerTest class.
  *
@@ -16,7 +14,7 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ImageListPager::formatValue
 	 */
 	public function testFormatValuesThrowException() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$page = new ImageListPager(
 			RequestContext::getMain(),
 			null,

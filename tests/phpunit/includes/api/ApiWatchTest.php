@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -55,7 +54,7 @@ class ApiWatchTest extends ApiTestCase {
 	}
 
 	public function testWatchWithExpiry() {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
 		$user = $this->getTestUser()->getUser();
 
 		// First watch without expiry (indefinite).

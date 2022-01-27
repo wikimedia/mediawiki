@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers Interwiki
  * @group Database
@@ -49,7 +47,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setWgInterwikiCache( $interwikiCache ) {
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+		$this->getServiceContainer()->resetServiceForTesting( 'InterwikiLookup' );
 		$this->setMwGlobals( 'wgInterwikiCache', $interwikiCache );
 	}
 
@@ -78,7 +76,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 
 		$this->setWgInterwikiCache( false );
 
-		$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
+		$interwikiLookup = $this->getServiceContainer()->getInterwikiLookup();
 		$this->assertEquals(
 			[ $dewiki, $zzwiki ],
 			$interwikiLookup->getAllPrefixes(),

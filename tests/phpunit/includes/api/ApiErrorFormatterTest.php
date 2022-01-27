@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -14,7 +13,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	public function testErrorFormatterBasics() {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
 			false );
 		$this->assertSame( 'de', $formatter->getLanguage()->getCode() );
 		$this->assertSame( 'wikitext', $formatter->getFormat() );
@@ -42,7 +41,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	public function testNewWithFormat() {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ), 'wikitext',
 			false );
 		$formatter2 = $formatter->newWithFormat( 'html' );
 
@@ -65,7 +64,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	) {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ), $format,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $lang ), $format,
 			$useDB );
 
 		// Add default type
@@ -603,7 +602,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	public function testGetMessageFromException( $exception, $options, $expect ) {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ), 'html',
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ), 'html',
 			false );
 
 		$msg = $formatter->getMessageFromException( $exception, $options );
@@ -698,7 +697,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	public function testAddMessagesFromStatus_filter() {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' ),
 			'plaintext', false );
 
 		$status = Status::newGood();

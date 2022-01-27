@@ -3,7 +3,6 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -39,7 +38,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getHookContainer() {
 		// Need a real HookContainer for testPersistSession() which modifies $wgHooks
-		return MediaWikiServices::getInstance()->getHookContainer();
+		return $this->getServiceContainer()->getHookContainer();
 	}
 
 	/**

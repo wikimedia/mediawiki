@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers ApiResult
  * @group API
@@ -478,7 +476,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 
 		$result = new ApiResult( 10 );
 		$formatter = new ApiErrorFormatter( $result,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			'none', false );
 		$result->setErrorFormatter( $formatter );
 		$this->assertFalse( $result->addValue( null, 'foo', '12345678901' ) );

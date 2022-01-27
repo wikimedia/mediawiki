@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group ContentHandlerFactory
  */
@@ -24,11 +22,11 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 			],
 		] );
 
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentHandlerFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
 	}
 
 	protected function tearDown(): void {
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentHandlerFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
 
 		parent::tearDown();
 	}
@@ -39,7 +37,7 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 	public function testCallFromService_get_ok(): void {
 		$this->assertInstanceOf(
 			\MediaWiki\Content\IContentHandlerFactory::class,
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
+			$this->getServiceContainer()->getContentHandlerFactory()
 		);
 
 		$this->assertSame(
@@ -52,7 +50,7 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 				'testing',
 				'testing-callbacks',
 			],
-			MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels()
+			$this->getServiceContainer()->getContentHandlerFactory()->getContentModels()
 		);
 	}
 
@@ -61,8 +59,8 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 	 */
 	public function testCallFromService_second_same(): void {
 		$this->assertSame(
-			MediaWikiServices::getInstance()->getContentHandlerFactory(),
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
+			$this->getServiceContainer()->getContentHandlerFactory(),
+			$this->getServiceContainer()->getContentHandlerFactory()
 		);
 	}
 
@@ -70,19 +68,19 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 	 * @covers \MediaWiki\MediaWikiServices::getContentHandlerFactory
 	 */
 	public function testCallFromService_afterCustomDefine_same(): void {
-		$factory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$factory = $this->getServiceContainer()->getContentHandlerFactory();
 		$factory->defineContentHandler(
 			'model name',
 			DummyContentHandlerForTesting::class
 		);
 		$this->assertTrue(
-			MediaWikiServices::getInstance()
+			$this->getServiceContainer()
 				->getContentHandlerFactory()
 				->isDefinedModel( 'model name' )
 		);
 		$this->assertSame(
 			$factory,
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
+			$this->getServiceContainer()->getContentHandlerFactory()
 		);
 	}
 }

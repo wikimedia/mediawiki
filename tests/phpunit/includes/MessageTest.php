@@ -143,7 +143,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideConstructorLanguage
 	 */
 	public function testConstructorLanguage( $key, $params, $languageCode ) {
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()
+		$language = $this->getServiceContainer()->getLanguageFactory()
 			->getLanguage( $languageCode );
 		$message = new Message( $key, $params, $language );
 
@@ -444,7 +444,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::numParams
 	 */
 	public function testNumParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$this->assertSame(
@@ -459,7 +459,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::durationParams
 	 */
 	public function testDurationParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$this->assertSame(
@@ -476,7 +476,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::extractParam
 	 */
 	public function testExpiryParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$ts = wfTimestampNow();
@@ -493,7 +493,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::extractParam
 	 */
 	public function testDateTimeParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$ts = wfTimestampNow();
@@ -510,7 +510,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::extractParam
 	 */
 	public function testDateParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$ts = wfTimestampNow();
@@ -527,7 +527,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::extractParam
 	 */
 	public function testTimeParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$ts = wfTimestampNow();
@@ -543,7 +543,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::userGroupParams
 	 */
 	public function testUserGroupParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 		$msg = new RawMessage( '$1' );
 		$this->setUserLang( $lang );
 		$this->assertSame(
@@ -558,7 +558,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::objectParams
 	 */
 	public function testUserGroupMemberParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 		$msg = new RawMessage( '$1' );
 		$this->setUserLang( $lang );
 		$this->assertSame(
@@ -575,7 +575,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::timeperiodParams
 	 */
 	public function testTimeperiodParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$this->assertSame(
@@ -590,7 +590,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::sizeParams
 	 */
 	public function testSizeParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$this->assertSame(
@@ -605,7 +605,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::bitrateParams
 	 */
 	public function testBitrateParams() {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$msg = new RawMessage( '$1' );
 
 		$this->assertSame(
@@ -779,9 +779,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new Message( 'returnto', [
 			new Message( 'apihelp-link', [
 				'foo', new Message( 'mainpage', [],
-					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) )
-			], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' ) )
-		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'es' ) );
+					$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) )
+			], $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ) )
+		], $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'es' ) );
 
 		$this->assertEquals(
 			'Volver a [[Special:ApiHelp/foo|Página principal]].',

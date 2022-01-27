@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Interwiki\InterwikiLookupAdapter;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @covers SpecialGoToInterwiki
@@ -18,9 +17,9 @@ class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 					'https://nonlocal.example.com/api.php', 'unittest_nonlocalwiki', 0 ),
 			]
 		) );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleFormatter' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		$this->getServiceContainer()->resetServiceForTesting( 'TitleFormatter' );
+		$this->getServiceContainer()->resetServiceForTesting( 'TitleParser' );
+		$this->getServiceContainer()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 
 		$this->assertNotTrue( Title::newFromText( 'Foo' )->isExternal() );
 		$this->assertTrue( Title::newFromText( 'local:Foo' )->isExternal() );
@@ -28,7 +27,7 @@ class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( Title::newFromText( 'local:Foo' )->isLocal() );
 		$this->assertNotTrue( Title::newFromText( 'nonlocal:Foo' )->isLocal() );
 
-		$goToInterwiki = MediaWikiServices::getInstance()->getSpecialPageFactory()
+		$goToInterwiki = $this->getServiceContainer()->getSpecialPageFactory()
 			->getPage( 'GoToInterwiki' );
 
 		RequestContext::resetMain();

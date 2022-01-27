@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group large
  * @group Upload
@@ -24,7 +22,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		] );
 		$this->setGroupPermissions( 'sysop', 'upload_by_url', true );
 
-		if ( MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+		if ( $this->getServiceContainer()->getRepoGroup()->getLocalRepo()
 			->newFile( 'UploadFromUrlTest.png' )->exists()
 		) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
@@ -202,11 +200,11 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( $t->exists(), "File '$name' exists" );
 
 		if ( $t->exists() ) {
-			$file = MediaWikiServices::getInstance()->getRepoGroup()
+			$file = $this->getServiceContainer()->getRepoGroup()
 				->findFile( $name, [ 'ignoreRedirect' => true ] );
 			$empty = "";
 			FileDeleteForm::doDelete( $t, $file, $empty, "none", true, $this->user );
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
+			$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $t );
 			$this->deletePage( $page );
 		}
 		$t = Title::newFromText( $name, NS_FILE );

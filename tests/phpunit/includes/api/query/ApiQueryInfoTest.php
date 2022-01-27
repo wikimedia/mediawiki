@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -169,7 +168,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$page = $this->getExistingTestPage( 'Pluto' );

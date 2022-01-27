@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -87,7 +86,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$updater->setContent( SlotRecord::MAIN, ContentHandler::makeContent( $content, $title ) );
 		$rev = $updater->saveRevision( $summary );
 
-		$rc = MediaWikiServices::getInstance()->getRevisionStore()->getRecentChange( $rev );
+		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $rev );
 		$rc->doMarkPatrolled( $patrollingUser, false, [] );
 	}
 
@@ -131,7 +130,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getWatchedItemStore() {
-		return MediaWikiServices::getInstance()->getWatchedItemStore();
+		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
 	/**
@@ -214,7 +213,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getPrefixedText( LinkTarget $target ) {
-		return MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $target );
+		return $this->getServiceContainer()->getTitleFormatter()->getPrefixedText( $target );
 	}
 
 	private function cleanTestUsersWatchlist() {
@@ -622,7 +621,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'Some Content',
 			'Create the page that will be deleted'
 		);
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromLinkTarget( $target );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$this->deletePage( $wikiPage, 'Important Reason' );
 	}
 
@@ -1140,7 +1139,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			]
 		);
 		$title = Title::newFromLinkTarget( $subjectTarget );
-		$revision = MediaWikiServices::getInstance()
+		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
 

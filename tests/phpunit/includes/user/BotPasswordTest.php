@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -58,7 +57,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function addDBData() {
-		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
+		$passwordFactory = $this->getServiceContainer()->getPasswordFactory();
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -347,7 +346,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 	 * @param string|null $password
 	 */
 	public function testSave( $password ) {
-		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
+		$passwordFactory = $this->getServiceContainer()->getPasswordFactory();
 
 		$bp = BotPassword::newUnsaved( [
 			'centralId' => 42,

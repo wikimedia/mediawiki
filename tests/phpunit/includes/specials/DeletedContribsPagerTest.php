@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  */
@@ -27,7 +25,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->hookContainer = $services->getHookContainer();

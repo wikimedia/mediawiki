@@ -57,7 +57,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
 		$this->setMwGlobals( 'wgDisableLangConversion', false );
@@ -127,7 +127,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		// DummyServicesTrait::getDummyNamespaceInfo
 		$nsInfo = $this->getDummyNamespaceInfo();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		// The PermissionManager should not be used for anything, its only a parameter
 		// until we figure out how to remove it without breaking the GlobalPreferences

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -53,7 +52,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testLinkPrefixCharset() {
-		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ar' );
+		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'ar' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->linkPrefixExtension() );
 
@@ -63,7 +62,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testVariants() {
-		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' );
+		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->hasVariants() );
 
@@ -80,7 +79,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testReadOnly() {
-		$svc = MediaWikiServices::getInstance()->getReadOnlyMode();
+		$svc = $this->getServiceContainer()->getReadOnlyMode();
 		$svc->setReason( 'Need more donations' );
 		try {
 			$data = $this->doQuery();
@@ -94,7 +93,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testNamespacesBasic() {
 		$this->assertSame(
-			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
+			array_keys( $this->getServiceContainer()->getContentLanguage()->getFormattedNamespaces() ),
 			array_keys( $this->doQuery( 'namespaces' ) )
 		);
 	}
@@ -102,7 +101,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testNamespacesExtraNS() {
 		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
 		$this->assertSame(
-			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
+			array_keys( $this->getServiceContainer()->getContentLanguage()->getFormattedNamespaces() ),
 			array_keys( $this->doQuery( 'namespaces' ) )
 		);
 	}
@@ -133,7 +132,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespaceAliases() {
-		$expected = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases();
+		$expected = $this->getServiceContainer()->getContentLanguage()->getNamespaceAliases();
 		$expected = array_map(
 			static function ( $key, $val ) {
 				return [ 'id' => $val, 'alias' => strtr( $key, '_', ' ' ) ];
@@ -147,14 +146,14 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testSpecialPageAliases() {
 		$this->assertCount(
-			count( MediaWikiServices::getInstance()->getSpecialPageFactory()->getNames() ),
+			count( $this->getServiceContainer()->getSpecialPageFactory()->getNames() ),
 			$this->doQuery( 'specialpagealiases' )
 		);
 	}
 
 	public function testMagicWords() {
 		$this->assertCount(
-			count( MediaWikiServices::getInstance()->getContentLanguage()->getMagicWords() ),
+			count( $this->getServiceContainer()->getContentLanguage()->getMagicWords() ),
 			$this->doQuery( 'magicwords' )
 		);
 	}
@@ -201,7 +200,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		] );
 		$this->resetServices();
 
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 
 		$this->editPage( 'MediaWiki:Interlanguage-link-self', 'Self!' );
 		$this->editPage( 'MediaWiki:Interlanguage-link-sitename-self', 'Circular logic' );
@@ -533,7 +532,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider languagesProvider
 	 */
 	public function testLanguages( $langCode ) {
-		$expected = MediaWikiServices::getInstance()
+		$expected = $this->getServiceContainer()
 			->getLanguageNameUtils()
 			->getLanguageNames( (string)$langCode );
 
@@ -561,10 +560,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testLanguageVariants() {
 		$expectedKeys = array_filter( LanguageConverter::$languagesWithVariants,
-			static function ( $langCode ) {
-				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+			function ( $langCode ) {
+				$lang = $this->getServiceContainer()->getLanguageFactory()
 					->getLanguage( $langCode );
-				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				$converter = $this->getServiceContainer()->getLanguageConverterFactory()
 					->getLanguageConverter( $lang );
 					return $converter->hasVariants();
 			}
@@ -590,7 +589,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 */
 	public function testSkins( $code ) {
 		$data = $this->doQuery( 'skins', $code !== null ? [ 'siinlanguagecode' => $code ] : [] );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$skinFactory = $services->getSkinFactory();
 		$skinNames = $skinFactory->getInstalledSkins();
 		$expectedAllowed = $skinFactory->getAllowedSkins();
@@ -635,20 +634,20 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			static function ( $tag ) {
 				return "<$tag>";
 			},
-			MediaWikiServices::getInstance()->getParser()->getTags()
+			$this->getServiceContainer()->getParser()->getTags()
 		);
 
 		$this->assertSame( $expected, $this->doQuery( 'extensiontags' ) );
 	}
 
 	public function testFunctionHooks() {
-		$this->assertSame( MediaWikiServices::getInstance()->getParser()->getFunctionHooks(),
+		$this->assertSame( $this->getServiceContainer()->getParser()->getFunctionHooks(),
 			$this->doQuery( 'functionhooks' ) );
 	}
 
 	public function testVariables() {
 		$this->assertSame(
-			MediaWikiServices::getInstance()->getMagicWordFactory()->getVariableIDs(),
+			$this->getServiceContainer()->getMagicWordFactory()->getVariableIDs(),
 			$this->doQuery( 'variables' )
 		);
 	}

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class SpecialBooksourcesTest extends SpecialPageTestBase {
 	public static function provideISBNs() {
 		return [
@@ -38,7 +36,7 @@ class SpecialBooksourcesTest extends SpecialPageTestBase {
 	}
 
 	protected function newSpecialPage() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new SpecialBookSources(
 			$services->getRevisionLookup(),
 			$services->getContentLanguage()

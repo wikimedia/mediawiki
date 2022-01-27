@@ -17,7 +17,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 		$this->tablesUsed[] = 'job';
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {

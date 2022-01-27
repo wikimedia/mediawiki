@@ -3,7 +3,6 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -27,7 +26,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
-		$this->factory = MediaWikiServices::getInstance()->getLinkRendererFactory();
+		$this->factory = $this->getServiceContainer()->getLinkRendererFactory();
 	}
 
 	public function provideMergeAttribs() {
@@ -203,7 +202,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Linker\LinkRenderer::getLinkClasses
 	 */
 	public function testGetLinkClasses( $foobarTitle, $redirectTitle, $userTitle ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$titleFormatter = $services->getTitleFormatter();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();

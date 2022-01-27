@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
@@ -97,7 +96,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		$slotDiffRenderer = new TextSlotDiffRenderer();
 		$slotDiffRenderer->setStatsdDataFactory( new NullStatsdDataFactory() );
 		$slotDiffRenderer->setLanguage(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) );
 		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
 		return $slotDiffRenderer;
 	}

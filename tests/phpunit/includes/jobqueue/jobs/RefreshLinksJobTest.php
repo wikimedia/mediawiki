@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers RefreshLinksJob
  *
@@ -49,7 +47,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	// TODO: test partition
 
 	public function testRunForSinglePage() {
-		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
 			'aux',
 			CONTENT_MODEL_WIKITEXT
 		);
@@ -59,7 +57,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$page = $this->createPage( __METHOD__, [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
-		$parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$parserCache = $this->getServiceContainer()->getParserCache();
 		$parserCache->deleteOptionsKey( $page );
 
 		$this->db->delete( 'pagelinks', '*', __METHOD__ );
@@ -84,7 +82,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRunForMultiPage() {
-		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
 			'aux',
 			CONTENT_MODEL_WIKITEXT
 		);
@@ -100,7 +98,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$page2 = $this->createPage( "$fname-2", [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
-		$parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$parserCache = $this->getServiceContainer()->getParserCache();
 		$parserCache->deleteOptionsKey( $page1 );
 		$parserCache->deleteOptionsKey( $page2 );
 

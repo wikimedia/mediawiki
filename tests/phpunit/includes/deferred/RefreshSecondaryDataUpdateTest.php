@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\MutableRevisionRecord;
 use Psr\Log\NullLogger;
@@ -11,7 +10,7 @@ use Wikimedia\ScopedCallback;
  */
 class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testSuccess() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
 		$user = $this->getTestUser()->getUser();
@@ -71,7 +70,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEnqueueOnFailure() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
 		$user = $this->getTestUser()->getUser();
@@ -167,7 +166,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	 * rollback shouldn't cause DeferredUpdates to fail to get a ticket.
 	 */
 	public function testT248003() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$user = $this->getTestUser()->getUser();
 

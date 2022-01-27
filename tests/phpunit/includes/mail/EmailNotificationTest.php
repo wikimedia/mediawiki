@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
 	protected $emailNotification;
@@ -25,7 +23,7 @@ class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 	 * @covers EmailNotification::notifyOnPageChange
 	 */
 	public function testNotifyOnPageChange(): void {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store = $this->getServiceContainer()->getWatchedItemStore();
 
 		// both Alice and Bob watch 'Foobar'
 		$title = Title::newFromText( 'Foobar' );

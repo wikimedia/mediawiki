@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
  * @group Database
@@ -38,10 +36,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 		$this->populateDB( [ $dewiki, $zzwiki ] );
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			false,
 			3,
@@ -154,10 +152,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $zzwiki ]
 		);
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			$cdbFile,
 			3,
@@ -207,10 +205,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $zzwiki ]
 		);
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			$hash,
 			3,
@@ -262,10 +260,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $zz, $de, $azz ]
 		);
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			$hash,
 			3,

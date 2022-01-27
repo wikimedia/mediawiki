@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 
@@ -28,8 +27,8 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 	public function testNewCanonical() {
 		$user = $this->getMutableTestUser()->getUser();
-		$userLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
-		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
+		$userLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'fr' );
+		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [

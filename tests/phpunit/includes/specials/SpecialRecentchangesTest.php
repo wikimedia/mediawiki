@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\TestingAccessWrapper;
 
@@ -85,7 +84,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		$this->assertStringContainsString( 'mw-changeslist-line-not-watched', $rc1->getOutput()->getHTML() );
 
 		// Watch the page, and check that it's now watched in RC.
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->addWatch( $context->getUser(), $testPage );
 		$rc2 = $this->getPage();
 		$rc2->setContext( $context );

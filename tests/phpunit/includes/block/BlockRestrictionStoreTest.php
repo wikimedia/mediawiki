@@ -7,7 +7,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
@@ -22,7 +21,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		$this->blockRestrictionStore = $this->getServiceContainer()->getBlockRestrictionStore();
 	}
 
 	protected function tearDown(): void {
@@ -593,7 +592,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		return $block;
 	}

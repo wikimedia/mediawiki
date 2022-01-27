@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers \MagicWordFactory
  *
@@ -9,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  */
 class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 	private function makeMagicWordFactory( Language $contLang = null ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new MagicWordFactory( $contLang ?:
 			$services->getLanguageFactory()->getLanguage( 'en' ),
 			$services->getHookContainer()
@@ -17,7 +15,7 @@ class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetContentLanguage() {
-		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 
 		$magicWordFactory = $this->makeMagicWordFactory( $contLang );
 		$magicWordContLang = $magicWordFactory->getContentLanguage();

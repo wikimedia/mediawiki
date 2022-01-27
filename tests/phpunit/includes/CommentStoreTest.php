@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -807,7 +806,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		$lang = $this->getServiceContainer()->getContentLanguage();
 		$store = new class( $lang, $stage ) extends CommentStore {
 			protected const TEMP_TABLES = [
 				'ipb_reason' => [

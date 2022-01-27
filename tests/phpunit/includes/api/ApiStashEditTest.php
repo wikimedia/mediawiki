@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\NullLogger;
@@ -24,13 +23,13 @@ class ApiStashEditTest extends ApiTestCase {
 			->getUserEditTracker() );
 		$this->setService( 'PageEditStash', new PageEditStash(
 			new HashBagOStuff( [] ),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			new NullLogger(),
 			new NullStatsdDataFactory(),
-			MediaWikiServices::getInstance()->getUserEditTracker(),
-			MediaWikiServices::getInstance()->getUserFactory(),
-			MediaWikiServices::getInstance()->getWikiPageFactory(),
-			MediaWikiServices::getInstance()->getHookContainer(),
+			$this->getServiceContainer()->getUserEditTracker(),
+			$this->getServiceContainer()->getUserFactory(),
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );
 		// Clear rate-limiting cache between tests
@@ -109,7 +108,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @return string
 	 */
 	protected function getStashedText( $hash ) {
-		return MediaWikiServices::getInstance()->getPageEditStash()->fetchInputText( $hash );
+		return $this->getServiceContainer()->getPageEditStash()->fetchInputText( $hash );
 	}
 
 	/**
@@ -127,7 +126,7 @@ class ApiStashEditTest extends ApiTestCase {
 			$user = $this->getTestSysop()->getUser();
 		}
 		$editStash = TestingAccessWrapper::newFromObject(
-			MediaWikiServices::getInstance()->getPageEditStash() );
+			$this->getServiceContainer()->getPageEditStash() );
 
 		return $editStash->getStashKey( $titleObj, $editStash->getContentHash( $content ), $user );
 	}
@@ -311,7 +310,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @return stdClass|bool Return value of PageStashEdit::checkCache(), false if not in cache
 	 */
 	protected function doCheckCache( UserIdentity $user, $text = 'Content' ) {
-		return MediaWikiServices::getInstance()->getPageEditStash()->checkCache(
+		return $this->getServiceContainer()->getPageEditStash()->checkCache(
 			Title::newFromText( __CLASS__ ),
 			new WikitextContent( $text ),
 			$user
@@ -373,7 +372,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$key = $this->getStashKey( __CLASS__, $text, $user );
 
 		$editStash = TestingAccessWrapper::newFromObject(
-			MediaWikiServices::getInstance()->getPageEditStash() );
+			$this->getServiceContainer()->getPageEditStash() );
 		$cache = $editStash->cache;
 
 		$editInfo = $cache->get( $key );
@@ -424,7 +423,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->doStash( [ 'text' => $text ] );
 
 		$editStash = TestingAccessWrapper::newFromObject(
-			MediaWikiServices::getInstance()->getPageEditStash() );
+			$this->getServiceContainer()->getPageEditStash() );
 		$cache = $editStash->cache;
 		$key = $this->getStashKey( __CLASS__, $text );
 
