@@ -2065,7 +2065,7 @@
 	"usermessage-editor": "Benoriichtegungs-System",
 	"watchlist": "Iwwerwaachungslëscht",
 	"mywatchlist": "Iwwerwaachungslëscht",
-	"watchlistfor2": "Vum $1 $2",
+	"watchlistfor2": "Fir $1",
 	"nowatchlist": "Är Iwwerwaachungslëscht ass eidel.",
 	"watchlistanontext": "Loggt Iech a fir Elementer op Ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
 	"watchnologin": "Net ageloggt",
@@ -3507,5 +3507,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP Adressberäich",
 	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Numm (z.B. \"prefix>BeispillNumm\")",
-	"paramvalidator-help-type-title": "Typ: Säitentitel"
+	"paramvalidator-help-type-title": "Typ: Säitentitel",
+	"changeslist-nocomment": "Kee Resumé vun der Ännerung"
 }

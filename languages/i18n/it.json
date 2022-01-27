@@ -2373,7 +2373,7 @@
 	"usermessage-template": "MediaWiki:MessaggioUtente",
 	"watchlist": "Osservati speciali",
 	"mywatchlist": "osservati speciali",
-	"watchlistfor2": "Dell'utente $1 $2",
+	"watchlistfor2": "Per $1",
 	"nowatchlist": "La lista degli osservati speciali è vuota.",
 	"watchlistanontext": "Per visualizzare e modificare l'elenco degli osservati speciali è necessario eseguire l'accesso.",
 	"watchnologin": "Accesso non effettuato",

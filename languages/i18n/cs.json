@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adam N.",
 			"Amire80",
 			"Asmen",
 			"Chmee2",
@@ -2295,7 +2296,7 @@
 	"usermessage-editor": "Systémový poslíček",
 	"watchlist": "Sledované stránky",
 	"mywatchlist": "Sledované stránky",
-	"watchlistfor2": "{{GENDER:$1|Uživatele|Uživatelky|Uživatele}} $1 $2",
+	"watchlistfor2": "Pro $1",
 	"nowatchlist": "Na svém seznamu sledovaných stránek nemáte žádné položky.",
 	"watchlistanontext": "Pro prohlížení či úpravu seznamu sledovaných stránek se musíte přihlásit.",
 	"watchnologin": "Nejste přihlášen(a)",
@@ -4058,5 +4059,6 @@
 	"paramvalidator-help-type-title": "Typ: název stránky",
 	"paramvalidator-help-type-title-must-exist": "Přijímá jen existující stránky",
 	"paramvalidator-help-type-title-no-must-exist": "Přijímá neexistující stránky",
-	"nonmain-slot-differences-therefore-readonly": "Wikitext této revize stránky nemůžete editovat, protože se od této revize změnila data této stránky nezaložená na wikitextu. [$1 Kliknutím sem můžete obnovit tuto revizi.]"
+	"nonmain-slot-differences-therefore-readonly": "Wikitext této revize stránky nemůžete editovat, protože se od této revize změnila data této stránky nezaložená na wikitextu. [$1 Kliknutím sem můžete obnovit tuto revizi.]",
+	"changeslist-nocomment": "Bez shrnutí editace"
 }

@@ -4322,5 +4322,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Accepte les pages inexistantes.",
 	"nonmain-slot-differences-therefore-readonly": "Vous ne pouvez pas modifier le wikitexte de cette révision de la page, car il y a eu des modifications des données sur la page depuis cette révision, qui ne sont pas basées sur le wikitexte. [$1 Pour rétablir cette version, cliquer ici.]",
 	"config-missing-key": "Le paramètre de configuration MediaWiki \"$1\" est manquant.",
-	"config-invalid-key": "Paramètre de configuration MediaWiki \"$1\" non valide : $2"
+	"config-invalid-key": "Paramètre de configuration MediaWiki \"$1\" non valide : $2",
+	"changeslist-nocomment": "Aucun résumé de modifications"
 }

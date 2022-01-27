@@ -2255,7 +2255,7 @@
 	"usermessage-editor": "Sistemski sporočevalec",
 	"watchlist": "Spisek nadzorov",
 	"mywatchlist": "Spisek nadzorov",
-	"watchlistfor2": "Za $1 $2",
+	"watchlistfor2": "Za $1",
 	"nowatchlist": "Tvoj spisek nadzorov je prazen.",
 	"watchlistanontext": "Za pregled ali urejanje vsebine vašega spiska nadzorov se morate prijaviti.",
 	"watchnologin": "Niste prijavljeni",
@@ -3962,5 +3962,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Sprejme neobstoječe strani.",
 	"nonmain-slot-differences-therefore-readonly": "Na tej redakciji strani ne morete urejati wikibesedila, ker so bile po tej redakciji na strani narejene spremembe podatkov, ki ne temeljijo na wikibesedilu. [$1 Kliknite tukaj za obnovitev te redakcije.]",
 	"config-missing-key": "Manjka konfiguracijski parameter MediaWiki »$1«",
-	"config-invalid-key": "Neveljaven konfiguracijski parameter MediaWiki »$1«: $2"
+	"config-invalid-key": "Neveljaven konfiguracijski parameter MediaWiki »$1«: $2",
+	"changeslist-nocomment": "Brez povzetka urejanja"
 }
