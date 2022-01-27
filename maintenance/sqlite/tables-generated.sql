@@ -902,3 +902,11 @@ CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
 CREATE INDEX si_title ON /*_*/searchindex (si_title);
 
 CREATE INDEX si_text ON /*_*/searchindex (si_text);
+
+
+CREATE TABLE /*_*/linktarget (
+  lt_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  lt_namespace INTEGER NOT NULL, lt_title BLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX lt_namespace_title ON /*_*/linktarget (lt_namespace, lt_title);

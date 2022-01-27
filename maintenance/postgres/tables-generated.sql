@@ -968,3 +968,13 @@ CREATE UNIQUE INDEX si_page ON searchindex (si_page);
 CREATE INDEX si_title ON searchindex (si_title);
 
 CREATE INDEX si_text ON searchindex (si_text);
+
+
+CREATE TABLE linktarget (
+  lt_id BIGSERIAL NOT NULL,
+  lt_namespace INT NOT NULL,
+  lt_title TEXT NOT NULL,
+  PRIMARY KEY(lt_id)
+);
+
+CREATE UNIQUE INDEX lt_namespace_title ON linktarget (lt_namespace, lt_title);

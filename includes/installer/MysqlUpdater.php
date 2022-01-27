@@ -251,6 +251,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'page_restrictions', 'pr_user', 'patch-drop-page_restrictions-pr_user.sql' ],
 			[ 'modifyField', 'filearchive', 'fa_id', 'patch-filearchive-fa_id.sql' ],
 			[ 'modifyField', 'image', 'img_major_mime', 'patch-image-img_major_mime-default.sql' ],
+			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
 		];
 	}
 
