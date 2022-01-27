@@ -372,7 +372,7 @@ class Names {
 		'pms' => 'Piemontèis', # Piedmontese
 		'pnb' => 'پنجابی', # Western Punjabi
 		'pnt' => 'Ποντιακά', # Pontic/Pontic Greek
-		'prg' => 'Prūsiskan', # Prussian
+		'prg' => 'prūsiskan', # Prussian
 		'ps' => 'پښتو', # Pashto
 		'pt' => 'português', # Portuguese
 		'pt-br' => 'português do Brasil', # Brazilian Portuguese
