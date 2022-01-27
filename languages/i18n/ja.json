@@ -915,8 +915,10 @@
 	"nextrevision": "新しい版 →",
 	"currentrevisionlink": "最新版",
 	"cur": "最新",
+	"tooltip-cur": "最新版との差分",
 	"next": "次",
 	"last": "前",
+	"tooltip-last": "前の版との差分",
 	"page_first": "先頭",
 	"page_last": "末尾",
 	"histlegend": "差分の選択: 比較したい版のラジオボタンを選択し、Enterキーを押すか、下部のボタンを押します。<br />\n凡例: <strong>({{int:cur}})</strong>＝最新版との比較、<strong>({{int:last}})</strong>＝直前の版との比較、<strong>{{int:minoreditletter}}</strong>＝細部の編集",
@@ -2376,7 +2378,7 @@
 	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "ウォッチリスト",
 	"mywatchlist": "ウォッチリスト",
-	"watchlistfor2": "利用者: $1 $2",
+	"watchlistfor2": "利用者: $1",
 	"nowatchlist": "ウォッチリストには何も項目がありません。",
 	"watchlistanontext": "ウォッチリストにある項目を閲覧または編集するには、ログインしてください。",
 	"watchnologin": "ログインしていません",
@@ -4234,5 +4236,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "存在しないページでも可。",
 	"nonmain-slot-differences-therefore-readonly": "ページのこの版以降に、ページのデータにウィキテキストに基づいていない変更が発生したため、この版のウィキテキストを編集できません。[$1 ここをクリックして版を復元できます。]",
 	"config-missing-key": "MediaWiki設定引数「$1」が不足しています",
-	"config-invalid-key": "不正なMediaWiki設定引数「$1」：$2"
+	"config-invalid-key": "不正なMediaWiki設定引数「$1」：$2",
+	"changeslist-nocomment": "編集の要約なし"
 }

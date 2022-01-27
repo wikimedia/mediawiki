@@ -968,8 +968,10 @@
 	"nextrevision": "下一版本→",
 	"currentrevisionlink": "最后版本",
 	"cur": "当前",
+	"tooltip-cur": "与最新修订的差异",
 	"next": "后继",
 	"last": "之前",
+	"tooltip-last": "与上个修订的差异",
 	"page_first": "首页",
 	"page_last": "末页",
 	"histlegend": "差异选择：选中要对比的版本的单选按钮，按Enter键或下方的按钮。<br />说明：<strong>（{{int:cur}}）</strong>=与最后版本之间的差异，<strong>（{{int:last}}）</strong>=与上一版本之间的差异，<strong>{{int:minoreditletter}}</strong>=小编辑。",
@@ -2426,7 +2428,7 @@
 	"usermessage-template": "MediaWiki:用户通知",
 	"watchlist": "监视列表",
 	"mywatchlist": "监视列表",
-	"watchlistfor2": "$1的监视列表$2",
+	"watchlistfor2": "$1的监视列表",
 	"nowatchlist": "您的监视列表为空。",
 	"watchlistanontext": "请登录以查看或编辑您的监视列表。",
 	"watchnologin": "未登录",
@@ -4199,5 +4201,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。",
 	"nonmain-slot-differences-therefore-readonly": "您无法编辑此页面修订上的wikitext，因为自此修订以来，页面上的数据发生了不基于wikitext的更改。[$1 要恢复此修订，请单击此处。]",
 	"config-missing-key": "缺少MediaWiki配置参数”$1“",
-	"config-invalid-key": "无效的MediaWiki配置参数“$1”：$2"
+	"config-invalid-key": "无效的MediaWiki配置参数“$1”：$2",
+	"changeslist-nocomment": "无编辑摘要"
 }

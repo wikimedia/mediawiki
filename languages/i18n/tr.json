@@ -4127,5 +4127,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Var olmayan sayfaları kabul eder.",
 	"nonmain-slot-differences-therefore-readonly": "Bu revizyondan bu yana sayfadaki verilerde vikimetin tabanlı olmayan değişiklikler olduğundan, sayfanın bu revizyonundaki vikimetin dosyasını düzenleyemezsiniz. [$1 Bu revizyonu geri yüklemek için buraya tıklayın.]",
 	"config-missing-key": "Eksik M\"$1\" MediaWiki yapılandırma parametresi",
-	"config-invalid-key": "Geçersiz \"$1\" MediaWiki yapılandırma parametresi: $2"
+	"config-invalid-key": "Geçersiz \"$1\" MediaWiki yapılandırma parametresi: $2",
+	"changeslist-nocomment": "Değişiklik özeti yok"
 }

@@ -2347,7 +2347,7 @@
 	"usermessage-editor": "Systeembericht",
 	"watchlist": "Volglijst",
 	"mywatchlist": "Volglijst",
-	"watchlistfor2": "Voor $1 $2",
+	"watchlistfor2": "Voor $1",
 	"nowatchlist": "Uw volglijst is leeg.",
 	"watchlistanontext": "Om uw volglijst te bekijken of te bewerken moet u zich aanmelden.",
 	"watchnologin": "U bent niet aangemeld",
@@ -4071,5 +4071,6 @@
 	"paramvalidator-help-type-title": "Soort: paginatitel",
 	"paramvalidator-help-type-title-must-exist": "Accepteer alleen bestaande pagina's.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepteert niet-bestaande pagina's.",
-	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]"
+	"nonmain-slot-differences-therefore-readonly": "U kunt de wikitekst van deze versie van de pagina niet bewerken omdat er na deze versie wijzigingen aan de informatie op de pagina zijn gemaakt die niet op wikitekst zijn gebaseerd. [$1 klik hier om deze versie te herstellen.]",
+	"changeslist-nocomment": "Geen bewerkingssamenvatting"
 }
