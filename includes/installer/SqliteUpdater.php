@@ -226,6 +226,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page_restrictions', 'pr_page', 'patch-page_restrictions-pr_page.sql' ],
 			[ 'modifyField', 'page_props', 'pp_page', 'patch-page_props-pp_page.sql' ],
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_value', 'patch-ipblocks_restrictions-ir_value.sql' ],
+			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
 		];
 	}
 
