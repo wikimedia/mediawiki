@@ -116,7 +116,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			->willReturn( FormatJson::encode( $editResult ) );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
-			->method( 'getConnection' )
+			->method( 'getConnectionRef' )
 			->willReturn( $dbr );
 
 		$erCache = new EditResultCache(
@@ -151,7 +151,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			->willReturn( false );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->expects( $this->once() )
-			->method( 'getConnection' )
+			->method( 'getConnectionRef' )
 			->willReturn( $dbr );
 
 		$erCache = new EditResultCache(

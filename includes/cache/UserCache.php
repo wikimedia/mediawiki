@@ -126,7 +126,7 @@ class UserCache {
 
 		// Lookup basic info for users not yet loaded...
 		if ( count( $usersToQuery ) ) {
-			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$tables = [ 'user', 'actor' ];
 			$conds = [ 'user_id' => $usersToQuery ];
 			$fields = [ 'user_name', 'user_real_name', 'user_registration', 'user_id', 'actor_id' ];
