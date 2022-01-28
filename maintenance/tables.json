@@ -821,7 +821,7 @@
 				"name": "ir_value",
 				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -924,7 +924,7 @@
 				"name": "pr_page",
 				"comment": "Page to apply restrictions to (Foreign Key to page).",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "pr_type",
@@ -1410,7 +1410,7 @@
 			{
 				"name": "pp_page",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "pp_propname",
