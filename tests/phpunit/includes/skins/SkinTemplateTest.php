@@ -206,18 +206,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetSectionsData(): array {
-		$END_SUBSECTION = [
-			'is-last-item' => true,
-		];
-		$NOT_END_SUBSECTION = [
-			'is-last-item' => false,
-		];
-		$WITH_SUBSECTIONS = [
-			'has-subsections' => true,
-		];
-		$WITHOUT_SUBSECTIONS = [
-			'has-subsections' => false,
-		];
 		// byteoffset and fromtitle are redacted from this test.
 		$SECTION_1 = [
 			'toclevel' => 1,
@@ -259,11 +247,15 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			[
 				[
 					$SECTION_1,
-					$SECTION_2,
+					$SECTION_2
 				],
 				[
-					$SECTION_1 + $NOT_END_SUBSECTION + $WITHOUT_SUBSECTIONS,
-					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_1 + [
+						'array-subsections' => [],
+						],
+					$SECTION_2 + [
+						'array-subsections' => [],
+						]
 				]
 			],
 			[
@@ -273,9 +265,16 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 					$SECTION_2,
 				],
 				[
-					$SECTION_1 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
-					$SECTION_1_1 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
-					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_1 + [
+						'array-subsections' => [
+							$SECTION_1_1 + [
+								'array-subsections' => [],
+							]
+						]
+					],
+					$SECTION_2 + [
+						'array-subsections' => [],
+					]
 				]
 			],
 			[
@@ -288,12 +287,26 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 					$SECTION_2,
 				],
 				[
-					$SECTION_1 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
-					$SECTION_1_1 + $NOT_END_SUBSECTION + $WITHOUT_SUBSECTIONS,
-					$SECTION_1_2 + $NOT_END_SUBSECTION + $WITH_SUBSECTIONS,
-					$SECTION_1_2_1 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
-					$SECTION_1_3 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
-					$SECTION_2 + $END_SUBSECTION + $WITHOUT_SUBSECTIONS,
+					$SECTION_1 + [
+						'array-subsections' => [
+							$SECTION_1_1 + [
+								'array-subsections' => [],
+							],
+							$SECTION_1_2 + [
+								'array-subsections' => [
+									$SECTION_1_2_1 + [
+										'array-subsections' => [],
+									]
+								]
+							],
+							$SECTION_1_3 + [
+								'array-subsections' => [],
+							]
+						]
+					],
+					$SECTION_2 + [
+						'array-subsections' => [],
+					]
 				]
 			]
 		];
@@ -322,7 +335,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$data = $reflectionMethod->invoke(
 			$skin
 		);
-		$this->assertEquals( $data, $expected );
+		$this->assertEquals( $expected, $data );
 	}
 
 	public function provideGetTOCData() {

@@ -89,16 +89,16 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Enriches section data with has-subsections and is-last-subsection
-	 * properties so that the table of contents can be rendered in Mustache.
+	 * Enriches section data by nesting child elements within parent elements
+	 * such that the table of contents can be rendered in Mustache.
 	 *
 	 * Example Mustache template code:
 	 * <ul>
 	 * {{#array-sections}}
-	 *   <li>{{number}} {{line}}
-	 *   {{#has-subsections}}<ul>{{/has-subsections}}
-	 *   {{^has-subsections}}</li>{{/has-subsections}}
-	 *   {{#is-last-item}}</ul>{{/is-last-item}}
+	 *   <li>{{number}} {{line}}</li>
+	 *   {{#array-subsections}}
+	 *     {{>TableOfContents__subsection}}
+	 *   {{/array-subsections}}
 	 * {{/array-sections}}
 	 * </ul>
 	 *
@@ -106,19 +106,34 @@ abstract class Skin extends ContextSource {
 	 */
 	private function getSectionsData(): array {
 		$sections = $this->getOutput()->getSections();
+		$data = $this->getSectionsDataInternal( $sections, 1 );
+		return $data;
+	}
+
+	/**
+	 * Nests child sections within their parent sections.
+	 *
+	 * @param array $sections
+	 * @param int $toclevel
+	 * @return array
+	 */
+	private function getSectionsDataInternal( $sections, $toclevel = 1 ) {
 		$data = [];
-		$parent = null;
-		$lastLevel = 0;
 		foreach ( $sections as $i => $section ) {
-			$nextSection = $sections[$i + 1] ?? null;
-			$level = $section['toclevel'];
-
-			$data[] = $section + [
-				'has-subsections' => $nextSection !== null && $nextSection['toclevel'] > $level,
-				'is-last-item' => $nextSection === null || $nextSection['toclevel'] < $level,
-			];
+			// Set all the parent sections at the current top level.
+			if ( $section['toclevel'] === $toclevel ) {
+				$data[] = $section + [
+						'array-subsections' => $this->getSectionsDataInternal(
+							array_slice( $sections, $i + 1 ),
+							$toclevel + 1
+						)
+					];
+			}
+			// Child section belongs to a higher parent.
+			if ( $section['toclevel'] < $toclevel ) {
+				return $data;
+			}
 		}
-
 		return $data;
 	}
 
