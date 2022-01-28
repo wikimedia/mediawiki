@@ -117,16 +117,6 @@ class ForeignDBRepo extends LocalRepo {
 		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 
-	/**
-	 * Return information about the repository.
-	 *
-	 * @return array
-	 * @since 1.22
-	 */
-	public function getInfo() {
-		return FileRepo::getInfo();
-	}
-
 	public function getBlobStore(): ?BlobStore {
 		return null;
 	}

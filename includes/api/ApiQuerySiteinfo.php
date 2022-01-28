@@ -359,10 +359,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$favicon = $config->get( 'Favicon' );
-		if ( !empty( $favicon ) ) {
-			// wgFavicon can either be a relative or an absolute path
-			// make sure we always return an absolute path
-			$data['favicon'] = wfExpandUrl( $favicon, PROTO_RELATIVE );
+		if ( $favicon ) {
+			// Expand any local path to full URL to improve API usability (T77093).
+			$data['favicon'] = wfExpandUrl( $favicon );
 		}
 
 		$data['centralidlookupprovider'] = $config->get( 'CentralIdLookupProvider' );
