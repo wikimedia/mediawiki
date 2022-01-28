@@ -129,12 +129,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionDirtyTempTables = [];
 
-	/** @var int Transaction status */
-	private $trxStatus = self::STATUS_TRX_NONE;
-	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
-	private $trxStatusCause;
-	/** @var array|null Error details of the last statement-only rollback */
-	private $trxStatusIgnoredCause;
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
 	/** @var string|null Name of the function that start the last transaction */
@@ -212,13 +206,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public const NEW_UNCONNECTED = 0;
 	/** @var int New Database instance will already be connected when returned */
 	public const NEW_CONNECTED = 1;
-
-	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
-	public const STATUS_TRX_ERROR = 1;
-	/** @var int Transaction is active and in a normal state */
-	public const STATUS_TRX_OK = 2;
-	/** @var int No transaction is active */
-	public const STATUS_TRX_NONE = 3;
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
@@ -609,7 +596,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.31
 	 */
 	public function trxStatus() {
-		return $this->trxStatus;
+		return $this->transactionManager->trxStatus();
 	}
 
 	public function tablePrefix( $prefix = null ) {
@@ -1398,7 +1385,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				# We're ignoring an error that caused just the current query to be aborted.
 				# But log the cause so we can log a deprecation notice if a caller actually
 				# does ignore it.
-				$this->trxStatusIgnoredCause = [ $err, $errno, $fname ];
+				$this->transactionManager->setTrxStatusIgnoredCause( [ $err, $errno, $fname ] );
 			} elseif ( !$recoverableCL ) {
 				# Either the query was aborted or all queries after BEGIN where aborted.
 				# In the first case, the only options going forward are (a) ROLLBACK, or
@@ -1406,7 +1393,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				# option is ROLLBACK, since the snapshots would have been released.
 				$corruptedTrx = true; // cannot recover
 				$trxError = $this->getQueryException( $err, $errno, $sql, $fname );
-				$this->setTransactionError( $trxError );
+				$this->transactionManager->setTransactionError( $trxError );
 			}
 		}
 
@@ -1608,21 +1595,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		if ( $this->trxStatus < self::STATUS_TRX_OK ) {
-			throw new DBTransactionStateError(
-				$this,
-				"Cannot execute query from $fname while transaction status is ERROR",
-				[],
-				$this->trxStatusCause
-			);
-		} elseif ( $this->trxStatus === self::STATUS_TRX_OK && $this->trxStatusIgnoredCause ) {
-			list( $iLastError, $iLastErrno, $iFname ) = $this->trxStatusIgnoredCause;
-			call_user_func( $this->deprecationLogger,
-				"Caller from $fname ignored an error originally raised from $iFname: " .
-				"[$iLastErrno] $iLastError"
-			);
-			$this->trxStatusIgnoredCause = null;
-		}
+		$this->transactionManager->assertTransactionStatus( $this, $this->deprecationLogger, $fname );
 	}
 
 	/**
@@ -4482,7 +4455,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 					$entry[0]( $this );
 				} catch ( Throwable $trxError ) {
-					$this->setTransactionError( $trxError );
+					$this->transactionManager->setTransactionError( $trxError );
 					throw $trxError;
 				}
 			}
@@ -4511,7 +4484,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 						$entry[0]( $trigger, $this );
 					} catch ( Throwable $trxError ) {
-						$this->setTransactionError( $trxError );
+						$this->transactionManager->setTransactionError( $trxError );
 						throw $trxError;
 					}
 				} else {
@@ -4840,17 +4813,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					// Atomic section nested within the transaction; rollback the transaction
 					// to the state prior to this section and trigger its cancellation callbacks
 					$this->doRollbackToSavepoint( $savepointId, $fname );
-					$this->trxStatus = self::STATUS_TRX_OK; // no exception; recovered
-					$this->trxStatusIgnoredCause = null;
+					$this->transactionManager->setTrxStatusToOk(); // no exception; recovered
 					$this->runOnAtomicSectionCancelCallbacks( self::TRIGGER_CANCEL, $excisedIds );
 				}
-			} elseif ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
-				// Put the transaction into an error state if it's not already in one
-				$trxError = new DBUnexpectedError(
-					$this,
-					"Uncancelable atomic section canceled (got $fname)"
-				);
-				$this->setTransactionError( $trxError );
+			} else {
+				$this->transactionManager->setTransactionErrorFromStatus( $this, $fname );
 			}
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
@@ -4922,8 +4889,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 		$this->transactionManager->newTrxId();
-		$this->trxStatus = self::STATUS_TRX_OK;
-		$this->trxStatusIgnoredCause = null;
 		$this->trxAtomicCounter = 0;
 		$this->transactionManager->setTrxTimestamp( microtime( true ) );
 		$this->trxFname = $fname;
@@ -5016,7 +4981,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->transactionManager->setTrxStatusToNone();
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
@@ -5075,7 +5040,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$this->doRollback( $fname );
 		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->transactionManager->setTrxStatusToNone();
 		$this->trxAtomicLevels = [];
 		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
@@ -5970,18 +5935,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Mark the transaction as requiring rollback (STATUS_TRX_ERROR) due to an error
-	 *
-	 * @param Throwable $trxError
-	 */
-	private function setTransactionError( Throwable $trxError ) {
-		if ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
-			$this->trxStatus = self::STATUS_TRX_ERROR;
-			$this->trxStatusCause = $trxError;
-		}
-	}
-
-	/**
 	 * Demark the start of a critical section of session/transaction state changes
 	 *
 	 * Use this to disable potentially DB handles due to corruption from highly unexpected
@@ -6083,7 +6036,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $trxError ) {
-			$this->setTransactionError( $trxError );
+			$this->transactionManager->setTransactionError( $trxError );
 		}
 	}
 

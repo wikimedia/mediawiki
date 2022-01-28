@@ -6,6 +6,7 @@ use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2158,7 +2159,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
-		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$wrapper->transactionManager->setTransactionError( new DBUnexpectedError( null, 'error' ) );
 		$this->database->cancelAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
@@ -2270,7 +2271,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 
 		$this->database->begin( __METHOD__ );
-		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$wrapper->transactionManager->setTransactionError( new DBUnexpectedError( null, 'error' ) );
 		$this->expectException( \Wikimedia\Rdbms\DBTransactionStateError::class );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 	}
@@ -2281,27 +2282,28 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testTransactionErrorState2() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 
+		// TODO: This really needs a better place
 		$this->database->startAtomic( __METHOD__ );
-		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$wrapper->transactionManager->setTransactionError( new DBUnexpectedError( null, 'error' ) );
 		$this->database->rollback( __METHOD__ );
 		$this->assertSame( 0, $this->database->trxLevel() );
-		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
 		$this->database->startAtomic( __METHOD__ );
-		$this->assertEquals( Database::STATUS_TRX_OK, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_OK, $wrapper->trxStatus() );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
-		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 1; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		$this->database->begin( __METHOD__ );
 		$this->database->startAtomic( __METHOD__, Database::ATOMIC_CANCELABLE );
 		$this->database->update( 'y', [ 'a' => 1 ], [ 'field' => 1 ], __METHOD__ );
-		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$wrapper->transactionManager->setTransactionError( new DBUnexpectedError( null, 'error' ) );
 		$this->database->cancelAtomic( __METHOD__ );
-		$this->assertEquals( Database::STATUS_TRX_OK, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_OK, $wrapper->trxStatus() );
 		$this->database->startAtomic( __METHOD__ );
 		$this->database->delete( 'y', [ 'field' => 1 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
@@ -2312,10 +2314,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		// Next transaction
 		$this->database->startAtomic( __METHOD__ );
-		$this->assertEquals( Database::STATUS_TRX_OK, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_OK, $wrapper->trxStatus() );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
-		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
+		$this->assertEquals( TransactionManager::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
