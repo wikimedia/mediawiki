@@ -1,0 +1,32 @@
+diff --git a/includes/UpdateArticle.php b/includes/UpdateArticle.php
+index 812402f..3d798b7 100644
+--- a/includes/UpdateArticle.php
++++ b/includes/UpdateArticle.php
+@@ -358,7 +358,7 @@ class UpdateArticle {
+ 			$titleX = Title::newFromText( $title );
+ 			$articleX = new Article( $titleX );
+ 
+-			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
++			$userOptionsLookup =UserOptionsLookup();
+ 
+ 			$form = '<html>
+ 	<form id="editform" name="editform" method="post" action="' . $wgScriptPath . '/index.php?title=' . urlencode( $title ) . '&action=submit" enctype="multipart/form-data">
+@@ -394,9 +394,16 @@ class UpdateArticle {
+ 		$permission_errors = MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors( 'edit', $user, $titleX );
+ 
+ 		if ( count( $permission_errors ) == 0 ) {
+-			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
++			$services = MediaWikiServices::getInstance();
++			// MW 1.36+
++			if ( method_exists( $services, 'getWikiPageFactory' ) ) {
++				$wikiPageFactory = $services->getWikiPageFactory();
++				$page = $wikiPageFactory->newFromTitle( $titleX );
++			}
++			else {
++				$page = \WikiPage::factory( $titleX );
++			}
+ 
+-			$page = $wikiPageFactory->newFromTitle( $titleX );
+ 			$updater = $page->newPageUpdater( $user );
+ 			$content = $page->getContentHandler()->makeContent( $text, $titleX );
+ 			$updater->setContent( SlotRecord::MAIN, $content );
