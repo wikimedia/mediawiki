@@ -68,6 +68,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+	/** @var TransactionManager */
+	private $transactionManager;
 
 	/** @var DatabaseDomain */
 	protected $currentDomain;
@@ -127,16 +129,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionDirtyTempTables = [];
 
-	/** @var string Application-side ID of the active transaction or an empty string otherwise */
-	private $trxId = '';
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
 	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
 	private $trxStatusCause;
 	/** @var array|null Error details of the last statement-only rollback */
 	private $trxStatusIgnoredCause;
-	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
-	private $trxTimestamp = null;
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
 	/** @var string|null Name of the function that start the last transaction */
@@ -282,6 +280,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
+		$this->transactionManager = new TransactionManager();
 		$this->connectionParams = [
 			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
@@ -592,11 +591,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function trxLevel() {
-		return ( $this->trxId != '' ) ? 1 : 0;
+		// FIXME: A lot of tests disable constructor leading to trx manager being
+		// null and breaking, this is unacceptable but hopefully this should
+		// happen less by moving these functions to the transaction manager class.
+		if ( !$this->transactionManager ) {
+			$this->transactionManager = new TransactionManager();
+		}
+		return $this->transactionManager->trxLevel();
 	}
 
 	public function trxTimestamp() {
-		return $this->trxLevel() ? $this->trxTimestamp : null;
+		return $this->transactionManager->trxTimestamp();
 	}
 
 	/**
@@ -1443,7 +1448,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxProfiler->transactionWritingIn(
 					$this->getServerName(),
 					$this->getDomainID(),
-					$this->trxId
+					$this->transactionManager->getTrxId()
 				);
 			}
 		}
@@ -1499,7 +1504,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$startTime,
 			$isPermWrite,
 			$isPermWrite ? $this->affectedRows() : $numRows,
-			$this->trxId,
+			$this->transactionManager->getTrxId(),
 			$this->getServerName()
 		);
 
@@ -1686,7 +1691,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
-		$oldTrxId = $this->consumeTrxId();
+		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->trxAtomicCounter = 0;
 		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
@@ -1721,18 +1726,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
 		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-	}
-
-	/**
-	 * Reset the application-side transaction ID and return the old one
-	 *
-	 * @return string The old transaction ID or an empty string if there wasn't one
-	 */
-	private function consumeTrxId() {
-		$old = $this->trxId;
-		$this->trxId = '';
-
-		return $old;
 	}
 
 	/**
@@ -4928,13 +4921,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		static $nextTrxId;
-		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
-		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
+		$this->transactionManager->newTrxId();
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxAtomicCounter = 0;
-		$this->trxTimestamp = microtime( true );
+		$this->transactionManager->setTrxTimestamp( microtime( true ) );
 		$this->trxFname = $fname;
 		$this->trxDoneWrites = false;
 		$this->trxAutomaticAtomic = false;
@@ -5024,7 +5015,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$oldTrxId = $this->consumeTrxId();
+		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
@@ -5083,7 +5074,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$this->doRollback( $fname );
-		$oldTrxId = $this->consumeTrxId();
+		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
 		$this->trxAtomicLevels = [];
 		// Clear callbacks that depend on transaction or transaction round commit
