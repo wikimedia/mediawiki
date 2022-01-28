@@ -7631,6 +7631,22 @@ config-schema:
 
             Only supported if cURL is installed, ignored otherwise.
             @since 1.22
+    HTTPMaxTimeout:
+        default: 0
+        type: number
+        description: |-
+            The maximum HTTP request timeout in seconds. If any specified or configured
+            request timeout is larger than this, then this value will be used instead.
+            Zero is interpreted as "no limit".
+            @since 1.35
+    HTTPMaxConnectTimeout:
+        default: 0
+        type: number
+        description: |-
+            The maximum HTTP connect timeout in seconds. If any specified or configured
+            connect timeout is larger than this, then this value will be used instead.
+            Zero is interpreted as "no limit".
+            @since 1.35
     HTTPImportTimeout:
         default: 25
         description: |-

@@ -99,13 +99,13 @@ class HttpRequestFactory {
 			$options['timeout'] ?? null,
 			$options['maxTimeout'] ?? null,
 			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' )
+			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
 		);
 		$options['connectTimeout'] = $this->normalizeTimeout(
 			$options['connectTimeout'] ?? null,
 			$options['maxConnectTimeout'] ?? null,
 			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' )
+			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
 		);
 
 		return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
@@ -232,17 +232,17 @@ class HttpRequestFactory {
 			$options['reqTimeout'] ?? $options['timeout'] ?? null,
 			$options['maxReqTimeout'] ?? $options['maxTimeout'] ?? null,
 			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' )
+			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
 		);
 		$options['connTimeout'] = $this->normalizeTimeout(
 			$options['connTimeout'] ?? $options['connectTimeout'] ?? null,
 			$options['maxConnTimeout'] ?? $options['maxConnectTimeout'] ?? null,
 			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' )
+			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
 		);
 		$options += [
-			'maxReqTimeout' => $this->options->get( 'HTTPMaxTimeout' ),
-			'maxConnTimeout' => $this->options->get( 'HTTPMaxConnectTimeout' ),
+			'maxReqTimeout' => $this->options->get( 'HTTPMaxTimeout' ) ?: INF,
+			'maxConnTimeout' => $this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF,
 			'userAgent' => $this->getUserAgent(),
 			'logger' => $this->logger,
 			'localProxy' => $this->options->get( 'LocalHTTPProxy' ),
@@ -269,14 +269,14 @@ class HttpRequestFactory {
 			$config['timeout'] ?? null,
 			$config['maxTimeout'] ?? null,
 			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' )
+			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
 		);
 
 		$config['connect_timeout'] = $this->normalizeTimeout(
 			$config['connect_timeout'] ?? null,
 			$config['maxConnectTimeout'] ?? null,
 			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' )
+			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
 		);
 
 		if ( !isset( $config['headers']['User-Agent'] ) ) {
