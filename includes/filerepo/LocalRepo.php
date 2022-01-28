@@ -585,20 +585,6 @@ class LocalRepo extends FileRepo {
 		}
 	}
 
-	/**
-	 * Return information about the repository.
-	 *
-	 * @return array
-	 * @since 1.22
-	 */
-	public function getInfo() {
-		$favicon = MediaWikiServices::getInstance()->getMainConfig()->get( 'Favicon' );
-
-		return array_merge( parent::getInfo(), [
-			'favicon' => wfExpandUrl( $favicon ),
-		] );
-	}
-
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}

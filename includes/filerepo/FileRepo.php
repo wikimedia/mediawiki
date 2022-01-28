@@ -123,8 +123,8 @@ class FileRepo {
 	 */
 	protected $abbrvThreshold;
 
-	/** @var string The URL of the repo's favicon, if any */
-	protected $favicon;
+	/** @var null|string The URL to a favicon (optional, may be a server-local path URL). */
+	protected $favicon = null;
 
 	/** @var bool Whether all zones should be private (e.g. private wiki repo) */
 	protected $isPrivate;
@@ -1980,13 +1980,23 @@ class FileRepo {
 		];
 
 		$optionalSettings = [
-			'url', 'thumbUrl', 'initialCapital', 'descBaseUrl', 'scriptDirUrl', 'articleUrl',
-			'fetchDescription', 'descriptionCacheExpiry', 'favicon'
+			'url',
+			'thumbUrl',
+			'initialCapital',
+			'descBaseUrl',
+			'scriptDirUrl',
+			'articleUrl',
+			'fetchDescription',
+			'descriptionCacheExpiry',
 		];
 		foreach ( $optionalSettings as $k ) {
 			if ( isset( $this->$k ) ) {
 				$ret[$k] = $this->$k;
 			}
+		}
+		if ( isset( $this->favicon ) ) {
+			// Expand any local path to full URL to improve API usability (T77093).
+			$ret['favicon'] = wfExpandUrl( $this->favicon );
 		}
 
 		return $ret;

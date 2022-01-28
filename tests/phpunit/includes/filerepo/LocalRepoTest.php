@@ -270,11 +270,12 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetInfo() {
 		$this->setMwGlobals( [
-			'wgFavicon' => '//example.com/favicon.ico',
+			'wgServer' => '//example.org',
+			'wgFavicon' => 'https://global.example/favicon.ico',
 			'wgSitename' => 'Test my site',
 		] );
 
-		$repo = $this->newRepo( [ 'favicon' => 'Hey, this option is ignored in LocalRepo!' ] );
+		$repo = $this->newRepo( [ 'favicon' => '/img/favicon.ico' ] );
 
 		$this->assertSame( [
 			'name' => 'local',
@@ -284,8 +285,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			'url' => false,
 			'thumbUrl' => false,
 			'initialCapital' => true,
-			// XXX This assumes protocol-relative will get expanded to http instead of https
-			'favicon' => 'http://example.com/favicon.ico',
+			// This expands to HTTP instead of HTTPS because the test context imitates HTTP
+			'favicon' => 'http://example.org/img/favicon.ico',
 		], $repo->getInfo() );
 	}
 
