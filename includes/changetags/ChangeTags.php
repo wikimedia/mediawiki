@@ -1738,6 +1738,106 @@ class ChangeTags {
 	}
 
 	/**
+	 * Maximum length of a tag description in UTF-8 characters.
+	 * Longer descriptions will be truncated.
+	 */
+	private const TAG_DESC_CHARACTER_LIMIT = 120;
+
+	/**
+	 * Get information about change tags, without parsing messages, for tag filter dropdown menus.
+	 *
+	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
+	 * Even though we're not parsing messages, building a data structure with the contents of
+	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so the result of this
+	 * function is cached in WANCache for 24 hours.
+	 *
+	 * Returns an array of associative arrays with information about each tag:
+	 * - name: Tag name (string)
+	 * - labelMsg: Short description message (Message object, or false for hidden tags)
+	 * - label: Short description message (raw message contents)
+	 * - descriptionMsg: Long description message (Message object)
+	 * - description: Long description message (raw message contents)
+	 * - cssClass: CSS class to use for RC entries with this tag
+	 * - hits: Number of RC entries that have this tag
+	 *
+	 * @param MessageLocalizer $localizer
+	 * @param Language $lang
+	 * @return array[] Information about each tag
+	 */
+	public static function getChangeTagListSummary( MessageLocalizer $localizer, Language $lang ) {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'tags-list-summary', $lang->getCode() ),
+			WANObjectCache::TTL_DAY,
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
+				$explicitlyDefinedTags = array_fill_keys( self::listExplicitlyDefinedTags(), 0 );
+				$softwareActivatedTags = array_fill_keys( self::listSoftwareActivatedTags(), 0 );
+
+				$tagHitCounts = self::tagUsageStatistics();
+				// Only get tags with more than 0 hits
+				$tagHitCounts = array_filter( $tagHitCounts );
+				// Only get active tags
+				$tagHitCounts = array_intersect_key( $tagHitCounts, $explicitlyDefinedTags + $softwareActivatedTags );
+
+				$result = [];
+				foreach ( $tagHitCounts as $tagName => $hits ) {
+					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
+					$descriptionMsg = self::tagLongDescriptionMessage( $tagName, $localizer );
+					$result[] = [
+						'name' => $tagName,
+						'labelMsg' => $labelMsg,
+						'label' => $labelMsg ? $labelMsg->plain() : $tagName,
+						'descriptionMsg' => $descriptionMsg,
+						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
+						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+						'hits' => $hits,
+					];
+				}
+				return $result;
+			}
+		);
+	}
+
+	/**
+	 * Get information about change tags for tag filter dropdown menus.
+	 *
+	 * This manipulates the label and description of each tag, which are parsed, stripped
+	 * and (in the case of description) truncated versions of these messages. Message
+	 * parsing is expensive, so to detect whether the tag list has changed, use
+	 * getChangeTagListSummary() instead.
+	 *
+	 * The result of this function is cached in WANCache for 24 hours.
+	 *
+	 * @param MessageLocalizer $localizer
+	 * @param Language $lang
+	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
+	 */
+	public static function getChangeTagList( MessageLocalizer $localizer, Language $lang ) {
+		$tags = self::getChangeTagListSummary( $localizer, $lang );
+		foreach ( $tags as &$tagInfo ) {
+			if ( $tagInfo['labelMsg'] ) {
+				$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
+			} else {
+				$tagInfo['label'] = $localizer->msg( 'tag-hidden', $tagInfo['name'] )->text();
+			}
+			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
+				$lang->truncateForVisual(
+					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
+					self::TAG_DESC_CHARACTER_LIMIT
+				) :
+				'';
+			unset( $tagInfo['labelMsg'] );
+			unset( $tagInfo['descriptionMsg'] );
+		}
+
+		// Instead of sorting by hit count (disabled for now), sort by display name
+		usort( $tags, static function ( $a, $b ) {
+			return strcasecmp( $a['label'], $b['label'] );
+		} );
+		return $tags;
+	}
+
+	/**
 	 * Indicate whether change tag editing UI is relevant
 	 *
 	 * Returns true if the user has the necessary right and there are any
