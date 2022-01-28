@@ -506,6 +506,8 @@ because of Phabricator reports.
 * Category::getPageCount now takes a parameter. Category::COUNT_ALL_MEMBERS
   return count of all members while Category::COUNT_CONTENT_PAGES return that
   of content pages. For the former behavior use Category::getMemberCount()
+* Using `new HTMLForm( … )` or `HTMLForm::factory( … )` without the $context
+  parameter is now deprecated.
 * …
 
 === Other changes in 1.38 ===

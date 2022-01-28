@@ -135,7 +135,7 @@ use MediaWiki\Page\PageReference;
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
  * @code
- * $form = new HTMLForm( $someFields );
+ * $form = new HTMLForm( $someFields, $this->getContext() );
  * $form->setMethod( 'get' )
  *      ->setWrapperLegendMsg( 'message-key' )
  *      ->prepareForm()
@@ -349,7 +349,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param array $descriptor Array of Field constructs, as described
 	 * 	in the class documentation
-	 * @param IContextSource|null $context Available since 1.18, will become compulsory in 1.18.
+	 * @param IContextSource|null $context Available since 1.18, required since 1.38.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 */
@@ -361,8 +361,10 @@ class HTMLForm extends ContextSource {
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
 		} elseif ( $context === null && $messagePrefix !== '' ) {
+			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
 			$this->mMessagePrefix = $messagePrefix;
 		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
+			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
 			// B/C since 1.18
 			// it's actually $messagePrefix
 			$this->mMessagePrefix = $context;
