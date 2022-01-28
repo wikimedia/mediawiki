@@ -2319,7 +2319,7 @@
 	"usermessage-editor": "مراسل النظام",
 	"watchlist": "قائمة المراقبة",
 	"mywatchlist": "قائمة المراقبة",
-	"watchlistfor2": "ل$1 $2",
+	"watchlistfor2": "ل$1",
 	"nowatchlist": "لا توجد مدخلات في قائمة مراقبتك.",
 	"watchlistanontext": "الرجاء تسجيل الدخول لعرض أو تعديل الصفحات في قائمة مراقبتك.",
 	"watchnologin": "غير مسجل الدخول",
@@ -4079,5 +4079,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "نطاق الآي بي",
 	"paramvalidator-help-type-user-subtype-interwiki": "اسم الإنترويكي (مثال \"prefix>ExampleName\")",
 	"paramvalidator-help-type-user-subtype-id": "معرف المستخدم (مثال \"#12345\")",
-	"paramvalidator-help-type-title": "النوع: عنوان صفحة"
+	"paramvalidator-help-type-title": "النوع: عنوان صفحة",
+	"changeslist-nocomment": "لا ملخص تعديل"
 }

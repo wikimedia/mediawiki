@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AC Krah",
+			"Afia360",
 			"Amire80",
 			"Celestinesucess",
 			"Daniella Damptey",
@@ -472,7 +473,7 @@
 	"emailuser": "Ma nea ɔredi dwuma no nkaebɔ",
 	"watchlist": "Nea w'ani wɔ ho",
 	"mywatchlist": "Nea w'ani wɔ ho",
-	"watchlistfor2": "Ma $1 $2",
+	"watchlistfor2": "Ma $1",
 	"addedwatchtext": "\"[[:$1]]\" na yɛde ne nkitahode kratafa no aka [[Special:Watchlist|watchlist]].",
 	"watch": "Hwɛ",
 	"unwatch": "Nea yɛnnhwɛeɛ",
