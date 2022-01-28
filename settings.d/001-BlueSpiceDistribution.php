@@ -41,14 +41,18 @@ $GLOBALS['wgGroupTypes'] = [
 	'widgeteditor'     => 'extension-extended'
 ];
 
+$bsImagesPath =
+	$GLOBALS['wgScriptPath']
+	. '/extensions/BlueSpiceDistributionConnector/resources/images';
+
 /*
  * Use an other image for MediaWiki.org
  */
-$GLOBALS['wgFooterIcons']['poweredby']['mediawiki']['src'] = $wgScriptPath . "/extensions/BlueSpiceDistributionConnector/resources/images/footer/MediaWiki.png";
-$GLOBALS['wgFooterIcons']['poweredby']['mediawiki'] += [
+$GLOBALS['wgFooterIcons']['poweredby']['mediawiki'] = [
+	'src' => $bsImagesPath . '/footer/MediaWiki.png',
 	'height' => '27',
 	'width' => '149'
-];
+] + $GLOBALS['wgFooterIcons']['poweredby']['mediawiki'];
 
 /*
  * We want to use an other image for this extensions but the config files are processed to early.
@@ -56,7 +60,7 @@ $GLOBALS['wgFooterIcons']['poweredby']['mediawiki'] += [
  */
 $GLOBALS['wgFooterIcons']['poweredby'] += [
 	'bluespice' => [
-		'src' => $wgScriptPath . '/extensions/BlueSpiceDistributionConnector/resources/images/footer/BlueSpice.png',
+		'src' => $bsImagesPath . '/footer/BlueSpice.png',
 		'url' => 'http://bluespice.com',
 		'alt' => 'Powered by BlueSpice',
 		'height' => '27',
@@ -79,3 +83,18 @@ if ( array_key_exists( 'semanticmediawiki', $GLOBALS['wgFooterIcons']['poweredby
 
 	$GLOBALS['wgFooterIcons']['poweredby'] = $footerIcons;
 }
+
+$defaultLogoPath = $GLOBALS['wgResourceBasePath'] . '/resources/assets/wiki.png';
+$blueSpiceLogoPath = "$bsImagesPath/bs_logo.png";
+
+if ( $GLOBALS['wgLogos']['1x'] === $defaultLogoPath ) {
+	$GLOBALS['wgLogos'] = [ '1x' => $blueSpiceLogoPath ];
+}
+
+if ( $GLOBALS['wgFavicon'] == '/favicon.ico' ){
+	$GLOBALS['wgFavicon'] = "$bsImagesPath/favicon.ico";
+}
+
+unset( $bsImagesPath );
+unset( $defaultLogoPath );
+unset( $blueSpiceLogoPath );
