@@ -2325,7 +2325,7 @@
 	"exbeforeblank": "contento ante radimento esseva: '$1'",
 	"delete-confirm": "Deler \"$1\"",
 	"delete-legend": "Deler",
-	"delete-talk-summary-prefix": "Delite insimul con le pagina associate pro le sequente motivo:",
+	"delete-talk-summary-prefix": "Delite insimul con le pagina associate pro le sequente motivo: $1",
 	"historywarning": "<strong>Attention:</strong> Le pagina que tu vole deler ha un historia de circa $1 {{PLURAL:$1|version|versiones}}:",
 	"historyaction-submit": "Monstrar versiones",
 	"confirmdeletetext": "Tu va deler un pagina con tote su historia.\nPer favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].",
