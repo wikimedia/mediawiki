@@ -140,7 +140,7 @@ class MergeHistory {
 		$this->timestamp = $timestamp;
 
 		// Get the database
-		$this->dbw = $loadBalancer->getConnection( DB_PRIMARY );
+		$this->dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;

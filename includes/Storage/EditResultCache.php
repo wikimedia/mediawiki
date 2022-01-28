@@ -106,7 +106,7 @@ class EditResultCache {
 
 		// not found in stash, try change tags
 		if ( !$result ) {
-			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$result = $dbr->selectField(
 				[ 'change_tag', 'change_tag_def' ],
 				'ct_params',
