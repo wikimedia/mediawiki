@@ -3569,7 +3569,7 @@
 	"watchlistedit-clear-done": "Your watchlist has been cleared.",
 	"watchlistedit-clear-jobqueue": "Your watchlist is being cleared. This may take some time!",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 title was|$1 titles were}} removed:",
-	"watchlistedit-too-many": "There are too many pages to display here.",
+	"watchlistedit-too-many": "Your watchlist has been updated. There are too many pages to display here.",
 	"watchlisttools-clear": "Clear the watchlist",
 	"watchlisttools-view": "View relevant changes",
 	"watchlisttools-edit": "View and edit watchlist",
