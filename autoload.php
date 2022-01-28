@@ -523,6 +523,7 @@ $wgAutoloadLocalClasses = [
 	'ForeignDBFile' => __DIR__ . '/includes/filerepo/file/ForeignDBFile.php',
 	'ForeignDBRepo' => __DIR__ . '/includes/filerepo/ForeignDBRepo.php',
 	'ForeignDBViaLBRepo' => __DIR__ . '/includes/filerepo/ForeignDBViaLBRepo.php',
+	'ForeignRepoWithMWApi' => __DIR__ . '/includes/filerepo/ForeignRepoWithMWApi.php',
 	'ForeignResourceManager' => __DIR__ . '/includes/ForeignResourceManager.php',
 	'ForeignTitle' => __DIR__ . '/includes/title/ForeignTitle.php',
 	'ForeignTitleFactory' => __DIR__ . '/includes/title/ForeignTitleFactory.php',

@@ -39,7 +39,7 @@ use MediaWiki\Page\PageIdentity;
  *
  * @ingroup FileRepo
  */
-class ForeignAPIRepo extends FileRepo {
+class ForeignAPIRepo extends FileRepo implements ForeignRepoWithMWApi {
 	/* This version string is used in the user agent for requests and will help
 	 * server maintainers in identify ForeignAPI usage.
 	 * Update the version every time you make breaking or significant changes. */
@@ -198,6 +198,8 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
+	 * Make an API query in the foreign repo, caching results
+	 *
 	 * @param array $query
 	 * @return array|null
 	 */
