@@ -150,11 +150,14 @@ TEXT;
 	 * @param string $key Name of the key to validate in the serialized JSON
 	 */
 	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
-		// Make sure we log a backtrace:
-		$GLOBALS['wgLogExceptionBacktrace'] = true;
-
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new $exClass() )
+			MWExceptionHandler::jsonSerializeException(
+				new $exClass(),
+				true,
+				0,
+				MWExceptionHandler::CAUGHT_BY_OTHER,
+				true
+			)
 		);
 		$this->assertObjectHasAttribute( $key, $json );
 		$this->assertSame( $expectedKeyType, gettype( $json->$key ), "Type of the '$key' key" );
@@ -182,9 +185,14 @@ TEXT;
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingEnabled() {
-		$GLOBALS['wgLogExceptionBacktrace'] = true;
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
+			MWExceptionHandler::jsonSerializeException(
+				new Exception(),
+				true,
+				0,
+				MWExceptionHandler::CAUGHT_BY_OTHER,
+				true
+			)
 		);
 		$this->assertObjectHasAttribute( 'backtrace', $json );
 	}
@@ -196,9 +204,14 @@ TEXT;
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingDisabled() {
-		$GLOBALS['wgLogExceptionBacktrace'] = false;
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
+			MWExceptionHandler::jsonSerializeException(
+				new Exception(),
+				true,
+				0,
+				MWExceptionHandler::CAUGHT_BY_OTHER,
+				false
+			)
 		);
 		$this->assertObjectNotHasAttribute( 'backtrace', $json );
 	}

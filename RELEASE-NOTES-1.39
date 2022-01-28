@@ -166,6 +166,12 @@ because of Phabricator reports.
   to load configuration for. Using the WIKI_NAME environment variable for this
   purpose is deprecated. This is only relevant if you have been using
   $wgWikiFarmSettingsDirectory to load wiki farm config.
+* MWExceptionHandler::installHandler was marked @internal and had required
+  arguments added. This method is intended for use in bootstrap code and is
+  unused in known extensions.
+* MWException::useOutputPage was made private without deprecation.
+  This method was apparently only public for testing and is unused in known
+  extensions.
 * Calling getId() on a User or UserIdentityValue from the wrong wiki, deprecated
   since 1.36, now throws an exception.
 * IResultWrapper::next() now returns void, to match the Iterator interface that

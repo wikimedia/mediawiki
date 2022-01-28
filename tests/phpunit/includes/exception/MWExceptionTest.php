@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @author Antoine Musso
  * @copyright Copyright © 2013, Antoine Musso
@@ -27,7 +30,7 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 			'wgOut' => $outputPage,
 		] );
 
-		$e = new MWException();
+		$e = TestingAccessWrapper::newFromObject( new MWException() );
 		$this->assertEquals( $expected, $e->useOutputPage() );
 	}
 

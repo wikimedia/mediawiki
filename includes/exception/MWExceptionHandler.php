@@ -62,9 +62,33 @@ class MWExceptionHandler {
 	];
 
 	/**
-	 * Install handlers with PHP.
+	 * Whether exception data should include a backtrace.
+	 *
+	 * @var bool
 	 */
-	public static function installHandler() {
+	private static $logExceptionBacktrace = true;
+
+	/**
+	 * Whether to propagate errors to PHP's built-in handler.
+	 *
+	 * @var bool
+	 */
+	private static $propagateErrors;
+
+	/**
+	 * Install handlers with PHP.
+	 * @internal
+	 * @param bool $logExceptionBacktrace Whether error handlers should include a backtrace
+	 *        in the log.
+	 * @param bool $propagateErrors Whether errors should be propagated to PHP's built-in handler.
+	 */
+	public static function installHandler(
+		bool $logExceptionBacktrace = true,
+		bool $propagateErrors = true
+	) {
+		self::$logExceptionBacktrace = $logExceptionBacktrace;
+		self::$propagateErrors = $propagateErrors;
+
 		// This catches:
 		// * Exception objects that were explicitly thrown but not
 		//   caught anywhere in the application. This is rare given those
@@ -224,8 +248,6 @@ class MWExceptionHandler {
 		$file = null,
 		$line = null
 	) {
-		global $wgPropagateErrors;
-
 		// Map PHP error constant to a PSR-3 severity level.
 		// Avoid use of "DEBUG" or "INFO" levels, unless the
 		// error should evade error monitoring and alerts.
@@ -293,10 +315,10 @@ class MWExceptionHandler {
 		$e = new ErrorException( $prefix . $message, 0, $level, $file, $line );
 		self::logError( $e, 'error', $severity, self::CAUGHT_BY_HANDLER );
 
-		// If $wgPropagateErrors is true return false so PHP shows/logs the error normally.
-		// Ignore $wgPropagateErrors if track_errors is set
+		// If $propagateErrors is true return false so PHP shows/logs the error normally.
+		// Ignore $propagateErrors if track_errors is set
 		// (which means someone is counting on regular PHP error handling behavior).
-		return !( $wgPropagateErrors || ini_get( 'track_errors' ) );
+		return !( self::$propagateErrors || ini_get( 'track_errors' ) );
 	}
 
 	/**
@@ -581,16 +603,23 @@ TXT;
 	 * backtrace) derived from the given throwable. The backtrace information
 	 * will be redacted as per getRedactedTraceAsArray().
 	 *
-	 * @since 1.26
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 * @param bool|null $includeBacktrace Whether to include a backtrace. If null,
+	 *        the value of $includeBacktrace that was provided to installHandler() will be
+	 *        used.
+	 *
 	 * @return array
+	 * @since 1.26
 	 */
 	public static function getStructuredExceptionData(
 		Throwable $e,
-		$catcher = self::CAUGHT_BY_OTHER
+		$catcher = self::CAUGHT_BY_OTHER,
+		?bool $includeBacktrace = null
 	) {
-		global $wgLogExceptionBacktrace;
+		if ( $includeBacktrace === null ) {
+			$includeBacktrace = self::$logExceptionBacktrace;
+		}
 
 		$data = [
 			'id' => WebRequest::getRequestId(),
@@ -610,7 +639,7 @@ TXT;
 			$data['suppressed'] = true;
 		}
 
-		if ( $wgLogExceptionBacktrace ) {
+		if ( $includeBacktrace ) {
 			$data['backtrace'] = self::getRedactedTrace( $e );
 		}
 
@@ -674,16 +703,20 @@ TXT;
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 * @param bool|null $includeBacktrace Whether to include a backtrace. If null,
+	 *        the value of $includeBacktrace that was provided to installHandler() will be
+	 *        used.
 	 * @return string|false JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException(
 		Throwable $e,
 		$pretty = false,
 		$escaping = 0,
-		$catcher = self::CAUGHT_BY_OTHER
+		$catcher = self::CAUGHT_BY_OTHER,
+		?bool $includeBacktrace = null
 	) {
 		return FormatJson::encode(
-			self::getStructuredExceptionData( $e, $catcher ),
+			self::getStructuredExceptionData( $e, $catcher, $includeBacktrace ),
 			$pretty,
 			$escaping
 		);
