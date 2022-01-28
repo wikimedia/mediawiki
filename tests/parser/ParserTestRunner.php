@@ -308,8 +308,6 @@ class ParserTestRunner {
 		// Parsoid settings for testing
 		$setup['wgParsoidSettings'] = [
 			'nativeGalleryEnabled' => true,
-			// Parsoid deliberately ignores the per-user thumbsize preference
-			'thumbsize' => 220,
 		];
 
 		// All FileRepo changes should be done here by injecting services,
