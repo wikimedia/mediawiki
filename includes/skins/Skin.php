@@ -123,7 +123,7 @@ abstract class Skin extends ContextSource {
 			// Set all the parent sections at the current top level.
 			if ( $section['toclevel'] === $toclevel ) {
 				$data[] = $section + [
-						'array-subsections' => $this->getSectionsDataInternal(
+						'array-sections' => $this->getSectionsDataInternal(
 							array_slice( $sections, $i + 1 ),
 							$toclevel + 1
 						)
