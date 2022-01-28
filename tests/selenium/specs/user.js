@@ -38,6 +38,6 @@ describe( 'User', function () {
 		const actualUsername = await browser.execute( async () => {
 			return mw.config.get( 'wgUserName' );
 		} );
-		assert.strictEqual( actualUsername, username );
+		assert.strictEqual( await actualUsername, username );
 	} );
 } );
