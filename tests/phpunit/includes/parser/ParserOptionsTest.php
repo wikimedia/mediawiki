@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 
@@ -368,4 +369,21 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertSame( 1, $options->getSpeculativeRevId() );
 	}
 
+	public function testSetupFakeRevision() {
+		$options = ParserOptions::newFromAnon();
+
+		$page = Title::newFromText( __METHOD__ );
+		$content = new DummyContentForTesting( '12345' );
+		$user = UserIdentityValue::newRegistered( 123, 'TestTest' );
+		$fakeRevisionScope = $options->setupFakeRevision( $page, $content, $user );
+
+		$fakeRevision = $options->getCurrentRevisionRecordCallback()( $page );
+		$this->assertNotNull( $fakeRevision );
+		$this->assertSame( '12345', $fakeRevision->getContent( SlotRecord::MAIN )->getNativeData() );
+		$this->assertSame( $user, $fakeRevision->getUser() );
+		$this->assertTrue( $fakeRevision->getPage()->exists() );
+
+		ScopedCallback::consume( $fakeRevisionScope );
+		$this->assertFalse( $options->getCurrentRevisionRecordCallback()( $page ) );
+	}
 }

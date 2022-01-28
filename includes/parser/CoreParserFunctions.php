@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
@@ -31,12 +32,28 @@ use MediaWiki\Revision\RevisionRecord;
  * @ingroup Parser
  */
 class CoreParserFunctions {
+
+	/**
+	 * @internal
+	 */
+	public const REGISTER_OPTIONS = [
+		// See documentation for the corresponding config options
+		'AllowDisplayTitle',
+		'AllowSlowParserFunctions',
+	];
+
 	/**
 	 * @param Parser $parser
+	 * @param ServiceOptions $options
+	 *
 	 * @return void
+	 * @throws MWException
+	 * @internal
 	 */
-	public static function register( $parser ) {
-		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
+	public static function register( Parser $parser, ServiceOptions $options ) {
+		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
+		$allowDisplayTitle = $options->get( 'AllowDisplayTitle' );
+		$allowSlowParserFunctions = $options->get( 'AllowSlowParserFunctions' );
 
 		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
@@ -76,14 +93,14 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'tag', [ __CLASS__, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate', [ __CLASS__, 'formatDate' ] );
 
-		if ( $wgAllowDisplayTitle ) {
+		if ( $allowDisplayTitle ) {
 			$parser->setFunctionHook(
 				'displaytitle',
 				[ __CLASS__, 'displaytitle' ],
 				Parser::SFH_NO_HASH
 			);
 		}
-		if ( $wgAllowSlowParserFunctions ) {
+		if ( $allowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
 				[ __CLASS__, 'pagesinnamespace' ],
@@ -425,7 +442,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function displaytitle( $parser, $text = '', $uarg = '' ) {
-		global $wgRestrictDisplayTitle;
+		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()->get( 'RestrictDisplayTitle' );
 
 		static $magicWords = null;
 		if ( $magicWords === null ) {
@@ -446,7 +463,7 @@ class CoreParserFunctions {
 			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rtc', 'rp', 'br' ];
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
-		if ( $wgRestrictDisplayTitle ) {
+		if ( $restrictDisplayTitle ) {
 			$htmlTagsCallback = static function ( &$params ) {
 				$decoded = Sanitizer::decodeTagAttributes( $params );
 
@@ -478,7 +495,7 @@ class CoreParserFunctions {
 		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
-		if ( !$wgRestrictDisplayTitle ||
+		if ( !$restrictDisplayTitle ||
 			( $title instanceof Title
 			&& !$title->hasFragment()
 			&& $title->equals( $parser->getTitle() ) )

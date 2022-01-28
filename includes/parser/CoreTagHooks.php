@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -28,19 +29,32 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class CoreTagHooks {
+
 	/**
 	 * @internal
-	 * @param Parser $parser
-	 * @return void
 	 */
-	public static function register( $parser ) {
-		global $wgRawHtml;
+	public const REGISTER_OPTIONS = [
+		// See documentation for the corresponding config options
+		'RawHtml',
+	];
+
+	/**
+	 * @param Parser $parser
+	 * @param ServiceOptions $options
+	 *
+	 * @return void
+	 * @throws MWException
+	 * @internal
+	 */
+	public static function register( Parser $parser, ServiceOptions $options ) {
+		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
+		$rawHtml = $options->get( 'RawHtml' );
 		$parser->setHook( 'pre', [ __CLASS__, 'pre' ] );
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
 		$parser->setHook( 'langconvert', [ __CLASS__, 'langconvert' ] );
-		if ( $wgRawHtml ) {
+		if ( $rawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
 	}
@@ -90,8 +104,8 @@ class CoreTagHooks {
 	 * @internal
 	 */
 	public static function html( ?string $content, array $attributes, Parser $parser ) {
-		global $wgRawHtml;
-		if ( $wgRawHtml ) {
+		$rawHtml = MediaWikiServices::getInstance()->getMainConfig()->get( 'RawHtml' );
+		if ( $rawHtml ) {
 			if ( $parser->getOptions()->getAllowUnsafeRawHtml() ) {
 				return [ $content ?? '', 'markerType' => 'nowiki' ];
 			} else {

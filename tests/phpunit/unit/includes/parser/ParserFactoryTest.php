@@ -16,14 +16,13 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ParserFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {
-		$options = $this->getMockBuilder( ServiceOptions::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'assertRequiredOptions', 'get' ] )->getMock();
-
-		$options->expects( $this->never() )
-			->method( $this->anythingBut( 'assertRequiredOptions', 'get' ) );
-
-		$this->assertInstanceOf( ServiceOptions::class, $options );
+		$options = new ServiceOptions(
+			Parser::CONSTRUCTOR_OPTIONS,
+			array_combine(
+				Parser::CONSTRUCTOR_OPTIONS,
+				array_fill( 0, count( Parser::CONSTRUCTOR_OPTIONS ), null )
+			)
+		);
 
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
