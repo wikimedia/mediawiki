@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use Profiler;
 use RequestContext;
@@ -1353,8 +1354,9 @@ class SpecialPageFactory {
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
-			global $wgSend404Code;
-			if ( $wgSend404Code ) {
+			$send404Code = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::Send404Code );
+			if ( $send404Code ) {
 				$context->getOutput()->setStatusCode( 404 );
 			}
 

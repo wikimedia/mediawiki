@@ -188,16 +188,17 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	public static function normalizeKey( $key ) {
-		global $wgDefaultSkin, $wgFallbackSkin;
-
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$defaultSkin = $config->get( MainConfigNames::DefaultSkin );
+		$fallbackSkin = $config->get( MainConfigNames::FallbackSkin );
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		$skinNames = $skinFactory->getInstalledSkins();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
 		$key = strtolower( $key );
-		$defaultSkin = strtolower( $wgDefaultSkin );
-		$fallbackSkin = strtolower( $wgFallbackSkin );
+		$defaultSkin = strtolower( $defaultSkin );
+		$fallbackSkin = strtolower( $fallbackSkin );
 
 		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
