@@ -1181,7 +1181,7 @@
 
 	QUnit.test( '.getScript() - failure', function ( assert ) {
 		assert.rejects(
-			mw.loader.getScript( 'https://example.test/not-found' ),
+			mw.loader.getScript( '/this-is-not-found' ),
 			/Failed to load script/,
 			'Descriptive error message'
 		);
