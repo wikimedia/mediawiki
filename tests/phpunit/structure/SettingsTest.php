@@ -67,14 +67,13 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $result->getExitCode(), 'Config doc generation must finish successfully' );
 		$this->assertSame( '', $result->getStderr(), 'Config doc generation must not have errors' );
 
-		$oldGeneratedSchema = file(
-			__DIR__ . '/../../../includes/config-schema.php',
-			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+		$oldGeneratedSchema = file_get_contents(
+			__DIR__ . '/../../../includes/config-schema.php'
 		);
 
-		$this->assertArrayEquals(
+		$this->assertEquals(
 			$oldGeneratedSchema,
-			preg_split( "/\\n/", $result->getStdout(), -1, PREG_SPLIT_NO_EMPTY ),
+			$result->getStdout(),
 			'Configuration schema was changed. Rerun maintenance/generateConfigSchema.php script!'
 		);
 	}
@@ -91,11 +90,9 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefaultSettingsConsistency( SettingsSource $source ) {
 		$defaultSettingsProps = ( static function () {
-			$IP = 'PLACEHOLDER_IP!';
 			require __DIR__ . '/../../../includes/DefaultSettings.php';
 			$vars = get_defined_vars();
 			unset( $vars['input'] );
-			unset( $vars['IP'] );
 			$result = [];
 			foreach ( $vars as $key => $value ) {
 				$result[substr( $key, 2 )] = $value;
@@ -119,11 +116,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				'Conf', // instance of SiteConfiguration
 				'AutoloadClasses', // conditionally initialized
 				'StyleSheetPath', // Alias to another global
-				'ExtensionDirectory', // Depends on $IP
-				'StyleDirectory', // Depends on $IP
-				'ServiceWiringFiles', // Depends on __DIR__
-				'HTTPMaxTimeout', // Infinity default
-				'HTTPMaxConnectTimeout', // Infinity default
 			] ) ) {
 				continue;
 			}

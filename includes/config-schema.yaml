@@ -146,6 +146,20 @@ config-schema:
 
             Defaults to "{$wgResourceBasePath}/extensions".
             @since 1.16
+    ExtensionDirectory:
+        default: null
+        description: |-
+          Extensions directory.
+          @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
+          @note this configuration variable is used to locate extensions while loading settings.
+          @since 1.25
+    StyleDirectory:
+      default: null
+      description: |-
+          Skins directory.
+          @note Set to "{$IP}/skins" by Setup.php before loading local settings.
+          @note this configuration variable is used to locate skins while loading settings.
+          @since 1.3
     ArticlePath:
         default: false
         description: |-
@@ -7059,19 +7073,20 @@ config-schema:
             @warning Hook handlers should be registered at file scope. Registering
             handlers after file scope can lead to unexpected results due to caching.
     ServiceWiringFiles:
-        default: []
-        # default: [ 'includes/ServiceWiring.php' ]
-        mergeStrategy: array_merge
-        description:
-            List of service wiring files to be loaded by the default instance of MediaWikiServices.
-            Each file listed here is expected to return an associative array mapping service names
-            to instantiator functions. Extensions may add wiring files to define their own services.
-            However, this cannot be used to replace existing services - use the MediaWikiServices
-            hook for that.
+      default: []
+      mergeStrategy: array_merge
+      description:
+        List of service wiring files to be loaded by the default instance of MediaWikiServices.
+        Each file listed here is expected to return an associative array mapping service names
+        to instantiator functions. Extensions may add wiring files to define their own services.
+        However, this cannot be used to replace existing services - use the MediaWikiServices
+        hook for that.
 
-            @see MediaWikiServices
-            @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
-            @see docs/Injection.md for an overview of dependency injection in MediaWiki.
+        @note the default wiring file will be added automatically by Setup.php
+
+        @see MediaWikiServices
+        @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
+        @see docs/Injection.md for an overview of dependency injection in MediaWiki.
     JobClasses:
         default:
             deletePage: DeletePageJob

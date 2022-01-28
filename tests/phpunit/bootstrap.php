@@ -75,6 +75,11 @@ wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 TestSetup::applyInitialConfig();
 MediaWikiCliOptions::initialize();
 
+// Since we do not load settings, expect to find extensions and skins
+// in their respective default locations.
+$GLOBALS['wgExtensionDirectory'] = "$IP/extensions";
+$GLOBALS['wgStyleDirectory'] = "$IP/skins";
+
 // Populate classes and namespaces from extensions and skins present in filesystem.
 $directoryToJsonMap = [
 	$GLOBALS['wgExtensionDirectory'] => 'extension*.json',

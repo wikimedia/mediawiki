@@ -56,6 +56,12 @@ return [
 		'ExtensionAssetsPath' => [
 			'default' => false,
 		],
+		'ExtensionDirectory' => [
+			'default' => null,
+		],
+		'StyleDirectory' => [
+			'default' => null,
+		],
 		'ArticlePath' => [
 			'default' => false,
 		],
