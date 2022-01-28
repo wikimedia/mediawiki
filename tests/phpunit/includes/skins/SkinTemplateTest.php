@@ -251,10 +251,10 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 				],
 				[
 					$SECTION_1 + [
-						'array-subsections' => [],
+						'array-sections' => [],
 						],
 					$SECTION_2 + [
-						'array-subsections' => [],
+						'array-sections' => [],
 						]
 				]
 			],
@@ -266,14 +266,14 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 				],
 				[
 					$SECTION_1 + [
-						'array-subsections' => [
+						'array-sections' => [
 							$SECTION_1_1 + [
-								'array-subsections' => [],
+								'array-sections' => [],
 							]
 						]
 					],
 					$SECTION_2 + [
-						'array-subsections' => [],
+						'array-sections' => [],
 					]
 				]
 			],
@@ -288,24 +288,24 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 				],
 				[
 					$SECTION_1 + [
-						'array-subsections' => [
+						'array-sections' => [
 							$SECTION_1_1 + [
-								'array-subsections' => [],
+								'array-sections' => [],
 							],
 							$SECTION_1_2 + [
-								'array-subsections' => [
+								'array-sections' => [
 									$SECTION_1_2_1 + [
-										'array-subsections' => [],
+										'array-sections' => [],
 									]
 								]
 							],
 							$SECTION_1_3 + [
-								'array-subsections' => [],
+								'array-sections' => [],
 							]
 						]
 					],
 					$SECTION_2 + [
-						'array-subsections' => [],
+						'array-sections' => [],
 					]
 				]
 			]
