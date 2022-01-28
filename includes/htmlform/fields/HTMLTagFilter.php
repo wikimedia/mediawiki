@@ -49,4 +49,8 @@ class HTMLTagFilter extends HTMLFormField {
 		}
 		return '';
 	}
+
+	protected function shouldInfuseOOUI() {
+		return true;
+	}
 }
