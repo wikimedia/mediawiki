@@ -605,20 +605,20 @@ class CategoryViewer extends ContextSource {
 	 * Format a list of articles chunked by letter in a three-column list, ordered
 	 * vertically. This is used for categories with a significant number of pages.
 	 *
-	 * TODO: Take the headers into account when creating columns, so they're
-	 * more visually equal.
-	 *
-	 * TODO: shortList and columnList are similar, need merging
-	 *
 	 * @param string[] $articles HTML links to each article
 	 * @param string[] $articles_start_char The header characters for each article
+	 * @param string $cssClasses CSS classes for the wrapper element
 	 * @return string HTML to output
 	 * @internal
 	 */
-	public static function columnList( $articles, $articles_start_char ) {
+	public static function columnList(
+		$articles,
+		$articles_start_char,
+		$cssClasses = 'mw-category mw-category-columns'
+	) {
 		$columns = array_combine( $articles, $articles_start_char );
 
-		$ret = Html::openElement( 'div', [ 'class' => 'mw-category' ] );
+		$ret = Html::openElement( 'div', [ 'class' => $cssClasses ] );
 
 		$colContents = [];
 
@@ -635,7 +635,7 @@ class CategoryViewer extends ContextSource {
 			# Change space to non-breaking space to keep headers aligned
 			$h3char = $char === ' ' ? "\u{00A0}" : htmlspecialchars( $char );
 
-			$ret .= Html::openELement( 'div', [ 'class' => 'mw-category-group' ] );
+			$ret .= Html::openElement( 'div', [ 'class' => 'mw-category-group' ] );
 			$ret .= Html::rawElement( 'h3', [], $h3char ) . "\n";
 			$ret .= Html::openElement( 'ul' );
 			$ret .= implode(
@@ -664,18 +664,7 @@ class CategoryViewer extends ContextSource {
 	 * @internal
 	 */
 	public static function shortList( $articles, $articles_start_char ) {
-		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
-		$r .= '<ul><li>' . $articles[0] . '</li>';
-		$articleCount = count( $articles );
-		for ( $index = 1; $index < $articleCount; $index++ ) {
-			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] ) {
-				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
-			}
-
-			$r .= "<li>{$articles[$index]}</li>";
-		}
-		$r .= '</ul>';
-		return $r;
+		return self::columnList( $articles, $articles_start_char, 'mw-category' );
 	}
 
 	/**
