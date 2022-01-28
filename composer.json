@@ -157,6 +157,10 @@
 		"prepend-autoloader": false,
 		"platform": {
 			"php": "7.3.19"
+		},
+		"allow-plugins": {
+			"composer/installers": true,
+			"wikimedia/composer-merge-plugin": true
 		}
 	},
 	"extra": {
