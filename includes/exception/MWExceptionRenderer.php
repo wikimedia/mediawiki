@@ -186,14 +186,17 @@ class MWExceptionRenderer {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			$html = "<div class=\"errorbox mw-content-ltr\"><p>" .
+			$html = Html::errorBox( "<p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
 				nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $e ) ) ) .
-				"</p></div>\n";
+				"</p>\n",
+				'',
+				'mw-content-ltr'
+			);
 		} else {
 			$logId = WebRequest::getRequestId();
-			$html = "<div class=\"errorbox mw-content-ltr\">" .
+			$html = Html::errorBox(
 				htmlspecialchars(
 					'[' . $logId . '] ' .
 					gmdate( 'Y-m-d H:i:s' ) . ": " .
@@ -202,8 +205,10 @@ class MWExceptionRenderer {
 						get_class( $e ),
 						$logId,
 						MWExceptionHandler::getURL()
-				) ) . "</div>\n" .
-				"<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
+				) ),
+				'',
+				'mw-content-ltr'
+			) . "<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
 		}
 
 		return $html;
