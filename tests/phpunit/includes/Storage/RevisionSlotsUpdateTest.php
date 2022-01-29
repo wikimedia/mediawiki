@@ -42,7 +42,7 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideNewFromRevisionSlots
 	 *
 	 * @param RevisionSlots $newSlots
-	 * @param RevisionSlots $parentSlots
+	 * @param RevisionSlots|null $parentSlots
 	 * @param string[] $modified
 	 * @param string[] $removed
 	 */
@@ -86,7 +86,7 @@ class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideNewFromContent
 	 *
 	 * @param Content[] $newContent
-	 * @param RevisionSlots $parentSlots
+	 * @param RevisionSlots|null $parentSlots
 	 * @param string[] $modified
 	 */
 	public function testNewFromContent(

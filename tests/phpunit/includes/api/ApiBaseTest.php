@@ -15,8 +15,8 @@ class ApiBaseTest extends ApiTestCase {
 	/**
 	 * This covers a variety of stub methods that return a fixed value.
 	 *
+	 * @param string $expected Expected value
 	 * @param string|array $method Name of method, or [ name, params... ]
-	 * @param string $value Expected value
 	 *
 	 * @dataProvider provideStubMethods
 	 */
@@ -260,11 +260,11 @@ class ApiBaseTest extends ApiTestCase {
 	 * @param string|null $input
 	 * @param array $paramSettings
 	 * @param mixed $expected
+	 * @param string[] $warnings
 	 * @param array $options Key-value pairs:
 	 *   'parseLimits': true|false
 	 *   'apihighlimits': true|false
 	 *   'prefix': true|false
-	 * @param string[] $warnings
 	 */
 	private function doGetParameterFromSettings(
 		$input, $paramSettings, $expected, $warnings, $options = []

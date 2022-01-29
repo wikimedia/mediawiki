@@ -1729,8 +1729,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			$result[1],
 			[ 'edit' => [ 'sysop' ] ]
 		);
-		$this->assertTrue(
-			array_key_exists( $anotherPage->getTitle()->getArticleID(), $result[0] )
+		$this->assertArrayHasKey(
+			$anotherPage->getTitle()->getArticleID(), $result[0]
 		);
 	}
 

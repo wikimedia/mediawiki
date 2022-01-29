@@ -907,9 +907,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$preemptiveRefresh = ( $expiring || $popular );
 		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
 		$this->assertSame( 0, $wasSet, "No values generated" );
-		$this->assertSame(
+		$this->assertCount(
 			$preemptiveRefresh ? count( $idsByKey ) : 0,
-			count( $deferredCbs ),
+			$deferredCbs,
 			"Deferred callbacks queued"
 		);
 		foreach ( $idsByKey as $key => $id ) {
@@ -1155,9 +1155,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$preemptiveRefresh = ( $expiring || $popular );
 		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
 		$this->assertSame( count( $idsByKey ), $wasSet, "Deferred callbacks did not run yet" );
-		$this->assertSame(
+		$this->assertCount(
 			$preemptiveRefresh ? count( $idsByKey ) : 0,
-			count( $deferredCbs ),
+			$deferredCbs,
 			"Deferred callbacks queued"
 		);
 		foreach ( $idsByKey as $key => $id ) {

@@ -192,13 +192,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	 * Optionally this also checks that specified keys are present in the actual item without
 	 * performing any checks on the related values.
 	 *
-	 * @param array $actualItems               array of actual items (associative arrays)
-	 * @param array $expectedItems             array of expected items (associative arrays),
-	 *                                         those items have less keys than actual items
+	 * @param array $actualItems array of actual items (associative arrays)
+	 * @param array $expectedItems array of expected items (associative arrays),
+	 *  those items have less keys than actual items
 	 * @param array $keysUsedInValueComparison list of keys of the actual item that will be used
-	 *                                         in the comparison of values
-	 * @param array $requiredKeys              optional, list of keys that must be present in the
-	 *                                         actual items. Values of those keys are not checked.
+	 *  in the comparison of values
+	 * @param array $requiredKeys optional, list of keys that must be present in the
+	 *  actual items. Values of those keys are not checked.
 	 */
 	private function assertArraySubsetsEqual(
 		array $actualItems,

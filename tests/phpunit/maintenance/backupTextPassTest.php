@@ -420,7 +420,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 *
 	 * @param string $templateName
 	 * @param string $schemaVersion
-	 * @param string $outFile (Optional) Absolute name of the file to write
+	 * @param string|null $outFile (Optional) Absolute name of the file to write
 	 *   the stub into. If this parameter is null, a new temporary
 	 *   file is generated that is automatically removed upon tearDown.
 	 * @param int $iterations (Optional) specifies how often the block

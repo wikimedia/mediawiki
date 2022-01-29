@@ -69,7 +69,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param MockObject|Database $mockDb
-	 * @param MockObject|PermissionManager $mockPM
+	 * @param MockObject|PermissionManager|null $mockPM
 	 * @return WatchedItemQueryService
 	 */
 	private function newService( $mockDb, $mockPM = null ) {
@@ -161,7 +161,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string $notAllowedAction
+	 * @param string|null $notAllowedAction
 	 * @return MockObject|PermissionManager
 	 */
 	private function getMockPermissionManager( $notAllowedAction = null ) {

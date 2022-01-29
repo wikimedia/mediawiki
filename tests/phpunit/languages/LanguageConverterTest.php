@@ -326,8 +326,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->setIniSetting( 'pcre.backtrack_limit', 200 );
 		$result = $this->lc->autoConvert( $testString, 'tg-latn' );
 		// The в in the id attribute should not get converted to a v
-		$this->assertFalse(
-			strpos( $result, 'v' ),
+		$this->assertStringNotContainsString(
+			$result, 'v',
 			"в converted to v despite being in attribue"
 		);
 	}

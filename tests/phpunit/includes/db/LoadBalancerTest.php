@@ -718,7 +718,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$mainIndexPicked,
 			$lbWrapper->getExistingReaderIndex( $lb::GROUP_GENERIC )
 		);
-		$this->assertTrue( in_array( $mainIndexPicked, [ 1, 2 ] ) );
+		$this->assertContains( $mainIndexPicked, [ 1, 2 ] );
 		for ( $i = 0; $i < 300; ++$i ) {
 			$rLog = $lb->getConnectionRef( DB_REPLICA, [] );
 			$this->assertEquals(
@@ -741,7 +741,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$logIndexPicked = $rLog->getLBInfo( 'serverIndex' );
 
 		$this->assertEquals( $logIndexPicked, $lbWrapper->getExistingReaderIndex( 'logging' ) );
-		$this->assertTrue( in_array( $logIndexPicked, [ 4, 5 ] ) );
+		$this->assertContains( $logIndexPicked, [ 4, 5 ] );
 
 		for ( $i = 0; $i < 300; ++$i ) {
 			$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'logging', 'watchlist' ] );

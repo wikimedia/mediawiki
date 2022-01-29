@@ -28,7 +28,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider formatValueEmptyProvider
 	 * @dataProvider formatValueDefaultProvider
 	 * @param string $name
-	 * @param string $expected
+	 * @param string|null $expected
 	 */
 	public function testFormatValue( $name, $expected = null, $row = null ) {
 		// Set the time to now so it does not get off during the test.

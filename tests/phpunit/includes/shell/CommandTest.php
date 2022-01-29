@@ -197,10 +197,10 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	 * NOTE: the PHP test scripts are located in the sub directory
 	 * "bin".
 	 *
-	 * @param string $fileName  a file name in the "bin" sub-directory
-	 * @param array $args       an array of arguments to pass to the PHP script
+	 * @param string $fileName a file name in the "bin" sub-directory
+	 * @param array $args an array of arguments to pass to the PHP script
 	 *
-	 * @return Command  a command instance pointing to the right script
+	 * @return Command a command instance pointing to the right script
 	 */
 	private function getPhpCommand( $fileName, array $args = [] ) {
 		$command = new Command;

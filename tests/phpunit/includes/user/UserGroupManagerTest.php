@@ -706,9 +706,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredAge
-	 * @param string $firstEditTs
-	 * @param array $expected
 	 */
 	public function testGetUserAutopromoteGroups(
 		array $requiredGroups,

@@ -68,6 +68,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var DatabaseDomain */
 	protected $currentDomain;
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.ObjectTypeHintVar
 	/** @var object|resource|null Database connection */
 	protected $conn;
 

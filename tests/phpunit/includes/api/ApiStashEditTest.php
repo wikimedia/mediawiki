@@ -32,7 +32,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *
 	 * @param array $params Query parameters for API request.  All are optional and will have
 	 *   sensible defaults filled in.  To make a parameter actually not passed, set to null.
-	 * @param User $user User to do the request
+	 * @param User|null $user User to do the request
 	 * @param string $expectedResult 'stashed', 'editconflict'
 	 * @return array
 	 */
@@ -107,7 +107,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *
 	 * @param string $title Title of page
 	 * @param string Content $text Content of edit
-	 * @param User $user User who made edit
+	 * @param User|null $user User who made edit
 	 * @return string
 	 */
 	protected function getStashKey( $title = __CLASS__, $text = 'Content', User $user = null ) {

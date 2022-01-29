@@ -31,7 +31,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param null $version
-	 * @param null $sqlDump
+	 * @param null &$sqlDump
 	 * @return \PHPUnit\Framework\MockObject\MockObject|DatabaseSqlite
 	 */
 	private function newMockDb( $version = null, &$sqlDump = null ) {

@@ -2178,7 +2178,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( class_exists( $type ) || interface_exists( $type ) ) {
 			$this->assertInstanceOf( $type, $actual, $message );
 		} else {
-			// phpcs:ignore MediaWiki.Usage.PHPUnitDeprecatedMethods.AssertInternalTypeGeneric
+			// phpcs:ignore MediaWiki.PHPUnit.DeprecatedPHPUnitMethods.AssertInternalTypeGeneric
 			$this->assertInternalType( $type, $actual, $message );
 		}
 	}

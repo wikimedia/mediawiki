@@ -1234,7 +1234,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function doCategoryLinkAsserts( OutputPage $op, $expectedNormal, $expectedHidden ) {
 		$catLinks = $op->getCategoryLinks();
-		$this->assertSame( (bool)$expectedNormal + (bool)$expectedHidden, count( $catLinks ) );
+		$this->assertCount( (bool)$expectedNormal + (bool)$expectedHidden, $catLinks );
 		if ( $expectedNormal ) {
 			$this->assertSame( count( $expectedNormal ), count( $catLinks['normal'] ) );
 		}
@@ -1867,7 +1867,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::parseAsContent
 	 * @param array $args To pass to parse()
 	 * @param string $expectedHTML Expected return value for parseAsContent()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 * @param string|null $expectedHTMLInline Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsContent(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -1881,7 +1881,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::parseAsInterface
 	 * @param array $args To pass to parse()
 	 * @param string $expectedHTML Expected return value for parseAsInterface()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
+	 * @param string|null $expectedHTMLInline Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsInterface(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -3020,7 +3020,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::sendCacheControl
 	 * @dataProvider provideSendCacheControl
 	 */
-	public function testSendCacheControl( array $options = [], array $expecations = [] ) {
+	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
 		$output = $this->newInstance( [
 			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
 			'UseCdn' => $options['useCdn'] ?? false,
@@ -3049,7 +3049,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $headers as $header => $default ) {
-			$value = $expecations[$header] ?? $default;
+			$value = $expectations[$header] ?? $default;
 			if ( $value === true ) {
 				$this->assertNotEmpty( $response->getHeader( $header ) );
 			} elseif ( $value === false ) {

@@ -485,7 +485,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideDataForParseNamespacePrefix
 	 * @param array $params
-	 * @param  array|false $expected
+	 * @param array|false $expected
 	 * @throws FatalError
 	 * @throws MWException
 	 */

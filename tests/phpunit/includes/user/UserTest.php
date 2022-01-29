@@ -2017,8 +2017,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testExistingIdFromName() {
-		$this->assertTrue(
-			array_key_exists( $this->user->getName(), User::$idCacheByName ),
+		$this->assertArrayHasKey(
+			$this->user->getName(), User::$idCacheByName,
 			'Test user should already be in the id cache.'
 		);
 		$this->assertSame(
@@ -2035,13 +2035,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testNonExistingIdFromName() {
-		$this->assertFalse(
-			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
+		$this->assertArrayNotHasKey(
+			'NotExisitngUser', User::$idCacheByName,
 			'Non exisitng user should not be in the id cache.'
 		);
 		$this->assertNull( User::idFromName( 'NotExisitngUser' ) );
-		$this->assertTrue(
-			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
+		$this->assertArrayHasKey(
+			'NotExisitngUser', User::$idCacheByName,
 			'Username will be cached when requested once.'
 		);
 		$this->assertNull( User::idFromName( 'NotExistingUser' ) );

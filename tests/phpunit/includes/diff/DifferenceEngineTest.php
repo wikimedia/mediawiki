@@ -315,7 +315,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Convert a HTML diff to a human-readable format and hopefully make the test less fragile.
-	 * @param string diff
+	 * @param string $diff
 	 * @return string
 	 */
 	private function getPlainDiff( $diff ) {
@@ -346,7 +346,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param SlotRecord[] $slots
+	 * @param SlotRecord[] ...$slots
 	 * @return MutableRevisionRecord
 	 */
 	private function getRevisionRecord( ...$slots ) {

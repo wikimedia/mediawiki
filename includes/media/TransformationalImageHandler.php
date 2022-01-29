@@ -320,7 +320,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * @param string $dstPath
 	 * @param bool $checkDstPath Check that $dstPath is valid
-	 * @return string|Callable One of client, im, custom, gd, imext, or a Callable array.
+	 * @return string|callable One of client, im, custom, gd, imext, or a Callable array.
 	 */
 	abstract protected function getScalerType( $dstPath, $checkDstPath = true );
 

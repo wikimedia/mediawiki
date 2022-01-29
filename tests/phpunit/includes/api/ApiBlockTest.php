@@ -34,7 +34,7 @@ class ApiBlockTest extends ApiTestCase {
 
 	/**
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
-	 * @param User  $blocker     User to do the blocking, null to pick
+	 * @param User|null $blocker User to do the blocking, null to pick
 	 *                           arbitrarily
 	 */
 	private function doBlock( array $extraParams = [], User $blocker = null ) {
