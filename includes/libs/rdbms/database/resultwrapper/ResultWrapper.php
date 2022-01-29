@@ -90,6 +90,7 @@ class ResultWrapper implements IResultWrapper {
 		$this->result = null;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		if ( $this->numRows() ) {
 			$this->getDB()->dataSeek( $this, 0 );
@@ -117,6 +118,7 @@ class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		return $this->current() !== false;
 	}
