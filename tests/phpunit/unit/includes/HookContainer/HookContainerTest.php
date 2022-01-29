@@ -7,7 +7,6 @@ namespace MediaWiki\HookContainer {
 	use UnexpectedValueException;
 	use Wikimedia\ObjectFactory;
 	use Wikimedia\ScopedCallback;
-	use Wikimedia\TestingAccessWrapper;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {
 

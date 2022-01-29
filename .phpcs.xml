@@ -14,8 +14,11 @@
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
+		<exclude name="MediaWiki.PHPUnit.AssertionOrder.WrongOrder" />
 		<exclude name="MediaWiki.PHPUnit.AssertCount.NotUsed" />
+		<exclude name="MediaWiki.PHPUnit.SetMethods.SetMethods" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
+		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage.DB_MASTER" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgVersion" />
@@ -23,8 +26,12 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
+		<exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeReturnType" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
