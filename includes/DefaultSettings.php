@@ -7544,7 +7544,7 @@ $wgMetricsFormat = null;
 /**
  * Service name prefix for the MetricsFactory service
  *
- * Must be a non non-empty string.
+ * Must be a non-empty string.
  *
  * Note: This does not affect the older StatsdDataFactory service.
  *
