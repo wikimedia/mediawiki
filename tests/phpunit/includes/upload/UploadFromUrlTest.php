@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group large
  * @group Upload
@@ -46,6 +48,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	public function testIsAllowedHostEmpty() {
 		$this->setMwGlobals( [
 			'wgCopyUploadsDomains' => [],
+			'wgCopyUploadAllowOnWikiDomainConfig' => false,
 		] );
 
 		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar' ) );
@@ -57,6 +60,7 @@ class UploadFromUrlTest extends ApiTestCase {
 				'foo.baz',
 				'bar.example.baz',
 			],
+			'wgCopyUploadAllowOnWikiDomainConfig' => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
@@ -73,6 +77,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'wgCopyUploadsDomains' => [
 				'*.baz',
 			],
+			'wgCopyUploadAllowOnWikiDomainConfig' => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://baz' ) );
@@ -89,6 +94,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'wgCopyUploadsDomains' => [
 				'foo.*.baz',
 			],
+			'wgCopyUploadAllowOnWikiDomainConfig' => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
@@ -98,6 +104,46 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.example.baz' ) );
 		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar.baz' ) );
+	}
+
+	public function testOnWikiDomainConfigEnabled() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [ 'example.com' ],
+			'wgCopyUploadAllowOnWikiDomainConfig' => true,
+		] );
+
+		$messageContent = "example.org # this is a comment\n# this too is commented foo.example.com\nexample.net";
+		$mock = $this->createMock( MessageCache::class );
+		$mock->method( 'get' )->willReturn( $messageContent );
+		$this->setService( 'MessageCache', $mock );
+
+		$this->assertEquals(
+			[ 'example.com', 'example.org', 'example.net' ],
+			TestingAccessWrapper::newFromClass( UploadFromUrl::class )->getAllowedHosts()
+		);
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://example.org' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.example.com' ) );
+	}
+
+	public function testOnWikiDomainConfigDisabled() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [ 'example.com' ],
+			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+		] );
+
+		$mock = $this->createMock( MessageCache::class );
+		$mock->expects( $this->never() )->method( 'get' );
+		$this->setService( 'MessageCache', $mock );
+
+		$this->assertEquals(
+			[ 'example.com' ],
+			TestingAccessWrapper::newFromClass( UploadFromUrl::class )->getAllowedHosts()
+		);
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.org' ) );
 	}
 
 	/**
