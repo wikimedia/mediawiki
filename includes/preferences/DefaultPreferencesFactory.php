@@ -266,8 +266,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			unset( $defaultPreferences[$pref] );
 		}
 
-		// Make sure that form fields have their parent set. See T43337.
-		$dummyForm = new HTMLForm( [], $context );
+		// For validation.
+		$form = new HTMLForm( $defaultPreferences, $context );
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
@@ -276,18 +276,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
-			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
 			if ( $disable && !in_array( $name, $this->getSaveBlacklist() ) ) {
 				$info['disabled'] = 'disabled';
 			}
-			$field = HTMLForm::loadInputFromParameters( $name, $info, $dummyForm ); // For validation
-			$globalDefault = $defaultOptions[$name] ?? null;
-
-			// If it validates, set it as the default
 			if ( isset( $info['default'] ) ) {
 				// Already set, no problem
 				continue;
 			}
+			$field = $form->getField( $name );
+			$globalDefault = $defaultOptions[$name] ?? null;
+			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
+
+			// If it validates, set it as the default
+			// FIXME: That's not how the validate() function works! Values of nested fields
+			// (e.g. CheckMatix) would be missing.
 			if ( $prefFromUser !== null && // Make sure we're not just pulling nothing
 					$field->validate( $prefFromUser, $this->userOptionsManager->getOptions( $user ) ) === true ) {
 				$info['default'] = $prefFromUser;
