@@ -590,7 +590,7 @@ class LinksUpdate extends DataUpdate {
 	/**
 	 * Update links table freshness
 	 */
-	private function updateLinksTimestamp() {
+	protected function updateLinksTimestamp() {
 		if ( $this->mId ) {
 			// The link updates made here only reflect the freshness of the parser output
 			$timestamp = $this->mParserOutput->getCacheTime();
