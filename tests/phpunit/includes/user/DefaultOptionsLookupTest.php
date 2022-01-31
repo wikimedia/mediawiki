@@ -36,8 +36,12 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testSearchNS() {
-		$this->assertTrue( $this->getLookup()->getDefaultOption( 'searchNs0' ) );
-		$this->assertNull( $this->getLookup()->getDefaultOption( 'searchNs5' ) );
+		$lookup = $this->getLookup();
+		$this->assertSame( 1, $lookup->getDefaultOption( 'searchNs0' ) );
+		$this->assertSame( 0, $lookup->getDefaultOption( 'searchNs8' ) );
+		$this->assertSame( 0, $lookup->getDefaultOption( 'searchNs9' ) );
+		// Special namespace is not searchable and does not have a default
+		$this->assertNull( $lookup->getDefaultOption( 'searchNs-1' ) );
 	}
 
 	/**

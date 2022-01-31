@@ -42,12 +42,14 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 					], $defaultOptionsOverrides ),
 					'NamespacesToBeSearchedDefault' => [
 						NS_MAIN => true,
-						NS_TALK => true
+						NS_TALK => true,
+						NS_MEDIAWIKI => false,
 					]
 				] )
 			),
 			$lang,
-			$this->getServiceContainer()->getHookContainer()
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getNamespaceInfo()
 		);
 	}
 
