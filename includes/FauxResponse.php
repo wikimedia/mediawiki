@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Classes used to send headers and cookies back to the user
  *
@@ -19,6 +20,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup HTTP
@@ -27,6 +29,9 @@ class FauxResponse extends WebResponse {
 	private $headers;
 	private $cookies = [];
 	private $code;
+
+	/** @var ?Config */
+	private $cookieConfig = null;
 
 	/**
 	 * Stores a HTTP header
@@ -85,30 +90,51 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
+	 * @return Config
+	 */
+	private function getCookieConfig(): Config {
+		if ( !$this->cookieConfig ) {
+			$this->cookieConfig = MediaWikiServices::getInstance()->getMainConfig();
+		}
+		return $this->cookieConfig;
+	}
+
+	/**
+	 * @param Config $cookieConfig
+	 */
+	public function setCookieConfig( Config $cookieConfig ): void {
+		$this->cookieConfig = $cookieConfig;
+	}
+
+	/**
 	 * @param string $name The name of the cookie.
 	 * @param string $value The value to be stored in the cookie.
 	 * @param int|null $expire Ignored in this faux subclass.
 	 * @param array $options Ignored in this faux subclass.
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
-		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
-		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
-
+		$cookieConfig = $this->getCookieConfig();
+		$cookiePath = $cookieConfig->get( 'CookiePath' );
+		$cookiePrefix = $cookieConfig->get( 'CookiePrefix' );
+		$cookieDomain = $cookieConfig->get( 'CookieDomain' );
+		$cookieSecure = $cookieConfig->get( 'CookieSecure' );
+		$cookieExpiration = $cookieConfig->get( 'CookieExpiration' );
+		$cookieHttpOnly = $cookieConfig->get( 'CookieHttpOnly' );
 		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [
-			'prefix' => $wgCookiePrefix,
-			'domain' => $wgCookieDomain,
-			'path' => $wgCookiePath,
-			'secure' => $wgCookieSecure,
-			'httpOnly' => $wgCookieHttpOnly,
+			'prefix' => $cookiePrefix,
+			'domain' => $cookieDomain,
+			'path' => $cookiePath,
+			'secure' => $cookieSecure,
+			'httpOnly' => $cookieHttpOnly,
 			'raw' => false,
 		];
 
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie
-		} elseif ( $expire == 0 && $wgCookieExpiration != 0 ) {
-			$expire = time() + $wgCookieExpiration;
+		} elseif ( $expire == 0 && $cookieExpiration != 0 ) {
+			$expire = time() + $cookieExpiration;
 		}
 
 		$this->cookies[$options['prefix'] . $name] = [
@@ -154,4 +180,5 @@ class FauxResponse extends WebResponse {
 	public function hasCookies() {
 		return count( $this->cookies ) > 0;
 	}
+
 }

@@ -47,6 +47,15 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 			'expire' => $expire,
 		];
 
+		$this->response->setCookieConfig( new HashConfig( [
+			'CookiePath' => '/',
+			'CookiePrefix' => false,
+			'CookieDomain' => '',
+			'CookieSecure' => 'detect',
+			'CookieExpiration' => '60',
+			'CookieHttpOnly' => true,
+		] ) );
+
 		$this->assertNull( $this->response->getCookie( 'xkey' ), 'Non-existing cookie' );
 		$this->response->setCookie( 'key', 'val', $expire, [
 			'prefix' => 'x',
