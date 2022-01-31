@@ -46,6 +46,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected $uniqueId;
 
+	/* @var HTMLFormField[] */
+	protected $mFields = [];
+
 	/**
 	 * @stable to call
 	 * @inheritDoc
@@ -79,6 +82,17 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 			$this->mParams['fields']['delete'] = $info;
 		}
+	}
+
+	/**
+	 * @param string $key Array key under which these fields should be named
+	 * @return HTMLFormField[]
+	 */
+	protected function getFieldsForKey( $key ) {
+		if ( !isset( $this->mFields[$key] ) ) {
+			$this->mFields[$key] = $this->createFieldsForKey( $key );
+		}
+		return $this->mFields[$key];
 	}
 
 	/**
@@ -169,7 +183,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			// wpEditToken don't fail.
 			$data = $this->rekeyValuesArray( $key, $value ) + $request->getValues();
 
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			$subrequest = new DerivativeRequest( $request, $data, $request->wasPosted() );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
@@ -187,7 +201,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( isset( $values['create'] ) ) {
 			// Non-JS client clicked the "create" button.
-			$fields = $this->createFieldsForKey( $this->uniqueId );
+			$fields = $this->getFieldsForKey( $this->uniqueId );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
@@ -206,7 +220,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		// The default is one entry with all subfields at their defaults.
 		if ( $ret === null ) {
-			$fields = $this->createFieldsForKey( $this->uniqueId );
+			$fields = $this->getFieldsForKey( $this->uniqueId );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
@@ -230,7 +244,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		foreach ( $values as $key => $value ) {
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
@@ -264,7 +278,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		foreach ( $values as $key => $value ) {
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
@@ -299,7 +313,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$hidden = '';
 		$hasLabel = false;
 
-		$fields = $this->createFieldsForKey( $key );
+		$fields = $this->getFieldsForKey( $key );
 		foreach ( $fields as $fieldname => $field ) {
 			$v = array_key_exists( $fieldname, $values )
 				? $values[$fieldname]
@@ -428,7 +442,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$html = '';
 		$hidden = '';
 
-		$fields = $this->createFieldsForKey( $key );
+		$fields = $this->getFieldsForKey( $key );
 		foreach ( $fields as $fieldname => $field ) {
 			$v = array_key_exists( $fieldname, $values )
 				? $values[$fieldname]
