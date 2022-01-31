@@ -140,6 +140,7 @@ because of Phabricator reports.
 * (T298182) Added language support for Cape Verdean Creole (kea).
 * (T298385) Added language support for Nheengatu (yrl).
 * (T299329) Added language support for Fon (fon).
+* (T300474) Added language support for Nkore (nyn).
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
