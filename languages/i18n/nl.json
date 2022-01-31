@@ -2442,6 +2442,7 @@
 	"delete-edit-reasonlist": "Redenen voor verwijderen bewerken",
 	"delete-edit-reasonlist-suppress": "Zichtbaarheidsbeperkingsredenen bewerken",
 	"delete-toobig": "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.\nHet verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
+	"delete-toomanyrevisions": "U probeert meer dan $1 {{PLURAL:$1|versie|versies}} te gelijk te verwijderen.\nDeze handeling kan de werking van {{SITENAME}} verstoren en is daarom tegen gehouden.",
 	"delete-warning-toobig": "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.\nHet verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren.\nWees voorzichtig.",
 	"delete-error-associated-alreadytalk": "Kan de bijbehorende overlegpagina van een overlegpagina niet verwijderen.",
 	"delete-error-associated-doesnotexist": "Een overlegpagina die niet bestaat kan niet worden verwijderd.",
