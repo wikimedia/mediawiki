@@ -1258,7 +1258,7 @@
 	"userrights-expiry": "Förfaller:",
 	"userrights-expiry-existing": "Befintlig förfallotid: $3, $2",
 	"userrights-expiry-othertime": "Annan tid:",
-	"userrights-expiry-options": "1 dag:1 dag,1 vecka:1 vecka,1 månad:1 månad,3 månader:3 månader,6 månader:6 månader,1 år:1 år",
+	"userrights-expiry-options": "1 dag:1 day,1 vecka:1 week,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year",
 	"userrights-invalid-expiry": "Förfallotiden för gruppen \"$1\" är ogiltig.",
 	"userrights-expiry-in-past": "Förfallotiden för gruppen \"$1\" är i det förflutna.",
 	"userrights-cannot-shorten-expiry": "Du kan inte flytta fram förfallotiden för medlemskapet i gruppen \"$1\". Endast användare med behörighet att lägga till och ta bort denna grupp kan flytta fram förfallodatum.",

@@ -8,6 +8,7 @@
 	"apihelp-main-param-action": "Кхочушдан дезарг.",
 	"apihelp-main-param-format": "Гойту формат.",
 	"apihelp-main-param-curtimestamp": "Хилламийн йукъатоха ханна йолу билгало",
+	"apihelp-main-param-errorformat": "ДӀахьедарш а, гӀалаташ а гучудоккху формат",
 	"apihelp-block-summary": "Декъашхочун блоктохар.",
 	"apihelp-block-param-reason": "Блоктохаран бахьана",
 	"apihelp-checktoken-param-token": "Талламбо токен.",
