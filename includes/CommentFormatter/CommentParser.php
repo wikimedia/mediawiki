@@ -457,8 +457,8 @@ class CommentParser {
 	 * @return string
 	 */
 	private function addPageLink( LinkTarget $target, $text, $wikiId ) {
-		// Handle external links (not including interwiki links)
 		if ( $wikiId !== null && $wikiId !== false && !$target->isExternal() ) {
+			// Handle links from a foreign wiki ID
 			return Linker::makeExternalLink(
 				\WikiMap::getForeignURL(
 					$wikiId,
@@ -471,9 +471,7 @@ class CommentParser {
 				$text,
 				/* escape = */ false // Already escaped
 			);
-		}
-
-		if ( $this->linkCache->getGoodLinkID( $target ) ) {
+		} elseif ( $target->isExternal() || $this->linkCache->getGoodLinkID( $target ) ) {
 			// Already known
 			return $this->linkRenderer->makeKnownLink( $target, new HtmlArmor( $text ) );
 		} elseif ( $this->linkCache->isBadLink( $target ) ) {

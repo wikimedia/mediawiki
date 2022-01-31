@@ -2,8 +2,11 @@
 
 namespace MediaWiki\Tests\Integration\CommentFormatter;
 
+use LinkCacheTestTrait;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentParser;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use SiteConfiguration;
 use Title;
 
@@ -11,6 +14,8 @@ use Title;
  * @covers \MediaWiki\CommentFormatter\CommentParser
  */
 class CommentParserTest extends \MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+	use LinkCacheTestTrait;
 
 	private function getParser() {
 		$services = $this->getServiceContainer();
@@ -25,6 +30,38 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$services->getNamespaceInfo(),
 			$services->getHookContainer()
 		);
+	}
+
+	private function setupInterwiki() {
+		$this->overrideMwServices( null, [
+			'InterwikiLookup' => function () {
+				return $this->getDummyInterwikiLookup( [
+					'interwiki' => [
+						'iw_prefix' => 'interwiki',
+						'iw_url' => 'https://interwiki/$1',
+					]
+				] );
+			}
+		] );
+	}
+
+	private function setupConf() {
+		$conf = new SiteConfiguration();
+		$conf->settings = [
+			'wgServer' => [
+				'enwiki' => '//en.example.org'
+			],
+			'wgArticlePath' => [
+				'enwiki' => '/w/$1',
+			],
+		];
+		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( [
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgCapitalLinks' => true,
+			'wgConf' => $conf,
+		] );
 	}
 
 	/**
@@ -210,6 +247,18 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			[
 				'<a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">linktrail</a>...',
 				'[[link]]trail...'
+			],
+			[
+				'<a href="/wiki/Present" title="Present">Present</a>',
+				'[[Present]]',
+			],
+			[
+				'<a href="https://interwiki/Some_page" class="extiw" title="interwiki:Some page">interwiki:Some page</a>',
+				'[[interwiki:Some page]]',
+			],
+			[
+				'<a href="https://interwiki/Present" class="extiw" title="interwiki:Present">interwiki:Present</a> <a href="/wiki/Present" title="Present">Present</a>',
+				'[[interwiki:Present]] [[Present]]'
 			]
 		];
 		// phpcs:enable
@@ -244,6 +293,9 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			// TODO: update tests when the default changes
 			'wgFragmentMode' => [ 'legacy' ],
 		] );
+
+		$this->setupInterwiki();
+		$this->addGoodLinkObject( 1, Title::newFromText( 'Present' ) );
 
 		if ( $title === false ) {
 			// We need a page title that exists
@@ -309,23 +361,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideFormatLinksInComment
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
-		$conf = new SiteConfiguration();
-		$conf->settings = [
-			'wgServer' => [
-				'enwiki' => '//en.example.org'
-			],
-			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
-			],
-		];
-		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
-		] );
-
+		$this->setupConf();
 		$parser = $this->getParser();
 		$title = Title::newFromText( 'Special:BlankPage' );
 		$result = $parser->finalize(
@@ -373,7 +409,8 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$fakeLB
+			$fakeLB,
+			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$parser = new CommentParser(
 			$services->getLinkRenderer(),
@@ -391,6 +428,30 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$parser->preprocess( "[[$absent]]" )
 		] );
 		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * Regression test for T300311
+	 */
+	public function testInterwikiLinkCachePollution() {
+		$this->tablesUsed[] = 'page';
+		$this->setupConf();
+		$this->setupInterwiki();
+		$present = Title::newFromText( 'Template:Present' );
+		$this->editPage(
+			$present,
+			'content'
+		);
+		$this->getServiceContainer()->getLinkCache()->clear();
+		$parser = $this->getParser();
+		$result = $parser->finalize(
+			$parser->preprocess( "[[interwiki:$present]] [[$present]]" )
+		);
+		$this->assertSame(
+			// phpcs:ignore Generic.Files.LineLength
+			"<a href=\"https://interwiki/$present\" class=\"extiw\" title=\"interwiki:$present\">interwiki:$present</a> <a href=\"/wiki/$present\" title=\"$present\">$present</a>",
+			$result
+		);
 	}
 
 }
