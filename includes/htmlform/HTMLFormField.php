@@ -172,6 +172,60 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Validate the cond-state params.
+	 *
+	 * @param array $params
+	 * @throws MWException
+	 */
+	protected function validateCondState( $params ) {
+		$origParams = $params;
+		$op = array_shift( $params );
+
+		try {
+			switch ( $op ) {
+				case 'NOT':
+					if ( count( $params ) !== 1 ) {
+						throw new MWException( "NOT takes exactly one parameter" );
+					}
+					// Fall-through intentionally
+
+				case 'AND':
+				case 'OR':
+				case 'NAND':
+				case 'NOR':
+					foreach ( $params as $i => $p ) {
+						if ( !is_array( $p ) ) {
+							$type = gettype( $p );
+							throw new MWException( "Expected array, found $type at index $i" );
+						}
+						$this->validateCondState( $p );
+					}
+					break;
+
+				case '===':
+				case '!==':
+					if ( count( $params ) !== 2 ) {
+						throw new MWException( "$op takes exactly two parameters" );
+					}
+					list( $name, $value ) = $params;
+					if ( !is_string( $name ) || !is_string( $value ) ) {
+						throw new MWException( "Parameters for $op must be strings" );
+					}
+					break;
+
+				default:
+					throw new MWException( "Unknown operation" );
+			}
+		} catch ( Exception $ex ) {
+			throw new MWException(
+				"Invalid hide-if or disable-if specification for $this->mName: " .
+				$ex->getMessage() . " in " . var_export( $origParams, true ),
+				0, $ex
+			);
+		}
+	}
+
+	/**
 	 * Helper function for isHidden and isDisabled to handle recursive data structures.
 	 *
 	 * @param array $alldata
@@ -183,89 +237,53 @@ abstract class HTMLFormField {
 		$origParams = $params;
 		$op = array_shift( $params );
 
-		try {
-			switch ( $op ) {
-				case 'AND':
-					foreach ( $params as $i => $p ) {
-						if ( !$this->checkValue( $p, $i, $alldata ) ) {
-							return false;
-						}
+		switch ( $op ) {
+			case 'AND':
+				foreach ( $params as $i => $p ) {
+					if ( !$this->checkStateRecurse( $alldata, $p ) ) {
+						return false;
 					}
-					return true;
+				}
+				return true;
 
-				case 'OR':
-					foreach ( $params as $i => $p ) {
-						if ( $this->checkValue( $p, $i, $alldata ) ) {
-							return true;
-						}
+			case 'OR':
+				foreach ( $params as $i => $p ) {
+					if ( $this->checkStateRecurse( $alldata, $p ) ) {
+						return true;
 					}
-					return false;
+				}
+				return false;
 
-				case 'NAND':
-					foreach ( $params as $i => $p ) {
-						if ( !$this->checkValue( $p, $i, $alldata ) ) {
-							return true;
-						}
+			case 'NAND':
+				foreach ( $params as $i => $p ) {
+					if ( !$this->checkStateRecurse( $alldata, $p ) ) {
+						return true;
 					}
-					return false;
+				}
+				return false;
 
-				case 'NOR':
-					foreach ( $params as $i => $p ) {
-						if ( $this->checkValue( $p, $i, $alldata ) ) {
-							return false;
-						}
+			case 'NOR':
+				foreach ( $params as $i => $p ) {
+					if ( $this->checkStateRecurse( $alldata, $p ) ) {
+						return false;
 					}
-					return true;
+				}
+				return true;
 
-				case 'NOT':
-					if ( count( $params ) !== 1 ) {
-						throw new MWException( "NOT takes exactly one parameter" );
-					}
-					return !$this->checkValue( $params[0], 0, $alldata );
+			case 'NOT':
+				return !$this->checkStateRecurse( $alldata, $params[0] );
 
-				case '===':
-				case '!==':
-					if ( count( $params ) !== 2 ) {
-						throw new MWException( "$op takes exactly two parameters" );
-					}
-					list( $field, $value ) = $params;
-					if ( !is_string( $field ) || !is_string( $value ) ) {
-						throw new MWException( "Parameters for $op must be strings" );
-					}
-					$testValue = $this->getNearestFieldByName( $alldata, $field );
-					switch ( $op ) {
-						case '===':
-							return ( $value === $testValue );
-						case '!==':
-							return ( $value !== $testValue );
-					}
-					// fall-through, if $op is not added to both cases
-				default:
-					throw new MWException( "Unknown operation" );
-			}
-		} catch ( Exception $ex ) {
-			throw new MWException(
-				"Invalid hide-if specification for $this->mName: " .
-				$ex->getMessage() . " in " . var_export( $origParams, true ),
-				0, $ex
-			);
+			case '===':
+			case '!==':
+				list( $field, $value ) = $params;
+				$testValue = $this->getNearestFieldByName( $alldata, $field );
+				switch ( $op ) {
+					case '===':
+						return ( $value === $testValue );
+					case '!==':
+						return ( $value !== $testValue );
+				}
 		}
-	}
-
-	/**
-	 * @param mixed $value
-	 * @param int $index
-	 * @param array $data
-	 * @return bool
-	 * @throws MWException
-	 */
-	private function checkValue( $value, $index, $data ) {
-		if ( !is_array( $value ) ) {
-			$type = gettype( $value );
-			throw new MWException( "Expected array, found $type at index $index" );
-		}
-
-		return $this->checkStateRecurse( $data, $value );
 	}
 
 	/**
@@ -490,12 +508,14 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $params['hide-if'] ) && $params['hide-if'] ) {
+			$this->validateCondState( $params['hide-if'] );
 			$this->mCondState['hide'] = $params['hide-if'];
 			$this->mCondStateClass[] = 'mw-htmlform-hide-if';
 		}
 		if ( !( isset( $params['disabled'] ) && $params['disabled'] ) &&
 			isset( $params['disable-if'] ) && $params['disable-if']
 		) {
+			$this->validateCondState( $params['disable-if'] );
 			$this->mCondState['disable'] = $params['disable-if'];
 			$this->mCondStateClass[] = 'mw-htmlform-disable-if';
 		}
