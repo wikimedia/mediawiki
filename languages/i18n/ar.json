@@ -807,7 +807,7 @@
 	"postedit-confirmation-created": "أنشئت الصفحة.",
 	"postedit-confirmation-restored": "تم استعادة الصفحة.",
 	"postedit-confirmation-saved": "تعديلك حفظ.",
-	"postedit-confirmation-published": "تم نشر تعديلك.",
+	"postedit-confirmation-published": "نُشِر تعديلك.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهي موجودة بالفعل.",
 	"defaultmessagetext": "نص الرسالة الافتراضي",
 	"content-failed-to-parse": "فشل في تحليل $2 محتوى لـ $1 نموذج: $3",

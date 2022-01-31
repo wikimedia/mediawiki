@@ -3085,5 +3085,6 @@
 	"passwordpolicies-group": "Gruppu",
 	"paramvalidator-help-type-user-subtype-name": "nomu utenti",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-title": "Tipu: tìtulu dâ pàggina"
+	"paramvalidator-help-type-title": "Tipu: tìtulu dâ pàggina",
+	"changeslist-nocomment": "Nuddu riassuntu dû canciamentu"
 }

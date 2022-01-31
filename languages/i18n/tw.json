@@ -561,5 +561,6 @@
 	"specialprotectpage-submit": "Kɔ kratafa",
 	"searchsuggest-search": "Hwehwɛ {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|da|nna}}",
-	"mw-widgets-mediasearch-input-placeholder": "Hwehwɛ mfonini"
+	"mw-widgets-mediasearch-input-placeholder": "Hwehwɛ mfonini",
+	"changeslist-nocomment": "Nsesaeɛ biara nni hɔ a ɛsɛ sɛ yɛbɔ no tɔfa"
 }

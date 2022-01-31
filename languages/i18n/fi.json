@@ -4051,5 +4051,6 @@
 	"paramvalidator-help-type-title": "Tyyppi: sivun nimi",
 	"paramvalidator-help-type-title-must-exist": "Hyväksyy vain olemassa olevia sivuja.",
 	"paramvalidator-help-type-title-no-must-exist": "Hyväksyy sivut, joita ei ole olemassa.",
-	"nonmain-slot-differences-therefore-readonly": "Et voi muokata wikitext-tiedostoa tällä sivun versiolla, koska sivun tietoihin on tehty muutoksia tämän version jälkeen, jotka eivät ole wikitext-pohjaisia. [$1 palauttaaksesi tämän version napsauta tätä.]"
+	"nonmain-slot-differences-therefore-readonly": "Et voi muokata wikitext-tiedostoa tällä sivun versiolla, koska sivun tietoihin on tehty muutoksia tämän version jälkeen, jotka eivät ole wikitext-pohjaisia. [$1 palauttaaksesi tämän version napsauta tätä.]",
+	"changeslist-nocomment": "Ei muokkausyhteenvetoa"
 }

@@ -2294,7 +2294,7 @@
 	"usermessage-editor": "Systembudbringer",
 	"watchlist": "Overvåkningsliste",
 	"mywatchlist": "Overvåkningsliste",
-	"watchlistfor2": "For $1 $2",
+	"watchlistfor2": "For $1",
 	"nowatchlist": "Du har ingenting i overvåkningslisten.",
 	"watchlistanontext": "Logg inn for å vise eller redigere elementer på overvåkningslisten din.",
 	"watchnologin": "Ikke logget inn",
@@ -4040,5 +4040,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Godtar ikke-eksisterende sider.",
 	"nonmain-slot-differences-therefore-readonly": "Du kan ikke redigere wikiteksten for denne revisjonen av siden, fordi det har vært endringer i dataene på siden som ikke er wikitekstbaserte. [$1 Trykk her for å gjenopprette denne revisjonen.]",
 	"config-missing-key": "Mangler MediaWiki-konfigurasjonsparameteren «$1»",
-	"config-invalid-key": "Ugyldig MediaWiki-konfigurasjonsparameter «$1»: $2"
+	"config-invalid-key": "Ugyldig MediaWiki-konfigurasjonsparameter «$1»: $2",
+	"changeslist-nocomment": "Ingen redigeringsforklaring"
 }

@@ -4109,5 +4109,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Menerima halaman yang tidak ada.",
 	"nonmain-slot-differences-therefore-readonly": "Anda tidak bisa menyunting teks wiki di revisi halaman ini, karena telah ada perubahan data non-teks wiki di halaman ini setelah revisi ini. [$1 Tekan di sini untuk mengembalikan revisi ini.]",
 	"config-missing-key": "Parameter konfigurasi MediaWiki \"$1\" tidak ada",
-	"config-invalid-key": "Parameter konfigurasi MediaWiki \"$1\" tidak valid: $2"
+	"config-invalid-key": "Parameter konfigurasi MediaWiki \"$1\" tidak valid: $2",
+	"changeslist-nocomment": "Tidak ada ringkasan suntingan"
 }
