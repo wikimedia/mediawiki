@@ -69,6 +69,8 @@ class BlockRestrictionStore {
 	/**
 	 * Retrieves the restrictions from the database by block id.
 	 *
+	 * Passing a $db is @deprecated since 1.38.
+	 *
 	 * @since 1.33
 	 * @param int|array $blockId
 	 * @param IDatabase|null $db
@@ -77,6 +79,10 @@ class BlockRestrictionStore {
 	public function loadByBlockId( $blockId, IDatabase $db = null ) {
 		if ( $blockId === null || $blockId === [] ) {
 			return [];
+		}
+
+		if ( $db !== null ) {
+			wfDeprecatedMsg( 'Old method signature: Passing a $db is no longer supported', '1.38' );
 		}
 
 		$db = $db ?: $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );

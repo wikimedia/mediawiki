@@ -94,6 +94,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/purtle from 1.0.7 to 1.0.8.
 * Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
+* Updated psy/psysh from 0.10.5 to 0.11.1.
 * …
 
 ===== Changed development-only external libraries =====
@@ -440,6 +441,9 @@ because of Phabricator reports.
 * Return values in the parameter $pageLang of the hook PageContentLanguage
   with other types than a Language object, deprecated since 1.33, now emmits
   deprecation warnings.
+* Passing a db to BlockRestrictionStore::loadByBlockId() is deprecated.
+  BlockRestrictionStoreFactory should be used to fetch a correct
+  BlockRestrictionStore instead.
 * All external access to ParserOutput and CacheTime classes properties will now
   emit deprecation warnings. Use getters and setters instead.
 * The custom jQuery event `watchpage.mw` emitted on #ca-watch and #ca-unwatch is
