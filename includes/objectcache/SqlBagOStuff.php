@@ -54,6 +54,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $localKeyLb;
 	/** @var ILoadBalancer|null */
 	protected $globalKeyLb;
+	/** @var string|null DB name used for keys using the "global key" LoadBalancer */
+	protected $globalKeyLbDomain;
 
 	/** @var array[] (server index => server config) */
 	protected $serverInfos = [];
@@ -113,7 +115,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * Create a new backend instance from configuration
 	 *
 	 * The database servers must be provided by *either* the "server" parameter, the "servers"
-	 * parameter, the "globalKeyLB" parameter, or both the "globalKeyLB"/"localKeyLB" paramters.
+	 * parameter, the "globalKeyLB" parameter, or both the "globalKeyLB"/"localKeyLB" parameters.
 	 *
 	 * Parameters include:
 	 *   - server: Server config map for Database::factory() that describes the database to
@@ -128,8 +130,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *      This load balancer is used for local keys, e.g. those using makeKey().
 	 *      This is overriden by "server" and "servers".
 	 *   - globalKeyLB: ObjectFactory::getObjectFromSpec array yielding ILoadBalancer.
-	 *      This load balancer is used for local keys, e.g. those using makeGlobalKey().
+	 *      This load balancer is used for global keys, e.g. those using makeGlobalKey().
 	 *      This is overriden by "server" and "servers".
+	 *   - globalKeyLbDomain: database name to use for "globalKeyLB" load balancer.
 	 *   - multiPrimaryMode: Whether the portion of the dataset belonging to each tag/shard is
 	 *      replicated among one or more regions, with one "co-primary" server in each region.
 	 *      Queries are issued in a manner that provides Last-Write-Wins eventual consistency.
@@ -178,6 +181,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$this->globalKeyLb = ( $params['globalKeyLB'] instanceof ILoadBalancer )
 					? $params['globalKeyLB']
 					: ObjectFactory::getObjectFromSpec( $params['globalKeyLB'] );
+				$this->globalKeyLbDomain = $params['globalKeyLbDomain'] ?? null;
+				if ( $this->globalKeyLbDomain === null ) {
+					throw new InvalidArgumentException(
+						"Config requires 'globalKeyLbDomain' if 'globalKeyLB' is set"
+					);
+				}
 			}
 			if ( isset( $params['localKeyLB'] ) ) {
 				$this->localKeyLb = ( $params['localKeyLB'] instanceof ILoadBalancer )
@@ -1650,16 +1659,23 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @throws DBError
 	 */
 	private function getConnectionViaLoadBalancer( $shardIndex ) {
-		$lb = ( $shardIndex === self::SHARD_LOCAL ) ? $this->localKeyLb : $this->globalKeyLb;
+		if ( $shardIndex === self::SHARD_GLOBAL ) {
+			$lb = $this->globalKeyLb;
+			$dbDomain = $this->globalKeyLbDomain;
+		} else {
+			$lb = $this->localKeyLb;
+			$dbDomain = false;
+		}
+
 		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			// Use the main connection to avoid transaction deadlocks
-			$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY );
+			$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY, $dbDomain );
 		} else {
 			// If the RDBMs has row/table/page level locking, then use separate auto-commit
 			// connection to avoid needless contention and deadlocks.
 			$conn = $lb->getMaintenanceConnectionRef(
 				$this->replicaOnly ? DB_REPLICA : DB_PRIMARY, [],
-				false,
+				$dbDomain,
 				$lb::CONN_TRX_AUTOCOMMIT
 			);
 		}
