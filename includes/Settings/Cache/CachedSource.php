@@ -6,6 +6,7 @@ use BagOStuff;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
+use Wikimedia\WaitConditionLoop;
 
 /**
  * Provides a caching layer for a {@link CacheableSource}.
@@ -14,6 +15,11 @@ use MediaWiki\Settings\Source\SettingsSource;
  * @todo mark as stable before the 1.38 release
  */
 class CachedSource implements SettingsSource, SettingsIncludeLocator {
+	/**
+	 * Cached source generation timeout (in seconds).
+	 */
+	private const TIMEOUT = 2;
+
 	/** @var BagOStuff */
 	private $cache;
 
@@ -50,29 +56,58 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 			__CLASS__,
 			$this->source->getHashKey()
 		);
-		$item = $this->cache->get( $key );
-		$miss = $this->isMiss( $item );
 
-		if ( $miss || $this->isExpired( $item ) ) {
-			$allowsStale = $this->source->allowsStaleLoad();
+		$result = null;
+		$loop = new WaitConditionLoop(
+			function () use ( $key, &$result ) {
+				$item = $this->cache->get( $key );
 
-			try {
-				$item = $this->loadWithMetadata();
-				$this->cache->set(
-					$key,
-					$item,
-					$allowsStale ? BagOStuff::TTL_INDEFINITE : $this->source->getExpiryTtl()
-				);
-			} catch ( SettingsBuilderException $e ) {
-				if ( $miss || !$allowsStale ) {
-					throw $e;
+				if ( $this->isValidHit( $item ) ) {
+					if ( $this->isExpired( $item ) ) {
+						// The cached item is stale but use it as a default in
+						// case of failure if the source allows that
+						if ( $this->source->allowsStaleLoad() ) {
+							$result = $item['value'];
+						}
+					} else {
+						$result = $item['value'];
+						return WaitConditionLoop::CONDITION_REACHED;
+					}
 				}
-				// Return the stale results since the source allows it and
-				// this was only a soft miss
-			}
+
+				if ( $this->cache->lock( $key, 0, self::TIMEOUT ) ) {
+					try {
+						$result = $this->loadAndCache( $key );
+					} catch ( SettingsBuilderException $e ) {
+						if ( $result === null ) {
+							// We have a failure and no stale result to fall
+							// back on, so throw
+							throw $e;
+						}
+					} finally {
+						$this->cache->unlock( $key );
+					}
+				}
+
+				return $result === null
+					? WaitConditionLoop::CONDITION_CONTINUE
+					: WaitConditionLoop::CONDITION_REACHED;
+			},
+			self::TIMEOUT
+		);
+
+		if ( $loop->invoke() !== WaitConditionLoop::CONDITION_REACHED ) {
+			throw new SettingsBuilderException(
+				'Exceeded {timeout}s timeout attempting to load and cache source {source}',
+				[
+					'timeout' => self::TIMEOUT,
+					'source' => $this->source,
+				]
+
+			);
 		}
 
-		return $item['value'];
+		return $result;
 	}
 
 	/**
@@ -85,20 +120,20 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 	}
 
 	/**
-	 * Whether the given cache item is considered a real miss, in other words:
-	 *  - it is a falsey value
-	 *  - it has the wrong type or structure for this cache implementation
+	 * Whether the given cache item is considered a cache hit, in other words:
+	 *  - it is not a falsey value
+	 *  - it has the correct type and structure for this cache implementation
 	 *
 	 * @param mixed $item Cache item.
 	 *
 	 * @return bool
 	 */
-	private function isMiss( $item ): bool {
-		return !$item ||
-			!is_array( $item ) ||
-			!isset( $item['expiry'] ) ||
-			!isset( $item['generation'] ) ||
-			!isset( $item['value'] );
+	private function isValidHit( $item ): bool {
+		return $item &&
+			is_array( $item ) &&
+			isset( $item['expiry'] ) &&
+			isset( $item['generation'] ) &&
+			isset( $item['value'] );
 	}
 
 	/**
@@ -151,6 +186,24 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 			log( random_int( 1, PHP_INT_MAX ) / PHP_INT_MAX );
 
 		return ( $item['expiry'] + $expiryOffset ) <= microtime( true );
+	}
+
+	/**
+	 * Loads the source and caches the result.
+	 *
+	 * @param string $key
+	 *
+	 * @return array
+	 */
+	private function loadAndCache( string $key ): array {
+		$ttl =
+			$this->source->allowsStaleLoad()
+			? BagOStuff::TTL_INDEFINITE
+			: $this->source->getExpiryTtl();
+
+		$item = $this->loadWithMetadata();
+		$this->cache->set( $key, $item, $ttl );
+		return $item['value'];
 	}
 
 	/**
