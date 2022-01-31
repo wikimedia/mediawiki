@@ -37,7 +37,12 @@
 		// Mock ResourceLoaderStartUpModule substitutions
 		window.$VARS = {
 			baseModules: [],
+			storeDisabled: true,
 			maxQueryLength: 2000
+		};
+		window.$CODE = {
+			test: function () { return true; },
+			maybeRedefineFallbacksForTest: function () {}
 		};
 		// Mock startup.js
 		window.RLQ = [];
@@ -48,10 +53,10 @@
 	<script src="modules/src/startup/mediawiki.loader.js"></script>
 	<script src="modules/src/startup/mediawiki.requestIdleCallback.js"></script>
 	<script src="modules/lib/jquery/jquery.js"></script>
-	<script src="modules/src/mediawiki.base/mediawiki.base.js"></script>
 	<script src="modules/src/mediawiki.base/log.js"></script>
 	<script src="modules/src/mediawiki.base/errorLogger.js"></script>
-	<script src="modules/lib/oojs/oojs.jquery.js"></script>
+	<script src="modules/src/mediawiki.base/mediawiki.base.js"></script>
+	<script src="modules/lib/oojs/oojs.js"></script>
 	<script src="modules/lib/ooui/oojs-ui-core.js"></script>
 	<script src="modules/lib/ooui/oojs-ui-widgets.js"></script>
 	<script src="modules/lib/ooui/oojs-ui-toolbars.js"></script>
