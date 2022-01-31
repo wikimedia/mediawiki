@@ -351,6 +351,7 @@ class Names {
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
+		'nyn' => 'runyankore', # Nkore
 		'nys' => 'Nyunga', # Nyungar
 		'oc' => 'occitan', # Occitan
 		'ojb' => 'Ojibwemowin', # Ojibwe
