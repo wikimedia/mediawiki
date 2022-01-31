@@ -94,20 +94,30 @@ class PagePropsTable extends LinksTable {
 		$existing = $this->getExistingProps();
 		[ $name, $value ] = $linkId;
 		return \array_key_exists( $name, $existing )
-			&& $existing[$name] === $value;
+			&& $this->encodeValue( $existing[$name] ) === $this->encodeValue( $value );
 	}
 
 	protected function isInNewSet( $linkId ) {
 		[ $name, $value ] = $linkId;
 		return \array_key_exists( $name, $this->newProps )
-			&& $this->newProps[$name] === $value;
+			&& $this->encodeValue( $this->newProps[$name] ) === $this->encodeValue( $value );
+	}
+
+	private function encodeValue( $value ) {
+		if ( is_bool( $value ) ) {
+			return (string)(int)$value;
+		} elseif ( $value === null ) {
+			return '';
+		} else {
+			return (string)$value;
+		}
 	}
 
 	protected function insertLink( $linkId ) {
 		[ $name, $value ] = $linkId;
 		$this->insertRow( [
 			'pp_propname' => $name,
-			'pp_value' => $value,
+			'pp_value' => $this->encodeValue( $value ),
 			'pp_sortkey' => $this->getPropertySortKeyValue( $value )
 		] );
 	}

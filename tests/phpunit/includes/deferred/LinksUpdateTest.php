@@ -770,4 +770,44 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $linksUpdate->isRecursive(),
 			'LinksUpdate is not recursive when asked to be not recursive' );
 	}
+
+	/**
+	 * Confirm that repeatedly saving the same ParserOutput does not lead to
+	 * DELETE/INSERT queries (T299662)
+	 */
+	public function testNullEdit() {
+		/** @var ParserOutput $po */
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		$po->addCategory( 'Test', 'Test' );
+		$po->addExternalLink( 'http://www.example.com/' );
+		$po->addImage( 'Test' );
+		$po->addInterwikiLink( new TitleValue( 0, 'test', '', 'test' ) );
+		$po->addLanguageLink( 'en:Test' );
+		$po->addLink( new TitleValue( 0, 'Test' ) );
+		$po->setPageProperty( 'string', 'x' );
+		$po->setPageProperty( 'numeric-string', '1' );
+		$po->setPageProperty( 'int', 10 );
+		$po->setPageProperty( 'float', 2 / 3 );
+		$po->setPageProperty( 'true', true );
+		$po->setPageProperty( 'false', false );
+		$po->setPageProperty( 'null', null );
+
+		$update = new LinksUpdate( $t, $po );
+		$update->setStrictTestMode();
+		$update->doUpdate();
+
+		$dbw = wfGetDB( DB_PRIMARY );
+		$time1 = $dbw->lastDoneWrites();
+		$this->assertGreaterThan( 0, $time1 );
+
+		$update = new class( $t, $po ) extends LinksUpdate {
+			protected function updateLinksTimestamp() {
+				// Updating the timestamp is allowed, ignore
+			}
+		};
+		$update->setStrictTestMode();
+		$update->doUpdate();
+		$time2 = wfGetDB( DB_PRIMARY )->lastDoneWrites();
+		$this->assertSame( $time1, $time2 );
+	}
 }
