@@ -779,6 +779,8 @@
 	"prefs-help-recentchangescount": "Maksimumtal: 1000",
 	"prefs-help-watchlist-token2": "Dit is de geheime tagongskoade ta de webfied fan jo folchlist.\nImmen dy't it wit, sil jo folchlist lêze kinne, dus diel it mei gjinien.\nBy need [[Special:ResetTokens|kinne jo it fernije]].",
 	"prefs-help-tokenmanagement": "Jo kinne de geheime koade foar jo akkount, dy't tagong jout ta de Webfied fan jo folchlist, besjen en fernije. Immen dy't de tagongskoade wit, sil jo folchlist lêze kinne, dus diel it mei gjinien.",
+	"prefs-user-downloaddata-label": "Akkountdata:",
+	"prefs-user-downloaddata-info": "Myn akkountgegevens by dit projekt",
 	"savedprefs": "Jo foarkarren binne fêstlein.",
 	"timezonelegend": "Tiidsône:",
 	"localtime": "Pleatslike tiid:",

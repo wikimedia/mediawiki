@@ -2418,6 +2418,7 @@
 	"sp-contributions-blocked-notice": "Denne bruger er i øjeblikket blokeret. Loggen over den seneste blokering kan ses nedenfor:",
 	"sp-contributions-blocked-notice-partial": "Denne bruger er i øjeblikket delvist blokeret. Den seneste post i blokeringsloggen vises nedenfor.",
 	"sp-contributions-blocked-notice-anon": "Denne IP-adresse er i øjeblikket blokeret.\nDen seneste post i blokeringsloggen vises nedenfor:",
+	"sp-contributions-blocked-notice-anon-partial": "Denne IP-adresse er i øjeblikket delvist blokeret. Den seneste post i blokeringsloggen vises nedenfor.",
 	"sp-contributions-search": "Søg efter bidrag",
 	"sp-contributions-username": "IP-adresse eller brugernavn:",
 	"sp-contributions-toponly": "Vis kun redigeringer, der er aktuelle versioner",
