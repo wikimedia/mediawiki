@@ -191,10 +191,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$this->normalizeRequests( $reqs );
 		$opts += [ 'connTimeout' => $this->connTimeout, 'reqTimeout' => $this->reqTimeout ];
 
-		if ( $opts['connTimeout'] > $this->maxConnTimeout ) {
+		if ( $this->maxConnTimeout && $opts['connTimeout'] > $this->maxConnTimeout ) {
 			$opts['connTimeout'] = $this->maxConnTimeout;
 		}
-		if ( $opts['reqTimeout'] > $this->maxReqTimeout ) {
+		if ( $this->maxReqTimeout && $opts['reqTimeout'] > $this->maxReqTimeout ) {
 			$opts['reqTimeout'] = $this->maxReqTimeout;
 		}
 

@@ -9597,20 +9597,22 @@ $wgHTTPConnectTimeout = 5.0;
 /**
  * The maximum HTTP request timeout in seconds. If any specified or configured
  * request timeout is larger than this, then this value will be used instead.
+ * Zero is interpreted as "no limit".
  *
  * @since 1.35
  * @var float|int
  */
-$wgHTTPMaxTimeout = INF;
+$wgHTTPMaxTimeout = 0;
 
 /**
  * The maximum HTTP connect timeout in seconds. If any specified or configured
  * connect timeout is larger than this, then this value will be used instead.
+ * Zero is interpreted as "no limit".
  *
  * @since 1.35
  * @var float|int
  */
-$wgHTTPMaxConnectTimeout = INF;
+$wgHTTPMaxConnectTimeout = 0;
 
 /**
  * Timeout for HTTP requests done internally for transwiki imports, in seconds.
