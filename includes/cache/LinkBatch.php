@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -80,6 +81,9 @@ class LinkBatch {
 	 */
 	private $loadBalancer;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial items to be added to the batch
 	 * @param LinkCache|null $linkCache
@@ -87,6 +91,7 @@ class LinkBatch {
 	 * @param Language|null $contentLanguage
 	 * @param GenderCache|null $genderCache
 	 * @param ILoadBalancer|null $loadBalancer
+	 * @param LoggerInterface|null $logger
 	 * @deprecated 1.35 Use makeLinkBatch of the LinkBatchFactory service instead
 	 */
 	public function __construct(
@@ -95,7 +100,8 @@ class LinkBatch {
 		?TitleFormatter $titleFormatter = null,
 		?Language $contentLanguage = null,
 		?GenderCache $genderCache = null,
-		?ILoadBalancer $loadBalancer = null
+		?ILoadBalancer $loadBalancer = null,
+		?LoggerInterface $logger = null
 	) {
 		$getServices = static function () {
 			// BC hack. Use a closure so this can be unit-tested.
@@ -107,6 +113,7 @@ class LinkBatch {
 		$this->contentLanguage = $contentLanguage ?? $getServices()->getContentLanguage();
 		$this->genderCache = $genderCache ?? $getServices()->getGenderCache();
 		$this->loadBalancer = $loadBalancer ?? $getServices()->getDBLoadBalancer();
+		$this->logger = $logger ?? LoggerFactory::getInstance( 'LinkBatch' );
 
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
@@ -134,8 +141,15 @@ class LinkBatch {
 		if ( !$link ) {
 			// Don't die if we got null, just skip. There is nothing to do anyway.
 			// For now, let's avoid things like T282180. We should be more strict in the future.
-			LoggerFactory::getInstance( 'LinkBatch' )->warning(
+			$this->logger->warning(
 				'Skipping null link, probably due to a bad title.',
+				[ 'trace' => wfBacktrace( true ) ]
+			);
+			return;
+		}
+		if ( $link instanceof LinkTarget && $link->isExternal() ) {
+			$this->logger->warning(
+				'Skipping interwiki link',
 				[ 'trace' => wfBacktrace( true ) ]
 			);
 			return;
@@ -267,7 +281,7 @@ class LinkBatch {
 				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$this->pageIdentities[$key] = $pageIdentity;
 			} catch ( InvalidArgumentException $ex ) {
-				LoggerFactory::getInstance( 'LinkBatch' )->warning(
+				$this->logger->warning(
 					'Encountered invalid title',
 					[ 'title_namespace' => $row->page_namespace, 'title_dbkey' => $row->page_title ]
 				);
@@ -290,7 +304,7 @@ class LinkBatch {
 					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 					$this->pageIdentities[$key] = $pageIdentity;
 				} catch ( InvalidArgumentException $ex ) {
-					LoggerFactory::getInstance( 'LinkBatch' )->warning(
+					$this->logger->warning(
 						'Encountered invalid title',
 						[ 'title_namespace' => $ns, 'title_dbkey' => $dbkey ]
 					);

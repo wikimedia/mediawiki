@@ -802,7 +802,8 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	},
 
@@ -1992,7 +1993,8 @@ return [
 		return new DefaultOptionsLookup(
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getNamespaceInfo()
 		);
 	},
 
