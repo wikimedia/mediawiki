@@ -735,8 +735,8 @@ class SkinTemplate extends Skin {
 		}
 
 		$data['label'] = $this->getPortletLabel( $name );
-		$data['class'] .= ( count( $items ) === 0 && $content === '' )
-			? ' emptyPortlet' : '';
+		$data['is-empty'] = count( $items ) === 0 && $content === '';
+		$data['class'] .= $data['is-empty'] ? ' emptyPortlet' : '';
 		return $data;
 	}
 
