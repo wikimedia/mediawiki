@@ -34,8 +34,9 @@
 				mw.loader.store.items = {};
 				localStorage.removeItem( mw.loader.store.key );
 			}
-			// Remove any remaining temporary statics
-			// exposed for cross-file mocks.
+			// Remove any remaining temporary static state
+			// exposed for mocking and stubbing.
+			delete mw.loader.isES6ForTest;
 			delete mw.loader.testCallback;
 			delete mw.loader.testFail;
 			delete mw.getScriptExampleScriptLoaded;
@@ -266,7 +267,7 @@
 		} );
 
 		mw.loader.load( 'test.load.unreg' );
-		assert.deepEqual( capture, [ 'Skipped unresolvable module test.load.unreg' ] );
+		assert.deepEqual( capture, [ 'Skipped unavailable module test.load.unreg' ] );
 	} );
 
 	// Regression test for T36853
@@ -582,11 +583,24 @@
 		}, /already registered/, 'duplicate ID from addSource(Object)' );
 	} );
 
-	// @covers mw.loader#batchRequest
+	QUnit.test( '.register() - ES6 support', function ( assert ) {
+		// Implied: isES6Supported correctly evaluates to true in a modern browsers
+		mw.loader.register( 'test1.regular', 'aaa' );
+		mw.loader.register( 'test1.es6only', 'bbb!' );
+		assert.strictEqual( mw.loader.getState( 'test1.regular' ), 'registered' );
+		assert.strictEqual( mw.loader.getState( 'test1.es6only' ), 'registered' );
+
+		mw.loader.isES6ForTest = false;
+		mw.loader.register( 'test2.regular', 'aaa' );
+		mw.loader.register( 'test2.es6only', 'bbb!' );
+		assert.strictEqual( mw.loader.getState( 'test2.regular' ), 'registered' );
+		assert.strictEqual( mw.loader.getState( 'test2.es6only' ), null );
+	} );
+
 	// This is a regression test because in the past we called getCombinedVersion()
 	// for all requested modules, before url splitting took place.
 	// Discovered as part of T188076, but not directly related.
-	QUnit.test( 'Url composition (modules considered for version)', function ( assert ) {
+	QUnit.test( '.batchRequest() - Module version combines for given batch', function ( assert ) {
 		mw.loader.register( [
 			// [module, version, dependencies, group, source]
 			[ 'testUrlInc', 'url', [], null, 'testloader' ],
@@ -613,9 +627,8 @@
 		} );
 	} );
 
-	// @covers mw.loader#batchRequest
-	// @covers mw.loader#buildModulesString
-	QUnit.test( 'Url composition (order of modules for version) – T188076', function ( assert ) {
+	// Regression test for T188076
+	QUnit.test( '.batchRequest() - Module version combined based on sorted order', function ( assert ) {
 		mw.loader.register( [
 			// [module, version, dependencies, group, source]
 			[ 'testUrlOrder', 'url', [], null, 'testloader' ],
@@ -635,9 +648,9 @@
 				{
 					modules: 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b',
 					// Expected: Combined by sorting names after string packing
-					//   hash fnv132 = "1knqzan"
+					//   hash fnv132 = "1knqz"
 					// Wrong: Combined by sorting names before string packing
-					//   hash fnv132 => "11eo3in"
+					//   hash fnv132 => "11eo3s"
 					version: '1knqz'
 				},
 				'Query parameters'
