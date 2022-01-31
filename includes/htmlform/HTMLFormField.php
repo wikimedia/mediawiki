@@ -236,39 +236,20 @@ abstract class HTMLFormField {
 	protected function checkStateRecurse( array $alldata, array $params ) {
 		$origParams = $params;
 		$op = array_shift( $params );
+		$valueChk = [ 'AND' => false, 'OR' => true, 'NAND' => false, 'NOR' => true ];
+		$valueRet = [ 'AND' => true, 'OR' => false, 'NAND' => false, 'NOR' => true ];
 
 		switch ( $op ) {
 			case 'AND':
-				foreach ( $params as $i => $p ) {
-					if ( !$this->checkStateRecurse( $alldata, $p ) ) {
-						return false;
-					}
-				}
-				return true;
-
 			case 'OR':
-				foreach ( $params as $i => $p ) {
-					if ( $this->checkStateRecurse( $alldata, $p ) ) {
-						return true;
-					}
-				}
-				return false;
-
 			case 'NAND':
-				foreach ( $params as $i => $p ) {
-					if ( !$this->checkStateRecurse( $alldata, $p ) ) {
-						return true;
-					}
-				}
-				return false;
-
 			case 'NOR':
 				foreach ( $params as $i => $p ) {
-					if ( $this->checkStateRecurse( $alldata, $p ) ) {
-						return false;
+					if ( $valueChk[$op] === $this->checkStateRecurse( $alldata, $p ) ) {
+						return !$valueRet[$op];
 					}
 				}
-				return true;
+				return $valueRet[$op];
 
 			case 'NOT':
 				return !$this->checkStateRecurse( $alldata, $params[0] );
