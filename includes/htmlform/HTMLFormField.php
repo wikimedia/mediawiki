@@ -107,6 +107,16 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get the field name that will be used for submission.
+	 *
+	 * @since 1.38
+	 * @return string
+	 */
+	public function getName() {
+		return $this->mName;
+	}
+
+	/**
 	 * Fetch a field value from $alldata for the closest field matching a given
 	 * name.
 	 *
@@ -119,9 +129,11 @@ abstract class HTMLFormField {
 	 *
 	 * @param array $alldata
 	 * @param string $name
+	 * @param bool $asDisplay Whether the reverting logic of HTMLCheckField
+	 *     should be ignored.
 	 * @return string
 	 */
-	protected function getNearestFieldByName( $alldata, $name ) {
+	protected function getNearestFieldByName( $alldata, $name, $asDisplay = false ) {
 		$tmp = $this->mName;
 		$thisKeys = [];
 		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $tmp, $m ) ) {
@@ -158,12 +170,13 @@ abstract class HTMLFormField {
 			$testValue = $data;
 			break;
 		}
-		// The logic above is complicated, make sure there is nothing wrong here.
-		if ( $this->mParent->hasField( $key ) ) {
-			// Check invert state for HTMLCheckField
+		// The logic above is complicated (may inside field cloner), don't get the field directly.
+		if ( $asDisplay && $this->mParent->hasField( $key ) ) {
 			$field = $this->mParent->getField( $key );
 			if ( $field instanceof HTMLCheckField && ( $field->mParams['invert'] ?? false ) ) {
-				$testValue = !$testValue;
+				// Bypass the invert logic of HTMLCheckField
+				$testValue = $this->mParent->getRequest()
+					->getBool( $field->getName(), $this->getDefault() );
 			}
 		}
 		$testValue = (string)$testValue;
@@ -257,7 +270,7 @@ abstract class HTMLFormField {
 			case '===':
 			case '!==':
 				list( $field, $value ) = $params;
-				$testValue = $this->getNearestFieldByName( $alldata, $field );
+				$testValue = $this->getNearestFieldByName( $alldata, $field, true );
 				switch ( $op ) {
 					case '===':
 						return ( $value === $testValue );
