@@ -1065,7 +1065,7 @@
 	"revdelete-success": "Visibilité des versions mise à jour.",
 	"revdelete-failure": "La visibilité de la version n’a pas pu être mise à jour :\n$1",
 	"logdelete-success": "Visibilité du journal modifiée.",
-	"logdelete-failure": "La visibilité du journal n’a pas pu être définie  :\n$1",
+	"logdelete-failure": "La visibilité du journal n’a pas pu être définie :\n$1",
 	"revdel-restore": "modifier la visibilité",
 	"pagehist": "Historique de la page",
 	"deletedhist": "Historique supprimé",
