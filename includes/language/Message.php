@@ -259,7 +259,7 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * @see Serializable::serialize()
-	 * @since 1.38
+	 * @since 1.37.2
 	 * @return array
 	 */
 	public function __serialize() {
@@ -282,7 +282,7 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * @see Serializable::unserialize()
-	 * @since 1.38
+	 * @since 1.37.2
 	 * @param string $serialized
 	 */
 	public function unserialize( $serialized ) {
