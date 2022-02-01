@@ -180,6 +180,7 @@ CREATE TABLE /*_*/templatelinks (
   tl_namespace INTEGER DEFAULT 0 NOT NULL,
   tl_title BLOB DEFAULT '' NOT NULL,
   tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(tl_from, tl_namespace, tl_title)
 );
 
@@ -188,6 +189,13 @@ CREATE INDEX tl_namespace ON /*_*/templatelinks (tl_namespace, tl_title, tl_from
 CREATE INDEX tl_backlinks_namespace ON /*_*/templatelinks (
   tl_from_namespace, tl_namespace,
   tl_title, tl_from
+);
+
+CREATE INDEX tl_target_id ON /*_*/templatelinks (tl_target_id, tl_from);
+
+CREATE INDEX tl_backlinks_namespace_target_id ON /*_*/templatelinks (
+  tl_from_namespace, tl_target_id,
+  tl_from
 );
 
 

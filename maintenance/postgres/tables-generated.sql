@@ -187,6 +187,7 @@ CREATE TABLE templatelinks (
   tl_namespace INT DEFAULT 0 NOT NULL,
   tl_title TEXT DEFAULT '' NOT NULL,
   tl_from_namespace INT DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT DEFAULT NULL,
   PRIMARY KEY(tl_from, tl_namespace, tl_title)
 );
 
@@ -195,6 +196,13 @@ CREATE INDEX tl_namespace ON templatelinks (tl_namespace, tl_title, tl_from);
 CREATE INDEX tl_backlinks_namespace ON templatelinks (
   tl_from_namespace, tl_namespace,
   tl_title, tl_from
+);
+
+CREATE INDEX tl_target_id ON templatelinks (tl_target_id, tl_from);
+
+CREATE INDEX tl_backlinks_namespace_target_id ON templatelinks (
+  tl_from_namespace, tl_target_id,
+  tl_from
 );
 
 
