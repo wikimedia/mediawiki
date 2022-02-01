@@ -109,6 +109,13 @@ class ExtensionRegistry {
 	protected $lazyAttributes = [];
 
 	/**
+	 * The hash of cache-varying options, lazy-initialised
+	 *
+	 * @var string|null
+	 */
+	private $varyHash;
+
+	/**
 	 * Whether to check dev-requires
 	 *
 	 * @var bool
@@ -145,6 +152,7 @@ class ExtensionRegistry {
 	 */
 	public function setCheckDevRequires( $check ) {
 		$this->checkDev = $check;
+		$this->invalidateProcessCache();
 	}
 
 	/**
@@ -176,6 +184,7 @@ class ExtensionRegistry {
 			}
 		}
 		$this->queued[$path] = $mtime;
+		$this->invalidateProcessCache();
 	}
 
 	private function getCache(): BagOStuff {
@@ -185,23 +194,41 @@ class ExtensionRegistry {
 	}
 
 	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
-		// Everything we vary the cache on
-		$vary = [
-			'registration' => self::CACHE_VERSION,
-			'mediawiki' => MW_VERSION,
-			'abilities' => $this->getAbilities(),
-			'checkDev' => $this->checkDev,
-			'queue' => $this->queued,
-		];
-
 		// Allow reusing cached ExtensionRegistry metadata between wikis (T274648)
 		return $cache->makeGlobalKey(
 			"registration-$component",
-			// We vary the cache on the current queue (what will be or already was loaded)
-			// plus various versions of stuff for VersionChecker
-			md5( json_encode( $vary ) ),
+			$this->getVaryHash(),
 			...$extra
 		);
+	}
+
+	/**
+	 * Get the cache varying hash
+	 *
+	 * @return string
+	 */
+	private function getVaryHash() {
+		if ( $this->varyHash === null ) {
+			// We vary the cache on the current queue (what will be or already was loaded)
+			// plus various versions of stuff for VersionChecker
+			$vary = [
+				'registration' => self::CACHE_VERSION,
+				'mediawiki' => MW_VERSION,
+				'abilities' => $this->getAbilities(),
+				'checkDev' => $this->checkDev,
+				'queue' => $this->queued,
+			];
+			$this->varyHash = md5( json_encode( $vary ) );
+		}
+		return $this->varyHash;
+	}
+
+	/**
+	 * Invalidate the cache of the vary hash and the lazy options.
+	 */
+	private function invalidateProcessCache() {
+		$this->varyHash = null;
+		$this->lazyAttributes = [];
 	}
 
 	/**
@@ -278,6 +305,7 @@ class ExtensionRegistry {
 	 */
 	public function clearQueue() {
 		$this->queued = [];
+		$this->invalidateProcessCache();
 	}
 
 	/**
@@ -596,12 +624,16 @@ class ExtensionRegistry {
 		if ( isset( $this->testAttributes[$name] ) ) {
 			return $this->testAttributes[$name];
 		}
+		if ( isset( $this->lazyAttributes[$name] ) ) {
+			return $this->lazyAttributes[$name];
+		}
 
 		// See if it's in the cache
 		$cache = $this->getCache();
 		$key = $this->makeCacheKey( $cache, 'lazy-attrib', $name );
 		$data = $cache->get( $key );
 		if ( $data !== false ) {
+			$this->lazyAttributes[$name] = $data;
 			return $data;
 		}
 
@@ -615,6 +647,7 @@ class ExtensionRegistry {
 		$result = $this->readFromQueue( $paths );
 		$data = $result['attributes'][$name] ?? [];
 		$this->saveToCache( $cache, $result );
+		$this->lazyAttributes[$name] = $data;
 
 		return $data;
 	}
