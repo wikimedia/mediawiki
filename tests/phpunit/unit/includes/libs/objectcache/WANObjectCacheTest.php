@@ -76,6 +76,15 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideSetAndGet() {
+		$a1 = [ 1 ];
+		$a2 = [ 'a' => &$a1 ];
+
+		$o1 = (object)[ 'v' => 1 ];
+		$o2 = (object)[ 'a' => &$o1 ];
+
+		$co = (object)[ 'p' => 93 ];
+		$co->f =& $co;
+
 		return [
 			// value, ttl
 			[ 14141, 3 ],
@@ -86,7 +95,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			[ INF, 3 ],
 			[ '', 3 ],
 			[ 'pizzacat', INF ],
-			[ null, 80 ]
+			[ null, 80 ],
+			[ $a2, 3 ],
+			[ $o2, 3 ],
+			[ $co, 3 ]
 		];
 	}
 
