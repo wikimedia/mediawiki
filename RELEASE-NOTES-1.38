@@ -357,6 +357,10 @@ because of Phabricator reports.
 * Special:ListFiles and Special:NewFiles no longer allows to search for parts
   of file names (option was not available for $wgMiserMode = true)
 * DBAccessBase, deprecated since 1.37, has been removed.
+* The methods CoreParserFunctions::register() and CoreTagHooks::register() have
+  been marked @internal, and had a seconds parameter added. These methods are
+  intended for use in Parser's constructor, and are not used by any known
+  extension.
 * …
 
 === Deprecations in 1.38 ===
