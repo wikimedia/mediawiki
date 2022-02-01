@@ -56,7 +56,7 @@
 		"wikimedia/composer-merge-plugin": "2.0.1",
 		"wikimedia/html-formatter": "3.0.1",
 		"wikimedia/ip-set": "3.0.0",
-		"wikimedia/ip-utils": "3.0.2",
+		"wikimedia/ip-utils": "4.0.0",
 		"wikimedia/less.php": "3.1.0",
 		"wikimedia/minify": "2.2.6",
 		"wikimedia/normalized-exception": "1.0.1",
