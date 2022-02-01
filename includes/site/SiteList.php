@@ -332,21 +332,17 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
-	 * @see GenericArrayObject::unserialize
+	 * @see GenericArrayObject::__unserialize
 	 *
-	 * @since 1.21
+	 * @since 1.37.2
 	 *
-	 * @param string $serialization
-	 *
-	 * @return array
+	 * @param array $serializationData
 	 */
-	public function unserialize( $serialization ) {
-		$serializationData = parent::unserialize( $serialization );
+	public function __unserialize( $serializationData ) {
+		parent::__unserialize( $serializationData );
 
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
 		$this->byNavigationId = $serializationData['navigationIds'];
-
-		return $serializationData;
 	}
 }
