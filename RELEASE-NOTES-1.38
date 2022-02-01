@@ -100,6 +100,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
 * Updated psy/psysh from 0.10.5 to 0.11.1.
 * Updated symfony/polyfill-php80 from 1.23.1 to 1.24.0.
+* Updated wikimedia/ip-utils from 3.0.2 to 4.0.0.
 * …
 
 ===== Changed development-only external libraries =====
