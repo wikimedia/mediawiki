@@ -407,6 +407,8 @@ class Parser {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		// See documentation for the corresponding config options
+		'AllowDisplayTitle',
+		'AllowSlowParserFunctions',
 		'ArticlePath',
 		'EnableScaryTranscluding',
 		'ExtraInterlanguageLinkPrefixes',
@@ -414,6 +416,7 @@ class Parser {
 		'MaxSigChars',
 		'MaxTocLevel',
 		'MiserMode',
+		'RawHtml',
 		'ScriptPath',
 		'Server',
 		'ServerName',
@@ -518,8 +521,14 @@ class Parser {
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
-		CoreParserFunctions::register( $this );
-		CoreTagHooks::register( $this );
+		CoreParserFunctions::register(
+			$this,
+			new ServiceOptions( CoreParserFunctions::REGISTER_OPTIONS, $svcOptions )
+		);
+		CoreTagHooks::register(
+			$this,
+			new ServiceOptions( CoreTagHooks::REGISTER_OPTIONS, $svcOptions )
+		);
 		$this->initializeVariables();
 
 		$this->hookRunner->onParserFirstCallInit( $this );

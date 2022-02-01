@@ -1123,12 +1123,21 @@ class ParserOptions {
 	 * @return array
 	 */
 	private static function getDefaults() {
-		global $wgInterwikiMagic, $wgAllowExternalImages,
-			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
-			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
-			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgEnableMagicLinks;
 		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
+		$interwikiMagic = $mainConfig->get( 'InterwikiMagic' );
+		$allowExternalImages = $mainConfig->get( 'AllowExternalImages' );
+		$allowExternalImagesFrom = $mainConfig->get( 'AllowExternalImagesFrom' );
+		$enableImageWhitelist = $mainConfig->get( 'EnableImageWhitelist' );
+		$allowSpecialInclusion = $mainConfig->get( 'AllowSpecialInclusion' );
+		$maxArticleSize = $mainConfig->get( 'MaxArticleSize' );
+		$maxPPNodeCount = $mainConfig->get( 'MaxPPNodeCount' );
+		$maxTemplateDepth = $mainConfig->get( 'MaxTemplateDepth' );
+		$maxPPExpandDepth = $mainConfig->get( 'MaxPPExpandDepth' );
+		$cleanSignatures = $mainConfig->get( 'CleanSignatures' );
+		$externalLinkTarget = $mainConfig->get( 'ExternalLinkTarget' );
+		$expensiveParserFunctionLimit = $mainConfig->get( 'ExpensiveParserFunctionLimit' );
+		$enableMagicLinks = $mainConfig->get( 'EnableMagicLinks' );
 		$languageConverterFactory = $services->getLanguageConverterFactory();
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$contentLanguage = $services->getContentLanguage();
@@ -1169,23 +1178,23 @@ class ParserOptions {
 
 		// Unit tests depend on being able to modify the globals at will
 		return self::$defaults + [
-			'interwikiMagic' => $wgInterwikiMagic,
-			'allowExternalImages' => $wgAllowExternalImages,
-			'allowExternalImagesFrom' => $wgAllowExternalImagesFrom,
-			'enableImageWhitelist' => $wgEnableImageWhitelist,
-			'allowSpecialInclusion' => $wgAllowSpecialInclusion,
-			'maxIncludeSize' => $wgMaxArticleSize * 1024,
-			'maxPPNodeCount' => $wgMaxPPNodeCount,
-			'maxPPExpandDepth' => $wgMaxPPExpandDepth,
-			'maxTemplateDepth' => $wgMaxTemplateDepth,
-			'expensiveParserFunctionLimit' => $wgExpensiveParserFunctionLimit,
-			'externalLinkTarget' => $wgExternalLinkTarget,
-			'cleanSignatures' => $wgCleanSignatures,
+			'interwikiMagic' => $interwikiMagic,
+			'allowExternalImages' => $allowExternalImages,
+			'allowExternalImagesFrom' => $allowExternalImagesFrom,
+			'enableImageWhitelist' => $enableImageWhitelist,
+			'allowSpecialInclusion' => $allowSpecialInclusion,
+			'maxIncludeSize' => $maxArticleSize * 1024,
+			'maxPPNodeCount' => $maxPPNodeCount,
+			'maxPPExpandDepth' => $maxPPExpandDepth,
+			'maxTemplateDepth' => $maxTemplateDepth,
+			'expensiveParserFunctionLimit' => $expensiveParserFunctionLimit,
+			'externalLinkTarget' => $externalLinkTarget,
+			'cleanSignatures' => $cleanSignatures,
 			'disableContentConversion' => $languageConverterFactory->isConversionDisabled(),
 			'disableTitleConversion' => $languageConverterFactory->isLinkConversionDisabled(),
-			'magicISBNLinks' => $wgEnableMagicLinks['ISBN'],
-			'magicPMIDLinks' => $wgEnableMagicLinks['PMID'],
-			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
+			'magicISBNLinks' => $enableMagicLinks['ISBN'],
+			'magicPMIDLinks' => $enableMagicLinks['PMID'],
+			'magicRFCLinks' => $enableMagicLinks['RFC'],
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];
@@ -1348,7 +1357,7 @@ class ParserOptions {
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
-		global $wgRenderHashAppend;
+		$renderHashAppend = MediaWikiServices::getInstance()->getMainConfig()->get( 'RenderHashAppend' );
 
 		$inCacheKey = self::allCacheVaryingOptions();
 
@@ -1385,7 +1394,7 @@ class ParserOptions {
 		$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
 		$confstr .= $converter->getExtraHashOptions();
 
-		$confstr .= $wgRenderHashAppend;
+		$confstr .= $renderHashAppend;
 
 		if ( $this->mExtraKey != '' ) {
 			$confstr .= $this->mExtraKey;
@@ -1457,21 +1466,23 @@ class ParserOptions {
 			}
 		);
 
-		global $wgHooks;
-		$wgHooks['TitleExists'][] =
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookScope = $hookContainer->scopedRegister(
+			'TitleExists',
 			static function ( $titleToCheck, &$exists ) use ( $title ) {
 				if ( $titleToCheck->equals( $title ) ) {
 					$exists = true;
 				}
-			};
-		end( $wgHooks['TitleExists'] );
-		$key = key( $wgHooks['TitleExists'] );
+			}
+		);
+
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clearBadLink( $title->getPrefixedDBkey() );
-		return new ScopedCallback( static function () use ( $title, $key, $linkCache ) {
-			global $wgHooks;
-			unset( $wgHooks['TitleExists'][$key] );
+
+		return new ScopedCallback( function () use ( $title, $hookScope, $linkCache, $oldCallback ) {
+			ScopedCallback::consume( $hookScope );
 			$linkCache->clearLink( $title );
+			$this->setCurrentRevisionRecordCallback( $oldCallback );
 		} );
 	}
 }
