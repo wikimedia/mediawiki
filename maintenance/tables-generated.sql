@@ -172,10 +172,16 @@ CREATE TABLE /*_*/templatelinks (
   tl_namespace INT DEFAULT 0 NOT NULL,
   tl_title VARBINARY(255) DEFAULT '' NOT NULL,
   tl_from_namespace INT DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT UNSIGNED DEFAULT NULL,
   INDEX tl_namespace (tl_namespace, tl_title, tl_from),
   INDEX tl_backlinks_namespace (
     tl_from_namespace, tl_namespace,
     tl_title, tl_from
+  ),
+  INDEX tl_target_id (tl_target_id, tl_from),
+  INDEX tl_backlinks_namespace_target_id (
+    tl_from_namespace, tl_target_id,
+    tl_from
   ),
   PRIMARY KEY(tl_from, tl_namespace, tl_title)
 ) /*$wgDBTableOptions*/;
