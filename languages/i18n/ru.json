@@ -1082,7 +1082,7 @@
 	"mergelogpagetext": "Ниже приведён список последних объединений историй страниц.",
 	"history-title": "$1: история изменений",
 	"difference-title": "$1: различия между версиями",
-	"difference-title-multipage": "Разница между страницами «$1» и «$2»",
+	"difference-title-multipage": "«$1» и «$2»: разница между страницами",
 	"difference-multipage": "(Различия между страницами)",
 	"lineno": "Строка $1:",
 	"compareselectedversions": "Сравнить выбранные версии",
