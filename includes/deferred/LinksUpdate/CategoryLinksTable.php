@@ -260,24 +260,34 @@ class CategoryLinksTable extends TitleLinksTable {
 			// Don't do invalidations for temporary collations
 			return;
 		}
-		$this->invalidateCategories();
-		$this->updateCategoryCounts();
+
+		// A update of sortkey on move is detected as insert + delete,
+		// but the categories does not need to update the counters or invalidate caches
+		$allInsertedLinks = array_column( $this->insertedLinks, 0 );
+		$allDeletedLinks = array_column( $this->deletedLinks, 0 );
+		$insertedLinks = array_diff( $allInsertedLinks, $allDeletedLinks );
+		$deletedLinks = array_diff( $allDeletedLinks, $allInsertedLinks );
+
+		$this->invalidateCategories( $insertedLinks, $deletedLinks );
+		$this->updateCategoryCounts( $insertedLinks, $deletedLinks );
 	}
 
-	private function invalidateCategories() {
-		$changedCategoryNames = array_unique( array_merge(
-			array_column( $this->insertedLinks, 0 ),
-			array_column( $this->deletedLinks, 0 )
-		) );
+	private function invalidateCategories( array $insertedLinks, array $deletedLinks ) {
+		$changedCategoryNames = array_merge(
+			$insertedLinks,
+			$deletedLinks
+		);
 		PurgeJobUtils::invalidatePages(
 			$this->getDB(), NS_CATEGORY, $changedCategoryNames );
 	}
 
 	/**
 	 * Update all the appropriate counts in the category table.
+	 * @param array $insertedLinks
+	 * @param array $deletedLinks
 	 */
-	private function updateCategoryCounts() {
-		if ( !$this->insertedLinks && !$this->deletedLinks ) {
+	private function updateCategoryCounts( array $insertedLinks, array $deletedLinks ) {
+		if ( !$insertedLinks && !$deletedLinks ) {
 			return;
 		}
 
@@ -289,23 +299,23 @@ class CategoryLinksTable extends TitleLinksTable {
 		$lbf->commitAndWaitForReplication(
 			__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
 
-		if ( count( $this->insertedLinks ) + count( $this->deletedLinks ) < $size ) {
+		if ( count( $insertedLinks ) + count( $deletedLinks ) < $size ) {
 			$wp->updateCategoryCounts(
-				array_column( $this->insertedLinks, 0 ),
-				array_column( $this->deletedLinks, 0 ),
+				$insertedLinks,
+				$deletedLinks,
 				$this->getSourcePageId()
 			);
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
 		} else {
-			$addedChunks = array_chunk( array_column( $this->insertedLinks, 0 ), $size );
+			$addedChunks = array_chunk( $insertedLinks, $size );
 			foreach ( $addedChunks as $chunk ) {
 				$wp->updateCategoryCounts( $chunk, [], $this->getSourcePageId() );
 				$lbf->commitAndWaitForReplication(
 					__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
 			}
 
-			$deletedChunks = array_chunk( array_column( $this->deletedLinks, 0 ), $size );
+			$deletedChunks = array_chunk( $deletedLinks, $size );
 			foreach ( $deletedChunks as $chunk ) {
 				$wp->updateCategoryCounts( [], $chunk, $this->getSourcePageId() );
 				$lbf->commitAndWaitForReplication(
