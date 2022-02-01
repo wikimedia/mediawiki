@@ -852,9 +852,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return array
 	 */
 	public static function getRcFiltersConfigSummary( ResourceLoaderContext $context ) {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $context->getLanguage() );
 		return [
 			// Reduce version computation by avoiding Message parsing
-			'RCFiltersChangeTags' => self::getChangeTagListSummary( $context ),
+			'RCFiltersChangeTags' => self::getChangeTagListSummary( $context, $lang ),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
@@ -868,8 +870,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return array
 	 */
 	public static function getRcFiltersConfigVars( ResourceLoaderContext $context ) {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $context->getLanguage() );
 		return [
-			'RCFiltersChangeTags' => self::getChangeTagList( $context ),
+			'RCFiltersChangeTags' => self::getChangeTagList( $context, $lang ),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
@@ -892,15 +896,16 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * - cssClass: CSS class to use for RC entries with this tag
 	 * - hits: Number of RC entries that have this tag
 	 *
-	 * @param ResourceLoaderContext $context
+	 * @param MessageLocalizer $localizer
+	 * @param Language $lang
 	 * @return array[] Information about each tag
 	 */
-	protected static function getChangeTagListSummary( ResourceLoaderContext $context ) {
+	protected static function getChangeTagListSummary( MessageLocalizer $localizer, Language $lang ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
-			$cache->makeKey( 'ChangesListSpecialPage-changeTagListSummary', $context->getLanguage() ),
+			$cache->makeKey( 'ChangesListSpecialPage-changeTagListSummary', $lang->getCode() ),
 			WANObjectCache::TTL_DAY,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $context ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
 				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
@@ -918,8 +923,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// Only get tags with more than 0 hits
 						$hits > 0
 					) {
-						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $context );
-						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
+						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $localizer );
+						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $localizer );
 						$result[] = [
 							'name' => $tagName,
 							'labelMsg' => $labelMsg,
@@ -946,21 +951,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * The result of this function is cached in WANCache for 24 hours.
 	 *
-	 * @param ResourceLoaderContext $context
+	 * @param MessageLocalizer $localizer
+	 * @param Language $lang
 	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
 	 */
-	protected static function getChangeTagList( ResourceLoaderContext $context ) {
-		$tags = self::getChangeTagListSummary( $context );
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $context->getLanguage() );
+	protected static function getChangeTagList( MessageLocalizer $localizer, Language $lang ) {
+		$tags = self::getChangeTagListSummary( $localizer, $lang );
 		foreach ( $tags as &$tagInfo ) {
 			if ( $tagInfo['labelMsg'] ) {
 				$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
 			} else {
-				$tagInfo['label'] = $context->msg( 'rcfilters-tag-hidden', $tagInfo['name'] )->text();
+				$tagInfo['label'] = $localizer->msg( 'rcfilters-tag-hidden', $tagInfo['name'] )->text();
 			}
 			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
-				$language->truncateForVisual(
+				$lang->truncateForVisual(
 					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
 					self::TAG_DESC_CHARACTER_LIMIT
 				) :

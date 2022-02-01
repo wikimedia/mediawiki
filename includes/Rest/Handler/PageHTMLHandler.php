@@ -73,20 +73,22 @@ class PageHTMLHandler extends SimpleHandler {
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $page !== null, 'Page should be known' );
 
+		$parserOutput = $this->htmlHelper->getHtml();
+		// Do not de-duplicate styles, Parsoid already does it in a slightly different way (T300325)
+		$parserOutputHtml = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
+
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'html':
-				$parserOutput = $this->htmlHelper->getHtml();
 				$response = $this->getResponseFactory()->create();
 				// TODO: need to respect content-type returned by Parsoid.
 				$response->setHeader( 'Content-Type', 'text/html' );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
-				$response->setBody( new StringStream( $parserOutput->getText() ) );
+				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
 			case 'with_html':
-				$parserOutput = $this->htmlHelper->getHtml();
 				$body = $this->contentHelper->constructMetadata();
-				$body['html'] = $parserOutput->getText();
+				$body['html'] = $parserOutputHtml;
 				$response = $this->getResponseFactory()->createJson( $body );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
