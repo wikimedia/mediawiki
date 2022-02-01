@@ -395,6 +395,7 @@ class HookRunner implements
 	\MediaWiki\Hook\UploadStashFileHook,
 	\MediaWiki\Hook\UploadVerifyFileHook,
 	\MediaWiki\Hook\UploadVerifyUploadHook,
+	\MediaWiki\Hook\UserEditCountUpdateHook,
 	\MediaWiki\Hook\UserGetLanguageObjectHook,
 	\MediaWiki\Hook\UserLoginCompleteHook,
 	\MediaWiki\Hook\UserLogoutCompleteHook,
@@ -4071,6 +4072,14 @@ class HookRunner implements
 		return $this->container->run(
 			'UserClearNewTalkNotification',
 			[ $userIdentity, $oldid ]
+		);
+	}
+
+	public function onUserEditCountUpdate( $infos ): void {
+		$this->container->run(
+			'UserEditCountUpdate',
+			[ $infos ],
+			[ 'abortable' => false ]
 		);
 	}
 
