@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -31,7 +32,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	/**
 	 * We need to keep a single copy of the relevant UserIdentity to be able to pass to UserEditTracker
 	 *
-	 * @var array[] Map of (user ID => ('increment': int, 'object': UserIdentity))
+	 * @var UserEditCountInfo[] Map of (user ID => UserEditCountInfo)
 	 */
 	private $infoByUser;
 
@@ -44,7 +45,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 			throw new RuntimeException( "Got user ID of zero" );
 		}
 		$this->infoByUser = [
-			$user->getId() => [ 'increment' => $increment, 'object' => $user ]
+			$user->getId() => new UserEditCountInfo( $user, $increment ),
 		];
 	}
 
@@ -55,14 +56,10 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		foreach ( $update->infoByUser as $userId => $info ) {
 			if ( !isset( $this->infoByUser[$userId] ) ) {
-				// Object will be filled in below
-				$this->infoByUser[$userId] = [ 'increment' => 0 ];
+				$this->infoByUser[$userId] = $info;
+			} else {
+				$this->infoByUser[$userId]->merge( $info );
 			}
-			// Merge the increment amount
-			$this->infoByUser[$userId]['increment'] += $info['increment'];
-			// Always use the UserIdentity from the other update in case we don't
-			// already have info for the user
-			$this->infoByUser[$userId]['object'] = $info['object'];
 		}
 	}
 
@@ -80,12 +77,10 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->update(
 					'user',
-					[ 'user_editcount=user_editcount+' . (int)$info['increment'] ],
+					[ 'user_editcount=user_editcount+' . (int)$info->getIncrement() ],
 					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
 					$fname
 				);
-				/** @var UserIdentity $targetUserIdentity */
-				$targetUserIdentity = $info['object'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
 					// The user_editcount is probably NULL (e.g. not initialized).
@@ -96,12 +91,15 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// is harmless and waitForPrimaryPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
 					$lb->waitForPrimaryPos( $dbr );
-					$editTracker->initializeUserEditCount( $targetUserIdentity );
+					$editTracker->initializeUserEditCount( $info->getUser() );
 				}
 
 				// Clear the edit count in the UserEditTracker cache.
-				$editTracker->clearUserEditCache( $targetUserIdentity );
+				$editTracker->clearUserEditCache( $info->getUser() );
 			}
 		} ) )->doUpdate();
+
+		$hookRunner = new HookRunner( $mwServices->getHookContainer() );
+		$hookRunner->onUserEditCountUpdate( array_values( $this->infoByUser ) );
 	}
 }
