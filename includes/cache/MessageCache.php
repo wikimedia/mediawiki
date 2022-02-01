@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -574,6 +575,8 @@ class MessageCache implements LoggerAwareInterface {
 					$rev = $revisions[$row->rev_id] ?? null;
 					$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
 					$text = $this->getMessageTextFromContent( $content );
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $ex ) {
 					$text = false;
 				}

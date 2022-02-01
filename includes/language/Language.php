@@ -32,6 +32,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Internationalisation code
@@ -2083,6 +2084,8 @@ class Language {
 				$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
 				$date->setTimezone( $userTZ );
 				return $date->format( 'YmdHis' );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Unrecognized timezone, default to 'Offset' with the stored offset.
 				$data[0] = 'Offset';

@@ -40,6 +40,7 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;
 
 /**
@@ -574,6 +575,8 @@ class DeletePage {
 		}
 		try {
 			$content = $page->getContent( RevisionRecord::RAW );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $ex ) {
 			wfLogWarning( __METHOD__ . ': failed to load content during deletion! '
 				. $ex->getMessage() );
@@ -838,6 +841,8 @@ class DeletePage {
 	public function doDeleteUpdates( WikiPage $page, RevisionRecord $revRecord ): void {
 		try {
 			$countable = $page->isCountable();
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $ex ) {
 			// fallback for deleting broken pages for which we cannot load the content for
 			// some reason. Note that doDeleteArticleReal() already logged this problem.

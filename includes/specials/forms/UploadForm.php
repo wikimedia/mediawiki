@@ -20,6 +20,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Sub class of HTMLForm that provides the form section of SpecialUpload
@@ -292,6 +293,8 @@ class UploadForm extends HTMLForm {
 			$stash = $this->localRepo->getUploadStash( $this->getUser() );
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				$file = null;
 			}

@@ -17,7 +17,7 @@
  *
  * @file
  */
-use Cdb\Exception;
+use Cdb\Exception as CdbException;
 use Cdb\Reader;
 use Cdb\Writer;
 
@@ -57,7 +57,7 @@ class LCStoreCDB implements LCStore {
 			if ( is_file( $fileName ) ) {
 				try {
 					$this->readers[$code] = Reader::open( $fileName );
-				} catch ( Exception $e ) {
+				} catch ( CdbException $e ) {
 					wfDebug( __METHOD__ . ": unable to open cdb file for reading" );
 				}
 			}
@@ -69,7 +69,7 @@ class LCStoreCDB implements LCStore {
 			$value = false;
 			try {
 				$value = $this->readers[$code]->get( $key );
-			} catch ( Exception $e ) {
+			} catch ( CdbException $e ) {
 				wfDebug( __METHOD__ . ": \Cdb\Exception caught, error message was "
 					. $e->getMessage() );
 			}
@@ -94,7 +94,7 @@ class LCStoreCDB implements LCStore {
 
 		try {
 			$this->writer = Writer::open( $this->getFileName( $code ) );
-		} catch ( Exception $e ) {
+		} catch ( CdbException $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 		$this->currentLang = $code;
@@ -104,7 +104,7 @@ class LCStoreCDB implements LCStore {
 		// Close the writer
 		try {
 			$this->writer->close();
-		} catch ( Exception $e ) {
+		} catch ( CdbException $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 		$this->writer = null;
@@ -118,7 +118,7 @@ class LCStoreCDB implements LCStore {
 		}
 		try {
 			$this->writer->set( $key, serialize( $value ) );
-		} catch ( Exception $e ) {
+		} catch ( CdbException $e ) {
 			throw new MWException( $e->getMessage() );
 		}
 	}

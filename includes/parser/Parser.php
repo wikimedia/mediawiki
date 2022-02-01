@@ -5030,7 +5030,7 @@ class Parser {
 
 		try {
 			$ig = ImageGalleryBase::factory( $mode );
-		} catch ( Exception $e ) {
+		} catch ( ImageGalleryClassNotFoundException $e ) {
 			// If invalid type set, fallback to default.
 			$ig = ImageGalleryBase::factory( false );
 		}
