@@ -33,7 +33,7 @@
 		"ext-mbstring": "*",
 		"ext-xml": "*",
 		"ext-xmlreader": "*",
-		"guzzlehttp/guzzle": "7.4.0",
+		"guzzlehttp/guzzle": "7.4.1",
 		"justinrainbow/json-schema": "5.2.11",
 		"liuggio/statsd-php-client": "1.0.18",
 		"monolog/monolog": "2.2.0",
