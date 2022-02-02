@@ -382,6 +382,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
 			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
+			// Only expose private mw.loader.isES6ForTest in test mode.
+			'$CODE.test( isES6Supported )' => $conf->get( 'EnableJavaScriptTest' ) ?
+				'(mw.loader.isES6ForTest !== undefined ? mw.loader.isES6ForTest : isES6Supported)' :
+				'isES6Supported',
 			// Only expose private mw.redefineFallbacksForTest in test mode.
 			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( 'EnableJavaScriptTest' ) ?
 				'mw.redefineFallbacksForTest = defineFallbacks;' :

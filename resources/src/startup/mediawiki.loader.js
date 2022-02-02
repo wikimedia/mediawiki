@@ -143,7 +143,6 @@
 	 *         'moduleName': {
 	 *             // From mw.loader.register()
 	 *             'version': '########' (hash)
-	 *             'requiresES6': bool
 	 *             'dependencies': ['required.foo', 'bar.also', ...]
 	 *             'group': string, integer, (or) null
 	 *             'source': 'local', (or) 'anotherwiki'
@@ -529,19 +528,8 @@
 	 * @throws {Error} If an unknown module or a circular dependency is encountered
 	 */
 	function sortDependencies( module, resolved, unresolved ) {
-		var e;
-
 		if ( !( module in registry ) ) {
-			e = new Error( 'Unknown module: ' + module );
-			e.name = 'DependencyError';
-			throw e;
-		}
-
-		// Check requiresES6 before skip, to avoid executing an ES6 skip function in an ES5 client
-		if ( !isES6Supported && registry[ module ].requiresES6 ) {
-			e = new Error( 'Module requires ES6 but ES6 is not supported: ' + module );
-			e.name = 'ES6Error';
-			throw e;
+			throw new Error( 'Unknown module: ' + module );
 		}
 
 		if ( typeof registry[ module ].skip === 'string' ) {
@@ -566,11 +554,9 @@
 		for ( var i = 0; i < deps.length; i++ ) {
 			if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 				if ( unresolved.has( deps[ i ] ) ) {
-					e = new Error(
+					throw new Error(
 						'Circular reference detected: ' + module + ' -> ' + deps[ i ]
 					);
-					e.name = 'DependencyError';
-					throw e;
 				}
 
 				sortDependencies( deps[ i ], resolved, unresolved );
@@ -617,27 +603,29 @@
 				sortDependencies( modules[ i ], resolved );
 			} catch ( err ) {
 				resolved = saved;
-
-				if ( err.name === 'ES6Error' ) {
-					// These errors are common, since trying to load ES6-only modules
-					// in non-ES6 clients is OK and should fail gracefully. Don't track
-					// them as errors, and display a custom warning message.
-					mw.log.warn( 'Skipped ES6-only module ' + modules[ i ] );
-				} else {
-					// err.name === 'DependencyError'
-					// This module is not currently known, or has invalid dependencies.
-					// Most likely due to a cached reference after the module was
-					// removed, otherwise made redundant, or omitted from the registry
-					// by the ResourceLoader "target" system.
-					mw.log.warn( 'Skipped unresolvable module ' + modules[ i ] );
-					if ( modules[ i ] in registry ) {
-						// If the module was known but had unknown or circular dependencies,
-						// also track it as an error.
-						mw.trackError( 'resourceloader.exception', {
-							exception: err,
-							source: 'resolve'
-						} );
-					}
+				// This module is not currently known, or has invalid dependencies.
+				//
+				// Most likely due to a cached reference after the module was
+				// removed, otherwise made redundant, or omitted from the registry
+				// by the ResourceLoader "target" system or "requiresES6" flag.
+				//
+				// These errors can be comon common, e.g. queuing an ES6-only module
+				// unconditionally from the server-side is OK and should fail gracefully
+				// in ES5 browsers.
+				mw.log.warn( 'Skipped unavailable module ' + modules[ i ] );
+				// Do not track this error as an exception when the module:
+				// - Is valid, but gracefully filtered out by target system.
+				// - Is valid, but gracefully filtered out by requiresES6 flag.
+				// - Was recently valid, but is still referenced in stale cache.
+				//
+				// Basically the only reason to track this as exception is when the error
+				// was circular or invalid dependencies. What the above scenarios have in
+				// common is that they don't register the module client-side.
+				if ( modules[ i ] in registry ) {
+					mw.trackError( 'resourceloader.exception', {
+						exception: err,
+						source: 'resolve'
+					} );
 				}
 			}
 		}
@@ -1319,10 +1307,19 @@
 		}
 
 		version = String( version || '' );
+
 		// requiresES6 is encoded as a ! at the end of version
-		var requiresES6 = version.slice( -1 ) === '!';
-		if ( requiresES6 ) {
-			// Remove the extra ! at the end to get the real version
+		if ( version.slice( -1 ) === '!' ) {
+			if ( !$CODE.test( isES6Supported ) ) {
+				// Exclude ES6-only modules from the registry in ES5 browsers.
+				//
+				// These must:
+				// - be gracefully skipped if a top-level page module, in resolveStubbornly().
+				// - fail hard when otherwise used or depended on, in sortDependencies().
+				// - be detectable in the public API, per T299677.
+				return;
+			}
+			// Remove the ! at the end to get the real version
 			version = version.slice( 0, -1 );
 		}
 
@@ -1335,7 +1332,6 @@
 			// module.export objects for each package file inside this module
 			packageExports: {},
 			version: version,
-			requiresES6: requiresES6,
 			dependencies: dependencies || [],
 			group: typeof group === 'undefined' ? null : group,
 			source: typeof source === 'string' ? source : 'local',
