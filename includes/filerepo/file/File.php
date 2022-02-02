@@ -1199,6 +1199,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
 			$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+			if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
+				// Use a versioned URL on file description pages
+				$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );
+			}
 
 			if ( $this->repo ) {
 				// Defer rendering if a 404 handler is set up...
@@ -1289,6 +1293,10 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 		$thumbName = $this->thumbName( $normalisedParams );
 		$thumbUrl = $this->getThumbUrl( $thumbName );
 		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+		if ( isset( $normalisedParams['isFilePageThumb'] ) && $normalisedParams['isFilePageThumb'] ) {
+			// Use a versioned URL on file description pages
+			$thumbUrl = $this->getFilePageThumbUrl( $thumbUrl );
+		}
 
 		$tmpThumbPath = $tmpFile->getPath();
 
@@ -1869,6 +1877,22 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function getThumbUrl( $suffix = false ) {
 		return $this->getZoneUrl( 'thumb', $suffix );
+	}
+
+	/**
+	 * Append a version parameter to the end of a file URL
+	 * Only to be used on File pages.
+	 * @internal
+	 *
+	 * @param string $url Unversioned URL
+	 * @return string
+	 */
+	public function getFilePageThumbUrl( $url ) {
+		if ( $this->repo->isLocal() ) {
+			return wfAppendQuery( $url, urlencode( $this->getTimestamp() ) );
+		} else {
+			return $url;
+		}
 	}
 
 	/**
