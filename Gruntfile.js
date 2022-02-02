@@ -72,6 +72,7 @@ module.exports = function ( grunt ) {
 				proxies: karmaProxy,
 				files: [ {
 					pattern: qunitPattern,
+					type: 'js',
 					watched: false,
 					included: true,
 					served: false
