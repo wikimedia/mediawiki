@@ -22,7 +22,8 @@
 			"פוילישער",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Castillerian"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -197,7 +198,7 @@
 	"delete": "אויסמעקן",
 	"undelete_short": "צוריקשטעלן {{PLURAL:$1|איין רעדאַקטירונג|$1 רעדאַקטירונגען}}",
 	"viewdeleted_short": "באַקוקן {{PLURAL:$1|איין געמעקטע ענדערונג|$1 געמעקטע ענדערונגען}}",
-	"protect": "באַשיצן",
+	"protect": "שיצן",
 	"protect_change": "טוישן",
 	"unprotect": "ענדערונג באַשיצונג",
 	"newpage": "נייער בלאַט",
@@ -2109,7 +2110,7 @@
 	"namespace_association": "אָנגעבונדענער נאָמענטייל",
 	"tooltip-namespace_association": "צייכנט דאס קעסטל כדי איינשליסן דעם שמועס אדער סוביעקט נאמענטייל וואס געהערט צום אויסגעקליבענעם נאמענטייל",
 	"blanknamespace": "(הויפט)",
-	"contributions": "באניצער ביישטייערונגען",
+	"contributions": "באַניצער־בײַשטײַערונגען",
 	"tool-link-contributions": "{{GENDER:$1|באניצער}} בײַשטײַערונגען",
 	"contributions-title": "בײַשטײַערונגען פֿון באַניצער $1",
 	"mycontris": "בײַשטײַערונגען",

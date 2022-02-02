@@ -47,7 +47,8 @@
 			"Ата",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Thalensvk"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1065,6 +1066,7 @@
 	"prefs-setemail": "Nastaviť e-mailovú adresu",
 	"prefs-email": "Možnosti e-mailu",
 	"prefs-rendering": "Vzhľad",
+	"prefs-searchmisc": "Všeobecné",
 	"saveprefs": "Uložiť nastavenia",
 	"restoreprefs": "Obnoviť všetky predvolené nastavenia (vo všetkých sekciách)",
 	"prefs-editing": "Úpravy",
