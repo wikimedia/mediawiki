@@ -1113,9 +1113,13 @@
 	 * @return {string}
 	 */
 	function makeQueryString( params ) {
-		return Object.keys( params ).map( function ( key ) {
-			return encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] );
-		} ).join( '&' );
+		// Optimisation: This is a fairly hot code path with batchRequest() loops.
+		// Avoid overhead from Object.keys and Array.forEach.
+		var chunks = [];
+		for ( var key in params ) {
+			chunks.push( encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] ) );
+		}
+		return chunks.join( '&' );
 	}
 
 	/**
