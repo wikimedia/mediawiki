@@ -1752,10 +1752,12 @@ abstract class Skin extends ContextSource {
 						}
 					}
 
+					$id = strtr( $line[1], ' ', '-' );
 					$bar[$heading][] = array_merge( [
 						'text' => $text,
 						'href' => $href,
-						'id' => Sanitizer::escapeIdForAttribute( 'n-' . strtr( $line[1], ' ', '-' ) ),
+						'icon' => $this->getSidebarIcon( $id ),
+						'id' => Sanitizer::escapeIdForAttribute( 'n-' . $id ),
 						'active' => false,
 					], $extraAttribs );
 				}
@@ -1763,6 +1765,25 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $bar;
+	}
+
+	/**
+	 * @param string $id the id of the menu
+	 * @return string|null the icon glyph name to associate with this menu
+	 */
+	private function getSidebarIcon( string $id ) {
+		switch ( $id ) {
+			case 'mainpage-description':
+				return 'home';
+			case 'randompage':
+				return 'die';
+			case 'recentchanges':
+				return 'recentChanges';
+			case 'help':
+				return 'help';
+			default:
+				return null;
+		}
 	}
 
 	/**
