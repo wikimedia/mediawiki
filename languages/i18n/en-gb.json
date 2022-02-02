@@ -98,7 +98,6 @@
 	"unusedimagestext-categorizedimgisused": "The following files exist but are not embedded in any page. Categorised images are considered as used despite that they are not embedded in any page.\nPlease note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.",
 	"listgrants-summary": "The following is a list of grants with their associated access to user rights. Users can authorise applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.\nThere may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.",
 	"emailuser": "E-mail this user",
-	"watchlistfor2": " Yɛ $1",
 	"wlshowhidecategorization": "page categorisation",
 	"sessionfailure": "There seems to be a problem with your login session;\nthis action has been cancelled as a precaution against session hijacking.\nPlease resubmit the form.",
 	"protect_expiry_invalid": "Expiry time is invalid.",
