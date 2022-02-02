@@ -21,7 +21,7 @@ describe( "Testing site statistics' edits value", function () {
 		assert.isNumber( variables.editsStats );
 	} );
 
-	it( 'should GET an increased site edits stat after editing a page', async () => {
+	it.skip( 'should GET an increased site edits stat after editing a page', async () => {
 		const title = utils.title( 'TestingSiteStats_' );
 		await wikiuser.edit( title, { text: 'testing site stats ...' } );
 		await wiki.runAllJobs();

@@ -139,6 +139,8 @@ describe( 'The edit action', function testEditAction() {
 			summary: 'not botting'
 		} );
 
+		await wiki.runAllJobs();
+
 		const rc2 = await alice.getChangeEntry( { rctitle: pageA } );
 		assert.notExists( rc2.bot );
 	} );
