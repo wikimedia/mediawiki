@@ -909,32 +909,25 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
-				$tagStats = ChangeTags::tagUsageStatistics();
-				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+				$tagHitCounts = ChangeTags::tagUsageStatistics();
+				// Only get tags with more than 0 hits
+				$tagHitCounts = array_filter( $tagHitCounts );
+				// Only get active tags
+				$tagHitCounts = array_intersect_key( $tagHitCounts, $explicitlyDefinedTags + $softwareActivatedTags );
 
 				$result = [];
 				foreach ( $tagHitCounts as $tagName => $hits ) {
-					if (
-						(
-							// Only get active tags
-							isset( $explicitlyDefinedTags[ $tagName ] ) ||
-							isset( $softwareActivatedTags[ $tagName ] )
-						) &&
-						// Only get tags with more than 0 hits
-						$hits > 0
-					) {
-						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $localizer );
-						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $localizer );
-						$result[] = [
-							'name' => $tagName,
-							'labelMsg' => $labelMsg,
-							'label' => $labelMsg ? $labelMsg->plain() : $tagName,
-							'descriptionMsg' => $descriptionMsg,
-							'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
-							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-							'hits' => $hits,
-						];
-					}
+					$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $localizer );
+					$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $localizer );
+					$result[] = [
+						'name' => $tagName,
+						'labelMsg' => $labelMsg,
+						'label' => $labelMsg ? $labelMsg->plain() : $tagName,
+						'descriptionMsg' => $descriptionMsg,
+						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
+						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+						'hits' => $hits,
+					];
 				}
 				return $result;
 			}
