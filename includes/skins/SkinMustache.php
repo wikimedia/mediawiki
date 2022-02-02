@@ -38,6 +38,8 @@ class SkinMustache extends SkinTemplate {
 	protected function getTemplateParser() {
 		if ( $this->templateParser === null ) {
 			$this->templateParser = new TemplateParser( $this->options['templateDirectory'] );
+			// For table of contents rendering.
+			$this->templateParser->enableRecursivePartials( true );
 		}
 		return $this->templateParser;
 	}
