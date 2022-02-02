@@ -15,27 +15,27 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 	 * @covers HTMLFormField::getNearestFieldByName
 	 * @dataProvider provideCondState
 	 */
-	public function testCondState( $fieldInfo, $fieldData, $callback, $exception = null ) {
+	public function testCondState( $fieldInfo, $requestData, $callback, $exception = null ) {
 		if ( $exception ) {
 			$this->expectException( MWException::class );
 			$this->expectExceptionMessageMatches( $exception );
 		}
+		$request = new FauxRequest( $requestData, true );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
 		$form = HTMLForm::factory( 'ooui', wfArrayPlus2d( $fieldInfo, [
 			'check1' => [ 'type' => 'check' ],
 			'check2' => [ 'type' => 'check', 'invert' => true ],
-			'select1' => [ 'type' => 'select', 'options' => [ 'a' => 'a', 'b' => 'b', 'c' => 'c' ] ],
+			'select1' => [ 'type' => 'select', 'options' => [ 'a' => 'a', 'b' => 'b', 'c' => 'c' ], 'default' => 'b' ],
 			'text1' => [ 'type' => 'text' ],
-		] ) );
-		$request = new FauxRequest( $fieldData, true );
-		$context = new DerivativeContext( RequestContext::getMain() );
-		$context->setRequest( $request );
-		$form->setContext( $context );
+		] ), $context );
 		$form->setTitle( Title::newFromText( 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();
 		$status = $form->trySubmit();
+		$this->assertTrue( $status );
 
-		$callback( $form, $fieldData );
+		$callback( $form, $form->mFieldData );
 	}
 
 	public function provideCondState() {
@@ -43,8 +43,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
+			'requestData' => [
+				'wpcheck1' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -54,7 +54,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1', '' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
@@ -63,17 +63,17 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "check" field (invert) is checked' => [
 			'fieldInfo' => [
-				'text1' => [ 'hide-if' => [ '===', 'check2', '' ] ],
+				'text1' => [ 'hide-if' => [ '===', 'check2', '1' ] ],
 			],
-			'fieldData' => [
-				'check2' => '1',
+			'requestData' => [
+				'wpcheck2' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -81,19 +81,19 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 		];
 		yield 'Field hidden if "check" field (invert) is not checked' => [
 			'fieldInfo' => [
-				'text1' => [ 'hide-if' => [ '===', 'check2', '1' ] ],
+				'text1' => [ 'hide-if' => [ '!==', 'check2', '1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field not hidden if "check" field (invert) is checked' => [
 			'fieldInfo' => [
-				'text1' => [ 'hide-if' => [ '===', 'check2', '1' ] ],
+				'text1' => [ 'hide-if' => [ '!==', 'check2', '1' ] ],
 			],
-			'fieldData' => [
-				'check2' => '1',
+			'requestData' => [
+				'wpcheck2' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -103,8 +103,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'select1', 'a' ] ],
 			],
-			'fieldData' => [
-				'select1' => 'a',
+			'requestData' => [
+				'wpselect1' => 'a',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -114,8 +114,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'select1' => [ 'hide-if' => [ '===', 'text1', 'hello' ] ],
 			],
-			'fieldData' => [
-				'text1' => 'hello',
+			'requestData' => [
+				'wptext1' => 'hello',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'select1' )->isHidden( $fieldData ) );
@@ -129,9 +129,9 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 					[ '===', 'select1', 'a' ]
 				] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
-				'select1' => 'a',
+			'requestData' => [
+				'wpcheck1' => '1',
+				'wpselect1' => 'a',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -144,8 +144,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 					[ '===', 'select1', 'a' ]
 				] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
+			'requestData' => [
+				'wpcheck1' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -158,8 +158,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 					[ '===', 'select1', 'a' ]
 				] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
+			'requestData' => [
+				'wpcheck1' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
@@ -172,7 +172,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 					[ '===', 'select1', 'a' ]
 				] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
@@ -187,7 +187,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 					[ '===', 'select1', 'a' ]
 				] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
@@ -197,7 +197,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '>', 'test1', '10' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => null,
 			'exception' => '/Unknown operation/',
 		];
@@ -205,7 +205,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ 'NOT', '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => null,
 			'exception' => '/NOT takes exactly one parameter/',
 		];
@@ -213,23 +213,23 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ 'AND', '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => null,
 			'exception' => '/Expected array, found string/',
 		];
-		yield 'Invalid conditional specification (===/!===) 1' => [
+		yield 'Invalid conditional specification (===/!==) 1' => [
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => null,
 			'exception' => '/=== takes exactly two parameters/',
 		];
-		yield 'Invalid conditional specification (===/!===) 2' => [
+		yield 'Invalid conditional specification (===/!==) 2' => [
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', [ '===', 'check1', '1' ], '1' ] ],
 			],
-			'fieldData' => [],
+			'requestData' => [],
 			'callback' => null,
 			'exception' => '/Parameters for === must be strings/',
 		];
@@ -238,8 +238,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'disable-if' => [ '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
+			'requestData' => [
+				'wpcheck1' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
@@ -249,8 +249,8 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1', '1' ] ],
 			],
-			'fieldData' => [
-				'check1' => '1',
+			'requestData' => [
+				'wpcheck1' => '1',
 			],
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
