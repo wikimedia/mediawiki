@@ -81,7 +81,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 		];
 		yield 'Field hidden if "check" field (invert) is not checked' => [
 			'fieldInfo' => [
-				'text1' => [ 'hide-if' => [ '===', 'check2', '1' ] ],
+				'text1' => [ 'hide-if' => [ '!==', 'check2', '1' ] ],
 			],
 			'requestData' => [],
 			'callback' => function ( $form, $fieldData ) {
