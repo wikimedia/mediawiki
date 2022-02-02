@@ -485,8 +485,7 @@ class CategoryViewer extends ContextSource {
 		# with this rigmarole if the entire category contents fit on one page
 		# and have already been retrieved.  We can just use $rescnt in that
 		# case and save a query and some logic.
-		$dbcnt = $this->cat->getPageCount() - $this->cat->getSubcatCount()
-			- $this->cat->getFileCount();
+		$dbcnt = $this->cat->getPageCount( Category::COUNT_CONTENT_PAGES );
 		$rescnt = count( $this->articles );
 		// This function should be called even if the result isn't used, it has side-effects
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );

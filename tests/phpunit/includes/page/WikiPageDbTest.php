@@ -1389,23 +1389,23 @@ more stuff
 		// Add an initial category
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
-		$this->assertSame( 1, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
-		$this->assertSame( 1, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( 1, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
-		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( 1, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( 1, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'C' )->getMemberCount() );
 	}
 
 	public function provideUpdateRedirectOn() {

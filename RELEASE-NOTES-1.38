@@ -503,6 +503,9 @@ because of Phabricator reports.
 * The following Less mediawiki.mixins have been deprecated:
   - .background-image()
   - .list-style-image()
+* Category::getPageCount now takes a parameter. Category::COUNT_ALL_MEMBERS
+  return count of all members while Category::COUNT_CONTENT_PAGES return that
+  of content pages. For the former behavior use Category::getMemberCount()
 * …
 
 === Other changes in 1.38 ===
