@@ -78,6 +78,10 @@ For notes on 1.37.x and older releases, see HISTORY.
   repos as supporting making API queries against the foreign file repo so
   that extensions like TimedMediaHandler that depend on this can stop
   hardcoding looking for specific class names.
+* Running QUnit tests for an individual test suite module is possible
+  with `grunt qunit --qunit-component={componentName}`, where
+  {componentName} is "MediaWiki" to run core's QUnit tests or the skin
+  or extension name.
 * …
 
 === External library changes in 1.38 ===
