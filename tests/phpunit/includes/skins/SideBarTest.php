@@ -69,6 +69,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 						'text' => 'Help',
 						'href' => $this->messages['helppage']['href'],
 						'id' => 'n-help',
+						'icon' => 'help',
 						'active' => null
 					]
 				] ],
@@ -88,12 +89,14 @@ class SideBarTest extends MediaWikiLangTestCase {
 						'href' => Title::newFromText( 'Baz' )->getLocalURL(),
 						'id' => 'n-Fred',
 						'active' => null,
+						'icon' => null,
 					],
 					[
 						'text' => 'title-to-display',
 						'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
 						'id' => 'n-title-to-display',
 						'active' => null,
+						'icon' => null,
 					],
 				] ],
 				'* Title
@@ -141,6 +144,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 					'href' => 'https://www.mediawiki.org/',
 					'id' => 'n-Home',
 					'active' => null,
+					'icon' => null,
 					'rel' => 'nofollow',
 				],
 				# ** http://valid.no.desc.org/
