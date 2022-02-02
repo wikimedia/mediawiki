@@ -2112,7 +2112,7 @@
 	"apihelp-no-such-module": "Modulen «$1» ikke funnet.",
 	"apisandbox": "API-sandkasse",
 	"apisandbox-jsonly": "JavaScript kreves for å bruke API-sandkassa.",
-	"apisandbox-intro": "Bruk denne siden for å eksperimentere med <strong>webtjenesteprogrammeringsgrensesnittet til MediaWiki</strong>.\nSe [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API-dokumentasjonen] for mer informasjon om bruk. Eksempel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A hent sidetitler som matcher et visst nøkkelord]. Velg en handling for å se flere eksempler.\n\nMerk at selv om dette er en sandkasse så kan du utføre handlinger her som fører til endringer på wikien.",
+	"apisandbox-intro": "Bruk denne siden for å eksperimentere med <strong>webtjenesteprogrammeringsgrensesnittet til MediaWiki</strong>.\nSe [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page API-dokumentasjonen] for mer informasjon om bruk. Eksempel: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query hent sidetitler som matcher et visst nøkkelord]. Velg en handling for å se flere eksempler.\n\nMerk at selv om dette er en sandkasse så kan du utføre handlinger her som fører til endringer på wikien.",
 	"apisandbox-submit": "Foreta en forespørsel",
 	"apisandbox-reset": "Tøm",
 	"apisandbox-retry": "Prøv igjen",
