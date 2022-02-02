@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, utils, assert } = require( 'api-testing' );
+const { action, utils, assert, wiki } = require( 'api-testing' );
 
 describe( 'The tag action module', function () {
 
@@ -17,6 +17,7 @@ describe( 'The tag action module', function () {
 		await action.makeTag( tagName );
 		await action.makeTag( tag2Name );
 		await bob.edit( page, { text: 'Revision to tag' } );
+		await wiki.runAllJobs();
 		const recentChange = await bob.getChangeEntry(
 			{ rctitle: page }
 		);
