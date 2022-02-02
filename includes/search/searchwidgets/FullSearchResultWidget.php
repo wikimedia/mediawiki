@@ -230,7 +230,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			$cat = Category::newFromTitle( $title );
 			return $this->specialPage->msg( 'search-result-category-size' )
-				->numParams( $cat->getPageCount(), $cat->getSubcatCount(), $cat->getFileCount() )
+				->numParams( $cat->getMemberCount(), $cat->getSubcatCount(), $cat->getFileCount() )
 				->escaped();
 		// TODO: This is a bit odd...but requires changing the i18n message to fix
 		} elseif ( $result->getByteSize() !== null || $result->getWordCount() > 0 ) {

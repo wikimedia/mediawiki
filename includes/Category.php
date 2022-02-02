@@ -55,6 +55,9 @@ class Category {
 
 	public const ROW_COUNT_SMALL = 100;
 
+	public const COUNT_ALL_MEMBERS = 0;
+	public const COUNT_CONTENT_PAGES = 1;
+
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -230,24 +233,40 @@ class Category {
 	}
 
 	/**
-	 * @return mixed DB key name, or false on failure
+	 * @return string|false DB key name, or false on failure
 	 */
 	public function getName() {
 		return $this->getX( 'mName' );
 	}
 
 	/**
-	 * @return mixed Category ID, or false on failure
+	 * @return string|false Category ID, or false on failure
 	 */
 	public function getID() {
 		return $this->getX( 'mID' );
 	}
 
 	/**
-	 * @return int Total number of member pages (include subcats and files)
+	 * @return int Total number of members count (sum of subcats, files and pages)
 	 */
-	public function getPageCount() {
-		return $this->getX( 'mPages' );
+	public function getMemberCount(): int {
+		$this->initialize( self::LAZY_INIT_ROW );
+
+		return $this->mPages;
+	}
+
+	/**
+	 * @param int $type One of self::COUNT_ALL_MEMBERS and self::COUNT_CONTENT_PAGES
+	 * @return int Total number of members count
+	 */
+	public function getPageCount( $type = self::COUNT_ALL_MEMBERS ) {
+		$allCount = $this->getMemberCount();
+
+		if ( $type === self::COUNT_CONTENT_PAGES ) {
+			return $allCount - ( $this->getSubcatCount() + $this->getFileCount() );
+		}
+
+		return $allCount;
 	}
 
 	/**
@@ -331,10 +350,9 @@ class Category {
 	 * @return mixed
 	 */
 	private function getX( $key ) {
-		if ( !$this->{$key} && !$this->initialize( self::LAZY_INIT_ROW ) ) {
-			return false;
-		}
-		return $this->{$key};
+		$this->initialize( self::LAZY_INIT_ROW );
+
+		return $this->{$key} ?? false;
 	}
 
 	/**

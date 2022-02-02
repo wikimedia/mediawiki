@@ -561,12 +561,10 @@ class InfoAction extends FormlessAction {
 		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$category = Category::newFromTitle( $title );
 
-			// $allCount is the total number of cat members,
-			// not the count of how many members are normal pages.
-			$allCount = (int)$category->getPageCount();
-			$subcatCount = (int)$category->getSubcatCount();
-			$fileCount = (int)$category->getFileCount();
-			$pagesCount = $allCount - $subcatCount - $fileCount;
+			$allCount = $category->getMemberCount();
+			$subcatCount = $category->getSubcatCount();
+			$fileCount = $category->getFileCount();
+			$pageCount = $category->getPageCount( Category::COUNT_CONTENT_PAGES );
 
 			$pageInfo['category-info'] = [
 				[
@@ -575,7 +573,7 @@ class InfoAction extends FormlessAction {
 				],
 				[
 					$this->msg( 'pageinfo-category-pages' ),
-					$lang->formatNum( $pagesCount )
+					$lang->formatNum( $pageCount )
 				],
 				[
 					$this->msg( 'pageinfo-category-subcats' ),

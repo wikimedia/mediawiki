@@ -854,17 +854,15 @@ class CoreParserFunctions {
 		if ( !isset( $cache[$name] ) ) {
 			$category = Category::newFromTitle( $title );
 
-			$allCount = $subcatCount = $fileCount = $pagesCount = 0;
+			$allCount = $subcatCount = $fileCount = $pageCount = 0;
 			if ( $parser->incrementExpensiveFunctionCount() ) {
-				// $allCount is the total number of cat members,
-				// not the count of how many members are normal pages.
-				$allCount = (int)$category->getPageCount();
-				$subcatCount = (int)$category->getSubcatCount();
-				$fileCount = (int)$category->getFileCount();
-				$pagesCount = $allCount - $subcatCount - $fileCount;
+				$allCount = $category->getMemberCount();
+				$subcatCount = $category->getSubcatCount();
+				$fileCount = $category->getFileCount();
+				$pageCount = $category->getPageCount( Category::COUNT_CONTENT_PAGES );
 			}
 			$cache[$name]['pagesincategory_all'] = $allCount;
-			$cache[$name]['pagesincategory_pages'] = $pagesCount;
+			$cache[$name]['pagesincategory_pages'] = $pageCount;
 			$cache[$name]['pagesincategory_subcats'] = $subcatCount;
 			$cache[$name]['pagesincategory_files'] = $fileCount;
 		}
