@@ -1,6 +1,8 @@
 config-schema:
     ConfigRegistry:
-        default: { main: 'GlobalVarConfig::newInstance' }
+        default:
+            main: GlobalVarConfig::newInstance
+        mergeStrategy: array_merge
         description: |-
             Registry of factory functions to create config objects:
             The 'main' key must be set, and the value should be a valid
@@ -872,6 +874,7 @@ config-schema:
             @note Only used if $wgLocalFileRepo is not set.
     FileExtensions:
         default: [png, gif, jpg, jpeg, webp]
+        mergeStrategy: array_merge
         description: |-
             This is the list of preferred extensions for uploading files. Uploading files
             with extensions not in this list will trigger a warning.
@@ -933,6 +936,7 @@ config-schema:
             [[media:...]] links for non-trusted formats.
     MediaHandlers:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Plugins for media file type handling.
 
@@ -1928,6 +1932,7 @@ config-schema:
                 a new migration which removes temporary tables.
     ContentHandlers:
         default: { wikitext: WikitextContentHandler, javascript: JavaScriptContentHandler, json: JsonContentHandler, css: CssContentHandler, text: TextContentHandler, unknown: FallbackContentHandler }
+        mergeStrategy: array_merge
         description: |-
             Plugins for page content model handling.
 
@@ -1936,6 +1941,7 @@ config-schema:
             @since 1.21
     NamespaceContentModels:
         default: {  }
+        mergeStrategy: array_plus
         description: |-
             Associative array mapping namespace IDs to the name of the content model pages in that namespace
             should have by default (use the CONTENT_MODEL_XXX constants). If no special content type is
@@ -2911,6 +2917,7 @@ config-schema:
             ```
     RawHtmlMessages:
         default: [copyright, history_copyright, googlesearch, feedback-terms, feedback-termsofuse]
+        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -3603,6 +3610,7 @@ config-schema:
             ```
     ResourceLoaderSources:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Extensions should register foreign module sources here. 'local' is a
             built-in source that is not in this array, but defined by
@@ -3762,6 +3770,7 @@ config-schema:
             @todo Add a note about maintenance/namespaceDupes.php
     ExtraGenderNamespaces:
         default: {  }
+        mergeStrategy: array_plus
         description: |-
             Same as above, but for namespaces with gender distinction.
 
@@ -3824,6 +3833,7 @@ config-schema:
             same place as links in the middle of a sentence using a lowercase initial.
     CapitalLinkOverrides:
         default: {  }
+        mergeStrategy: array_plus
         description: |-
 
             @since 1.16 - This can now be set per-namespace. Some special namespaces (such as Special, see
@@ -3840,11 +3850,13 @@ config-schema:
             ```
     NamespacesWithSubpages:
         default: { 1: true, 2: true, 3: true, 4: true, 5: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true, 13: true, 15: true }
+        mergeStrategy: array_plus
         description: |-
             Which namespaces should support subpages?
             See Language.php for a list of namespaces.
     ContentNamespaces:
         default: [0]
+        mergeStrategy: array_merge
         description: |-
             Array of namespaces which can be deemed to contain valid "content", as far
             as the site statistics are concerned. Useful if additional namespaces also
@@ -4259,6 +4271,7 @@ config-schema:
             @since 1.36
     CentralIdLookupProviders:
         default: { local: { class: LocalIdLookup, services: [MainConfig, DBLoadBalancer] } }
+        mergeStrategy: array_merge
         description: |-
             Central ID lookup providers
             Key is the provider ID, value is a specification for ObjectFactory
@@ -4269,6 +4282,7 @@ config-schema:
         description: 'Central ID lookup provider to use by default'
     PasswordPolicy:
         default: { policies: { bureaucrat: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, sysop: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, interface-admin: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, bot: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, default: { MinimalPasswordLength: { value: 1, suggestChangeOnLogin: true }, PasswordCannotBeSubstringInUsername: { value: true, suggestChangeOnLogin: true }, PasswordCannotMatchDefaults: { value: true, suggestChangeOnLogin: true }, MaximalPasswordLength: { value: 4096, suggestChangeOnLogin: true }, PasswordNotInCommonList: { value: true, suggestChangeOnLogin: true } } }, checks: { MinimalPasswordLength: 'PasswordPolicyChecks::checkMinimalPasswordLength', MinimumPasswordLengthToLogin: 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin', PasswordCannotBeSubstringInUsername: 'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername', PasswordCannotMatchDefaults: 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults', MaximalPasswordLength: 'PasswordPolicyChecks::checkMaximalPasswordLength', PasswordNotInCommonList: 'PasswordPolicyChecks::checkPasswordNotInCommonList' } }
+        mergeStrategy: array_merge_recursive
         description: |-
             Password policy for the wiki.
 
@@ -4351,8 +4365,8 @@ config-schema:
             auto-configure themselves should use $wgAuthManagerAutoConfig instead.
     AuthManagerAutoConfig:
         default: { preauth: { MediaWiki\Auth\ThrottlePreAuthenticationProvider: { class: MediaWiki\Auth\ThrottlePreAuthenticationProvider, sort: 0 } }, primaryauth: { MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider: { class: MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider, services: [DBLoadBalancer], args: [{ authoritative: false }], sort: 0 }, MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider: { class: MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider, services: [DBLoadBalancer], args: [{ authoritative: true }], sort: 100 } }, secondaryauth: { MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider: { class: MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider, sort: 0 }, MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider: { class: MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider, sort: 100 }, MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider: { class: MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider, services: [DBLoadBalancer], sort: 200 } } }
+        mergeStrategy: array_plus_2d
         description: |-
-
             @see $wgAuthManagerConfig
             @since 1.27
     RememberMe:
@@ -4367,6 +4381,7 @@ config-schema:
             @since 1.36
     ReauthenticateTime:
         default: { default: 300 }
+        mergeStrategy: array_merge
         type: object
         additionalProperties:
             type: 'integer'
@@ -4424,6 +4439,7 @@ config-schema:
             @see $wgReauthenticateTime
     ChangeCredentialsBlacklist:
         default: [MediaWiki\Auth\TemporaryPasswordAuthenticationRequest]
+        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -4437,6 +4453,7 @@ config-schema:
             @since 1.27
     RemoveCredentialsBlacklist:
         default: [MediaWiki\Auth\PasswordAuthenticationRequest]
+        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -4600,6 +4617,7 @@ config-schema:
             prefershttps: 1
             requireemail: 0
             skin-responsive: 1
+        mergeStrategy: array_merge
         description: |-
             Settings added to this array will override the default globals for the user
             preferences used by anonymous visitors and newly created accounts.
@@ -4608,6 +4626,7 @@ config-schema:
             $wgDefaultUserOptions ['editondblclick'] = 0;
     HiddenPrefs:
         default: {  }
+        mergeStrategy: array_merge
         description: 'An array of preferences to not show for the user'
     InvalidUsernameCharacters:
         default: '@:'
@@ -4646,6 +4665,7 @@ config-schema:
             @since 1.27
     SessionProviders:
         default: { MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30, callUserSetCookiesHook: true }] }, MediaWiki\Session\BotPasswordSessionProvider: { class: MediaWiki\Session\BotPasswordSessionProvider, args: [{ priority: 75 }] } }
+        mergeStrategy: array_merge
         description: |-
             MediaWiki\Session\SessionProvider configuration.
 
@@ -4911,6 +4931,7 @@ config-schema:
             This replaces $wgWhitelistAccount and $wgWhitelistEdit
     RevokePermissions:
         default: {  }
+        mergeStrategy: array_plus_2d
         description: |-
             Permission keys revoked from users in each group.
 
@@ -4943,9 +4964,11 @@ config-schema:
             @since 1.38
     ImplicitGroups:
         default: ['*', user, autoconfirmed]
+        mergeStrategy: array_merge
         description: 'Implicit groups, aren''t shown on Special:Listusers or somewhere else'
     GroupsAddToSelf:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             A map of group names that the user is in, to group names that those users
             are allowed to add or revoke.
@@ -4971,6 +4994,7 @@ config-schema:
             any group that they happen to be in.
     GroupsRemoveFromSelf:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
 
             @see $wgGroupsAddToSelf
@@ -5020,6 +5044,7 @@ config-schema:
             'sysop' is not changed, since it really shouldn't be here.
     NamespaceProtection:
         default: {  }
+        mergeStrategy: array_plus
         description: |-
             Set the minimum permissions required to edit pages in each
             namespace.  If you list more than one permission, a user must
@@ -5027,6 +5052,7 @@ config-schema:
             @note NS_MEDIAWIKI is implicitly restricted to 'editinterface'.
     NonincludableNamespaces:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Pages in namespaces in this array can not be used as templates.
 
@@ -5156,6 +5182,7 @@ config-schema:
             @since 1.18
     AddGroups:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
             can assign which groups at Special:Userrights.
@@ -5186,11 +5213,13 @@ config-schema:
             ```
     RemoveGroups:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
 
             @see $wgAddGroups
     AvailableRights:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             A list of available rights, in addition to the ones defined by the core.
 
@@ -5312,6 +5341,7 @@ config-schema:
             (transparent) proxies without needing to block the proxies themselves.
     RateLimits:
         default: { edit: { ip: [8, 60], newbie: [8, 60], user: [90, 60] }, move: { newbie: [2, 120], user: [8, 60] }, upload: { ip: [8, 60], newbie: [8, 60] }, rollback: { user: [10, 60], newbie: [5, 120] }, mailpassword: { ip: [5, 3600] }, emailuser: { ip: [5, 86400], newbie: [5, 86400], user: [20, 86400] }, changeemail: { ip-all: [10, 3600], user: [4, 86400] }, confirmemail: { ip-all: [10, 3600], user: [4, 86400] }, purge: { ip: [30, 60], user: [30, 60] }, linkpurge: { ip: [30, 60], user: [30, 60] }, renderfile: { ip: [700, 30], user: [700, 30] }, renderfile-nonstandard: { ip: [70, 30], user: [70, 30] }, stashedit: { ip: [30, 60], newbie: [30, 60] }, changetag: { ip: [8, 60], newbie: [8, 60] }, editcontentmodel: { newbie: [2, 120], user: [8, 60] } }
+        mergeStrategy: array_plus_2d
         description: |-
             Simple rate limiter options to brake edit floods.
 
@@ -5524,6 +5554,7 @@ config-schema:
             mergehistory:
                 mergehistory: true
         type: object
+        mergeStrategy: array_plus_2d
         additionalProperties:
             type: object
             additionalProperties:
@@ -5566,6 +5597,7 @@ config-schema:
             highvolume: high-volume
             privateinfo: private-information
         type: object
+        mergeStrategy: array_merge
         additionalProperties:
             type: string
         description: |-
@@ -6098,6 +6130,7 @@ config-schema:
             templates.
     ParserTestFiles:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Parser test suite files to be run by parserTests.php when no specific
             filename is passed to it.
@@ -6544,6 +6577,7 @@ config-schema:
             ```
     FeedClasses:
         default: { rss: RSSFeed, atom: AtomFeed }
+        mergeStrategy: array_merge
         description: |-
             Available feeds objects.
 
@@ -6625,6 +6659,7 @@ config-schema:
             @since 1.21
     RecentChangesFlags:
         default: { newpage: { letter: newpageletter, title: recentchanges-label-newpage, legend: recentchanges-legend-newpage, grouping: any }, minor: { letter: minoreditletter, title: recentchanges-label-minor, legend: recentchanges-legend-minor, class: minoredit, grouping: all }, bot: { letter: boteditletter, title: recentchanges-label-bot, legend: recentchanges-legend-bot, class: botedit, grouping: all }, unpatrolled: { letter: unpatrolledletter, title: recentchanges-label-unpatrolled, legend: recentchanges-legend-unpatrolled, grouping: any } }
+        mergeStrategy: array_merge
         description: |-
             Flags (letter symbols) shown in recent changes and watchlist to indicate
             certain types of edits.
@@ -6802,11 +6837,13 @@ config-schema:
             explicitly when to make breaking changes to their export and dump format.
     ExtensionFunctions:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             A list of callback functions which are called once MediaWiki is fully
             initialised
     ExtensionMessagesFiles:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Extension messages files.
 
@@ -6835,6 +6872,7 @@ config-schema:
             ```
     MessagesDirs:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Extension messages directories.
 
@@ -6863,6 +6901,7 @@ config-schema:
             @since 1.23
     ExtensionEntryPointListFiles:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Array of files with list(s) of extension entry points to be used in
             maintenance/mergeMessageFileList.php
@@ -6889,6 +6928,7 @@ config-schema:
         description: 'Whether to include the NewPP limit report as a HTML comment'
     ValidSkinNames:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             List of valid skin names
 
@@ -6915,6 +6955,7 @@ config-schema:
             full list.
     SpecialPages:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Special page list. This is an associative array mapping the (canonical) names of
             special pages to either a class name to be instantiated, or a callback to use for
@@ -6988,6 +7029,7 @@ config-schema:
             @see \SpecialVersion::getCredits
     Hooks:
         default: {  }
+        mergeStrategy: array_merge_recursive
         description: |-
             Global list of hooks.
 
@@ -7016,6 +7058,20 @@ config-schema:
             deleting a previous registered hook.
             @warning Hook handlers should be registered at file scope. Registering
             handlers after file scope can lead to unexpected results due to caching.
+    ServiceWiringFiles:
+        default: []
+        # default: [ 'includes/ServiceWiring.php' ]
+        mergeStrategy: array_merge
+        description:
+            List of service wiring files to be loaded by the default instance of MediaWikiServices.
+            Each file listed here is expected to return an associative array mapping service names
+            to instantiator functions. Extensions may add wiring files to define their own services.
+            However, this cannot be used to replace existing services - use the MediaWikiServices
+            hook for that.
+
+            @see MediaWikiServices
+            @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
+            @see docs/Injection.md for an overview of dependency injection in MediaWiki.
     JobClasses:
         default:
             deletePage: DeletePageJob
@@ -7043,6 +7099,7 @@ config-schema:
             enqueue: EnqueueJob
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
+        mergeStrategy: array_merge
         description: |-
             Maps jobs to their handlers; extensions
             can add to this to provide custom jobs.
@@ -7187,6 +7244,7 @@ config-schema:
             @since 1.23
     LogTypes:
         default: ['', block, protect, rights, delete, upload, move, import, patrol, merge, suppress, tag, managetags, contentmodel]
+        mergeStrategy: array_merge
         description: |-
             The logging system has two levels: an event type, which describes the
             general category and can be viewed as a named subset of all logs; and
@@ -7197,6 +7255,7 @@ config-schema:
             log types instead of checking the global variable.
     LogRestrictions:
         default: { suppress: suppressionlog }
+        mergeStrategy: array_merge
         description: |-
             This restricts log access to those who have a certain right
             Users without this will not see it in the option menu and can not view it
@@ -7205,6 +7264,7 @@ config-schema:
             Format: logtype => permissiontype
     FilterLogTypes:
         default: { patrol: true, tag: true, newusers: false }
+        mergeStrategy: array_merge
         description: |-
             Show/hide links on Special:Log will be shown for these log types.
 
@@ -7224,6 +7284,7 @@ config-schema:
             used for the link text.
     LogNames:
         default: { '': all-logs-page, block: blocklogpage, protect: protectlogpage, rights: rightslog, delete: dellogpage, upload: uploadlogpage, move: movelogpage, import: importlogpage, patrol: patrol-log-page, merge: mergelog, suppress: suppressionlog }
+        mergeStrategy: array_merge
         description: |-
             Lists the message key string for each log type. The localized messages
             will be listed in the user interface.
@@ -7233,6 +7294,7 @@ config-schema:
             where TYPE is your log type, you don't need to use this array.
     LogHeaders:
         default: { '': alllogstext, block: blocklogtext, delete: dellogpagetext, import: importlogpagetext, merge: mergelogpagetext, move: movelogpagetext, patrol: patrol-log-header, protect: protectlogtext, rights: rightslogtext, suppress: suppressionlogtext, upload: uploadlogpagetext }
+        mergeStrategy: array_merge
         description: |-
             Lists the message key string for descriptive text to be shown at the
             top of each log type.
@@ -7242,6 +7304,7 @@ config-schema:
             where TYPE is your log type, yoy don't need to use this array.
     LogActions:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Lists the message key string for formatting individual events of each
             type and action when listed in the logs.
@@ -7249,6 +7312,7 @@ config-schema:
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default: { block/block: BlockLogFormatter, block/reblock: BlockLogFormatter, block/unblock: BlockLogFormatter, contentmodel/change: ContentModelLogFormatter, contentmodel/new: ContentModelLogFormatter, delete/delete: DeleteLogFormatter, delete/delete_redir: DeleteLogFormatter, delete/delete_redir2: DeleteLogFormatter, delete/event: DeleteLogFormatter, delete/restore: DeleteLogFormatter, delete/revision: DeleteLogFormatter, import/interwiki: ImportLogFormatter, import/upload: ImportLogFormatter, managetags/activate: LogFormatter, managetags/create: LogFormatter, managetags/deactivate: LogFormatter, managetags/delete: LogFormatter, merge/merge: MergeLogFormatter, move/move: MoveLogFormatter, move/move_redir: MoveLogFormatter, patrol/patrol: PatrolLogFormatter, patrol/autopatrol: PatrolLogFormatter, protect/modify: ProtectLogFormatter, protect/move_prot: ProtectLogFormatter, protect/protect: ProtectLogFormatter, protect/unprotect: ProtectLogFormatter, rights/autopromote: RightsLogFormatter, rights/rights: RightsLogFormatter, suppress/block: BlockLogFormatter, suppress/delete: DeleteLogFormatter, suppress/event: DeleteLogFormatter, suppress/reblock: BlockLogFormatter, suppress/revision: DeleteLogFormatter, tag/update: TagLogFormatter, upload/overwrite: UploadLogFormatter, upload/revert: UploadLogFormatter, upload/upload: UploadLogFormatter }
+        mergeStrategy: array_merge
         description: |-
             The same as above, but here values are names of classes,
             not messages.
@@ -7256,6 +7320,7 @@ config-schema:
             @see \LogFormatter
     ActionFilteredLogs:
         default: { block: { block: [block], reblock: [reblock], unblock: [unblock] }, contentmodel: { change: [change], new: [new] }, delete: { delete: [delete], delete_redir: [delete_redir, delete_redir2], restore: [restore], event: [event], revision: [revision] }, import: { interwiki: [interwiki], upload: [upload] }, managetags: { create: [create], delete: [delete], activate: [activate], deactivate: [deactivate] }, move: { move: [move], move_redir: [move_redir] }, newusers: { create: [create, newusers], create2: [create2], autocreate: [autocreate], byemail: [byemail] }, protect: { protect: [protect], modify: [modify], unprotect: [unprotect], move_prot: [move_prot] }, rights: { rights: [rights], autopromote: [autopromote] }, suppress: { event: [event], revision: [revision], delete: [delete], block: [block], reblock: [reblock] }, upload: { upload: [upload], overwrite: [overwrite], revert: [revert] } }
+        mergeStrategy: array_merge
         description: |-
             List of log types that can be filtered by action types
 
@@ -7302,6 +7367,7 @@ config-schema:
             @since 1.30
     Actions:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             Array of allowed values for the "title=foo&action=<action>" parameter. See
             ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
@@ -7385,6 +7451,7 @@ config-schema:
             @since 1.21
     APIModules:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             API module extensions.
 
@@ -7421,6 +7488,7 @@ config-schema:
             See ApiMain::MODULES for a list of the core modules.
     APIFormatModules:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             API format module extensions.
 
@@ -7430,6 +7498,7 @@ config-schema:
             See ApiMain::FORMATS for a list of the core format modules.
     APIMetaModules:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             API Query meta module extensions.
 
@@ -7439,6 +7508,7 @@ config-schema:
             See ApiQuery::QUERY_META_MODULES for a list of the core meta modules.
     APIPropModules:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             API Query prop module extensions.
 
@@ -7448,6 +7518,7 @@ config-schema:
             See ApiQuery::QUERY_PROP_MODULES for a list of the core prop modules.
     APIListModules:
         default: {  }
+        mergeStrategy: array_merge
         description: |-
             API Query list module extensions.
 

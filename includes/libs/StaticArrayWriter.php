@@ -97,7 +97,13 @@ class StaticArrayWriter {
 			}
 			$line .= "$tabs]";
 		} else {
-			$line .= var_export( $value, true );
+			$exportedValue = var_export( $value, true );
+			if ( $exportedValue === 'NULL' ) {
+				// var_export() exports nulls as uppercase NULL which
+				// violates our own coding standards.
+				$exportedValue = 'null';
+			}
+			$line .= $exportedValue;
 		}
 
 		$line .= ",\n";
