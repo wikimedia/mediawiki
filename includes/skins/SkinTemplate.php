@@ -336,7 +336,9 @@ class SkinTemplate extends Skin {
 			$content_navigation['user-menu'],
 			$content_navigation['notifications'],
 			$content_navigation['user-page'],
-			$content_navigation['user-interface-preferences']
+			$content_navigation['user-interface-preferences'],
+			$content_navigation['category-normal'],
+			$content_navigation['category-hidden']
 		);
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
