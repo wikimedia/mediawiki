@@ -21,6 +21,7 @@
  * @defgroup JobQueue JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -407,6 +408,8 @@ abstract class JobQueue {
 				$this->incrStats( 'dupe_pops', $job->getType() );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			// don't lose jobs over this
 		}

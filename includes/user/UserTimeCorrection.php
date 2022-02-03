@@ -26,6 +26,7 @@ use DateInterval;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Utility class to parse the TimeCorrection string value.
@@ -171,6 +172,8 @@ class UserTimeCorrection {
 				$this->offset = floor( $this->timeZone->getOffset( $this->date ) / 60 );
 				$this->valid = true;
 				return;
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Not a valid/known timezone.
 				// Fall back to any specified offset

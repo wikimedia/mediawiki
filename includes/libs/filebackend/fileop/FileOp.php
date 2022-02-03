@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  */
 use Psr\Log\LoggerInterface;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * FileBackend helper class for representing operations.
@@ -507,6 +508,8 @@ abstract class FileOp {
 		try {
 			$this->logger->error( static::class .
 				" failed: " . FormatJson::encode( $params ) );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			// bad config? debug log error?
 		}

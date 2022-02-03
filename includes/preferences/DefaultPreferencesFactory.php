@@ -62,6 +62,7 @@ use Title;
 use UnexpectedValueException;
 use User;
 use UserGroupMembership;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Xml;
 
 /**
@@ -971,6 +972,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$userTZ = new DateTimeZone( $tz[2] );
 				$minDiff = floor( $userTZ->getOffset( new DateTime( 'now' ) ) / 60 );
 				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// User has an invalid time zone set. Fall back to just using the offset
 				$tz[0] = 'Offset';

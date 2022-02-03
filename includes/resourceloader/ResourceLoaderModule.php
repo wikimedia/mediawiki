@@ -27,6 +27,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\RelPath;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
@@ -581,6 +582,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				self::getRelativePaths( $curFileRefs ),
 				self::getRelativePaths( $this->getFileDependencies( $context ) )
 			);
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			$this->getLogger()->warning(
 				__METHOD__ . ": failed to update dependencies: {$e->getMessage()}",
@@ -1040,6 +1043,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 						// Ignore compiler warnings (T77169)
 						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 						@$parser->parse( $contents, $fileName, 1 );
+					} catch ( TimeoutException $e ) {
+						throw $e;
 					} catch ( Exception $e ) {
 						return $e->getMessage();
 					}

@@ -430,6 +430,7 @@ LUA;
 	 * Try to make sure that locks get released (even with exceptions and fatals)
 	 */
 	public static function releaseAll() {
+		$e = null;
 		foreach ( self::$active as $poolCounter ) {
 			try {
 				if ( $poolCounter->slot !== null ) {
@@ -437,6 +438,9 @@ LUA;
 				}
 			} catch ( Exception $e ) {
 			}
+		}
+		if ( $e ) {
+			throw $e;
 		}
 	}
 }

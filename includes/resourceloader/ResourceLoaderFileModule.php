@@ -23,6 +23,7 @@
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Minify\CSSMin;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Module based on local JavaScript/CSS files.
@@ -1416,6 +1417,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						$fileInfo['content'],
 						[ 'minifyTemplate' => !$context->getDebug() ]
 					);
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $e ) {
 					$msg = "Error parsing file '$fileName' in module '{$this->getName()}': " .
 						$e->getMessage();

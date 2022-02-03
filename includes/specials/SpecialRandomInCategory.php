@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Special page to direct the user to a random page
@@ -255,6 +256,8 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		if ( !$this->minTimestamp || !$this->maxTimestamp ) {
 			try {
 				list( $this->minTimestamp, $this->maxTimestamp ) = $this->getMinAndMaxForCat( $this->category );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Possibly no entries in category.
 				return false;

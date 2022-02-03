@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\RequestTimeout\TimeoutException;
+
 /**
  * Utility for importing site entries from XML.
  * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
@@ -141,6 +143,8 @@ class SiteImporter {
 					}
 
 					$sites[$key] = $site;
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $ex ) {
 					$this->handleException( $ex );
 				}

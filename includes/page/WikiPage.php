@@ -53,6 +53,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Class representing a MediaWiki article and history.
@@ -3274,6 +3275,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 			try {
 				$rev = $this->getRevisionRecord();
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $ex ) {
 				// If we can't load the content, something is wrong. Perhaps that's why
 				// the user is trying to delete the page, so let's not fail in that case.
