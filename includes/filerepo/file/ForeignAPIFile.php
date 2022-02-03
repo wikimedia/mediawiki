@@ -388,12 +388,10 @@ class ForeignAPIFile extends File {
 
 	private function purgeDescriptionPage() {
 		$services = MediaWikiServices::getInstance();
-		$url = $this->repo->getDescriptionRenderUrl(
-			$this->getName(),
-			$services->getContentLanguage()->getCode()
-		);
+		$langCode = $services->getContentLanguage()->getCode();
 
-		$key = $this->repo->getLocalCacheKey( 'file-remote-description', md5( $url ) );
+		// Key must match File::getDescriptionText
+		$key = $this->repo->getLocalCacheKey( 'file-remote-description', $langCode, md5( $this->getName() ) );
 		$services->getMainWANObjectCache()->delete( $key );
 	}
 
