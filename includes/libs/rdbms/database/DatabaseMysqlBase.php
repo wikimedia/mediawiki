@@ -1004,10 +1004,20 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $options
 	 */
 	public function setSessionOptions( array $options ) {
+		$sqlAssignments = [];
+
 		if ( isset( $options['connTimeout'] ) ) {
-			$timeout = (int)$options['connTimeout'];
-			$this->query( "SET net_read_timeout=$timeout", __METHOD__, self::QUERY_CHANGE_TRX );
-			$this->query( "SET net_write_timeout=$timeout", __METHOD__, self::QUERY_CHANGE_TRX );
+			$encTimeout = (int)$options['connTimeout'];
+			$sqlAssignments[] = "net_read_timeout=$encTimeout";
+			$sqlAssignments[] = "net_write_timeout=$encTimeout";
+		}
+
+		if ( $sqlAssignments ) {
+			$this->query(
+				'SET ' . implode( ', ', $sqlAssignments ),
+				__METHOD__,
+				self::QUERY_CHANGE_TRX | self::QUERY_CHANGE_NONE
+			);
 		}
 	}
 
