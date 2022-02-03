@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -415,6 +416,8 @@ class SvgHandler extends ImageHandler {
 		try {
 			$svgReader = new SVGReader( $filename );
 			$metadata += $svgReader->getMetadata();
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) { // @todo SVG specific exceptions
 			// File not found, broken, etc.
 			$metadata['error'] = [

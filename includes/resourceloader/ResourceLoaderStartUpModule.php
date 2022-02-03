@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use Wikimedia\RequestTimeout\TimeoutException;
+
 /**
  * Module for ResourceLoader initialization.
  *
@@ -168,6 +170,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// don't require on-demand loading of more information.
 		try {
 			$resourceLoader->preloadModuleInfo( $moduleNames, $context );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			// Don't fail the request (T152266)
 			// Also print the error in the main output
@@ -214,6 +218,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// length ResourceLoader::HASH_LENGTH (or empty string).
 				// The getVersionHash method is final and is covered by tests, as is makeHash().
 				$versionHash = $module->getVersionHash( $context );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Don't fail the request (T152266)
 				// Also print the error in the main output

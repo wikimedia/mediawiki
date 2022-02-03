@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Http\HttpRequestFactory;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Web access for files temporarily stored by UploadStash.
@@ -432,7 +433,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 								$this->msg( 'uploadstash-thumbnail' )->text()
 							)
 						)->escaped();
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $e ) {
+					MWExceptionHandler::logException( $e );
 				}
 				$fileListItemsHtml .= Html::rawElement( 'li', [], $itemHtml );
 			}

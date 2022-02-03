@@ -24,6 +24,7 @@
 
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
@@ -763,6 +764,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$timestamp = new MWTimestamp( $ts );
 
 			return $timestamp->getTimestamp( $format );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			throw new FileBackendError( $e->getMessage() );
 		}

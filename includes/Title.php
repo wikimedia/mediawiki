@@ -4026,7 +4026,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		// Optional notice for the entire namespace
 		$editnotice_ns = 'editnotice-' . $this->mNamespace;
-		$msg = wfMessage( $editnotice_ns );
+		$msg = wfMessage( $editnotice_ns )->page( $this );
 		if ( $msg->exists() ) {
 			$html = $msg->parseAsBlock();
 			// Edit notices may have complex logic, but output nothing (T91715)
@@ -4051,7 +4051,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$editnotice_base = $editnotice_ns;
 			foreach ( explode( '/', $this->mDbkeyform ) as $part ) {
 				$editnotice_base .= '-' . $part;
-				$msg = wfMessage( $editnotice_base );
+				$msg = wfMessage( $editnotice_base )->page( $this );
 				if ( $msg->exists() ) {
 					$html = $msg->parseAsBlock();
 					if ( trim( $html ) !== '' ) {
@@ -4070,7 +4070,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			// Even if there are no subpages in namespace, we still don't want "/" in MediaWiki message keys
 			$editnoticeText = $editnotice_ns . '-' . strtr( $this->mDbkeyform, '/', '-' );
-			$msg = wfMessage( $editnoticeText );
+			$msg = wfMessage( $editnoticeText )->page( $this );
 			if ( $msg->exists() ) {
 				$html = $msg->parseAsBlock();
 				if ( trim( $html ) !== '' ) {

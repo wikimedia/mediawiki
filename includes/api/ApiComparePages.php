@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @ingroup API
@@ -565,6 +566,8 @@ class ApiComparePages extends ApiBase {
 				}
 				try {
 					$content = $oldContent->replaceSection( $section, $content, '' );
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $ex ) {
 					// Probably a content model mismatch.
 					$content = null;

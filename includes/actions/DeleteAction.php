@@ -27,6 +27,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Handle page deletion
@@ -533,10 +534,13 @@ class DeleteAction extends FormlessAction {
 
 		try {
 			return $this->getArticle()->getPage()->getAutoDeleteReason();
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			# if a page is horribly broken, we still want to be able to
 			# delete it. So be lenient about errors here.
-			// TODO Find out when this can happen and narrow the type in the `catch` clause.
+			# For example, WMF logs show MWException thrown from
+			# ContentHandler::checkModelID().
 			MWExceptionHandler::logException( $e );
 			return '';
 		}

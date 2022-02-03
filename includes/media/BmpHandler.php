@@ -71,7 +71,7 @@ class BmpHandler extends BitmapHandler {
 		try {
 			$w = wfUnpack( 'V', $w, 4 );
 			$h = wfUnpack( 'V', $h, 4 );
-		} catch ( Exception $e ) {
+		} catch ( MWException $e ) {
 			return [];
 		}
 
