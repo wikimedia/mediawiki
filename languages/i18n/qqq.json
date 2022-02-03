@@ -342,7 +342,7 @@
 	"pagecategorieslink": "{{notranslate}}",
 	"category_header": "In category description page, be aware that this is not about biology, but about bibliography. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|subcategories}}\n* {{msg-mw|Category-media-header}}",
 	"subcategories": "Used as a header on category pages that have subcategories.\n\nSee also:\n* {{msg-mw|category_header}}\n* {{msg-mw|category-media-header}}\n\n{{Identical|Subcategory}}",
-	"category-media-header": "In category description page. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|subcategories}}\n* {{msg-mw|Category header}}",
+	"category-media-header": "'''Note that \"media\" is short for \"multimedia\". It doesn't mean \"journalism\".'''\n\nIn category description page. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|subcategories}}\n* {{msg-mw|Category header}}",
 	"category-empty": "The text displayed in category page when that category is empty",
 	"hidden-categories": "Used in the categories section of pages.\n\nFollowed by a colon and a list of categories.\n\nParameters:\n* $1 - number of hidden categories\n{{Identical|Hidden category}}",
 	"hidden-category-category": "Name of the [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where hidden categories will be listed.\n\nSee also:\n* {{msg-mw|Hidden-category-category-desc}}\n{{Identical|Hidden category}}",

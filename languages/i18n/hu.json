@@ -2269,7 +2269,7 @@
 	"usermessage-editor": "Rendszerüzenetek",
 	"watchlist": "Figyelőlistám",
 	"mywatchlist": "Figyelőlista",
-	"watchlistfor2": "$1 részére $2",
+	"watchlistfor2": "$1 részére",
 	"nowatchlist": "Nincs lap a figyelőlistádon.",
 	"watchlistanontext": "Jelentkezz be a figyelőlistád megtekintéséhez és szerkesztéséhez.",
 	"watchnologin": "Nem vagy bejelentkezve",
@@ -3965,5 +3965,6 @@
 	"paramvalidator-help-type-user-subtype-id": "felhasználóazonosító (pl. \"#12345\")",
 	"paramvalidator-help-type-title": "Típus: lapcím",
 	"paramvalidator-help-type-title-must-exist": "Csak létező oldalakat fogad el",
-	"paramvalidator-help-type-title-no-must-exist": "Nemlétező oldalakat is elfogad"
+	"paramvalidator-help-type-title-no-must-exist": "Nemlétező oldalakat is elfogad",
+	"changeslist-nocomment": "Nincs szerkesztési összefoglaló"
 }
