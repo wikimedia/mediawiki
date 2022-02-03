@@ -65,11 +65,10 @@
 	 * @return {string} hash as an five-character base 36 string
 	 */
 	function fnv132( str ) {
-		var hash = 0x811C9DC5,
-			i = 0;
+		var hash = 0x811C9DC5;
 
 		/* eslint-disable no-bitwise */
-		for ( ; i < str.length; i++ ) {
+		for ( var i = 0; i < str.length; i++ ) {
 			hash += ( hash << 1 ) + ( hash << 4 ) + ( hash << 7 ) + ( hash << 8 ) + ( hash << 24 );
 			hash ^= str.charCodeAt( i );
 		}
@@ -402,8 +401,8 @@
 	 * @private
 	 */
 	function doPropagation() {
-		var module, i, job,
-			didPropagate = true;
+		var didPropagate = true;
+		var module;
 
 		// Keep going until the last iteration performed no actions.
 		while ( didPropagate ) {
@@ -444,8 +443,8 @@
 			}
 
 			// Stage 3: Invoke job callbacks that are no longer blocked
-			for ( i = 0; i < jobs.length; i++ ) {
-				job = jobs[ i ];
+			for ( var i = 0; i < jobs.length; i++ ) {
+				var job = jobs[ i ];
 				var failed = anyFailed( job.dependencies );
 				if ( failed !== false || allReady( job.dependencies ) ) {
 					jobs.splice( i, 1 );
@@ -576,9 +575,8 @@
 	 */
 	function resolve( modules ) {
 		// Always load base modules
-		var resolved = baseModules.slice(),
-			i = 0;
-		for ( ; i < modules.length; i++ ) {
+		var resolved = baseModules.slice();
+		for ( var i = 0; i < modules.length; i++ ) {
 			sortDependencies( modules[ i ], resolved );
 		}
 		return resolved;
@@ -593,12 +591,10 @@
 	 * @return {Array} List of dependencies.
 	 */
 	function resolveStubbornly( modules ) {
-		var saved,
-			// Always load base modules
-			resolved = baseModules.slice(),
-			i = 0;
-		for ( ; i < modules.length; i++ ) {
-			saved = resolved.slice();
+		// Always load base modules
+		var resolved = baseModules.slice();
+		for ( var i = 0; i < modules.length; i++ ) {
+			var saved = resolved.slice();
 			try {
 				sortDependencies( modules[ i ], resolved );
 			} catch ( err ) {
@@ -881,9 +877,6 @@
 	 * @param {string} module Module name to execute
 	 */
 	function execute( module ) {
-		var value, i, siteDeps, siteDepErr,
-			cssPending = 0;
-
 		if ( registry[ module ].state !== 'loaded' ) {
 			throw new Error( 'Module in state "' + registry[ module ].state + '" may not execute: ' + module );
 		}
@@ -898,17 +891,17 @@
 				$CODE.profileScriptEnd();
 				setAndPropagate( module, 'ready' );
 			};
-			var nestedAddScript = function ( arr, j ) {
+			var nestedAddScript = function ( arr, offset ) {
 				// Recursively call queueModuleScript() in its own callback
 				// for each element of arr.
-				if ( j >= arr.length ) {
+				if ( offset >= arr.length ) {
 					// We're at the end of the array
 					markModuleReady();
 					return;
 				}
 
-				queueModuleScript( arr[ j ], module, function () {
-					nestedAddScript( arr, j + 1 );
+				queueModuleScript( arr[ offset ], module, function () {
+					nestedAddScript( arr, offset + 1 );
 				} );
 			};
 
@@ -980,6 +973,7 @@
 		// The below function uses a counting semaphore to make sure we don't call
 		// runScript() until after this module's stylesheets have been inserted
 		// into the DOM.
+		var cssPending = 0;
 		var cssHandle = function () {
 			// Increase semaphore, when creating a callback for addEmbeddedCSS.
 			cssPending++;
@@ -1009,12 +1003,12 @@
 		// * { "url": { <media>: [url, ..] } }
 		if ( registry[ module ].style ) {
 			for ( var key in registry[ module ].style ) {
-				value = registry[ module ].style[ key ];
+				var value = registry[ module ].style[ key ];
 
 				// Array of CSS strings under key 'css'
 				// { "css": [css, ..] }
 				if ( key === 'css' ) {
-					for ( i = 0; i < value.length; i++ ) {
+					for ( var i = 0; i < value.length; i++ ) {
 						addEmbeddedCSS( value[ i ], cssHandle() );
 					}
 				// Plain object with array of urls under a media-type key
@@ -1022,8 +1016,8 @@
 				} else if ( key === 'url' ) {
 					for ( var media in value ) {
 						var urls = value[ media ];
-						for ( i = 0; i < urls.length; i++ ) {
-							addLink( urls[ i ], media, marker );
+						for ( var j = 0; j < urls.length; j++ ) {
+							addLink( urls[ j ], media, marker );
 						}
 					}
 				}
@@ -1039,6 +1033,8 @@
 			// run after 'site' regardless of whether it succeeds or fails.
 			// Note: This is a simplified version of mw.loader.using(), inlined here because
 			// mw.loader.using() is part of mediawiki.base (depends on jQuery; T192623).
+			var siteDeps;
+			var siteDepErr;
 			try {
 				siteDeps = resolve( [ 'site' ] );
 			} catch ( e ) {
@@ -1056,16 +1052,15 @@
 	}
 
 	function sortQuery( o ) {
-		var key,
-			sorted = {},
-			a = [];
+		var sorted = {};
+		var list = [];
 
-		for ( key in o ) {
-			a.push( key );
+		for ( var key in o ) {
+			list.push( key );
 		}
-		a.sort();
-		for ( key = 0; key < a.length; key++ ) {
-			sorted[ a[ key ] ] = o[ a[ key ] ];
+		list.sort();
+		for ( var i = 0; i < list.length; i++ ) {
+			sorted[ list[ i ] ] = o[ list[ i ] ];
 		}
 		return sorted;
 	}
@@ -1088,15 +1083,15 @@
 	 * @return {Array} return.list List of module names in matching order
 	 */
 	function buildModulesString( moduleMap ) {
-		var p, prefix,
-			str = [],
-			list = [];
+		var str = [];
+		var list = [];
+		var p;
 
 		function restore( suffix ) {
 			return p + suffix;
 		}
 
-		for ( prefix in moduleMap ) {
+		for ( var prefix in moduleMap ) {
 			p = prefix === '' ? '' : prefix + '.';
 			str.push( p + moduleMap[ prefix ].join( ',' ) );
 			list.push.apply( list, moduleMap[ prefix ].map( restore ) );
@@ -1113,9 +1108,13 @@
 	 * @return {string}
 	 */
 	function makeQueryString( params ) {
-		return Object.keys( params ).map( function ( key ) {
-			return encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] );
-		} ).join( '&' );
+		// Optimisation: This is a fairly hot code path with batchRequest() loops.
+		// Avoid overhead from Object.keys and Array.forEach.
+		var chunks = [];
+		for ( var key in params ) {
+			chunks.push( encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] ) );
+		}
+		return chunks.join( '&' );
 	}
 
 	/**
@@ -1133,8 +1132,7 @@
 			return;
 		}
 
-		var b, group, i, sourceLoadScript,
-			currReqBase, moduleMap, l;
+		var sourceLoadScript, currReqBase, moduleMap;
 
 		/**
 		 * Start the currently drafted request to the server.
@@ -1165,9 +1163,9 @@
 
 		// Split module list by source and by group.
 		var splits = Object.create( null );
-		for ( b = 0; b < batch.length; b++ ) {
-			var bSource = registry[ batch[ b ] ].source,
-				bGroup = registry[ batch[ b ] ].group;
+		for ( var b = 0; b < batch.length; b++ ) {
+			var bSource = registry[ batch[ b ] ].source;
+			var bGroup = registry[ batch[ b ] ].group;
 			if ( !splits[ bSource ] ) {
 				splits[ bSource ] = Object.create( null );
 			}
@@ -1180,7 +1178,7 @@
 		for ( var source in splits ) {
 			sourceLoadScript = sources[ source ];
 
-			for ( group in splits[ source ] ) {
+			for ( var group in splits[ source ] ) {
 
 				// Cache access to currently selected list of
 				// modules for this group from this source.
@@ -1202,11 +1200,11 @@
 
 				// We may need to split up the request to honor the query string length limit,
 				// so build it piece by piece.
-				l = currReqBaseLength;
-				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
+				var length = currReqBaseLength;
 				var currReqModules = [];
+				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
 
-				for ( i = 0; i < modules.length; i++ ) {
+				for ( var i = 0; i < modules.length; i++ ) {
 					// Determine how many bytes this module would add to the query string
 					var lastDotIndex = modules[ i ].lastIndexOf( '.' ),
 						prefix = modules[ i ].slice( 0, Math.max( 0, lastDotIndex ) ),
@@ -1216,18 +1214,18 @@
 							modules[ i ].length + 3; // '%7C'.length == 3
 
 					// If the url would become too long, create a new one, but don't create empty requests
-					if ( currReqModules.length && l + bytesAdded > mw.loader.maxQueryLength ) {
+					if ( currReqModules.length && length + bytesAdded > mw.loader.maxQueryLength ) {
 						// Dispatch what we've got...
 						doRequest();
 						// .. and start again.
-						l = currReqBaseLength;
+						length = currReqBaseLength;
 						moduleMap = Object.create( null );
 						currReqModules = [];
 					}
 					if ( !moduleMap[ prefix ] ) {
 						moduleMap[ prefix ] = [];
 					}
-					l += bytesAdded;
+					length += bytesAdded;
 					moduleMap[ prefix ].push( suffix );
 					currReqModules.push( modules[ i ] );
 				}
@@ -1502,11 +1500,10 @@
 				return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
 			}
 
-			var i, j, deps;
-			for ( i = 0; i < modules.length; i++ ) {
-				deps = modules[ i ][ 2 ];
+			for ( var i = 0; i < modules.length; i++ ) {
+				var deps = modules[ i ][ 2 ];
 				if ( deps ) {
-					for ( j = 0; j < deps.length; j++ ) {
+					for ( var j = 0; j < deps.length; j++ ) {
 						deps[ j ] = resolveIndex( deps[ j ] );
 					}
 				}
