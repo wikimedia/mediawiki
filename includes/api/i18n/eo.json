@@ -4,7 +4,8 @@
 			"1233qwer1234qwer4",
 			"Mirin",
 			"Renardo",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Spenĉjo"
 		]
 	},
 	"apihelp-main-param-action": "Kiun agon fari.",
@@ -74,7 +75,7 @@
 	"apihelp-move-param-ignorewarnings": "Ignori ĉiujn avertojn.",
 	"apihelp-opensearch-summary": "Serĉi la vikion per OpenSearch.",
 	"apihelp-opensearch-param-search": "Serĉa teksto.",
-	"apihelp-opensearch-param-limit": "Maksimuma nombro de liverotaj rezultoj.",
+	"apihelp-opensearch-param-limit": "Maksimuma kvanto de liverotaj rezultoj.",
 	"apihelp-options-example-reset": "Restarigi ĉiujn referencojn.",
 	"apihelp-parse-param-summary": "Sintakse analizota resumo.",
 	"apihelp-parse-example-page": "Sintaksanalizi paĝon.",
