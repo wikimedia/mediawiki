@@ -102,6 +102,14 @@ fetch-polyfill:
     package/LICENSE:
     package/README.md:
 
+intersection-observer:
+  type: tar
+  src: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.0.tgz
+  integrity: sha384-zCaiM7krKokKgwmrn87MtEtBUfsddhfofL0x+6KiGr+nHRa4b/ZdcfkBUSEtuEUw
+  dest:
+    package/intersection-observer.js:
+    package/README.md:
+
 jquery:
   type: multi-file
   files:
