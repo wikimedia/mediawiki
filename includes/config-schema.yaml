@@ -1,6 +1,7 @@
 config-schema:
     ConfigRegistry:
-        default: { main: 'GlobalVarConfig::newInstance' }
+        default:
+            main: GlobalVarConfig::newInstance
         description: |-
             Registry of factory functions to create config objects:
             The 'main' key must be set, and the value should be a valid
