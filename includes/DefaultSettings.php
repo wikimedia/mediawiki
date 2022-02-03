@@ -242,17 +242,19 @@ $wgExtensionAssetsPath = false;
 
 /**
  * Filesystem extensions directory.
- * Defaults to "{$IP}/extensions".
+ * @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
+ * @note this configuration variable is used to locate extensions while loading settings.
  * @since 1.25
  */
-$wgExtensionDirectory = "{$IP}/extensions";
+$wgExtensionDirectory = null;
 
 /**
  * Filesystem stylesheets directory.
- * Defaults to "{$IP}/skins".
+ * @note Set to "{$IP}/skins" by Setup.php before loading local settings.
+ * @note this configuration variable is used to locate skins while loading settings.
  * @since 1.3
  */
-$wgStyleDirectory = "{$IP}/skins";
+$wgStyleDirectory = null;
 
 /**
  * The URL path for primary article page views. This path should contain $1,
@@ -8689,13 +8691,13 @@ $wgHooks = [];
  * However, this cannot be used to replace existing services - use the MediaWikiServices
  * hook for that.
  *
+ * @note the default wiring file will be added automatically by Setup.php
+ *
  * @see MediaWikiServices
  * @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
  * @see docs/Injection.md for an overview of dependency injection in MediaWiki.
  */
-$wgServiceWiringFiles = [
-	__DIR__ . '/ServiceWiring.php'
-];
+$wgServiceWiringFiles = [];
 
 /**
  * Maps jobs to their handlers; extensions

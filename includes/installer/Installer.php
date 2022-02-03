@@ -652,6 +652,9 @@ abstract class Installer {
 		unset( $_lsExists );
 
 		require "$IP/includes/DefaultSettings.php";
+		$wgExtensionDirectory = "$IP/extensions";
+		$wgStyleDirectory = "$IP/skins";
+
 		require "$IP/LocalSettings.php";
 
 		return get_defined_vars();
@@ -1495,7 +1498,10 @@ abstract class Installer {
 		require "$IP/includes/DefaultSettings.php";
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
-		global $wgAutoloadClasses;
+		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;
+		$wgExtensionDirectory = "$IP/extensions";
+		$wgStyleDirectory = "$IP/skins";
+
 		foreach ( $files as $file ) {
 			require_once $file;
 		}
