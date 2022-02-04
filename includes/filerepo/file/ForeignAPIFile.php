@@ -136,7 +136,7 @@ class ForeignAPIFile extends File {
 		$height = $params['height'] ?? -1;
 		$thumbUrl = false;
 
-		if ( $width > 0 && $height > 0 ) {
+		if ( $width > 0 || $height > 0 ) {
 			// Only query the remote if there are dimensions
 			$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
