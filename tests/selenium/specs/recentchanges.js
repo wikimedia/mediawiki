@@ -36,7 +36,7 @@ describe( 'Special:RecentChanges', function () {
 
 		await RecentChangesPage.open();
 
-		assert.strictEqual( RecentChangesPage.titles[ 0 ].getText(), name );
+		assert.strictEqual( await RecentChangesPage.titles[ 0 ].getText(), name );
 	} );
 
 } );

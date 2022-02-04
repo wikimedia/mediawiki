@@ -32,10 +32,10 @@ describe( 'Page', function () {
 	it( 'should be previewable', async function () {
 		await EditPage.preview( name, content );
 
-		assert.strictEqual( EditPage.heading.getText(), 'Creating ' + name );
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
-		assert( EditPage.content.isDisplayed(), 'editor is still present' );
-		assert( !EditPage.conflictingContent.isDisplayed(), 'no edit conflict happened' );
+		assert.strictEqual( await EditPage.heading.getText(), 'Creating ' + name );
+		assert.strictEqual( await EditPage.displayedContent.getText(), content );
+		assert( await EditPage.content.isDisplayed(), 'editor is still present' );
+		assert( await !EditPage.conflictingContent.isDisplayed(), 'no edit conflict happened' );
 
 		// T269566: Popup with text
 		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
@@ -48,8 +48,8 @@ describe( 'Page', function () {
 		await EditPage.edit( name, content );
 
 		// check
-		assert.strictEqual( EditPage.heading.getText(), name );
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( await EditPage.heading.getText(), name );
+		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
 	it( 'should be re-creatable', async function () {
@@ -63,8 +63,8 @@ describe( 'Page', function () {
 		await EditPage.edit( name, content );
 
 		// check
-		assert.strictEqual( EditPage.heading.getText(), name );
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( await EditPage.heading.getText(), name );
+		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
 	it( 'should be editable @daily', async function () {
@@ -76,8 +76,8 @@ describe( 'Page', function () {
 		await EditPage.edit( name, editContent );
 
 		// check
-		assert.strictEqual( EditPage.heading.getText(), name );
-		assert( EditPage.displayedContent.getText().includes( editContent ) );
+		assert.strictEqual( await EditPage.heading.getText(), name );
+		assert( await EditPage.displayedContent.getText().includes( editContent ) );
 	} );
 
 	it( 'should have history @daily', async function () {
@@ -86,7 +86,7 @@ describe( 'Page', function () {
 
 		// check
 		await HistoryPage.open( name );
-		assert.strictEqual( HistoryPage.comment.getText(), `created with "${content}"` );
+		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${content}"` );
 	} );
 
 	it( 'should be deletable', async function () {
@@ -100,7 +100,7 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual(
-			DeletePage.displayedContent.getText(),
+			await DeletePage.displayedContent.getText(),
 			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\n\nReturn to Main Page.'
 		);
 	} );
@@ -117,7 +117,7 @@ describe( 'Page', function () {
 		await RestorePage.restore( name, 'restore reason' );
 
 		// check
-		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
+		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
 	it( 'should be protectable', async function () {
@@ -138,8 +138,8 @@ describe( 'Page', function () {
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
-		assert.strictEqual( EditPage.save.isExisting(), false );
-		assert.strictEqual( EditPage.heading.getText(), 'View source for ' + name );
+		assert.strictEqual( await EditPage.save.isExisting(), false );
+		assert.strictEqual( await EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
 	it.skip( 'should be undoable', async function () {
@@ -154,7 +154,7 @@ describe( 'Page', function () {
 
 		await UndoPage.undo( name, previousRev, undoRev );
 
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
 } );
