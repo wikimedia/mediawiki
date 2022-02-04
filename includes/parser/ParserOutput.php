@@ -50,6 +50,12 @@ class ParserOutput extends CacheTime {
 	public const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
+	 * @internal
+	 * @since 1.38
+	 */
+	public const MERGE_STRATEGY_KEY = '_mw-strategy';
+
+	/**
 	 * @var string|null The output text
 	 */
 	private $mText = null;
@@ -742,7 +748,14 @@ class ParserOutput extends CacheTime {
 	 * @since 1.23
 	 */
 	public function getJsConfigVars() {
-		return $this->mJsConfigVars;
+		$result = $this->mJsConfigVars;
+		// Don't expose the internal strategy key
+		foreach ( $result as $key => &$value ) {
+			if ( is_array( $value ) ) {
+				unset( $value[self::MERGE_STRATEGY_KEY] );
+			}
+		}
+		return $result;
 	}
 
 	public function getOutputHooks() {
@@ -1109,6 +1122,8 @@ class ParserOutput extends CacheTime {
 	 * @param string|array $keys Key or array of key/value pairs.
 	 * @param mixed|null $value [optional] Value of the configuration variable.
 	 * @since 1.23
+	 * @deprecated since 1.38, use ::setJsConfigVar() or ::appendJsConfigVar()
+	 *  which ensures compatibility with asynchronous parsing.
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
 		if ( is_array( $keys ) ) {
@@ -1122,14 +1137,70 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add a variable to be set in mw.config in JavaScript.
+	 *
+	 * In order to ensure the result is independent of the parse order, the values
+	 * set here must be unique -- that is, you can pass the same $key
+	 * multiple times but ONLY if the $value is identical each time.
+	 * If you want to collect multiple pieces of data under a single key,
+	 * use ::appendJsConfigVar().
+	 *
+	 * @param string $key Key to use under mw.config
+	 * @param mixed|null $value Value of the configuration variable.
+	 * @since 1.38
+	 */
+	public function setJsConfigVar( string $key, $value ): void {
+		if (
+			array_key_exists( $key, $this->mJsConfigVars ) &&
+			$this->mJsConfigVars[$key] !== $value
+		) {
+			// Ensure that a key is mapped to only a single value in order
+			// to prevent the resulting array from varying if content
+			// is parsed in a different order.
+			throw new InvalidArgumentException( "Multiple conflicting values given for $key" );
+		}
+		$this->mJsConfigVars[$key] = $value;
+	}
+
+	/**
+	 * Append a value to a variable to be set in mw.config in JavaScript.
+	 *
+	 * In order to ensure the result is independent of the parse order,
+	 * the value of this key will be an associative array, mapping all of
+	 * the values set under that key to true.  (The array is implicitly
+	 * ordered in PHP, but you should treat it as unordered.)
+	 * If you want a non-array type for the key, and can ensure that only
+	 * a single value will be set, you should use ::setJsConfigVar() instead.
+	 *
+	 * @param string $key Key to use under mw.config
+	 * @param string $value Value to append to the configuration variable.
+	 * @since 1.38
+	 */
+	public function appendJsConfigVar( string $key, string $value ): void {
+		if ( !array_key_exists( $key, $this->mJsConfigVars ) ) {
+			$this->mJsConfigVars[$key] = [
+				// Indicate how these values are to be merged.
+				self::MERGE_STRATEGY_KEY => 'union',
+			];
+		} elseif ( !is_array( $this->mJsConfigVars[$key] ) ) {
+			throw new InvalidArgumentException( "Mixing set and append for $key" );
+		}
+		$this->mJsConfigVars[$key][$value] = true;
+	}
+
+	/**
 	 * Copy items from the OutputPage object into this one
 	 *
 	 * @param OutputPage $out
 	 */
 	public function addOutputPageMetadata( OutputPage $out ) {
+		// This should eventually use the same merge mechanism used
+		// internally to merge ParserOutputs together.
 		$this->addModules( $out->getModules() );
 		$this->addModuleStyles( $out->getModuleStyles() );
-		$this->addJsConfigVars( $out->getJsConfigVars() );
+		$this->mJsConfigVars = self::mergeMapStrategy(
+			$this->mJsConfigVars, $out->getJsConfigVars()
+		);
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
@@ -1882,7 +1953,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Merges HTML metadata such as head items, JS config vars, and HTTP cache control info
 	 * from $source into this ParserOutput. This should be used whenever the HTML in $source
-	 * has been somehow mered into the HTML of this ParserOutput.
+	 * has been somehow merged into the HTML of this ParserOutput.
 	 *
 	 * @param ParserOutput $source
 	 */
@@ -1891,7 +1962,7 @@ class ParserOutput extends CacheTime {
 		$this->mHeadItems = self::mergeMixedList( $this->mHeadItems, $source->getHeadItems() );
 		$this->mModules = self::mergeList( $this->mModules, $source->getModules() );
 		$this->mModuleStyles = self::mergeList( $this->mModuleStyles, $source->getModuleStyles() );
-		$this->mJsConfigVars = self::mergeMap( $this->mJsConfigVars, $source->getJsConfigVars() );
+		$this->mJsConfigVars = self::mergeMapStrategy( $this->mJsConfigVars, $source->mJsConfigVars );
 		$this->mMaxAdaptiveExpiry = min( $this->mMaxAdaptiveExpiry, $source->mMaxAdaptiveExpiry );
 		$this->mExtraStyleSrcs = self::mergeList(
 			$this->mExtraStyleSrcs,
@@ -1974,6 +2045,7 @@ class ParserOutput extends CacheTime {
 
 		// TODO: add a $mergeStrategy parameter to setPageProperty to allow different
 		// kinds of properties to be merged in different ways.
+		// (Model this after ::appendJsConfigVar(); use ::mergeMapStrategy here)
 		$this->mProperties = self::mergeMap( $this->mProperties, $source->getPageProperties() );
 
 		// NOTE: include extension data in "tracking meta data" as well as "html meta data"!
@@ -1995,6 +2067,36 @@ class ParserOutput extends CacheTime {
 
 	private static function mergeMap( array $a, array $b ) {
 		return array_replace( $a, $b );
+	}
+
+	private static function mergeMapStrategy( array $a, array $b ) {
+		foreach ( $b as $key => $bValue ) {
+			if ( !array_key_exists( $key, $a ) ) {
+				$a[$key] = $bValue;
+			} elseif (
+				isset( $a[$key][self::MERGE_STRATEGY_KEY] ) &&
+				isset( $bValue[self::MERGE_STRATEGY_KEY] )
+			) {
+				$strategy = $bValue[self::MERGE_STRATEGY_KEY];
+				if ( $strategy !== $a[$key][self::MERGE_STRATEGY_KEY] ) {
+					throw new InvalidArgumentException( "Conflicting merge strategy for $key" );
+				}
+				if ( $strategy === 'union' ) {
+					// Note the array_merge is *not* safe to use here, because
+					// the $bValue is expected to be a map from items to `true`.
+					// If the item is a numeric string like '1' then array_merge
+					// will convert it to an integer and renumber the array!
+					$a[$key] = array_replace( $a[$key], $bValue );
+				} else {
+					throw new InvalidArgumentException( "Unknown merge strategy $strategy" );
+				}
+			} elseif ( $a[$key] !== $bValue ) {
+				// Silently replace for now; in the future will first emit
+				// a deprecation warning, and then (later) throw.
+				$a[$key] = $bValue;
+			}
+		}
+		return $a;
 	}
 
 	private static function merge2D( array $a, array $b ) {
