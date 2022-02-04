@@ -12,11 +12,11 @@
 		"selenium-test": "wdio ./tests/selenium/wdio.conf.js"
 	},
 	"devDependencies": {
-		"@wdio/cli": "7.4.6",
-		"@wdio/dot-reporter": "7.4.2",
-		"@wdio/junit-reporter": "7.4.2",
-		"@wdio/local-runner": "7.16.11",
-		"@wdio/mocha-framework": "7.13.2",
+		"@wdio/cli": "7.16.13",
+		"@wdio/dot-reporter": "7.16.13",
+		"@wdio/junit-reporter": "7.16.13",
+		"@wdio/local-runner": "7.16.13",
+		"@wdio/mocha-framework": "7.16.13",
 		"api-testing": "1.5.0",
 		"dotenv": "8.2.0",
 		"eslint-config-wikimedia": "0.21.0",
@@ -37,6 +37,6 @@
 		"stylelint-config-wikimedia": "0.11.1",
 		"svgo": "2.3.1",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
-		"webdriverio": "7.4.6"
+		"webdriverio": "7.16.13"
 	}
 }
