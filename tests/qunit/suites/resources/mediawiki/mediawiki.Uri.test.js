@@ -10,6 +10,19 @@
 		}
 	} ) );
 
+	function getPropertySummary( uri ) {
+		return {
+			protocol: uri.protocol,
+			user: uri.user,
+			password: uri.password,
+			host: uri.host,
+			port: uri.port,
+			path: uri.path,
+			query: uri.query,
+			fragment: uri.fragment
+		};
+	}
+
 	[ true, false ].forEach( function ( strictMode ) {
 		QUnit.test( 'Basic construction and properties (' + ( strictMode ? '' : 'non-' ) + 'strict mode)', function ( assert ) {
 			var uriString, uri;
@@ -19,15 +32,11 @@
 			} );
 
 			assert.deepEqual(
+				getPropertySummary( uri ),
 				{
-					protocol: uri.protocol,
-					host: uri.host,
-					port: uri.port,
-					path: uri.path,
-					query: uri.query,
-					fragment: uri.fragment
-				}, {
 					protocol: 'http',
+					user: undefined,
+					password: undefined,
 					host: 'www.ietf.org',
 					port: undefined,
 					path: '/rfc/rfc2396.txt',
@@ -82,16 +91,7 @@
 		uri = new mw.Uri( 'ftp://usr:pwd@192.0.2.16/' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'ftp',
 				user: 'usr',
@@ -249,17 +249,16 @@
 		var uri = new mw.Uri( 'http://search.example.com/?q=uri' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment,
-				queryString: uri.getQueryString()
-			},
+			$.extend(
+				getPropertySummary( uri ),
+				{
+					queryString: uri.getQueryString()
+				}
+			),
 			{
 				protocol: 'http',
+				user: undefined,
+				password: undefined,
 				host: 'search.example.com',
 				port: undefined,
 				path: '/',
@@ -395,16 +394,7 @@
 
 		uri = new UriClass();
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'http',
 				user: undefined,
@@ -422,16 +412,7 @@
 		href = 'https://example.com/wiki/Foo?v=2';
 		uri = new UriClass();
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'https',
 				user: undefined,
@@ -452,16 +433,7 @@
 		uri = new mw.Uri( 'http://auth@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#caf%C3%A9' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'http',
 				user: 'auth',
@@ -497,17 +469,12 @@
 		var uri = new mw.Uri( 'http://www.example.com/test@test?x=@uri&y@=uri&z@=@' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment,
-				queryString: uri.getQueryString()
-			},
+			$.extend(
+				getPropertySummary( uri ),
+				{
+					queryString: uri.getQueryString()
+				}
+			),
 			{
 				protocol: 'http',
 				user: undefined,
