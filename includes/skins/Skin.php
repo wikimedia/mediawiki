@@ -2719,6 +2719,8 @@ abstract class Skin extends ContextSource {
 			// Whether the table of contents will be inserted on page views
 			// See ParserOutput::getText() for the implementation logic
 			'toc' => true,
+			// An array of classes to be added to the skin body tag.
+			'bodyClasses' => [],
 		];
 	}
 
