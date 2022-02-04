@@ -121,13 +121,13 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Change tags of old revision or null if it does not exist / is not saved.
-	 * @var string[]|null
+	 * @var string|false|null
 	 */
 	private $mOldTags;
 
 	/**
 	 * Change tags of new revision or null if it does not exist / is not saved.
-	 * @var string[]|null
+	 * @var string|null
 	 */
 	private $mNewTags;
 
@@ -287,17 +287,16 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			$slotContents = $this->getSlotContents();
-			$this->slotDiffRenderers = array_map( function ( $contents ) {
+			$this->slotDiffRenderers = array_map( function ( array $contents ) {
 				/** @var Content $content */
 				$content = $contents['new'] ?: $contents['old'];
-				$context = $this->getContext();
-
 				return $content->getContentHandler()->getSlotDiffRenderer(
-					$context,
+					$this->getContext(),
 					$this->slotDiffOptions
 				);
 			}, $slotContents );
 		}
+
 		return $this->slotDiffRenderers;
 	}
 
@@ -319,26 +318,21 @@ class DifferenceEngine extends ContextSource {
 	protected function getSlotContents() {
 		if ( $this->isContentOverridden ) {
 			return [
-				SlotRecord::MAIN => [
-					'old' => $this->mOldContent,
-					'new' => $this->mNewContent,
-				]
+				SlotRecord::MAIN => [ 'old' => $this->mOldContent, 'new' => $this->mNewContent ]
 			];
 		} elseif ( !$this->loadRevisionData() ) {
 			return [];
 		}
 
 		$newSlots = $this->mNewRevisionRecord->getPrimarySlots()->getSlots();
-		if ( $this->mOldRevisionRecord ) {
-			$oldSlots = $this->mOldRevisionRecord->getPrimarySlots()->getSlots();
-		} else {
-			$oldSlots = [];
-		}
+		$oldSlots = $this->mOldRevisionRecord ?
+			$this->mOldRevisionRecord->getPrimarySlots()->getSlots() :
+			[];
 		// The order here will determine the visual order of the diff. The current logic is
 		// slots of the new revision first in natural order, then deleted ones. This is ad hoc
 		// and should not be relied on - in the future we may want the ordering to depend
 		// on the page type.
-		$roles = array_merge( array_keys( $newSlots ), array_keys( $oldSlots ) );
+		$roles = array_keys( array_merge( $newSlots, $oldSlots ) );
 
 		$slots = [];
 		foreach ( $roles as $role ) {
@@ -446,8 +440,7 @@ class DifferenceEngine extends ContextSource {
 	public function deletedLink( $id ) {
 		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$revStore = $this->revisionStore;
-			$arQuery = $revStore->getArchiveQueryInfo();
+			$arQuery = $this->revisionStore->getArchiveQueryInfo();
 			$row = $dbr->selectRow(
 				$arQuery['tables'],
 				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
@@ -457,7 +450,7 @@ class DifferenceEngine extends ContextSource {
 				$arQuery['joins']
 			);
 			if ( $row ) {
-				$revRecord = $revStore->newRevisionFromArchiveRow( $row );
+				$revRecord = $this->revisionStore->newRevisionFromArchiveRow( $row );
 				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 
 				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( [
@@ -490,14 +483,10 @@ class DifferenceEngine extends ContextSource {
 		$out = $this->getOutput();
 
 		$missing = [];
-		if ( ( $this->mOldid !== 0 && $this->mOldRevisionRecord === null ) ||
-			( $this->mOldRevisionRecord && $this->mOldContent === null )
-		) {
+		if ( $this->mOldid && ( !$this->mOldRevisionRecord || !$this->mOldContent ) ) {
 			$missing[] = $this->deletedIdMarker( $this->mOldid );
 		}
-		if ( $this->mNewRevisionRecord === null ||
-			( $this->mNewRevisionRecord && $this->mNewContent === null )
-		) {
+		if ( !$this->mNewRevisionRecord || !$this->mNewContent ) {
 			$missing[] = $this->deletedIdMarker( $this->mNewid );
 		}
 
@@ -571,21 +560,20 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function isUserAllowedToSeeRevisions( Authority $performer ) {
 		$this->loadRevisionData();
+
+		if ( $this->mOldRevisionRecord && !$this->mOldRevisionRecord->userCan(
+			RevisionRecord::DELETED_TEXT,
+			$performer
+		) ) {
+			return false;
+		}
+
 		// $this->mNewRev will only be falsy if a loading error occurred
 		// (in which case the user is allowed to see).
-		$allowed = !$this->mNewRevisionRecord || $this->mNewRevisionRecord->userCan(
+		return !$this->mNewRevisionRecord || $this->mNewRevisionRecord->userCan(
 			RevisionRecord::DELETED_TEXT,
 			$performer
 		);
-		if ( $this->mOldRevisionRecord &&
-			!$this->mOldRevisionRecord->userCan(
-				RevisionRecord::DELETED_TEXT,
-				$performer
-			)
-		) {
-			$allowed = false;
-		}
-		return $allowed;
 	}
 
 	/**
@@ -621,7 +609,7 @@ class DifferenceEngine extends ContextSource {
 
 		$user = $this->getUser();
 		$permErrors = $this->getPermissionErrors( $this->getAuthority() );
-		if ( count( $permErrors ) ) {
+		if ( $permErrors ) {
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
@@ -828,36 +816,24 @@ class DifferenceEngine extends ContextSource {
 			$multi = $this->getMultiNotice();
 			$out->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
 			if ( !$allowed ) {
-				$msg = $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff';
 				# Give explanation for why revision is not visible
-				$out->addHtml(
-					Html::warningBox(
-						$this->msg( $msg )->parse(),
-						'plainlinks'
-					)
-				);
+				$msg = [ $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff' ];
 			} else {
 				# Give explanation and add a link to view the diff...
 				$query = $this->getRequest()->appendQueryValue( 'unhide', '1' );
-				$link = $this->getTitle()->getFullURL( $query );
-				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
-				$out->addHtml(
-					Html::warningBox(
-						$this->msg( $msg, $link )->parse(),
-						'plainlinks'
-					)
-				);
+				$msg = [
+					$suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff',
+					$this->getTitle()->getFullURL( $query )
+				];
 			}
+			$out->addHtml( Html::warningBox( $this->msg( ...$msg )->parse(), 'plainlinks' ) );
 		# Otherwise, output a regular diff...
 		} else {
 			# Add deletion notice if the user is viewing deleted content
 			$notice = '';
 			if ( $deleted ) {
 				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
-				$notice = Html::warningBox(
-					$this->msg( $msg )->parse(),
-					'plainlinks'
-				);
+				$notice = Html::warningBox( $this->msg( $msg )->parse(), 'plainlinks' );
 			}
 			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if ( !$diffOnly ) {
@@ -952,9 +928,7 @@ class DifferenceEngine extends ContextSource {
 					$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 				}
 
-				return [
-					'rcid' => $rcid,
-				];
+				return [ 'rcid' => $rcid ];
 			}
 		}
 
@@ -1075,9 +1049,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$parserOptions = $page->makeParserOptions( $this->getContext() );
-		$parserOutput = $page->getParserOutput( $parserOptions, $revRecord->getId() );
-
-		return $parserOutput;
+		return $page->getParserOutput( $parserOptions, $revRecord->getId() );
 	}
 
 	/**
@@ -1097,17 +1069,15 @@ class DifferenceEngine extends ContextSource {
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
 			$this->showMissingRevision();
-
 			return false;
-		} else {
-			$this->showDiffStyle();
-			if ( $this->slotDiffOptions['expand-url'] ?? false ) {
-				$diff = Linker::expandLocalLinks( $diff );
-			}
-			$this->getOutput()->addHTML( $diff );
-
-			return true;
 		}
+
+		$this->showDiffStyle();
+		if ( $this->slotDiffOptions['expand-url'] ?? false ) {
+			$diff = Linker::expandLocalLinks( $diff );
+		}
+		$this->getOutput()->addHTML( $diff );
+		return true;
 	}
 
 	/**
@@ -1591,21 +1561,14 @@ class DifferenceEngine extends ContextSource {
 	public function localiseLineNumbers( $text ) {
 		return preg_replace_callback(
 			'/<!--LINE (\d+)-->/',
-			[ $this, 'localiseLineNumbersCb' ],
+			function ( array $matches ) {
+				if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
+					return '';
+				}
+				return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
+			},
 			$text
 		);
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	public function localiseLineNumbersCb( $matches ) {
-		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
-			return '';
-		}
-
-		return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
 	}
 
 	/**
@@ -1617,20 +1580,14 @@ class DifferenceEngine extends ContextSource {
 	private function addLocalisedTitleTooltips( $text ) {
 		return preg_replace_callback(
 			'/class="mw-diff-movedpara-(left|right)"/',
-			[ $this, 'addLocalisedTitleTooltipsCb' ],
+			function ( array $matches ) {
+				$key = $matches[1] === 'right' ?
+					'diff-paragraph-moved-toold' :
+					'diff-paragraph-moved-tonew';
+				return $matches[0] . ' title="' . $this->msg( $key )->escaped() . '"';
+			},
 			$text
 		);
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	private function addLocalisedTitleTooltipsCb( array $matches ) {
-		$key = $matches[1] === 'right' ?
-			'diff-paragraph-moved-toold' :
-			'diff-paragraph-moved-tonew';
-		return $matches[0] . ' title="' . $this->msg( $key )->escaped() . '"';
 	}
 
 	/**
@@ -2020,13 +1977,9 @@ class DifferenceEngine extends ContextSource {
 
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRevisionRecord->getId();
-		if ( $this->mNewid ) {
-			$this->mNewPage = Title::newFromLinkTarget(
-				$this->mNewRevisionRecord->getPageAsLinkTarget()
-			);
-		} else {
-			$this->mNewPage = null;
-		}
+		$this->mNewPage = $this->mNewid ?
+			Title::newFromLinkTarget( $this->mNewRevisionRecord->getPageAsLinkTarget() ) :
+			null;
 
 		// Load the old RevisionRecord object
 		$this->mOldRevisionRecord = false;
@@ -2034,14 +1987,9 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldRevisionRecord = $this->revisionStore->getRevisionById( $this->mOldid );
 		} elseif ( $this->mOldid === 0 ) {
 			$revRecord = $this->revisionStore->getPreviousRevision( $this->mNewRevisionRecord );
-			if ( $revRecord ) {
-				$this->mOldid = $revRecord->getId();
-				$this->mOldRevisionRecord = $revRecord;
-			} else {
-				// No previous revision; mark to show as first-version only.
-				$this->mOldid = false;
-				$this->mOldRevisionRecord = false;
-			}
+			// No previous revision; mark to show as first-version only.
+			$this->mOldid = $revRecord ? $revRecord->getId() : false;
+			$this->mOldRevisionRecord = $revRecord ?? false;
 		} /* elseif ( $this->mOldid === false ) leave mOldRevisionRecord false; */
 
 		if ( $this->mOldRevisionRecord === null ) {
