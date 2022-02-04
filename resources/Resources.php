@@ -137,6 +137,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [ 'es6-polyfills' ]
 	],
+	'intersectionObserver-polyfill' => [
+		'scripts' => 'resources/lib/intersection-observer/intersection-observer.js',
+		'skipFunction' => 'resources/src/skip-intersectionObserver.js',
+		'targets' => [ 'desktop', 'mobile' ]
+	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
 		'packageFiles' => [

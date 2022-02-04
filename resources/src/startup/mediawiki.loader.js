@@ -83,13 +83,14 @@
 	}
 
 	// Check whether the browser supports ES6.
-	//
-	// Most browsers that support native Promises also support all the ES6 features we need.
-	// The exceptions are:
-	// - Android 4.4.4, which supports almost no ES6 features besides Promise
-	// - Edge 17 and 18, which don't support RegExp-related features
-	// - Safari and iOS versions below 14, which don't support non-BMP characters in variable names
-	//   (older versions have other problems too)
+	// We are feature detecting Promises and Arrow Functions with default params
+	// (which are good indicators of overall support). An additional test for
+	// regex behavior filters out Android 4.4.4 and Edge 18 or lower.
+	// This check doesn't quite guarantee full ES6 support: Safari 11-13 don't
+	// support non-BMP characters in identifiers, but support all other ES6
+	// features we care about. To guard against accidentally breaking these
+	// Safari versions with code they can't parse, we have an eslint rule
+	// prohibiting non-BMP characters from being used in identifiers.
 	var isES6Supported =
 		// Check for Promise support (filters out most non-ES6 browsers)
 		typeof Promise === 'function' &&
@@ -99,12 +100,14 @@
 		// Check for RegExp.prototype.flags (filters out Android 4.4.4 and Edge <= 18)
 		/./g.flags === 'g' &&
 
-		// Try a non-BMP variable name (filters out Safari < 14, iOS < 14)
+		// Test for arrow functions and default arguments, a good proxy for a
+		// wide range of ES6 support. Borrowed from Benjamin De Cock's snippet here:
+		// https://gist.github.com/bendc/d7f3dbc83d0f65ca0433caf90378cd95
+		// This will exclude Safari and Mobile Safari prior to version 10.
 		( function () {
 			try {
-				// \ud800\udec0 is U+102C0 CARIAN LETTER G
 				// eslint-disable-next-line no-new, no-new-func
-				new Function( 'var \ud800\udec0;' );
+				new Function( '(a = 0) => a' );
 				return true;
 			} catch ( e ) {
 				return false;
