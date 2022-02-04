@@ -41,7 +41,7 @@ describe( 'Special:Watchlist', function () {
 		// but by default Special:Watchlist includes both seen and unseen changes, so
 		// it'll show up anyway. The title we just edited will be first because the edit
 		// was the most recent.
-		assert.strictEqual( WatchlistPage.titles[ 0 ].getText(), title );
+		assert.strictEqual( await WatchlistPage.titles[ 0 ].getText(), title );
 	} );
 
 } );
