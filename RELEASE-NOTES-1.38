@@ -381,6 +381,9 @@ because of Phabricator reports.
   should be used instead.
   - SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits
   deprecation warnings.
+  - In preparation for SkinTemplate::getPortletData becoming a private
+    function, extending the method is no longer permitted. Use
+    SkinTemplate::getTemplateData instead.
 * Usage of several template data keys in QuickTemplate are now deprecated:
   - searchaction, poweredbyico, copyrightico
 * DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
