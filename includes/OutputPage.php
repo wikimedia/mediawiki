@@ -218,9 +218,6 @@ class OutputPage extends ContextSource {
 
 	// Parser related.
 
-	/** @var int */
-	protected $mContainsNewMagic = 0;
-
 	/**
 	 * lazy initialised, use parserOptions()
 	 * @var ParserOptions
