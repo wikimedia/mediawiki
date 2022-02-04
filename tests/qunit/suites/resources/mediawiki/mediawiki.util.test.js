@@ -666,21 +666,76 @@
 			q = [],
 			done = assert.async();
 
-		fn = mw.util.debounce( 0, function ( data ) {
+		fn = mw.util.debounce( function ( data ) {
+			q.push( data );
+		}, 5 );
+
+		fn( 1 );
+		setTimeout( function () {
+			fn( 2 );
+			setTimeout( function () {
+				fn( 3 );
+				setTimeout( function () {
+					assert.deepEqual(
+						q,
+						[ 3 ],
+						'Last one ran'
+					);
+					done();
+				}, 10 );
+			} );
+		} );
+	} );
+
+	QUnit.test( 'debounce immediate', function ( assert ) {
+		var fn,
+			q = [],
+			done = assert.async();
+
+		fn = mw.util.debounce( function ( data ) {
+			q.push( data );
+		}, 5, true );
+
+		fn( 1 );
+		setTimeout( function () {
+			fn( 2 );
+			setTimeout( function () {
+				fn( 3 );
+				setTimeout( function () {
+					assert.deepEqual(
+						q,
+						[ 1 ],
+						'First one ran'
+					);
+					done();
+				}, 10 );
+			} );
+		} );
+	} );
+
+	QUnit.test( 'debounce (old signature)', function ( assert ) {
+		var fn,
+			q = [],
+			done = assert.async();
+
+		fn = mw.util.debounce( 5, function ( data ) {
 			q.push( data );
 		} );
 
 		fn( 1 );
-		fn( 2 );
-		fn( 3 );
-
 		setTimeout( function () {
-			assert.deepEqual(
-				q,
-				[ 3 ],
-				'Last one ran'
-			);
-			done();
+			fn( 2 );
+			setTimeout( function () {
+				fn( 3 );
+				setTimeout( function () {
+					assert.deepEqual(
+						q,
+						[ 3 ],
+						'Last one ran'
+					);
+					done();
+				}, 10 );
+			} );
 		} );
 	} );
 
