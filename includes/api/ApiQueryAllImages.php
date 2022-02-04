@@ -29,7 +29,7 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Query module to enumerate all available pages.
+ * Query module to enumerate all images.
  *
  * @ingroup API
  */
