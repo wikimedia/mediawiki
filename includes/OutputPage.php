@@ -3464,7 +3464,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 		$languageConverter = $services->getLanguageConverterFactory()
-			->getLanguageConverter( $services->getContentLanguage() );
+			->getLanguageConverter( $title->getPageLanguage() );
 		if ( $languageConverter->hasVariants() ) {
 			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
