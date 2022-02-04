@@ -136,6 +136,11 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public static function normalizeKey( $key ) {
 		$lckey = strtr( $key, ' ', '_' );
+		if ( $lckey === '' ) {
+			// T300792
+			return $lckey;
+		}
+
 		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 		} else {
