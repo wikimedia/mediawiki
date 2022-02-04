@@ -46,7 +46,8 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$this->lbFactory = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
 
-		if ( $this->lbFactory->getMainLB()->getConnection( DB_REPLICA )->fieldExists(
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
+		if ( $dbr->fieldExists(
 				'change_tag',
 				'ct_tag',
 				__METHOD__
@@ -72,7 +73,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	private function setUserDefinedTags() {
-		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
 
 		$userTags = null;
 		if ( $dbr->tableExists( 'valid_tag', __METHOD__ ) ) {
@@ -96,7 +97,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			return;
 		}
 
-		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_PRIMARY );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 
 		$dbw->update(
 			'change_tag_def',
@@ -109,7 +110,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	private function updateCountTagId() {
-		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
 
 		// This query can be pretty expensive, don't run it on master
 		$res = $dbr->select(
@@ -120,7 +121,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			[ 'GROUP BY' => 'ct_tag_id' ]
 		);
 
-		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_PRIMARY );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 
 		foreach ( $res as $row ) {
 			if ( !$row->ct_tag_id ) {
@@ -143,7 +144,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	private function updateCountTag() {
-		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
 
 		// This query can be pretty expensive, don't run it on master
 		$res = $dbr->select(
@@ -154,7 +155,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			[ 'GROUP BY' => 'ct_tag' ]
 		);
 
-		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_PRIMARY );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 
 		foreach ( $res as $row ) {
 			// Hygiene check
@@ -183,7 +184,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	private function backpopulateChangeTagId() {
-		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
 		$changeTagDefs = $dbr->select(
 			'change_tag_def',
 			[ 'ctd_name', 'ctd_id' ],
@@ -198,8 +199,8 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	private function backpopulateChangeTagPerTag( $tagName, $tagId ) {
-		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
-		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_PRIMARY );
+		$dbr = $this->lbFactory->getMainLB()->getConnectionRef( DB_REPLICA );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$lastId = 0;
 		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
