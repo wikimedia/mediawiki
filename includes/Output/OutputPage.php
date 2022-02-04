@@ -402,8 +402,6 @@ class OutputPage extends ContextSource {
 	protected $styles = [];
 
 	/** @var string */
-	private $mIndexPolicy = 'index';
-	/** @var string */
 	private $mFollowPolicy = 'follow';
 
 	/** @var array */
@@ -480,6 +478,16 @@ class OutputPage extends ContextSource {
 	private string $cspOutputMode = self::CSP_HEADERS;
 
 	/**
+	 * To eliminate redundancy between information kept in OutputPage
+	 * for non-article pages and metadata kept by the Parser for
+	 * article pages, we create a ParserOutput for the OutputPage
+	 * which will collect metadata such as categories, index policy,
+	 * modules, etc, even if no parse actually occurs during the
+	 * rendering of this page.
+	 */
+	private ParserOutput $metadata;
+
+	/**
 	 * @var array A cache of the names of the cookies that will influence the cache
 	 */
 	private static $cacheVaryCookies = null;
@@ -504,6 +512,7 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mHideNewSectionLink', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
 		$this->setContext( $context );
+		$this->metadata = new ParserOutput( null );
 		$this->CSP = new ContentSecurityPolicy(
 			$context->getRequest()->response(),
 			$context->getConfig(),
@@ -551,6 +560,21 @@ class OutputPage extends ContextSource {
 	 */
 	public function setStatusCode( $statusCode ) {
 		$this->mStatusCode = $statusCode;
+	}
+
+	/**
+	 * Return a ParserOutput that can be used to set metadata properties
+	 * for the current page.
+	 * @return ParserOutput
+	 * @internal
+	 */
+	public function getMetadata(): ParserOutput {
+		// This is @internal at the moment, but in the future we may
+		// wish to make this public and deprecate the redundant
+		// methods on OutputPage which simply turn around
+		// and invoke the corresponding method on the metadata
+		// ParserOutput.
+		return $this->metadata;
 	}
 
 	/**
@@ -1008,7 +1032,8 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getRobotPolicy() {
-		return "{$this->mIndexPolicy},{$this->mFollowPolicy}";
+		$indexPolicy = $this->getIndexPolicy();
+		return "{$indexPolicy},{$this->mFollowPolicy}";
 	}
 
 	/**
@@ -1050,11 +1075,11 @@ class OutputPage extends ContextSource {
 	 */
 	private function getRobotsContent(): string {
 		$robotOptionString = $this->formatRobotsOptions();
-		$robotArgs = ( $this->mIndexPolicy === 'index' &&
+		$robotArgs = ( $this->getIndexPolicy() === 'index' &&
 			$this->mFollowPolicy === 'follow' ) ?
 			[] :
 			[
-				$this->mIndexPolicy,
+				$this->getIndexPolicy(),
 				$this->mFollowPolicy,
 			];
 		if ( $robotOptionString ) {
@@ -1067,13 +1092,22 @@ class OutputPage extends ContextSource {
 	 * Set the index policy for the page, but leave the follow policy un-
 	 * touched.
 	 *
+	 * Since 1.43, setting 'index' after 'noindex' is deprecated.  In
+	 * a future release, index policy on OutputPage will behave as
+	 * it does in ParserOutput, where 'noindex' takes precedence.
+	 *
 	 * @param string $policy Either 'index' or 'noindex'.
 	 */
 	public function setIndexPolicy( $policy ) {
 		$policy = trim( $policy );
-		if ( in_array( $policy, [ 'index', 'noindex' ] ) ) {
-			$this->mIndexPolicy = $policy;
+		if ( $policy === 'index' && $this->metadata->getIndexPolicy() === 'noindex' ) {
+			wfDeprecated( __METHOD__ . ' with index after noindex', '1.43' );
+			// ParserOutput::setIndexPolicy has noindex take precedence
+			// (T16899) but the OutputPage version did not.  Preserve
+			// the behavior but deprecate it for future removal.
+			$this->metadata->setOutputFlag( ParserOutputFlags::NO_INDEX_POLICY, false );
 		}
+		$this->metadata->setIndexPolicy( $policy );
 	}
 
 	/**
@@ -1082,7 +1116,13 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getIndexPolicy() {
-		return $this->mIndexPolicy;
+		// Unlike ParserOutput, in OutputPage getIndexPolicy() defaults to
+		// 'index' if unset.
+		$policy = $this->metadata->getIndexPolicy();
+		if ( $policy === '' ) {
+			$policy = 'index';
+		}
+		return $policy;
 	}
 
 	/**

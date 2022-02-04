@@ -695,7 +695,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testSetRobotsOptions() {
 		$op = $this->newInstance();
-		$op->setRobotPolicy( 'noindex, nofollow' );
+		$op->setRobotPolicy( 'nofollow' );
 		$op->setRobotsOptions( [ 'max-snippet' => '500' ] );
 		$op->setIndexPolicy( 'index' );
 
@@ -709,6 +709,25 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$links,
 			'When index,follow (browser default) omit'
 		);
+
+		$op->setIndexPolicy( 'noindex' );
+		$links = $op->getHeadLinksArray();
+		$this->assertContains(
+			'<meta name="robots" content="noindex,follow,max-image-preview:standard,max-snippet:500">',
+			$links,
+			'noindex takes precedence over index'
+		);
+
+		// Deprecated behavior: for OutputPage (unlike ParserOutput) we can
+		// reset to 'index' after 'noindex' has been set.
+		$this->filterDeprecated( '/OutputPage::setIndexPolicy with index after noindex/' );
+		$op->setIndexPolicy( 'index' );
+		$links = $op->getHeadLinksArray();
+		$this->assertContains(
+			'<meta name="robots" content="max-image-preview:standard,max-snippet:500">',
+			$links,
+			'index can reset noindex (deprecated)'
+		);
 	}
 
 	public function testGetRobotPolicy() {
@@ -719,9 +738,32 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'noindex,follow', $policy );
 	}
 
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::setIndexPolicy
+	 */
+	public function testSetIndexPoliciesBackCompat() {
+		$op = $this->newInstance();
+		$this->assertSame( "", $op->getMetadata()->getIndexPolicy() );
+		$op->setIndexPolicy( 'index' );
+		$this->assertEquals( "index", $op->getIndexPolicy() );
+		$this->assertEquals( "index", $op->getMetadata()->getIndexPolicy() );
+		$op->setIndexPolicy( 'noindex' );
+		$this->assertEquals( "noindex", $op->getIndexPolicy() );
+		$this->assertEquals( "noindex", $op->getMetadata()->getIndexPolicy() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::getMetadata
+	 * @covers \MediaWiki\Output\OutputPage::getIndexPolicy
+	 * @covers \MediaWiki\Output\OutputPage::setFollowPolicy
+	 * @covers \MediaWiki\Output\OutputPage::getHeadLinksArray
+	 */
 	public function testSetIndexFollowPolicies() {
 		$op = $this->newInstance();
-		$op->setIndexPolicy( 'noindex' );
+		$this->assertSame( "", $op->getMetadata()->getIndexPolicy() );
+		$this->assertEquals( "index", $op->getIndexPolicy() );
+		$op->getMetadata()->setIndexPolicy( 'noindex' );
+		$this->assertEquals( "noindex", $op->getIndexPolicy() );
 		$op->setFollowPolicy( 'nofollow' );
 
 		$links = $op->getHeadLinksArray();
