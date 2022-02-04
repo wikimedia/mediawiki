@@ -463,6 +463,8 @@
 							config.classes.push( 'apihelp-internal-value' );
 						}
 						return new OO.ui.MenuOptionWidget( config );
+					} ).sort( function ( a, b ) {
+						return a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
