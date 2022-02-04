@@ -143,7 +143,7 @@
 	"apihelp-edit-param-bot": "Marcâ 'sta modìfica chi cómme fæta da 'n bot.",
 	"apihelp-edit-param-baserevid": "ID da revixón de bâze, dêuviòu pe rilevâ conflìtti d'ediçión. O peu êse òtegnûo pe mêzo de [[Special:ApiHelp/query+revisions|action=query&prop=revisions]]. I conflìtti d'ediçión co-ina pròpia modìfica blòccan a modìfica se o no l'é stæto inpostòu o basetimestamp.",
 	"apihelp-edit-param-basetimestamp": "Timestamp da revixón de bâze, dêuviòu pe rilevâ conflìtti d'ediçión. O peu êse òtegnûo pe mêzo de [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]. I conflìtti d'ediçión co-ina pròpia modìfica són ignoræ.",
-	"apihelp-edit-param-starttimestamp": "Timestamp do prinçìpio do procèsso de modìfica, dêuviòu pe rilevâ conflìtti d'ediçión. 'N valô apropriòu o peu êse òtegnûo deuviàndo  <var>[[Special:ApiHelp/main|curtimestamp]]</var> quànde s'incómensa o procèsso de modìfica (prezénpio quànde a l'é caregâ a pàgina do contegnûo da modificâ.",
+	"apihelp-edit-param-starttimestamp": "Timestamp do prinçìpio do procèsso de modìfica, dêuviòu pe rilevâ conflìtti d'ediçión. 'N valô apropriòu o peu êse òtegnûo deuviàndo  <var>[[Special:ApiHelp/main|curtimestamp]]</var> quànde s'incómensa o procèsso de modìfica (prezénpio quànde a l'é caregâ a pàgina do contegnûo da modificâ).",
 	"apihelp-edit-param-recreate": "Into méntre, sostitoìsci eventoâli eroî in sciâ cancelaçión da pàgina.",
 	"apihelp-edit-param-createonly": "No modificâ a pàgina se a l'exìste za.",
 	"apihelp-edit-param-nocreate": "O restitoìsce 'n erô se a pàgina a no l'exìste.",
