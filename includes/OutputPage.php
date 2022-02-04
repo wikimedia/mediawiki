@@ -234,7 +234,11 @@ class OutputPage extends ContextSource {
 	 */
 	private $mFeedLinks = [];
 
-	/** @var bool Gwicke work on squid caching? Roughly from 2003. */
+	/**
+	 * @var bool Set to false to send no-cache headers, disabling
+	 * client-side caching. (This variable should really be named
+	 * in the opposite sense; see ::disableClientCache().)
+	 */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
@@ -1946,7 +1950,7 @@ class OutputPage extends ContextSource {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 
 		if ( !$parserOutput->isCacheable() ) {
-			$this->enableClientCache( false );
+			$this->disableClientCache();
 		}
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
@@ -2237,9 +2241,19 @@ class OutputPage extends ContextSource {
 	 * @param bool|null $state New value, or null to not set the value
 	 *
 	 * @return bool Old value
+	 * @deprecated since 1.38; use disableClientCache() instead
+	 * ($state is almost always `false` when this method is called)
 	 */
 	public function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
+	}
+
+	/**
+	 * Force the page to send nocache headers
+	 * @since 1.38
+	 */
+	public function disableClientCache(): void {
+		$this->mEnableClientCache = false;
 	}
 
 	/**
@@ -2750,7 +2764,7 @@ class OutputPage extends ContextSource {
 		}
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
+		$this->disableClientCache();
 		$this->mRedirect = '';
 		$this->clearSubtitle();
 		$this->clearHTML();

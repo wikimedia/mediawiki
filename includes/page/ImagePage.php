@@ -1044,7 +1044,7 @@ EOT
 		$out->setPageTitle( $this->getContext()->msg( 'internalerror' ) );
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setArticleRelated( false );
-		$out->enableClientCache( false );
+		$out->disableClientCache();
 		$out->addWikiTextAsInterface( $description );
 	}
 

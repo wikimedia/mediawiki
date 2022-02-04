@@ -886,7 +886,7 @@ class ApiMain extends ApiBase {
 				&& SessionManager::getGlobalSession()->isPersistent()
 			)
 		) {
-			$this->getContext()->getOutput()->enableClientCache( false );
+			$this->getContext()->getOutput()->disableClientCache();
 			$this->getContext()->getOutput()->considerCacheSettingsFinal();
 		}
 
