@@ -61,7 +61,7 @@ class RunBatchedQuery extends Maintenance {
 		} else {
 			$lbf = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lb = $lbf->getMainLB( $dbName );
-			$dbw = $lb->getConnection( DB_PRIMARY, [], $dbName );
+			$dbw = $lb->getConnectionRef( DB_PRIMARY, [], $dbName );
 		}
 
 		$selectConds = $where;
