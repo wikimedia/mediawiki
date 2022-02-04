@@ -37,11 +37,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
-	/**
-	 * Maximum length of a tag description in UTF-8 characters.
-	 * Longer descriptions will be truncated.
-	 */
-	private const TAG_DESC_CHARACTER_LIMIT = 120;
 
 	/** @var string */
 	protected $rcSubpage;
@@ -856,7 +851,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			->getLanguage( $context->getLanguage() );
 		return [
 			// Reduce version computation by avoiding Message parsing
-			'RCFiltersChangeTags' => self::getChangeTagListSummary( $context, $lang ),
+			'RCFiltersChangeTags' => ChangeTags::getChangeTagListSummary( $context, $lang ),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
@@ -873,111 +868,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $context->getLanguage() );
 		return [
-			'RCFiltersChangeTags' => self::getChangeTagList( $context, $lang ),
+			'RCFiltersChangeTags' => ChangeTags::getChangeTagList( $context, $lang ),
 			'StructuredChangeFiltersEditWatchlistUrl' =>
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 		];
-	}
-
-	/**
-	 * Get information about change tags, without parsing messages, for getRcFiltersConfigSummary().
-	 *
-	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
-	 * Even though we're not parsing messages, building a data structure with the contents of
-	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so the result of this
-	 * function is cached in WANCache for 24 hours.
-	 *
-	 * Returns an array of associative arrays with information about each tag:
-	 * - name: Tag name (string)
-	 * - labelMsg: Short description message (Message object, or false for hidden tags)
-	 * - label: Short description message (raw message contents)
-	 * - descriptionMsg: Long description message (Message object)
-	 * - description: Long description message (raw message contents)
-	 * - cssClass: CSS class to use for RC entries with this tag
-	 * - hits: Number of RC entries that have this tag
-	 *
-	 * @param MessageLocalizer $localizer
-	 * @param Language $lang
-	 * @return array[] Information about each tag
-	 */
-	protected static function getChangeTagListSummary( MessageLocalizer $localizer, Language $lang ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'ChangesListSpecialPage-changeTagListSummary', $lang->getCode() ),
-			WANObjectCache::TTL_DAY,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
-				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
-
-				$tagStats = ChangeTags::tagUsageStatistics();
-				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
-
-				$result = [];
-				foreach ( $tagHitCounts as $tagName => $hits ) {
-					if (
-						(
-							// Only get active tags
-							isset( $explicitlyDefinedTags[ $tagName ] ) ||
-							isset( $softwareActivatedTags[ $tagName ] )
-						) &&
-						// Only get tags with more than 0 hits
-						$hits > 0
-					) {
-						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $localizer );
-						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $localizer );
-						$result[] = [
-							'name' => $tagName,
-							'labelMsg' => $labelMsg,
-							'label' => $labelMsg ? $labelMsg->plain() : $tagName,
-							'descriptionMsg' => $descriptionMsg,
-							'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
-							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-							'hits' => $hits,
-						];
-					}
-				}
-				return $result;
-			}
-		);
-	}
-
-	/**
-	 * Get information about change tags to export to JS via getRcFiltersConfigVars().
-	 *
-	 * This manipulates the label and description of each tag, which are parsed, stripped
-	 * and (in the case of description) truncated versions of these messages. Message
-	 * parsing is expensive, so to detect whether the tag list has changed, use
-	 * getChangeTagListSummary() instead.
-	 *
-	 * The result of this function is cached in WANCache for 24 hours.
-	 *
-	 * @param MessageLocalizer $localizer
-	 * @param Language $lang
-	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
-	 */
-	protected static function getChangeTagList( MessageLocalizer $localizer, Language $lang ) {
-		$tags = self::getChangeTagListSummary( $localizer, $lang );
-		foreach ( $tags as &$tagInfo ) {
-			if ( $tagInfo['labelMsg'] ) {
-				$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
-			} else {
-				$tagInfo['label'] = $localizer->msg( 'rcfilters-tag-hidden', $tagInfo['name'] )->text();
-			}
-			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
-				$lang->truncateForVisual(
-					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
-					self::TAG_DESC_CHARACTER_LIMIT
-				) :
-				'';
-			unset( $tagInfo['labelMsg'] );
-			unset( $tagInfo['descriptionMsg'] );
-		}
-
-		// Instead of sorting by hit count (disabled for now), sort by display name
-		usort( $tags, static function ( $a, $b ) {
-			return strcasecmp( $a['label'], $b['label'] );
-		} );
-		return $tags;
 	}
 
 	/**
