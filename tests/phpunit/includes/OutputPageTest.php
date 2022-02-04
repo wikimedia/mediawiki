@@ -9,6 +9,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2175,6 +2176,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::enableClientCache
 	 */
 	public function testEnableClientCache() {
+		// OutputPage::enableClientCache() is deprecated, so this test
+		// will emit warnings.
+		Wikimedia\suppressWarnings();
+		$reset = new ScopedCallback( 'Wikimedia\restoreWarnings' );
+
 		$op = $this->newInstance();
 
 		// Test initial value
