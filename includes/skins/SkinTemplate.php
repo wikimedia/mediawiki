@@ -328,7 +328,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 
-		$content_navigation = $this->buildContentNavigationUrls();
+		$content_navigation = $this->buildContentNavigationUrlsInternal();
 		# Personal toolbar
 		$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
@@ -452,7 +452,7 @@ class SkinTemplate extends Skin {
 
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
-				$contentNavigation = $this->buildContentNavigationUrls();
+				$contentNavigation = $this->buildContentNavigationUrlsInternal();
 
 				$personal_urls += $contentNavigation['notifications'];
 			}
@@ -779,7 +779,7 @@ class SkinTemplate extends Skin {
 	 */
 	private function getPortletsTemplateData() {
 		$portlets = [];
-		$contentNavigation = $this->buildContentNavigationUrls();
+		$contentNavigation = $this->buildContentNavigationUrlsInternal();
 		$sidebar = [];
 		$sidebarData = $this->buildSidebar();
 		foreach ( $sidebarData as $name => $items ) {
@@ -1230,7 +1230,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @return array
 	 */
-	protected function buildContentNavigationUrls() {
+	private function buildContentNavigationUrlsInternal() {
 		if ( $this->contentNavigationCached ) {
 			return $this->contentNavigationCached;
 		}
@@ -1568,6 +1568,16 @@ class SkinTemplate extends Skin {
 
 		$this->contentNavigationCached = $content_navigation;
 		return $content_navigation;
+	}
+
+	/**
+	 * Wrapper for private buildContentNavigationUrlsInternal
+	 * @deprecated 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
+	 * @return array
+	 */
+	protected function buildContentNavigationUrls() {
+		wfDeprecated( __METHOD__, '1.38' );
+		return $this->buildContentNavigationUrlsInternal();
 	}
 
 	/**

@@ -391,6 +391,9 @@ because of Phabricator reports.
   - In preparation for SkinTemplate::getPortletData becoming a private
     function, extending the method is no longer permitted. Use
     SkinTemplate::getTemplateData instead.
+  - SkinTemplate::buildContentNavigationUrls is now deprecated. Skins can
+    use the runOnSkinTemplateNavigationHooks method or the
+    SkinTemplateNavigation__Universal hook if they need access to this data.
 * Usage of several template data keys in QuickTemplate are now deprecated:
   - searchaction, poweredbyico, copyrightico
 * DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
