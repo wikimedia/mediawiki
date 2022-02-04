@@ -426,6 +426,10 @@ because of Phabricator reports.
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
    - ::addJsConfigVars() - use ::setJsConfigVar() or ::appendJsConfigVar()
+* The use of ParserOutput::setExtensionData() to overwrite previous values
+  stored under a given key has been deprecated; use the new
+  ::appendExtensionData() to collect multiple values in the ParserOutput
+  rather than destructively updating stored values. (T300981)
 * The signatures of the following methods from the ParserOutput class
   were narrowed, restricting the permitted argument types:
    - ::addModules() - if you formerly passed a string, pass an array with

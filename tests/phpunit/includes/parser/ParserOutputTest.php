@@ -119,6 +119,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers ParserOutput::appendExtensionData
 	 * @covers ParserOutput::setExtensionData
 	 * @covers ParserOutput::getExtensionData
 	 */
@@ -126,6 +127,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$po = new ParserOutput();
 
 		$po->setExtensionData( "one", "Foo" );
+		$po->appendExtensionData( "three", "abc" );
 
 		$this->assertEquals( "Foo", $po->getExtensionData( "one" ) );
 		$this->assertNull( $po->getExtensionData( "spam" ) );
@@ -134,9 +136,23 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertEquals( "Foo", $po->getExtensionData( "one" ) );
 		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
 
+		// Note that overwriting extension data (as this test case
+		// does) is deprecated and will eventually throw an
+		// exception. However, at the moment it is still worth testing
+		// this case to ensure backward compatibility. (T300981)
 		$po->setExtensionData( "one", null );
 		$this->assertNull( $po->getExtensionData( "one" ) );
 		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
+
+		$this->assertEqualsCanonicalizing( [
+			'abc' => true,
+		], $po->getExtensionData( "three" ) );
+
+		$po->appendExtensionData( "three", "xyz" );
+		$this->assertEqualsCanonicalizing( [
+			'abc' => true,
+			'xyz' => true,
+		], $po->getExtensionData( "three" ) );
 	}
 
 	/**
@@ -719,6 +735,7 @@ EOF
 
 		$a->setExtensionData( 'foo', 'Foo!' );
 		$a->setExtensionData( 'bar', 'Bar!' );
+		$a->appendExtensionData( 'bat', 'abc' );
 
 		$b = new ParserOutput();
 		$b->setNoGallery( true );
@@ -731,7 +748,12 @@ EOF
 
 		$b->setExtensionData( 'zoo', 'Zoo!' );
 		$b->setExtensionData( 'bar', 'Barrr!' );
+		$b->appendExtensionData( 'bat', 'xyz' );
 
+		// Note that overwriting extension data during the merge
+		// (as this test case does for 'bar') is deprecated and will eventually
+		// throw an exception. However, at the moment it is still worth
+		// testing this case to ensure backward compatibility. (T300981)
 		yield 'skin control flags' => [ $a, $b, [
 			'getNewSection' => true,
 			'getHideNewSection' => true,
@@ -740,14 +762,17 @@ EOF
 			'getPreventClickjacking' => true,
 			'getIndicators' => [
 				'foo' => 'Foo!',
-				'bar' => 'Barrr!',
+				'bar' => 'Barrr!', // overwritten
 				'zoo' => 'Zoo!',
 			],
 			'getWrapperDivClass' => 'foo bar',
 			'$mExtensionData' => [
 				'foo' => 'Foo!',
-				'bar' => 'Barrr!',
+				'bar' => 'Barrr!', // overwritten
 				'zoo' => 'Zoo!',
+				// internal strategy key is exposed here because we're looking
+				// at the raw property value, not using getExtensionData()
+				'bat' => [ 'abc' => true, 'xyz' => true, '_mw-strategy' => 'union' ],
 			],
 		] ];
 	}
@@ -914,6 +939,7 @@ EOF
 
 		$a->setExtensionData( 'foo', 'Foo!' );
 		$a->setExtensionData( 'bar', 'Bar!' );
+		$a->appendExtensionData( 'bat', 'abc' );
 
 		$b = new ParserOutput();
 
@@ -922,17 +948,25 @@ EOF
 
 		$b->setExtensionData( 'zoo', 'Zoo!' );
 		$b->setExtensionData( 'bar', 'Barrr!' );
+		$b->appendExtensionData( 'bat', 'xyz' );
 
+		// Note that overwriting extension data during the merge
+		// (as this test case does for 'bar') is deprecated and will eventually
+		// throw an exception. However, at the moment it is still worth
+		// testing this case to ensure backward compatibility. (T300981)
 		yield 'properties' => [ $a, $b, [
 			'getPageProperties' => [
 				'foo' => 'Foo!',
-				'bar' => 'Barrr!',
+				'bar' => 'Barrr!', // overwritten
 				'zoo' => 'Zoo!',
 			],
 			'$mExtensionData' => [
 				'foo' => 'Foo!',
-				'bar' => 'Barrr!',
+				'bar' => 'Barrr!', // overwritten
 				'zoo' => 'Zoo!',
+				// internal strategy key is exposed here because we're looking
+				// at the raw property value, not using getExtensionData()
+				'bat' => [ 'abc' => true, 'xyz' => true, '_mw-strategy' => 'union' ],
 			],
 		] ];
 	}

@@ -1568,6 +1568,12 @@ class ParserOutput extends CacheTime {
 	 * instances are supported as a value. Attempt to set other class instance as a extension data
 	 * will break ParserCache for the page.
 	 *
+	 * @note Since MW 1.38 the practice of setting conflicting values for
+	 * the same key has been deprecated.  As with ::setJsConfigVar() if
+	 * you set the same key multiple times on a ParserOutput, it is expected
+	 * that the value will be identical each time.  If you want to collect
+	 * multiple pieces of data under a single key, use ::appendExtensionData().
+	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
 	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
@@ -1576,11 +1582,51 @@ class ParserOutput extends CacheTime {
 	 * @since 1.21
 	 */
 	public function setExtensionData( $key, $value ) {
+		if (
+			array_key_exists( $key, $this->mExtensionData ) &&
+			$this->mExtensionData[$key] !== $value
+		) {
+			// This behavior was deprecated in 1.38.  We will eventually
+			// emit a warning here, then throw an exception.
+		}
 		if ( $value === null ) {
 			unset( $this->mExtensionData[$key] );
 		} else {
 			$this->mExtensionData[$key] = $value;
 		}
+	}
+
+	/**
+	 * Appends arbitrary data to this ParserObject. This can be used
+	 * to store some information in the ParserOutput object for later
+	 * use during page output. The data will be cached along with the
+	 * ParserOutput object, but unlike data set using
+	 * setPageProperty(), it is not recorded in the database.
+	 *
+	 * See ::setExtensionData() for more details on rationale and use.
+	 *
+	 * In order to provide for out-of-order/asynchronous/incremental
+	 * parsing, this method appends values to a set.  See
+	 * ::setExtensionData() for the flag-like version of this method.
+	 *
+	 * @note Only values which can be array keys are supported as a value.
+	 *
+	 * @param string $key The key for accessing the data. Extensions should take care to avoid
+	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
+	 *
+	 * @param mixed|JsonUnserializable $value The value to append to the list.
+	 * @since 1.38
+	 */
+	public function appendExtensionData( string $key, $value ): void {
+		if ( !array_key_exists( $key, $this->mExtensionData ) ) {
+			$this->mExtensionData[$key] = [
+				// Indicate how these values are to be merged.
+				self::MERGE_STRATEGY_KEY => 'union',
+			];
+		} elseif ( !is_array( $this->mExtensionData[$key] ) ) {
+			throw new InvalidArgumentException( "Mixing set and append for $key" );
+		}
+		$this->mExtensionData[$key][$value] = true;
 	}
 
 	/**
@@ -1595,7 +1641,12 @@ class ParserOutput extends CacheTime {
 	 *         or null if no value was set for this key.
 	 */
 	public function getExtensionData( $key ) {
-		return $this->mExtensionData[$key] ?? null;
+		$value = $this->mExtensionData[$key] ?? null;
+		if ( is_array( $value ) ) {
+			// Don't expose our internal merge strategy key.
+			unset( $value[self::MERGE_STRATEGY_KEY] );
+		}
+		return $value;
 	}
 
 	private static function getTimes( $clock = null ) {
@@ -2013,7 +2064,7 @@ class ParserOutput extends CacheTime {
 		// NOTE: include extension data in "tracking meta data" as well as "html meta data"!
 		// TODO: add a $mergeStrategy parameter to setExtensionData to allow different
 		// kinds of extension data to be merged in different ways.
-		$this->mExtensionData = self::mergeMap(
+		$this->mExtensionData = self::mergeMapStrategy(
 			$this->mExtensionData,
 			$source->mExtensionData
 		);
@@ -2049,9 +2100,7 @@ class ParserOutput extends CacheTime {
 		$this->mProperties = self::mergeMap( $this->mProperties, $source->getPageProperties() );
 
 		// NOTE: include extension data in "tracking meta data" as well as "html meta data"!
-		// TODO: add a $mergeStrategy parameter to setExtensionData to allow different
-		// kinds of extension data to be merged in different ways.
-		$this->mExtensionData = self::mergeMap(
+		$this->mExtensionData = self::mergeMapStrategy(
 			$this->mExtensionData,
 			$source->mExtensionData
 		);
