@@ -1215,8 +1215,6 @@ class ParserOutput extends CacheTime {
 	 * to TrackingCategories::CORE_TRACKING_CATEGORIES, and extensions
 	 * should add to "TrackingCategories" in their extension.json.
 	 *
-	 * @todo Migrate some code to TrackingCategories
-	 *
 	 * @param string $msg Message key
 	 * @param PageReference $page the page which is being tracked
 	 *        (used to require a Title until 1.38)
