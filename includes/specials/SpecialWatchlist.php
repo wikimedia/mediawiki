@@ -856,18 +856,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $numItems == 0 ) {
 			$watchlistHeader = $this->msg( 'nowatchlist' )->parse();
 		} else {
-			$watchlistHeader .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
+			$watchlistHeader .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse()
+				. $this->msg( 'word-separator' )->escaped();
 			if ( $this->getConfig()->get( 'EnotifWatchlist' )
 				&& $this->userOptionsLookup->getBoolOption( $user, 'enotifwatchlistpages' )
 			) {
-				$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+				$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse()
+					. $this->msg( 'word-separator' )->escaped();
 			}
 			if ( $showUpdatedMarker ) {
 				$watchlistHeader .= $this->msg(
 					$this->isStructuredFilterUiEnabled() ?
 						'rcfilters-watchlist-showupdated' :
 						'wlheader-showupdated'
-				)->parse() . "\n";
+				)->parse() . $this->msg( 'word-separator' )->escaped();
 			}
 		}
 		$form .= Html::rawElement(
