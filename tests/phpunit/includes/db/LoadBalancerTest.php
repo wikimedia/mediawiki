@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
+use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -361,7 +362,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$useAtomicSection = in_array( $db->getType(), [ 'sqlite', 'postgres' ], true );
 		try {
 			$db->dropTable( 'some_table' );
-			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
+			$this->assertNotEquals( TransactionManager::STATUS_TRX_ERROR, $db->trxStatus() );
 
 			if ( $useAtomicSection ) {
 				$db->startAtomic( __METHOD__ );
@@ -371,12 +372,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				$db->query( "CREATE TABLE $table (id INT, time INT)", __METHOD__ ),
 				"table created"
 			);
-			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
+			$this->assertNotEquals( TransactionManager::STATUS_TRX_ERROR, $db->trxStatus() );
 			$this->assertNotFalse(
 				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
 				"delete query"
 			);
-			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
+			$this->assertNotEquals( TransactionManager::STATUS_TRX_ERROR, $db->trxStatus() );
 		} finally {
 			if ( !$useAtomicSection ) {
 				// Drop the table to clean up, ignoring any error.
@@ -384,7 +385,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			}
 			// Rollback the atomic section for sqlite's benefit.
 			$db->rollback( __METHOD__, 'flush' );
-			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
+			$this->assertNotEquals( TransactionManager::STATUS_TRX_ERROR, $db->trxStatus() );
 		}
 	}
 
