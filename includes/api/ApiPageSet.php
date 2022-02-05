@@ -812,7 +812,8 @@ class ApiPageSet extends ApiBase {
 		$values = [];
 		foreach ( $this->getMissingRevisionIDs() as $revid ) {
 			$values[$revid] = [
-				'revid' => $revid
+				'revid' => $revid,
+				'missing' => true,
 			];
 		}
 		if ( !empty( $values ) && $result ) {
