@@ -1848,7 +1848,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
 
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		if ( $row === false ) {
 			return false;
 		}
