@@ -45,7 +45,7 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
 	if ( $extraElements ) {
 		$e = $e.add( $extraElements );
 	}
-	$e.on( events, mw.util.debounce( 1000, this.validate.bind( this ) ) );
+	$e.on( events, mw.util.debounce( this.validate.bind( this ), 1000 ) );
 
 	return this;
 };
