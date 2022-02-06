@@ -86,23 +86,45 @@ util = {
 	},
 
 	/**
-	 * Return a wrapper function that is debounced for the given duration.
+	 * Return a function, that, as long as it continues to be invoked, will not
+	 * be triggered. The function will be called after it stops being called for
+	 * N milliseconds. If `immediate` is passed, trigger the function on the
+	 * leading edge, instead of the trailing.
 	 *
-	 * When it is first called, a timeout is scheduled. If before the timer
-	 * is reached the wrapper is called again, it gets rescheduled for the
-	 * same duration from now until it stops being called. The original function
-	 * is called from the "tail" of such chain, with the last set of arguments.
+	 * Ported from Underscore.js 1.5.2, Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud
+	 * and Investigative Reporters & Editors, distributed under the MIT license, from
+	 * <https://github.com/jashkenas/underscore/blob/1.5.2/underscore.js#L689>.
 	 *
 	 * @since 1.34
-	 * @param {number} delay Time in milliseconds
-	 * @param {Function} callback
-	 * @return {Function}
+	 * @param {Function} func Function to debounce
+	 * @param {number} [wait=0] Wait period in milliseconds
+	 * @param {boolean} [immediate] Trigger on leading edge
+	 * @return {Function} Debounced function
 	 */
-	debounce: function ( delay, callback ) {
+	debounce: function ( func, wait, immediate ) {
+		// Old signature (wait, func).
+		if ( typeof func === 'number' ) {
+			var tmpWait = wait;
+			wait = func;
+			func = tmpWait;
+		}
 		var timeout;
 		return function () {
-			clearTimeout( timeout );
-			timeout = setTimeout( Function.prototype.apply.bind( callback, this, arguments ), delay );
+			var context = this,
+				args = arguments,
+				later = function () {
+					timeout = null;
+					if ( !immediate ) {
+						func.apply( context, args );
+					}
+				};
+			if ( immediate && !timeout ) {
+				func.apply( context, args );
+			}
+			if ( !timeout || wait ) {
+				clearTimeout( timeout );
+				timeout = setTimeout( later, wait );
+			}
 		};
 	},
 
