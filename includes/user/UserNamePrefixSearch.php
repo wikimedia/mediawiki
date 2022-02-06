@@ -44,32 +44,26 @@ class UserNamePrefixSearch {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
-	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		UserFactory $userFactory,
 		UserNameUtils $userNameUtils
 	) {
 		$this->loadBalancer = $loadBalancer;
-		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
 	 * Do a prefix search of user names and return a list of matching user names.
 	 *
-	 * @param string|UserIdentity|Authority $audience Either AUDIENCE_PUBLIC or a user to
-	 *    show the search for, providing a UserIdentity is deprecated since 1.37
+	 * @param string|Authority $audience Either AUDIENCE_PUBLIC or a user to
+	 *    show the search for
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
@@ -77,11 +71,6 @@ class UserNamePrefixSearch {
 	 * @throws InvalidArgumentException if $audience is invalid
 	 */
 	public function search( $audience, string $search, int $limit, int $offset = 0 ): array {
-		if ( $audience instanceof UserIdentity && !( $audience instanceof Authority ) ) {
-			wfDeprecated( __METHOD__ . ' with a UserIdentity', '1.37' );
-			$audience = $this->userFactory->newFromUserIdentity( $audience );
-		}
-
 		if ( $audience !== self::AUDIENCE_PUBLIC &&
 			!( $audience instanceof Authority )
 		) {
