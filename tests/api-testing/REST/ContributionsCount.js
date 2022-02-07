@@ -109,11 +109,13 @@ describe( 'GET /contributions/count', () => {
 			assert.equal( response.status, 200 );
 		} );
 
-		it( 'Returns a list of another user\'s edits', async () => {
+		// T301100
+		it.skip( 'Returns a list of another user\'s edits', async () => {
 			await testGetContributionsCount( arnold, endpoint );
 		} );
 
-		it( 'Returns edits filtered by tag', async () => {
+		// T301100
+		it.skip( 'Returns edits filtered by tag', async () => {
 			await testGetContributionsCountByTag( arnold, endpoint );
 		} );
 
