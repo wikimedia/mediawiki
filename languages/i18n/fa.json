@@ -999,9 +999,9 @@
 	"mergelog": "سیاههٔ ادغام",
 	"revertmerge": "واگردانی ادغام",
 	"mergelogpagetext": "در زیر سیاههٔ آخرین موارد ادغام تاریخچهٔ یک صفحه در صفحه‌ای دیگر را می‌بینید.",
-	"history-title": "تاریخچهٔ نسخه‌های «$1»",
-	"difference-title": "تفاوت میان نسخه‌های «$1»",
-	"difference-title-multipage": "$1 و $2: تفاوت بین صفحات",
+	"history-title": "$1: تاریخچهٔ نسخه‌ها",
+	"difference-title": "$1: تفاوت میان نسخه‌ها",
+	"difference-title-multipage": "$1 و $2: تفاوت میان صفحات",
 	"difference-multipage": "(تفاوت بین صفحات)",
 	"lineno": "سطر $1:",
 	"compareselectedversions": "مقایسهٔ نسخه‌های انتخاب‌شده",
@@ -1494,7 +1494,6 @@
 	"recentchanges-legend-plusminus": "(<em>±۱۲۳</em>)",
 	"recentchanges-legend-watchlistexpiry": "صفحه موقتاً پیگیری‌شده",
 	"recentchanges-submit": "نمایش",
-	"rcfilters-tag-hidden": "$1 (برچسب پنهان)",
 	"rcfilters-tag-remove": "حذف «$1»",
 	"rcfilters-legend-heading": "<strong>فهرست کوته‌نوشت‌ها:</strong>",
 	"rcfilters-other-review-tools": "دیگر ابزارهای بازبینی",
@@ -3454,6 +3453,7 @@
 	"tags": "برچسب‌های تغییر مجاز",
 	"tag-filter": "پالایش [[Special:Tags|برچسب‌ها]]:",
 	"tag-filter-submit": "پالایه",
+	"tag-hidden": "$1 (برچسب پنهان)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|برچسب|برچسب‌ها}}]]: $2",
 	"tag-mw-contentmodelchange": "تغییر مدل محتوا",
 	"tag-mw-contentmodelchange-description": "ویرایش‌هایی که [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel مدل محتوای صفحه را تغییر می‌دهند]",
@@ -4083,5 +4083,6 @@
 	"paramvalidator-help-type-title": "نوع: عنوان صفحه",
 	"paramvalidator-help-type-title-must-exist": "تنها صفحه‌های موجود را می‌پذیرد",
 	"paramvalidator-help-type-title-no-must-exist": "صفحه‌های ناموجود را می‌پذیرد",
-	"nonmain-slot-differences-therefore-readonly": "شما قادر به ویرایش ویکی‌متن در این نسخه از صفحه نیستید؛ چرا که از زمان اعمال این نسخه تاکنون تغییراتی در صفحه ایجاد شده‌اند که مبتنی بر ویکی‌متن نیستند. [$1 برای بازیابی این نسخه کلیک کنید.]"
+	"nonmain-slot-differences-therefore-readonly": "شما قادر به ویرایش ویکی‌متن در این نسخه از صفحه نیستید؛ چرا که از زمان اعمال این نسخه تاکنون تغییراتی در صفحه ایجاد شده‌اند که مبتنی بر ویکی‌متن نیستند. [$1 برای بازیابی این نسخه کلیک کنید.]",
+	"changeslist-nocomment": "بدون خلاصه ویرایش"
 }
