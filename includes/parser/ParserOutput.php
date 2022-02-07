@@ -8,6 +8,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
+use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
@@ -53,7 +54,19 @@ class ParserOutput extends CacheTime {
 	 * @internal
 	 * @since 1.38
 	 */
-	public const MERGE_STRATEGY_KEY = '_mw-strategy';
+	public const MW_MERGE_STRATEGY_KEY = '_mw-strategy';
+
+	/**
+	 * Merge strategy to use for ParserOutput accumulators: "union"
+	 * means that values are strings, stored as a set, and exposed as
+	 * a PHP associative array mapping from values to `true`.
+	 *
+	 * This constant should be treated as @internal until we expose
+	 * alternative merge strategies for external use.
+	 * @internal
+	 * @since 1.38
+	 */
+	public const MW_MERGE_STRATEGY_UNION = 'union';
 
 	/**
 	 * @var string|null The output text
@@ -172,6 +185,13 @@ class ParserOutput extends CacheTime {
 	 *  Wikitext formatted, in the key only.
 	 */
 	private $mWarnings = [];
+
+	/**
+	 * @var array<string,array> *Unformatted* warning messages and
+	 * arguments to be returned to the user.  This is for internal use
+	 * when merging ParserOutputs and are not serialized/deserialized.
+	 */
+	private $mWarningMsgs = [];
 
 	/**
 	 * @var array Table of contents
@@ -752,7 +772,7 @@ class ParserOutput extends CacheTime {
 		// Don't expose the internal strategy key
 		foreach ( $result as $key => &$value ) {
 			if ( is_array( $value ) ) {
-				unset( $value[self::MERGE_STRATEGY_KEY] );
+				unset( $value[self::MW_MERGE_STRATEGY_KEY] );
 			}
 		}
 		return $result;
@@ -913,6 +933,9 @@ class ParserOutput extends CacheTime {
 	 * @since 1.38
 	 */
 	public function addWarningMsg( string $msg, ...$args ): void {
+		// preserve original arguments in $mWarningMsgs to allow merge
+		// @todo: these aren't serialized/unserialized
+		$this->mWarningMsgs[$msg] = $args;
 		$s = wfMessage( $msg, ...$args )
 		   // some callers set the title here?
 		   ->inContentLanguage() // because this ends up in cache
@@ -1174,16 +1197,28 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @param string $key Key to use under mw.config
 	 * @param string $value Value to append to the configuration variable.
+	 * @param string $strategy Merge strategy:
+	 *  only MW_MERGE_STRATEGY_UNION is currently supported and external callers
+	 *  should treat this parameter as @internal at this time and omit it.
 	 * @since 1.38
 	 */
-	public function appendJsConfigVar( string $key, string $value ): void {
+	public function appendJsConfigVar(
+		string $key,
+		string $value,
+		string $strategy = self::MW_MERGE_STRATEGY_UNION
+	): void {
+		if ( $strategy !== self::MW_MERGE_STRATEGY_UNION ) {
+			throw new InvalidArgumentException( "Unknown merge strategy $strategy." );
+		}
 		if ( !array_key_exists( $key, $this->mJsConfigVars ) ) {
 			$this->mJsConfigVars[$key] = [
 				// Indicate how these values are to be merged.
-				self::MERGE_STRATEGY_KEY => 'union',
+				self::MW_MERGE_STRATEGY_KEY => $strategy,
 			];
 		} elseif ( !is_array( $this->mJsConfigVars[$key] ) ) {
 			throw new InvalidArgumentException( "Mixing set and append for $key" );
+		} elseif ( ( $this->mJsConfigVars[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy ) {
+			throw new InvalidArgumentException( "Conflicting merge strategies for $key" );
 		}
 		$this->mJsConfigVars[$key][$value] = true;
 	}
@@ -1634,16 +1669,28 @@ class ParserOutput extends CacheTime {
 	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
 	 * @param int|string $value The value to append to the list.
+	 * @param string $strategy Merge strategy:
+	 *  only MW_MERGE_STRATEGY_UNION is currently supported and external callers
+	 *  should treat this parameter as @internal at this time and omit it.
 	 * @since 1.38
 	 */
-	public function appendExtensionData( string $key, $value ): void {
+	public function appendExtensionData(
+		string $key,
+		$value,
+		string $strategy = self::MW_MERGE_STRATEGY_UNION
+	): void {
+		if ( $strategy !== self::MW_MERGE_STRATEGY_UNION ) {
+			throw new InvalidArgumentException( "Unknown merge strategy $strategy." );
+		}
 		if ( !array_key_exists( $key, $this->mExtensionData ) ) {
 			$this->mExtensionData[$key] = [
 				// Indicate how these values are to be merged.
-				self::MERGE_STRATEGY_KEY => 'union',
+				self::MW_MERGE_STRATEGY_KEY => $strategy,
 			];
 		} elseif ( !is_array( $this->mExtensionData[$key] ) ) {
 			throw new InvalidArgumentException( "Mixing set and append for $key" );
+		} elseif ( ( $this->mExtensionData[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy ) {
+			throw new InvalidArgumentException( "Conflicting merge strategies for $key" );
 		}
 		$this->mExtensionData[$key][$value] = true;
 	}
@@ -1663,7 +1710,7 @@ class ParserOutput extends CacheTime {
 		$value = $this->mExtensionData[$key] ?? null;
 		if ( is_array( $value ) ) {
 			// Don't expose our internal merge strategy key.
-			unset( $value[self::MERGE_STRATEGY_KEY] );
+			unset( $value[self::MW_MERGE_STRATEGY_KEY] );
 		}
 		return $value;
 	}
@@ -1974,7 +2021,7 @@ class ParserOutput extends CacheTime {
 	public function __sleep() {
 		return array_filter( array_keys( get_object_vars( $this ) ),
 			static function ( $field ) {
-				if ( $field === 'mParseStartTime' ) {
+				if ( $field === 'mParseStartTime' || $field === 'mWarningMsgs' ) {
 					return false;
 				}
 				// Unserializing unknown private fields in HHVM causes
@@ -2125,6 +2172,69 @@ class ParserOutput extends CacheTime {
 		);
 	}
 
+	/**
+	 * Adds the metadata collected in this ParserOutput to the supplied
+	 * ContentMetadataCollector.  This is similar to ::mergeHtmlMetaDataFrom()
+	 * but in the opposite direction, since ParserOutput is read/write while
+	 * ContentMetadataCollector is write-only.
+	 *
+	 * @param ContentMetadataCollector $metadata
+	 * @since 1.38
+	 */
+	public function collectMetadata( ContentMetadataCollector $metadata ): void {
+		// Uniform handling of all boolean flags: they are OR'ed together.
+		$flags = array_keys(
+			$this->mFlags + array_flip( ParserOutputFlags::cases() )
+		);
+		foreach ( $flags as $name ) {
+			if ( $this->getOutputFlag( $name ) ) {
+				$metadata->setOutputFlag( $name );
+			}
+		}
+		// @todo: Accumulators should also be handled uniformly
+		foreach ( $this->mCategories as $cat => $key ) {
+			$metadata->addCategory( $cat, $key );
+		}
+		$metadata->addModules( $this->mModules );
+		$metadata->addModuleStyles( $this->mModuleStyles );
+		foreach ( $this->mJsConfigVars as $key => $value ) {
+			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
+				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
+				foreach ( $value as $item => $ignore ) {
+					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
+						$metadata->appendJsConfigVar( $key, $item, $strategy );
+					}
+				}
+			} else {
+				$metadata->setJsConfigVar( $key, $value );
+			}
+		}
+		foreach ( $this->mExtensionData as $key => $value ) {
+			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
+				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
+				foreach ( $value as $item => $ignore ) {
+					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
+						$metadata->appendExtensionData( $key, $item, $strategy );
+					}
+				}
+			} else {
+				$metadata->setExtensionData( $key, $value );
+			}
+		}
+		foreach ( $this->mExternalLinks as $url => $ignore ) {
+			$metadata->addExternalLink( $url );
+		}
+		foreach ( $this->mProperties as $prop => $value ) {
+			$metadata->setPageProperty( $prop, $value );
+		}
+		foreach ( $this->mWarningMsgs as $msg => $args ) {
+			$metadata->addWarningMsg( $msg, ...$args );
+		}
+		foreach ( $this->mLimitReportData as $key => $value ) {
+			$metadata->setLimitReportData( $key, $value );
+		}
+	}
+
 	private static function mergeMixedList( array $a, array $b ): array {
 		return array_unique( array_merge( $a, $b ), SORT_REGULAR );
 	}
@@ -2142,14 +2252,14 @@ class ParserOutput extends CacheTime {
 			if ( !array_key_exists( $key, $a ) ) {
 				$a[$key] = $bValue;
 			} elseif (
-				isset( $a[$key][self::MERGE_STRATEGY_KEY] ) &&
-				isset( $bValue[self::MERGE_STRATEGY_KEY] )
+				isset( $a[$key][self::MW_MERGE_STRATEGY_KEY] ) &&
+				isset( $bValue[self::MW_MERGE_STRATEGY_KEY] )
 			) {
-				$strategy = $bValue[self::MERGE_STRATEGY_KEY];
-				if ( $strategy !== $a[$key][self::MERGE_STRATEGY_KEY] ) {
+				$strategy = $bValue[self::MW_MERGE_STRATEGY_KEY];
+				if ( $strategy !== $a[$key][self::MW_MERGE_STRATEGY_KEY] ) {
 					throw new InvalidArgumentException( "Conflicting merge strategy for $key" );
 				}
-				if ( $strategy === 'union' ) {
+				if ( $strategy === self::MW_MERGE_STRATEGY_UNION ) {
 					// Note the array_merge is *not* safe to use here, because
 					// the $bValue is expected to be a map from items to `true`.
 					// If the item is a numeric string like '1' then array_merge
