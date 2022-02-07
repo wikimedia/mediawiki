@@ -2629,7 +2629,7 @@ class OutputPage extends ContextSource {
 				}
 				$this->sendCacheControl();
 
-				$response->header( "Content-Type: text/html; charset=utf-8" );
+				$response->header( 'Content-Type: text/html; charset=UTF-8' );
 				if ( $config->get( 'DebugRedirects' ) ) {
 					$url = htmlspecialchars( $redirect );
 					$content = "<!DOCTYPE html>\n<html>\n<head>\n"
