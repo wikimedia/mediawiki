@@ -165,10 +165,9 @@ abstract class HTMLFormField {
 			$value = $alldata[$field->mParams['fieldname']];
 		}
 
+		// Check invert state for HTMLCheckField
 		if ( $asDisplay && $field instanceof HTMLCheckField && ( $field->mParams['invert'] ?? false ) ) {
-			// Bypass the invert logic of HTMLCheckField
-			$value = $this->mParent->getRequest()
-				->getBool( $field->getName(), $this->getDefault() );
+			$value = !$value;
 		}
 
 		return $value;
@@ -458,14 +457,16 @@ abstract class HTMLFormField {
 	 * Can we assume that the request is an attempt to submit a HTMLForm, as opposed to an attempt to
 	 * just view it? This can't normally be distinguished for e.g. checkboxes.
 	 *
-	 * Returns true if the request has a field for a CSRF token (wpEditToken) or a form identifier
-	 * (wpFormIdentifier).
+	 * Returns true if the request was posted, or has a field for a CSRF token (wpEditToken) or a form
+	 * identifier (wpFormIdentifier).
 	 *
+	 * @todo Consider moving this to HTMLForm?
 	 * @param WebRequest $request
 	 * @return bool
 	 */
 	protected function isSubmitAttempt( WebRequest $request ) {
-		return $request->getCheck( 'wpEditToken' ) || $request->getCheck( 'wpFormIdentifier' );
+		return $request->wasPosted() || $request->getCheck( 'wpEditToken' )
+			|| $request->getCheck( 'wpFormIdentifier' );
 	}
 
 	/**
