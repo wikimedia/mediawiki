@@ -1985,6 +1985,21 @@ config-schema:
               - 1.34: Removed, implicitly SCHEMA_COMPAT_NEW always
               - 1.37: Re-added with SCHEMA_COMPAT_NEW renamed to SCHEMA_COMPAT_TEMP for
                 a new migration which removes temporary tables.
+    TemplateLinksSchemaMigrationStage:
+        default: 3
+        type: integer
+        description: |-
+            Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
+
+            Use the SCHEMA_COMPAT_XXX flags. Supported values:
+
+              - SCHEMA_COMPAT_OLD
+              - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+              - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+              - SCHEMA_COMPAT_NEW
+
+            History:
+              - 1.38: Added
     ContentHandlers:
         default: { wikitext: WikitextContentHandler, javascript: JavaScriptContentHandler, json: JsonContentHandler, css: CssContentHandler, text: TextContentHandler, unknown: FallbackContentHandler }
         type: object

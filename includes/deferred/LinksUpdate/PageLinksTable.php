@@ -31,4 +31,8 @@ class PageLinksTable extends GenericPageLinksTable {
 	protected function getFromNamespaceField() {
 		return 'pl_from_namespace';
 	}
+
+	protected function getTargetIdField() {
+		return 'pl_target_id';
+	}
 }

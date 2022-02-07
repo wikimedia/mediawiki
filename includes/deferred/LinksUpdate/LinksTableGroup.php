@@ -4,6 +4,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -59,7 +60,10 @@ class LinksTableGroup {
 			'serviceOptions' => PagePropsTable::CONSTRUCTOR_OPTIONS
 		],
 		'templatelinks' => [
-			'class' => TemplateLinksTable::class
+			'class' => TemplateLinksTable::class,
+			'services' => [
+				'MainConfig'
+			],
 		]
 	];
 
@@ -80,6 +84,9 @@ class LinksTableGroup {
 
 	/** @var ParserOutput|null */
 	private $parserOutput;
+
+	/** @var LinkTargetLookup */
+	private $linkTargetLookup;
 
 	/** @var int */
 	private $batchSize;
@@ -104,6 +111,7 @@ class LinksTableGroup {
 	 * @param LBFactory $lbFactory
 	 * @param CollationFactory $collationFactory
 	 * @param PageIdentity $page
+	 * @param LinkTargetLookup $linkTargetLookup
 	 * @param int $batchSize
 	 * @param callable|null $afterUpdateHook
 	 * @param array $tempCollations
@@ -113,6 +121,7 @@ class LinksTableGroup {
 		LBFactory $lbFactory,
 		CollationFactory $collationFactory,
 		PageIdentity $page,
+		LinkTargetLookup $linkTargetLookup,
 		$batchSize,
 		$afterUpdateHook,
 		array $tempCollations
@@ -123,6 +132,7 @@ class LinksTableGroup {
 		$this->page = $page;
 		$this->batchSize = $batchSize;
 		$this->afterUpdateHook = $afterUpdateHook;
+		$this->linkTargetLookup = $linkTargetLookup;
 		$this->tempCollations = [];
 		foreach ( $tempCollations as $info ) {
 			$this->tempCollations[$info['table']] = $info;
@@ -257,6 +267,7 @@ class LinksTableGroup {
 			$table = $this->objectFactory->createObject( $spec, [ 'extraArgs' => $extraArgs ] );
 			$table->injectBaseDependencies(
 				$this->lbFactory,
+				$this->linkTargetLookup,
 				$this->page,
 				$this->batchSize,
 				$this->afterUpdateHook

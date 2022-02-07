@@ -48,6 +48,8 @@ For notes on 1.37.x and older releases, see HISTORY.
   immediately after the first one. Note however that this does not ensure
   that database replication is complete, nor does it execute any jobs
   enqueued for later.
+* $wgTemplateLinksSchemaMigrationStage – Templatelinks table schema migration
+  stage, for normalizing tl_namespace and tl_title fields.
 * …
 
 ==== Changed configuration ====
