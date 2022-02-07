@@ -47,6 +47,8 @@ class SkinTemplate extends Skin {
 	public $username;
 	public $userpageUrlDetails;
 	private $templateContextSet = false;
+	/** @var array|null */
+	private $contentNavigationCached;
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
@@ -1229,6 +1231,9 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildContentNavigationUrls() {
+		if ( $this->contentNavigationCached ) {
+			return $this->contentNavigationCached;
+		}
 		// Display tabs for the relevant title rather than always the title itself
 		$title = $this->getRelevantTitle();
 		$onPage = $title->equals( $this->getTitle() );
@@ -1561,6 +1566,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		$this->contentNavigationCached = $content_navigation;
 		return $content_navigation;
 	}
 
