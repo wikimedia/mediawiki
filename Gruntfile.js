@@ -1,6 +1,7 @@
-/* eslint-env node */
+'use strict';
+
 module.exports = function ( grunt ) {
-	var wgServer = process.env.MW_SERVER,
+	const wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
 		karmaProxy = {};
 
@@ -98,7 +99,7 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
-		var ok = true;
+		let ok = true;
 		if ( !process.env.MW_SERVER ) {
 			grunt.log.error( 'Environment variable MW_SERVER must be set.\n' +
 				'Set this like $wgServer, e.g. "http://localhost"'

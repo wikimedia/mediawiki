@@ -1,4 +1,7 @@
 {
+	"extends": [
+		"../../../resources/src/.eslintrc.json"
+	],
 	"rules": {
 		"array-bracket-spacing": "off",
 		"comma-spacing": "off",
