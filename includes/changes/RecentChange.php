@@ -1172,7 +1172,6 @@ class RecentChange implements Taggable {
 	 */
 	public function getAttribute( $name ) {
 		if ( $name === 'rc_comment' ) {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return CommentStore::getStore()
 				->getComment( 'rc_comment', $this->mAttribs, true )->text;
 		}
