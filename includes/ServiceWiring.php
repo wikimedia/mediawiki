@@ -92,6 +92,8 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\IEmailer;
@@ -833,6 +835,14 @@ return [
 			$services->getLinkCache(),
 			$services->getSpecialPageFactory(),
 			$services->getHookContainer()
+		);
+	},
+
+	'LinkTargetLookup' => static function ( MediaWikiServices $services ): LinkTargetLookup {
+		return new LinkTargetStore(
+			$services->getDBLoadBalancer(),
+			$services->getLocalServerObjectCache(),
+			$services->getMainWANObjectCache()
 		);
 	},
 
