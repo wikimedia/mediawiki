@@ -1173,6 +1173,9 @@ return [
 		'ParserCacheUseJson' => [
 			'default' => true,
 		],
+		'EnableRemoteBagOStuffTests' => [
+			'default' => false,
+		],
 		'UseCdn' => [
 			'default' => false,
 		],

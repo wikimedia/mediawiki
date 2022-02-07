@@ -2303,6 +2303,12 @@ and all the cache entries already written in JSON are discarded.
 @deprecated since 1.36
 @see https://phabricator.wikimedia.org/T263579
 
+# EnableRemoteBagOStuffTests {#EnableRemoteBagOStuffTests}
+If this is set to true, phpunit will run integration tests against remote
+caches defined in $wgObjectCaches.
+
+@since 1.38
+
 # UseCdn {#UseCdn}
 Enable/disable CDN.
 

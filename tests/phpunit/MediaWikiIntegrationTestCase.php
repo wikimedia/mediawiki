@@ -683,6 +683,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Get a configuration variable
+	 *
+	 * @param string $name
+	 * @return mixed
+	 * @since 1.38
+	 */
+	protected function getConfVar( $name ) {
+		return $this->getServiceContainer()->getMainConfig()->get( $name );
+	}
+
+	/**
 	 * Sets a service, maintaining a stashed version of the previous service to be
 	 * restored in tearDown.
 	 *

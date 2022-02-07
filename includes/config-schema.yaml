@@ -2563,6 +2563,13 @@ config-schema:
             @since 1.36
             @deprecated since 1.36
             @see https://phabricator.wikimedia.org/T263579
+    EnableRemoteBagOStuffTests:
+        default: false
+        description: |-
+            If this is set to true, phpunit will run integration tests against remote
+            caches defined in $wgObjectCaches.
+
+            @since 1.38
     UseCdn:
         default: false
         description: |-
