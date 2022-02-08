@@ -36,7 +36,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 		$reflMethod->setAccessible( true );
 
 		$actual = $reflMethod->invoke( $iPage, 545, 700 );
-		$this->assertEquals( count( $actual ), $expectedNumberThumbs );
+		$this->assertCount( $expectedNumberThumbs, $actual );
 	}
 
 	public function providerGetThumbSizes() {

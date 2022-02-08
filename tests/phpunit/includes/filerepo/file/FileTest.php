@@ -13,7 +13,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	public function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
 		$this->setMwGlobals( 'wgMaxAnimatedGifArea', 9000 );
 		$file = $this->dataFile( $filename );
-		$this->assertEquals( $file->canAnimateThumbIfAppropriate(), $expected );
+		$this->assertEquals( $expected, $file->canAnimateThumbIfAppropriate() );
 	}
 
 	public function providerCanAnimate() {
@@ -403,7 +403,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$fileMock->method( 'getHeight' )->willReturn( $dim[3] );
 
 		$actual = $fileMock->getDisplayWidthHeight( $dim[0], $dim[1] );
-		$this->assertEquals( $actual, $expected );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public function providerGetDisplayWidthHeight() {

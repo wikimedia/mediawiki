@@ -114,7 +114,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	public function testTemplateDependencies( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );
 		$rl->setName( 'testing' );
-		$this->assertEquals( $rl->getDependencies(), $expected );
+		$this->assertEquals( $expected, $rl->getDependencies() );
 	}
 
 	public static function providerDeprecatedModules() {
@@ -142,7 +142,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( $modules[$name] );
 		$module->setName( $name );
 		$ctx = $this->getResourceLoaderContext();
-		$this->assertEquals( $module->getScript( $ctx ), $expected );
+		$this->assertEquals( $expected, $module->getScript( $ctx ) );
 	}
 
 	/**
@@ -358,14 +358,14 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 		$context = $this->getResourceLoaderContext( [ 'lang' => 'en', 'dir' => 'ltr' ] );
 		$this->assertEquals(
-			$plain->getStyles( $context ),
 			[ 'all' => ".example { text-align: left; }\n" ],
+			$plain->getStyles( $context ),
 			'Unchanged styles in LTR mode'
 		);
 		$context = $this->getResourceLoaderContext( [ 'lang' => 'he', 'dir' => 'rtl' ] );
 		$this->assertEquals(
-			$plain->getStyles( $context ),
 			[ 'all' => ".example { text-align: right; }\n" ],
+			$plain->getStyles( $context ),
 			'Flipped styles in RTL mode'
 		);
 
@@ -376,8 +376,8 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		] );
 		$noflip->setName( 'test' );
 		$this->assertEquals(
-			$plain->getStyles( $context ),
 			[ 'all' => ".example { text-align: right; }\n" ],
+			$plain->getStyles( $context ),
 			'Unchanged styles in RTL mode with noflip at module level'
 		);
 	}
@@ -471,7 +471,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			$this->expectException( RuntimeException::class );
 			$rl->getTemplates();
 		} else {
-			$this->assertEquals( $rl->getTemplates(), $expected );
+			$this->assertEquals( $expected, $rl->getTemplates() );
 		}
 	}
 
@@ -486,15 +486,15 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		] );
 		$testModule->setName( 'testing' );
 		$this->assertEquals(
-			substr( file_get_contents( "$basePath/bom.css" ), 0, 10 ),
 			"\xef\xbb\xbf.efbbbf",
+			substr( file_get_contents( "$basePath/bom.css" ), 0, 10 ),
 			'File has leading BOM'
 		);
 
 		$context = $this->getResourceLoaderContext();
 		$this->assertEquals(
-			$testModule->getStyles( $context ),
 			[ 'all' => ".efbbbf_bom_char_at_start_of_file {}\n" ],
+			$testModule->getStyles( $context ),
 			'Leading BOM removed when concatenating files'
 		);
 	}

@@ -57,7 +57,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 
 		$results = $this->jobRunner->run( $options );
 
-		$this->assertEquals( $results['reached'], $expectedVal );
+		$this->assertEquals( $expectedVal, $results['reached'] );
 	}
 
 	public function provideTestRun() {

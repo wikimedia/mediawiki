@@ -255,7 +255,7 @@ CSS
 	 */
 	public function testGetAvailableLogos( $config, $expected ) {
 		$logos = ResourceLoaderSkinModule::getAvailableLogos( new HashConfig( $config ) );
-		$this->assertSame( $logos, $expected );
+		$this->assertSame( $expected, $logos );
 	}
 
 	/**

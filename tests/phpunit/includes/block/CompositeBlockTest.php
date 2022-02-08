@@ -222,7 +222,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			],
 		] );
 
-		$this->assertSame( $block->appliesToRight( 'right' ), $expected );
+		$this->assertSame( $expected, $block->appliesToRight( 'right' ) );
 	}
 
 	private function getMockBlockForTestAppliesToRight( $applies ) {

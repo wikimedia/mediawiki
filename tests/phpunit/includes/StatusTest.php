@@ -169,7 +169,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertSame( count( $messages ), count( $warnings ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
-			$this->assertEquals( $warnings[$key], $expectedArray );
+			$this->assertEquals( $expectedArray, $warnings[$key] );
 		}
 	}
 
@@ -192,7 +192,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertSame( count( $messages ), count( $errors ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
-			$this->assertEquals( $errors[$key], $expectedArray );
+			$this->assertEquals( $expectedArray, $errors[$key] );
 		}
 	}
 
@@ -214,7 +214,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertSame( count( $messages ), count( $errors ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
-			$this->assertEquals( $errors[$key], $expectedArray );
+			$this->assertEquals( $expectedArray, $errors[$key] );
 		}
 		$this->assertFalse( $status->isOK() );
 	}
@@ -905,7 +905,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->error( $message1 );
 		$message2 = new Message( 'foo', [ 1, 2 ] );
 		$status->error( $message2 );
-		$this->assertEquals( count( $status->errors ), 1 );
+		$this->assertCount( 1, $status->errors );
 	}
 
 	/**

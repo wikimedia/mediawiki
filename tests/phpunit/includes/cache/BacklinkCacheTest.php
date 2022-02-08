@@ -112,9 +112,9 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
 		$titlesArray = iterator_to_array( $backlinkCache->getLinks( $table, $startId, $endId, $max ) );
-		$this->assertEquals( count( $titlesArray ), count( $expectedTitles ) );
+		$this->assertSame( count( $expectedTitles ), count( $titlesArray ) );
 		for ( $i = 0; $i < count( $titlesArray ); $i++ ) {
-			$this->assertEquals( $titlesArray[$i]->getDbKey(), $expectedTitles[$i] );
+			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDbKey() );
 		}
 	}
 
@@ -130,9 +130,9 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
 		$titlesArray = iterator_to_array( $backlinkCache->getLinkPages( $table, $startId, $endId, $max ) );
-		$this->assertEquals( count( $titlesArray ), count( $expectedTitles ) );
+		$this->assertSame( count( $expectedTitles ), count( $titlesArray ) );
 		for ( $i = 0; $i < count( $titlesArray ); $i++ ) {
-			$this->assertEquals( $titlesArray[$i]->getDbKey(), $expectedTitles[$i] );
+			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDbKey() );
 		}
 	}
 
