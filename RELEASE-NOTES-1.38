@@ -60,7 +60,13 @@ For notes on 1.36.x and older releases, see HISTORY.
 === New user-facing features in 1.38 ===
 * …
 
-=== New developer features in 1.38 ===
+=== New operator/developer features in 1.38 ===
+* EXPERIMENTAL: The environment variable MW_CONFIG_FILE can be used to specify
+  the location of the settings file. This allows alternative settings files to
+  be loaded depending on the environment. Settings files may be given as PHP
+  files like the traditional LocalSettings.php file, or they may use
+  JSON or YAML format.
+  See https://www.mediawiki.org/wiki/Manual:YAML_settings_file_format
 * Added a deleteUserEmail maintenance script - This file enables the deletion
   of a given user's associated email address. It can be helpful for
   privacy-preserving operations.
