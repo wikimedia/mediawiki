@@ -9,7 +9,8 @@
  */
 
 /**
- * Represents the content of a JSON content.
+ * JSON text content that can be viewed and edit directly by users.
+ *
  * @since 1.24
  * @newable
  * @stable to extend

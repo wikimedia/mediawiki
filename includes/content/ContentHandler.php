@@ -1264,10 +1264,12 @@ abstract class ContentHandler {
 
 	/**
 	 * Return true if this content model supports direct editing, such as via EditPage.
+	 * This should return true for TextContent and its derivatives, and return false
+	 * for structured data content.
 	 *
 	 * @stable to override
 	 *
-	 * @return bool Default is false, and true for TextContent and its derivatives.
+	 * @return bool Default is false.
 	 */
 	public function supportsDirectEditing() {
 		return false;

@@ -22,16 +22,23 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 
 /**
- * Content handler for JSON.
+ * Content handler for JSON text.
+ *
+ * Useful for maintaining JSON that can be viewed and edit directly by users.
  *
  * @author Ori Livneh <ori@wikimedia.org>
  * @author Kunal Mehta <legoktm@gmail.com>
  *
  * @since 1.24
+ * @stable to extend
  * @ingroup Content
  */
 class JsonContentHandler extends CodeContentHandler {
 
+	/**
+	 * @param string $modelId
+	 * @stable to call
+	 */
 	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_JSON ] );
 	}

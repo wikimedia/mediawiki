@@ -139,7 +139,7 @@ class TextContentHandler extends ContentHandler {
 	/**
 	 * @see ContentHandler::supportsDirectEditing
 	 *
-	 * @return bool Default is true for TextContent and derivatives.
+	 * @return bool Should return true for TextContent and derivatives.
 	 */
 	public function supportsDirectEditing() {
 		return true;
