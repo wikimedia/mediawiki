@@ -129,6 +129,46 @@ util = {
 	},
 
 	/**
+	 * Return a function, that, when invoked, will only be triggered at most once
+	 * during a given window of time. If called again during that window, it will
+	 * wait until the window ends and then trigger itself again.
+	 *
+	 * As it's not knowable to the caller whether the function will actually run
+	 * when the wrapper is called, return values from the function are entirely
+	 * discarded.
+	 *
+	 * Ported from OOUI.
+	 *
+	 * @param {Function} func Function to throttle
+	 * @param {number} wait Throttle window length, in milliseconds
+	 * @return {Function} Throttled function
+	 */
+	throttle: function ( func, wait ) {
+		var context, args, timeout,
+			previous = Date.now() - wait,
+			run = function () {
+				timeout = null;
+				previous = Date.now();
+				func.apply( context, args );
+			};
+		return function () {
+			// Check how long it's been since the last time the function was
+			// called, and whether it's more or less than the requested throttle
+			// period. If it's less, run the function immediately. If it's more,
+			// set a timeout for the remaining time -- but don't replace an
+			// existing timeout, since that'd indefinitely prolong the wait.
+			var remaining = Math.max( wait - ( Date.now() - previous ), 0 );
+			context = this;
+			args = arguments;
+			if ( !timeout ) {
+				// If time is up, do setTimeout( run, 0 ) so the function
+				// always runs asynchronously, just like Promise#then .
+				timeout = setTimeout( run, remaining );
+			}
+		};
+	},
+
+	/**
 	 * Encode page titles for use in a URL
 	 *
 	 * We want / and : to be included as literal characters in our title URLs

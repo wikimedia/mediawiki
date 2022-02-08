@@ -75,4 +75,31 @@ class WikiCategoryPage extends WikiPage {
 
 		return isset( $pageProps[$pageId] );
 	}
+
+	/**
+	 * Update category counts on purge (T85696)
+	 * @return bool
+	 */
+	public function doPurge() {
+		if ( !parent::doPurge() ) {
+			// Aborted by hook most likely
+			return false;
+		}
+
+		$title = $this->mTitle;
+		DeferredUpdates::addCallableUpdate(
+			static function () use ( $title ) {
+				$cat = Category::newFromTitle( $title );
+				// If the category has less than 5000 pages, refresh the counts.
+				// 5000 was chosen based on the discussion at T85696.
+				$cat->refreshCountsIfSmall( 5000 );
+			},
+			// Explicitly PRESEND so that counts are correct before we try to
+			// re-render the page on the next load so {{PAGESINCAT:...}} will
+			// be using the correct new values, not the old ones.
+			DeferredUpdates::PRESEND
+		);
+
+		return true;
+	}
 }
