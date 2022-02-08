@@ -16,10 +16,11 @@ oldest supported upgrading version, MediaWiki 1.29.
 Some specific notes for MediaWiki 1.38 upgrades are below:
 * …
 
-For notes on 1.36.x and older releases, see HISTORY.
+For notes on 1.37.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.38 ===
 * Deprecate $wgAjaxUploadDestCheck, act as always-true
+* $wgInterwikiCache no longer supports the string value for CDB files.
 * …
 
 ==== New configuration ====

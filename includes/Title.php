@@ -1161,10 +1161,15 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen, except for interwiki transclusion.
 			// If possible, use the canonical name for the foreign namespace.
-			$nsText = MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getCanonicalName( $this->mNamespace );
-			if ( $nsText !== false ) {
-				return $nsText;
+			if ( $this->mNamespace === NS_MAIN ) {
+				// Optimisation
+				return '';
+			} else {
+				$nsText = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCanonicalName( $this->mNamespace );
+				if ( $nsText !== false ) {
+					return $nsText;
+				}
 			}
 		}
 
