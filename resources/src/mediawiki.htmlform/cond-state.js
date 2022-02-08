@@ -66,55 +66,17 @@
 				}
 
 				l = funcs.length;
-				switch ( op ) {
-					case 'AND':
-						func = function () {
-							var j;
-							for ( j = 0; j < l; j++ ) {
-								if ( !funcs[ j ]() ) {
-									return false;
-								}
-							}
-							return true;
-						};
-						break;
-
-					case 'OR':
-						func = function () {
-							var j;
-							for ( j = 0; j < l; j++ ) {
-								if ( funcs[ j ]() ) {
-									return true;
-								}
-							}
-							return false;
-						};
-						break;
-
-					case 'NAND':
-						func = function () {
-							var j;
-							for ( j = 0; j < l; j++ ) {
-								if ( !funcs[ j ]() ) {
-									return true;
-								}
-							}
-							return false;
-						};
-						break;
-
-					case 'NOR':
-						func = function () {
-							var j;
-							for ( j = 0; j < l; j++ ) {
-								if ( funcs[ j ]() ) {
-									return false;
-								}
-							}
-							return true;
-						};
-						break;
-				}
+				var valueChk = { AND: false, OR: true, NAND: false, NOR: true };
+				var valueRet = { AND: true, OR: false, NAND: false, NOR: true };
+				func = function () {
+					var j;
+					for ( j = 0; j < l; j++ ) {
+						if ( valueChk[ op ] === funcs[ j ]() ) {
+							return !valueRet[ op ];
+						}
+					}
+					return valueRet[ op ];
+				};
 
 				return [ fields, func ];
 
