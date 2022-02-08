@@ -1607,12 +1607,13 @@ class ParserOutput extends CacheTime {
 	 * parsing, this method appends values to a set.  See
 	 * ::setExtensionData() for the flag-like version of this method.
 	 *
-	 * @note Only values which can be array keys are supported as a value.
+	 * @note Only values which can be array keys are currently supported
+	 * as values.
 	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
 	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
-	 * @param mixed|JsonUnserializable $value The value to append to the list.
+	 * @param int|string $value The value to append to the list.
 	 * @since 1.38
 	 */
 	public function appendExtensionData( string $key, $value ): void {
