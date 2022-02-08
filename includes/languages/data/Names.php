@@ -477,6 +477,7 @@ class Names {
 		'tly-cyrl' => 'толыши', # Talysh (Cyrillic)
 		'tn' => 'Setswana', # Setswana
 		'to' => 'lea faka-Tonga', # Tonga (Tonga Islands)
+		'tok' => 'toki pona', # Toki Pona
 		'tpi' => 'Tok Pisin', # Tok Pisin
 		'tr' => 'Türkçe', # Turkish
 		'tru' => 'Ṫuroyo', # Turoyo
