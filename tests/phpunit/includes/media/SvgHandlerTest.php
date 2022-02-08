@@ -22,7 +22,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		$handler = new SvgHandler();
 		$res = $handler->getCommonMetaArray( $file );
 
-		self::assertEquals( $res, $expected );
+		self::assertEquals( $expected, $res );
 	}
 
 	public static function provideGetIndependentMetaArray() {
@@ -276,7 +276,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgSVGConverter', $converter );
 
 		$handler = new SvgHandler();
-		self::assertEquals( $handler->isEnabled(), $expected );
+		self::assertEquals( $expected, $handler->isEnabled() );
 	}
 
 	public function provideIsEnabled() {

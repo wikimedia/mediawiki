@@ -855,8 +855,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertSame(
-			SpecialBlock::checkUnblockSelf( $adjustTarget, $adjustPerformer ),
 			$expectedResult,
+			SpecialBlock::checkUnblockSelf( $adjustTarget, $adjustPerformer ),
 			$reason
 		);
 	}
@@ -884,7 +884,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$request = $requestData ? new FauxRequest( $requestData ) : null;
 		$page = $this->newSpecialPage();
 		list( $target, $type ) = $page->getTargetAndType( $par, $request );
-		$this->assertSame( $target, $expectedTarget );
+		$this->assertSame( $expectedTarget, $target );
 	}
 
 	public function provideGetTargetAndType() {

@@ -380,7 +380,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [ 'wgFragmentMode' => [ $mode ] ] );
 		$result = $this->getServiceContainer()->getParser()
 			->guessSectionNameFromWikiText( $input );
-		$this->assertEquals( $result, $expected );
+		$this->assertEquals( $expected, $result );
 	}
 
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),

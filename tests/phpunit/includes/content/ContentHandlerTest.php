@@ -333,8 +333,10 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$newContent = ContentHandler::makeContent( '', $title, CONTENT_MODEL_WIKITEXT, null );
 		// first check, if we become a blank page created summary with the right bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 97 );
-		$this->assertEquals( $autoSummary,
-			wfMessage( 'autosumm-newblank' )->inContentLanguage()->text() );
+		$this->assertEquals(
+			wfMessage( 'autosumm-newblank' )->inContentLanguage()->text(),
+			$autoSummary
+		);
 		// now check, what we become with another bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 92 );
 		$this->assertSame( '', $autoSummary );
@@ -660,6 +662,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$validateParams = new ValidationParams( $page, 0 );
 
 		$status = $contentHandler->validateSave( $content, $validateParams );
-		$this->assertEquals( $status->isOk(), $expectedResult );
+		$this->assertEquals( $expectedResult, $status->isOk() );
 	}
 }

@@ -1968,7 +1968,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( is_array( $overrides ) ) {
 			$this->setMwGlobals( [ 'wgOverrideUcfirstCharacters' => $overrides ] );
 		}
-		$this->assertSame( $lang->ucfirst( $orig ), $expected, $desc );
+		$this->assertSame( $expected, $lang->ucfirst( $orig ), $desc );
 	}
 
 	public static function provideUcfirst() {

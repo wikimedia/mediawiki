@@ -117,7 +117,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->useBlock( $useBlock );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideUseParentheses() {
@@ -145,7 +145,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->useParentheses( $useParentheses );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideSelfLinkTarget() {
@@ -169,7 +169,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->selfLinkTarget( new TitleValue( $selfLinkTarget[0], $selfLinkTarget[1] ) );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideEnableSectionLinks() {
@@ -197,7 +197,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->enableSectionLinks( $enableSectionLinks );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideDisableSectionLinks() {
@@ -221,7 +221,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->disableSectionLinks();
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideSamePage() {
@@ -249,7 +249,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->samePage( $samePage );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function provideWikiId() {
@@ -273,7 +273,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 			$batch->wikiId( $wikiId );
 		}
 		$batch->execute();
-		$this->assertSame( $this->calls, [ $expected ] );
+		$this->assertSame( [ $expected ], $this->calls );
 	}
 
 	public function testItemSelfLinkTarget() {

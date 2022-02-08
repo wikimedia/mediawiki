@@ -44,7 +44,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$username = self::$nameMap[$userKey] ?? $userKey;
 		$gender = $genderCache->getGenderOf( $username );
-		$this->assertEquals( $gender, $expectedGender, "GenderCache normal" );
+		$this->assertEquals( $expectedGender, $gender, "GenderCache normal" );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$username = self::$nameMap[$userKey] ?? $userKey;
 		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$gender = $genderCache->getGenderOf( $username );
-		$this->assertEquals( $gender, $expectedGender, "GenderCache normal" );
+		$this->assertEquals( $expectedGender, $gender, "GenderCache normal" );
 	}
 
 	public static function provideUserGenders() {
@@ -83,7 +83,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$username = self::$nameMap[$userKey] ?? $userKey;
 		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$gender = $genderCache->getGenderOf( "$username/subpage" );
-		$this->assertEquals( $gender, $expectedGender, "GenderCache must strip of subpages" );
+		$this->assertEquals( $expectedGender, $gender, "GenderCache must strip of subpages" );
 	}
 
 	/**

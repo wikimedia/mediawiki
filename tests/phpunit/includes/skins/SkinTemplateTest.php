@@ -375,7 +375,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$data = $reflectionMethod->invoke(
 			$skin
 		);
-		$this->assertEquals( $data, $expected );
+		$this->assertEquals( $expected, $data );
 	}
 
 	public function provideContentNavigation(): array {
