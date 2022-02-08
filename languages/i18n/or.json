@@ -1810,7 +1810,7 @@
 	"protect-otherreason-op": "ଅଲଗା କାରଣ",
 	"protect-dropdown": "*ସାଧାରଣ ପ୍ରତିରକ୍ଷା କାରଣ\n** ଅତି ଅଧିକ ଅପବ୍ୟବହାର\n** ଅତି ଅଧିକ ଅଦରକାରୀ ଚିଜ ପୁରାଇବା\n** ନକାରାତ୍ମକ ସମ୍ପାଦନା ତାଗିଦା\n** ଅଧିକ ଦେଖାଯାଉଥିବା ପୃଷ୍ଠା",
 	"protect-edit-reasonlist": "କିଳିବା କାରଣମାନଙ୍କର ସମ୍ପାଦନା କରିବେ",
-	"protect-expiry-options": "୧ ଘଣ୍ଟା:1 hour,ଦିନେ:1 day,ସପ୍ତାହେ:1 week,୨ ସପ୍ତାହ:2 weeks,ମସେ:1 month,୩ ମାସ:3 months,୬ ମାସ:6 months,ବର୍ଷେ:1 year,ଅସିମୀତ କାଳ:infinite",
+	"protect-expiry-options": "ଘଣ୍ଟେ:1 hour,ଦିନେ:1 day,ସପ୍ତାହେ:1 week,୨ ସପ୍ତାହ:2 weeks,ମାସେ:1 month,୩ ମାସ:3 months,୬ ମାସ:6 months,ବର୍ଷେ:1 year,ଅସିମୀତ:infinite",
 	"restriction-type": "ଅନୁମତି",
 	"restriction-level": "ପ୍ରତିରକ୍ଷା ସ୍ତର",
 	"minimum-size": "ସବୁଠୁ ସାନ",

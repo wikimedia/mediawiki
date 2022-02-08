@@ -29,6 +29,7 @@
 			"Neoneurone",
 			"Nghiemtrongdai VN",
 			"NguoiDungKhongDinhDanh",
+			"NguyenHung",
 			"Nguyên Lê",
 			"Nguyễn Mạnh An",
 			"Nguyễn Thanh Quang",
@@ -4140,5 +4141,6 @@
 	"paramvalidator-help-type-title-no-must-exist": "Cho phép trang không tồn tại.",
 	"nonmain-slot-differences-therefore-readonly": "Bạn không thể sửa đổi mã wiki trong phiên bản trang này vì dữ liệu của trang đã được thay đổi sau phiên bản này một cách không sử dụng mã wiki. [$1 Phục hồi phiên bản này].",
 	"config-missing-key": "Thiếu tham số thiết lập MediaWiki “$1”",
-	"config-invalid-key": "Tham số thiết lập MediaWiki “$1” không hợp lệ: $2"
+	"config-invalid-key": "Tham số thiết lập MediaWiki “$1” không hợp lệ: $2",
+	"changeslist-nocomment": "Không có tóm lược sửa đổi"
 }
