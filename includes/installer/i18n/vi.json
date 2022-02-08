@@ -9,7 +9,8 @@
 			"Tuanminh01",
 			"Vinhtantran",
 			"Withoutaname",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Phjtieudoc"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -177,7 +178,7 @@
 	"config-subscribe": "Theo dõi [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ danh sách thư thông báo phát hành].",
 	"config-subscribe-help": "thông báo an ninh.\nBạn nên đồng ý với nó và cập nhật bản cài đặt MediaWiki của bạn khi phiên bản mới xuất hiện.",
 	"config-subscribe-noemail": "Bạn đã cố gắng để đăng ký vào danh sách thư thông báo phát hành mà không cung cấp một địa chỉ thư điện tử nào cả.\nVui lòng cung cấp một địa chỉ thư điện tử nếu bạn muốn đăng ký vào danh sách thư.",
-	"config-pingback": "Chia sẻ dữ liệu về bản cài đặt này với nhóm phát triển MediaWiki.",
+	"config-pingback": "Chia sẻ dữ liệu về bản cài đặt này với nhóm phát triển MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Chính sách về quyền riêng tư].",
 	"config-pingback-help": "Nếu bạn kích hoạt chức năng này, MediaWiki sẽ thỉnh thoảng gửi cho https://www.mediawiki.org/ dữ liệu cơ bản về bản cài đặt MediaWiki này. Dữ liệu này có chẳng hạn loại máy, phiên bản PHP, và phía sau cơ sở dữ liệu đã chọn. Quỹ Wikimedia chia sẻ dữ liệu này với các nhà phát triển MediaWiki để giúp họ trong việc phát triển phần mềm vào tương lai. Dữ liệu sau sẽ được gửi từ hệ thống này:\n<pre>$1</pre>",
 	"config-almost-done": "Bạn gần như đã hoàn tất!\nBây giờ bạn có thể bỏ qua cấu hình còn lại và cài đặt wiki ngay bây giờ.",
 	"config-optional-continue": "Hỏi tôi về thêm chi tiết.",

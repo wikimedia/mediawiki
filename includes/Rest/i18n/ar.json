@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ديفيد"
+			"ديفيد",
+			"SaldırganSincap"
 		]
 	},
 	"rest-prefix-mismatch": "المسار المطلوب ($1) لم يكن داخل مسار جذر API REST ($2)",
@@ -10,8 +11,12 @@
 	"rest-nonexistent-title": "العنوان المحدد ($1) غير موجود",
 	"rest-nonexistent-title-revision": "المراجعة المحددة ($1) غير موجودة للصفحة المحددة ($2)",
 	"rest-nonexistent-revision": "المراجعة المحددة ($1) غير موجودة.",
+	"rest-nonexistent-user": "المستخدم المحدد ($1) غير موجود",
+	"rest-invalid-user": "اسم المستخدم المحدد ($1) غير صالح",
+	"rest-permission-denied-anon": "لا يمكن الوصول إليها من قبل مستخدم مجهول",
 	"rest-permission-denied-title": "المستخدم ليست لديه صلاحية قراءة العنوان ($1)",
 	"rest-permission-denied-revision": "لا يمكن للمستخدم الوصول إلى المراجعة المطلوبة ($1).",
+	"rest-resource-limit-exceeded": "تجاوزت حدود الموارد معالجة الطلب.",
 	"rest-pagehistory-incompatible-params": "لا يمكن تحديد كلا الوسيطين \"الأقدم من\" و\"الأحدث من\"",
 	"rest-pagehistory-param-range-error": "يجب أن يكون معرف المراجعة أكبر من 0",
 	"rest-pagehistory-timestamp-error": "غير قادر على استرداد الطابع الزمني للمراجعة المحددة ($1)",
@@ -26,5 +31,15 @@
 	"rest-pagehistorycount-too-many-revisions": "يحتوي العنوان المحدد على عدد كبير جدا من المراجعات لاسترداد هذا العدد.",
 	"rest-search-error": "خطأ عند إرجاع نتائج البحث: $1",
 	"rest-page-source-type-error": "نوع محتوى مصدر الصفحة المطلوب غير مدعوم",
-	"rest-no-revision": "غير قادر على استرداد مراجعة للعنوان $1"
+	"rest-no-revision": "غير قادر على استرداد مراجعة للعنوان $1",
+	"rest-media-too-many-links": "تم العثور على عدد كبير جدًا من ارتباطات الوسائط في العنوان $1 (مسموح ب$2)",
+	"rest-html-backend-error": "تعذر جلب Parsoid HTML",
+	"rest-bad-json-body": "نص الطلب غير صالح، يجب أن يكون كائن JSON.",
+	"rest-json-body-parse-error": "تحليل نص الطلب بسبب فشل JSON: $1",
+	"rest-missing-body-field": "الحقل الإلزامي «$1» مفقود من نص الطلب.",
+	"rest-bad-content-model": "نموذج المحتوى السيئ: $1",
+	"rest-update-cannot-create-page": "لا يمكن إنشاء الصفحة «$1» لأنها موجودة بالفعل. لتحديث الصفحة الحالية، قم بتوفير معرّف المراجعة الأساسي في البنية أسفل مفتاح «الأحدث» في نص الطلب.",
+	"rest-extraneous-csrf-token": "تم العثور على رمز CSRF غريب. يجب عدم استخدام رموز CSRF المميزة عند استخدام آليات المصادقة مثل OAuth الآمنة ضد هجمات CSRF.",
+	"rest-cannot-load-file": "لا يمكن تحميل ملف العنوان «$1».",
+	"rest-cross-origin-anon-write": "غير مسموح بطلبات الكتابة عبر الأصل المجهول"
 }

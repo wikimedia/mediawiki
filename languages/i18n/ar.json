@@ -90,7 +90,8 @@
 			"Asma",
 			"Dr. Mohammed",
 			"Haajer",
-			"Ideophagous"
+			"Ideophagous",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -261,7 +262,7 @@
 	"printableversion-deprecated-warning": "لم تعد النسخة القابلة للطباعة مدعومة وقد تحتوي على أخطاء في العرض. يرجى تحديث علامات متصفحك المرجعية واستخدام وظيفة الطباعة الافتراضية في متصفحك بدلا منها.",
 	"permalink": "وصلة دائمة",
 	"print": "اطبع",
-	"view": "مطالعة",
+	"view": "اقرأ",
 	"view-foreign": "اعرض في $1",
 	"edit": "عدل",
 	"edit-local": "عدل الوصف المحلي",
@@ -368,6 +369,7 @@
 	"sort-descending": "تنازليا",
 	"sort-ascending": "تصاعديا",
 	"sort-initial": "الترتيب الأصلي",
+	"sort-rowspan-error": "تحتوي هذه الصفحة على جدول بسمة rowspan تمتد صفوفا أكثر مما يحتوي عليه الجدول بالفعل. يمكنك إصلاح هذا عن طريق تحرير الصفحة.",
 	"nstab-main": "الصفحة",
 	"nstab-user": "{{GENDER:$1|مستخدم|مستخدمة}}",
 	"nstab-media": "صفحة ميديا",
