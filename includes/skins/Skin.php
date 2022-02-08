@@ -77,6 +77,9 @@ abstract class Skin extends ContextSource {
 	/** @var string cached action for cheap lookup */
 	protected $action;
 
+	/** @var array|null Cache for getLanguages() */
+	private $languageLinks;
+
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
 	 * to underlying data and for providing support for older and new versions of code.
@@ -1338,100 +1341,93 @@ abstract class Skin extends ContextSource {
 		if ( $this->getConfig()->get( 'HideInterlanguageLinks' ) ) {
 			return [];
 		}
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		if ( $this->languageLinks === null ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 
-		$userLang = $this->getLanguage();
-		$languageLinks = [];
-		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+			$userLang = $this->getLanguage();
+			$languageLinks = [];
+			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 
-		foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
-			$class = 'interlanguage-link interwiki-' . explode( ':', $languageLinkText, 2 )[0];
+			foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
+				$class = 'interlanguage-link interwiki-' . explode( ':', $languageLinkText, 2 )[0];
 
-			$languageLinkTitle = Title::newFromText( $languageLinkText );
-			if ( !$languageLinkTitle ) {
-				continue;
-			}
-
-			$ilInterwikiCode = $this->mapInterwikiToLanguage( $languageLinkTitle->getInterwiki() );
-
-			$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
-
-			if ( strval( $ilLangName ) === '' ) {
-				$ilDisplayTextMsg = $this->msg( "interlanguage-link-$ilInterwikiCode" );
-				if ( !$ilDisplayTextMsg->isDisabled() ) {
-					// Use custom MW message for the display text
-					$ilLangName = $ilDisplayTextMsg->text();
-				} else {
-					// Last resort: fallback to the language link target
-					$ilLangName = $languageLinkText;
+				$languageLinkTitle = Title::newFromText( $languageLinkText );
+				if ( !$languageLinkTitle ) {
+					continue;
 				}
-			} else {
-				// Use the language autonym as display text
-				$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
-			}
 
-			// CLDR extension or similar is required to localize the language name;
-			// otherwise we'll end up with the autonym again.
-			$ilLangLocalName = $langNameUtils->getLanguageName(
-				$ilInterwikiCode,
-				$userLang->getCode()
-			);
+				$ilInterwikiCode =
+					$this->mapInterwikiToLanguage( $languageLinkTitle->getInterwiki() );
 
-			$languageLinkTitleText = $languageLinkTitle->getText();
-			if ( $ilLangLocalName === '' ) {
-				$ilFriendlySiteName = $this->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
-				if ( !$ilFriendlySiteName->isDisabled() ) {
-					if ( $languageLinkTitleText === '' ) {
-						$ilTitle = $this->msg(
-							'interlanguage-link-title-nonlangonly',
-							$ilFriendlySiteName->text()
-						)->text();
+				$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
+
+				if ( strval( $ilLangName ) === '' ) {
+					$ilDisplayTextMsg = $this->msg( "interlanguage-link-$ilInterwikiCode" );
+					if ( !$ilDisplayTextMsg->isDisabled() ) {
+						// Use custom MW message for the display text
+						$ilLangName = $ilDisplayTextMsg->text();
 					} else {
-						$ilTitle = $this->msg(
-							'interlanguage-link-title-nonlang',
-							$languageLinkTitleText,
-							$ilFriendlySiteName->text()
-						)->text();
+						// Last resort: fallback to the language link target
+						$ilLangName = $languageLinkText;
 					}
 				} else {
-					// we have nothing friendly to put in the title, so fall back to
-					// displaying the interlanguage link itself in the title text
-					// (similar to what is done in page content)
-					$ilTitle = $languageLinkTitle->getInterwiki() .
-						":$languageLinkTitleText";
+					// Use the language autonym as display text
+					$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
 				}
-			} elseif ( $languageLinkTitleText === '' ) {
-				$ilTitle = $this->msg(
-					'interlanguage-link-title-langonly',
-					$ilLangLocalName
-				)->text();
-			} else {
-				$ilTitle = $this->msg(
-					'interlanguage-link-title',
-					$languageLinkTitleText,
-					$ilLangLocalName
-				)->text();
-			}
 
-			$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
-			$languageLink = [
-				'href' => $languageLinkTitle->getFullURL(),
-				'text' => $ilLangName,
-				'title' => $ilTitle,
-				'class' => $class,
-				'link-class' => 'interlanguage-link-target',
-				'lang' => $ilInterwikiCodeBCP47,
-				'hreflang' => $ilInterwikiCodeBCP47,
-			];
-			$hookContainer->run(
-				'SkinTemplateGetLanguageLink',
-				[ &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() ],
-				[]
-			);
-			$languageLinks[] = $languageLink;
+				// CLDR extension or similar is required to localize the language name;
+				// otherwise we'll end up with the autonym again.
+				$ilLangLocalName =
+					$langNameUtils->getLanguageName( $ilInterwikiCode, $userLang->getCode() );
+
+				$languageLinkTitleText = $languageLinkTitle->getText();
+				if ( $ilLangLocalName === '' ) {
+					$ilFriendlySiteName =
+						$this->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
+					if ( !$ilFriendlySiteName->isDisabled() ) {
+						if ( $languageLinkTitleText === '' ) {
+							$ilTitle =
+								$this->msg( 'interlanguage-link-title-nonlangonly',
+									$ilFriendlySiteName->text() )->text();
+						} else {
+							$ilTitle =
+								$this->msg( 'interlanguage-link-title-nonlang',
+									$languageLinkTitleText, $ilFriendlySiteName->text() )->text();
+						}
+					} else {
+						// we have nothing friendly to put in the title, so fall back to
+						// displaying the interlanguage link itself in the title text
+						// (similar to what is done in page content)
+						$ilTitle = $languageLinkTitle->getInterwiki() . ":$languageLinkTitleText";
+					}
+				} elseif ( $languageLinkTitleText === '' ) {
+					$ilTitle =
+						$this->msg( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
+				} else {
+					$ilTitle =
+						$this->msg( 'interlanguage-link-title', $languageLinkTitleText,
+							$ilLangLocalName )->text();
+				}
+
+				$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
+				$languageLink = [
+					'href' => $languageLinkTitle->getFullURL(),
+					'text' => $ilLangName,
+					'title' => $ilTitle,
+					'class' => $class,
+					'link-class' => 'interlanguage-link-target',
+					'lang' => $ilInterwikiCodeBCP47,
+					'hreflang' => $ilInterwikiCodeBCP47,
+				];
+				$hookContainer->run( 'SkinTemplateGetLanguageLink',
+					[ &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() ],
+					[] );
+				$languageLinks[] = $languageLink;
+			}
+			$this->languageLinks = $languageLinks;
 		}
 
-		return $languageLinks;
+		return $this->languageLinks;
 	}
 
 	/**
