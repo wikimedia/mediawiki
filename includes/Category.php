@@ -257,9 +257,9 @@ class Category {
 
 	/**
 	 * @param int $type One of self::COUNT_ALL_MEMBERS and self::COUNT_CONTENT_PAGES
-	 * @return int Total number of members count
+	 * @return int Total number of member count or content page count
 	 */
-	public function getPageCount( $type = self::COUNT_ALL_MEMBERS ) {
+	public function getPageCount( $type = self::COUNT_ALL_MEMBERS ): int {
 		$allCount = $this->getMemberCount();
 
 		if ( $type === self::COUNT_CONTENT_PAGES ) {
@@ -272,14 +272,14 @@ class Category {
 	/**
 	 * @return int Number of subcategories
 	 */
-	public function getSubcatCount() {
+	public function getSubcatCount(): int {
 		return $this->getX( 'mSubcats' );
 	}
 
 	/**
 	 * @return int Number of member files
 	 */
-	public function getFileCount() {
+	public function getFileCount(): int {
 		return $this->getX( 'mFiles' );
 	}
 
