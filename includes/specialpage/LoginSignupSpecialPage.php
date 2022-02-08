@@ -704,7 +704,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
 		$formDescriptor = self::mergeDefaultFormDescriptor( $fieldInfo, $formDescriptor,
-			$this->getFieldDefinitions() );
+			$this->getFieldDefinitions( $fieldInfo ) );
 	}
 
 	/**
@@ -720,9 +720,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Create a HTMLForm descriptor for the core login fields.
+	 * @param array $fieldInfo
 	 * @return array
 	 */
-	protected function getFieldDefinitions() {
+	protected function getFieldDefinitions( array $fieldInfo ) {
 		$isRegistered = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isRegistered ? 'another-' : '';
@@ -745,6 +746,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		if ( $this->isSignup() ) {
 			$config = $this->getConfig();
+			$hideIf = isset( $fieldInfo['mailpassword'] ) ? [ 'hide-if' => [ '===', 'mailpassword', '1' ] ] : [];
 			$fieldDefinitions = [
 				'statusarea' => [
 					// Used by the mediawiki.special.createaccount module for error display.
@@ -772,8 +774,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpassword-ph',
 					'help-message' => 'createacct-useuniquepass',
-					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
-				],
+				] + $hideIf,
 				'domain' => [],
 				'retype' => [
 					'type' => 'password',
@@ -792,9 +793,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						}
 						return true;
 					},
-					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
 					'placeholder-message' => 'createacct-yourpasswordagain-ph',
-				],
+				] + $hideIf,
 				'email' => [
 					'type' => 'email',
 					'label-message' => $config->get( 'EmailConfirmToEdit' ) ? 'createacct-emailrequired'
