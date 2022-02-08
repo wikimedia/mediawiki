@@ -1293,12 +1293,13 @@ abstract class Maintenance {
 		global $wgCommandLineMode, $IP;
 
 		if ( isset( $this->mOptions['conf'] ) ) {
-			$settingsFile = $this->mOptions['conf'];
-		} elseif ( defined( "MW_CONFIG_FILE" ) ) {
-			$settingsFile = MW_CONFIG_FILE;
-		} else {
-			$settingsFile = "$IP/LocalSettings.php";
+			// Define the constant instead of directly setting $settingsFile
+			// to ensure consistency. wfDetectLocalSettingsFile() will return
+			// MW_CONFIG_FILE if it is defined.
+			define( 'MW_CONFIG_FILE', $this->mOptions['conf'] );
 		}
+		$settingsFile = wfDetectLocalSettingsFile( $IP );
+
 		if ( isset( $this->mOptions['wiki'] ) ) {
 			$bits = explode( '-', $this->mOptions['wiki'], 2 );
 			define( 'MW_DB', $bits[0] );
@@ -1312,8 +1313,7 @@ abstract class Maintenance {
 		}
 
 		if ( !is_readable( $settingsFile ) ) {
-			$this->fatalError( "A copy of your installation's LocalSettings.php\n" .
-				"must exist and be readable in the source directory.\n" .
+			$this->fatalError( "The file $settingsFile must exist and be readable.\n" .
 				"Use --conf to specify it." );
 		}
 		$wgCommandLineMode = true;

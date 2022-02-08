@@ -105,6 +105,7 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
  */
 require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
+require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 // Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
@@ -164,10 +165,15 @@ $wgSettings->apply();
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK );
 } else {
-	if ( !defined( 'MW_CONFIG_FILE' ) ) {
-		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+	wfDetectLocalSettingsFile( $IP );
+
+	if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+		// make defaults available as globals
+		$wgSettings->apply();
+		require_once MW_CONFIG_FILE;
+	} else {
+		$wgSettings->loadFile( MW_CONFIG_FILE );
 	}
-	require_once MW_CONFIG_FILE;
 }
 
 // Make settings loaded by LocalSettings.php available in globals for use here

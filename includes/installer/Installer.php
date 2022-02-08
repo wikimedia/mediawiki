@@ -643,19 +643,35 @@ abstract class Installer {
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
 		Wikimedia\suppressWarnings();
-		$_lsExists = file_exists( "$IP/LocalSettings.php" );
+		wfDetectLocalSettingsFile( $IP ); // defines MW_CONFIG_FILE
+		$_lsExists = file_exists( MW_CONFIG_FILE );
 		Wikimedia\restoreWarnings();
 
 		if ( !$_lsExists ) {
 			return false;
 		}
+
+		if ( !str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+			throw new Exception(
+				'The installer cannot yet handle non-php settings files: ' . MW_CONFIG_FILE . '. ' .
+				'Use maintenance/update.php to update an existing installation.'
+			);
+		}
+
+		// NOTE: To support YAML settings files, this needs to start using SettingsBuilder.
+		//       However, as of 1.38, YAML settings files are still experimental and
+		//       SettingsBuilder is still unstable. For now, the installer will fail if
+		//       the existing settings file is not PHP. The updater should still work though.
+		// NOTE: When adding support for YAML settings file, all references to LocalSettings.php
+		//       in localisation messages need to be replaced.
+
 		unset( $_lsExists );
 
 		require "$IP/includes/DefaultSettings.php";
 		$wgExtensionDirectory = "$IP/extensions";
 		$wgStyleDirectory = "$IP/skins";
 
-		require "$IP/LocalSettings.php";
+		require MW_CONFIG_FILE;
 
 		return get_defined_vars();
 	}

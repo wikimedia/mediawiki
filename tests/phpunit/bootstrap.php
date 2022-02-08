@@ -52,7 +52,8 @@ define( 'MW_ENTRY_POINT', 'cli' );
 
 $IP = realpath( __DIR__ . '/../../' );
 // We don't use a settings file here but some code still assumes that one exists
-define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/BootstrapHelperFunctions.php" );
+define( 'MW_CONFIG_FILE', wfDetectLocalSettingsFile( $IP ) );
 
 // these variables must be defined before setup runs
 $GLOBALS['IP'] = $IP;

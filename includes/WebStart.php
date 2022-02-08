@@ -65,12 +65,12 @@ function wfWebStartNoLocalSettings() {
 	die();
 }
 
+require_once "$IP/includes/BootstrapHelperFunctions.php";
+
 // If no LocalSettings file exists, try to display an error page
 // (use a callback because it depends on TemplateParser)
 if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
-	if ( !defined( 'MW_CONFIG_FILE' ) ) {
-		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
-	}
+	wfDetectLocalSettingsFile( $IP );
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
 		define( 'MW_CONFIG_CALLBACK', 'wfWebStartNoLocalSettings' );
 	}
