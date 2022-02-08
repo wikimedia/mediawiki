@@ -123,17 +123,20 @@ class HTMLFormFieldCloner extends HTMLFormField {
 					if ( !isset( $this->mCondState[$type] ) ) {
 						continue;
 					}
-					$field = $type . '-if';
-					if ( isset( $info[$field] ) ) {
+					$param = $type . '-if';
+					if ( isset( $info[$param] ) ) {
 						// Hide or disable child field if either its rules say so, or parent's rules say so.
-						$info[$field] = [ 'OR', $info[$field], $this->mCondState[$type] ];
+						$info[$param] = [ 'OR', $info[$param], $this->mCondState[$type] ];
 					} else {
 						// Hide or disable child field if parent's rules say so.
-						$info[$field] = $this->mCondState[$type];
+						$info[$param] = $this->mCondState[$type];
 					}
 				}
 			}
-			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );
+			$cloner = $this;
+			$info['cloner'] = &$cloner;
+			$info['cloner-key'] = $key;
+			$field = HTMLForm::loadInputFromParameters( $fieldname, $info, $this->mParent );
 			$fields[$fieldname] = $field;
 		}
 		return $fields;
@@ -154,6 +157,71 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$data[$name] = $value;
 		}
 		return $data;
+	}
+
+	/**
+	 * @param string $name
+	 * @return string[]
+	 */
+	protected function parseFieldPath( $name ) {
+		$fieldKeys = [];
+		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $name, $m ) ) {
+			array_unshift( $fieldKeys, $m[2] );
+			$name = $m[1];
+		}
+		array_unshift( $fieldKeys, $name );
+		return $fieldKeys;
+	}
+
+	/**
+	 * Find the nearest field to a field in this cloner matched the given name,
+	 * walk through the chain of cloners.
+	 *
+	 * @param HTMLFormField $field
+	 * @param string $find
+	 * @return HTMLFormField|null
+	 */
+	public function findNearestField( $field, $find ) {
+		$findPath = $this->parseFieldPath( $find );
+		// Access to fields as child or in other group is not allowed.
+		// Further support for a more complicated path may conduct here.
+		if ( count( $findPath ) > 1 ) {
+			return null;
+		}
+		if ( !isset( $this->mParams['fields'][$find] ) ) {
+			if ( isset( $this->mParams['cloner'] ) ) {
+				return $this->mParams['cloner']->findNearestField( $this, $find );
+			}
+			return null;
+		}
+		$fields = $this->getFieldsForKey( $field->mParams['cloner-key'] );
+		return $fields[$find];
+	}
+
+	/**
+	 * @param HTMLFormField $field
+	 * @return string[]
+	 */
+	protected function getFieldPath( $field ) {
+		$path = [ $this->mParams['fieldname'], $field->mParams['cloner-key'] ];
+		if ( isset( $this->mParams['cloner'] ) ) {
+			$path = array_merge( $this->mParams['cloner']->getFieldPath( $this ), $path );
+		}
+		return $path;
+	}
+
+	/**
+	 * Extract field data for a given field that belongs to this cloner.
+	 *
+	 * @param HTMLFormField $field
+	 * @param mixed[] $alldata
+	 * @return mixed
+	 */
+	public function extractFieldData( $field, $alldata ) {
+		foreach ( $this->getFieldPath( $field ) as $key ) {
+			$alldata = $alldata[$key];
+		}
+		return $alldata[$field->mParams['fieldname']];
 	}
 
 	protected function needsLabel() {
