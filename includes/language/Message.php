@@ -232,17 +232,18 @@ class Message implements MessageSpecifier, Serializable {
 			$key = $key->getKey();
 		}
 
-		if ( !is_string( $key ) && !is_array( $key ) ) {
+		if ( is_string( $key ) ) {
+			$this->keysToTry = [ $key ];
+			$this->key = $key;
+		} elseif ( is_array( $key ) ) {
+			if ( !$key ) {
+				throw new InvalidArgumentException( '$key must not be an empty list' );
+			}
+			$this->keysToTry = $key;
+			$this->key = reset( $this->keysToTry );
+		} else {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
 		}
-
-		$this->keysToTry = (array)$key;
-
-		if ( empty( $this->keysToTry ) ) {
-			throw new InvalidArgumentException( '$key must not be an empty list' );
-		}
-
-		$this->key = reset( $this->keysToTry );
 
 		$this->parameters = array_values( $params );
 		// User language is only resolved in getLanguage(). This helps preserve the
