@@ -36,12 +36,20 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			$this->expectException( $exception[0] );
 			$this->expectExceptionMessageMatches( $exception[1] );
 		}
-		$form = $this->getNewForm( wfArrayPlus2d( $fieldInfo, [
+		$form = $this->getNewForm( array_merge_recursive( $fieldInfo, [
 			'check1' => [ 'type' => 'check' ],
 			'check2' => [ 'type' => 'check', 'invert' => true ],
 			'check3' => [ 'type' => 'check', 'name' => 'foo' ],
 			'select1' => [ 'type' => 'select', 'options' => [ 'a' => 'a', 'b' => 'b', 'c' => 'c' ], 'default' => 'b' ],
 			'text1' => [ 'type' => 'text' ],
+			'cloner' => [
+				'class' => HTMLFormFieldCloner::class,
+				'fields' => [
+					'check1' => [ 'type' => 'check' ],
+					'check2' => [ 'type' => 'check', 'invert' => true ],
+					'check3' => [ 'type' => 'check', 'name' => 'foo' ],
+				]
+			]
 		] ), $requestData );
 		$callback( $form, $form->mFieldData );
 	}
@@ -295,6 +303,68 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'callback' => null,
 			'exception' => [ DomainException::class, '/no field named foo/' ],
 		];
+
+		yield 'Field disabled in cloner if "check" field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check2' => [ 'disable-if' => [ '===', 'check1', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'check1' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check2' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "check" (invert) field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'check2', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'check2' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "check" (named) field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'check3', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'foo' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "select" (outside) field has value' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'select1', 'a' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpselect1' => 'a',
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+	}
+
+	private function getFieldInCloner( $form, $clonerName, $index, $fieldName ) {
+		$cloner = TestingAccessWrapper::newFromObject( $form->getField( $clonerName ) );
+		return $cloner->getFieldsForKey( $index )[$fieldName];
 	}
 
 	/**
