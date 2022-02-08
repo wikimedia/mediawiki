@@ -54,7 +54,7 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 				function ( $url, array $options = [], $caller = __METHOD__ )
 					use ( $req, $expectedUrl, $expectedOptions )
 				{
-					$this->assertSame( $url, $expectedUrl );
+					$this->assertSame( $expectedUrl, $url );
 
 					foreach ( $expectedOptions as $opt => $exp ) {
 						$this->assertArrayHasKey( $opt, $options );

@@ -1817,8 +1817,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->flushRestrictions();
 		$title->loadRestrictions();
 		$this->assertSame(
-			$title->getRestrictionExpiry( 'create' ),
-			$protectExpiry
+			$protectExpiry,
+			$title->getRestrictionExpiry( 'create' )
 		);
 	}
 
@@ -2457,7 +2457,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideMainPageTitles
 	 */
 	public function testIsNotMainPage( Title $title, $expected ) {
-		$this->assertSame( $title->isMainPage(), $expected );
+		$this->assertSame( $expected, $title->isMainPage() );
 	}
 
 	public function provideMainPageTitles() {

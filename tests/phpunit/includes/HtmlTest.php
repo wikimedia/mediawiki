@@ -819,7 +819,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * @covers Html::srcSet
 	 */
 	public function testSrcSet( $images, $expected, $message ) {
-		$this->assertEquals( Html::srcSet( $images ), $expected, $message );
+		$this->assertEquals( $expected, Html::srcSet( $images ), $message );
 	}
 
 	public static function provideInlineScript() {
@@ -871,7 +871,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Wikimedia\suppressWarnings();
 			$this->restoreWarnings = true;
 		}
-		$this->assertSame( Html::inlineScript( $code ), $expected );
+		$this->assertSame( $expected, Html::inlineScript( $code ) );
 	}
 }
 
