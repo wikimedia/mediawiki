@@ -53,25 +53,34 @@
 	}
 
 	function convertCheckboxesWidgetToTags( fieldLayout ) {
-		var checkboxesWidget, checkboxesOptions, menuTagOptions, menuTagWidget;
-
-		checkboxesWidget = fieldLayout.fieldWidget;
-		checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
-		menuTagOptions = checkboxesOptions.map( function ( option ) {
+		var checkboxesWidget = fieldLayout.fieldWidget;
+		var checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
+		var menuTagOptions = checkboxesOptions.map( function ( option ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: option.getData(),
 				label: option.getLabel(),
 				disabled: option.disabled // Don't take the state of parent elements into account.
 			} );
 		} );
-		menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
+		var fieldData = checkboxesWidget.data || {};
+		var menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
 			$overlay: true,
 			menu: {
 				items: menuTagOptions
 			},
-			placeholder: ( checkboxesWidget.data || {} ).placeholder || ''
+			placeholder: fieldData.placeholder || ''
 		} );
 		menuTagWidget.setValue( checkboxesWidget.getValue() );
+
+		menuTagOptions.forEach( function ( option ) {
+			if ( option.disabled ) {
+				var tagItem = menuTagWidget.findItemFromData( option.getData() );
+				// When this disabled option is selected by default.
+				if ( tagItem ) {
+					tagItem.setFixed( true );
+				}
+			}
+		} );
 
 		// Data from TagMultiselectWidget will not be submitted with the form, so keep the original
 		// CheckboxMultiselectInputWidget up-to-date.
