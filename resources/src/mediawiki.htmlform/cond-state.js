@@ -14,29 +14,20 @@
 	 *
 	 * @ignore
 	 * @private
-	 * @param {jQuery} $el
+	 * @param {jQuery} $root
 	 * @param {string} name
 	 * @return {jQuery|OO.ui.Widget|null}
 	 */
-	function conditionGetField( $el, name ) {
-		var $found, $p, $widget,
-			suffix = name.replace( /^([^[]+)/, '[$1]' );
-
-		function nameFilter() {
-			return this.name === name ||
-				( this.name === ( 'wp' + name ) ) ||
-				this.name.slice( -suffix.length ) === suffix;
-		}
-
-		for ( $p = $el.parent(); $p.length > 0; $p = $p.parent() ) {
-			$found = $p.find( '[name]' ).filter( nameFilter );
-			if ( $found.length ) {
-				$widget = $found.closest( '.oo-ui-widget[data-ooui]' );
-				if ( $widget.length ) {
-					return OO.ui.Widget.static.infuse( $widget );
-				}
-				return $found;
+	function conditionGetField( $root, name ) {
+		var $found = $root.find( '[name]' ).filter( function () {
+			return this.name === name;
+		} );
+		if ( $found.length ) {
+			var $widget = $found.closest( '.oo-ui-widget[data-ooui]' );
+			if ( $widget.length ) {
+				return OO.ui.Widget.static.infuse( $widget );
 			}
+			return $found;
 		}
 		return null;
 	}
@@ -47,13 +38,13 @@
 	 *
 	 * @ignore
 	 * @private
-	 * @param {jQuery} $el
+	 * @param {jQuery} $root
 	 * @param {Array} spec
 	 * @return {Array}
 	 * @return {Array} return.0 Dependent fields, array of jQuery objects or OO.ui.Widgets
 	 * @return {Function} return.1 Test function
 	 */
-	function conditionParse( $el, spec ) {
+	function conditionParse( $root, spec ) {
 		var op, i, l, v, field, $field, fields, func, funcs, getVal;
 
 		op = spec[ 0 ];
@@ -69,7 +60,7 @@
 					if ( !Array.isArray( spec[ i ] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
-					v = conditionParse( $el, spec[ i ] );
+					v = conditionParse( $root, spec[ i ] );
 					fields = fields.concat( v[ 0 ] );
 					funcs.push( v[ 1 ] );
 				}
@@ -134,7 +125,7 @@
 				if ( !Array.isArray( spec[ 1 ] ) ) {
 					throw new Error( 'NOT parameters must be arrays' );
 				}
-				v = conditionParse( $el, spec[ 1 ] );
+				v = conditionParse( $root, spec[ 1 ] );
 				fields = v[ 0 ];
 				func = v[ 1 ];
 				return [ fields, function () {
@@ -146,7 +137,7 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				field = conditionGetField( $el, spec[ 1 ] );
+				field = conditionGetField( $root, spec[ 1 ] );
 				if ( !field ) {
 					return [ [], function () {
 						return false;
@@ -224,15 +215,13 @@
 
 		mw.loader.using( modules ).done( function () {
 			$fields.each( function () {
-				var v, i, fields = [], test = [], func, spec, $elOrLayout,
+				var v, i, fields = [], test = {}, func, spec, $elOrLayout,
 					$el = $( this );
 
 				if ( $el.is( '[data-ooui]' ) ) {
 					// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
 					$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
 					spec = $elOrLayout.condState;
-					// The original element has been replaced with infused one
-					$el = $elOrLayout.$element;
 				} else {
 					$elOrLayout = $el;
 					spec = $el.data( 'condState' );
@@ -244,7 +233,7 @@
 
 				[ 'hide', 'disable' ].forEach( function ( type ) {
 					if ( spec[ type ] ) {
-						v = conditionParse( $el, spec[ type ] );
+						v = conditionParse( $root, spec[ type ] );
 						fields = fields.concat( fields, v[ 0 ] );
 						test[ type ] = v[ 1 ];
 					}
