@@ -1095,7 +1095,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 		$msg->setContext( $this->getContext() );
-		if ( $msg->exists() ) {
+		if ( !$msg->isDisabled() ) {
 			$text = $msg->text();
 		} else {
 			$text = $services->getLanguageConverterFactory()
