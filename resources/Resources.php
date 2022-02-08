@@ -2001,6 +2001,8 @@ return [
 			'paramvalidator-help-type-number-min',
 			'paramvalidator-help-type-number-max',
 			'paramvalidator-help-type-number-minmax',
+			'api-help-param-deprecated',
+			'api-help-param-internal',
 			'api-help-param-multi-separate',
 			'paramvalidator-help-multi-max',
 			'paramvalidator-help-type-string-maxbytes',

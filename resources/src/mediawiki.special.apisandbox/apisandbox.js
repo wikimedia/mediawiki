@@ -451,18 +451,23 @@
 					}
 
 					items = pi.type.map( function ( v ) {
-						var config = {
+						var optionWidget = new OO.ui.MenuOptionWidget( {
 							data: String( v ),
-							label: String( v ),
-							classes: []
-						};
+							label: String( v )
+						} );
 						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
-							config.classes.push( 'apihelp-deprecated-value' );
+							optionWidget.$element.addClass( 'apihelp-deprecated-value' );
+							optionWidget.$label.before(
+								$( '<span>' ).addClass( 'apihelp-deprecated' ).text( mw.msg( 'api-help-param-deprecated' ) )
+							);
 						}
 						if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
-							config.classes.push( 'apihelp-internal-value' );
+							optionWidget.$element.addClass( 'apihelp-internal-value' );
+							optionWidget.$label.before(
+								$( '<span>' ).addClass( 'apihelp-internal' ).text( mw.msg( 'api-help-param-internal' ) )
+							);
 						}
-						return new OO.ui.MenuOptionWidget( config );
+						return optionWidget;
 					} ).sort( function ( a, b ) {
 						return a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 );
 					} );
@@ -1725,10 +1730,19 @@
 
 				layout.paramInfo = pi;
 
+				var $desc = Util.parseHTML( pi.description );
+				if ( pi.deprecated !== undefined ) {
+					$desc = $( '<span>' ).addClass( 'apihelp-deprecated' ).text( mw.msg( 'api-help-param-deprecated' ) )
+						.add( document.createTextNode( mw.msg( 'word-separator' ) ) ).add( $desc );
+				}
+				if ( pi.internal !== undefined ) {
+					$desc = $( '<span>' ).addClass( 'apihelp-internal' ).text( mw.msg( 'api-help-param-internal' ) )
+						.add( document.createTextNode( mw.msg( 'word-separator' ) ) ).add( $desc );
+				}
 				items.push( new OO.ui.FieldLayout(
 					new OO.ui.Widget( {} ).toggle( false ), {
 						align: 'top',
-						label: Util.parseHTML( pi.description )
+						label: $desc
 					}
 				) );
 
