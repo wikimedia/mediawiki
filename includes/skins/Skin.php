@@ -80,6 +80,9 @@ abstract class Skin extends ContextSource {
 	/** @var array|null Cache for getLanguages() */
 	private $languageLinks;
 
+	/** @var array|null Cache for buildSidebar() */
+	private $sidebar;
+
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
 	 * to underlying data and for providing support for older and new versions of code.
@@ -1604,54 +1607,55 @@ abstract class Skin extends ContextSource {
 	 * and can technically insert anything in here; skin creators are expected to handle
 	 * values described above.
 	 *
-	 * @stable to override
-	 *
 	 * @return array
 	 */
 	public function buildSidebar() {
-		$services = MediaWikiServices::getInstance();
-		$callback = function ( $old = null, &$ttl = null ) {
-			$bar = [];
-			$this->addToSidebar( $bar, 'sidebar' );
-			$this->getHookRunner()->onSkinBuildSidebar( $this, $bar );
-			$msgCache = MediaWikiServices::getInstance()->getMessageCache();
-			if ( $msgCache->isDisabled() ) {
-				$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
-			}
+		if ( $this->sidebar === null ) {
+			$services = MediaWikiServices::getInstance();
+			$callback = function ( $old = null, &$ttl = null ) {
+				$bar = [];
+				$this->addToSidebar( $bar, 'sidebar' );
+				$this->getHookRunner()->onSkinBuildSidebar( $this, $bar );
+				$msgCache = MediaWikiServices::getInstance()->getMessageCache();
+				if ( $msgCache->isDisabled() ) {
+					$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
+				}
 
-			return $bar;
-		};
+				return $bar;
+			};
 
-		$msgCache = $services->getMessageCache();
-		$wanCache = $services->getMainWANObjectCache();
-		$config = $this->getConfig();
-		$languageCode = $this->getLanguage()->getCode();
+			$msgCache = $services->getMessageCache();
+			$wanCache = $services->getMainWANObjectCache();
+			$config = $this->getConfig();
+			$languageCode = $this->getLanguage()->getCode();
 
-		$sidebar = $config->get( 'EnableSidebarCache' )
-			? $wanCache->getWithSetCallback(
-				$wanCache->makeKey( 'sidebar', $languageCode ),
-				$config->get( 'SidebarCacheExpiry' ),
-				$callback,
-				[
-					'checkKeys' => [
-						// Unless there is both no exact $code override nor an i18n definition
-						// in the software, the only MediaWiki page to check is for $code.
-						$msgCache->getCheckKey( $languageCode )
-					],
-					'lockTSE' => 30
-				]
-			)
-			: $callback();
+			$sidebar = $config->get( 'EnableSidebarCache' )
+				? $wanCache->getWithSetCallback(
+					$wanCache->makeKey( 'sidebar', $languageCode ),
+					$config->get( 'SidebarCacheExpiry' ),
+					$callback,
+					[
+						'checkKeys' => [
+							// Unless there is both no exact $code override nor an i18n definition
+							// in the software, the only MediaWiki page to check is for $code.
+							$msgCache->getCheckKey( $languageCode )
+						],
+						'lockTSE' => 30
+					]
+				)
+				: $callback();
 
-		$sidebar['TOOLBOX'] = $this->makeToolbox(
-			$this->buildNavUrls(),
-			$this->buildFeedUrls()
-		);
-		$sidebar['LANGUAGES'] = $this->getLanguages();
-		// Apply post-processing to the cached value
-		$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
+			$sidebar['TOOLBOX'] = $this->makeToolbox(
+				$this->buildNavUrls(),
+				$this->buildFeedUrls()
+			);
+			$sidebar['LANGUAGES'] = $this->getLanguages();
+			// Apply post-processing to the cached value
+			$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
+			$this->sidebar = $sidebar;
+		}
 
-		return $sidebar;
+		return $this->sidebar;
 	}
 
 	/**
