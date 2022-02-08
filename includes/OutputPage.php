@@ -1996,6 +1996,8 @@ class OutputPage extends ContextSource {
 		}
 
 		// Hooks registered in the object
+		// Deprecated! See T292321; should be done in the OutputPageParserOutput
+		// hook instead.
 		$parserOutputHooks = $this->getConfig()->get( 'ParserOutputHooks' );
 		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
 			list( $hookName, $data ) = $hookInfo;

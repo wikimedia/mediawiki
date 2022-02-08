@@ -8546,6 +8546,8 @@ $wgExtensionEntryPointListFiles = [];
  * @code
  *    function outputHook( $outputPage, $parserOutput, $data ) { ... }
  * @endcode
+ * @deprecated since 1.38; should be done with extensionData and the
+ *  OutputPageParserOutputHook (T292321).
  */
 $wgParserOutputHooks = [];
 
