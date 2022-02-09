@@ -411,13 +411,11 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->userNameUtils->isIP( $userObj->getName() )
 				&& !IPUtils::isValidRange( $userObj->getName() )
 			) {
-				$this->getOutput()->wrapWikiMsg(
-					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					[
-						'contributions-userdoesnotexist',
-						wfEscapeWikiText( $userObj->getName() ),
-					]
-				);
+				$this->getOutput()->addHtml( Html::warningBox(
+					$this->getOutput()->msg( 'contributions-userdoesnotexist',
+						wfEscapeWikiText( $userObj->getName() ) )->parse(),
+					'mw-userpage-userdoesnotexist'
+				) );
 				if ( !$this->including() ) {
 					$this->getOutput()->setStatusCode( 404 );
 				}
