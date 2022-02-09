@@ -365,8 +365,9 @@ class SvgHandler extends ImageHandler {
 
 	public static function rasterizeImagickExt( $srcPath, $dstPath, $width, $height ) {
 		$im = new Imagick( $srcPath );
-		$im->setImageFormat( 'png' );
 		$im->setBackgroundColor( 'transparent' );
+		$im->readImage( $srcPath );
+		$im->setImageFormat( 'png' );
 		$im->setImageDepth( 8 );
 
 		if ( !$im->thumbnailImage( intval( $width ), intval( $height ), /* fit */ false ) ) {

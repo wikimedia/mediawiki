@@ -1,0 +1,17 @@
+{
+	"root": true,
+	"extends": [
+		"wikimedia/client",
+		"wikimedia/jquery",
+		"wikimedia/mediawiki",
+		"wikimedia/jsduck"
+	],
+	"globals": {
+		"require": "readonly",
+		"module": "readonly"
+	},
+	"rules": {
+		"max-len": "off",
+		"no-jquery/no-global-selector": "off"
+	}
+}

@@ -1,13 +1,15 @@
 {
+	"root": true,
 	"extends": [
-		"wikimedia/qunit",
-		"../../.eslintrc.json"
+		"../../resources/src/.eslintrc.json",
+		"wikimedia/qunit"
 	],
 	"globals": {
 		"sinon": "readonly"
 	},
 	"rules": {
-		"qunit/resolve-async": "off",
-		"no-jquery/no-parse-html-literal": "off"
+		"compat/compat": [ "error", "last 2 chrome versions, last 2 firefox versions" ],
+		"no-jquery/no-parse-html-literal": "off",
+		"qunit/resolve-async": "off"
 	}
 }
