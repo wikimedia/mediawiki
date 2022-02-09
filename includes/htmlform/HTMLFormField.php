@@ -117,75 +117,79 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get the closest field matching a given name.
+	 *
+	 * It can handle array fields like the user would expect. The general
+	 * algorithm is to look for $name as a sibling of $this, then a sibling
+	 * of $this's parent, and so on.
+	 *
+	 * @param string $name
+	 * @param bool $backCompat Whether to try striping the 'wp' prefix.
+	 * @return mixed
+	 */
+	protected function getNearestField( $name, $backCompat = false ) {
+		// When the field is belong to a HTMLFormFieldCloner
+		if ( isset( $this->mParams['cloner'] ) ) {
+			$field = $this->mParams['cloner']->findNearestField( $this, $name );
+			if ( $field ) {
+				return $field;
+			}
+		}
+
+		if ( $backCompat && substr( $name, 0, 2 ) === 'wp' &&
+			!$this->mParent->hasField( $name )
+		) {
+			// Don't break the existed use cases.
+			return $this->mParent->getField( substr( $name, 2 ) );
+		}
+		return $this->mParent->getField( $name );
+	}
+
+	/**
 	 * Fetch a field value from $alldata for the closest field matching a given
 	 * name.
-	 *
-	 * This is complex because it needs to handle array fields like the user
-	 * would expect. The general algorithm is to look for $name as a sibling
-	 * of $this, then a sibling of $this's parent, and so on. Keeping in mind
-	 * that $name itself might be referencing an array.
-	 *
-	 * @todo Refactor to make everything based on $this->mParent (if posible?)
 	 *
 	 * @param array $alldata
 	 * @param string $name
 	 * @param bool $asDisplay Whether the reverting logic of HTMLCheckField
 	 *     should be ignored.
-	 * @return string
+	 * @param bool $backCompat Whether to try striping the 'wp' prefix.
+	 * @return mixed
 	 */
-	protected function getNearestFieldByName( $alldata, $name, $asDisplay = false ) {
-		$tmp = $this->mName;
-		$thisKeys = [];
-		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $tmp, $m ) ) {
-			array_unshift( $thisKeys, $m[2] );
-			$tmp = $m[1];
+	protected function getNearestFieldValue( $alldata, $name, $asDisplay = false, $backCompat = false ) {
+		$field = $this->getNearestField( $name, $backCompat );
+		// When the field is belong to a HTMLFormFieldCloner
+		if ( isset( $field->mParams['cloner'] ) ) {
+			$value = $field->mParams['cloner']->extractFieldData( $field, $alldata );
+		} else {
+			$value = $alldata[$field->mParams['fieldname']];
 		}
-		if ( substr( $tmp, 0, 2 ) == 'wp' &&
-			!array_key_exists( $tmp, $alldata ) &&
-			array_key_exists( substr( $tmp, 2 ), $alldata )
-		) {
-			// Adjust for name mangling.
-			$tmp = substr( $tmp, 2 );
-		}
-		array_unshift( $thisKeys, $tmp );
 
-		$tmp = $name;
-		$nameKeys = [];
-		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $tmp, $m ) ) {
-			array_unshift( $nameKeys, $m[2] );
-			$tmp = $m[1];
+		// Check invert state for HTMLCheckField
+		if ( $asDisplay && $field instanceof HTMLCheckField && ( $field->mParams['invert'] ?? false ) ) {
+			$value = !$value;
 		}
-		array_unshift( $nameKeys, $tmp );
 
-		$testValue = '';
-		for ( $i = count( $thisKeys ) - 1; $i >= 0; $i-- ) {
-			$keys = array_merge( array_slice( $thisKeys, 0, $i ), $nameKeys );
-			$data = $alldata;
-			foreach ( $keys as $key ) {
-				if ( !is_array( $data ) || !array_key_exists( $key, $data ) ) {
-					continue 2;
-				}
-				$data = $data[$key];
-			}
-			$testValue = $data;
-			break;
-		}
-		// The logic above is complicated (may inside field cloner), don't get the field directly.
-		if ( $asDisplay && $this->mParent->hasField( $key ) ) {
-			$field = $this->mParent->getField( $key );
-			if ( $field instanceof HTMLCheckField && ( $field->mParams['invert'] ?? false ) ) {
-				// Bypass the invert logic of HTMLCheckField
-				$testValue = $this->mParent->getRequest()
-					->getBool( $field->getName(), $this->getDefault() );
-			}
-		}
-		$testValue = (string)$testValue;
-
-		return $testValue;
+		return $value;
 	}
 
 	/**
-	 * Validate the cond-state params.
+	 * Fetch a field value from $alldata for the closest field matching a given
+	 * name.
+	 *
+	 * @deprecated 1.38 Use getNearestFieldValue() instead.
+	 * @param array $alldata
+	 * @param string $name
+	 * @param bool $asDisplay
+	 * @return string
+	 */
+	protected function getNearestFieldByName( $alldata, $name, $asDisplay = false ) {
+		return (string)$this->getNearestFieldValue( $alldata, $name, $asDisplay );
+	}
+
+	/**
+	 * Validate the cond-state params, the existence check of fields should
+	 * be done later.
 	 *
 	 * @param array $params
 	 * @throws MWException
@@ -270,7 +274,7 @@ abstract class HTMLFormField {
 			case '===':
 			case '!==':
 				list( $field, $value ) = $params;
-				$testValue = $this->getNearestFieldByName( $alldata, $field, true );
+				$testValue = (string)$this->getNearestFieldValue( $alldata, $field, true, true );
 				switch ( $op ) {
 					case '===':
 						return ( $value === $testValue );
@@ -278,6 +282,53 @@ abstract class HTMLFormField {
 						return ( $value !== $testValue );
 				}
 		}
+	}
+
+	/**
+	 * Parse the cond-state array to use the field name for submission, since
+	 * the key in the form descriptor is never known in HTML. Also check for
+	 * field existence here.
+	 *
+	 * @param array $params
+	 * @return mixed[]
+	 */
+	protected function parseCondState( $params ) {
+		$origParams = $params;
+		$op = array_shift( $params );
+
+		switch ( $op ) {
+			case 'AND':
+			case 'OR':
+			case 'NAND':
+			case 'NOR':
+				$ret = [ $op ];
+				foreach ( $params as $i => $p ) {
+					$ret[] = $this->parseCondState( $p );
+				}
+				return $ret;
+
+			case 'NOT':
+				return [ 'NOT', $this->parseCondState( $params[0] ) ];
+
+			case '===':
+			case '!==':
+				list( $name, $value ) = $params;
+				$field = $this->getNearestField( $name, true );
+				return [ $op, $field->getName(), $value ];
+		}
+	}
+
+	/**
+	 * Parse the cond-state array for client-side.
+	 *
+	 * @return array[]
+	 */
+	protected function parseCondStateForClient() {
+		$parsed = [];
+		foreach ( $this->mCondState as $type => $params ) {
+			$parsed[$type] = $this->parseCondState( $params );
+		}
+		return $parsed;
 	}
 
 	/**
@@ -406,14 +457,16 @@ abstract class HTMLFormField {
 	 * Can we assume that the request is an attempt to submit a HTMLForm, as opposed to an attempt to
 	 * just view it? This can't normally be distinguished for e.g. checkboxes.
 	 *
-	 * Returns true if the request has a field for a CSRF token (wpEditToken) or a form identifier
-	 * (wpFormIdentifier).
+	 * Returns true if the request was posted, or has a field for a CSRF token (wpEditToken) or a form
+	 * identifier (wpFormIdentifier).
 	 *
+	 * @todo Consider moving this to HTMLForm?
 	 * @param WebRequest $request
 	 * @return bool
 	 */
 	protected function isSubmitAttempt( WebRequest $request ) {
-		return $request->getCheck( 'wpEditToken' ) || $request->getCheck( 'wpFormIdentifier' );
+		return $request->wasPosted() || $request->getCheck( 'wpEditToken' )
+			|| $request->getCheck( 'wpFormIdentifier' );
 	}
 
 	/**
@@ -549,7 +602,7 @@ abstract class HTMLFormField {
 		);
 
 		if ( $this->mCondState ) {
-			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$rowClasses .= implode( ' ', $this->mCondStateClass );
 		}
 
@@ -614,7 +667,7 @@ abstract class HTMLFormField {
 			'class' => $divCssClasses,
 		];
 		if ( $this->mCondState ) {
-			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
 		$html = Html::rawElement( 'div', $wrapperAttributes, $label . $field );
@@ -691,7 +744,7 @@ abstract class HTMLFormField {
 
 		if ( $this->mCondState ) {
 			$preloadModules = true;
-			$config['condState'] = $this->mCondState;
+			$config['condState'] = $this->parseCondStateForClient();
 		}
 
 		$config['modules'] = $this->getOOUIModules();
@@ -840,7 +893,7 @@ abstract class HTMLFormField {
 
 		$rowAttributes = [];
 		if ( $this->mCondState ) {
-			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$rowAttributes['class'] = $this->mCondStateClass;
 		}
 
@@ -874,7 +927,7 @@ abstract class HTMLFormField {
 			$wrapperAttributes['class'][] = $this->mHelpClass;
 		}
 		if ( $this->mCondState ) {
-			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
 		}
 		$div = Html::rawElement( 'div', $wrapperAttributes, $helptext );

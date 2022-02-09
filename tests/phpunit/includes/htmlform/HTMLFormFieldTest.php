@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers HTMLFormField
  */
@@ -7,34 +9,48 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @covers HTMLFormField::isHidden
-	 * @covers HTMLFormField::isDisabled
-	 * @covers HTMLFormField::checkStateRecurse
-	 * @covers HTMLFormField::validateCondState
-	 * @covers HTMLFormField::getNearestFieldByName
-	 * @dataProvider provideCondState
-	 */
-	public function testCondState( $fieldInfo, $requestData, $callback, $exception = null ) {
-		if ( $exception ) {
-			$this->expectException( MWException::class );
-			$this->expectExceptionMessageMatches( $exception );
-		}
+	public function getNewForm( $descriptor, $requestData ) {
 		$request = new FauxRequest( $requestData, true );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
-		$form = HTMLForm::factory( 'ooui', wfArrayPlus2d( $fieldInfo, [
-			'check1' => [ 'type' => 'check' ],
-			'check2' => [ 'type' => 'check', 'invert' => true ],
-			'select1' => [ 'type' => 'select', 'options' => [ 'a' => 'a', 'b' => 'b', 'c' => 'c' ], 'default' => 'b' ],
-			'text1' => [ 'type' => 'text' ],
-		] ), $context );
+		$form = HTMLForm::factory( 'ooui', $descriptor, $context );
 		$form->setTitle( Title::newFromText( 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();
 		$status = $form->trySubmit();
 		$this->assertTrue( $status );
+		return $form;
+	}
 
+	/**
+	 * @covers HTMLFormField::isHidden
+	 * @covers HTMLFormField::isDisabled
+	 * @covers HTMLFormField::checkStateRecurse
+	 * @covers HTMLFormField::validateCondState
+	 * @covers HTMLFormField::getNearestField
+	 * @covers HTMLFormField::getNearestFieldValue
+	 * @dataProvider provideCondState
+	 */
+	public function testCondState( $fieldInfo, $requestData, $callback, $exception = null ) {
+		if ( $exception ) {
+			$this->expectException( $exception[0] );
+			$this->expectExceptionMessageMatches( $exception[1] );
+		}
+		$form = $this->getNewForm( array_merge_recursive( $fieldInfo, [
+			'check1' => [ 'type' => 'check' ],
+			'check2' => [ 'type' => 'check', 'invert' => true ],
+			'check3' => [ 'type' => 'check', 'name' => 'foo' ],
+			'select1' => [ 'type' => 'select', 'options' => [ 'a' => 'a', 'b' => 'b', 'c' => 'c' ], 'default' => 'b' ],
+			'text1' => [ 'type' => 'text' ],
+			'cloner' => [
+				'class' => HTMLFormFieldCloner::class,
+				'fields' => [
+					'check1' => [ 'type' => 'check' ],
+					'check2' => [ 'type' => 'check', 'invert' => true ],
+					'check3' => [ 'type' => 'check', 'name' => 'foo' ],
+				]
+			]
+		] ), $requestData );
 		$callback( $form, $form->mFieldData );
 	}
 
@@ -199,7 +215,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => '/Unknown operation/',
+			'exception' => [ MWException::class, '/Unknown operation/' ],
 		];
 		yield 'Invalid conditional specification (NOT)' => [
 			'fieldInfo' => [
@@ -207,7 +223,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => '/NOT takes exactly one parameter/',
+			'exception' => [ MWException::class, '/NOT takes exactly one parameter/' ],
 		];
 		yield 'Invalid conditional specification (AND/OR/NAND/NOR)' => [
 			'fieldInfo' => [
@@ -215,7 +231,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => '/Expected array, found string/',
+			'exception' => [ MWException::class, '/Expected array, found string/' ],
 		];
 		yield 'Invalid conditional specification (===/!==) 1' => [
 			'fieldInfo' => [
@@ -223,7 +239,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => '/=== takes exactly two parameters/',
+			'exception' => [ MWException::class, '/=== takes exactly two parameters/' ],
 		];
 		yield 'Invalid conditional specification (===/!==) 2' => [
 			'fieldInfo' => [
@@ -231,7 +247,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			],
 			'requestData' => [],
 			'callback' => null,
-			'exception' => '/Parameters for === must be strings/',
+			'exception' => [ MWException::class, '/Parameters for === must be strings/' ],
 		];
 
 		yield 'Field disabled if "check" field is checked' => [
@@ -255,6 +271,156 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 			'callback' => function ( $form, $fieldData ) {
 				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
 			}
+		];
+
+		yield 'Field disabled even the field it relied on is named' => [
+			'fieldInfo' => [
+				'text1' => [ 'disable-if' => [ '===', 'check3', '1' ] ],
+			],
+			'requestData' => [
+				'foo' => '1',
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled even the \'wp\' prefix is used (back-compat)' => [
+			'fieldInfo' => [
+				'text1' => [ 'disable-if' => [ '===', 'wpcheck1', '1' ] ],
+			],
+			'requestData' => [
+				'wpcheck1' => '1',
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field name does not exist' => [
+			'fieldInfo' => [
+				'text1' => [ 'disable-if' => [ '===', 'foo', '1' ] ],
+			],
+			'requestData' => [],
+			'callback' => null,
+			'exception' => [ DomainException::class, '/no field named foo/' ],
+		];
+
+		yield 'Field disabled in cloner if "check" field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check2' => [ 'disable-if' => [ '===', 'check1', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'check1' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check2' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "check" (invert) field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'check2', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'check2' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "check" (named) field is checked' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'check3', '1' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpcloner' => [ 0 => [ 'foo' => '1' ] ],
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Field disabled in cloner if "select" (outside) field has value' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'disable-if' => [ '===', 'select1', 'a' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpselect1' => 'a',
+			],
+			'callback' => function ( $form, $fieldData ) {
+				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isDisabled( $fieldData ) );
+			}
+		];
+	}
+
+	private function getFieldInCloner( $form, $clonerName, $index, $fieldName ) {
+		$cloner = TestingAccessWrapper::newFromObject( $form->getField( $clonerName ) );
+		return $cloner->getFieldsForKey( $index )[$fieldName];
+	}
+
+	/**
+	 * @covers HTMLFormField::parseCondState
+	 * @dataProvider provideParseCondState
+	 */
+	public function testParseCondState( $fieldName, $condState, $excepted ) {
+		$form = $this->getNewForm( [
+			'normal' => [ 'type' => 'check' ],
+			'named' => [ 'type' => 'check', 'name' => 'foo' ],
+			'test' => [ 'type' => 'text' ],
+			'cloner' => [
+				'class' => HTMLFormFieldCloner::class,
+				'fields' => [
+					'normal' => [ 'type' => 'check' ],
+					'named' => [ 'type' => 'check', 'name' => 'foo' ],
+					'test' => [ 'type' => 'text' ],
+				]
+			]
+		], [] );
+		$field = $form->getField( $fieldName ?? 'test' );
+		$wrapped = TestingAccessWrapper::newFromObject( $field );
+		if ( $field instanceof HTMLFormFieldCloner ) {
+			$field = $wrapped->getFieldsForKey( 0 )['test'];
+			$wrapped = TestingAccessWrapper::newFromObject( $field );
+		}
+		$parsed = $wrapped->parseCondState( $condState );
+		$this->assertSame( $excepted, $parsed );
+	}
+
+	public function provideParseCondState() {
+		yield 'Normal' => [
+			null,
+			[ '===', 'normal', '1' ],
+			[ '===', 'wpnormal', '1' ],
+		];
+		yield 'With the \'wp\' prefix' => [
+			null,
+			[ '===', 'wpnormal', '1' ],
+			[ '===', 'wpnormal', '1' ],
+		];
+		yield 'Named' => [
+			null,
+			[ '===', 'named', '1' ],
+			[ '===', 'foo', '1' ],
+		];
+
+		yield 'Normal in cloner' => [
+			'cloner',
+			[ '===', 'normal', '1' ],
+			[ '===', 'wpcloner[0][normal]', '1' ],
+		];
+		yield 'Named in cloner' => [
+			'cloner',
+			[ '===', 'named', '1' ],
+			[ '===', 'wpcloner[0][foo]', '1' ],
 		];
 	}
 }

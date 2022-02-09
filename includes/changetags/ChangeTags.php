@@ -878,23 +878,24 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
-	 * WARNING: If $filter_tag contains more than one tag, this function will add DISTINCT,
-	 * which may cause performance problems for your query unless you put the ID field of your
-	 * table at the end of the ORDER BY, and set a GROUP BY equal to the ORDER BY. For example,
-	 * if you had ORDER BY foo_timestamp DESC, you will now need GROUP BY foo_timestamp, foo_id
-	 * ORDER BY foo_timestamp DESC, foo_id DESC.
+	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
+	 * will add DISTINCT, which may cause performance problems for your query unless you put
+	 * the ID field of your table at the end of the ORDER BY, and set a GROUP BY equal to the
+	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
+	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
 	 * @param string|array &$conds Conditions used in query, see Database::select
 	 * @param array &$join_conds Join conditions, see Database::select
 	 * @param string|array &$options Options, see Database::select
-	 * @param string|array $filter_tag Tag(s) to select on
+	 * @param string|array $filter_tag Tag(s) to select on (OR)
+	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-		&$join_conds, &$options, $filter_tag = ''
+		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
 		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseTagFilter' );
 
@@ -923,29 +924,40 @@ class ChangeTags {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 			$tagTable = self::getDisplayTableName();
-			$tables[] = $tagTable;
-			$join_conds[$tagTable] = [ 'JOIN', $join_cond ];
 			$filterTagIds = [];
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			foreach ( (array)$filter_tag as $filterTagName ) {
 				try {
 					$filterTagIds[] = $changeTagDefStore->getId( $filterTagName );
 				} catch ( NameTableAccessException $exception ) {
-					// Return nothing.
-					$conds[] = '0=1';
-					break;
 				}
 			}
 
-			if ( $filterTagIds !== [] ) {
-				$conds['ct_tag_id'] = $filterTagIds;
-			}
+			if ( $exclude ) {
+				if ( $filterTagIds !== [] ) {
+					$tables[] = $tagTable;
+					$join_conds[$tagTable] = [
+						'LEFT JOIN',
+						[ $join_cond, 'ct_tag_id' => $filterTagIds ]
+					];
+					$conds[] = "$tagTable.ct_tag_id IS NULL";
+				}
+			} else {
+				$tables[] = $tagTable;
+				$join_conds[$tagTable] = [ 'JOIN', $join_cond ];
+				if ( $filterTagIds !== [] ) {
+					$conds['ct_tag_id'] = $filterTagIds;
+				} else {
+					// all tags were invalid, return nothing
+					$conds[] = '0=1';
+				}
 
-			if (
-				is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
-				!in_array( 'DISTINCT', $options )
-			) {
-				$options[] = 'DISTINCT';
+				if (
+					is_array( $filter_tag ) && count( $filter_tag ) > 1 &&
+					!in_array( 'DISTINCT', $options )
+				) {
+					$options[] = 'DISTINCT';
+				}
 			}
 		}
 	}
