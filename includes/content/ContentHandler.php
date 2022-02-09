@@ -1443,9 +1443,6 @@ abstract class ContentHandler {
 					// subclasses may want to add the following here:
 					// 'generate-html' => false,
 				] );
-			if ( $cache ) {
-				$cache->save( $parserOutput, $page, $parserOptions );
-			}
 		}
 		return $parserOutput;
 	}
