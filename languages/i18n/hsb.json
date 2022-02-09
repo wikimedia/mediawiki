@@ -2084,7 +2084,7 @@
 	"protectlogpage": "Protokol škita",
 	"protectlogtext": "To je lisćina škitanych stronow a nješkitanych stronow.\nHlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu škitanych stron.",
 	"protectedarticle": "je stronu [[$1]] škitał",
-	"modifiedarticleprotection": "je škitne nastajenja za „[[$1]]“ {{GENDER|změnił|změniła}}",
+	"modifiedarticleprotection": "je škitne nastajenja za „[[$1]]“ {{GENDER:|změnił|změniła}}",
 	"unprotectedarticle": "je škit za [[$1]] wotstronił",
 	"movedarticleprotection": "škitowe nastajenja z \"[[$2]]\" do \"[[$1]]\" přesunjene",
 	"protect-title": "Stronu „$1” škitać",

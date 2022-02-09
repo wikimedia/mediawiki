@@ -894,7 +894,7 @@
 	"expansion-depth-exceeded-warning": "Die Seite hat die Expansionstiefe überschritten.",
 	"parser-unstrip-loop-warning": "Zirkelbezug festgestellt",
 	"unstrip-depth-warning": "Rekursionsgrenze beim Auflösen überschritten ($1)",
-	"unstrip-depth-category": "Seiten, auf denen die Unstrip-Tiefengrenze überschritten ist.",
+	"unstrip-depth-category": "Seiten, auf denen die Unstrip-Tiefengrenze überschritten ist",
 	"unstrip-size-warning": "Unstrip-Größengrenze überschritten ($1)",
 	"unstrip-size-category": "Seiten, auf denen die Unstrip-Größengrenze überschritten ist",
 	"converter-manual-rule-error": "Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.",
