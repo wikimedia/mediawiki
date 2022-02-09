@@ -69,6 +69,20 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
 		$modules = $rl->getTestSuiteModuleNames();
+		$component = $this->getContext()->getRequest()->getVal( 'component' );
+		if ( $component ) {
+			$module = 'test.' . $component;
+			if ( !in_array( 'test.' . $component, $modules ) ) {
+				wfHttpError(
+					404,
+					'Unknown test module',
+					"'$module' is not a defined test module. "
+						. 'Register one via the QUnitTestModules attribute in extension.json.'
+				);
+				return;
+			}
+			$modules = [ 'test.' . $component ];
+		}
 
 		// Disable module storage.
 		// The unit test for mw.loader.store will enable it (with a mock timers).
