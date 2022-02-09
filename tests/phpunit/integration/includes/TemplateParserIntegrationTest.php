@@ -323,4 +323,30 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 			'hash of all files read during the compilation'
 		);
 	}
+
+	/**
+	 * @covers ::getTemplate
+	 */
+	public function testGetTemplateCachingHandlesRecursivePartials() {
+		$store = null;
+
+		$cache = $this->createMock( BagOStuff::class );
+		$cache->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$cache->expects( $this->once() )->method( 'set' )
+			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+				$store = [ 'key' => $key, 'val' => $val ];
+			} ) );
+
+		$tp = new TemplateParser( self::DIR, $cache );
+		$tp->enableRecursivePartials( true );
+
+		$data = [ 'r' => [ 'r' => [ 'r' => [] ] ] ];
+		$tp->processTemplate( 'recurse', $data );
+
+		$this->assertArrayEquals(
+			[ self::DIR . '/recurse.mustache' ],
+			$store['val']['files'],
+			'The hash is computed from unique template files.'
+		);
+	}
 }
