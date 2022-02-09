@@ -1108,17 +1108,6 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param int $i
-	 * @param string|bool $domain
-	 * @param int $flags
-	 * @return Database|bool Live database handle or false on failure
-	 * @deprecated Since 1.34 Use getConnection() instead
-	 */
-	public function openConnection( $i, $domain = false, $flags = 0 ) {
-		return $this->getConnection( $i, [], $domain, $flags | self::CONN_SILENCE_ERRORS );
-	}
-
-	/**
 	 * Open a connection to a local DB, or return one if it is already open.
 	 *
 	 * On error, returns false, and the connection which caused the
