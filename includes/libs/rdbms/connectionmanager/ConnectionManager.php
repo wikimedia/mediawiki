@@ -73,7 +73,6 @@ class ConnectionManager {
 	 * @param int $i
 	 * @param string[]|null $groups
 	 * @param int $flags
-	 *
 	 * @return IDatabase
 	 */
 	private function getConnection( $i, ?array $groups = null, int $flags = 0 ) {
@@ -84,7 +83,6 @@ class ConnectionManager {
 	/**
 	 * @param int $i
 	 * @param string[]|null $groups
-	 *
 	 * @return DBConnRef
 	 */
 	private function getConnectionRef( $i, array $groups = null ) {
@@ -95,7 +93,6 @@ class ConnectionManager {
 	/**
 	 * @param int $i
 	 * @param string[]|null $groups
-	 *
 	 * @return DBConnRef
 	 */
 	private function getLazyConnectionRef( $i, array $groups = null ) {
@@ -109,10 +106,9 @@ class ConnectionManager {
 	 *
 	 * @since 1.29
 	 * @since 1.37 Added optional $flags parameter
-	 *
 	 * @param int $flags
-	 *
 	 * @return IDatabase
+	 * @deprecated since 1.38; Use getWriteConnectionRef()
 	 */
 	public function getWriteConnection( int $flags = 0 ) {
 		return $this->getConnection( DB_PRIMARY, null, $flags );
@@ -124,11 +120,10 @@ class ConnectionManager {
 	 *
 	 * @since 1.29
 	 * @since 1.37 Added optional $flags parameter
-	 *
 	 * @param string[]|null $groups
 	 * @param int $flags
-	 *
 	 * @return IDatabase
+	 * @deprecated since 1.38; Use getReadConnectionRef()
 	 */
 	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		$groups = $groups ?? $this->groups;
@@ -137,8 +132,8 @@ class ConnectionManager {
 
 	/**
 	 * @since 1.29
-	 *
 	 * @param IDatabase $db
+	 * @deprecated since 1.38
 	 */
 	public function releaseConnection( IDatabase $db ) {
 		$this->loadBalancer->reuseConnection( $db );
@@ -159,9 +154,7 @@ class ConnectionManager {
 	 * Returns a database connection ref for reading.
 	 *
 	 * @since 1.29
-	 *
 	 * @param string[]|null $groups
-	 *
 	 * @return DBConnRef
 	 */
 	public function getReadConnectionRef( array $groups = null ) {
@@ -173,7 +166,6 @@ class ConnectionManager {
 	 * Returns a lazy-connecting database connection ref for updating.
 	 *
 	 * @since 1.38
-	 *
 	 * @return DBConnRef
 	 */
 	public function getLazyWriteConnectionRef(): DBConnRef {
@@ -184,9 +176,7 @@ class ConnectionManager {
 	 * Returns a lazy-connecting database connection ref for reading.
 	 *
 	 * @since 1.37
-	 *
 	 * @param string[]|null $groups
-	 *
 	 * @return DBConnRef
 	 */
 	public function getLazyReadConnectionRef( array $groups = null ) {
