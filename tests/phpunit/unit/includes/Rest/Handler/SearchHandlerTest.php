@@ -571,6 +571,29 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'Foo Redirect Target', $data['pages'][0]['title'] );
 	}
 
+	public function testExecute_NonProperPage() {
+		$page = $this->makeMockTitle( 'Blankpage', [ 'namespace' => NS_SPECIAL ] );
+		$result = $this->createNoOpMock(
+			SearchResult::class,
+			[ 'getTitle', 'isBrokenTitle', 'isMissingRevision' ]
+		);
+		$result->method( 'getTitle' )->willReturn( $page );
+		$textResults = new MockSearchResultSet( [ $result ] );
+
+		$query = 'foo';
+
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+		$handler = $this->newHandler(
+			$query,
+			null,
+			$textResults
+		);
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 0, $data['pages'] );
+	}
+
 	public function testExecute_NullResults() {
 		$query = 'foo';
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
