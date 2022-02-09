@@ -1281,7 +1281,7 @@ config-schema:
             **Example:**
 
             ```
-            #$wgMimeDetectorCommand = "file -bi"; # use external MIME detector (Linux)
+            #$wgMimeDetectorCommand = "file -bi"; // use external MIME detector (Linux)
             ```
     TrivialMimeDetection:
         default: false
@@ -2701,7 +2701,9 @@ config-schema:
                             'port' => 4827,
                     ],
             ];
-            ``` You can also pass an array of hosts to send purges too. This is useful when
+            ``` 
+            
+            You can also pass an array of hosts to send purges too. This is useful when
             you have several multicast groups or unicast address that should receive a
             given purge.  Multiple hosts support was introduced in MediaWiki 1.22.
 
@@ -3820,7 +3822,7 @@ config-schema:
             Don't change this unless you know what you're doing
 
             Problematic punctuation:
-              -  []}|#    Are needed for link syntax, never enable these
+              -  []}|#     Are needed for link syntax, never enable these
               -  <>        Causes problems with HTML escaping, don't use
               -  %         Enabled by default, minor problems with path to query rewrite rules, see below
               -  +         Enabled by default, but doesn't work with path to query rewrite rules,
@@ -7431,11 +7433,11 @@ config-schema:
 
             ```
             $wgArticleRobotPolicies = [
-              # Underscore, not space!
+              // Underscore, not space!
               'Main_Page' => 'noindex,follow',
-              # "Project", not the actual project name!
+              // "Project", not the actual project name!
               'Project:X' => 'index,follow',
-              # Needs to be "Abc", not "abc" (unless $wgCapitalLinks is false for that namespace)!
+              // Needs to be "Abc", not "abc" (unless $wgCapitalLinks is false for that namespace)!
               'abc' => 'noindex,nofollow'
             ];
             ```
