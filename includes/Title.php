@@ -379,7 +379,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $text !== null && !is_string( $text ) && !is_int( $text ) ) {
 			throw new InvalidArgumentException( '$text must be a string.' );
 		}
-		if ( $text === null ) {
+		if ( $text === null || $text === '' ) {
 			return null;
 		}
 
