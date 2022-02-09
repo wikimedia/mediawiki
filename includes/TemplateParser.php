@@ -254,6 +254,8 @@ class TemplateParser {
 			throw new RuntimeException( "Could not compile template `{$filename}`" );
 		}
 
+		$files = array_values( array_unique( $files ) );
+
 		return [
 			'phpCode' => $compiled,
 			'files' => $files,
