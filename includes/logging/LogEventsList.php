@@ -683,15 +683,6 @@ class LogEventsList extends ContextSource {
 
 		if ( $logBody ) {
 			if ( $msgKey[0] ) {
-				$dir = $context->getLanguage()->getDir();
-				$lang = $context->getLanguage()->getHtmlCode();
-
-				$s = Xml::openElement( 'div', [
-					'class' => "warningbox mw-warning-with-logexcerpt mw-content-$dir",
-					'dir' => $dir,
-					'lang' => $lang,
-				] );
-
 				$msg = $context->msg( ...$msgKey );
 				if ( $page instanceof PageReference ) {
 					$msg->page( $page );
@@ -750,7 +741,23 @@ class LogEventsList extends ContextSource {
 		}
 
 		if ( $logBody && $msgKey[0] ) {
-			$s .= '</div>';
+			// TODO: The condition above is weird. Should this be done in any other cases?
+			// Or is it always true in practice?
+
+			// Mark as interface language (T60685)
+			$dir = $context->getLanguage()->getDir();
+			$lang = $context->getLanguage()->getHtmlCode();
+			$s = Html::rawElement( 'div', [
+				'class' => "mw-content-$dir",
+				'dir' => $dir,
+				'lang' => $lang,
+			], $s );
+
+			// Wrap in warning box
+			$s = Html::warningBox(
+				$s,
+				'mw-warning-with-logexcerpt'
+			);
 		}
 
 		// @phan-suppress-next-line PhanSuspiciousValueComparison
