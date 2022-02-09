@@ -584,17 +584,6 @@ class ProtectionForm {
 			$out .= '<p class="mw-protect-editreasons">' . $link . '</p>';
 		}
 
-		if ( !$this->disabled ) {
-			$legacyUser = MediaWikiServices::getInstance()
-				->getUserFactory()
-				->newFromAuthority( $this->mPerformer );
-			$fields['wpEditToken'] = [
-				'name' => 'wpEditToken',
-				'type' => 'hidden',
-				'default' => $legacyUser->getEditToken( [ 'protect', $this->mTitle->getPrefixedDBkey() ] ),
-			];
-		}
-
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->mContext );
 		$htmlForm
 			->setMethod( 'post' )
@@ -603,6 +592,7 @@ class ProtectionForm {
 			->setAction( $this->mTitle->getLocalURL( 'action=protect' ) )
 			->setSubmitID( 'mw-Protect-submit' )
 			->setSubmitTextMsg( 'confirm' )
+			->setTokenSalt( [ 'protect', $this->mTitle->getPrefixedDBkey() ] )
 			->suppressDefaultSubmit( $this->disabled )
 			->setWrapperLegendMsg( 'protect-legend' )
 			->loadData();
