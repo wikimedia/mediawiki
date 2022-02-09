@@ -42,10 +42,10 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			new ArrayConfigBuilder(),
 			$this->createNoOpMock( PhpIniSink::class )
 		);
-		$result = $settingsBuilder->loadFile( 'includes/config-schema.yaml' )
+		$validationResult = $settingsBuilder->loadFile( 'includes/config-schema.yaml' )
 			->apply()
 			->validate();
-		$this->assertArrayEquals( [], $result->getErrors() );
+		$this->assertArrayEquals( [], $validationResult->getErrors() );
 	}
 
 	/**
@@ -57,19 +57,28 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result->isGood(), $result->__toString() );
 	}
 
-	public function testConfigSchemaPhpGenerated() {
-		$schemaGenerator = Shell::makeScriptCommand(
-			__DIR__ . '/../../../maintenance/generateConfigSchema.php',
-			[ '--output', 'php://stdout' ]
-		);
+	public function provideConfigGeneration() {
+		yield 'docs/Configuration.md' => [
+			'script' => __DIR__ . '/../../../maintenance/generateConfigDoc.php',
+			'expectedFile' => __DIR__ . '/../../../docs/Configuration.md',
+		];
+		yield 'incl/Configuration.md' => [
+			'script' => __DIR__ . '/../../../maintenance/generateConfigSchema.php',
+			'expectedFile' => __DIR__ . '/../../../includes/config-schema.php',
+		];
+	}
+
+	/**
+	 * @dataProvider provideConfigGeneration
+	 */
+	public function testConfigGeneration( string $script, string $expectedFile ) {
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', 'php://stdout' ] );
 
 		$result = $schemaGenerator->execute();
-		$this->assertSame( 0, $result->getExitCode(), 'Config doc generation must finish successfully' );
-		$this->assertSame( '', $result->getStderr(), 'Config doc generation must not have errors' );
+		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
+		$this->assertSame( '', $result->getStderr(), 'Config generation must not have errors' );
 
-		$oldGeneratedSchema = file_get_contents(
-			__DIR__ . '/../../../includes/config-schema.php'
-		);
+		$oldGeneratedSchema = file_get_contents( $expectedFile );
 
 		$this->assertEquals(
 			$oldGeneratedSchema,

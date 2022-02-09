@@ -541,6 +541,7 @@ $wgAutoloadLocalClasses = [
 	'GanConverter' => __DIR__ . '/includes/language/converters/GanConverter.php',
 	'GenderCache' => __DIR__ . '/includes/cache/GenderCache.php',
 	'GenerateCollationData' => __DIR__ . '/maintenance/language/generateCollationData.php',
+	'GenerateConfigDoc' => __DIR__ . '/maintenance/generateConfigDoc.php',
 	'GenerateConfigSchema' => __DIR__ . '/maintenance/generateConfigSchema.php',
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
 	'GenerateNormalizerDataAr' => __DIR__ . '/maintenance/language/generateNormalizerDataAr.php',
