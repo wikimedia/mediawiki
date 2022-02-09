@@ -143,18 +143,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxAtomicLevels = [];
 	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
 	private $trxAutomaticAtomic = false;
-	/** @var string[] Write query callers of the current transaction */
-	private $trxWriteCallers = [];
-	/** @var float Seconds spent in write queries for the current transaction */
-	private $trxWriteDuration = 0.0;
-	/** @var int Number of write queries for the current transaction */
-	private $trxWriteQueryCount = 0;
-	/** @var int Number of rows affected by write queries for the current transaction */
-	private $trxWriteAffectedRows = 0;
-	/** @var float Like trxWriteQueryCount but excludes lock-bound, easy to replicate, queries */
-	private $trxWriteAdjDuration = 0.0;
-	/** @var int Number of write queries counted in trxWriteAdjDuration */
-	private $trxWriteAdjQueryCount = 0;
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxPostCommitOrIdleCallbacks = [];
 	/** @var array[] List of (callable, method name, atomic section id) */
@@ -228,13 +216,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private const PING_TTL = 1.0;
 	/** @var string Dummy SQL query */
 	private const PING_QUERY = 'SELECT 1 AS ping';
-
-	/** @var float Guess of how many seconds it takes to replicate a small insert */
-	private const TINY_WRITE_SEC = 0.010;
-	/** @var float Consider a write slow if it took more than this many seconds */
-	private const SLOW_WRITE_SEC = 0.500;
-	/** @var int Assume an insert of this many rows or less should be fast to replicate */
-	private const SMALL_WRITE_ROWS = 100;
 
 	/** @var string[] List of DBO_* flags that can be changed after connection */
 	protected const MUTABLE_FLAGS = [
@@ -730,34 +711,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( !$this->trxDoneWrites ) {
 			return 0.0;
 		}
-
-		switch ( $type ) {
-			case self::ESTIMATE_DB_APPLY:
-				return $this->pingAndCalculateLastTrxApplyTime();
-			default: // everything
-				return $this->trxWriteDuration;
-		}
-	}
-
-	/**
-	 * @return float Time to apply writes to replicas based on trxWrite* fields
-	 */
-	private function pingAndCalculateLastTrxApplyTime() {
-		// passed by reference
 		$rtt = null;
-		$this->ping( $rtt );
-
-		$rttAdjTotal = $this->trxWriteAdjQueryCount * $rtt;
-		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
-		// For omitted queries, make them count as something at least
-		$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
-		$applyTime += self::TINY_WRITE_SEC * $omitted;
-
-		return $applyTime;
+		if ( $type == self::ESTIMATE_DB_APPLY ) {
+			// passed by reference
+			$this->ping( $rtt );
+		}
+		return $this->transactionManager->pendingWriteQueryDuration( $type, $rtt );
 	}
 
 	public function pendingWriteCallers() {
-		return $this->trxLevel() ? $this->trxWriteCallers : [];
+		return $this->transactionManager->pendingWriteCallers();
 	}
 
 	/**
@@ -1464,8 +1427,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
 			if ( $isPermWrite && $this->trxLevel() ) {
-				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
-				$this->trxWriteCallers[] = $fname;
+				$this->transactionManager->updateTrxWriteQueryReport(
+					$this->getQueryVerb( $sql ),
+					$queryRuntime,
+					$this->affectedRows(),
+					$fname
+				);
 			}
 		} elseif ( $this->isConnectionError( $lastErrno ) ) {
 			# Check if no meaningful session state was lost
@@ -1531,40 +1498,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->trxAutomatic = true;
-		}
-	}
-
-	/**
-	 * Update the estimated run-time of a query, not counting large row lock times
-	 *
-	 * LoadBalancer can be set to rollback transactions that will create huge replication
-	 * lag. It bases this estimate off of pendingWriteQueryDuration(). Certain simple
-	 * queries, like inserting a row can take a long time due to row locking. This method
-	 * uses some simple heuristics to discount those cases.
-	 *
-	 * @param string $sql A SQL write query
-	 * @param float $runtime Total runtime, including RTT
-	 * @param int $affected Affected row count
-	 */
-	private function updateTrxWriteQueryTime( $sql, $runtime, $affected ) {
-		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
-		$indicativeOfReplicaRuntime = true;
-		if ( $runtime > self::SLOW_WRITE_SEC ) {
-			$verb = $this->getQueryVerb( $sql );
-			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
-			if ( $verb === 'INSERT' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS;
-			} elseif ( $verb === 'REPLACE' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
-			}
-		}
-
-		$this->trxWriteDuration += $runtime;
-		$this->trxWriteQueryCount += 1;
-		$this->trxWriteAffectedRows += $affected;
-		if ( $indicativeOfReplicaRuntime ) {
-			$this->trxWriteAdjDuration += $runtime;
-			$this->trxWriteAdjQueryCount += 1;
 		}
 	}
 
@@ -1677,7 +1610,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->getDomainID(),
 				$oldTrxId,
 				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
-				$this->trxWriteAffectedRows
+				$this->transactionManager->getTrxWriteAffectedRows()
 			);
 		}
 	}
@@ -4895,12 +4828,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxDoneWrites = false;
 		$this->trxAutomaticAtomic = false;
 		$this->trxAtomicLevels = [];
-		$this->trxWriteDuration = 0.0;
-		$this->trxWriteQueryCount = 0;
-		$this->trxWriteAffectedRows = 0;
-		$this->trxWriteAdjDuration = 0.0;
-		$this->trxWriteAdjQueryCount = 0;
-		$this->trxWriteCallers = [];
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
@@ -4989,7 +4916,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->getDomainID(),
 				$oldTrxId,
 				$writeTime,
-				$this->trxWriteAffectedRows
+				$this->transactionManager->getTrxWriteAffectedRows()
 			);
 		}
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
@@ -5046,14 +4973,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
 		// Estimate the RTT via a query now that trxStatus is OK
-		$writeTime = $this->pingAndCalculateLastTrxApplyTime();
+		$rtt = null;
+		$this->ping( $rtt );
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
 				$oldTrxId,
-				$writeTime,
-				$this->trxWriteAffectedRows
+				$this->transactionManager->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY, $rtt ),
+				$this->transactionManager->getTrxWriteAffectedRows()
 			);
 		}
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
