@@ -219,6 +219,9 @@ class SearchHandler extends Handler {
 			} else {
 				$title = $response->getSuggestedTitle();
 			}
+			if ( !$title->canExist() ) {
+				continue;
+			}
 			$pageObj = $this->buildSinglePage( $title, $response );
 			if ( $pageObj ) {
 				// A redirect page's suggestion and redirect field should always come from the redirect target
