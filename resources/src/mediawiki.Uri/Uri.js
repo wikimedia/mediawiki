@@ -154,7 +154,6 @@
 					return uri;
 				}
 				href = hrefCur;
-				// eslint-disable-next-line no-use-before-define
 				uri = new Uri( href );
 				return uri;
 			};

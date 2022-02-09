@@ -48,7 +48,6 @@ module.exports = {
 			delete clearHandles[ visibleId ];
 			if ( VISIBILITY_CHANGE ) {
 				// Circular reference is intentional, chain starts after last definition.
-				// eslint-disable-next-line no-use-before-define
 				doc.removeEventListener( VISIBILITY_CHANGE, visibilityCheck, false );
 			}
 		}

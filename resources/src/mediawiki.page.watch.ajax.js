@@ -228,7 +228,6 @@
 			$pageWatchLinks = $pageWatchLinks.filter( ':not( #bodyContent *, #content * )' );
 		}
 		if ( $pageWatchLinks.length ) {
-			// eslint-disable-next-line no-use-before-define
 			watchstar( $pageWatchLinks, pageTitle );
 		}
 	}
