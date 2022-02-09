@@ -1338,8 +1338,10 @@ class Article implements Page {
 			}
 
 			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
-				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
+				$outputPage->addHtml( Html::warningBox(
+					$outputPage->msg( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) )->parse(),
+					'mw-userpage-userdoesnotexist'
+				) );
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&

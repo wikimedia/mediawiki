@@ -2757,8 +2757,10 @@ class EditPage implements IEditObject {
 			}
 
 			if ( !$userExists && !$ip ) { # User does not exist
-				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
-					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
+				$out->addHtml( Html::warningBox(
+					$out->msg( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) )->parse(),
+					'mw-userpage-userdoesnotexist'
+				) );
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
