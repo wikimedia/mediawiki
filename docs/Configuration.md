@@ -5,16 +5,16 @@ This is a list of configuration variables that can be set in LocalSettings.php.
 
 [TOC]
 
-\section ConfigRegistry
+# ConfigRegistry {#ConfigRegistry}
 Registry of factory functions to create config objects:
 The 'main' key must be set, and the value should be a valid
 callable.
 @since 1.23
 
-\section Sitename
+# Sitename {#Sitename}
 Name of the site. It must be changed in LocalSettings.php
 
-\section Server
+# Server {#Server}
 URL of the server.
 
 **Example:**
@@ -29,7 +29,7 @@ If you want to use protocol-relative URLs on your wiki, set this to a
 protocol-relative URL like '//example.com' and set $wgCanonicalServer
 to a fully qualified URL.
 
-\section CanonicalServer
+# CanonicalServer {#CanonicalServer}
 Canonical URL of the server, to use in IRC feeds and notification e-mails.
 
 Must be fully qualified, even if $wgServer is protocol-relative.
@@ -37,17 +37,17 @@ Must be fully qualified, even if $wgServer is protocol-relative.
 Defaults to $wgServer, expanded to a fully qualified http:// URL if needed.
 @since 1.18
 
-\section ServerName
+# ServerName {#ServerName}
 Server name. This is automatically computed by parsing the bare
 hostname out of $wgCanonicalServer. It should not be customized.
 @since 1.24
 
-\section AssumeProxiesUseDefaultProtocolPorts
+# AssumeProxiesUseDefaultProtocolPorts {#AssumeProxiesUseDefaultProtocolPorts}
 When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
 the wiki on the standard ports (443 for https and 80 for http).
 @since 1.26
 
-\section HttpsPort
+# HttpsPort {#HttpsPort}
 For installations where the canonical server is HTTP but HTTPS is optionally
 supported, you can specify a non-standard HTTPS port here. $wgServer should
 be a protocol-relative URL.
@@ -56,7 +56,7 @@ If HTTPS is always used, just specify the port number in $wgServer.
 @see https://phabricator.wikimedia.org/T67184
 @since 1.24
 
-\section ForceHTTPS
+# ForceHTTPS {#ForceHTTPS}
 If this is true, when an insecure HTTP request is received, always redirect
 to HTTPS. This overrides and disables the preferhttps user preference, and it
 overrides $wgSecureLogin.
@@ -72,7 +72,7 @@ In addition to setting this to true, for optimal security, the web server
 should also be configured to send Strict-Transport-Security response headers.
 @since 1.35
 
-\section ScriptPath
+# ScriptPath {#ScriptPath}
 The path we should point to.
 
 It might be a virtual path in case with use apache mod_rewrite for example.
@@ -82,7 +82,7 @@ This *needs* to be set correctly.
 Other paths will be set to defaults based on it unless they are directly
 set in LocalSettings.php
 
-\section UsePathInfo
+# UsePathInfo {#UsePathInfo}
 Whether to support URLs like index.php/Page_title These often break when PHP
 is set up in CGI mode. PATH_INFO *may* be correct if cgi.fix_pathinfo is set,
 but then again it may not; lighttpd converts incoming path data to lowercase
@@ -99,65 +99,65 @@ you have customized it, having this incorrectly set to true can cause
 redirect loops when "pretty URLs" are used.
 @since 1.2.1
 
-\section Script
+# Script {#Script}
 The URL path to index.php.
 
 Defaults to "{$wgScriptPath}/index.php".
 
-\section LoadScript
+# LoadScript {#LoadScript}
 The URL path to load.php.
 
 Defaults to "{$wgScriptPath}/load.php".
 @since 1.17
 
-\section RestPath
+# RestPath {#RestPath}
 The URL path to the REST API
 Defaults to "{$wgScriptPath}/rest.php"
 @since 1.34
 
-\section StylePath
+# StylePath {#StylePath}
 The URL path of the skins directory.
 
 Defaults to "{$wgResourceBasePath}/skins".
 @since 1.3
 
-\section LocalStylePath
+# LocalStylePath {#LocalStylePath}
 The URL path of the skins directory. Should not point to an external domain.
 
 Defaults to "{$wgScriptPath}/skins".
 @since 1.17
 
-\section ExtensionAssetsPath
+# ExtensionAssetsPath {#ExtensionAssetsPath}
 The URL path of the extensions directory.
 
 Defaults to "{$wgResourceBasePath}/extensions".
 @since 1.16
 
-\section ExtensionDirectory
+# ExtensionDirectory {#ExtensionDirectory}
 Extensions directory.
 @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
 @note this configuration variable is used to locate extensions while loading settings.
 @since 1.25
 
-\section StyleDirectory
+# StyleDirectory {#StyleDirectory}
 Skins directory.
 @note Set to "{$IP}/skins" by Setup.php before loading local settings.
 @note this configuration variable is used to locate skins while loading settings.
 @since 1.3
 
-\section ArticlePath
+# ArticlePath {#ArticlePath}
 The URL path for primary article page views. This path should contain $1,
 which is replaced by the article title.
 
 Defaults to "{$wgScript}/$1" or "{$wgScript}?title=$1",
 depending on $wgUsePathInfo.
 
-\section UploadPath
+# UploadPath {#UploadPath}
 The URL path for the images directory.
 
 Defaults to "{$wgScriptPath}/images".
 
-\section ImgAuthPath
+# ImgAuthPath {#ImgAuthPath}
 The base path for img_auth.php. This is used to interpret the request URL
 for requests to img_auth.php that do not match the base upload path. If
 false, "{$wgScriptPath}/img_auth.php" is used.
@@ -168,20 +168,20 @@ This variable is used in case img_auth.php is accessed via a different path
 than $wgUploadPath.
 @since 1.35
 
-\section ThumbPath
+# ThumbPath {#ThumbPath}
 The base path for thumb_handler.php. This is used to interpret the request URL
 for requests to thumb_handler.php that do not match the base upload path.
 @since 1.36
 
-\section UploadDirectory
+# UploadDirectory {#UploadDirectory}
 The filesystem path of the images directory. Defaults to "{$IP}/images".
 
-\section FileCacheDirectory
+# FileCacheDirectory {#FileCacheDirectory}
 Directory where the cached page will be saved.
 
 Defaults to "{$wgUploadDirectory}/cache".
 
-\section Logo
+# Logo {#Logo}
 The URL path of the wiki logo. The logo size should be 135x135 pixels.
 
 Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
@@ -189,7 +189,7 @@ Developers should retrieve this logo (and other variants) using
   the static function ResourceLoaderSkinModule::getAvailableLogos
 Ignored if $wgLogos is set.
 
-\section Logos
+# Logos {#Logos}
 Specification for different versions of the wiki logo.
 
 This is an array which should have the following k/v pairs:
@@ -237,7 +237,7 @@ Defaults to [ "1x" => $wgLogo ], or [ "1x" => "$wgResourceBasePath/resources/ass
 if $wgLogo is not set.
 @since 1.35
 
-\section LogoHD
+# LogoHD {#LogoHD}
 Array with URL paths to HD versions of the wiki logo. The scaled logo size
 should be under 135x155 pixels.
 
@@ -268,17 +268,17 @@ $wgLogoHD = [
 the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used
 instead.
 
-\section Favicon
+# Favicon {#Favicon}
 The URL path of the shortcut icon.
 @since 1.6
 
-\section AppleTouchIcon
+# AppleTouchIcon {#AppleTouchIcon}
 The URL path of the icon for iPhone and iPod Touch web app bookmarks.
 
 Defaults to no icon.
 @since 1.12
 
-\section ReferrerPolicy
+# ReferrerPolicy {#ReferrerPolicy}
 Value for the referrer policy meta tag.
 
 One or more of the values defined in the Referrer Policy specification:
@@ -295,7 +295,7 @@ will be the default and the others used as fallbacks for browsers which do not
 understand it).
 @since 1.25
 
-\section TmpDirectory
+# TmpDirectory {#TmpDirectory}
 The local filesystem path to a temporary directory. This must not be web accessible.
 
 When this setting is set to false, its value will automatically be decided
@@ -315,12 +315,12 @@ computation by another MediaWiki instance.
 @see \wfTempDir()
 @note Default changed to false in MediaWiki 1.20.
 
-\section UploadBaseUrl
+# UploadBaseUrl {#UploadBaseUrl}
 If set, this URL is added to the start of $wgUploadPath to form a complete
 upload URL.
 @since 1.4
 
-\section UploadStashScalerBaseUrl
+# UploadStashScalerBaseUrl {#UploadStashScalerBaseUrl}
 To enable remote on-demand scaling, set this to the thumbnail base URL.
 
 Full thumbnail URL will be like $wgUploadStashScalerBaseUrl/e/e6/Foo.jpg/123px-Foo.jpg
@@ -331,7 +331,7 @@ If $wgUploadStashScalerBaseUrl and thumbProxyUrl are both false, thumbs are
 rendered locally as needed.
 @since 1.17
 
-\section ActionPaths
+# ActionPaths {#ActionPaths}
 To set 'pretty' URL paths for actions other than
 plain page views, add to this array.
 
@@ -344,12 +344,12 @@ Set pretty URL for the edit action:
 There must be an appropriate script or rewrite rule in place to handle these URLs.
 @since 1.5
 
-\section MainPageIsDomainRoot
+# MainPageIsDomainRoot {#MainPageIsDomainRoot}
 Option to whether serve the main page as the domain root
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section EnableUploads
+# EnableUploads {#EnableUploads}
 Allow users to upload files.
 
 Use $wgLocalFileRepo to control how and where uploads are stored.
@@ -357,10 +357,10 @@ Disabled by default as for security reasons.
 See <https://www.mediawiki.org/wiki/Manual:Configuring_file_uploads>.
 @since 1.5
 
-\section UploadStashMaxAge
+# UploadStashMaxAge {#UploadStashMaxAge}
 The maximum age of temporary (incomplete) uploaded files
 
-\section EnableAsyncUploads
+# EnableAsyncUploads {#EnableAsyncUploads}
 Enable deferred upload tasks that use the job queue.
 
 Only enable this if job runners are set up for both the
@@ -368,25 +368,25 @@ Only enable this if job runners are set up for both the
 @note If you use suhosin, this setting is incompatible with
 suhosin.session.encrypt.
 
-\section UploadMaintenance
+# UploadMaintenance {#UploadMaintenance}
 To disable file delete/restore temporarily
 
-\section IllegalFileChars
+# IllegalFileChars {#IllegalFileChars}
 Additional characters that are not allowed in filenames. They are replaced with '-' when
 uploading. Like $wgLegalTitleChars, this is a regexp character class.
 
 Slashes and backslashes are disallowed regardless of this setting, but included here for
 completeness.
 
-\section DeletedDirectory
+# DeletedDirectory {#DeletedDirectory}
 What directory to place deleted uploads in.
 
 Defaults to "{$wgUploadDirectory}/deleted".
 
-\section ImgAuthDetails
+# ImgAuthDetails {#ImgAuthDetails}
 Set this to true if you use img_auth and want the user to see details on why access failed.
 
-\section ImgAuthUrlPathMap
+# ImgAuthUrlPathMap {#ImgAuthUrlPathMap}
 Map of relative URL directories to match to internal mwstore:// base storage paths.
 
 For img_auth.php requests, everything after "img_auth.php/" is checked to see
@@ -400,7 +400,7 @@ The above maps ".../img_auth.php/timeline/X" to "mwstore://local-fs/timeline-ren
 The name "local-fs" should correspond by name to an entry in $wgFileBackends.
 @see $wgFileBackends
 
-\section LocalFileRepo
+# LocalFileRepo {#LocalFileRepo}
 File repository structures
 
 $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepos is
@@ -531,7 +531,7 @@ Otherwise, you will only have access to local media files.
 @see \FileRepo::__construct for the default options.
 @see Setup.php for an example usage and default initialization.
 
-\section ForeignFileRepos
+# ForeignFileRepos {#ForeignFileRepos}
 Enable the use of files from one or more other wikis.
 
 If you operate multiple wikis, you can declare a shared upload path here.
@@ -543,7 +543,7 @@ is found in the local repository (e.g. via `[[File:..]]` syntax).
 @since 1.11
 @see $wgLocalFileRepo
 
-\section UseInstantCommons
+# UseInstantCommons {#UseInstantCommons}
 Use Wikimedia Commons as a foreign file repository.
 
 This is a shortcut for adding an entry to $wgForeignFileRepos
@@ -551,7 +551,7 @@ for https://commons.wikimedia.org, using ForeignAPIRepo with the
 default settings.
 @since 1.16
 
-\section UseSharedUploads
+# UseSharedUploads {#UseSharedUploads}
 Shortcut for adding an entry to $wgForeignFileRepos.
 
 Uses the following variables:
@@ -577,56 +577,56 @@ class, with also the following variables:
 - hasSharedCache: $wgCacheSharedUploads.
 @since 1.3
 
-\section SharedUploadDirectory
+# SharedUploadDirectory {#SharedUploadDirectory}
 Shortcut for the 'directory' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.3
 
-\section SharedUploadPath
+# SharedUploadPath {#SharedUploadPath}
 Shortcut for the 'url' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.3
 
-\section HashedSharedUploadDirectory
+# HashedSharedUploadDirectory {#HashedSharedUploadDirectory}
 Shortcut for the 'hashLevels' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.3
 
-\section RepositoryBaseUrl
+# RepositoryBaseUrl {#RepositoryBaseUrl}
 Shortcut for the 'descBaseUrl' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.5
 
-\section FetchCommonsDescriptions
+# FetchCommonsDescriptions {#FetchCommonsDescriptions}
 Shortcut for the 'fetchDescription' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.5
 
-\section SharedUploadDBname
+# SharedUploadDBname {#SharedUploadDBname}
 Shortcut for the ForeignDBRepo 'dbName' setting in $wgForeignFileRepos.
 
 Set this to false if the uploads do not come from a wiki.
 Only used if $wgUseSharedUploads is enabled.
 @since 1.4
 
-\section SharedUploadDBprefix
+# SharedUploadDBprefix {#SharedUploadDBprefix}
 Shortcut for the ForeignDBRepo 'tablePrefix' setting in $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.5
 
-\section CacheSharedUploads
+# CacheSharedUploads {#CacheSharedUploads}
 Shortcut for the ForeignDBRepo 'hasSharedCache' setting in $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.5
 
-\section ForeignUploadTargets
+# ForeignUploadTargets {#ForeignUploadTargets}
 Array of foreign file repo names (set in $wgForeignFileRepos above) that
 are allowable upload targets. These wikis must have some method of
 authentication (i.e. CentralAuth), and be CORS-enabled for this wiki.
@@ -636,7 +636,7 @@ The string 'local' signifies the default local file repository.
 Example:
 $wgForeignUploadTargets = [ 'shared' ];
 
-\section UploadDialog
+# UploadDialog {#UploadDialog}
 Configuration for file uploads using the embeddable upload dialog
 (https://www.mediawiki.org/wiki/Upload_dialog).
 
@@ -645,7 +645,7 @@ using the action=query&meta=siteinfo API).
 
 See below for documentation of each property. None of the properties may be omitted.
 
-\section FileBackends
+# FileBackends {#FileBackends}
 File backend structure configuration.
 
 This is an array of file backend configuration arrays.
@@ -681,7 +681,7 @@ different wikis in different directories and sometimes needs to access data from
 a foreign wiki's directory in order to render a page on given wiki. The extension
 would need a fully qualified backend that is defined on all wikis in the wiki farm.
 
-\section LockManagers
+# LockManagers {#LockManagers}
 Array of configuration arrays for each lock manager.
 
 Each backend configuration has the following parameters:
@@ -692,7 +692,7 @@ See LockManager::__construct() for more details.
 Additional parameters are specific to the lock manager class used.
 These settings should be global to all wikis.
 
-\section ShowEXIF
+# ShowEXIF {#ShowEXIF}
 Show Exif data, on by default if available.
 
 Requires PHP's Exif extension: https://www.php.net/manual/en/ref.exif.php
@@ -705,36 +705,36 @@ extensions" section of php.ini:
 extension=extensions/php_exif.dll
 ```
 
-\section UpdateCompatibleMetadata
+# UpdateCompatibleMetadata {#UpdateCompatibleMetadata}
 Shortcut for the 'updateCompatibleMetadata' setting of $wgLocalFileRepo.
 
-\section AllowCopyUploads
+# AllowCopyUploads {#AllowCopyUploads}
 Allow for upload to be copied from an URL.
 
 The timeout for copy uploads is set by $wgCopyUploadTimeout.
 You have to assign the user right 'upload_by_url' to a user group, to use this.
 
-\section CopyUploadsDomains
+# CopyUploadsDomains {#CopyUploadsDomains}
 A list of domains copy uploads can come from
 @since 1.20
 
-\section CopyUploadsFromSpecialUpload
+# CopyUploadsFromSpecialUpload {#CopyUploadsFromSpecialUpload}
 Enable copy uploads from Special:Upload. $wgAllowCopyUploads must also be
 true. If $wgAllowCopyUploads is true, but this is false, you will only be
 able to perform copy uploads from the API or extensions (e.g. UploadWizard).
 
-\section CopyUploadProxy
+# CopyUploadProxy {#CopyUploadProxy}
 Proxy to use for copy upload requests.
 @since 1.20
 
-\section CopyUploadTimeout
+# CopyUploadTimeout {#CopyUploadTimeout}
 Different timeout for upload by url
 This could be useful since when fetching large files, you may want a
 timeout longer than the default $wgHTTPTimeout. False means fallback
 to default.
 @since 1.22
 
-\section MaxUploadSize
+# MaxUploadSize {#MaxUploadSize}
 Max size for uploads, in bytes.
 
 If not set to an array, applies to all uploads. If set to an array, per upload
@@ -754,7 +754,7 @@ $wgMaxUploadSize = [
 ```
 Default: 100 MiB.
 
-\section MinUploadChunkSize
+# MinUploadChunkSize {#MinUploadChunkSize}
 Minimum upload chunk size, in bytes.
 
 When using chunked upload, non-final chunks smaller than this will be rejected.
@@ -767,7 +767,7 @@ Default: 1 KiB.
 @since 1.26
 @see \ApiUpload::getMinUploadChunkSize
 
-\section UploadNavigationUrl
+# UploadNavigationUrl {#UploadNavigationUrl}
 Point the upload navigation link to an external URL
 Useful if you want to use a shared repository by default
 without disabling local uploads (use $wgEnableUploads = false for that).
@@ -778,12 +778,12 @@ without disabling local uploads (use $wgEnableUploads = false for that).
 $wgUploadNavigationUrl = 'https://commons.wikimedia.org/wiki/Special:Upload';
 ```
 
-\section UploadMissingFileUrl
+# UploadMissingFileUrl {#UploadMissingFileUrl}
 Point the upload link for missing files to an external URL, as with
 $wgUploadNavigationUrl. The URL will get "(?|&)wpDestFile=<filename>"
 appended to it as appropriate.
 
-\section ThumbnailScriptPath
+# ThumbnailScriptPath {#ThumbnailScriptPath}
 Give a path here to use thumb.php for thumbnail generation on client
 request, instead of generating them on render and outputting a static URL.
 
@@ -796,59 +796,59 @@ access to the thumbnail path.
 $wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
 ```
 
-\section SharedThumbnailScriptPath
+# SharedThumbnailScriptPath {#SharedThumbnailScriptPath}
 Shortcut for the 'thumbScriptUrl' setting of $wgForeignFileRepos.
 
 Only used if $wgUseSharedUploads is enabled.
 @since 1.3
 
-\section HashedUploadDirectory
+# HashedUploadDirectory {#HashedUploadDirectory}
 Shortcut for setting `hashLevels=2` in $wgLocalFileRepo.
 @note Only used if $wgLocalFileRepo is not set.
 
-\section FileExtensions
+# FileExtensions {#FileExtensions}
 This is the list of preferred extensions for uploading files. Uploading files
 with extensions not in this list will trigger a warning.
 @warning If you add any OpenOffice or Microsoft Office file formats here,
 such as odt or doc, and untrusted users are allowed to upload files, then
 your wiki will be vulnerable to cross-site request forgery (CSRF).
 
-\section ProhibitedFileExtensions
+# ProhibitedFileExtensions {#ProhibitedFileExtensions}
 Files with these extensions will never be allowed as uploads.
 
 An array of file extensions to prevent being uploaded. You should
 append to this array if you want to prevent additional file extensions.
 @since 1.37; previously $wgFileBlacklist
 
-\section MimeTypeExclusions
+# MimeTypeExclusions {#MimeTypeExclusions}
 Files with these MIME types will never be allowed as uploads
 if $wgVerifyMimeType is enabled.
 @since 1.37; previously $wgMimeTypeBlacklist
 
-\section AllowJavaUploads
+# AllowJavaUploads {#AllowJavaUploads}
 Allow Java archive uploads.
 
 This is not recommended for public wikis since a maliciously-constructed
 applet running on the same domain as the wiki can steal the user's cookies.
 
-\section CheckFileExtensions
+# CheckFileExtensions {#CheckFileExtensions}
 This is a flag to determine whether or not to check file extensions on upload.
 @warning Setting this to false is insecure for public wikis.
 
-\section StrictFileExtensions
+# StrictFileExtensions {#StrictFileExtensions}
 If this is turned off, users may override the warning for files not covered
 by $wgFileExtensions.
 @warning Setting this to false is insecure for public wikis.
 
-\section DisableUploadScriptChecks
+# DisableUploadScriptChecks {#DisableUploadScriptChecks}
 Setting this to true will disable the upload system's checks for HTML/JavaScript.
 @warning THIS IS VERY DANGEROUS on a publicly editable site, so USE
 $wgGroupPermissions TO RESTRICT UPLOADING to only those that you trust
 
-\section UploadSizeWarning
+# UploadSizeWarning {#UploadSizeWarning}
 Warn if uploaded files are larger than this (in bytes), or false to disable
 
-\section TrustedMediaFormats
+# TrustedMediaFormats {#TrustedMediaFormats}
 list of trusted media-types and MIME types.
 
 Use the MEDIATYPE_xxx constants to represent media types.
@@ -859,7 +859,7 @@ displayed on the images description page. It would also be possible
 to use this for further restrictions, like disabling direct
 [[media:...]] links for non-trusted formats.
 
-\section MediaHandlers
+# MediaHandlers {#MediaHandlers}
 Plugins for media file type handling.
 
 Each entry in the array maps a MIME type to a class name
@@ -867,21 +867,21 @@ Each entry in the array maps a MIME type to a class name
 Core media handlers are listed in MediaHandlerFactory,
 and extensions should use extension.json.
 
-\section NativeImageLazyLoading
+# NativeImageLazyLoading {#NativeImageLazyLoading}
 Toggles native image lazy loading, via the "loading" attribute.
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section ParserTestMediaHandlers
+# ParserTestMediaHandlers {#ParserTestMediaHandlers}
 Media handler overrides for parser tests (they don't need to generate actual
 thumbnails, so a mock will do)
 
-\section UseImageResize
+# UseImageResize {#UseImageResize}
 Whether to enable server-side image thumbnailing. If false, images will
 always be sent to the client in full resolution, with appropriate width= and
 height= attributes on the <img> tag for the client to do its own scaling.
 
-\section UseImageMagick
+# UseImageMagick {#UseImageMagick}
 Resizing can be done using PHP's internal image libraries or using
 ImageMagick or another third-party converter, e.g. GraphicMagick.
 
@@ -890,24 +890,24 @@ GIF, JPG, XBM and WBMP.
 
 Use Image Magick instead of PHP builtin functions.
 
-\section ImageMagickConvertCommand
+# ImageMagickConvertCommand {#ImageMagickConvertCommand}
 The convert command shipped with ImageMagick
 
-\section MaxInterlacingAreas
+# MaxInterlacingAreas {#MaxInterlacingAreas}
 Array of max pixel areas for interlacing per MIME type
 @since 1.27
 
-\section SharpenParameter
+# SharpenParameter {#SharpenParameter}
 Sharpening parameter to ImageMagick
 
-\section SharpenReductionThreshold
+# SharpenReductionThreshold {#SharpenReductionThreshold}
 Reduction in linear dimensions below which sharpening will be enabled
 
-\section ImageMagickTempDir
+# ImageMagickTempDir {#ImageMagickTempDir}
 Temporary directory used for ImageMagick. The directory must exist. Leave
 this set to false to let ImageMagick decide for itself.
 
-\section CustomConvertCommand
+# CustomConvertCommand {#CustomConvertCommand}
 Use another resizing converter, e.g. GraphicMagick
 %s will be replaced with the source path, %d with the destination
 %w and %h will be replaced with the width and height.
@@ -919,11 +919,11 @@ $wgCustomConvertCommand = "gm convert %s -resize %wx%h %d"
 ```
 Leave as false to skip this.
 
-\section JpegTran
+# JpegTran {#JpegTran}
 used for lossless jpeg rotation
 @since 1.21
 
-\section JpegPixelFormat
+# JpegPixelFormat {#JpegPixelFormat}
 At default setting of 'yuv420', JPEG thumbnails will use 4:2:0 chroma
 subsampling to reduce file size, at the cost of possible color fringing
 at sharp edges.
@@ -941,21 +941,21 @@ others may default to 4:2:0 or 4:4:4 or maintaining the source file's
 sampling in the thumbnail.
 @since 1.27
 
-\section JpegQuality
+# JpegQuality {#JpegQuality}
 When scaling a JPEG thumbnail, this is the quality we request
 from the backend. It should be an integer between 1 and 100,
 with 100 indicating 100% quality.
 @since 1.32
 
-\section Exiv2Command
+# Exiv2Command {#Exiv2Command}
 Some tests and extensions use exiv2 to manipulate the Exif metadata in some
 image formats.
 
-\section Exiftool
+# Exiftool {#Exiftool}
 Path to exiftool binary. Used for lossless ICC profile swapping.
 @since 1.26
 
-\section SVGConverters
+# SVGConverters {#SVGConverters}
 Scalable Vector Graphics (SVG) may be uploaded as images.
 
 Since SVG support is not yet standard in browsers, it is
@@ -965,21 +965,21 @@ An external program is required to perform this conversion.
 If set to an array, the first item is a PHP callable and any further items
 are passed as parameters after $srcPath, $dstPath, $width, $height
 
-\section SVGConverter
+# SVGConverter {#SVGConverter}
 Pick a converter defined in $wgSVGConverters
 
-\section SVGConverterPath
+# SVGConverterPath {#SVGConverterPath}
 If not in the executable PATH, specify the SVG converter path.
 
-\section SVGMaxSize
+# SVGMaxSize {#SVGMaxSize}
 Don't scale a SVG larger than this
 
-\section SVGMetadataCutoff
+# SVGMetadataCutoff {#SVGMetadataCutoff}
 Don't read SVG metadata beyond this point.
 
 Default is 1024*256 bytes
 
-\section MediaInTargetLanguage
+# MediaInTargetLanguage {#MediaInTargetLanguage}
 Whether thumbnails should be generated in target language (usually, same as
 page language), if available.
 
@@ -987,7 +987,7 @@ Currently, applies only to SVG images that use the systemLanguage attribute
 to specify text language.
 @since 1.33
 
-\section MaxImageArea
+# MaxImageArea {#MaxImageArea}
 The maximum number of pixels a source image can have if it is to be scaled
 down by a scaler that requires the full source image to be decompressed
 and stored in decompressed form, before the thumbnail is generated.
@@ -1004,14 +1004,14 @@ using the BitmapHandlerCheckImageArea hook.
 The default is 50 MB if decompressed to RGBA form, which corresponds to
 12.5 million pixels or 3500x3500.
 
-\section MaxAnimatedGifArea
+# MaxAnimatedGifArea {#MaxAnimatedGifArea}
 Force thumbnailing of animated GIFs above this size to a single
 frame instead of an animated thumbnail.  As of MW 1.17 this limit
 is checked against the total size of all frames in the animation.
 
 It probably makes sense to keep this equal to $wgMaxImageArea.
 
-\section TiffThumbnailType
+# TiffThumbnailType {#TiffThumbnailType}
 Browsers don't support TIFF inline generally...
 For inline display, we need to convert to PNG or JPEG.
 
@@ -1026,21 +1026,21 @@ $wgTiffThumbnailType = [ 'png', 'image/png' ];
 $wgTiffThumbnailType = [ 'jpg', 'image/jpeg' ];
 ```
 
-\section ThumbnailEpoch
+# ThumbnailEpoch {#ThumbnailEpoch}
 If rendered thumbnail files are older than this timestamp, they
 will be rerendered on demand as if the file didn't already exist.
 
 Update if there is some need to force thumbs and SVG rasterizations
 to rerender, such as fixes to rendering bugs.
 
-\section AttemptFailureEpoch
+# AttemptFailureEpoch {#AttemptFailureEpoch}
 Certain operations are avoided if there were too many recent failures,
 for example, thumbnail generation. Bump this value to invalidate all
 memory of failed operations and thus allow further attempts to resume.
 
 This is useful when a cause for the failures has been found and fixed.
 
-\section IgnoreImageErrors
+# IgnoreImageErrors {#IgnoreImageErrors}
 If set, inline scaled images will still produce "<img>" tags ready for
 output instead of showing an error message.
 
@@ -1051,7 +1051,7 @@ On the other hand, it may obscure error conditions from debugging.
 Enable the debug log or the 'thumbnail' log group to make sure errors
 are logged to a file for review.
 
-\section GenerateThumbnailOnParse
+# GenerateThumbnailOnParse {#GenerateThumbnailOnParse}
 Render thumbnails while parsing wikitext.
 
 If set to false, then the Parser will output valid thumbnail URLs without
@@ -1070,20 +1070,20 @@ $wgLocalFileRepo['transformVia404'] = true;
 ```
 @since 1.7.0
 
-\section ShowArchiveThumbnails
+# ShowArchiveThumbnails {#ShowArchiveThumbnails}
 Show thumbnails for old images on the image description page
 
-\section EnableAutoRotation
+# EnableAutoRotation {#EnableAutoRotation}
 If set to true, images that contain certain the exif orientation tag will
 be rotated accordingly. If set to null, try to auto-detect whether a scaler
 is available that can rotate.
 
-\section Antivirus
+# Antivirus {#Antivirus}
 Internal name of virus scanner. This serves as a key to the
 $wgAntivirusSetup array. Set this to NULL to disable virus scanning. If not
 null, every file uploaded will be scanned for viruses.
 
-\section AntivirusSetup
+# AntivirusSetup {#AntivirusSetup}
 Configuration for different virus scanners. This an associative array of
 associative arrays. It contains one setup array per known scanner type.
 
@@ -1118,13 +1118,13 @@ function in SpecialUpload.
 output. The relevant part should be matched as group one (\1).
 If not defined or the pattern does not match, the full message is shown to the user.
 
-\section AntivirusRequired
+# AntivirusRequired {#AntivirusRequired}
 Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected.
 
-\section VerifyMimeType
+# VerifyMimeType {#VerifyMimeType}
 Determines if the MIME type of uploaded files should be checked
 
-\section VerifyMimeTypeIE
+# VerifyMimeTypeIE {#VerifyMimeTypeIE}
 Determines whether extra checks for IE type detection should be applied.
 
 This is a conservative check for exactly what IE 6 or so checked for,
@@ -1132,7 +1132,7 @@ and shouldn't trigger on for instance JPEG files containing links in EXIF
 metadata.
 @since 1.34
 
-\section MimeTypeFile
+# MimeTypeFile {#MimeTypeFile}
 Sets the MIME type definition file to use by includes/libs/mime/MimeAnalyzer.php.
 
 When this is set to the path of a mime.types file, MediaWiki will use this
@@ -1142,12 +1142,12 @@ and cannot be overridden. See includes/libs/mime/MimeMapMinimal.php for a
 full list.
 example: $wgMimeTypeFile = '/etc/mime.types';
 
-\section MimeInfoFile
+# MimeInfoFile {#MimeInfoFile}
 Sets the MIME type info file to use by includes/libs/mime/MimeAnalyzer.php.
 
 Set to null to use the minimum set of built-in defaults only.
 
-\section MimeDetectorCommand
+# MimeDetectorCommand {#MimeDetectorCommand}
 Sets an external MIME detector program. The command must print only
 the MIME type to standard output.
 
@@ -1160,17 +1160,17 @@ If not set or NULL, PHP's mime_content_type function will be used.
 #$wgMimeDetectorCommand = "file -bi"; // use external MIME detector (Linux)
 ```
 
-\section TrivialMimeDetection
+# TrivialMimeDetection {#TrivialMimeDetection}
 Switch for trivial MIME detection. Used by thumb.php to disable all fancy
 things, because only a few types of images are needed and file extensions
 can be trusted.
 
-\section XMLMimeTypes
+# XMLMimeTypes {#XMLMimeTypes}
 Additional XML types we can allow via MIME-detection.
 
 array = [ 'rootElement' => 'associatedMimeType' ]
 
-\section ImageLimits
+# ImageLimits {#ImageLimits}
 Limit images on image description pages to a user-selectable limit.
 
 In order to reduce disk usage, limits can only be selected from this list.
@@ -1180,12 +1180,12 @@ change it if you alter the array (see T10858).
 
 This list is also used by ImagePage for alternate size links.
 
-\section ThumbLimits
+# ThumbLimits {#ThumbLimits}
 Adjust thumbnails on image pages according to a user setting. In order to
 reduce disk usage, the values can only be selected from a list. This is the
 list of settings the user can choose from:
 
-\section ThumbnailBuckets
+# ThumbnailBuckets {#ThumbnailBuckets}
 When defined, is an array of image widths used as buckets for thumbnail generation.
 
 The goal is to save resources by generating thumbnails based on reference buckets instead of
@@ -1195,7 +1195,7 @@ The buckets generation is chained, with each bucket generated based on the above
 when possible. File handlers have to opt into using that feature. For now only BitmapHandler
 supports it.
 
-\section ThumbnailMinimumBucketDistance
+# ThumbnailMinimumBucketDistance {#ThumbnailMinimumBucketDistance}
 When using thumbnail buckets as defined above, this sets the minimum distance to the bucket
 above the requested size. The distance represents how many extra pixels of width the bucket
 needs in order to be used as the reference for a given thumbnail. For example, with the
@@ -1210,7 +1210,7 @@ $wgThumbnailMinimumBucketDistance = 50;
 If we want to render a thumbnail of width 220px, the 512px bucket will be used,
 because 220 + 50 = 270 and the closest bucket bigger than 270px is 512.
 
-\section UploadThumbnailRenderMap
+# UploadThumbnailRenderMap {#UploadThumbnailRenderMap}
 When defined, is an array of thumbnail widths to be rendered at upload time. The idea is to
 prerender common thumbnail sizes, in order to avoid the necessity to render them on demand, which
 has a performance impact for the first client to view a certain size.
@@ -1218,7 +1218,7 @@ has a performance impact for the first client to view a certain size.
 This obviously means that more disk space is needed per upload upfront.
 @since 1.25
 
-\section UploadThumbnailRenderMethod
+# UploadThumbnailRenderMethod {#UploadThumbnailRenderMethod}
 The method through which the thumbnails will be prerendered for the entries in
 $wgUploadThumbnailRenderMap
 
@@ -1228,21 +1228,21 @@ This method only works if thumbnails are configured to be rendered by a 404 hand
 option uses the job queue to render the thumbnail.
 @since 1.25
 
-\section UploadThumbnailRenderHttpCustomHost
+# UploadThumbnailRenderHttpCustomHost {#UploadThumbnailRenderHttpCustomHost}
 When using the "http" $wgUploadThumbnailRenderMethod, lets one specify a custom Host HTTP header.
 @since 1.25
 
-\section UploadThumbnailRenderHttpCustomDomain
+# UploadThumbnailRenderHttpCustomDomain {#UploadThumbnailRenderHttpCustomDomain}
 When using the "http" $wgUploadThumbnailRenderMethod, lets one specify a custom domain to send
 the HTTP request to.
 @since 1.25
 
-\section UseTinyRGBForJPGThumbnails
+# UseTinyRGBForJPGThumbnails {#UseTinyRGBForJPGThumbnails}
 When this variable is true and JPGs use the sRGB ICC profile, swaps it for the more lightweight
 (and free) TinyRGB profile when generating thumbnails.
 @since 1.26
 
-\section GalleryOptions
+# GalleryOptions {#GalleryOptions}
 Parameters for the "<gallery>" tag.
 
 Fields are:
@@ -1257,56 +1257,56 @@ Fields are:
 - showDimensions: Show the dimensions (width x height) in categories
 - mode:           Gallery mode
 
-\section ThumbUpright
+# ThumbUpright {#ThumbUpright}
 Adjust width of upright images when parameter 'upright' is used
 This allows a nicer look for upright images without the need to fix the width
 by hardcoded px in wiki sourcecode.
 
-\section DirectoryMode
+# DirectoryMode {#DirectoryMode}
 Default value for chmoding of new directories.
 
-\section ResponsiveImages
+# ResponsiveImages {#ResponsiveImages}
 Generate and use thumbnails suitable for screens with 1.5 and 2.0 pixel densities.
 
 This means a 320x240 use of an image on the wiki will also generate 480x360 and 640x480
 thumbnails, output via the srcset attribute.
 
-\section ImagePreconnect
+# ImagePreconnect {#ImagePreconnect}
 On pages containing images, tell the user agent to pre-connect to hosts from
 $wgForeignFileRepos.  This speeds up rendering, but may create unwanted
 traffic if there are many possible URLs from which images are served.
 @since 1.35
 @warning EXPERIMENTAL!
 
-\section DjvuDump
+# DjvuDump {#DjvuDump}
 Path of the djvudump executable
 Enable this and $wgDjvuRenderer to enable djvu rendering
 example: $wgDjvuDump = 'djvudump';
 
-\section DjvuRenderer
+# DjvuRenderer {#DjvuRenderer}
 Path of the ddjvu DJVU renderer
 Enable this and $wgDjvuDump to enable djvu rendering
 example: $wgDjvuRenderer = 'ddjvu';
 
-\section DjvuTxt
+# DjvuTxt {#DjvuTxt}
 Path of the djvutxt DJVU text extraction utility
 Enable this and $wgDjvuDump to enable text layer extraction from djvu files
 example: $wgDjvuTxt = 'djvutxt';
 
-\section DjvuPostProcessor
+# DjvuPostProcessor {#DjvuPostProcessor}
 Shell command for the DJVU post processor
 Default: pnmtojpeg, since ddjvu generates ppm output
 Set this to false to output the ppm file directly.
 
-\section DjvuOutputExtension
+# DjvuOutputExtension {#DjvuOutputExtension}
 File extension for the DJVU post processor output
 
-\section EmergencyContact
+# EmergencyContact {#EmergencyContact}
 Site admin email address.
 
 Defaults to "wikiadmin@$wgServerName" (in Setup.php).
 
-\section PasswordSender
+# PasswordSender {#PasswordSender}
 Sender email address for e-mail notifications.
 
 The address we use as sender when a user requests a password reminder,
@@ -1314,33 +1314,33 @@ as well as other e-mail notifications.
 
 Defaults to "apache@$wgServerName" (in Setup.php).
 
-\section NoReplyAddress
+# NoReplyAddress {#NoReplyAddress}
 Reply-To address for e-mail notifications.
 
 Defaults to $wgPasswordSender (in Setup.php).
 
-\section EnableEmail
+# EnableEmail {#EnableEmail}
 Set to true to enable the e-mail basic features:
 Password reminders, etc. If sending e-mail on your
 server doesn't work, you might want to disable this.
 
-\section EnableUserEmail
+# EnableUserEmail {#EnableUserEmail}
 Set to true to enable user-to-user e-mail.
 
 This can potentially be abused, as it's hard to track.
 
-\section EnableSpecialMute
+# EnableSpecialMute {#EnableSpecialMute}
 Set to true to enable the Special Mute page. This allows users
 to mute unwanted communications from other users, and is linked
 to from emails originating from Special:Email.
 @since 1.34
 @deprecated 1.34
 
-\section EnableUserEmailMuteList
+# EnableUserEmailMuteList {#EnableUserEmailMuteList}
 Set to true to enable user-to-user e-mail mutelist.
 @since 1.37; previously $wgEnableUserEmailBlacklist
 
-\section UserEmailUseReplyTo
+# UserEmailUseReplyTo {#UserEmailUseReplyTo}
 If true put the sending user's email in a Reply-To header
 instead of From (false). ($wgPasswordSender will be used as From.)
 
@@ -1349,25 +1349,25 @@ which can cause problems with SPF validation and leak recipient addresses
 when bounces are sent to the sender. In addition, DMARC restrictions
 can cause emails to fail to be received when false.
 
-\section PasswordReminderResendTime
+# PasswordReminderResendTime {#PasswordReminderResendTime}
 Minimum time, in hours, which must elapse between password reminder
 emails for a given account. This is to prevent abuse by mail flooding.
 
-\section NewPasswordExpiry
+# NewPasswordExpiry {#NewPasswordExpiry}
 The time, in seconds, when an emailed temporary password expires.
 
-\section UserEmailConfirmationTokenExpiry
+# UserEmailConfirmationTokenExpiry {#UserEmailConfirmationTokenExpiry}
 The time, in seconds, when an email confirmation email expires
 
-\section PasswordExpirationDays
+# PasswordExpirationDays {#PasswordExpirationDays}
 The number of days that a user's password is good for. After this number of days, the
 user will be asked to reset their password. Set to false to disable password expiration.
 
-\section PasswordExpireGrace
+# PasswordExpireGrace {#PasswordExpireGrace}
 If a user's password is expired, the number of seconds when they can still login,
 and cancel their password change, but are sent to the password change form on each login.
 
-\section SMTP
+# SMTP {#SMTP}
 SMTP Mode.
 
 For using a direct (authenticated) SMTP server connection.
@@ -1384,14 +1384,14 @@ $wgSMTP = [
 ];
 ```
 
-\section AdditionalMailParams
+# AdditionalMailParams {#AdditionalMailParams}
 Additional email parameters, will be passed as the last argument to mail() call.
 
-\section AllowHTMLEmail
+# AllowHTMLEmail {#AllowHTMLEmail}
 For parts of the system that have been updated to provide HTML email content, send
 both text and HTML parts as the body of the email
 
-\section EnotifFromEditor
+# EnotifFromEditor {#EnotifFromEditor}
 Allow sending of e-mail notifications with the editor's address as sender.
 
 This setting depends on $wgEnotifRevealEditorAddress also being enabled.
@@ -1400,23 +1400,23 @@ will be sent to other users with their address as "From" instead of "Reply-To".
 
 If disabled, or not opted-in, notifications come from $wgPasswordSender.
 
-\section EmailAuthentication
+# EmailAuthentication {#EmailAuthentication}
 Require email authentication before sending mail to an email address.
 
 This is highly recommended. It prevents MediaWiki from being used as an open
 spam relay.
 
-\section EnotifWatchlist
+# EnotifWatchlist {#EnotifWatchlist}
 Allow users to enable email notification ("enotif") on watchlist changes.
 
-\section EnotifUserTalk
+# EnotifUserTalk {#EnotifUserTalk}
 Allow users to enable email notification ("enotif") when someone edits their
 user talk page.
 
 The owner of the user talk page must also have the 'enotifusertalkpages' user
 preference set to true.
 
-\section EnotifRevealEditorAddress
+# EnotifRevealEditorAddress {#EnotifRevealEditorAddress}
 Allow sending of e-mail notifications with the editor's address in "Reply-To".
 
 Note, enabling this only actually uses it in notification e-mails if the user
@@ -1428,7 +1428,7 @@ To set the address as "From" instead of "Reply-To", also enable $wgEnotifFromEdi
 
 If disabled, or not opted-in, notifications come from $wgPasswordSender.
 
-\section EnotifMinorEdits
+# EnotifMinorEdits {#EnotifMinorEdits}
 Potentially send notification mails on minor edits to pages. This is enabled
 by default.  If this is false, users will never be notified on minor edits.
 
@@ -1441,25 +1441,25 @@ false, they will not receive notifications for minor edits.
 User talk notifications are also affected by $wgEnotifMinorEdits, the above settings,
 $wgEnotifUserTalk, and the preference described there.
 
-\section EnotifImpersonal
+# EnotifImpersonal {#EnotifImpersonal}
 Send a generic mail instead of a personalised mail for each user.  This
 always uses UTC as the time zone, and doesn't include the username.
 
 For pages with many users watching, this can significantly reduce mail load.
 Has no effect when using sendmail rather than SMTP.
 
-\section EnotifMaxRecips
+# EnotifMaxRecips {#EnotifMaxRecips}
 Maximum number of users to mail at once when using impersonal mail. Should
 match the limit on your mail server.
 
-\section EnotifUseRealName
+# EnotifUseRealName {#EnotifUseRealName}
 Use real name instead of username in e-mail "from" field.
 
-\section UsersNotifiedOnAllChanges
+# UsersNotifiedOnAllChanges {#UsersNotifiedOnAllChanges}
 Array of usernames who will be sent a notification email for every change
 which occurs on a wiki. Users will not be notified of their own changes.
 
-\section DBname
+# DBname {#DBname}
 Current wiki database name
 
 Should be alphanumeric, without spaces nor hyphens.
@@ -1467,7 +1467,7 @@ This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDo
 
 This should still be set even if $wgLBFactoryConf is configured.
 
-\section DBmwschema
+# DBmwschema {#DBmwschema}
 Current wiki database schema name
 
 Should be alphanumeric, without spaces nor hyphens.
@@ -1475,7 +1475,7 @@ This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDo
 
 This should still be set even if $wgLBFactoryConf is configured.
 
-\section DBprefix
+# DBprefix {#DBprefix}
 Current wiki database table name prefix
 
 Should be alphanumeric, without spaces nor hyphens, preferably ending in an underscore.
@@ -1483,22 +1483,22 @@ This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDo
 
 This should still be set even if $wgLBFactoryConf is configured.
 
-\section DBserver
+# DBserver {#DBserver}
 Database host name or IP address
 
-\section DBport
+# DBport {#DBport}
 Database port number (for PostgreSQL and Microsoft SQL Server).
 
-\section DBuser
+# DBuser {#DBuser}
 Database username
 
-\section DBpassword
+# DBpassword {#DBpassword}
 Database user's password
 
-\section DBtype
+# DBtype {#DBtype}
 Database type
 
-\section DBssl
+# DBssl {#DBssl}
 Whether to use SSL in DB connection.
 
 This setting is only used if $wgLBFactoryConf['class'] is set to
@@ -1506,7 +1506,7 @@ This setting is only used if $wgLBFactoryConf['class'] is set to
 the DBO_SSL flag must be set in the 'flags' option of the database
 connection to achieve the same functionality.
 
-\section DBcompress
+# DBcompress {#DBcompress}
 Whether to use compression in DB connection.
 
 This setting is only used $wgLBFactoryConf['class'] is set to
@@ -1514,13 +1514,13 @@ This setting is only used $wgLBFactoryConf['class'] is set to
 the DBO_COMPRESS flag must be set in the 'flags' option of the database
 connection to achieve the same functionality.
 
-\section DBadminuser
+# DBadminuser {#DBadminuser}
 Separate username for maintenance tasks. Leave as null to use the default.
 
-\section DBadminpassword
+# DBadminpassword {#DBadminpassword}
 Separate password for maintenance tasks. Leave as null to use the default.
 
-\section SearchType
+# SearchType {#SearchType}
 Search type.
 
 Leave as null to select the default search engine for the
@@ -1531,7 +1531,7 @@ If the canonical name for the search engine doesn't match the class name
 (because it's namespaced for example), you can add a mapping for this in
 SearchMappings in extension.json.
 
-\section SearchTypeAlternatives
+# SearchTypeAlternatives {#SearchTypeAlternatives}
 Alternative search types
 
 Sometimes you want to support multiple search engines for testing. This
@@ -1543,26 +1543,26 @@ If the canonical name for the search engine doesn't match the class name
 (because it's namespaced for example), you can add a mapping for this in
 SearchMappings in extension.json.
 
-\section DBTableOptions
+# DBTableOptions {#DBTableOptions}
 MySQL table options to use during installation or update
 
-\section SQLMode
+# SQLMode {#SQLMode}
 SQL Mode - default is turning off all modes, including strict, if set.
 
 null can be used to skip the setting for performance reasons and assume
 DBA has done his best job.
 String override can be used for some additional fun :-)
 
-\section DBDefaultGroup
+# DBDefaultGroup {#DBDefaultGroup}
 Default group to use when getting database connections.
 
 Will be used as default query group in ILoadBalancer::getConnection.
 @since 1.32
 
-\section SQLiteDataDir
+# SQLiteDataDir {#SQLiteDataDir}
 To override default SQLite data directory ($docroot/../data)
 
-\section SharedDB
+# SharedDB {#SharedDB}
 Shared database for multiple wikis. Commonly used for storing a user table
 for single sign-on. The server for this database must be the same as for the
 main database.
@@ -1586,21 +1586,21 @@ access remote databases. Using LBFactory::getMainLB() allows the shared database
 reside on separate servers to the wiki's own database, with suitable
 configuration of $wgLBFactoryConf.
 
-\section SharedPrefix
+# SharedPrefix {#SharedPrefix}
 
 @see $wgSharedDB
 
-\section SharedTables
+# SharedTables {#SharedTables}
 
 @see $wgSharedDB
 The installer will add 'actor' to this list for all new wikis.
 
-\section SharedSchema
+# SharedSchema {#SharedSchema}
 
 @see $wgSharedDB
 @since 1.23
 
-\section DBservers
+# DBservers {#DBservers}
 Database load balancer
 This is a two-dimensional array, an array of server info structures
 Fields are:
@@ -1653,7 +1653,7 @@ Since the effect of writing to a replica DB is so damaging and difficult to clea
 up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even
 our primaries, and then set read_only=0 on primaries at runtime.
 
-\section LBFactoryConf
+# LBFactoryConf {#LBFactoryConf}
 Load balancer factory configuration
 To set up a multi-primary wiki farm, set the class here to something that
 can return a LoadBalancer with an appropriate primary on a call to getMainLB().
@@ -1664,7 +1664,7 @@ $wgDBserver, etc., so overriding it may cause those globals to be ignored.
 The LBFactoryMulti class is provided for this purpose, please see
 includes/db/LBFactoryMulti.php for configuration information.
 
-\section DataCenterUpdateStickTTL
+# DataCenterUpdateStickTTL {#DataCenterUpdateStickTTL}
 After a state-changing request is done by a client, this determines
 how many seconds that client should keep using the primary datacenter.
 
@@ -1674,10 +1674,10 @@ This must be greater than or equal to
 Wikimedia\Rdbms\ChronologyProtector::POSITION_COOKIE_TTL.
 @since 1.27
 
-\section DBerrorLog
+# DBerrorLog {#DBerrorLog}
 File to log database errors to
 
-\section DBerrorLogTZ
+# DBerrorLogTZ {#DBerrorLogTZ}
 Timezone to use in the error log.
 
 Defaults to the wiki timezone ($wgLocaltimezone).
@@ -1696,26 +1696,26 @@ $wgDBerrorLogTZ = 'CET';
 ```
 @since 1.20
 
-\section LocalDatabases
+# LocalDatabases {#LocalDatabases}
 Other wikis on this site, can be administered from a single developer account.
 
-\section DatabaseReplicaLagWarning
+# DatabaseReplicaLagWarning {#DatabaseReplicaLagWarning}
 If lag is higher than $wgDatabaseReplicaLagWarning, show a warning in some special
 pages (like watchlist). If the lag is higher than $wgDatabaseReplicaLagCritical,
 show a more obvious warning.
 @since 1.36
 
-\section DatabaseReplicaLagCritical
+# DatabaseReplicaLagCritical {#DatabaseReplicaLagCritical}
 @see $wgDatabaseReplicaLagWarning
 @since 1.36
 
-\section MaxExecutionTimeForExpensiveQueries
+# MaxExecutionTimeForExpensiveQueries {#MaxExecutionTimeForExpensiveQueries}
 Max execution time for queries of several expensive special pages such as RecentChanges
 in milliseconds.
 
 @since 1.38
 
-\section MultiContentRevisionSchemaMigrationStage
+# MultiContentRevisionSchemaMigrationStage {#MultiContentRevisionSchemaMigrationStage}
 RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables).
 
 Use the SCHEMA_COMPAT_XXX flags. Supported values:
@@ -1734,7 +1734,7 @@ will result in an InvalidArgumentException.
 @deprecated Since 1.35, the only accepted value is SCHEMA_COMPAT_NEW.
 No longer functions as a setting. Will be removed in 1.36.
 
-\section ActorTableSchemaMigrationStage
+# ActorTableSchemaMigrationStage {#ActorTableSchemaMigrationStage}
 Actor table schema migration stage, for migration from the temporary table
 revision_actor_temp to the revision.rev_actor field.
 
@@ -1752,14 +1752,14 @@ History:
   - 1.37: Re-added with SCHEMA_COMPAT_NEW renamed to SCHEMA_COMPAT_TEMP for
     a new migration which removes temporary tables.
 
-\section ContentHandlers
+# ContentHandlers {#ContentHandlers}
 Plugins for page content model handling.
 
 Each entry in the array maps a model id to a class name or callback
 that creates an instance of the appropriate ContentHandler subclass.
 @since 1.21
 
-\section NamespaceContentModels
+# NamespaceContentModels {#NamespaceContentModels}
 Associative array mapping namespace IDs to the name of the content model pages in that namespace
 should have by default (use the CONTENT_MODEL_XXX constants). If no special content type is
 defined for a given namespace, pages in that namespace will use the CONTENT_MODEL_WIKITEXT
@@ -1768,7 +1768,7 @@ defined for a given namespace, pages in that namespace will use the CONTENT_MODE
 use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
 @since 1.21
 
-\section ContentHandlerTextFallback
+# ContentHandlerTextFallback {#ContentHandlerTextFallback}
 How to react if a plain text version of a non-text Content object is requested using
 ContentHandler::getContentText():
 
@@ -1778,7 +1778,7 @@ ContentHandler::getContentText():
 @since 1.21
 @deprecated since 1.37
 
-\section TextModelsToParse
+# TextModelsToParse {#TextModelsToParse}
 Determines which types of text are parsed as wikitext. This does not imply that these kinds
 of texts are also rendered as wikitext, it only means that links, magic words, etc will have
 the effect on the database they would have on a wikitext page.
@@ -1786,13 +1786,13 @@ the effect on the database they would have on a wikitext page.
 or at least parse only the contents of comments in the scripts.
 @since 1.21
 
-\section CompressRevisions
+# CompressRevisions {#CompressRevisions}
 We can also compress text stored in the 'text' table. If this is set on, new
 revisions will be compressed on page save if zlib support is available. Any
 compressed revisions will be decompressed on load regardless of this setting,
 but will not be readable at all if zlib support is not available.
 
-\section ExternalStores
+# ExternalStores {#ExternalStores}
 List of enabled ExternalStore protocols.
 
 @see ExternalStoreAccess
@@ -1801,7 +1801,7 @@ List of enabled ExternalStore protocols.
 $wgExternalStores = [ "DB" ];
 ```
 
-\section ExternalServers
+# ExternalServers {#ExternalServers}
 Shortcut for setting `$wgLBFactoryConf["externalClusters"]`.
 
 This is only applicable when using the default LBFactory
@@ -1820,7 +1820,7 @@ $wgExternalServers = [
 ];
 ```
 
-\section DefaultExternalStore
+# DefaultExternalStore {#DefaultExternalStore}
 The place to put new text blobs or false to put them in the text table
 of the local wiki database.
 
@@ -1832,18 +1832,18 @@ of the local wiki database.
 $wgDefaultExternalStore = [ 'DB://cluster1', 'DB://cluster2' ];
 ```
 
-\section RevisionCacheExpiry
+# RevisionCacheExpiry {#RevisionCacheExpiry}
 Revision text may be cached in the main WAN cache to reduce load on external
 storage servers and object extraction overhead for frequently-loaded revisions.
 
 Set to 0 to disable, or number of seconds before cache expiry.
 
-\section PageLanguageUseDB
+# PageLanguageUseDB {#PageLanguageUseDB}
 Enable page language feature
 Allows setting page language in database
 @since 1.24
 
-\section DiffEngine
+# DiffEngine {#DiffEngine}
 Specify the difference engine to use.
 
 Supported values:
@@ -1854,10 +1854,10 @@ Supported values:
 The default (null) is to use the first engine that's available.
 @since 1.35
 
-\section ExternalDiffEngine
+# ExternalDiffEngine {#ExternalDiffEngine}
 Name of the external diff engine to use.
 
-\section RequestTimeLimit
+# RequestTimeLimit {#RequestTimeLimit}
 Set a limit on server request wall clock time.
 
 If the Excimer extension is enabled, setting this will cause an exception
@@ -1865,7 +1865,7 @@ to be thrown after the specified number of seconds. If the extension is
 not available, set_time_limit() will be called instead.
 @since 1.36
 
-\section TransactionalTimeLimit
+# TransactionalTimeLimit {#TransactionalTimeLimit}
 The request time limit for "slow" write requests that should not be
 interrupted due to the risk of data corruption.
 
@@ -1873,7 +1873,7 @@ The limit will only be raised. If the pre-existing time limit is larger,
 then this will have no effect.
 @since 1.26
 
-\section CriticalSectionTimeLimit
+# CriticalSectionTimeLimit {#CriticalSectionTimeLimit}
 The maximum time critical sections are allowed to stay open. Critical
 sections are used to defer Excimer request timeouts. If Excimer is available
 and this time limit is exceeded, an exception will be thrown at the next
@@ -1886,32 +1886,32 @@ section exits, so this should be a large number.
 This limit is ignored in command-line mode.
 @since 1.36
 
-\section MiserMode
+# MiserMode {#MiserMode}
 Disable database-intensive features
 
-\section DisableQueryPages
+# DisableQueryPages {#DisableQueryPages}
 Disable all query pages if miser mode is on, not just some
 
-\section QueryCacheLimit
+# QueryCacheLimit {#QueryCacheLimit}
 Number of rows to cache in 'querycache' table when miser mode is on
 
-\section WantedPagesThreshold
+# WantedPagesThreshold {#WantedPagesThreshold}
 Number of links to a page required before it is deemed "wanted"
 
-\section AllowSlowParserFunctions
+# AllowSlowParserFunctions {#AllowSlowParserFunctions}
 Enable slow parser functions
 
-\section AllowSchemaUpdates
+# AllowSchemaUpdates {#AllowSchemaUpdates}
 Allow schema updates
 
-\section MaxArticleSize
+# MaxArticleSize {#MaxArticleSize}
 Maximum article size in kibibytes
 
-\section MemoryLimit
+# MemoryLimit {#MemoryLimit}
 The minimum amount of memory that MediaWiki "needs"; MediaWiki will try to
 raise PHP's memory limit if it's below this amount.
 
-\section PoolCounterConf
+# PoolCounterConf {#PoolCounterConf}
 Configuration for processing pool control, for use in high-traffic wikis.
 
 An implementation is provided in the PoolCounter extension.
@@ -1946,26 +1946,26 @@ $wgPoolCounterConf = [ 'ArticleView' => [
 ] ];
 ```
 
-\section MaxUserDBWriteDuration
+# MaxUserDBWriteDuration {#MaxUserDBWriteDuration}
 Max time (in seconds) a user-generated transaction can spend in writes.
 
 If exceeded, the transaction is rolled back with an error instead of being committed.
 @since 1.27
 
-\section MaxJobDBWriteDuration
+# MaxJobDBWriteDuration {#MaxJobDBWriteDuration}
 Max time (in seconds) a job-generated transaction can spend in writes.
 
 If exceeded, the transaction is rolled back with an error instead of being committed.
 @since 1.30
 
-\section LinkHolderBatchSize
+# LinkHolderBatchSize {#LinkHolderBatchSize}
 LinkHolderArray batch size
 For debugging
 
-\section MaximumMovedPages
+# MaximumMovedPages {#MaximumMovedPages}
 Maximum number of pages to move at once when moving subpages with a page.
 
-\section CacheDirectory
+# CacheDirectory {#CacheDirectory}
 Directory for caching data in the local filesystem. Should not be accessible
 from the web.
 
@@ -1973,7 +1973,7 @@ Note: if multiple wikis share the same localisation cache directory, they
 must all have the same set of extensions. You can set a directory just for
 the localisation cache using $wgLocalisationCacheConf['storeDirectory'].
 
-\section MainCacheType
+# MainCacheType {#MainCacheType}
 Main cache type. This should be a cache with fast access, but it may have
 limited space. By default, it is disabled, since the stock database cache
 is not fast enough to make it worthwhile.
@@ -1989,33 +1989,33 @@ The options are:
                     configuration in $wgObjectCaches.
 @see $wgMessageCacheType, $wgParserCacheType
 
-\section MessageCacheType
+# MessageCacheType {#MessageCacheType}
 The cache type for storing the contents of the MediaWiki namespace. This
 cache is used for a small amount of data which is expensive to regenerate.
 
 For available types see $wgMainCacheType.
 
-\section ParserCacheType
+# ParserCacheType {#ParserCacheType}
 The cache type for storing article HTML. This is used to store data which
 is expensive to regenerate, and benefits from having plenty of storage space.
 
 For available types see $wgMainCacheType.
 
-\section SessionCacheType
+# SessionCacheType {#SessionCacheType}
 The cache backend for storing session data.
 
 Used by MediaWiki\Session\SessionManager. See $wgMainCacheType for available types.
 
 See [SessionManager Storage expectations](@ref SessionManager-storage-expectations).
 
-\section LanguageConverterCacheType
+# LanguageConverterCacheType {#LanguageConverterCacheType}
 The cache type for storing language conversion tables,
 which are used when parsing certain text and interface messages.
 
 For available types see $wgMainCacheType.
 @since 1.20
 
-\section ObjectCaches
+# ObjectCaches {#ObjectCaches}
 Advanced object cache configuration.
 
 Use this to define the class names and constructor parameters which are used
@@ -2028,7 +2028,7 @@ the value is an associative array of parameters. The "class" parameter is the
 class name which will be used. Alternatively, a "factory" parameter may be
 given, giving a callable function which will generate a suitable cache object.
 
-\section MainWANCache
+# MainWANCache {#MainWANCache}
 Main Wide-Area-Network cache type.
 
 By default, this will wrap $wgMainCacheType (which is disabled, since the basic
@@ -2049,7 +2049,7 @@ The options are:
                       configuration in $wgWANObjectCaches
 @since 1.26
 
-\section WANObjectCaches
+# WANObjectCaches {#WANObjectCaches}
 Advanced WAN object cache configuration.
 
 The format is an associative array where the key is an identifier
@@ -2074,7 +2074,7 @@ $wgWANObjectCaches'memcached-php' => [
 ```
 @since 1.26
 
-\section EnableWANCacheReaper
+# EnableWANCacheReaper {#EnableWANCacheReaper}
 Verify and enforce WAN cache purges using reliable DB sources as streams.
 
 These secondary cache purges are de-duplicated via simple cache mutexes.
@@ -2083,7 +2083,7 @@ as more cache servers are added or if there are multiple datacenters. Only keys
 related to important mutable content will be checked.
 @since 1.29
 
-\section MainStash
+# MainStash {#MainStash}
 The object store type of the main stash.
 
 This should be a fast storage system optimized for lightweight data, both ephemeral and
@@ -2109,7 +2109,7 @@ Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
 @see \BagOStuff
 @since 1.26
 
-\section ChronologyProtectorStash
+# ChronologyProtectorStash {#ChronologyProtectorStash}
 The object store type for the {@link Wikimedia::Rdbms::ChronologyProtector ChronologyProtector} store.
 
 This should be a fast storage system optimized for lightweight ephemeral data.
@@ -2122,20 +2122,20 @@ Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
 Defaults to {@link $wgMainCacheType} (in ServiceWiring.php).
 @since 1.36
 
-\section ParserCacheExpireTime
+# ParserCacheExpireTime {#ParserCacheExpireTime}
 The expiry time for the parser cache, in seconds.
 
 The default is 86400 (one day).
 
-\section OldRevisionParserCacheExpireTime
+# OldRevisionParserCacheExpireTime {#OldRevisionParserCacheExpireTime}
 The expiry time for the parser cache for old revisions, in seconds.
 
 The default is 3600 (cache disabled).
 
-\section ObjectCacheSessionExpiry
+# ObjectCacheSessionExpiry {#ObjectCacheSessionExpiry}
 The expiry time to use for session storage, in seconds.
 
-\section PHPSessionHandling
+# PHPSessionHandling {#PHPSessionHandling}
 Whether to use PHP session handling ($_SESSION and session_*() functions)
 
 If the constant MW_NO_SESSION is defined, this is forced to 'disable'.
@@ -2146,27 +2146,27 @@ SessionHandler and PHP's session handling may attempt to override each
 others' cookies.
 @since 1.27
 
-\section SuspiciousIpExpiry
+# SuspiciousIpExpiry {#SuspiciousIpExpiry}
 Time in seconds to remember IPs for, for the purposes of logging IP changes within the
 same session. This is meant more for debugging errors in the authentication system than
 for detecting abuse.
 @since 1.36
 
-\section SessionPbkdf2Iterations
+# SessionPbkdf2Iterations {#SessionPbkdf2Iterations}
 Number of internal PBKDF2 iterations to use when deriving session secrets.
 @since 1.28
 
-\section MemCachedServers
+# MemCachedServers {#MemCachedServers}
 The list of MemCached servers and port numbers
 
-\section MemCachedPersistent
+# MemCachedPersistent {#MemCachedPersistent}
 Use persistent connections to MemCached, which are shared across multiple
 requests.
 
-\section MemCachedTimeout
+# MemCachedTimeout {#MemCachedTimeout}
 Read/write timeout for MemCached server communication, in microseconds.
 
-\section UseLocalMessageCache
+# UseLocalMessageCache {#UseLocalMessageCache}
 Set this to true to maintain a copy of the message cache on the local server.
 
 This layer of message cache is in addition to the one configured by $wgMessageCacheType.
@@ -2177,14 +2177,14 @@ Note that this is about the message cache, which stores interface messages
 maintained as wiki pages. This is separate from the localisation cache for interface
 messages provided by the software, which is configured by $wgLocalisationCacheConf.
 
-\section AdaptiveMessageCache
+# AdaptiveMessageCache {#AdaptiveMessageCache}
 Instead of caching everything, only cache those messages which have
 been customised in the site content language. This means that
 MediaWiki:Foo/ja is ignored if MediaWiki:Foo doesn't exist.
 
 This option is probably only useful for translatewiki.net.
 
-\section LocalisationCacheConf
+# LocalisationCacheConf {#LocalisationCacheConf}
 Localisation cache configuration.
 
 Used by Language::getLocalisationCache() to decide how to construct the
@@ -2215,10 +2215,10 @@ storeDirectory: If the selected LCStore class puts its data in files, then it
 manualRecache: Set this to true to disable cache updates on web requests.
                Use maintenance/rebuildLocalisationCache.php instead.
 
-\section CachePages
+# CachePages {#CachePages}
 Allow client-side caching of pages
 
-\section CacheEpoch
+# CacheEpoch {#CacheEpoch}
 Set this to current time to invalidate all prior cached pages. Affects both
 client-side and server-side caching.
 
@@ -2226,26 +2226,26 @@ You can get the current date on your server by using the command:
 @verbatim date +%Y%m%d%H%M%S
 @endverbatim
 
-\section GitInfoCacheDirectory
+# GitInfoCacheDirectory {#GitInfoCacheDirectory}
 Directory where GitInfo will look for pre-computed cache files. If false,
 $wgCacheDirectory/gitinfo will be used.
 
-\section UseFileCache
+# UseFileCache {#UseFileCache}
 This will cache static pages for non-logged-in users to reduce
 database traffic on public sites. ResourceLoader requests to default
 language and skins are cached as well as single module requests.
 
-\section FileCacheDepth
+# FileCacheDepth {#FileCacheDepth}
 Depth of the subdirectory hierarchy to be created under
 $wgFileCacheDirectory.  The subdirectories will be named based on
 the MD5 hash of the title.  A value of 0 means all cache files will
 be put directly into the main file cache directory.
 
-\section RenderHashAppend
+# RenderHashAppend {#RenderHashAppend}
 Append a configured value to the parser cache and the sitenotice key so
 that they can be kept separate for some class of activity.
 
-\section EnableSidebarCache
+# EnableSidebarCache {#EnableSidebarCache}
 If on, the sidebar navigation links are cached for users with the
 current language set. This can save a touch of load on a busy site
 by shaving off extra message lookups.
@@ -2254,20 +2254,20 @@ However it is also fragile: changing the site configuration, or
 having a variable $wgArticlePath, can produce broken links that
 don't update as expected.
 
-\section SidebarCacheExpiry
+# SidebarCacheExpiry {#SidebarCacheExpiry}
 Expiry time for the sidebar cache, in seconds
 
-\section FooterLinkCacheExpiry
+# FooterLinkCacheExpiry {#FooterLinkCacheExpiry}
 Expiry time for the footer link cache, in seconds, or 0 if disabled
 @since 1.35
 
-\section UseGzip
+# UseGzip {#UseGzip}
 When using the file cache, we can store the cached HTML gzipped to save disk
 space. Pages will then also be served compressed to clients that support it.
 
 Requires zlib support enabled in PHP.
 
-\section InvalidateCacheOnLocalSettingsChange
+# InvalidateCacheOnLocalSettingsChange {#InvalidateCacheOnLocalSettingsChange}
 Invalidate various caches when LocalSettings.php changes. This is equivalent
 to setting $wgCacheEpoch to the modification time of LocalSettings.php, as
 was previously done in the default LocalSettings.php file.
@@ -2276,7 +2276,7 @@ On high-traffic wikis, this should be set to false, to avoid the need to
 check the file modification time, and to avoid the performance impact of
 unnecessary cache invalidations.
 
-\section ExtensionInfoMTime
+# ExtensionInfoMTime {#ExtensionInfoMTime}
 When loading extensions through the extension registration system, this
 can be used to invalidate the cache. A good idea would be to set this to
 one file, you can just `touch` that one to invalidate the cache
@@ -2290,7 +2290,7 @@ $wgExtensionInfoMTime = filemtime( "$IP/LocalSettings.php" );
 If set to false, the mtime for each individual JSON file will be checked,
 which can be slow if a large number of extensions are being loaded.
 
-\section ParserCacheUseJson
+# ParserCacheUseJson {#ParserCacheUseJson}
 Enable JSON serialization for ParserCache.
 
 In 1.36 the default serialization format for ParserCache has been changed from PHP serialization
@@ -2303,13 +2303,13 @@ and all the cache entries already written in JSON are discarded.
 @deprecated since 1.36
 @see https://phabricator.wikimedia.org/T263579
 
-\section UseCdn
+# UseCdn {#UseCdn}
 Enable/disable CDN.
 
 See https://www.mediawiki.org/wiki/Manual:Performance_tuning#Page_view_caching
 @since 1.34 Renamed from $wgUseSquid.
 
-\section VaryOnXFP
+# VaryOnXFP {#VaryOnXFP}
 Add X-Forwarded-Proto to the Vary and Key headers for API requests and
 RSS/Atom feeds. Use this if you have an SSL termination setup
 and need to split the cache between HTTP and HTTPS for API requests,
@@ -2317,7 +2317,7 @@ feed requests and HTTP redirect responses in order to prevent cache
 pollution. This does not affect 'normal' requests to index.php other than
 HTTP redirects.
 
-\section InternalServer
+# InternalServer {#InternalServer}
 Internal server name as known to CDN, if different.
 
 **Example:**
@@ -2326,7 +2326,7 @@ Internal server name as known to CDN, if different.
 $wgInternalServer = 'http://yourinternal.tld:8000';
 ```
 
-\section CdnMaxAge
+# CdnMaxAge {#CdnMaxAge}
 Cache TTL for the CDN sent as s-maxage (without ESI) or
 Surrogate-Control (with ESI). Without ESI, you should strip
 out s-maxage in the CDN config.
@@ -2334,17 +2334,17 @@ out s-maxage in the CDN config.
 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
 @since 1.34 Renamed from $wgSquidMaxage
 
-\section CdnMaxageLagged
+# CdnMaxageLagged {#CdnMaxageLagged}
 Cache timeout for the CDN when DB replica DB lag is high
 @see $wgCdnMaxAge
 @since 1.27
 
-\section CdnMaxageStale
+# CdnMaxageStale {#CdnMaxageStale}
 Cache timeout when delivering a stale ParserCache response due to PoolCounter
 contention.
 @since 1.35
 
-\section CdnReboundPurgeDelay
+# CdnReboundPurgeDelay {#CdnReboundPurgeDelay}
 If set, any SquidPurge call on a URL or URLs will send a second purge no less than
 this many seconds later via the job queue. This requires delayed job support.
 
@@ -2358,17 +2358,17 @@ will still be stale. If the rebound purge delay is safely higher than the time t
 a purge to all nodes, then the rebound purge will clear cdn2 after cdn1 was cleared.
 @since 1.27
 
-\section CdnMaxageSubstitute
+# CdnMaxageSubstitute {#CdnMaxageSubstitute}
 Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
 @see $wgCdnMaxAge
 @since 1.27
 
-\section ForcedRawSMaxage
+# ForcedRawSMaxage {#ForcedRawSMaxage}
 Default maximum age for raw CSS/JS accesses
 
 300 seconds = 5 minutes.
 
-\section CdnServers
+# CdnServers {#CdnServers}
 List of proxy servers to purge on changes; default port is 80. Use IP addresses.
 
 When MediaWiki is running behind a proxy, it will trust X-Forwarded-For
@@ -2377,14 +2377,14 @@ headers sent/modified from these proxies when obtaining the remote IP address
 For a list of trusted servers which *aren't* purged, see $wgSquidServersNoPurge.
 @since 1.34 Renamed from $wgSquidServers.
 
-\section CdnServersNoPurge
+# CdnServersNoPurge {#CdnServersNoPurge}
 As with $wgCdnServers, except these servers aren't purged on page changes;
 use to set a list of trusted proxies, etc. Supports both individual IP
 addresses and CIDR blocks.
 @since 1.23 Supports CIDR ranges
 @since 1.34 Renamed from $wgSquidServersNoPurge
 
-\section SquidPurgeUseHostHeader
+# SquidPurgeUseHostHeader {#SquidPurgeUseHostHeader}
 Whether to use a Host header in purge requests sent to the proxy servers
 configured in $wgCdnServers. Set this to false to support a CDN
 configured in forward-proxy mode.
@@ -2403,7 +2403,7 @@ reverse).
 @since 1.21
 @deprecated since 1.33, will always be true in a future release.
 
-\section HTCPRouting
+# HTCPRouting {#HTCPRouting}
 Routing configuration for HTCP multicast purging. Add elements here to
 enable HTCP and determine which purges are sent where. If set to an empty
 array, HTCP is disabled.
@@ -2450,14 +2450,14 @@ $wgHTCPRouting = [
 @since 1.22
 @see $wgHTCPMulticastTTL
 
-\section HTCPMulticastTTL
+# HTCPMulticastTTL {#HTCPMulticastTTL}
 HTCP multicast TTL.
 @see $wgHTCPRouting
 
-\section UsePrivateIPs
+# UsePrivateIPs {#UsePrivateIPs}
 Should forwarded Private IPs be accepted?
 
-\section LanguageCode
+# LanguageCode {#LanguageCode}
 Site language code. See languages/data/Names.php for languages supported by
 MediaWiki out of the box. Not all languages listed there have translations,
 see languages/messages/ for the list of languages with some localisation.
@@ -2473,7 +2473,7 @@ This also defines the language of pages in the wiki. The content is wrapped
 in a html element with lang=XX attribute. This behavior can be overridden
 via hooks, see Title::getPageLanguage.
 
-\section GrammarForms
+# GrammarForms {#GrammarForms}
 Some languages need different word forms, usually for different cases.
 
 Used in Language::convertGrammar().
@@ -2484,13 +2484,13 @@ Used in Language::convertGrammar().
 $wgGrammarForms['en']['genitive']['car'] = 'car\'s';
 ```
 
-\section InterwikiMagic
+# InterwikiMagic {#InterwikiMagic}
 Treat language links as magic connectors, not inline links
 
-\section HideInterlanguageLinks
+# HideInterlanguageLinks {#HideInterlanguageLinks}
 Hide interlanguage links from the sidebar
 
-\section ExtraInterlanguageLinkPrefixes
+# ExtraInterlanguageLinkPrefixes {#ExtraInterlanguageLinkPrefixes}
 List of additional interwiki prefixes that should be treated as
 interlanguage links (i.e. placed in the sidebar).
 
@@ -2504,16 +2504,16 @@ Notes:
   placed in the system message "interlanguage-link-sitename-xyz" where xyz is
   the prefix in this array.
 
-\section InterlanguageLinkCodeMap
+# InterlanguageLinkCodeMap {#InterlanguageLinkCodeMap}
 Map of interlanguage link codes to language codes. This is useful to override
 what is shown as the language name when the interwiki code does not match it
 exactly
 @since 1.35
 
-\section ExtraLanguageNames
+# ExtraLanguageNames {#ExtraLanguageNames}
 List of language names or overrides for default names in Names.php
 
-\section ExtraLanguageCodes
+# ExtraLanguageCodes {#ExtraLanguageCodes}
 List of mappings from one language code to another.
 
 This array makes the codes not appear as a selectable language on the
@@ -2526,18 +2526,18 @@ If a mapping in $wgExtraLanguageCodes collide with a built-in mapping, the
 value in $wgExtraLanguageCodes will be used.
 @since 1.29
 
-\section DummyLanguageCodes
+# DummyLanguageCodes {#DummyLanguageCodes}
 Functionally the same as $wgExtraLanguageCodes, but deprecated. Instead of
 appending values to this array, append them to $wgExtraLanguageCodes.
 @deprecated since 1.29
 
-\section AllUnicodeFixes
+# AllUnicodeFixes {#AllUnicodeFixes}
 Set this to always convert certain Unicode sequences to modern ones
 regardless of the content language. This has a small performance
 impact.
 @since 1.17
 
-\section LegacyEncoding
+# LegacyEncoding {#LegacyEncoding}
 Set this to eg 'ISO-8859-1' to perform character set conversion when
 loading old revisions not marked with "utf-8" flag. Use this when
 converting a wiki from MediaWiki 1.4 or earlier to UTF-8 without the
@@ -2546,7 +2546,7 @@ burdensome mass conversion of old text data.
 user names, etc still must be converted en masse in the database before
 continuing as a UTF-8 wiki.
 
-\section LegacySchemaConversion
+# LegacySchemaConversion {#LegacySchemaConversion}
 If set to true, the MediaWiki 1.4 to 1.5 schema conversion will
 create stub reference rows in the text table instead of copying
 the full text of all current entries from 'cur' to 'text'.
@@ -2558,36 +2558,36 @@ to remain viewable.
 This option affects the updaters *only*. Any present cur stub
 revisions will be readable at runtime regardless of this setting.
 
-\section AmericanDates
+# AmericanDates {#AmericanDates}
 Enable dates like 'May 12' instead of '12 May', if the default date format
 is 'dmy or mdy'.
 
-\section TranslateNumerals
+# TranslateNumerals {#TranslateNumerals}
 For Hindi and Arabic use local numerals instead of Western style (0-9)
 numerals in interface.
 
-\section UseDatabaseMessages
+# UseDatabaseMessages {#UseDatabaseMessages}
 Translation using MediaWiki: namespace.
 
 Interface messages will be loaded from the database.
 
-\section MaxMsgCacheEntrySize
+# MaxMsgCacheEntrySize {#MaxMsgCacheEntrySize}
 Maximum entry size in the message cache, in bytes
 
-\section DisableLangConversion
+# DisableLangConversion {#DisableLangConversion}
 Whether to enable language variant conversion.
 
-\section DisableTitleConversion
+# DisableTitleConversion {#DisableTitleConversion}
 Whether to enable language variant conversion for links.
 
-\section DefaultLanguageVariant
+# DefaultLanguageVariant {#DefaultLanguageVariant}
 Default variant code, if false, the default will be the language code
 
-\section UsePigLatinVariant
+# UsePigLatinVariant {#UsePigLatinVariant}
 Whether to enable the pig Latin variant of English (en-x-piglatin),
 used to ease variant development work.
 
-\section DisabledVariants
+# DisabledVariants {#DisabledVariants}
 Disabled variants array of language variant conversion.
 
 **Example:**
@@ -2597,7 +2597,7 @@ $wgDisabledVariants[] = 'zh-mo';
 $wgDisabledVariants[] = 'zh-my';
 ```
 
-\section VariantArticlePath
+# VariantArticlePath {#VariantArticlePath}
 Like $wgArticlePath, but on multi-variant wikis, this provides a
 path format that describes which parts of the URL contain the
 language variant.
@@ -2615,12 +2615,12 @@ A link to /wiki/ would be redirected to /sr/Главна_страна
 It is important that $wgArticlePath not overlap with possible values
 of $wgVariantArticlePath.
 
-\section LoginLanguageSelector
+# LoginLanguageSelector {#LoginLanguageSelector}
 Show a bar of language selection links in the user login and user
 registration forms; edit the "loginlanguagelinks" message to
 customise these.
 
-\section ForceUIMsgAsContentMsg
+# ForceUIMsgAsContentMsg {#ForceUIMsgAsContentMsg}
 When translating messages with wfMessage(), it is not always clear what
 should be considered UI messages and what should be content messages.
 
@@ -2640,7 +2640,7 @@ portal:
 $wgForceUIMsgAsContentMsg = [ 'mainpage', 'portal-url' ];
 ```
 
-\section RawHtmlMessages
+# RawHtmlMessages {#RawHtmlMessages}
 List of messages which might contain raw HTML.
 
 Extensions should add their insecure raw HTML messages to extension.json.
@@ -2650,7 +2650,7 @@ changing messages listed here will require editsitecss and editsitejs rights.
 Message names must be given with underscores rather than spaces and with lowercase first letter.
 @since 1.32
 
-\section Localtimezone
+# Localtimezone {#Localtimezone}
 Fake out the timezone that the server thinks it's in. This will be used for
 date display and not for what's stored in the DB. Leave to null to retain
 your server's OS-based timezone value.
@@ -2674,7 +2674,7 @@ $wgLocaltimezone = 'Europe/Sweden';
 $wgLocaltimezone = 'CET';
 ```
 
-\section LocalTZoffset
+# LocalTZoffset {#LocalTZoffset}
 Set an offset from UTC in minutes to use for the default timezone setting
 for anonymous users and new user accounts.
 
@@ -2683,7 +2683,7 @@ overridable in user preferences. It is *not* used for signature timestamps.
 
 By default, this will be set to match $wgLocaltimezone.
 
-\section OverrideUcfirstCharacters
+# OverrideUcfirstCharacters {#OverrideUcfirstCharacters}
 List of Unicode characters for which capitalization is overridden in
 Language::ucfirst. The characters should be
 represented as char_to_convert => conversion_override. See T219279 for details
@@ -2691,10 +2691,10 @@ on why this is useful during php version transitions.
 @warning: EXPERIMENTAL!
 @since 1.34
 
-\section MimeType
+# MimeType {#MimeType}
 The default Content-Type header.
 
-\section Html5Version
+# Html5Version {#Html5Version}
 Defines the value of the version attribute in the &lt;html&gt; tag, if any.
 
 If your wiki uses RDFa, set it to the correct value for RDFa+HTML5.
@@ -2702,7 +2702,7 @@ Correct current values are 'HTML+RDFa 1.0' or 'XHTML+RDFa 1.0'.
 See also https://www.w3.org/TR/rdfa-in-html/#document-conformance
 @since 1.16
 
-\section HTMLFormAllowTableFormat
+# HTMLFormAllowTableFormat {#HTMLFormAllowTableFormat}
 Temporary variable that allows HTMLForms to be rendered as tables.
 
 Table based layouts cause various issues when designing for mobile.
@@ -2710,20 +2710,20 @@ This global allows skins or extensions a means to force non-table based renderin
 Setting to false forces form components to always render as div elements.
 @since 1.24
 
-\section UseMediaWikiUIEverywhere
+# UseMediaWikiUIEverywhere {#UseMediaWikiUIEverywhere}
 Temporary variable that applies MediaWiki UI wherever it can be supported.
 
 Temporary variable that should be removed when mediawiki ui is more
 stable and change has been communicated.
 @since 1.24
 
-\section EditSubmitButtonLabelPublish
+# EditSubmitButtonLabelPublish {#EditSubmitButtonLabelPublish}
 Whether to label the store-to-database-and-show-to-others button in the editor
 as "Save page"/"Save changes" if false (the default) or, if true, instead as
 "Publish page"/"Publish changes".
 @since 1.28
 
-\section XhtmlNamespaces
+# XhtmlNamespaces {#XhtmlNamespaces}
 Permit other namespaces in addition to the w3.org default.
 
 Use the prefix for the key and the namespace for the value.
@@ -2739,14 +2739,14 @@ element, but IE needs it there in some circumstances.
 
 This is ignored if $wgMimeType is set to a non-XML MIME type.
 
-\section SiteNotice
+# SiteNotice {#SiteNotice}
 Site notice shown at the top of each page
 
 MediaWiki:Sitenotice page, which will override this. You can also
 provide a separate message for logged-out users using the
 MediaWiki:Anonnotice page.
 
-\section BrowserFormatDetection
+# BrowserFormatDetection {#BrowserFormatDetection}
 Override ability of certains browsers to attempt to autodetect dataformats in pages.
 
 This is a default feature of many mobile browsers, but can have a lot of false positives,
@@ -2756,22 +2756,22 @@ Set BrowserFormatDetection to false to fallback to browser defaults.
 @since 1.37
 @see https://developer.apple.com/ library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
 
-\section SkinMetaTags
+# SkinMetaTags {#SkinMetaTags}
 An array of open graph tags which should be added by all skins.
 
 Accepted values are "og:title", "og:type" and "twitter:card".
 Since some of these fields can be provided by extensions it defaults to an empty array.
 @since 1.36
 
-\section DefaultSkin
+# DefaultSkin {#DefaultSkin}
 Default skin, for new users and anonymous visitors. Registered users may
 change this to any one of the other available skins in their preferences.
 
-\section FallbackSkin
+# FallbackSkin {#FallbackSkin}
 Fallback skin used when the skin defined by $wgDefaultSkin can't be found.
 @since 1.24
 
-\section SkipSkins
+# SkipSkins {#SkipSkins}
 Specify the names of skins that should not be presented in the list of
 available skins in user preferences.
 
@@ -2780,10 +2780,10 @@ via the `useskin` query parameter. To uninstall a skin, remove its inclusion
 from LocalSettings.php.
 @see \SkinFactory::getAllowedSkins
 
-\section DisableOutputCompression
+# DisableOutputCompression {#DisableOutputCompression}
 Disable output compression (enabled by default if zlib is available)
 
-\section FragmentMode
+# FragmentMode {#FragmentMode}
 How should section IDs be encoded?
 This array can contain 1 or 2 elements, each of them can be one of:
 - 'html5'  is modern HTML5 style encoding with minimal escaping. Displays Unicode
@@ -2811,14 +2811,14 @@ set it to [ 'html5' ]. After all, pages get edited, breaking incoming links no m
 fragment mode is used.
 @since 1.30
 
-\section ExternalInterwikiFragmentMode
+# ExternalInterwikiFragmentMode {#ExternalInterwikiFragmentMode}
 Which ID escaping mode should be used for external interwiki links? See documentation
 for $wgFragmentMode above for details of each mode. Because you can't control external sites,
 this setting should probably always be 'legacy', unless every wiki you link to has converted
 to 'html5'.
 @since 1.30
 
-\section FooterIcons
+# FooterIcons {#FooterIcons}
 Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
 You can add new icons to the built in copyright or poweredby, or you can create
 a new block. Though note that you may need to add some custom css to get good styling
@@ -2848,17 +2848,17 @@ for the icon, the following keys are used:
                     Otherwise they will default to the standard 88x31.
 @todo Reformat documentation.
 
-\section UseCombinedLoginLink
+# UseCombinedLoginLink {#UseCombinedLoginLink}
 Login / create account link behavior when it's possible for anonymous users
 to create an account.
 
 - true = use a combined login / create account link
 - false = split login and create account into two separate links
 
-\section Edititis
+# Edititis {#Edititis}
 Display user edit counts in various prominent places.
 
-\section Send404Code
+# Send404Code {#Send404Code}
 Some web hosts attempt to rewrite all responses with a 404 (not found)
 status code, mangling or hiding MediaWiki's output. If you are using such a
 host, you should start looking for a better one. While you're doing that,
@@ -2869,7 +2869,7 @@ In cases where for technical reasons it is more important for MediaWiki to
 send the correct status code than for the body to be transmitted intact,
 this configuration variable is ignored.
 
-\section ShowRollbackEditCount
+# ShowRollbackEditCount {#ShowRollbackEditCount}
 The $wgShowRollbackEditCount variable is used to show how many edits can be rolled back.
 
 The numeric value of the variable controls how many edits MediaWiki will look back to
@@ -2878,20 +2878,20 @@ If the value is false or 0, the edits are not counted. Disabling this will preve
 from hiding some useless rollback links.
 @since 1.20
 
-\section EnableCanonicalServerLink
+# EnableCanonicalServerLink {#EnableCanonicalServerLink}
 Output a <link rel="canonical"> tag on every page indicating the canonical
 server which should be used, i.e. $wgServer or $wgCanonicalServer. Since
 detection of the current server is unreliable, the link is sent
 unconditionally.
 
-\section MangleFlashPolicy
+# MangleFlashPolicy {#MangleFlashPolicy}
 When OutputHandler is used, mangle any output that contains
 <cross-domain-policy>. Without this, an attacker can send their own
 cross-domain policy unless it is prevented by the crossdomain.xml file at
 the domain root.
 @since 1.25
 
-\section ResourceModules
+# ResourceModules {#ResourceModules}
 Define extra client-side modules to be registered with ResourceLoader.
 @note It is recommended to define modules using the `ResourceModule` attribute
 in `extension.json` or `skin.json` when possible (instead of via PHP global variables).
@@ -3208,7 +3208,7 @@ $wgResourceModules['ext.myExtension'] = [
 ```
 @since 1.17
 
-\section ResourceModuleSkinStyles
+# ResourceModuleSkinStyles {#ResourceModuleSkinStyles}
 Add extra skin-specific styles to a resource module.
 
 These are automatically added by ResourceLoader to the 'skinStyles' list of
@@ -3302,7 +3302,7 @@ $wgResourceModuleSkinStyles['foo'] = [
 ];
 ```
 
-\section ResourceLoaderSources
+# ResourceLoaderSources {#ResourceLoaderSources}
 Extensions should register foreign module sources here. 'local' is a
 built-in source that is not in this array, but defined by
 ResourceLoader::__construct() so that it cannot be unset.
@@ -3313,12 +3313,12 @@ ResourceLoader::__construct() so that it cannot be unset.
 $wgResourceLoaderSources['foo'] = 'http://example.org/w/load.php';
 ```
 
-\section ResourceBasePath
+# ResourceBasePath {#ResourceBasePath}
 The default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
 
 Defaults to $wgScriptPath.
 
-\section ResourceLoaderMaxage
+# ResourceLoaderMaxage {#ResourceLoaderMaxage}
 How long a CDN or browser may cache a ResourceLoader HTTP response.
 
 Maximum time in seconds. Used for the `max-age` and `s-maxage` Cache-Control headers.
@@ -3335,21 +3335,21 @@ Valid keys:
 
 @since 1.35
 
-\section ResourceLoaderUseObjectCacheForDeps
+# ResourceLoaderUseObjectCacheForDeps {#ResourceLoaderUseObjectCacheForDeps}
 Use the main stash instead of the module_deps table for indirect dependency tracking
 @since 1.35
 @warning EXPERIMENTAL
 
-\section ResourceLoaderDebug
+# ResourceLoaderDebug {#ResourceLoaderDebug}
 The default debug mode (on/off) for of ResourceLoader requests.
 
 This will still be overridden when the debug URL parameter is used.
 
-\section IncludeLegacyJavaScript
+# IncludeLegacyJavaScript {#IncludeLegacyJavaScript}
 Whether to ensure the mediawiki.legacy library is loaded before other modules.
 @deprecated since 1.26: Always declare dependencies.
 
-\section ResourceLoaderMaxQueryLength
+# ResourceLoaderMaxQueryLength {#ResourceLoaderMaxQueryLength}
 ResourceLoader will not generate URLs whose query string is more than
 this many characters long, and will instead use multiple requests with
 shorter query strings. Using multiple requests may degrade performance,
@@ -3360,30 +3360,30 @@ Default: `2000`.
 @see \ResourceLoaderStartUpModule::getMaxQueryLength
 @since 1.17
 
-\section ResourceLoaderValidateJS
+# ResourceLoaderValidateJS {#ResourceLoaderValidateJS}
 If set to true, JavaScript modules loaded from wiki pages will be parsed
 prior to minification to validate it.
 
 Parse errors will result in a JS exception being thrown during module load,
 which avoids breaking other modules loaded in the same request.
 
-\section ResourceLoaderEnableJSProfiler
+# ResourceLoaderEnableJSProfiler {#ResourceLoaderEnableJSProfiler}
 When enabled, execution of JavaScript modules is profiled client-side.
 
 Instrumentation happens in mw.loader.profiler.
 Use `mw.inspect('time')` from the browser console to display the data.
 @since 1.32
 
-\section ResourceLoaderStorageEnabled
+# ResourceLoaderStorageEnabled {#ResourceLoaderStorageEnabled}
 Whether ResourceLoader should attempt to persist modules in localStorage on
 browsers that support the Web Storage API.
 
-\section ResourceLoaderStorageVersion
+# ResourceLoaderStorageVersion {#ResourceLoaderStorageVersion}
 Cache version for client-side ResourceLoader module storage. You can trigger
 invalidation of the contents of the module store by incrementing this value.
 @since 1.23
 
-\section AllowSiteCSSOnRestrictedPages
+# AllowSiteCSSOnRestrictedPages {#AllowSiteCSSOnRestrictedPages}
 Whether to allow site-wide CSS (MediaWiki:Common.css and friends) on
 restricted pages like Special:UserLogin or Special:Preferences where
 JavaScript is disabled for security reasons. As it is possible to
@@ -3393,7 +3393,7 @@ site-wide CSS, causing restricted pages to look unstyled and different
 from the rest of the site.
 @since 1.25
 
-\section VueDevelopmentMode
+# VueDevelopmentMode {#VueDevelopmentMode}
 Whether to use the development version of Vue.js. This should be disabled
 for production installations. For development installations, enabling this
 provides useful additional warnings and checks.
@@ -3402,23 +3402,23 @@ Even when this is disabled, using ResourceLoader's debug mode (?debug=true)
 will cause the development version to be loaded.
 @since 1.35
 
-\section MetaNamespace
+# MetaNamespace {#MetaNamespace}
 Name of the project namespace. If left set to false, $wgSitename will be
 used instead.
 
-\section MetaNamespaceTalk
+# MetaNamespaceTalk {#MetaNamespaceTalk}
 Name of the project talk namespace.
 
 Normally you can ignore this and it will be something like
 $wgMetaNamespace . "_talk". In some languages, you may want to set this
 manually for grammatical reasons.
 
-\section CanonicalNamespaceNames
+# CanonicalNamespaceNames {#CanonicalNamespaceNames}
 Canonical namespace names.
 
 Must not be changed directly in configuration or by extensions, use $wgExtraNamespaces instead.
 
-\section ExtraNamespaces
+# ExtraNamespaces {#ExtraNamespaces}
 Additional namespaces. If the namespaces defined in Language.php and
 Namespace.php are insufficient, you can create new ones here, for example,
 to import Help files in other languages. You can also override the namespace
@@ -3443,14 +3443,14 @@ $wgExtraNamespaces = [
 ```
 @todo Add a note about maintenance/namespaceDupes.php
 
-\section ExtraGenderNamespaces
+# ExtraGenderNamespaces {#ExtraGenderNamespaces}
 Same as above, but for namespaces with gender distinction.
 
 Note: the default form for the namespace should also be set
 using $wgExtraNamespaces for the same index.
 @since 1.18
 
-\section NamespaceAliases
+# NamespaceAliases {#NamespaceAliases}
 Define extra namespace aliases.
 
 These are alternate names for the primary localised namespace names, which
@@ -3471,7 +3471,7 @@ $wgNamespaceAliases = [
 @see \Language::getNamespaceAliases for accessing the full list of aliases,
 including those defined by other means.
 
-\section LegalTitleChars
+# LegalTitleChars {#LegalTitleChars}
 Allowed title characters -- regex character class
 Don't change this unless you know what you're doing
 
@@ -3495,13 +3495,13 @@ because articles can be created such that they are hard to view or edit.
 
 In some rare cases you may wish to remove + for compatibility with old links.
 
-\section CapitalLinks
+# CapitalLinks {#CapitalLinks}
 Set this to false to avoid forcing the first letter of links to capitals.
 @warning may break links! This makes links COMPLETELY case-sensitive. Links
 appearing with a capital at the beginning of a sentence will *not* go to the
 same place as links in the middle of a sentence using a lowercase initial.
 
-\section CapitalLinkOverrides
+# CapitalLinkOverrides {#CapitalLinkOverrides}
 
 @since 1.16 - This can now be set per-namespace. Some special namespaces (such as Special, see
 NamespaceInfo::$alwaysCapitalizedNamespaces for the full list) must be true by default (and
@@ -3516,24 +3516,24 @@ from NS_FILE.
 $wgCapitalLinkOverrides[ NS_FILE ] = false;
 ```
 
-\section NamespacesWithSubpages
+# NamespacesWithSubpages {#NamespacesWithSubpages}
 Which namespaces should support subpages?
 See Language.php for a list of namespaces.
 
-\section ContentNamespaces
+# ContentNamespaces {#ContentNamespaces}
 Array of namespaces which can be deemed to contain valid "content", as far
 as the site statistics are concerned. Useful if additional namespaces also
 contain "content" which should be considered when generating a count of the
 number of articles in the wiki.
 
-\section ShortPagesNamespaceExclusions
+# ShortPagesNamespaceExclusions {#ShortPagesNamespaceExclusions}
 Optional array of namespaces which should be excluded from Special:ShortPages.
 
 Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceExclusions will
 be shown on that page.
 @since 1.37; previously $wgShortPagesNamespaceBlacklist
 
-\section ExtraSignatureNamespaces
+# ExtraSignatureNamespaces {#ExtraSignatureNamespaces}
 Array of namespaces, in addition to the talk namespaces, where signatures
 (~~~~) are likely to be used. This determines whether to display the
 Signature button on the edit toolbar, and may also be used by extensions.
@@ -3541,13 +3541,13 @@ Signature button on the edit toolbar, and may also be used by extensions.
 For example, "traditional" style wikis, where content and discussion are
 intermixed, could place NS_MAIN and NS_PROJECT namespaces in this array.
 
-\section MaxRedirects
+# MaxRedirects {#MaxRedirects}
 Max number of redirects to follow when resolving redirects.
 
 1 means only the first redirect is followed (default behavior).
 0 or less means no redirects are followed.
 
-\section InvalidRedirectTargets
+# InvalidRedirectTargets {#InvalidRedirectTargets}
 Array of invalid page redirect targets.
 
 Attempting to create a redirect to any of the pages in this array
@@ -3558,19 +3558,19 @@ Userlogout is hard-coded, so it does not need to be listed here.
 As of now, this only checks special pages. Redirects to pages in
 other namespaces cannot be invalidated by this variable.
 
-\section DisableHardRedirects
+# DisableHardRedirects {#DisableHardRedirects}
 Disable redirects to special pages and interwiki redirects, which use a 302
 and have no "redirected from" link.
 @note This is only for articles with #REDIRECT in them. URL's containing a
 local interwiki prefix (or a non-canonical special page name) are still hard
 redirected regardless of this setting.
 
-\section FixDoubleRedirects
+# FixDoubleRedirects {#FixDoubleRedirects}
 Fix double redirects after a page move.
 
 Tends to conflict with page move vandalism, use only on a private wiki.
 
-\section InterwikiPrefixDisplayTypes
+# InterwikiPrefixDisplayTypes {#InterwikiPrefixDisplayTypes}
 Mapping of interwiki index prefixes to descriptors that
 can be used to change the display of interwiki search results.
 
@@ -3588,16 +3588,16 @@ $wgInterwikiPrefixDisplayTypes = [
 ];
 ```
 
-\section LocalInterwikis
+# LocalInterwikis {#LocalInterwikis}
 Array for local interwiki values, for each of the interwiki prefixes that point to
 the current wiki.
 
 Note, recent changes feeds use only the first entry in this array. See $wgRCFeeds.
 
-\section InterwikiExpiry
+# InterwikiExpiry {#InterwikiExpiry}
 Expiry time for cache of interwiki table
 
-\section InterwikiCache
+# InterwikiCache {#InterwikiCache}
 Interwiki cache, either as an associative array or a path to a constant
 database (.cdb) file.
 
@@ -3613,17 +3613,17 @@ formats such as the following:
 Sites mapping just specifies site name, other keys provide "local url"
 data layout.
 
-\section InterwikiScopes
+# InterwikiScopes {#InterwikiScopes}
 Specify number of domains to check for messages.
 
 - 1: Just wiki(db)-level
 - 2: wiki and global levels
 - 3: site levels
 
-\section InterwikiFallbackSite
+# InterwikiFallbackSite {#InterwikiFallbackSite}
 Fallback site, if unable to resolve from cache
 
-\section RedirectSources
+# RedirectSources {#RedirectSources}
 If local interwikis are set up which allow redirects,
 set this regexp to restrict URLs which will be displayed
 as 'redirected from' links.
@@ -3639,29 +3639,29 @@ Leave at false to avoid displaying any incoming redirect markers.
 This does not affect intra-wiki redirects, which don't change
 the URL.
 
-\section SiteTypes
+# SiteTypes {#SiteTypes}
 Register handlers for specific types of sites.
 @since 1.21
 
-\section MaxTocLevel
+# MaxTocLevel {#MaxTocLevel}
 Maximum indent level of toc.
 
-\section MaxPPNodeCount
+# MaxPPNodeCount {#MaxPPNodeCount}
 A complexity limit on template expansion: the maximum number of nodes visited
 by PPFrame::expand()
 
-\section MaxTemplateDepth
+# MaxTemplateDepth {#MaxTemplateDepth}
 Maximum recursion depth for templates within templates.
 
 The current parser adds two levels to the PHP call stack for each template,
 and xdebug limits the call stack to 256 by default. So this should hopefully
 stop the parser before it hits the xdebug limit.
 
-\section MaxPPExpandDepth
+# MaxPPExpandDepth {#MaxPPExpandDepth}
 
 @see $wgMaxTemplateDepth
 
-\section UrlProtocols
+# UrlProtocols {#UrlProtocols}
 URL schemes that should be recognized as valid by wfParseUrl().
 
 WARNING: Do not add 'file:' to this or internal file links will be broken.
@@ -3670,13 +3670,13 @@ to any other protocols with the same name as a namespace. See task T46011 for
 more information.
 @see \wfParseUrl
 
-\section CleanSignatures
+# CleanSignatures {#CleanSignatures}
 If true, removes (by substituting) templates in signatures.
 
-\section AllowExternalImages
+# AllowExternalImages {#AllowExternalImages}
 Whether to allow inline image pointing to other websites
 
-\section AllowExternalImagesFrom
+# AllowExternalImagesFrom {#AllowExternalImagesFrom}
 If the above is false, you can specify an exception here. Image URLs
 that start with this string are then rendered, while all others are not.
 
@@ -3690,7 +3690,7 @@ $wgAllowExternalImagesFrom = 'http://127.0.0.1/';
 $wgAllowExternalImagesFrom = [ 'http://127.0.0.1/', 'http://example.com' ];
 ```
 
-\section EnableImageWhitelist
+# EnableImageWhitelist {#EnableImageWhitelist}
 If $wgAllowExternalImages is false, you can allow an on-wiki
 allow list of regular expression fragments to match the image URL
 against. If the image matches one of the regular expression fragments,
@@ -3700,7 +3700,7 @@ Set this to true to enable the on-wiki allow list (MediaWiki:External image whit
 Or false to disable it
 @since 1.14
 
-\section AllowImageTag
+# AllowImageTag {#AllowImageTag}
 A different approach to the above: simply allow the "<img>" tag to be used.
 
 This allows you to specify alt text and other attributes, copy-paste HTML to
@@ -3710,7 +3710,7 @@ addresses and so forth, if they wanted to, by inserting links to images on
 sites they control.
 @deprecated since 1.35; register an extension tag named <img> instead.
 
-\section TidyConfig
+# TidyConfig {#TidyConfig}
 Configuration for HTML postprocessing tool. Set this to a configuration
 array to enable an external tool. By default, we now use the RemexHtml
 library; historically, other postprocessors were used.
@@ -3728,26 +3728,26 @@ See includes/tidy/RemexDriver.php for detail on configuration.
 Overriding the default configuration is strongly discouraged in
 production.
 
-\section ParserEnableLegacyMediaDOM
+# ParserEnableLegacyMediaDOM {#ParserEnableLegacyMediaDOM}
 Enable legacy media HTML structure in the output from the Parser.  The
 alternative modern HTML structure that replaces it is described at
 https://www.mediawiki.org/wiki/Parsing/Media_structure
 @since 1.36
 
-\section UseContentMediaStyles
+# UseContentMediaStyles {#UseContentMediaStyles}
 Temporary flag to ship the styles for the media HTML structure that replaces
 legacy, when $wgParserEnableLegacyMediaDOM is `false`.  This is configured
 separately so that it can continue to be served after the latter is disabled
 but still in the cache.
 @internal
 
-\section RawHtml
+# RawHtml {#RawHtml}
 Allow raw, unchecked HTML in "<html>...</html>" sections.
 
 THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions
 TO RESTRICT EDITING to only those that you trust
 
-\section ExternalLinkTarget
+# ExternalLinkTarget {#ExternalLinkTarget}
 Set a default target for external links, e.g. _blank to pop up a new window.
 
 This will also set the "noreferrer" and "noopener" link rel to prevent the
@@ -3756,18 +3756,18 @@ Some older browsers may not support these link attributes, hence
 setting $wgExternalLinkTarget to _blank may represent a security risk
 to some of your users.
 
-\section NoFollowLinks
+# NoFollowLinks {#NoFollowLinks}
 If true, external URL links in wiki text will be given the
 rel="nofollow" attribute as a hint to search engines that
 they should not be followed for ranking purposes as they
 are user-supplied and thus subject to spamming.
 
-\section NoFollowNsExceptions
+# NoFollowNsExceptions {#NoFollowNsExceptions}
 Namespaces in which $wgNoFollowLinks doesn't apply.
 
 See Language.php for a list of namespaces.
 
-\section NoFollowDomainExceptions
+# NoFollowDomainExceptions {#NoFollowDomainExceptions}
 If this is set to an array of domains, external links to these domain names
 (or any subdomains) will not be set to rel="nofollow" regardless of the
 value of $wgNoFollowLinks.  For instance:
@@ -3780,40 +3780,40 @@ etc.
 
 Defaults to mediawiki.org for the links included in the software by default.
 
-\section RegisterInternalExternals
+# RegisterInternalExternals {#RegisterInternalExternals}
 By default MediaWiki does not register links pointing to same server in
 externallinks dataset, use this value to override:
 
-\section AllowDisplayTitle
+# AllowDisplayTitle {#AllowDisplayTitle}
 Allow DISPLAYTITLE to change title display
 
-\section RestrictDisplayTitle
+# RestrictDisplayTitle {#RestrictDisplayTitle}
 For consistency, restrict DISPLAYTITLE to text that normalizes to the same
 canonical DB key. Also disallow some inline CSS rules like display: none;
 which can cause the text to be hidden or unselectable.
 
-\section ExpensiveParserFunctionLimit
+# ExpensiveParserFunctionLimit {#ExpensiveParserFunctionLimit}
 Maximum number of calls per parse to expensive parser functions such as
 PAGESINCATEGORY.
 
-\section PreprocessorCacheThreshold
+# PreprocessorCacheThreshold {#PreprocessorCacheThreshold}
 Preprocessor caching threshold
 Setting it to 'false' will disable the preprocessor cache.
 
-\section EnableScaryTranscluding
+# EnableScaryTranscluding {#EnableScaryTranscluding}
 Enable interwiki transcluding.  Only when iw_trans=1 in the interwiki table.
 
-\section TranscludeCacheExpiry
+# TranscludeCacheExpiry {#TranscludeCacheExpiry}
 Expiry time for transcluded templates cached in object cache.
 
 Only used $wgEnableInterwikiTranscluding is set to true.
 
-\section EnableMagicLinks
+# EnableMagicLinks {#EnableMagicLinks}
 Enable the magic links feature of automatically turning ISBN xxx,
 PMID xxx, RFC xxx into links
 @since 1.28
 
-\section ArticleCountMethod
+# ArticleCountMethod {#ArticleCountMethod}
 Method used to determine if a page in a content namespace should be counted
 as a valid article.
 
@@ -3829,7 +3829,7 @@ Retroactively changing this variable will not affect the existing count,
 to update it, you will need to run the maintenance/updateArticleCount.php
 script.
 
-\section ActiveUserDays
+# ActiveUserDays {#ActiveUserDays}
 How many days user must be idle before he is considered inactive. Will affect
 the number shown on Special:Statistics, Special:ActiveUsers, and the
 {{NUMBEROFACTIVEUSERS}} magic word in wikitext.
@@ -3837,7 +3837,7 @@ the number shown on Special:Statistics, Special:ActiveUsers, and the
 You might want to leave this as the default value, to provide comparable
 numbers between different wikis.
 
-\section LearnerEdits
+# LearnerEdits {#LearnerEdits}
 The following variables define 3 user experience levels:
 
 - newcomer: has not yet reached the 'learner' level
@@ -3849,19 +3849,19 @@ The following variables define 3 user experience levels:
 - experienced: has at least $wgExperiencedUserEdits edits and
                has been a member for $wgExperiencedUserMemberSince days.
 
-\section LearnerMemberSince
+# LearnerMemberSince {#LearnerMemberSince}
 Number of days the user must exist before becoming a learner.
 @see $wgLearnerEdits
 
-\section ExperiencedUserEdits
+# ExperiencedUserEdits {#ExperiencedUserEdits}
 Number of edits the user must have before becoming "experienced".
 @see $wgLearnerEdits
 
-\section ExperiencedUserMemberSince
+# ExperiencedUserMemberSince {#ExperiencedUserMemberSince}
 Number of days the user must exist before becoming "experienced".
 @see $wgLearnerEdits
 
-\section ManualRevertSearchRadius
+# ManualRevertSearchRadius {#ManualRevertSearchRadius}
 Maximum number of revisions of a page that will be checked against every new edit
 made to determine whether the edit was a manual revert.
 
@@ -3878,7 +3878,7 @@ See this document for a discussion on this topic:
 https://meta.wikimedia.org/wiki/Research:Revert
 @since 1.36
 
-\section RevertedTagMaxDepth
+# RevertedTagMaxDepth {#RevertedTagMaxDepth}
 Maximum depth (revision count) of reverts that will have their reverted edits marked
 with the mw-reverted change tag. Reverts deeper than that will not have any edits
 marked as reverted at all.
@@ -3889,15 +3889,15 @@ confusing to users.
 Setting this to 0 will disable the reverted tag entirely.
 @since 1.36
 
-\section CentralIdLookupProviders
+# CentralIdLookupProviders {#CentralIdLookupProviders}
 Central ID lookup providers
 Key is the provider ID, value is a specification for ObjectFactory
 @since 1.27
 
-\section CentralIdLookupProvider
+# CentralIdLookupProvider {#CentralIdLookupProvider}
 Central ID lookup provider to use by default
 
-\section PasswordPolicy
+# PasswordPolicy {#PasswordPolicy}
 Password policy for the wiki.
 
 Structured as
@@ -3959,7 +3959,7 @@ receives the flag value (or values if it's an array).
 @see \PasswordPolicyChecks
 @see \User::checkPasswordValidity()
 
-\section AuthManagerConfig
+# AuthManagerConfig {#AuthManagerConfig}
 Configure AuthManager
 
 All providers are constructed using ObjectFactory, see that for the general
@@ -3977,11 +3977,11 @@ used instead. Local customization should generally set this variable from
 scratch to the desired configuration. Extensions that want to
 auto-configure themselves should use $wgAuthManagerAutoConfig instead.
 
-\section AuthManagerAutoConfig
+# AuthManagerAutoConfig {#AuthManagerAutoConfig}
 @see $wgAuthManagerConfig
 @since 1.27
 
-\section RememberMe
+# RememberMe {#RememberMe}
 Configures RememberMe authentication request added by AuthManager. It can show a "remember
 me" checkbox that, when checked, will cause it to take more time for the authenticated session
 to expire. It can also be configured to always or to never extend the authentication session.
@@ -3989,7 +3989,7 @@ to expire. It can also be configured to always or to never extend the authentica
 Valid values are listed in RememberMeAuthenticationRequest::ALLOWED_FLAGS.
 @since 1.36
 
-\section ReauthenticateTime
+# ReauthenticateTime {#ReauthenticateTime}
 Time frame for re-authentication.
 
 With only password-based authentication, you'd just ask the user to re-enter
@@ -4025,7 +4025,7 @@ AuthManagerSpecialPage.
 The key 'default' is used if a requested operation isn't defined in the array.
 @since 1.27
 
-\section AllowSecuritySensitiveOperationIfCannotReauthenticate
+# AllowSecuritySensitiveOperationIfCannotReauthenticate {#AllowSecuritySensitiveOperationIfCannotReauthenticate}
 Whether to allow security-sensitive operations when re-authentication is not possible.
 
 If AuthManager::canAuthenticateNow() is false (e.g. the current
@@ -4038,7 +4038,7 @@ The key 'default' is used if a requested operation isn't defined in the array.
 @since 1.27
 @see $wgReauthenticateTime
 
-\section ChangeCredentialsBlacklist
+# ChangeCredentialsBlacklist {#ChangeCredentialsBlacklist}
 List of AuthenticationRequest class names which are not changeable through
 Special:ChangeCredentials and the changeauthenticationdata API.
 
@@ -4047,7 +4047,7 @@ AuthManager::allowsAuthenticationDataChange calls) is not affected.
 Class names are checked for exact match (not for subclasses).
 @since 1.27
 
-\section RemoveCredentialsBlacklist
+# RemoveCredentialsBlacklist {#RemoveCredentialsBlacklist}
 List of AuthenticationRequest class names which are not removable through
 Special:RemoveCredentials and the removeauthenticationdata API.
 
@@ -4056,12 +4056,12 @@ AuthManager::allowsAuthenticationDataChange calls) is not affected.
 Class names are checked for exact match (not for subclasses).
 @since 1.27
 
-\section MinimalPasswordLength
+# MinimalPasswordLength {#MinimalPasswordLength}
 Specifies the minimal length of a user password. If set to 0, empty pass-
 words are allowed.
 @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
 
-\section MaximalPasswordLength
+# MaximalPasswordLength {#MaximalPasswordLength}
 Specifies the maximal length of a user password (T64685).
 
 It is not recommended to make this greater than the default, as it can
@@ -4071,19 +4071,19 @@ this should not be lowered too much, as it enforces weak passwords.
 the maximum will not be able to log in.
 @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
 
-\section InvalidPasswordReset
+# InvalidPasswordReset {#InvalidPasswordReset}
 Specifies if users should be sent to a password-reset form on login, if their
 password doesn't meet the requirements of User::isValidPassword().
 @since 1.23
 
-\section PasswordDefault
+# PasswordDefault {#PasswordDefault}
 Default password type to use when hashing user passwords.
 
 Must be set to a type defined in $wgPasswordConfig, or a type that
 is registered by default in PasswordFactory.php.
 @since 1.24
 
-\section PasswordConfig
+# PasswordConfig {#PasswordConfig}
 Configuration for built-in password types. Maps the password type
 to an array of options. The 'class' option is the Password class to
 use. All other options are class-dependent.
@@ -4102,16 +4102,16 @@ $wgPasswordConfig['bcrypt-peppered'] = [
 ```
 @since 1.24
 
-\section PasswordResetRoutes
+# PasswordResetRoutes {#PasswordResetRoutes}
 Whether to allow password resets ("enter some identifying data, and we'll send an email
 with a temporary password you can use to get back into the account") identified by
 various bits of data.  Setting all of these to false (or the whole variable to false)
 has the effect of disabling password resets entirely
 
-\section MaxSigChars
+# MaxSigChars {#MaxSigChars}
 Maximum number of Unicode characters in signature
 
-\section SignatureValidation
+# SignatureValidation {#SignatureValidation}
 Behavior of signature validation. Allowed values are:
  - 'warning' - invalid signatures cause a warning to be displayed on the preferences page, but
    they are still used when signing comments; new invalid signatures can still be saved as normal
@@ -4120,37 +4120,37 @@ Behavior of signature validation. Allowed values are:
    signatures can't be saved
 @since 1.35
 
-\section SignatureAllowedLintErrors
+# SignatureAllowedLintErrors {#SignatureAllowedLintErrors}
 List of lint error codes which don't cause signature validation to fail.
 @see https://www.mediawiki.org/wiki/Help:Lint_errors
 @since 1.35
 
-\section MaxNameChars
+# MaxNameChars {#MaxNameChars}
 Maximum number of bytes in username. You want to run the maintenance
 script ./maintenance/checkUsernames.php once you have changed this value.
 
-\section ReservedUsernames
+# ReservedUsernames {#ReservedUsernames}
 Array of usernames which may not be registered or logged in from
 Maintenance scripts can still use these
 @see \User::MAINTENANCE_SCRIPT_USER
 
-\section DefaultUserOptions
+# DefaultUserOptions {#DefaultUserOptions}
 Settings added to this array will override the default globals for the user
 preferences used by anonymous visitors and newly created accounts.
 
 For instance, to disable editing on double clicks:
 $wgDefaultUserOptions ['editondblclick'] = 0;
 
-\section HiddenPrefs
+# HiddenPrefs {#HiddenPrefs}
 An array of preferences to not show for the user
 
-\section InvalidUsernameCharacters
+# InvalidUsernameCharacters {#InvalidUsernameCharacters}
 Characters to prevent during new account creations.
 
 This is used in a regular expression character class during
 registration (regex metacharacters like / are escaped).
 
-\section UserrightsInterwikiDelimiter
+# UserrightsInterwikiDelimiter {#UserrightsInterwikiDelimiter}
 Character used as a delimiter when testing for interwiki userrights
 (In Special:UserRights, it is possible to modify users on different
 databases if the delimiter is used, e.g. "Someuser@enwiki").
@@ -4159,14 +4159,14 @@ It is recommended that you have this delimiter in
 $wgInvalidUsernameCharacters above, or you will not be able to
 modify the user rights of those users via Special:UserRights
 
-\section SecureLogin
+# SecureLogin {#SecureLogin}
 This is to let user authenticate using https when they come from http.
 
 Based on an idea by George Herbert on wikitech-l:
 https://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050039.html
 @since 1.17
 
-\section AuthenticationTokenVersion
+# AuthenticationTokenVersion {#AuthenticationTokenVersion}
 Versioning for authentication tokens.
 
 If non-null, this is combined with the user's secret (the user_token field
@@ -4174,30 +4174,30 @@ in the DB) to generate the token cookie. Changing this will invalidate all
 active sessions (i.e. it will log everyone out).
 @since 1.27
 
-\section SessionProviders
+# SessionProviders {#SessionProviders}
 MediaWiki\Session\SessionProvider configuration.
 
 Value is an array of ObjectFactory specifications for the SessionProviders
 to be used. Keys in the array are ignored. Order is not significant.
 @since 1.27
 
-\section AllowRequiringEmailForResets
+# AllowRequiringEmailForResets {#AllowRequiringEmailForResets}
 Temporary feature flag that controls whether users will see a checkbox allowing them to
 require providing email during password resets.
 @deprecated This feature is under development, don't assume this flag's existence or function
 outside of MediaWiki.
 
-\section AutoblockExpiry
+# AutoblockExpiry {#AutoblockExpiry}
 Number of seconds before autoblock entries expire. Default 86400 = 1 day.
 
-\section BlockAllowsUTEdit
+# BlockAllowsUTEdit {#BlockAllowsUTEdit}
 Set this to true to allow blocked users to edit their own user talk page.
 
 This only applies to sitewide blocks. Partial blocks always allow users to
 edit their own user talk page unless otherwise specified in the block
 restrictions.
 
-\section BlockCIDRLimit
+# BlockCIDRLimit {#BlockCIDRLimit}
 Limits on the possible sizes of range blocks.
 
 CIDR notation is hard to understand, it's easy to mistakenly assume that a
@@ -4211,18 +4211,18 @@ plainly be required. RFC 4692 implies that a very large ISP may be
 allocated a /19 if a generous HD-Ratio of 0.8 is used, so we will use that
 as our limit. As of 2012, blocking the whole world would require a /4 range.
 
-\section BlockDisablesLogin
+# BlockDisablesLogin {#BlockDisablesLogin}
 If true, blocked users will not be allowed to login. When using this with
 a public wiki, the effect of logging out blocked users may actually be
 avers: unless the user's address is also blocked (e.g. auto-block),
 logging the user out will again allow reading and editing, just as for
 anonymous visitors.
 
-\section EnablePartialActionBlocks
+# EnablePartialActionBlocks {#EnablePartialActionBlocks}
 Flag to enable partial blocks against performing certain actions.
 @unstable Temporary feature flag, to be removed before the release of 1.38: T280532
 
-\section WhitelistRead
+# WhitelistRead {#WhitelistRead}
 Pages anonymous user may see, set as an array of pages titles.
 
 **Example:**
@@ -4240,7 +4240,7 @@ see https://www.mediawiki.org/wiki/Manual:Image_Authorization
 @note Extensions should not modify this, but use the TitleReadWhitelist
 hook instead.
 
-\section WhitelistReadRegexp
+# WhitelistReadRegexp {#WhitelistReadRegexp}
 Pages anonymous user may see, set as an array of regular expressions.
 
 This function will match the regexp against the title name, which
@@ -4267,15 +4267,15 @@ Will allow both [[User is banned]] and [[User:JohnDoe]]
 @note This will only work if $wgGroupPermissions['*']['read'] is false --
 see below. Otherwise, ALL pages are accessible, regardless of this setting.
 
-\section EmailConfirmToEdit
+# EmailConfirmToEdit {#EmailConfirmToEdit}
 Should editors be required to have a validated e-mail
 address before being allowed to edit?
 
-\section HideIdentifiableRedirects
+# HideIdentifiableRedirects {#HideIdentifiableRedirects}
 Should MediaWiki attempt to protect user's privacy when doing redirects?
 Keep this true if access counts to articles are made public.
 
-\section GroupPermissions
+# GroupPermissions {#GroupPermissions}
 Permission keys given to users in each group.
 
 This is an array where the keys are all groups and each value is an
@@ -4299,7 +4299,7 @@ for security. Use at your own risk!
 
 This replaces $wgWhitelistAccount and $wgWhitelistEdit
 
-\section RevokePermissions
+# RevokePermissions {#RevokePermissions}
 Permission keys revoked from users in each group.
 
 This acts the same way as $wgGroupPermissions above, except that
@@ -4308,7 +4308,7 @@ if the user is in a group here, the permission will be removed from them.
 Improperly setting this could mean that your users will be unable to perform
 certain essential tasks, so use at your own risk!
 
-\section GroupInheritsPermissions
+# GroupInheritsPermissions {#GroupInheritsPermissions}
 Groups that should inherit permissions from another group
 
 This allows defining a group that inherits its permissions
@@ -4326,10 +4326,10 @@ granted (or revoked) from autoconfirmed, not any permissions
 that autoconfirmed might inherit.
 @since 1.38
 
-\section ImplicitGroups
+# ImplicitGroups {#ImplicitGroups}
 Implicit groups, aren't shown on Special:Listusers or somewhere else
 
-\section GroupsAddToSelf
+# GroupsAddToSelf {#GroupsAddToSelf}
 A map of group names that the user is in, to group names that those users
 are allowed to add or revoke.
 
@@ -4353,11 +4353,11 @@ $wgGroupsRemoveFromSelf = [ '*' => true ];
 This allows users in the '*' group (i.e. any user) to remove themselves from
 any group that they happen to be in.
 
-\section GroupsRemoveFromSelf
+# GroupsRemoveFromSelf {#GroupsRemoveFromSelf}
 
 @see $wgGroupsAddToSelf
 
-\section RestrictionTypes
+# RestrictionTypes {#RestrictionTypes}
 Set of available actions that can be restricted via action=protect
 You probably shouldn't change this.
 
@@ -4365,7 +4365,7 @@ Translated through restriction-* messages.
 Title::getRestrictionTypes() will remove restrictions that are not
 applicable to a specific title (create and upload)
 
-\section RestrictionLevels
+# RestrictionLevels {#RestrictionLevels}
 Rights which can be required for each protection level (via action=protect)
 
 You can add a new protection level that requires a specific
@@ -4376,7 +4376,7 @@ dictates the order on the protection form's lists.
   - 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility
   - 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility
 
-\section CascadingRestrictionLevels
+# CascadingRestrictionLevels {#CascadingRestrictionLevels}
 Restriction levels that can be used with cascading protection
 
 A page can only be protected with cascading protection if the
@@ -4385,7 +4385,7 @@ requested restriction level is included in this array.
 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility.
 
-\section SemiprotectedRestrictionLevels
+# SemiprotectedRestrictionLevels {#SemiprotectedRestrictionLevels}
 Restriction levels that should be considered "semiprotected"
 
 Certain places in the interface recognize a dichotomy between "protected"
@@ -4397,13 +4397,13 @@ reaching some condition in $wgAutopromote, it should probably be considered
 'autoconfirmed' is quietly rewritten to 'editsemiprotected' for backwards compatibility.
 'sysop' is not changed, since it really shouldn't be here.
 
-\section NamespaceProtection
+# NamespaceProtection {#NamespaceProtection}
 Set the minimum permissions required to edit pages in each
 namespace.  If you list more than one permission, a user must
 have all of them to edit pages in that namespace.
 @note NS_MEDIAWIKI is implicitly restricted to 'editinterface'.
 
-\section NonincludableNamespaces
+# NonincludableNamespaces {#NonincludableNamespaces}
 Pages in namespaces in this array can not be used as templates.
 
 Elements MUST be numeric namespace ids, you can safely use the MediaWiki
@@ -4412,7 +4412,7 @@ namespaces constants (NS_USER, NS_MAIN...).
 Among other things, this may be useful to enforce read-restrictions
 which may otherwise be bypassed by using the template mechanism.
 
-\section AutoConfirmAge
+# AutoConfirmAge {#AutoConfirmAge}
 Number of seconds an account is required to age before it's given the
 implicit 'autoconfirm' group membership. This can be used to limit
 privileges of new accounts.
@@ -4435,7 +4435,7 @@ Set age to one day:
 $wgAutoConfirmAge = 3600*24; // one day
 ```
 
-\section AutoConfirmCount
+# AutoConfirmCount {#AutoConfirmCount}
 Number of edits an account requires before it is autoconfirmed.
 
 Passing both this AND the time requirement is needed. Example:
@@ -4446,7 +4446,7 @@ Passing both this AND the time requirement is needed. Example:
 $wgAutoConfirmCount = 50;
 ```
 
-\section Autopromote
+# Autopromote {#Autopromote}
 Array containing the conditions of automatic promotion of a user to specific groups.
 
 The basic syntax for `$wgAutopromote` is:
@@ -4503,7 +4503,7 @@ linked by operands.
 Note that if $wgEmailAuthentication is disabled, APCOND_EMAILCONFIRMED will be true for any
 user who has provided an e-mail address.
 
-\section AutopromoteOnce
+# AutopromoteOnce {#AutopromoteOnce}
 Automatically add a usergroup to any user who matches certain conditions.
 
 Does not add the user to the group again if it has been removed.
@@ -4522,11 +4522,11 @@ Criteria has the same format as $wgAutopromote
 @see $wgAutopromote
 @since 1.18
 
-\section AutopromoteOnceLogInRC
+# AutopromoteOnceLogInRC {#AutopromoteOnceLogInRC}
 Put user rights log entries for autopromotion in recent changes?
 @since 1.18
 
-\section AddGroups
+# AddGroups {#AddGroups}
 $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
 can assign which groups at Special:Userrights.
 
@@ -4555,25 +4555,25 @@ Sysops can disable other sysops in an emergency, and disable bots:
 $wgRemoveGroups['sysop'] = [ 'sysop', 'bot' ];
 ```
 
-\section RemoveGroups
+# RemoveGroups {#RemoveGroups}
 
 @see $wgAddGroups
 
-\section AvailableRights
+# AvailableRights {#AvailableRights}
 A list of available rights, in addition to the ones defined by the core.
 
 For extensions only.
 
-\section DeleteRevisionsLimit
+# DeleteRevisionsLimit {#DeleteRevisionsLimit}
 Optional to restrict deletion of pages with higher revision counts
 to users with the 'bigdelete' permission. (Default given to sysops.)
 
-\section DeleteRevisionsBatchSize
+# DeleteRevisionsBatchSize {#DeleteRevisionsBatchSize}
 Page deletions with > this number of revisions will use the job queue.
 
 Revisions will be archived in batches of (at most) this size, one batch per job.
 
-\section HideUserContribLimit
+# HideUserContribLimit {#HideUserContribLimit}
 The maximum number of edits a user can have and
 can still be hidden by users with the hideuser permission.
 
@@ -4581,7 +4581,7 @@ This is limited for performance reason.
 Set to false to disable the limit.
 @since 1.23
 
-\section AccountCreationThrottle
+# AccountCreationThrottle {#AccountCreationThrottle}
 Number of accounts each IP address may create per specified period(s).
 
 **Example:**
@@ -4602,7 +4602,7 @@ $wgAccountCreationThrottle = [
 ```
 @warning Requires $wgMainCacheType to be enabled
 
-\section SpamRegex
+# SpamRegex {#SpamRegex}
 Edits matching these regular expressions in body text
 will be recognised as spam and rejected automatically.
 
@@ -4611,15 +4611,15 @@ May be an array of regexes or a single string for backwards compatibility.
 @see https://en.wikipedia.org/wiki/Regular_expression
 @note Each regex needs a beginning/end delimiter, eg: # or /
 
-\section SummarySpamRegex
+# SummarySpamRegex {#SummarySpamRegex}
 Same as the above except for edit summaries
 
-\section EnableDnsBlacklist
+# EnableDnsBlacklist {#EnableDnsBlacklist}
 Whether to use DNS blacklists in $wgDnsBlacklistUrls to check for open
 proxies
 @since 1.16
 
-\section DnsBlacklistUrls
+# DnsBlacklistUrls {#DnsBlacklistUrls}
 List of DNS blacklists to use, if $wgEnableDnsBlacklist is true.
 
 This is an array of either a URL or an array with the URL and a key (should
@@ -4642,7 +4642,7 @@ $wgDnsBlacklistUrls = [
 eventual domain search suffixes.
 @since 1.16
 
-\section ProxyList
+# ProxyList {#ProxyList}
 Big list of banned IP addresses.
 
 This can have the following formats:
@@ -4650,22 +4650,22 @@ This can have the following formats:
 - A string, in which case this is the path to a file
   containing the list of IP addresses, one per line
 
-\section ProxyWhitelist
+# ProxyWhitelist {#ProxyWhitelist}
 Proxy whitelist, list of addresses that are assumed to be non-proxy despite
 what the other methods might say.
 
-\section SoftBlockRanges
+# SoftBlockRanges {#SoftBlockRanges}
 IP ranges that should be considered soft-blocked (anon-only, account
 creation allowed). The intent is to use this to prevent anonymous edits from
 shared resources such as Wikimedia Labs.
 @since 1.29
 
-\section ApplyIpBlocksToXff
+# ApplyIpBlocksToXff {#ApplyIpBlocksToXff}
 Whether to look at the X-Forwarded-For header's list of (potentially spoofed)
 IPs and apply IP blocks to them. This allows for IP blocks to work with correctly-configured
 (transparent) proxies without needing to block the proxies themselves.
 
-\section RateLimits
+# RateLimits {#RateLimits}
 Simple rate limiter options to brake edit floods.
 
 Maximum number actions allowed in the given number of seconds; after that
@@ -4704,21 +4704,21 @@ $wgRateLimits = [
 ```
 @warning Requires that $wgMainCacheType is set to something persistent
 
-\section RateLimitsExcludedIPs
+# RateLimitsExcludedIPs {#RateLimitsExcludedIPs}
 Array of IPs / CIDR ranges which should be excluded from rate limits.
 
 This may be useful for allowing NAT gateways for conferences, etc.
 
-\section PutIPinRC
+# PutIPinRC {#PutIPinRC}
 Log IP addresses in the recentchanges table; can be accessed only by
 extensions (e.g. CheckUser) or a DB admin
 Used for retroactive autoblocks
 
-\section QueryPageDefaultLimit
+# QueryPageDefaultLimit {#QueryPageDefaultLimit}
 Integer defining default number of entries to show on
 special pages which are query-pages such as Special:Whatlinkshere.
 
-\section PasswordAttemptThrottle
+# PasswordAttemptThrottle {#PasswordAttemptThrottle}
 Limit password attempts to X attempts per Y seconds per IP per account.
 
 Value is an array of arrays. Each sub-array must have a key for count
@@ -4729,7 +4729,7 @@ just per account instead of per IP per account.
 to 1.27 this only supported having a single throttle.
 @warning Requires $wgMainCacheType to be enabled
 
-\section GrantPermissions
+# GrantPermissions {#GrantPermissions}
 Users authorize consumers (like Apps) to act on their behalf but only with
 a subset of the user's normal account rights (signed off on by the user).
 The possible rights to grant to a consumer are bundled into groups called
@@ -4739,55 +4739,55 @@ nothing if that user does not actually have that right to begin with.
 
 @since 1.27
 
-\section GrantPermissionGroups
+# GrantPermissionGroups {#GrantPermissionGroups}
 
 @since 1.27
 
-\section EnableBotPasswords
+# EnableBotPasswords {#EnableBotPasswords}
 
 @since 1.27
 
-\section BotPasswordsCluster
+# BotPasswordsCluster {#BotPasswordsCluster}
 Cluster for the bot_passwords table
 @since 1.27
 
-\section BotPasswordsDatabase
+# BotPasswordsDatabase {#BotPasswordsDatabase}
 Database name for the bot_passwords table
 
 To use a database with a table prefix, set this variable to
 "{$database}-{$prefix}".
 @since 1.27
 
-\section SecretKey
+# SecretKey {#SecretKey}
 This should always be customised in LocalSettings.php
 
-\section AllowUserJs
+# AllowUserJs {#AllowUserJs}
 Allow user Javascript page?
 This enables a lot of neat customizations, but may
 increase security risk to users and server load.
 
-\section AllowUserCss
+# AllowUserCss {#AllowUserCss}
 Allow user Cascading Style Sheets (CSS)?
 This enables a lot of neat customizations, but may
 increase security risk to users and server load.
 
-\section AllowUserCssPrefs
+# AllowUserCssPrefs {#AllowUserCssPrefs}
 Allow style-related user-preferences?
 
 This controls whether the `editfont` and `underline` preferences
 are available to users.
 
-\section UseSiteJs
+# UseSiteJs {#UseSiteJs}
 Use the site's Javascript page?
 
-\section UseSiteCss
+# UseSiteCss {#UseSiteCss}
 Use the site's Cascading Style Sheets (CSS)?
 
-\section BreakFrames
+# BreakFrames {#BreakFrames}
 Break out of framesets. This can be used to prevent clickjacking attacks,
 or to prevent external sites from framing your site with ads.
 
-\section EditPageFrameOptions
+# EditPageFrameOptions {#EditPageFrameOptions}
 The X-Frame-Options header to send on pages sensitive to clickjacking
 attacks, such as edit pages. This prevents those pages from being displayed
 in a frame or iframe. The options are:
@@ -4806,7 +4806,7 @@ in a frame or iframe. The options are:
 For extra safety, set $wgBreakFrames = true, to prevent framing on all pages,
 not just edit pages.
 
-\section ApiFrameOptions
+# ApiFrameOptions {#ApiFrameOptions}
 Disallow framing of API pages directly, by setting the X-Frame-Options
 header. Since the API returns CSRF tokens, allowing the results to be
 framed can compromise your user's account security.
@@ -4817,17 +4817,17 @@ Options are:
   - false: Allow all framing.
 Note: $wgBreakFrames will override this for human formatted API output.
 
-\section CSPHeader
+# CSPHeader {#CSPHeader}
 Controls Content-Security-Policy header [Experimental]
 @see https://www.w3.org/TR/CSP2/
 @since 1.32
 @warning May cause slowness on windows due to slow random number generator.
 
-\section CSPReportOnlyHeader
+# CSPReportOnlyHeader {#CSPReportOnlyHeader}
 Controls Content-Security-Policy-Report-Only header
 @since 1.32
 
-\section CSPFalsePositiveUrls
+# CSPFalsePositiveUrls {#CSPFalsePositiveUrls}
 List of urls which appear often to be triggering CSP reports
 but do not appear to be caused by actual content, but by client
 software inserting scripts (i.e. Ad-Ware).
@@ -4835,13 +4835,13 @@ software inserting scripts (i.e. Ad-Ware).
 List based on results from Wikimedia logs.
 @since 1.28
 
-\section AllowCrossOrigin
+# AllowCrossOrigin {#AllowCrossOrigin}
 Allow anonymous cross origin requests.
 
 This should be disabled for intranet sites (sites behind a firewall).
 @since 1.36
 
-\section RestAllowCrossOriginCookieAuth
+# RestAllowCrossOriginCookieAuth {#RestAllowCrossOriginCookieAuth}
 Allows authenticated cross-origin requests to the REST API with session cookies.
 
 With this option enabled, any orgin specified in $wgCrossSiteAJAXdomains may send session cookies
@@ -4852,21 +4852,21 @@ most wikis and clients should instead use OAuth to make cross-origin authenticat
 @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
 @since 1.36
 
-\section SessionSecret
+# SessionSecret {#SessionSecret}
 Secret for session storage.
 
 This should be set in LocalSettings.php, otherwise $wgSecretKey will
 be used.
 @since 1.27
 
-\section SessionInsecureSecrets
+# SessionInsecureSecrets {#SessionInsecureSecrets}
 If for some reason you can't install the PHP OpenSSL extension,
 you can set this to true to make MediaWiki work again at the cost of storing
 sensitive session data insecurely. But it would be much more secure to just
 install the OpenSSL extension.
 @since 1.27
 
-\section HKDFSecret
+# HKDFSecret {#HKDFSecret}
 Secret for hmac-based key derivation function (fast,
 cryptographically secure random numbers).
 
@@ -4875,31 +4875,31 @@ be used.
 See also: $wgHKDFAlgorithm
 @since 1.24
 
-\section HKDFAlgorithm
+# HKDFAlgorithm {#HKDFAlgorithm}
 Algorithm for hmac-based key derivation function (fast,
 cryptographically secure random numbers).
 
 See also: $wgHKDFSecret
 @since 1.24
 
-\section CookieExpiration
+# CookieExpiration {#CookieExpiration}
 Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.
 
-\section ExtendedLoginCookieExpiration
+# ExtendedLoginCookieExpiration {#ExtendedLoginCookieExpiration}
 Default login cookie lifetime, in seconds. Setting
 $wgExtendLoginCookieExpiration to null will use $wgCookieExpiration to
 calculate the cookie lifetime. As with $wgCookieExpiration, 0 will make
 login cookies session-only.
 
-\section CookieDomain
+# CookieDomain {#CookieDomain}
 Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
 or ".any.subdomain.net"
 
-\section CookiePath
+# CookiePath {#CookiePath}
 Set this variable if you want to restrict cookies to a certain path within
 the domain specified by $wgCookieDomain.
 
-\section CookieSecure
+# CookieSecure {#CookieSecure}
 Whether the "secure" flag should be set on the cookie. This can be:
   - true:      Set secure flag
   - false:     Don't set secure flag
@@ -4909,23 +4909,23 @@ Whether the "secure" flag should be set on the cookie. This can be:
 If $wgForceHTTPS is true, session cookies will be secure regardless of this
 setting. However, other cookies will still be affected.
 
-\section DisableCookieCheck
+# DisableCookieCheck {#DisableCookieCheck}
 By default, MediaWiki checks if the client supports cookies during the
 login process, so that it can display an informative error message if
 cookies are disabled. Set this to true if you want to disable this cookie
 check.
 
-\section CookiePrefix
+# CookiePrefix {#CookiePrefix}
 Cookies generated by MediaWiki have names starting with this prefix. Set it
 to a string to use a custom prefix. Setting it to false causes the database
 name to be used as a prefix.
 
-\section CookieHttpOnly
+# CookieHttpOnly {#CookieHttpOnly}
 Set authentication cookies to HttpOnly to prevent access by JavaScript,
 in browsers that support this feature. This can mitigates some classes of
 XSS attack.
 
-\section CookieSameSite
+# CookieSameSite {#CookieSameSite}
 The SameSite cookie attribute used for login cookies. This can be "Lax",
 "Strict", "None" or empty/null to omit the attribute.
 
@@ -4933,52 +4933,52 @@ This only applies to login cookies, since the correct value for other
 cookies depends on what kind of cookie it is.
 @since 1.35
 
-\section UseSameSiteLegacyCookies
+# UseSameSiteLegacyCookies {#UseSameSiteLegacyCookies}
 If true, when a cross-site cookie with SameSite=None is sent, a legacy
 cookie with an "ss0" prefix will also be sent, without SameSite=None. This
 is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
 @since 1.35
 
-\section CacheVaryCookies
+# CacheVaryCookies {#CacheVaryCookies}
 A list of cookies that vary the cache (for use by extensions)
 
-\section SessionName
+# SessionName {#SessionName}
 Override to customise the session name
 
-\section CookieSetOnAutoblock
+# CookieSetOnAutoblock {#CookieSetOnAutoblock}
 Whether to set a cookie when a user is autoblocked. Doing so means that a blocked user, even
 after logging out and moving to a new IP address, will still be blocked. This cookie will contain
 an authentication code if $wgSecretKey is set, or otherwise will just be the block ID (in
 which case there is a possibility of an attacker discovering the names of revdeleted users, so
 it is best to use this in conjunction with $wgSecretKey being set).
 
-\section CookieSetOnIpBlock
+# CookieSetOnIpBlock {#CookieSetOnIpBlock}
 Whether to set a cookie when a logged-out user is blocked. Doing so means that a blocked user,
 even after moving to a new IP address, will still be blocked. This cookie will contain an
 authentication code if $wgSecretKey is set, or otherwise will just be the block ID (in which
 case there is a possibility of an attacker discovering the names of revdeleted users, so it
 is best to use this in conjunction with $wgSecretKey being set).
 
-\section DebugLogFile
+# DebugLogFile {#DebugLogFile}
 Filename for debug logging. See https://www.mediawiki.org/wiki/How_to_debug
 The debug log file should be not be publicly accessible if it is used, as it
 may contain private data.
 
-\section DebugLogPrefix
+# DebugLogPrefix {#DebugLogPrefix}
 Prefix for debug log lines
 
-\section DebugRedirects
+# DebugRedirects {#DebugRedirects}
 If true, instead of redirecting, show a page with a link to the redirect
 destination. This allows for the inspection of PHP error messages, and easy
 resubmission of form data. For developer use only.
 
-\section DebugRawPage
+# DebugRawPage {#DebugRawPage}
 If true, log debugging data from action=raw and load.php.
 
 This is normally false to avoid overlapping debug entries due to gen=css
 and gen=js requests.
 
-\section DebugComments
+# DebugComments {#DebugComments}
 Send debug data to an HTML comment in the output.
 
 This may occasionally be useful when supporting a non-technical end-user.
@@ -4986,18 +4986,18 @@ It's more secure than exposing the debug log file to the web, since the
 output only contains private data for the current user. But it's not ideal
 for development use since data is lost on fatal errors and redirects.
 
-\section DebugDumpSql
+# DebugDumpSql {#DebugDumpSql}
 Write SQL queries to the debug log.
 
 This setting is only used $wgLBFactoryConf['class'] is set to
 '\Wikimedia\Rdbms\LBFactorySimple'; otherwise the DBO_DEBUG flag must be set in
 the 'flags' option of the database connection to achieve the same functionality.
 
-\section TrxProfilerLimits
+# TrxProfilerLimits {#TrxProfilerLimits}
 Performance expectations for DB usage
 @since 1.26
 
-\section DebugLogGroups
+# DebugLogGroups {#DebugLogGroups}
 Map of string log group names to log destinations.
 
 If set, wfDebugLog() output for that group will go to that file instead
@@ -5029,7 +5029,7 @@ $wgDebugLogGroups['memcached'] = [
 ];
 ```
 
-\section MWLoggerDefaultSpi
+# MWLoggerDefaultSpi {#MWLoggerDefaultSpi}
 Default service provider for creating Psr\Log\LoggerInterface instances.
 
 The value should be an array suitable for use with
@@ -5049,46 +5049,46 @@ $wgMWLoggerDefaultSpi = [ 'class' => \MediaWiki\Logger\NullSpi::class ];
 @since 1.25
 @see \MwLogger
 
-\section ShowDebug
+# ShowDebug {#ShowDebug}
 Display debug data at the bottom of the main content area.
 
 Useful for developers and technical users trying to working on a closed wiki.
 
-\section SpecialVersionShowHooks
+# SpecialVersionShowHooks {#SpecialVersionShowHooks}
 Show the contents of $wgHooks in Special:Version
 
-\section ShowExceptionDetails
+# ShowExceptionDetails {#ShowExceptionDetails}
 If set to true, uncaught exceptions will print the exception message and a
 complete stack trace to output. This should only be used for debugging, as it
 may reveal private information in function parameters due to PHP's backtrace
 formatting.  If set to false, only the exception's class will be shown.
 
-\section LogExceptionBacktrace
+# LogExceptionBacktrace {#LogExceptionBacktrace}
 If true, send the exception backtrace to the error log
 
-\section PropagateErrors
+# PropagateErrors {#PropagateErrors}
 If true, the MediaWiki error handler passes errors/warnings to the default error handler
 after logging them. The setting is ignored when the track_errors php.ini flag is true.
 
-\section ShowHostnames
+# ShowHostnames {#ShowHostnames}
 Expose backend server host names through the API and various HTML comments
 
-\section OverrideHostname
+# OverrideHostname {#OverrideHostname}
 Override server hostname detection with a hardcoded value.
 
 Should be a string, default false.
 @since 1.20
 
-\section DevelopmentWarnings
+# DevelopmentWarnings {#DevelopmentWarnings}
 If set to true MediaWiki will throw notices for some possible error
 conditions and for deprecated functions.
 
-\section DeprecationReleaseLimit
+# DeprecationReleaseLimit {#DeprecationReleaseLimit}
 Release limitation to wfDeprecated warnings, if set to a release number
 development warnings will not be generated for deprecations added in releases
 after the limit.
 
-\section Profiler
+# Profiler {#Profiler}
 Profiler configuration.
 
 To use a profiler, set $wgProfiler in LocalSettings.php.
@@ -5153,7 +5153,7 @@ could be long running and the data would accumulate. Use the `--profiler`
 parameter of maintenance scripts to override this.
 @since 1.17.0
 
-\section StatsdServer
+# StatsdServer {#StatsdServer}
 Destination of statsd metrics.
 
 A host or host:port of a statsd server. Port defaults to 8125.
@@ -5162,27 +5162,27 @@ If not set, statsd metrics will not be collected.
 @see MediaWiki::emitBufferedStatsdData()
 @since 1.25
 
-\section StatsdMetricPrefix
+# StatsdMetricPrefix {#StatsdMetricPrefix}
 Prefix for metric names sent to $wgStatsdServer.
 @see MediaWikiServices::getInstance()->getStatsdDataFactory
 @see \BufferingStatsdDataFactory
 @since 1.25
 
-\section StatsdSamplingRates
+# StatsdSamplingRates {#StatsdSamplingRates}
 Sampling rate for statsd metrics as an associative array of patterns and rates.
 
 Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
 Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
 @since 1.28
 
-\section MetricsTarget
+# MetricsTarget {#MetricsTarget}
 Metrics output target URI e.g. udp://127.0.0.1:8125
 
 If null, metrics will not be sent.
 Note: this only affects metrics instantiated by the MetricsFactory service
 @since 1.38
 
-\section MetricsFormat
+# MetricsFormat {#MetricsFormat}
 Metrics output format
 
 If null, metrics will not be rendered nor sent.
@@ -5190,7 +5190,7 @@ Note: this only affects metrics instantiated by the MetricsFactory service
 @see \Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
 @since 1.38
 
-\section MetricsPrefix
+# MetricsPrefix {#MetricsPrefix}
 Metrics service name prefix
 
 Required.  Must not be zero-length.
@@ -5198,13 +5198,13 @@ Defaults to: 'mediawiki'
 Note: this only affects metrics instantiated by the MetricsFactory service
 @since 1.38
 
-\section PageInfoTransclusionLimit
+# PageInfoTransclusionLimit {#PageInfoTransclusionLimit}
 InfoAction retrieves a list of transclusion links (both to and from).
 
 This number puts a limit on that query in the case of highly transcluded
 templates.
 
-\section ParserTestFiles
+# ParserTestFiles {#ParserTestFiles}
 Parser test suite files to be run by parserTests.php when no specific
 filename is passed to it.
 
@@ -5216,32 +5216,32 @@ Core tests can be added to ParserTestRunner::$coreTestFiles.
 Use full paths.
 @deprecated since 1.30
 
-\section EnableJavaScriptTest
+# EnableJavaScriptTest {#EnableJavaScriptTest}
 Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
 
-\section CachePrefix
+# CachePrefix {#CachePrefix}
 Overwrite the caching key prefix with custom value.
 @since 1.19
 
-\section DebugToolbar
+# DebugToolbar {#DebugToolbar}
 Display the new debugging toolbar. This also enables profiling on database
 queries and other useful output.
 
 Will be ignored if $wgUseFileCache or $wgUseCdn is enabled.
 @since 1.19
 
-\section DisableTextSearch
+# DisableTextSearch {#DisableTextSearch}
 Set this to true to disable the full text search feature.
 
-\section AdvancedSearchHighlighting
+# AdvancedSearchHighlighting {#AdvancedSearchHighlighting}
 Set to true to have nicer highlighted text in search results,
 by default off due to execution overhead
 
-\section SearchHighlightBoundaries
+# SearchHighlightBoundaries {#SearchHighlightBoundaries}
 Regexp to match word boundaries, defaults for non-CJK languages
 should be empty for CJK since the words are not separate
 
-\section OpenSearchTemplate
+# OpenSearchTemplate {#OpenSearchTemplate}
 Template for OpenSearch suggestions, defaults to API action=opensearch
 
 Sites with heavy load would typically have these point to a custom
@@ -5250,7 +5250,7 @@ PHP wrapper to avoid firing up mediawiki for every keystroke
 Placeholders: {searchTerms}
 @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead
 
-\section OpenSearchTemplates
+# OpenSearchTemplates {#OpenSearchTemplates}
 Templates for OpenSearch suggestions, defaults to API action=opensearch
 
 Sites with heavy load would typically have these point to a custom
@@ -5258,26 +5258,26 @@ PHP wrapper to avoid firing up mediawiki for every keystroke
 
 Placeholders: {searchTerms}
 
-\section EnableOpenSearchSuggest
+# EnableOpenSearchSuggest {#EnableOpenSearchSuggest}
 This was previously a used to force empty responses from ApiOpenSearch
 with the 'suggest' parameter set.
 @deprecated since 1.35 No longer used
 
-\section OpenSearchDefaultLimit
+# OpenSearchDefaultLimit {#OpenSearchDefaultLimit}
 Integer defining default number of entries to show on
 OpenSearch call.
 
-\section OpenSearchDescriptionLength
+# OpenSearchDescriptionLength {#OpenSearchDescriptionLength}
 Minimum length of extract in <Description>. Actual extracts will last until the end of sentence.
 
-\section SearchSuggestCacheExpiry
+# SearchSuggestCacheExpiry {#SearchSuggestCacheExpiry}
 Expiry time for search suggestion responses
 
-\section DisableSearchUpdate
+# DisableSearchUpdate {#DisableSearchUpdate}
 If you've disabled search semi-permanently, this also disables updates to the
 table. If you ever re-enable, be sure to rebuild the search table.
 
-\section NamespacesToBeSearchedDefault
+# NamespacesToBeSearchedDefault {#NamespacesToBeSearchedDefault}
 List of namespaces which are searched by default.
 
 **Example:**
@@ -5287,11 +5287,11 @@ $wgNamespacesToBeSearchedDefault[NS_MAIN] = true;
 $wgNamespacesToBeSearchedDefault[NS_PROJECT] = true;
 ```
 
-\section DisableInternalSearch
+# DisableInternalSearch {#DisableInternalSearch}
 Disable the internal MySQL-based search, to allow it to be
 implemented by an extension instead.
 
-\section SearchForwardUrl
+# SearchForwardUrl {#SearchForwardUrl}
 Set this to a URL to forward search requests to some external location.
 
 If the URL includes '$1', this will be replaced with the URL-encoded
@@ -5308,12 +5308,12 @@ $wgSearchForwardUrl =
 '&ie=utf-8&oe=utf-8';
 ```
 
-\section SitemapNamespaces
+# SitemapNamespaces {#SitemapNamespaces}
 Array of namespaces to generate a Google sitemap for when the
 maintenance/generateSitemap.php script is run, or false if one is to be
 generated for all namespaces.
 
-\section SitemapNamespacesPriorities
+# SitemapNamespacesPriorities {#SitemapNamespacesPriorities}
 Custom namespace priorities for sitemaps. Setting this will allow you to
 set custom priorities to namespaces when sitemaps are generated using the
 maintenance/generateSitemap.php script.
@@ -5329,12 +5329,12 @@ $wgSitemapNamespacesPriorities = [
 ];
 ```
 
-\section EnableSearchContributorsByIP
+# EnableSearchContributorsByIP {#EnableSearchContributorsByIP}
 If true, searches for IP addresses will be redirected to that IP's
 contributions page. E.g. searching for "1.2.3.4" will redirect to
 [[Special:Contributions/1.2.3.4]]
 
-\section SpecialSearchFormOptions
+# SpecialSearchFormOptions {#SpecialSearchFormOptions}
 Options for Special:Search completion widget form created by SearchFormWidget class.
 
 Settings that can be used:
@@ -5343,47 +5343,47 @@ Settings that can be used:
 See also TitleWidget.js UI widget.
 @since 1.34
 
-\section SearchMatchRedirectPreference
+# SearchMatchRedirectPreference {#SearchMatchRedirectPreference}
 Set true to allow logged-in users to set a preference whether or not matches in
 search results should force redirection to that page. If false, the preference is
 not exposed and cannot be altered from site default. To change your site's default
 preference, set via $wgDefaultUserOptions['search-match-redirect'].
 @since 1.35
 
-\section SearchRunSuggestedQuery
+# SearchRunSuggestedQuery {#SearchRunSuggestedQuery}
 Controls whether zero-result search queries with suggestions should display results for
 these suggestions.
 @since 1.26
 
-\section Diff3
+# Diff3 {#Diff3}
 Path to the GNU diff3 utility. If the file doesn't exist, edit conflicts will
 fall back to the old behavior (no merging).
 
-\section Diff
+# Diff {#Diff}
 Path to the GNU diff utility.
 
-\section PreviewOnOpenNamespaces
+# PreviewOnOpenNamespaces {#PreviewOnOpenNamespaces}
 Which namespaces have special treatment where they should be preview-on-open
 Internally only Category: pages apply, but using this extensions (e.g. Semantic MediaWiki)
 can specify namespaces of pages they have special treatment for
 
-\section UniversalEditButton
+# UniversalEditButton {#UniversalEditButton}
 Enable the UniversalEditButton for browsers that support it
 (currently only Firefox with an extension)
 See http://universaleditbutton.org for more background information
 
-\section UseAutomaticEditSummaries
+# UseAutomaticEditSummaries {#UseAutomaticEditSummaries}
 If user doesn't specify any edit summary when making a an edit, MediaWiki
 will try to automatically create one. This feature can be disabled by set-
 ting this variable false.
 
-\section CommandLineMode
+# CommandLineMode {#CommandLineMode}
 
 
-\section CommandLineDarkBg
+# CommandLineDarkBg {#CommandLineDarkBg}
 For colorized maintenance script output, is your terminal background dark ?
 
-\section ReadOnly
+# ReadOnly {#ReadOnly}
 Set this to a string to put the wiki into read-only mode. The text will be
 used as an explanation to users.
 
@@ -5391,11 +5391,11 @@ This prevents most write operations via the web interface. Cache updates may
 still be possible. To prevent database writes completely, use the read_only
 option in MySQL.
 
-\section ReadOnlyWatchedItemStore
+# ReadOnlyWatchedItemStore {#ReadOnlyWatchedItemStore}
 Set this to true to put the wiki watchlists into read-only mode.
 @since 1.31
 
-\section ReadOnlyFile
+# ReadOnlyFile {#ReadOnlyFile}
 If this lock file exists (size > 0), the wiki will be forced into read-only mode.
 
 Its contents will be shown to users as part of the read-only warning
@@ -5403,7 +5403,7 @@ message.
 
 Will default to "{$wgUploadDirectory}/lock_yBgMBwiR" in Setup.php
 
-\section UpgradeKey
+# UpgradeKey {#UpgradeKey}
 When you run the web-based upgrade utility, it will tell you what to set
 this to in order to authorize the upgrade process. It will subsequently be
 used as a password, to authorize further upgrades.
@@ -5412,10 +5412,10 @@ For security, do not set this to a guessable string. Use the value supplied
 by the install/upgrade process. To cause the upgrader to generate a new key,
 delete the old key from LocalSettings.php.
 
-\section GitBin
+# GitBin {#GitBin}
 Fully specified path to git binary
 
-\section GitRepositoryViewers
+# GitRepositoryViewers {#GitRepositoryViewers}
 Map GIT repository URLs to viewer URLs to provide links in Special:Version
 
 Key is a pattern passed to preg_match() and preg_replace(),
@@ -5427,42 +5427,42 @@ full SHA-1 of the HEAD revision.
 %R will be replaced with $1 and no URL-encoding
 @since 1.20
 
-\section RCMaxAge
+# RCMaxAge {#RCMaxAge}
 Recentchanges items are periodically purged; entries older than this many
 seconds will go.
 
 Default: 90 days = about three months
 
-\section WatchersMaxAge
+# WatchersMaxAge {#WatchersMaxAge}
 Page watchers inactive for more than this many seconds are considered inactive.
 
 Used mainly by action=info. Default: 180 days = about six months.
 @since 1.26
 
-\section UnwatchedPageSecret
+# UnwatchedPageSecret {#UnwatchedPageSecret}
 If active watchers (per above) are this number or less, do not disclose it.
 
 Left to 1, prevents unprivileged users from knowing for sure that there are 0.
 Set to -1 if you want to always complement watchers count with this info.
 @since 1.26
 
-\section RCFilterByAge
+# RCFilterByAge {#RCFilterByAge}
 Filter $wgRCLinkDays by $wgRCMaxAge to avoid showing links for numbers
 higher than what will be stored. Note that this is disabled by default
 because we sometimes do have RC data which is beyond the limit for some
 reason, and some users may use the high numbers to display that data which
 is still there.
 
-\section RCLinkLimits
+# RCLinkLimits {#RCLinkLimits}
 List of Limits options to list in the Special:Recentchanges and
 Special:Recentchangeslinked pages.
 
-\section RCLinkDays
+# RCLinkDays {#RCLinkDays}
 List of Days options to list in the Special:Recentchanges and
 Special:Recentchangeslinked pages.
 @see \ChangesListSpecialPage::getLinkDays
 
-\section RCFeeds
+# RCFeeds {#RCFeeds}
 Configuration for feeds to which notifications about recent changes will be sent.
 
 The following feed classes are available by default:
@@ -5524,13 +5524,13 @@ $wgRCFeeds['example'] = [
 ```
 @since 1.22
 
-\section RCEngines
+# RCEngines {#RCEngines}
 Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
 
 Keys are scheme names, values are names of FormattedRCFeed sub classes.
 @since 1.22
 
-\section RCWatchCategoryMembership
+# RCWatchCategoryMembership {#RCWatchCategoryMembership}
 Treat category membership changes as a RecentChange.
 
 Changes are mentioned in RC for page actions as follows:
@@ -5541,40 +5541,40 @@ Changes are mentioned in RC for page actions as follows:
 - undeletion: nothing is mentioned
 @since 1.27
 
-\section UseRCPatrol
+# UseRCPatrol {#UseRCPatrol}
 Use RC Patrolling to check for vandalism (from recent changes and watchlists)
 New pages and new files are included.
 @note If you disable all patrolling features, you probably also want to
 remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
 Special:Log.
 
-\section StructuredChangeFiltersLiveUpdatePollingRate
+# StructuredChangeFiltersLiveUpdatePollingRate {#StructuredChangeFiltersLiveUpdatePollingRate}
 Polling rate, in seconds, used by the 'live update' and 'view newest' features
 of the RCFilters app on SpecialRecentChanges and Special:Watchlist.
 
 0 to disable completely.
 
-\section UseNPPatrol
+# UseNPPatrol {#UseNPPatrol}
 Use new page patrolling to check new pages on Special:Newpages
 @note If you disable all patrolling features, you probably also want to
 remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
 Special:Log.
 
-\section UseFilePatrol
+# UseFilePatrol {#UseFilePatrol}
 Use file patrolling to check new files on Special:Newfiles
 @note If you disable all patrolling features, you probably also want to
 remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
 Special:Log.
 @since 1.27
 
-\section Feed
+# Feed {#Feed}
 Provide syndication feeds (RSS, Atom) for, e.g., Recentchanges, Newpages
 
-\section FeedLimit
+# FeedLimit {#FeedLimit}
 Set maximum number of results to return in syndication feeds (RSS, Atom) for
 eg Recentchanges, Newpages.
 
-\section FeedCacheTimeout
+# FeedCacheTimeout {#FeedCacheTimeout}
 _Minimum_ timeout for cached Recentchanges feed, in seconds.
 
 A cached version will continue to be served out even if changes
@@ -5583,11 +5583,11 @@ are made, until this many seconds runs out since the last render.
 If set to 0, feed caching is disabled. Use this for debugging only;
 feed generation can be pretty slow with diffs.
 
-\section FeedDiffCutoff
+# FeedDiffCutoff {#FeedDiffCutoff}
 When generating Recentchanges RSS/Atom feed, diffs will not be generated for
 pages larger than this size.
 
-\section OverrideSiteFeed
+# OverrideSiteFeed {#OverrideSiteFeed}
 Override the site's default RSS/ATOM feed for recentchanges that appears on
 every page. Some sites might have a different feed they'd like to promote
 instead of the RC feed (maybe like a "Recent New Articles" or "Breaking news" one).
@@ -5602,40 +5602,40 @@ Configure the 'atom' feed to https://example.com/somefeed.xml
 $wgSiteFeed['atom'] = "https://example.com/somefeed.xml";
 ```
 
-\section FeedClasses
+# FeedClasses {#FeedClasses}
 Available feeds objects.
 
 Should probably only be defined when a page is syndicated ie when
 $wgOut->isSyndicated() is true.
 
-\section AdvertisedFeedTypes
+# AdvertisedFeedTypes {#AdvertisedFeedTypes}
 Which feed types should we provide by default?  This can include 'rss',
 'atom', neither, or both.
 
-\section RCShowWatchingUsers
+# RCShowWatchingUsers {#RCShowWatchingUsers}
 Show watching users in recent changes, watchlist and page history views
 
-\section RCShowChangedSize
+# RCShowChangedSize {#RCShowChangedSize}
 Show the amount of changed characters in recent changes
 
-\section RCChangedSizeThreshold
+# RCChangedSizeThreshold {#RCChangedSizeThreshold}
 If the difference between the character counts of the text
 before and after the edit is below that value, the value will be
 highlighted on the RC page.
 
-\section ShowUpdatedMarker
+# ShowUpdatedMarker {#ShowUpdatedMarker}
 Show "Updated (since my last visit)" marker in RC view, watchlist and history
 view for watched pages with new changes
 
-\section DisableAnonTalk
+# DisableAnonTalk {#DisableAnonTalk}
 Disable links to talk pages of anonymous users (IPs) in listings on special
 pages like page history, Special:Recentchanges, etc.
 
-\section UseTagFilter
+# UseTagFilter {#UseTagFilter}
 Allow filtering by change tag in recentchanges, history, etc
 Has no effect if no tags are defined.
 
-\section SoftwareTags
+# SoftwareTags {#SoftwareTags}
 List of core tags to enable.
 @since 1.31
 @since 1.36 Added 'mw-manual-revert' and 'mw-reverted'
@@ -5653,13 +5653,13 @@ List of core tags to enable.
 @see \ChangeTags::TAG_ADD_MEDIA
 @see \ChangeTags::TAG_REMOVE_MEDIA
 
-\section UnwatchedPageThreshold
+# UnwatchedPageThreshold {#UnwatchedPageThreshold}
 If set to an integer, pages that are watched by this many users or more
 will not require the unwatchedpages permission to view the number of
 watchers.
 @since 1.21
 
-\section RecentChangesFlags
+# RecentChangesFlags {#RecentChangesFlags}
 Flags (letter symbols) shown in recent changes and watchlist to indicate
 certain types of edits.
 
@@ -5683,11 +5683,11 @@ $wgRecentChangesFlags['flag'] => [
 ```
 @since 1.22
 
-\section WatchlistExpiry
+# WatchlistExpiry {#WatchlistExpiry}
 Whether to enable the watchlist expiry feature.
 @since 1.35
 
-\section WatchlistPurgeRate
+# WatchlistPurgeRate {#WatchlistPurgeRate}
 Chance of expired watchlist items being purged on any page edit.
 
 Only has effect if $wgWatchlistExpiry is true.
@@ -5696,7 +5696,7 @@ If this is zero, expired watchlist items will not be removed
 and the purgeExpiredWatchlistItems.php maintenance script should be run periodically.
 @since 1.35
 
-\section WatchlistExpiryMaxDuration
+# WatchlistExpiryMaxDuration {#WatchlistExpiryMaxDuration}
 Relative maximum duration for watchlist expiries, as accepted by strtotime().
 
 This relates to finite watchlist expiries only. Pages can be watched indefinitely
@@ -5709,45 +5709,45 @@ Only has effect if $wgWatchlistExpiry is true.
 Set to null to allow expiries of any duration.
 @since 1.35
 
-\section RightsPage
+# RightsPage {#RightsPage}
 Override for copyright metadata.
 
 This is the name of the page containing information about the wiki's copyright status,
 which will be added as a link in the footer if it is specified. It overrides
 $wgRightsUrl if both are specified.
 
-\section RightsUrl
+# RightsUrl {#RightsUrl}
 Set this to specify an external URL containing details about the content license used on your
 wiki.
 
 If $wgRightsPage is set then this setting is ignored.
 
-\section RightsText
+# RightsText {#RightsText}
 If either $wgRightsUrl or $wgRightsPage is specified then this variable gives the text for the
 link. Otherwise, it will be treated as raw HTML.
 
 If using $wgRightsUrl then this value must be specified. If using $wgRightsPage then the name
 of the page will also be used as the link text if this variable is not set.
 
-\section RightsIcon
+# RightsIcon {#RightsIcon}
 Override for copyright metadata.
 
-\section UseCopyrightUpload
+# UseCopyrightUpload {#UseCopyrightUpload}
 Set this to true if you want detailed copyright information forms on Upload.
 
-\section MaxCredits
+# MaxCredits {#MaxCredits}
 Set this to the number of authors that you want to be credited below an
 article text. Set it to zero to hide the attribution block, and a negative
 number (like -1) to show all authors. Note that this will require 2-3 extra
 database hits, which can have a not insignificant impact on performance for
 large wikis.
 
-\section ShowCreditsIfMax
+# ShowCreditsIfMax {#ShowCreditsIfMax}
 If there are more than $wgMaxCredits authors, show $wgMaxCredits of them.
 
 Otherwise, link to a separate credits page.
 
-\section ImportSources
+# ImportSources {#ImportSources}
 List of interwiki prefixes for wikis we'll accept as sources for
 Special:Import and API action=import. Since complete page history can be
 imported, these should be 'trusted'.
@@ -5770,7 +5770,7 @@ the ImportSources hook.
 If a user has the 'import' permission but not the 'importupload' permission,
 they will only be able to run imports through this transwiki interface.
 
-\section ImportTargetNamespace
+# ImportTargetNamespace {#ImportTargetNamespace}
 Optional default target namespace for interwiki imports.
 
 Can use this to create an incoming "transwiki"-style queue.
@@ -5778,21 +5778,21 @@ Set to numeric key, not the name.
 
 Users may override this in the Special:Import dialog.
 
-\section ExportAllowHistory
+# ExportAllowHistory {#ExportAllowHistory}
 If set to false, disables the full-history option on Special:Export.
 
 This is currently poorly optimized for long edit histories, so is
 disabled on Wikimedia's sites.
 
-\section ExportMaxHistory
+# ExportMaxHistory {#ExportMaxHistory}
 If set nonzero, Special:Export requests for history of pages with
 more revisions than this will be rejected. On some big sites things
 could get bogged down by very very long pages.
 
-\section ExportAllowListContributors
+# ExportAllowListContributors {#ExportAllowListContributors}
 Return distinct author list (when not returning full history)
 
-\section ExportMaxLinkDepth
+# ExportMaxLinkDepth {#ExportMaxLinkDepth}
 If non-zero, Special:Export accepts a "pagelink-depth" parameter
 up to this specified level, which will cause it to include all
 pages linked to from the pages you specify. Since this number
@@ -5802,26 +5802,26 @@ it's disabled by default for now.
 crazy-big export from being done by someone setting the depth number too
 high. In other words, last resort safety net.
 
-\section ExportFromNamespaces
+# ExportFromNamespaces {#ExportFromNamespaces}
 Whether to allow the "export all pages in namespace" option
 
-\section ExportAllowAll
+# ExportAllowAll {#ExportAllowAll}
 Whether to allow exporting the entire wiki into a single file
 
-\section ExportPagelistLimit
+# ExportPagelistLimit {#ExportPagelistLimit}
 Maximum number of pages returned by the GetPagesFromCategory and
 GetPagesFromNamespace functions.
 @since 1.27
 
-\section XmlDumpSchemaVersion
+# XmlDumpSchemaVersion {#XmlDumpSchemaVersion}
 The schema to use per default when generating XML dumps. This allows sites to control
 explicitly when to make breaking changes to their export and dump format.
 
-\section ExtensionFunctions
+# ExtensionFunctions {#ExtensionFunctions}
 A list of callback functions which are called once MediaWiki is fully
 initialised
 
-\section ExtensionMessagesFiles
+# ExtensionMessagesFiles {#ExtensionMessagesFiles}
 Extension messages files.
 
 Associative array mapping extension name to the filename where messages can be
@@ -5848,7 +5848,7 @@ as for the $wgMessagesDirs entry.
 $wgExtensionMessagesFiles['ConfirmEdit'] = __DIR__.'/ConfirmEdit.i18n.php';
 ```
 
-\section MessagesDirs
+# MessagesDirs {#MessagesDirs}
 Extension messages directories.
 
 Associative array mapping extension name to the path of the directory where message files can
@@ -5875,12 +5875,12 @@ $wgMessagesDirs['Example'] = [
 ```
 @since 1.23
 
-\section ExtensionEntryPointListFiles
+# ExtensionEntryPointListFiles {#ExtensionEntryPointListFiles}
 Array of files with list(s) of extension entry points to be used in
 maintenance/mergeMessageFileList.php
 @since 1.22
 
-\section ParserOutputHooks
+# ParserOutputHooks {#ParserOutputHooks}
 Parser output hooks.
 
 This is an associative array where the key is an extension-defined tag
@@ -5896,10 +5896,10 @@ The callback has the form:
 function outputHook( $outputPage, $parserOutput, $data ) { ... }
 ```
 
-\section EnableParserLimitReporting
+# EnableParserLimitReporting {#EnableParserLimitReporting}
 Whether to include the NewPP limit report as a HTML comment
 
-\section ValidSkinNames
+# ValidSkinNames {#ValidSkinNames}
 List of valid skin names
 
 The key should be the name in all lower case.
@@ -5924,20 +5924,20 @@ supported). This value will be prefixed with "Skin" to create the class name of 
 skin to load. Use Skin::getSkinNames() as an accessor if you wish to have access to the
 full list.
 
-\section SpecialPages
+# SpecialPages {#SpecialPages}
 Special page list. This is an associative array mapping the (canonical) names of
 special pages to either a class name to be instantiated, or a callback to use for
 creating the special page object. In both cases, the result must be an instance of
 SpecialPage.
 
-\section AutoloadAttemptLowercase
+# AutoloadAttemptLowercase {#AutoloadAttemptLowercase}
 Switch controlling legacy case-insensitive classloading.
 
 Do not disable if your wiki must support data created by PHP4, or by
 MediaWiki 1.4 or earlier.
 @deprecated since 1.35
 
-\section ExtensionCredits
+# ExtensionCredits {#ExtensionCredits}
 Add information about an installed extension, keyed by its type.
 
 This is for use from LocalSettings.php and legacy PHP-entrypoint
@@ -5994,7 +5994,7 @@ interpreted as wikitext.
   as "GPL-2.0-or-later" or "MIT" (https://spdx.org/licenses/ for a list of identifiers).
 @see \SpecialVersion::getCredits
 
-\section Hooks
+# Hooks {#Hooks}
 Global list of hooks.
 
 The key is one of the events made available by MediaWiki, you can find
@@ -6023,12 +6023,12 @@ deleting a previous registered hook.
 @warning Hook handlers should be registered at file scope. Registering
 handlers after file scope can lead to unexpected results due to caching.
 
-\section ServiceWiringFiles
+# ServiceWiringFiles {#ServiceWiringFiles}
 List of service wiring files to be loaded by the default instance of MediaWikiServices. Each file listed here is expected to return an associative array mapping service names to instantiator functions. Extensions may add wiring files to define their own services. However, this cannot be used to replace existing services - use the MediaWikiServices hook for that.
 @note the default wiring file will be added automatically by Setup.php
 @see MediaWikiServices @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions. @see docs/Injection.md for an overview of dependency injection in MediaWiki.
 
-\section JobClasses
+# JobClasses {#JobClasses}
 Maps jobs to their handlers; extensions
 can add to this to provide custom jobs.
 
@@ -6036,7 +6036,7 @@ A job handler should either be a class name to be instantiated,
 or (since 1.30) a callback to use for creating the job object.
 The callback takes (Title, array map of parameters) as arguments.
 
-\section JobTypesExcludedFromDefaultQueue
+# JobTypesExcludedFromDefaultQueue {#JobTypesExcludedFromDefaultQueue}
 Jobs that must be explicitly requested, i.e. aren't run by job runners unless
 special flags are set. The values here are keys of $wgJobClasses.
 
@@ -6047,7 +6047,7 @@ These can be:
   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
 These settings should be global to all wikis.
 
-\section JobBackoffThrottling
+# JobBackoffThrottling {#JobBackoffThrottling}
 Map of job types to how many job "work items" should be run per second
 on each job runner process. The meaning of "work items" varies per job,
 but typically would be something like "pages to update". A single job
@@ -6056,7 +6056,7 @@ may have a variable number of work items, as is the case with batch jobs.
 This is used by runJobs.php and not jobs run via $wgJobRunRate.
 These settings should be global to all wikis.
 
-\section JobSerialCommitThreshold
+# JobSerialCommitThreshold {#JobSerialCommitThreshold}
 Make job runners commit changes for replica DB-lag prone jobs one job at a time.
 
 This is useful if there are many job workers that race on replica DB lag checks.
@@ -6068,14 +6068,14 @@ possibility of connection loss while queueing up to commit. Affected jobs may
 also fail due to the commit lock acquisition timeout.
 @since 1.26
 
-\section JobTypeConf
+# JobTypeConf {#JobTypeConf}
 Map of job types to configuration arrays.
 
 This determines which queue class and storage system is used for each job type.
 Job types that do not have explicit configuration will use the 'default' config.
 These settings should be global to all wikis.
 
-\section JobQueueIncludeInMaxLagFactor
+# JobQueueIncludeInMaxLagFactor {#JobQueueIncludeInMaxLagFactor}
 Whether to include the number of jobs that are queued
 for the API's maxlag parameter.
 
@@ -6086,12 +6086,12 @@ queue divided by 5 should have the effect of stopping bots once
 that limit is hit.
 @since 1.29
 
-\section SpecialPageCacheUpdates
+# SpecialPageCacheUpdates {#SpecialPageCacheUpdates}
 Additional functions to be performed with updateSpecialPages.
 
 Expensive Querypages are already updated.
 
-\section PagePropLinkInvalidations
+# PagePropLinkInvalidations {#PagePropLinkInvalidations}
 Page property link table invalidation lists. When a page property
 changes, this may require other link tables to be updated (eg
 adding __HIDDENCAT__ means the hiddencat tracking category will
@@ -6099,14 +6099,14 @@ have been added, so the categorylinks table needs to be rebuilt).
 
 This array can be added to by extensions.
 
-\section CategoryMagicGallery
+# CategoryMagicGallery {#CategoryMagicGallery}
 On category pages, show thumbnail gallery for images belonging to that
 category instead of listing them as articles.
 
-\section CategoryPagingLimit
+# CategoryPagingLimit {#CategoryPagingLimit}
 Paging limit for categories
 
-\section CategoryCollation
+# CategoryCollation {#CategoryCollation}
 Specify how category names should be sorted, when listed on a category page.
 
 A sorting scheme is also known as a collation.
@@ -6132,7 +6132,7 @@ the sort keys in the database.
 Extensions can define there own collations by subclassing Collation
 and using the Collation::factory hook.
 
-\section TempCategoryCollations
+# TempCategoryCollations {#TempCategoryCollations}
 Additional category collations to store during LinksUpdate. This can be used
 to perform online migration of categories from one collation to another. An
 array of associative arrays each having the following keys:
@@ -6143,7 +6143,7 @@ array of associative arrays each having the following keys:
 
 @since 1.38
 
-\section TrackingCategories
+# TrackingCategories {#TrackingCategories}
 Array holding default tracking category names.
 
 Array contains the system messages for each tracking category.
@@ -6156,7 +6156,7 @@ to have extra information on Special:TrackingCategories.
 the new extension registration system.
 @since 1.23
 
-\section LogTypes
+# LogTypes {#LogTypes}
 The logging system has two levels: an event type, which describes the
 general category and can be viewed as a named subset of all logs; and
 an action, which is a specific kind of event that can exist in that
@@ -6165,14 +6165,14 @@ log type.
 Note that code should call LogPage::validTypes() to get a list of valid
 log types instead of checking the global variable.
 
-\section LogRestrictions
+# LogRestrictions {#LogRestrictions}
 This restricts log access to those who have a certain right
 Users without this will not see it in the option menu and can not view it
 Restricted logs are not added to recent changes
 Logs should remain non-transcludable
 Format: logtype => permissiontype
 
-\section FilterLogTypes
+# FilterLogTypes {#FilterLogTypes}
 Show/hide links on Special:Log will be shown for these log types.
 
 This is associative array of log type => boolean "hide by default"
@@ -6190,7 +6190,7 @@ default, and hidden when the link is clicked.
 A message of the form logeventslist-[type]-log should be added, and will be
 used for the link text.
 
-\section LogNames
+# LogNames {#LogNames}
 Lists the message key string for each log type. The localized messages
 will be listed in the user interface.
 
@@ -6198,7 +6198,7 @@ Extensions with custom log types may add to this array.
 @since 1.19, if you follow the naming convention log-name-TYPE,
 where TYPE is your log type, you don't need to use this array.
 
-\section LogHeaders
+# LogHeaders {#LogHeaders}
 Lists the message key string for descriptive text to be shown at the
 top of each log type.
 
@@ -6206,19 +6206,19 @@ Extensions with custom log types may add to this array.
 @since 1.19, if you follow the naming convention log-description-TYPE,
 where TYPE is your log type, yoy don't need to use this array.
 
-\section LogActions
+# LogActions {#LogActions}
 Lists the message key string for formatting individual events of each
 type and action when listed in the logs.
 
 Extensions with custom log types may add to this array.
 
-\section LogActionsHandlers
+# LogActionsHandlers {#LogActionsHandlers}
 The same as above, but here values are names of classes,
 not messages.
 @see \LogPage::actionText
 @see \LogFormatter
 
-\section ActionFilteredLogs
+# ActionFilteredLogs {#ActionFilteredLogs}
 List of log types that can be filtered by action types
 
 To each action is associated the list of log_action
@@ -6226,46 +6226,46 @@ subtypes to search for, usually one, but not necessarily so
 Extensions may append to this array
 @since 1.27
 
-\section NewUserLog
+# NewUserLog {#NewUserLog}
 Maintain a log of newusers at Special:Log/newusers?
 
-\section PageCreationLog
+# PageCreationLog {#PageCreationLog}
 Maintain a log of page creations at Special:Log/create?
 @since 1.32
 
-\section AllowSpecialInclusion
+# AllowSpecialInclusion {#AllowSpecialInclusion}
 Allow special page inclusions such as {{Special:Allpages}}
 
-\section DisableQueryPageUpdate
+# DisableQueryPageUpdate {#DisableQueryPageUpdate}
 Set this to an array of special page names to prevent
 maintenance/updateSpecialPages.php from updating those pages.
 
 Mapping each special page name to an run mode like 'periodical' if a cronjob is set up.
 
-\section CountCategorizedImagesAsUsed
+# CountCategorizedImagesAsUsed {#CountCategorizedImagesAsUsed}
 On Special:Unusedimages, consider images "used", if they are put
 into a category. Default (false) is not to count those as used.
 
-\section MaxRedirectLinksRetrieved
+# MaxRedirectLinksRetrieved {#MaxRedirectLinksRetrieved}
 Maximum number of links to a redirect page listed on
 Special:Whatlinkshere/RedirectDestination
 
-\section RangeContributionsCIDRLimit
+# RangeContributionsCIDRLimit {#RangeContributionsCIDRLimit}
 Shortest CIDR limits that can be checked in any individual range check
 at Special:Contributions.
 @since 1.30
 
-\section Actions
+# Actions {#Actions}
 Array of allowed values for the "title=foo&action=<action>" parameter. See
 ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
 anything here overrides that.
 
-\section DefaultRobotPolicy
+# DefaultRobotPolicy {#DefaultRobotPolicy}
 Default robot policy.  The default policy is to encourage indexing and fol-
 lowing of links.  It may be overridden on a per-namespace and/or per-page
 basis.
 
-\section NamespaceRobotPolicies
+# NamespaceRobotPolicies {#NamespaceRobotPolicies}
 Robot policies per namespaces. The default policy is given above, the array
 is made of namespace constants as defined in includes/Defines.php.  You can-
 not specify a different default policy for NS_SPECIAL: it is always noindex,
@@ -6280,7 +6280,7 @@ pages, all alike, and never reaching your actual content.
 $wgNamespaceRobotPolicies = [ NS_TALK => 'noindex' ];
 ```
 
-\section ArticleRobotPolicies
+# ArticleRobotPolicies {#ArticleRobotPolicies}
 Robot policies per article. These override the per-namespace robot policies.
 
 Must be in the form of an array where the key part is a properly canonicalised
@@ -6309,7 +6309,7 @@ $wgArticleRobotPolicies = [
 ];
 ```
 
-\section ExemptFromUserRobotsControl
+# ExemptFromUserRobotsControl {#ExemptFromUserRobotsControl}
 An array of namespace keys in which the __INDEX__/__NOINDEX__ magic words
 will not function, so users can't decide whether pages in that namespace are
 indexed by search engines.  If set to null, default to $wgContentNamespaces.
@@ -6320,7 +6320,7 @@ indexed by search engines.  If set to null, default to $wgContentNamespaces.
 $wgExemptFromUserRobotsControl = [ NS_MAIN, NS_TALK, NS_PROJECT ];
 ```
 
-\section DebugAPI
+# DebugAPI {#DebugAPI}
 WARNING: SECURITY THREAT - debug use only
 
 Disables many security checks in the API for debugging purposes.
@@ -6332,7 +6332,7 @@ At this point, the flag allows GET requests to go through for modules
 requiring POST.
 @since 1.21
 
-\section APIModules
+# APIModules {#APIModules}
 API module extensions.
 
 Associative array mapping module name to modules specs;
@@ -6367,7 +6367,7 @@ $wgAPIModules['xyzzy'] = [
 Extension modules may override the core modules.
 See ApiMain::MODULES for a list of the core modules.
 
-\section APIFormatModules
+# APIFormatModules {#APIFormatModules}
 API format module extensions.
 
 Associative array mapping format module name to module specs (see $wgAPIModules).
@@ -6375,7 +6375,7 @@ Extension modules may override the core modules.
 
 See ApiMain::FORMATS for a list of the core format modules.
 
-\section APIMetaModules
+# APIMetaModules {#APIMetaModules}
 API Query meta module extensions.
 
 Associative array mapping meta module name to module specs (see $wgAPIModules).
@@ -6383,7 +6383,7 @@ Extension modules may override the core modules.
 
 See ApiQuery::QUERY_META_MODULES for a list of the core meta modules.
 
-\section APIPropModules
+# APIPropModules {#APIPropModules}
 API Query prop module extensions.
 
 Associative array mapping prop module name to module specs (see $wgAPIModules).
@@ -6391,7 +6391,7 @@ Extension modules may override the core modules.
 
 See ApiQuery::QUERY_PROP_MODULES for a list of the core prop modules.
 
-\section APIListModules
+# APIListModules {#APIListModules}
 API Query list module extensions.
 
 Associative array mapping list module name to module specs (see $wgAPIModules).
@@ -6399,42 +6399,42 @@ Extension modules may override the core modules.
 
 See ApiQuery::QUERY_LIST_MODULES for a list of the core list modules.
 
-\section APIMaxDBRows
+# APIMaxDBRows {#APIMaxDBRows}
 Maximum amount of rows to scan in a DB query in the API
 The default value is generally fine
 
-\section APIMaxResultSize
+# APIMaxResultSize {#APIMaxResultSize}
 The maximum size (in bytes) of an API result.
 @warning Do not set this lower than $wgMaxArticleSize*1024
 
-\section APIMaxUncachedDiffs
+# APIMaxUncachedDiffs {#APIMaxUncachedDiffs}
 The maximum number of uncached diffs that can be retrieved in one API
 request. Set this to 0 to disable API diffs altogether
 
-\section APIMaxLagThreshold
+# APIMaxLagThreshold {#APIMaxLagThreshold}
 Maximum amount of DB lag on a majority of DB replica DBs to tolerate
 before forcing bots to retry any write requests via API errors.
 
 This should be lower than the 'max lag' value in $wgLBFactoryConf.
 
-\section APIRequestLog
+# APIRequestLog {#APIRequestLog}
 Log file or URL (TCP or UDP) to log API requests to, or false to disable
 API request logging
 
-\section APICacheHelpTimeout
+# APICacheHelpTimeout {#APICacheHelpTimeout}
 Set the timeout for the API help text cache. If set to 0, caching disabled
 
-\section APIUselessQueryPages
+# APIUselessQueryPages {#APIUselessQueryPages}
 The ApiQueryQueryPages module should skip pages that are redundant to true
 API queries.
 
-\section AjaxUploadDestCheck
+# AjaxUploadDestCheck {#AjaxUploadDestCheck}
 Enable AJAX check for file overwrite, pre-upload
 
-\section AjaxLicensePreview
+# AjaxLicensePreview {#AjaxLicensePreview}
 Enable previewing licences via AJAX.
 
-\section CrossSiteAJAXdomains
+# CrossSiteAJAXdomains {#CrossSiteAJAXdomains}
 Settings for incoming cross-site AJAX requests:
 Newer browsers support cross-site AJAX when the target resource allows requests
 from the origin domain by the Access-Control-Allow-Origin header.
@@ -6456,34 +6456,34 @@ $wgCrossSiteAJAXdomains = [
 ];
 ```
 
-\section CrossSiteAJAXdomainExceptions
+# CrossSiteAJAXdomainExceptions {#CrossSiteAJAXdomainExceptions}
 Domains that should not be allowed to make AJAX requests,
 even if they match one of the domains allowed by $wgCrossSiteAJAXdomains
 Uses the same syntax as $wgCrossSiteAJAXdomains
 
-\section AllowedCorsHeaders
+# AllowedCorsHeaders {#AllowedCorsHeaders}
 List of allowed headers for cross-origin API requests.
 
-\section RestAPIAdditionalRouteFiles
+# RestAPIAdditionalRouteFiles {#RestAPIAdditionalRouteFiles}
 Additional REST API Route files.
 
 A common usage is to enable development/experimental endpoints only on test wikis.
 
-\section MaxShellMemory
+# MaxShellMemory {#MaxShellMemory}
 Maximum amount of virtual memory available to shell processes under linux, in KiB.
 
-\section MaxShellFileSize
+# MaxShellFileSize {#MaxShellFileSize}
 Maximum file size created by shell processes under linux, in KiB
 ImageMagick convert for example can be fairly hungry for scratch space
 
-\section MaxShellTime
+# MaxShellTime {#MaxShellTime}
 Maximum CPU time in seconds for shell processes under Linux
 
-\section MaxShellWallClockTime
+# MaxShellWallClockTime {#MaxShellWallClockTime}
 Maximum wall clock time (i.e. real time, of the kind the clock on the wall
 would measure) in seconds for shell processes under Linux
 
-\section ShellCgroup
+# ShellCgroup {#ShellCgroup}
 Under Linux: a cgroup directory used to constrain memory usage of shell
 commands. The directory must be writable by the user which runs MediaWiki.
 
@@ -6505,10 +6505,10 @@ echo '$wgShellCgroup = "/sys/fs/cgroup/memory/mediawiki/job";' >> LocalSettings.
 The reliability of cgroup cleanup can be improved by installing a
 notify_on_release script in the root cgroup, see e.g. https://gerrit.wikimedia.org/r/#/c/40784
 
-\section PhpCli
+# PhpCli {#PhpCli}
 Executable path of the PHP cli binary. Should be set up on install.
 
-\section ShellRestrictionMethod
+# ShellRestrictionMethod {#ShellRestrictionMethod}
 Method to use to restrict shell commands
 
 Supported options:
@@ -6519,11 +6519,11 @@ Supported options:
 from the webserver user, firejail 0.9.44+ is required.
 @since 1.31
 
-\section ShellboxUrl
+# ShellboxUrl {#ShellboxUrl}
 
 @deprecated since 1.37; use $wgShellboxUrls instead
 
-\section ShellboxUrls
+# ShellboxUrls {#ShellboxUrls}
 Shell commands can be run on a remote server using Shellbox. To use this
 feature, set this to the URLs mapped by the service, and also configure $wgShellboxSecretKey.
 
@@ -6535,44 +6535,44 @@ For more information about installing Shellbox, see
 https://www.mediawiki.org/wiki/Shellbox
 @since 1.37
 
-\section ShellboxSecretKey
+# ShellboxSecretKey {#ShellboxSecretKey}
 The secret key for HMAC verification of Shellbox requests. Set this to
 a long random string.
 @since 1.36
 
-\section HTTPTimeout
+# HTTPTimeout {#HTTPTimeout}
 Timeout for HTTP requests done internally, in seconds.
 @since 1.5
 
-\section HTTPConnectTimeout
+# HTTPConnectTimeout {#HTTPConnectTimeout}
 Timeout for connections done internally (in seconds).
 
 Only supported if cURL is installed, ignored otherwise.
 @since 1.22
 
-\section HTTPMaxTimeout
+# HTTPMaxTimeout {#HTTPMaxTimeout}
 The maximum HTTP request timeout in seconds. If any specified or configured
 request timeout is larger than this, then this value will be used instead.
 Zero is interpreted as "no limit".
 @since 1.35
 
-\section HTTPMaxConnectTimeout
+# HTTPMaxConnectTimeout {#HTTPMaxConnectTimeout}
 The maximum HTTP connect timeout in seconds. If any specified or configured
 connect timeout is larger than this, then this value will be used instead.
 Zero is interpreted as "no limit".
 @since 1.35
 
-\section HTTPImportTimeout
+# HTTPImportTimeout {#HTTPImportTimeout}
 Timeout for HTTP requests done internally for transwiki imports, in seconds.
 @since 1.29
 
-\section AsyncHTTPTimeout
+# AsyncHTTPTimeout {#AsyncHTTPTimeout}
 Timeout for Asynchronous (background) HTTP requests, in seconds.
 
-\section HTTPProxy
+# HTTPProxy {#HTTPProxy}
 Proxy to use for CURL requests.
 
-\section LocalVirtualHosts
+# LocalVirtualHosts {#LocalVirtualHosts}
 Local virtual hosts.
 
 This lists domains that are configured as virtual hosts on the same machine.
@@ -6586,7 +6586,7 @@ This affects the following:
   the proxy if it is configured.
 @since 1.25
 
-\section LocalHTTPProxy
+# LocalHTTPProxy {#LocalHTTPProxy}
 Reverse proxy to use for requests to domains in $wgLocalVirtualHosts
 
 When used, any port in the request URL will be dropped. The behavior of
@@ -6596,35 +6596,35 @@ as MediaWiki doesn't implement any special handling for them.
 If set to false, no reverse proxy will be used for local requests.
 @since 1.38
 
-\section AllowExternalReqID
+# AllowExternalReqID {#AllowExternalReqID}
 Whether to respect/honour the request ID provided by the incoming request
 via the `X-Request-Id` header. Set to `true` if the entity sitting in front
 of Mediawiki sanitises external requests. Default: `false`.
 
-\section JobRunRate
+# JobRunRate {#JobRunRate}
 Number of jobs to perform per request. May be less than one in which case
 jobs are performed probabalistically. If this is zero, jobs will not be done
 during ordinary apache requests. In this case, maintenance/runJobs.php should
 be run periodically.
 
-\section RunJobsAsync
+# RunJobsAsync {#RunJobsAsync}
 When $wgJobRunRate > 0, try to run jobs asynchronously, spawning a new process
 to handle the job execution, instead of blocking the request until the job
 execution finishes.
 @since 1.23
 
-\section UpdateRowsPerJob
+# UpdateRowsPerJob {#UpdateRowsPerJob}
 Number of rows to update per job
 
-\section UpdateRowsPerQuery
+# UpdateRowsPerQuery {#UpdateRowsPerQuery}
 Number of rows to update per query
 
-\section RedirectOnLogin
+# RedirectOnLogin {#RedirectOnLogin}
 Allow redirection to another page when a user logs in.
 
 To enable, set to a string like 'Main Page'
 
-\section VirtualRestConfig
+# VirtualRestConfig {#VirtualRestConfig}
 Global configuration variable for Virtual REST Services.
 
 Use the 'path' key to define automatically mounted services. The value for this
@@ -6659,7 +6659,7 @@ Example config for Parsoid:
   ];
 @since 1.25
 
-\section EventRelayerConfig
+# EventRelayerConfig {#EventRelayerConfig}
 Mapping of event channels (or channel categories) to EventRelayer configuration.
 
 By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class
@@ -6677,7 +6677,7 @@ vs durability needs, so one system (e.g. Kafka) may not be suitable for all uses
 The 'default' key is for all channels (or channel categories) without an explicit entry here.
 @since 1.27
 
-\section Pingback
+# Pingback {#Pingback}
 Share data about this installation with MediaWiki developers
 
 When set to true, MediaWiki will periodically ping https://www.mediawiki.org/ with basic
@@ -6692,43 +6692,43 @@ For the pingback privacy policy, see: https://wikimediafoundation.org/wiki/Media
 Aggregate pingback data is available at: https://pingback.wmflabs.org/
 @since 1.28
 
-\section OriginTrials
+# OriginTrials {#OriginTrials}
 Origin Trials tokens.
 @since 1.33
 
-\section PriorityHints
+# PriorityHints {#PriorityHints}
 Enable client-side Priority Hints.
 @warning EXPERIMENTAL!
 @since 1.33
 
-\section PriorityHintsRatio
+# PriorityHintsRatio {#PriorityHintsRatio}
 Ratio of requests that should get Priority Hints when the feature is enabled.
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section ElementTiming
+# ElementTiming {#ElementTiming}
 Enable Element Timing.
 @warning EXPERIMENTAL!
 @since 1.33
 
-\section ReportToExpiry
+# ReportToExpiry {#ReportToExpiry}
 Expiry of the endpoint definition for the Reporting API.
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section ReportToEndpoints
+# ReportToEndpoints {#ReportToEndpoints}
 List of endpoints for the Reporting API.
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section FeaturePolicyReportOnly
+# FeaturePolicyReportOnly {#FeaturePolicyReportOnly}
 List of Feature Policy Reporting types to enable.
 
 Each entry is turned into a Feature-Policy-Report-Only header.
 @warning EXPERIMENTAL!
 @since 1.34
 
-\section SkinsPreferred
+# SkinsPreferred {#SkinsPreferred}
 List of preferred skins to be listed higher in Special:Preferences
 @since 1.38
 @var array
