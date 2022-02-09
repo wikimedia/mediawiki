@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageAssertionException;
+
 /**
  * @covers RefreshLinksJob
  *
@@ -45,6 +47,13 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	// TODO: test multi-page
 	// TODO: test recursive
 	// TODO: test partition
+
+	public function testBadTitle() {
+		$specialBlankPage = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+
+		$this->expectException( PageAssertionException::class );
+		new RefreshLinksJob( $specialBlankPage, [] );
+	}
 
 	public function testRunForSinglePage() {
 		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
@@ -107,7 +116,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
 		// run job
 		$job = new RefreshLinksJob(
-			Title::newMainPage(),
+			Title::makeTitle( NS_SPECIAL, 'Blankpage' ),
 			[ 'pages' => [ [ 0, "$fname-1" ], [ 0, "$fname-2" ] ] ]
 		);
 		$job->run();

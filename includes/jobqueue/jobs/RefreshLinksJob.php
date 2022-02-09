@@ -24,6 +24,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -48,6 +49,14 @@ class RefreshLinksJob extends Job {
 	private const LAG_WAIT_TIMEOUT = 15;
 
 	public function __construct( PageIdentity $page, array $params ) {
+		if ( empty( $params['pages'] ) && !$page->canExist() ) {
+			// BC with the Title class
+			throw new PageAssertionException(
+				'The given PageIdentity {pageIdentity} does not represent a proper page',
+				[ 'pageIdentity' => $page ]
+			);
+		}
+
 		parent::__construct( 'refreshLinks', $page, $params );
 		// Avoid the overhead of de-duplication when it would be pointless
 		$this->removeDuplicates = (
@@ -125,7 +134,7 @@ class RefreshLinksJob extends Job {
 		} elseif ( isset( $this->params['pages'] ) ) {
 			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
 				$title = Title::makeTitleSafe( $ns, $dbKey );
-				if ( $title ) {
+				if ( $title && $title->canExist() ) {
 					$ok = $this->runForTitle( $title ) && $ok;
 				} else {
 					$ok = false;
