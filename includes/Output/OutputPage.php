@@ -372,13 +372,6 @@ class OutputPage extends ContextSource {
 	/** @var int Upper limit on mCdnMaxage */
 	protected $mCdnMaxageLimit = INF;
 
-	/**
-	 * @var bool Controls if anti-clickjacking / frame-breaking headers will
-	 * be sent. This should be done for pages where edit actions are possible.
-	 * Setter: $this->setPreventClickjacking()
-	 */
-	protected $mPreventClickjacking = true;
-
 	/** @var int|null To include the variable {{REVISIONID}} */
 	private $mRevisionId = null;
 
@@ -513,6 +506,7 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
 		$this->setContext( $context );
 		$this->metadata = new ParserOutput( null );
+		$this->metadata->setPreventClickjacking( true ); // OutputPage default
 		$this->CSP = new ContentSecurityPolicy(
 			$context->getRequest()->response(),
 			$context->getConfig(),
@@ -2435,8 +2429,9 @@ class OutputPage extends ContextSource {
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
-		$this->mPreventClickjacking = $this->mPreventClickjacking
-			|| $parserOutput->getPreventClickjacking();
+		if ( $parserOutput->getPreventClickjacking() ) {
+			$this->metadata->setPreventClickjacking( true );
+		}
 		$scriptSrcs = $parserOutput->getExtraCSPScriptSrcs();
 		foreach ( $scriptSrcs as $src ) {
 			$this->getCSP()->addScriptSrc( $src );
@@ -2937,7 +2932,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.38
 	 */
 	public function setPreventClickjacking( bool $enable ) {
-		$this->mPreventClickjacking = $enable;
+		$this->metadata->setPreventClickjacking( $enable );
 	}
 
 	/**
@@ -2947,7 +2942,7 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	public function getPreventClickjacking() {
-		return $this->mPreventClickjacking;
+		return $this->metadata->getPreventClickjacking();
 	}
 
 	/**
@@ -2961,7 +2956,7 @@ class OutputPage extends ContextSource {
 		$config = $this->getConfig();
 		if ( $config->get( MainConfigNames::BreakFrames ) ) {
 			return 'DENY';
-		} elseif ( $this->mPreventClickjacking && $config->get( MainConfigNames::EditPageFrameOptions ) ) {
+		} elseif ( $this->getPreventClickjacking() && $config->get( MainConfigNames::EditPageFrameOptions ) ) {
 			return $config->get( MainConfigNames::EditPageFrameOptions );
 		}
 		return false;
