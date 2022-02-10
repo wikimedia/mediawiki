@@ -3467,7 +3467,7 @@
 	"autoredircomment": "Page redirigée vers [[$1]]",
 	"autosumm-removed-redirect": "Redirection supprimée vers [[$1]]",
 	"autosumm-changed-redirect-target": "Destination de redirection modifiée de [[$1]] en [[$2]]",
-	"autosumm-new": "Page créée avec « $1 »",
+	"autosumm-new": "Page créée avec « $1 »",
 	"autosumm-newblank": "Page vide créée",
 	"size-bytes": "$1 {{PLURAL:$1|octet|octets}}",
 	"size-kilobytes": "$1 Kio",

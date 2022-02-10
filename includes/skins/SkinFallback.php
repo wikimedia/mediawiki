@@ -18,7 +18,7 @@ class SkinFallback extends SkinMustache {
 	 */
 	public function initPage( OutputPage $out ) {
 		parent::initPage( $out );
-		$out->enableClientCache( false );
+		$out->disableClientCache();
 	}
 
 	/**

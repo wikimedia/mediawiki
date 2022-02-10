@@ -2138,11 +2138,43 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers OutputPage::enableClientCache
+	 * @covers OutputPage::disableClientCache
 	 * @covers OutputPage::addParserOutputMetadata
 	 * @covers OutputPage::addParserOutput
 	 */
 	public function testClientCache() {
+		$op = $this->newInstance();
+		$op->considerCacheSettingsFinal();
+
+		// Test initial value
+		$this->assertSame( true, $op->couldBePublicCached() );
+
+		// Test setting to false
+		$op->disableClientCache();
+		$this->assertSame( false, $op->couldBePublicCached() );
+
+		// Test that a cacheable ParserOutput doesn't set to true
+		$pOutCacheable = $this->createParserOutputStub( 'isCacheable', true );
+		$op->addParserOutputMetadata( $pOutCacheable );
+		$this->assertSame( false, $op->couldBePublicCached() );
+
+		// Reset to true
+		$op = $this->newInstance();
+		$op->considerCacheSettingsFinal();
+		$this->assertSame( true, $op->couldBePublicCached() );
+
+		// Test that an uncacheable ParserOutput does set to false
+		$pOutUncacheable = $this->createParserOutputStub( 'isCacheable', false );
+		$op->addParserOutput( $pOutUncacheable );
+		$this->assertSame( false, $op->couldBePublicCached() );
+	}
+
+	/**
+	 * This test can be safely removed when the deprecated
+	 * OutputPage::enableClientCache() is removed.
+	 * @covers OutputPage::enableClientCache
+	 */
+	public function testEnableClientCache() {
 		$op = $this->newInstance();
 
 		// Test initial value
@@ -2155,19 +2187,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( false, $op->enableClientCache( null ) );
 		// Test that calling with null doesn't change the value
 		$this->assertSame( false, $op->enableClientCache( null ) );
-
-		// Test that a cacheable ParserOutput doesn't set to true
-		$pOutCacheable = $this->createParserOutputStub( 'isCacheable', true );
-		$op->addParserOutputMetadata( $pOutCacheable );
+		// Using ::disableClientCache() works, too
+		$op->disableClientCache();
 		$this->assertSame( false, $op->enableClientCache( null ) );
 
 		// Test setting back to true
 		$this->assertSame( false, $op->enableClientCache( true ) );
 		$this->assertSame( true, $op->enableClientCache( null ) );
 
-		// Test that an uncacheable ParserOutput does set to false
-		$pOutUncacheable = $this->createParserOutputStub( 'isCacheable', false );
-		$op->addParserOutput( $pOutUncacheable );
+		// For completeness, test that ::disableClientCache() also sets it
+		// to false.
+		$this->assertSame( true, $op->enableClientCache( null ) );
+		$op->disableClientCache();
 		$this->assertSame( false, $op->enableClientCache( null ) );
 	}
 
@@ -3061,8 +3092,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$output = $this->newInstance( [
 			'UseCdn' => $options['useCdn'] ?? false,
 		] );
+		$output->considerCacheSettingsFinal();
 
-		$output->enableClientCache( $options['enableClientCache'] ?? true );
+		$cacheable = $options['enableClientCache'] ?? true;
+		if ( !$cacheable ) {
+			$output->disableClientCache();
+		}
+		$this->assertEquals( $cacheable, $output->couldBePublicCached() );
+
 		$output->setCdnMaxage( $options['cdnMaxAge'] ?? 0 );
 
 		if ( isset( $options['lastModified'] ) ) {
