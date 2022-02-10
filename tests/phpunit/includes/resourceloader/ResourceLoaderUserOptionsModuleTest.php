@@ -65,6 +65,47 @@ class ResourceLoaderUserOptionsModuleTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testResourceLoaderExcludeUserOptionsHook() {
+		$module = new ResourceLoaderUserOptionsModule();
+		$hooks = $this->createHookContainer( [
+			'ResourceLoaderExcludeUserOptions' => static function (
+				array &$keysToExclude,
+				ResourceLoaderContext $context
+			): void {
+				$keysToExclude[] = 'exclude-explicit';
+				$keysToExclude[] = 'exclude-default';
+			}
+		] );
+		$module->setHookContainer( $hooks );
+		$options = new MediaWiki\User\StaticUserOptionsLookup(
+			[
+				'User' => [ 'include-explicit' => '1', 'exclude-explicit' => '1' ],
+			],
+			[
+				'exclude-default' => '1',
+			]
+		);
+		$this->setService( 'UserOptionsLookup', $options );
+
+		$script = $module->getScript( $this->makeContext( 'User' ) );
+		$this->assertStringContainsString(
+			'include-explicit',
+			$script,
+			'normal behavior'
+		);
+		$this->assertStringNotContainsString(
+			'exclude-explicit',
+			$script,
+			'$keysToExclude filters'
+		);
+		// defaults shouldn't show up here anyway but double-check
+		$this->assertStringNotContainsString(
+			'exclude-default',
+			$script,
+			'default excluded'
+		);
+	}
+
 	private function makeContext( ?string $name = null ) {
 		$user = $this->createStub( User::class );
 		if ( $name ) {
