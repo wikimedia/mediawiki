@@ -190,7 +190,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
 		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
 		$parserOutputWithMetadata->addWarning( 'warning1' );
-		$parserOutputWithMetadata->setIndexPolicy( 'policy1' );
+		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
 		$parserOutputWithMetadata->setTOCHTML( 'tochtml1' );
 		$parserOutputWithMetadata->setTimestamp( MWTimestamp::convert( TS_MW, 987654321 ) );
 		$parserOutputWithMetadata->setLimitReportData( 'limit_report_key1', 'value1' );
@@ -364,7 +364,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
 					$testCase->assertArrayEquals( [ [ 'hook1', self::MOCK_EXT_DATA ] ], $object->getOutputHooks() );
 					$testCase->assertArrayEquals( [ 'warning1' ], $object->getWarnings() );
-					$testCase->assertSame( 'policy1', $object->getIndexPolicy() );
+					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
 					$testCase->assertSame( 'tochtml1', $object->getTOCHTML() );
 					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getTimestamp() );
 					$testCase->assertArrayEquals(
