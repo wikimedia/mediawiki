@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\StaticUserOptionsLookup;
 use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
@@ -1209,5 +1210,29 @@ END
 
 		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader );
 		$rl->measureResponseTime();
+	}
+
+	/**
+	 * @covers ResourceLoader::getUserDefaults
+	 */
+	public function testGetUserDefaults() {
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup(
+			[],
+			[
+				'include' => 1,
+				'exclude' => 1,
+			]
+		) );
+		$ctx = $this->createStub( ResourceLoaderContext::class );
+		$this->setTemporaryHook( 'ResourceLoaderExcludeUserOptions', function (
+			array &$keysToExclude,
+			ResourceLoaderContext $context
+		) use ( $ctx ): void {
+			$this->assertSame( $ctx, $context );
+			$keysToExclude[] = 'exclude';
+		}, true );
+
+		$defaults = ResourceLoader::getUserDefaults( $ctx );
+		$this->assertSame( [ 'include' => 1 ], $defaults );
 	}
 }
