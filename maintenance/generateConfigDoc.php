@@ -70,7 +70,7 @@ class GenerateConfigDoc extends Maintenance {
 
 		// Details about each config variable
 		foreach ( $input['config-schema'] as $configKey => $configSchema ) {
-			$result .= "\section $configKey\n";
+			$result .= "# $configKey {#$configKey}\n";
 			if ( array_key_exists( 'description', $configSchema ) ) {
 				$result .= $configSchema['description'];
 			}
