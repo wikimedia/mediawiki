@@ -2133,7 +2133,7 @@
 	"ipb-pages-label": "АгӀонаш",
 	"ipb-namespaces-label": "ЦӀерийн меттигаш",
 	"badipaddress": "Магийна доцу IP адрес",
-	"blockipsuccesssub": "Блоктохар чакхдели",
+	"blockipsuccesssub": "Блоктоьхна",
 	"blockipsuccesstext": "[[Special:Contributions/$1|«$1»]] {{GENDER:$1|блоктоьхна}}.<br />\nХьажа. [[Special:BlockList|блоктоьхна IP-адресийн могӀам]].",
 	"ipb-empty-block": "ХӀокху блоктохарехь билгалбанза бу бехкамаш.",
 	"ipb-blockingself": "Хьо хьайна блоктоха гӀерта! Лаьий хьона и кхочушдан?",

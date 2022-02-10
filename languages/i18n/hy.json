@@ -2266,7 +2266,7 @@
 	"feedback-submit": "Ուղարկել",
 	"feedback-thanks-title": "Շնորհակալություն",
 	"searchsuggest-search": "Որոնել {{SITENAME}} կայքում",
-	"api-clientside-error-noconnect": "Անհնար է շարունակել խնդիրների պատճառով ցանցային փոխկապակցման: Համոզվեք, որ դուք ունեք ինտերնետ կապ և կրկին փորձեք:",
+	"api-clientside-error-noconnect": "Անհնար է շարունակել ցանցային փոխկապակցման խնդիրների պատճառով: Համոզվեք, որ դուք ունեք ինտերնետ կապ և կրկին փորձեք:",
 	"duration-seconds": "$1 {{PLURAL:$1|վայրկյան}}",
 	"duration-minutes": "$1 {{PLURAL:$1|րոպե}}",
 	"duration-hours": "$1 {{PLURAL:$1|ժամ}}",

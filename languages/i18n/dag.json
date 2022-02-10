@@ -883,7 +883,7 @@
 	"logentry-move-move_redir": "$1 {{GENDER:$2|moved}} yaɣili $3 hali ni $4 zaŋ jɛndi labi Wuhi dede.",
 	"logentry-patrol-patrol-auto": "$1 toli-niŋbu {{GENDER:$2|marked}} labilihi $4 zaŋ chaŋ yaɣili $3 din pun gɔŋgili",
 	"logentry-newusers-create": "Ŋun su akaunt $1 n daa {{GENDER:$2|created}}",
-	"logentry-newusers-autocreate": "ŋun su acaunti $1 daa{{GENDER ;$2|nambu}} ntoli",
+	"logentry-newusers-autocreate": "ŋun su acaunti $1 daa nambu{{GENDER:$2|}} ntoli",
 	"logentry-upload-upload": "$1 {{GENDER:$2|kpɛhibu}} $3",
 	"logentry-upload-overwrite": "$1{{GENDER:$2|kpɛhabu}}zaɣa palli$3",
 	"searchsuggest-search": "Vihimi {{SITENAME}}",
