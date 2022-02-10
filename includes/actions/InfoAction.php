@@ -462,16 +462,16 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Search engine status
-		$pOutput = new ParserOutput();
+		$parserOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {
-			$pOutput->setIndexPolicy( 'noindex' );
+			$parserOutput->setIndexPolicy( 'noindex' );
 		}
 		if ( isset( $pageProperties['index'] ) ) {
-			$pOutput->setIndexPolicy( 'index' );
+			$parserOutput->setIndexPolicy( 'index' );
 		}
 
 		// Use robot policy logic
-		$policy = $this->getArticle()->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getArticle()->getRobotPolicy( 'view', $parserOutput );
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
