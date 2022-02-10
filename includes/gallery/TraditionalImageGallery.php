@@ -264,7 +264,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		// Preloaded into LinkCache in toHTML
 		return $linkRenderer->makeKnownLink(
 			$nt,
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Language::truncateForVisual
 			is_int( $this->getCaptionLength() ) ?
 				$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
 				$nt->getText(),

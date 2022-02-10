@@ -556,7 +556,6 @@ class SearchHighlighter {
 
 			$found = $m[2];
 
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Language::truncateForVisual
 			$line = htmlspecialchars( $pre . $found . $post );
 			$pat2 = '/(' . $terms . ")/i";
 			$line = preg_replace( $pat2, "<span class='searchmatch'>\\1</span>", $line );

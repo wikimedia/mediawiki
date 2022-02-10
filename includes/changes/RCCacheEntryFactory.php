@@ -285,7 +285,6 @@ class RCCacheEntryFactory {
 			$userLink = ' <span class="history-deleted">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Linker?
 			$userLink = Linker::userLink(
 				$cacheEntry->mAttribs['rc_user'],
 				$cacheEntry->mAttribs['rc_user_text'],
