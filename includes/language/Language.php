@@ -3528,6 +3528,13 @@ class Language {
 	 * This provides multibyte version of truncateForDatabase() method of this class,
 	 * suitable for truncation based on number of characters, instead of number of bytes.
 	 *
+	 * The input should be a raw UTF-8 string and *NOT* be HTML
+	 * escaped. It is not safe to truncate HTML-escaped strings,
+	 * because the entity can be truncated! Use ::truncateHtml() if you
+	 * need a specific number of HTML-encoded bytes, or
+	 * ::truncateForDatabase() if you need a specific number of PHP
+	 * bytes.
+	 *
 	 * If $length is negative, the string will be truncated from the beginning.
 	 *
 	 * @since 1.31
@@ -3575,7 +3582,7 @@ class Language {
 
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
+			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->text();
 		}
 		if ( $length == 0 ) {
 			return $ellipsis; // convention

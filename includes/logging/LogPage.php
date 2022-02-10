@@ -125,7 +125,6 @@ class LogPage {
 		if ( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			RecentChange::notifyLog(
 				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
@@ -140,7 +139,6 @@ class LogPage {
 			// Notify external application via UDP.
 			// We send this to IRC but do not want to add it the RC table.
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$rc = RecentChange::newLogEntry(
 				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
@@ -362,7 +360,6 @@ class LogPage {
 
 		$this->performer = $performer;
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$logEntry = new ManualLogEntry( $this->type, $action );
 		$logEntry->setTarget( $target );
 		$logEntry->setPerformer( $performer );
