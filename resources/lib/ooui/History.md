@@ -1,4 +1,37 @@
 # OOUI Release History
+## v0.43.1 / 2022-02-09
+### Styles
+* icons: Update 'zoomIn' and 'zoomOut' (Volker E.)
+* icons: Further optimize 'bold*' and 'italic*' icons and update 'bold-f' (Volker E.)
+* icons: Update 'recentChanges', 'watchlist' and 'userContributions' (Volker E.)
+
+### Code
+* Add PHPUnit tests for variadic Tag methods (Thiemo Kreuz)
+* Avoid calling `.addItems()` with undefined (Thiemo Kreuz)
+* BookletLayout: Clear currentPageName when removing that page (Ed Sanders)
+* BookletLayout: Don't use currentPageName if it is null (Ed Sanders)
+* BookletLayout: In setPage, select the outline if no item is currently selected (Ed Sanders)
+* Changed order icons in template menu (Svantje Lilienthal)
+* Document inconsistent Tag methods with PHPUnit tests (Thiemo Kreuz)
+* DraggableElement: Only fallback to `move` cursor (Volker E.)
+* Fix and remove small pieces of unused PHP code (Thiemo Kreuz)
+* Fix missing cursor when DraggableElement handle is seperate (Thiemo Kreuz)
+* Make Tag fail consistently on item arrays with keys (Bartosz Dziewoński)
+* Streamline code paths related to Element.updateThemeClasses (Thiemo Kreuz)
+* Test coverage for GroupElement failing on arrays with keys (Thiemo Kreuz (WMDE))
+* build: Replace 'grunt-svgmin' with 'svgo' and npm scripts (Volker E.)
+* build: Updating npm dependencies (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* demos: Document Demo.static.imageLists (Ed Sanders)
+* demos: Generate image lists automatically (Ed Sanders)
+* demos: Show language variant icons (Ed Sanders)
+* demos: Show when icons are deprecated (Ed Sanders)
+* demos: Tweak icon page layout to four columns not five (Ed Sanders)
+* docs: Document default arguments in JS code where possible (Thiemo Kreuz)
+* icons: Fix 'bold-cyrl-be' SVG title (Volker E.)
+* icons: Re-crush with SVGO (Volker E.)
+
+
 ## v0.43.0 / 2022-01-11
 ### Breaking changes
 * [BREAKING CHANGE] icons: Remove `destructive` variant from 'close' icon (Volker E.)

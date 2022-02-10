@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.0
+ * OOUI v0.43.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-01-12T17:10:58Z
+ * Date: 2022-02-10T15:03:45Z
  */
 ( function ( OO ) {
 
@@ -25,7 +25,7 @@
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$handle] The part of the element which can be used for dragging, defaults to
  *  the whole element
- * @cfg {boolean} [draggable] The items are draggable. This can change with #toggleDraggable
+ * @cfg {boolean} [draggable=true] The items are draggable. This can change with #toggleDraggable
  *  but the draggable state should be called from the DraggableGroupElement, which updates
  *  the whole group
  */
@@ -246,7 +246,7 @@ OO.ui.mixin.DraggableElement.prototype.getIndex = function () {
  * @cfg {string} [orientation='vertical'] Item orientation: 'horizontal' or 'vertical'. The orientation
  *  should match the layout of the items. Items displayed in a single row
  *  or in several rows should use horizontal orientation. The vertical orientation should only be
- *  used when the items are displayed in a single column. Defaults to 'vertical'
+ *  used when the items are displayed in a single column.
  * @cfg {boolean} [draggable=true] The items are draggable. This can change with #toggleDraggable
  */
 OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( config ) {
@@ -277,7 +277,7 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	} );
 
 	// Initialize
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
 		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
@@ -1360,7 +1360,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	if ( this.continuous ) {
 		this.$element.addClass( 'oo-ui-stackLayout-continuous' );
 	}
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -2286,6 +2286,10 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 			itemsToRemove.push( this.outlineSelectWidget.findItemFromData( name ) );
 			page.setOutlineItem( null );
 		}
+		// If the current page is removed, clear currentPageName
+		if ( this.currentPageName === name ) {
+			this.currentPageName = null;
+		}
 	}
 	if ( itemsToRemove.length ) {
 		this.outlineSelectWidget.removeItems( itemsToRemove );
@@ -2337,12 +2341,12 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 		return;
 	}
 
-	var previousPage = this.pages[ this.currentPageName ];
+	var previousPage = this.currentPageName ? this.pages[ this.currentPageName ] : null;
 	this.currentPageName = name;
 
 	if ( this.outlined ) {
 		var selectedItem = this.outlineSelectWidget.findSelectedItem();
-		if ( selectedItem && selectedItem.getData() !== name ) {
+		if ( !selectedItem || selectedItem.getData() !== name ) {
 			// Warning! This triggers a "select" event and the .onOutlineSelectWidgetSelect()
 			// handler, which calls .setPage() a second time. Make sure .currentPageName is set to
 			// break this loop.
@@ -3256,12 +3260,12 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	this.$movers = $( '<div>' );
 	this.upButton = new OO.ui.ButtonWidget( {
 		framed: false,
-		icon: 'collapse',
+		icon: 'upTriangle',
 		title: OO.ui.msg( 'ooui-outline-control-move-up' )
 	} );
 	this.downButton = new OO.ui.ButtonWidget( {
 		framed: false,
-		icon: 'expand',
+		icon: 'downTriangle',
 		title: OO.ui.msg( 'ooui-outline-control-move-down' )
 	} );
 	this.removeButton = new OO.ui.ButtonWidget( {
@@ -3993,7 +3997,7 @@ OO.ui.ButtonMenuSelectWidget.prototype.onButtonMenuClick = function () {
  * @constructor
  * @param {Object} [config] Configuration object
  * @cfg {boolean} [valid=true] Item is valid
- * @cfg {boolean} [fixed] Item is fixed. This means the item is
+ * @cfg {boolean} [fixed=false] Item is fixed. This means the item is
  *  always included in the values and cannot be removed.
  */
 OO.ui.TagItemWidget = function OoUiTagItemWidget( config ) {
@@ -5665,7 +5669,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.addOptions = function ( menuOptions ) {
  * Create a menu option widget.
  *
  * @param {string} data Item data
- * @param {string} [label] Item label
+ * @param {string} [label=data] Item label
  * @param {string} [icon] Symbolic icon name
  * @return {OO.ui.OptionWidget} Option widget
  */

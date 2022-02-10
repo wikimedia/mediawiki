@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.0
+ * OOUI v0.43.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-01-12T17:10:58Z
+ * Date: 2022-02-10T15:03:45Z
  */
 ( function ( OO ) {
 
@@ -130,7 +130,7 @@ OO.ui.isFocusableElement = function ( $element ) {
  * Find a focusable child.
  *
  * @param {jQuery} $container Container to search in
- * @param {boolean} [backwards] Search backwards
+ * @param {boolean} [backwards=false] Search backwards
  * @return {jQuery} Focusable child, or an empty jQuery object if none found
  */
 OO.ui.findFocusable = function ( $container, backwards ) {
@@ -1556,17 +1556,14 @@ OO.ui.Element.prototype.getElementId = function () {
  * @return {boolean} All methods are supported
  */
 OO.ui.Element.prototype.supports = function ( methods ) {
-	var i, len,
-		support = 0;
-
-	methods = Array.isArray( methods ) ? methods : [ methods ];
-	for ( i = 0, len = methods.length; i < len; i++ ) {
-		if ( typeof this[ methods[ i ] ] === 'function' ) {
-			support++;
-		}
+	if ( !Array.isArray( methods ) ) {
+		return typeof this[ methods ] === 'function';
 	}
 
-	return methods.length === support;
+	var element = this;
+	return methods.every( function ( method ) {
+		return typeof element[ method ] === 'function';
+	} );
 };
 
 /**
@@ -1941,19 +1938,21 @@ OO.ui.Theme.prototype.getElementClasses = function () {
  * @param {OO.ui.Element} element Element for which to update classes
  */
 OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
-	var $elements = $( [] ),
-		classes = this.getElementClasses( element );
+	var domElements = [];
 
 	if ( element.$icon ) {
-		$elements = $elements.add( element.$icon );
+		domElements.push( element.$icon[ 0 ] );
 	}
 	if ( element.$indicator ) {
-		$elements = $elements.add( element.$indicator );
+		domElements.push( element.$indicator[ 0 ] );
 	}
 
-	$elements
-		.removeClass( classes.off )
-		.addClass( classes.on );
+	if ( domElements.length ) {
+		var classes = this.getElementClasses( element );
+		$( domElements )
+			.removeClass( classes.off )
+			.addClass( classes.on );
+	}
 };
 
 /**
@@ -2782,7 +2781,7 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
  *  specified as a plaintext string, a jQuery selection of elements, or a function that will
  *  produce a string in the future. See the [OOUI documentation on MediaWiki] [2] for examples.
  *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
- * @cfg {boolean} [invisibleLabel] Whether the label should be visually hidden (but still
+ * @cfg {boolean} [invisibleLabel=false] Whether the label should be visually hidden (but still
  *  accessible to screen-readers).
  */
 OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
@@ -3700,7 +3699,7 @@ OO.ui.mixin.TitledElement.prototype.getTitle = function () {
  * @cfg {jQuery} [$accessKeyed] The element to which the `accesskey` attribute is applied.
  *  If this config is omitted, the access key functionality is applied to $element, the
  *  element created by the class.
- * @cfg {string|Function} [accessKey] The key or a function that returns the key. If
+ * @cfg {string|Function|null} [accessKey=null] The key or a function that returns the key. If
  *  this config is omitted, no access key will be added.
  */
 OO.ui.mixin.AccessKeyedElement = function OoUiMixinAccessKeyedElement( config ) {
@@ -3968,10 +3967,10 @@ OO.ui.mixin.RequiredElement.prototype.setRequired = function ( state ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [active=false] Whether button should be shown as active
- * @cfg {string} [href] Hyperlink to visit when the button is clicked.
- * @cfg {string} [target] The frame or window in which to open the hyperlink.
- * @cfg {boolean} [noFollow] Search engine traversal hint (default: true)
- * @cfg {string|string[]} [rel] Relationship attributes for the hyperlink
+ * @cfg {string} [href=null] Hyperlink to visit when the button is clicked.
+ * @cfg {string} [target=null] The frame or window in which to open the hyperlink.
+ * @cfg {boolean} [noFollow=true] Search engine traversal hint
+ * @cfg {string|string[]} [rel=[]] Relationship attributes for the hyperlink
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
@@ -4257,7 +4256,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonGroupWidget' );
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -4546,7 +4545,7 @@ OO.ui.LabelWidget.static.tagName = 'label';
  *  impact the flags that the widget receives (and hence its CSS design) as well
  *  as the icon that appears. Available types:
  *  'notice', 'error', 'warning', 'success'
- * @cfg {boolean} [inline] Set the notice as an inline notice. The default
+ * @cfg {boolean} [inline=false] Set the notice as an inline notice. The default
  *  is not inline, or 'boxed' style.
  * @cfg {boolean} [showClose] Show a close button. Can't be used with inline.
  */
@@ -4642,7 +4641,7 @@ OO.ui.MessageWidget.prototype.setInline = function ( inline ) {
  * Set the widget type. The given type must belong to the list of
  * legal types set by OO.ui.MessageWidget.static.iconMap
  *
- * @param  {string} [type] Given type. Defaults to 'notice'
+ * @param {string} [type='notice']
  */
 OO.ui.MessageWidget.prototype.setType = function ( type ) {
 	if ( !this.constructor.static.iconMap[ type ] ) {
@@ -6927,7 +6926,7 @@ OO.ui.OptionWidget.prototype.getMatchText = function () {
  *  Options are created with {@link OO.ui.OptionWidget OptionWidget} classes. See
  *  the [OOUI documentation on MediaWiki] [2] for examples.
  *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
- * @cfg {boolean} [multiselect] Allow for multiple selections
+ * @cfg {boolean} [multiselect=false] Allow for multiple selections
  */
 OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Configuration initialization
@@ -6972,7 +6971,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 			'aria-multiselectable': this.multiselect.toString()
 		} );
 	this.setFocusOwner( this.$element );
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -8132,7 +8131,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @cfg {jQuery} [$autoCloseIgnore] If these elements are clicked, don't auto-hide the menu.
  * @cfg {boolean} [hideOnChoose=true] Hide the menu when the user chooses an option.
  * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
- * @cfg {boolean} [highlightOnFilter] Highlight the first result when filtering
+ * @cfg {boolean} [highlightOnFilter=false] Highlight the first result when filtering
  * @cfg {string} [filterMode='prefix'] The mode by which the menu filters the results.
  *  Options are 'exact', 'prefix' or 'substring'. See `OO.ui.SelectWidget#getItemMatcher`
  * @cfg {number|string} [width] Width of the menu as a number of pixels or CSS string with unit
@@ -9098,7 +9097,7 @@ OO.ui.MultiselectWidget = function OoUiMultiselectWidget( config ) {
 	} );
 
 	// Initialization
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 	this.$group.addClass( 'oo-ui-multiselectWidget-group' );
 	this.$element.addClass( 'oo-ui-multiselectWidget' )
 		.append( this.$group );
@@ -11487,7 +11486,7 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
  * Focus the input and select a specified range within the text.
  *
  * @param {number} from Select from offset
- * @param {number} [to] Select to offset, defaults to from
+ * @param {number} [to=from] Select to offset
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
  */
@@ -12046,7 +12045,7 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
  * This only affects multiline inputs that are {@link #autosize autosized}.
  *
  * @chainable
- * @param {boolean} [force] Force an update, even if the value hasn't changed
+ * @param {boolean} [force=false] Force an update, even if the value hasn't changed
  * @return {OO.ui.Widget} The widget, for chaining
  * @fires resize
  */
@@ -13083,7 +13082,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 			this.$header.append( helpWidget.$element );
 		}
 	}
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -13193,7 +13192,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 			action: action,
 			enctype: config.enctype
 		} );
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -13352,7 +13351,7 @@ OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-horizontalLayout' );
-	this.addItems( config.items );
+	this.addItems( config.items || [] );
 };
 
 /* Setup */
@@ -13784,7 +13783,7 @@ OO.ui.NumberInputWidget.prototype.setReadOnly = function () {
  * @cfg {boolean} [multiple=false] Allow multiple files to be selected.
  * @cfg {string} [placeholder] Text to display when no file is selected.
  * @cfg {Object} [button] Config to pass to select file button.
- * @cfg {string} [icon] Icon to show next to file info
+ * @cfg {Object|string|null} [icon=null] Icon to show next to file info
  */
 OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	var widget = this;

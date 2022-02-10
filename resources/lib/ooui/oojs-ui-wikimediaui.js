@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.0
+ * OOUI v0.43.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-01-12T17:10:58Z
+ * Date: 2022-02-10T15:03:45Z
  */
 ( function ( OO ) {
 
@@ -33,7 +33,6 @@ OO.inheritClass( OO.ui.WikimediaUITheme, OO.ui.Theme );
  * @inheritdoc
  */
 OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
-	// Parent method
 	var variant, isFramed, isActive, isToolOrGroup,
 		variants = {
 			invert: false,
@@ -53,9 +52,9 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 	) {
 		// Icon on CheckboxInputWidget
 		variants.invert = true;
-	} else if ( element.supports( [ 'hasFlag' ] ) ) {
-		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
-		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
+	} else if ( element.supports( 'hasFlag' ) ) {
+		isFramed = element.supports( 'isFramed' ) && element.isFramed();
+		isActive = element.supports( 'isActive' ) && element.isActive();
 		isToolOrGroup =
 			// Check if the class exists, as classes that are not in the 'core' module may
 			// not be loaded.
