@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\WrappedString;
@@ -82,6 +83,11 @@ abstract class Skin extends ContextSource {
 
 	/** @var array|null Cache for buildSidebar() */
 	private $sidebar;
+
+	/**
+	 * @var SkinComponentRegistry Initialised in constructor.
+	 */
+	private $componentRegistry = null;
 
 	/**
 	 * Get the current major version of Skin. This is used to manage changes
@@ -229,6 +235,11 @@ abstract class Skin extends ContextSource {
 			'is-mainpage' => $isMainPage,
 			'is-specialpage' => $title->isSpecialPage(),
 		];
+
+		$components = $this->componentRegistry->getComponents();
+		foreach ( $components as $componentName => $component ) {
+			$data['data-' . $componentName] = $component->getTemplateData();
+		}
 		return $data;
 	}
 
@@ -317,6 +328,9 @@ abstract class Skin extends ContextSource {
 			$this->options = $options;
 			$this->skinname = $name;
 		}
+		$this->componentRegistry = new SkinComponentRegistry(
+			$this
+		);
 	}
 
 	/**
