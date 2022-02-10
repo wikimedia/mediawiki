@@ -2045,16 +2045,12 @@ class Linker {
 	 */
 	public static function titleAttrib( $name, $options = null, array $msgParams = [] ) {
 		$message = wfMessage( "tooltip-$name", $msgParams );
-		if ( !$message->exists() ) {
+		if ( $message->isDisabled() ) {
 			$tooltip = false;
 		} else {
 			$tooltip = $message->text();
 			# Compatibility: formerly some tooltips had [alt-.] hardcoded
 			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
-			# Message equal to '-' means suppress it.
-			if ( $tooltip == '-' ) {
-				$tooltip = false;
-			}
 		}
 
 		$options = (array)$options;
@@ -2098,15 +2094,10 @@ class Linker {
 
 		$message = wfMessage( "accesskey-$name" );
 
-		if ( !$message->exists() ) {
+		if ( $message->isDisabled() ) {
 			$accesskey = false;
 		} else {
 			$accesskey = $message->plain();
-			if ( $accesskey === '' || $accesskey === '-' ) {
-				# Per standard MW behavior, a value of '-' means to suppress the
-				# attribute. It is thus forbidden to use this as an access key.
-				$accesskey = false;
-			}
 		}
 
 		self::$accesskeycache[$name] = $accesskey;
