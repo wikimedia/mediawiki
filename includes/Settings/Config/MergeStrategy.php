@@ -22,6 +22,9 @@ class MergeStrategy {
 	public const ARRAY_MERGE = 'array_merge';
 
 	/** @var string */
+	public const REPLACE = 'replace';
+
+	/** @var string */
 	private $name;
 
 	/** @var bool */
@@ -77,6 +80,8 @@ class MergeStrategy {
 		}
 
 		switch ( $this->name ) {
+			case self::REPLACE:
+				return $source;
 			case self::ARRAY_MERGE_RECURSIVE:
 				return array_merge_recursive( $destination, $source );
 			case self::ARRAY_REPLACE_RECURSIVE:

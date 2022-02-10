@@ -47,6 +47,12 @@ class MergeStrategyTest extends TestCase {
 			'baseArray' => [ 'a' => [ 'b' => [ 'd' ] ], 'e' => [ 'f' ] ],
 			'expected' => [ 'a' => [ 'b' => [ 'c' ] ], 'e' => [ 'f' ] ],
 		];
+		yield 'replace' => [
+			'strategy' => MergeStrategy::REPLACE,
+			'newArray' => [ 'a' => [ 'b' => [ 'c' ] ] ],
+			'baseArray' => [ 'a' => [ 'b' => [ 'd' ] ], 'e' => [ 'f' ] ],
+			'expected' => [ 'a' => [ 'b' => [ 'c' ] ] ],
+		];
 	}
 
 	/**

@@ -94,9 +94,41 @@ class ConfigSchemaAggregator {
 	 */
 	public function getMergeStrategyFor( string $key ): ?MergeStrategy {
 		$strategyName = $this->schema[$key]['mergeStrategy'] ?? null;
+
 		if ( $strategyName === null ) {
-			return null;
+			$type = $this->schema[ $key ]['type'] ?? null;
+			$strategyName = $type ? $this->getStrategyForType( $type ) : null;
 		}
-		return MergeStrategy::newFromName( $strategyName );
+
+		return $strategyName ? MergeStrategy::newFromName( $strategyName ) : null;
+	}
+
+	/**
+	 * Returns an appropriate merge strategy for the given type.
+	 *
+	 * @param string|array $type
+	 *
+	 * @return string
+	 */
+	private function getStrategyForType( $type ): string {
+		if ( is_array( $type ) ) {
+			if ( in_array( 'array', $type ) ) {
+				$type = 'array';
+			} elseif ( in_array( 'object', $type ) ) {
+				$type = 'object';
+			}
+		}
+
+		if ( $type === 'array' ) {
+			// In JSON Schema, "array" means a list.
+			// Use array_merge to append.
+			return 'array_merge';
+		} elseif ( $type === 'object' ) {
+			// In JSON Schema, "object" means a map.
+			// Use array_plus to replace keys, even if they are numeric.
+			return 'array_plus';
+		}
+
+		return 'replace';
 	}
 }
