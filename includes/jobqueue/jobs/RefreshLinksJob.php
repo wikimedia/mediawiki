@@ -33,12 +33,24 @@ use MediaWiki\Revision\RevisionRenderer;
  * Job to update link tables for pages
  *
  * This job comes in a few variants:
- *   - a) Recursive jobs to update links for backlink pages for a given title.
- *        These jobs have (recursive:true,table:<table>) set.
- *   - b) Jobs to update links for a set of pages (the job title is ignored).
- *        These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
- *   - c) Jobs to update links for a single page (the job title)
- *        These jobs need no extra fields set.
+ *
+ * - a) Recursive jobs to update links for backlink pages for a given title.
+ *      These jobs have (recursive:true,table:<table>) set.
+ * - b) Jobs to update links for a set of pages (the job title is ignored).
+ *      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ * - c) Jobs to update links for a single page (the job title)
+ *      These jobs need no extra fields set.
+ *
+ * Metrics:
+ *
+ * - `refreshlinks_warning.<warning>`:
+ *    A recoverable issue. The job will continue as normal.
+ *
+ * - `refreshlinks_outcome.<reason>`:
+ *    If the job ends with an unusual outcome, it will increment this exactly once.
+ *    The reason starts with `bad_`, a failure is logged and the job may be retried later.
+ *    The reason starts with `good_`, the job was cancelled and considered a success,
+ *    i.e. it was superseded.
  *
  * @ingroup JobQueue
  */
@@ -99,20 +111,22 @@ class RefreshLinksJob extends Job {
 	public function run() {
 		$ok = true;
 
-		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
-			$services = MediaWikiServices::getInstance();
+			// Job to update all (or a range of) backlink pages for a page
+
 			// When the base job branches, wait for the replica DBs to catch up to the primary.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
+			$services = MediaWikiServices::getInstance();
 			if ( !isset( $this->params['range'] ) ) {
 				$lbFactory = $services->getDBLoadBalancerFactory();
 				if ( !$lbFactory->waitForReplication( [
 					'domain'  => $lbFactory->getLocalDomainID(),
 					'timeout' => self::LAG_WAIT_TIMEOUT
-				] ) ) { // only try so hard
+				] ) ) {
+					// only try so hard, keep going with what we have
 					$stats = $services->getStatsdDataFactory();
-					$stats->increment( 'refreshlinks.lag_wait_failed' );
+					$stats->increment( 'refreshlinks_warning.lag_wait_failed' );
 				}
 			}
 			// Carry over information for de-duplication
@@ -130,8 +144,9 @@ class RefreshLinksJob extends Job {
 				[ 'params' => $extraParams ]
 			);
 			$services->getJobQueueGroup()->push( $jobs );
-		// Job to update link tables for a set of titles
+
 		} elseif ( isset( $this->params['pages'] ) ) {
+			// Job to update link tables for a set of titles
 			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
 				$title = Title::makeTitleSafe( $ns, $dbKey );
 				if ( $title && $title->canExist() ) {
@@ -141,8 +156,9 @@ class RefreshLinksJob extends Job {
 					$this->setLastError( "Invalid title ($ns,$dbKey)." );
 				}
 			}
-		// Job to update link tables for a given title
+
 		} else {
+			// Job to update link tables for a given title
 			$ok = $this->runForTitle( $this->title );
 		}
 
@@ -176,9 +192,9 @@ class RefreshLinksJob extends Job {
 					'job_metadata' => $this->getMetadata()
 				]
 			);
+			$stats->increment( 'refreshlinks_outcome.bad_page_not_found' );
 
-			// nothing to do
-			$stats->increment( 'refreshlinks.rev_not_found' );
+			// retry later to handle unlucky race condition
 			return false;
 		}
 
@@ -192,14 +208,17 @@ class RefreshLinksJob extends Job {
 		if ( $scopedLock === null ) {
 			// Another job is already updating the page, likely for a prior revision (T170596)
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
-			$stats->increment( 'refreshlinks.lock_failure' );
+			$stats->increment( 'refreshlinks_outcome.bad_lock_failure' );
 
+			// retry later when overlapping job for previous rev is done
 			return false;
 		}
 
 		if ( $this->isAlreadyRefreshed( $page ) ) {
-			$stats->increment( 'refreshlinks.update_skipped' );
-
+			// this job has been superseded, e.g. by overlapping recursive job
+			// for a different template edit, or by direct edit or purge.
+			$stats->increment( 'refreshlinks_outcome.good_update_superseded' );
+			// treat as success
 			return true;
 		}
 
@@ -210,7 +229,10 @@ class RefreshLinksJob extends Job {
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		if ( !$output ) {
-			return false; // raced out?
+			// probably raced out.
+			// Specific refreshlinks_outcome metric sent by getCurrentRevisionIfUnchanged().
+			// FIXME: Why do we retry this? Can this be a cancellation?
+			return false;
 		}
 
 		// Tell DerivedPageDataUpdater to use this parser output
@@ -269,7 +291,8 @@ class RefreshLinksJob extends Job {
 	) {
 		$revision = $this->getCurrentRevisionIfUnchanged( $page, $stats );
 		if ( !$revision ) {
-			return null; // race condition?
+			// race condition?
+			return null;
 		}
 
 		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page, $revision, $stats );
@@ -311,9 +334,8 @@ class RefreshLinksJob extends Job {
 		$triggeringRevisionId = $this->params['triggeringRevisionId'] ?? null;
 		if ( $triggeringRevisionId && $triggeringRevisionId !== $latest ) {
 			// This job is obsolete and one for the latest revision will handle updates
-			$stats->increment( 'refreshlinks.rev_not_current' );
+			$stats->increment( 'refreshlinks_outcome.bad_rev_not_current' );
 			$this->setLastError( "Revision $triggeringRevisionId is not current" );
-
 			return null;
 		}
 
@@ -321,16 +343,17 @@ class RefreshLinksJob extends Job {
 		// This instance will be reused in WikiPage::doSecondaryDataUpdates() later on.
 		$revision = $page->getRevisionRecord();
 		if ( !$revision ) {
-			$stats->increment( 'refreshlinks.rev_not_found' );
+			// revision just got deleted?
+			$stats->increment( 'refreshlinks_outcome.bad_rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
+			return null;
 
-			return null; // just deleted?
 		} elseif ( $revision->getId() !== $latest || $revision->getPageId() !== $page->getId() ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
 			// only update the link tables to a state matching the current revision's output.
-			$stats->increment( 'refreshlinks.rev_not_current' );
+			$stats->increment( 'refreshlinks_outcome.bad_rev_not_current' );
 			$this->setLastError( "Revision {$revision->getId()} is not current" );
 
 			return null;
