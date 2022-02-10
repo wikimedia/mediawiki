@@ -34,6 +34,7 @@ use MediaWiki\User\UserOptionsLookup;
  * @internal
  */
 class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
+
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	protected $targets = [ 'desktop', 'mobile' ];
@@ -59,6 +60,12 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		// to cache across page views. The defaults are loaded before this code executes,
 		// as part of the "mediawiki.base" module.
 		$options = $userOptionsLookup->getOptions( $user, UserOptionsLookup::EXCLUDE_DEFAULTS );
+
+		$keysToExclude = [];
+		$this->getHookRunner()->onResourceLoaderExcludeUserOptions( $keysToExclude, $context );
+		foreach ( $keysToExclude as $excludedKey ) {
+			unset( $options[ $excludedKey ] );
+		}
 
 		// Optimisation: Only output this function call if the user has non-default settings.
 		if ( $options ) {
