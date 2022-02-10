@@ -75,6 +75,11 @@ class RebuildLocalisationCache extends Maintenance {
 			'on the configuration and extensions on this wiki. If skipping the purge now, you need to ' .
 			'run purgeMessageBlobStore.php shortly after deployment.'
 		);
+		$this->addOption(
+			'no-progress',
+			"Don't print a message for each rebuilt language file.  Use this instead of " .
+			"--quiet to get a brief summary of the operation."
+		);
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
@@ -217,7 +222,9 @@ class RebuildLocalisationCache extends Maintenance {
 		$numRebuilt = 0;
 		foreach ( $codes as $code ) {
 			if ( $force || $lc->isExpired( $code ) ) {
-				$this->output( "Rebuilding $code...\n" );
+				if ( !$this->hasOption( 'no-progress' ) ) {
+					$this->output( "Rebuilding $code...\n" );
+				}
 				$lc->recache( $code );
 				$numRebuilt++;
 			}
