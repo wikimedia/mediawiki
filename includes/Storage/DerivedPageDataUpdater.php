@@ -1759,6 +1759,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
+		if ( isset( $options['known-revision-output'] ) ) {
+			$this->getRenderedRevision()->setRevisionParserOutput( $options['known-revision-output'] );
+		}
 
 		// Bundle all of the data updates into a single deferred update wrapper so that
 		// any failure will cause at most one refreshLinks job to be enqueued by
