@@ -5105,18 +5105,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function ping( &$rtt = null ) {
 		// Avoid hitting the server if it was hit recently
-		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
-			if ( !func_num_args() || $this->lastRoundTripEstimate > 0 ) {
+		if ( $this->isOpen() ) {
+			if ( ( microtime( true ) - $this->lastPing ) < self::PING_TTL &&
+				( !func_num_args() || $this->lastRoundTripEstimate > 0 )
+			) {
 				$rtt = $this->lastRoundTripEstimate;
 				return true; // don't care about $rtt
 			}
-		}
-
-		// This will reconnect if possible or return false if not
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE;
-		$ok = ( $this->query( self::PING_QUERY, __METHOD__, $flags ) !== false );
-		if ( $ok ) {
-			$rtt = $this->lastRoundTripEstimate;
+			// This will reconnect if possible or return false if not
+			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE;
+			$ok = ( $this->query( self::PING_QUERY, __METHOD__, $flags ) !== false );
+			if ( $ok ) {
+				$rtt = $this->lastRoundTripEstimate;
+			}
+		} else {
+			$ok = $this->replaceLostConnection( __METHOD__, null );
 		}
 
 		return $ok;
@@ -5125,15 +5128,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Close any existing (dead) database connection and open a new connection
 	 *
-	 * @param int $lastErrno
+	 * @param int|null $lastErrno
 	 * @param string $fname
 	 * @return bool True if new connection is opened successfully, false if error
 	 */
 	protected function replaceLostConnection( $lastErrno, $fname ) {
-		$this->closeConnection();
-		$this->conn = null;
-
-		$this->handleSessionLossPreconnect();
+		if ( $this->conn ) {
+			$this->closeConnection();
+			$this->conn = null;
+			$this->handleSessionLossPreconnect();
+		}
 
 		try {
 			$this->open(
