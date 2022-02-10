@@ -11,6 +11,7 @@
 			"Mido",
 			"NEHAOUA",
 			"OsamaK",
+			"SaldırganSincap",
 			"ترجمان05",
 			"ديفيد",
 			"زكريا",
@@ -34,9 +35,11 @@
 	"ooui-dialog-process-continue": "استمر",
 	"ooui-combobox-button-label": "خيارات التبديل",
 	"ooui-selectfile-button-select": "اختر ملفا",
+	"ooui-selectfile-button-select-multiple": "اختر الملفات",
 	"ooui-selectfile-not-supported": "اختيار الملفات غير مدعوم",
 	"ooui-selectfile-placeholder": "لم يتم اختيار أي ملف",
 	"ooui-selectfile-dragdrop-placeholder": "اترك الملف هنا",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "أسقط الملفات هنا",
+	"ooui-popup-widget-close-button-aria-label": "أغلق",
 	"ooui-field-help": "مساعدة"
 }

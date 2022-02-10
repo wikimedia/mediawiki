@@ -244,8 +244,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.43.0.tgz
-  integrity: sha384-J3GXORUteuy7BOiCH3CQDXHNoqoJudAtECFOBoHrlKzTiDiSH78gsBQJTWT6OJRx
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.43.1.tgz
+  integrity: sha384-vurR15549MlQicj/4X39T2IHJhWTFRbG7FO4PM8JcyZl/8dDRlfQmp74zIPKgLV/
 
   dest:
     # Main stuff
@@ -259,7 +259,6 @@ ooui:
     package/dist/oojs-ui-windows-{wikimediaui,apex}.css:
     package/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json}:
     package/dist/i18n:
-    package/dist/images:
     # For jsduck/eg-iframe
     package/dist/oojs-ui-images-wikimediaui.css:
     # WikimediaUI theme
