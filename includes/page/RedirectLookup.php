@@ -40,6 +40,7 @@ interface RedirectLookup {
 	 *
 	 * @param PageIdentity $page
 	 * @return LinkTarget|null
+	 * @throws PageAssertionException if $page does not represent an editable page
 	 */
 	public function getRedirectTarget( PageIdentity $page ): ?LinkTarget;
 }
