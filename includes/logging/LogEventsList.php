@@ -692,7 +692,11 @@ class LogEventsList extends ContextSource {
 					'lang' => $lang,
 				] );
 
-				$s .= $context->msg( ...$msgKey )->parseAsBlock();
+				$msg = $context->msg( ...$msgKey );
+				if ( $page instanceof PageReference ) {
+					$msg->page( $page );
+				}
+				$s .= $msg->parseAsBlock();
 			}
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
