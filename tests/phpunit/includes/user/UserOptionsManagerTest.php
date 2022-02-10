@@ -309,6 +309,87 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager->saveOptions( $user );
 	}
 
+	public function testOptionsNoDeleteSetDefaultValue() {
+		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->willReturn( new FakeResultWrapper( [
+				[
+					'up_value' => 'unchanged',
+					'up_property' => 'unchanged_option',
+				]
+			] ) );
+		$mockDb->expects( $this->never() ) // This is critical what we are testing
+			->method( 'delete' );
+		$mockLoadBalancer = $this->createMock( ILoadBalancer::class );
+		$mockLoadBalancer
+			->method( 'getConnectionRef' )
+			->willReturn( $mockDb );
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager( [
+			'lb' => $mockLoadBalancer,
+			'defaults' => [
+				'set_default' => 'default',
+				'set_default_null' => null,
+			]
+		] );
+		// Resetting an option with default value to the default value does not trigger delete
+		$manager->setOption( $user, 'set_default', 'default' );
+		$manager->setOption( $user, 'set_default_null', null );
+		$manager->saveOptions( $user );
+	}
+
+	public function testOptionsDeleteSetDefaultValue() {
+		$user = $this->getTestUser()->getUser();
+		$mockDb = $this->createMock( DBConnRef::class );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->willReturn( new FakeResultWrapper( [
+				[
+					'up_property' => 'unchanged',
+					'up_value' => 'unchanged_option',
+				],
+				[
+					'up_property' => 'set_default',
+					'up_value' => 'non_default',
+				],
+				[
+					'up_property' => 'set_default_null',
+					'up_value' => 'not_null',
+				],
+				[
+					'up_property' => 'set_default_not_null',
+					'up_value' => null,
+				]
+			] ) );
+		$mockDb->expects( $this->once() ) // This is critical what we are testing
+			->method( 'delete' )
+			->with(
+				'user_properties',
+				[
+					'up_user' => $user->getId(),
+					'up_property' => [ 'set_default', 'set_default_null', 'set_default_not_null' ]
+				]
+			);
+		$mockLoadBalancer = $this->createMock( ILoadBalancer::class );
+		$mockLoadBalancer
+			->method( 'getConnectionRef' )
+			->willReturn( $mockDb );
+		$manager = $this->getManager( [
+			'lb' => $mockLoadBalancer,
+			'defaults' => [
+				'set_default' => 'default',
+				'set_default_null' => null,
+				'set_default_not_null' => 'not_null',
+			]
+		] );
+		// Set every of the options to its default value must trigger a delete for each option
+		$manager->setOption( $user, 'set_default', 'default' );
+		$manager->setOption( $user, 'set_default_null', null );
+		$manager->setOption( $user, 'set_default_not_null', 'not_null' );
+		$manager->saveOptions( $user );
+	}
+
 	/**
 	 * @covers \MediaWiki\User\UserOptionsManager::saveOptions
 	 */
