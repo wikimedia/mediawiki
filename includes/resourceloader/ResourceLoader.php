@@ -1931,7 +1931,14 @@ MESSAGE;
 	 */
 	public static function getUserDefaults( ResourceLoaderContext $context ): array {
 		// TODO inject
-		return MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+		$defaultOptions = MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+		$keysToExclude = [];
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$hookRunner->onResourceLoaderExcludeUserOptions( $keysToExclude, $context );
+		foreach ( $keysToExclude as $excludedKey ) {
+			unset( $defaultOptions[ $excludedKey ] );
+		}
+		return $defaultOptions;
 	}
 
 	/**
