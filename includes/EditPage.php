@@ -28,6 +28,7 @@ use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\CreationPermissionConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
+use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
 use MediaWiki\EditPage\Constraint\EditRightConstraint;
@@ -57,6 +58,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -601,13 +603,11 @@ class EditPage implements IEditObject {
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit" );
 
-			if ( $this->context->getUser()->getBlock() ) {
+			if ( $this->context->getUser()->getBlock() && !wfReadOnly() ) {
 				// Auto-block user's IP if the account was "hard" blocked
-				if ( !wfReadOnly() ) {
-					DeferredUpdates::addCallableUpdate( function () {
-						$this->context->getUser()->spreadAnyEditBlock();
-					} );
-				}
+				DeferredUpdates::addCallableUpdate( function () {
+					$this->context->getUser()->spreadAnyEditBlock();
+				} );
 			}
 			$this->displayPermissionsError( $permErrors );
 
@@ -656,7 +656,7 @@ class EditPage implements IEditObject {
 		$this->isConflict = false;
 
 		# Show applicable editing introductions
-		if ( $this->formtype == 'initial' || $this->firsttime ) {
+		if ( $this->formtype === 'initial' || $this->firsttime ) {
 			$this->showIntro();
 		}
 
@@ -665,7 +665,7 @@ class EditPage implements IEditObject {
 		# that edit() already checked just in case someone tries to sneak
 		# in the back door with a hand-edited submission URL.
 
-		if ( $this->formtype == 'save' ) {
+		if ( $this->formtype === 'save' ) {
 			$resultDetails = null;
 			$status = $this->attemptSave( $resultDetails );
 			if ( !$this->handleStatus( $status, $resultDetails ) ) {
@@ -675,8 +675,8 @@ class EditPage implements IEditObject {
 
 		# First time through: get contents, set time for conflict
 		# checking, etc.
-		if ( $this->formtype == 'initial' || $this->firsttime ) {
-			if ( $this->initialiseForm() === false ) {
+		if ( $this->formtype === 'initial' || $this->firsttime ) {
+			if ( !$this->initialiseForm() ) {
 				return;
 			}
 
@@ -743,9 +743,9 @@ class EditPage implements IEditObject {
 		if ( $this->preview || $this->diff ) {
 			$remove = [];
 			foreach ( $permErrors as $error ) {
-				if ( $error[0] == 'blockedtext' ||
-					$error[0] == 'autoblockedtext' ||
-					$error[0] == 'systemblockedtext'
+				if ( $error[0] === 'blockedtext' ||
+					$error[0] === 'autoblockedtext' ||
+					$error[0] === 'systemblockedtext'
 				) {
 					$remove[] = $error;
 				}
@@ -864,13 +864,13 @@ class EditPage implements IEditObject {
 			// security reasons
 			return false;
 		}
-		if ( $request->getVal( 'preview' ) == 'yes' ) {
+		if ( $request->getVal( 'preview' ) === 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) === 'no' ) {
 			// Explicit override from request
 			return false;
-		} elseif ( $this->section == 'new' ) {
+		} elseif ( $this->section === 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $request->getCheck( 'preload' ) || $this->mTitle->exists() )
@@ -903,8 +903,8 @@ class EditPage implements IEditObject {
 				array_keys( $skinFactory->getInstalledSkins() ),
 				[ 'common' ]
 			);
-			return !in_array( $name, $skins )
-				&& in_array( strtolower( $name ), $skins );
+			return !in_array( $name, $skins, true )
+				&& in_array( strtolower( $name ), $skins, true );
 		} else {
 			return false;
 		}
@@ -937,13 +937,13 @@ class EditPage implements IEditObject {
 	 */
 	public function importFormData( &$request ) {
 		# Section edit can come from either the form or a link
-		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section', '' ) );
 
 		if ( $this->section !== null && $this->section !== '' && !$this->isSectionEditSupported() ) {
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 
-		$this->isNew = !$this->mTitle->exists() || $this->section == 'new';
+		$this->isNew = !$this->mTitle->exists() || $this->section === 'new';
 
 		if ( $request->wasPosted() ) {
 			# These fields need to be checked for encoding.
@@ -1060,7 +1060,7 @@ class EditPage implements IEditObject {
 
 			# Don't force edit summaries when a user is editing their own user or talk page
 			if ( ( $this->mTitle->getNamespace() === NS_USER || $this->mTitle->getNamespace() === NS_USER_TALK )
-				&& $this->mTitle->getText() == $user->getName()
+				&& $this->mTitle->getText() === $user->getName()
 			) {
 				$this->allowBlankSummary = true;
 			} else {
@@ -1107,11 +1107,11 @@ class EditPage implements IEditObject {
 
 			// When creating a new section, we can preload a section title by passing it as the
 			// preloadtitle parameter in the URL (T15100)
-			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+			if ( $this->section === 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
-			} elseif ( $this->section != 'new' && $request->getVal( 'summary' ) !== '' ) {
+			} elseif ( $this->section !== 'new' && $request->getVal( 'summary' ) !== '' ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
 					$this->hasPresetSummary = true;
@@ -1187,7 +1187,7 @@ class EditPage implements IEditObject {
 	 * Called on the first invocation, e.g. when a user clicks an edit link
 	 * @return bool If the requested section is valid
 	 */
-	private function initialiseForm() {
+	private function initialiseForm(): bool {
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
@@ -1225,12 +1225,13 @@ class EditPage implements IEditObject {
 		$this->textbox1 = $this->toEditText( $content );
 
 		$user = $this->context->getUser();
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
-		if ( $user->getOption( 'watchdefault' ) ) {
+		if ( $userOptionsLookup->getOption( $user, 'watchdefault' ) ) {
 			# Watch all edits
 			$this->watchthis = true;
-		} elseif ( $user->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
+		} elseif ( $userOptionsLookup->getOption( $user, 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
 		} elseif ( $this->watchlistManager->isWatched( $user, $this->mTitle ) ) {
@@ -1241,7 +1242,7 @@ class EditPage implements IEditObject {
 			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->getTitle() );
 			$this->watchlistExpiry = $watchedItem ? $watchedItem->getExpiry() : null;
 		}
-		if ( $user->getOption( 'minordefault' ) && !$this->isNew ) {
+		if ( !$this->isNew && $userOptionsLookup->getOption( $user, 'minordefault' ) ) {
 			$this->minoredit = true;
 		}
 		if ( $this->textbox1 === false ) {
@@ -1266,8 +1267,8 @@ class EditPage implements IEditObject {
 		$request = $this->context->getRequest();
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
-		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
-			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section != 'new' ) {
+		if ( !$this->mTitle->exists() || $this->section === 'new' ) {
+			if ( $this->mTitle->getNamespace() === NS_MEDIAWIKI && $this->section !== 'new' ) {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
@@ -1287,7 +1288,7 @@ class EditPage implements IEditObject {
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
-		} elseif ( $this->section != '' ) {
+		} elseif ( $this->section !== '' ) {
 			// Get section edit text (returns $def_text for invalid sections)
 			$orig = $this->getOriginalContent( $user );
 			$content = $orig ? $orig->getSection( $this->section ) : null;
@@ -1432,7 +1433,7 @@ class EditPage implements IEditObject {
 				$out = $this->context->getOutput();
 				// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
 				// undo-nochange.
-				$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
+				$class = ( $undoMsg === 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 				$this->editFormPageTop .= Html::rawElement(
 					'div',
 					[ 'class' => $class ],
@@ -1496,7 +1497,7 @@ class EditPage implements IEditObject {
 	 * @return Content|null
 	 */
 	private function getOriginalContent( Authority $performer ) {
-		if ( $this->section == 'new' ) {
+		if ( $this->section === 'new' ) {
 			return $this->getCurrentContent();
 		}
 		$revRecord = $this->mArticle->fetchRevisionRecord();
@@ -1631,7 +1632,7 @@ class EditPage implements IEditObject {
 	 * @return bool
 	 * @throws Exception
 	 */
-	private function isPageExistingAndViewable( ?PageIdentity $page, Authority $performer ) {
+	private function isPageExistingAndViewable( ?PageIdentity $page, Authority $performer ): bool {
 		return $page && $page->exists() && $performer->authorizeRead( 'read', $page );
 	}
 
@@ -1668,7 +1669,7 @@ class EditPage implements IEditObject {
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
 		$val = 'saved';
-		if ( $statusValue == self::AS_SUCCESS_NEW_ARTICLE ) {
+		if ( $statusValue === self::AS_SUCCESS_NEW_ARTICLE ) {
 			$val = 'created';
 		} elseif ( $this->oldid ) {
 			$val = 'restored';
@@ -1703,7 +1704,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Log when a page was successfully saved after the edit conflict view
 	 */
-	private function incrementResolvedConflicts() {
+	private function incrementResolvedConflicts(): void {
 		if ( $this->context->getRequest()->getText( 'mode' ) !== 'conflict' ) {
 			return;
 		}
@@ -1720,15 +1721,15 @@ class EditPage implements IEditObject {
 	 * @throws ErrorPageError
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
-	private function handleStatus( Status $status, $resultDetails ) {
+	private function handleStatus( Status $status, $resultDetails ): bool {
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 
 		/**
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
 		 *   nicer, this should use the message in $status
 		 */
-		if ( $statusValue == self::AS_SUCCESS_UPDATE
-			|| $statusValue == self::AS_SUCCESS_NEW_ARTICLE
+		if ( $statusValue === self::AS_SUCCESS_UPDATE
+			|| $statusValue === self::AS_SUCCESS_NEW_ARTICLE
 		) {
 			$this->incrementResolvedConflicts();
 
@@ -1964,6 +1965,7 @@ class EditPage implements IEditObject {
 		}
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+		/** @var EditConstraintFactory $constraintFactory */
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 		$constraintRunner = new EditConstraintRunner();
 
@@ -1983,13 +1985,10 @@ class EditPage implements IEditObject {
 		);
 
 		// SpamRegexConstraint: ensure that the summary and text don't match the spam regex
-		// FIXME $this->section is documented to always be a string, but it can be null
-		// since importFormData does not provide a default when getting the section from
-		// WebRequest, and the default default is null.
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
-				$this->section ?? '',
+				$this->section,
 				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
@@ -2074,7 +2073,7 @@ class EditPage implements IEditObject {
 			$content = $textbox_content;
 
 			$result['sectionanchor'] = '';
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
@@ -2147,9 +2146,9 @@ class EditPage implements IEditObject {
 			) {
 				$this->isConflict = true;
 				list( $newSectionSummary, $newSectionAnchor ) = $this->newSectionSummary();
-				if ( $this->section == 'new' ) {
-					if ( $this->page->getUserText() == $user->getName() &&
-						$this->page->getComment() == $newSectionSummary
+				if ( $this->section === 'new' ) {
+					if ( $this->page->getUserText() === $user->getName() &&
+						$this->page->getComment() === $newSectionSummary
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -2162,7 +2161,7 @@ class EditPage implements IEditObject {
 						$this->isConflict = false;
 						$editConflictLogger->debug( 'Conflict suppressed; new section' );
 					}
-				} elseif ( $this->section == ''
+				} elseif ( $this->section === ''
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
 						wfGetDB( DB_PRIMARY ),
@@ -2266,7 +2265,7 @@ class EditPage implements IEditObject {
 				)
 			);
 
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				$constraintRunner->addConstraint(
 					new NewSectionMissingSummaryConstraint(
 						$this->summary,
@@ -2297,11 +2296,11 @@ class EditPage implements IEditObject {
 
 			# All's well
 			$sectionAnchor = '';
-			if ( $this->section == 'new' ) {
+			if ( $this->section === 'new' ) {
 				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
 				$this->summary = $newSectionSummary;
 				$sectionAnchor = $anchor;
-			} elseif ( $this->section != '' ) {
+			} elseif ( $this->section !== '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
 				# XXX: Might be better to integrate this into WikiPage::replaceSectionAtRev
@@ -2309,7 +2308,7 @@ class EditPage implements IEditObject {
 				$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 				# We can't deal with anchors, includes, html etc in the header for now,
 				# headline would need to be parsed to improve this.
-				if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
+				if ( $hasmatch && $matches[2] !== '' ) {
 					$sectionAnchor = $this->guessSectionName( $matches[2] );
 				}
 			}
@@ -2419,8 +2418,7 @@ class EditPage implements IEditObject {
 		// when it is returned, either at an earlier point due to an error or here
 		// due to a successful edit.
 		$statusCode = ( $new ? self::AS_SUCCESS_NEW_ARTICLE : self::AS_SUCCESS_UPDATE );
-		$status = Status::newGood( $statusCode );
-		return $status;
+		return Status::newGood( $statusCode );
 	}
 
 	/**
@@ -2431,7 +2429,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param IEditConstraint $failed
 	 */
-	private function handleFailedConstraint( IEditConstraint $failed ) {
+	private function handleFailedConstraint( IEditConstraint $failed ): void {
 		if ( $failed instanceof PageSizeConstraint ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
@@ -2556,10 +2554,10 @@ class EditPage implements IEditObject {
 	 *
 	 * @param Content $editContent
 	 *
-	 * @return bool|array either `false` or an array of the new Content and the
+	 * @return array|false either `false` or an array of the new Content and the
 	 *   updated parent revision id
 	 */
-	private function mergeChangesIntoContent( $editContent ) {
+	private function mergeChangesIntoContent( Content $editContent ) {
 		// This is the revision that was current at the time editing was initiated on the client,
 		// even if the edit was based on an old revision.
 		$baseRevRecord = $this->getExpectedParentRevision();
@@ -2649,7 +2647,7 @@ class EditPage implements IEditObject {
 		if ( $this->isConflict ) {
 			$msg = 'editconflict';
 		} elseif ( $contextTitle->exists() && $this->section != '' ) {
-			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
+			$msg = $this->section === 'new' ? 'editingcomment' : 'editingsection';
 		} else {
 			$msg = $contextTitle->exists()
 				|| ( $contextTitle->getNamespace() === NS_MEDIAWIKI
@@ -2743,7 +2741,9 @@ class EditPage implements IEditObject {
 		# Show log extract when the user is currently blocked
 		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
-			$user = User::newFromName( $username, false /* allow IP users */ );
+			// Allow IP users
+			$validation = UserFactory::RIGOR_NONE;
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $username, $validation );
 			$ip = $this->userNameUtils->isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
@@ -2756,17 +2756,18 @@ class EditPage implements IEditObject {
 				$userExists = false;
 			}
 
-			if ( !$userExists && !$ip ) { # User does not exist
+			if ( !$userExists && !$ip ) {
 				$out->addHtml( Html::warningBox(
 					$out->msg( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) )->parse(),
 					'mw-userpage-userdoesnotexist'
 				) );
 			} elseif (
 				$block !== null &&
-				$block->getType() != DatabaseBlock::TYPE_AUTO &&
+				$block->getType() !== DatabaseBlock::TYPE_AUTO &&
 				(
 					$block->isSitewide() ||
-					$user->isBlockedFrom(
+					$this->permManager->isBlockedFrom(
+						$user,
 						$this->mTitle,
 						true
 					)
@@ -2820,7 +2821,10 @@ class EditPage implements IEditObject {
 		if ( !$this->mTitle->exists() ) {
 			$dbr = wfGetDB( DB_REPLICA );
 
-			LogEventsList::showLogExtract( $out, [ 'delete', 'move' ], $this->mTitle,
+			LogEventsList::showLogExtract(
+				$out,
+				[ 'delete', 'move' ],
+				$this->mTitle,
 				'',
 				[
 					'lim' => 10,
@@ -2928,7 +2932,7 @@ class EditPage implements IEditObject {
 		# we parse this near the beginning so that setHeaders can do the title
 		# setting work instead of leaving it in getPreviewText
 		$previewOutput = '';
-		if ( $this->formtype == 'preview' ) {
+		if ( $this->formtype === 'preview' ) {
 			$previewOutput = $this->getPreviewText();
 		}
 
@@ -2942,7 +2946,7 @@ class EditPage implements IEditObject {
 		$this->addEditNotices();
 
 		if ( !$this->isConflict &&
-			$this->section != '' &&
+			$this->section !== '' &&
 			!$this->isSectionEditSupported()
 		) {
 			// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -3019,7 +3023,7 @@ class EditPage implements IEditObject {
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
 
-		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
+		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
 			$username = $this->lastDelete->actor_name;
 			$comment = CommentStore::getStore()
 				->getComment( 'log_comment', $this->lastDelete )->text;
@@ -3053,7 +3057,8 @@ class EditPage implements IEditObject {
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if (
 			$this->missingSummary ||
-			( $this->section == 'new' && $this->nosummary ) ||
+			// @phan-suppress-next-line PhanSuspiciousValueComparison
+			( $this->section === 'new' && $this->nosummary ) ||
 			$this->allowBlankSummary
 		) {
 			$out->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
@@ -3088,7 +3093,7 @@ class EditPage implements IEditObject {
 
 		$out->enableOOUI();
 
-		if ( $this->section == 'new' ) {
+		if ( $this->section === 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$out->addHTML( $this->getSummaryPreview( true, $this->summary ) );
 		}
@@ -3210,7 +3215,7 @@ class EditPage implements IEditObject {
 		$type = false;
 		if ( $this->preview ) {
 			$type = 'preview';
-		} elseif ( $this->section != '' ) {
+		} elseif ( $this->section !== '' ) {
 			$type = 'section';
 		}
 
@@ -3241,7 +3246,7 @@ class EditPage implements IEditObject {
 			$this->addExplainConflictHeader( $out );
 			$this->editRevId = $this->page->getLatest();
 		} else {
-			if ( $this->section != '' && $this->section != 'new' && !$this->summary &&
+			if ( $this->section !== '' && $this->section !== 'new' && !$this->summary &&
 				!$this->preview && !$this->diff
 			) {
 				$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
@@ -3256,14 +3261,14 @@ class EditPage implements IEditObject {
 				$out->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
 			}
 
-			if ( $this->missingSummary && $this->section != 'new' ) {
+			if ( $this->missingSummary && $this->section !== 'new' ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-missingsummary'>\n$1\n</div>",
 					[ 'missingsummary', $buttonLabel ]
 				);
 			}
 
-			if ( $this->missingSummary && $this->section == 'new' ) {
+			if ( $this->missingSummary && $this->section === 'new' ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-missingcommentheader'>\n$1\n</div>",
 					[ 'missingcommentheader', $buttonLabel ]
@@ -3333,7 +3338,7 @@ class EditPage implements IEditObject {
 				[ 'readonlywarning', wfReadOnlyReason() ]
 			);
 		} elseif ( $user->isAnon() ) {
-			if ( $this->formtype != 'preview' ) {
+			if ( $this->formtype !== 'preview' ) {
 				$returntoquery = array_diff_key(
 					$this->context->getRequest()->getValues(),
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
@@ -3415,14 +3420,14 @@ class EditPage implements IEditObject {
 	 * Helper function for summary input functions, which returns the necessary
 	 * attributes for the input.
 	 *
-	 * @param array|null $inputAttrs Array of attrs to use on the input
+	 * @param array $inputAttrs Array of attrs to use on the input
 	 * @return array
 	 */
-	private function getSummaryInputAttributes( array $inputAttrs = null ) {
+	private function getSummaryInputAttributes( array $inputAttrs ): array {
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 		// Unicode codepoints.
-		return ( is_array( $inputAttrs ) ? $inputAttrs : [] ) + [
+		return $inputAttrs + [
 			'id' => 'wpSummary',
 			'name' => 'wpSummary',
 			'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
@@ -3436,12 +3441,12 @@ class EditPage implements IEditObject {
 	 * Builds a standard summary input with a label.
 	 *
 	 * @param string $summary The value of the summary input
-	 * @param string|null $labelText The html to place inside the label
-	 * @param array|null $inputAttrs Array of attrs to use on the input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
 	 *
 	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
 	 */
-	private function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
+	private function getSummaryInputWidget( $summary, string $labelText, array $inputAttrs ): FieldLayout {
 		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);
@@ -3518,8 +3523,9 @@ class EditPage implements IEditObject {
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
 
+		$commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
 		$summary = $this->context->msg( $message )->parse()
-			. Linker::commentBlock( $summary, $this->mTitle, $isSubjectPreview );
+			. $commentFormatter->formatBlock( $summary, $this->mTitle, $isSubjectPreview );
 		return Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}
 
@@ -3573,7 +3579,7 @@ class EditPage implements IEditObject {
 	 * @param string|null $textoverride Optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
-		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
+		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
 			$attribs = [ 'style' => 'display:none;' ];
 		} else {
 			$builder = new TextboxBuilder();
@@ -3626,14 +3632,14 @@ class EditPage implements IEditObject {
 		if ( $isOnTop ) {
 			$attribs['class'] = 'ontop';
 		}
-		if ( $this->formtype != 'preview' ) {
+		if ( $this->formtype !== 'preview' ) {
 			$attribs['style'] = 'display: none;';
 		}
 
 		$out = $this->context->getOutput();
 		$out->addHTML( Xml::openElement( 'div', $attribs ) );
 
-		if ( $this->formtype == 'preview' ) {
+		if ( $this->formtype === 'preview' ) {
 			$this->showPreview( $previewOutput );
 		} else {
 			// Empty content container for LivePreview
@@ -3645,7 +3651,7 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( '</div>' );
 
-		if ( $this->formtype == 'diff' ) {
+		if ( $this->formtype === 'diff' ) {
 			try {
 				$this->showDiff();
 			} catch ( MWContentSerializationException $ex ) {
@@ -3745,14 +3751,16 @@ class EditPage implements IEditObject {
 			$difftext = '';
 		}
 
-		$this->context->getOutput()->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
+		$this->context->getOutput()->addHTML( Html::rawElement( 'div', [ 'id' => 'wikiDiff' ], $difftext ) );
 	}
 
 	protected function showHeaderCopyrightWarning() {
 		$msg = 'editpage-head-copy-warn';
 		if ( !$this->context->msg( $msg )->isDisabled() ) {
-			$this->context->getOutput()->wrapWikiMsg( "<div class='editpage-head-copywarn'>\n$1\n</div>",
-				'editpage-head-copy-warn' );
+			$this->context->getOutput()->wrapWikiMsg(
+				"<div class='editpage-head-copywarn'>\n$1\n</div>",
+				$msg
+			);
 		}
 	}
 
@@ -3765,13 +3773,15 @@ class EditPage implements IEditObject {
 	 * so should remain short!
 	 */
 	protected function showTosSummary() {
-		$msg = 'editpage-tos-summary';
-		$this->getHookRunner()->onEditPageTosSummary( $this->mTitle, $msg );
-		if ( !$this->context->msg( $msg )->isDisabled() ) {
-			$out = $this->context->getOutput();
-			$out->addHTML( '<div class="mw-tos-summary">' );
-			$out->addWikiMsg( $msg );
-			$out->addHTML( '</div>' );
+		$msgKey = 'editpage-tos-summary';
+		$this->getHookRunner()->onEditPageTosSummary( $this->mTitle, $msgKey );
+		$msg = $this->context->msg( $msgKey );
+		if ( !$msg->isDisabled() ) {
+			$this->context->getOutput()->addHTML( Html::rawElement(
+				'div',
+				[ 'class' => 'mw-tos-summary' ],
+				$msg->parseAsBlock()
+			) );
 		}
 	}
 
@@ -3780,9 +3790,11 @@ class EditPage implements IEditObject {
 	 * characters not present on most keyboards for copying/pasting.
 	 */
 	protected function showEditTools() {
-		$this->context->getOutput()->addHTML( '<div class="mw-editTools">' .
-			$this->context->msg( 'edittools' )->inContentLanguage()->parse() .
-			'</div>' );
+		$this->context->getOutput()->addHTML( Html::rawElement(
+			'div',
+			[ 'class' => 'mw-editTools' ],
+			$this->context->msg( 'edittools' )->inContentLanguage()->parse()
+		) );
 	}
 
 	/**
@@ -3827,8 +3839,7 @@ class EditPage implements IEditObject {
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 
 		$msg = $localizer->msg( ...$copywarnMsg )->page( $title );
-		return "<div id=\"editpage-copywarn\">\n" .
-			$msg->$format() . "\n</div>";
+		return Html::rawElement( 'div', [ 'id' => 'editpage-copywarn' ], $msg->$format() );
 	}
 
 	/**
@@ -3937,9 +3948,7 @@ class EditPage implements IEditObject {
 	 */
 	protected function showConflict() {
 		$out = $this->context->getOutput();
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		if ( $this->getHookRunner()->onEditPageBeforeConflictDiff( $editPage, $out ) ) {
+		if ( $this->getHookRunner()->onEditPageBeforeConflictDiff( $this, $out ) ) {
 			$this->incrementConflictStats();
 
 			$this->getEditConflictHelper()->showEditFormTextAfterFooters();
@@ -4125,17 +4134,17 @@ class EditPage implements IEditObject {
 					$level = false;
 				}
 
-				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
+				if ( $content->getModel() === CONTENT_MODEL_CSS ) {
 					$format = 'css';
 					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
 						$format = false;
 					}
-				} elseif ( $content->getModel() == CONTENT_MODEL_JSON ) {
+				} elseif ( $content->getModel() === CONTENT_MODEL_JSON ) {
 					$format = 'json';
 					if ( $level === 'user' /* No comparable 'AllowUserJson' */ ) {
 						$format = false;
 					}
-				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
+				} elseif ( $content->getModel() === CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
 					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
 						$format = false;
@@ -4214,7 +4223,7 @@ class EditPage implements IEditObject {
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 
-	private function incrementEditFailureStats( $failureType ) {
+	private function incrementEditFailureStats( string $failureType ): void {
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$stats->increment( 'edit.failures.' . $failureType );
 	}
@@ -4369,9 +4378,9 @@ class EditPage implements IEditObject {
 	 *
 	 * @since 1.35
 	 * @param bool $watch
-	 * @return mixed[]
+	 * @return array[]
 	 */
-	private function getCheckboxesDefinitionForWatchlist( $watch ) {
+	private function getCheckboxesDefinitionForWatchlist( $watch ): array {
 		$fieldDefs = [
 			'wpWatchthis' => [
 				'id' => 'wpWatchthis',
@@ -4420,8 +4429,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param int &$tabindex Current tabindex
 	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
-	 *                 status of the checkbox
-	 *
+	 *  status of the checkbox
 	 * @return \OOUI\Element[] Associative array of string keys to \OOUI\Widget or \OOUI\Layout
 	 *  instances
 	 */
@@ -4492,11 +4500,9 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Returns an array of html code of the following buttons:
-	 * save, diff and preview
+	 * Return an array of html code of the following buttons: save, diff and preview
 	 *
 	 * @param int &$tabindex Current tabindex
-	 *
 	 * @return string[] Strings or objects with a __toString() implementation. Usually an array of
 	 *  {@see ButtonInputWidget}, but EditPageBeforeEditButtons hook handlers might inject something
 	 *  else.
@@ -4568,7 +4574,7 @@ class EditPage implements IEditObject {
 	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistent section.
 	 */
-	private function noSuchSectionPage() {
+	private function noSuchSectionPage(): void {
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'nosuchsectiontitle' ) );
 
@@ -4594,13 +4600,18 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'spamprotectiontitle' ) );
 
-		$out->addHTML( '<div id="spamprotected">' );
-		$out->addWikiMsg( 'spamprotectiontext' );
+		$spamHtml = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
 		if ( $match ) {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
-			$out->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
+			$spamHtml .= $this->context->msg( 'spamprotectionmatch' )
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
+				->params( wfEscapeWikiText( $match ) )
+				->parseAsBlock();
 		}
-		$out->addHTML( '</div>' );
+		$out->addHTML( Html::rawElement(
+			'div',
+			[ 'id' => 'spamprotected' ],
+			$spamHtml
+		) );
 
 		$out->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 		$this->showDiff();
@@ -4622,11 +4633,11 @@ class EditPage implements IEditObject {
 		} else {
 			$msg = $this->context->msg( 'editnotice-notext' );
 			if ( !$msg->isDisabled() ) {
-				$out->addHTML(
-					'<div class="mw-editnotice-notext">'
-					. $msg->parseAsBlock()
-					. '</div>'
-				);
+				$out->addHTML( Html::rawElement(
+					'div',
+					[ 'class' => 'mw-editnotice-notext' ],
+					$msg->parseAsBlock()
+				) );
 			}
 		}
 	}
@@ -4677,13 +4688,14 @@ class EditPage implements IEditObject {
 	 */
 	protected function addPageProtectionWarningHeaders() {
 		$out = $this->context->getOutput();
-		if ( $this->mTitle->isProtected( 'edit' ) &&
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->isProtected( $this->mTitle, 'edit' ) &&
 			$this->permManager->getNamespaceRestrictionLevels(
 				$this->getTitle()->getNamespace()
 			) !== [ '' ]
 		) {
 			# Is the title semi-protected?
-			if ( $this->mTitle->isSemiProtected() ) {
+			if ( $restrictionStore->isSemiProtected( $this->mTitle ) ) {
 				$noticeMsg = 'semiprotectedpagewarning';
 			} else {
 				# Then it must be protected based on static groups (regular)
@@ -4692,10 +4704,11 @@ class EditPage implements IEditObject {
 			LogEventsList::showLogExtract( $out, 'protect', $this->mTitle, '',
 				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
 		}
-		if ( $this->mTitle->isCascadeProtected() ) {
+		if ( $restrictionStore->isCascadeProtected( $this->mTitle ) ) {
 			# Is this page under cascading protection from some source pages?
+			$cascadeSources = $restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
 			/** @var Title[] $cascadeSources */
-			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
+			$cascadeSources = array_map( 'Title::castFromPageIdentity', $cascadeSources );
 			$notice = "<div class='warningbox mw-cascadeprotectedwarning'>\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
 			if ( $cascadeSourcesCount > 0 ) {
@@ -4708,11 +4721,18 @@ class EditPage implements IEditObject {
 			$out->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			LogEventsList::showLogExtract( $out, 'protect', $this->mTitle, '',
-				[ 'lim' => 1,
+			LogEventsList::showLogExtract(
+				$out,
+				'protect',
+				$this->mTitle,
+				'',
+				[
+					'lim' => 1,
 					'showIfEmpty' => false,
 					'msgKey' => [ 'titleprotectedwarning' ],
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ] );
+					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>"
+				]
+			);
 		}
 	}
 
@@ -4730,8 +4750,10 @@ class EditPage implements IEditObject {
 	 * @param string $wikitext
 	 * @return string
 	 * @since 1.29
+	 * @deprecated since 1.38 Use TextboxBuilder::addNewLineAtEnd instead.
 	 */
 	protected function addNewLineAtEnd( $wikitext ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return ( new TextboxBuilder() )->addNewLineAtEnd( $wikitext );
 	}
 
@@ -4745,7 +4767,7 @@ class EditPage implements IEditObject {
 	 * @param string $text
 	 * @return string
 	 */
-	private function guessSectionName( $text ) {
+	private function guessSectionName( $text ): string {
 		// Detect Microsoft browsers
 		$userAgent = $this->context->getRequest()->getHeader( 'User-Agent' );
 		$parser = MediaWikiServices::getInstance()->getParser();
@@ -4774,7 +4796,7 @@ class EditPage implements IEditObject {
 	/**
 	 * @return TextConflictHelper
 	 */
-	private function getEditConflictHelper() {
+	private function getEditConflictHelper(): TextConflictHelper {
 		if ( !$this->editConflictHelper ) {
 			$this->editConflictHelper = call_user_func(
 				$this->editConflictHelperFactory,
@@ -4790,7 +4812,7 @@ class EditPage implements IEditObject {
 	 * @return TextConflictHelper
 	 * @throws MWUnknownContentModelException
 	 */
-	private function newTextConflictHelper( $submitButtonLabel ) {
+	private function newTextConflictHelper( string $submitButtonLabel ): TextConflictHelper {
 		return new TextConflictHelper(
 			$this->getTitle(),
 			$this->getContext()->getOutput(),
