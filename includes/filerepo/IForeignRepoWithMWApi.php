@@ -36,7 +36,7 @@
  * @ingroup FileRepo
  * @stable to implement
  */
-interface ForeignRepoWithMWApi {
+interface IForeignRepoWithMWApi {
 	/**
 	 * Make an API query in the foreign repo, caching results
 	 *

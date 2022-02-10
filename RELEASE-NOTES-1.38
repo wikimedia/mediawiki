@@ -74,7 +74,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * Description array for constructing HTMLForm now can use 'disable-if' to
   disable fields on condition easily, supported expressions are the same
   as 'hide-if'.
-* New interface ForeignRepoWithMWApi. This allows you to mark extension file
+* New interface IForeignRepoWithMWApi. This allows you to mark extension file
   repos as supporting making API queries against the foreign file repo so
   that extensions like TimedMediaHandler that depend on this can stop
   hardcoding looking for specific class names.
