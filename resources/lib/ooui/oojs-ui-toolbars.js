@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.0
+ * OOUI v0.43.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-01-12T17:10:58Z
+ * Date: 2022-02-10T15:03:45Z
  */
 ( function ( OO ) {
 
@@ -987,11 +987,11 @@ OO.ui.Tool.prototype.destroy = function () {
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
  * @param {Object} [config] Configuration options
- * @cfg {Array|string} [include] List of tools to include in the toolgroup, see above.
- * @cfg {Array|string} [exclude] List of tools to exclude from the toolgroup, see above.
- * @cfg {Array|string} [promote] List of tools to promote to the beginning of the toolgroup,
+ * @cfg {Array|string} [include=[]] List of tools to include in the toolgroup, see above.
+ * @cfg {Array|string} [exclude=[]] List of tools to exclude from the toolgroup, see above.
+ * @cfg {Array|string} [promote=[]] List of tools to promote to the beginning of the toolgroup,
  *  see above.
- * @cfg {Array|string} [demote] List of tools to demote to the end of the toolgroup, see above.
+ * @cfg {Array|string} [demote=[]] List of tools to demote to the end of the toolgroup, see above.
  *  This setting is particularly useful when tools have been added to the toolgroup
  *  en masse (e.g., via the catch-all selector).
  */
