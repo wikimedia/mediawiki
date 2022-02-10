@@ -1474,7 +1474,7 @@ class Article implements Page {
 	private function showViewError( string $errortext ) {
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->setPageTitle( $this->getContext()->msg( 'errorpagetitle' ) );
-		$outputPage->enableClientCache( false );
+		$outputPage->disableClientCache();
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->clearHTML();
 		$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );

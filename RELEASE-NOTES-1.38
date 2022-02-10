@@ -457,6 +457,8 @@ because of Phabricator reports.
    - ImageHistoryList::preventClickjacking()
    - ImageHistoryPseudoPager::preventClickjacking()
    - ContribsPager::preventClickjacking()
+* OutputPage::enableClientCache() was deprecated, because it is universally
+  used to do the opposite -- use OutputPage::disableClientCache() instead.
 * Collation::singleton() and ::factory() now trigger deprecation warnings.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:

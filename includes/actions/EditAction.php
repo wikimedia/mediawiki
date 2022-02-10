@@ -55,7 +55,7 @@ class EditAction extends FormlessAction {
 
 		// The editor should always see the latest content when starting their edit.
 		// Also to ensure cookie blocks can be set (T152462).
-		$out->enableClientCache( false );
+		$out->disableClientCache();
 
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out->addModuleStyles( [
