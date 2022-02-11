@@ -6,6 +6,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -47,6 +48,9 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	/** @var PageUpdaterFactory */
 	private $pageUpdaterFactory;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
@@ -55,6 +59,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param WikiPageFactory|null $wikiPageFactory
 	 * @param PageUpdaterFactory|null $pageUpdaterFactory
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		$doUpdates,
@@ -63,7 +68,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		WikiPageFactory $wikiPageFactory = null,
-		PageUpdaterFactory $pageUpdaterFactory = null
+		PageUpdaterFactory $pageUpdaterFactory = null,
+		UserFactory $userFactory = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
@@ -75,6 +81,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		// @todo: temporary - remove when FileImporter extension is updated
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services->getPageUpdaterFactory();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
 	/** @inheritDoc */
@@ -82,14 +89,14 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		# Sneak a single revision into place
-		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
+		$user = $importableRevision->getUserObj() ?: $this->userFactory->newFromName( $importableRevision->getUser() );
 		if ( $user ) {
 			$userId = $user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;
 			$userText = $importableRevision->getUser();
-			$user = new User;
+			$user = $this->userFactory->newAnonymous();
 		}
 
 		// avoid memory leak...?
@@ -161,7 +168,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		);
 
 		try {
-			$revUser = User::newFromAnyId(
+			$revUser = $this->userFactory->newFromAnyId(
 				$userId,
 				$userText,
 				null
