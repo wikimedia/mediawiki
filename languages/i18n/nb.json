@@ -2259,7 +2259,7 @@
 	"post-expand-template-argument-category-desc": "Siden er større enn <code>$wgMaxArticleSize</code> etter utvidelse av et malargument (noe i tre krøllparenteser, som <code>{{{foo}}}</code>).",
 	"expensive-parserfunction-category-desc": "Siden bruker for mange dyre parserfunksjoner (som <code>#ifexist</code>). Se [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Siden inneholder en ødelagt lenkefil (en lenke for å bygge inn en fil når filen ikke eksisterer).",
-	"hidden-category-category-desc": "Kategorien inneholder <code><nowiki>__HIDDENCAT__</code></nowiki> i sideinnholdet, hvilket gjør at den som standard ikke vises i kategorilisten på sider.",
+	"hidden-category-category-desc": "Kategorien inneholder <code><nowiki>__HIDDENCAT__</nowiki></code> i sideinnholdet, hvilket gjør at den som standard ikke vises i kategorilisten på sider.",
 	"trackingcategories-nodesc": "Ingen beskrivelse er tilgjengelig",
 	"trackingcategories-disabled": "Kategorien er deaktivert",
 	"mailnologin": "Ingen avsenderadresse",
