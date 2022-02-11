@@ -19,7 +19,12 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->cache = $this->newCacheInstance();
+		try {
+			$this->cache = $this->newCacheInstance();
+		} catch ( InvalidArgumentException $e ) {
+			$this->markTestSkipped( "Cannot create cache instance for " . static::class .
+				': the configuration is presumably missing from $wgObjectCaches' );
+		}
 		$this->cache->deleteMulti( [
 			$this->cache->makeKey( self::TEST_KEY ),
 			$this->cache->makeKey( self::TEST_KEY ) . ':lock'
@@ -30,6 +35,16 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @return BagOStuff
 	 */
 	abstract protected function newCacheInstance();
+
+	protected function getCacheByClass( $className ) {
+		$caches = $this->getConfVar( 'ObjectCaches' );
+		foreach ( $caches as $id => $cache ) {
+			if ( ( $cache['class'] ?? '' ) === $className ) {
+				return ObjectCache::getInstance( $id );
+			}
+		}
+		$this->markTestSkipped( "No $className is configured" );
+	}
 
 	/**
 	 * @covers MediumSpecificBagOStuff::makeGlobalKey
