@@ -1094,6 +1094,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Skin\\SkinComponent' => __DIR__ . '/includes/skins/components/SkinComponent.php',
 	'MediaWiki\\Skin\\SkinComponentLogo' => __DIR__ . '/includes/skins/components/SkinComponentLogo.php',
 	'MediaWiki\\Skin\\SkinComponentRegistry' => __DIR__ . '/includes/skins/components/SkinComponentRegistry.php',
+	'MediaWiki\\Skin\\SkinComponentTableOfContents' => __DIR__ . '/includes/skins/components/SkinComponentTableOfContents.php',
 	'MediaWiki\\Skins\\Hook\\SkinAfterPortletHook' => __DIR__ . '/includes/skins/Hook/SkinAfterPortletHook.php',
 	'MediaWiki\\Skins\\Hook\\SkinPageReadyConfigHook' => __DIR__ . '/includes/skins/Hook/SkinPageReadyConfigHook.php',
 	'MediaWiki\\Special\\SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',

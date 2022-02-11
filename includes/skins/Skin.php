@@ -101,70 +101,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Enriches section data by nesting child elements within parent elements
-	 * such that the table of contents can be rendered in Mustache.
-	 *
-	 * Example Mustache template code:
-	 * <ul>
-	 * {{#array-sections}}
-	 *   <li>{{number}} {{line}}</li>
-	 *   {{#array-subsections}}
-	 *     {{>TableOfContents__subsection}}
-	 *   {{/array-subsections}}
-	 * {{/array-sections}}
-	 * </ul>
-	 *
-	 * @return array
-	 */
-	private function getSectionsData(): array {
-		$sections = $this->getOutput()->getSections();
-		$data = $this->getSectionsDataInternal( $sections, 1 );
-		return $data;
-	}
-
-	/**
-	 * Nests child sections within their parent sections.
-	 *
-	 * @param array $sections
-	 * @param int $toclevel
-	 * @return array
-	 */
-	private function getSectionsDataInternal( $sections, $toclevel = 1 ) {
-		$data = [];
-		foreach ( $sections as $i => $section ) {
-			// Set all the parent sections at the current top level.
-			if ( $section['toclevel'] === $toclevel ) {
-				$data[] = $section + [
-						'array-sections' => $this->getSectionsDataInternal(
-							array_slice( $sections, $i + 1 ),
-							$toclevel + 1
-						)
-					];
-			}
-			// Child section belongs to a higher parent.
-			if ( $section['toclevel'] < $toclevel ) {
-				return $data;
-			}
-		}
-		return $data;
-	}
-
-	/**
-	 * Get table of contents template data
-	 *
-	 * @return array|null
-	 */
-	private function getTOCData() {
-		// Return data only if TOC present T298796.
-		if ( !$this->getOutput()->isTOCEnabled() ) {
-			return null;
-		}
-		return [
-			'array-sections' => $this->getSectionsData(),
-		];
-	}
-
-	/**
 	 * Subclasses may extend this method to add additional
 	 * template data.
 	 *
@@ -226,8 +162,6 @@ abstract class Skin extends ContextSource {
 				$htmlTitle
 			),
 			'html-title' => $htmlTitle,
-			// Array values
-			'data-toc' => $this->getTOCData(),
 			// Boolean values
 			'is-title-blank' => $blankedHeading, // @since 1.38
 			'is-anon' => $user->isAnon(),

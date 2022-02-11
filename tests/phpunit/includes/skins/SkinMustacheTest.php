@@ -39,6 +39,10 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 		$mock->method( 'getCSP' )
 			->willReturn( $mockContentSecurityPolicy );
+		$mock->method( 'isTOCEnabled' )
+			->willReturn( true );
+		$mock->method( 'getSections' )
+			->willReturn( [] );
 		return $mock;
 	}
 
@@ -86,8 +90,9 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinTemplate::getTemplateData
+	 * @covers Skin::getTemplateData
 	 * @covers MediaWiki\Skin\SkinComponentLogo::getTemplateData
+	 * @covers MediaWiki\Skin\SkinComponentTableOfContents::getTemplateData
 	 */
 	public function testGetTemplateData() {
 		$config = $this->getServiceContainer()->getMainConfig();
