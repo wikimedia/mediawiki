@@ -1,0 +1,1 @@
+This is definitely not JSON and most certainly not an abstract schema.
