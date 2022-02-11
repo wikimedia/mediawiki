@@ -3226,6 +3226,14 @@ $wgExtensionInfoMTime = false;
  */
 $wgParserCacheUseJson = true;
 
+/**
+ * If this is set to true, phpunit will run integration tests against remote
+ * caches defined in $wgObjectCaches.
+ *
+ * @since 1.38
+ */
+$wgEnableRemoteBagOStuffTests = false;
+
 // endregion -- end of cache settings
 
 /***************************************************************************/

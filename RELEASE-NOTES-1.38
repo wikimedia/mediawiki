@@ -38,6 +38,8 @@ For notes on 1.37.x and older releases, see HISTORY.
   from 1 hour to 4 hours.
 * $wgSkinsPreferred – List of preferred skins to be listed higher in
   Special:Preferences
+* $wgEnableRemoteBagOStuffTests replaces the environment variable
+  PHPUNIT_USE_BAGOSTUFF.
 * …
 
 ==== Changed configuration ====
