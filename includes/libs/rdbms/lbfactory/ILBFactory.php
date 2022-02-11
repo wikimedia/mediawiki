@@ -45,8 +45,8 @@ interface ILBFactory {
 	 * Sub-classes will extend the required keys in $conf with additional parameters
 	 *
 	 * @param array $conf Array with keys:
-	 *  - localDomain: A DatabaseDomain or domain ID string.
-	 *  - readOnlyReason: Reason the primary DB is read-only if so [optional]
+	 *  - localDomain: A DatabaseDomain or database domain ID string.
+	 *  - readOnlyReason: Reason the primary server is read-only if so [optional]
 	 *  - srvCache: BagOStuff instance for server cache [optional]
 	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
@@ -94,9 +94,11 @@ interface ILBFactory {
 	public function resolveDomainID( $domain );
 
 	/**
-	 * Close all connections and redefine the local domain for testing or schema creation
+	 * Close all connections and redefine the local database domain
 	 *
 	 * This only applies to the tracked load balancer instances.
+	 *
+	 * This method is only intended for use with schema creation or integration testing
 	 *
 	 * @param DatabaseDomain|string $domain
 	 * @since 1.33
@@ -104,7 +106,7 @@ interface ILBFactory {
 	public function redefineLocalDomain( $domain );
 
 	/**
-	 * Create a new load balancer instance for a main cluster
+	 * Create a new load balancer instance for the main cluster that handles the given domain
 	 *
 	 * The resulting object will be untracked and the caller is responsible for cleaning it up.
 	 * Database replication positions will not be saved by ChronologyProtector.
@@ -114,6 +116,9 @@ interface ILBFactory {
 	 * store. In that cases, one might want to query it in autocommit mode (DBO_TRX off)
 	 * but still use DBO_TRX transaction rounds on other tables.
 	 *
+	 * @note The local/default database domain used by the load balancer instance will
+	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
+	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
 	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
@@ -121,9 +126,12 @@ interface ILBFactory {
 	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer;
 
 	/**
-	 * Get the tracked load balancer instance for a main cluster
+	 * Get the tracked load balancer instance for the main cluster that handles the given domain
 	 *
 	 * If no tracked instances exists, then one will be instantiated
+	 *
+	 * @note The local/default database domain used by the load balancer instance will
+	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
