@@ -33,9 +33,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 /**
  * Creates User objects.
  *
- * For now, there is nothing much interesting in this class. It was meant for preventing static User
- * methods causing problems in unit tests.
- *
  * @since 1.35
  */
 class UserFactory implements IDBAccessObject, UserRigorOptions {
