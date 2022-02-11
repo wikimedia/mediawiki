@@ -84,7 +84,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		$this->requireMaxOneParameter( $params, 'group', 'excludegroup', 'rights', 'excluderights' );
 
 		// Only operate on existing pages
-		$pages = array_keys( $this->getPageSet()->getGoodTitles() );
+		$pages = array_keys( $this->getPageSet()->getGoodPages() );
 
 		// Filter out already-processed pages
 		if ( $params['continue'] !== null ) {

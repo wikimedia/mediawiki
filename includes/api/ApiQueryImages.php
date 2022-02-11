@@ -48,7 +48,8 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
+		$pages = $this->getPageSet()->getGoodPages();
+		if ( $pages === [] ) {
 			return; // nothing to do
 		}
 
@@ -59,7 +60,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		] );
 
 		$this->addTables( 'imagelinks' );
-		$this->addWhereFld( 'il_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( 'il_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
@@ -75,7 +76,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by il_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
+		if ( count( $pages ) === 1 ) {
 			$this->addOption( 'ORDER BY', 'il_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', [
