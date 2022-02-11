@@ -519,6 +519,8 @@ because of Phabricator reports.
 * IDatabase::lockTables() and IDatabase::unlockTables() have been deprecated
   with no replacement. Instead, callers should batch updates into atomic
   transactions, using FOR UPDATE for SELECT queries.
+* EditPage::addNewLineAtEnd() was deprecated; use
+  TextboxBuilder::addNewLineAtEnd instead.
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
