@@ -969,7 +969,7 @@
 	"mergelog": "Protokolo de kunigoj",
 	"revertmerge": "Malkunigi",
 	"mergelogpagetext": "Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.",
-	"history-title": "Revizio-historio de “$1”",
+	"history-title": "$1: Revizio-historio",
 	"difference-title": "$1: Malsamoj inter versioj",
 	"difference-title-multipage": "Malsamoj inter la paĝoj $1 kaj $2",
 	"difference-multipage": "(Diferenco inter paĝoj)",
