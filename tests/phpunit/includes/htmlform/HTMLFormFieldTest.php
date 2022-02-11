@@ -10,6 +10,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function getNewForm( $descriptor, $requestData ) {
+		$requestData += [ 'wpEditToken' => 'ABC123' ];
 		$request = new FauxRequest( $requestData, true );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
