@@ -84,7 +84,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
+		$pages = $this->getPageSet()->getGoodPages();
+		if ( $pages === [] ) {
 			return; // nothing to do
 		}
 
@@ -97,7 +98,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		] );
 
 		$this->addTables( $this->table );
-		$this->addWhereFld( $this->prefix . '_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( $this->prefix . '_from', array_keys( $pages ) );
 
 		$multiNS = true;
 		$multiTitle = true;
@@ -151,7 +152,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// already. To work around this, we drop constant fields in the WHERE
 		// clause from the ORDER BY clause
 		$order = [];
-		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
+		if ( count( $pages ) !== 1 ) {
 			$order[] = $this->prefix . '_from' . $sort;
 		}
 		if ( $multiNS ) {

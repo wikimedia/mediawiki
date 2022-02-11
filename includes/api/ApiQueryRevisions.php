@@ -320,7 +320,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addOption( 'ORDER BY', [ "rev_timestamp $sort", "rev_id $sort" ] );
 
 			// There is only one ID, use it
-			$ids = array_keys( $pageSet->getGoodTitles() );
+			$ids = array_keys( $pageSet->getGoodPages() );
 			$this->addWhereFld( $pageField, reset( $ids ) );
 
 			if ( $params['user'] !== null ) {
@@ -374,16 +374,16 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		} elseif ( $pageCount > 0 ) {
 			// Always targets the rev_page_id index
 
-			$titles = $pageSet->getGoodTitles();
+			$pageids = array_keys( $pageSet->getGoodPages() );
 
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
 			$this->addWhere( 'page_latest=rev_id' );
 
 			// Get all page IDs
-			$this->addWhereFld( 'page_id', array_keys( $titles ) );
+			$this->addWhereFld( 'page_id', $pageids );
 			// Every time someone relies on equality propagation, god kills a kitten :)
-			$this->addWhereFld( 'rev_page', array_keys( $titles ) );
+			$this->addWhereFld( 'rev_page', $pageids );
 
 			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );

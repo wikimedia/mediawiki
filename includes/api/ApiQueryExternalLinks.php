@@ -32,7 +32,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
+		$pages = $this->getPageSet()->getGoodPages();
+		if ( $pages === [] ) {
 			return;
 		}
 
@@ -48,12 +49,12 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		] );
 
 		$this->addTables( 'externallinks' );
-		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( 'el_from', array_keys( $pages ) );
 
 		$orderBy = [];
 
 		// Don't order by el_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
+		if ( count( $pages ) !== 1 ) {
 			$orderBy[] = 'el_from';
 		}
 
