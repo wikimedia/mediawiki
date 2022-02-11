@@ -382,16 +382,13 @@ class MovePageForm extends UnlistedSpecialPage {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagemovewarning';
 			}
-			$out->addHTML( "<div class='warningbox mw-warning-with-logexcerpt'>\n" );
-			$out->addWikiMsg( $noticeMsg );
 			LogEventsList::showLogExtract(
 				$out,
 				'protect',
 				$this->oldTitle,
 				'',
-				[ 'lim' => 1 ]
+				[ 'lim' => 1, 'msgKey' => $noticeMsg ]
 			);
-			$out->addHTML( "</div>\n" );
 		}
 
 		// Length limit for wpReason and wpNewTitleMain is enforced in the
