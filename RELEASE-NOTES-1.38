@@ -359,6 +359,13 @@ because of Phabricator reports.
   - ::$mHijriCalendarMonthMsgs → HIJRI_CALENDAR_MONTH_MESSAGES
 * wfIncrStats, deprecated since 1.36, has been removed.
 * Profiler::profileIn and ::profileOut, deprecated in 1.33, has been removed.
+* IEditObject::AS_CANNOT_USE_CUSTOM_MODEL, deprecated in 1.35, was removed.
+* Several protected methods in EditPage were made private. None of these was
+  used outside of EditPage itself. Since the class is not stable to extend,
+  this change happened without a deprecation phase.
+* The following public methods in EditPage, unused externally, were
+  made private:
+   - ::getCancelLink()
 * SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
 * The following deprecated methods have been removed from ILBFactory:
   - ::beginMasterChanges() since 1.37
@@ -610,6 +617,8 @@ because of Phabricator reports.
   EditPage::getCopyrightWarning instead.
 * EditPage::getCopyrightWarning() without passing a MessageLocalizer
   parameter has been deprecated.
+* Passing the $formCallback parameter to EditPage::showEditForm, deprecated in
+  1.25 and previously emitting a warn notice, now emits a deprecation notice.
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
