@@ -83,11 +83,11 @@ class SpecialActiveUsers extends SpecialPage {
 
 		$pager = new ActiveUsersPager(
 			$this->getContext(),
-			$opts,
-			$this->linkBatchFactory,
 			$this->getHookContainer(),
+			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->userGroupManager
+			$this->userGroupManager,
+			$opts
 		);
 		$usersBody = $pager->getBody();
 

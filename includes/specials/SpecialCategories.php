@@ -58,10 +58,10 @@ class SpecialCategories extends SpecialPage {
 
 		$cap = new CategoryPager(
 			$this->getContext(),
-			$from,
-			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
-			$this->loadBalancer
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$from
 		);
 		$cap->doQuery();
 

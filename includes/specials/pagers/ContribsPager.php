@@ -113,23 +113,23 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $templateParser;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentFormatter */
+	private $commentFormatter;
 
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var CommentFormatter */
-	private $commentFormatter;
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	/** @var string[] */
 	private $formattedComments = [];
@@ -138,6 +138,7 @@ class ContribsPager extends RangeChronologicalPager {
 	private $revisions = [];
 
 	/**
+	 * FIXME List services first T266484 / T290405
 	 * @param IContextSource $context
 	 * @param array $options
 	 * @param LinkRenderer|null $linkRenderer

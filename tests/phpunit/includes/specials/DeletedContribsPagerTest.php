@@ -7,11 +7,8 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var DeletedContribsPager */
 	private $pager;
 
-	/** @var LinkRenderer */
-	private $linkRenderer;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	/** @var CommentStore */
+	private $commentStore;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -19,31 +16,34 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var CommentStore */
-	private $commentStore;
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$services = $this->getServiceContainer();
-		$this->linkRenderer = $services->getLinkRenderer();
-		$this->revisionStore = $services->getRevisionStore();
-		$this->hookContainer = $services->getHookContainer();
-		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->commentStore = $services->getCommentStore();
+		$this->hookContainer = $services->getHookContainer();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->revisionStore = $services->getRevisionStore();
 		$this->pager = $this->getDeletedContribsPager();
 	}
 
 	private function getDeletedContribsPager( $target = 'UTSysop', $namespace = 0 ) {
 		return new DeletedContribsPager(
-			new RequestContext(),
-			$target,
-			$namespace,
-			$this->linkRenderer,
-			$this->hookContainer,
-			$this->loadBalancer,
+			RequestContext::getMain(),
 			$this->commentStore,
-			$this->revisionStore
+			$this->hookContainer,
+			$this->linkRenderer,
+			$this->loadBalancer,
+			$this->revisionStore,
+			$target,
+			$namespace
 		);
 	}
 

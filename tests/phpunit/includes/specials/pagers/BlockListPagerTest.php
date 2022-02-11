@@ -8,6 +8,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -18,58 +19,61 @@ use Wikimedia\TestingAccessWrapper;
  */
 class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @var LinkBatchFactory
-	 */
-	private $linkBatchFactory;
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	/** @var BlockUtils */
+	private $blockUtils;
 
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var BlockUtils */
-	private $blockUtils;
+	/** @var LinkRenderer */
+	private $linkRenderer;
 
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
 
 	/** @var RowCommentFormatter */
 	private $rowCommentFormatter;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$services = $this->getServiceContainer();
-		$this->linkBatchFactory = $services->getLinkBatchFactory();
-		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
-		$this->loadBalancer = $services->getDBLoadBalancer();
-		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->commentStore = $services->getCommentStore();
-		$this->blockUtils = $services->getBlockUtils();
 		$this->blockActionInfo = $services->getBlockActionInfo();
+		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
+		$this->blockUtils = $services->getBlockUtils();
+		$this->commentStore = $services->getCommentStore();
+		$this->linkBatchFactory = $services->getLinkBatchFactory();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->rowCommentFormatter = $services->getRowCommentFormatter();
+		$this->specialPageFactory = $services->getSpecialPageFactory();
 	}
 
 	private function getBlockListPager() {
 		return new BlockListPager(
-			new SpecialPage(),
-			[],
-			$this->linkBatchFactory,
-			$this->blockRestrictionStore,
-			$this->loadBalancer,
-			$this->specialPageFactory,
-			$this->commentStore,
-			$this->blockUtils,
+			RequestContext::getMain(),
 			$this->blockActionInfo,
-			$this->rowCommentFormatter
+			$this->blockRestrictionStore,
+			$this->blockUtils,
+			$this->commentStore,
+			$this->linkBatchFactory,
+			$this->linkRenderer,
+			$this->loadBalancer,
+			$this->rowCommentFormatter,
+			$this->specialPageFactory,
+			[]
 		);
 	}
 

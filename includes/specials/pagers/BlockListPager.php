@@ -28,6 +28,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -48,65 +49,68 @@ class BlockListPager extends TablePager {
 	 */
 	protected $restrictions = [];
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	/** @var BlockUtils */
+	private $blockUtils;
 
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var RowCommentFormatter */
 	private $rowCommentFormatter;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
 
 	/** @var string[] */
 	private $formattedComments = [];
 
 	/**
-	 * @param SpecialPage $page
-	 * @param array $conds
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param ILoadBalancer $loadBalancer
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param CommentStore $commentStore
-	 * @param BlockUtils $blockUtils
+	 * @param IContextSource $context
 	 * @param BlockActionInfo $blockActionInfo
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param BlockUtils $blockUtils
+	 * @param CommentStore $commentStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
 	 * @param RowCommentFormatter $rowCommentFormatter
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param array $conds
 	 */
 	public function __construct(
-		$page,
-		$conds,
-		LinkBatchFactory $linkBatchFactory,
-		BlockRestrictionStore $blockRestrictionStore,
-		ILoadBalancer $loadBalancer,
-		SpecialPageFactory $specialPageFactory,
-		CommentStore $commentStore,
-		BlockUtils $blockUtils,
+		IContextSource $context,
 		BlockActionInfo $blockActionInfo,
-		RowCommentFormatter $rowCommentFormatter
+		BlockRestrictionStore $blockRestrictionStore,
+		BlockUtils $blockUtils,
+		CommentStore $commentStore,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RowCommentFormatter $rowCommentFormatter,
+		SpecialPageFactory $specialPageFactory,
+		$conds
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
+		parent::__construct( $context, $linkRenderer );
+		$this->blockActionInfo = $blockActionInfo;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->blockUtils = $blockUtils;
+		$this->commentStore = $commentStore;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->rowCommentFormatter = $rowCommentFormatter;
+		$this->specialPageFactory = $specialPageFactory;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->commentStore = $commentStore;
-		$this->blockUtils = $blockUtils;
-		$this->blockActionInfo = $blockActionInfo;
-		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
 
 	protected function getFieldNames() {

@@ -153,13 +153,13 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		$pager = new DeletedContribsPager(
 			$this->getContext(),
-			$target,
-			$opts->getValue( 'namespace' ),
-			$this->getLinkRenderer(),
-			$this->getHookContainer(),
-			$this->loadBalancer,
 			$this->commentStore,
-			$this->revisionFactory
+			$this->getHookContainer(),
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$this->revisionFactory,
+			$target,
+			$opts->getValue( 'namespace' )
 		);
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );

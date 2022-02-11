@@ -68,12 +68,12 @@ class SpecialListUsers extends IncludableSpecialPage {
 
 		$up = new UsersPager(
 			$this->getContext(),
-			$par,
-			$this->including(),
-			$this->linkBatchFactory,
 			$this->getHookContainer(),
+			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->userGroupManager
+			$this->userGroupManager,
+			$par,
+			$this->including()
 		);
 
 		# getBody() first to check, if empty

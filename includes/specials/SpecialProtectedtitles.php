@@ -66,14 +66,14 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$pager = new ProtectedTitlesPager(
 			$this,
+			$this->linkBatchFactory,
+			$this->loadBalancer,
 			[],
 			$type,
 			$level,
 			$NS,
 			$sizetype,
-			$size,
-			$this->linkBatchFactory,
-			$this->loadBalancer
+			$size
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
