@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, REST, utils } = require( 'api-testing' );
+const { action, assert, REST, utils, wiki } = require( 'api-testing' );
 
 describe( 'Search', () => {
 	const client = new REST( 'rest.php/v1' );
@@ -19,6 +19,7 @@ describe( 'Search', () => {
 		await alice.edit( pageWithBothTerms, { text: `${searchTerm} ${searchTerm2}` } );
 		await alice.edit( pageWithOneTerm, { text: searchTerm2 } );
 		await alice.edit( pageWithOwnTitle, { text: pageWithOwnTitle } );
+		await wiki.runAllJobs();
 	} );
 
 	describe( 'GET /search/page?q={term}', () => {
@@ -92,6 +93,7 @@ describe( 'Search', () => {
 				summary: 'testing',
 				token: await mindy.token( 'csrf' )
 			}, 'POST' );
+			await wiki.runAllJobs();
 			const { body } = await client.get( `/search/page?q=${deleteTerm}` );
 			assert.lengthOf( body.pages, 0 );
 		} );
@@ -106,6 +108,7 @@ describe( 'Search', () => {
 
 			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: `${uniquePageText}` } );
 
+			await wiki.runAllJobs();
 			const { body } = await client.get( `/search/page?q=${uniquePageText}` );
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
