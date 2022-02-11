@@ -317,7 +317,7 @@
 	"right-delete": "ⴽⴽⵉⵙ ⵜⵉⵙⵏⴰⵡⵉⵏ",
 	"action-read": "Γer tasna-a",
 	"action-edit": "ⴱⴷⴷⵍ ⵜⴰⵙⵏⴰ ⴰⴷ",
-	"action-delete": "ⴽⴽⵉⵙ ⵜⴰⵙⵏⴰ ⴰⴷ",
+	"action-delete": "Kkes",
 	"action-sendemail": "ⴰⵣⵏ ⵜⵉⴱⵔⴰⵜⵉⵏ ⵏ e-mail",
 	"nchanges": "$1 {{PLURAL:$1|ⴰⴱⴷⴷⴻⵍ|ⵉⴱⴷⴷⴻⵍⵏ}}",
 	"enhancedrc-history": "Amezruy",
@@ -557,5 +557,17 @@
 	"special-characters-group-sinhala": "ⵜⴰⵙⵏⵀⴰⵍⵉⵜ",
 	"special-characters-group-thai": "ⵜⴰⵟⴰⵢⵍⴰⵏⴷⵉⵜ",
 	"special-characters-group-lao": "ⵜⵍⴰⵡⵉⵜ",
-	"special-characters-group-khmer": "ⵅⴰⵎⵉⵔ"
+	"special-characters-group-khmer": "ⵅⴰⵎⵉⵔ",
+	"action-viewdeleted": "ⵥⵕ $1?",
+	"action-protect": "ⵜⴰⵙⵜⴰⵏⵜ",
+	"view-edit": "Senfel",
+	"view-create": "Senflul",
+	"action-unprotect": "ⴱⴷⴷⴻⵍ ⵜⴰⵙⵜⴰⵏⵜ",
+	"view-history": "Ẓeṛ amezruy",
+	"action-undelete": "ⵙⵙⵓⵖⴰⵍ ⵓⴽⵓⵙ",
+	"action-move": "ⵙⵎⵓⵜⵜⵉ",
+	"view-view": "Γer",
+	"action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
+	"view-view-foreign": "Sken g $1",
+	"nstab-mainpage": "Tasna n usnubeg"
 }

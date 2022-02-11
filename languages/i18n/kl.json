@@ -350,5 +350,13 @@
 	"monthsall": "tamarmik",
 	"autosumm-new": "Qupperneq pilersippaa '$1'",
 	"specialpages": "Quppernerit immikkut ittut",
-	"searchsuggest-search": "Ujarlerit"
+	"searchsuggest-search": "Ujarlerit",
+	"action-protect": "Illersoruk",
+	"view-edit": "Aaqqissoruk",
+	"view-create": "Pilersiguk",
+	"action-unprotect": "Illersorunnaaruk",
+	"view-history": "Oqalutt.",
+	"action-move": "Nuuguk",
+	"view-view": "Takuuk",
+	"action-addsection": "Imm. nutaaq"
 }

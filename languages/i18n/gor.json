@@ -893,5 +893,19 @@
 	"searchsuggest-search": "Lolohe {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|huyi}}",
 	"mw-widgets-mediasearch-noresults": "Diya'a hasili yilotapu",
-	"randomrootpage": "Halaman totonulalo"
+	"randomrootpage": "Halaman totonulalo",
+	"action-viewdeleted": "Bilohi $1",
+	"action-protect": "Dahawa",
+	"view-edit": "Boli'a",
+	"view-create": "Mohutu",
+	"action-unprotect": "dudaha boli'olo",
+	"view-history": "Bilohi riwayati",
+	"action-delete": "Luluta",
+	"action-move": "Heyiya",
+	"view-view": "Baca",
+	"action-addsection": "Duhengi topik",
+	"view-view-foreign": "Bilohi to $1",
+	"view-create-local": "Duhengi deskripsi lokal",
+	"nstab-mainpage": "Halaman bungaliyo",
+	"view-edit-local": "Boli'a deskripsi lokal."
 }

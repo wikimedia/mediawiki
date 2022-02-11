@@ -235,5 +235,12 @@
 	"namespacesall": "Zonke",
 	"signature": "Iqonga lakho othetha kulo",
 	"specialpages": "Amaphepha Abalulekileyo",
-	"searchsuggest-search": "Khangela i-{{SITENAME}}"
+	"searchsuggest-search": "Khangela i-{{SITENAME}}",
+	"action-protect": "Khusela",
+	"view-edit": "Tshintsha",
+	"view-history": "Khawujonge imbali yeli phepha",
+	"action-move": "Susa",
+	"view-view": "Funda",
+	"action-addsection": "Faka isihloko",
+	"nstab-mainpage": "Iphepha lokuqala"
 }

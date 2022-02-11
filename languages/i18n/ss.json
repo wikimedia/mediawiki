@@ -189,5 +189,14 @@
 	"imgmultigo": "Hamba!",
 	"table_pager_limit_submit": "Hamba",
 	"version-specialpages": "Emakhasi labalulekile",
-	"specialpages": "Emakhasi labalulekile"
+	"specialpages": "Emakhasi labalulekile",
+	"action-viewdeleted": "Bona $1?",
+	"action-protect": "Vikela",
+	"view-edit": "Hlela",
+	"view-create": "Yakha",
+	"action-unprotect": "Yekelela",
+	"view-history": "Bona umlandvo",
+	"action-move": "Khweshisa",
+	"view-view": "Fundza",
+	"action-addsection": "Ngeta sihloko"
 }

@@ -518,5 +518,15 @@
 	"logentry-upload-overwrite": "Ko te $1 {{GENDER:$2|ne'e fakahū}} ko he fakafo'ou o te $3",
 	"searchsuggest-search": "Kumi {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|'aho}}",
-	"randomrootpage": "Pāsina 'uluaki  ne'e hoko fili"
+	"randomrootpage": "Pāsina 'uluaki  ne'e hoko fili",
+	"view-edit": "Fetogi",
+	"view-create": "Fa'u",
+	"view-history": "Kamata'aga",
+	"action-delete": "Molehi",
+	"action-move": "Fetogi higoa",
+	"view-view": "Lau",
+	"action-addsection": "Tohi he kupu",
+	"view-view-foreign": "Sio ki ai i te $1",
+	"view-create-local": "Tohi he fakamahino",
+	"nstab-mainpage": "Pāsina tāfito"
 }

@@ -647,5 +647,16 @@
 	"watchlisttools-raw": "Liwaton ang hilaw nga listahan sang mga ginabantayan",
 	"specialpages": "Pinasahi nga mga pahina",
 	"tag-filter": "[[Special:Tags|Tatakan]] ang pansala:",
-	"deletepage": "Panason ang pahina"
+	"deletepage": "Panason ang pahina",
+	"action-viewdeleted": "Tan-awon ang $1?",
+	"action-protect": "Protektahan",
+	"view-edit": "Bag-uhon",
+	"view-create": "Ubrahon",
+	"action-unprotect": "Bag-uhon ang pagprotekta",
+	"view-history": "Ipakita ang kasaysayan",
+	"action-delete": "Panason",
+	"action-undelete": "Indi pag panason",
+	"action-move": "Isdogon",
+	"view-view": "Basahon",
+	"action-addsection": "Magdugang sang topiko"
 }

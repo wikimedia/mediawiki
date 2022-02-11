@@ -559,5 +559,15 @@
 	"searchsuggest-containing": "Nandawaabam mazina'igan wiji-",
 	"duration-days": "$1 {{PLURAL:$1|gizhiig}}",
 	"randomrootpage": "Maanaaji' ojiibik mazina'igan",
-	"specialmute-label-mute-email": "Bangitoo mazinaabikiwebinigan-naadazina'igane  ondaabate  {{GENDER:$1|wiin-aabaji'}}"
+	"specialmute-label-mute-email": "Bangitoo mazinaabikiwebinigan-naadazina'igane  ondaabate  {{GENDER:$1|wiin-aabaji'}}",
+	"view-edit": "Aanji'",
+	"view-create": "Ozhitoon",
+	"view-history": "Gaa'-waabam",
+	"action-delete": "Gaasiibii'an",
+	"action-move": "Mamaajii",
+	"view-view": "Agindan",
+	"action-addsection": "Asigagindaaso dibaajimowin",
+	"view-view-foreign": "Waabam biindig $1",
+	"view-create-local": "bagidin biindig-danakamigad idan-aaniin-ayaan",
+	"nstab-mainpage": "Mazina'igan Niigaan"
 }

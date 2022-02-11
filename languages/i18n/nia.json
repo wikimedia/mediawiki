@@ -732,5 +732,20 @@
 	"logentry-upload-overwrite": "{{GENDER:$2|ifairö}} $1 versi si bohou $3",
 	"searchsuggest-search": "Alui {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ngaluo}}",
-	"randomrootpage": "Gonfu nga'örö oroita"
+	"randomrootpage": "Gonfu nga'örö oroita",
+	"action-viewdeleted": "Faigi $1?",
+	"action-protect": "Kusi",
+	"view-edit": "Bulö'ö",
+	"view-create": "Fazökhi",
+	"action-unprotect": "Bulö'ö wokusi",
+	"view-history": "Faigi waö-waö",
+	"action-delete": "Tibo'ö",
+	"action-undelete": "Fangawuli furi zi no tetibo'ö",
+	"action-move": "Fawu'a",
+	"view-view": "Baso",
+	"action-addsection": "Nönö mbörö huhuo",
+	"view-view-foreign": "Tefaigi ba $1",
+	"view-create-local": "Nönö deskripsi lokal",
+	"nstab-mainpage": "Olayama",
+	"view-edit-local": "Bulö'ö deskripsi lokal"
 }

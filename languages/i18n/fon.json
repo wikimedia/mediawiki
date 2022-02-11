@@ -534,5 +534,14 @@
 	"pagelang-language": "Gbé",
 	"pagelang-reason": "Hwɛ̀jìjɔ̀",
 	"log-action-filter-all": "Bǐ",
-	"log-action-filter-block-block": "Ɖoté"
+	"log-action-filter-block-block": "Ɖoté",
+	"view-edit": "Wlǎn nú",
+	"view-create": "Bló",
+	"view-history": "Yín nukún ɖo ɖiɖyɔ tɛnmɛ tɛnmɛ wémá ɔ tɔn lɛ jí",
+	"action-move": "Ɖyɔ nyikɔ tɔn",
+	"view-view": "Xá",
+	"action-addsection": "Gɔ́ xóta yɔ́yɔ́ ɖévo ná",
+	"view-view-foreign": "Yi kpɔn ɖo $1 ji",
+	"view-create-local": "Gɔ tinmɛ tɔn ɖo gbé towé mɛ",
+	"nstab-mainpage": "Nuwlanwlan tájí ɔ"
 }

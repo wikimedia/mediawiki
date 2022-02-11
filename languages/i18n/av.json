@@ -619,5 +619,20 @@
 	"special-characters-group-greek": "Грек",
 	"special-characters-group-cyrillic": "Кириллияб",
 	"special-characters-group-arabic": "ГӀараб",
-	"special-characters-group-persian": "Парс"
+	"special-characters-group-persian": "Парс",
+	"action-viewdeleted": "$1 ралагьизеищ?",
+	"action-protect": "ЦӀунизе",
+	"view-edit": "Хисизабизе",
+	"view-create": "ГӀуцӀизе",
+	"action-unprotect": "ЦӀуни хисизе",
+	"view-history": "Тарихалъухъ ралагьизе",
+	"action-delete": "Гилдизабизе",
+	"action-undelete": "БукӀахъинабизе",
+	"action-move": "ЦӀар хисизе",
+	"view-view": "ЦӀализе",
+	"action-addsection": "ТӀадежубазе тема",
+	"view-view-foreign": "$1 сайталда ралагьизе",
+	"view-create-local": "Локалияб сипат-сурат гьабизе",
+	"nstab-mainpage": "БетӀераб гьумер",
+	"view-edit-local": "Локалияб сипат-сурат хисизабизе"
 }

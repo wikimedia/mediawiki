@@ -559,5 +559,17 @@
 	"searchsuggest-search": "Buska na {{SITENAME}}",
 	"log-action-filter-upload": "Tipu di karegamentu:",
 	"log-action-filter-upload-upload": "Karegamentu nobu",
-	"edit-error-short": "Eru: $1"
+	"edit-error-short": "Eru: $1",
+	"action-protect": "Proteji",
+	"view-edit": "Muda",
+	"view-create": "Kria",
+	"action-unprotect": "Muda proteson",
+	"view-history": "Odja istóriku",
+	"action-delete": "Paga",
+	"view-view": "Le",
+	"action-addsection": "Adisiona tópiku",
+	"view-view-foreign": "Odja na $1",
+	"view-create-local": "Adisiona deskrison lokal",
+	"nstab-mainpage": "Pájina prinsipal",
+	"view-edit-local": "Edita deskrison lokal"
 }

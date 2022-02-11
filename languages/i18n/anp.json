@@ -903,5 +903,19 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|अपलोड करलऽ गेलै}} $3 केरऽ एगो नया अवतरण",
 	"searchsuggest-search": "{{SITENAME}} मं॑ खोजऽ",
 	"duration-days": "$1 {{PLURAL:$1|दिन}}",
-	"randomrootpage": "अविशिष्ट मूल पृष्ठ"
+	"randomrootpage": "अविशिष्ट मूल पृष्ठ",
+	"action-viewdeleted": "$1 दिखाबऽ?",
+	"action-protect": "सुरक्षित करौ",
+	"view-edit": "संपादन",
+	"view-create": "सृजन करॊ",
+	"action-unprotect": "सुरक्षितता बदलऽ",
+	"view-history": "इतिहास देखऽ",
+	"action-delete": "मेटाबऽ",
+	"action-move": "चलऽ",
+	"view-view": "पढ़ऽ",
+	"action-addsection": "विषय जोड़ऽ",
+	"view-view-foreign": "$1 प॑ देखऽ",
+	"view-create-local": "स्थानीय विवरण जोड़ऽ",
+	"nstab-mainpage": "मुखपृष्ठ",
+	"view-edit-local": "स्थानीय विवरण सम्पादित करऽ"
 }

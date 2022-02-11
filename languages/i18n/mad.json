@@ -655,5 +655,18 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|maongghâ}} vèrsi anyar ḍâri $3",
 	"searchsuggest-search": "Sarè è {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|arè}}",
-	"randomrootpage": "Kaca ḍhâsar sabhârâng"
+	"randomrootpage": "Kaca ḍhâsar sabhârâng",
+	"action-protect": "Lènḍhungè",
+	"view-edit": "Beccè'",
+	"view-create": "Ghâbây",
+	"action-unprotect": "Obâ palènḍhungan",
+	"view-history": "Tèngghu riwayât",
+	"action-delete": "Kosot",
+	"action-move": "Allè",
+	"view-view": "Bâca",
+	"action-addsection": "Longkang anyar",
+	"view-view-foreign": "Tèngghu è $1",
+	"view-create-local": "Tambâ jhâjhârbâ'ân lokal",
+	"nstab-mainpage": "Tanèyan",
+	"view-edit-local": "Beccè' ḍèskripsi lokal"
 }

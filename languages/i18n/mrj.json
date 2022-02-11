@@ -471,5 +471,12 @@
 	"watchlisttools-edit": "Анжалаш/списокым тӧрлӓш",
 	"watchlisttools-raw": "Текст семӹнь тӧрлӓш",
 	"specialpages": "Спецӹлӹштӓшвлӓ",
-	"deletepage": "Ӹлӹштӓшӹм карангдаш"
+	"deletepage": "Ӹлӹштӓшӹм карангдаш",
+	"action-protect": "Ӹшӹклӓш",
+	"view-edit": "Торлӓш",
+	"view-create": "Ӹштӓш",
+	"view-history": "Историм анжымаш",
+	"action-delete": "Карангдаш",
+	"action-move": "Лӹмӹм вашталташ",
+	"view-view": "Лыдмаш"
 }

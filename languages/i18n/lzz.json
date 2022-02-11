@@ -367,7 +367,7 @@
 	"action-read": "am sayfa ik'itxi",
 	"action-edit": "am butʼkʼa oktiruşa",
 	"action-createaccount": "bu kullanıcı hesabını oluşturmaya",
-	"action-delete": "am sayfa dokosi",
+	"action-delete": "Jili",
 	"nchanges": "$1 {{PLURAL:$1|oktiroba|oktiroba}}",
 	"enhancedrc-history": "Tarixi",
 	"recentchanges": "Çodinaşi oktirobape",
@@ -759,5 +759,16 @@
 	"special-characters-group-latin": "Lat'ini",
 	"special-characters-group-greek": "Xorumi",
 	"special-characters-group-arabic": "Arabuli",
-	"randomrootpage": "Rasgele kök sayfa"
+	"randomrootpage": "Rasgele kök sayfa",
+	"action-viewdeleted": "Koziri $1?",
+	"action-protect": "İçvi",
+	"view-edit": "doktiri",
+	"view-create": "dokʼidi",
+	"view-history": "Dosyaşi tarixi",
+	"action-move": "Tori",
+	"view-view": "İǩitxi",
+	"action-addsection": "Konu ekle",
+	"view-view-foreign": "$1 üzerinde gör",
+	"view-create-local": "Yerel açıklama ekle",
+	"nstab-mainpage": "Dudi But'k'a"
 }

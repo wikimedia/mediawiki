@@ -1227,5 +1227,20 @@
 	"special-characters-group-cyrillic": "Cërylica",
 	"special-characters-group-arabic": "Arabsczi",
 	"special-characters-group-hebrew": "Hebrajsczi",
-	"randomrootpage": "Kawlowô starna (bez pòdstarnów)"
+	"randomrootpage": "Kawlowô starna (bez pòdstarnów)",
+	"action-viewdeleted": "Òbaczë $1",
+	"action-protect": "Zazychrëjë",
+	"view-edit": "Edicëjô",
+	"view-create": "Ùsadzë",
+	"action-unprotect": "Òdzychrëjë",
+	"view-history": "Historëjô lopka",
+	"action-delete": "Rëmôj",
+	"action-undelete": "Doprowadzë nazôd",
+	"action-move": "Przeniesë",
+	"view-view": "Czëtôj",
+	"action-addsection": "Dodôj témã",
+	"view-view-foreign": "Òbôczë w {{grammar:MS.lp|$1}}",
+	"view-create-local": "Dodôj lokalny òpisënk",
+	"nstab-mainpage": "Przédnô starna",
+	"view-edit-local": "Editëjë lokalny òpisënk"
 }

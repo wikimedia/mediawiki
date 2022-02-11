@@ -656,5 +656,17 @@
 	"specialpages": "Schbedsjaal-sajdn",
 	"external_image_whitelist": " # Däi Zeiln net verändern.<pre>\n# Undnstehnd könna Fragmende vo reguläre Asdrigg (der Deil zwischa die //) eigeem werrn.\n# Däi werrn miid die URLs vo Bilder aus egsderne Gwelln verglichng.\n# A bositiver Vergleich fiehrt zur Ozeich vom Bild, sunsd werrds Bild blouss als Link ozeichd.\n# Zeiln, däi wou miid an # ofanga, werrn als Gommendar behandld.\n# Zwischa Grouß- un Klaaschreibung werrd net underschiedn.\n\n# Fragmende vo reguläre Asdrigg nach dera Zeiln eidroong. Däi Zeiln net verändern.</pre>",
 	"tag-filter": "[[Special:Tags|Marrgierungs]]-Fillder:",
-	"deletepage": "Sajdn leschn"
+	"deletepage": "Sajdn leschn",
+	"action-viewdeleted": "$1 dsajchn?",
+	"action-protect": "Schidsn",
+	"view-edit": "Beärwâdn",
+	"view-create": "Erdsojng",
+	"action-unprotect": "Nime schidsn",
+	"view-history": "Wärsjoonsfolche",
+	"action-delete": "Leschn",
+	"action-undelete": "Leschn riggängich machn",
+	"action-move": "Umdaafn",
+	"view-view": "Leesn",
+	"action-addsection": "Ân najn abschnid ôôfangn",
+	"nstab-mainpage": "Haubdsajdn"
 }

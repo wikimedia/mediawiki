@@ -447,5 +447,14 @@
 	"watchlisttools-raw": "Bekacc á xiálírid aŧí radbadal kar",
 	"specialpages": "Xás á panna ģák",
 	"deletepage": "Panna e mesa",
-	"searchsuggest-search": "Paŧŧopol"
+	"searchsuggest-search": "Paŧŧopol",
+	"action-protect": "Rakk",
+	"view-edit": "Radbadal",
+	"view-create": "Biná",
+	"view-history": "Lekav e ur",
+	"action-delete": "Mesa",
+	"action-move": "Surif",
+	"view-view": "Xuán",
+	"action-addsection": "Púskun sarhál",
+	"nstab-mainpage": "Monpanna"
 }

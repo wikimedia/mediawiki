@@ -527,5 +527,20 @@
 	"feedback-cancel": "kansele",
 	"searchsuggest-search": "sisku",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> to $2 toi to <strong>tolselplicu'i</strong> toi",
-	"log-action-filter-all": "ro"
+	"log-action-filter-all": "ro",
+	"action-viewdeleted": ".i xu do djica le nu viska $1",
+	"action-protect": "bandu",
+	"view-edit": "binxo",
+	"view-create": "cupra",
+	"action-unprotect": "basti fi le ka te bandu",
+	"view-history": "citri lo papri",
+	"action-delete": "vimcu",
+	"action-undelete": "ca'o nai vimcu",
+	"action-move": "stika lo cmene",
+	"view-view": "tcidu",
+	"action-addsection": "jmina lo se casnu pagbu",
+	"view-view-foreign": "viska le mupli pe la'o zoi. $1 .zoi",
+	"view-create-local": "jmina pa diklo ve skicu",
+	"nstab-mainpage": "ralju papri",
+	"view-edit-local": "basti fi le ka diklo ve skicu"
 }

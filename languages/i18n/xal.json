@@ -821,5 +821,17 @@
 	"htmlform-selectorother-other": "Талдан",
 	"logentry-newusers-create": "$1 демнәчин бичгдлһн бүтәгдв",
 	"rightsnone": "(уга)",
-	"searchsuggest-search": "Хәәвр"
+	"searchsuggest-search": "Хәәвр",
+	"action-viewdeleted": "$1 хәләхий?",
+	"action-protect": "Харсх",
+	"view-edit": "Ясх",
+	"view-create": "Бүтәх",
+	"action-unprotect": "Харслт сольх",
+	"view-history": "Тууҗин хәләвр",
+	"action-delete": "Һарһх",
+	"action-undelete": "Һарһх биш",
+	"action-move": "Көндәх",
+	"view-view": "Умшлһн",
+	"action-addsection": "Төриг немх",
+	"nstab-mainpage": "Нүр халх"
 }

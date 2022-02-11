@@ -759,5 +759,18 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|unggah}} persi na imbaru of $3",
 	"searchsuggest-search": "Lului di bagasan {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ari|ari-ari}}",
-	"randomrootpage": "alaman bingkas na sursar"
+	"randomrootpage": "alaman bingkas na sursar",
+	"action-viewdeleted": "Ida $1?",
+	"action-protect": "Alaman na di jaga",
+	"view-edit": "Patota",
+	"view-create": "Tompa",
+	"view-history": "Patudu turihonna",
+	"action-delete": "Sesa",
+	"action-undelete": "unang sesa",
+	"action-move": "Pahusor",
+	"view-view": "Jaha",
+	"action-addsection": "Bagian na imbaru",
+	"view-view-foreign": "Ida ma di $1",
+	"view-create-local": "Tambahon deskripsi lokal",
+	"nstab-mainpage": "Pogu ni alaman"
 }

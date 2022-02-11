@@ -1154,5 +1154,19 @@
 	"randomrootpage": "खयंचेंय मूळ पान",
 	"log-action-filter-block-unblock": "आडावणी काड",
 	"authmanager-email-label": "ईमेल",
-	"cannotauth-not-allowed-title": "परवांगी नाकारल्या"
+	"cannotauth-not-allowed-title": "परवांगी नाकारल्या",
+	"action-viewdeleted": "दाखयात $1?",
+	"action-protect": "संरक्षीत करात",
+	"view-edit": "बदल",
+	"view-create": "निर्माण कर",
+	"action-unprotect": "दवरिल्ली सुरक्षा बदल",
+	"view-history": "इतिहास पळेयात",
+	"action-delete": "काडून उडयात",
+	"action-move": "दुसरेकडे व्हरात",
+	"view-view": "वाचचें",
+	"action-addsection": "माथाळो ज़ोड",
+	"view-view-foreign": " $1 चेर पळयात",
+	"view-create-local": "थळावे वर्णन जोडात",
+	"nstab-mainpage": "मुखेल पान",
+	"view-edit-local": "थळाव्या संपादनाचें वर्णन"
 }

@@ -198,7 +198,7 @@
 	"right-move": "Хуудаһануудые зөөхэ",
 	"right-move-rootuserpages": "Хэрэглэгшын үндэһэн хуудаһануудые зөөхэ",
 	"action-edit": "энэ хуудаһа заһабарилха",
-	"action-move": "хуудаһые зөөхэ",
+	"action-move": "Зөөхэ",
 	"recentchanges": "Һүүлшын хубилалта",
 	"diff": "илгаа",
 	"hist": "түүхэ",
@@ -264,5 +264,12 @@
 	"tooltip-t-specialpages": "Бүхы тусхай хуудаһанай жагсаалта",
 	"tooltip-t-print": "Энэ хуудаһанай хэблэхэ хубилбари",
 	"tooltip-ca-nstab-main": "Үгүүлэлэй хуудаһые үзэхэ",
-	"specialpages": "Тусхай хуудаһан"
+	"specialpages": "Тусхай хуудаһан",
+	"action-protect": "Хамгаалха",
+	"view-edit": "Заһабарилха",
+	"view-create": "Үүдхэхэ",
+	"view-history": "Түүхые хараха",
+	"action-delete": "Усадхаха",
+	"view-view": "Уншаха",
+	"action-addsection": "Һэдэб нэмэхэ"
 }

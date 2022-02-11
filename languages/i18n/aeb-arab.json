@@ -758,5 +758,15 @@
 	"tag-filter": "مرشح [[Special:Tags|الوسوم]]:",
 	"tags-edit": "بدّل",
 	"logentry-newusers-create": "إتحلّ حساب {{GENDER:$2|المستعمل|المستعملة}} $1",
-	"searchsuggest-search": "لوّج في {{SITENAME}}"
+	"searchsuggest-search": "لوّج في {{SITENAME}}",
+	"action-viewdeleted": "أأعرض $1؟",
+	"view-edit": "بدّل",
+	"view-history": "ورّي الپاج",
+	"action-delete": "احذف",
+	"action-undelete": "استرجع الحذف",
+	"action-move": "حوّل",
+	"view-view": "أقرا",
+	"action-addsection": "أضف موضوعا",
+	"view-view-foreign": "ورّي على $1",
+	"nstab-mainpage": "الپاج الأولانيّة"
 }

@@ -500,5 +500,17 @@
 	"logentry-move-move": "$1 {{GENDER:$2|kɛzɩ}} takayɩhayʋʋ $3 ñɩŋgʋ nɛ $4 ñɩŋgʋ yɔɔ",
 	"logentry-newusers-create": "{{GENDER:$2|Patʋlɩ}} labɩnayʋ koozaɣ $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|mʋʋna poliŋ taa}} $3",
-	"searchsuggest-search": "Ñɩnɩ {{SITENAME}} taa"
+	"searchsuggest-search": "Ñɩnɩ {{SITENAME}} taa",
+	"action-protect": "Kandɩ",
+	"view-edit": "Ñɔɔzɩ",
+	"view-create": "Lɩzɩ",
+	"action-unprotect": "Lɛɣzɩ kandɩtʋ",
+	"view-history": "Caanaʋ tɔm kɛdʋʋ",
+	"action-move": "Kɛzɩ",
+	"view-view": "Kalɩ",
+	"action-addsection": "Sɔɔzɩ tɔm natʋyʋ",
+	"view-view-foreign": "Cɔna $1 yɔɔ",
+	"view-create-local": "Sɔzɩ kɛdɩtʋ kɩcɛyɩtʋ",
+	"nstab-mainpage": "Talɩ ɖeu",
+	"view-edit-local": "Ñɔɔzɩ kɛdɩtʋ kɩcɛyɩtʋ"
 }

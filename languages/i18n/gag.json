@@ -677,5 +677,11 @@
 	"watchlisttools-raw": "Ham siir listasını düz",
 	"version": "Versiya",
 	"specialpages": "Maasus sayfalar",
-	"deletepage": "Sayfayı sil"
+	"deletepage": "Sayfayı sil",
+	"action-viewdeleted": "$1 gör?",
+	"action-protect": "Korunmak altına al",
+	"view-edit": "Diiştir",
+	"view-create": "Eni yazı yarat",
+	"action-unprotect": "Korunmayı kaldır",
+	"view-view": "Oku"
 }

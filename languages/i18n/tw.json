@@ -901,5 +901,19 @@
 	"searchsuggest-search": "Hwehwɛ {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|da|nna}}",
 	"mw-widgets-mediasearch-input-placeholder": "Hwehwɛ mfonini",
-	"changeslist-nocomment": "Nsesaeɛ biara nni hɔ a ɛsɛ sɛ yɛbɔ no tɔfa"
+	"changeslist-nocomment": "Nsesaeɛ biara nni hɔ a ɛsɛ sɛ yɛbɔ no tɔfa",
+	"action-viewdeleted": "Wo bɛ hwɛ $1?",
+	"action-protect": "Bɔ ho ban",
+	"view-edit": "Sesa",
+	"view-create": "Create",
+	"action-unprotect": "Sesa ban bɔ",
+	"view-history": "Hwɛ abakɔsɛm",
+	"action-delete": "Pepa",
+	"action-move": "Yi kɔ bɛbi foforo",
+	"view-view": "Kenkan",
+	"action-addsection": "Fa atifi asɛm ka ho",
+	"view-view-foreign": "Hwɛ wɔ $1",
+	"view-create-local": "Fa ɛfitiasɛm ka hɔ",
+	"nstab-mainpage": "Kratafa Titiriw",
+	"view-edit-local": "Fa ɛfitiasɛm ka hɔ"
 }

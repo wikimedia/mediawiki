@@ -154,5 +154,8 @@
 	"tooltip-ca-nstab-main": "Sheba leqephe la litaba",
 	"pageinfo-toolboxlink": "Boitsebiso ba Leqephe",
 	"specialpages": "Maqephe a khethehileng",
-	"searchsuggest-search": "Batla {{SITENAME}}"
+	"searchsuggest-search": "Batla {{SITENAME}}",
+	"view-edit": "Fetola",
+	"view-history": "sheba histori",
+	"nstab-mainpage": "leqephe la lehae"
 }

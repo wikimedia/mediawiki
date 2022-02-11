@@ -638,5 +638,19 @@
 	"logentry-upload-overwrite": "$1{{GENDER:$2|nonggihe}} $3 i ice durun",
 	"searchsuggest-search": "{{SITENAME}} suwelere",
 	"duration-days": "$1 {{PLURAL:$1|inenggi}}",
-	"randomrootpage": "random fulehe fiyelen"
+	"randomrootpage": "random fulehe fiyelen",
+	"action-viewdeleted": "$1 be tuwambio?",
+	"action-protect": "Karmara",
+	"view-edit": "banjibume arara",
+	"view-create": "Ilibure",
+	"action-unprotect": "karman be halambi",
+	"view-history": "ere xu fiyelen i suduri be baicara",
+	"action-delete": "Dabgire",
+	"action-move": "Guribure",
+	"view-view": "hvlara",
+	"action-addsection": "nogila joringga",
+	"view-view-foreign": "baicambi bade $1",
+	"view-create-local": "ba i giyanara be nonggimbi",
+	"nstab-mainpage": "ujui afaha",
+	"view-edit-local": "ba i giyanara be halambi"
 }

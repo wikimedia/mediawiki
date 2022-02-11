@@ -952,5 +952,20 @@
 	"htmlform-reset": "Revoke chanjman yo",
 	"revdelete-restricted": "aplike restriksyon sa yo pou administratè yo",
 	"logentry-newusers-create": "Kont itilizatè $1 a kreye",
-	"searchsuggest-search": "Jwenn"
+	"searchsuggest-search": "Jwenn",
+	"action-viewdeleted": "Wè $1&nbsp;?",
+	"action-protect": "Pwoteje",
+	"view-edit": "Modifye",
+	"view-create": "Kreye",
+	"action-unprotect": "Chanje nivo pwoteksyon",
+	"view-history": "Gade istorik",
+	"action-delete": "Efase",
+	"action-undelete": "Retabli",
+	"action-move": "Chanje non",
+	"view-view": "Li",
+	"action-addsection": "Ajoute yon sijè",
+	"view-view-foreign": "Gade sou $1",
+	"view-create-local": "Ajoute on deskription lokal",
+	"nstab-mainpage": "paj prensipal",
+	"view-edit-local": "Chanje on deskripsyon lokal"
 }

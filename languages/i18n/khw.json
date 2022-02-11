@@ -1166,5 +1166,20 @@
 	"feedback-message": "پیغام",
 	"searchsuggest-search": "Search/تلاش",
 	"duration-days": "$1 {{PLURAL:$1|آنوس}}",
-	"randomrootpage": "بے ترتيب بنیادی صفحہ"
+	"randomrootpage": "بے ترتيب بنیادی صفحہ",
+	"action-viewdeleted": "لوڑے $1؟",
+	"action-protect": "محفوظ",
+	"view-edit": "ترمیم",
+	"view-create": "ساوزاوے",
+	"action-unprotect": "غیر محفوظ",
+	"view-history": "تاریخچہ",
+	"action-delete": "بوغاوے",
+	"action-undelete": "اچی انگیے",
+	"action-move": "منتقل کورے",
+	"view-view": "راوے",
+	"action-addsection": "نوغ موضوع",
+	"view-view-foreign": "$1 لوڑے",
+	"view-create-local": "مقامی وضاحتو داخل کورے",
+	"nstab-mainpage": "آویلو صفحہ",
+	"view-edit-local": "ترمیم مقامی وضاحت"
 }

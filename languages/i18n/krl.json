@@ -528,5 +528,15 @@
 	"logentry-newusers-create": "Käyttäjätunnuš $1 {{GENDER:$2|oli luotu}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|päivitetty}} $3",
 	"searchsuggest-search": "Eči {{SITENAME}}",
-	"duration-days": "$1 {{PLURAL:$1|päivä|päivyä}}"
+	"duration-days": "$1 {{PLURAL:$1|päivä|päivyä}}",
+	"action-viewdeleted": "Näytä $1?",
+	"view-edit": "Kohentele",
+	"view-create": "Luaji šivu",
+	"view-history": "Näytä istorija",
+	"action-move": "Šiirrä",
+	"view-view": "Luve",
+	"action-addsection": "Lisyä teema",
+	"view-view-foreign": "Näytä $1",
+	"view-create-local": "Lisyä paikallini kuvauš",
+	"nstab-mainpage": "Piäšivu"
 }

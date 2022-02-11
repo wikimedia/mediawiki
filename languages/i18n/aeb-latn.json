@@ -414,5 +414,15 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Ḩdîŧ]])",
 	"specialpages": "Safḩāt spēsyāl",
 	"logentry-upload-upload": "$1 {{GENDER:$2|şab|şabbit}} $3",
-	"searchsuggest-search": "Lawwij"
+	"searchsuggest-search": "Lawwij",
+	"action-viewdeleted": "Warri $1؟",
+	"action-protect": "Ħàmi",
+	"view-edit": "Beddil",
+	"view-create": "Agħmel",
+	"action-unprotect": "Baddil il-ḩimêye",
+	"view-history": "Cūf Tērīx il-milaf",
+	"action-move": "Ḩawwil",
+	"view-view": "Aqrē",
+	"action-addsection": "Zīd mawḑūģ",
+	"view-view-foreign": "Cūf ģlā $1"
 }

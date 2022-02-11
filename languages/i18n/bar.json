@@ -1210,5 +1210,20 @@
 	"logentry-move-move_redir-noredirect": "$1 hod de Seitn $3 af $4 {{GENDER:$2|verschom}} und dabei a Weidaloatung ibaschriem, ohne a neiche ozlegn",
 	"logentry-newusers-create": "Nutzakonto $1 is {{GENDER:$2|eastejt}} worn",
 	"searchsuggest-search": "Suach (af Boarisch oda Deutsch)",
-	"searchsuggest-containing": "Voitextsuach noch ..."
+	"searchsuggest-containing": "Voitextsuach noch ...",
+	"action-viewdeleted": "$1 åzoang?",
+	"action-protect": "Schitzn",
+	"view-edit": "Weakln",
+	"view-create": "Aufbaun",
+	"action-unprotect": "freigeem",
+	"view-history": "Gschicht oschaugn",
+	"action-delete": "Leschn",
+	"action-undelete": "Wiederherstön",
+	"action-move": "Vaschiabm",
+	"view-view": "Lesn",
+	"action-addsection": "An Obschnitt dazua doa",
+	"view-view-foreign": "Af $1 ooschaung",
+	"view-create-local": "Lokale Beschreibung hinzuafing",
+	"nstab-mainpage": "Hoamseitn",
+	"view-edit-local": "Lokale Beschreibung beoabatn"
 }

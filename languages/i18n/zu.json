@@ -444,5 +444,12 @@
 	"searchsuggest-search": "Phenya {{SITENAME}}",
 	"log-action-filter-block": "Uhlobo block:",
 	"log-action-filter-block-block": "Block",
-	"log-action-filter-suppress-block": "Umsebenzisi baqedwe by block"
+	"log-action-filter-suppress-block": "Umsebenzisi baqedwe by block",
+	"action-protect": "Londoloza",
+	"view-edit": "Hlela",
+	"view-create": "Dala",
+	"view-history": "Bona umlando",
+	"view-view": "Funda",
+	"action-addsection": "Faka isihloko",
+	"nstab-mainpage": "Ikhasi lengqikithi"
 }

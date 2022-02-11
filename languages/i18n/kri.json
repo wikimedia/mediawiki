@@ -484,5 +484,15 @@
 	"fileduplicatesearch-submit": "Sarch",
 	"specialpages": "Spèshal pejdèm",
 	"deletepage": "Delet dhis pej hyar",
-	"searchsuggest-search": "Sarch"
+	"searchsuggest-search": "Sarch",
+	"action-viewdeleted": "Luk am $1?",
+	"action-protect": "Protèkt",
+	"view-edit": "Èdit",
+	"view-create": "Kreat",
+	"view-history": "Luk historia",
+	"action-delete": "Delet",
+	"action-move": "Muf",
+	"view-view": "Rid",
+	"action-addsection": "Add tòpik",
+	"nstab-mainpage": "Men Pej"
 }

@@ -302,7 +302,7 @@
 	"rightslog": "noka kamamatawaw ka’letan kina:at",
 	"action-edit": " bienji ka hini ye:myen",
 	"action-createaccount": "paskayzaeh ka hini kamamatawaw zhanghaw",
-	"action-move": " tilkoraeh ka hini kina:at",
+	"action-move": " tilkoraeh",
 	"enhancedrc-history": "kakhayza’an kin’i’iyaeh",
 	"recentchanges": "haysani’ sinapih",
 	"recentchanges-legend": " haysani’ somapih kapawhi:ilan",
@@ -672,5 +672,13 @@
 	"duration-days": "$1 {{PLURAL:$1| hahila:}}",
 	"log-action-filter-all": "saeboeh",
 	"log-action-filter-block-block": "soksok",
-	"authmanager-userdoesnotexist": "kamamatawaw zhanghaw \"$1\" ’i’ini’ ka:at ka raro:o’"
+	"authmanager-userdoesnotexist": "kamamatawaw zhanghaw \"$1\" ’i’ini’ ka:at ka raro:o’",
+	"view-edit": " bienji",
+	"view-create": "paskayzaeh",
+	"view-history": "komita’ kahayza’an kin’i’iyaeh",
+	"action-delete": "boloe’",
+	"view-view": "kiSka:at",
+	"view-view-foreign": "ray $1 komita’",
+	"view-create-local": "baba:aw rinpa: hini ray ’asang kapakSekla’an",
+	"nstab-mainpage": "So:ye’"
 }

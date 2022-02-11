@@ -1419,5 +1419,17 @@
 	"logentry-move-move_redir-noredirect": "$1 adlı qullanıcı $3 saifesiniñ adını yönetme üzerinden yañı bir yönetme qaldırmayıp $4 dep {{GENDER:$2|deñiştirdi}}",
 	"searchsuggest-search": "Qıdır",
 	"searchsuggest-containing": "içinde bu olğan...",
-	"pagelang-language": "Til"
+	"pagelang-language": "Til",
+	"action-viewdeleted": "$1 kör?",
+	"action-protect": "Qorçala",
+	"view-edit": "Deñiştir",
+	"view-create": "Yarat",
+	"action-unprotect": "Qorçalavnı deñiştir",
+	"view-history": "Keçmişini köster",
+	"action-delete": "Yoq et",
+	"action-undelete": "Yañıdan yarat",
+	"action-move": "Adını deñiştir",
+	"view-view": "Oqu",
+	"action-addsection": "Mevzu qoş",
+	"nstab-mainpage": "Baş saife"
 }

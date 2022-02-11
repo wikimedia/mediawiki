@@ -885,5 +885,16 @@
 	"revdelete-restricted": "ei beperkiengen an beheêrders opeleid",
 	"revdelete-unrestricted": "ei beperkiengen voe beheêrders opeheven",
 	"rightsnone": "(hin)",
-	"searchsuggest-search": "Zoek"
+	"searchsuggest-search": "Zoek",
+	"action-viewdeleted": "$1 bekieken?",
+	"action-protect": "Bescherm",
+	"view-edit": "Bewerken",
+	"view-create": "Anmaeken",
+	"action-unprotect": "Beveiligienge anpass'n",
+	"view-history": "Geschiedenisse bekiek'n",
+	"action-delete": "Wissen",
+	"action-undelete": "Plaets truhhe",
+	"action-move": "Verschuuf",
+	"view-view": "Lezen",
+	"action-addsection": "Voeg kopje toe"
 }

@@ -153,5 +153,13 @@
 	"movepagebtn": "Nyɛ telun",
 	"others": "wɛrɛ",
 	"ilsubmit": "Nyini",
-	"specialpages": "Nyɛw kɛrɛnkɛrɛnnen"
+	"specialpages": "Nyɛw kɛrɛnkɛrɛnnen",
+	"action-protect": "Kôlôchi",
+	"view-edit": "yɛlɛma",
+	"view-create": "Da",
+	"action-unprotect": "Kôlôchili yailaima",
+	"view-view": "Kalan",
+	"view-view-foreign": "Yé $1",
+	"view-create-local": "Kounafɔni fara a kan",
+	"view-edit-local": "KounafƆni yailai ma"
 }

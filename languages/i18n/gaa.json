@@ -515,5 +515,15 @@
 	"revdelete-content-hid": "akɛ mlinii etee",
 	"feedback-thanks-title": "Oyiwaladɔŋŋ!",
 	"searchsuggest-search": "Taomɔ {{SITENAME}}",
-	"duration-days": "$1 {{PLURAL:$1|gbi|gbii}}"
+	"duration-days": "$1 {{PLURAL:$1|gbi|gbii}}",
+	"action-protect": "Yibaamɔ",
+	"view-edit": "Tsakemɔ",
+	"view-create": "Bɔɔ",
+	"view-history": "Kwɛmɔ nibii ni eho",
+	"action-delete": "Jiemɔ",
+	"action-move": "Tsi",
+	"view-view": "Kanemɔ",
+	"action-addsection": "Kɛ mlijaa yitso afata he",
+	"view-view-foreign": "Kwɛmɔ yɛ $1",
+	"nstab-mainpage": "Baafa lɛ diɛŋtsɛ"
 }

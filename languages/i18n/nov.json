@@ -286,5 +286,9 @@
 	"version": "Versione",
 	"version-specialpages": "Spesial pagines",
 	"version-software-version": "Versione",
-	"specialpages": "Spesial pagines"
+	"specialpages": "Spesial pagines",
+	"action-protect": "Protekte",
+	"view-edit": "Immodifika",
+	"action-delete": "Ekarta",
+	"view-view": "Lekte"
 }

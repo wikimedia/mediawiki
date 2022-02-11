@@ -462,7 +462,7 @@
 	"action-createtalk": "دِرِس هاکردن اتا صفحه که ونه دله بنشنه گپ بزوئن",
 	"action-createaccount": "درِس هکردن این حساب کاروری",
 	"action-minoredit": "علامت بزوئن اینتا دچی‌ین به عونوان جوزئی",
-	"action-move": "دکشی‌ین اینتا صفحه",
+	"action-move": "دکش هاکردن",
 	"action-move-subpages": "دکشی‌ین اینتا صفحه و ونه زیر رج‌ئون",
 	"action-move-rootuserpages": "دکشی‌ین صفحه‌ئون کاروری سرچله",
 	"enhancedrc-history": "تاریخچه",
@@ -785,5 +785,18 @@
 	"api-error-badtoken": "خطای داخلی: کد امنیتی اشتبائه (Bad token).",
 	"api-error-stashfailed": "خطای داخلی: کارساز نتونده پرونده موقت ره ذخیره هاکنه.",
 	"api-error-unknown-warning": "اخطار نشناسی‌یه: $1",
-	"json-error-invalid-property-name": "این دی‌کدِ نوم بی‌اعتباره"
+	"json-error-invalid-property-name": "این دی‌کدِ نوم بی‌اعتباره",
+	"action-viewdeleted": "نمایش $1؟",
+	"action-protect": "زلفن بزوئن",
+	"view-edit": "دچی‌ین",
+	"view-create": "بساتن",
+	"action-unprotect": "زلفن عوض هاکردن",
+	"view-history": "تاریخچه ره بَدی‌ین",
+	"action-delete": "پاک هاکردن",
+	"action-undelete": "دباره بنویشته بیّن",
+	"view-view": "بخوندستن",
+	"action-addsection": "ترنه گپ بزوئن",
+	"view-view-foreign": "هارشی‌ین $1 دله",
+	"view-create-local": "مَله‌یی توضیحات ره بی‌یشتن",
+	"nstab-mainpage": "گت صفحه"
 }

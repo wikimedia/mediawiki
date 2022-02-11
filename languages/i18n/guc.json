@@ -639,5 +639,16 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|nüliikirain}} wane so'uutpünaa jeketü sünain $3",
 	"searchsuggest-search": "Achajawaa sünain {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ka'i|ka'irua}}",
-	"randomrootpage": "Suurala ee'iyalayaa leeyataka"
+	"randomrootpage": "Suurala ee'iyalayaa leeyataka",
+	"action-protect": "Eisalajaa",
+	"view-edit": "Anaataa",
+	"view-create": "Akumajaa",
+	"view-history": "E'rajaa a'wanajaanüka",
+	"action-delete": "Ojuichajaa",
+	"action-move": "Ansülaa",
+	"view-view": "Aashaje'eraa",
+	"action-addsection": "Alüjülee jeketü",
+	"view-view-foreign": "E'raa sulu'u $1",
+	"view-create-local": "Akoo'omüinja süchiki sukuwa'ipa eejetüle'e shia",
+	"nstab-mainpage": "Ee'iyalaaya a'laülaasü"
 }

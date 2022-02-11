@@ -576,5 +576,15 @@
 	"searchsuggest-search": "Sherura {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ekiro|ebiro}}",
 	"pagelang-reason": "Enshoga",
-	"log-action-filter-upload-revert": "Garuza oku kyabire kiri"
+	"log-action-filter-upload-revert": "Garuza oku kyabire kiri",
+	"view-edit": "Gorora",
+	"view-create": "Hangaho",
+	"view-history": "Reba ebi'kozirwe",
+	"action-delete": "Sangura",
+	"action-move": "Tambuza",
+	"view-view": "Shoma",
+	"action-addsection": "Taho omuhajaano",
+	"view-view-foreign": "Reebera omu $1",
+	"view-create-local": "Tekamu ebirikugikwataho",
+	"nstab-mainpage": "Omuka"
 }

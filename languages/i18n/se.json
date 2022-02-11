@@ -1059,5 +1059,17 @@
 	"mediastatistics-header-unknown": "Dovdameahttun",
 	"mw-widgets-mediasearch-input-placeholder": "Oza miediaid",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten",
-	"log-action-filter-all": "Buot"
+	"log-action-filter-all": "Buot",
+	"action-viewdeleted": "Čájet $1?",
+	"action-protect": "Suodjal",
+	"view-edit": "Rievdat",
+	"view-create": "Álggat",
+	"action-unprotect": "Rievdat suodjaleami",
+	"view-history": "Geahča historjjá",
+	"action-delete": "Sihko",
+	"action-undelete": "Máhcat",
+	"action-move": "Sirdde",
+	"view-view": "Loga",
+	"action-addsection": "Lasit fáttá",
+	"nstab-mainpage": "Váldosiidu"
 }

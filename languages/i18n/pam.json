@@ -1471,5 +1471,18 @@
 	"feedback-thanks-title": "Salamat pu!",
 	"headline-anchor-title": "Ing suglung king seksyun a ini",
 	"mw-widgets-titleinput-description-new-page": "Ala yu pa ing bulung (page)",
-	"mw-widgets-titleinput-description-redirect": "I-redirekta king/kang $1"
+	"mw-widgets-titleinput-description-redirect": "I-redirekta king/kang $1",
+	"action-viewdeleted": "Lon ya ing $1?",
+	"action-protect": "Protektan/kambilan",
+	"view-edit": "Alilan",
+	"view-create": "Maglalang",
+	"action-unprotect": "Lako ya pangaprotekta",
+	"view-history": "Lawen ya ing amlat",
+	"action-delete": "Buran",
+	"action-undelete": "Isubli/iurung ya pangabura",
+	"action-move": "Iyalis",
+	"view-view": "Basan",
+	"action-addsection": "Dagdagan ing pisasabian",
+	"view-view-foreign": "Lawen king $1",
+	"nstab-mainpage": "Pun Bulung"
 }
