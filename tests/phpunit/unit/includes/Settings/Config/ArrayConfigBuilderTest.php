@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
+use MediaWiki\Config\IterableConfig;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigBuilder;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +33,12 @@ class ArrayConfigBuilderTest extends TestCase {
 		$this->builder
 			->set( 'foo',  'bar' )
 			->set( 'baz', 'quu' );
-		$this->assertSame( 'bar', $this->builder->build()->get( 'foo' ) );
-		$this->assertSame( 'quu', $this->builder->build()->get( 'baz' ) );
+
+		$config = $this->builder->build();
+
+		$this->assertInstanceOf( IterableConfig::class, $config );
+		$this->assertSame( 'bar', $config->get( 'foo' ) );
+		$this->assertSame( 'quu', $config->get( 'baz' ) );
+		$this->assertSame( [ 'foo', 'baz' ], $config->getNames() );
 	}
 }
