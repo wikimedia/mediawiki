@@ -308,14 +308,21 @@ class SearchFormWidget {
 	}
 
 	private function createPowerSearchRememberCheckBoxHtml(): string {
-		return Xml::checkLabel( $this->specialSearch->msg( 'powersearch-remember' )->text(),
-			'nsRemember', 'mw-search-powersearch-remember', false,
-			// The token goes here rather than in a hidden field so it
-			// is only sent when necessary (not every form submission)
-			[
+		return new \OOUI\FieldLayout(
+			new \OOUI\CheckboxInputWidget( [
+				'name' => 'nsRemember',
+				'selected' => false,
+				'inputId' => 'mw-search-powersearch-remember',
+				// The token goes here rather than in a hidden field so it
+				// is only sent when necessary (not every form submission)
 				'value' => $this->specialSearch->getUser()
-					->getEditToken( 'searchnamespace', $this->specialSearch->getRequest() ),
-			] );
+					->getEditToken( 'searchnamespace', $this->specialSearch->getRequest() )
+			] ),
+			[
+			'label' => $this->specialSearch->msg( 'powersearch-remember' )->text(),
+			'align' => 'inline'
+			]
+		);
 	}
 
 	private function createNamespaceToggleBoxHtml(): string {
@@ -347,10 +354,18 @@ class SearchFormWidget {
 	private function createNamespaceCheckbox( string $namespace, array $activeNamespaces ): string {
 		$namespaceDisplayName = $this->getNamespaceDisplayName( $namespace );
 
-		return Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ],
-			Xml::check( "ns{$namespace}", in_array( $namespace, $activeNamespaces ),
-				[ 'id' => "mw-search-ns{$namespace}" ] ) . "\u{00A0}" .
-			Xml::label( $namespaceDisplayName, "mw-search-ns{$namespace}" ) );
+		return new \OOUI\FieldLayout(
+			new \OOUI\CheckboxInputWidget( [
+				'name' => "ns{$namespace}",
+				'selected' => in_array( $namespace, $activeNamespaces ),
+				'inputId' => "mw-search-ns{$namespace}",
+				'value' => '1'
+			] ),
+			[
+			'label' => $namespaceDisplayName,
+			'align' => 'inline'
+			]
+		);
 	}
 
 	private function getNamespaceDisplayName( string $namespace ): string {
