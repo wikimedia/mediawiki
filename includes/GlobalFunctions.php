@@ -105,40 +105,44 @@ function wfLoadSkins( array $skins ) {
 }
 
 /**
- * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
- * @param array $a
- * @param array $b
+ * Like array_diff( $arr1, $arr2 ) except that it works with two-dimensional arrays.
+ * @param string[]|array[] $arr1
+ * @param string[]|array[] $arr2
  * @return array
  */
-function wfArrayDiff2( $a, $b ) {
-	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
-}
-
-/**
- * @param array|string $a
- * @param array|string $b
- * @return int
- */
-function wfArrayDiff2_cmp( $a, $b ) {
-	if ( is_string( $a ) && is_string( $b ) ) {
-		return strcmp( $a, $b );
-	} elseif ( count( $a ) !== count( $b ) ) {
-		return count( $a ) <=> count( $b );
-	} else {
-		reset( $a );
-		reset( $b );
-		while ( key( $a ) !== null && key( $b ) !== null ) {
-			$valueA = current( $a );
-			$valueB = current( $b );
-			$cmp = strcmp( $valueA, $valueB );
-			if ( $cmp !== 0 ) {
-				return $cmp;
-			}
-			next( $a );
-			next( $b );
+function wfArrayDiff2( $arr1, $arr2 ) {
+	/**
+	 * @param string|array $a
+	 * @param string|array $b
+	 */
+	$comparator = static function ( $a, $b ): int {
+		if ( is_string( $a ) && is_string( $b ) ) {
+			return strcmp( $a, $b );
 		}
-		return 0;
-	}
+		if ( !is_array( $a ) && !is_array( $b ) ) {
+			throw new InvalidArgumentException(
+				'This function assumes that array elements are all strings or all arrays'
+			);
+		}
+		if ( count( $a ) !== count( $b ) ) {
+			return count( $a ) <=> count( $b );
+		} else {
+			reset( $a );
+			reset( $b );
+			while ( key( $a ) !== null && key( $b ) !== null ) {
+				$valueA = current( $a );
+				$valueB = current( $b );
+				$cmp = strcmp( $valueA, $valueB );
+				if ( $cmp !== 0 ) {
+					return $cmp;
+				}
+				next( $a );
+				next( $b );
+			}
+			return 0;
+		}
+	};
+	return array_udiff( $arr1, $arr2, $comparator );
 }
 
 /**
