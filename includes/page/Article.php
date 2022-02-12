@@ -1815,8 +1815,9 @@ class Article implements Page {
 	/**
 	 * Perform a deletion and output success or failure messages.
 	 *
-	 * @deprecated since 1.37 Use WikiPage::doDeleteArticleReal if you only need to delete the article. If you also need
-	 * things to happen with OutputPage, you may want to check the hooks in DeleteAction instead.
+	 * @deprecated since 1.37, hard deprecated since 1.38. Use WikiPage::doDeleteArticleReal if you only need to
+	 * delete the article. If you also need things to happen with OutputPage, you may want to check the hooks in
+	 * DeleteAction instead.
 	 *
 	 * @param string $reason
 	 * @param bool $suppress
@@ -1825,6 +1826,7 @@ class Article implements Page {
 	 * @throws MWException
 	 */
 	public function doDelete( $reason, $suppress = false, $immediate = false ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$error = '';
 		$context = $this->getContext();
 		$outputPage = $context->getOutput();
