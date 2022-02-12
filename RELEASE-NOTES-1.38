@@ -366,6 +366,10 @@ because of Phabricator reports.
 * The following public methods in EditPage, unused externally, were
   made private:
    - ::getCancelLink()
+   - ::isSupportedContentModel()
+   - ::getParentRevId()
+* EditPage::setApiEditOverride() was marked as @internal for use by
+  ApiEditPage only.
 * SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
 * The following deprecated methods have been removed from ILBFactory:
   - ::beginMasterChanges() since 1.37
@@ -619,6 +623,20 @@ because of Phabricator reports.
   parameter has been deprecated.
 * Passing the $formCallback parameter to EditPage::showEditForm, deprecated in
   1.25 and previously emitting a warn notice, now emits a deprecation notice.
+* EditPage::$action has been deprecated.
+* The following properties in EditPage now emit deprecation notices when used
+  from another class:
+  - mArticle (use ::getArticle() instead)
+  - mTitle (use ::getTitle() instead)
+  - isNew (no replacement)
+  - allowBlankArticle (no replacement)
+  - selfRedirect (no replacement)
+  - allowSelfRedirect (no replacement)
+  - diff (no replacement)
+  - textbox2 (no replacement)
+  - undoAfter (no replacement)
+  - edit (no replacement)
+  - contentLength (no replacement)
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
