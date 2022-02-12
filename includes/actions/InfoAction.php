@@ -198,7 +198,10 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.action.styles',
+		] );
 
 		// "Help" button
 		$this->addHelpLink( 'Page information' );
@@ -225,21 +228,6 @@ class InfoAction extends FormlessAction {
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
 		}
-
-		// TODO we shouldn't be adding styles manually like this
-		// Hide "This page is a member of # hidden categories" explanation
-		$content .= Html::element(
-			'style',
-			[],
-			'.mw-hiddenCategoriesExplanation { display: none; }'
-		) . "\n";
-
-		// Hide "Templates used on this page" explanation
-		$content .= Html::element(
-			'style',
-			[],
-			'.mw-templatesUsedExplanation { display: none; }'
-		) . "\n";
 
 		// Get page information
 		$pageInfo = $this->pageInfo();
