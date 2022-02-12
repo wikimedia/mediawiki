@@ -232,6 +232,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiPurge::class,
 			'services' => [
 				'WikiPageFactory',
+				'TitleFormatter',
 			],
 		],
 		'setnotificationtimestamp' => [
