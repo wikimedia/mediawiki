@@ -299,6 +299,8 @@ because of Phabricator reports.
 * Http::$httpEngine, deprecated since 1.34, has been removed. The only available
   HTTP engine is now Guzzle. CurlHttpRequest and PhpHttpRequest classes were
   removed.
+* The UserRightsProxy class was deprecated. Pass the correct domain to
+  UserGroupManagerFactory instead.
 * Parser option enableLimitReport was deprecated. The report is now generated
   post-parse and can be included by providing 'includeDebugInfo' option
   to ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
