@@ -29,6 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.
+ * @deprecated since 1.38, pass the correct domain to UserGroupManagerFactory instead.
  */
 class UserRightsProxy implements UserIdentity {
 	use WikiAwareEntityTrait;
