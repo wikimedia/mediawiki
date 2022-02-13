@@ -3104,6 +3104,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();
+		// Guard against data corruption T301433
+		$added = array_map( 'strval', $added );
+		$deleted = array_map( 'strval', $deleted );
 		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
 			getCategoryLinkType( $this->getTitle()->getNamespace() );
 
