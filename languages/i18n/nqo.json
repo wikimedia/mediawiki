@@ -1859,7 +1859,7 @@
 	"emailuser": "ߗߋߛߓߍ ߗߋ߫ ߣߌ߲߬ ߕߌ߭ ߡߊ߬",
 	"emailuser-title-target": "ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ߫ ߟߊߕߊ߯ {{GENDER:$1|ߟߊߓߊ߯ߙߟߊ}} ߣߌ߲߬ ߡߊ߬",
 	"emailuser-title-notarget": "ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߟߊ߬ߓߊ߰ߙߊ߬ߟߊ",
-	"emailpagetext": "ߌ ߘߌ߫ ߛߋ߫ ߘߎ߰ߟߊ߬ߘߐ߫ ߖߙߎߡߎ߲ ߣߌ߲߬ ߠߊߓߊ߯ߙߊ߫ ߟߊ߫ ߞߊ߬ ߢߎߡߍߙߋ߲߫ ߗߋߛߓߍ ߗߋ߫ {{$1 GENDER:|user}} ߡߊ߬. \nߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߛߊ߲߬ߓߊ߬ߕߐ߮ ߡߍ߲ ߠߊߘߏ߲߬ߣߍ߲߫ ߦߴߌ ߓߟߏ߫ ߌ ߟߊ߫ [[Special:Preferences|your user preferences]] ߘߐ߫߸ ߏ߬ ߓߍߣߊ߬ ߦߌ߬ߘߊ߬ ߞߊ߬ \"ߝߘߊ߫\" ߛߊ߲߬ߓߊ߬ߕߐ߮ ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߟߊ߫ ߘߌ߫߸ ߏ߬ ߓߊ߯ ߞߍ߫ ߟߊ߬ߛߐ߫ߘߐ߲߬ߓߊ߮ ߘߌ߫ ߛߋ߫ ߌ ߖߋ߬ߓߌ߬ ߟߊ߫ ߝߊ߲ߞߊߢߊ߯߹",
+	"emailpagetext": "ߌ ߘߌ߫ ߛߋ߫ ߘߎ߰ߟߊ߬ߘߐ߫ ߖߙߎߡߎ߲ ߣߌ߲߬ ߠߊߓߊ߯ߙߊ߫ ߟߊ߫ ߞߊ߬ ߢߎߡߍߙߋ߲߫ ߗߋߛߓߍ ߗߋ߫ <!--\n  FIXME: \"user\" should be translated; do not translate \"GENDER:$1\": -->{{GENDER:$1|user}}<!--\n--> ߡߊ߬. \nߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߛߊ߲߬ߓߊ߬ߕߐ߮ ߡߍ߲ ߠߊߘߏ߲߬ߣߍ߲߫ ߦߴߌ ߓߟߏ߫ ߌ ߟߊ߫ <!--\n  FIXME: \"your user preferences\" should be translated; do not translate \"Special:Preferences\": -->[[Special:Preferences|your user preferences]]<!--\n--> ߘߐ߫߸ ߏ߬ ߓߍߣߊ߬ ߦߌ߬ߘߊ߬ ߞߊ߬ \"ߝߘߊ߫\" ߛߊ߲߬ߓߊ߬ߕߐ߮ ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߟߊ߫ ߘߌ߫߸ ߏ߬ ߓߊ߯ ߞߍ߫ ߟߊ߬ߛߐ߫ߘߐ߲߬ߓߊ߮ ߘߌ߫ ߛߋ߫ ߌ ߖߋ߬ߓߌ߬ ߟߊ߫ ߝߊ߲ߞߊߢߊ߯߹",
 	"defemailsubject": "{{SITENAME}} ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߝߘߊߣߍ߲߫ ߟߊ߬ߓߊ߰ߙߊ߬ߟߊ  \"$1\" ߟߋ߬ ߟߊ߫",
 	"usermaildisabled": "ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߟߊ߬ߓߊ߰ߙߊ߬ߟߌ ߓߘߊ߫ ߓߴߊ߬ ߟߊ߫",
 	"usermaildisabledtext": "ߌ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߗߋ߫ ߟߊ߫ ߟߊ߬ߓߊ߰ߙߊ߬ߟߊ ߘߏ ߟߎ߬ ߡߊ߬ ߥߞߌ ߣߌ߲߬ ߞߊ߲߬",

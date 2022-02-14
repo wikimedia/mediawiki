@@ -164,7 +164,9 @@
 			"Rivka Silinsky",
 			"Wileyfoxyx",
 			"Wolterhon",
-			"Annablazeprobable"
+			"Annablazeprobable",
+			"Base",
+			"Malikxan"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -774,7 +776,7 @@
 	"savearticle": "Записать страницу",
 	"savechanges": "Записать изменения",
 	"publishpage": "Опубликовать страницу",
-	"publishchanges": "Записать страницу",
+	"publishchanges": "Опубликовать изменения",
 	"savearticle-start": "Сохранить страницу…",
 	"savechanges-start": "Сохранить изменения…",
 	"publishpage-start": "Создать страницу…",

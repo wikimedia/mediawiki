@@ -22,7 +22,8 @@
 			"පසිඳු කාවින්ද",
 			"아라",
 			"McDutchie",
-			"MinecraftAustralia"
+			"MinecraftAustralia",
+			"Castillerian"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -198,7 +199,7 @@
 	"delete": "אויסמעקן",
 	"undelete_short": "צוריקשטעלן {{PLURAL:$1|איין רעדאַקטירונג|$1 רעדאַקטירונגען}}",
 	"viewdeleted_short": "באַקוקן {{PLURAL:$1|איין געמעקטע ענדערונג|$1 געמעקטע ענדערונגען}}",
-	"protect": "באַשיצן",
+	"protect": "שיצן",
 	"protect_change": "טוישן",
 	"unprotect": "ענדערונג באַשיצונג",
 	"newpage": "נייער בלאַט",

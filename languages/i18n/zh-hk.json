@@ -153,7 +153,7 @@
 	"lineno": "第$1行：",
 	"editundo": "復原",
 	"prefs-user-pages": "用戶頁面",
-	"prefs-personal": "用戶資料",
+	"prefs-personal": "用戶檔案",
 	"username": "{{GENDER:$1|用戶名稱}}：",
 	"gender-unknown": "當提到您時，本軟件會盡可能使用性別中性詞彙",
 	"gender-notknown": "此人",
