@@ -61,4 +61,33 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 		$conf->set( 'one', '3' );
 		$this->assertSame( '3', $conf->get( 'one' ) );
 	}
+
+	/**
+	 * @covers HashConfig::getNames
+	 */
+	public function testGetNames() {
+		$conf = new HashConfig( [
+			'one' => '1',
+		] );
+		$conf->set( 'two', '2' );
+
+		$this->assertSame( [ 'one', 'two' ], $conf->getNames() );
+	}
+
+	/**
+	 * @covers HashConfig::getIterator
+	 */
+	public function testTraversable() {
+		$conf = new HashConfig( [
+			'one' => '1',
+		] );
+		$conf->set( 'two', '2' );
+
+		$actual = [];
+		foreach ( $conf as $name => $value ) {
+			$actual[$name] = $value;
+		}
+
+		$this->assertSame( [ 'one' => '1', 'two' => '2' ], $actual );
+	}
 }
