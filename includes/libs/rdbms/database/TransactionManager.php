@@ -22,6 +22,9 @@
  */
 namespace Wikimedia\Rdbms;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -67,6 +70,20 @@ class TransactionManager {
 	/** @var int Number of write queries counted in trxWriteAdjDuration */
 	private $trxWriteAdjQueryCount = 0;
 
+	/** @var array List of (name, unique ID, savepoint ID) for each active atomic section level */
+	private $trxAtomicLevels = [];
+	/** @var bool Whether the current transaction was started implicitly due to DBO_TRX */
+	private $trxAutomatic = false;
+	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
+	private $trxAutomaticAtomic = false;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	public function __construct( LoggerInterface $logger = null ) {
+		$this->logger = $logger ?? new NullLogger();
+	}
+
 	public function trxLevel() {
 		return ( $this->trxId != '' ) ? 1 : 0;
 	}
@@ -81,8 +98,9 @@ class TransactionManager {
 
 	/**
 	 * TODO: This should be removed once all usages have been migrated here
+	 * @param string $mode One of IDatabase::TRANSACTION_* values
 	 */
-	public function newTrxId() {
+	public function newTrxId( $mode ) {
 		static $nextTrxId;
 		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
 		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
@@ -94,6 +112,13 @@ class TransactionManager {
 		$this->trxWriteAdjDuration = 0.0;
 		$this->trxWriteAdjQueryCount = 0;
 		$this->trxWriteCallers = [];
+		$this->trxAtomicLevels = [];
+		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
+		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
+		// with the transaction just because startAtomic() has not yet finished updating the
+		// tracking fields (e.g. trxAtomicLevels).
+		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
+		$this->trxAutomaticAtomic = false;
 	}
 
 	/**
@@ -249,5 +274,209 @@ class TransactionManager {
 
 	public function getTrxWriteAffectedRows(): int {
 		return $this->trxWriteAffectedRows;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function flatAtomicSectionList() {
+		return array_reduce( $this->trxAtomicLevels, static function ( $accum, $v ) {
+			return $accum === null ? $v[0] : "$accum, " . $v[0];
+		} );
+	}
+
+	public function resetTrxAtomicLevels() {
+		$this->trxAtomicLevels = [];
+	}
+
+	public function explicitTrxActive() {
+		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
+	}
+
+	public function trxCheckBeforeClose( IDatabase $db, $fname, $trxFname ) {
+		$error = null;
+		if ( $this->trxAtomicLevels ) {
+			// Cannot let incomplete atomic sections be committed
+			$levels = $this->flatAtomicSectionList();
+			$error = "$fname: atomic sections $levels are still open";
+		} elseif ( $this->trxAutomatic ) {
+			// Only the connection manager can commit non-empty DBO_TRX transactions
+			// (empty ones we can silently roll back)
+			if ( $db->writesOrCallbacksPending() ) {
+				$error = "$fname: " .
+					"expected mass rollback of all peer transactions (DBO_TRX set)";
+			}
+		} else {
+			// Manual transactions should have been committed or rolled
+			// back, even if empty.
+			$error = "$fname: transaction is still open (from {$trxFname})";
+		}
+
+		return $error;
+	}
+
+	public function onAtomicSectionCancel( IDatabase $db, $fname ): void {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
+		}
+	}
+
+	/**
+	 * @return AtomicSectionIdentifier|null ID of the topmost atomic section level
+	 */
+	public function currentAtomicSectionId(): ?AtomicSectionIdentifier {
+		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
+			$levelInfo = end( $this->trxAtomicLevels );
+
+			return $levelInfo[1];
+		}
+
+		return null;
+	}
+
+	public function addToAtomicLevels( $fname, AtomicSectionIdentifier $sectionId, $savepointId ) {
+		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
+		$this->logger->debug( 'startAtomic: entering level ' .
+			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
+	}
+
+	public function onBeginTransaction( IDatabase $db, $fname, $trxFname ): void {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
+		if ( $this->trxAtomicLevels ) {
+			$levels = $this->flatAtomicSectionList();
+			$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
+			throw new DBUnexpectedError( $db, $msg );
+		} elseif ( !$this->trxAutomatic ) {
+			$msg = "$fname: explicit transaction already active (from {$trxFname})";
+			throw new DBUnexpectedError( $db, $msg );
+		} else {
+			$msg = "$fname: implicit transaction already active (from {$trxFname})";
+			throw new DBUnexpectedError( $db, $msg );
+		}
+	}
+
+	/**
+	 * @param IDatabase $db
+	 * @param string $fname
+	 * @param string $flush one of IDatabase::FLUSHING_* values
+	 * @return bool false if the commit should go aborted, true otherwise.
+	 */
+	public function onCommit( IDatabase $db, $fname, $flush ): bool {
+		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
+			// There are still atomic sections open; this cannot be ignored
+			$levels = $this->flatAtomicSectionList();
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: got COMMIT while atomic sections $levels are still open"
+			);
+		}
+
+		if ( $flush === IDatabase::FLUSHING_INTERNAL || $flush === IDatabase::FLUSHING_ALL_PEERS ) {
+			if ( !$this->trxLevel() ) {
+				return false; // nothing to do
+			} elseif ( !$this->trxAutomatic ) {
+				throw new DBUnexpectedError(
+					$db,
+					"$fname: flushing an explicit transaction, getting out of sync"
+				);
+			}
+		} elseif ( !$this->trxLevel() ) {
+			$this->logger->error(
+				"$fname: no transaction to commit, something got out of sync",
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'trx'
+				]
+			);
+
+			return false; // nothing to do
+		} elseif ( $this->trxAutomatic ) {
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: expected mass commit of all peer transactions (DBO_TRX set)"
+			);
+		}
+		return true;
+	}
+
+	public function onEndAtomic( IDatabase $db, $fname ): array {
+		// Check if the current section matches $fname
+		$pos = count( $this->trxAtomicLevels ) - 1;
+		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+		$this->logger->debug( "endAtomic: leaving level $pos ($fname)", [ 'db_log_category' => 'trx' ] );
+
+		if ( $savedFname !== $fname ) {
+			throw new DBUnexpectedError(
+				$db,
+				"Invalid atomic section ended (got $fname but expected $savedFname)"
+			);
+		}
+
+		return [ $savepointId, $sectionId ];
+	}
+
+	public function getPositionFromSectionId( AtomicSectionIdentifier $sectionId = null ): ?int {
+		if ( $sectionId !== null ) {
+			// Find the (last) section with the given $sectionId
+			$pos = -1;
+			foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
+				if ( $asId === $sectionId ) {
+					$pos = $i;
+				}
+			}
+		} else {
+			$pos = null;
+		}
+
+		return $pos;
+	}
+
+	public function cancelAtomic( $pos ) {
+		$excisedIds = [];
+		$excisedFnames = [];
+		$newTopSection = $this->currentAtomicSectionId();
+		if ( $pos !== null ) {
+			// Remove all descendant sections and re-index the array
+			$len = count( $this->trxAtomicLevels );
+			for ( $i = $pos + 1; $i < $len; ++$i ) {
+				$excisedFnames[] = $this->trxAtomicLevels[$i][0];
+				$excisedIds[] = $this->trxAtomicLevels[$i][1];
+			}
+			$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
+			$newTopSection = $this->currentAtomicSectionId();
+		}
+
+		// Check if the current section matches $fname
+		$pos = count( $this->trxAtomicLevels ) - 1;
+		list( $savedFname, $savedSectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+
+		if ( $excisedFnames ) {
+			$this->logger->debug( "cancelAtomic: canceling level $pos ($savedFname) " .
+				"and descendants " . implode( ', ', $excisedFnames ),
+				[ 'db_log_category' => 'trx' ]
+			);
+		} else {
+			$this->logger->debug( "cancelAtomic: canceling level $pos ($savedFname)",
+				[ 'db_log_category' => 'trx' ]
+			);
+		}
+
+		return [ $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ];
+	}
+
+	public function popAtomicLevel() {
+		array_pop( $this->trxAtomicLevels );
+	}
+
+	public function isClean() {
+		return !$this->trxAtomicLevels && $this->trxAutomaticAtomic;
+	}
+
+	public function setAutomaticAtomic( $value ) {
+		$this->trxAutomaticAtomic = $value;
+	}
+
+	public function turnOnAutomatic() {
+		$this->trxAutomatic = true;
 	}
 }
