@@ -66,7 +66,7 @@ class ImageLinksTable extends TitleLinksTable {
 
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $link => $unused ) {
-			yield $link;
+			yield (string)$link;
 		}
 	}
 

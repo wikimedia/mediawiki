@@ -39,7 +39,7 @@ class InterwikiLinksTable extends LinksTable {
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $prefix => $links ) {
 			foreach ( $links as $title => $unused ) {
-				yield [ $prefix, $title ];
+				yield [ (string)$prefix, (string)$title ];
 			}
 		}
 	}
@@ -63,7 +63,7 @@ class InterwikiLinksTable extends LinksTable {
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $prefix => $links ) {
 			foreach ( $links as $title => $unused ) {
-				yield [ $prefix, $title ];
+				yield [ (string)$prefix, (string)$title ];
 			}
 		}
 	}

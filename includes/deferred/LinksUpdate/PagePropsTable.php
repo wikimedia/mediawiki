@@ -65,7 +65,7 @@ class PagePropsTable extends LinksTable {
 
 	protected function getNewLinkIDs() {
 		foreach ( $this->newProps as $name => $value ) {
-			yield [ $name, $value ];
+			yield [ (string)$name, $value ];
 		}
 	}
 
@@ -86,7 +86,7 @@ class PagePropsTable extends LinksTable {
 
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingProps() as $name => $value ) {
-			yield [ $name, $value ];
+			yield [ (string)$name, $value ];
 		}
 	}
 
