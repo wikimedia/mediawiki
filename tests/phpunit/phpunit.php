@@ -183,9 +183,7 @@ require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 $wrapper = new PHPUnitMaintClass();
 $wrapper->setup();
-
-// Define how settings are loaded (e.g. LocalSettings.php)
-define( 'MW_CONFIG_FILE', $wrapper->loadSettings() );
+$wrapper->loadSettings();
 
 function wfPHPUnitSetup() {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
