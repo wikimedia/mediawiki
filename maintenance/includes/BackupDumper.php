@@ -152,12 +152,12 @@ abstract class BackupDumper extends Maintenance {
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		parent::finalSetup( $settingsBuilder );
 		// re-declare the --schema-version option to include the default schema version
 		// in the description.
 		$schemaVersion = $settingsBuilder->getConfig()->get( 'XmlDumpSchemaVersion' );
 		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
 			'Default: ' . $schemaVersion, false, true );
-		parent::validateParamsAndArgs();
 	}
 
 	/**
