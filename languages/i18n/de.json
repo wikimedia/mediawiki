@@ -938,7 +938,7 @@
 	"rev-deleted-text-view": "Diese Version wurde <strong>gelöscht</strong>.\nDu kannst sie einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page=$1}} Lösch-Logbuch].",
 	"rev-suppressed-text-view": "Diese Version wurde <strong>unterdrückt</strong>.\nDu kannst sie einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page=$1}} Unterdrückungs-Logbuch].",
 	"rev-deleted-no-diff": "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.\nDetails stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-	"rev-suppressed-no-diff": "Du kannst diesen Versionsunterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.",
+	"rev-suppressed-no-diff": "Du kannst diesen Versionsunterschied nicht betrachten, da eine der Versionen <strong>unterdrückt</strong> wurde.",
 	"rev-deleted-unhide-diff": "Eine der Versionen dieses Versionsunterschieds wurde '''gelöscht'''.\nNähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].\nDu kannst [$1 diesen Versionsunterschied einsehen], sofern du möchtest.",
 	"rev-suppressed-unhide-diff": "Eine der Versionen dieses Versionsunterschieds wurde '''unterdrückt'''.\nNähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].\nDu kannst [$1 diesen Versionsunterschied einsehen], sofern du möchtest.",
 	"rev-deleted-diff-view": "Eine Version dieses Versionsunterschieds wurde '''gelöscht'''.\nDu kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",

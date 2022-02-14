@@ -151,7 +151,7 @@
 	"tog-enotifrevealaddr": "通知メールで自分のメールアドレスを明示",
 	"tog-shownumberswatching": "ページをウォッチしている利用者数を表示",
 	"tog-oldsig": "既存の署名:",
-	"tog-fancysig": "署名をwikitextとして扱う（あなたのユーザーページへの自動リンクはなし）",
+	"tog-fancysig": "署名をウィキ文として扱う (利用者ページへの自動リンクなし)",
 	"tog-uselivepreview": "ページを再読込せずにプレビューを表示",
 	"tog-forceeditsummary": "要約欄が空欄 (または取り消し時の要約が既定) の場合に確認を促す",
 	"tog-watchlisthideown": "自分の編集をウォッチリストに表示しない",

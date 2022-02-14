@@ -4073,5 +4073,6 @@
 	"paramvalidator-help-type-user-subtype-id": "ID utente (ad esempio \"#12345\")",
 	"paramvalidator-help-type-title": "Tipo: titolo della pagina",
 	"paramvalidator-help-type-title-must-exist": "Accetta solamente pagine esistenti.",
-	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti."
+	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti.",
+	"changeslist-nocomment": "Nessun oggetto della modifica"
 }

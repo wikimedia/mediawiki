@@ -3659,5 +3659,6 @@
 	"paramvalidator-help-type-user-subtype-name": "صارف نام",
 	"paramvalidator-help-type-user-subtype-ip": "آئی پی",
 	"paramvalidator-help-type-user-subtype-interwiki": "بین الویکی نام (مثلاً \"سابقہ>کوئی نام\")",
-	"paramvalidator-help-type-user-subtype-id": "صارف کا شناختی نمبر (مثلاً \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "صارف کا شناختی نمبر (مثلاً \"#12345\")",
+	"changeslist-nocomment": "کوئی خلاصۂ ترمیم نہیں"
 }
