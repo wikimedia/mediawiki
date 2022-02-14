@@ -4,6 +4,7 @@ namespace MediaWiki\Settings\Config;
 
 use Config;
 use HashConfig;
+use MediaWiki\Config\IterableConfig;
 
 class ArrayConfigBuilder implements ConfigBuilder {
 
@@ -30,7 +31,8 @@ class ArrayConfigBuilder implements ConfigBuilder {
 	/**
 	 * Build the configuration.
 	 *
-	 * @return Config
+	 * @todo Once we can use PHP 7.4, change the return type declaration to IterableConfig.
+	 * @return IterableConfig
 	 */
 	public function build(): Config {
 		return new HashConfig( $this->config );
