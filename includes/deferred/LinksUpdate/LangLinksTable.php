@@ -44,7 +44,7 @@ class LangLinksTable extends LinksTable {
 
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $key => $title ) {
-			yield [ $key, $title ];
+			yield [ (string)$key, $title ];
 		}
 	}
 
@@ -66,7 +66,7 @@ class LangLinksTable extends LinksTable {
 
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $lang => $title ) {
-			yield [ $lang, $title ];
+			yield [ (string)$lang, $title ];
 		}
 	}
 

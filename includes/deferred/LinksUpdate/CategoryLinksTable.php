@@ -105,6 +105,9 @@ class CategoryLinksTable extends TitleLinksTable {
 		$sourceTitle = Title::castFromPageIdentity( $this->getSourcePage() );
 		$sortKeyInputs = [];
 		foreach ( $parserOutput->getCategories() as $name => $sortKeyPrefix ) {
+			// Fix the type of numeric strings
+			$name = (string)$name;
+
 			// If the sort key is longer then 255 bytes, it is truncated by DB,
 			// and then doesn't match when comparing existing vs current
 			// categories, causing T27254.
@@ -150,7 +153,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $name => [ $prefix, $sortKey ] ) {
-			yield [ $name, $prefix ];
+			yield [ (string)$name, $prefix ];
 		}
 	}
 
@@ -194,7 +197,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $name => $sortkey ) {
-			yield [ $name, $sortkey ];
+			yield [ (string)$name, $sortkey ];
 		}
 	}
 

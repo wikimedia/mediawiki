@@ -50,13 +50,13 @@ class ExternalLinksTable extends LinksTable {
 
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $link => $unused ) {
-			yield $link;
+			yield (string)$link;
 		}
 	}
 
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $link => $unused ) {
-			yield $link;
+			yield (string)$link;
 		}
 	}
 
