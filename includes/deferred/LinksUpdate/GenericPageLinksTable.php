@@ -78,7 +78,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $ns => $links ) {
 			foreach ( $links as $dbk => $unused ) {
-				yield [ $ns, $dbk ];
+				yield [ $ns, (string)$dbk ];
 			}
 		}
 	}
@@ -86,7 +86,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $ns => $links ) {
 			foreach ( $links as $dbk => $unused ) {
-				yield [ $ns, $dbk ];
+				yield [ $ns, (string)$dbk ];
 			}
 		}
 	}

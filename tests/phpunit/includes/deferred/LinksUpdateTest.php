@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -854,5 +856,71 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$update->doUpdate();
 		$time2 = wfGetDB( DB_PRIMARY )->lastDoneWrites();
 		$this->assertSame( $time1, $time2 );
+	}
+
+	public static function provideNumericKeys() {
+		$tables = TestingAccessWrapper::constant( LinksTableGroup::class, 'CORE_LIST' );
+		foreach ( $tables as $tableName => $spec ) {
+			yield [ $tableName ];
+		}
+	}
+
+	/**
+	 * Unit test for numeric strings in ParserOutput array keys (T301433)
+	 *
+	 * @dataProvider provideNumericKeys
+	 */
+	public function testNumericKeys( $tableName ) {
+		$s = '123';
+		$i = 123;
+
+		/** @var ParserOutput $po */
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		$po->addCategory( $s, $s );
+		$po->addExternalLink( $s );
+		$po->addImage( $s );
+		$po->addInterwikiLink( new TitleValue( 0, $s, '', $s ) );
+		$po->addLanguageLink( "$s:$s" );
+		$po->addLink( new TitleValue( 0, $s ) );
+		$po->setPageProperty( $s, $s );
+		$po->addTemplate( new TitleValue( 0, $s ), 1, 1 );
+
+		$update = new LinksUpdate( $t, $po );
+		/** @var LinksTableGroup $tg */
+		$tg = TestingAccessWrapper::newFromObject( $update )->tableFactory;
+		$table = $tg->get( $tableName );
+		/** @var LinksTable $tt */
+		$tt = TestingAccessWrapper::newFromObject( $table );
+		$tableName = $tt->getTableName();
+		foreach ( $tt->getNewLinkIDs() as $linkID ) {
+			foreach ( (array)$linkID as $component ) {
+				$this->assertNotSame( $i, $component,
+					"Link ID of table $tableName should not be an integer " );
+			}
+		}
+	}
+
+	/**
+	 * Integration test for numeric category names (T301433)
+	 */
+	public function testNumericCategory() {
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Test 1", self::$testingPageId + 1 );
+		$po->addCategory( '123a', '123a' );
+		$update = new LinksUpdate( $t, $po );
+		$update->setStrictTestMode();
+		$update->doUpdate();
+
+		list( $t, $po ) = $this->makeTitleAndParserOutput( "Test 2", self::$testingPageId + 2 );
+		$po->addCategory( '123', '123' );
+		$update = new LinksUpdate( $t, $po );
+		$update->setStrictTestMode();
+		$update->doUpdate();
+
+		$this->assertSelect(
+			'category',
+			'cat_pages',
+			[ 'cat_title' => '123a' ],
+			[ [ '1' ] ]
+		);
 	}
 }
