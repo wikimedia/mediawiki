@@ -67,12 +67,15 @@ class SkinComponentTableOfContents implements SkinComponent {
 		foreach ( $sections as $i => $section ) {
 			// Set all the parent sections at the current top level.
 			if ( $section['toclevel'] === $toclevel ) {
+				$childSections = $this->getSectionsDataInternal(
+					array_slice( $sections, $i + 1 ),
+					$toclevel + 1
+				);
 				$data[] = $section + [
-						'array-sections' => $this->getSectionsDataInternal(
-							array_slice( $sections, $i + 1 ),
-							$toclevel + 1
-						)
-					];
+					'array-sections' => $childSections,
+					'is-top-level-section' => $toclevel === 1,
+					'is-parent-section' => !empty( $childSections )
+				];
 			}
 			// Child section belongs to a higher parent.
 			if ( $section['toclevel'] < $toclevel ) {
