@@ -970,6 +970,9 @@ return [
 		'MaximumMovedPages' => [
 			'default' => 100,
 		],
+		'ForceDeferredUpdatesPreSend' => [
+			'default' => false,
+		],
 		'CacheDirectory' => [
 			'default' => false,
 		],

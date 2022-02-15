@@ -1965,6 +1965,17 @@ For debugging
 # MaximumMovedPages {#MaximumMovedPages}
 Maximum number of pages to move at once when moving subpages with a page.
 
+# ForceDeferredUpdatesPreSend {#ForceDeferredUpdatesPreSend}
+Force deferred updates to be run before sending a response to the client,
+instead of attempting to run them after sending the response. Setting this
+to true is useful for end-to-end testing, to ensure that the effects of a
+request are visible to any subsequent requests, even if they are made
+immediately after the first one. Note however that this does not ensure
+that database replication is complete, nor does it execute any jobs
+enqueued for later.
+There should be no reason to set this in a normal production environment.
+@since 1.38
+
 # CacheDirectory {#CacheDirectory}
 Directory for caching data in the local filesystem. Should not be accessible
 from the web.
@@ -2433,7 +2444,7 @@ $wgHTCPRouting = [
                 'port' => 4827,
         ],
 ];
-``` 
+```
 
 You can also pass an array of hosts to send purges too. This is useful when
 you have several multicast groups or unicast address that should receive a

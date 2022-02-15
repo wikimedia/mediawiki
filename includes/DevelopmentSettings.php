@@ -56,7 +56,8 @@ unset( $logDir );
  * Make testing possible (or easier)
  */
 
-global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles;
+global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles,
+	$wgDeferredUpdateStrategy;
 
 // Set almost infinite rate limits. This allows integration tests to run unthrottled
 // in CI and for devs locally (T225796), but doesn't turn a large chunk of production
@@ -80,6 +81,13 @@ $wgPasswordAttemptThrottle = [
 	[ 'count' => 1000, 'seconds' => 300 ],
 	[ 'count' => 100000, 'seconds' => 60 * 60 * 48 ],
 ];
+
+// Run deferred updates before sending a response to the client.
+// This ensures that in end-to-end tests, a GET request will see the
+// effect of all previous POST requests (T230211).
+// Caveat: this does not wait for jobs to be executed, and it does
+// not wait for database replication to complete.
+$wgForceDeferredUpdatesPreSend = true;
 
 /**
  * Experimental changes that may later become the default.

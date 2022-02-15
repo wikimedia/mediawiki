@@ -2744,6 +2744,19 @@ $wgLinkHolderBatchSize = 1000;
  */
 $wgMaximumMovedPages = 100;
 
+/**
+ * Force deferred updates to be run before sending a response to the client,
+ * instead of attempting to run them after sending the response. Setting this
+ * to true is useful for end-to-end testing, to ensure that the effects of a
+ * request are visible to any subsequent requests, even if they are made
+ * immediately after the first one. Note however that this does not ensure
+ * that database replication is complete, nor does it execute any jobs
+ * enqueued for later.
+ * There should be no reason to set this in a normal production environment.
+ * @since 1.38
+ */
+$wgForceDeferredUpdatesPreSend = false;
+
 // endregion -- end performance hacks
 
 /***************************************************************************/
