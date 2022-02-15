@@ -668,6 +668,7 @@ return [
 
 	'codex' => [
 		'class' => 'ResourceLoaderCodexModule',
+		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'resources/src/codex/codex.js',
 			'resources/lib/codex/codex.umd.js',
