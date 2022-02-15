@@ -1264,7 +1264,9 @@ abstract class Maintenance {
 			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
 		) {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->commitPrimaryChanges( get_class( $this ) );
+			if ( $lbFactory->isReadyForRoundOperations() ) {
+				$lbFactory->commitPrimaryChanges( get_class( $this ) );
+			}
 
 			DeferredUpdates::doUpdates();
 		}
@@ -1280,8 +1282,9 @@ abstract class Maintenance {
 		);
 
 		if ( $lbFactory ) {
-			$lbFactory->commitPrimaryChanges( 'doMaintenance' );
-			$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+			if ( $lbFactory->isReadyForRoundOperations() ) {
+				$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+			}
 		}
 	}
 

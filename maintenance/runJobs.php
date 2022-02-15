@@ -106,7 +106,8 @@ class RunJobs extends Maintenance {
 				!$wait ||
 				$response['reached'] === 'time-limit' ||
 				$response['reached'] === 'job-limit' ||
-				$response['reached'] === 'memory-limit'
+				$response['reached'] === 'memory-limit' ||
+				$response['reached'] === 'exception'
 			) {
 				// If job queue is empty, output it
 				if ( !$outputJSON && $response['jobs'] === [] ) {
