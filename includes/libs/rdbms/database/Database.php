@@ -1438,7 +1438,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# Check if no meaningful session state was lost
 			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
 			# Update session state tracking and try to restore the connection
-			$reconnected = $this->replaceLostConnection( __METHOD__ );
+			$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
 		} else {
 			# Check if only the last query was rolled back
 			$recoverableSR = $this->wasKnownStatementRollbackError();
@@ -5125,10 +5125,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Close any existing (dead) database connection and open a new connection
 	 *
+	 * @param int $lastErrno
 	 * @param string $fname
 	 * @return bool True if new connection is opened successfully, false if error
 	 */
-	protected function replaceLostConnection( $fname ) {
+	protected function replaceLostConnection( $lastErrno, $fname ) {
 		$this->closeConnection();
 		$this->conn = null;
 
@@ -5147,20 +5148,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$ok = true;
 
 			$this->connLogger->warning(
-				$fname . ': lost connection to {db_server}; reconnected',
+				$fname . ': lost connection to {db_server} with error {errno}; reconnected',
 				$this->getLogContext( [
 					'exception' => new RuntimeException(),
-					'db_log_category' => 'connection'
+					'db_log_category' => 'connection',
+					'errno' => $lastErrno
 				] )
 			);
 		} catch ( DBConnectionError $e ) {
 			$ok = false;
 
 			$this->connLogger->error(
-				$fname . ': lost connection to {db_server} permanently',
+				$fname . ': lost connection to {db_server} with error {errno}; reconnection failed: {connect_msg}',
 				$this->getLogContext( [
 					'exception' => new RuntimeException(),
-					'db_log_category' => 'connection'
+					'db_log_category' => 'connection',
+					'errno' => $lastErrno,
+					'connect_msg' => $e->getMessage()
 				] )
 			);
 		}
