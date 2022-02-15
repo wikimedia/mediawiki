@@ -97,6 +97,9 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$context->setTitle( $title );
 		$out = $this->getMockOutputPage( $bodytext, $title );
 		$context->setOutput( $out );
+		$this->setMwGlobals( [
+			'wgLogos' => [],
+		] );
 		$skin = new SkinMustache( [
 			'name' => 'test',
 			'templateDirectory' => __DIR__,
