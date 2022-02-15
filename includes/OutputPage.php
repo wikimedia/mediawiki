@@ -2242,6 +2242,7 @@ class OutputPage extends ContextSource {
 	 * ($state is almost always `false` when this method is called)
 	 */
 	public function enableClientCache( $state ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
 
