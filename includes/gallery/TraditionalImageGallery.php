@@ -87,7 +87,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			/** @var Title $nt */
 
 			$descQuery = false;
-			if ( $nt->getNamespace() === NS_FILE ) {
+			if ( $nt->inNamespace( NS_FILE ) && !$nt->isExternal() ) {
 				# Get the file...
 				if ( $resolveFilesViaParser ) {
 					# Give extensions a chance to select the file revision for us
