@@ -559,6 +559,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		$head = fread( $f, 1024 );
+		$head16k = $head . fread( $f, 16384 - 1024 ); // some WebM files have big headers
 		$tailLength = min( 65558, $fsize ); // 65558 = maximum size of a zip EOCDR
 		if ( fseek( $f, -1 * $tailLength, SEEK_END ) === -1 ) {
 			throw new UnexpectedValueException(
@@ -601,17 +602,17 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		/* Look for WebM and Matroska files */
-		if ( strncmp( $head, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) == 0 ) {
-			$doctype = strpos( $head, "\x42\x82" );
+		if ( strncmp( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) == 0 ) {
+			$doctype = strpos( $head16k, "\x42\x82" );
 			if ( $doctype ) {
 				// Next byte is datasize, then data (sizes larger than 1 byte are stupid muxers)
-				$data = substr( $head, $doctype + 3, 8 );
+				$data = substr( $head16k, $doctype + 3, 8 );
 				if ( strncmp( $data, "matroska", 8 ) == 0 ) {
 					$this->logger->info( __METHOD__ . ": recognized file as video/x-matroska" );
 					return "video/x-matroska";
 				} elseif ( strncmp( $data, "webm", 4 ) == 0 ) {
 					// XXX HACK look for a video track, if we don't find it, this is an audio file
-					$videotrack = strpos( $head, "\x86\x85V_VP" );
+					$videotrack = strpos( $head16k, "\x86\x85V_VP" );
 
 					if ( $videotrack ) {
 						// There is a video track, so this is a video file.
