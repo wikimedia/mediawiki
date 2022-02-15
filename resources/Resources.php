@@ -666,6 +666,25 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'codex' => [
+		'class' => 'ResourceLoaderCodexModule',
+		'packageFiles' => [
+			'resources/src/codex/codex.js',
+			'resources/lib/codex/codex.umd.js',
+		],
+		'dirSpecificStyles' => [
+			// Special syntax supported by ResourceLoaderCodexModule
+			'ltr' => 'resources/lib/codex/codex.style.css',
+			'rtl' => 'resources/lib/codex/codex.style-rtl.css'
+		],
+		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
+		'noflip' => true,
+		'dependencies' => [
+			'vue'
+		],
+		'es6' => true
+	],
+
 	/* MediaWiki */
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
