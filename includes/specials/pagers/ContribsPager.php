@@ -620,20 +620,6 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * @return string
-	 */
-	protected function getStartBody() {
-		return "<ul class=\"mw-contributions-list\">\n";
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getEndBody() {
-		return "</ul>\n";
-	}
-
-	/**
 	 * If the object looks like a revision row, or corresponds to a previously
 	 * cached revision, return the RevisionRecord. Otherwise, return null.
 	 *
