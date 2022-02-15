@@ -22,7 +22,8 @@
 		"resources/src/startup/startup.js",
 		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js",
 		"resources/src/es6-polyfills",
-		"resources/src/vue"
+		"resources/src/vue",
+		"resources/src/codex"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",
