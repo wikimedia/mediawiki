@@ -15,54 +15,30 @@
 	 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
 	 */
 
-	/**
-	 * After the listener for #postEdit removes the notification.
-	 *
-	 * @event postEdit_afterRemoval
-	 * @member mw.hook
-	 */
-
 	var postEdit = mw.config.get( 'wgPostEdit' );
 
 	function showConfirmation( data ) {
-		var $container, $popup, $content, timeoutId;
-
-		function fadeOutConfirmation() {
-			$popup.addClass( 'postedit-faded' );
-			setTimeout( function () {
-				$container.remove();
-				mw.hook( 'postEdit.afterRemoval' ).fire();
-			}, 250 );
-		}
+		var label;
 
 		data = data || {};
 
-		if ( data.message === undefined ) {
-			data.message = $.parseHTML( mw.message(
-				mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ?
-					'postedit-confirmation-published' :
-					'postedit-confirmation-saved',
-				data.user || mw.user
-			).escaped() );
-		}
+		label = data.message || new OO.ui.HtmlSnippet( mw.message(
+			mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ?
+				'postedit-confirmation-published' :
+				'postedit-confirmation-saved',
+			data.user || mw.user
+		).escaped() );
 
-		$content = $( '<div>' ).addClass( 'postedit-icon postedit-icon-checkmark postedit-content' );
-		if ( typeof data.message === 'string' ) {
-			$content.text( data.message );
-		} else if ( typeof data.message === 'object' ) {
-			$content.append( data.message );
-		}
+		data.message = new OO.ui.MessageWidget( {
+			type: 'success',
+			inline: true,
+			label: label
+		} ).$element[ 0 ];
 
-		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append( $content )
-			.on( 'click', function () {
-				clearTimeout( timeoutId );
-				fadeOutConfirmation();
-			} );
+		mw.notify( data.message );
 
-		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
-		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
-
-		$( document.body ).prepend( $container );
+		// Deprecated - use the 'postEdit' hook, and an additional pause if required
+		mw.hook( 'postEdit.afterRemoval' ).fire();
 	}
 
 	// JS-only flag that allows another module providing a hook handler to suppress the default one.
