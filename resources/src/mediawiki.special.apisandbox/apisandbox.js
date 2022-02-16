@@ -451,25 +451,38 @@
 					}
 
 					items = pi.type.map( function ( v ) {
-						var optionWidget = new OO.ui.MenuOptionWidget( {
-							data: String( v ),
-							label: String( v )
-						} );
+						var $label = $( [] );
+						var classes = [];
 						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
-							optionWidget.$element.addClass( 'apihelp-deprecated-value' );
-							optionWidget.$label.before(
-								$( '<span>' ).addClass( 'apihelp-deprecated' ).text( mw.msg( 'api-help-param-deprecated' ) )
+							classes.push( 'mw-apisandbox-deprecated-value' );
+							$label = $label.add(
+								new OO.ui.LabelWidget( {
+									label: mw.msg( 'api-help-param-deprecated-label' ),
+									classes: [ 'mw-apisandbox-flag-label mw-apisandbox-deprecated-label' ]
+								} ).$element
 							);
 						}
 						if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
-							optionWidget.$element.addClass( 'apihelp-internal-value' );
-							optionWidget.$label.before(
-								$( '<span>' ).addClass( 'apihelp-internal' ).text( mw.msg( 'api-help-param-internal' ) )
+							classes.push( 'mw-apisandbox-internal-value' );
+							$label = $label.add(
+								new OO.ui.LabelWidget( {
+									label: mw.msg( 'api-help-param-internal-label' ),
+									classes: [ 'mw-apisandbox-flag-label mw-apisandbox-internal-label' ]
+								} ).$element
 							);
 						}
+						$label = $label.add(
+							// Classes documented above
+							// eslint-disable-next-line mediawiki/class-doc
+							new OO.ui.LabelWidget( { label: String( v ), classes: classes } ).$element
+						);
+						var optionWidget = new OO.ui.MenuOptionWidget( {
+							data: String( v ),
+							label: $label
+						} );
 						return optionWidget;
 					} ).sort( function ( a, b ) {
-						return a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 );
+						return a.data < b.data ? -1 : ( a.data > b.data ? 1 : 0 );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
