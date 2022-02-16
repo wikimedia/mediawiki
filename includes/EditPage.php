@@ -3804,6 +3804,7 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	protected function getCopywarn() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return self::getCopyrightWarning( $this->mTitle );
 	}
 
@@ -3914,7 +3915,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
 		// Show copyright warning.
-		$out->addWikiTextAsInterface( $this->getCopywarn() );
+		$out->addHTML( self::getCopyrightWarning( $this->mTitle, 'parse', $this->context ) );
 		$out->addHTML( $this->editFormTextAfterWarn );
 
 		$out->addHTML( "<div class='editButtons'>\n" );
