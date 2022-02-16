@@ -1078,7 +1078,7 @@ class ParserTestRunner {
 					$out .= "\n";
 				}
 				$out .= "property[$prop]=" .
-					$output->getPageProperty( $prop );
+					( $output->getPageProperty( $prop ) ?? '' );
 			}
 		}
 	}

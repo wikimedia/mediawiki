@@ -439,7 +439,7 @@ because of Phabricator reports.
   warnings:
    - ::hideNewSection()      - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
-   - ::getProperty()         - use ::getPageProperty()
+   - ::getProperty()         - use ::getPageProperty() (return value changed)
    - ::setProperty()         - use ::setPageProperty()
    - ::unsetProperty()       - use ::unsetPageProperties()
    - ::getProperties()       - use ::getPageProperties()
