@@ -3800,6 +3800,8 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the copyright warning
 	 *
+	 * @deprecated since 1.38
+	 *
 	 * Renamed to getCopyrightWarning(), old name kept around for backwards compatibility
 	 * @return string
 	 */
