@@ -135,14 +135,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxFname = null;
 	/** @var bool Whether possible write queries were done in the last transaction started */
 	private $trxDoneWrites = false;
-	/** @var bool Whether the current transaction was started implicitly due to DBO_TRX */
-	private $trxAutomatic = false;
 	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
 	private $trxAtomicCounter = 0;
-	/** @var array List of (name, unique ID, savepoint ID) for each active atomic section level */
-	private $trxAtomicLevels = [];
-	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
-	private $trxAutomaticAtomic = false;
+
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxPostCommitOrIdleCallbacks = [];
 	/** @var array[] List of (callable, method name, atomic section id) */
@@ -248,7 +243,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
-		$this->transactionManager = new TransactionManager();
+		$this->transactionManager = new TransactionManager( $params['queryLogger'] );
 		$this->connectionParams = [
 			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
@@ -563,7 +558,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// null and breaking, this is unacceptable but hopefully this should
 		// happen less by moving these functions to the transaction manager class.
 		if ( !$this->transactionManager ) {
-			$this->transactionManager = new TransactionManager();
+			$this->transactionManager = new TransactionManager( new NullLogger() );
 		}
 		return $this->transactionManager->trxLevel();
 	}
@@ -747,15 +742,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $fnames;
 	}
 
-	/**
-	 * @return string
-	 */
-	private function flatAtomicSectionList() {
-		return array_reduce( $this->trxAtomicLevels, static function ( $accum, $v ) {
-			return $accum === null ? $v[0] : "$accum, " . $v[0];
-		} );
-	}
-
 	public function isOpen() {
 		return (bool)$this->conn;
 	}
@@ -925,22 +911,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->conn ) {
 			// Roll back any dangling transaction first
 			if ( $this->trxLevel() ) {
-				if ( $this->trxAtomicLevels ) {
-					// Cannot let incomplete atomic sections be committed
-					$levels = $this->flatAtomicSectionList();
-					$error = "$fname: atomic sections $levels are still open";
-				} elseif ( $this->trxAutomatic ) {
-					// Only the connection manager can commit non-empty DBO_TRX transactions
-					// (empty ones we can silently roll back)
-					if ( $this->writesOrCallbacksPending() ) {
-						$error = "$fname: " .
-							"expected mass rollback of all peer transactions (DBO_TRX set)";
-					}
-				} else {
-					// Manual transactions should have been committed or rolled
-					// back, even if empty.
-					$error = "$fname: transaction is still open (from {$this->trxFname})";
-				}
+				$error = $this->transactionManager->trxCheckBeforeClose( $this, $fname, $this->trxFname );
 
 				if ( $this->trxEndCallbacksSuppressed && $error === null ) {
 					$error = "$fname: callbacks are suppressed; cannot properly commit";
@@ -1497,7 +1468,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
-			$this->trxAutomatic = true;
+			$this->transactionManager->turnOnAutomatic();
 		}
 	}
 
@@ -1558,7 +1529,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// atomic writes (point-in-time snapshot loss is acceptable for DBO_TRX)
 			$blockers[] = 'transaction writes';
 		}
-		if ( $this->explicitTrxActive() && $sql !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
+		if ( $this->transactionManager->explicitTrxActive() && $sql !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
 			// Transaction was automatically rolled back, breaking the expectations of
 			// callers relying on that transaction to provide atomic writes, serializability,
 			// or read results consistent with a single point-in-time snapshot. Disconnection
@@ -4115,7 +4086,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->trxLevel() ) {
 			throw new DBUnexpectedError( $this, "No transaction is active" );
 		}
-		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
+		$this->trxEndCallbacks[] = [ $callback, $fname, $this->transactionManager->currentAtomicSectionId() ];
 	}
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
@@ -4129,7 +4100,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxPostCommitOrIdleCallbacks[] = [
 			$callback,
 			$fname,
-			$this->currentAtomicSectionId()
+			$this->transactionManager->currentAtomicSectionId()
 		];
 
 		if ( !$this->trxLevel() ) {
@@ -4153,7 +4124,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxPreCommitOrIdleCallbacks[] = [
 				$callback,
 				$fname,
-				$this->currentAtomicSectionId()
+				$this->transactionManager->currentAtomicSectionId()
 			];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
@@ -4172,23 +4143,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
-			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)" );
-		}
-		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
-	}
-
-	/**
-	 * @return AtomicSectionIdentifier|null ID of the topmost atomic section level
-	 */
-	private function currentAtomicSectionId() {
-		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
-			$levelInfo = end( $this->trxAtomicLevels );
-
-			return $levelInfo[1];
-		}
-
-		return null;
+		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
+		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->transactionManager->currentAtomicSectionId() ];
 	}
 
 	/**
@@ -4581,7 +4537,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// each topmost atomic section will use its own transaction.
 				$sectionOwnsTrx = true;
 			}
-			$this->trxAutomaticAtomic = $sectionOwnsTrx;
+			$this->transactionManager->setAutomaticAtomic( $sectionOwnsTrx );
 		}
 
 		if ( $cancelable === self::ATOMIC_CANCELABLE ) {
@@ -4606,9 +4562,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$sectionId = new AtomicSectionIdentifier;
-		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
-		$this->queryLogger->debug( 'startAtomic: entering level ' .
-			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
+		$this->transactionManager->addToAtomicLevels( $fname, $sectionId, $savepointId );
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
@@ -4616,31 +4570,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
-			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)" );
-		}
-
-		// Check if the current section matches $fname
-		$pos = count( $this->trxAtomicLevels ) - 1;
-		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
-		$this->queryLogger->debug( "endAtomic: leaving level $pos ($fname)", [ 'db_log_category' => 'trx' ] );
-
-		if ( $savedFname !== $fname ) {
-			throw new DBUnexpectedError(
-				$this,
-				"Invalid atomic section ended (got $fname but expected $savedFname)"
-			);
-		}
+		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
+		list( $savepointId, $sectionId ) = $this->transactionManager->onEndAtomic( $this, $fname );
 
 		$runPostCommitCallbacks = false;
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
 		// Remove the last section (no need to re-index the array)
-		array_pop( $this->trxAtomicLevels );
+		$this->transactionManager->popAtomicLevel();
 
 		try {
-			if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
+			if ( $this->transactionManager->isClean() ) {
 				$this->commit( $fname, self::FLUSHING_INTERNAL );
 				$runPostCommitCallbacks = true;
 			} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
@@ -4653,7 +4594,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Hoist callback ownership for callbacks in the section that just ended;
 		// all callbacks should have an owner that is present in trxAtomicLevels.
-		$currentSectionId = $this->currentAtomicSectionId();
+		$currentSectionId = $this->transactionManager->currentAtomicSectionId();
 		if ( $currentSectionId ) {
 			$this->reassignCallbacksForSection( $sectionId, $currentSectionId );
 		}
@@ -4669,58 +4610,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		AtomicSectionIdentifier $sectionId = null
 	) {
-		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
-			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)" );
-		}
-
-		if ( $sectionId !== null ) {
-			// Find the (last) section with the given $sectionId
-			$pos = -1;
-			foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
-				if ( $asId === $sectionId ) {
-					$pos = $i;
-				}
-			}
-			if ( $pos < 0 ) {
-				throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
-			}
-		} else {
-			$pos = null;
+		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
+		$pos = $this->transactionManager->getPositionFromSectionId( $sectionId );
+		if ( $pos < 0 ) {
+			throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
 		}
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
-
-		$excisedIds = [];
-		$excisedFnames = [];
-		$newTopSection = $this->currentAtomicSectionId();
-		if ( $pos !== null ) {
-			// Remove all descendant sections and re-index the array
-			$len = count( $this->trxAtomicLevels );
-			for ( $i = $pos + 1; $i < $len; ++$i ) {
-				$excisedFnames[] = $this->trxAtomicLevels[$i][0];
-				$excisedIds[] = $this->trxAtomicLevels[$i][1];
-			}
-			$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
-			$newTopSection = $this->currentAtomicSectionId();
-		}
-
 		$runPostRollbackCallbacks = false;
+		list( $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ) =
+			$this->transactionManager->cancelAtomic( $pos );
+
 		try {
-			// Check if the current section matches $fname
-			$pos = count( $this->trxAtomicLevels ) - 1;
-			list( $savedFname, $savedSectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
-
-			if ( $excisedFnames ) {
-				$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname) " .
-					"and descendants " . implode( ', ', $excisedFnames ),
-					[ 'db_log_category' => 'trx' ]
-				);
-			} else {
-				$this->queryLogger->debug( "cancelAtomic: canceling level $pos ($savedFname)",
-					[ 'db_log_category' => 'trx' ]
-				);
-			}
-
 			if ( $savedFname !== $fname ) {
 				$e = new DBUnexpectedError(
 					$this,
@@ -4731,9 +4632,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 
 			// Remove the last section (no need to re-index the array)
-			array_pop( $this->trxAtomicLevels );
+			$this->transactionManager->popAtomicLevel();
 			$excisedIds[] = $savedSectionId;
-			$newTopSection = $this->currentAtomicSectionId();
+			$newTopSection = $this->transactionManager->currentAtomicSectionId();
 
 			if ( $savepointId !== null ) {
 				// Rollback the transaction changes proposed within this atomic section
@@ -4796,17 +4697,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel() ) {
-			if ( $this->trxAtomicLevels ) {
-				$levels = $this->flatAtomicSectionList();
-				$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
-				throw new DBUnexpectedError( $this, $msg );
-			} elseif ( !$this->trxAutomatic ) {
-				$msg = "$fname: explicit transaction already active (from {$this->trxFname})";
-				throw new DBUnexpectedError( $this, $msg );
-			} else {
-				$msg = "$fname: implicit transaction already active (from {$this->trxFname})";
-				throw new DBUnexpectedError( $this, $msg );
-			}
+			$this->transactionManager->onBeginTransaction( $this, $fname, $this->trxFname );
 		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
 			$msg = "$fname: implicit transaction expected (DBO_TRX set)";
 			throw new DBUnexpectedError( $this, $msg );
@@ -4821,24 +4712,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$this->transactionManager->newTrxId();
+		$this->transactionManager->newTrxId( $mode );
 		$this->trxAtomicCounter = 0;
 		$this->transactionManager->setTrxTimestamp( microtime( true ) );
 		$this->trxFname = $fname;
 		$this->trxDoneWrites = false;
-		$this->trxAutomaticAtomic = false;
-		$this->trxAtomicLevels = [];
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
 		// tables are used, this avoids counting snapshot lag as part of replication lag.
 		$this->trxReplicaLagStatus = null; // clear cached value first
 		$this->trxReplicaLagStatus = $this->getApproximateLagStatus();
-		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
-		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
-		// with the transaction just because startAtomic() has not yet finished updating the
-		// tracking fields (e.g. trxAtomicLevels).
-		$this->trxAutomatic = ( $mode === self::TRANSACTION_INTERNAL );
+
 		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
@@ -4860,39 +4745,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "$fname: invalid flush parameter '$flush'" );
 		}
 
-		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
-			// There are still atomic sections open; this cannot be ignored
-			$levels = $this->flatAtomicSectionList();
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: got COMMIT while atomic sections $levels are still open"
-			);
-		}
-
-		if ( $flush === self::FLUSHING_INTERNAL || $flush === self::FLUSHING_ALL_PEERS ) {
-			if ( !$this->trxLevel() ) {
-				return; // nothing to do
-			} elseif ( !$this->trxAutomatic ) {
-				throw new DBUnexpectedError(
-					$this,
-					"$fname: flushing an explicit transaction, getting out of sync"
-				);
-			}
-		} elseif ( !$this->trxLevel() ) {
-			$this->queryLogger->error(
-				"$fname: no transaction to commit, something got out of sync",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'trx'
-				]
-			);
-
-			return; // nothing to do
-		} elseif ( $this->trxAutomatic ) {
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: expected mass commit of all peer transactions (DBO_TRX set)"
-			);
+		// TODO: Move the rest to transaction manager
+		if ( !$this->transactionManager->onCommit( $this, $fname, $flush ) ) {
+			return;
 		}
 
 		$this->assertHasConnectionHandle();
@@ -4968,7 +4823,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->doRollback( $fname );
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->transactionManager->setTrxStatusToNone();
-		$this->trxAtomicLevels = [];
+		$this->transactionManager->resetTrxAtomicLevels();
 		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
@@ -5008,8 +4863,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @internal Only for tests and highly discouraged
+	 * @param TransactionManager $transactionManager
+	 */
+	public function setTransactionManager( TransactionManager $transactionManager ) {
+		$this->transactionManager = $transactionManager;
+	}
+
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		if ( $this->explicitTrxActive() ) {
+		if ( $this->transactionManager->explicitTrxActive() ) {
 			// Committing this transaction would break callers that assume it is still open
 			throw new DBUnexpectedError(
 				$this,
@@ -5044,7 +4907,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function explicitTrxActive() {
-		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
+		return $this->transactionManager->explicitTrxActive();
 	}
 
 	/**
