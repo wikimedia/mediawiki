@@ -668,6 +668,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$access->getParserOutput( $page, $parserOptions );
+		$access->cleanClassCache();
 
 		// inject mock PoolCounter status
 		$this->setMwGlobals( [ 'wgParserCacheExpireTime' => 60, 'wgPoolCounterConf' => [
