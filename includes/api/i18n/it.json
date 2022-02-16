@@ -80,7 +80,7 @@
 	"apihelp-edit-summary": "Crea e modifica pagine.",
 	"apihelp-edit-param-title": "Titolo della pagina da modificare. Non può essere usato insieme a <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "ID di pagina della pagina da modificare. Non può essere usato insieme con <var>$1title</var>.",
-	"apihelp-edit-param-section": "Numero di sezione. <kbd>0</kbd> per la sezione iniziale, <kbd>new</kbd> per una nuova sezione.",
+	"apihelp-edit-param-section": "Identificativo di sezione. <kbd>0</kbd> per la sezione iniziale, <kbd>new</kbd> per una nuova sezione. Spesso è un intero positivo, ma potrebbe essere anche non numerico.",
 	"apihelp-edit-param-sectiontitle": "Il titolo per una nuova sezione.",
 	"apihelp-edit-param-text": "Contenuto della pagina.",
 	"apihelp-edit-param-summary": "Oggetto della modifica. Anche titolo della sezione se $1sezione=new e $1sectiontitle non è impostato.",
