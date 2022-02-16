@@ -126,6 +126,7 @@ return [
 			'resources/lib/promise-polyfill/promise-polyfill.js',
 			'resources/src/es6-polyfills/array-find-polyfill.js',
 			'resources/src/es6-polyfills/array-findIndex-polyfill.js',
+			'resources/src/es6-polyfills/array-from-polyfill.js',
 			'resources/src/es6-polyfills/array-includes-polyfill.js',
 		],
 		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
@@ -140,7 +141,13 @@ return [
 	'web2017-polyfills' => [
 		'scripts' => [
 			'resources/lib/intersection-observer/intersection-observer.js',
-			'resources/lib/fetch-polyfill/fetch.umd.js'
+			'resources/lib/fetch-polyfill/fetch.umd.js',
+			// The URL polyfill depends on the following in addition to the ES5 baseline
+			// https://github.com/Financial-Times/polyfill-library/blob/v3.110.1/polyfills/URL/config.toml#L10
+			// - ES6 Array.from (via es6-polyfills)
+			// - ES6 Symbol.iterator (no fill needed, used conditionally)
+			'resources/lib/url/URL.js',
+			'resources/lib/url/URL-toJSON.js',
 		],
 		'skipFunction' => 'resources/src/skip-web2017-polyfills.js',
 		'targets' => [ 'desktop', 'mobile' ],
