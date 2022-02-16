@@ -2249,7 +2249,9 @@ abstract class UploadBase {
 	/**
 	 * Get the current status of a chunked upload (used for polling)
 	 *
-	 * The value will be read from cache.
+	 * This should only be called during POST requests since we
+	 * fetch from dc-local MainStash, and from a GET request we can't
+	 * know that the value is available or up-to-date.
 	 *
 	 * @param UserIdentity $user
 	 * @param string $statusKey
@@ -2267,7 +2269,7 @@ abstract class UploadBase {
 	 *
 	 * The value will be set in cache for 1 day
 	 *
-	 * Avoid triggering this method on HTTP GET/HEAD requests
+	 * This should only be called during POST requests.
 	 *
 	 * @param UserIdentity $user
 	 * @param string $statusKey
@@ -2303,6 +2305,6 @@ abstract class UploadBase {
 	 * @return BagOStuff
 	 */
 	private static function getUploadSessionStore() {
-		return ObjectCache::getInstance( 'db-replicated' );
+		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 }
