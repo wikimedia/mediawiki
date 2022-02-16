@@ -1519,6 +1519,7 @@ class SkinTemplate extends Skin {
 					$link['rel'] = 'discussion';
 				} elseif ( $section == 'variants' ) {
 					$xmlID = 'ca-varlang-' . $xmlID;
+					$link['class'] .= ' ca-variants-' . $link['lang'];
 				} else {
 					$xmlID = 'ca-' . $xmlID;
 				}
