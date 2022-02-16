@@ -155,55 +155,81 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 		sort( $codes );
 
-		// Initialise and split into chunks
 		$numRebuilt = 0;
 		$total = count( $codes );
-		$chunks = array_chunk( $codes, ceil( count( $codes ) / $threads ) );
-		$pids = [];
 		$parentStatus = 0;
-		foreach ( $chunks as $codes ) {
-			// Do not fork for only one thread
-			$pid = ( $threads > 1 ) ? pcntl_fork() : -1;
 
-			if ( $pid === 0 ) {
-				// Child, reseed because there is no bug in PHP:
-				// https://bugs.php.net/bug.php?id=42465
-				mt_srand( getmypid() );
+		if ( $threads <= 1 ) {
+			// Single-threaded implementation
+			$numRebuilt += $this->doRebuild( $codes, $lc, $force );
+		} else {
+			// Multi-threaded implementation
+			$chunks = array_chunk( $codes, ceil( count( $codes ) / $threads ) );
+			$pids = [];
+			$sockets = []; # key is pid, value is a socket to read.
 
-				$this->doRebuild( $codes, $lc, $force );
-				return;
-			} elseif ( $pid === -1 ) {
-				// Fork failed or one thread, do it serialized
-				$numRebuilt += $this->doRebuild( $codes, $lc, $force );
-			} else {
-				// Main thread
-				$pids[] = $pid;
-			}
-		}
-		// Wait for all children
-		foreach ( $pids as $pid ) {
-			$status = 0;
-			pcntl_waitpid( $pid, $status );
-
-			if ( pcntl_wifexited( $status ) ) {
-			$code = pcntl_wexitstatus( $status );
-				if ( $code ) {
-					$this->output( "Pid $pid exited with status $code !!\n" );
+			foreach ( $chunks as $codes ) {
+				$socketpair = [];
+				// Create a pair of sockets so that the child can communicate
+				// the number of rebuilt langs to the parent.
+				if ( socket_create_pair( AF_UNIX, SOCK_STREAM, 0, $socketpair ) === false ) {
+					$this->fatalError( 'socket_create_pair failed' );
 				}
-				// Mush all child statuses into a single value in the parent.
-				$parentStatus |= $code;
-			} elseif ( pcntl_wifsignaled( $status ) ) {
-				$signum = pcntl_wtermsig( $status );
-				$this->output( "Pid $pid terminated by signal $signum !!\n" );
-				$parentStatus |= 1;
+
+				$pid = pcntl_fork();
+
+				if ( $pid === -1 ) {
+					$this->fatalError( ' pcntl_fork failed' );
+				} elseif ( $pid === 0 ) {
+					// Child, reseed because there is no bug in PHP:
+					// https://bugs.php.net/bug.php?id=42465
+					mt_srand( getmypid() );
+
+					$numRebuilt = $this->doRebuild( $codes, $lc, $force );
+					// Report the number of rebuilt langs to the parent.
+					$msg = strval( $numRebuilt ) . "\n";
+					socket_write( $socketpair[1], $msg, strlen( $msg ) );
+					// Child exits.
+					return;
+				} else {
+					// Main thread
+					$pids[] = $pid;
+					$sockets[$pid] = $socketpair[0];
+				}
+			}
+
+			// Wait for all children
+			foreach ( $pids as $pid ) {
+				$status = 0;
+				pcntl_waitpid( $pid, $status );
+
+				if ( pcntl_wifexited( $status ) ) {
+					$code = pcntl_wexitstatus( $status );
+					if ( $code ) {
+						$this->output( "Pid $pid exited with status $code !!\n" );
+					} else {
+						// Good exit status from child.  Read the number of rebuilt langs from it.
+						$res = socket_read( $sockets[$pid], 512, PHP_NORMAL_READ );
+						if ( $res === false ) {
+							$this->output( "socket_read failed in parent\n" );
+						} else {
+							$numRebuilt += intval( $res );
+						}
+					}
+
+					// Mush all child statuses into a single value in the parent.
+					$parentStatus |= $code;
+				} elseif ( pcntl_wifsignaled( $status ) ) {
+					$signum = pcntl_wtermsig( $status );
+					$this->output( "Pid $pid terminated by signal $signum !!\n" );
+					$parentStatus |= 1;
+				}
 			}
 		}
 
-		if ( !$pids ) {
-			$this->output( "$numRebuilt languages rebuilt out of $total\n" );
-			if ( $numRebuilt === 0 ) {
-				$this->output( "Use --force to rebuild the caches which are still fresh.\n" );
-			}
+		$this->output( "$numRebuilt languages rebuilt out of $total\n" );
+		if ( $numRebuilt === 0 ) {
+			$this->output( "Use --force to rebuild the caches which are still fresh.\n" );
 		}
 		if ( $parentStatus ) {
 			$this->fatalError( 'Failed.', $parentStatus );
