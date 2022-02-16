@@ -23,6 +23,7 @@
 // This file doesn't run as part of MediaWiki
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 
+header( 'Cache-Control: private, no-cache, must-revalidate' );
 header( 'Content-Type: text/css; charset=utf-8' );
 
 /**

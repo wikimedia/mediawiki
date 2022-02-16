@@ -297,7 +297,7 @@
 			delete mw.loader.testCallback;
 		};
 		mw.loader.implement( 'test.rlq-push', [
-			QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' )
+			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js'
 		] );
 
 		// Regression test for T208093
