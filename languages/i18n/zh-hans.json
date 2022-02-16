@@ -1093,7 +1093,7 @@
 	"mergelog": "合并日志",
 	"revertmerge": "取消合并",
 	"mergelogpagetext": "下面是最近将一个页面历史合并到另一个页面的列表。",
-	"history-title": "“$1”：修订历史",
+	"history-title": "$1：修订历史",
 	"difference-title": "“$1”：版本间差异",
 	"difference-title-multipage": "“$1”与“$2”：页面之间的差异",
 	"difference-multipage": "（页面间差异）",
