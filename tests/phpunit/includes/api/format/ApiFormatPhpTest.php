@@ -20,7 +20,6 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 	}
 
 	public static function provideGeneralEncoding() {
-		// phpcs:disable Generic.Files.LineLength
 		return array_merge(
 			self::addFormatVersion( 1, [
 				// Basic types

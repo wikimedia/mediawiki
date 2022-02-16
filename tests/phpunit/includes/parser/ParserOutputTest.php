@@ -258,7 +258,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetTextToC() {
-		// phpcs:disable Generic.Files.LineLength
 		$toc = <<<EOF
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -278,7 +277,6 @@ EOF;
 
 	// REMOVE THIS ONCE Parser::TOC_START IS REMOVED
 	public static function provideGetTextBackCompat() {
-		// phpcs:disable Generic.Files.LineLength
 		$toc = self::provideGetTextToc();
 		$text = <<<EOF
 <p>Test document.
@@ -383,7 +381,6 @@ EOF
 	}
 
 	public static function provideGetText() {
-		// phpcs:disable Generic.Files.LineLength
 		$toc = self::provideGetTextToc();
 		$text = <<<EOF
 <p>Test document.

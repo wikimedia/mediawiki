@@ -72,8 +72,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function provideFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
-
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Linker::formatComment
 			[
@@ -319,7 +317,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 	 * Adapted from LinkerTest
 	 */
 	public static function provideFormatLinksInComment() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
@@ -390,7 +387,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		] );
 		$expected = [
 			'<a href="/index.php/Present" title="Present">Present</a>',
-			// phpcs:ignore Generic.Files.LineLength
 			'<a href="/index.php?title=Absent&amp;action=edit&amp;redlink=1" class="new" title="Absent (page does not exist)">Absent</a>'
 		];
 		$this->assertSame( $expected, $result );

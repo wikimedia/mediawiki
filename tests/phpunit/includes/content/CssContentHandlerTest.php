@@ -21,7 +21,6 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 	 * Keep this in sync with CssContentTest::provideGetRedirectTarget()
 	 */
 	public static function provideMakeRedirectContent() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'MediaWiki:MonoBook.css',

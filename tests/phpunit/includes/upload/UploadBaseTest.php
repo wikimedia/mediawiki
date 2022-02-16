@@ -138,7 +138,6 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideCheckSvgScriptCallback() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// html5sec SVG vectors
 			[

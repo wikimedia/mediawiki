@@ -502,7 +502,6 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 	public function testFetchRowCountWithField() {
 		$this->sqb->table( 't' )->field( 'f' )->caller( __METHOD__ );
 		$this->sqb->fetchRowCount();
-		// phpcs:ignore Generic.Files.LineLength.TooLong
 		$this->assertEquals( 'SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t WHERE (f IS NOT NULL)  ) tmp_count',
 			$this->db->getLastSqls() );
 	}
@@ -525,7 +524,6 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->db->begin( __METHOD__ );
 		$this->sqb->lockForUpdate();
 		$this->db->rollback( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength.TooLong
 		$this->assertEquals( 'BEGIN; SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t WHERE a = \'b\'   FOR UPDATE) tmp_count; ROLLBACK',
 			$this->db->getLastSqls() );
 	}

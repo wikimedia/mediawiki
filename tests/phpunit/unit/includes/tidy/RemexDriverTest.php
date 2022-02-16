@@ -206,7 +206,6 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'a<small><i><div>d</div></i>e</small>',
 			'<p>a</p><small><i><div>d</div></i></small><p><small>e</small></p>'
 		],
-		// phpcs:disable Generic.Files.LineLength
 		[
 			'Complex pwrap test 6',
 			'<i>a<div>b</div>c<b>d<div>e</div>f</b>g</i>',

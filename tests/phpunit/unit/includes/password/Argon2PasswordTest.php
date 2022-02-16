@@ -5,8 +5,6 @@
  * @covers Argon2Password
  * @covers Password
  * @covers ParameterizedPassword
- *
- * @phpcs:disable Generic.Files.LineLength
  */
 class Argon2PasswordTest extends PasswordTestCase {
 

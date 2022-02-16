@@ -16,7 +16,6 @@ class BcryptPasswordTest extends PasswordTestCase {
 	}
 
 	public static function providePasswordTests() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Tests from glibc bcrypt implementation
 			[ true, ':bcrypt:5$CCCCCCCCCCCCCCCCCCCCC.$E5YPO9kmyuRGyh0XouQYb4YMJKvyOeW', "U*U" ],

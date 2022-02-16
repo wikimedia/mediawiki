@@ -85,7 +85,6 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public function provideIsMetadataValid() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ '0', PNGHandler::METADATA_GOOD ],
 			[ '', PNGHandler::METADATA_BAD ],

@@ -262,7 +262,6 @@ class NamespaceDefTest extends TypeDefTestCase {
 			[],
 			[ 'type' => 'namespace' ],
 			[
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>0</text><text>1</text><text>2</text><text>3</text><text>4</text><text>5</text><text>6</text><text>7</text><text>8</text><text>9</text><text>10</text><text>11</text><text>12</text><text>13</text><text>14</text><text>15</text></list><num>16</num></message>',
 				ParamValidator::PARAM_ISMULTI => null,
 			],
@@ -275,7 +274,6 @@ class NamespaceDefTest extends TypeDefTestCase {
 			],
 			[ 'type' => 'namespace', 'extranamespaces' => [ NS_SPECIAL, NS_MEDIA ] ],
 			[
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>-1</text><text>-2</text><text>0</text><text>1</text><text>2</text><text>3</text><text>4</text><text>5</text><text>6</text><text>7</text><text>8</text><text>9</text><text>10</text><text>11</text><text>12</text><text>13</text><text>14</text><text>15</text></list><num>18</num></message>',
 				ParamValidator::PARAM_ISMULTI => null,
 			],
@@ -291,7 +289,6 @@ class NamespaceDefTest extends TypeDefTestCase {
 				],
 			],
 			[
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>-1</text><text>-2</text><text>0</text><text>1</text><text>2</text><text>3</text><text>4</text><text>5</text><text>6</text><text>7</text><text>8</text><text>9</text><text>10</text><text>11</text><text>12</text><text>13</text><text>14</text><text>15</text></list><num>18</num></message>',
 				ParamValidator::PARAM_ISMULTI => null,
 			],

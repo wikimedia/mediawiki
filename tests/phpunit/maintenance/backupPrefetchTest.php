@@ -166,7 +166,6 @@ class BaseDumpTest extends MediaWikiIntegrationTestCase {
 		$fname = $this->getNewTempFile();
 
 		// The header of every prefetch file
-		// phpcs:ignore Generic.Files.LineLength
 		$header = '<mediawiki>
   <siteinfo>
     <sitename>wikisvn</sitename>
