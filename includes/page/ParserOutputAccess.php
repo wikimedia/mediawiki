@@ -91,6 +91,13 @@ class ParserOutputAccess {
 	 */
 	private $secondaryCache;
 
+	/**
+	 * In cases that an extension tries to get the same ParserOutput of
+	 * the page right after it was parsed (T301310).
+	 * @var array
+	 */
+	private $localCache = [];
+
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
@@ -203,13 +210,21 @@ class ParserOutputAccess {
 		int $options = 0
 	): ?ParserOutput {
 		$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
+		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
+			if ( isset( $this->localCache[$classCacheKey] ) && !$revision ) {
+				return $this->localCache[$classCacheKey];
+			}
 			$output = $this->primaryCache->get( $page, $parserOptions );
 		} elseif ( $useCache === self::CACHE_SECONDARY && $revision ) {
 			$output = $this->secondaryCache->get( $revision, $parserOptions );
 		} else {
 			$output = null;
+		}
+
+		if ( $output && !$revision ) {
+			$this->localCache[$classCacheKey] = $output;
 		}
 
 		$hitOrMiss = $output ? 'hit' : 'miss';
@@ -254,6 +269,7 @@ class ParserOutputAccess {
 
 		$currentOrOld = ( $revision && $revision->getId() !== $page->getLatest() ) ? 'old' : 'current';
 		$this->statsDataFactory->increment( "ParserOutputAccess.Case.$currentOrOld" );
+		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
 			$output = $this->getCachedParserOutput( $page, $parserOptions, $revision );
@@ -262,7 +278,9 @@ class ParserOutputAccess {
 			}
 		}
 
+		$shouldSaveInClassCache = false;
 		if ( !$revision ) {
+			$shouldSaveInClassCache = true;
 			$revision = $page->getLatest() ?
 				$this->revisionLookup->getRevisionById( $page->getLatest() ) : null;
 
@@ -273,6 +291,8 @@ class ParserOutputAccess {
 					$page->getLatest()
 				);
 			}
+		} elseif ( $revision->getId() === $page->getLatest() ) {
+			$shouldSaveInClassCache = true;
 		}
 
 		$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
@@ -290,6 +310,9 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && $status->isOK() ) {
+			if ( $shouldSaveInClassCache ) {
+				$this->localCache[$classCacheKey] = $output;
+			}
 			$status->setResult( true, $output );
 		}
 
@@ -424,6 +447,13 @@ class ParserOutputAccess {
 		}
 
 		// unreachable
+	}
+
+	/**
+	 * @internal only for tests
+	 */
+	public function cleanClassCache() {
+		$this->localCache = [];
 	}
 
 }
