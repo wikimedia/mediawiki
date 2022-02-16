@@ -165,8 +165,8 @@ class RebuildLocalisationCache extends Maintenance {
 		} else {
 			// Multi-threaded implementation
 			$chunks = array_chunk( $codes, ceil( count( $codes ) / $threads ) );
-			$pids = [];
-			$sockets = []; # key is pid, value is a socket to read.
+			// Map from PID to readable socket
+			$sockets = [];
 
 			foreach ( $chunks as $codes ) {
 				$socketpair = [];
@@ -193,13 +193,12 @@ class RebuildLocalisationCache extends Maintenance {
 					return;
 				} else {
 					// Main thread
-					$pids[] = $pid;
 					$sockets[$pid] = $socketpair[0];
 				}
 			}
 
 			// Wait for all children
-			foreach ( $pids as $pid ) {
+			foreach ( $sockets as $pid => $socket ) {
 				$status = 0;
 				pcntl_waitpid( $pid, $status );
 
@@ -209,7 +208,7 @@ class RebuildLocalisationCache extends Maintenance {
 						$this->output( "Pid $pid exited with status $code !!\n" );
 					} else {
 						// Good exit status from child.  Read the number of rebuilt langs from it.
-						$res = socket_read( $sockets[$pid], 512, PHP_NORMAL_READ );
+						$res = socket_read( $socket, 512, PHP_NORMAL_READ );
 						if ( $res === false ) {
 							$this->output( "socket_read failed in parent\n" );
 						} else {
