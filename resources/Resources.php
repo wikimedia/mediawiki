@@ -132,15 +132,19 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'fetch-polyfill' => [
-		'scripts' => 'resources/lib/fetch-polyfill/fetch.umd.js',
-		'skipFunction' => 'resources/src/skip-fetch.js',
+		// Temporary alias. Use web2017-polyfills instead.
+		'scripts' => [],
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [ 'web2017-polyfills' ]
+	],
+	'web2017-polyfills' => [
+		'scripts' => [
+			'resources/lib/intersection-observer/intersection-observer.js',
+			'resources/lib/fetch-polyfill/fetch.umd.js'
+		],
+		'skipFunction' => 'resources/src/skip-web2017-polyfills.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [ 'es6-polyfills' ]
-	],
-	'intersectionObserver-polyfill' => [
-		'scripts' => 'resources/lib/intersection-observer/intersection-observer.js',
-		'skipFunction' => 'resources/src/skip-intersectionObserver.js',
-		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
