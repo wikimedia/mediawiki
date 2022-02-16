@@ -258,7 +258,6 @@ class Parser {
 	public $mGeneratedPPNodeCount;
 	/** @deprecated since 1.35 */
 	public $mHighestExpansionDepth;
-	private $mDefaultSort;
 	private $mTplRedirCache;
 	/** @internal */
 	public $mHeadings;
@@ -627,7 +626,6 @@ class Parser {
 		$this->mPPNodeCount = 0;
 		$this->mGeneratedPPNodeCount = 0;
 		$this->mHighestExpansionDepth = 0;
-		$this->mDefaultSort = false;
 		$this->mHeadings = [];
 		$this->mDoubleUnderscores = [];
 		$this->mExpensiveFunctionCount = 0;
@@ -2675,7 +2673,7 @@ class Parser {
 					$s = rtrim( $s . $prefix ) . $trail; # T2087, T87753
 
 					if ( $wasblank ) {
-						$sortkey = $this->getDefaultSort();
+						$sortkey = $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 					} else {
 						$sortkey = $text;
 					}
@@ -6025,18 +6023,19 @@ class Parser {
 	}
 
 	/**
-	 * Mutator for $mDefaultSort
+	 * Mutator for the 'defaultsort' page property.
 	 *
 	 * @param string $sort New value
 	 * @since 1.0
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->setPageProperty('defaultsort', $sort)
 	 */
 	public function setDefaultSort( $sort ) {
-		$this->mDefaultSort = $sort;
 		$this->mOutput->setPageProperty( 'defaultsort', $sort );
 	}
 
 	/**
-	 * Accessor for $mDefaultSort
+	 * Accessor for the 'defaultsort' page property.
 	 * Will use the empty string if none is set.
 	 *
 	 * This value is treated as a prefix, so the
@@ -6045,24 +6044,24 @@ class Parser {
 	 *
 	 * @return string
 	 * @since 1.9
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->getPageProperty('defaultsort') ?? ''
 	 */
 	public function getDefaultSort() {
-		if ( $this->mDefaultSort !== false ) {
-			return $this->mDefaultSort;
-		} else {
-			return '';
-		}
+		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 	}
 
 	/**
-	 * Accessor for $mDefaultSort
+	 * Accessor for the 'defaultsort' page property.
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
 	 * @return string|bool
 	 * @since 1.14
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->getPageProperty('defaultsort') ?? false
 	 */
 	public function getCustomDefaultSort() {
-		return $this->mDefaultSort;
+		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? false;
 	}
 
 	private static function getSectionNameFromStrippedText( $text ) {
