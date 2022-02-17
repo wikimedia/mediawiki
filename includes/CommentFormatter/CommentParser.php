@@ -471,7 +471,9 @@ class CommentParser {
 				$text,
 				/* escape = */ false // Already escaped
 			);
-		} elseif ( $target->isExternal() || $this->linkCache->getGoodLinkID( $target ) ) {
+		} elseif ( Title::newFromLinkTarget( $target )->isAlwaysKnown() ||
+			$this->linkCache->getGoodLinkID( $target )
+		) {
 			// Already known
 			return $this->linkRenderer->makeKnownLink( $target, new HtmlArmor( $text ) );
 		} elseif ( $this->linkCache->isBadLink( $target ) ) {

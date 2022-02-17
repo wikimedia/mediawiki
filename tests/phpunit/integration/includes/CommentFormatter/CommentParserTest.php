@@ -454,4 +454,26 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * Regression test for T293665
+	 */
+	public function testAlwaysKnownPages() {
+		$this->setTemporaryHook( 'TitleIsAlwaysKnown',
+			static function ( $target, &$isKnown ) {
+				$isKnown = $target->getText() == 'AlwaysKnownFoo';
+			}
+		);
+
+		$title = Title::newFromText( 'User:AlwaysKnownFoo' );
+		$this->assertFalse( $title->exists() );
+
+		$parser = $this->getParser();
+		$result = $parser->finalize( $parser->preprocess( 'test [[User:AlwaysKnownFoo]]' ) );
+
+		$this->assertSame(
+			'test <a href="/index.php/User:AlwaysKnownFoo" title="User:AlwaysKnownFoo">User:AlwaysKnownFoo</a>',
+			 $result
+		);
+	}
+
 }
