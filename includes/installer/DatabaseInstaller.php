@@ -497,6 +497,7 @@ abstract class DatabaseInstaller {
 	 * Get a name=>value map of MW configuration globals for the default values.
 	 * @stable to override
 	 * @return array
+	 * @return-taint none
 	 */
 	public function getGlobalDefaults() {
 		$defaults = [];
