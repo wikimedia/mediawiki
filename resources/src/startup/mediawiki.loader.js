@@ -700,7 +700,7 @@
 				fileContent = scriptFiles[ fileName ];
 			if ( typeof fileContent === 'function' ) {
 				var moduleParam = { exports: {} };
-				fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam );
+				fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam, moduleParam.exports );
 				result = moduleParam.exports;
 			} else {
 				// fileContent is raw data (such as a JSON object), just pass it through
@@ -935,7 +935,8 @@
 					// jQuery parameters are not passed for multi-file modules
 					mainScript(
 						makeRequireFunction( registry[ module ], script.main ),
-						registry[ module ].module
+						registry[ module ].module,
+						registry[ module ].module.exports
 					);
 					markModuleReady();
 				} else if ( typeof script === 'string' ) {

@@ -1,8 +1,4 @@
-// Because ResourceLoader doesn't support exports (T284511), the UMD wrapper in Codex doesn't
-// use it and insteads exports the library as a global, and looks for Vue as a global
-window.Vue = require( 'vue' );
-require( '../../lib/codex/codex.umd.js' );
-const codex = window.codex;
+const codex = require( '../../lib/codex/codex.umd.js' );
 
 // Codex is written for Vue 3, but we're running the compatibility build of Vue 3 (@vue/compat),
 // which behaves like Vue 2 in certain cases. This causes issues, specfically with v-model use
