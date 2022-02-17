@@ -693,7 +693,7 @@ abstract class DatabaseUpdater {
 			return false;
 		}
 
-		$this->output( "$msg ..." );
+		$this->output( "{$msg}..." );
 
 		if ( !$isFullPath ) {
 			$path = $this->patchPath( $this->db, $path );
