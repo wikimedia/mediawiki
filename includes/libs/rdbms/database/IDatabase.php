@@ -895,9 +895,9 @@ interface IDatabase {
 	 * Determines whether a field exists in a table
 	 *
 	 * @param string $table Table name
-	 * @param string $field Filed to check on that table
+	 * @param string $field Field to check on that table
 	 * @param string $fname Calling function name (optional)
-	 * @return bool Whether $table has filed $field
+	 * @return bool Whether $table has field $field
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function fieldExists( $table, $field, $fname = __METHOD__ );
