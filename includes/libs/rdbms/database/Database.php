@@ -4982,7 +4982,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$rtt = $this->lastRoundTripEstimate;
 			}
 		} else {
-			$ok = $this->replaceLostConnection( __METHOD__, null );
+			$ok = $this->replaceLostConnection( null, __METHOD__ );
 		}
 
 		return $ok;
