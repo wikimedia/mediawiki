@@ -98,6 +98,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * symfony/yaml was promoted from development-only.
+* Added Codex v0.1.0-alpha.2
 * …
 
 ===== New development-only external libraries =====
