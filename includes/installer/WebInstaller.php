@@ -518,6 +518,7 @@ class WebInstaller extends Installer {
 	 * Retrieves MediaWiki language from Accept-Language HTTP header.
 	 *
 	 * @return string
+	 * @return-taint none It can only return a known-good code.
 	 */
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;

@@ -408,11 +408,7 @@ abstract class Installer {
 		// Disable all storage services, since we don't have any configuration yet!
 		MediaWikiServices::disableStorageBackend();
 
-		$this->settings = $this->internalDefaults;
-
-		foreach ( $this->defaultVarNames as $var ) {
-			$this->settings[$var] = $GLOBALS[$var];
-		}
+		$this->settings = $this->getDefaultSettings();
 
 		$this->doEnvironmentPreps();
 
@@ -427,6 +423,19 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
+	}
+
+	/**
+	 * @return array
+	 * @return-taint none Taint-check really doesn't like the assignment from $GLOBALS
+	 */
+	private function getDefaultSettings(): array {
+		$ret = $this->internalDefaults;
+
+		foreach ( $this->defaultVarNames as $var ) {
+			$ret[$var] = $GLOBALS[$var];
+		}
+		return $ret;
 	}
 
 	/**
@@ -1256,7 +1265,6 @@ abstract class Installer {
 			return Status::newGood( [] );
 		}
 
-		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive
 		$dh = opendir( $extDir );
 		$exts = [];
 		$status = new Status;
@@ -1510,7 +1518,6 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		require "$IP/includes/DefaultSettings.php";
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
