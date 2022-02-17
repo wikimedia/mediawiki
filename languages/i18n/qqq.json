@@ -1332,7 +1332,7 @@
 	"prefs-help-tokenmanagement": "Used in [[Special:Preferences]], Watchlist tab.",
 	"prefs-user-downloaddata-label": "Used in [[Special:Preferences]], tab \"User profile\".",
 	"prefs-user-downloaddata-info": "This message shows where to view the user's data from this wiki",
-	"prefs-user-downloaddata-help-message": "Used in [[Special:Preferences]], optional message for user data download help.\n* $1 - The user name with spaces replaced by underscores, for including in links",
+	"prefs-user-downloaddata-help-message": "Used in [[Special:Preferences]], optional message for user data download help.\n* $1 - The username with spaces replaced by underscores, for including in links",
 	"savedprefs": "This message appears after saving changes to your user preferences.",
 	"savedrights": "This message appears after saving the user groups on [[Special:UserRights]].\n* $1 - The username of the user which groups was saved.",
 	"timezonelegend": "{{Identical|Time zone}}",
