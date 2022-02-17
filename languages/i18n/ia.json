@@ -836,7 +836,7 @@
 	"rev-deleted-text-view": "Iste version del pagina ha essite <strong>delite</strong>.\nTu pote vider lo;\ndetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page=$1}} registro de deletiones].",
 	"rev-suppressed-text-view": "Iste version del pagina ha essite <strong>supprimite</strong>.\nTu pote vider lo; detalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page=$1}} registro de suppressiones].",
 	"rev-deleted-no-diff": "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.\nEs possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-	"rev-suppressed-no-diff": "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.",
+	"rev-suppressed-no-diff": "Tu non pote vider iste diff perque un del versiones ha essite <strong>supprimite</strong>.",
 	"rev-deleted-unhide-diff": "Un del versiones de iste diff ha essite '''delite'''.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].\nTu pote totevia [$1 vider iste diff] si tu vole.",
 	"rev-suppressed-unhide-diff": "Un del versiones de iste diff ha essite '''supprimite'''.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].\nTu pote totevia [$1 vider iste diff] si tu vole.",
 	"rev-deleted-diff-view": "Un del versiones de iste diff ha essite '''delite'''.\nTu pote vider iste diff; detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
