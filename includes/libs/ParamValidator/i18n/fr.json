@@ -5,7 +5,8 @@
 			"Orlodrim",
 			"Pamputt",
 			"Thibaut120094",
-			"Wladek92"
+			"Wladek92",
+			"Verdy p"
 		]
 	},
 	"paramvalidator-badbool": "Valeur « $2 » non valide pour le paramètre booléen « $1 ». Passer $3 pour vrai, ou $5 pour faux.",
@@ -20,9 +21,9 @@
 	"paramvalidator-badupload-cantwrite": "Le fichier pour « $1 » n’a pas pu être stocké pour être traité du fait d’une mauvaise configuration du serveur (échec d’écriture).",
 	"paramvalidator-badupload-formsize": "Le fichier téléchargé pour « $1 » dépasse le maximum spécifié pour le client.",
 	"paramvalidator-badupload-inisize": "Le fichier téléchargé pour « $1 » dépasse le maximum du serveur de $3.",
-	"paramvalidator-badupload-nofile": "Aucun fichier n’a été fourni pour le paramètre de téléchargement « $1 ».",
+	"paramvalidator-badupload-nofile": "Aucun fichier n’a été fourni pour le paramètre de téléversement « $1 ».",
 	"paramvalidator-badupload-notmpdir": "Le fichier pour « $1 » n’a pas pu être enregistré pour traitement du fait d’une mauvaise configuration du serveur (pas de répertoire temporaire).",
-	"paramvalidator-badupload-notupload": "Le paramètre de téléchargement de fichier « $1 » n’est pas un téléchargement de fichier ; assurez-vous d’utiliser multipart/form-data pour votre POST et inclure un nom de fichier dans l’entête Content-Disposition.",
+	"paramvalidator-badupload-notupload": "Le paramètre de téléversement de fichier « $1 » n’est pas un téléversement de fichier ; assurez-vous d’utiliser le format « multipart/form-data » pour votre POST et d’inclure un nom de fichier dans l’entête « Content-Disposition ».",
 	"paramvalidator-badupload-partial": "Le fichier pour « $1 » n’a été que partiellement téléversé.",
 	"paramvalidator-badupload-phpext": "Une extension PHP a empêché le téléversement du fichier pour « $1 ».",
 	"paramvalidator-badvalue-enummulti": "Valeur « $2 » non valide pour le paramètre « $1 ». {{PLURAL:$4|Seul « $3 » est autorisé.|Les valeurs autorisées sont $3.}}",

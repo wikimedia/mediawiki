@@ -257,7 +257,7 @@
 	"versionrequiredtext": "$1 نەشرىدىكى MediaWiki بولغاندىلا ئاندىن بۇ بەتنى ئىشلىتەلەيدۇ.\n\n[[Special:Version|نەشر بېتى]] نى كۆرۈڭ.",
 	"ok": "ماقۇل",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"backlinksubtitle": "← $1",
+	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "\"$1\" دىن ئېرىشكەن",
 	"youhavenewmessages": "سىزدە $1 ($2) بار.",
 	"youhavenewmessagesfromusers": "سىزنىڭ {{PLURAL:$3|باشقا ئىشلەتكۈچى|$3 ئىشلەتكۈچى}} $1  ($2)ڭىز بار.",

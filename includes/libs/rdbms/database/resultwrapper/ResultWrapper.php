@@ -158,6 +158,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		$this->currentRow = false;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		$this->seek( 0 );
 	}
@@ -178,6 +179,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->fetchObject();
 	}
 
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		return $this->currentPos >= 0
 			&& $this->currentPos < $this->numRows();

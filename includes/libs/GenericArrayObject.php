@@ -184,7 +184,18 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( $this->getSerializationData() );
+		return serialize( $this->__serialize() );
+	}
+
+	/**
+	 * @see Serializable::serialize
+	 *
+	 * @since 1.37.2
+	 *
+	 * @return array
+	 */
+	public function __serialize() {
+		return $this->getSerializationData();
 	}
 
 	/**
@@ -209,13 +220,19 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @since 1.20
 	 *
 	 * @param string $serialization
-	 *
-	 * @return array
-	 * @suppress PhanParamSignatureMismatchInternal The stub appears to be wrong
 	 */
 	public function unserialize( $serialization ) {
-		$serializationData = unserialize( $serialization );
+		$this->__unserialize( unserialize( $serialization ) );
+	}
 
+	/**
+	 * @see Serializable::unserialize
+	 *
+	 * @since 1.37.2
+	 *
+	 * @param array $serializationData
+	 */
+	public function __unserialize( $serializationData ) {
 		foreach ( $serializationData['data'] as $offset => $value ) {
 			// Just set the element, bypassing checks and offset resolving,
 			// as these elements have already gone through this.
@@ -223,8 +240,6 @@ abstract class GenericArrayObject extends ArrayObject {
 		}
 
 		$this->indexOffset = $serializationData['index'];
-
-		return $serializationData;
 	}
 
 	/**

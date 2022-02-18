@@ -15,7 +15,8 @@
 			"Zpizza",
 			"ديفيد",
 			"روخو",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"SaldırganSincap"
 		]
 	},
 	"config-desc": "مثبت برمجيات ميدياويكي",
@@ -289,6 +290,9 @@
 	"config-install-sysop": "إنشاء حساب مستخدم إداري",
 	"config-install-subscribe-fail": "غير قادر على الاشتراك في ميدياويكي-إعلان[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "لم يتم تثبيت cURL و <code>allow_url_fopen</code> غير متوفر.",
+	"config-install-subscribe-alreadysubscribed": "أنت مشترك بالفعل في mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ عرض أو تغيير تفضيلات الاشتراك].",
+	"config-install-subscribe-alreadypending": "تم بالفعل تقديم طلب للاشتراك في mediawiki-announce. يرجى الرد على رسالة التأكيد الإلكترونية التي تم إرسالها مسبقًا.",
+	"config-install-subscribe-possiblefail": "ربما لم يتم تنفيذ طلبك للاشتراك في mediawiki-announce. إذا لم تتلق رسالة تأكيد بالبريد الإلكتروني في غضون بضع دقائق، فانتقل إلى [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] لمحاولة الإرسال طلبك مرة أخرى.",
 	"config-install-mainpage": "إنشاء صفحة رئيسية بالمحتوى الافتراضي",
 	"config-install-mainpage-exists": "الصفحة الرئيسية موجودة بالفعل، تم تجاهل هذا الأمر",
 	"config-install-extension-tables": "إنشاء جداول للامتدادات المفعلة",

@@ -400,18 +400,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		ContributionsSegment $segmentObject,
 		RevisionRecord $actual
 	): void {
-		// FIXME: fails under postgres, see T195807
-		if ( $this->db->getType() !== 'postgres' ) {
-			$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
+		$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
 
-			// Tag 3 was disabled and should not be included in results
-			$this->assertArrayNotHasKey( self::TAG3, $actualTags );
-			foreach ( $actualTags as $tagName => $actualTag ) {
-				$this->assertContains( $tagName, $expectedTags );
-				$this->assertInstanceOf( Message::class, $actualTag );
-				$this->assertEquals( "<i>" . self::TAG_DISPLAY . "</i>", $actualTag->parse() );
-				$this->assertEquals( "''" . self::TAG_DISPLAY . "''", $actualTag->text() );
-			}
+		// Tag 3 was disabled and should not be included in results
+		$this->assertArrayNotHasKey( self::TAG3, $actualTags );
+		foreach ( $actualTags as $tagName => $actualTag ) {
+			$this->assertContains( $tagName, $expectedTags );
+			$this->assertInstanceOf( Message::class, $actualTag );
+			$this->assertEquals( "<i>" . self::TAG_DISPLAY . "</i>", $actualTag->parse() );
+			$this->assertEquals( "''" . self::TAG_DISPLAY . "''", $actualTag->text() );
 		}
 	}
 }

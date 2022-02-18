@@ -1644,7 +1644,7 @@
 	"apierror-chunk-too-small": "Nihai olmayan parçalar için minimum yığın boyutu $1 {{PLURAL:$1|bayt|bayt}}.",
 	"apierror-cidrtoobroad": "/$2 üzerinden daha geniş olan $1 CIDR aralıkları kabul edilmez.",
 	"apierror-compare-maintextrequired": "<var>$1slots</var> <kbd>main</kbd> içerdiğinde <var>$1text-main</var> parametresi gereklidir (ana yuvayı silemezsiniz).",
-	"apierror-compare-no-title": "Başlık olmadan dönüşüm önceden kaydedilemez. <var>fromtitle<var> veya <var>totitle</var> belirtmeyi deneyin.",
+	"apierror-compare-no-title": "Başlık olmadan dönüşüm önceden kaydedilemez. <var>fromtitle</var> veya <var>totitle</var> belirtmeyi deneyin.",
 	"apierror-compare-nosuchfromsection": "'from' içeriğinde $1 bölüm yok.",
 	"apierror-compare-nosuchtosection": "'to' içeriğinde $1 bölüm yok.",
 	"apierror-compare-nofromrevision": "'from' revizyonu yok. <var>fromrev</var>, <var>fromtitle</var> veya <var>fromid</var> öğelerini belirtin.",

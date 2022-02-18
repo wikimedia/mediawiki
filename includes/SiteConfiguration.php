@@ -512,7 +512,9 @@ class SiteConfiguration {
 				break;
 			}
 		}
-		$lang = str_replace( '_', '-', $lang );
+		if ( $lang !== null ) {
+			$lang = str_replace( '_', '-', $lang );
+		}
 
 		return [ $site, $lang ];
 	}

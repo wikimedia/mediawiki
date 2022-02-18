@@ -62,13 +62,12 @@ class BenchmarkLruHash extends Benchmarker {
 		}
 
 		if ( !$method || $method === 'set' ) {
-			// For the set bechmark, do object creation in setup (not measured)
 			$hObj = null;
 			$benches['HashBagOStuff::set'] = [
 				'setup' => static function () use ( &$hObj, $max ) {
 					$hObj = new HashBagOStuff( [ 'maxKeys' => $max ] );
 				},
-				'function' => static function () use ( &$hObj, &$keys ) {
+				'function' => static function () use ( &$hObj, $keys ) {
 					foreach ( $keys as $i => $key ) {
 						$hObj->set( $key, $i );
 					}
@@ -79,9 +78,40 @@ class BenchmarkLruHash extends Benchmarker {
 				'setup' => static function () use ( &$mObj, $max ) {
 					$mObj = new MapCacheLRU( $max );
 				},
-				'function' => static function () use ( &$mObj, &$keys ) {
+				'function' => static function () use ( &$mObj, $keys ) {
 					foreach ( $keys as $i => $key ) {
 						$mObj->set( $key, $i );
+					}
+				}
+			];
+		}
+
+		if ( !$method || $method === 'get' ) {
+			$hObj = null;
+			$benches['HashBagOStuff::get'] = [
+				'setup' => static function () use ( &$hObj, $max, $keys ) {
+					$hObj = new HashBagOStuff( [ 'maxKeys' => $max ] );
+					foreach ( $keys as $i => $key ) {
+						$hObj->set( $key, $i );
+					}
+				},
+				'function' => static function () use ( &$hObj, $keys ) {
+					foreach ( $keys as $key ) {
+						$hObj->get( $key );
+					}
+				}
+			];
+			$mObj = null;
+			$benches['MapCacheLRU::get'] = [
+				'setup' => static function () use ( &$mObj, $max, $keys ) {
+					$mObj = new MapCacheLRU( $max );
+					foreach ( $keys as $i => $key ) {
+						$mObj->set( $key, $i );
+					}
+				},
+				'function' => static function () use ( &$mObj, $keys ) {
+					foreach ( $keys as $key ) {
+						$mObj->get( $key );
 					}
 				}
 			];

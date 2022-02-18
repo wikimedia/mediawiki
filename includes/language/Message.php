@@ -254,7 +254,16 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( [
+		return serialize( $this->__serialize() );
+	}
+
+	/**
+	 * @see Serializable::serialize()
+	 * @since 1.37.2
+	 * @return array
+	 */
+	public function __serialize() {
+		return [
 			'interface' => $this->interface,
 			'language' => $this->language ? $this->language->getCode() : false,
 			'key' => $this->key,
@@ -268,20 +277,27 @@ class Message implements MessageSpecifier, Serializable {
 				? [ 0 => $this->contextPage->getNamespace(), 1 => $this->contextPage->getDBkey() ]
 				: null
 			),
-		] );
+		];
+	}
+
+	/**
+	 * @see Serializable::unserialize()
+	 * @since 1.37.2
+	 * @param string $serialized
+	 */
+	public function unserialize( $serialized ) {
+		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	/**
 	 * @see Serializable::unserialize()
 	 * @since 1.26
-	 * @param string $serialized
+	 * @param array $data
 	 */
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
+	public function __unserialize( $data ) {
 		if ( !is_array( $data ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ': Invalid serialized data' );
 		}
-
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];

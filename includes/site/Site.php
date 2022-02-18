@@ -671,7 +671,18 @@ class Site implements Serializable {
 	 * @return string
 	 */
 	public function serialize() {
-		$fields = [
+		return serialize( $this->__serialize() );
+	}
+
+	/**
+	 * @see Serializable::serialize
+	 *
+	 * @since 1.37.2
+	 *
+	 * @return array
+	 */
+	public function __serialize() {
+		return [
 			'globalid' => $this->globalId,
 			'type' => $this->type,
 			'group' => $this->group,
@@ -682,10 +693,7 @@ class Site implements Serializable {
 			'data' => $this->extraData,
 			'forward' => $this->forward,
 			'internalid' => $this->internalId,
-
 		];
-
-		return serialize( $fields );
 	}
 
 	/**
@@ -696,8 +704,17 @@ class Site implements Serializable {
 	 * @param string $serialized
 	 */
 	public function unserialize( $serialized ) {
-		$fields = unserialize( $serialized );
+		$this->__unserialize( unserialize( $serialized ) );
+	}
 
+	/**
+	 * @see Serializable::unserialize
+	 *
+	 * @since 1.37.2
+	 *
+	 * @param array $fields
+	 */
+	public function __unserialize( $fields ) {
 		$this->__construct( $fields['type'] );
 
 		$this->setGlobalId( $fields['globalid'] );

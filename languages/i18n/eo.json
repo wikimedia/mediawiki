@@ -61,7 +61,8 @@
 			"Александр Сигачёв",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Spenĉjo"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -3217,7 +3218,7 @@
 	"confirm-watch-button": "Ek!",
 	"confirm-watch-top": "Ĉu aldoni tiun ĉi paĝon al via atentaro?",
 	"confirm-watch-label": "Tempa periodo de atentaro:",
-	"watchlist-expiry-options": "Senfina:infinite,1 semajno:1 week,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months",
+	"watchlist-expiry-options": "senfine:infinite,1 semajno:1 week,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months",
 	"watchlist-expires-in-aria-label": "Eksvalidiĝanta atentaĵo",
 	"confirm-watch-button-expiry": "Atenti",
 	"confirm-unwatch-button": "Ek!",

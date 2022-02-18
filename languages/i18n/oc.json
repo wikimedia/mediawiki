@@ -362,7 +362,7 @@
 	"perfcachedts": "Las donadas seguendas son en cache e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins lo cache.",
 	"querypage-no-updates": "Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.",
 	"querypage-updates-periodical": "Las mesas a jorn d’aquesta pagina se realizan periodicament.",
-	"viewsource": "Vejatz lo tèxte font",
+	"viewsource": "Veire lo tèxte font",
 	"viewsource-title": "Veire la font de $1",
 	"actionthrottled": "Accion limitada",
 	"actionthrottledtext": "Per lutar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins un periòde pro cort. S'avèra qu'avètz despassat aqueste limit. Ensajatz tornamai dins qualques minutas.",
