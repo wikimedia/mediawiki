@@ -98,6 +98,7 @@ class ResetPageRandom extends Maintenance {
 				[ 'LIMIT' => $batchSize, 'ORDER BY' => 'page_id' ]
 			);
 
+			$row = null;
 			foreach ( $res as $row ) {
 				if ( !$dry ) {
 					# Update the row...
