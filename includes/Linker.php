@@ -545,7 +545,9 @@ class Linker {
 			$mtoParams['custom-title-link'] = Title::newFromLinkTarget(
 				$linkRenderer->normalizeTarget( $frameParams['link-title'] )
 			);
-			$mtoParams['custom-title-link-query'] = $frameParams['link-title-query'];
+			if ( isset( $frameParams['link-title-query'] ) ) {
+				$mtoParams['custom-title-link-query'] = $frameParams['link-title-query'];
+			}
 		} elseif ( !empty( $frameParams['no-link'] ) ) {
 			// No link
 		} else {
