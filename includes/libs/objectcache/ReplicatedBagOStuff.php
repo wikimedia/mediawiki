@@ -271,7 +271,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
 		$this->remarkRecentSessionWrite( [ $key ] );
 
 		return $this->writeStore->proxyCall(

@@ -550,6 +550,7 @@ because of Phabricator reports.
   of content pages. For the former behavior use Category::getMemberCount()
 * Using `new HTMLForm( … )` or `HTMLForm::factory( … )` without the $context
   parameter is now deprecated.
+* BagOStuff::incr() and BagOStuff::decr() are now deprecated.
 * …
 
 === Other changes in 1.38 ===

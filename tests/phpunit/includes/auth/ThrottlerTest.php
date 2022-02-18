@@ -164,11 +164,13 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 
 	public function testExpiration() {
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->onlyMethods( [ 'add' ] )->getMock();
+			->onlyMethods( [ 'add', 'incrWithInit' ] )->getMock();
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 		$throttler->setLogger( new NullLogger() );
 
-		$cache->expects( $this->once() )->method( 'add' )->with( $this->anything(), 1, 10 );
+		$cache->expects( $this->once() )
+			->method( 'incrWithInit' )
+			->with( $this->anything(), 10, 1 );
 		$throttler->increase( 'SomeUser' );
 	}
 
