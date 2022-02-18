@@ -1178,7 +1178,7 @@ function wfMessage( $key, ...$params ) {
 /**
  * This function accepts multiple message keys and returns a message instance
  * for the first message which is non-empty. If all messages are empty then an
- * instance of the first message key is returned.
+ * instance of the last message key is returned.
  *
  * @param string ...$keys Message keys
  * @return Message
