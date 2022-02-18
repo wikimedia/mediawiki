@@ -670,7 +670,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	'codex' => [
+	'@wikimedia/codex' => [
 		'class' => 'ResourceLoaderCodexModule',
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
