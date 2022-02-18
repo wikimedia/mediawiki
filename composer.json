@@ -79,8 +79,8 @@
 		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.5",
-		"doctrine/dbal": "2.13.6||3.1.5",
+		"composer/spdx-licenses": "1.5.4",
+		"doctrine/dbal": "3.1.5",
 		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
@@ -156,7 +156,6 @@
 		"optimize-autoloader": true,
 		"prepend-autoloader": false,
 		"allow-plugins": {
-			"composer/package-versions-deprecated": true,
 			"wikimedia/composer-merge-plugin": true
 		}
 	},
