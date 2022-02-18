@@ -461,26 +461,6 @@ class EditPage implements IEditObject {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
-
-		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTokenOk', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTriedSave', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'incompleteForm', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'tooBig', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'missingComment', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'missingSummary', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'allowBlankSummary', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'autoSumm', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mParserOutput', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'hasPresetSummary', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'minoredit', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'watchthis', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'recreate', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'nosummaryparentRevId', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'editintro', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'scrolltop', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'markAsBot', '1.35', __CLASS__ );
 	}
 
 	/**
