@@ -168,12 +168,12 @@ class BlockUtils {
 				break;
 
 			case AbstractBlock::TYPE_RANGE:
-				list( $ip, $range ) = explode( '/', $target, '2' );
+				list( $ip, $range ) = explode( '/', $target, 2 );
 
 				if ( IPUtils::isIPv4( $ip ) ) {
-					$status->merge( $this->validateIPv4Range( $range ) );
+					$status->merge( $this->validateIPv4Range( (int)$range ) );
 				} elseif ( IPUtils::isIPv6( $ip ) ) {
-					$status->merge( $this->validateIPv6Range( $range ) );
+					$status->merge( $this->validateIPv6Range( (int)$range ) );
 				} else {
 					// Something is FUBAR
 					$status->fatal( 'badipaddress' );
