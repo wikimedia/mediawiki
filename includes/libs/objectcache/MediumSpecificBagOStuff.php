@@ -455,6 +455,23 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
+	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
+		$step = (int)$step;
+		$init = is_int( $init ) ? $init : $step;
+
+		return $this->doIncrWithInit( $key, $exptime, $step, $init, $flags );
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $exptime
+	 * @param int $step
+	 * @param int $init
+	 * @param int $flags
+	 * @return int|bool New value or false on failure
+	 */
+	abstract protected function doIncrWithInit( $key, $exptime, $step, $init, $flags );
+
 	/**
 	 * @param string $key
 	 * @param int $timeout
@@ -748,22 +765,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		return $res;
-	}
-
-	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
-		$init = is_int( $init ) ? $init : $value;
-		$watchPoint = $this->watchErrors();
-		$newValue = $this->incr( $key, $value, $flags );
-		if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
-			// No key set; initialize
-			$newValue = $this->add( $key, (int)$init, $exptime, $flags ) ? $init : false;
-			if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
-				// Raced out initializing; increment
-				$newValue = $this->incr( $key, $value, $flags );
-			}
-		}
-
-		return $newValue;
 	}
 
 	/**

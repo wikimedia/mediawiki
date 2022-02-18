@@ -290,7 +290,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
 		return $this->store->proxyCall(

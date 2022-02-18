@@ -38,58 +38,50 @@ class McTest extends Maintenance {
 			"This tests both per-key and batched *Multi() methods as well as WRITE_BACKGROUND.\n" .
 			"\"IB\" means \"immediate blocking\" and \"DB\" means \"deferred blocking.\""
 		);
+		$this->addOption( 'cache', 'Use servers from this $wgObjectCaches store', true, true );
+		$this->addOption( 'class', 'Override the store "class" parameter', false, true );
 		$this->addOption( 'i', 'Number of iterations', false, true );
-		$this->addOption( 'cache', 'Use servers from this $wgObjectCaches store', false, true );
-		$this->addOption( 'driver', 'Either "php" or "pecl"', false, true );
-		$this->addArg( 'server[:port]', 'Memcached server to test, with optional port', false );
+		$this->addArg( 'server[:port]', 'Cache server to test, with optional port', false );
 	}
 
 	public function execute() {
-		global $wgMainCacheType, $wgMemCachedTimeout, $wgObjectCaches;
+		global $wgObjectCaches, $wgMainCacheType;
 
-		$memcachedTypes = [ CACHE_MEMCACHED, 'memcached-php', 'memcached-pecl' ];
-
-		$cache = $this->getOption( 'cache' );
+		$cacheType = $this->getOption( 'cache', $wgMainCacheType );
 		$iterations = $this->getOption( 'i', 100 );
-		if ( $cache ) {
-			if ( !isset( $wgObjectCaches[$cache] ) ) {
-				$this->fatalError( "MediaWiki isn't configured with a cache named '$cache'" );
+		$classOverride = $this->getOption( 'class' );
+		$server = $this->getArg( 0 );
+
+		if ( !isset( $wgObjectCaches[$cacheType] ) ) {
+			$this->fatalError( "No configured '$cacheType' cache" );
+		}
+
+		if ( $classOverride !== null ) {
+			if ( !is_subclass_of( $classOverride, BagOStuff::class ) ) {
+				$this->fatalError( "Invalid class '$classOverride' for cache" );
 			}
-			$servers = $wgObjectCaches[$cache]['servers'];
-		} elseif ( $this->hasArg( 0 ) ) {
-			$servers = [ $this->getArg( 0 ) ];
-		} elseif ( in_array( $wgMainCacheType, $memcachedTypes, true ) ) {
-			global $wgMemCachedServers;
-			$servers = $wgMemCachedServers;
-		} elseif ( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {
-			$servers = $wgObjectCaches[$wgMainCacheType]['servers'];
+			$class = $classOverride;
 		} else {
-			$this->fatalError( "MediaWiki isn't configured for Memcached usage" );
+			$class = $wgObjectCaches[$cacheType]['class'];
 		}
 
-		# find out the longest server string to nicely align output later on
-		$maxSrvLen = $servers ? max( array_map( 'strlen', $servers ) ) : 0;
-
-		$type = $this->getOption( 'driver', 'php' );
-		if ( $type === 'php' ) {
-			$class = MemcachedPhpBagOStuff::class;
-		} elseif ( $type === 'pecl' ) {
-			$class = MemcachedPeclBagOStuff::class;
+		if ( $server !== null ) {
+			$servers = [ $server ];
 		} else {
-			$this->fatalError( "Invalid driver type '$type'" );
+			// Note that some caches, like apcu, do not have a server list
+			$servers = $wgObjectCaches[$cacheType]['servers'] ?? [ '127.0.0.1' ];
 		}
+
+		// Use longest server string for output alignment
+		$maxSrvLen = max( array_map( 'strlen', $servers ) );
 
 		$this->output( "Warming up connections to cache servers..." );
-		$mccByServer = [];
+		/** @var BagOStuff[] $cacheByServer */
+		$cacheByServer = [];
 		foreach ( $servers as $server ) {
-			/** @var BagOStuff $mcc */
-			$mccByServer[$server] = new $class( [
-				'servers' => [ $server ],
-				'persistent' => true,
-				'allow_tcp_nagle_delay' => false,
-				'timeout' => $wgMemCachedTimeout
-			] );
-			$mccByServer[$server]->get( 'key' );
+			$conf = [ 'servers' => [ $server ] ] + $wgObjectCaches[$cacheType];
+			$cacheByServer[$server] = new $class( $conf );
+			$cacheByServer[$server]->get( 'key' );
 		}
 		$this->output( "done\n" );
 		$this->output( "Single and batched operation profiling/test results:\n" );
@@ -99,7 +91,7 @@ class McTest extends Maintenance {
 			$valueByKey["test$i"] = 'S' . str_pad( $i, 2048 );
 		}
 
-		foreach ( $mccByServer as $server => $mcc ) {
+		foreach ( $cacheByServer as $server => $mcc ) {
 			$this->output( str_pad( $server, $maxSrvLen ) . "\n" );
 			$this->benchmarkSingleKeyOps( $mcc, $valueByKey );
 			$this->benchmarkMultiKeyOpsImmediateBlocking( $mcc, $valueByKey );
@@ -118,40 +110,31 @@ class McTest extends Maintenance {
 		$get = 0;
 		$delete = 0;
 
-		$i = count( $valueByKey );
 		$keys = array_keys( $valueByKey );
+		$count = count( $valueByKey );
 
 		// Clear out any old values
 		$mcc->deleteMulti( $keys );
 
 		$time_start = microtime( true );
-		foreach ( $keys as $key ) {
-			if ( $mcc->add( $key, $i ) ) {
+		foreach ( $valueByKey as $key => $value ) {
+			if ( $mcc->add( $key, $value ) ) {
 				$add++;
 			}
 		}
 		$addMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		foreach ( $keys as $key ) {
-			if ( $mcc->set( $key, $i ) ) {
+		foreach ( $valueByKey as $key => $value ) {
+			if ( $mcc->set( $key, $value ) ) {
 				$set++;
 			}
 		}
 		$setMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		foreach ( $keys as $key ) {
-			if ( $mcc->incr( $key, $i ) !== null ) {
-				$incr++;
-			}
-		}
-		$incrMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
-
-		$time_start = microtime( true );
-		foreach ( $keys as $key ) {
-			$value = $mcc->get( $key );
-			if ( $value == $i * 2 ) {
+		foreach ( $valueByKey as $key => $value ) {
+			if ( $mcc->get( $key ) === $value ) {
 				$get++;
 			}
 		}
@@ -165,12 +148,20 @@ class McTest extends Maintenance {
 		}
 		$delMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
+		$time_start = microtime( true );
+		foreach ( $keys as $index => $key ) {
+			if ( $mcc->incrWithInit( $key, $mcc::TTL_INDEFINITE, $index ) === $index ) {
+				$incr++;
+			}
+		}
+		$incrMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+
 		$this->output(
-			" add: $add/$i {$addMs}ms   " .
-			"set: $set/$i {$setMs}ms   " .
-			"incr: $incr/$i {$incrMs}ms   " .
-			"get: $get/$i ({$getMs}ms)   " .
-			"delete: $delete/$i ({$delMs}ms)\n"
+			" add: $add/$count {$addMs}ms   " .
+			"set: $set/$count {$setMs}ms   " .
+			"get: $get/$count ({$getMs}ms)   " .
+			"delete: $delete/$count ({$delMs}ms)	" .
+			"incr: $incr/$count ({$incrMs}ms)\n"
 		);
 	}
 
