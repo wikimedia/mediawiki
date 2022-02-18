@@ -438,7 +438,7 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * Factory function accepting multiple message keys and returning a message instance
 	 * for the first message which is non-empty. If all messages are empty then an
-	 * instance of the first message key is returned.
+	 * instance of the last message key is returned.
 	 *
 	 * @since 1.18
 	 *
