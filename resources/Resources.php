@@ -1409,8 +1409,10 @@ return [
 		],
 		'dependencies' => 'mediawiki.action.view.filepage',
 	],
+
+	// @deprecated To be removed one week after If406ce2ae38eb165 is merged.
 	'mediawiki.action.view.categoryPage.styles' => [
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.categoryPage.less',
+		'styles' => 'resources/src/mediawiki.action.styles/categoryPage.less',
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.action.view.postEdit' => [
@@ -1454,9 +1456,16 @@ return [
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 		],
 	],
+
+	// This bundles small stylesheets (<2KB) that:
+	// - .. are not loaded when viewing or editing content pages.
+	// - .. style the rendering of other wikipage actions and/or other namespaces.
 	'mediawiki.action.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.action.styles/styles.less',
+		'styles' => [
+			'resources/src/mediawiki.action.styles/styles.less',
+			'resources/src/mediawiki.action.styles/categoryPage.less',
+		],
 	],
 
 	/* MediaWiki Language */
