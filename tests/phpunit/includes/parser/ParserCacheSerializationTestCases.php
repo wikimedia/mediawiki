@@ -166,8 +166,8 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addLanguageLink( 'link2' );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki1', '', 'enwiki' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki2', '', 'enwiki' ) );
-		$parserOutputWithMetadata->addCategory( 'category2', 1 );
-		$parserOutputWithMetadata->addCategory( 'category1', 2 );
+		$parserOutputWithMetadata->addCategory( 'category2', '1' );
+		$parserOutputWithMetadata->addCategory( 'category1', '2' );
 		$parserOutputWithMetadata->setIndicator( 'indicator1', 'indicator1_value' );
 		$parserOutputWithMetadata->setTitleText( 'title_text1' );
 		$parserOutputWithMetadata->setSections( [ 'section1', 'section2' ] );
@@ -337,8 +337,8 @@ abstract class ParserCacheSerializationTestCases {
 					] ], $object->getInterwikiLinks() );
 					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [
-						'category1' => 2,
-						'vategory2' => 1
+						'category1' => '2',
+						'category2' => '1'
 					], $object->getCategories() );
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
