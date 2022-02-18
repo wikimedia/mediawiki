@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Block;
 
-use DateTime;
-use DateTimeZone;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -587,12 +585,8 @@ class BlockManager {
 			$expiryTime = $maxExpiryTime;
 		}
 
-		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$expiryValue = DateTime::createFromFormat(
-			'YmdHis',
-			$expiryTime,
-			new DateTimeZone( 'UTC' )
-		)->format( 'U' );
+		// Set the cookie
+		$expiryValue = (int)wfTimestamp( TS_UNIX, $expiryTime );
 		$cookieOptions = [ 'httpOnly' => false ];
 		$cookieValue = $this->getCookieValue( $block );
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
