@@ -419,7 +419,7 @@
 	"apihelp-parse-param-preview": "Parse in preview mode.",
 	"apihelp-parse-param-sectionpreview": "Parse in section preview mode (enables preview mode too).",
 	"apihelp-parse-param-disabletoc": "Omit table of contents in output.",
-	"apihelp-parse-param-useskin": "Apply the selected skin to the parser output. May affect the following properties: <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
+	"apihelp-parse-param-useskin": "Apply the selected skin to the parser output. May affect the following properties: <kbd>text</kbd>, <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
 	"apihelp-parse-param-contentformat": "Content serialization format used for the input text. Only valid when used with $1text.",
 	"apihelp-parse-param-contentmodel": "Content model of the input text. If omitted, $1title must be specified, and default will be the model of the specified title. Only valid when used with $1text.",
 	"apihelp-parse-example-page": "Parse a page.",
