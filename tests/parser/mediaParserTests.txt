@@ -447,6 +447,18 @@ wgParserEnableLegacyMediaDOM=false
 </p>
 !! end
 
+# wgExternalLinkTarget not supported by Parsoid
+!! test
+Thumb with link parameter, wgExternalLinkTarget
+!! wikitext
+[[Image:foobar.jpg|thumb|link=http://example.com/]]
+!! config
+wgExternalLinkTarget='foobar'
+wgParserEnableLegacyMediaDOM=false
+!! html/php
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption></figcaption></figure>
+!! end
+
 !! test
 Image with link parameter, wgNoFollowLinks set to false
 !! wikitext
@@ -533,7 +545,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.jpg|thumb|link=http://example.com/|Title]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a><figcaption>Title</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/" rel="nofollow"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a><figcaption>Title</figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -592,7 +604,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com" rel="nofollow"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="http://example.com"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end

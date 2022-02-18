@@ -408,9 +408,10 @@ class Linker {
 					$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
 				}
 			}
-			return $prefix .
-				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query, $classes ) .
-				$postfix;
+			return $prefix . self::makeThumbLink2(
+				$title, $file, $frameParams, $handlerParams, $time, $query,
+				$classes, $parser
+			) . $postfix;
 		}
 
 		switch ( $file ? $file->getMediaType() : '' ) {
@@ -598,11 +599,12 @@ class Linker {
 	 * @param bool $time
 	 * @param string $query
 	 * @param string[] $classes @since 1.36
+	 * @param Parser|null $parser @since 1.38
 	 * @return string
 	 */
 	public static function makeThumbLink2(
 		LinkTarget $title, $file, $frameParams = [], $handlerParams = [],
-		$time = false, $query = "", array $classes = []
+		$time = false, $query = "", array $classes = [], ?Parser $parser = null
 	) {
 		$exists = $file && $file->exists();
 
@@ -749,7 +751,7 @@ class Linker {
 			if ( $manualthumb ) {
 				$params['resource'] = $url;
 			}
-			$params = self::getImageLinkMTOParams( $frameParams, $query ) + $params;
+			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
 			if ( isset( $frameParams['framed'] ) ) {
 				$zoomIcon = "";
