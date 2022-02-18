@@ -88,6 +88,11 @@ class SkinComponentRegistry {
 					$this->skin->getOutput()->getTitle()
 				);
 				break;
+			case 'toc':
+				$component = new SkinComponentTableOfContents(
+					$this->skin->getOutput()
+				);
+				break;
 			default:
 				throw new RuntimeException( 'Unknown component: ' . $name );
 		}
@@ -99,5 +104,6 @@ class SkinComponentRegistry {
 	 */
 	private function registerComponents() {
 		$this->registerComponent( 'logos' );
+		$this->registerComponent( 'toc' );
 	}
 }
