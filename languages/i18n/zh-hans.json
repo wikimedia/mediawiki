@@ -1793,7 +1793,7 @@
 	"upload_directory_read_only": "上传目录（$1）不存在或无写权限。",
 	"uploaderror": "上传出错",
 	"upload-recreate-warning": "<strong>警告：一个相同名字的文件曾经被删除或者移动至别处。</strong>\n\n这个页面的删除和移动日志在这里提供以便参考：",
-	"uploadtext": "请使用下面的表单上传文件。要查看或搜索以往上传的文件，请前往[[Special:FileList|上传文件列表]]，（重新）上传也将记录在[[Special:Log/upload|上传日志]]中，删除将记录在[[Special:Log/delete|删除日志]]中。\n\n要在页面中包含文件，请使用一种以下形式的链接：\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong>使用文件的完整版本\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替代文字]]</nowiki></code></strong>使用位于页面左边的框内的200像素宽的图片，以“替代文字”作为说明\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong>直接链接到文件而不显示文件",
+	"uploadtext": "请使用下面的表单上传文件。要查看或搜索以往上传的文件，请前往[[Special:FileList|上传文件列表]]。上传和重新上传也将记录在[[Special:Log/upload|上传日志]]中。删除将记录在[[Special:Log/delete|删除日志]]中。\n\n要在页面中包含文件，请使用一种以下形式的链接：\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong>使用文件的完整版本\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|说明文字]]</nowiki></code></strong>使用位于页面左边的框内的200像素宽的图片，以“说明文字”作为说明\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong>直接链接到文件而不显示文件",
 	"upload-permitted": "允许的文件{{PLURAL:$2|类型}}：$1。",
 	"upload-preferred": "建议的文件{{PLURAL:$2|类型}}：$1。",
 	"upload-prohibited": "禁止的文件{{PLURAL:$2|类型}}：$1。",

@@ -399,6 +399,7 @@
 	"noarticletext-nopermission": "Амгы үеде бо арында сөзүглел чок. Ук атты өске арыннардан тып ап, азы [[Special:Search/{{PAGENAME}}|арыныңар дугайында өске чүүлдерге бижээнин тып ап]] болур силер, азы\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} дептерлерде чогуур бижиктерни тып ап болур силер]. Ук арынны кылыр чөпшээрел силерде чок.",
 	"userpage-userdoesnotexist": "\"$1\" деп ажыглакчы аккаунт бүрүткетпээн.\nОл арынны шынап чаяар азы эдериңер бе?",
 	"userpage-userdoesnotexist-view": "$1 дээр ажыглакчы аккаунтузу бүрүткелбээн.",
+	"clearyourcache": "<strong>Демдеглел:</strong> Публикастаан сооңарда өскерлиишкин көөрде браузериңер кээжин оюп эртер херек апарып болур силер.\n* <strong>Firefox / Safari:</strong><em>Shift</em> базып алгаш <em>Reload</em> тык кылыр, азы болза <em>Ctrl-F5</em> азы <em>Ctrl-R</em> базыптар силер (Mac-ка <em>⌘-R</em>)\n* <strong>Google Chrome:</strong><em>Ctrl-Shift-R</em> базыптар силер (Mac-ка <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer / Edge:</strong><em>Ctrl</em> базып алгаш <em>Refresh</em> тык кылыр, азы болза <em>Ctrl-F5</em> базыптар силер\n* <strong>Opera:</strong><em>Ctrl-F5</em> базыптар силер.",
 	"note": "'''Тайылбыр:'''",
 	"previewnote": "<strong>Бо дээрге чүгле пре-көрүлде-дир.</strong>\nӨскертилгелериңер ам-даа арынга үнмээн!",
 	"continue-editing": "Эдилге шөлүнче",
