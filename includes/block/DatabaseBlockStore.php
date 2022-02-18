@@ -186,7 +186,8 @@ class DatabaseBlockStore {
 		DatabaseBlock $block,
 		IDatabase $database = null
 	) {
-		if ( !$block->getBlocker() || $block->getBlocker()->getName() === '' ) {
+		$blocker = $block->getBlocker();
+		if ( !$blocker || $blocker->getName() === '' ) {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
 
@@ -205,8 +206,9 @@ class DatabaseBlockStore {
 
 		if ( $affected ) {
 			$block->setId( $dbw->insertId() );
-			if ( $block->getRawRestrictions() ) {
-				$this->blockRestrictionStore->insert( $block->getRawRestrictions() );
+			$restrictions = $block->getRawRestrictions();
+			if ( $restrictions ) {
+				$this->blockRestrictionStore->insert( $restrictions );
 			}
 		}
 
@@ -231,8 +233,9 @@ class DatabaseBlockStore {
 				$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 				$affected = $dbw->affectedRows();
 				$block->setId( $dbw->insertId() );
-				if ( $block->getRawRestrictions() ) {
-					$this->blockRestrictionStore->insert( $block->getRawRestrictions() );
+				$restrictions = $block->getRawRestrictions();
+				if ( $restrictions ) {
+					$this->blockRestrictionStore->insert( $restrictions );
 				}
 			}
 		}
@@ -391,13 +394,14 @@ class DatabaseBlockStore {
 		} else {
 			$userId = 0;
 		}
-		if ( !$block->getBlocker() ) {
+		$blocker = $block->getBlocker();
+		if ( !$blocker ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
 		// DatabaseBlockStore supports inserting cross-wiki blocks by passing non-local IDatabase and blocker.
 		$blockerActor = $this->actorStoreFactory
 			->getActorStore( $dbw->getDomainID() )
-			->acquireActorId( $block->getBlocker(), $dbw );
+			->acquireActorId( $blocker, $dbw );
 
 		$blockArray = [
 			'ipb_address'          => $block->getTargetName(),
@@ -434,13 +438,14 @@ class DatabaseBlockStore {
 	 * @return array
 	 */
 	private function getArrayForAutoblockUpdate( DatabaseBlock $block ): array {
-		if ( !$block->getBlocker() ) {
+		$blocker = $block->getBlocker();
+		if ( !$blocker ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$blockerActor = $this->actorStoreFactory
 			->getActorNormalization()
-			->acquireActorId( $block->getBlocker(), $dbw );
+			->acquireActorId( $blocker, $dbw );
 		$blockArray = [
 			'ipb_by_actor'       => $blockerActor,
 			'ipb_create_account' => $block->isCreateAccountBlocked(),
